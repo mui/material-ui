@@ -63,7 +63,7 @@ const TextField = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -79,7 +79,7 @@ const TextField = React.createClass({
 
   statics: {
     getRelevantContextKeys(muiTheme) {
-      const textFieldTheme = muiTheme.textField
+      const textFieldTheme = muiTheme.textField;
 
       return {
         floatingLabelColor: textFieldTheme.floatingLabelColor,

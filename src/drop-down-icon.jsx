@@ -21,7 +21,7 @@ const DropDownIcon = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -46,7 +46,7 @@ const DropDownIcon = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -65,7 +65,7 @@ const DropDownIcon = React.createClass({
   },
 
   componentClickAway() {
-    this.setState({ open: false });
+    this.setState({open: false});
   },
 
   getStyles() {
@@ -79,7 +79,7 @@ const DropDownIcon = React.createClass({
         height: spacing.desktopToolbarHeight,
         fontSize: spacing.desktopDropDownMenuFontSize,
         cursor: 'pointer',
-       },
+      },
       menu: {
         transition: Transitions.easeOut(),
         right: '-14px !important',
@@ -87,9 +87,9 @@ const DropDownIcon = React.createClass({
         opacity: (this.state.open) ? 1 : 0,
       },
       menuItem: { // similair to drop down menu's menu item styles
-        paddingRight: (spacing.iconSize + (spacing.desktopGutterLess*2)),
+        paddingRight: (spacing.iconSize + (spacing.desktopGutterLess * 2)),
         height: spacing.desktopDropDownMenuItemHeight,
-        lineHeight: spacing.desktopDropDownMenuItemHeight +'px',
+        lineHeight: spacing.desktopDropDownMenuItemHeight + 'px',
       },
     };
     return styles;
@@ -129,14 +129,14 @@ const DropDownIcon = React.createClass({
   },
 
   _onControlClick() {
-    this.setState({ open: !this.state.open });
+    this.setState({open: !this.state.open});
   },
 
   _onMenuItemClick(e, key, payload) {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
     if (this.props.closeOnMenuItemTouchTap) {
-      this.setState({ open: false });
+      this.setState({open: false});
     }
   },
 });

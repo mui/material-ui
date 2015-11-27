@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropDownMenu, Paper } from 'material-ui';
+import {DropDownMenu, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'drop-down-menu-code';
 import CodeExample from '../../code-example/code-example';
@@ -10,11 +10,11 @@ export default class DropDownMenuPage extends React.Component {
   render() {
 
     let menuItems = [
-      { payload: '1', text: 'Never' },
-      { payload: '2', text: 'Every Night' },
-      { payload: '3', text: 'Weeknights' },
-      { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
+      {payload: '1', text: 'Never'},
+      {payload: '2', text: 'Every Night'},
+      {payload: '3', text: 'Weeknights'},
+      {payload: '4', text: 'Weekends'},
+      {payload: '5', text: 'Weekly'},
     ];
 
     let componentInfo = [
@@ -121,10 +121,10 @@ export default class DropDownMenuPage extends React.Component {
     ];
 
     let menuItemsWithLabel = [
-      { payload: '1', text: 'Morning', period: '5 am - 12 pm' },
-      { payload: '2', text: 'Afternoon', period: '12 pm - 5 pm' },
-      { payload: '3', text: 'Evening', period: '5 pm to 9 pm' },
-      { payload: '4', text: 'Night', period: '9 pm to 4 am' },
+      {payload: '1', text: 'Morning', period: '5 am - 12 pm'},
+      {payload: '2', text: 'Afternoon', period: '12 pm - 5 pm'},
+      {payload: '3', text: 'Evening', period: '5 pm to 9 pm'},
+      {payload: '4', text: 'Night', period: '9 pm to 4 am'},
     ];
 
     return (

@@ -26,7 +26,7 @@ const DayButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -48,7 +48,7 @@ const DayButton = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -109,7 +109,7 @@ const DayButton = React.createClass({
     }
 
     if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
-        styles.label.color = this.getTheme().color;
+      styles.label.color = this.getTheme().color;
     }
 
     return this.props.date ? (

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ClearFix, Mixins, Styles, Utils } from 'material-ui';
+import {ClearFix, Mixins, Styles, Utils} from 'material-ui';
 
-const { ColorManipulator } = Utils;
-const { StyleResizable, StylePropable } = Mixins;
-const { Colors, Typography } = Styles;
+const {ColorManipulator} = Utils;
+const {StyleResizable, StylePropable} = Mixins;
+const {Colors, Typography} = Styles;
 
 
 const ColorsPage = React.createClass({
@@ -77,8 +77,8 @@ const ColorsPage = React.createClass({
       neutralGroups.push(this._getColorGroup(color, false));
     }, this);
 
-    let googleLink = "https://www.google.com/design/spec/style/color.html#color-ui-color-palette";
-    let githubLink = "https://github.com/callemall/material-ui/blob/master/src/styles/colors.js";
+    let googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
+    let githubLink = 'https://github.com/callemall/material-ui/blob/master/src/styles/colors.js';
 
     return (
       <div>

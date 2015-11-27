@@ -29,10 +29,10 @@ module.exports = {
     return React.isValidElement(children) ?
       React.Children.map(children, (child) => {
 
-        const newProps = typeof(extendedProps) === 'function' ?
+        const newProps = typeof (extendedProps) === 'function' ?
           extendedProps(child) : extendedProps;
 
-        const newChildren = typeof(extendedChildren) === 'function' ?
+        const newChildren = typeof (extendedChildren) === 'function' ?
           extendedChildren(child) : extendedChildren ?
           extendedChildren : child.props.children;
 

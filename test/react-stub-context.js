@@ -3,7 +3,7 @@
 const React = require('react');
 
 function stubContext(BaseComponent, context) {
-  if(typeof context === 'undefined' || context === null) context = {};
+  if (typeof context === 'undefined' || context === null) context = {};
 
   let _contextTypes = {}, _context = context;
 
@@ -44,8 +44,8 @@ function stubContext(BaseComponent, context) {
 
   BaseComponent.contextTypes = Object.assign({}, BaseComponent.contextTypes, _contextTypes);
 
-  StubbedContextHandler.getWrappedComponent = function() { return BaseComponent; }
-  StubbedContextHandler.getWrappedParentComponent = function() { return StubbedContextParent; }
+  StubbedContextHandler.getWrappedComponent = function() { return BaseComponent; };
+  StubbedContextHandler.getWrappedParentComponent = function() { return StubbedContextParent; };
 
   return StubbedContextHandler;
 }

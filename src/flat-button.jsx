@@ -10,7 +10,7 @@ const FlatButtonLabel = require('./buttons/flat-button-label');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
-function validateLabel (props, propName, componentName) {
+function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
     return new Error('Required prop label or children was not ' +
       'specified in ' + componentName + '.');
@@ -57,7 +57,7 @@ const FlatButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -104,7 +104,7 @@ const FlatButton = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -179,9 +179,9 @@ const FlatButton = React.createClass({
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      { labelElement, children }
+      {labelElement, children}
       :
-      { children, labelElement };
+      {children, labelElement};
     const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (

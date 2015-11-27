@@ -74,7 +74,7 @@ const Slider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -234,7 +234,7 @@ const Slider = React.createClass({
   },
 
   render() {
-    let { ...others } = this.props;
+    let {...others} = this.props;
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
@@ -285,9 +285,9 @@ const Slider = React.createClass({
 
     if (!this.props.disabled) {
       handleDragProps = {
-          onTouchStart: this._onHandleTouchStart,
-          onMouseDown: this._onHandleMouseDown,
-      }
+        onTouchStart: this._onHandleTouchStart,
+        onMouseDown: this._onHandleMouseDown,
+      };
     }
 
     return (
@@ -399,7 +399,7 @@ const Slider = React.createClass({
 
   setPercent(percent, callback) {
     let value = this._alignValue(this._percentToValue(percent));
-    let { min, max } = this.props;
+    let {min, max} = this.props;
     let alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
       this.setState({value: value, percent: alignedPercent}, callback);
@@ -411,7 +411,7 @@ const Slider = React.createClass({
   },
 
   _alignValue(val) {
-    let { step, min } = this.props;
+    let {step, min} = this.props;
     let alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
   },

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ClearFix, Mixins, Styles } from 'material-ui';
+import {ClearFix, Mixins, Styles} from 'material-ui';
 import CodeExample from './code-example/code-example';
 import ComponentInfo from './component-info';
 const Typography = Styles.Typography;
-const { Classable, StylePropable } = Mixins;
+const {Classable, StylePropable} = Mixins;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
@@ -17,8 +17,8 @@ const ComponentDoc = React.createClass({
 
   propTypes: {
     desc: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.element,
+      React.PropTypes.string,
+      React.PropTypes.element,
     ]),
     name: React.PropTypes.string.isRequired,
     componentInfo: React.PropTypes.array.isRequired,
@@ -29,13 +29,13 @@ const ComponentDoc = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -43,7 +43,7 @@ const ComponentDoc = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -107,16 +107,16 @@ const ComponentDoc = React.createClass({
     let desc = null;
 
     if (this.props.desc) {
-      if ((typeof this.props.desc) === "string") {
-        desc = <p style={this.prepareStyles(styles.desc)}>{this.props.desc}</p>
+      if ((typeof this.props.desc) === 'string') {
+        desc = <p style={this.prepareStyles(styles.desc)}>{this.props.desc}</p>;
       } else {
-        desc = <div style={this.prepareStyles(styles.desc)}>{this.props.desc}</div>
+        desc = <div style={this.prepareStyles(styles.desc)}>{this.props.desc}</div>;
       }
     }
 
     let header;
     if (this.props.name.length > 0) {
-      header = <h2 style={this.prepareStyles(styles.headline)}>{this.props.name}</h2>
+      header = <h2 style={this.prepareStyles(styles.headline)}>{this.props.name}</h2>;
     }
 
     return (

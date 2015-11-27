@@ -33,7 +33,7 @@ const LeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -90,10 +90,10 @@ const LeftNav = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    const newState = { muiTheme: newMuiTheme };
-    
+    const newState = {muiTheme: newMuiTheme};
+
     this._testDeprecations();
-    
+
     // If docked is changed, change the open state for when uncontrolled.
     if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
 
@@ -118,22 +118,22 @@ const LeftNav = React.createClass({
   },
 
   toggle() {
-    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');  
-    if (this.state.open) this.close(); 
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
+    if (this.state.open) this.close();
     else this.open();
     return this;
   },
 
   close() {
     warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
-    this.setState({ open: false });
+    this.setState({open: false});
     if (this.props.onNavClose) this.props.onNavClose();
     return this;
   },
 
   open() {
     warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
-    this.setState({ open: true });
+    this.setState({open: true});
     if (this.props.onNavOpen) this.props.onNavOpen();
     return this;
   },
@@ -212,7 +212,7 @@ const LeftNav = React.createClass({
       children = this.props.children;
     }
     else {
-       children = (
+      children = (
         <Menu
           ref="menuItems"
           style={this.mergeStyles(styles.menu)}
@@ -258,15 +258,15 @@ const LeftNav = React.createClass({
   _shouldShow() {
     return this.state.open || !!this.state.swiping;  // component is swiping
   },
-  
+
   _close(reason) {
-    if (this.props.open === null) this.setState({ open: false });
+    if (this.props.open === null) this.setState({open: false});
     if (this.props.onChangeRequest) this.props.onChangeRequest(false, reason);
     return this;
   },
 
   _open(reason) {
-    if (this.props.open === null) this.setState({ open: true });
+    if (this.props.open === null) this.setState({open: true});
     if (this.props.onChangeRequest) this.props.onChangeRequest(true, reason);
     return this;
   },
@@ -274,7 +274,7 @@ const LeftNav = React.createClass({
   _updateMenuHeight() {
     if (this.props.header) {
       const menu = ReactDOM.findDOMNode(this.refs.menuItems);
-      if (menu){
+      if (menu) {
         const container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
         const menuHeight = container.clientHeight - menu.offsetTop;
         menu.style.height = menuHeight + 'px';
@@ -331,13 +331,13 @@ const LeftNav = React.createClass({
     }
   },
 
-  _onBodyTouchStart(e) {  
-  
+  _onBodyTouchStart(e) {
+
     const swipeAreaWidth = 30;
-  
+
     let touchStartX = e.touches[0].pageX;
     let touchStartY = e.touches[0].pageY;
-    
+
     // Open only if swiping from far left (or right) while closed
     if (!this.state.open) {
       if (this.props.openRight) {
@@ -348,7 +348,7 @@ const LeftNav = React.createClass({
         if (touchStartX > swipeAreaWidth) return;
       }
     }
-    
+
     if (!this.state.open &&
          (openNavEventHandler !== this._onBodyTouchStart ||
           this.props.disableSwipeToOpen)

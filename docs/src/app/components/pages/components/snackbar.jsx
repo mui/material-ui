@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaisedButton, Snackbar, TextField, Paper } from 'material-ui';
+import {RaisedButton, Snackbar, TextField, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'snackbars-code';
 import CodeExample from '../../code-example/code-example';
@@ -162,7 +162,7 @@ export default class SnackbarPage extends React.Component {
 
   _handleAction() {
     //We can add more code here! In this example, we'll just include an alert.
-    window.alert("We removed the event from your calendar.");
+    window.alert('We removed the event from your calendar.');
   }
 
   _updateAutoHideDuration(e) {

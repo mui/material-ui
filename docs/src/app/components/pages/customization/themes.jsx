@@ -29,8 +29,8 @@ const {
   Toggle,
 } = mui;
 
-const { StylePropable, StyleResizable } = Mixins;
-const { Typography } = Styles;
+const {StylePropable, StyleResizable} = Mixins;
+const {Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 const DarkRawTheme = Styles.DarkRawTheme;
@@ -48,13 +48,13 @@ const ThemesPage = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
       isThemeDark: false,
@@ -63,7 +63,7 @@ const ThemesPage = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -455,40 +455,40 @@ const ThemesPage = React.createClass({
   getComponentGroup() {
     //Standard Actions
     let standardActions = [
-      { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit },
+      {text: 'Cancel'},
+      {text: 'Submit', onTouchTap: this._onDialogSubmit},
     ];
 
     let menuItemsNav = [
-      { route: 'get-started', text: 'Get Started' },
-      { route: 'customization', text: 'Customization' },
-      { route: 'component', text: 'Component' },
-      { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+      {route: 'get-started', text: 'Get Started'},
+      {route: 'customization', text: 'Customization'},
+      {route: 'component', text: 'Component'},
+      {type: MenuItem.Types.SUBHEADER, text: 'Resources'},
       {
-         type: MenuItem.Types.LINK,
-         payload: 'https://github.com/callemall/material-ui',
-         text: 'GitHub',
+        type: MenuItem.Types.LINK,
+        payload: 'https://github.com/callemall/material-ui',
+        text: 'GitHub',
       },
       {
-         text: 'Disabled',
-         disabled: true,
+        text: 'Disabled',
+        disabled: true,
       },
       {
-         type: MenuItem.Types.LINK,
-         payload: 'https://www.google.com',
-         text: 'Disabled Link',
-         disabled: true,
+        type: MenuItem.Types.LINK,
+        payload: 'https://www.google.com',
+        text: 'Disabled Link',
+        disabled: true,
       },
     ];
 
     let styles = this.getStyles();
 
     let menuItems = [
-       { payload: '1', text: 'Never' },
-       { payload: '2', text: 'Every Night' },
-       { payload: '3', text: 'Weeknights' },
-       { payload: '4', text: 'Weekends' },
-       { payload: '5', text: 'Weekly' },
+       {payload: '1', text: 'Never'},
+       {payload: '2', text: 'Every Night'},
+       {payload: '3', text: 'Weeknights'},
+       {payload: '4', text: 'Weekends'},
+       {payload: '5', text: 'Weekly'},
     ];
 
     return (
@@ -502,7 +502,7 @@ const ThemesPage = React.createClass({
               <RaisedButton label="Secondary" secondary={true} />
             </div>
             <div style={styles.containerCentered}>
-              <RaisedButton label="Primary"  primary={true}/>
+              <RaisedButton label="Primary" primary={true}/>
             </div>
             <div style={styles.containerCentered}>
               <RaisedButton label="Default"/>
@@ -623,7 +623,7 @@ const ThemesPage = React.createClass({
 
   // Toggles between light and dark themes
   onTabChange(isDark) {
-    if(this.state.isThemeDark === isDark){
+    if (this.state.isThemeDark === isDark) {
       return;
     }
     let newMuiTheme = null;

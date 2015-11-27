@@ -1,7 +1,7 @@
 import React from 'react';
-import { ClearFix, Mixins, SelectField, Styles, Paper } from 'material-ui';
+import {ClearFix, Mixins, SelectField, Styles, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
-const { StyleResizable } = Mixins;
+const {StyleResizable} = Mixins;
 import Code from 'select-fields-code';
 import CodeExample from '../../code-example/code-example';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
@@ -183,11 +183,11 @@ const SelectFieldsPage = React.createClass({
     ];
 
     let menuItems = [
-      { payload: '1', text: 'Never' },
-      { payload: '2', text: 'Every Night' },
-      { payload: '3', text: 'Weeknights' },
-      { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
+      {payload: '1', text: 'Never'},
+      {payload: '2', text: 'Every Night'},
+      {payload: '3', text: 'Weeknights'},
+      {payload: '4', text: 'Weekends'},
+      {payload: '5', text: 'Weekly'},
     ];
     let arbitraryArrayMenuItems = [
       {id:1, name:'Never'},
@@ -197,10 +197,10 @@ const SelectFieldsPage = React.createClass({
       {id:5, name:'Weekly'},
     ];
     let menuItemsWithLabel = [
-      { payload: '1', text: 'Morning', period: '5 am - 12 pm' },
-      { payload: '2', text: 'Afternoon', period: '12 pm - 5 pm' },
-      { payload: '3', text: 'Evening', period: '5 pm to 9 pm' },
-      { payload: '4', text: 'Night', period: '9 pm to 4 am' },
+      {payload: '1', text: 'Morning', period: '5 am - 12 pm'},
+      {payload: '2', text: 'Afternoon', period: '12 pm - 5 pm'},
+      {payload: '3', text: 'Evening', period: '5 pm to 9 pm'},
+      {payload: '4', text: 'Night', period: '9 pm to 4 am'},
     ];
 
     let styles = this.getStyles();
@@ -241,7 +241,7 @@ const SelectFieldsPage = React.createClass({
             <SelectField
               valueLink={this.linkState('selectValueLinkValue2')}
               floatingLabelText="Float Custom Label Text"
-              floatingLabelStyle={{color: "red"}}
+              floatingLabelStyle={{color: 'red'}}
               valueMember="id"
               displayMember="name"
               menuItems={arbitraryArrayMenuItems} /><br/>

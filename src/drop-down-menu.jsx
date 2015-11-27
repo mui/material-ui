@@ -24,7 +24,7 @@ const DropDownMenu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -89,7 +89,7 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  getStyles(){
+  getStyles() {
     const {disabled} = this.props;
     let zIndex = 5; // As AppBar
     let spacing = this.state.muiTheme.rawTheme.spacing;
@@ -194,7 +194,7 @@ const DropDownMenu = React.createClass({
 
     let styles = this.getStyles();
     let selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
-    let displayValue = "";
+    let displayValue = '';
     if (selectedIndex) {
       if (process.env.NODE_ENV !== 'production') {
         console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
@@ -279,12 +279,12 @@ const DropDownMenu = React.createClass({
 
   _onControlClick() {
     if (!this.props.disabled) {
-      this.setState({ open: !this.state.open });
+      this.setState({open: !this.state.open});
     }
   },
 
   _onKeyDown(e) {
-    switch(e.which) {
+    switch (e.which) {
       case KeyCode.UP:
         if (!this.state.open) {
           this._selectPreviousItem();

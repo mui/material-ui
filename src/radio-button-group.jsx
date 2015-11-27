@@ -17,7 +17,7 @@ const RadioButtonGroup = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -69,7 +69,7 @@ const RadioButtonGroup = React.createClass({
     if (nextProps.hasOwnProperty('valueSelected')) {
       newState.selected = nextProps.valueSelected;
     }
-    
+
     this.setState(newState);
   },
 
@@ -110,7 +110,7 @@ const RadioButtonGroup = React.createClass({
       this.setState({selected: newSelection});
     }
     else if (process.env.NODE_ENV !== 'production') {
-      let message = "Cannot select a different radio button while another radio button " +
+      let message = 'Cannot select a different radio button while another radio button ' +
                     "has the 'checked' property set to true.";
       console.error(message);
     }

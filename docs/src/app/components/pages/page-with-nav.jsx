@@ -1,9 +1,9 @@
 import React from 'react';
 import {State, History} from 'react-router';
-import { Menu, Mixins, Styles } from 'material-ui';
+import {Menu, Mixins, Styles} from 'material-ui';
 
-let { Spacing, Colors } = Styles;
-let { StyleResizable, StylePropable } = Mixins;
+let {Spacing, Colors} = Styles;
+let {StyleResizable, StylePropable} = Mixins;
 
 
 let PageWithNav = React.createClass({
@@ -19,7 +19,7 @@ let PageWithNav = React.createClass({
     menuItems: React.PropTypes.array,
   },
 
-  getStyles(){
+  getStyles() {
     let subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     let styles = {
       root: {

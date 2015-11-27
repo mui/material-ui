@@ -23,7 +23,7 @@ const TimeDisplay = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -61,14 +61,14 @@ const TimeDisplay = React.createClass({
     let hour = this.props.selectedTime.getHours();
     let min = this.props.selectedTime.getMinutes().toString();
 
-    if (this.props.format === "ampm") {
+    if (this.props.format === 'ampm') {
       hour %= 12;
       hour = hour || 12;
     }
 
     hour = hour.toString();
-    if (hour.length < 2 ) hour = "0" + hour;
-    if (min.length < 2 ) min = "0" + min;
+    if (hour.length < 2 ) hour = '0' + hour;
+    if (min.length < 2 ) min = '0' + min;
 
     return [hour, min];
   },
@@ -86,21 +86,21 @@ const TimeDisplay = React.createClass({
 
     let styles = {
       root: {
-        textAlign: "center",
-        position: "relative",
+        textAlign: 'center',
+        position: 'relative',
         width: 280,
-        height: "100%",
+        height: '100%',
       },
 
       time: {
-        margin: "6px 0",
-        lineHeight: "58px",
+        margin: '6px 0',
+        lineHeight: '58px',
         height: 58,
-        fontSize: "58px",
+        fontSize: '58px',
       },
 
       box: {
-        padding: "16px 0",
+        padding: '16px 0',
         backgroundColor: this.getTheme().color,
         color: this.getTheme().textColor,
       },

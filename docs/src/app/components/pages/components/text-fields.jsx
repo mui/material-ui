@@ -1,8 +1,8 @@
 import React from 'react';
-import { ClearFix, Mixins, TextField, Styles, Paper } from 'material-ui';
+import {ClearFix, Mixins, TextField, Styles, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
-const { Colors } = Styles;
-const { StyleResizable } = Mixins;
+const {Colors} = Styles;
+const {StyleResizable} = Mixins;
 import Code from 'text-fields-code';
 import CodeExample from '../../code-example/code-example';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';

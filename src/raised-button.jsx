@@ -10,7 +10,7 @@ const Paper = require('./paper');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
-function validateLabel (props, propName, componentName) {
+function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
     return new Error('Required prop label or children was not ' +
       'specified in ' + componentName + '.');
@@ -31,7 +31,7 @@ const RaisedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -208,9 +208,9 @@ const RaisedButton = React.createClass({
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      { labelElement, children }
+      {labelElement, children}
       :
-      { children, labelElement };
+      {children, labelElement};
     const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (
@@ -241,18 +241,18 @@ const RaisedButton = React.createClass({
   _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
     }
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleMouseLeave(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
+    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(e);
   },
 
@@ -272,18 +272,18 @@ const RaisedButton = React.createClass({
   },
 
   _handleTouchEnd(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
     }
     else if (!this.state.hovered) {
-      this.setState({ zDepth: this.state.initialZDepth });
+      this.setState({zDepth: this.state.initialZDepth});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },

@@ -56,7 +56,7 @@ const ListItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -91,7 +91,7 @@ const ListItem = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -374,7 +374,7 @@ const ListItem = React.createClass({
     const buttonEl = ReactDOM.findDOMNode(button);
 
     if (button) {
-      switch(focusState) {
+      switch (focusState) {
         case 'none':
           buttonEl.blur();
           break;
@@ -402,7 +402,7 @@ const ListItem = React.createClass({
       style
     );
 
-    return React.createElement('div', { style: mergedDivStyles }, contentChildren);
+    return React.createElement('div', {style: mergedDivStyles}, contentChildren);
   },
 
   _createLabelElement(styles, contentChildren) {
@@ -419,7 +419,7 @@ const ListItem = React.createClass({
       style
     );
 
-    return React.createElement('label', { style: mergedLabelStyles }, contentChildren);
+    return React.createElement('label', {style: mergedLabelStyles}, contentChildren);
   },
 
   _createTextElement(styles, data, key) {

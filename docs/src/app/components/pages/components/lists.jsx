@@ -14,7 +14,7 @@ import ContentSend from 'svg-icons/content/send';
 import EditorInsertChart from 'svg-icons/editor/insert-chart';
 import FileFolder from 'svg-icons/file/folder';
 import MoreVertIcon from 'svg-icons/navigation/more-vert';
-import { SelectableContainerEnhance } from 'material-ui/hoc/selectable-enhance';
+import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
 
 const {
   Avatar,
@@ -31,7 +31,7 @@ const {
 import IconMenu from 'menus/icon-menu';
 import MenuItem from 'menus/menu-item';
 
-const { Colors } = Styles;
+const {Colors} = Styles;
 import Code from 'lists-code';
 import CodeExample from '../../code-example/code-example';
 import CodeBlock from '../../code-example/code-block';
@@ -39,34 +39,34 @@ let SelectableList = SelectableContainerEnhance(List);
 
 const Typography = Styles.Typography;
 let styles = {
-     headline: {
-       fontSize: '24px',
-       lineHeight: '32px',
-       paddingTop: '16px',
-       marginBottom: '12px',
-       letterSpacing: '0',
-       fontWeight: Typography.fontWeightNormal,
-       color: Typography.textDarkBlack,
-     },
-     subheadline: {
-       fontSize: '18px',
-       lineHeight: '27px',
-       paddingTop: '12px',
-       marginBottom: '9px',
-       letterSpacing: '0',
-       fontWeight: Typography.fontWeightNormal,
-       color: Typography.textDarkBlack,
-     },
-     codeblock: {
-       padding: '24px',
-       marginBottom: '32px',
-     },
-}
+  headline: {
+    fontSize: '24px',
+    lineHeight: '32px',
+    paddingTop: '16px',
+    marginBottom: '12px',
+    letterSpacing: '0',
+    fontWeight: Typography.fontWeightNormal,
+    color: Typography.textDarkBlack,
+  },
+  subheadline: {
+    fontSize: '18px',
+    lineHeight: '27px',
+    paddingTop: '12px',
+    marginBottom: '9px',
+    letterSpacing: '0',
+    fontWeight: Typography.fontWeightNormal,
+    color: Typography.textDarkBlack,
+  },
+  codeblock: {
+    padding: '24px',
+    marginBottom: '32px',
+  },
+};
 
 function wrapState(ComposedComponent) {
   const StateWrapper = React.createClass({
     getInitialState() {
-      return { selectedIndex: 1 };
+      return {selectedIndex: 1};
     },
     handleUpdateSelectedIndex(e, index) {
       this.setState({
@@ -88,13 +88,13 @@ export default class ListsPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { selectedIndex: 1 }
+    this.state = {selectedIndex: 1};
 
     this.handleUpdateSelectedIndex = (e, index) => {
       this.setState({
         selectedIndex: index,
       });
-    }
+    };
   }
 
   render() {
@@ -845,5 +845,5 @@ handleUpdateSelectedIndex(e,index) {
       </ComponentDoc>
     );
 
-}
+  }
 }

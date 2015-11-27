@@ -1,8 +1,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const StylePropable = require('../mixins/style-propable');
-const ClockNumber = require("./clock-number");
-const ClockPointer = require("./clock-pointer");
+const ClockNumber = require('./clock-number');
+const ClockPointer = require('./clock-pointer');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
@@ -41,13 +41,13 @@ const ClockMinutes = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -55,7 +55,7 @@ const ClockMinutes = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -65,7 +65,7 @@ const ClockMinutes = React.createClass({
 
   isMousePressed(e) {
 
-    if (typeof e.buttons === "undefined") {
+    if (typeof e.buttons === 'undefined') {
       return e.nativeEvent.which;
     }
     return e.buttons;
@@ -82,15 +82,15 @@ const ClockMinutes = React.createClass({
   componentDidMount() {
     let clockElement = ReactDOM.findDOMNode(this.refs.mask);
 
-      this.center = {
-        x: clockElement.offsetWidth / 2,
-        y: clockElement.offsetHeight / 2,
-      };
+    this.center = {
+      x: clockElement.offsetWidth / 2,
+      y: clockElement.offsetHeight / 2,
+    };
 
-      this.basePoint = {
-        x: this.center.x,
-        y: 0,
-      };
+    this.basePoint = {
+      x: this.center.x,
+      y: 0,
+    };
   },
 
   handleUp(e) {
@@ -142,7 +142,7 @@ const ClockMinutes = React.createClass({
 
   _getMinuteNumbers() {
     let minutes = [];
-    for(let i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
       minutes.push(i * 5);
     }
     let selectedMinutes = this.props.initialMinutes;
@@ -164,18 +164,18 @@ const ClockMinutes = React.createClass({
   render() {
     let styles = {
       root: {
-        height: "100%",
-        width: "100%",
-        borderRadius: "100%",
-        position: "relative",
-        pointerEvents: "none",
-        boxSizing: "border-box",
+        height: '100%',
+        width: '100%',
+        borderRadius: '100%',
+        position: 'relative',
+        pointerEvents: 'none',
+        boxSizing: 'border-box',
       },
 
       hitMask: {
-        height: "100%",
-        width: "100%",
-        pointerEvents: "auto",
+        height: '100%',
+        width: '100%',
+        pointerEvents: 'auto',
       },
     };
 

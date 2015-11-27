@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshIndicator, Paper } from 'material-ui';
+import {RefreshIndicator, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'refresh-indicator-code';
 import CodeExample from '../../code-example/code-example';
@@ -81,7 +81,7 @@ let RefreshIndicatorPage = React.createClass({
         </Paper>
 
         <CodeExample code={Code}>
-          <div style={{ position: "relative" }}>
+          <div style={{position: 'relative'}}>
             <p>
               Ready status
             </p>

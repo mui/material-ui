@@ -48,13 +48,13 @@ const Table = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       allRowsSelected: this.props.allRowsSelected,
@@ -63,7 +63,7 @@ const Table = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -238,7 +238,7 @@ const Table = React.createClass({
   },
 
   _onRowSelection(selectedRows) {
-    if (this.state.allRowsSelected) this.setState({ allRowsSelected: false });
+    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
     if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
   },
 
@@ -250,7 +250,7 @@ const Table = React.createClass({
         this.props.onRowSelection('none');
       }
     }
-  
+
     this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 

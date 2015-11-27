@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const StylePropable = require('./mixins/style-propable');
 const AutoPrefix = require('./styles/auto-prefix');
-const Transitions = require("./styles/transitions");
+const Transitions = require('./styles/transitions');
 const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
 const ThemeManager = require('./styles/theme-manager');
 
@@ -11,14 +11,14 @@ const CircularProgress = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-      mode: React.PropTypes.oneOf(["determinate", "indeterminate"]),
-      value: React.PropTypes.number,
-      min:  React.PropTypes.number,
-      max:  React.PropTypes.number,
-      size: React.PropTypes.number,
-      color: React.PropTypes.string,
-      style: React.PropTypes.object,
-      innerStyle: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+    value: React.PropTypes.number,
+    min:  React.PropTypes.number,
+    max:  React.PropTypes.number,
+    size: React.PropTypes.number,
+    color: React.PropTypes.string,
+    style: React.PropTypes.object,
+    innerStyle: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -30,13 +30,13 @@ const CircularProgress = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -44,7 +44,7 @@ const CircularProgress = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -75,22 +75,22 @@ const CircularProgress = React.createClass({
     setTimeout(this._scalePath.bind(this, path, step + 1), step ? 750 : 250);
 
     if (!this.isMounted()) return;
-    if (this.props.mode !== "indeterminate") return;
+    if (this.props.mode !== 'indeterminate') return;
 
     if (step === 0) {
-      path.style.strokeDasharray = "1, 200";
+      path.style.strokeDasharray = '1, 200';
       path.style.strokeDashoffset = 0;
-      path.style.transitionDuration = "0ms";
+      path.style.transitionDuration = '0ms';
     }
     else if (step === 1) {
-      path.style.strokeDasharray = "89, 200";
+      path.style.strokeDasharray = '89, 200';
       path.style.strokeDashoffset = -35;
-      path.style.transitionDuration = "750ms";
+      path.style.transitionDuration = '750ms';
     }
     else {
-      path.style.strokeDasharray = "89,200";
+      path.style.strokeDasharray = '89,200';
       path.style.strokeDashoffset = -124;
-      path.style.transitionDuration = "850ms";
+      path.style.transitionDuration = '850ms';
     }
   },
 
@@ -98,7 +98,7 @@ const CircularProgress = React.createClass({
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
     if (!this.isMounted()) return;
-    if (this.props.mode !== "indeterminate") return;
+    if (this.props.mode !== 'indeterminate') return;
 
     AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
     AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
@@ -112,7 +112,7 @@ const CircularProgress = React.createClass({
 
   getDefaultProps() {
     return {
-      mode: "indeterminate",
+      mode: 'indeterminate',
       value: 0,
       min: 0,
       max: 100,
@@ -126,7 +126,7 @@ const CircularProgress = React.createClass({
 
   getStyles(zoom) {
     zoom *= 1.4;
-    let size = "50px";
+    let size = '50px';
 
     let margin = Math.round( ((50 * zoom) - 50) / 2 );
 
@@ -134,40 +134,40 @@ const CircularProgress = React.createClass({
 
     let styles = {
       root: {
-        position: "relative",
-        margin: margin + "px",
-        display: "inline-block",
+        position: 'relative',
+        margin: margin + 'px',
+        display: 'inline-block',
         width: size,
         height: size,
       },
       wrapper: {
         width: size,
         height: size,
-        margin: "5px",
-        display: "inline-block",
-        transition: Transitions.create("transform", "20s", null, "linear"),
+        margin: '5px',
+        display: 'inline-block',
+        transition: Transitions.create('transform', '20s', null, 'linear'),
       },
       svg: {
         height: size,
-        position: "relative",
-        transform: "scale(" + zoom + ")",
+        position: 'relative',
+        transform: 'scale(' + zoom + ')',
         width: size,
       },
       path: {
-        strokeDasharray: "89,200",
+        strokeDasharray: '89,200',
         strokeDashoffset: 0,
         stroke: this.props.color || this.getTheme().primary1Color,
-        strokeLinecap: "round",
-        transition: Transitions.create("all", "1.5s", null, "ease-in-out"),
+        strokeLinecap: 'round',
+        transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
       },
     };
 
-    AutoPrefix.set(styles.wrapper, "transitionTimingFunction", "linear");
+    AutoPrefix.set(styles.wrapper, 'transitionTimingFunction', 'linear');
 
-    if (this.props.mode === "determinate"){
+    if (this.props.mode === 'determinate') {
       let relVal = this._getRelativeValue();
-      styles.path.transition = Transitions.create("all", "0.3s", null, "linear");
-      styles.path.strokeDasharray = Math.round(relVal * 1.25) + ",200";
+      styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
+      styles.path.strokeDasharray = Math.round(relVal * 1.25) + ',200';
     }
 
     return styles;

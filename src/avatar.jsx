@@ -17,7 +17,7 @@ const Avatar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -32,7 +32,7 @@ const Avatar = React.createClass({
     style: React.PropTypes.object,
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -40,7 +40,7 @@ const Avatar = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -77,7 +77,7 @@ const Avatar = React.createClass({
     if (src) {
       const borderColor = this.state.muiTheme.avatar.borderColor;
 
-      if(borderColor) {
+      if (borderColor) {
         styles.root = this.mergeStyles(styles.root, {
           height: size - 2,
           width: size - 2,

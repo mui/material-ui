@@ -17,7 +17,7 @@ const {
   Toggle,
   Paper,
 } = mui;
-const { Typography } = Styles;
+const {Typography} = Styles;
 import CheckboxCode from 'checkbox-code';
 import RadioButtonCode from 'radio-buttons-code';
 import ToggleCode from 'toggle-code';
@@ -33,290 +33,290 @@ export default class SwitchesPage extends React.Component {
                'checkedLink';
 
     this.componentInfo = [
-    {
-      name: 'Checkbox Props',
-      infoArray: [
-        {
-          name: 'checkedIcon',
-          type: 'element',
-          header: 'optional',
-          desc: 'The SvgIcon to use for the checked state. This is useful to create icon toggles.',
-        },
-        {
-          name: 'defaultChecked',
-          type: 'bool',
-          header: 'default:false',
-          desc: 'The default state of our checkbox component.',
-        },
-        {
-          name: 'iconStyle',
-          type: 'object',
-          header: 'optional',
-          desc: 'Overrides the inline-styles of the icon element.',
-        },
-        {
-          name: 'label',
-          type: 'node',
-          header: 'optional',
-          desc: 'The text that is displayed beside the checkbox.',
-        },
-        {
-          name: 'labelStyle',
-          type: 'object',
-          header: 'optional',
-          desc: 'Overrides the inline-styles of the Checkbox element label.',
-        },
-        {
-          name: 'labelPosition',
-          type: 'oneOf ["left", "right"]',
-          header: 'default:"right"',
-          desc: 'Where the label will be placed next to the checkbox. Options include ' +
+      {
+        name: 'Checkbox Props',
+        infoArray: [
+          {
+            name: 'checkedIcon',
+            type: 'element',
+            header: 'optional',
+            desc: 'The SvgIcon to use for the checked state. This is useful to create icon toggles.',
+          },
+          {
+            name: 'defaultChecked',
+            type: 'bool',
+            header: 'default:false',
+            desc: 'The default state of our checkbox component.',
+          },
+          {
+            name: 'iconStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the icon element.',
+          },
+          {
+            name: 'label',
+            type: 'node',
+            header: 'optional',
+            desc: 'The text that is displayed beside the checkbox.',
+          },
+          {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the Checkbox element label.',
+          },
+          {
+            name: 'labelPosition',
+            type: 'oneOf ["left", "right"]',
+            header: 'default:"right"',
+            desc: 'Where the label will be placed next to the checkbox. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "right".',
-        },
-        {
-          name: 'style',
-          type: 'object',
-          header: 'optional',
-          desc: 'Override the inline-styles of the Checkbox\'s root element.',
-        },
-        {
-          name: 'unCheckedIcon',
-          type: 'element',
-          header: 'optional',
-          desc: 'The SvgIcon to use for the unchecked state. This is useful to create icon toggles.',
-        },
-      ],
-    },
-    {
-      name: 'Checkbox Methods',
-      infoArray: [
-        {
-          name: 'isChecked',
-          header: 'Checkbox.isChecked()',
-          desc: 'Returns true if the checkbox is currently checked. Returns false otherwise',
-        },
-        {
-          name: 'setChecked',
-          header: 'Checkbox.setChecked(newCheckedValue)',
-          desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' +
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Checkbox\'s root element.',
+          },
+          {
+            name: 'unCheckedIcon',
+            type: 'element',
+            header: 'optional',
+            desc: 'The SvgIcon to use for the unchecked state. This is useful to create icon toggles.',
+          },
+        ],
+      },
+      {
+        name: 'Checkbox Methods',
+        infoArray: [
+          {
+            name: 'isChecked',
+            header: 'Checkbox.isChecked()',
+            desc: 'Returns true if the checkbox is currently checked. Returns false otherwise',
+          },
+          {
+            name: 'setChecked',
+            header: 'Checkbox.setChecked(newCheckedValue)',
+            desc: 'Sets the checkbox to the value of newCheckedValue. This method cannot be used ' +
                 'while "checked" is defined as a property.',
-        },
-      ],
-    },
-    {
-      name: 'Checkbox Events',
-      infoArray: [
-        {
-          name: 'onCheck',
-          type: 'function(event, checked)',
-          header: 'optional',
-          desc: 'Callback function that is fired when the checkbox is checked.',
-        },
-      ],
-    },
-    {
-      name: 'Radio Button Props',
-      infoArray: [
-        {
-          name: 'defaultChecked',
-          type: 'bool',
-          header: 'default:false',
-          desc: 'The default value of the radio button when the page finishes loading.',
-        },
-        {
-          name: 'iconStyle',
-          type: 'object',
-          header: 'optional',
-          desc: 'Overrides the inline-styles of the icon element.',
-        },
-        {
-          name: 'label',
-          type: 'node',
-          header: 'optional',
-          desc: 'The text that is displayed beside the radio button.',
-        },
-        {
-          name: 'labelStyle',
-          type: 'object',
-          header: 'optional',
-          desc: 'Overrides the inline-styles of the RadioButton element label.',
-        },
-        {
-          name: 'labelPosition',
-          type: 'oneOf ["left", "right"]',
-          header: 'default:"right"',
-          desc: 'Where the label will be placed next to the radio button. Options include ' +
+          },
+        ],
+      },
+      {
+        name: 'Checkbox Events',
+        infoArray: [
+          {
+            name: 'onCheck',
+            type: 'function(event, checked)',
+            header: 'optional',
+            desc: 'Callback function that is fired when the checkbox is checked.',
+          },
+        ],
+      },
+      {
+        name: 'Radio Button Props',
+        infoArray: [
+          {
+            name: 'defaultChecked',
+            type: 'bool',
+            header: 'default:false',
+            desc: 'The default value of the radio button when the page finishes loading.',
+          },
+          {
+            name: 'iconStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the icon element.',
+          },
+          {
+            name: 'label',
+            type: 'node',
+            header: 'optional',
+            desc: 'The text that is displayed beside the radio button.',
+          },
+          {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the RadioButton element label.',
+          },
+          {
+            name: 'labelPosition',
+            type: 'oneOf ["left", "right"]',
+            header: 'default:"right"',
+            desc: 'Where the label will be placed next to the radio button. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "right".',
-        },
-        {
-          name: 'style',
-          type: 'object',
-          header: 'optional',
-          desc: 'Override the inline-styles of the RadioButton\'s root element.',
-        },
-        {
-          name: 'value',
-          type: 'string',
-          header: 'optional',
-          desc: 'The value of our radio button component.',
-        },
-      ],
-    },
-    {
-      name: 'Radio Button Group',
-      infoArray: [
-        {
-          name: 'defaultSelected',
-          type: 'string',
-          header: 'optional',
-          desc: 'Sets the default radio button to be the one whose value matches ' +
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the RadioButton\'s root element.',
+          },
+          {
+            name: 'value',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of our radio button component.',
+          },
+        ],
+      },
+      {
+        name: 'Radio Button Group',
+        infoArray: [
+          {
+            name: 'defaultSelected',
+            type: 'string',
+            header: 'optional',
+            desc: 'Sets the default radio button to be the one whose value matches ' +
                 'defaultSelected (case-sensitive). This will override any individual radio ' +
                 'button with the defaultChecked or checked property stated.',
-        },
-        {
-          name: 'labelPosition',
-          type: 'oneOf ["left", "right"]',
-          header: 'optional',
-          desc: 'Where the label will be placed for all radio buttons. Options include ' +
+          },
+          {
+            name: 'labelPosition',
+            type: 'oneOf ["left", "right"]',
+            header: 'optional',
+            desc: 'Where the label will be placed for all radio buttons. Options include ' +
                 '"left" and "right" (case-sensitive). This will override any labelPosition ' +
                 'properties defined for an individual radio button.',
-        },
-        {
-          name: 'name',
-          type: 'string',
-          header: 'required',
-          desc: 'The name that will be applied to all radio buttons inside it.',
-        },
-        {
-          name: 'style',
-          type: 'object',
-          header: 'optional',
-          desc: 'Override the inline-styles of the RadioButtonGroup\'s root element.',
-        },
-        {
-          name: 'valueSelected',
-          type: 'string',
-          header: 'optional',
-          desc: 'The value of the currently selected radio button.',
-        },
-      ],
-    },
-    {
-      name: 'Radio Button Group Methods',
-      infoArray: [
-        {
-          name: 'getSelectedValue',
-          header: 'RadioButtonGroup.getSelectedValue()',
-          desc: 'Returns the string value of the radio button that is currently selected. If nothing ' +
+          },
+          {
+            name: 'name',
+            type: 'string',
+            header: 'required',
+            desc: 'The name that will be applied to all radio buttons inside it.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the RadioButtonGroup\'s root element.',
+          },
+          {
+            name: 'valueSelected',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of the currently selected radio button.',
+          },
+        ],
+      },
+      {
+        name: 'Radio Button Group Methods',
+        infoArray: [
+          {
+            name: 'getSelectedValue',
+            header: 'RadioButtonGroup.getSelectedValue()',
+            desc: 'Returns the string value of the radio button that is currently selected. If nothing ' +
                 'has been selected, an empty string is returned.',
-        },
-        {
-          name: 'setSelectedValue',
-          header: 'RadioButtonGroup.setSelectedValue(newSelectionValue)',
-          desc: 'Sets the selected radio button to the radio button whose value matches ' +
+          },
+          {
+            name: 'setSelectedValue',
+            header: 'RadioButtonGroup.setSelectedValue(newSelectionValue)',
+            desc: 'Sets the selected radio button to the radio button whose value matches ' +
                 'newSelectionValue',
-        },
-        {
-          name: 'clearValue',
-          header: 'RadioButtonGroup.clearValue()',
-          desc: 'Clears the selected value for the radio button group.',
-        },
-      ],
-    },
-    {
-      name: 'Radio Button Group Events',
-      infoArray: [
-        {
-          name: 'onChange',
-          type: 'function(event, selected)',
-          header: 'optional',
-          desc: 'Callback function that is fired when a radio button has been clicked. Returns ' +
+          },
+          {
+            name: 'clearValue',
+            header: 'RadioButtonGroup.clearValue()',
+            desc: 'Clears the selected value for the radio button group.',
+          },
+        ],
+      },
+      {
+        name: 'Radio Button Group Events',
+        infoArray: [
+          {
+            name: 'onChange',
+            type: 'function(event, selected)',
+            header: 'optional',
+            desc: 'Callback function that is fired when a radio button has been clicked. Returns ' +
                 'the event and the value of the radio button that has been selected.',
-        },
-      ],
-    },
-    {
-      name: 'Toggle Props',
-      infoArray: [
-        {
-          name: 'defaultToggled',
-          type: 'bool',
-          header: 'default:false',
-          desc: 'The value of the toggle button. Is true when toggle has been turned on. ' +
+          },
+        ],
+      },
+      {
+        name: 'Toggle Props',
+        infoArray: [
+          {
+            name: 'defaultToggled',
+            type: 'bool',
+            header: 'default:false',
+            desc: 'The value of the toggle button. Is true when toggle has been turned on. ' +
             'False otherwise.',
-        },
-        {
-          name: 'elementStyle',
-          type: 'object',
-          header: 'optional',
-          desc: 'Overrides the inline-styles of the Toggle element.',
-        },
-        {
-          name: 'label',
-          type: 'node',
-          header: 'optional',
-          desc: 'The text that is displayed beside the toggle switch.',
-        },
-        {
-          name: 'labelStyle',
-          type: 'object',
-          header: 'optional',
-          desc: 'Overrides the inline-styles of the Toggle element label.',
-        },
-        {
-          name: 'labelPosition',
-          type: 'oneOf ["left", "right"]',
-          header: 'default:"left"',
-          desc: 'Where the label will be placed next to the toggle switch. Options include ' +
+          },
+          {
+            name: 'elementStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the Toggle element.',
+          },
+          {
+            name: 'label',
+            type: 'node',
+            header: 'optional',
+            desc: 'The text that is displayed beside the toggle switch.',
+          },
+          {
+            name: 'labelStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the Toggle element label.',
+          },
+          {
+            name: 'labelPosition',
+            type: 'oneOf ["left", "right"]',
+            header: 'default:"left"',
+            desc: 'Where the label will be placed next to the toggle switch. Options include ' +
                 '"left" and "right" (case-sensitive). Default option is "left".',
-        },
-        {
-          name: 'name',
-          type: 'string',
-          header: 'optional',
-          desc: 'This is the name of the toggle.',
-        },
-        {
-          name: 'style',
-          type: 'object',
-          header: 'optional',
-          desc: 'Override the inline-styles of the Toggle\'s root element.',
-        },
-        {
-          name: 'value',
-          type: 'string',
-          header: 'optional',
-          desc: 'The value of our toggle component.',
-        },
-      ],
-    },
-    {
-      name: 'Toggle Methods',
-      infoArray: [
-        {
-          name: 'isToggled',
-          header: 'Toggle.isToggled()',
-          desc: 'Returns true if the checkbox is currently checked. Returns false otherwise',
-        },
-        {
-          name: 'setToggled',
-          header: 'Toggle.setToggled(newToggledValue)',
-          desc: 'Sets the toggle to the value of newToggledValue. This method cannot be used ' +
+          },
+          {
+            name: 'name',
+            type: 'string',
+            header: 'optional',
+            desc: 'This is the name of the toggle.',
+          },
+          {
+            name: 'style',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the Toggle\'s root element.',
+          },
+          {
+            name: 'value',
+            type: 'string',
+            header: 'optional',
+            desc: 'The value of our toggle component.',
+          },
+        ],
+      },
+      {
+        name: 'Toggle Methods',
+        infoArray: [
+          {
+            name: 'isToggled',
+            header: 'Toggle.isToggled()',
+            desc: 'Returns true if the checkbox is currently checked. Returns false otherwise',
+          },
+          {
+            name: 'setToggled',
+            header: 'Toggle.setToggled(newToggledValue)',
+            desc: 'Sets the toggle to the value of newToggledValue. This method cannot be used ' +
                 'while "checked" is defined as a property.',
-        },
-      ],
-    },
-    {
-      name: 'Toggle Events',
-      infoArray: [
-        {
-          name: 'onToggle',
-          type: 'function(event, toggled)',
-          header: 'optional',
-          desc: 'Callback function that is fired when the toggle switch is toggled.',
-        },
-      ],
-    },
+          },
+        ],
+      },
+      {
+        name: 'Toggle Events',
+        infoArray: [
+          {
+            name: 'onToggle',
+            type: 'function(event, toggled)',
+            header: 'optional',
+            desc: 'Callback function that is fired when the toggle switch is toggled.',
+          },
+        ],
+      },
     ];
   }
 
@@ -340,7 +340,7 @@ export default class SwitchesPage extends React.Component {
         fontWeight: Typography.fontWeightNormal,
         color: Typography.textDarkBlack,
       },
-    }
+    };
   }
 
   render() {

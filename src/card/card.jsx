@@ -7,7 +7,7 @@ const Card = React.createClass({
   mixins:[StylePropable],
 
   getInitialState() {
-    return { expanded: this.props.initiallyExpanded ? true : false };
+    return {expanded: this.props.initiallyExpanded ? true : false};
   },
 
   propTypes: {
@@ -41,7 +41,7 @@ const Card = React.createClass({
       if (currentChild.props.actAsExpander === true) {
         doClone = true;
         newProps.onTouchTap = this._onExpandable;
-        newProps.style = this.mergeStyles({ cursor: 'pointer' }, currentChild.props.style);
+        newProps.style = this.mergeStyles({cursor: 'pointer'}, currentChild.props.style);
       }
       if (currentChild.props.showExpandableButton === true) {
         doClone = true;
@@ -55,8 +55,8 @@ const Card = React.createClass({
 
     // If the last element is text or a title we should add
     // 8px padding to the bottom of the card
-    let addBottomPadding = (lastElement && (lastElement.type.displayName === "CardText" ||
-      lastElement.type.displayName === "CardTitle"));
+    let addBottomPadding = (lastElement && (lastElement.type.displayName === 'CardText' ||
+      lastElement.type.displayName === 'CardTitle'));
     let {
       style,
       ...other,

@@ -49,13 +49,13 @@ const NestedMenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       open: false,
@@ -121,8 +121,8 @@ const NestedMenuItem = React.createClass({
     let styles = this.getStyles();
     styles = this.prepareStyles(styles.root,
       (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
-      position: 'relative',
-    }, this.props.style);
+        position: 'relative',
+      }, this.props.style);
 
     let iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
@@ -166,7 +166,7 @@ const NestedMenuItem = React.createClass({
   },
 
   toggleNestedMenu() {
-    if (!this.props.disabled) this.setState({ open: !this.state.open });
+    if (!this.props.disabled) this.setState({open: !this.state.open});
   },
 
   isOpen() {
@@ -180,11 +180,11 @@ const NestedMenuItem = React.createClass({
   },
 
   _openNestedMenu() {
-    if (!this.props.disabled) this.setState({ open: true });
+    if (!this.props.disabled) this.setState({open: true});
   },
 
   _closeNestedMenu() {
-    this.setState({ open: false });
+    this.setState({open: false});
     ReactDOM.findDOMNode(this).focus();
   },
 
@@ -243,13 +243,13 @@ const Menu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       nestedMenuShown: false,
@@ -285,7 +285,7 @@ const Menu = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
@@ -356,7 +356,7 @@ const Menu = React.createClass({
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
 
-    for (let i=0; i < this.props.menuItems.length; i++) {
+    for (let i = 0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
@@ -538,7 +538,7 @@ const Menu = React.createClass({
       el.style.transition = Transitions.easeOut();
     }
 
-    this._nextAnimationFrame(function () {
+    this._nextAnimationFrame(function() {
       //Set the overflow to hidden so that animation works properly
       container.style.overflow = 'hidden';
 
@@ -591,7 +591,7 @@ const Menu = React.createClass({
     if (nested && nested.props.nested && this.refs[this.state.activeIndex].isOpen())
       return;
 
-    switch(e.which) {
+    switch (e.which) {
       case KeyCode.UP:
         this._activatePreviousItem();
         break;
@@ -630,7 +630,7 @@ const Menu = React.createClass({
 
   _activateNextItem() {
     let active = this.state.activeIndex || 0;
-    active = Math.min(active+1, this._children.length -1);
+    active = Math.min(active + 1, this._children.length - 1);
     this.setState({activeIndex:active});
   },
 

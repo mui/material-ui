@@ -20,7 +20,7 @@ const TableBody = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -65,7 +65,7 @@ const TableBody = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
@@ -84,7 +84,7 @@ const TableBody = React.createClass({
 
   componentClickAway() {
     if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
-      this.setState({ selectedRows: [] });
+      this.setState({selectedRows: []});
       if (this.props.onRowSelection) this.props.onRowSelection([]);
     }
   },
@@ -166,7 +166,7 @@ const TableBody = React.createClass({
     );
   },
 
-  _calculatePreselectedRows (props) {
+  _calculatePreselectedRows(props) {
     // Determine what rows are 'pre-selected'.
     let preSelectedRows = [];
 
@@ -269,7 +269,7 @@ const TableBody = React.createClass({
       }
     }
 
-    this.setState({ selectedRows: selectedRows });
+    this.setState({selectedRows: selectedRows});
     if (this.props.onRowSelection) this.props.onRowSelection(this._flattenRanges(selectedRows));
   },
 

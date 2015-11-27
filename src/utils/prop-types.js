@@ -13,12 +13,12 @@ module.exports = {
   ]),
 
   horizontal:horizontal,
-  
+
   vertical:vertical,
 
   origin: React.PropTypes.shape({
-      horizontal: horizontal,
-      vertical:vertical,
+    horizontal: horizontal,
+    vertical:vertical,
   }),
 
   cornersAndCenter: React.PropTypes.oneOf([

@@ -7,7 +7,7 @@ export default {
   getPrefixer() {
     // Server-side renderer needs to supply user agent
     if (typeof navigator === 'undefined') {
-      console.warn(`Material-UI expects the global navigator.userAgent to be defined for server-side rendering. Set this property when receiving the request headers.`)
+      console.warn(`Material-UI expects the global navigator.userAgent to be defined for server-side rendering. Set this property when receiving the request headers.`);
       return null;
     }
 

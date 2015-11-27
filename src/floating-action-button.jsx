@@ -32,7 +32,7 @@ const FloatingActionButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -164,7 +164,7 @@ const FloatingActionButton = React.createClass({
       secondary,
       iconStyle,
       iconClassName,
-      ...other } = this.props;
+      ...other} = this.props;
 
     let styles = this.getStyles();
 
@@ -231,18 +231,18 @@ const FloatingActionButton = React.createClass({
   _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
     }
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleMouseLeave(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
+    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(e);
   },
 
@@ -262,17 +262,17 @@ const FloatingActionButton = React.createClass({
   },
 
   _handleTouchEnd(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     }
     else if (!this.state.hovered) {
-      this.setState({ zDepth: this.state.initialZDepth });
+      this.setState({zDepth: this.state.initialZDepth});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
