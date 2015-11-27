@@ -120,6 +120,13 @@ export default class DropDownMenuPage extends React.Component {
       },
     ];
 
+    let menuItemsWithLabel = [
+      { payload: '1', text: 'Morning', period: '5 am - 12 pm' },
+      { payload: '2', text: 'Afternoon', period: '12 pm - 5 pm' },
+      { payload: '3', text: 'Evening', period: '5 pm to 9 pm' },
+      { payload: '4', text: 'Night', period: '9 pm to 4 am' },
+    ];
+
     return (
       <ComponentDoc
         name="Drop Down Menu"
@@ -135,7 +142,12 @@ export default class DropDownMenuPage extends React.Component {
         </Paper>
 
         <CodeExample code={Code}>
-          <DropDownMenu menuItems={menuItems} />
+          <DropDownMenu menuItems={menuItems} /><br/>
+          <DropDownMenu
+            menuItems={menuItemsWithLabel}
+            labelMember="period"
+          />
+
         </CodeExample>
       </ComponentDoc>
     );
