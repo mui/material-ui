@@ -51,6 +51,7 @@ const SelectField = React.createClass({
     menuItemStyle: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
+    labelMember: React.PropTypes.string,
   },
 
   //for passing default theme context to children
@@ -73,6 +74,7 @@ const SelectField = React.createClass({
   getDefaultProps() {
     return {
       fullWidth: false,
+      labelMember: 'text',
     };
   },
 
@@ -142,6 +144,7 @@ const SelectField = React.createClass({
       errorText,
       onFocus,
       onBlur,
+      labelMember,
       ...other,
     } = this.props;
 
@@ -164,6 +167,7 @@ const SelectField = React.createClass({
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
       underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
       autoWidth: false,
+      labelMember: labelMember,
     };
 
     return (

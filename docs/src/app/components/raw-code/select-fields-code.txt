@@ -5,6 +5,9 @@
   hintText="Hint Text"
   menuItems={menuItems} /><br/>
 <SelectField
+  menuItems={menuItemsWithLabel}
+  labelMember="period" /><br/>
+<SelectField
   valueLink={this.linkState('selectValueLinkValue')}
   floatingLabelText="Float Label Text"
   valueMember="id"

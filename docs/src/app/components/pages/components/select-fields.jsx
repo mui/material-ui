@@ -53,6 +53,13 @@ const SelectFieldsPage = React.createClass({
               'property you can choose another name.',
           },
           {
+            name: 'labelMember',
+            type: 'string',
+            header: 'default: text',
+            desc: 'DropDownMenu will use text as default value, with this ' +
+            'property you can choose another name.',
+          },
+          {
             name: 'errorStyle',
             type: 'object',
             header: 'optional',
@@ -189,7 +196,12 @@ const SelectFieldsPage = React.createClass({
       {id:4, name:'Weekends'},
       {id:5, name:'Weekly'},
     ];
-
+    let menuItemsWithLabel = [
+      { payload: '1', text: 'Morning', period: '5 am - 12 pm' },
+      { payload: '2', text: 'Afternoon', period: '12 pm - 5 pm' },
+      { payload: '3', text: 'Evening', period: '5 pm to 9 pm' },
+      { payload: '4', text: 'Night', period: '9 pm to 4 am' },
+    ];
 
     let styles = this.getStyles();
 
@@ -217,6 +229,9 @@ const SelectFieldsPage = React.createClass({
               onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
               hintText="Hint Text"
               menuItems={menuItems} /><br/>
+            <SelectField
+              menuItems={menuItemsWithLabel}
+              labelMember="period" /><br/>
             <SelectField
               valueLink={this.linkState('selectValueLinkValue')}
               floatingLabelText="Float Label Text"
