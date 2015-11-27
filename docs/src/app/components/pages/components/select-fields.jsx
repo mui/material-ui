@@ -53,6 +53,13 @@ const SelectFieldsPage = React.createClass({
               'property you can choose another name.',
           },
           {
+            name: 'labelMember',
+            type: 'string',
+            header: 'default: text',
+            desc: 'DropDownMenu will use text as default value, with this ' +
+            'property you can choose another name.',
+          },
+          {
             name: 'errorStyle',
             type: 'object',
             header: 'optional',

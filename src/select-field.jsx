@@ -74,6 +74,7 @@ const SelectField = React.createClass({
   getDefaultProps() {
     return {
       fullWidth: false,
+      labelMember: 'text',
     };
   },
 
@@ -143,6 +144,7 @@ const SelectField = React.createClass({
       errorText,
       onFocus,
       onBlur,
+      labelMember,
       ...other,
     } = this.props;
 
@@ -165,7 +167,7 @@ const SelectField = React.createClass({
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
       underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
       autoWidth: false,
-      labelMember: this.props.labelMember || null,
+      labelMember: labelMember,
     };
 
     return (

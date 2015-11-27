@@ -213,7 +213,7 @@ const DropDownMenu = React.createClass({
 
     let selectedItem = this.props.menuItems[selectedIndex];
     if (selectedItem) {
-      displayValue = selectedItem[labelMember || displayMember];
+      displayValue = selectedItem[labelMember];
     }
 
     let menuItems = this.props.menuItems.map((item) => {
