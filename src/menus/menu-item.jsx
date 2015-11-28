@@ -232,8 +232,8 @@ const MenuItem = React.createClass({
       open:true,
       anchorEl:ReactDOM.findDOMNode(this),
     });
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(e);
     }
   },
 

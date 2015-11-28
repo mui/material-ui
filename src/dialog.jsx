@@ -109,16 +109,20 @@ const DialogInline = React.createClass({
   },
 
   propTypes: {
+    actionFocus: React.PropTypes.string,
     actions: React.PropTypes.array,
     autoDetectWindowHeight: React.PropTypes.bool,
     autoScrollBodyContent: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
+    modal: React.PropTypes.bool,
+    onRequestClose: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
+    titleStyle: React.PropTypes.object,
   },
 
   windowListeners: {

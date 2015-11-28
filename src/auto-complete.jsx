@@ -40,6 +40,9 @@ const AutoComplete = React.createClass({
     onNewRequest: React.PropTypes.func,
     filter: React.PropTypes.func,
     disableFocusRipple: React.PropTypes.bool,
+    fullWidth: React.PropTypes.bool,
+    touchTapCloseDelay: React.PropTypes.number,
+    open: React.PropTypes.bool,
   },
 
   getDefaultProps() {
