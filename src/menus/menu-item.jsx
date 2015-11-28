@@ -33,7 +33,6 @@ const MenuItem = React.createClass({
     leftIcon: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     onTouchTap: React.PropTypes.func,
-    onClick: React.PropTypes.func,
     secondaryText: React.PropTypes.node,
     style: React.PropTypes.object,
     value: React.PropTypes.string,
@@ -233,8 +232,8 @@ const MenuItem = React.createClass({
       open:true,
       anchorEl:ReactDOM.findDOMNode(this),
     });
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(e);
     }
   },
 
