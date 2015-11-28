@@ -64,13 +64,7 @@ const AutoComplete = React.createClass({
       open: this.props.open,
     };
   },
-  componentWillReceiveProps: function(nextProps) {
-    if (this.state.searchText !== nextProps.searchText) {
-      this.setState({
-        searchText: nextProps.searchText,
-      });
-    }
-  },
+
   componentWillMount() {
     this.focusOnInput = false;
     this.requestsList = [];
