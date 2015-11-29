@@ -84,7 +84,7 @@ const GridTile = React.createClass({
         [this.props.titlePosition]: 0,
         height: this.props.subtitle ? 68 : 48,
         background: this.props.titleBackground,
-        display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
+        display: 'flex',
         alignItems: 'center',
       },
       titleWrap: {
