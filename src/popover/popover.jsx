@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import WindowListenable from '../mixins/window-listenable';
 import RenderToLayer from '../render-to-layer';
 import StylePropable from '../mixins/style-propable';
-import Extend from '../utils/extend';
 import CssEvent from '../utils/css-event';
-import Dom from '../utils/dom';
 import PropTypes from '../utils/prop-types';
 import Transitions from '../styles/transitions';
 import Paper from '../paper';
@@ -254,7 +252,7 @@ const Popover = React.createClass({
     };
   },
 
-  setPlacement(el) {
+  setPlacement() {
     if (!this.state.open)
       return;
 

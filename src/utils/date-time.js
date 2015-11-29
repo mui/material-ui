@@ -1,3 +1,4 @@
+import warning from 'warning';
 
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
@@ -6,9 +7,8 @@ const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
 function DateTimeFormat(locale, options) {
-  if (process.env.NODE_ENV !== 'production' && locale !== 'en-US') {
-    console.warn('Wrong usage of DateTimeFormat. The ' + locale + ' locale is not supported.');
-  }
+  warning(locale === 'en-US',
+    'Wrong usage of DateTimeFormat. The ' + locale + ' locale is not supported.');
 
   this.format = function(date) {
     let output;
@@ -25,8 +25,8 @@ function DateTimeFormat(locale, options) {
 
       output = monthLongList[date.getMonth()];
       output += ' ' + date.getFullYear();
-    } else if (process.env.NODE_ENV !== 'production') {
-      console.warn('Wrong usage of DateTimeFormat');
+    } else {
+      warning(false, 'Wrong usage of DateTimeFormat');
     }
 
     return output;

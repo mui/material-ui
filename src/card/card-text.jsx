@@ -1,5 +1,4 @@
 const React = require('react');
-const Styles = require('../styles');
 const StylePropable = require('../mixins/style-propable');
 const ThemeManager = require('../styles/theme-manager');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
@@ -7,7 +6,7 @@ const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 
 const CardText = React.createClass({
 
-  mixins:[StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,

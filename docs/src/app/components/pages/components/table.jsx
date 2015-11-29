@@ -1,6 +1,5 @@
 import React from 'react';
 import CodeExample from '../../code-example/code-example';
-import Router from 'react-router';
 import ComponentDoc from '../../component-doc';
 import {
   Table,

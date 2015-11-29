@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Styles} from 'material-ui';
-const {Spacing} = Styles;
 const {ThemeManager} = Styles;
 const DefaultRawTheme = Styles.LightRawTheme;
 
@@ -47,7 +46,7 @@ const CodeBlock = React.createClass({
     });
   },
 
-  shouldComponentUpdate({children}, nextState) {
+  shouldComponentUpdate({children}) {
     return this.props.children !== children;
   },
 

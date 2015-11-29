@@ -27,10 +27,10 @@ rules:
   max-len: [0, 120, 4] # Wishlist, one day
   new-cap: [0, {capIsNew: true, newIsCap: true}] # Wishlist, one day
   no-unused-expressions: 2
-  no-unused-vars: 0 # Wishlist, one day
+  no-unused-vars: 2
   no-shadow: 0 # Wishlist, one day
   no-spaced-func: 2
-  no-multi-spaces: 0 # Wishlist, one day
+  no-multi-spaces: 2
   no-undef: 2
   no-empty-pattern: 2
   no-dupe-keys: 2
@@ -53,7 +53,7 @@ rules:
   space-before-keywords: [2, always]
   space-infix-ops: 2
   space-return-throw-case: 2
-  space-unary-ops: [0, { words: true, nonwords: false }]
+  space-unary-ops: [0, { words: true, nonwords: false }] # Wishlist, one day
   yoda: 2
 
   # Disabled

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FontIcon, IconButton, Badge, Paper} from 'material-ui';
+import {IconButton, Badge, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'badge-code';
 import CodeExample from '../../code-example/code-example';

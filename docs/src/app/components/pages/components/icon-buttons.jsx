@@ -1,8 +1,7 @@
 import React from 'react';
-import {FontIcon, IconButton, NavigationMenu, Paper} from 'material-ui';
+import {FontIcon, IconButton, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import ActionGrade from 'svg-icons/action/grade';
-import ActionHome from 'svg-icons/action/home';
 import Code from 'icon-buttons-code';
 import CodeExample from '../../code-example/code-example';
 import CodeBlock from '../../code-example/code-block';

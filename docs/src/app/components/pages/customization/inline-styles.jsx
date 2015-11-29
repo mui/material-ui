@@ -1,6 +1,5 @@
 import React from 'react';
 import {Checkbox, Styles} from 'material-ui';
-import CodeBlock from '../../code-example/code-block';
 import CodeExample from '../../code-example/code-example';
 
 const {Typography} = Styles;

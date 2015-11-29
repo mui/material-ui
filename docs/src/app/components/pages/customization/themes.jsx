@@ -2,8 +2,6 @@ import React from 'react';
 import mui from 'material-ui';
 import CodeBlock from '../../code-example/code-block';
 import ComponentDoc from '../../component-doc';
-import ComponentInfo from '../../component-info';
-import CodeExample from '../../code-example/code-example';
 
 const {
   Checkbox,

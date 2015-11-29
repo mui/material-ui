@@ -4,7 +4,6 @@ import mui from 'material-ui';
 import ToggleStar from 'svg-icons/toggle/star';
 
 const {
-  ClearFix,
   FlatButton,
   FloatingActionButton,
   FontIcon,

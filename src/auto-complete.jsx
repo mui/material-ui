@@ -57,7 +57,7 @@ const AutoComplete = React.createClass({
       updateWhenFocused: false,
       onUpdateInput: () => {},
       onNewRequest: () => {},
-      filter: (searchText, key, value) => key.includes(searchText),
+      filter: (searchText, key) => key.includes(searchText),
     };
   },
 

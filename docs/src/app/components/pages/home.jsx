@@ -6,7 +6,6 @@ import FullWidthSection from '../full-width-section';
 
 const {StylePropable, StyleResizable} = Mixins;
 const {Colors, Spacing, Typography} = Styles;
-const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
 

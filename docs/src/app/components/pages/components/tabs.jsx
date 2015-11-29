@@ -288,7 +288,7 @@ export default class TabsPage extends React.Component {
     this.props.history.pushState(null, tab.props.route);
   }
 
-  _handleTabsChange(value, e, tab) {
+  _handleTabsChange(value) {
     this.setState({tabsValue: value});
   }
 }

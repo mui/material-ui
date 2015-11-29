@@ -2,7 +2,7 @@ import React from 'react';
 import {Mixins, Styles} from 'material-ui';
 
 const {StyleResizable, StylePropable} = Mixins;
-const {Typography, Spacing, Colors} = Styles;
+const {Typography, Spacing} = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 

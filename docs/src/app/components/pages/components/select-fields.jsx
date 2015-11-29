@@ -1,5 +1,5 @@
 import React from 'react';
-import {ClearFix, Mixins, SelectField, Styles, Paper} from 'material-ui';
+import {ClearFix, Mixins, SelectField, Paper} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 const {StyleResizable} = Mixins;
 import Code from 'select-fields-code';
