@@ -50,21 +50,19 @@ const GridList = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  getStyles()
-  {
+  getStyles() {
     return {
       root: {
-        display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
+        display: 'flex',
         flexWrap: 'wrap',
-        margin: `-${this.props.padding / 2}px`,
+        margin: -this.props.padding / 2,
       },
       item: {
         boxSizing: 'border-box',
-        padding: `${this.props.padding / 2}px`,
+        padding: this.props.padding / 2,
       },
     };
   },
-
 
   render() {
     const {
@@ -74,7 +72,7 @@ const GridList = React.createClass({
       children,
       style,
       ...other,
-      } = this.props;
+    } = this.props;
 
     const styles = this.getStyles();
 
