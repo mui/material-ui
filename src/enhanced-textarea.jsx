@@ -137,7 +137,7 @@ const EnhancedTextarea = React.createClass({
 
     let newHeight = shadow.scrollHeight;
 
-    if (this.props.rowsMax > this.props.rows) {
+    if (this.props.rowsMax >= this.props.rows) {
       newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
     }
 
