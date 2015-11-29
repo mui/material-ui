@@ -1,8 +1,6 @@
-let React = require('react');
 let ReactDOM = require('react-dom');
 let Events = require('../utils/events');
 let Dom = require('../utils/dom');
-
 
 module.exports = {
 

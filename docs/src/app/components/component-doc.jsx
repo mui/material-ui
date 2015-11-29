@@ -1,9 +1,8 @@
 import React from 'react';
 import {ClearFix, Mixins, Styles} from 'material-ui';
-import CodeExample from './code-example/code-example';
 import ComponentInfo from './component-info';
 const Typography = Styles.Typography;
-const {Classable, StylePropable} = Mixins;
+const {StylePropable} = Mixins;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 

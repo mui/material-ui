@@ -1,7 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const WindowListenable = require('./mixins/window-listenable');
-const CssEvent = require('./utils/css-event');
 const KeyCode = require('./utils/key-code');
 const Transitions = require('./styles/transitions');
 const StylePropable = require('./mixins/style-propable');

@@ -1,15 +1,11 @@
 import React from 'react';
-import Router from 'react-router';
 import AppLeftNav from './app-left-nav';
 import FullWidthSection from './full-width-section';
 import {AppBar,
       AppCanvas,
-      FontIcon,
       IconButton,
       EnhancedButton,
-      Menu,
       Mixins,
-      RaisedButton,
       Styles,
       Tab,
       Tabs,
@@ -95,10 +91,6 @@ const Master = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    let title =
-      this.props.history.isActive('/get-started') ? 'Get Started' :
-      this.props.history.isActive('/customization') ? 'Customization' :
-      this.props.history.isActive('/components') ? 'Components' : '';
 
     let githubButton = (
       <IconButton

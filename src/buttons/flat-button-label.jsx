@@ -1,13 +1,15 @@
 const React = require('react');
 const ContextPure = require('../mixins/context-pure');
 const StylePropable = require('../mixins/style-propable');
-const Styles = require('../utils/styles');
 const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
 const ThemeManager = require('../styles/theme-manager');
 
 const FlatButtonLabel = React.createClass({
 
-  mixins: [ContextPure, StylePropable],
+  mixins: [
+    ContextPure,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,

@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'react-router';
 import {MenuItem, LeftNav, Mixins, Styles} from 'material-ui';
 const {Colors, Spacing, Typography} = Styles;
 const {StylePropable} = Mixins;

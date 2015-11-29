@@ -1,5 +1,5 @@
 import React from 'react';
-import {Popover, RadioButton, RaisedButton, SelectField, TextField} from 'material-ui';
+import {Popover, RadioButton, RaisedButton} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'popover-code';
 import CodeExample from '../../code-example/code-example';
@@ -81,14 +81,6 @@ let PopoverPage = React.createClass({
           },
         ],
       },
-    ];
-
-    let menuItems = [
-      {payload: '1', text: 'Never'},
-      {payload: '2', text: 'Every Night'},
-      {payload: '3', text: 'Weeknights'},
-      {payload: '4', text: 'Weekends'},
-      {payload: '5', text: 'Weekly'},
     ];
 
     return (
@@ -173,7 +165,7 @@ let PopoverPage = React.createClass({
     });
   },
 
-  setAnchor(positionElement, position, e) {
+  setAnchor(positionElement, position) {
     let {anchorOrigin} = this.state;
     anchorOrigin[positionElement] = position;
 
@@ -182,7 +174,7 @@ let PopoverPage = React.createClass({
     });
   },
 
-  setTarget(positionElement, position, e) {
+  setTarget(positionElement, position) {
     let {targetOrigin} = this.state;
     targetOrigin[positionElement] = position;
 

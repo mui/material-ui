@@ -1,6 +1,5 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const ReactTransitionGroup = require('react-addons-transition-group');
 const StylePropable = require('../mixins/style-propable');
 const Events = require('../utils/events');
 const PropTypes = require('../utils/prop-types');

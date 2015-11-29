@@ -1,5 +1,5 @@
 import React from 'react';
-import {State, History} from 'react-router';
+import {History} from 'react-router';
 import {Menu, Mixins, Styles} from 'material-ui';
 
 let {Spacing, Colors} = Styles;

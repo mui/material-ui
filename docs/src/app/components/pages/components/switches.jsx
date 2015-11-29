@@ -10,7 +10,6 @@ const {
   ClearFix,
   RadioButton,
   RadioButtonGroup,
-  RaisedButton,
   Styles,
   Tab,
   Tabs,

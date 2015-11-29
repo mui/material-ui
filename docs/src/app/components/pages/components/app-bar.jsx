@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, DropDownMenu, Paper} from 'material-ui';
+import {AppBar, Paper} from 'material-ui';
 import IconButton from 'icon-button';
 import NavigationClose from 'svg-icons/navigation/close';
 import FlatButton from 'flat-button';

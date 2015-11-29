@@ -7,7 +7,6 @@ const {
   Avatar,
   Card,
   CardActions,
-  CardExpandable,
   CardHeader,
   CardMedia,
   CardText,
@@ -104,7 +103,6 @@ export default class CardPage extends React.Component {
           {
             '//Import statements:\nimport Card from \'material-ui/lib/card/card\';\n' +
             'import CardActions from \'material-ui/lib/card/card-actions\';\n' +
-            'import CardExpandable from \'material-ui/lib/card/card-expandable\';\n' +
             'import CardHeader from \'material-ui/lib/card/card-header\';\n' +
             'import CardMedia from \'material-ui/lib/card/card-media\';\n' +
             'import CardText from \'material-ui/lib/card/card-text\';\n' +

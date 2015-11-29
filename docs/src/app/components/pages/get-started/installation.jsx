@@ -2,7 +2,7 @@ import React from 'react';
 import {Paper, Styles} from 'material-ui';
 import CodeBlock from '../../code-example/code-block';
 
-const {Spacing, Typography} = Styles;
+const {Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
@@ -80,12 +80,6 @@ const Installation = React.createClass({
         '  },\n' +
         '});\n\n' +
         'module.exports = MyAwesomeReactComponent;\n',
-
-      customizationCode =
-        '@import "node_modules/material-ui/src/less/scaffolding.less";\n\n' +
-        '//Define a custom less file to override\n//any variables defined in scaffolding.less\n' +
-        '@import "my-custom-overrides.less";\n\n' +
-        '@import "node_modules/material-ui/src/less/components.less";',
 
       usageNotesCode =
         'import injectTapEventPlugin from "react-tap-event-plugin";\n\n' +

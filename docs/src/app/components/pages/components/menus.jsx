@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
 import Paper from 'paper';
 import Menu from 'menus/menu';
 import MenuItem from 'menus/menu-item';

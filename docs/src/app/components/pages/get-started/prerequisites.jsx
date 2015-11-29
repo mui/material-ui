@@ -1,8 +1,7 @@
 import React from 'react';
-import {Paper, Styles} from 'material-ui';
-import CodeBlock from '../../code-example/code-block';
+import {Styles} from 'material-ui';
 
-const {Spacing, Typography} = Styles;
+const {Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
 const DefaultRawTheme = Styles.LightRawTheme;
 
