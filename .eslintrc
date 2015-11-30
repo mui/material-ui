@@ -21,7 +21,7 @@ rules:
   dot-location: [2, property]
   eqeqeq: [2, smart]
   eol-last: 2
-  indent: [0, 2, {SwitchCase: 1}] # Wishlist, one day
+  indent: [2, 2, {SwitchCase: 1}]
   jsx-quotes: [2, prefer-double]
   key-spacing: 0 # Wishlist, one day
   max-len: [0, 120, 4] # Wishlist, one day
@@ -95,5 +95,8 @@ parser: babel-eslint
 plugins:
   - react
 
+# extends: eslint:recommended # Whishlist, one day
+
 ecmaFeatures:
   jsx: true
+  modules: true
