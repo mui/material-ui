@@ -15,6 +15,7 @@
 <GridList
   cols={2}
   cellHeight={200}
+  cellWidth={200}
   padding={1}
   style={{width: 320, height: 640, overflowY: 'auto'}}
   >
