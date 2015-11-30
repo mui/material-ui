@@ -53,8 +53,7 @@ export const SelectableContainerEnhance = (Component) => {
 
     render() {
       const {children, selectedItemStyle} = this.props;
-      let listItems;
-      let keyIndex = 0;
+      this._keyIndex = 0;
       let styles = {};
 
       if (!selectedItemStyle) {
@@ -65,41 +64,41 @@ export const SelectableContainerEnhance = (Component) => {
         };
       }
 
-      listItems = React.Children.map(children, (child) => {
-        if (child.type.displayName === 'ListItem') {
-          let selected = this._isChildSelected(child, this.props);
-          let selectedChildrenStyles = {};
-          if (selected) {
-            selectedChildrenStyles = this.mergeStyles(styles, selectedItemStyle);
-          }
-
-          let mergedChildrenStyles = this.mergeStyles(
-            child.props.style || {},
-            selectedChildrenStyles
-          );
-
-          keyIndex += 1;
-
-          return React.cloneElement(child, {
-            onTouchTap: (e) => {
-              this._handleItemTouchTap(e, child);
-              if (child.props.onTouchTap) { child.props.onTouchTap(e); }
-            },
-            key: keyIndex,
-            style: mergedChildrenStyles,
-          });
-        }
-        else {
-          return child;
-        }
-      });
-      let newChildren = listItems;
+      let newChildren = React.Children.map(children, (child) => this._extendChild(child, styles, selectedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>
           {newChildren}
         </Component>
       );
+    },
+
+    _extendChild(child, styles, selectedItemStyle) {
+      if (child.type.displayName === 'ListItem') {
+        let selected = this._isChildSelected(child, this.props);
+        let selectedChildrenStyles = {};
+        if (selected) {
+          selectedChildrenStyles = this.mergeStyles(styles, selectedItemStyle);
+        }
+
+        let mergedChildrenStyles = this.mergeStyles(child.props.style || {}, selectedChildrenStyles);
+
+        this._keyIndex += 1;
+
+        return React.cloneElement(child, {
+          onTouchTap: (e) => {
+            this._handleItemTouchTap(e, child);
+            if (child.props.onTouchTap) {
+              child.props.onTouchTap(e);
+            }
+          },
+          key: this._keyIndex,
+          style: mergedChildrenStyles,
+          nestedItems: child.props.nestedItems.map((child) => this._extendChild(child, styles, selectedItemStyle)),
+        });
+      } else {
+        return child;
+      }
     },
 
     _isChildSelected(child, props) {
