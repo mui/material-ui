@@ -26,10 +26,7 @@ const AutoComplete = React.createClass({
     errorStyle: React.PropTypes.object,
     hintText: React.PropTypes.string,
     searchText: React.PropTypes.string,
-    dataSource: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.object,
-    ]),
+    dataSource: React.PropTypes.array,
     updateWhenFocused: React.PropTypes.bool,
     showAllItems: React.PropTypes.bool,
     menuStyle: React.PropTypes.object,
@@ -135,34 +132,25 @@ const AutoComplete = React.createClass({
     let displayFilter = showAllItems ? () => true : this.props.filter;
     let requestsList = [];
 
-    if (Array.isArray(this.props.dataSource)) {
-      this.props.dataSource.map((item, index) => {
-        switch (typeof item) {
-              case 'string':
-                if (displayFilter(this.state.searchText, item, item)) {
-                  requestsList.push(item);
-                }
-                break;
-              case 'object':
-                if (typeof item.text === 'string') {
-                  if (displayFilter(this.state.searchText, item.text, item.value)) {
-                    requestsList.push(item);
-                  }
-                  else if (item.display) {
-                    requestsList.push(item);
-                  }
-                }
-                break;
-        }
-      });
-    }
-    else {
-      for (let k in this.props.dataSource) {
-        if (displayFilter(this.state.searchText, k, this.props.dataSource[k])) {
-          requestsList.push(this.props.dataSource[k]);
-        }
+    this.props.dataSource.map((item) => {
+      switch (typeof item) {
+        case 'string':
+          if (displayFilter(this.state.searchText, item, item)) {
+            requestsList.push(item);
+          }
+          break;
+        case 'object':
+          if (typeof item.text === 'string') {
+            if (displayFilter(this.state.searchText, item.text, item.value)) {
+              requestsList.push(item);
+            }
+            else if (item.display) {
+              requestsList.push(item);
+            }
+          }
+          break;
       }
-    }
+    });
 
     this.requestsList = requestsList;
 
@@ -194,9 +182,9 @@ const AutoComplete = React.createClass({
               case 'object':
                 if (typeof request.text === 'string') {
                   return React.cloneElement(request.value, {
-                          key: request.text,
-                          disableFocusRipple: this.props.disableFocusRipple,
-                        });
+                    key: request.text,
+                    disableFocusRipple: this.props.disableFocusRipple,
+                  });
                 }
                 return React.cloneElement(request, {
                   key: index,
@@ -281,23 +269,16 @@ const AutoComplete = React.createClass({
     let dataSource = this.props.dataSource;
 
     let chosenRequest, index, searchText;
-    if (Array.isArray(dataSource)) {
-      if (typeof dataSource[0] === 'string') {
-        chosenRequest = this.requestsList[parseInt(child.key, 10)];
-        index = dataSource.indexOf(chosenRequest);
-        searchText = dataSource[index];
-      }
-      else {
-        chosenRequest = child.key;
-        index = dataSource.indexOf(
-            dataSource.filter((item) => chosenRequest === item.text)[0]);
-        searchText = chosenRequest;
-      }
+    if (typeof dataSource[0] === 'string') {
+      chosenRequest = this.requestsList[parseInt(child.key, 10)];
+      index = dataSource.indexOf(chosenRequest);
+      searchText = dataSource[index];
     }
     else {
-      chosenRequest = this.requestsList[parseInt(child.key, 10)];
-      index = Object.keys(dataSource).filter((key) => chosenRequest === dataSource[key])[0];
-      searchText = index;
+      chosenRequest = child.key;
+      index = dataSource.indexOf(
+          dataSource.filter((item) => chosenRequest === item.text)[0]);
+      searchText = chosenRequest;
     }
 
     this.setState({searchText: searchText});
