@@ -22,7 +22,7 @@ const DatePickerDialog = React.createClass({
   statics: {
     getRelevantContextKeys(muiTheme) {
       return {
-        buttonColor: muiTheme.datePicker.calendarTextColor,
+        calendarTextColor: muiTheme.datePicker.calendarTextColor,
       };
     },
     getChildrenClasses() {
