@@ -80,6 +80,12 @@ export default class AppBarPage extends React.Component {
                   'the title. Setting this prop to false will hide the icon.',
           },
           {
+            name: 'titleStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the app bar\'s title element.',
+          },
+          {
             name: 'title',
             type: 'node',
             header: 'optional',
