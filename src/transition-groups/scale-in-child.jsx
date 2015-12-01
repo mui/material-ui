@@ -1,11 +1,11 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const StylePropable = require('../mixins/style-propable');
-const AutoPrefix = require('../styles/auto-prefix');
-const Transitions = require('../styles/transitions');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from '../mixins/style-propable';
+import AutoPrefix from '../styles/auto-prefix';
+import Transitions from '../styles/transitions';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 
 const ScaleInChild = React.createClass({
@@ -126,4 +126,4 @@ const ScaleInChild = React.createClass({
 
 });
 
-module.exports = ScaleInChild;
+export default ScaleInChild;

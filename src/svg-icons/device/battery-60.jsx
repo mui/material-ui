@@ -1,6 +1,6 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const DeviceBattery60 = React.createClass({
 
@@ -16,4 +16,4 @@ const DeviceBattery60 = React.createClass({
 
 });
 
-module.exports = DeviceBattery60;
+export default DeviceBattery60;

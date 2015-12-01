@@ -1,4 +1,4 @@
-const React = require('react');
+import React from 'react';
 
 
 const TabTemplate = React.createClass({
@@ -25,4 +25,4 @@ const TabTemplate = React.createClass({
   },
 });
 
-module.exports = TabTemplate;
+export default TabTemplate;

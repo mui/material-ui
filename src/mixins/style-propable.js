@@ -1,6 +1,6 @@
-const React = require('react');
-const ImmutabilityHelper = require('../utils/immutability-helper');
-const Styles = require('../utils/styles');
+import React from 'react';
+import ImmutabilityHelper from '../utils/immutability-helper';
+import Styles from '../utils/styles';
 
 // This mixin isn't necessary and will be removed in v0.11
 
@@ -9,7 +9,7 @@ const Styles = require('../utils/styles');
  *	styles = Current styles.
  *  props = New style properties that will override the current style.
  */
-module.exports = {
+export default {
 
   propTypes: {
     style: React.PropTypes.object,

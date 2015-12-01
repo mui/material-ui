@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	ActionAccessibility: require('./action/accessibility'),
 	ActionAccessible: require('./action/accessible'),
 	ActionAccountBalanceWallet: require('./action/account-balance-wallet'),

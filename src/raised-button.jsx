@@ -1,14 +1,14 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const ColorManipulator = require('./utils/color-manipulator');
-const Children = require('./utils/children');
-const Typography = require('./styles/typography');
-const EnhancedButton = require('./enhanced-button');
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import ColorManipulator from './utils/color-manipulator';
+import Children from './utils/children';
+import Typography from './styles/typography';
+import EnhancedButton from './enhanced-button';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -289,4 +289,4 @@ const RaisedButton = React.createClass({
   },
 });
 
-module.exports = RaisedButton;
+export default RaisedButton;

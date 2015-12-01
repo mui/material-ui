@@ -1,10 +1,10 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const TextField = require('./text-field');
-const DropDownMenu = require('./drop-down-menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const ContextPure = require('./mixins/context-pure');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import TextField from './text-field';
+import DropDownMenu from './drop-down-menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import ContextPure from './mixins/context-pure';
 
 const SelectField = React.createClass({
 
@@ -178,4 +178,4 @@ const SelectField = React.createClass({
   },
 });
 
-module.exports = SelectField;
+export default SelectField;

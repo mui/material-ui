@@ -1,6 +1,6 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const AvReplay5 = React.createClass({
 
@@ -16,4 +16,4 @@ const AvReplay5 = React.createClass({
 
 });
 
-module.exports = AvReplay5;
+export default AvReplay5;

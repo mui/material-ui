@@ -1,5 +1,5 @@
-let React = require('react');
-let SvgIcon = require('../svg-icon');
+import React from 'react';
+import SvgIcon from '../svg-icon';
 
 let NavigationArrowDropRight = React.createClass({
 
@@ -13,4 +13,4 @@ let NavigationArrowDropRight = React.createClass({
 
 });
 
-module.exports = NavigationArrowDropRight;
+export default NavigationArrowDropRight;

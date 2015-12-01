@@ -1,12 +1,12 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('../mixins/style-propable');
-const Events = require('../utils/events');
-const PropTypes = require('../utils/prop-types');
-const Menu = require('../menus/menu');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
-const Popover = require('../popover/popover');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from '../mixins/style-propable';
+import Events from '../utils/events';
+import PropTypes from '../utils/prop-types';
+import Menu from '../menus/menu';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
+import Popover from '../popover/popover';
 
 const IconMenu = React.createClass({
 
@@ -218,4 +218,4 @@ const IconMenu = React.createClass({
 
 });
 
-module.exports = IconMenu;
+export default IconMenu;

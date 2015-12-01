@@ -1,12 +1,12 @@
-const React = require('react');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const StylePropable = require('./mixins/style-propable');
-const ClickAwayable = require('./mixins/click-awayable');
-const KeyCode = require('./utils/key-code');
-const TextField = require('./text-field');
-const Menu = require('./menus/menu');
-const MenuItem = require('./menus/menu-item');
-const MenuDivider = require('./menus/menu-divider');
+import React from 'react';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import StylePropable from './mixins/style-propable';
+import ClickAwayable from './mixins/click-awayable';
+import KeyCode from './utils/key-code';
+import TextField from './text-field';
+import Menu from './menus/menu';
+import MenuItem from './menus/menu-item';
+import MenuDivider from './menus/menu-divider';
 
 const AutoComplete = React.createClass({
 
@@ -310,4 +310,4 @@ const AutoComplete = React.createClass({
 AutoComplete.Item = MenuItem;
 AutoComplete.Divider = MenuDivider;
 
-module.exports = AutoComplete;
+export default AutoComplete;

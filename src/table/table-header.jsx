@@ -1,9 +1,9 @@
-const React = require('react');
-const Checkbox = require('../checkbox');
-const StylePropable = require('../mixins/style-propable');
-const TableHeaderColumn = require('./table-header-column');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import Checkbox from '../checkbox';
+import StylePropable from '../mixins/style-propable';
+import TableHeaderColumn from './table-header-column';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const TableHeader = React.createClass({
 
@@ -177,4 +177,4 @@ const TableHeader = React.createClass({
 
 });
 
-module.exports = TableHeader;
+export default TableHeader;

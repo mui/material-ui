@@ -1,14 +1,14 @@
-const React = require('react');
-const ContextPure = require('./mixins/context-pure');
-const Transitions = require('./styles/transitions');
-const Children = require('./utils/children');
-const ColorManipulator = require('./utils/color-manipulator');
-const ImmutabilityHelper = require('./utils/immutability-helper');
-const Typography = require('./styles/typography');
-const EnhancedButton = require('./enhanced-button');
-const FlatButtonLabel = require('./buttons/flat-button-label');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ContextPure from './mixins/context-pure';
+import Transitions from './styles/transitions';
+import Children from './utils/children';
+import ColorManipulator from './utils/color-manipulator';
+import ImmutabilityHelper from './utils/immutability-helper';
+import Typography from './styles/typography';
+import EnhancedButton from './enhanced-button';
+import FlatButtonLabel from './buttons/flat-button-label';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -223,4 +223,4 @@ const FlatButton = React.createClass({
 
 });
 
-module.exports = FlatButton;
+export default FlatButton;

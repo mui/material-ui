@@ -1,8 +1,8 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const ListDivider = require('../lists/list-divider');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import ListDivider from '../lists/list-divider';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const MenuDivider = React.createClass({
 
@@ -57,4 +57,4 @@ const MenuDivider = React.createClass({
   },
 });
 
-module.exports = MenuDivider;
+export default MenuDivider;

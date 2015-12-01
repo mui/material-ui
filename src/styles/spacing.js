@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   iconSize: 24,
 
   desktopGutter: 24,

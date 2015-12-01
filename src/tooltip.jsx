@@ -1,10 +1,10 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const Colors = require('./styles/colors');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import Colors from './styles/colors';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const Tooltip = React.createClass({
 
@@ -182,4 +182,4 @@ const Tooltip = React.createClass({
 
 });
 
-module.exports = Tooltip;
+export default Tooltip;

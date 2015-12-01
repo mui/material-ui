@@ -1,16 +1,16 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const KeyCode = require('./utils/key-code');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const UniqueId = require('./utils/unique-id');
-const WindowListenable = require('./mixins/window-listenable');
-const ClearFix = require('./clearfix');
-const FocusRipple = require('./ripples/focus-ripple');
-const TouchRipple = require('./ripples/touch-ripple');
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import KeyCode from './utils/key-code';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import UniqueId from './utils/unique-id';
+import WindowListenable from './mixins/window-listenable';
+import ClearFix from './clearfix';
+import FocusRipple from './ripples/focus-ripple';
+import TouchRipple from './ripples/touch-ripple';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const EnhancedSwitch = React.createClass({
 
@@ -437,4 +437,4 @@ const EnhancedSwitch = React.createClass({
 
 });
 
-module.exports = EnhancedSwitch;
+export default EnhancedSwitch;

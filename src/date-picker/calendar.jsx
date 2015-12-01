@@ -1,17 +1,17 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const WindowListenable = require('../mixins/window-listenable');
-const DateTime = require('../utils/date-time');
-const KeyCode = require('../utils/key-code');
-const Transitions = require('../styles/transitions');
-const CalendarMonth = require('./calendar-month');
-const CalendarYear = require('./calendar-year');
-const CalendarToolbar = require('./calendar-toolbar');
-const DateDisplay = require('./date-display');
-const SlideInTransitionGroup = require('../transition-groups/slide-in');
-const ClearFix = require('../clearfix');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import WindowListenable from '../mixins/window-listenable';
+import DateTime from '../utils/date-time';
+import KeyCode from '../utils/key-code';
+import Transitions from '../styles/transitions';
+import CalendarMonth from './calendar-month';
+import CalendarYear from './calendar-year';
+import CalendarToolbar from './calendar-toolbar';
+import DateDisplay from './date-display';
+import SlideInTransitionGroup from '../transition-groups/slide-in';
+import ClearFix from '../clearfix';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 
 const Calendar = React.createClass({
@@ -352,4 +352,4 @@ const Calendar = React.createClass({
 
 });
 
-module.exports = Calendar;
+export default Calendar;

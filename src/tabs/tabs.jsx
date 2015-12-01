@@ -1,11 +1,11 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TabTemplate = require('./tabTemplate');
-const InkBar = require('../ink-bar');
-const StylePropable = require('../mixins/style-propable');
-const Controllable = require('../mixins/controllable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TabTemplate from './tabTemplate';
+import InkBar from '../ink-bar';
+import StylePropable from '../mixins/style-propable';
+import Controllable from '../mixins/controllable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const Tabs = React.createClass({
 
@@ -203,4 +203,4 @@ const Tabs = React.createClass({
 
 });
 
-module.exports = Tabs;
+export default Tabs;

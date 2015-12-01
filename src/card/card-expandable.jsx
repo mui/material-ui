@@ -1,12 +1,12 @@
-const React = require('react');
-const Extend = require('../utils/extend');
-const OpenIcon = require('../svg-icons/hardware/keyboard-arrow-up');
-const CloseIcon = require('../svg-icons/hardware/keyboard-arrow-down');
-const IconButton = require('../icon-button');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
-const ContextPure = require('../mixins/context-pure');
+import React from 'react';
+import Extend from '../utils/extend';
+import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
+import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
+import IconButton from '../icon-button';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
+import ContextPure from '../mixins/context-pure';
 
 const CardExpandable = React.createClass({
   mixins: [
@@ -104,4 +104,4 @@ const CardExpandable = React.createClass({
   },
 });
 
-module.exports = CardExpandable;
+export default CardExpandable;

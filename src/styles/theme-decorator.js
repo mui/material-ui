@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 
-module.exports = (customTheme) => {
+export default (customTheme) => {
 
   return function(Component) {
 

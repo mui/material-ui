@@ -1,21 +1,21 @@
-const isBrowser = require('./utils/is-browser');
+import isBrowser from './utils/is-browser';
 
-const warning = require('warning');
+import warning from 'warning';
 
 let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const KeyCode = require('./utils/key-code');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const Transitions = require('./styles/transitions');
-const WindowListenable = require('./mixins/window-listenable');
-const Overlay = require('./overlay');
-const Paper = require('./paper');
-const Menu = require('./menu/menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import KeyCode from './utils/key-code';
+import StylePropable from './mixins/style-propable';
+import AutoPrefix from './styles/auto-prefix';
+import Transitions from './styles/transitions';
+import WindowListenable from './mixins/window-listenable';
+import Overlay from './overlay';
+import Paper from './paper';
+import Menu from './menu/menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 let openNavEventHandler = null;
 
@@ -452,4 +452,4 @@ const LeftNav = React.createClass({
 
 });
 
-module.exports = LeftNav;
+export default LeftNav;

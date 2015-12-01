@@ -1,8 +1,8 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import AutoPrefix from './styles/auto-prefix';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 /**
  *  BeforeAfterWrapper
@@ -125,4 +125,4 @@ const BeforeAfterWrapper = React.createClass({
 
 });
 
-module.exports = BeforeAfterWrapper;
+export default BeforeAfterWrapper;

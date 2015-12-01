@@ -1,8 +1,8 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const Tooltip = require('../tooltip');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import Tooltip from '../tooltip';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const TableHeaderColumn = React.createClass({
 
@@ -128,4 +128,4 @@ const TableHeaderColumn = React.createClass({
 
 });
 
-module.exports = TableHeaderColumn;
+export default TableHeaderColumn;

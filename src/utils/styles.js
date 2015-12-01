@@ -1,11 +1,11 @@
-const AutoPrefix = require('../styles/auto-prefix');
-const ImmutabilityHelper = require('../utils/immutability-helper');
+import AutoPrefix from '../styles/auto-prefix';
+import ImmutabilityHelper from '../utils/immutability-helper';
 
 const reTranslate = /((^|\s)translate(3d|X)?\()(\-?[\d]+)/;
 
 const reSkew = /((^|\s)skew(x|y)?\()\s*(\-?[\d]+)(deg|rad|grad)(,\s*(\-?[\d]+)(deg|rad|grad))?/;
 
-module.exports = {
+export default {
 
   mergeAndPrefix() {
     let mergedStyles = ImmutabilityHelper.merge.apply(this, arguments);

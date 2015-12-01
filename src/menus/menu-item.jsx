@@ -1,14 +1,14 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const StylePropable = require('../mixins/style-propable');
-const Colors = require('../styles/colors');
-const Popover = require('../popover/popover');
-const CheckIcon = require('../svg-icons/navigation/check');
-const ListItem = require('../lists/list-item');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
-const Menu = require('./menu');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from '../mixins/style-propable';
+import Colors from '../styles/colors';
+import Popover from '../popover/popover';
+import CheckIcon from '../svg-icons/navigation/check';
+import ListItem from '../lists/list-item';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
+import Menu from './menu';
 
 const nestedMenuStyle = {position:'relative'};
 const MenuItem = React.createClass({
@@ -248,4 +248,4 @@ const MenuItem = React.createClass({
   },
 });
 
-module.exports = MenuItem;
+export default MenuItem;

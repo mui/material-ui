@@ -1,10 +1,10 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const StylePropable = require('../mixins/style-propable');
-const AutoPrefix = require('../styles/auto-prefix');
-const Transitions = require('../styles/transitions');
-const Colors = require('../styles/colors');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from '../mixins/style-propable';
+import AutoPrefix from '../styles/auto-prefix';
+import Transitions from '../styles/transitions';
+import Colors from '../styles/colors';
 
 
 const CircleRipple = React.createClass({
@@ -92,4 +92,4 @@ const CircleRipple = React.createClass({
 
 });
 
-module.exports = CircleRipple;
+export default CircleRipple;

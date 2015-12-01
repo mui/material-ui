@@ -1,8 +1,8 @@
 // To include this file in your project:
-// let mui = require('mui');
+// import mui from 'mui';
 // let Colors = mui.Styles.Colors;
 
-module.exports = {
+export default {
 
   red50:    '#ffebee',
   red100:   '#ffcdd2',

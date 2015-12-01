@@ -1,17 +1,17 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const CssEvent = require('../utils/css-event');
-const KeyLine = require('../utils/key-line');
-const KeyCode = require('../utils/key-code');
-const StylePropable = require('../mixins/style-propable');
-const Transitions = require('../styles/transitions');
-const ClickAwayable = require('../mixins/click-awayable');
-const Paper = require('../paper');
-const MenuItem = require('./menu-item');
-const LinkMenuItem = require('./link-menu-item');
-const SubheaderMenuItem = require('./subheader-menu-item');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CssEvent from '../utils/css-event';
+import KeyLine from '../utils/key-line';
+import KeyCode from '../utils/key-code';
+import StylePropable from '../mixins/style-propable';
+import Transitions from '../styles/transitions';
+import ClickAwayable from '../mixins/click-awayable';
+import Paper from '../paper';
+import MenuItem from './menu-item';
+import LinkMenuItem from './link-menu-item';
+import SubheaderMenuItem from './subheader-menu-item';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 /***********************
 * Nested Menu Component
@@ -651,4 +651,4 @@ const Menu = React.createClass({
 
 });
 
-module.exports = Menu;
+export default Menu;

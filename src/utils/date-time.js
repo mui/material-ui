@@ -33,7 +33,7 @@ function DateTimeFormat(locale, options) {
   };
 }
 
-module.exports = {
+export default {
   DateTimeFormat: DateTimeFormat,
 
   addDays(d, days) {

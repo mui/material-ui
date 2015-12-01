@@ -1,7 +1,7 @@
-let Events = require('../utils/events');
+import Events from '../utils/events';
 
 
-module.exports = {
+export default {
 
   componentDidMount() {
     let listeners = this.windowListeners;
