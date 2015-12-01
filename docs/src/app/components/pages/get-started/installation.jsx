@@ -79,7 +79,7 @@ const Installation = React.createClass({
         '    );\n' +
         '  },\n' +
         '});\n\n' +
-        'module.exports = MyAwesomeReactComponent;\n',
+        'export default MyAwesomeReactComponent;\n',
 
       usageNotesCode =
         'import injectTapEventPlugin from "react-tap-event-plugin";\n\n' +
@@ -162,4 +162,4 @@ const Installation = React.createClass({
 
 });
 
-module.exports = Installation;
+export default Installation;

@@ -1,9 +1,8 @@
 import React from 'react';
 import ComponentDoc from '../../component-doc';
-import mui from 'material-ui';
-import ToggleStar from 'svg-icons/toggle/star';
+import ToggleStar from 'material-ui/svg-icons/toggle/star';
 
-const {
+import {
   FlatButton,
   FloatingActionButton,
   FontIcon,
@@ -13,7 +12,7 @@ const {
   Tab,
   Tabs,
   Utils,
-} = mui;
+} from 'material-ui';
 const extend = Utils.Extend;
 const {Colors, Typography} = Styles;
 import RaisedButtonCode from 'raised-button-code';

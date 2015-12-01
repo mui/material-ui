@@ -78,4 +78,4 @@ const Examples = React.createClass({
 
 });
 
-module.exports = Examples;
+export default Examples;

@@ -413,4 +413,4 @@ const TextFieldsPage = React.createClass({
 
 });
 
-module.exports = TextFieldsPage;
+export default TextFieldsPage;

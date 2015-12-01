@@ -91,4 +91,4 @@ const AppLeftNav = React.createClass({
 
 });
 
-module.exports = AppLeftNav;
+export default AppLeftNav;

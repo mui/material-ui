@@ -122,4 +122,4 @@ let HomeFeature = React.createClass({
 
 });
 
-module.exports = HomeFeature;
+export default HomeFeature;

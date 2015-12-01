@@ -128,4 +128,4 @@ const InlineStyles = React.createClass({
 
 });
 
-module.exports = InlineStyles;
+export default InlineStyles;

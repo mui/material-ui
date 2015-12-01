@@ -95,4 +95,4 @@ let PageWithNav = React.createClass({
 
 });
 
-module.exports = PageWithNav;
+export default PageWithNav;

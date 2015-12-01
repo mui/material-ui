@@ -78,4 +78,4 @@ let FullWidthSection = React.createClass({
   },
 });
 
-module.exports = FullWidthSection;
+export default FullWidthSection;

@@ -185,4 +185,4 @@ let PopoverPage = React.createClass({
 
 });
 
-module.exports = PopoverPage;
+export default PopoverPage;

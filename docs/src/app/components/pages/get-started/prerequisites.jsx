@@ -155,4 +155,4 @@ const Prerequisites = React.createClass({
 
 });
 
-module.exports = Prerequisites;
+export default Prerequisites;

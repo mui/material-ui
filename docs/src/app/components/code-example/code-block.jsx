@@ -57,4 +57,4 @@ const CodeBlock = React.createClass({
   },
 });
 
-module.exports = CodeBlock;
+export default CodeBlock;

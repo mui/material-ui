@@ -114,4 +114,4 @@ const AppRoutes = (
   </Route>
 );
 
-module.exports = AppRoutes;
+export default AppRoutes;
