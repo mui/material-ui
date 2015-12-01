@@ -87,7 +87,6 @@ let PopoverPage = React.createClass({
       <ComponentDoc
         name="Popover"
         componentInfo={componentInfo}>
-  
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
