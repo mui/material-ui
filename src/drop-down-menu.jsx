@@ -1,14 +1,14 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const KeyCode = require('./utils/key-code');
-const DropDownArrow = require('./svg-icons/navigation/arrow-drop-down');
-const Paper = require('./paper');
-const Menu = require('./menu/menu');
-const ClearFix = require('./clearfix');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import KeyCode from './utils/key-code';
+import DropDownArrow from './svg-icons/navigation/arrow-drop-down';
+import Paper from './paper';
+import Menu from './menu/menu';
+import ClearFix from './clearfix';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 
 const DropDownMenu = React.createClass({
@@ -362,4 +362,4 @@ const DropDownMenu = React.createClass({
 
 });
 
-module.exports = DropDownMenu;
+export default DropDownMenu;

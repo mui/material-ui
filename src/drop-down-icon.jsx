@@ -1,11 +1,11 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const ClickAwayable = require('./mixins/click-awayable');
-const FontIcon = require('./font-icon');
-const Menu = require('./menu/menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import ClickAwayable from './mixins/click-awayable';
+import FontIcon from './font-icon';
+import Menu from './menu/menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 
 const DropDownIcon = React.createClass({
@@ -141,4 +141,4 @@ const DropDownIcon = React.createClass({
   },
 });
 
-module.exports = DropDownIcon;
+export default DropDownIcon;

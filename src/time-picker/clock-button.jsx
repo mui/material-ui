@@ -1,9 +1,9 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const EnhancedButton = require('../enhanced-button');
-const Transitions = require('../styles/transitions');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import EnhancedButton from '../enhanced-button';
+import Transitions from '../styles/transitions';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const ClockButton = React.createClass({
 
@@ -119,4 +119,4 @@ const ClockButton = React.createClass({
   },
 });
 
-module.exports = ClockButton;
+export default ClockButton;

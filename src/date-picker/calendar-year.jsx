@@ -1,9 +1,9 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('../mixins/style-propable');
-const Colors = require('../styles/colors');
-const DateTime = require('../utils/date-time');
-const YearButton = require('./year-button');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from '../mixins/style-propable';
+import Colors from '../styles/colors';
+import DateTime from '../utils/date-time';
+import YearButton from './year-button';
 
 
 const CalendarYear = React.createClass({
@@ -95,4 +95,4 @@ const CalendarYear = React.createClass({
 
 });
 
-module.exports = CalendarYear;
+export default CalendarYear;

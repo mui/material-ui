@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   Card: require('./card'),
   CardHeader: require('./card-header'),
   CardTitle: require('./card-title'),

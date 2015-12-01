@@ -1,8 +1,8 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const EnhancedButton = require('../enhanced-button');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import EnhancedButton from '../enhanced-button';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const YearButton = React.createClass({
 
@@ -135,4 +135,4 @@ const YearButton = React.createClass({
 
 });
 
-module.exports = YearButton;
+export default YearButton;

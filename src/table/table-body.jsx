@@ -1,10 +1,10 @@
-const React = require('react');
-const Checkbox = require('../checkbox');
-const TableRowColumn = require('./table-row-column');
-const ClickAwayable = require('../mixins/click-awayable');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import Checkbox from '../checkbox';
+import TableRowColumn from './table-row-column';
+import ClickAwayable from '../mixins/click-awayable';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 
 const TableBody = React.createClass({
@@ -345,4 +345,4 @@ const TableBody = React.createClass({
 
 });
 
-module.exports = TableBody;
+export default TableBody;

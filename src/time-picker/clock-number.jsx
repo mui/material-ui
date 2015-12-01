@@ -1,7 +1,7 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const ClockNumber = React.createClass({
 
@@ -138,4 +138,4 @@ const ClockNumber = React.createClass({
   },
 });
 
-module.exports = ClockNumber;
+export default ClockNumber;

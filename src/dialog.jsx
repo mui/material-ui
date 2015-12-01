@@ -1,18 +1,18 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const WindowListenable = require('./mixins/window-listenable');
-const KeyCode = require('./utils/key-code');
-const Transitions = require('./styles/transitions');
-const StylePropable = require('./mixins/style-propable');
-const FlatButton = require('./flat-button');
-const Overlay = require('./overlay');
-const RenderToLayer = require('./render-to-layer');
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const warning = require('warning');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import WindowListenable from './mixins/window-listenable';
+import KeyCode from './utils/key-code';
+import Transitions from './styles/transitions';
+import StylePropable from './mixins/style-propable';
+import FlatButton from './flat-button';
+import Overlay from './overlay';
+import RenderToLayer from './render-to-layer';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import warning from 'warning';
 
-const ReactTransitionGroup = require('react-addons-transition-group');
+import ReactTransitionGroup from 'react-addons-transition-group';
 
 const TransitionItem = React.createClass({
   mixins: [StylePropable],
@@ -526,4 +526,4 @@ const Dialog = React.createClass({
 
 });
 
-module.exports = Dialog;
+export default Dialog;

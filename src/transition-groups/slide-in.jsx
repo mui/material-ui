@@ -1,9 +1,9 @@
-const React = require('react');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const StylePropable = require('../mixins/style-propable');
-const SlideInChild = require('./slide-in-child');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import StylePropable from '../mixins/style-propable';
+import SlideInChild from './slide-in-child';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 
 const SlideIn = React.createClass({
@@ -97,4 +97,4 @@ const SlideIn = React.createClass({
 
 });
 
-module.exports = SlideIn;
+export default SlideIn;

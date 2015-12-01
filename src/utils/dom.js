@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
   isDescendant(parent, child) {
     let node = child.parentNode;

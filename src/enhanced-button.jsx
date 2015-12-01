@@ -1,14 +1,14 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const StylePropable = require('./mixins/style-propable');
-const Colors = require('./styles/colors');
-const Children = require('./utils/children');
-const Events = require('./utils/events');
-const KeyCode = require('./utils/key-code');
-const FocusRipple = require('./ripples/focus-ripple');
-const TouchRipple = require('./ripples/touch-ripple');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from './mixins/style-propable';
+import Colors from './styles/colors';
+import Children from './utils/children';
+import Events from './utils/events';
+import KeyCode from './utils/key-code';
+import FocusRipple from './ripples/focus-ripple';
+import TouchRipple from './ripples/touch-ripple';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 let styleInjected = false;
 let listening = false;
@@ -311,4 +311,4 @@ const EnhancedButton = React.createClass({
 
 });
 
-module.exports = EnhancedButton;
+export default EnhancedButton;

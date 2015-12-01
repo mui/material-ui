@@ -1,12 +1,12 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const Typography = require('./styles/typography');
-const IconButton = require('./icon-button');
-const NavigationMenu = require('./svg-icons/navigation/menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const Paper = require('./paper');
-const PropTypes = require('./utils/prop-types');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Typography from './styles/typography';
+import IconButton from './icon-button';
+import NavigationMenu from './svg-icons/navigation/menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import Paper from './paper';
+import PropTypes from './utils/prop-types';
 
 const AppBar = React.createClass({
 
@@ -262,4 +262,4 @@ const AppBar = React.createClass({
 
 });
 
-module.exports = AppBar;
+export default AppBar;

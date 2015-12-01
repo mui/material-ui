@@ -1,9 +1,9 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const TimeDisplay = require('./time-display');
-const ClockButton = require('./clock-button');
-const ClockHours = require('./clock-hours');
-const ClockMinutes = require('./clock-minutes');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import TimeDisplay from './time-display';
+import ClockButton from './clock-button';
+import ClockHours from './clock-hours';
+import ClockMinutes from './clock-minutes';
 
 
 const Clock = React.createClass({
@@ -187,4 +187,4 @@ const Clock = React.createClass({
   },
 });
 
-module.exports = Clock;
+export default Clock;

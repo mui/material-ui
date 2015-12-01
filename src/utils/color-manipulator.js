@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
   /**
    * The relative brightness of any point in a colorspace, normalized to 0 for

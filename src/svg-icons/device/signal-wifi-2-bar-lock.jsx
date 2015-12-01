@@ -1,6 +1,6 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const DeviceSignalWifi2BarLock = React.createClass({
 
@@ -16,4 +16,4 @@ const DeviceSignalWifi2BarLock = React.createClass({
 
 });
 
-module.exports = DeviceSignalWifi2BarLock;
+export default DeviceSignalWifi2BarLock;

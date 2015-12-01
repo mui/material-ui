@@ -1,8 +1,8 @@
-const React = require('react');
-const TableRowColumn = require('./table-row-column');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import TableRowColumn from './table-row-column';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const TableFooter = React.createClass({
 
@@ -120,4 +120,4 @@ const TableFooter = React.createClass({
 
 });
 
-module.exports = TableFooter;
+export default TableFooter;

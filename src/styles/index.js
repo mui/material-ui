@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   AutoPrefix: require('./auto-prefix'),
   Colors: require('./colors'),
   Spacing: require('./spacing'),

@@ -47,4 +47,4 @@ let extend = (base, override) => {
   return mergedObject;
 };
 
-module.exports = extend;
+export default extend;

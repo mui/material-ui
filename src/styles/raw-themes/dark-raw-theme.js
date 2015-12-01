@@ -1,8 +1,8 @@
-let Colors = require('../colors');
-let ColorManipulator = require('../../utils/color-manipulator');
-let Spacing = require('../spacing');
+import Colors from '../colors';
+import ColorManipulator from '../../utils/color-manipulator';
+import Spacing from '../spacing';
 
-module.exports = {
+export default {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {

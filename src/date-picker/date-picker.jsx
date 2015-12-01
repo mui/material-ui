@@ -1,11 +1,11 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const WindowListenable = require('../mixins/window-listenable');
-const DateTime = require('../utils/date-time');
-const DatePickerDialog = require('./date-picker-dialog');
-const TextField = require('../text-field');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import WindowListenable from '../mixins/window-listenable';
+import DateTime from '../utils/date-time';
+import DatePickerDialog from './date-picker-dialog';
+import TextField from '../text-field';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 
 const DatePicker = React.createClass({
@@ -206,4 +206,4 @@ const DatePicker = React.createClass({
 
 });
 
-module.exports = DatePicker;
+export default DatePicker;

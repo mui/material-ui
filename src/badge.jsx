@@ -1,8 +1,8 @@
-const React = require('react');
-const Typography = require('./styles/typography');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const StylePropable = require('./mixins/style-propable');
+import React from 'react';
+import Typography from './styles/typography';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import StylePropable from './mixins/style-propable';
 
 // Badge
 export default React.createClass({

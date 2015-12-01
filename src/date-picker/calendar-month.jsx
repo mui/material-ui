@@ -1,7 +1,7 @@
-const React = require('react');
-const DateTime = require('../utils/date-time');
-const DayButton = require('./day-button');
-const ClearFix = require('../clearfix');
+import React from 'react';
+import DateTime from '../utils/date-time';
+import DayButton from './day-button';
+import ClearFix from '../clearfix';
 
 
 const CalendarMonth = React.createClass({
@@ -86,4 +86,4 @@ const CalendarMonth = React.createClass({
 
 });
 
-module.exports = CalendarMonth;
+export default CalendarMonth;

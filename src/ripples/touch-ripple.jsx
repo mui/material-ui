@@ -1,11 +1,11 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const StylePropable = require('../mixins/style-propable');
-const Dom = require('../utils/dom');
-const ImmutabilityHelper = require('../utils/immutability-helper');
-const CircleRipple = require('./circle-ripple');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import StylePropable from '../mixins/style-propable';
+import Dom from '../utils/dom';
+import ImmutabilityHelper from '../utils/immutability-helper';
+import CircleRipple from './circle-ripple';
 
 
 const TouchRipple = React.createClass({
@@ -169,4 +169,4 @@ const TouchRipple = React.createClass({
 
 });
 
-module.exports = TouchRipple;
+export default TouchRipple;

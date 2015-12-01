@@ -1,5 +1,5 @@
-const React = require('react');
-const Paper = require('../paper');
+import React from 'react';
+import Paper from '../paper';
 
 const DatePickerInline = React.createClass({
 
@@ -59,4 +59,4 @@ const DatePickerInline = React.createClass({
 
 });
 
-module.exports = DatePickerInline;
+export default DatePickerInline;

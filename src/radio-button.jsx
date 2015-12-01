@@ -1,11 +1,11 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const EnhancedSwitch = require('./enhanced-switch');
-const RadioButtonOff = require('./svg-icons/toggle/radio-button-unchecked');
-const RadioButtonOn = require('./svg-icons/toggle/radio-button-checked');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import EnhancedSwitch from './enhanced-switch';
+import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
+import RadioButtonOn from './svg-icons/toggle/radio-button-checked';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const RadioButton = React.createClass({
 
@@ -179,4 +179,4 @@ const RadioButton = React.createClass({
 
 });
 
-module.exports = RadioButton;
+export default RadioButton;

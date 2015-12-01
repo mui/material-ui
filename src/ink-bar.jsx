@@ -1,8 +1,8 @@
-const React = require('react');
-const Transitions = require('./styles/transitions');
-const StylePropable = require('./mixins/style-propable');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import Transitions from './styles/transitions';
+import StylePropable from './mixins/style-propable';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const InkBar = React.createClass({
 
@@ -74,4 +74,4 @@ const InkBar = React.createClass({
 
 });
 
-module.exports = InkBar;
+export default InkBar;

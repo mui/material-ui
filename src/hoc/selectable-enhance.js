@@ -1,8 +1,8 @@
-const React = require('react');
-const ThemeManager = require('../styles/theme-manager');
-const StylePropable = require('../mixins/style-propable');
-const ColorManipulator = require('../utils/color-manipulator');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+import React from 'react';
+import ThemeManager from '../styles/theme-manager';
+import StylePropable from '../mixins/style-propable';
+import ColorManipulator from '../utils/color-manipulator';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 export const SelectableContainerEnhance = (Component) => {
   let composed = React.createClass({

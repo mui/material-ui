@@ -1,17 +1,17 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const update = require('react-addons-update');
-const Controllable = require('../mixins/controllable');
-const StylePropable = require('../mixins/style-propable');
-const ClickAwayable = require('../mixins/click-awayable');
-const AutoPrefix = require('../styles/auto-prefix');
-const Transitions = require('../styles/transitions');
-const KeyCode = require('../utils/key-code');
-const PropTypes = require('../utils/prop-types');
-const List = require('../lists/list');
-const Paper = require('../paper');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import update from 'react-addons-update';
+import Controllable from '../mixins/controllable';
+import StylePropable from '../mixins/style-propable';
+import ClickAwayable from '../mixins/click-awayable';
+import AutoPrefix from '../styles/auto-prefix';
+import Transitions from '../styles/transitions';
+import KeyCode from '../utils/key-code';
+import PropTypes from '../utils/prop-types';
+import List from '../lists/list';
+import Paper from '../paper';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const Menu = React.createClass({
 
@@ -483,4 +483,4 @@ const Menu = React.createClass({
 
 });
 
-module.exports = Menu;
+export default Menu;

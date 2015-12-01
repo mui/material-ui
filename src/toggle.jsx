@@ -1,10 +1,10 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const Paper = require('./paper');
-const EnhancedSwitch = require('./enhanced-switch');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import Paper from './paper';
+import EnhancedSwitch from './enhanced-switch';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const Toggle = React.createClass({
 
@@ -209,4 +209,4 @@ const Toggle = React.createClass({
 
 });
 
-module.exports = Toggle;
+export default Toggle;

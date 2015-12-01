@@ -1,8 +1,8 @@
-const React = require('react');
-const Colors = require('../styles/colors');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import Colors from '../styles/colors';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const ToolbarGroup = React.createClass({
 
@@ -182,4 +182,4 @@ const ToolbarGroup = React.createClass({
   },
 });
 
-module.exports = ToolbarGroup;
+export default ToolbarGroup;

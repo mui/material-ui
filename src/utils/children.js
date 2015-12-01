@@ -1,7 +1,7 @@
-const React = require('react');
-const createFragment = require('react-addons-create-fragment');
+import React from 'react';
+import createFragment from 'react-addons-create-fragment';
 
-module.exports = {
+export default {
 
   create(fragments) {
     let newFragments = {};

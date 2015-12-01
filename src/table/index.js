@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   Table: require('./table'),
   TableBody: require('./table-body'),
   TableFooter: require('./table-footer'),

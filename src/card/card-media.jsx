@@ -1,8 +1,8 @@
-const React = require('react');
-const Styles = require('../styles');
-const StylePropable = require('../mixins/style-propable');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+import React from 'react';
+import Styles from '../styles';
+import StylePropable from '../mixins/style-propable';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 
 const CardMedia = React.createClass({
@@ -129,4 +129,4 @@ const CardMedia = React.createClass({
   },
 });
 
-module.exports = CardMedia;
+export default CardMedia;

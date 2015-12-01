@@ -1,11 +1,11 @@
-const React = require('react');
-const EnhancedSwitch = require('./enhanced-switch');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
-const CheckboxChecked = require('./svg-icons/toggle/check-box');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import EnhancedSwitch from './enhanced-switch';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
+import CheckboxChecked from './svg-icons/toggle/check-box';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 
 const Checkbox = React.createClass({
@@ -195,4 +195,4 @@ const Checkbox = React.createClass({
 
 });
 
-module.exports = Checkbox;
+export default Checkbox;

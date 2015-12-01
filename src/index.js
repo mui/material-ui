@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   AppBar: require('./app-bar'),
   AppCanvas: require('./app-canvas'),
   AutoComplete: require('./auto-complete'),

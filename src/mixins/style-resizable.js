@@ -1,4 +1,4 @@
-let Events = require('../utils/events');
+import Events from '../utils/events';
 
 const Sizes = {
   SMALL: 1,
@@ -7,7 +7,7 @@ const Sizes = {
 };
 
 
-module.exports = {
+export default {
 
   statics: {
     Sizes: Sizes,

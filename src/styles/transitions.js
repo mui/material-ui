@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
   easeOutFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
   easeInOutFunction: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',

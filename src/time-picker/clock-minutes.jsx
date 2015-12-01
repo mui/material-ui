@@ -1,10 +1,10 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('../mixins/style-propable');
-const ClockNumber = require('./clock-number');
-const ClockPointer = require('./clock-pointer');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from '../mixins/style-propable';
+import ClockNumber from './clock-number';
+import ClockPointer from './clock-pointer';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
@@ -193,4 +193,4 @@ const ClockMinutes = React.createClass({
   },
 });
 
-module.exports = ClockMinutes;
+export default ClockMinutes;

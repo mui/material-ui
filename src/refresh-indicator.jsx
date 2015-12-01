@@ -1,11 +1,11 @@
 import React from 'react';
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const Transitions = require('./styles/transitions');
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import AutoPrefix from './styles/auto-prefix';
+import Transitions from './styles/transitions';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
@@ -297,4 +297,4 @@ const RefreshIndicator = React.createClass({
 
 });
 
-module.exports = RefreshIndicator;
+export default RefreshIndicator;

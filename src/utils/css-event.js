@@ -1,7 +1,7 @@
-let Events = require('./events');
+import Events from './events';
 
 
-module.exports = {
+export default {
 
   _testSupportedProps(props) {
     let i,

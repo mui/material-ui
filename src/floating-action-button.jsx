@@ -1,14 +1,14 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const ColorManipulator = require('./utils/color-manipulator');
-const EnhancedButton = require('./enhanced-button');
-const FontIcon = require('./font-icon');
-const Paper = require('./paper');
-const Children = require('./utils/children');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import ColorManipulator from './utils/color-manipulator';
+import EnhancedButton from './enhanced-button';
+import FontIcon from './font-icon';
+import Paper from './paper';
+import Children from './utils/children';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 let getZDepth = function(disabled) {
   let zDepth = disabled ? 0 : 2;
@@ -279,4 +279,4 @@ const FloatingActionButton = React.createClass({
 
 });
 
-module.exports = FloatingActionButton;
+export default FloatingActionButton;

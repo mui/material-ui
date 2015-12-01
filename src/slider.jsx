@@ -1,10 +1,10 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const FocusRipple = require('./ripples/focus-ripple');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import FocusRipple from './ripples/focus-ripple';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 /**
   * Verifies min/max range.
@@ -491,4 +491,4 @@ const Slider = React.createClass({
 
 });
 
-module.exports = Slider;
+export default Slider;

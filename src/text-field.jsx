@@ -1,13 +1,13 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const ColorManipulator = require('./utils/color-manipulator');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const UniqueId = require('./utils/unique-id');
-const EnhancedTextarea = require('./enhanced-textarea');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const ContextPure = require('./mixins/context-pure');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ColorManipulator from './utils/color-manipulator';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import UniqueId from './utils/unique-id';
+import EnhancedTextarea from './enhanced-textarea';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import ContextPure from './mixins/context-pure';
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -462,4 +462,4 @@ const TextField = React.createClass({
 
 });
 
-module.exports = TextField;
+export default TextField;

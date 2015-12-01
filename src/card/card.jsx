@@ -1,7 +1,7 @@
-const React = require('react');
-const Paper = require('../paper');
-const StylePropable = require('../mixins/style-propable');
-const CardExpandable = require('./card-expandable');
+import React from 'react';
+import Paper from '../paper';
+import StylePropable from '../mixins/style-propable';
+import CardExpandable from './card-expandable';
 
 const Card = React.createClass({
   mixins:[StylePropable],
@@ -77,4 +77,4 @@ const Card = React.createClass({
   },
 });
 
-module.exports = Card;
+export default Card;
