@@ -135,4 +135,4 @@ const ComponentDoc = React.createClass({
 
 });
 
-module.exports = ComponentDoc;
+export default ComponentDoc;

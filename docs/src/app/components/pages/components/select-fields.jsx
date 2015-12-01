@@ -276,4 +276,4 @@ const SelectFieldsPage = React.createClass({
   },
 });
 
-module.exports = SelectFieldsPage;
+export default SelectFieldsPage;

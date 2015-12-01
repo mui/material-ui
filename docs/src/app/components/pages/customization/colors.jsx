@@ -152,4 +152,4 @@ const ColorsPage = React.createClass({
 
 });
 
-module.exports = ColorsPage;
+export default ColorsPage;

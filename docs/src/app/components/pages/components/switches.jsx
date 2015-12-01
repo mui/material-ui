@@ -2,8 +2,8 @@ import React from 'react';
 import mui from 'material-ui';
 import CodeExample from '../../code-example/code-example';
 import ComponentDoc from '../../component-doc';
-import ToggleStar from 'svg-icons/toggle/star';
-import ToggleStarBorder from 'svg-icons/toggle/star-border';
+import ToggleStar from 'material-ui/svg-icons/toggle/star';
+import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 const {
   Checkbox,

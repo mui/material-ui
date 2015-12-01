@@ -13,7 +13,7 @@ const ActionHome = React.createClass({
   }
 });
 
-module.exports = ActionHome;
+export default ActionHome;
 
 
 /** Some other component. */

@@ -1,7 +1,8 @@
 import React from 'react';
-import {AppBar, Paper} from 'material-ui';
+import AppBar from 'material-ui/app-bar';
+import Paper from 'material-ui/paper';
 import IconButton from 'icon-button';
-import NavigationClose from 'svg-icons/navigation/close';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'flat-button';
 import ComponentDoc from '../../component-doc';
 import CodeExample from '../../code-example/code-example';
@@ -9,7 +10,7 @@ import CodeBlock from '../../code-example/code-block';
 import Code from 'app-bar-code';
 import IconMenu from 'menus/icon-menu';
 import MenuItem from 'menus/menu-item';
-import MoreVertIcon from 'svg-icons/navigation/more-vert';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 const styles = {
   title: {

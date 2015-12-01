@@ -177,4 +177,4 @@ const ComponentInfo = React.createClass({
   },
 });
 
-module.exports = ComponentInfo;
+export default ComponentInfo;

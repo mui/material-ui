@@ -92,4 +92,4 @@ class AutoCompletePage extends React.Component {
 
 }
 
-module.exports = AutoCompletePage;
+export default AutoCompletePage;

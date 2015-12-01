@@ -1,12 +1,16 @@
 import React from 'react';
-import {IconButton, Badge, Paper} from 'material-ui';
+import {
+  IconButton,
+  Badge,
+  Paper,
+} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'badge-code';
 import CodeExample from '../../code-example/code-example';
-import NotificationsIcon from 'svg-icons/social/notifications';
-import ShoppingCartIcon from 'svg-icons/action/shopping-cart';
-import FolderIcon from 'svg-icons/file/folder-open';
-import UploadIcon from 'svg-icons/file/cloud-upload';
+import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+import ShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart';
+import FolderIcon from 'material-ui/svg-icons/file/folder-open';
+import UploadIcon from 'material-ui/svg-icons/file/cloud-upload';
 import CodeBlock from '../../code-example/code-block';
 
 export default class BadgePage extends React.Component {

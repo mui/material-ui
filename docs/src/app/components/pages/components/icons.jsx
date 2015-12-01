@@ -2,7 +2,7 @@ import React from 'react';
 import {FontIcon, Styles, Paper} from 'material-ui';
 import CodeBlock from '../../code-example/code-block';
 import ComponentDoc from '../../component-doc';
-import ActionHome from 'svg-icons/action/home';
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 const {Colors, Typography} = Styles;
 import IconButtonCode from 'icons-code';
@@ -26,24 +26,26 @@ export default class FontIconPage extends React.Component {
 
   render() {
 
-    let fontIconDesc = (
-      <p style={this.getStyles()}>
-        This component will render any icon defined in any style sheets included in your
-        project. We are using <a title="Google's Material Design Icons GitHub"
-        href="https://github.com/google/material-design-icons">Google&#39;s Material Design
-        Icons</a> for our documentation site along with some custom icons. You can use
-        sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
-        generating custom font files. To use FontIcons, add your stylesheet to your project
-        and reference the icon&#39;s className in the "className" prop. <br /><br />
-        We also support <a title="Google's
-        Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s
-        Material Icons</a> as seen in the third block of code. If you&#39;re using the material icons, be sure to include the link to the font icon file in your head section:
+    const fontIconDesc = (
+      <div>
+        <p style={this.getStyles()}>
+          This component will render any icon defined in any style sheets included in your
+          project. We are using <a title="Google's Material Design Icons GitHub"
+          href="https://github.com/google/material-design-icons">Google&#39;s Material Design
+          Icons</a> for our documentation site along with some custom icons. You can use
+          sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
+          generating custom font files. To use FontIcons, add your stylesheet to your project
+          and reference the icon&#39;s className in the "className" prop. <br /><br />
+          We also support <a title="Google's
+          Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s
+          Material Icons</a> as seen in the third block of code. If you&#39;re using the material icons, be sure to include the link to the font icon file in your head section:
+        </p>
         <Paper>
           <CodeBlock>
             {'<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'}
           </CodeBlock>
         </Paper>
-      </p>
+      </div>
     );
 
     let svgIconDesc = (

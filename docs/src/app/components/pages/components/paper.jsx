@@ -119,10 +119,9 @@ import Paper from 'material-ui/lib/paper';
   },
 
   _createPaperElement(zDepth, text) {
-    let styles = this.getStyles();
     return (
       <Paper
-        style={styles.root}
+        style={this.getStyles().root}
         zDepth={zDepth}>
         {this._createParagraphElement(text)}
       </Paper>
@@ -155,4 +154,4 @@ import Paper from 'material-ui/lib/paper';
 
 });
 
-module.exports = PaperPage;
+export default PaperPage;

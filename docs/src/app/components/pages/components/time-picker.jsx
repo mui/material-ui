@@ -186,4 +186,4 @@ const TimePickerPage = React.createClass({
 
 });
 
-module.exports = TimePickerPage;
+export default TimePickerPage;

@@ -94,4 +94,4 @@ const CodeExample = React.createClass({
   },
 });
 
-module.exports = CodeExample;
+export default CodeExample;

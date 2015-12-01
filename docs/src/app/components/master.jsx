@@ -255,4 +255,4 @@ const Master = React.createClass({
   },
 });
 
-module.exports = Master;
+export default Master;

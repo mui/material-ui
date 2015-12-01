@@ -133,4 +133,4 @@ const ProgressPage = React.createClass({
 
 });
 
-module.exports = ProgressPage;
+export default ProgressPage;

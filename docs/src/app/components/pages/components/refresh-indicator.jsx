@@ -124,4 +124,4 @@ let RefreshIndicatorPage = React.createClass({
 
 });
 
-module.exports = RefreshIndicatorPage;
+export default RefreshIndicatorPage;

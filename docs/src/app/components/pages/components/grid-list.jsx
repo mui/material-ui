@@ -1,7 +1,7 @@
 import React from 'react';
 import {GridList, GridTile, Paper} from 'material-ui';
 
-import StarBorder from 'svg-icons/toggle/star-border';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import IconButton from 'icon-button';
 
 import ComponentDoc from '../../component-doc';
@@ -241,4 +241,4 @@ class GridListPage extends React.Component {
 
 }
 
-module.exports = GridListPage;
+export default GridListPage;
