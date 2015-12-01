@@ -87,7 +87,7 @@ let PopoverPage = React.createClass({
       <ComponentDoc
         name="Popover"
         componentInfo={componentInfo}>
-        
+  
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
@@ -96,7 +96,7 @@ let PopoverPage = React.createClass({
           }
           </CodeBlock>
         </Paper>
-        
+
         <CodeExample code={Code}>
           <RaisedButton onClick={this.show.bind(this, 'pop')} label="Click on me to show a popover" />
           <br/>
