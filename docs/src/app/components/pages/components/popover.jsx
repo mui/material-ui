@@ -87,6 +87,16 @@ let PopoverPage = React.createClass({
       <ComponentDoc
         name="Popover"
         componentInfo={componentInfo}>
+        
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statement:\nimport Popover from \'material-ui/lib/popover\';\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+        
         <CodeExample code={Code}>
           <RaisedButton onClick={this.show.bind(this, 'pop')} label="Click on me to show a popover" />
           <br/>
