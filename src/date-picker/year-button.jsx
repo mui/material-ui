@@ -13,9 +13,9 @@ const YearButton = React.createClass({
   },
 
   propTypes: {
-    year: React.PropTypes.number,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
+    year: React.PropTypes.number,
   },
 
   //for passing default theme context to children

@@ -35,13 +35,13 @@ const Calendar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
-    locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
-    open: React.PropTypes.bool,
-    minDate: React.PropTypes.object,
+    locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
+    open: React.PropTypes.bool,
     shouldDisableDate: React.PropTypes.func,
   },
 

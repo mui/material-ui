@@ -12,9 +12,9 @@ const GridList = React.createClass({
   },
 
   propTypes: {
+    cellHeight: React.PropTypes.number,
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
-    cellHeight: React.PropTypes.number,
     style: React.PropTypes.object,
   },
 

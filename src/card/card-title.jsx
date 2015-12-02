@@ -7,7 +7,7 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const CardTitle = React.createClass({
 
-  mixins:[StylePropable],
+  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -38,16 +38,16 @@ const CardTitle = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.node,
-    titleColor: React.PropTypes.string,
-    titleStyle: React.PropTypes.object,
+    actAsExpander: React.PropTypes.bool,
+    expandable: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,
     subtitle: React.PropTypes.node,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
-    expandable: React.PropTypes.bool,
-    actAsExpander: React.PropTypes.bool,
-    showExpandableButton: React.PropTypes.bool,
+    title: React.PropTypes.node,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {

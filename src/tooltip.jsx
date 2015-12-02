@@ -16,12 +16,12 @@ const Tooltip = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
+    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
     label: React.PropTypes.node.isRequired,
     show: React.PropTypes.bool,
+    style: React.PropTypes.object,
     touch: React.PropTypes.bool,
     verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
-    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
-    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

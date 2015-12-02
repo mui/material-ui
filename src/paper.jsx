@@ -41,9 +41,9 @@ const Paper = React.createClass({
   propTypes: {
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
+    style: React.PropTypes.object,
     transitionEnabled: React.PropTypes.bool,
     zDepth: PropTypes.zDepth,
-    style: React.PropTypes.object,
   },
 
   getDefaultProps() {

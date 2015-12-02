@@ -11,14 +11,14 @@ const CircularProgress = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
-    value: React.PropTypes.number,
-    min:  React.PropTypes.number,
-    max:  React.PropTypes.number,
-    size: React.PropTypes.number,
     color: React.PropTypes.string,
-    style: React.PropTypes.object,
     innerStyle: React.PropTypes.object,
+    max: React.PropTypes.number,
+    min: React.PropTypes.number,
+    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+    size: React.PropTypes.number,
+    style: React.PropTypes.object,
+    value: React.PropTypes.number,
   },
 
   contextTypes: {

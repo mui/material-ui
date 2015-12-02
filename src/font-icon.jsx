@@ -26,8 +26,8 @@ const FontIcon = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
-    onMouseLeave: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
     style: React.PropTypes.object,
   },
 

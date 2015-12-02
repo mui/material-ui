@@ -14,10 +14,10 @@ const ToolbarGroup = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    float: React.PropTypes.string,
-    style: React.PropTypes.object,
-    lastChild: React.PropTypes.bool,
     firstChild: React.PropTypes.bool,
+    float: React.PropTypes.string,
+    lastChild: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children

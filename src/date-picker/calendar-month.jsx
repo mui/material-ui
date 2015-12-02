@@ -7,12 +7,12 @@ import ClearFix from '../clearfix';
 const CalendarMonth = React.createClass({
 
   propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
     autoOk: React.PropTypes.bool,
+    displayDate: React.PropTypes.object.isRequired,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
+    selectedDate: React.PropTypes.object.isRequired,
     shouldDisableDate: React.PropTypes.func,
   },
 

@@ -12,8 +12,8 @@ const ToolbarTitle = React.createClass({
   },
 
   propTypes: {
-    text: React.PropTypes.string,
     style: React.PropTypes.object,
+    text: React.PropTypes.string,
   },
 
   //for passing default theme context to children

@@ -12,8 +12,8 @@ const ClockPointer = React.createClass({
   },
 
   propTypes: {
-    value: React.PropTypes.number,
     type: React.PropTypes.oneOf(['hour', 'minute']),
+    value: React.PropTypes.number,
   },
 
   //for passing default theme context to children

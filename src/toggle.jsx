@@ -15,17 +15,17 @@ const Toggle = React.createClass({
   },
 
   propTypes: {
-    elementStyle: React.PropTypes.object,
-    labelStyle: React.PropTypes.object,
-    onToggle: React.PropTypes.func,
-    toggled: React.PropTypes.bool,
     defaultToggled: React.PropTypes.bool,
-    thumbStyle: React.PropTypes.object,
+    disabled: React.PropTypes.bool,
+    elementStyle: React.PropTypes.object,
     iconStyle: React.PropTypes.object,
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    trackStyle: React.PropTypes.object,
-    disabled: React.PropTypes.bool,
+    labelStyle: React.PropTypes.object,
+    onToggle: React.PropTypes.func,
     rippleStyle: React.PropTypes.object,
+    thumbStyle: React.PropTypes.object,
+    toggled: React.PropTypes.bool,
+    trackStyle: React.PropTypes.object,
   },
 
   //for passing default theme context to children

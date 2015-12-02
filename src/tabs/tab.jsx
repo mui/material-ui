@@ -12,13 +12,13 @@ const Tab = React.createClass({
   },
 
   propTypes: {
-    onTouchTap: React.PropTypes.func,
     label: React.PropTypes.node,
     onActive: React.PropTypes.func,
+    onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-    width: React.PropTypes.string,
-    value: React.PropTypes.string,
     style: React.PropTypes.object,
+    value: React.PropTypes.string,
+    width: React.PropTypes.string,
   },
 
   //for passing default theme context to children

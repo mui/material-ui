@@ -12,10 +12,10 @@ const CalendarYear = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
   },
 
   componentDidMount() {

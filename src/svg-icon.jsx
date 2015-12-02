@@ -17,8 +17,8 @@ const SvgIcon = React.createClass({
     hoverColor: React.PropTypes.string,
     onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
-    viewBox: React.PropTypes.string,
     style: React.PropTypes.object,
+    viewBox: React.PropTypes.string,
   },
 
   //for passing default theme context to children

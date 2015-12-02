@@ -15,8 +15,8 @@ const DateDisplay = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
-    locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
+    locale: React.PropTypes.string.isRequired,
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
     style: React.PropTypes.object,

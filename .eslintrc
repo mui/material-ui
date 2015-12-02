@@ -68,7 +68,7 @@ rules:
   react/jsx-no-duplicate-props: 2
   react/jsx-no-literals: 0 # Wishlist, one day
   react/jsx-no-undef: 2
-  react/jsx-sort-prop-types: 0 # Wishlist, one day
+  react/jsx-sort-prop-types: 2
   react/jsx-uses-react: 2
   react/jsx-uses-vars: 2
   react/no-danger: 2

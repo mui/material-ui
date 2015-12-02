@@ -21,12 +21,12 @@ export default React.createClass({
     };
   },
   propTypes: {
-    className: React.PropTypes.string,
     badgeContent: React.PropTypes.node.isRequired,
+    badgeStyle: React.PropTypes.object,
+    className: React.PropTypes.string,
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
     style: React.PropTypes.object,
-    badgeStyle: React.PropTypes.object,
   },
   getInitialState() {
     return {

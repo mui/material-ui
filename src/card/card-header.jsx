@@ -39,18 +39,18 @@ const CardHeader = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.node,
-    titleColor: React.PropTypes.string,
-    titleStyle: React.PropTypes.object,
+    actAsExpander: React.PropTypes.bool,
+    avatar: React.PropTypes.node,
+    expandable: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,
     subtitle: React.PropTypes.node,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object,
-    expandable: React.PropTypes.bool,
-    actAsExpander: React.PropTypes.bool,
-    showExpandableButton: React.PropTypes.bool,
-    avatar: React.PropTypes.node,
+    title: React.PropTypes.node,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {

@@ -13,19 +13,19 @@ const GridTile = React.createClass({
   },
 
   propTypes: {
-    title: React.PropTypes.node,
-    subtitle: React.PropTypes.node,
-    titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
-    titleBackground: React.PropTypes.string,
     actionIcon: React.PropTypes.element,
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
     cols: React.PropTypes.number,
-    rows: React.PropTypes.number,
-    style: React.PropTypes.object,
     rootClass: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object,
     ]),
+    rows: React.PropTypes.number,
+    style: React.PropTypes.object,
+    subtitle: React.PropTypes.node,
+    title: React.PropTypes.node,
+    titleBackground: React.PropTypes.string,
+    titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
   },
 
   //for passing default theme context to children

@@ -16,9 +16,9 @@ const DayButton = React.createClass({
 
   propTypes: {
     date: React.PropTypes.object,
+    disabled: React.PropTypes.bool,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
   },
 
   //for passing default theme context to children

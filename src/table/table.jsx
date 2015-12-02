@@ -14,8 +14,11 @@ const Table = React.createClass({
 
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
+    bodyStyle: React.PropTypes.object,
     fixedFooter: React.PropTypes.bool,
     fixedHeader: React.PropTypes.bool,
+    footerStyle: React.PropTypes.object,
+    headerStyle: React.PropTypes.object,
     height: React.PropTypes.string,
     multiSelectable: React.PropTypes.bool,
     onCellClick: React.PropTypes.func,
@@ -27,9 +30,6 @@ const Table = React.createClass({
     selectable: React.PropTypes.bool,
     style: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object,
-    headerStyle: React.PropTypes.object,
-    bodyStyle: React.PropTypes.object,
-    footerStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
