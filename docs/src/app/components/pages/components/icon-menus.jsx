@@ -309,8 +309,8 @@ export default class IconMenus extends React.Component {
           <div>
             <IconMenu
               open={this.state.isIconMenuOpened || false}
-              onRequestOpen={() => this.setState({ isIconMenuOpened: true })}
-              onRequestClose={() => this.setState({ isIconMenuOpened: false })}
+              onRequestOpen={() => this.setState({isIconMenuOpened: true})}
+              onRequestClose={() => this.setState({isIconMenuOpened: false})}
               iconButtonElement={iconButtonElement}>
               <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
               <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
