@@ -1,4 +1,4 @@
-(function () {
+(function() {
   let React = require('react');
   let ReactDOM = require('react-dom');
   let injectTapEventPlugin = require('react-tap-event-plugin');

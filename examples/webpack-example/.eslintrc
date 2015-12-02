@@ -22,7 +22,8 @@
     "space-unary-ops": 0,
     "space-infix-ops": 0,
     "consistent-return": 0,
-    "strict": 0
+    "strict": 0,
+    "react/require-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "parser": "babel-eslint",
   "plugins": [
