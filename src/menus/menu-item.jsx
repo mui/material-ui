@@ -179,6 +179,7 @@ const MenuItem = React.createClass({
           anchorOrigin={{horizontal:'right', vertical:'top'}}
           anchorEl={this.state.anchorEl}
           open={this.state.open}
+          closeOnClickAway={false}
           onRequestClose={this._onRequestClose}>
           <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
             {React.Children.map(menuItems, this._cloneMenuItem)}
@@ -213,7 +214,6 @@ const MenuItem = React.createClass({
     let props = {
       onTouchTap: (e) =>
       {
-        this._onRequestClose();
         if (item.props.onTouchTap) {
           item.props.onTouchTap(e);
         }

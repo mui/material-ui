@@ -10,6 +10,7 @@ import Paper from '../paper';
 import throttle from 'lodash.throttle';
 import AutoPrefix from '../styles/auto-prefix';
 import ContextPure from '../mixins/context-pure';
+import Dom from '../utils/dom';
 
 const Popover = React.createClass({
   mixins: [
@@ -24,6 +25,7 @@ const Popover = React.createClass({
     animated: React.PropTypes.bool,
     autoCloseWhenOffScreen: React.PropTypes.bool,
     canAutoPosition: React.PropTypes.bool,
+    closeOnClickAway: React.PropTypes.bool,
     children: React.PropTypes.object,
     className: React.PropTypes.string,
     onRequestClose: React.PropTypes.func,
@@ -183,6 +185,14 @@ const Popover = React.createClass({
     });
   },
 
+  contains(el) {
+    if (!this.refs.layer || !this.refs.layer.getLayer()) {
+      return false;
+    }
+    let layer = this.refs.layer.getLayer().children[0];
+    return Dom.isDescendant(layer, el);
+  },
+
   _animateClose() {
     if (!this.refs.layer || !this.refs.layer.getLayer()) {
       return;
@@ -218,7 +228,7 @@ const Popover = React.createClass({
     AutoPrefix.set(innerInnerInner.style, 'transform', `scaleY(${value})`);
     AutoPrefix.set(rootStyle, 'opacity', value);
     AutoPrefix.set(innerStyle, 'opacity', value);
-    AutoPrefix.set(innerInnerInner, 'opacity', value);
+    AutoPrefix.set(innerInnerInner.style, 'opacity', value);
     AutoPrefix.set(el.style, 'opacity', value);
   },
 

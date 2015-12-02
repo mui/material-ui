@@ -1,11 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Events from './utils/events';
-import Dom from './utils/dom';
 import debounce from 'lodash.debounce';
+import Dom from './utils/dom';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 const RenderToLayer = React.createClass({
+
+  propTypes: {
+    closeOnClickAway: React.PropTypes.bool,
+    componentClickAway: React.PropTypes.func,
+    open: React.PropTypes.bool.isRequired,
+  },
+
+  getDefaultProps() {
+    return {
+      closeOnClickAway:true,
+    };
+  },
 
   componentDidMount() {
     this._renderLayer();
@@ -16,34 +27,24 @@ const RenderToLayer = React.createClass({
   },
 
   componentWillUnmount() {
-    this._unbindClickAway();
     if (this._layer) {
       this._unrenderLayer();
     }
   },
 
-  _checkClickAway(e) {
-    if (!this.canClickAway) {
+
+  onClickAway(e) {
+    if (e.defaltPrevented) {
       return;
     }
+
     const el = this._layer;
     if (e.target !== el && (e.target === window)
         || (document.documentElement.contains(e.target) && !Dom.isDescendant(el, e.target))) {
-      if (this.props.componentClickAway) {
+      if (this.props.closeOnClickAway && this.props.componentClickAway && this.props.open) {
         this.props.componentClickAway(e);
       }
     }
-  },
-
-  _preventClickAway(e) {
-    if (e.detail === this) {
-      return;
-    }
-    this.canClickAway = false;
-  },
-
-  _allowClickAway() {
-    this.canClickAway = true;
   },
 
   getLayer() {
@@ -60,12 +61,23 @@ const RenderToLayer = React.createClass({
         this._layer = document.createElement('div');
         document.body.appendChild(this._layer);
       }
-      this._bindClickAway();
+      if (this.props.closeOnClickAway) {
+        this._layer.addEventListener('touchstart', this.onClickAway);
+        this._layer.addEventListener('click', this.onClickAway);
+        this._layer.style.position = 'fixed';
+        this._layer.style.top = 0;
+        this._layer.style.bottom = 0;
+        this._layer.style.left = 0;
+        this._layer.style.right = 0;
+        this._layer.style.zIndex = 20;
+      }
       if (this.reactUnmount) {
         this.reactUnmount.cancel();
       }
     } else if (this._layer) {
-      this._unbindClickAway();
+      this._layer.style.position = 'relative';
+      this._layer.removeEventListener('touchstart', this.onClickAway);
+      this._layer.removeEventListener('click', this.onClickAway);
       this._unrenderLayer();
     } else {
       return;
@@ -103,20 +115,6 @@ const RenderToLayer = React.createClass({
     this.reactUnmount();
   },
 
-  _bindClickAway() {
-    if (typeof (this.canClickAway) === 'undefined') {
-      this.canClickAway = true;
-    }
-    Events.on(window, 'focus', this._checkClickAway);
-    Events.on(document, 'mousedown', this._checkClickAway);
-    Events.on(document, 'touchend', this._checkClickAway);
-  },
-
-  _unbindClickAway() {
-    Events.off(window, 'focus', this._checkClickAway);
-    Events.off(document, 'mousedown', this._checkClickAway);
-    Events.off(document, 'touchend', this._checkClickAway);
-  },
 });
 
 export default RenderToLayer;
