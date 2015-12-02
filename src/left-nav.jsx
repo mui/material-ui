@@ -49,9 +49,9 @@ const LeftNav = React.createClass({
     menuItemClassNameSubheader: React.PropTypes.string,
     menuItems: React.PropTypes.array,
     onChange: React.PropTypes.func,
-    onChangeRequest: React.PropTypes.func,
     onNavClose: React.PropTypes.func,
     onNavOpen: React.PropTypes.func,
+    onRequestChange: React.PropTypes.func,
     open: React.PropTypes.bool,
     openRight: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
@@ -249,10 +249,10 @@ const LeftNav = React.createClass({
 
   _testDeprecations() {
     warning(!(typeof this.props.onNavClose === 'function'),
-      'onNavClose will be removed in favor of onChangeRequest');
+      'onNavClose will be removed in favor of onRequestChange');
 
     warning(!(typeof this.props.onNavOpen === 'function'),
-      'onNavOpen will be removed in favor of onChangeRequest');
+      'onNavOpen will be removed in favor of onRequestChange');
   },
 
   _shouldShow() {
@@ -261,13 +261,13 @@ const LeftNav = React.createClass({
 
   _close(reason) {
     if (this.props.open === null) this.setState({open: false});
-    if (this.props.onChangeRequest) this.props.onChangeRequest(false, reason);
+    if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
     return this;
   },
 
   _open(reason) {
     if (this.props.open === null) this.setState({open: true});
-    if (this.props.onChangeRequest) this.props.onChangeRequest(true, reason);
+    if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
     return this;
   },
 

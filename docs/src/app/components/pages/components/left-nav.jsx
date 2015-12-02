@@ -34,7 +34,7 @@ export default class LeftNavPage extends React.Component {
     this.desc = 'The api of Left Nav has been changed to be declarative. ' +
                 'The methods close, open and toggle have been deprecated. ' +
                 'In order to control the Left Nav use the open property and handle ' +
-                'the onChangeRequest event. Also, as you have noticed there are no examples ' +
+                'the onRequestChange event. Also, as you have noticed there are no examples ' +
                 'for uncontrolled mode. That is because uncontrolled Left Nav can only be open ' +
                 'with swipe. The doc site has an uncontrolled Left Nav, swipe left with a touch ' +
                 'device to see it.';
@@ -124,21 +124,21 @@ export default class LeftNavPage extends React.Component {
             header: 'LeftNav.open()',
             desc: 'Opens the component. ' +
               'Using this method is deprecated, use the ' +
-              'open property and handle onChangeRequest to control the left nav.',
+              'open property and handle onRequestChange to control the left nav.',
           },
           {
             name: 'Deprecated: close',
             header: 'LeftNav.close()',
             desc: 'Closes the component, hiding it from view. ' +
               'Using this method is deprecated, use the ' +
-              'open property and handle onChangeRequest to control the left nav.',
+              'open property and handle onRequestChange to control the left nav.',
           },
           {
             name: 'Deprecated: toggle',
             header: 'LeftNav.toggle()',
             desc: 'Toggles between the open and closed states. ' +
               'Using this method is deprecated, use the ' +
-              'open property and handle onChangeRequest to control the left nav.',
+              'open property and handle onRequestChange to control the left nav.',
           },
         ],
       },
@@ -157,17 +157,17 @@ export default class LeftNavPage extends React.Component {
             header: 'function()',
             desc: 'Fired when the component is opened. ' +
               'Using this method is deprecated, use the ' +
-              'open property and handle onChangeRequest to control the left nav.',
+              'open property and handle onRequestChange to control the left nav.',
           },
           {
             name: 'Deprecated: onNavClose',
             header: 'function()',
             desc: 'Fired when the component is closed. ' +
               'Using this method is deprecated, use the ' +
-              'open property and handle onChangeRequest to control the left nav.',
+              'open property and handle onRequestChange to control the left nav.',
           },
           {
-            name: 'onChangeRequest',
+            name: 'onRequestChange',
             header: 'function(open, reason)',
             desc: 'Callback function that is fired when the ' +
               'open state of the left nav is requested to be changed. ' +
@@ -214,7 +214,7 @@ import LeftNav from 'material-ui/lib/left-nav/';
             <LeftNav open={this.state.navOpen} menuItems={menuItems} />
             <LeftNav
               open={this.state.undockedNavOpen}
-              onChangeRequest={this._changeLeftNavUndockedControlledClick}
+              onRequestChange={this._changeLeftNavUndockedControlledClick}
               docked={false}
               menuItems={menuItems} />
           </div>
