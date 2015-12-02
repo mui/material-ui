@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
+import ClickAwayable from '../mixins/click-awayable';
 import Events from '../utils/events';
 import PropTypes from '../utils/prop-types';
 import Menu from '../menus/menu';
@@ -10,7 +11,10 @@ import Popover from '../popover/popover';
 
 const IconMenu = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+    ClickAwayable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -65,6 +69,16 @@ const IconMenu = React.createClass({
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentClickAway(e) {
+    if (!this.state.open) {
+      return;
+    }
+
+    if (!(this.refs.popover && this.refs.popover.contains(e.target))) {
+      this.close(false);
+    }
   },
 
   getInitialState() {
@@ -156,9 +170,11 @@ const IconMenu = React.createClass({
         style={mergedRootStyles}>
         {iconButton}
         <Popover
+          ref="popover"
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
           open={open}
+          closeOnClickAway={false}
           anchorEl={anchorEl}
           childContextTypes={this.constructor.childContextTypes}
           onRequestClose={this.close}

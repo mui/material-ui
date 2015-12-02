@@ -62,6 +62,13 @@ let PopoverPage = React.createClass({
             'which is useful for mobile devices.',
           },
           {
+            name: 'closeOnClickAway',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'If true, the popover will close when another part of the page is used.  If you have nested popovers, you ' +
+            'may wish to set this to false and deal with click-away manually',
+          },
+          {
             name: 'open',
             type: 'bool',
             header: 'default: false',
@@ -78,6 +85,19 @@ let PopoverPage = React.createClass({
             type: 'oneOf [0,1,2,3,4,5]',
             header: 'default: 1',
             desc: 'This number represents the zDepth of the paper shadow.',
+          },
+        ],
+      },
+      {
+        name: 'Methods',
+        infoArray: [
+          {
+            name: 'contains',
+            type: 'bool',
+            header: '(DomElement el)',
+            desc:
+              'This method will tell you whether the element passed through is contained in the Popover' +
+              'This is useful because you can\'t always tell as the popover content is on a different DOM Tree',
           },
         ],
       },
