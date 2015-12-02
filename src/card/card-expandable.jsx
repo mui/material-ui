@@ -38,8 +38,8 @@ const CardExpandable = React.createClass({
   },
 
   propTypes: {
-    onExpanding: React.PropTypes.func.isRequired,
     expanded: React.PropTypes.bool,
+    onExpanding: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
   },
 

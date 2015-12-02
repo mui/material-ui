@@ -10,12 +10,12 @@ const LinearProgress = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
-    value: React.PropTypes.number,
-    min:  React.PropTypes.number,
-    max:  React.PropTypes.number,
-    style: React.PropTypes.object,
     color: React.PropTypes.string,
+    max: React.PropTypes.number,
+    min: React.PropTypes.number,
+    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+    style: React.PropTypes.object,
+    value: React.PropTypes.number,
   },
 
   contextTypes: {

@@ -13,11 +13,11 @@ const SubheaderMenuItem = React.createClass({
   },
 
   propTypes: {
-    index: React.PropTypes.number.isRequired,
-    text: React.PropTypes.string.isRequired,
-    firstChild: React.PropTypes.bool,
     className: React.PropTypes.string,
+    firstChild: React.PropTypes.bool,
+    index: React.PropTypes.number.isRequired,
     style: React.PropTypes.object,
+    text: React.PropTypes.string.isRequired,
   },
 
   //for passing default theme context to children

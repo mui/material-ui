@@ -15,12 +15,12 @@ const ComponentDoc = React.createClass({
   },
 
   propTypes: {
+    componentInfo: React.PropTypes.array.isRequired,
     desc: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.element,
     ]),
     name: React.PropTypes.string.isRequired,
-    componentInfo: React.PropTypes.array.isRequired,
   },
 
   //for passing default theme context to children

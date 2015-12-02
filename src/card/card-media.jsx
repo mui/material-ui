@@ -38,14 +38,14 @@ const CardMedia = React.createClass({
   },
 
   propTypes: {
+    actAsExpander: React.PropTypes.bool,
+    expandable: React.PropTypes.bool,
+    mediaStyle: React.PropTypes.object,
     overlay: React.PropTypes.node,
-    style: React.PropTypes.object,
-    overlayStyle: React.PropTypes.object,
     overlayContainerStyle: React.PropTypes.object,
     overlayContentStyle: React.PropTypes.object,
-    mediaStyle: React.PropTypes.object,
-    expandable: React.PropTypes.bool,
-    actAsExpander: React.PropTypes.bool,
+    overlayStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
   },
 
   getStyles() {

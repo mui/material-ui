@@ -20,8 +20,8 @@ const TimePickerDialog = React.createClass({
     autoOk: React.PropTypes.bool,
     initialTime: React.PropTypes.object,
     onAccept: React.PropTypes.func,
-    onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    onShow: React.PropTypes.func,
   },
 
   //for passing default theme context to children

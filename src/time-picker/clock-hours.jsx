@@ -57,9 +57,9 @@ const ClockHours = React.createClass({
   },
 
   propTypes: {
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialHours: React.PropTypes.number,
     onChange: React.PropTypes.func,
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
   },
 
   center: {x: 0, y: 0},

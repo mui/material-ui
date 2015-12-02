@@ -49,10 +49,10 @@ const EnhancedTextarea = React.createClass({
   propTypes: {
     onChange: React.PropTypes.func,
     onHeightChange: React.PropTypes.func,
-    textareaStyle: React.PropTypes.object,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
     style: React.PropTypes.object,
+    textareaStyle: React.PropTypes.object,
     value: React.PropTypes.string,
   },
 

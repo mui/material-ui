@@ -44,8 +44,8 @@ const CalendarToolbar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
-    locale: React.PropTypes.string.isRequired,
     displayDate: React.PropTypes.object.isRequired,
+    locale: React.PropTypes.string.isRequired,
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
     prevMonth: React.PropTypes.bool,

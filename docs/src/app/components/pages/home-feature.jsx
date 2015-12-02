@@ -11,11 +11,11 @@ let HomeFeature = React.createClass({
   mixins: [StylePropable, StyleResizable],
 
   propTypes: {
-    heading: React.PropTypes.string,
-    route: React.PropTypes.string,
-    img: React.PropTypes.string,
     firstChild: React.PropTypes.bool,
+    heading: React.PropTypes.string,
+    img: React.PropTypes.string,
     lastChild: React.PropTypes.bool,
+    route: React.PropTypes.string,
   },
 
   getDefaultProps() {

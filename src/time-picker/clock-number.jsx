@@ -12,10 +12,10 @@ const ClockNumber = React.createClass({
   },
 
   propTypes: {
-    value: React.PropTypes.number,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
-    onSelected: React.PropTypes.func,
     isSelected: React.PropTypes.bool,
+    onSelected: React.PropTypes.func,
+    type: React.PropTypes.oneOf(['hour', 'minute']),
+    value: React.PropTypes.number,
   },
 
   //for passing default theme context to children

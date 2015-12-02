@@ -31,12 +31,12 @@ const Checkbox = React.createClass({
     checked: React.PropTypes.bool,
     checkedIcon: React.PropTypes.element,
     defaultChecked: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
     labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
     unCheckedIcon: React.PropTypes.element,
-    disabled: React.PropTypes.bool,
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
   },
 
   getInitialState() {
