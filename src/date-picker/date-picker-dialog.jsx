@@ -54,6 +54,7 @@ const DatePickerDialog = React.createClass({
     showYearSelector: React.PropTypes.bool,
     autoOk: React.PropTypes.bool,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    weekdayFormat: React.PropTypes.string,
   },
 
   //for passing default theme context to children
@@ -108,6 +109,7 @@ const DatePickerDialog = React.createClass({
       container,
       onDismiss,
       onShow,
+      weekdayFormat,
       ...other,
     } = this.props;
 
@@ -179,6 +181,7 @@ const DatePickerDialog = React.createClass({
         <Calendar
           DateTimeFormat={DateTimeFormat}
           locale={locale}
+          weekdayFormat={weekdayFormat}
           ref="calendar"
           onDayTouchTap={this._onDayTouchTap}
           initialDate={this.props.initialDate}
