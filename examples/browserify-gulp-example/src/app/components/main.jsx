@@ -1,19 +1,30 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
-const React = require('react');
-const RaisedButton = require('material-ui/lib/raised-button');
-const Dialog = require('material-ui/lib/dialog');
-const ThemeManager = require('material-ui/lib/styles/theme-manager');
-const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
-const Colors = require('material-ui/lib/styles/colors');
+import React from 'react';
+import RaisedButton from 'material-ui/lib/raised-button';
+import Dialog from 'material-ui/lib/dialog';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
+import Colors from 'material-ui/lib/styles/colors';
+
+const containerStyle = {
+  textAlign: 'center',
+  paddingTop: 200,
+};
+
+const standardActions = [
+  {
+    text: 'Okay',
+  },
+];
 
 const Main = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
     };
@@ -27,45 +38,41 @@ const Main = React.createClass({
 
   componentWillMount() {
     let newMuiTheme = ThemeManager.modifyRawThemePalette(this.state.muiTheme, {
-      accent1Color: Colors.deepOrange500
+      accent1Color: Colors.deepOrange500,
     });
 
     this.setState({muiTheme: newMuiTheme});
   },
 
-  render() {
-
-    let containerStyle = {
-      textAlign: 'center',
-      paddingTop: '200px'
-    };
-
-    let standardActions = [
-      { text: 'Okay' }
-    ];
-
-    return (
-      <div style={containerStyle}>
-        <Dialog
-          title="Super Secret Password"
-          actions={standardActions}
-          ref="superSecretPasswordDialog">
-          1-2-3-4-5
-        </Dialog>
-
-        <h1>material-ui</h1>
-        <h2>example project</h2>
-
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
-
-      </div>
-    );
+  _handleRequestClose() {
+    this.setState({
+      open: false,
+    });
   },
 
   _handleTouchTap() {
-    this.refs.superSecretPasswordDialog.show();
-  }
+    this.setState({
+      open: true,
+    });
+  },
 
+  render() {
+    return (
+      <div style={containerStyle}>
+        <Dialog
+          open={this.state.open}
+          title="Super Secret Password"
+          actions={standardActions}
+          onRequestClose={this._handleRequestClose}
+        >
+          1-2-3-4-5
+        </Dialog>
+        <h1>material-ui</h1>
+        <h2>example project</h2>
+        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
+      </div>
+    );
+  },
 });
 
-module.exports = Main;
+export default Main;
