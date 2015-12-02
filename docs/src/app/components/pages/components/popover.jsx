@@ -1,5 +1,5 @@
 import React from 'react';
-import {Popover, RadioButton, RaisedButton} from 'material-ui';
+import {Paper, Popover, RadioButton, RaisedButton} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'popover-code';
 import CodeExample from '../../code-example/code-example';
