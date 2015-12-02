@@ -52,6 +52,7 @@ const SelectField = React.createClass({
     style: React.PropTypes.object,
     type: React.PropTypes.string,
     underlineStyle: React.PropTypes.object,
+    value: React.PropTypes.any,
   },
 
   //for passing default theme context to children
