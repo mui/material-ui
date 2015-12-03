@@ -18,5 +18,6 @@ export default {
     borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
     disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
     pickerHeaderColor: ColorManipulator.fade(Colors.fullWhite, 0.12),
+    clockCircleColor: ColorManipulator.fade(Colors.fullWhite, 0.12),
   },
 };
