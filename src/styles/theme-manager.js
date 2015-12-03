@@ -167,6 +167,8 @@ export default {
         textColor: rawTheme.palette.accent3Color,
         accentColor: rawTheme.palette.primary1Color,
         clockColor: rawTheme.palette.textColor,
+        clockCircleColor: ColorManipulator.fade(rawTheme.palette.textColor, 0.12),
+        headerColor: rawTheme.palette.pickerHeaderColor || rawTheme.palette.primary1Color,
         selectColor: rawTheme.palette.primary2Color,
         selectTextColor: rawTheme.palette.alternateTextColor,
       },
