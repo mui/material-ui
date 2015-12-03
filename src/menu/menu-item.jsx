@@ -78,12 +78,6 @@ const MenuItem = React.createClass({
     };
   },
 
-  componentWillUnmount() {
-    if (this.state.open) {
-      this.setState({open:false});
-    }
-  },
-
   getTheme() {
     return this.state.muiTheme.menuItem;
   },
