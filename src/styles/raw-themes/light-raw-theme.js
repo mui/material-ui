@@ -23,5 +23,7 @@ export default {
     canvasColor: Colors.white,
     borderColor: Colors.grey300,
     disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+    pickerHeaderColor: Colors.cyan500,
+    clockCircleColor: ColorManipulator.fade(Colors.darkBlack, 0.07),
   },
 };

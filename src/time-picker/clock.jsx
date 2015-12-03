@@ -4,6 +4,8 @@ import TimeDisplay from './time-display';
 import ClockButton from './clock-button';
 import ClockHours from './clock-hours';
 import ClockMinutes from './clock-minutes';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 
 const Clock = React.createClass({
@@ -29,14 +31,17 @@ const Clock = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
+      muiTheme: newMuiTheme,
       selectedTime: nextProps.initialTime,
     });
   },
 
   getInitialState() {
     return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       selectedTime: this.props.initialTime,
       mode: 'hour',
     };
@@ -101,6 +106,16 @@ const Clock = React.createClass({
       container: {
         height: 280,
         padding: 10,
+        position: 'relative',
+      },
+
+      circle: {
+        position: 'absolute',
+        top: 20,
+        width: 260,
+        height: 260,
+        borderRadius: '100%',
+        backgroundColor: this.state.muiTheme.timePicker.clockCircleColor,
       },
     };
 
@@ -127,6 +142,7 @@ const Clock = React.createClass({
           onSelectMin={this._setMode.bind(this, 'minute')} />
 
         <div style={this.prepareStyles(styles.container)} >
+          <div style={this.prepareStyles(styles.circle)} />
           {clock}
         </div>
 
