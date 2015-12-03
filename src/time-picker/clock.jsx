@@ -96,7 +96,10 @@ const Clock = React.createClass({
     let buttons = this._getButtons();
 
     let styles = {
-      root: {},
+      root: {
+        userSelect: 'none',
+        cursor: 'default',
+      },
 
       container: {
         height: 280,

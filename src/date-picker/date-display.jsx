@@ -116,7 +116,7 @@ const DateDisplay = React.createClass({
         },
 
         title: {
-          cursor: (this.state.selectedYear && !this.props.disableYearSelection) ? 'pointer' : 'default',
+          cursor: (!this.state.selectedYear && !this.props.disableYearSelection) ? 'pointer' : 'default',
         },
       },
     };

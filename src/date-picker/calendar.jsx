@@ -92,6 +92,8 @@ const Calendar = React.createClass({
     let styles = {
       root: {
         fontSize: 12,
+        userSelect: 'none',
+        cursor: 'default',
       },
       calendarContainer: {
         width: isLandscape ? 320 : '100%',
