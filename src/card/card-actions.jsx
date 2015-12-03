@@ -56,7 +56,7 @@ const CardActions = React.createClass({
 
     let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
-        style: {marginRight: 8},
+        style: this.mergeStyles({marginRight: 8}, child.props.style),
       });
     });
 
