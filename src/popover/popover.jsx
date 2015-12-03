@@ -49,7 +49,7 @@ const Popover = React.createClass({
         vertical: 'top',
         horizontal: 'left',
       },
-      useLayerForClickAway:true,
+      useLayerForClickAway: true,
       zDepth: 1,
     };
   },
@@ -70,6 +70,7 @@ const Popover = React.createClass({
 
   getChildContext() {
     return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -80,20 +81,35 @@ const Popover = React.createClass({
 
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    if (nextProps.open !== this.state.open) {
+
+    if (this._isAnimating === true || nextProps.open !== this.state.open) {
       if (nextProps.open) {
         this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
         this.setState({
           open: true,
           muiTheme: newMuiTheme,
+        }, () => {
+          this._animate(true);
         });
       } else {
-        this.setState({
-          open: false,
-          muiTheme: newMuiTheme,
-        }, () => {
-          this._animateClose();
-        });
+        if (nextProps.animated) {
+          this._animate(false);
+          this._isAnimating = true;
+          this._timeout = setTimeout(() => {
+            if (this.isMounted()) {
+              this._isAnimating = false;
+              this.setState({
+                open: false,
+                muiTheme: newMuiTheme,
+              });
+            }
+          }, 500);
+        } else {
+          this.setState({
+            open: false,
+            muiTheme: newMuiTheme,
+          });
+        }
       }
     }
   },
@@ -102,22 +118,18 @@ const Popover = React.createClass({
     this.setPlacement();
   },
 
-  componentWillUnmount() {
-    if (this.state.open) {
-      this._animateClose();
-    }
-  },
-
   render() {
-    return <RenderToLayer
-      ref="layer"
-      {...this.props}
-      componentClickAway={this.componentClickAway}
-      render={this.renderLayer} />;
+    return (
+      <RenderToLayer
+        ref="layer"
+        open={this.state.open}
+        componentClickAway={this.componentClickAway}
+        render={this.renderLayer} />
+    );
   },
 
   renderLayer() {
-    let {
+    const {
       animated,
       targetOrigin,
       className,
@@ -125,35 +137,34 @@ const Popover = React.createClass({
     } = this.props;
 
     const anchorEl = this.props.anchorEl || this.anchorEl;
-    let anchor = this.getAnchorPosition(anchorEl);
-    let horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+    const anchor = this.getAnchorPosition(anchorEl);
+    const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
 
-    let wrapperStyle = {
+    const wrapperStyle = this.mergeAndPrefix({
       position: 'fixed',
       top: anchor.top,
       left: anchor.left,
       zIndex: this.state.muiTheme.zIndex.popover,
-      opacity:1,
-      overflow:'auto',
-      maxHeight:'100%',
-      transform:'scale(0,0)',
+      opacity: 1,
+      overflow: 'auto',
+      maxHeight: '100%',
+      transform: 'scale(0,0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-    };
-    wrapperStyle = this.mergeAndPrefix(wrapperStyle, this.props.style);
+    }, this.props.style);
 
-    let horizontalAnimation = {
-      maxHeight:'100%',
-      overflowY:'auto',
-      transform:'scaleX(0)',
-      opacity:1,
+    const horizontalAnimation = {
+      maxHeight: '100%',
+      overflowY: 'auto',
+      transform: 'scaleX(0)',
+      opacity: 1,
       transition: animated ? Transitions.easeOut('250ms', ['transform', 'opacity']) : null,
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
     };
 
-    let verticalAnimation = {
-      opacity:1,
-      transform:'scaleY(0)',
+    const verticalAnimation = {
+      opacity: 1,
+      transform: 'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
     };
@@ -177,11 +188,7 @@ const Popover = React.createClass({
     }
   },
 
-  componentClickAway(event) {
-    if (event.defaultPrevented) {
-      return;
-    }
-
+  componentClickAway() {
     this.requestClose('clickAway');
   },
 
@@ -189,16 +196,12 @@ const Popover = React.createClass({
     this.setPlacement();
   },
 
-  _animateClose() {
+  _animate(open) {
     if (!this.refs.layer || !this.refs.layer.getLayer()) {
       return;
     }
 
     const el = this.refs.layer.getLayer().children[0];
-    this._animate(el, false);
-  },
-
-  _animate(el) {
     let value = '0';
     const inner = el.children[0];
     const innerInner = inner.children[0];
@@ -206,7 +209,7 @@ const Popover = React.createClass({
     const rootStyle = inner.style;
     const innerStyle = innerInner.style;
 
-    if (this.state.open) {
+    if (open) {
       value = '1';
     }
 
@@ -264,7 +267,7 @@ const Popover = React.createClass({
 
     const targetEl = this.refs.layer.getLayer().children[0];
     if (!targetEl) {
-      return {};
+      return;
     }
 
     let {targetOrigin, anchorOrigin} = this.props;
@@ -289,8 +292,6 @@ const Popover = React.createClass({
 
     targetEl.style.top = targetPosition.top + 'px';
     targetEl.style.left = targetPosition.left + 'px';
-
-    this._animate(targetEl, true);
   },
 
   autoCloseWhenOffScreen(anchorPosition) {
