@@ -462,7 +462,7 @@ const Dialog = React.createClass({
 
   render() {
     return (
-      <RenderToLayer render={this.renderLayer} open={this.state.open} />
+      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
     );
   },
 
@@ -521,10 +521,6 @@ const Dialog = React.createClass({
     this.setState({
       open: false,
     }, this._onDismiss);
-  },
-
-  layerWillUnmount() {
-    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   isOpen() {
