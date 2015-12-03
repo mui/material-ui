@@ -8,6 +8,8 @@ import Transitions from '../styles/transitions';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
 import AutoPrefix from '../styles/auto-prefix';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const Popover = React.createClass({
   mixins: [
@@ -27,6 +29,7 @@ const Popover = React.createClass({
     open: React.PropTypes.bool,
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
+    useLayerForClickAway: React.PropTypes.bool,
     zDepth: PropTypes.zDepth,
   },
 
@@ -46,6 +49,7 @@ const Popover = React.createClass({
         vertical: 'top',
         horizontal: 'left',
       },
+      useLayerForClickAway:true,
       zDepth: 1,
     };
   },
@@ -55,11 +59,18 @@ const Popover = React.createClass({
 
     return {
       open: this.props.open,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  contextTypes: {
+  //for passing default theme context to children
+  childContextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
+    return {
+    };
   },
 
   windowListeners: {
@@ -67,16 +78,19 @@ const Popover = React.createClass({
     scroll: 'setPlacementThrottled',
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
         this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
         this.setState({
           open: true,
+          muiTheme: newMuiTheme,
         });
       } else {
         this.setState({
           open: false,
+          muiTheme: newMuiTheme,
         }, () => {
           this._animateClose();
         });
@@ -118,7 +132,7 @@ const Popover = React.createClass({
       position: 'fixed',
       top: anchor.top,
       left: anchor.left,
-      zIndex: 20,
+      zIndex: this.state.muiTheme.zIndex.popover,
       opacity:1,
       overflow:'auto',
       maxHeight:'100%',
@@ -201,7 +215,7 @@ const Popover = React.createClass({
     AutoPrefix.set(innerInnerInner.style, 'transform', `scaleY(${value})`);
     AutoPrefix.set(rootStyle, 'opacity', value);
     AutoPrefix.set(innerStyle, 'opacity', value);
-    AutoPrefix.set(innerInnerInner, 'opacity', value);
+    AutoPrefix.set(innerInnerInner.style, 'opacity', value);
     AutoPrefix.set(el.style, 'opacity', value);
   },
 

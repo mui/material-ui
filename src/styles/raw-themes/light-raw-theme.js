@@ -11,6 +11,10 @@ import Spacing from '../spacing';
 export default {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
+  zIndex: {
+    layer: 20,
+    popover: 20,
+  },
   palette: {
     primary1Color: Colors.cyan500,
     primary2Color: Colors.cyan700,

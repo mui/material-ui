@@ -74,6 +74,13 @@ let PopoverPage = React.createClass({
             desc: 'This is a callback that fires when the popover thinks it should close. (e.g. clickAway or offScreen)',
           },
           {
+            name: 'useLayerForClickAway',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If true, the popover will render on top of an invisible layer, which ' +
+            'will prevent clicks to the underlying elements, and trigger an onRequestClose(clickAway) event.',
+          },
+          {
             name: 'zDepth',
             type: 'oneOf [0,1,2,3,4,5]',
             header: 'default: 1',

@@ -207,6 +207,7 @@ export default {
         borderColor: rawTheme.palette.borderColor,
       },
       isRtl: false,
+      zIndex: rawTheme.zIndex,
     };
 
     //add properties to objects inside 'returnObj' that depend on existing properties
