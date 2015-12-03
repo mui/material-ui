@@ -41,6 +41,7 @@ const ScaleIn = React.createClass({
 
   propTypes: {
     childStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,
     minScale: React.PropTypes.number,

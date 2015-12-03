@@ -4,14 +4,17 @@ import StylePropable from '../mixins/style-propable';
 import CardExpandable from './card-expandable';
 
 const Card = React.createClass({
-  mixins:[StylePropable],
+  mixins: [StylePropable],
 
   getInitialState() {
-    return {expanded: this.props.initiallyExpanded ? true : false};
+    return {
+      expanded: this.props.initiallyExpanded ? true : false,
+    };
   },
 
   propTypes: {
     actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     initiallyExpanded: React.PropTypes.bool,
     onExpandChange: React.PropTypes.func,

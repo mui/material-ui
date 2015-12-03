@@ -17,6 +17,11 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 const TransitionItem = React.createClass({
   mixins: [StylePropable],
 
+  propTypes: {
+    children: React.PropTypes.node,
+    style: React.PropTypes.object,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -79,11 +84,12 @@ const TransitionItem = React.createClass({
   render() {
     let {
       style,
+      children,
       ...other,
     } = this.props;
 
     return <div {...other} style={this.prepareStyles(this.state.style, style)}>
-        {this.props.children}
+        {children}
       </div>;
   },
 });
@@ -113,6 +119,7 @@ const DialogInline = React.createClass({
     autoDetectWindowHeight: React.PropTypes.bool,
     autoScrollBodyContent: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
     modal: React.PropTypes.bool,

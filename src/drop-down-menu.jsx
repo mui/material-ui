@@ -49,6 +49,7 @@ const DropDownMenu = React.createClass({
     style: React.PropTypes.object,
     underlineStyle:React.PropTypes.object,
     value: React.PropTypes.any,
+    valueLink: React.PropTypes.object,
     valueMember: React.PropTypes.string,
   },
 

@@ -15,6 +15,8 @@ const Table = React.createClass({
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     fixedFooter: React.PropTypes.bool,
     fixedHeader: React.PropTypes.bool,
     footerStyle: React.PropTypes.object,

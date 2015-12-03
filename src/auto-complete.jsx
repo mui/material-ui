@@ -38,6 +38,7 @@ const AutoComplete = React.createClass({
     open: React.PropTypes.bool,
     searchText: React.PropTypes.string,
     showAllItems: React.PropTypes.bool,
+    style: React.PropTypes.object,
     touchTapCloseDelay: React.PropTypes.number,
     updateWhenFocused: React.PropTypes.bool,
   },

@@ -12,6 +12,7 @@ const Toolbar = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     noGutter: React.PropTypes.bool,
     style: React.PropTypes.object,

@@ -61,6 +61,7 @@ const EnhancedButton = React.createClass({
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
+    children: React.PropTypes.node,
     containerElement: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.element,
@@ -83,6 +84,7 @@ const EnhancedButton = React.createClass({
     tabIndex: React.PropTypes.number,
     touchRippleColor: React.PropTypes.string,
     touchRippleOpacity: React.PropTypes.number,
+    type: React.PropTypes.string,
   },
 
   getDefaultProps() {

@@ -1,15 +1,18 @@
 import React from 'react';
 
-
 const TabTemplate = React.createClass({
+  propTypes: {
+    children: React.PropTypes.node,
+    selected: React.PropTypes.bool,
+  },
 
   render() {
-    let styles = {
-      'height': 0,
-      'overflow': 'hidden',
-      'width': '100%',
-      'position': 'relative',
-      'textAlign': 'initial',
+    const styles = {
+      height: 0,
+      overflow: 'hidden',
+      width: '100%',
+      position: 'relative',
+      textAlign: 'initial',
     };
 
     if (this.props.selected) {
