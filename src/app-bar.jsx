@@ -28,6 +28,8 @@ const AppBar = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     iconClassNameLeft: React.PropTypes.string,
     iconClassNameRight: React.PropTypes.string,
     iconElementLeft: React.PropTypes.element,

@@ -27,6 +27,7 @@ const MenuItem = React.createClass({
 
   propTypes: {
     checked: React.PropTypes.bool,
+    children: React.PropTypes.node,
     desktop: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     focusState: React.PropTypes.oneOf([

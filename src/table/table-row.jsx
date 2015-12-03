@@ -12,6 +12,8 @@ const TableRow = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     displayBorder: React.PropTypes.bool,
     hoverable: React.PropTypes.bool,
     onCellClick: React.PropTypes.func,

@@ -13,6 +13,7 @@ const ClearFix = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     style: React.PropTypes.object,
   },
 

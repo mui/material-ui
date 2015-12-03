@@ -32,6 +32,7 @@ const EnhancedSwitch = React.createClass({
   },
 
   propTypes: {
+    className: React.PropTypes.string,
     defaultSwitched: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
@@ -43,6 +44,7 @@ const EnhancedSwitch = React.createClass({
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
     labelStyle: React.PropTypes.object,
     name: React.PropTypes.string,
+    onFocus: React.PropTypes.func,
     onParentShouldUpdate: React.PropTypes.func.isRequired,
     onSwitch: React.PropTypes.func,
     required: React.PropTypes.bool,
@@ -188,7 +190,6 @@ const EnhancedSwitch = React.createClass({
 
   render() {
     let {
-      type,
       name,
       value,
       label,
@@ -227,7 +228,7 @@ const EnhancedSwitch = React.createClass({
       </label>
     ) : null;
 
-    let inputProps = {
+    const inputProps = {
       ref: 'checkbox',
       type: this.props.inputType,
       style: this.prepareStyles(styles.input),

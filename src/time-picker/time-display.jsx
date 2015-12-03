@@ -15,6 +15,8 @@ const TimeDisplay = React.createClass({
     affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     mode: React.PropTypes.oneOf(['hour', 'minute']),
+    onSelectHour: React.PropTypes.func,
+    onSelectMin: React.PropTypes.func,
     selectedTime: React.PropTypes.object.isRequired,
   },
 

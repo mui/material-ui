@@ -12,6 +12,7 @@ const ClockPointer = React.createClass({
   },
 
   propTypes: {
+    hasSelected: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     value: React.PropTypes.number,
   },

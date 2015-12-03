@@ -18,6 +18,7 @@ const TimePickerDialog = React.createClass({
 
   propTypes: {
     autoOk: React.PropTypes.bool,
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialTime: React.PropTypes.object,
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,

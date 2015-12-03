@@ -28,6 +28,7 @@ const Menu = React.createClass({
   propTypes: {
     animated: React.PropTypes.bool,
     autoWidth: React.PropTypes.bool,
+    children: React.PropTypes.node,
     desktop: React.PropTypes.bool,
     initiallyKeyboardFocused: React.PropTypes.bool,
     listStyle: React.PropTypes.object,

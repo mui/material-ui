@@ -28,10 +28,12 @@ const SelectField = React.createClass({
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.node,
     floatingLabelStyle: React.PropTypes.object,
     floatingLabelText: React.PropTypes.node,
+    fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.node,
     iconStyle: React.PropTypes.object,
     id: React.PropTypes.string,

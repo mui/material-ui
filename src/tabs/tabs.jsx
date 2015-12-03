@@ -16,6 +16,7 @@ const Tabs = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     contentContainerStyle: React.PropTypes.object,
     initialSelectedIndex: React.PropTypes.number,
     inkBarStyle: React.PropTypes.object,
@@ -86,7 +87,6 @@ const Tabs = React.createClass({
       initialSelectedIndex,
       inkBarStyle,
       style,
-      tabWidth,
       tabItemContainerStyle,
       tabTemplate,
       ...other,
