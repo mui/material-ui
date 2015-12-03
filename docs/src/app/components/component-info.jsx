@@ -15,8 +15,8 @@ const ComponentInfo = React.createClass({
   },
 
   propTypes: {
-    name: React.PropTypes.string.isRequired,
     infoArray: React.PropTypes.array.isRequired,
+    name: React.PropTypes.string.isRequired,
   },
 
   //for passing default theme context to children

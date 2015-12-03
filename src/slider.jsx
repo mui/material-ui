@@ -50,23 +50,23 @@ const Slider = React.createClass({
   },
 
   propTypes: {
-    name: React.PropTypes.string.isRequired,
     defaultValue: valueInRangePropType,
     description: React.PropTypes.string,
+    disableFocusRipple: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     error: React.PropTypes.string,
     max: minMaxPropType,
     min: minMaxPropType,
-    required: React.PropTypes.bool,
-    step: React.PropTypes.number,
+    name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onDragStart: React.PropTypes.func,
     onDragStop: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    value: valueInRangePropType,
+    required: React.PropTypes.bool,
+    step: React.PropTypes.number,
     style: React.PropTypes.object,
-    disableFocusRipple: React.PropTypes.bool,
+    value: valueInRangePropType,
   },
 
   //for passing default theme context to children

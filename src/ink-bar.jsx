@@ -24,8 +24,8 @@ const InkBar = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
-    width: React.PropTypes.string.isRequired,
     style: React.PropTypes.object,
+    width: React.PropTypes.string.isRequired,
   },
 
   getInitialState() {

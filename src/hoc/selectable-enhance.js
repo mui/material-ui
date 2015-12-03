@@ -16,11 +16,11 @@ export const SelectableContainerEnhance = (Component) => {
     displayName: `Selectable${Component.displayName}`,
 
     propTypes: {
+      selectedItemStyle: React.PropTypes.object,
       valueLink: React.PropTypes.shape({
         value: React.PropTypes.number,
         requestChange: React.PropTypes.func,
       }).isRequired,
-      selectedItemStyle: React.PropTypes.object,
     },
 
     childContextTypes: {

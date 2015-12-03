@@ -55,15 +55,15 @@ const Snackbar = React.createClass({
   },
 
   propTypes: {
-    message: React.PropTypes.node.isRequired,
     action: React.PropTypes.string,
     autoHideDuration: React.PropTypes.number,
+    bodyStyle: React.PropTypes.object,
+    message: React.PropTypes.node.isRequired,
     onActionTouchTap: React.PropTypes.func,
-    onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    onShow: React.PropTypes.func,
     openOnMount: React.PropTypes.bool,
     style: React.PropTypes.object,
-    bodyStyle: React.PropTypes.object,
   },
 
   //for passing default theme context to children

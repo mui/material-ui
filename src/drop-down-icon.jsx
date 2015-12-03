@@ -28,12 +28,12 @@ const DropDownIcon = React.createClass({
   },
 
   propTypes: {
-    onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired,
     closeOnMenuItemTouchTap: React.PropTypes.bool,
-    iconStyle: React.PropTypes.object,
     iconClassName: React.PropTypes.string,
     iconLigature: React.PropTypes.string,
+    iconStyle: React.PropTypes.object,
+    menuItems: React.PropTypes.array.isRequired,
+    onChange: React.PropTypes.func,
     style: React.PropTypes.object,
   },
 

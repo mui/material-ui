@@ -11,12 +11,12 @@ const Clock = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
-    onChangeMinutes: React.PropTypes.func,
-    onChangeHours: React.PropTypes.func,
-    initialTime: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['hour', 'minute']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: React.PropTypes.object,
     isActive: React.PropTypes.bool,
+    mode: React.PropTypes.oneOf(['hour', 'minute']),
+    onChangeHours: React.PropTypes.func,
+    onChangeMinutes: React.PropTypes.func,
   },
 
   contextTypes: {

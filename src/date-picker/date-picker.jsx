@@ -28,19 +28,18 @@ const DatePicker = React.createClass({
   },
 
   propTypes: {
-    container: React.PropTypes.oneOf(['dialog', 'inline']),
     DateTimeFormat: React.PropTypes.func,
-    locale: React.PropTypes.string,
-    wordings: React.PropTypes.object,
     autoOk: React.PropTypes.bool,
+    container: React.PropTypes.oneOf(['dialog', 'inline']),
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
+    locale: React.PropTypes.string,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    onDismiss: React.PropTypes.func,
     onChange: React.PropTypes.func,
+    onDismiss: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
@@ -49,6 +48,7 @@ const DatePicker = React.createClass({
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
     value: React.PropTypes.object,
+    wordings: React.PropTypes.object,
   },
 
   windowListeners: {

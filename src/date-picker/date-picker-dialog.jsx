@@ -38,22 +38,22 @@ const DatePickerDialog = React.createClass({
   },
 
   propTypes: {
-    container: React.PropTypes.oneOf(['dialog', 'inline']),
     DateTimeFormat: React.PropTypes.func,
-    locale: React.PropTypes.string,
-    wordings: React.PropTypes.object,
+    autoOk: React.PropTypes.bool,
+    container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
+    locale: React.PropTypes.string,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    style: React.PropTypes.object,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
-    autoOk: React.PropTypes.bool,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    style: React.PropTypes.object,
+    wordings: React.PropTypes.object,
   },
 
   //for passing default theme context to children

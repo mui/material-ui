@@ -12,14 +12,14 @@ const LinkMenuItem = React.createClass({
   },
 
   propTypes: {
+    active: React.PropTypes.bool,
+    className: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
     index: React.PropTypes.number.isRequired,
     payload: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
-    target: React.PropTypes.string,
-    active: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    className: React.PropTypes.string,
     style: React.PropTypes.object,
+    target: React.PropTypes.string,
+    text: React.PropTypes.string.isRequired,
   },
 
   getDefaultProps() {

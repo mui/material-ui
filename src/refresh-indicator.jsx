@@ -16,14 +16,14 @@ const RefreshIndicator = React.createClass({
   },
 
   propTypes: {
+    color: React.PropTypes.string,
     left: React.PropTypes.number.isRequired,
+    loadingColor: React.PropTypes.string,
     percentage: React.PropTypes.number,
     size: React.PropTypes.number,
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
     style: React.PropTypes.object,
     top: React.PropTypes.number.isRequired,
-    color: React.PropTypes.string,
-    loadingColor: React.PropTypes.string,
   },
 
   getDefaultProps() {

@@ -12,10 +12,10 @@ const TimeDisplay = React.createClass({
   },
 
   propTypes: {
-    selectedTime: React.PropTypes.object.isRequired,
+    affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     mode: React.PropTypes.oneOf(['hour', 'minute']),
-    affix: React.PropTypes.oneOf(['', 'pm', 'am']),
+    selectedTime: React.PropTypes.object.isRequired,
   },
 
   //for passing default theme context to children

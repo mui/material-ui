@@ -13,8 +13,8 @@ const Toolbar = React.createClass({
 
   propTypes: {
     className: React.PropTypes.string,
-    style: React.PropTypes.object,
     noGutter: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
