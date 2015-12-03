@@ -69,9 +69,9 @@ let PopoverPage = React.createClass({
           },
           {
             name: 'onRequestClose',
-            type: 'func',
+            type: 'function(reason)',
             header: 'default: no-op',
-            desc: 'This is a callback that fires when the popover thinks it should close. (e.g. click-away or scroll off-screen)',
+            desc: 'This is a callback that fires when the popover thinks it should close. (e.g. clickAway or offScreen)',
           },
           {
             name: 'zDepth',

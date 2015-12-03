@@ -3,17 +3,14 @@ import ReactDOM from 'react-dom';
 import WindowListenable from '../mixins/window-listenable';
 import RenderToLayer from '../render-to-layer';
 import StylePropable from '../mixins/style-propable';
-import CssEvent from '../utils/css-event';
 import PropTypes from '../utils/prop-types';
 import Transitions from '../styles/transitions';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
 import AutoPrefix from '../styles/auto-prefix';
-import ContextPure from '../mixins/context-pure';
 
 const Popover = React.createClass({
   mixins: [
-    ContextPure,
     StylePropable,
     WindowListenable,
   ],
@@ -36,18 +33,18 @@ const Popover = React.createClass({
   getDefaultProps() {
     return {
       anchorOrigin: {
-        vertical:'bottom',
-        horizontal:'left',
+        vertical: 'bottom',
+        horizontal: 'left',
       },
-      animated:true,
-      autoCloseWhenOffScreen:true,
-      canAutoPosition:true,
+      animated: true,
+      autoCloseWhenOffScreen: true,
+      canAutoPosition: true,
       onRequestClose: () => {},
-      open:false,
+      open: false,
       style: {},
       targetOrigin: {
-        vertical:'top',
-        horizontal:'left',
+        vertical: 'top',
+        horizontal: 'left',
       },
       zDepth: 1,
     };
@@ -55,8 +52,9 @@ const Popover = React.createClass({
 
   getInitialState() {
     this.setPlacementThrottled = throttle(this.setPlacement, 100);
+
     return {
-      open: false,
+      open: this.props.open,
     };
   },
 
@@ -71,10 +69,18 @@ const Popover = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
-      if (nextProps.open)
-        this._showInternal(nextProps.anchorEl);
-      else
-        this._hideInternal();
+      if (nextProps.open) {
+        this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
+        this.setState({
+          open: true,
+        });
+      } else {
+        this.setState({
+          open: false,
+        }, () => {
+          this._animateClose();
+        });
+      }
     }
   },
 
@@ -84,7 +90,7 @@ const Popover = React.createClass({
 
   componentWillUnmount() {
     if (this.state.open) {
-      this.props.onRequestClose();
+      this._animateClose();
     }
   },
 
@@ -143,7 +149,7 @@ const Popover = React.createClass({
         <div>
           <div style={horizontalAnimation}>
             <div style={verticalAnimation}>
-                {this.props.children}
+              {this.props.children}
            </div>
           </div>
         </div>
@@ -151,48 +157,31 @@ const Popover = React.createClass({
     );
   },
 
-  requestClose() {
-    if (this.props.onRequestClose)
-      this.props.onRequestClose();
+  requestClose(reason) {
+    if (this.props.onRequestClose) {
+      this.props.onRequestClose(reason);
+    }
   },
 
-  componentClickAway(e) {
-    if (e.defaultPrevented) {
+  componentClickAway(event) {
+    if (event.defaultPrevented) {
       return;
     }
-    this._hideInternal();
+
+    this.requestClose('clickAway');
   },
 
   _resizeAutoPosition() {
     this.setPlacement();
   },
 
-  _showInternal(anchorEl) {
-    this.anchorEl = anchorEl || this.props.anchorEl;
-    this.setState({open: true});
-  },
-
-  _hideInternal() {
-    if (!this.state.open) {
-      return;
-    }
-    this.setState({
-      open: false,
-    }, () => {
-      this._animateClose();
-    });
-  },
-
   _animateClose() {
     if (!this.refs.layer || !this.refs.layer.getLayer()) {
       return;
     }
-    let el = this.refs.layer.getLayer().children[0];
-    this._animate(el, false);
-  },
 
-  _animateOpen(el) {
-    this._animate(el, true);
+    const el = this.refs.layer.getLayer().children[0];
+    this._animate(el, false);
   },
 
   _animate(el) {
@@ -206,12 +195,6 @@ const Popover = React.createClass({
     if (this.state.open) {
       value = '1';
     }
-    else {
-      CssEvent.onTransitionEnd(inner, () => {
-        if (!this.state.open)
-          this.requestClose();
-      });
-    }
 
     AutoPrefix.set(el.style, 'transform', `scale(${value},${value})`);
     AutoPrefix.set(innerInner.style, 'transform', `scaleX(${value})`);
@@ -223,8 +206,9 @@ const Popover = React.createClass({
   },
 
   getAnchorPosition(el) {
-    if (!el)
+    if (!el) {
       el = ReactDOM.findDOMNode(this);
+    }
 
     const rect = el.getBoundingClientRect();
     const a = {
@@ -238,28 +222,31 @@ const Popover = React.createClass({
     a.bottom = a.top + a.height;
     a.middle = a.left + a.width / 2;
     a.center = a.top + a.height / 2;
+
     return a;
   },
 
   getTargetPosition(targetEl) {
     return {
-      top:0,
+      top: 0,
       center: targetEl.offsetHeight / 2,
       bottom: targetEl.offsetHeight,
-      left:0,
-      middle:targetEl.offsetWidth / 2,
-      right:targetEl.offsetWidth,
+      left: 0,
+      middle: targetEl.offsetWidth / 2,
+      right: targetEl.offsetWidth,
     };
   },
 
   setPlacement() {
-    if (!this.state.open)
+    if (!this.state.open) {
       return;
+    }
 
     const anchorEl = this.props.anchorEl || this.anchorEl;
 
-    if (!this.refs.layer.getLayer())
+    if (!this.refs.layer.getLayer()) {
       return;
+    }
 
     const targetEl = this.refs.layer.getLayer().children[0];
     if (!targetEl) {
@@ -276,8 +263,9 @@ const Popover = React.createClass({
       left: anchor[anchorOrigin.horizontal] - target[targetOrigin.horizontal],
     };
 
-    if (this.props.autoCloseWhenOffScreen)
+    if (this.props.autoCloseWhenOffScreen) {
       this.autoCloseWhenOffScreen(anchor);
+    }
 
     if (this.props.canAutoPosition) {
       target = this.getTargetPosition(targetEl); // update as height may have changed
@@ -287,18 +275,18 @@ const Popover = React.createClass({
 
     targetEl.style.top = targetPosition.top + 'px';
     targetEl.style.left = targetPosition.left + 'px';
-    this._animateOpen(targetEl);
+
+    this._animate(targetEl, true);
   },
 
   autoCloseWhenOffScreen(anchorPosition) {
-    if (!this.props.autoCloseWhenOffScreen)
-      return;
     if (anchorPosition.top < 0
         || anchorPosition.top > window.innerHeight
         || anchorPosition.left < 0
         || anchorPosition.left > window.innerWith
-        )
-      this._hideInternal();
+        ) {
+      this.requestClose('offScreen');
+    }
   },
 
   applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {

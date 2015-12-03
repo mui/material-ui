@@ -10,10 +10,16 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import Menu from './menu';
 
-const nestedMenuStyle = {position:'relative'};
+const nestedMenuStyle = {
+  position: 'relative',
+};
+
 const MenuItem = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -52,7 +58,7 @@ const MenuItem = React.createClass({
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      open:false,
+      open: false,
     };
   },
 
@@ -83,7 +89,9 @@ const MenuItem = React.createClass({
 
   componentWillUnmount() {
     if (this.state.open) {
-      this.setState({open:false});
+      this.setState({
+        open: false,
+      });
     }
   },
 
@@ -176,7 +184,7 @@ const MenuItem = React.createClass({
     if (menuItems) {
       childMenuPopover = (
         <Popover
-          anchorOrigin={{horizontal:'right', vertical:'top'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           onRequestClose={this._onRequestClose}>
@@ -210,40 +218,38 @@ const MenuItem = React.createClass({
   },
 
   _cloneMenuItem(item) {
-    let props = {
-      onTouchTap: (e) =>
+    return React.cloneElement(item, {
+      onTouchTap: (event) =>
       {
-        this._onRequestClose();
-        if (item.props.onTouchTap) {
-          item.props.onTouchTap(e);
+        if (!item.props.menuItems) {
+          this._onRequestClose();
         }
-        if (this.props.onTouchTap) {
-          this.props.onTouchTap(e);
+
+        if (item.props.onTouchTap) {
+          item.props.onTouchTap(event);
         }
       },
       onRequestClose: this._onRequestClose,
-    };
-    return React.cloneElement(item, props);
+    });
   },
 
-  _onTouchTap(e) {
-    e.preventDefault();
+  _onTouchTap(event) {
+    event.preventDefault();
+
     this.setState({
-      open:true,
-      anchorEl:ReactDOM.findDOMNode(this),
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this),
     });
+
     if (this.props.onTouchTap) {
-      this.props.onTouchTap(e);
+      this.props.onTouchTap(event);
     }
   },
 
   _onRequestClose() {
-    if (!this.isMounted()) {
-      return;
-    }
     this.setState({
-      open:false,
-      anchorEl:null,
+      open: false,
+      anchorEl: null,
     });
   },
 });
