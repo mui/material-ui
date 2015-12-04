@@ -28,6 +28,10 @@ export default class DialogPage extends React.Component {
 
   render() {
 
+    const desc = 'Dialog can only be a controlled component. You must ' +
+                 'provide the open prop and handle onRequestClose in ' +
+                 'order to use this component.';
+
     let componentInfo = [
       {
         name: 'Props',
@@ -189,6 +193,7 @@ export default class DialogPage extends React.Component {
     return (
       <ComponentDoc
         name="Dialog"
+        desc={desc}
         componentInfo={componentInfo}>
 
         <Paper style = {{marginBottom: '22px'}}>
