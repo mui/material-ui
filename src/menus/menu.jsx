@@ -180,7 +180,7 @@ const Menu = React.createClass({
         transformOrigin: openDown ? 'top' : 'bottom',
         opacity: 0,
         maxHeight: maxHeight,
-        overflowY: maxHeight ? 'scroll' : null,
+        overflowY: maxHeight ? 'auto' : null,
       },
 
       selectedMenuItem: {

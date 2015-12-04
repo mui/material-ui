@@ -43,7 +43,7 @@ const MenuItem = React.createClass({
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     style: React.PropTypes.object,
-    value: React.PropTypes.string,
+    value: React.PropTypes.any,
   },
 
   //for passing default theme context to children

@@ -46,7 +46,9 @@ const Popover = React.createClass({
       canAutoPosition: true,
       onRequestClose: () => {},
       open: false,
-      style: {},
+      style: {
+        overflowY: 'auto',
+      },
       targetOrigin: {
         vertical: 'top',
         horizontal: 'left',
@@ -58,12 +60,17 @@ const Popover = React.createClass({
 
   getInitialState() {
     this.setPlacementThrottled = throttle(this.setPlacement, 100);
+    this.setPlacementThrottledScrolled = throttle(this.setPlacement.bind(this, true), 100);
 
     return {
       open: this.props.open,
       closing:false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -79,7 +86,7 @@ const Popover = React.createClass({
 
   windowListeners: {
     resize: 'setPlacementThrottled',
-    scroll: 'setPlacementThrottled',
+    scroll: 'setPlacementThrottledScrolled',
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -200,7 +207,7 @@ const Popover = React.createClass({
     };
   },
 
-  setPlacement() {
+  setPlacement(scrolling) {
     if (!this.state.open) {
       return;
     }
@@ -226,7 +233,7 @@ const Popover = React.createClass({
       left: anchor[anchorOrigin.horizontal] - target[targetOrigin.horizontal],
     };
 
-    if (this.props.autoCloseWhenOffScreen) {
+    if (scrolling && this.props.autoCloseWhenOffScreen) {
       this.autoCloseWhenOffScreen(anchor);
     }
 
@@ -236,8 +243,9 @@ const Popover = React.createClass({
     }
 
 
-    targetEl.style.top = targetPosition.top + 'px';
-    targetEl.style.left = targetPosition.left + 'px';
+    targetEl.style.top = Math.max(0, targetPosition.top) + 'px';
+    targetEl.style.left = Math.max(0, targetPosition.left) + 'px';
+    targetEl.style.maxHeight = window.innerHeight + 'px';
   },
 
   autoCloseWhenOffScreen(anchorPosition) {

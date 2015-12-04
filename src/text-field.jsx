@@ -338,12 +338,13 @@ const TextField = React.createClass({
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
+
     if (this.props.children) {
       inputElement = React.cloneElement(this.props.children,
         {
           ...inputProps,
           ...this.props.children.props,
-          style: this.mergeStyles(inputStyle, this.props.children.style),
+          style: this.mergeStyles(inputStyle, this.props.children.props.style),
         });
     }
     else {
