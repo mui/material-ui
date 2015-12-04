@@ -265,9 +265,8 @@ const DialogInline = React.createClass({
     );
   },
 
-  _getAction(actionJSON, key) {
+  _getAction(actionJSON) {
     let props = {
-      key: key,
       secondary: true,
       onClick: actionJSON.onClick,
       onTouchTap: () => {
@@ -315,7 +314,7 @@ const DialogInline = React.createClass({
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
-          currentAction = this._getAction(currentAction, i);
+          currentAction = this._getAction(currentAction);
         }
 
         actionObjects.push(currentAction);
@@ -323,7 +322,7 @@ const DialogInline = React.createClass({
 
       actionContainer = (
         <div style={this.prepareStyles(actionStyle)}>
-          {actionObjects}
+          {React.Children.toArray(actionObjects)}
         </div>
       );
     }
