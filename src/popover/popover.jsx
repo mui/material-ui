@@ -10,6 +10,7 @@ import throttle from 'lodash.throttle';
 import AutoPrefix from '../styles/auto-prefix';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
+import Extend from '../utils/extend';
 
 const Popover = React.createClass({
   mixins: [
@@ -235,10 +236,10 @@ const Popover = React.createClass({
       height: el.offsetHeight,
     };
 
-    a.right = a.left + a.width;
-    a.bottom = a.top + a.height;
-    a.middle = a.left + a.width / 2;
-    a.center = a.top + a.height / 2;
+    a.right = rect.right || a.left + a.width;
+    a.bottom = rect.bottom || a.top + a.height;
+    a.middle = a.left + ((a.right - a.left) / 2);
+    a.center = a.top + ((a.bottom - a.top) / 2);
 
     return a;
   },
@@ -304,29 +305,68 @@ const Popover = React.createClass({
     }
   },
 
-  applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
-    if (targetPosition.top + target.bottom > window.innerHeight) {
-      let positions = ['top', 'center', 'bottom']
-        .filter((position) => position !== targetOrigin.vertical);
+  getOverlapMode(anchor, target, median) {
+    if ([anchor, target].indexOf(median) >= 0) return 'auto';
+    if (anchor === target) return 'inclusive';
+    return 'exclusive';
+  },
 
-      let newTop = anchor[anchorOrigin.vertical] - target[positions[0]];
+  getPositions(anchor, target) {
+    let a = Extend(anchor, {});
+    let t = Extend(target, {});
+
+    let positions = {
+      x: ['left', 'right'].filter((p) => p !== t.horizontal),
+      y: ['top', 'bottom'].filter((p) => p !== t.vertical),
+    };
+
+    let overlap = {
+      x: this.getOverlapMode(a.horizontal, t.horizontal, 'middle'),
+      y: this.getOverlapMode(a.vertical, t.vertical, 'center'),
+    };
+
+    positions.x.splice(overlap.x === 'auto' ? 0 : 1, 0, 'middle');
+    positions.y.splice(overlap.y === 'auto' ? 0 : 1, 0, 'center');
+
+    if (overlap.y !== 'auto') {
+      a.vertical = a.vertical === 'top' ? 'bottom' : 'top';
+      if (overlap.y === 'inclusive') {
+        t.vertical = t.vertical;
+      }
+    }
+
+    if (overlap.x !== 'auto') {
+      a.horizontal = a.horizontal === 'left' ? 'right' : 'left';
+      if (overlap.y === 'inclusive') {
+        t.horizontal = t.horizontal;
+      }
+    }
+
+    return {
+      positions: positions,
+      anchorPos: a,
+    };
+  },
+
+  applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
+    let {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
+
+    if (targetPosition.top < 0 || targetPosition.top + target.bottom > window.innerHeight) {
+      let newTop = anchor[anchorPos.vertical] - target[positions.y[0]];
       if (newTop + target.bottom <= window.innerHeight)
         targetPosition.top = Math.max(0, newTop);
       else {
-        newTop = anchor[anchorOrigin.vertical] - target[positions[1]];
+        newTop = anchor[anchorPos.vertical] - target[positions.y[1]];
         if (newTop + target.bottom <= window.innerHeight)
           targetPosition.top = Math.max(0, newTop);
       }
     }
-    if (targetPosition.left + target.right > window.innerWidth) {
-      let positions = ['left', 'middle', 'right']
-        .filter((position) => position !== targetOrigin.horizontal);
-
-      let newLeft = anchor[anchorOrigin.horizontal] - target[positions[0]];
+    if (targetPosition.left < 0 || targetPosition.left + target.right > window.innerWidth) {
+      let newLeft = anchor[anchorPos.horizontal] - target[positions.x[0]];
       if (newLeft + target.right <= window.innerWidth)
         targetPosition.left = Math.max(0, newLeft);
       else {
-        newLeft = anchor[anchorOrigin.horizontal] - target[positions[1]];
+        newLeft = anchor[anchorPos.horizontal] - target[positions.x[1]];
         if (newLeft + target.right <= window.innerWidth)
           targetPosition.left = Math.max(0, newLeft);
       }
