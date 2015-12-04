@@ -1,3 +1,34 @@
+## 0.14.0-rc1
+###### _Dec 4, 2015_
+
+##### Breaking Changes
+- [IconMenu] removed openDirection prop in favor of anchorOrigin and targetOrigin (#2149)
+
+##### General
+- Use ES6 import / export syntax over require (#2253, #2333, #2334)
+- Dialog render-to-layer version (#2129)
+- Add declarative props to LeftNav, deprecate methods (#2180, #2351)
+- Add linting to test files (#2273)
+- Support nested menu items using Popover (#2148)
+- [DropdownMenu] add labelMember prop (#2285)
+- Add new ESLint rules (#2293, #2314, #2319, #2348, #2360, #2365, #2366)
+- Add unit tests for Dialog (#2298)
+- [AutoComplete] Support changing searchText via props (#2306)
+- [AutoComplete] dataSource prop is of type array (#2286)
+- [AppBar] add titleStyle prop (#2324)
+- [TimePicker] update as per spec (#2358)
+- [Popover] add useLayerForClickAway prop (#2359)
+
+##### Component Fixes / Enhancements
+- Fix wrong proptype for value in RadioButton (#2276)
+- Make LeftNav swipeable only from far left / right (#2263)
+- [TextField] allow rowsMax prop to equal rows prop (#2312)
+- Fix Invariant Violation error in ClickAwayable mixin (#2296)
+- [DatePicker] fix calendarTextColor context key (#2318)
+- Fix and improve examples (#2344, #2345)
+- [Dropdown][SelectField] change value PropType to React.PropTypes.any (#2352)
+- [CardActions] prevent children styles from being overridden (#2361)
+
 ## 0.13.4
 ###### _Nov 24, 2015_
 
