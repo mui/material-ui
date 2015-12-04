@@ -152,6 +152,11 @@ const DialogInline = React.createClass({
     };
   },
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   componentDidMount() {
     this._positionDialog();
   },
@@ -393,7 +398,6 @@ const DialogInline = React.createClass({
 });
 
 
-const wrapperStyle = {position:'fixed', top:0, left:0, zIndex:20};
 const Dialog = React.createClass({
 
   propTypes: {
@@ -417,6 +421,21 @@ const Dialog = React.createClass({
     titleStyle: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getInitialState() {
     if (process.env.NODE_ENV !== 'production') {
       this._testDeprecations();
@@ -436,9 +455,9 @@ const Dialog = React.createClass({
 
   getDefaultProps() {
     return {
-      open:null,
-      defaultOpen:false,
-      modal:false,
+      open: null,
+      defaultOpen: false,
+      modal: false,
     };
   },
 
@@ -468,9 +487,7 @@ const Dialog = React.createClass({
 
   renderLayer() {
     return (
-      <div style={wrapperStyle}>
-        <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.state.open} />
-      </div>
+      <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.state.open} />
     );
   },
 
@@ -483,9 +500,7 @@ const Dialog = React.createClass({
 
     warning(!(typeof this.props.onDismiss === 'function'),
       'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
-
   },
-
 
   show() {
     warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
