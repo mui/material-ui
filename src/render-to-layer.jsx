@@ -26,6 +26,10 @@ const RenderToLayer = React.createClass({
     };
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
