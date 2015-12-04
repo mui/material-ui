@@ -7,10 +7,12 @@ import TextField from '../text-field';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const DatePicker = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -47,7 +49,8 @@ const DatePicker = React.createClass({
     showYearSelector: React.PropTypes.bool,
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
-    value: React.PropTypes.object,
+    value: React.PropTypes.any,
+    valueLink: React.PropTypes.object,
     wordings: React.PropTypes.object,
   },
 

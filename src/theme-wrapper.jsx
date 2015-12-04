@@ -2,6 +2,7 @@ import React from 'react';
 
 export default React.createClass({
   propTypes: {
+    children: React.PropTypes.node,
     theme: React.PropTypes.object.isRequired,
   },
 
@@ -16,6 +17,6 @@ export default React.createClass({
   },
 
   render() {
-    return this.props.children();
+    return this.props.children;
   },
 });

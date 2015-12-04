@@ -42,3 +42,7 @@ export default class Components extends React.Component {
   }
 
 }
+
+Components.propTypes = {
+  children: React.PropTypes.node,
+};

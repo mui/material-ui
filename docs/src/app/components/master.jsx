@@ -29,6 +29,11 @@ const Master = React.createClass({
     };
   },
 
+  propTypes: {
+    children: React.PropTypes.node,
+    history: React.PropTypes.object,
+  },
+
   childContextTypes : {
     muiTheme: React.PropTypes.object,
   },

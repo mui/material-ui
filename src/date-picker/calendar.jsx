@@ -16,7 +16,10 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const Calendar = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -40,13 +43,14 @@ const Calendar = React.createClass({
     locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     onDayTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
     shouldDisableDate: React.PropTypes.func,
   },
 
   windowListeners: {
-    'keydown': '_handleWindowKeyDown',
+    keydown: '_handleWindowKeyDown',
   },
 
   getDefaultProps() {

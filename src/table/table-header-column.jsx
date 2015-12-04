@@ -13,7 +13,10 @@ const TableHeaderColumn = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     columnNumber: React.PropTypes.number,
+    key: React.PropTypes.string,
     onClick: React.PropTypes.func,
     style: React.PropTypes.object,
     tooltip: React.PropTypes.string,

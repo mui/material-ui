@@ -17,6 +17,10 @@ const menuItems = [
 const AppLeftNav = React.createClass({
   mixins: [StylePropable],
 
+  propTypes: {
+    history: React.PropTypes.object,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,

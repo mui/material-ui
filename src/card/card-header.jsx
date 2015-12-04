@@ -5,10 +5,11 @@ import StylePropable from '../mixins/style-propable';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const CardHeader = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -41,6 +42,7 @@ const CardHeader = React.createClass({
   propTypes: {
     actAsExpander: React.PropTypes.bool,
     avatar: React.PropTypes.node,
+    children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,

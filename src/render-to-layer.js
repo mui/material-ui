@@ -10,6 +10,7 @@ const RenderToLayer = React.createClass({
   propTypes: {
     componentClickAway: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
+    render: React.PropTypes.func.isRequired,
     useLayerForClickAway: React.PropTypes.bool,
   },
 

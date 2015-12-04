@@ -54,6 +54,7 @@ const IconButton = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,

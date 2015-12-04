@@ -3,9 +3,10 @@ import StylePropable from '../mixins/style-propable';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const CardActions = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -31,7 +32,7 @@ const CardActions = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
@@ -46,6 +47,7 @@ const CardActions = React.createClass({
 
   propTypes: {
     actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,

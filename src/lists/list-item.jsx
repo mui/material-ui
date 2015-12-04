@@ -16,7 +16,10 @@ import ThemeManager from '../styles/theme-manager';
 
 const ListItem = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -24,6 +27,7 @@ const ListItem = React.createClass({
 
   propTypes: {
     autoGenerateNestedIndicator: React.PropTypes.bool,
+    children: React.PropTypes.node,
     disableKeyboardFocus: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     initiallyOpen: React.PropTypes.bool,

@@ -9,19 +9,13 @@ import Paper from './paper';
 import Children from './utils/children';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
-
-let getZDepth = function(disabled) {
-  let zDepth = disabled ? 0 : 2;
-  return {
-    zDepth: zDepth,
-    initialZDepth: zDepth,
-  };
-};
-
+import warning from 'warning';
 
 const FloatingActionButton = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -40,6 +34,7 @@ const FloatingActionButton = React.createClass({
 
   propTypes: {
     backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
     disabled: React.PropTypes.bool,
     disabledColor: React.PropTypes.string,
     iconClassName: React.PropTypes.string,
@@ -56,7 +51,8 @@ const FloatingActionButton = React.createClass({
   },
 
   getInitialState() {
-    let zDepth = this.props.disabled ? 0 : 2;
+    const zDepth = this.props.disabled ? 0 : 2;
+
     return {
       hovered: false,
       initialZDepth: zDepth,
@@ -66,28 +62,25 @@ const FloatingActionButton = React.createClass({
     };
   },
 
-  componentWillMount() {
-    this.setState(getZDepth(this.props.disabled));
-  },
-
   componentWillReceiveProps(newProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
     if (newProps.disabled !== this.props.disabled) {
-      this.setState(getZDepth(newProps.disabled));
+      const zDepth = newProps.disabled ? 0 : 2;
+
+      this.setState({
+        zDepth: zDepth,
+        initialZDepth: zDepth,
+      });
     }
   },
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      if (this.props.iconClassName && this.props.children) {
-        let warning = 'You have set both an iconClassName and a child icon. ' +
-          'It is recommended you use only one method when adding ' +
-          'icons to FloatingActionButtons.';
-        console.warn(warning);
-      }
-    }
+    warning(!this.props.iconClassName || !this.props.children,
+      'You have set both an iconClassName and a child icon. ' +
+      'It is recommended you use only one method when adding ' +
+      'icons to FloatingActionButtons.');
   },
 
   _getBackgroundColor() {

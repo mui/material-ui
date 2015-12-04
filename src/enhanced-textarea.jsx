@@ -29,7 +29,9 @@ const styles = {
 
 const EnhancedTextarea = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -47,6 +49,8 @@ const EnhancedTextarea = React.createClass({
   },
 
   propTypes: {
+    defaultValue: React.PropTypes.any,
+    disabled: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     onHeightChange: React.PropTypes.func,
     rows: React.PropTypes.number,
@@ -54,6 +58,7 @@ const EnhancedTextarea = React.createClass({
     style: React.PropTypes.object,
     textareaStyle: React.PropTypes.object,
     value: React.PropTypes.string,
+    valueLink: React.PropTypes.object,
   },
 
   getDefaultProps() {

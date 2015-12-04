@@ -5,9 +5,11 @@ import ColorManipulator from '../utils/color-manipulator';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 export const SelectableContainerEnhance = (Component) => {
-  let composed = React.createClass({
+  const composed = React.createClass({
 
-    mixins: [StylePropable],
+    mixins: [
+      StylePropable,
+    ],
 
     contextTypes: {
       muiTheme: React.PropTypes.object,
@@ -16,6 +18,7 @@ export const SelectableContainerEnhance = (Component) => {
     displayName: `Selectable${Component.displayName}`,
 
     propTypes: {
+      children: React.PropTypes.node,
       selectedItemStyle: React.PropTypes.object,
       valueLink: React.PropTypes.shape({
         value: React.PropTypes.number,
@@ -117,8 +120,8 @@ export const SelectableContainerEnhance = (Component) => {
         valueLink.requestChange(e, itemValue);
       }
     },
-
   });
-  return ( composed );
+
+  return composed;
 };
 

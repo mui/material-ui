@@ -292,3 +292,8 @@ export default class TabsPage extends React.Component {
     this.setState({tabsValue: value});
   }
 }
+
+
+TabsPage.propTypes = {
+  history: React.PropTypes.object,
+};

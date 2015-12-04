@@ -22,7 +22,10 @@ let openNavEventHandler = null;
 
 const LeftNav = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -40,6 +43,7 @@ const LeftNav = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     disableSwipeToOpen: React.PropTypes.bool,
     docked: React.PropTypes.bool,

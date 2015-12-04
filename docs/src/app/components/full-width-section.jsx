@@ -9,8 +9,10 @@ let FullWidthSection = React.createClass({
   mixins: [StylePropable, StyleResizable],
 
   propTypes: {
+    children: React.PropTypes.node,
     contentStyle: React.PropTypes.object,
     contentType: React.PropTypes.string,
+    style: React.PropTypes.object,
     useContent: React.PropTypes.bool,
   },
 

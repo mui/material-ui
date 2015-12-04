@@ -7,7 +7,9 @@ import ThemeManager from '../styles/theme-manager';
 
 const DateDisplay = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -16,7 +18,10 @@ const DateDisplay = React.createClass({
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
+    handleMonthDayClick: React.PropTypes.func,
+    handleYearClick: React.PropTypes.func,
     locale: React.PropTypes.string.isRequired,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
     style: React.PropTypes.object,
