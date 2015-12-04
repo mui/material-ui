@@ -4,13 +4,12 @@ import WindowListenable from '../mixins/window-listenable';
 import RenderToLayer from '../render-to-layer';
 import StylePropable from '../mixins/style-propable';
 import PropTypes from '../utils/prop-types';
-import Transitions from '../styles/transitions';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
-import AutoPrefix from '../styles/auto-prefix';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import Extend from '../utils/extend';
+import PopoverDefaultAnimation from './popover-default-animation';
 
 const Popover = React.createClass({
   mixins: [
@@ -22,6 +21,7 @@ const Popover = React.createClass({
     anchorEl: React.PropTypes.object,
     anchorOrigin: PropTypes.origin,
     animated: React.PropTypes.bool,
+    animation: React.PropTypes.func,
     autoCloseWhenOffScreen: React.PropTypes.bool,
     canAutoPosition: React.PropTypes.bool,
     children: React.PropTypes.object,
@@ -40,6 +40,7 @@ const Popover = React.createClass({
         vertical: 'bottom',
         horizontal: 'left',
       },
+      animation: PopoverDefaultAnimation,
       animated: true,
       autoCloseWhenOffScreen: true,
       canAutoPosition: true,
@@ -60,6 +61,7 @@ const Popover = React.createClass({
 
     return {
       open: this.props.open,
+      closing:false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -83,22 +85,19 @@ const Popover = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
-    if (this._isAnimating === true || nextProps.open !== this.state.open) {
+    if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
         this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
         this.setState({
           open: true,
+          closing:false,
           muiTheme: newMuiTheme,
-        }, () => {
-          this._animate(true);
         });
       } else {
         if (nextProps.animated) {
-          this._animate(false);
-          this._isAnimating = true;
+          this.setState({closing:true});
           this._timeout = setTimeout(() => {
             if (this.isMounted()) {
-              this._isAnimating = false;
               this.setState({
                 open: false,
                 muiTheme: newMuiTheme,
@@ -130,56 +129,28 @@ const Popover = React.createClass({
   },
 
   renderLayer() {
-    const {
+    let {
       animated,
-      targetOrigin,
-      className,
-      zDepth,
+      animation,
+      children,
+      style,
+      ...other,
     } = this.props;
 
-    const anchorEl = this.props.anchorEl || this.anchorEl;
-    const anchor = this.getAnchorPosition(anchorEl);
-    const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+    let Animation = animation;
 
-    const wrapperStyle = this.mergeAndPrefix({
-      position: 'fixed',
-      top: anchor.top,
-      left: anchor.left,
-      zIndex: this.state.muiTheme.zIndex.popover,
-      opacity: 1,
-      overflow: 'auto',
-      maxHeight: '100%',
-      transform: 'scale(0,0)',
-      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-    }, this.props.style);
-
-    const horizontalAnimation = {
-      maxHeight: '100%',
-      overflowY: 'auto',
-      transform: 'scaleX(0)',
-      opacity: 1,
-      transition: animated ? Transitions.easeOut('250ms', ['transform', 'opacity']) : null,
-      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-    };
-
-    const verticalAnimation = {
-      opacity: 1,
-      transform: 'scaleY(0)',
-      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-    };
+    if (!animated) {
+      Animation = Paper;
+      style = {position: 'fixed'};
+      if (!this.state.open) {
+        return null;
+      }
+    }
 
     return (
-      <Paper style={wrapperStyle} zDepth={zDepth} className={className} >
-        <div>
-          <div style={horizontalAnimation}>
-            <div style={verticalAnimation}>
-              {this.props.children}
-           </div>
-          </div>
-        </div>
-      </Paper>
+      <Animation {...other} style={style} open={this.state.open && !this.state.closing}>
+        {children}
+      </Animation>
     );
   },
 
@@ -195,32 +166,6 @@ const Popover = React.createClass({
 
   _resizeAutoPosition() {
     this.setPlacement();
-  },
-
-  _animate(open) {
-    if (!this.refs.layer || !this.refs.layer.getLayer()) {
-      return;
-    }
-
-    const el = this.refs.layer.getLayer().children[0];
-    let value = '0';
-    const inner = el.children[0];
-    const innerInner = inner.children[0];
-    const innerInnerInner = innerInner.children[0];
-    const rootStyle = inner.style;
-    const innerStyle = innerInner.style;
-
-    if (open) {
-      value = '1';
-    }
-
-    AutoPrefix.set(el.style, 'transform', `scale(${value},${value})`);
-    AutoPrefix.set(innerInner.style, 'transform', `scaleX(${value})`);
-    AutoPrefix.set(innerInnerInner.style, 'transform', `scaleY(${value})`);
-    AutoPrefix.set(rootStyle, 'opacity', value);
-    AutoPrefix.set(innerStyle, 'opacity', value);
-    AutoPrefix.set(innerInnerInner.style, 'opacity', value);
-    AutoPrefix.set(el.style, 'opacity', value);
   },
 
   getAnchorPosition(el) {
