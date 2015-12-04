@@ -33,7 +33,7 @@ const TextField = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
-    defaultValue: React.PropTypes.string,
+    defaultValue: React.PropTypes.any,
     disabled: React.PropTypes.bool,
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.node,
