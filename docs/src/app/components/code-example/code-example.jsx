@@ -18,6 +18,7 @@ const DefaultRawTheme = Styles.LightRawTheme;
 const CodeExample = React.createClass({
 
   propTypes : {
+    children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
     layoutSideBySide: React.PropTypes.bool,
   },

@@ -14,7 +14,10 @@ import ThemeManager from './styles/theme-manager';
 
 const EnhancedSwitch = React.createClass({
 
-  mixins: [WindowListenable, StylePropable],
+  mixins: [
+    WindowListenable,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -32,6 +35,7 @@ const EnhancedSwitch = React.createClass({
   },
 
   propTypes: {
+    checked: React.PropTypes.bool,
     className: React.PropTypes.string,
     defaultSwitched: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
@@ -44,9 +48,15 @@ const EnhancedSwitch = React.createClass({
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
     labelStyle: React.PropTypes.object,
     name: React.PropTypes.string,
+    onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
     onParentShouldUpdate: React.PropTypes.func.isRequired,
     onSwitch: React.PropTypes.func,
+    onTouchEnd: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
     required: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     rippleStyle: React.PropTypes.object,

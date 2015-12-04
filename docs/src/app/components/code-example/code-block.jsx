@@ -7,6 +7,10 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const CodeBlock = React.createClass({
 
+  propTypes: {
+    children: React.PropTypes.node,
+  },
+
   contextTypes : {
     muiTheme: React.PropTypes.object,
   },

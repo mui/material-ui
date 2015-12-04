@@ -14,7 +14,11 @@ const ClockButton = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
+    onTouchTap: React.PropTypes.func,
     position: React.PropTypes.oneOf(['left', 'right']),
+    selected: React.PropTypes.bool,
   },
 
   //for passing default theme context to children
@@ -61,7 +65,8 @@ const ClockButton = React.createClass({
   render() {
     let {
       className,
-      ...other} = this.props;
+      ...other,
+    } = this.props;
 
     let styles = {
       root: {
@@ -73,7 +78,7 @@ const ClockButton = React.createClass({
         borderRadius: '100%',
       },
 
-      label : {
+      label: {
         position: 'absolute',
         top: 17,
         left: 14,
@@ -99,22 +104,24 @@ const ClockButton = React.createClass({
       styles.select.transform = 'scale(1)';
     }
 
-    if ( this.props.position === 'right' ) {
-      styles.root.right = '5px';
-    }
-    else {
-      styles.root.left = '5px';
+    if (this.props.position === 'right') {
+      styles.root.right = 5;
+    } else {
+      styles.root.left = 5;
     }
 
     return (
-        <EnhancedButton {...other}
-          style={this.mergeStyles(styles.root)}
-          disableFocusRipple={true}
-          disableTouchRipple={true}
-          onTouchTap={this._handleTouchTap}>
-          <span style={this.prepareStyles(styles.select)} />
-          <span style={this.prepareStyles(styles.label)} >{this.props.children}</span>
-        </EnhancedButton>
+      <EnhancedButton
+        {...other}
+        style={this.mergeStyles(styles.root)}
+        disableFocusRipple={true}
+        disableTouchRipple={true}
+        onTouchTap={this._handleTouchTap}>
+        <span style={this.prepareStyles(styles.select)} />
+        <span style={this.prepareStyles(styles.label)}>
+          {this.props.children}
+        </span>
+      </EnhancedButton>
     );
   },
 });

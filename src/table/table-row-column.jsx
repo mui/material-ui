@@ -5,15 +5,20 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableRowColumn = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     columnNumber: React.PropTypes.number,
     hoverable: React.PropTypes.bool,
+    key: React.PropTypes.string,
     onClick: React.PropTypes.func,
     onHover: React.PropTypes.func,
     onHoverExit: React.PropTypes.func,

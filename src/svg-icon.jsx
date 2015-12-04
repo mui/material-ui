@@ -6,13 +6,16 @@ import ThemeManager from './styles/theme-manager';
 
 const SvgIcon = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
     onMouseEnter: React.PropTypes.func,

@@ -401,9 +401,6 @@ const Menu = React.createClass({
 
         case MenuItem.Types.NESTED:
           let {
-            ref,
-            key,
-            index,
             zDepth,
             ...other,
           } = this.props;

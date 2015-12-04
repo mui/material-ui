@@ -6,7 +6,9 @@ import ThemeManager from '../styles/theme-manager';
 
 const GridTile = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -15,6 +17,7 @@ const GridTile = React.createClass({
   propTypes: {
     actionIcon: React.PropTypes.element,
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
+    children: React.PropTypes.node,
     cols: React.PropTypes.number,
     rootClass: React.PropTypes.oneOfType([
       React.PropTypes.string,

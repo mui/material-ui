@@ -17,3 +17,7 @@ export default class GetStarted extends React.Component {
   }
 
 }
+
+GetStarted.propTypes = {
+  children: React.PropTypes.node,
+};

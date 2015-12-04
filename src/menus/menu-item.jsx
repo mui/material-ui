@@ -38,6 +38,7 @@ const MenuItem = React.createClass({
     innerDivStyle: React.PropTypes.object,
     insetChildren: React.PropTypes.bool,
     leftIcon: React.PropTypes.element,
+    menuItems: React.PropTypes.node,
     onTouchTap: React.PropTypes.func,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,

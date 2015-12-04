@@ -3,10 +3,11 @@ import StylePropable from '../mixins/style-propable';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const CardText = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -38,6 +39,7 @@ const CardText = React.createClass({
 
   propTypes: {
     actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
     color: React.PropTypes.string,
     expandable: React.PropTypes.bool,
     style: React.PropTypes.object,

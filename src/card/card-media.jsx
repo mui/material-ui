@@ -7,7 +7,9 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const CardMedia = React.createClass({
 
-  mixins:[StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -39,6 +41,7 @@ const CardMedia = React.createClass({
 
   propTypes: {
     actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     mediaStyle: React.PropTypes.object,
     overlay: React.PropTypes.node,

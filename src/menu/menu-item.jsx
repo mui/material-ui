@@ -23,6 +23,7 @@ const MenuItem = React.createClass({
   propTypes: {
     active: React.PropTypes.bool,
     attribute: React.PropTypes.string,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     data: React.PropTypes.string,
     disabled: React.PropTypes.bool,
@@ -176,7 +177,6 @@ const MenuItem = React.createClass({
         onMouseEnter,
         onMouseLeave,
         children,
-        label,
         style,
         ...other,
       } = this.props;

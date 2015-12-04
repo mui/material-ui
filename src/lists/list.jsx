@@ -9,13 +9,17 @@ import ThemeManager from '../styles/theme-manager';
 
 const List = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     insetSubheader: React.PropTypes.bool,
     style: React.PropTypes.object,
     subheader: React.PropTypes.node,

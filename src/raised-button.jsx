@@ -20,7 +20,9 @@ function validateLabel(props, propName, componentName) {
 
 const RaisedButton = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -39,6 +41,7 @@ const RaisedButton = React.createClass({
 
   propTypes: {
     backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     disabledBackgroundColor: React.PropTypes.string,

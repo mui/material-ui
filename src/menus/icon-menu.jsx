@@ -10,7 +10,9 @@ import Popover from '../popover/popover';
 
 const IconMenu = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -18,6 +20,8 @@ const IconMenu = React.createClass({
 
   propTypes: {
     anchorOrigin: PropTypes.origin,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
     iconStyle: React.PropTypes.object,

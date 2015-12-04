@@ -6,7 +6,9 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableFooter = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -14,6 +16,8 @@ const TableFooter = React.createClass({
 
   propTypes: {
     adjustForCheckbox: React.PropTypes.bool,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     style: React.PropTypes.object,
   },
 

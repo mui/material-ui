@@ -8,7 +8,9 @@ import ThemeManager from './styles/theme-manager';
 
 const Toggle = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -26,6 +28,7 @@ const Toggle = React.createClass({
     thumbStyle: React.PropTypes.object,
     toggled: React.PropTypes.bool,
     trackStyle: React.PropTypes.object,
+    valueLink: React.PropTypes.object,
   },
 
   //for passing default theme context to children

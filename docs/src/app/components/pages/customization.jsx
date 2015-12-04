@@ -16,3 +16,7 @@ export default class Customization extends React.Component {
   }
 
 }
+
+Customization.propTypes = {
+  children: React.PropTypes.node,
+};

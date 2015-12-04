@@ -31,6 +31,8 @@ const TextField = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     defaultValue: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     errorStyle: React.PropTypes.object,
@@ -48,6 +50,7 @@ const TextField = React.createClass({
     onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
+    ref: React.PropTypes.string,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
     style: React.PropTypes.object,
@@ -55,7 +58,7 @@ const TextField = React.createClass({
     underlineDisabledStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
+    value: React.PropTypes.any,
   },
 
   //for passing default theme context to children

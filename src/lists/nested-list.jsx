@@ -6,6 +6,7 @@ import List from './list';
 const NestedList = React.createClass({
 
   propTypes: {
+    children: React.PropTypes.node,
     nestedLevel: React.PropTypes.number,
     open: React.PropTypes.bool,
     style: React.PropTypes.object,
