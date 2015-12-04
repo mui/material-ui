@@ -120,15 +120,19 @@ const Clock = React.createClass({
     };
 
     if ( this.state.mode === 'hour') {
-      clock = <ClockHours key="hours"
-                format={this.props.format}
-                onChange={this.handleChangeHours}
-                initialHours={this.state.selectedTime.getHours()} />;
+      clock = (
+        <ClockHours key="hours"
+          format={this.props.format}
+          onChange={this.handleChangeHours}
+          initialHours={this.state.selectedTime.getHours()} />
+        );
     }
     else {
-      clock = <ClockMinutes key="minutes"
-                onChange={this.handleChangeMinutes}
-                initialMinutes={this.state.selectedTime.getMinutes()} />;
+      clock = (
+        <ClockMinutes key="minutes"
+          onChange={this.handleChangeMinutes}
+          initialMinutes={this.state.selectedTime.getMinutes()} />
+      );
     }
 
     return (
@@ -140,12 +144,10 @@ const Clock = React.createClass({
           affix={this._getAffix()}
           onSelectHour={this._setMode.bind(this, 'hour')}
           onSelectMin={this._setMode.bind(this, 'minute')} />
-
         <div style={this.prepareStyles(styles.container)} >
           <div style={this.prepareStyles(styles.circle)} />
           {clock}
         </div>
-
        {buttons}
       </div>
     );

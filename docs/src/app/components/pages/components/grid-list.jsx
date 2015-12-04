@@ -14,13 +14,17 @@ class GridListPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.desc = <p>Simple flex-box based <a
-                  href="https://www.google.com/design/spec/components/grid-lists.html"
-                  >Grid List</a> implementation. Support tiles with arbitrary cell size,
-                  but cannot implement complex layouts (like <a
-                  href="https://material.angularjs.org/latest/#/demo/material.components.gridList"
-                  >Angular Material GridList</a>)
-                  , is limited to flex-box limitations.</p>;
+    this.desc = (
+      <p>
+        Simple flex-box based <a
+          href="https://www.google.com/design/spec/components/grid-lists.html"
+        >Grid List</a> implementation. Support tiles with arbitrary cell size,
+        but cannot implement complex layouts (like <a
+          href="https://material.angularjs.org/latest/#/demo/material.components.gridList"
+        >Angular Material GridList</a>)
+        , is limited to flex-box limitations.
+      </p>
+    );
 
     this.componentInfo = [
       {

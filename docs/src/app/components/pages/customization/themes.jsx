@@ -524,17 +524,17 @@ const ThemesPage = React.createClass({
               <RadioButtonGroup
                 name="shipSpeed"
                 defaultSelected="usd">
-                  <RadioButton
-                    value="usd"
-                    label="USD" />
-                  <RadioButton
-                    value="euro"
-                    label="Euro"
-                    defaultChecked={true} />
-                 <RadioButton
-                    value="mxn"
-                    label="MXN"
-                    disabled={true}/>
+                <RadioButton
+                  value="usd"
+                  label="USD" />
+                <RadioButton
+                  value="euro"
+                  label="Euro"
+                  defaultChecked={true} />
+                <RadioButton
+                  value="mxn"
+                  label="MXN"
+                  disabled={true}/>
               </RadioButtonGroup>
             </div>
             <div style={styles.container}>
@@ -584,8 +584,8 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                  onTouchTap={this.handleClickNav}
-                  label="View LeftNav" />
+                onTouchTap={this.handleClickNav}
+                label="View LeftNav" />
               <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
             </div>
           </div>

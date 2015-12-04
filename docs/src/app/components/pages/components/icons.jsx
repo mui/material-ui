@@ -31,7 +31,7 @@ export default class FontIconPage extends React.Component {
         <p style={this.getStyles()}>
           This component will render any icon defined in any style sheets included in your
           project. We are using <a title="Google's Material Design Icons GitHub"
-          href="https://github.com/google/material-design-icons">Google&#39;s Material Design
+            href="https://github.com/google/material-design-icons">Google&#39;s Material Design
           Icons</a> for our documentation site along with some custom icons. You can use
           sites like <a title="Icomoon website" href="https://icomoon.io/">IcoMoon</a> for
           generating custom font files. To use FontIcons, add your stylesheet to your project
@@ -56,7 +56,7 @@ export default class FontIconPage extends React.Component {
           SvgIcon for this docs site, and using it in some seperate component.
           Custom SvgIcon components can be included as children for other Material
           UI components that use icons such as <a title="Example of SvgIcon usage"
-          href="#/components/icon-buttons">IconButtons</a>.
+            href="#/components/icon-buttons">IconButtons</a>.
         </p>
         <p>
           For all of the Google's Material Design Icons prebuild SvgIcon components

@@ -173,13 +173,15 @@ const AutoComplete = React.createClass({
           requestsList.map((request, index) => {
             switch (typeof request) {
               case 'string':
-                return (<MenuItem
-                          disableFocusRipple={this.props.disableFocusRipple}
-                          innerDivStyle={{overflow:'hidden'}}
-                          key={index}
-                          value={request}
-                          primaryText={request}
-                          />);
+                return (
+                  <MenuItem
+                    disableFocusRipple={this.props.disableFocusRipple}
+                    innerDivStyle={{overflow:'hidden'}}
+                    key={index}
+                    value={request}
+                    primaryText={request}
+                  />
+                );
               case 'object':
                 if (typeof request.text === 'string') {
                   return React.cloneElement(request.value, {
@@ -201,7 +203,7 @@ const AutoComplete = React.createClass({
 
     return (
       <div style={mergedRootStyles}
-           onKeyDown={this._handleKeyDown}>
+        onKeyDown={this._handleKeyDown}>
         <div
           style={{
             width:'100%',
@@ -234,7 +236,7 @@ const AutoComplete = React.createClass({
 
             {...textFieldProps} />
         </div>
-          <ReactTransitionGroup>{menu}</ReactTransitionGroup>
+        <ReactTransitionGroup>{menu}</ReactTransitionGroup>
       </div>
     );
   },
