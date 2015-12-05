@@ -160,6 +160,7 @@ const TableHeader = React.createClass({
 
     const checkbox =
       <Checkbox
+        ref="selectallcb"
         key="selectallcb"
         name="selectallcb"
         value="selected"
