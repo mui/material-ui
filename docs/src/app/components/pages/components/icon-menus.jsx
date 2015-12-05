@@ -71,6 +71,12 @@ export default class IconMenus extends React.Component {
             desc: 'If true, menu will close after an item is touchTapped.',
           },
           {
+            name: 'open',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'Controls whether the IconMenu is opened or not.',
+          },
+          {
             name: 'desktop',
             type: 'bool',
             header: 'default: false',
@@ -132,6 +138,16 @@ export default class IconMenus extends React.Component {
       {
         name: 'Events',
         infoArray: [
+          {
+            name: 'onRequestOpen',
+            header: 'function(buttonClicked)',
+            desc: 'Fired when the menu is requested to be opened by a click on the icon.',
+          },
+          {
+            name: 'onRequestClose',
+            header: 'function(buttonClicked)',
+            desc: 'Fired when the menu is requested to be closed by a click outside the menu or on the items.',
+          },
           {
             name: 'onItemTouchTap',
             header: 'function(event, item)',
@@ -277,6 +293,24 @@ export default class IconMenus extends React.Component {
             </IconMenu>
 
             <IconMenu
+              iconButtonElement={iconButtonElement}>
+              <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
+              <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
+              <MenuItem primaryText="Get link" leftIcon={<ContentLink />} />
+              <MenuDivider />
+              <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
+              <MenuItem primaryText="Download" leftIcon={<Download />} />
+              <MenuDivider />
+              <MenuItem primaryText="Remove" leftIcon={<Delete />} />
+            </IconMenu>
+          </div>
+
+          <p>Stateless Menu with open property</p>
+          <div>
+            <IconMenu
+              open={this.state.isIconMenuOpened || false}
+              onRequestOpen={() => this.setState({isIconMenuOpened: true})}
+              onRequestClose={() => this.setState({isIconMenuOpened: false})}
               iconButtonElement={iconButtonElement}>
               <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
               <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
