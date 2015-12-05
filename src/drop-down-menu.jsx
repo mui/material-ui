@@ -130,7 +130,8 @@ const DropDownMenu = React.createClass({
         paddingLeft: spacing.desktopGutter,
         top: 0,
         opacity: 1,
-        color: disabled ? this.state.muiTheme.rawTheme.palette.disabledColor : this.state.muiTheme.rawTheme.palette.textColor,
+        color: disabled ? this.state.muiTheme.rawTheme.palette.disabledColor
+          : this.state.muiTheme.rawTheme.palette.textColor,
       },
       underline: {
         borderTop: 'solid 1px ' + accentColor,
@@ -198,7 +199,8 @@ const DropDownMenu = React.createClass({
     let displayValue = '';
     if (selectedIndex) {
       if (process.env.NODE_ENV !== 'production') {
-        console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' + selectedIndex + ' does not exist in menuItems.');
+        console.assert(!!this.props.menuItems[selectedIndex], 'SelectedIndex of ' +
+          selectedIndex + ' does not exist in menuItems.');
       }
     }
     else if (valueMember && this._isControlled()) {
@@ -233,7 +235,6 @@ const DropDownMenu = React.createClass({
           styles.root,
           this.state.open && styles.rootWhenOpen,
           style)} >
-
           <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeStyles(styles.controlBg)} zDepth={0} />
             <div style={this.prepareStyles(styles.label, this.state.open && styles.labelWhenOpen, labelStyle)}>
@@ -242,7 +243,6 @@ const DropDownMenu = React.createClass({
             <DropDownArrow style={this.mergeStyles(styles.icon, iconStyle)}/>
             <div style={this.prepareStyles(styles.underline, underlineStyle)}/>
           </ClearFix>
-
           <Menu
             ref="menuItems"
             autoWidth={autoWidth}
@@ -254,7 +254,9 @@ const DropDownMenu = React.createClass({
             visible={this.state.open}
             onRequestClose={this._onMenuRequestClose}
             onItemTap={this._onMenuItemClick} />
-          {this.state.open && <div style={this.prepareStyles(styles.overlay)} onTouchTap={this._handleOverlayTouchTap} />}
+          {this.state.open &&
+            <div style={this.prepareStyles(styles.overlay)} onTouchTap={this._handleOverlayTouchTap} />
+          }
       </div>
     );
   },

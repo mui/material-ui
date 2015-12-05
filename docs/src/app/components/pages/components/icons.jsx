@@ -38,7 +38,9 @@ export default class FontIconPage extends React.Component {
           and reference the icon&#39;s className in the "className" prop. <br /><br />
           We also support <a title="Google's
           Material Icons" href="https://google.github.io/material-design-icons">Google&#39;s
-          Material Icons</a> as seen in the third block of code. If you&#39;re using the material icons, be sure to include the link to the font icon file in your head section:
+          Material Icons</a> as seen in the third block of code.
+          If you&#39;re using the material icons,
+          be sure to include the link to the font icon file in your head section:
         </p>
         <Paper>
           <CodeBlock>
@@ -153,10 +155,14 @@ import SocialNotificationsActive from 'material-ui/lib/svg-icons/social/notifica
             <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} />
             <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} />
             <br/><br/>
-            <FontIcon className="muidocs-icon-action-home" style={iconStyles} hoverColor={Colors.greenA200} />
-            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
-            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.yellow500} hoverColor={Colors.greenA200} />
-            <FontIcon className="muidocs-icon-action-home" style={iconStyles} color={Colors.blue500} hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles}
+              hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles}
+              color={Colors.red500} hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles}
+              color={Colors.yellow500} hoverColor={Colors.greenA200} />
+            <FontIcon className="muidocs-icon-action-home" style={iconStyles}
+              color={Colors.blue500} hoverColor={Colors.greenA200} />
             <br/><br/>
             <FontIcon className="material-icons" style={iconStyles} >home</FontIcon>
             <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>home</FontIcon>

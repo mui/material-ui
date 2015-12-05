@@ -120,9 +120,12 @@ const FloatingActionButton = React.createClass({
         borderRadius: '50%',
         textAlign: 'center',
         verticalAlign: 'bottom',
-        //This is need so that ripples do not bleed
-        //past border radius.
-        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+        /*
+         This is need so that ripples do not bleed
+          past border radius.
+          See: http://stackoverflow.com/questions/17298739/
+            css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+         */
         transform: 'translate3d(0, 0, 0)',
       },
       containerWhenMini: {
@@ -262,7 +265,8 @@ const FloatingActionButton = React.createClass({
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.state.initialZDepth + 1});
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
+        ColorManipulator.fade(this.getStyles().icon.color, 0.4);
     }
     else if (!this.state.hovered) {
       this.setState({zDepth: this.state.initialZDepth});

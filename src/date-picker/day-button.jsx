@@ -147,7 +147,9 @@ const DayButton = React.createClass({
   },
 
   _handleKeyboardFocus(e, keyboardFocused) {
-    if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+    if (!this.props.disabled && this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+    }
   },
 
 });

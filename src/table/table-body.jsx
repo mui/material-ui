@@ -77,7 +77,8 @@ const TableBody = React.createClass({
     let newState = {};
 
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      let lastSelectedRow = this.state.selectedRows.length ? this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
+      const lastSelectedRow = this.state.selectedRows.length ?
+        this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
 
       newState.selectedRows = [lastSelectedRow];
     } else {

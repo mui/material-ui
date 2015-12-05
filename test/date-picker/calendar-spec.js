@@ -119,7 +119,8 @@ describe(`Calendar`, () => {
   });
 
   describe('Previous Month Button', () => {
-    it(`should initially disable the previous month button if the current month is the same as the minDate month prop`, () => {
+    it(`should initially disable the previous month button if the current month
+      is the same as the minDate month prop`, () => {
       let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let minDate = new Date(initialDate.toDateString());
 
@@ -136,7 +137,8 @@ describe(`Calendar`, () => {
       expect(calendarToolbar.props.prevMonth).to.be.false;
     });
 
-    it(`should initially disable the previous month button if the current month is before the minDate month prop`, () => {
+    it(`should initially disable the previous month button if the current month
+      is before the minDate month prop`, () => {
       let initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let minDate = new Date(initialDate.toDateString());
       minDate = DateTime.addMonths(initialDate, 1);

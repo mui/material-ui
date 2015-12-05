@@ -29,7 +29,10 @@ let RefreshIndicatorPage = React.createClass({
             name: 'status',
             type: 'oneOf ["ready", "loading", "hide"]',
             header: 'default: hide',
-            desc: 'The display status of the indicator. If the status is "ready", the indicator will display the ready state arrow. If the status is "loading", it will display the loading progress indicator. If the status is "hide", the indicator will be hidden.',
+            desc: `The display status of the indicator.
+              If the status is "ready", the indicator will display the ready state arrow.
+              If the status is "loading", it will display the loading progress indicator.
+              If the status is "hide", the indicator will be hidden.`,
           },
           {
             name: 'style',
@@ -41,13 +44,15 @@ let RefreshIndicatorPage = React.createClass({
             name: 'color',
             type: 'string',
             header: 'optional',
-            desc: 'Override the theme\'s color of the indicator while it\'s status is \"ready\" or it\'s percentage is less than 100.',
+            desc: `Override the theme's color of the indicator while it's
+              status is "ready" or it's percentage is less than 100.`,
           },
           {
             name: 'loadingColor',
             type: 'string',
             header: 'optional',
-            desc: 'Override the theme\'s color of the indicator while it\'s status is \"loading\" or it\'s percentage is 100.',
+            desc: `Override the theme's color of the indicator
+              while it's status is "loading" or it's percentage is 100.`,
           },
           {
             name: 'top',

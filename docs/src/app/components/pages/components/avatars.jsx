@@ -69,7 +69,8 @@ export default class AvatarsPage extends React.Component {
     let svgAvatar = <Avatar icon={<FileFolder />} />;
     let customSvgAvatar = <Avatar icon={<FileFolder />} color={Colors.orange200} backgroundColor={Colors.pink400} />;
     let fontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />;
-    let customFontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} color={Colors.blue300} backgroundColor={Colors.indigo900} />;
+    let customFontAvatar = <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
+      color={Colors.blue300} backgroundColor={Colors.indigo900} />;
     let letterAvatar = <Avatar>A</Avatar>;
     let customLetterAvatar = <Avatar color={Colors.deepOrange300} backgroundColor={Colors.purple500}>A</Avatar>;
 

@@ -30,8 +30,8 @@ export default class MenusPage extends React.Component {
             name: 'animated',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the menu will apply transitions when added it gets added to the DOM. In order for transitions ' +
-              'to work, wrap the menu inside a ReactTransitionGroup.',
+            desc: `If true, the menu will apply transitions when added it gets added to the DOM.
+              In order for transitions to work, wrap the menu inside a ReactTransitionGroup.`,
           },
           {
             name: 'autoWidth',
@@ -62,7 +62,8 @@ export default class MenusPage extends React.Component {
             name: 'maxHeight',
             type: 'number',
             header: 'optional',
-            desc: 'The maxHeight of the menu in pixels. If specified, the menu will scroll if larger than the maxHeight.',
+            desc: `The maxHeight of the menu in pixels.
+              If specified, the menu will scroll if larger than the maxHeight.`,
           },
           {
             name: 'multiple',

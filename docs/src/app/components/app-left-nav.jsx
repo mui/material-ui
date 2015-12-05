@@ -4,13 +4,37 @@ const {Colors, Spacing, Typography} = Styles;
 const {StylePropable} = Mixins;
 
 const menuItems = [
-    {route: 'get-started', text: 'Get Started'},
-    {route: 'customization', text: 'Customization'},
-    {route: 'components', text: 'Components'},
-    {type: MenuItem.Types.SUBHEADER, text: 'Resources'},
-    {type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub'},
-    {type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React'},
-    {type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design'},
+  {
+    route: 'get-started',
+    text: 'Get Started',
+  },
+  {
+    route: 'customization',
+    text: 'Customization',
+  },
+  {
+    route: 'components',
+    text: 'Components',
+  },
+  {
+    type: MenuItem.Types.SUBHEADER,
+    text: 'Resources',
+  },
+  {
+    type: MenuItem.Types.LINK,
+    payload: 'https://github.com/callemall/material-ui',
+    text: 'GitHub',
+  },
+  {
+    type: MenuItem.Types.LINK,
+    payload: 'http://facebook.github.io/react',
+    text: 'React',
+  },
+  {
+    type: MenuItem.Types.LINK,
+    payload: 'https://www.google.com/design/spec/material-design/introduction.html',
+    text: 'Material Design',
+  },
 ];
 
 

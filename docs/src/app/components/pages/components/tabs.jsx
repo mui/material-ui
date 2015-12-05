@@ -39,7 +39,10 @@ export default class TabsPage extends React.Component {
             name: 'initialSelectedIndex',
             type: 'number',
             header: 'optional',
-            desc: 'Specify initial visible tab index. Initial selected index is set by default to 0. If initialSelectedIndex is set but larger than the total amount of specified tabs, initialSelectedIndex will revert back to default',
+            desc: `Specify initial visible tab index.
+              Initial selected index is set by default to 0.
+              If initialSelectedIndex is set but larger than the total amount of specified tabs,
+              initialSelectedIndex will revert back to default`,
           },
           {
             name: 'inkBarStyle',
@@ -80,7 +83,8 @@ export default class TabsPage extends React.Component {
             name: 'onChange',
             type: 'function(value, e, tab)',
             header: 'optional',
-            desc: 'Fired on touch or tap of a tab. Passes the value of the tab, the touchTap event and the tab element.',
+            desc: `Fired on touch or tap of a tab.
+              Passes the value of the tab, the touchTap event and the tab element.`,
           },
         ],
       },
@@ -109,7 +113,10 @@ export default class TabsPage extends React.Component {
             name: 'onActive',
             type: 'function(tab)',
             header: 'optional',
-            desc: 'Fired when the active tab changes by touch or tap. Use this event to specify any functionality when an active tab changes. For example - we are using this to route to home when the third tab becomes active. This function will always recieve the active tab as it\'s first argument.',
+            desc: `Fired when the active tab changes by touch or tap.
+              Use this event to specify any functionality when an active tab changes.
+              For example - we are using this to route to home when the third tab becomes active.
+              This function will always recieve the active tab as it\'s first argument.`,
           },
         ],
       },

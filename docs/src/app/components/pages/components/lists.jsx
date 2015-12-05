@@ -115,7 +115,8 @@ export default class ListsPage extends React.Component {
             name: 'selectedItemStyle',
             type: 'object',
             header: 'optional, only available if HOC SelectableContainerEnhance is used',
-            desc: 'Override the choosen inline-styles to indicate a <ListItem> is highlighted. You can set e.g. the background color here like this way: {{backgroundColor: #da4e49}}.',
+            desc: 'Override the choosen inline-styles to indicate a <ListItem> is highlighted.' +
+              ' You can set e.g. the background color here like this way: {{backgroundColor: #da4e49}}.',
           },
           {
             name: 'style',
@@ -139,7 +140,8 @@ export default class ListsPage extends React.Component {
             name: 'valueLink',
             type: 'valueLink',
             header: 'optional, only available if HOC SelectableContainerEnhance is used',
-            desc: 'Makes List controllable. Highlights the ListItem whose index prop matches this "selectedLink.value". ' +
+            desc: 'Makes List controllable. Highlights the ListItem whose index prop matches' +
+              ' this "selectedLink.value". ' +
               '"selectedLink.requestChange" represents a callback function to change that value (e.g. in state).',
           },
         ],
@@ -151,19 +153,23 @@ export default class ListsPage extends React.Component {
             name: 'autoGenerateNestedIndicator',
             type: 'bool',
             header: 'default: true',
-            desc: 'Generate a nested list indicator icon when nested list items are detected. Set to false if you do not want an indicator auto-generated. Note that an indicator will not be created if a rightIcon/Button has been specified.',
+            desc: 'Generate a nested list indicator icon when nested list items are detected.' +
+              ' Set to false if you do not want an indicator auto-generated. ' +
+              'Note that an indicator will not be created if a rightIcon/Button has been specified.',
           },
           {
             name: 'disabled',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox or rightToggle is set.',
+            desc: `If true, the list-item will not be clickable and will not display hover affects.
+This is automatically disabled if leftCheckbox or rightToggle is set.`,
           },
           {
             name: 'insetChildren',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the children will be indented by 72px. Only needed if there is no left avatar or left icon.',
+            desc: `If true, the children will be indented by 72px.
+              Only needed if there is no left avatar or left icon.`,
           },
           {
             name: 'leftAvatar',
@@ -193,7 +199,8 @@ export default class ListsPage extends React.Component {
             name: 'nestedLevel',
             type: 'number',
             header: 'optional',
-            desc: 'Controls how deep a ListItem appears. This property is automatically managed so modify at your own risk.',
+            desc: `Controls how deep a ListItem appears.
+              This property is automatically managed so modify at your own risk.`,
           },
           {
             name: 'initiallyOpen',
@@ -257,8 +264,8 @@ export default class ListsPage extends React.Component {
             name: 'value',
             type: 'number',
             header: 'optional, only available if HOC SelectableContainerEnhance is used',
-            desc: 'If valueLink prop is passed to List component, this prop is also required. It assigns an identifier ' +
-              'to the listItem so that it can be hightlighted by the List.',
+            desc: `If valueLink prop is passed to List component, this prop is also required.
+              It assigns an identifier to the listItem so that it can be hightlighted by the List.`,
           },
         ],
       },
@@ -416,7 +423,8 @@ import ListItem from 'material-ui/lib/lists/list-item';
             <List>
               <ListItem
                 primaryText="Adelle Charles"
-                leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent} style={{left:8}}>A</Avatar>}
+                leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent}
+                  style={{left:8}}>A</Avatar>}
                 rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
               <ListItem
                 primaryText="Adham Dannaway"
@@ -806,7 +814,8 @@ var SelectableList = SelectableContainerEnhance(List);
           <p>
             If this component is used in conjunction with flux or redux this is a no-brainer. The callback-handler
             just has to update the store. Otherwise the state can be held within e.g the parent, but it is to be to
-            considered that each time a <code>&lt;ListItem&gt;</code> is clicked, the state will update and the parent - including it's
+            considered that each time a <code>&lt;ListItem&gt;</code>
+            is clicked, the state will update and the parent - including it's
             children - will rerender.
           </p>
           <p>
