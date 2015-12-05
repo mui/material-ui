@@ -35,7 +35,10 @@ export default class SnackbarPage extends React.Component {
             name: 'autoHideDuration',
             type: 'number',
             header: 'optional',
-            desc: 'The number of milliseconds to wait before automatically dismissing. If no value is specified the snackbar will dismiss normally. If a value is provided the snackbar can still be dismissed normally. If a snackbar is dismissed before the timer expires, the timer will be cleared.',
+            desc: `The number of milliseconds to wait before automatically dismissing.
+              If no value is specified the snackbar will dismiss normally.
+              If a value is provided the snackbar can still be dismissed normally.
+              If a snackbar is dismissed before the timer expires, the timer will be cleared.`,
           },
           {
             name: 'message',

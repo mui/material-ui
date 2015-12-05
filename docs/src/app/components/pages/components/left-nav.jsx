@@ -202,9 +202,15 @@ import LeftNav from 'material-ui/lib/left-nav/';
         <CodeExample code={Code}>
           <div>
             <div>
-              <RaisedButton label="Toggle Docked Controlled Left Nav" onTouchTap={this._toggleLeftNavControlledClick} /><br/><br/>
-              <RaisedButton label="Toggle Docked Controlled Left Nav With Children" onTouchTap={this._toggleLeftNavChildrenClick} /><br/><br/>
-              <RaisedButton label="Show Undocked Controlled Left Nav" onTouchTap={this._showLeftNavUndockedControlledClick} /><br/><br/>
+              <RaisedButton label="Toggle Docked Controlled Left Nav"
+                onTouchTap={this._toggleLeftNavControlledClick} />
+              <br/><br/>
+              <RaisedButton label="Toggle Docked Controlled Left Nav With Children"
+                onTouchTap={this._toggleLeftNavChildrenClick} />
+              <br/><br/>
+              <RaisedButton label="Show Undocked Controlled Left Nav"
+                onTouchTap={this._showLeftNavUndockedControlledClick} />
+              <br/><br/>
             </div>
 
             <LeftNav ref="leftNavChildren" open={this.state.navWithChildrenOpen}>

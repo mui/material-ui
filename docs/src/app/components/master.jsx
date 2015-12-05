@@ -123,8 +123,10 @@ const Master = React.createClass({
         <AppLeftNav ref="leftNav" history={this.props.history} />
         <FullWidthSection style={styles.footer}>
           <p style={this.prepareStyles(styles.p)}>
-            Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={this.prepareStyles(styles.a)} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+            Hand crafted with love by the engineers at
+            <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
+            awesome <a style={this.prepareStyles(styles.a)}
+              href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
           {githubButton2}
         </FullWidthSection>

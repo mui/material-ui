@@ -31,9 +31,8 @@ const SelectFieldsPage = React.createClass({
   },
 
   render() {
-
-    let desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
-      'valueLink and can be controlled or uncontrolled.';
+    let desc = `This component extends the current input element and will support all of its props and events.
+      It supports valueLink and can be controlled or uncontrolled.`;
 
     let componentInfo = [
       {

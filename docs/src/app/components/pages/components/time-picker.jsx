@@ -47,7 +47,9 @@ const TimePickerPage = React.createClass({
             name: 'pedantic',
             type: 'bool',
             header: 'default: false',
-            desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.',
+            desc: `It's technically more correct to refer to "12 noon" and "12 midnight"
+rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales.
+By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.`,
           },
           {
             name: 'style',

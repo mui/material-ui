@@ -58,7 +58,8 @@ let PopoverPage = React.createClass({
             name: 'canAutoPosition',
             type: 'bool',
             header: 'default: true',
-            desc: 'If true, the popover (potentially) ignores targetOrigin and anchorOrigin to make itself fit on screen,' +
+            desc: 'If true, the popover (potentially) ignores targetOrigin and anchorOrigin ' +
+            'to make itself fit on screen,' +
             'which is useful for mobile devices.',
           },
           {
@@ -71,7 +72,8 @@ let PopoverPage = React.createClass({
             name: 'onRequestClose',
             type: 'function(reason)',
             header: 'default: no-op',
-            desc: 'This is a callback that fires when the popover thinks it should close. (e.g. clickAway or offScreen)',
+            desc: 'This is a callback that fires when the popover thinks it should close.' +
+            ' (e.g. clickAway or offScreen)',
           },
           {
             name: 'useLayerForClickAway',
@@ -114,15 +116,21 @@ let PopoverPage = React.createClass({
           <h3>Anchor Origin</h3>
           <div style={{float:'left'}}>
             <strong>Vertical</strong>
-            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'top')} label="Top" checked={this.state.anchorOrigin.vertical === 'top'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'center')} label="Center" checked={this.state.anchorOrigin.vertical === 'center'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'bottom')} label="Bottom" checked={this.state.anchorOrigin.vertical === 'bottom'} />
+            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'top')}
+              label="Top" checked={this.state.anchorOrigin.vertical === 'top'} />
+            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'center')}
+              label="Center" checked={this.state.anchorOrigin.vertical === 'center'} />
+            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'bottom')}
+              label="Bottom" checked={this.state.anchorOrigin.vertical === 'bottom'} />
           </div>
           <div style={{float:'left'}}>
             <strong>Horizontal</strong>
-            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'left')} label="Left" checked={this.state.anchorOrigin.horizontal === 'left'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'middle')} label="Middle" checked={this.state.anchorOrigin.horizontal === 'middle'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'right')} label="Right" checked={this.state.anchorOrigin.horizontal === 'right'} />
+            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'left')}
+              label="Left" checked={this.state.anchorOrigin.horizontal === 'left'} />
+            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'middle')}
+              label="Middle" checked={this.state.anchorOrigin.horizontal === 'middle'} />
+            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'right')}
+              label="Right" checked={this.state.anchorOrigin.horizontal === 'right'} />
           </div>
           <br style={{clear:'both'}} />
           <br style={{clear:'both'}} />
@@ -130,15 +138,21 @@ let PopoverPage = React.createClass({
           <h3>Target Origin</h3>
           <div style={{float:'left'}}>
             <strong>Vertical</strong>
-            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'top')} label="Top" checked={this.state.targetOrigin.vertical === 'top'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'center')} label="Center" checked={this.state.targetOrigin.vertical === 'center'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'bottom')} label="Bottom" checked={this.state.targetOrigin.vertical === 'bottom'} />
+            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'top')}
+              label="Top" checked={this.state.targetOrigin.vertical === 'top'} />
+            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'center')}
+              label="Center" checked={this.state.targetOrigin.vertical === 'center'} />
+            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'bottom')}
+              label="Bottom" checked={this.state.targetOrigin.vertical === 'bottom'} />
           </div>
           <div style={{float:'left'}}>
             <strong>Horizontal</strong>
-            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'left')} label="Left" checked={this.state.targetOrigin.horizontal === 'left'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'middle')} label="Middle" checked={this.state.targetOrigin.horizontal === 'middle'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'right')} label="Right" checked={this.state.targetOrigin.horizontal === 'right'} />
+            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'left')}
+              label="Left" checked={this.state.targetOrigin.horizontal === 'left'} />
+            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'middle')}
+              label="Middle" checked={this.state.targetOrigin.horizontal === 'middle'} />
+            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'right')}
+              label="Right" checked={this.state.targetOrigin.horizontal === 'right'} />
           </div>
 
           <Popover open={this.state.activePopover === 'pop'}

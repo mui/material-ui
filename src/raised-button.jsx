@@ -141,10 +141,12 @@ const RaisedButton = React.createClass({
         borderRadius: 2,
         transition: Transitions.easeOut(),
         backgroundColor: this._getBackgroundColor(),
-
-        //This is need so that ripples do not bleed
-        //past border radius.
-        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+        /*
+          This is need so that ripples do not bleed
+          past border radius.
+          See: http://stackoverflow.com/questions/17298739/
+            css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+         */
         transform: 'translate3d(0, 0, 0)',
       },
       label: {
@@ -283,7 +285,8 @@ const RaisedButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.state.initialZDepth + 1});
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
+        ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
     }
     else if (!this.state.hovered) {
       this.setState({zDepth: this.state.initialZDepth});

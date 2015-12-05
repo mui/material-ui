@@ -37,10 +37,12 @@ export default {
   },
 
   removeClass(el, className) {
-    if (el.classList)
+    if (el.classList) {
       el.classList.remove(className);
-    else
-      el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    } else {
+      el.className = el.className
+        .replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    }
   },
 
   hasClass(el, className) {

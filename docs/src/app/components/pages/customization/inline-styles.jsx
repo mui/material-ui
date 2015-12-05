@@ -68,7 +68,8 @@ const InlineStyles = React.createClass({
         <p>
           All Material-UI components have their styles defined inline. You
           can read our <a href="https://github.com/callemall/material-ui/issues/30">
-          discussion thread</a> regarding this change as well as <a href="https://speakerdeck.com/vjeux/react-css-in-js">
+          discussion thread</a> regarding this change as well as
+          <a href="https://speakerdeck.com/vjeux/react-css-in-js">
           this presentation</a> discussing CSS in JS.
         </p>
 

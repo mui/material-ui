@@ -25,7 +25,7 @@ rules:
   indent: [2, 2, {SwitchCase: 1}]
   jsx-quotes: [2, prefer-double]
   key-spacing: 0 # Wishlist, one day
-  max-len: [0, 120, 4] # Wishlist, one day
+  max-len: [2, 120, 4]
   new-cap: [0, {capIsNew: true, newIsCap: true}] # Wishlist, one day
   no-unused-expressions: 2
   no-unused-vars: 2

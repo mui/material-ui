@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutabilityHelper from '../utils/immutability-helper';
 import Styles from '../utils/styles';
 
-// This mixin isn't necessary and will be removed in v0.11
+// This mixin isn't necessary and will be removed
 
 /**
  *	@params:
@@ -30,9 +30,10 @@ export default {
   // mergeAndPrefix.
   //
   // Never call this on the same style object twice. As a rule of thumb,
-  //   only call it when passing style attribute to html elements.
+  // only call it when passing style attribute to html elements.
   // If you call it twice you'll get a warning anyway.
   prepareStyles() {
-    return Styles.prepareStyles.apply(Styles, [(this.state && this.state.muiTheme) || this.context.muiTheme].concat([].slice.apply(arguments)));
+    return Styles.prepareStyles.apply(Styles,
+      [(this.state && this.state.muiTheme) || this.context.muiTheme].concat([].slice.apply(arguments)));
   },
 };

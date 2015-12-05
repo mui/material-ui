@@ -39,8 +39,10 @@ export default class ButtonPage extends React.Component {
             name: 'containerElement',
             type: 'oneOfType [string, element]',
             header: 'default: button',
-            desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' +
-              'However, you can override this behavior by passing in a string or another react element into this prop. This is ' +
+            desc: 'This component will render a button element by default and an anchor element ' +
+              'if linkButton is set to true. ' +
+              'However, you can override this behavior by passing in a string or another react ' +
+              'element into this prop. This is ' +
               'useful for generating link buttons with the react router link element.',
           },
           {
@@ -59,8 +61,10 @@ export default class ButtonPage extends React.Component {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
-            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.' +
-            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />' +
+            desc: 'This is what will be displayed inside the button. If a label is specified,' +
+            ' the text within the label prop will be displayed.' +
+            ' Otherwise, the component will expect children which will then be displayed (in our example, ' +
+            ' we are nesting an <input type="file" />' +
             'and a span that acts as our label to be displayed.) ' +
             'This only applies to flat and raised buttons.',
           },
@@ -115,8 +119,10 @@ export default class ButtonPage extends React.Component {
             name: 'containerElement',
             type: 'oneOfType [string, element]',
             header: 'default: button',
-            desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' +
-              'However, you can override this behavior by passing in a string or another react element into this prop. This is ' +
+            desc: 'This component will render a button element by default and an anchor' +
+              ' element if linkButton is set to true. ' +
+              'However, you can override this behavior by passing in a string or another ' +
+              'react element into this prop. This is ' +
               'useful for generating link buttons with the react router link element.',
           },
           {
@@ -135,8 +141,10 @@ export default class ButtonPage extends React.Component {
             name: 'label or children',
             type: 'string (label) or HTML/React elements (children)',
             header: 'required',
-            desc: 'This is what will be displayed inside the button. If a label is specified, the text within the label prop will be displayed.' +
-            ' Otherwise, the component will expect children which will then be displayed (in our example, we are nesting an <input type="file" />' +
+            desc: 'This is what will be displayed inside the button. If a label is specified, the text' +
+            ' within the label prop will be displayed.' +
+            ' Otherwise, the component will expect children which will then be displayed ' +
+            '(in our example, we are nesting an <input type="file" />' +
             'and a span that acts as our label to be displayed.) ' +
             'This only applies to flat and raised buttons.',
           },
@@ -209,16 +217,18 @@ export default class ButtonPage extends React.Component {
             name: 'backgroundColor',
             type: 'string',
             header: 'optional',
-            desc: 'This value will override the default background color for the button. However it will not override the' +
-              'default disabled background color. This has to be set separately using the disabledColor attribute.',
+            desc: `This value will override the default background color for the button.
+              However it will not override the default disabled background color.
+              This has to be set separately using the disabledColor attribute.`,
           },
           {
             name: 'containerElement',
             type: 'oneOfType [string, element]',
             header: 'default: button',
-            desc: 'This component will render a button element by default and an anchor element if linkButton is set to true. ' +
-              'However, you can override this behavior by passing in a string or another react element into this prop. This is ' +
-              'useful for generating link buttons with the react router link element.',
+            desc: `This component will render a button element by default and an anchor element
+              if linkButton is set to true.
+              However, you can override this behavior by passing in a string or another react element into this prop.
+              This is useful for generating link buttons with the react router link element.`,
           },
           {
             name: 'disabled',
