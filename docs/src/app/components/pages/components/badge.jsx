@@ -90,7 +90,7 @@ import Badge from 'material-ui/lib/badge';
           </Badge>
 
           <Badge backgroundColor="#d8d8d8"
-                 badgeContent={<IconButton tooltip="Backup"><UploadIcon/></IconButton>}>
+            badgeContent={<IconButton tooltip="Backup"><UploadIcon/></IconButton>}>
             <FolderIcon />
           </Badge>
 

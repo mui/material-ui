@@ -137,12 +137,12 @@ const NestedMenuItem = React.createClass({
 
     return (
       <div
-          ref="root"
-          style={styles}
-          onMouseEnter={this._openNestedMenu}
-          onMouseLeave={this._closeNestedMenu}
-          onMouseOver={this._handleMouseOver}
-          onMouseOut={this._handleMouseOut}>
+        ref="root"
+        style={styles}
+        onMouseEnter={this._openNestedMenu}
+        onMouseLeave={this._closeNestedMenu}
+        onMouseOver={this._handleMouseOver}
+        onMouseOut={this._handleMouseOut}>
         <MenuItem
           index={index}
           style={menuItemStyle}

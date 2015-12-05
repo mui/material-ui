@@ -13,6 +13,7 @@ rules:
   block-spacing: [2, always]
   brace-style: 0 # Wishlist, one day
   comma-dangle: [2, always-multiline]
+  comma-spacing: [2, {before: false, after: true}]
   comma-style: [2, last]
   computed-property-spacing: [2, never]
   consistent-this: [2, self]
@@ -53,7 +54,7 @@ rules:
   space-before-keywords: [2, always]
   space-infix-ops: 2
   space-return-throw-case: 2
-  space-unary-ops: [0, { words: true, nonwords: false }] # Wishlist, one day
+  space-unary-ops: [2, { words: true, nonwords: false }]
   yoda: 2
 
   # Disabled
@@ -63,7 +64,7 @@ rules:
   react/display-name: [2, {acceptTranspilerName: true}]
   react/jsx-boolean-value: [2, always]
   react/jsx-curly-spacing: 2
-  react/jsx-indent-props: [0, 2] # Wishlist, one day
+  react/jsx-indent-props: [2, 2]
   react/jsx-max-props-per-line: [2, {maximum: 4}]
   react/jsx-no-duplicate-props: 2
   react/jsx-no-literals: 0 # Wishlist, one day

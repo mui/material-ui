@@ -115,7 +115,7 @@ let RefreshIndicatorPage = React.createClass({
             </p>
             <RefreshIndicator size={40} left={10} top={130} status="loading" />
             <RefreshIndicator size={40} left={70} top={130} loadingColor={"#FF9800"}
-                              status="loading" />
+              status="loading" />
           </div>
         </CodeExample>
       </ComponentDoc>

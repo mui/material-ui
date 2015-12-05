@@ -49,17 +49,17 @@ let styles = {
     color: Typography.textDarkBlack,
   },
   subheadline: {
-    fontSize: '18px',
+    fontSize: 18,
     lineHeight: '27px',
-    paddingTop: '12px',
-    marginBottom: '9px',
+    paddingTop: 12,
+    marginBottom: 9,
     letterSpacing: '0',
     fontWeight: Typography.fontWeightNormal,
     color: Typography.textDarkBlack,
   },
   codeblock: {
-    padding: '24px',
-    marginBottom: '32px',
+    padding: 24,
+    marginBottom: 32,
   },
 };
 
@@ -74,8 +74,10 @@ function wrapState(ComposedComponent) {
       });
     },
     render() {
-      return <ComposedComponent {...this.props} {...this.state}
-              valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}} />;
+      return (
+        <ComposedComponent {...this.props} {...this.state}
+          valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}} />
+      );
     },
   });
   return StateWrapper;
