@@ -214,36 +214,36 @@ export default class TabsPage extends React.Component {
               iconStyle={styles.iconStyle}>
               home
             </IconButton>
-            <div style={styles.div}/>
-              <Tabs
-                valueLink={{value: this.state.tabsValue, requestChange: this._handleTabsChange.bind(this)}}
-                style={styles.tabs}
-                contentContainerStyle={styles.contentContainerStyle}>
-                <Tab label="Tab A" value="a" >
-                  <div>
-                    <h2 style={styles.headline}>Controllable Tab Examples</h2>
-                    <p>
-                      Tabs are also controllable if you want to programmatically pass them their values.
-                      This allows for more functionality in Tabs such as not
-                      having any Tab selected or assigning them different values.
-                    </p>
-                    <p>(The home Icon Button will unselect all the tabs and hide their content.)</p>
-                  </div>
-                </Tab>
-                <Tab label="Tab B" value="b">
-                  <div>
-                    <h2 style={styles.headline}>Controllable Tab B</h2>
-                    <p>
-                      This is another example of a controllable tab. Remember, if you
-                      use controllable Tabs, you need to give all of your tabs values or else
-                      you wont be able to select them.
-                    </p>
-                    <p>
-                      To see one use for controlled Tabs, press the home button on the right.
-                    </p>
-                  </div>
-                </Tab>
-              </Tabs>
+            <div style={styles.div} />
+            <Tabs
+              valueLink={{value: this.state.tabsValue, requestChange: this._handleTabsChange.bind(this)}}
+              style={styles.tabs}
+              contentContainerStyle={styles.contentContainerStyle}>
+              <Tab label="Tab A" value="a" >
+                <div>
+                  <h2 style={styles.headline}>Controllable Tab Examples</h2>
+                  <p>
+                    Tabs are also controllable if you want to programmatically pass them their values.
+                    This allows for more functionality in Tabs such as not
+                    having any Tab selected or assigning them different values.
+                  </p>
+                  <p>(The home Icon Button will unselect all the tabs and hide their content.)</p>
+                </div>
+              </Tab>
+              <Tab label="Tab B" value="b">
+                <div>
+                  <h2 style={styles.headline}>Controllable Tab B</h2>
+                  <p>
+                    This is another example of a controllable tab. Remember, if you
+                    use controllable Tabs, you need to give all of your tabs values or else
+                    you wont be able to select them.
+                  </p>
+                  <p>
+                    To see one use for controlled Tabs, press the home button on the right.
+                  </p>
+                </div>
+              </Tab>
+            </Tabs>
           </div>
           <br />
           <Tabs onChange={this._handleChangeTabs.bind(this)} value={this.state.slideIndex + ''}>
