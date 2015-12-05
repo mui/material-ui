@@ -45,9 +45,8 @@ const TextFieldsPage = React.createClass({
   },
 
   render() {
-
-    let desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
-      'valueLink and can be controlled or uncontrolled.';
+    let desc = `This component extends the current input element and will support all of its props and events.
+It supports valueLink and can be controlled or uncontrolled.`;
 
     let componentInfo = [
       {
@@ -117,7 +116,8 @@ const TextFieldsPage = React.createClass({
             name: 'multiLine',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.',
+            desc: `If true, a textarea element will be rendered.
+The textarea also grows and shrinks according to the number of lines.`,
           },
           {
             name: 'rows',

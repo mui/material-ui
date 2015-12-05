@@ -4,10 +4,11 @@ import StylePropable from '../mixins/style-propable';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const CardTitle = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -33,12 +34,15 @@ const CardTitle = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
   },
 
   propTypes: {
     actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,
@@ -78,15 +82,19 @@ const CardTitle = React.createClass({
   },
 
   render() {
-    let styles = this.getStyles();
-    let rootStyle = this.prepareStyles(styles.root, this.props.style);
-    let titleStyle = this.prepareStyles(styles.title, this.props.titleStyle);
-    let subtitleStyle = this.prepareStyles(styles.subtitle, this.props.subtitleStyle);
+    const styles = this.getStyles();
+    const rootStyle = this.prepareStyles(styles.root, this.props.style);
+    const titleStyle = this.prepareStyles(styles.title, this.props.titleStyle);
+    const subtitleStyle = this.prepareStyles(styles.subtitle, this.props.subtitleStyle);
 
     return (
       <div {...this.props} style={rootStyle}>
-        <span style={titleStyle}>{this.props.title}</span>
-        <span style={subtitleStyle}>{this.props.subtitle}</span>
+        <span style={titleStyle}>
+          {this.props.title}
+        </span>
+        <span style={subtitleStyle}>
+          {this.props.subtitle}
+        </span>
         {this.props.children}
       </div>
     );

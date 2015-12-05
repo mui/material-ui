@@ -16,6 +16,7 @@ let PageWithNav = React.createClass({
   mixins: [StyleResizable, StylePropable, History],
 
   propTypes: {
+    children: React.PropTypes.node,
     menuItems: React.PropTypes.array,
   },
 

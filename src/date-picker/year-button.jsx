@@ -6,13 +6,16 @@ import ThemeManager from '../styles/theme-manager';
 
 const YearButton = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
+    className: React.PropTypes.string,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
     year: React.PropTypes.number,

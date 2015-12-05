@@ -28,6 +28,10 @@ export default class DialogPage extends React.Component {
 
   render() {
 
+    const desc = 'Dialog can only be a controlled component. You must ' +
+                 'provide the open prop and handle onRequestClose in ' +
+                 'order to use this component.';
+
     let componentInfo = [
       {
         name: 'Props',
@@ -36,7 +40,8 @@ export default class DialogPage extends React.Component {
             name: 'actions',
             type: 'array',
             header: 'optional',
-            desc: 'This prop can be either a JSON object containing the actions to render, or an array of react objects.',
+            desc: `This prop can be either a JSON object containing the actions to render,
+              or an array of react objects.`,
           },
           {
             name: 'actionFocus',
@@ -73,7 +78,8 @@ export default class DialogPage extends React.Component {
             name: 'modal',
             type: 'bool',
             header: 'default: false',
-            desc: 'Force the user to use one of the actions in the dialog. Clicking outside the dialog will not dismiss the dialog.',
+            desc: `Force the user to use one of the actions in the dialog.
+              Clicking outside the dialog will not dismiss the dialog.`,
           },
           {
             name: 'Deprecated: openImmediately',
@@ -97,14 +103,15 @@ export default class DialogPage extends React.Component {
             name: 'title',
             type: 'node',
             header: 'optional',
-            desc: 'The title to display on the dialog. Could be number, string, element or an array containing these types.',
+            desc: `The title to display on the dialog.
+              Could be number, string, element or an array containing these types.`,
           },
           {
             name: 'autoDetectWindowHeight',
             type: 'bool',
             header: 'default: true',
-            desc: 'If set to true, the height of the dialog will be auto detected. A max height will be enforced so that the '
-              + 'content does not extend beyond the viewport.',
+            desc: `If set to true, the height of the dialog will be auto detected.
+              A max height will be enforced so that the content does not extend beyond the viewport.`,
           },
           {
             name: 'autoScrollBodyContent',
@@ -189,6 +196,7 @@ export default class DialogPage extends React.Component {
     return (
       <ComponentDoc
         name="Dialog"
+        desc={desc}
         componentInfo={componentInfo}>
 
         <Paper style = {{marginBottom: '22px'}}>
@@ -205,7 +213,8 @@ export default class DialogPage extends React.Component {
           <br/><br/>
           <RaisedButton label="Custom Actions" onTouchTap={this._handleCustomDialogTouchTap} />
           <br/><br/>
-          <RaisedButton label="Scrollable Content And Custom Actions" onTouchTap={this._handleScrollableDialogTouchTap} />
+          <RaisedButton label="Scrollable Content And Custom Actions"
+            onTouchTap={this._handleScrollableDialogTouchTap} />
 
           <Dialog
             ref="standardDialog"

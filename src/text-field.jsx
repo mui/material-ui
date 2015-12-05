@@ -31,7 +31,9 @@ const TextField = React.createClass({
   },
 
   propTypes: {
-    defaultValue: React.PropTypes.string,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
+    defaultValue: React.PropTypes.any,
     disabled: React.PropTypes.bool,
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.node,
@@ -48,6 +50,7 @@ const TextField = React.createClass({
     onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
+    ref: React.PropTypes.string,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
     style: React.PropTypes.object,
@@ -55,7 +58,7 @@ const TextField = React.createClass({
     underlineDisabledStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
+    value: React.PropTypes.any,
   },
 
   //for passing default theme context to children
@@ -336,8 +339,12 @@ const TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
     if (this.props.children) {
-      let childInputStyle = this.mergeStyles(inputStyle, this.props.children.style);
-      inputElement = React.cloneElement(this.props.children, {...inputProps, ...this.props.children.props, style:childInputStyle});
+      inputElement = React.cloneElement(this.props.children,
+        {
+          ...inputProps,
+          ...this.props.children.props,
+          style: this.mergeStyles(inputStyle, this.props.children.style),
+        });
     }
     else {
       inputElement = multiLine ? (

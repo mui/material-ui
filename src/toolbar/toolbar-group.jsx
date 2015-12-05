@@ -13,6 +13,7 @@ const ToolbarGroup = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     firstChild: React.PropTypes.bool,
     float: React.PropTypes.string,

@@ -11,6 +11,10 @@ const AppCanvas = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  propTypes: {
+    children: React.PropTypes.node,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,

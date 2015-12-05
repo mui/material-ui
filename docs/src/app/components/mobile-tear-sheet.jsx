@@ -11,6 +11,7 @@ const MobileTearSheet = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     height: React.PropTypes.number,
   },
 

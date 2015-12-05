@@ -64,6 +64,8 @@ const FlatButton = React.createClass({
   },
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
     disabled: React.PropTypes.bool,
     hoverColor: React.PropTypes.string,
     label: validateLabel,

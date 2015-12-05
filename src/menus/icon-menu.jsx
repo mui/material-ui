@@ -10,7 +10,9 @@ import Popover from '../popover/popover';
 
 const IconMenu = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -18,6 +20,8 @@ const IconMenu = React.createClass({
 
   propTypes: {
     anchorOrigin: PropTypes.origin,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
     iconStyle: React.PropTypes.object,
@@ -161,6 +165,7 @@ const IconMenu = React.createClass({
           open={open}
           anchorEl={anchorEl}
           childContextTypes={this.constructor.childContextTypes}
+          useLayerForClickAway={false}
           onRequestClose={this.close}
           context={this.context}>
             {menu}
@@ -199,7 +204,6 @@ const IconMenu = React.createClass({
   _handleItemTouchTap(event, child) {
     if (this.props.closeOnItemTouchTap) {
       let isKeyboard = Events.isKeyboard(event);
-
 
       this._timeout = setTimeout(() => {
         if (!this.isMounted()) {

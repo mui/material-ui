@@ -23,6 +23,7 @@ export default React.createClass({
   propTypes: {
     badgeContent: React.PropTypes.node.isRequired,
     badgeStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,

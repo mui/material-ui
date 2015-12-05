@@ -28,7 +28,8 @@ describe('Theming', () => {
 
     it('should return new theme object when fontFamily modifier invoked', () => {
       let currentMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
-      let modifiedMuiTheme = ThemeManager.modifyRawThemeFontFamily(currentMuiTheme, currentMuiTheme.rawTheme.fontFamily);
+      let modifiedMuiTheme = ThemeManager.modifyRawThemeFontFamily(currentMuiTheme,
+        currentMuiTheme.rawTheme.fontFamily);
 
       expect(currentMuiTheme === modifiedMuiTheme).to.be.false;
     });

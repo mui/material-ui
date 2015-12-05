@@ -13,6 +13,7 @@ rules:
   block-spacing: [2, always]
   brace-style: 0 # Wishlist, one day
   comma-dangle: [2, always-multiline]
+  comma-spacing: [2, {before: false, after: true}]
   comma-style: [2, last]
   computed-property-spacing: [2, never]
   consistent-this: [2, self]
@@ -24,7 +25,7 @@ rules:
   indent: [2, 2, {SwitchCase: 1}]
   jsx-quotes: [2, prefer-double]
   key-spacing: 0 # Wishlist, one day
-  max-len: [0, 120, 4] # Wishlist, one day
+  max-len: [2, 120, 4]
   new-cap: [0, {capIsNew: true, newIsCap: true}] # Wishlist, one day
   no-unused-expressions: 2
   no-unused-vars: 2
@@ -53,7 +54,7 @@ rules:
   space-before-keywords: [2, always]
   space-infix-ops: 2
   space-return-throw-case: 2
-  space-unary-ops: [0, { words: true, nonwords: false }] # Wishlist, one day
+  space-unary-ops: [2, { words: true, nonwords: false }]
   yoda: 2
 
   # Disabled
@@ -63,7 +64,7 @@ rules:
   react/display-name: [2, {acceptTranspilerName: true}]
   react/jsx-boolean-value: [2, always]
   react/jsx-curly-spacing: 2
-  react/jsx-indent-props: [0, 2] # Wishlist, one day
+  react/jsx-indent-props: [2, 2]
   react/jsx-max-props-per-line: [2, {maximum: 4}]
   react/jsx-no-duplicate-props: 2
   react/jsx-no-literals: 0 # Wishlist, one day
@@ -77,7 +78,7 @@ rules:
   react/no-direct-mutation-state: 2
   react/no-multi-comp: 0 # Wishlist, one day
   react/no-unknown-property: 2
-  react/prop-types: 0 # Wishlist, one day
+  react/prop-types: 2
   react/react-in-jsx-scope: 2
   react/require-extension: 2
   react/self-closing-comp: 2

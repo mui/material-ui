@@ -15,6 +15,7 @@ const ComponentDoc = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     componentInfo: React.PropTypes.array.isRequired,
     desc: React.PropTypes.oneOfType([
       React.PropTypes.string,

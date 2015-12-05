@@ -15,6 +15,8 @@ const TimeDisplay = React.createClass({
     affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     mode: React.PropTypes.oneOf(['hour', 'minute']),
+    onSelectHour: React.PropTypes.func,
+    onSelectMin: React.PropTypes.func,
     selectedTime: React.PropTypes.object.isRequired,
   },
 
@@ -101,8 +103,15 @@ const TimeDisplay = React.createClass({
 
       box: {
         padding: '16px 0',
-        backgroundColor: this.getTheme().color,
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
+        backgroundColor: this.getTheme().headerColor,
         color: this.getTheme().textColor,
+      },
+
+      text: {
+        color: 'white',
+        opacity: 0.7,
       },
 
       hour: {},
@@ -112,18 +121,21 @@ const TimeDisplay = React.createClass({
 
     let [hour, min] = this.sanitizeTime();
 
-    styles[mode].color = this.getTheme().accentColor;
+    styles[mode].opacity = 1.0;
 
     return (
       <div {...other} style={this.prepareStyles(styles.root)}>
         <div style={this.prepareStyles(styles.box)}>
           <div style={this.prepareStyles(styles.time)}>
-            <span style={this.prepareStyles(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
-            <span>:</span>
-            <span style={this.prepareStyles(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
+            <span style={this.prepareStyles(styles.text, styles.hour)} onTouchTap={this.props.onSelectHour}>
+              {hour}
+            </span>
+            <span style={this.prepareStyles(styles.text)}>:</span>
+            <span style={this.prepareStyles(styles.text, styles.minute)} onTouchTap={this.props.onSelectMin}>
+              {min}
+            </span>
           </div>
-
-         <span key={"affix"}>{this.props.affix.toUpperCase()}</span>
+          <span key={"affix"}>{this.props.affix.toUpperCase()}</span>
         </div>
       </div>
     );

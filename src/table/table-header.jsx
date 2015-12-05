@@ -7,7 +7,9 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableHeader = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -15,6 +17,8 @@ const TableHeader = React.createClass({
 
   propTypes: {
     adjustForCheckbox: React.PropTypes.bool,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     displaySelectAll: React.PropTypes.bool,
     enableSelectAll: React.PropTypes.bool,
     onSelectAll: React.PropTypes.func,

@@ -33,8 +33,8 @@ menuItems = [
 </LeftNav>
 
 //Controlled and undocked Left Nav.
-<LeftNav 
-  open={this.state.undockedNavOpen} 
-  onChangeRequest={this._handleLeftNavChanged}
-  docked={false} 
+<LeftNav
+  open={this.state.undockedNavOpen}
+  onRequestChange={this._handleLeftNavChanged}
+  docked={false}
   menuItems={menuItems} />

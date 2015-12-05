@@ -40,6 +40,8 @@ const SlideInChild = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    direction: React.PropTypes.string,
     enterDelay: React.PropTypes.number,
     //This callback is needed bacause
     //the direction could change when leaving the dom

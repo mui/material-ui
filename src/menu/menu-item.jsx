@@ -23,6 +23,7 @@ const MenuItem = React.createClass({
   propTypes: {
     active: React.PropTypes.bool,
     attribute: React.PropTypes.string,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     data: React.PropTypes.string,
     disabled: React.PropTypes.bool,
@@ -76,12 +77,6 @@ const MenuItem = React.createClass({
       disabled: false,
       active: false,
     };
-  },
-
-  componentWillUnmount() {
-    if (this.state.open) {
-      this.setState({open:false});
-    }
   },
 
   getTheme() {
@@ -167,11 +162,26 @@ const MenuItem = React.createClass({
     let toggleElement;
     let styles = this.getStyles();
 
-    if (this.props.iconClassName) icon = <FontIcon style={this.mergeStyles(styles.icon, this.props.iconStyle, this.props.selected && styles.rootWhenSelected)} className={this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon style={this.mergeStyles(styles.iconRight, this.props.iconRightStyle)} className={this.props.iconRightClassName} />;
+    if (this.props.iconClassName) {
+      icon = (
+        <FontIcon style={this.mergeStyles(styles.icon, this.props.iconStyle,
+          this.props.selected && styles.rootWhenSelected)}
+          className={this.props.iconClassName} />
+      );
+    }
+    if (this.props.iconRightClassName) {
+      iconRight = (
+        <FontIcon style={this.mergeStyles(styles.iconRight, this.props.iconRightStyle)}
+          className={this.props.iconRightClassName} />
+      );
+    }
     if (this.props.data) data = <span style={this.prepareStyles(styles.data)}>{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span style={this.prepareStyles(styles.number)}>{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span style={this.prepareStyles(styles.style)}>{this.props.attribute}</span>;
+    if (this.props.number !== undefined) {
+      number = <span style={this.prepareStyles(styles.number)}>{this.props.number}</span>;
+    }
+    if (this.props.attribute !== undefined) {
+      attribute = <span style={this.prepareStyles(styles.style)}>{this.props.attribute}</span>;
+    }
     if (this.props.icon) icon = this.props.icon;
 
     if (this.props.toggle) {
@@ -182,7 +192,6 @@ const MenuItem = React.createClass({
         onMouseEnter,
         onMouseLeave,
         children,
-        label,
         style,
         ...other,
       } = this.props;

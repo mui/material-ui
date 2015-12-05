@@ -5,6 +5,10 @@ import Spacing from '../spacing';
 export default {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
+  zIndex: {
+    layer: 20,
+    popover: 20,
+  },
   palette: {
     primary1Color: Colors.cyan700,
     primary2Color: Colors.cyan700,
@@ -17,5 +21,7 @@ export default {
     canvasColor: '#303030',
     borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
     disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
+    pickerHeaderColor: ColorManipulator.fade(Colors.fullWhite, 0.12),
+    clockCircleColor: ColorManipulator.fade(Colors.fullWhite, 0.12),
   },
 };

@@ -28,6 +28,7 @@ const Menu = React.createClass({
   propTypes: {
     animated: React.PropTypes.bool,
     autoWidth: React.PropTypes.bool,
+    children: React.PropTypes.node,
     desktop: React.PropTypes.bool,
     initiallyKeyboardFocused: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
@@ -39,6 +40,8 @@ const Menu = React.createClass({
     openDirection: PropTypes.corners,
     selectedMenuItemStyle: React.PropTypes.object,
     style: React.PropTypes.object,
+    value: React.PropTypes.any,
+    valueLink: React.PropTypes.object,
     width: PropTypes.stringOrNumber,
     zDepth: PropTypes.zDepth,
   },

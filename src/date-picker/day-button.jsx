@@ -8,7 +8,9 @@ import ThemeManager from '../styles/theme-manager';
 
 const DayButton = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -17,6 +19,7 @@ const DayButton = React.createClass({
   propTypes: {
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
+    onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
   },
@@ -144,7 +147,9 @@ const DayButton = React.createClass({
   },
 
   _handleKeyboardFocus(e, keyboardFocused) {
-    if (!this.props.disabled && this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+    if (!this.props.disabled && this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+    }
   },
 
 });

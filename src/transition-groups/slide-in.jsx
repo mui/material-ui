@@ -40,6 +40,7 @@ const SlideIn = React.createClass({
 
   propTypes: {
     childStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
     enterDelay: React.PropTypes.number,
     style: React.PropTypes.object,

@@ -90,7 +90,8 @@ export default class AppBarPage extends React.Component {
             name: 'title',
             type: 'node',
             header: 'optional',
-            desc: 'The title to display on the app bar. Could be number, string, element or an array containing these types.',
+            desc: 'The title to display on the app bar. ' +
+              'Could be number, string, element or an array containing these types.',
           },
           {
             name: 'zDepth',

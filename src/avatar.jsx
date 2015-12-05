@@ -25,6 +25,7 @@ const Avatar = React.createClass({
 
   propTypes: {
     backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
     color: React.PropTypes.string,
     icon: React.PropTypes.element,
     size: React.PropTypes.number,

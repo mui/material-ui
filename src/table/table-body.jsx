@@ -9,7 +9,10 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableBody = React.createClass({
 
-  mixins: [ClickAwayable, StylePropable],
+  mixins: [
+    ClickAwayable,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -28,6 +31,8 @@ const TableBody = React.createClass({
 
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     deselectOnClickaway: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
     multiSelectable: React.PropTypes.bool,
@@ -72,7 +77,8 @@ const TableBody = React.createClass({
     let newState = {};
 
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      let lastSelectedRow = this.state.selectedRows.length ? this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
+      const lastSelectedRow = this.state.selectedRows.length ?
+        this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
 
       newState.selectedRows = [lastSelectedRow];
     } else {

@@ -5,7 +5,9 @@ import ThemeManager from '../styles/theme-manager';
 
 const GridList = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -13,6 +15,7 @@ const GridList = React.createClass({
 
   propTypes: {
     cellHeight: React.PropTypes.number,
+    children: React.PropTypes.node,
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
     style: React.PropTypes.object,

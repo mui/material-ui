@@ -17,6 +17,11 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 const TransitionItem = React.createClass({
   mixins: [StylePropable],
 
+  propTypes: {
+    children: React.PropTypes.node,
+    style: React.PropTypes.object,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -79,11 +84,12 @@ const TransitionItem = React.createClass({
   render() {
     let {
       style,
+      children,
       ...other,
     } = this.props;
 
     return <div {...other} style={this.prepareStyles(this.state.style, style)}>
-        {this.props.children}
+        {children}
       </div>;
   },
 });
@@ -113,6 +119,7 @@ const DialogInline = React.createClass({
     autoDetectWindowHeight: React.PropTypes.bool,
     autoScrollBodyContent: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
     modal: React.PropTypes.bool,
@@ -143,6 +150,11 @@ const DialogInline = React.createClass({
       repositionOnUpdate: true,
       open: null,
     };
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentDidMount() {
@@ -253,9 +265,8 @@ const DialogInline = React.createClass({
     );
   },
 
-  _getAction(actionJSON, key) {
+  _getAction(actionJSON) {
     let props = {
-      key: key,
       secondary: true,
       onClick: actionJSON.onClick,
       onTouchTap: () => {
@@ -303,7 +314,7 @@ const DialogInline = React.createClass({
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
-          currentAction = this._getAction(currentAction, i);
+          currentAction = this._getAction(currentAction);
         }
 
         actionObjects.push(currentAction);
@@ -311,7 +322,7 @@ const DialogInline = React.createClass({
 
       actionContainer = (
         <div style={this.prepareStyles(actionStyle)}>
-          {actionObjects}
+          {React.Children.toArray(actionObjects)}
         </div>
       );
     }
@@ -386,7 +397,6 @@ const DialogInline = React.createClass({
 });
 
 
-const wrapperStyle = {position:'fixed', top:0, left:0, zIndex:20};
 const Dialog = React.createClass({
 
   propTypes: {
@@ -410,6 +420,21 @@ const Dialog = React.createClass({
     titleStyle: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   getInitialState() {
     if (process.env.NODE_ENV !== 'production') {
       this._testDeprecations();
@@ -429,9 +454,9 @@ const Dialog = React.createClass({
 
   getDefaultProps() {
     return {
-      open:null,
-      defaultOpen:false,
-      modal:false,
+      open: null,
+      defaultOpen: false,
+      modal: false,
     };
   },
 
@@ -455,15 +480,13 @@ const Dialog = React.createClass({
 
   render() {
     return (
-      <RenderToLayer render={this.renderLayer} open={this.state.open} />
+      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
     );
   },
 
   renderLayer() {
     return (
-      <div style={wrapperStyle}>
-        <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.state.open} />
-      </div>
+      <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.state.open} />
     );
   },
 
@@ -476,9 +499,7 @@ const Dialog = React.createClass({
 
     warning(!(typeof this.props.onDismiss === 'function'),
       'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
-
   },
-
 
   show() {
     warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
@@ -514,10 +535,6 @@ const Dialog = React.createClass({
     this.setState({
       open: false,
     }, this._onDismiss);
-  },
-
-  layerWillUnmount() {
-    if (this.props.onDismiss) this.props.onDismiss();
   },
 
   isOpen() {

@@ -14,6 +14,7 @@ const TouchRipple = React.createClass({
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
+    children: React.PropTypes.node,
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
     style: React.PropTypes.object,

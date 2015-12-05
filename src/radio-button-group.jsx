@@ -4,9 +4,10 @@ import StylePropable from './mixins/style-propable';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
-
 const RadioButtonGroup = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -24,6 +25,7 @@ const RadioButtonGroup = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     defaultSelected: React.PropTypes.string,
     labelPosition: React.PropTypes.oneOf(['left', 'right']),

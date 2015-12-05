@@ -28,6 +28,7 @@ const DropDownIcon = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     closeOnMenuItemTouchTap: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,
     iconLigature: React.PropTypes.string,

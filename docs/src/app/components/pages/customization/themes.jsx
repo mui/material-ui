@@ -56,6 +56,8 @@ const ThemesPage = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
       isThemeDark: false,
+      dialogOpen: false,
+      leftNavOpen: false,
     };
   },
 
@@ -174,6 +176,7 @@ const ThemesPage = React.createClass({
       '    canvasColor: Colors.white,\n' +
       '    borderColor: Colors.grey300,\n' +
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
+      '    pickerHeaderColor: Colors.cyan500,\n' +
       '  },\n' +
       '};\n';
 
@@ -285,7 +288,8 @@ const ThemesPage = React.createClass({
           {
             name: 'getMuiTheme(rawTheme)',
             header: 'returns: calculated muiTheme object',
-            desc: 'Accepts one argument which is a reference to a raw theme object, and returns the calculated mui theme object',
+            desc: `Accepts one argument which is a reference to a raw theme object,
+              and returns the calculated mui theme object`,
           },
           {
             name: 'modifyRawThemeSpacing(muiTheme, newSpacing)',
@@ -325,7 +329,8 @@ const ThemesPage = React.createClass({
 
         <div style={styles.bottomBorderWrapper}>
           <p>
-            We changed how themes work in v0.12.0 (check out <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
+            We changed how themes work in v0.12.0 (check out
+              <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
             There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
             The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
             The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
@@ -336,10 +341,15 @@ const ThemesPage = React.createClass({
           </p>
 
           <p>
-            We ship two raw themes with Material-UI: light and dark. They are located under <code style={styles.inlineCode}>
-            &#47;lib&#47;styles&#47;raw-themes&#47;</code> in the Material-UI root directory. Custom themes may be
-            defined similarly. The ThemeManager module calculates the mui theme and acts as an interface to modify the theme.
-            Before we discuss how to apply custom themes to an application, let&#39;s look at the functions provided by ThemeManager.
+            We ship two raw themes with Material-UI: light and dark. They are located under
+            <code style={styles.inlineCode}>
+            &#47;lib&#47;styles&#47;raw-themes&#47;
+            </code>
+            in the Material-UI root directory. Custom themes may be
+            defined similarly.
+            The ThemeManager module calculates the mui theme and acts as an interface to modify the theme.
+            Before we discuss how to apply custom themes to an application, let&#39;s
+            look at the functions provided by ThemeManager.
           </p>
         </div>
 
@@ -352,18 +362,23 @@ const ThemesPage = React.createClass({
         <h2 style={styles.headline}>Custom Themes</h2>
         <p>
           All Material-UI components use the light theme by default so you can start including them in your project
-          without having to worry about theming. However, it is quite straightforward to style components to your liking.
+          without having to worry about theming.
+          However, it is quite straightforward to style components to your liking.
         </p>
 
         <p>
-          Internally, Material-UI components use React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
+          Internally, Material-UI components use React&#39;s
+          <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
           context</a> feature to implement theming. Context is a way to pass down values through the component
-          hierarchy without having to use props at every level. In fact, context is very convenient for concepts like theming,
+          hierarchy without having to use props at every level.
+          In fact, context is very convenient for concepts like theming,
           which are usually implemented in a hierarchical manner.
         </p>
 
         <p>
-          There are two recommended ways to apply custom themes: using React lifecycle methods with the context feature, <b>or</b>,
+          There are two recommended ways to apply custom themes:
+          using React lifecycle methods with the context feature,
+          <b>or</b>,
           using an ES7-style decorator. To start off, define your own raw theme in a JS file like so:
         </p>
 
@@ -384,7 +399,8 @@ const ThemesPage = React.createClass({
         <h3 style={styles.title}>2. Using ES7-style Decorator</h3>
         <p>
           Alternatively, we have provided an ES7-style theme decorator that you can use to apply your
-          custom theme. Keep in mind that in order to use the decorator, you must use the ES6-style <i>class</i> syntax
+          custom theme.
+          Keep in mind that in order to use the decorator, you must use the ES6-style <i>class</i> syntax
           to declare your app component. Moreover, React may not be able to automatically bind event handlers
           to your component&#39;s <i>this</i>. Arrow functions allow you to overcome this limitation.
         </p>
@@ -392,7 +408,8 @@ const ThemesPage = React.createClass({
           <CodeBlock>{decoratorExampleCode}</CodeBlock>
         </Paper>
         <p>
-          It is worth pointing out that underneath the covers, the decorator is also using React lifecycle methods
+          It is worth pointing out that underneath the covers,
+          the decorator is also using React lifecycle methods
           with the context feature.
         </p>
 
@@ -400,7 +417,8 @@ const ThemesPage = React.createClass({
 
         <p>
           Once you have obtained the calculated mui theme in your app component, you can easily
-          override specific attributes for particular components. These overrides can be performed at any level
+          override specific attributes for particular components.
+          These overrides can be performed at any level
           in the hierarchy and will only apply from that point downward.
         </p>
 
@@ -416,13 +434,16 @@ const ThemesPage = React.createClass({
         <p>
           We recommend that you use state for intermediary storage of the theme, and always access the theme
           using <code style={styles.inlineCode}>this.state</code>. Then, to modify the theme,
-          use <code style={styles.inlineCode}>this.setState()</code> in an appropriate React lifecycle method. This is good practice because
+          use <code style={styles.inlineCode}>this.setState()</code> in an appropriate React lifecycle method.
+          This is good practice because
           React componenets re-render every time the state of the component is updated.
         </p>
 
         <p>
-          Coming back to our example, let&#39;s say that inside <code style={styles.inlineCode}>SpecificPageInApp</code> and
-          all of its children, the text color of the app bar should be deep purple. This can be accomplished as follows:
+          Coming back to our example, let&#39;s say that inside
+          <code style={styles.inlineCode}>SpecificPageInApp</code> and
+          all of its children, the text color of the app bar should be deep purple.
+          This can be accomplished as follows:
         </p>
 
         <Paper style={styles.codeExample}>
@@ -430,19 +451,23 @@ const ThemesPage = React.createClass({
         </Paper>
 
         <p>
-          Check out the <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js"><code style={styles.inlineCode}>theme-manager.js</code></a> file for a complete list of
+          Check out the <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
+          <code style={styles.inlineCode}>theme-manager.js</code></a> file for a complete list of
           component-specific theme values that may be overridden.
         </p>
 
         <p>
-          The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to <code style={styles.inlineCode}>true</code> by
-          default. This allows for some optimization when rendering Material-UI components. Change this to <code style={styles.inlineCode}>false</code> iff
+          The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to
+          <code style={styles.inlineCode}>true</code> by
+          default. This allows for some optimization when rendering Material-UI components. Change this to
+          <code style={styles.inlineCode}>false</code> iff
           the <code style={styles.inlineCode}>muiTheme</code> object in your app can change during runtime.
         </p>
 
         <p>
           <b>Never</b> directly modify the raw theme (spacing / palette / fontFamily) of an mui theme object.
-          Doing so will result in styling inconsistencies across your components. Always use the modifiers provided in the
+          Doing so will result in styling inconsistencies across your components.
+          Always use the modifiers provided in the
           ThemeManager module.
         </p>
 
@@ -491,7 +516,6 @@ const ThemesPage = React.createClass({
 
     return (
       <ClearFix>
-
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
@@ -523,17 +547,17 @@ const ThemesPage = React.createClass({
               <RadioButtonGroup
                 name="shipSpeed"
                 defaultSelected="usd">
-                  <RadioButton
-                    value="usd"
-                    label="USD" />
-                  <RadioButton
-                    value="euro"
-                    label="Euro"
-                    defaultChecked={true} />
-                 <RadioButton
-                    value="mxn"
-                    label="MXN"
-                    disabled={true}/>
+                <RadioButton
+                  value="usd"
+                  label="USD" />
+                <RadioButton
+                  value="euro"
+                  label="Euro"
+                  defaultChecked={true} />
+                <RadioButton
+                  value="mxn"
+                  label="MXN"
+                  disabled={true}/>
               </RadioButtonGroup>
             </div>
             <div style={styles.container}>
@@ -574,7 +598,8 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
-              <Dialog ref="dialog" title="Dialog With Standard Actions" actions={standardActions}>
+              <Dialog open={this.state.dialogOpen} title="Dialog With Standard Actions" actions={standardActions}
+                onRequestClose={this.handleRequestCloseDialog}>
                 The actions in this window are created from the json that&#39;s passed in.
               </Dialog>
             </div>
@@ -583,9 +608,10 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                  onTouchTap={this.handleClickNav}
-                  label="View LeftNav" />
-              <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
+                onTouchTap={this.handleTouchTapLeftNav}
+                label="View LeftNav" />
+              <LeftNav open={this.state.leftNavOpen} docked={false} menuItems={menuItemsNav}
+                onRequestChange={this.handleRequestChangeLeftNav} />
             </div>
           </div>
 
@@ -607,14 +633,13 @@ const ThemesPage = React.createClass({
 
   getThemeExamples() {
     return (
-      <Tabs>
-        <Tab label="Light Theme (Default)" onClick={this.onTabChange.bind(this, false)}>
-          {this.getComponentGroup()}
-        </Tab>
-        <Tab label="Dark Theme" onClick={this.onTabChange.bind(this, true)}>
-          {this.getComponentGroup()}
-        </Tab>
-      </Tabs>
+      <div>
+        <Tabs>
+          <Tab label="Light Theme (Default)" onClick={this.onTabChange.bind(this, false)} />
+          <Tab label="Dark Theme" onClick={this.onTabChange.bind(this, true)} />
+        </Tabs>
+        {this.getComponentGroup()}
+      </div>
     );
   },
 
@@ -641,8 +666,16 @@ const ThemesPage = React.createClass({
     this.refs.snackbar.dismiss();
   },
 
-  handleClickNav() {
-    this.refs.leftNav.toggle();
+  handleTouchTapLeftNav() {
+    this.setState({
+      leftNavOpen: true,
+    });
+  },
+
+  handleRequestChangeLeftNav(open) {
+    this.setState({
+      leftNavOpen: open,
+    });
   },
 
   handleClickSnackbar() {
@@ -650,7 +683,15 @@ const ThemesPage = React.createClass({
   },
 
   handleTouchTapDialog() {
-    this.refs.dialog.show();
+    this.setState({
+      dialogOpen: true,
+    });
+  },
+
+  handleRequestCloseDialog() {
+    this.setState({
+      dialogOpen: false,
+    });
   },
 
   _onDialogSubmit() {

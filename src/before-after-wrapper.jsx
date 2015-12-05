@@ -51,6 +51,7 @@ const BeforeAfterWrapper = React.createClass({
     afterStyle: React.PropTypes.object,
     beforeElementType: React.PropTypes.string,
     beforeStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     elementType: React.PropTypes.string,
     style: React.PropTypes.object,
   },
