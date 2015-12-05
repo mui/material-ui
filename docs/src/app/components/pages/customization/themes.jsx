@@ -56,6 +56,8 @@ const ThemesPage = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
       isThemeDark: false,
+      dialogOpen: false,
+      leftNavOpen: false,
     };
   },
 
@@ -492,7 +494,6 @@ const ThemesPage = React.createClass({
 
     return (
       <ClearFix>
-
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
@@ -575,7 +576,8 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
-              <Dialog ref="dialog" title="Dialog With Standard Actions" actions={standardActions}>
+              <Dialog open={this.state.dialogOpen} title="Dialog With Standard Actions" actions={standardActions}
+                onRequestClose={this.handleRequestCloseDialog}>
                 The actions in this window are created from the json that&#39;s passed in.
               </Dialog>
             </div>
@@ -584,9 +586,10 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                onTouchTap={this.handleClickNav}
+                onTouchTap={this.handleTouchTapLeftNav}
                 label="View LeftNav" />
-              <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
+              <LeftNav open={this.state.leftNavOpen} docked={false} menuItems={menuItemsNav}
+                onRequestChange={this.handleRequestChangeLeftNav} />
             </div>
           </div>
 
@@ -608,14 +611,13 @@ const ThemesPage = React.createClass({
 
   getThemeExamples() {
     return (
-      <Tabs>
-        <Tab label="Light Theme (Default)" onClick={this.onTabChange.bind(this, false)}>
-          {this.getComponentGroup()}
-        </Tab>
-        <Tab label="Dark Theme" onClick={this.onTabChange.bind(this, true)}>
-          {this.getComponentGroup()}
-        </Tab>
-      </Tabs>
+      <div>
+        <Tabs>
+          <Tab label="Light Theme (Default)" onClick={this.onTabChange.bind(this, false)} />
+          <Tab label="Dark Theme" onClick={this.onTabChange.bind(this, true)} />
+        </Tabs>
+        {this.getComponentGroup()}
+      </div>
     );
   },
 
@@ -642,8 +644,16 @@ const ThemesPage = React.createClass({
     this.refs.snackbar.dismiss();
   },
 
-  handleClickNav() {
-    this.refs.leftNav.toggle();
+  handleTouchTapLeftNav() {
+    this.setState({
+      leftNavOpen: true,
+    });
+  },
+
+  handleRequestChangeLeftNav(open) {
+    this.setState({
+      leftNavOpen: open,
+    });
   },
 
   handleClickSnackbar() {
@@ -651,7 +661,15 @@ const ThemesPage = React.createClass({
   },
 
   handleTouchTapDialog() {
-    this.refs.dialog.show();
+    this.setState({
+      dialogOpen: true,
+    });
+  },
+
+  handleRequestCloseDialog() {
+    this.setState({
+      dialogOpen: false,
+    });
   },
 
   _onDialogSubmit() {
