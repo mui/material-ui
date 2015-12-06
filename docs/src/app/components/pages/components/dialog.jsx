@@ -116,6 +116,12 @@ export default class DialogPage extends React.Component {
             header: 'default: false',
             desc: 'If set to true, the body content of the dialog will be scrollable.',
           },
+          {
+            name: 'width',
+            type: 'any',
+            header: 'default: 75%',
+            desc: 'Changes the width of the dialog.',
+          },
         ],
       },
       {
