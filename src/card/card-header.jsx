@@ -59,6 +59,7 @@ const CardHeader = React.createClass({
     return {
       titleColor: Styles.Colors.darkBlack,
       subtitleColor: Styles.Colors.lightBlack,
+      avatar: null,
     };
   },
 
@@ -103,8 +104,9 @@ const CardHeader = React.createClass({
       let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
       avatar = React.cloneElement(avatar, {style:avatarMergedStyle});
     }
-    else
+    else if (avatar !== null) {
       avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;
+    }
 
     return (
       <div {...this.props} style={rootStyle}>

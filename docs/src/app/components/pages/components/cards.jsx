@@ -140,9 +140,8 @@ export default class CardPage extends React.Component {
           <br />
           <Card initiallyExpanded={true}>
             <CardHeader
-              title="Title"
+              title="Without Avatar"
               subtitle="Subtitle"
-              avatar={<Avatar style={{color:'red'}}>A</Avatar>}
               actAsExpander={true}
               showExpandableButton={true} />
             <CardText expandable={true}>
