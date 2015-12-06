@@ -34,7 +34,7 @@ export default {
   ListDivider: require('./lists/list-divider'),
   ListItem: require('./lists/list-item'),
   Menu: require('./menu/menu'),
-  MenuItem: require('./menu/menu-item'),
+  MenuItem: require('./menus/menu-item'),
   Mixins: require('./mixins/'),
   Overlay: require('./overlay'),
   Paper: require('./paper'),
