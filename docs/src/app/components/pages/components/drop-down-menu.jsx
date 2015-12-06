@@ -64,6 +64,13 @@ export default class DropDownMenuPage extends React.Component {
                   'DropDownMenu is expanded.',
           },
           {
+            name: 'menuStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the Menu when the ' +
+                  'DropDownMenu is expanded.',
+          },
+          {
             name: 'selectedIndex',
             type: 'number',
             header: 'default: 0',
