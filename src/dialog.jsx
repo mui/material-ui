@@ -10,7 +10,6 @@ import RenderToLayer from './render-to-layer';
 import Paper from './paper';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
-import warning from 'warning';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
@@ -409,13 +408,9 @@ const Dialog = React.createClass({
     bodyStyle: React.PropTypes.object,
     contentClassName: React.PropTypes.string,
     contentStyle: React.PropTypes.object,
-    defaultOpen: React.PropTypes.bool,
     modal: React.PropTypes.bool,
-    onDismiss: React.PropTypes.func,
     onRequestClose: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    openImmediately: React.PropTypes.bool,
+    open: React.PropTypes.bool.isRequired,
     repositionOnUpdate: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
@@ -439,26 +434,13 @@ const Dialog = React.createClass({
   },
 
   getInitialState() {
-    if (process.env.NODE_ENV !== 'production') {
-      this._testDeprecations();
-    }
-
-    let open = this.props.open;
-
-    if (open === null) {
-      open = (this.props.openImmediately || this.props.defaultOpen);
-    }
-
     return {
-      open: open,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
   getDefaultProps() {
     return {
-      open: null,
-      defaultOpen: false,
       modal: false,
     };
   },
@@ -469,16 +451,6 @@ const Dialog = React.createClass({
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    if (process.env.NODE_ENV !== 'production') {
-      this._testDeprecations();
-    }
-    if (nextProps.open !== this.props.open) {
-      if (nextProps.open && !this.state.open) {
-        this._show();
-      } else if (!nextProps.open && this.state.open) {
-        this._dismiss();
-      }
-    }
   },
 
   render() {
@@ -489,59 +461,8 @@ const Dialog = React.createClass({
 
   renderLayer() {
     return (
-      <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.state.open} />
+      <DialogInline {...this.props} onRequestClose={this.props.onRequestClose} open={this.props.open} />
     );
-  },
-
-  _testDeprecations() {
-    warning(!this.props.hasOwnProperty('openImmediately'),
-      'openImmediately has been deprecated in favor of defaultOpen');
-
-    warning(!(typeof this.props.onShow === 'function'),
-      'onShow will be removed in favor of explicitly setting open');
-
-    warning(!(typeof this.props.onDismiss === 'function'),
-      'onDismiss will be removed in favor of explicitly setting open and can be replaced by onRequestClose');
-  },
-
-  show() {
-    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
-
-    this._show();
-  },
-
-  _onShow() {
-    if (this.props.onShow) {
-      this.props.onShow();
-    }
-  },
-
-  _show() {
-    this.setState({
-      open: true,
-    }, this._onShow);
-  },
-
-  dismiss() {
-    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
-
-    this._dismiss();
-  },
-
-  _onDismiss() {
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
-  },
-
-  _dismiss() {
-    this.setState({
-      open: false,
-    }, this._onDismiss);
-  },
-
-  isOpen() {
-    return this.state.openImmediately;
   },
 
 });
