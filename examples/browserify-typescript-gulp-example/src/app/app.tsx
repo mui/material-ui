@@ -1,5 +1,7 @@
 /// <reference path="../typings/tsd.d.ts"/>
 
+import 'core-js'; // Support for older browsers
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Main from './components/main'; // Our custom react component
