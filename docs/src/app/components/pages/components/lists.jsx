@@ -216,6 +216,12 @@ This is automatically disabled if leftCheckbox or rightToggle is set.`,
               'tag will be rendered.',
           },
           {
+            name: 'primaryTogglesNestedList',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If provided, tapping on the primary text of the item toggles the nested list.',
+          },
+          {
             name: 'rightAvatar',
             type: 'element',
             header: 'optional',
@@ -481,6 +487,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 primaryText="Inbox"
                 leftIcon={<ContentInbox />}
                 initiallyOpen={true}
+                primaryTogglesNestedList={true}
                 nestedItems={[
                   <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />,
                   <ListItem

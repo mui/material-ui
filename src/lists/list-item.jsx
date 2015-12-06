@@ -46,6 +46,7 @@ const ListItem = React.createClass({
     onTouchStart: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     primaryText: React.PropTypes.node,
+    primaryTogglesNestedList: React.PropTypes.bool,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
@@ -77,6 +78,7 @@ const ListItem = React.createClass({
       onMouseLeave: () => {},
       onNestedListToggle: () => {},
       onTouchStart: () => {},
+      primaryTogglesNestedList: false,
       secondaryTextLines: 1,
     };
   },
@@ -123,6 +125,7 @@ const ListItem = React.createClass({
       rightIconButton,
       rightToggle,
       primaryText,
+      primaryTogglesNestedList,
       secondaryText,
       secondaryTextLines,
       style,
@@ -360,7 +363,7 @@ const ListItem = React.createClass({
           onMouseLeave={this._handleMouseLeave}
           onMouseEnter={this._handleMouseEnter}
           onTouchStart={this._handleTouchStart}
-          onTouchTap={onTouchTap}
+          onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
           ref="enhancedButton"
           style={this.mergeStyles(styles.root, style)}>
           <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
