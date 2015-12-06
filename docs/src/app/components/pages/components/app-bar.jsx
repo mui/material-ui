@@ -129,6 +129,12 @@ export default class AppBarPage extends React.Component {
   }
 
   render() {
+    let styles = {
+      root: {
+        zIndex: 3,
+      },
+    };
+
     return (
       <ComponentDoc
         name="AppBar"
@@ -150,12 +156,14 @@ import AppBar from 'material-ui/lib/app-bar';
         <CodeExample code={Code}>
           <AppBar
             title="Title"
-            iconClassNameRight="muidocs-icon-navigation-expand-more" />
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            style={styles.root} />
           <br />
           <AppBar
             title={<span style={styles.title} onTouchTap={this._onTouchTap}>Title</span>}
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-            iconElementRight={<FlatButton label="Save" />} />
+            iconElementRight={<FlatButton label="Save" />}
+            style={styles.root} />
           <br />
           <AppBar
             title="Title"
@@ -172,7 +180,8 @@ import AppBar from 'material-ui/lib/app-bar';
                 <MenuItem primaryText="Help" />
                 <MenuItem primaryText="Sign out" />
               </IconMenu>
-          } />
+            }
+            style={styles.root} />
         </CodeExample>
       </ComponentDoc>
     );
