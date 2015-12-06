@@ -129,6 +129,7 @@ const DialogInline = React.createClass({
     style: React.PropTypes.object,
     title: React.PropTypes.node,
     titleStyle: React.PropTypes.object,
+    width: React.PropTypes.any,
   },
 
   windowListeners: {
@@ -149,6 +150,7 @@ const DialogInline = React.createClass({
       actions: [],
       repositionOnUpdate: true,
       open: null,
+      width: '75%',
     };
   },
 
@@ -185,7 +187,7 @@ const DialogInline = React.createClass({
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       transition: Transitions.easeOut(),
       position: 'relative',
-      width: '75%',
+      width: this.props.width,
       maxWidth: spacing.desktopKeylineIncrement * 12,
       margin: '0 auto',
       zIndex: 10,
@@ -418,6 +420,7 @@ const Dialog = React.createClass({
     style: React.PropTypes.object,
     title: React.PropTypes.node,
     titleStyle: React.PropTypes.object,
+    width: React.PropTypes.any,
   },
 
   contextTypes: {
