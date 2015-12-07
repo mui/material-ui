@@ -53,6 +53,8 @@ const SelectField = React.createClass({
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
     type: React.PropTypes.string,
+    underlineDisabledStyle: React.PropTypes.object,
+    underlineFocusStyle: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
     value: React.PropTypes.any,
   },
@@ -135,6 +137,8 @@ const SelectField = React.createClass({
       style,
       labelStyle,
       iconStyle,
+      underlineDisabledStyle,
+      underlineFocusStyle,
       underlineStyle,
       errorStyle,
       selectFieldRoot,
@@ -161,7 +165,11 @@ const SelectField = React.createClass({
       errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
       onFocus: onFocus,
       onBlur: onBlur,
+      underlineDisabledStyle,
+      underlineFocusStyle,
+      underlineStyle,
     };
+
     const dropDownMenuProps = {
       menuItems: menuItems,
       disabled: disabled,

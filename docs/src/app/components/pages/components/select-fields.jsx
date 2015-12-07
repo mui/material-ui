@@ -145,6 +145,12 @@ const SelectFieldsPage = React.createClass({
             desc: 'Override the inline-styles of the SelectField\'s underline element when disabled.',
           },
           {
+            name: 'underlineFocusStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Override the inline-styles of the SelectField\'s underline element when focussed.',
+          },
+          {
             name: 'underlineStyle',
             type: 'object',
             header: 'optional',
