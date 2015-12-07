@@ -1,8 +1,7 @@
 import React from 'react/addons';
 import DropDownMenu from 'drop-down-menu';
 import injectTheme from './fixtures/inject-theme';
-
-const TestUtils = React.addons.TestUtils;
+import TestUtils from 'react-addons-test-utils';
 
 describe('DropDownMenu', () => {
   let ThemedDropdownMenu;

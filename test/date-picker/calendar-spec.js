@@ -8,8 +8,7 @@ import CalendarToolbar from 'date-picker/calendar-toolbar';
 import IconButton from 'icon-button';
 import injectTheme from '../fixtures/inject-theme';
 import DateTime from 'utils/date-time';
-
-const TestUtils = React.addons.TestUtils;
+import TestUtils from 'react-addons-test-utils';
 
 describe(`Calendar`, () => {
   let ThemedCalendar;

@@ -1,9 +1,7 @@
 import React from 'react/addons';
 import Checkbox from 'checkbox';
 import injectTheme from './fixtures/inject-theme';
-
-const TestUtils = React.addons.TestUtils;
-
+import TestUtils from 'react-addons-test-utils';
 
 describe('Checkbox', () => {
   /* eslint-disable max-len */
