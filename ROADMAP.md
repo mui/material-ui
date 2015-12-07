@@ -26,4 +26,4 @@
 
 ##### Breaking Changes
 
-- [ ] Remove Dialog's deprecated API.
+- [x] Remove Dialog's deprecated API.
