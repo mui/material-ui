@@ -13,6 +13,7 @@
 1. I18n for the doc-site.
 1. Better accessibility support.
 1. Full support for react-native.
+1. Improve performance with `shouldComponentUpdate` and removed inefficient computations.
 
 ##### Breaking Changes
 
