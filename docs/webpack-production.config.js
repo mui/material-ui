@@ -63,8 +63,10 @@ var config = {
       {from: 'www/images', to: 'images'}
     ], path.resolve(__dirname,"src"))
   ],
+  externals: {
+    fs: 'fs', // To remove once https://github.com/benjamn/recast/pull/238 is released
+  },
   module: {
-        noParse: [/autoit.js/],
         //eslint loader
         preLoaders: [
           {

@@ -56,8 +56,10 @@ var config = {
     //Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin()
   ],
+  externals: {
+    fs: 'js', // To remove once https://github.com/benjamn/recast/pull/238 is released
+  },
   module: {
-        noParse: [/autoit.js/],
         //eslint loader
         preLoaders: [
           {
