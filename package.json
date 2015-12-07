@@ -4,8 +4,11 @@
   "version": "0.14.0-rc1",
   "description": "Material Design UI components built with React",
   "main": "./lib",
+  "typescript": {
+    "definition": "./typings/material-ui/material-ui.d.ts"
+  },
   "scripts": {
-    "test": "npm run test-base -- --single-run",
+    "test": "npm run test-base -- --single-run && gulp typings:test",
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
     "prebuild": "rimraf lib",
@@ -60,6 +63,7 @@
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "gulp-if": "^2.0.0",
+    "gulp-typescript": "^2.10.0",
     "html-webpack-plugin": "^1.6.1",
     "karma": "^0.13.3",
     "karma-browserify": "^4.2.1",

@@ -1,0 +1,15 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "react/react.d.ts": {
+      "commit": "8cd79728efa7652d934b2703feeb68bb4802aebb"
+    },
+    "react/react-addons-linked-state-mixin.d.ts": {
+      "commit": "8cd79728efa7652d934b2703feeb68bb4802aebb"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var gulpIf = require('gulp-if');
+var gulpTs = require('gulp-typescript');
 
 var fix = false;
 
@@ -49,4 +50,13 @@ gulp.task('eslint:test', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(gulpIf(isFixed, gulp.dest('test')));
+});
+
+gulp.task('typings:test', function () {
+	return gulp.src('typings/**/*.tsx')
+		.pipe(gulpTs({
+			noImplicitAny: true,
+			module: 'commonjs',
+			jsx: 'React'
+		}));
 });
