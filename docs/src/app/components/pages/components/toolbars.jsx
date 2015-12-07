@@ -9,6 +9,7 @@ import ToolbarsExampleSimple from '../../Toolbars/ExampleSimple';
 import toolbarsExampleSimpleCode from '!raw!../../Toolbars/ExampleSimple';
 import MarkdownElement from '../../MarkdownElement';
 import toolbarsReadmeText from '../../Toolbars/README';
+import toolbarReadmeText from '../../Toolbars/Toolbar';
 import toolbarGroupReadmeText from '../../Toolbars/ToolbarGroup';
 import toolbarSeparatorReadmeText from '../../Toolbars/ToolbarSeparator';
 import toolbarTitleReadmeText from '../../Toolbars/ToolbarTitle';
@@ -28,19 +29,16 @@ export default class ToolbarPage extends React.Component {
         </CodeExample>
         <PropTypeDescription
           code={toolbarCode}
-          component='Toolbar' />
+          header={toolbarReadmeText} />
         <PropTypeDescription
           code={toolbarGroupCode}
-          component='ToolbarGroup'
-          description={toolbarGroupReadmeText} />
+          header={toolbarGroupReadmeText} />
         <PropTypeDescription
           code={toolbarSeparatorCode}
-          component='ToolbarSeparator'
-          description={toolbarSeparatorReadmeText} />
+          header={toolbarSeparatorReadmeText} />
         <PropTypeDescription
           code={toolbarTitleCode}
-          component='ToolbarTitle'
-          description={toolbarTitleReadmeText} />
+          header={toolbarTitleReadmeText} />
       </div>
     );
   }

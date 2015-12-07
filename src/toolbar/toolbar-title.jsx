@@ -58,6 +58,7 @@ const ToolbarTitle = React.createClass({
 
   render() {
     let {
+      className,
       style,
       text,
       ...other,
@@ -72,7 +73,7 @@ const ToolbarTitle = React.createClass({
     }, style);
 
     return (
-      <span className={this.props.className} style={styles} {...other} >{text}</span>
+      <span {...other} className={className} style={styles}>{text}</span>
     );
   },
 
