@@ -65,8 +65,6 @@ const TimePickerDialog = React.createClass({
       onAccept,
       format,
       autoOk,
-      onShow,
-      onDismiss,
       ...other,
     } = this.props;
 
@@ -98,14 +96,6 @@ const TimePickerDialog = React.createClass({
 
     const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
 
-    // Those two properties are deprecated, we will remove them at some point
-    if (typeof onDismiss === 'function') {
-      other.onDismiss = onDismiss;
-    }
-    if (typeof onShow === 'function') {
-      other.onShow = onShow;
-    }
-
     return (
       <Dialog {...other}
         ref="dialogWindow"
@@ -126,12 +116,14 @@ const TimePickerDialog = React.createClass({
   },
 
   show() {
+    if (this.props.onShow && !this.state.open) this.props.onShow();
     this.setState({
       open: true,
     });
   },
 
   dismiss() {
+    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
     this.setState({
       open: false,
     });
