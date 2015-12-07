@@ -400,11 +400,12 @@ const Menu = React.createClass({
   },
 
   _handleMenuItemTouchTap(e, item) {
+    let children = this.props.children;
     let multiple = this.props.multiple;
     let valueLink = this.getValueLink(this.props);
     let menuValue = valueLink.value;
     let itemValue = item.props.value;
-    let focusIndex = this.props.children.indexOf(item);
+    let focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
 
     this._setFocusIndex(focusIndex, false);
 
