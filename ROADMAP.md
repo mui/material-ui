@@ -1,0 +1,29 @@
+## Future
+
+1. Full Featured Tabs (close, disable, move, sizing).
+1. Generate import statement for the svg-icons in the docs.
+1. Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
+1. NavBar component (To address the hamburger anti-pattern).
+1. Add jsdoc to the source code (Preparing for auto generation).
+1. Make extensive use of `popover` and `render-to-layer`.
+1. Auto-generate Docs from source-code.
+1. Full ES6 Classes.
+1. Full featured Table.
+1. Comprehensive contribution guide for the docs and changelogs.
+1. I18n for the doc-site.
+1. Better accessibility support.
+1. Full support for react-native.
+
+##### Breaking Changes
+
+* Remove usage of JSON to generate children across the components.
+
+## 0.14.0
+
+- [ ] Deprecate usage of JSON in favor of composability.
+- [ ] Documentation versioning (This is a must before removing deprecations).
+- [ ] Enforce eslint rules.
+
+##### Breaking Changes
+
+- [ ] Remove Dialog's deprecated API.
