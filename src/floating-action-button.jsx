@@ -166,13 +166,15 @@ const FloatingActionButton = React.createClass({
 
     let iconElement;
     if (iconClassName) {
-      iconElement =
+      iconElement = (
         <FontIcon
           className={iconClassName}
           style={this.mergeStyles(
             styles.icon,
             mini && styles.iconWhenMini,
-            iconStyle)}/>;
+            iconStyle)}
+        />
+      );
     }
 
     let children = Children.extend(this.props.children, {

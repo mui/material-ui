@@ -184,9 +184,16 @@ const ClockHours = React.createClass({
     }
 
     return hours.map((hour) => {
-      let isSelected = this._getSelected() === hour;
-      return <ClockNumber key={hour} style={style} isSelected={isSelected} type="hour"
-        value={hour} />;
+      const isSelected = this._getSelected() === hour;
+      return (
+        <ClockNumber
+          key={hour}
+          style={style}
+          isSelected={isSelected}
+          type="hour"
+          value={hour}
+        />
+      );
     });
   },
 

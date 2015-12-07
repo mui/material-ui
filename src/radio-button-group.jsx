@@ -85,17 +85,19 @@ const RadioButtonGroup = React.createClass({
         ...other,
       } = option.props;
 
-      return <RadioButton
-        {...other}
-        ref={option.props.value}
-        name={this.props.name}
-        key={option.props.value}
-        value={option.props.value}
-        label={option.props.label}
-        labelPosition={this.props.labelPosition}
-        onCheck={this._onChange}
-        checked={option.props.value === this.state.selected}/>;
-
+      return (
+        <RadioButton
+          {...other}
+          ref={option.props.value}
+          name={this.props.name}
+          key={option.props.value}
+          value={option.props.value}
+          label={option.props.label}
+          labelPosition={this.props.labelPosition}
+          onCheck={this._onChange}
+          checked={option.props.value === this.state.selected}
+        />
+      );
     }, this);
 
     return (

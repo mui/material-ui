@@ -154,13 +154,15 @@ const TableBody = React.createClass({
     if (!this.props.displayRowCheckbox) return null;
 
     let key = rowProps.rowNumber + '-cb';
-    let checkbox =
+    const checkbox = (
       <Checkbox
         ref="rowSelectCB"
         name={key}
         value="selected"
         disabled={!this.props.selectable}
-        checked={rowProps.selected} />;
+        checked={rowProps.selected}
+      />
+    );
 
     return (
       <TableRowColumn
