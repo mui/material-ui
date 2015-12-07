@@ -217,6 +217,10 @@ const Calendar = React.createClass({
   },
 
   isSelectedDateDisabled() {
+    if (!this.state.displayMonthDay) {
+      return false;
+    }
+
     return this.refs.calendar.isSelectedDateDisabled();
   },
 
