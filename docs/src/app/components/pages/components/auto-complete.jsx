@@ -100,7 +100,7 @@ const colors = [
   'Blue',
   'Purple',
   'Black',
-  'White'
+  'White',
 ];
 
 class AutoCompletePage extends React.Component {
@@ -117,64 +117,63 @@ class AutoCompletePage extends React.Component {
     const desc = 'This component is a type of TextField that allows user to see and select results as they type.';
 
     const componentInfo = [{
-        name: 'props',
-        infoArray: [{
-          name: 'dataSource',
-          type: 'array',
-          header: 'optional',
-          desc: 'Array of type string or type object that populate the auto complete list.',
-          }, {
-          name: 'errorText',
-          type: 'string',
-          header: 'optional',
-          desc: 'See TextField docs.',
-          }, {
-          name: 'floatingLabelText',
-          type: 'string',
-          header: 'optional',
-          desc: 'See TextField docs.',
-          }, {
-          name: 'fullWidth',
-          type: 'string',
-          header: 'optional',
-          desc: 'See TextField docs.',
-          }, {
-          name: 'hintText',
-          type: 'string',
-          header: 'optional',
-          desc: 'See TextField docs.',
-          }, {
-          name: 'showAllItems',
-          type: 'bool',
-          header: 'optional',
-          desc: 'If true, the item list will not be filtered and will show when the control is focused (works like a drop down list).',
-          },
-        ],
+      name: 'props',
+      infoArray: [{
+        name: 'dataSource',
+        type: 'array',
+        header: 'optional',
+        desc: 'Array of type string or type object that populate the auto complete list.',
       }, {
+        name: 'errorText',
+        type: 'string',
+        header: 'optional',
+        desc: 'See TextField docs.',
+      }, {
+        name: 'floatingLabelText',
+        type: 'string',
+        header: 'optional',
+        desc: 'See TextField docs.',
+      }, {
+        name: 'fullWidth',
+        type: 'string',
+        header: 'optional',
+        desc: 'See TextField docs.',
+      }, {
+        name: 'hintText',
+        type: 'string',
+        header: 'optional',
+        desc: 'See TextField docs.',
+      }, {
+        name: 'showAllItems',
+        type: 'bool',
+        header: 'optional',
+        desc: 'If true, the item list will not be filtered and will show when the ' +
+          'control is focused (works like a drop down list).',
+      }]}, {
         name: 'events',
         infoArray: [{
           name: 'onBlur',
           type: 'func',
           header: 'optional',
           desc: 'Gets called with the control loses focus',
-          }, {
+        }, {
           name: 'onChange',
           type: 'func',
           header: 'optional',
           desc: 'Gets called with the value when a value is selected',
-          }, {
+        }, {
           name: 'onUpdateInput',
           type: 'func',
           header: 'optional',
           desc: 'Gets called with the control gets focus',
-          }, {
+        }, {
           name: 'onUpdateInput',
           type: 'func',
           header: 'optional',
           desc: 'Gets called with the next searchText value each time the user updates the text field',
-          }],
-      }
-    ] 
+        }],
+      },
+    ];
 
     return (
       <ComponentDoc
@@ -192,7 +191,7 @@ class AutoCompletePage extends React.Component {
         </Paper>
 
         <CodeExample code={Code}>
-          
+
           <AutoComplete
             dataSource={fruit}
             floatingLabelText="Simple Example"
@@ -206,8 +205,8 @@ class AutoCompletePage extends React.Component {
             hintText="Search for a fruit"
             onUpdateInput={(newSearch) => {
               this.setState({
-                errorText: fruit.indexOf(newSearch) != -1 ? '' : 'Please select a valid fruit.' 
-              })              
+                errorText: fruit.indexOf(newSearch) !== -1 ? '' : 'Please select a valid fruit.',
+              });
             }} />
 
           <AutoComplete
