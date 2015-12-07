@@ -25,14 +25,14 @@ const ToolbarsExamplesSimple = React.createClass({
   render() {
     return (
       <Toolbar>
-        <ToolbarGroup firstChild key={0} float="left">
+        <ToolbarGroup key={0} firstChild={true} float="left">
           <DropDownMenu menuItems={menuItems} />
         </ToolbarGroup>
         <ToolbarGroup key={1} float="right">
           <ToolbarTitle text="Options" />
           <FontIcon className="muidocs-icon-custom-sort" />
           <IconMenu iconButtonElement={
-            <IconButton touch>
+            <IconButton touch={true}>
               <NavigationExpandMoreIcon />
             </IconButton>
           }>
@@ -40,7 +40,7 @@ const ToolbarsExamplesSimple = React.createClass({
             <MenuItem primaryText="More Info" />
           </IconMenu>
           <ToolbarSeparator />
-          <RaisedButton label="Create Broadcast" primary />
+          <RaisedButton label="Create Broadcast" primary={true} />
         </ToolbarGroup>
       </Toolbar>
     );
