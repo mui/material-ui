@@ -43,6 +43,7 @@ const DropDownMenu = React.createClass({
     labelStyle:React.PropTypes.object,
     menuItemStyle: React.PropTypes.object,
     menuItems: React.PropTypes.array.isRequired,
+    menuStyle: React.PropTypes.object,
     onChange: React.PropTypes.func,
     openImmediately: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
@@ -190,6 +191,7 @@ const DropDownMenu = React.createClass({
       iconStyle,
       underlineStyle,
       menuItemStyle,
+      menuStyle,
       labelMember,
       ...other,
     } = this.props;
@@ -248,7 +250,7 @@ const DropDownMenu = React.createClass({
             autoWidth={autoWidth}
             selectedIndex={selectedIndex}
             menuItems={menuItems}
-            style={styles.menu}
+            style={this.mergeStyles(styles.menu, menuStyle)}
             menuItemStyle={this.mergeStyles(styles.menuItem, menuItemStyle)}
             hideable={true}
             visible={this.state.open}

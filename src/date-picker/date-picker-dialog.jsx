@@ -106,8 +106,6 @@ const DatePickerDialog = React.createClass({
       onAccept,
       style,
       container,
-      onDismiss,
-      onShow,
       ...other,
     } = this.props;
 
@@ -155,14 +153,6 @@ const DatePickerDialog = React.createClass({
       );
     }
 
-    // Those two properties are deprecated, we will remove them at some point
-    if (typeof onDismiss === 'function') {
-      other.onDismiss = onDismiss;
-    }
-    if (typeof onShow === 'function') {
-      other.onShow = onShow;
-    }
-
     // will change later when Popover is available.
     const Container = (container === 'inline' ? DatePickerInline : Dialog);
     return (
@@ -193,12 +183,14 @@ const DatePickerDialog = React.createClass({
   },
 
   show() {
+    if (this.props.onShow && !this.state.open) this.props.onShow();
     this.setState({
       open: true,
     });
   },
 
   dismiss() {
+    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
     this.setState({
       open: false,
     });

@@ -1,8 +1,7 @@
 import React from 'react/addons';
 import Dialog from 'dialog';
 import {spy} from 'sinon';
-
-const TestUtils = React.addons.TestUtils;
+import TestUtils from 'react-addons-test-utils';
 
 describe('Dialog', () => {
   it('appends a dialog to the document body', () => {

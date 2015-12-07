@@ -79,24 +79,12 @@ export default class DialogPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: `Force the user to use one of the actions in the dialog.
-              Clicking outside the dialog will not dismiss the dialog.`,
-          },
-          {
-            name: 'Deprecated: openImmediately',
-            type: 'bool',
-            header: 'default: false',
-            desc: 'Deprecated: Set to true to have the dialog automatically open on mount.',
-          },
-          {
-            name: 'defaultOpen',
-            type: 'bool',
-            header: 'default: false',
-            desc: 'Set to true to have the dialog automatically open on mount.',
+              Clicking outside the dialog will not trigger the onRequestClose.`,
           },
           {
             name: 'open',
             type: 'bool',
-            header: 'default: null',
+            header: 'required',
             desc: 'Controls whether the Dialog is opened or not.',
           },
           {
@@ -119,41 +107,17 @@ export default class DialogPage extends React.Component {
             header: 'default: false',
             desc: 'If set to true, the body content of the dialog will be scrollable.',
           },
-        ],
-      },
-      {
-        name: 'Methods',
-        infoArray: [
           {
-            name: 'Deprecated: dismiss',
-            header: 'Dialog.dismiss()',
-            desc: 'Hides the dialog.',
-          },
-          {
-            name: 'Deprecated: show',
-            header: 'Dialog.show()',
-            desc: 'Shows the dialog.',
-          },
-          {
-            name: 'isOpen',
-            header: 'Dialog.isOpen()',
-            desc: 'Get the dialog open state.',
+            name: 'width',
+            type: 'any',
+            header: 'default: 75%',
+            desc: 'Changes the width of the dialog.',
           },
         ],
       },
       {
         name: 'Events',
         infoArray: [
-          {
-            name: 'Deprecated: onDismiss',
-            header: 'function()',
-            desc: 'Fired when the dialog is dismissed.',
-          },
-          {
-            name: 'Deprecated: onShow',
-            header: 'function()',
-            desc: 'Fired when the dialog is shown.',
-          },
           {
             name: 'onRequestClose',
             header: 'function(buttonClicked)',
