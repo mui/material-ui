@@ -12,7 +12,19 @@ const ToolbarTitle = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The css class name of the root `span` element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the `ToolbarTitle`'s root element.
+     */
     style: React.PropTypes.object,
+
+    /**
+     * The text to be displayed.
+     */
     text: React.PropTypes.string,
   },
 
@@ -60,7 +72,7 @@ const ToolbarTitle = React.createClass({
     }, style);
 
     return (
-      <span style={styles} {...other} >{text}</span>
+      <span className={this.props.className} style={styles} {...other} >{text}</span>
     );
   },
 

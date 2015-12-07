@@ -12,7 +12,14 @@ const ToolbarSeparator = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The css class name of the root `span` element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the `ToolbarSeparator`'s root element.
+     */
     style: React.PropTypes.object,
   },
 

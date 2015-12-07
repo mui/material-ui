@@ -12,10 +12,31 @@ const Toolbar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * Can be a `ToolbarGroup` to render a group of related items.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root `div` element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Do not apply `desktopGutter` to the `Toolbar`.
+     */
     noGutter: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the `Toolbar`'s root element.
+     */
     style: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      noGutter: false,
+    };
   },
 
   //for passing default theme context to children

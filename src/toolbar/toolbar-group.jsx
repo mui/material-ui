@@ -13,11 +13,36 @@ const ToolbarGroup = React.createClass({
   },
 
   propTypes: {
+    /**
+     * Can be any node or number of nodes.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root `div` element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
+     * to prevent setting the right gap.
+     */
     firstChild: React.PropTypes.bool,
-    float: React.PropTypes.string,
+
+    /**
+     * Determines the side the `ToolbarGroup` will snap to. Either 'left' or 'right'.
+     */
+    float: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
+     * to prevent setting the right gap.
+     */
     lastChild: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the `ToolbarGroup`'s root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -34,7 +59,9 @@ const ToolbarGroup = React.createClass({
 
   getDefaultProps() {
     return {
+      firstChild: false,
       float: 'left',
+      lastChild: false,
     };
   },
 
@@ -112,8 +139,8 @@ const ToolbarGroup = React.createClass({
   render() {
     let styles = this.getStyles();
 
-    if (this.props.firstChild) styles.marginLeft = -24;
-    if (this.props.lastChild) styles.marginRight = -24;
+    if (this.props.firstChild) styles.root.marginLeft = -24;
+    if (this.props.lastChild) styles.root.marginRight = -24;
 
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
       if (!currentChild) {
