@@ -28,20 +28,84 @@ const AppBar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * Can be used to render a tab inside an app bar for instance.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Applied to the app bar's root element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * The classname of the icon on the left of the app bar.
+     * If you are using a stylesheet for your icons, enter the class name for the icon to be used here.
+     */
     iconClassNameLeft: React.PropTypes.string,
+
+    /**
+     * Similiar to the iconClassNameLeft prop except that
+     * it applies to the icon displayed on the right of the app bar.
+     */
     iconClassNameRight: React.PropTypes.string,
+
+    /**
+     * The custom element to be displayed on the left side of the
+     * app bar such as an SvgIcon.
+     */
     iconElementLeft: React.PropTypes.element,
+
+    /**
+     * Similiar to the iconElementLeft prop except that this element is displayed on the right of the app bar.
+     */
     iconElementRight: React.PropTypes.element,
+
+    /**
+     * Override the inline-styles of the element displayed on the right side of the app bar.
+     */
     iconStyleRight: React.PropTypes.object,
+
+    /**
+     * Callback function for when the left icon is selected via a touch tap.
+     */
     onLeftIconButtonTouchTap: React.PropTypes.func,
+
+    /**
+     * Callback function for when the right icon is selected via a touch tap.
+     */
     onRightIconButtonTouchTap: React.PropTypes.func,
+
+    /**
+     * Callback function for when the title text is selected via a touch tap.
+     */
     onTitleTouchTap: React.PropTypes.func,
+
+    /**
+     * Determines whether or not to display the Menu icon next to the title.
+     * Setting this prop to false will hide the icon.
+     */
     showMenuIconButton: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the app bar's root element.
+     */
     style: React.PropTypes.object,
+
+    /**
+     * The title to display on the app bar.
+     */
     title: React.PropTypes.node,
+
+    /**
+     * Override the inline-styles of the app bar's title element.
+     */
     titleStyle: React.PropTypes.object,
+
+    /**
+     * The zDepth of the app bar.
+     * The shadow of the app bar is also dependent on this property.
+     */
     zDepth: PropTypes.zDepth,
   },
 

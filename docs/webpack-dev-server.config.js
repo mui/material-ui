@@ -15,11 +15,11 @@ var config = {
   //Webpack config options on how to obtain modules
   resolve: {
     //When requiring, you don't need to add these extensions
-    extensions: ["", ".js", ".jsx", ".txt"],
+    extensions: ["", ".js", ".jsx", ".md", ".txt"],
     alias: {
       //material-ui requires will be searched in src folder, not in node_modules
+      'material-ui/lib': path.resolve(__dirname, '../src'),
       'material-ui': path.resolve(__dirname, '../src'),
-      codemirror: path.resolve(__dirname, 'node_modules/codemirror')
     },
     //Modules will be searched for in these directories
     modulesDirectories: [
@@ -27,7 +27,8 @@ var config = {
       path.resolve(__dirname, "node_modules"),
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
-      path.resolve(__dirname, 'src/app/components/raw-code')
+      path.resolve(__dirname, 'src/app/components/raw-code'),
+      path.resolve(__dirname, 'src/app/components/markdown')
     ]
   },
   //Configuration for dev server
@@ -55,6 +56,9 @@ var config = {
     //Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin()
   ],
+  externals: {
+    fs: 'js', // To remove once https://github.com/benjamn/recast/pull/238 is released
+  },
   module: {
         //eslint loader
         preLoaders: [
@@ -79,10 +83,19 @@ var config = {
             include: path.resolve(__dirname, 'src/app/components/raw-code')
           },
           {
+            test:/\.md$/,
+            loader: 'raw-loader',
+            include: path.resolve(__dirname, 'src/app/components')
+          },
+          {
             test: /\.js$/, //All .js and .jsx files
             loader:'babel-loader?optional=runtime&stage=0', //react-hot is like browser sync and babel loads jsx and es6-7
             include: [__dirname, path.resolve(__dirname, '../src')], //include these files
             exclude: [nodeModulesPath]  //exclude node_modules so that they are not all compiled
+          },
+          {
+            test: /\.css$/,
+            loader: "style-loader!css-loader"
           },
         ]
   },

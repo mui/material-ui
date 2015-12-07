@@ -4,7 +4,12 @@
 /* hightlight.js for syntax highlighting */
 @import "github.css";
 
-@import "codemirror.css";
+.CodeMirror{
+  overflow: hidden;
+  background: #f8f8f8;
+  border-top: solid 1px #e0e0e0;
+  padding-top: 10px;
+}
 
 a {
   color: #ff4081;
