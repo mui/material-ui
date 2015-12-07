@@ -72,6 +72,7 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.3",
     "react-dom": "^0.14.0",
     "react-hot-loader": "^1.2.8",
     "react-tap-event-plugin": "^0.2.0",

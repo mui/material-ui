@@ -2,8 +2,8 @@ import React from 'react/addons';
 import ContextPure from 'mixins/context-pure';
 import ThemeManager from 'styles/theme-manager';
 import DefaultRawTheme from 'styles/raw-themes/light-raw-theme';
+import TestUtils from 'react-addons-test-utils';
 
-const TestUtils = React.addons.TestUtils;
 const update = React.addons.update;
 
 const GrandChildComponent = React.createClass({
