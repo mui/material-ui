@@ -24,12 +24,44 @@ const Avatar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The backgroundColor of the avatar. Does not apply to image avatars.
+     */
     backgroundColor: React.PropTypes.string,
+
+    /**
+     * Can be used, for instance, to render a letter inside the avatar.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root `div` or `img` element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * The icon or letter's color.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * This is the SvgIcon or FontIcon to be used inside the avatar.
+     */
     icon: React.PropTypes.element,
+
+    /**
+     * This is the size of the avatar in pixels.
+     */
     size: React.PropTypes.number,
+
+    /**
+     * If passed in, this component will render an img element. Otherwise, a div will be rendered.
+     */
     src: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -62,6 +94,7 @@ const Avatar = React.createClass({
       size,
       src,
       style,
+      className,
       ...other,
     } = this.props;
 
@@ -86,7 +119,14 @@ const Avatar = React.createClass({
         });
       }
 
-      return <img {...other} src={src} style={this.prepareStyles(styles.root, style)} />;
+      return (
+        <img
+          {...other}
+          src={src}
+          style={this.prepareStyles(styles.root, style)}
+          className={className}
+        />
+      );
     } else {
       styles.root = this.mergeStyles(styles.root, {
         backgroundColor: backgroundColor,
@@ -105,10 +145,16 @@ const Avatar = React.createClass({
         style: this.mergeStyles(styleIcon, icon.props.style),
       }) : null;
 
-      return <div {...other} style={this.prepareStyles(styles.root, style)}>
-        {iconElement}
-        {this.props.children}
-      </div>;
+      return (
+        <div
+          {...other}
+          style={this.prepareStyles(styles.root, style)}
+          className={className}
+        >
+          {iconElement}
+          {this.props.children}
+        </div>
+      );
     }
   },
 });
