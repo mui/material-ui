@@ -60,15 +60,8 @@ const ToolbarTitle = React.createClass({
     return this.state.muiTheme.rawTheme.spacing;
   },
 
-  render() {
-    const {
-      className,
-      style,
-      text,
-      ...other,
-    } = this.props;
-
-    const styles = {
+  getStyles() {
+    return {
       root: {
         paddingRight: this.getSpacing().desktopGutterLess,
         lineHeight: this.getTheme().height + 'px',
@@ -77,6 +70,17 @@ const ToolbarTitle = React.createClass({
         position: 'relative',
       },
     };
+  },
+
+  render() {
+    const {
+      className,
+      style,
+      text,
+      ...other,
+    } = this.props;
+
+    const styles = this.getStyles();
 
     return (
       <span {...other} className={className} style={this.prepareStyles(styles.root, style)}>{text}</span>

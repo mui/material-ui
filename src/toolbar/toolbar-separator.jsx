@@ -55,15 +55,8 @@ const ToolbarSeparator = React.createClass({
     return this.state.muiTheme.rawTheme.spacing;
   },
 
-  render() {
-
-    const {
-      className,
-      style,
-      ...other,
-    } = this.props;
-
-    const styles = {
+  getStyles() {
+    return {
       root: {
         backgroundColor: this.getTheme().separatorColor,
         display: 'inline-block',
@@ -74,6 +67,17 @@ const ToolbarSeparator = React.createClass({
         width: 1,
       },
     };
+  },
+
+  render() {
+
+    const {
+      className,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = this.getStyles();
 
     return (
       <span {...other} className={className} style={this.prepareStyles(styles.root, style)}/>
