@@ -2,42 +2,43 @@ import React from 'react';
 import StylePropable from './mixins/style-propable';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import {mixin} from 'core-decorators';
 
-const AppCanvas = React.createClass({
+@mixin(StylePropable)
+export default class AppCanvas extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  propTypes: {
-    children: React.PropTypes.node,
-  },
+    this.state = {
+      muiTheme: context.muiTheme ? context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  }
 
   //for passing default theme context to children
-  childContextTypes: {
+  static childContextTypes = {
     muiTheme: React.PropTypes.object,
-  },
+  }
+
+  static contextTypes = {
+    muiTheme: React.PropTypes.object,
+  }
+
+  static propTypes = {
+    children: React.PropTypes.node,
+  }
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
+  }
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
+  }
 
   render() {
     let styles = {
@@ -69,8 +70,5 @@ const AppCanvas = React.createClass({
         {newChildren}
       </div>
     );
-  },
-
-});
-
-export default AppCanvas;
+  }
+}

@@ -3,27 +3,34 @@ import StylePropable from './mixins/style-propable';
 import Colors from './styles/colors';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import {mixin} from 'core-decorators';
 
-const Avatar = React.createClass({
+@mixin(StylePropable)
+export default class Avatar extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+    this.state = {
+      muiTheme: context.muiTheme ? context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  }
 
   //for passing default theme context to children
-  childContextTypes: {
+  static childContextTypes = {
     muiTheme: React.PropTypes.object,
-  },
+  }
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object,
+  }
 
-  propTypes: {
+  static defaultProps = {
+    backgroundColor: Colors.grey400,
+    color: Colors.white,
+    size: 40,
+  }
+
+  static propTypes = {
     /**
      * The backgroundColor of the avatar. Does not apply to image avatars.
      */
@@ -63,28 +70,20 @@ const Avatar = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  }
 
-  getInitialState() {
+  getChildContext() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  getDefaultProps() {
-    return {
-      backgroundColor: Colors.grey400,
-      color: Colors.white,
-      size: 40,
-    };
-  },
+  }
 
   render() {
     let {
@@ -156,7 +155,5 @@ const Avatar = React.createClass({
         </div>
       );
     }
-  },
-});
-
-export default Avatar;
+  }
+}
