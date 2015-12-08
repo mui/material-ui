@@ -113,6 +113,12 @@ export default class DialogPage extends React.Component {
             header: 'default: 75%',
             desc: 'Changes the width of the dialog.',
           },
+          {
+            name: 'overlayStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the overlay.',
+          },
         ],
       },
       {
@@ -231,7 +237,7 @@ export default class DialogPage extends React.Component {
 
   _handleCustomDialogCancel() {
     this.setState({
-      openDialogCustomActions: true,
+      openDialogCustomActions: false,
     });
   }
 
@@ -259,7 +265,7 @@ export default class DialogPage extends React.Component {
 
   _handleCustomDialogTouchTap() {
     this.setState({
-      openDialogScrollable: true,
+      openDialogCustomActions: true,
     });
   }
 
