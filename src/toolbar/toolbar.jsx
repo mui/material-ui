@@ -67,21 +67,33 @@ const Toolbar = React.createClass({
     return this.state.muiTheme.toolbar;
   },
 
-  getStyles() {
-    return this.mergeStyles({
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      backgroundColor: this.getTheme().backgroundColor,
-      height: this.getTheme().height,
-      width: '100%',
-      padding: this.props.noGutter ? 0 : '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutter + 'px',
-    }, this.props.style);
+  getSpacing() {
+    return this.state.muiTheme.rawTheme.spacing;
   },
 
   render() {
+    const {
+      children,
+      className,
+      noGutter,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = {
+      root: {
+        boxSizing: 'border-box',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        backgroundColor: this.getTheme().backgroundColor,
+        height: this.getTheme().height,
+        width: '100%',
+        padding: noGutter ? 0 : '0px ' + this.getSpacing().desktopGutter + 'px',
+      },
+    };
+
     return (
-      <div className={this.props.className} style={this.prepareStyles(this.getStyles())}>
-        {this.props.children}
+      <div {...other} className={className} style={this.prepareStyles(styles.root, style)}>
+        {children}
       </div>
     );
   },

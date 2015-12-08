@@ -11,7 +11,7 @@ import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
-let menuItems = [
+const menuItems = [
   {payload: '1', text: 'All Broadcasts'},
   {payload: '2', text: 'All Voice'},
   {payload: '3', text: 'All Text'},
@@ -25,10 +25,10 @@ const ToolbarsExamplesSimple = React.createClass({
   render() {
     return (
       <Toolbar>
-        <ToolbarGroup key={0} firstChild={true} float="left">
+        <ToolbarGroup firstChild={true} float="left">
           <DropDownMenu menuItems={menuItems} />
         </ToolbarGroup>
-        <ToolbarGroup key={1} float="right">
+        <ToolbarGroup float="right">
           <ToolbarTitle text="Options" />
           <FontIcon className="muidocs-icon-custom-sort" />
           <IconMenu iconButtonElement={

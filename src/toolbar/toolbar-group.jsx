@@ -74,7 +74,7 @@ const ToolbarGroup = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
@@ -83,23 +83,31 @@ const ToolbarGroup = React.createClass({
   },
 
   getSpacing() {
-    return this.state.muiTheme.rawTheme.spacing.desktopGutter;
+    return this.state.muiTheme.rawTheme.spacing;
   },
 
   getStyles() {
-    let marginHorizontal = this.getSpacing();
-    let marginVertical = (this.getTheme().height - this.state.muiTheme.button.height) / 2;
-    let styles = {
+    const {
+      firstChild,
+      float,
+      lastChild,
+    } = this.props;
+
+    const marginHorizontal = this.getSpacing().desktopGutter;
+    const marginVertical = (this.getTheme().height - this.state.muiTheme.button.height) / 2;
+    const styles = {
       root: {
+        float,
         position: 'relative',
-        float: this.props.float,
+        marginLeft: firstChild ? -marginHorizontal : undefined,
+        marginRight: lastChild ? -marginHorizontal : undefined,
       },
       dropDownMenu: {
         root: {
           float: 'left',
           color: Colors.lightBlack, // removes hover color change, we want to keep it
           display: 'inline-block',
-          marginRight: this.getSpacing(),
+          marginRight: this.getSpacing().desktopGutter,
         },
         controlBg: {
           backgroundColor: this.getTheme().menuHoverColor,
@@ -120,7 +128,7 @@ const ToolbarGroup = React.createClass({
           cursor: 'pointer',
           color: this.getTheme().iconColor,
           lineHeight: this.getTheme().height + 'px',
-          paddingLeft: this.getSpacing(),
+          paddingLeft: this.getSpacing().desktopGutter,
         },
         hover: {
           color: Colors.darkBlack,
@@ -137,12 +145,15 @@ const ToolbarGroup = React.createClass({
   },
 
   render() {
-    let styles = this.getStyles();
+    const {
+      children,
+      className,
+      style,
+      ...other,
+    } = this.props;
 
-    if (this.props.firstChild) styles.root.marginLeft = -24;
-    if (this.props.lastChild) styles.root.marginRight = -24;
-
-    let newChildren = React.Children.map(this.props.children, (currentChild) => {
+    const styles = this.getStyles();
+    const newChildren = React.Children.map(children, currentChild => {
       if (!currentChild) {
         return null;
       }
@@ -163,7 +174,8 @@ const ToolbarGroup = React.createClass({
             onMouseEnter: this._handleMouseEnterDropDownMenu,
             onMouseLeave: this._handleMouseLeaveDropDownMenu,
           });
-        case 'RaisedButton' : case 'FlatButton' :
+        case 'RaisedButton' :
+        case 'FlatButton' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.button, currentChild.props.style),
           });
@@ -173,7 +185,8 @@ const ToolbarGroup = React.createClass({
             onMouseEnter: this._handleMouseEnterFontIcon,
             onMouseLeave: this._handleMouseLeaveFontIcon,
           });
-        case 'ToolbarSeparator' : case 'ToolbarTitle' :
+        case 'ToolbarSeparator' :
+        case 'ToolbarTitle' :
           return React.cloneElement(currentChild, {
             style: this.mergeStyles(styles.span, currentChild.props.style),
           });
@@ -183,7 +196,7 @@ const ToolbarGroup = React.createClass({
     }, this);
 
     return (
-      <div className={this.props.className} style={this.prepareStyles(styles.root, this.props.style)}>
+      <div {...other} className={className} style={this.prepareStyles(styles.root, style)}>
         {newChildren}
       </div>
     );

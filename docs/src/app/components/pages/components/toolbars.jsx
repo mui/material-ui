@@ -15,11 +15,6 @@ import toolbarSeparatorReadmeText from '../../Toolbars/ToolbarSeparator';
 import toolbarTitleReadmeText from '../../Toolbars/ToolbarTitle';
 
 export default class ToolbarPage extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

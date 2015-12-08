@@ -43,7 +43,7 @@ const ToolbarSeparator = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
@@ -56,18 +56,27 @@ const ToolbarSeparator = React.createClass({
   },
 
   render() {
-    let styles = this.prepareStyles({
-      backgroundColor: this.getTheme().separatorColor,
-      display: 'inline-block',
-      height: this.getSpacing().desktopGutterMore,
-      marginLeft: this.getSpacing().desktopGutter,
-      position: 'relative',
-      top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
-      width: 1,
-    }, this.props.style);
+
+    const {
+      className,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = {
+      root: {
+        backgroundColor: this.getTheme().separatorColor,
+        display: 'inline-block',
+        height: this.getSpacing().desktopGutterMore,
+        marginLeft: this.getSpacing().desktopGutter,
+        position: 'relative',
+        top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
+        width: 1,
+      },
+    };
 
     return (
-      <span className={this.props.className} style={styles}/>
+      <span {...other} className={className} style={this.prepareStyles(styles.root, style)}/>
     );
   },
 
