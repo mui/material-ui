@@ -460,7 +460,7 @@ const ThemesPage = React.createClass({
           The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to
           <code style={styles.inlineCode}>true</code> by
           default. This allows for some optimization when rendering Material-UI components. Change this to
-          <code style={styles.inlineCode}>false</code> iff
+          <code style={styles.inlineCode}>false</code> if
           the <code style={styles.inlineCode}>muiTheme</code> object in your app can change during runtime.
         </p>
 
