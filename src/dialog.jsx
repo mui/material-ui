@@ -127,6 +127,7 @@ const DialogInline = React.createClass({
     onRequestClose: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     repositionOnUpdate: React.PropTypes.bool,
+    showOverlay: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
     titleStyle: React.PropTypes.object,
@@ -150,6 +151,7 @@ const DialogInline = React.createClass({
       autoScrollBodyContent: false,
       actions: [],
       repositionOnUpdate: true,
+      showOverlay: true,
       open: null,
       width: '75%',
     };
@@ -262,7 +264,7 @@ const DialogInline = React.createClass({
           </TransitionItem>}
         </ReactTransitionGroup>
         <Overlay
-          show={this.props.open}
+          show={this.props.open && this.props.showOverlay}
           onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );
@@ -414,6 +416,7 @@ const Dialog = React.createClass({
     onRequestClose: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     repositionOnUpdate: React.PropTypes.bool,
+    showOverlay: React.PropTypes.bool,
     style: React.PropTypes.object,
     title: React.PropTypes.node,
     titleStyle: React.PropTypes.object,
@@ -444,6 +447,7 @@ const Dialog = React.createClass({
   getDefaultProps() {
     return {
       modal: false,
+      showOverlay: true,
     };
   },
 

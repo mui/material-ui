@@ -14,12 +14,14 @@ export default class DialogPage extends React.Component {
       openDialogStandardActions: false,
       openDialogCustomActions: false,
       openDialogScrollable: false,
+      openDialogNoOverlay: false,
     };
     this._handleCustomDialogCancel = this._handleCustomDialogCancel.bind(this);
     this._handleCustomDialogSubmit = this._handleCustomDialogSubmit.bind(this);
     this._handleScrollableDialogCancel = this._handleScrollableDialogCancel.bind(this);
     this._handleScrollableDialogSubmit = this._handleScrollableDialogSubmit.bind(this);
     this._handleCustomDialogTouchTap = this._handleCustomDialogTouchTap.bind(this);
+    this._handleDialogNoOverlay = this._handleDialogNoOverlay.bind(this);
     this._handleStandardDialogTouchTap = this._handleStandardDialogTouchTap.bind(this);
     this._handleScrollableDialogTouchTap = this._handleScrollableDialogTouchTap.bind(this);
     this._handleRequestClose = this._handleRequestClose.bind(this);
@@ -108,6 +110,12 @@ export default class DialogPage extends React.Component {
             desc: 'If set to true, the body content of the dialog will be scrollable.',
           },
           {
+            name: 'showOverlay',
+            type: 'bool',
+            header: 'default: true',
+            desc: 'If set to false, the dialog will open without an overlay.',
+          },
+          {
             name: 'width',
             type: 'any',
             header: 'default: 75%',
@@ -179,6 +187,8 @@ export default class DialogPage extends React.Component {
           <br/><br/>
           <RaisedButton label="Scrollable Content And Custom Actions"
             onTouchTap={this._handleScrollableDialogTouchTap} />
+          <br/><br/>
+          <RaisedButton label="Dialog without overlay" onTouchTap={this._handleDialogNoOverlay} />
 
           <Dialog
             ref="standardDialog"
@@ -219,6 +229,18 @@ export default class DialogPage extends React.Component {
               Really long content
             </div>
           </Dialog>
+
+          <Dialog
+            ref="dialogNoOverlay"
+            title="Dialog Without Overlay"
+            actions={standardActions}
+            actionFocus="submit"
+            modal={this.state.modal}
+            showOverlay={false}
+            open={this.state.openDialogNoOverlay}
+            onRequestClose={this._handleRequestClose}>
+            The actions in this window are created from the json that&#39;s passed in.
+          </Dialog>
         </CodeExample>
       </ComponentDoc>
     );
@@ -248,6 +270,12 @@ export default class DialogPage extends React.Component {
   _handleScrollableDialogCancel() {
     this.setState({
       openDialogScrollable: false,
+    });
+  }
+
+  _handleDialogNoOverlay() {
+    this.setState({
+      openDialogNoOverlay: true,
     });
   }
 
@@ -281,6 +309,7 @@ export default class DialogPage extends React.Component {
       openDialogStandardActions: false,
       openDialogCustomActions: false,
       openDialogScrollable: false,
+      openDialogNoOverlay: false,
     });
   }
 
