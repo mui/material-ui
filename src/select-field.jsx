@@ -93,41 +93,38 @@ const SelectField = React.createClass({
   getStyles() {
     let styles = {
       root: {
-        height: 46,
         position: 'relative',
         width: '100%',
-        top: 16,
         fontSize: 16,
+        height:48,
+        overflow:'hidden',
+        display:'block',
       },
       label: {
         paddingLeft: 0,
-        top: 4,
-        width: '100%',
+        top: -4,
       },
       icon: {
-        top: 20,
         right: 0,
+        top: 14,
       },
-      underline: {
+      hideDropDownUnderline: {
         borderTop: 'none',
       },
-      input: {},
+      underline: {
+        bottom:8,
+      },
+      input: {
+        verticalAlign:'top',
+      },
       error: {},
+      floatingLabel: {},
     };
 
-    if (!this.props.floatingLabelText) {
-      styles.label.top = -6;
-      styles.icon.top = 11;
-
-      if (this.props.hintText) {
-        styles.root.top = -5;
-      } else {
-        styles.root.top = -8;
-      }
-    } else {
-      styles.error.bottom = -15;
+    if (this.props.floatingLabelText) {
+      styles.icon.top = 22;
+      styles.label.top = 8;
     }
-
     return styles;
   },
 
@@ -158,16 +155,16 @@ const SelectField = React.createClass({
     const textFieldProps = {
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
-      floatingLabelStyle: floatingLabelStyle,
+      floatingLabelStyle: this.mergeAndPrefix(styles.floatingLabel, floatingLabelStyle),
       hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
       fullWidth: fullWidth,
       errorText: errorText,
+      underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
       errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
       onFocus: onFocus,
       onBlur: onBlur,
       underlineDisabledStyle,
       underlineFocusStyle,
-      underlineStyle,
     };
 
     const dropDownMenuProps = {
@@ -176,11 +173,10 @@ const SelectField = React.createClass({
       style: this.mergeAndPrefix(styles.root, selectFieldRoot),
       labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
-      underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
+      underlineStyle: this.mergeAndPrefix(styles.hideDropDownUnderline),
       autoWidth: false,
       labelMember: labelMember,
     };
-
     return (
       <TextField {...textFieldProps}>
         <DropDownMenu {...dropDownMenuProps} {...other} />

@@ -17,6 +17,14 @@ export default class DropDownMenuPage extends React.Component {
       {payload: '5', text: 'Weekly'},
     ];
 
+    let longMenuItems = [];
+    for (let i = 0; i < 100; i++ ) {
+      longMenuItems.push({
+        payload:i.toString(),
+        text:'Item ' + i,
+      });
+    }
+
     let componentInfo = [
       {
         name: 'Props',
@@ -154,6 +162,8 @@ export default class DropDownMenuPage extends React.Component {
             menuItems={menuItemsWithLabel}
             labelMember="period"
           />
+
+          <DropDownMenu menuItems={longMenuItems} maxHeight={300} /><br/>
 
         </CodeExample>
       </ComponentDoc>
