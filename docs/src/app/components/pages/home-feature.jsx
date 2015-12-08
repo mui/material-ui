@@ -38,7 +38,7 @@ let HomeFeature = React.createClass({
       root: {
         transition: Transitions.easeOut(),
         maxWidth: '300px',
-        margin: '0 auto ' + desktopGutter + ' auto',
+        margin: '0 auto ' + desktopGutter + 'px auto',
       },
       rootWhenMedium: {
         float: 'left',
