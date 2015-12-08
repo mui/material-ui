@@ -7,27 +7,34 @@ import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 import Paper from './paper';
 import PropTypes from './utils/prop-types';
+import {mixin, autobind} from 'core-decorators';
 
-const AppBar = React.createClass({
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
+@mixin(StylePropable)
+export default class AppBar extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      muiTheme: context.muiTheme
+        ? context.muiTheme
+        : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
+  }
 
-  propTypes: {
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object,
+  }
+
+  static contextTypes = {
+    muiTheme: React.PropTypes.object,
+  }
+
+  static defaultProps = {
+    showMenuIconButton: true,
+    title: '',
+    zDepth: 1,
+  }
+
+  static propTypes = {
     /**
      * Can be used to render a tab inside an app bar for instance.
      */
@@ -107,28 +114,20 @@ const AppBar = React.createClass({
      * The shadow of the app bar is also dependent on this property.
      */
     zDepth: PropTypes.zDepth,
-  },
+  };
 
-  getInitialState() {
+  getChildContext() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  getDefaultProps() {
-    return {
-      showMenuIconButton: true,
-      title: '',
-      zDepth: 1,
-    };
-  },
+  }
 
   componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
@@ -146,7 +145,7 @@ const AppBar = React.createClass({
         );
       }
     }
-  },
+  }
 
   getStyles() {
     let spacing = this.state.muiTheme.rawTheme.spacing;
@@ -199,7 +198,7 @@ const AppBar = React.createClass({
     };
 
     return styles;
-  },
+  }
 
   render() {
     let {
@@ -314,26 +313,26 @@ const AppBar = React.createClass({
           {children}
       </Paper>
     );
-  },
+  }
 
+  @autobind
   _onLeftIconButtonTouchTap(event) {
     if (this.props.onLeftIconButtonTouchTap) {
       this.props.onLeftIconButtonTouchTap(event);
     }
-  },
+  }
 
+  @autobind
   _onRightIconButtonTouchTap(event) {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }
-  },
+  }
 
+  @autobind
   _onTitleTouchTap(event) {
     if (this.props.onTitleTouchTap) {
       this.props.onTitleTouchTap(event);
     }
-  },
-
-});
-
-export default AppBar;
+  }
+}
