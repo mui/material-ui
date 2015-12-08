@@ -1,6 +1,7 @@
 import React from 'react';
 import marked from 'marked';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from 'material-ui/lib/mixins/style-propable';
 
 require('./mui-github-markdown.css');
 
@@ -14,6 +15,7 @@ const styles = {
 
 const MarkdownElement = React.createClass({
   propTypes: {
+    style: React.PropTypes.object,
     text: React.PropTypes.string,
   },
   mixins: [
@@ -42,13 +44,14 @@ const MarkdownElement = React.createClass({
 
   render() {
     const {
+      style,
       text,
     } = this.props;
 
 /* eslint-disable */
     return (
       <div
-        style={styles.root}
+        style={StylePropable.mergeStyles(styles.root, style)}
         className="markdown-body"
         dangerouslySetInnerHTML={{__html: marked(text)}}
       />
