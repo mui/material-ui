@@ -32,6 +32,7 @@ const Master = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     history: React.PropTypes.object,
+    location: React.PropTypes.object,
   },
 
   childContextTypes : {
@@ -113,14 +114,13 @@ const Master = React.createClass({
         href="https://github.com/callemall/material-ui"
         linkButton={true}/>
     );
-
     return (
       <AppCanvas>
         {githubButton}
         {this.state.renderTabs ? this._getTabs() : this._getAppBar()}
 
         {this.props.children}
-        <AppLeftNav ref="leftNav" history={this.props.history} />
+        <AppLeftNav ref="leftNav" history={this.props.history} location={this.props.location} />
         <FullWidthSection style={styles.footer}>
           <p style={this.prepareStyles(styles.p)}>
             Hand crafted with love by the engineers at
@@ -142,7 +142,7 @@ const Master = React.createClass({
         height: 64,
         top: 0,
         right: 0,
-        zIndex: 6,
+        zIndex: 15,
         width: '100%',
       },
       container: {
