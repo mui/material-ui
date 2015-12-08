@@ -161,7 +161,7 @@ const IconMenu = React.createClass({
       ref: this.state.iconButtonRef,
     });
 
-    let menu =
+    let menu = (
       <Menu
         {...other}
         animateOpen={true}
@@ -171,7 +171,8 @@ const IconMenu = React.createClass({
         zDepth={0}
         style={mergedMenuStyles}>
         {this.props.children}
-      </Menu>;
+      </Menu>
+    );
 
     return (
       <div

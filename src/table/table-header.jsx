@@ -158,14 +158,16 @@ const TableHeader = React.createClass({
   _getSelectAllCheckboxColumn(props) {
     if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props);
 
-    const checkbox =
+    const checkbox = (
       <Checkbox
         key="selectallcb"
         name="selectallcb"
         value="selected"
         disabled={!this.props.enableSelectAll}
         checked={this.props.selectAllSelected}
-        onCheck={this._onSelectAll} />;
+        onCheck={this._onSelectAll}
+      />
+    );
 
     const key = 'hpcb' + props.rowNumber;
     return (

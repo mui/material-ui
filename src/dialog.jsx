@@ -81,15 +81,17 @@ const TransitionItem = React.createClass({
   },
 
   render() {
-    let {
+    const {
       style,
       children,
       ...other,
     } = this.props;
 
-    return <div {...other} style={this.prepareStyles(this.state.style, style)}>
+    return (
+      <div {...other} style={this.prepareStyles(this.state.style, style)}>
         {children}
-      </div>;
+      </div>
+    );
   },
 });
 
