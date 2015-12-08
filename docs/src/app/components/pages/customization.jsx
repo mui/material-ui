@@ -11,7 +11,7 @@ export default class Customization extends React.Component {
     ];
 
     return (
-      <PageWithNav menuItems={menuItems}>{this.props.children}</PageWithNav>
+      <PageWithNav location={this.props.location} menuItems={menuItems}>{this.props.children}</PageWithNav>
     );
   }
 
@@ -19,4 +19,5 @@ export default class Customization extends React.Component {
 
 Customization.propTypes = {
   children: React.PropTypes.node,
+  location: React.PropTypes.object,
 };

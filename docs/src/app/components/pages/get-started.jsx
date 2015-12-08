@@ -12,7 +12,7 @@ export default class GetStarted extends React.Component {
     ];
 
     return (
-      <PageWithNav menuItems={menuItems}>{this.props.children}</PageWithNav>
+      <PageWithNav location={this.props.location} menuItems={menuItems}>{this.props.children}</PageWithNav>
     );
   }
 
@@ -20,4 +20,5 @@ export default class GetStarted extends React.Component {
 
 GetStarted.propTypes = {
   children: React.PropTypes.node,
+  location: React.PropTypes.object,
 };

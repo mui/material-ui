@@ -1,6 +1,8 @@
 import React from 'react';
 import {History} from 'react-router';
-import {Menu, Mixins, Styles} from 'material-ui';
+import {Mixins, Styles} from 'material-ui';
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 let {Spacing, Colors} = Styles;
 let {StyleResizable, StylePropable} = Mixins;
@@ -17,7 +19,20 @@ let PageWithNav = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+    location: React.PropTypes.object,
     menuItems: React.PropTypes.array,
+  },
+
+  componentWillMount() {
+    this.setState({
+      activeRoute: this.props.location.pathname,
+    });
+  },
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      activeRoute: nextProps.location.pathname,
+    });
   },
 
   getStyles() {
@@ -32,6 +47,9 @@ let PageWithNav = React.createClass({
       secondaryNav: {
         borderTop: 'solid 1px ' + Colors.grey300,
         overflow: 'hidden',
+        position: 'inherit',
+        height: '100%',
+        width: window.innerWidth,
       },
       content: {
         boxSizing: 'border-box',
@@ -68,30 +86,26 @@ let PageWithNav = React.createClass({
         <div style={this.prepareStyles(styles.content)}>
           {this.props.children}
         </div>
-        <div style={this.prepareStyles(styles.secondaryNav)}>
-          <Menu
-            ref="menuItems"
-            zDepth={0}
-            menuItems={this.props.menuItems}
-            selectedIndex={this._getSelectedIndex()}
-            onItemTap={this._onMenuItemClick} />
-        </div>
+        <Menu
+          autoWidth={false}
+          onItemTouchTap={(e, child) => this.history.push(child.props.value)}
+          openDirection="bottom-right"
+          style={styles.secondaryNav}
+          value={this.state.activeRoute}
+          width={styles.secondaryNav.width}
+          zDepth={0}>
+          {this.props.menuItems.map((item, index) => {
+            return (
+              <MenuItem
+                key={index}
+                primaryText={item.text}
+                value={item.route}
+              />
+            );
+          })}
+        </Menu>
       </div>
     );
-  },
-
-  _getSelectedIndex() {
-    let menuItems = this.props.menuItems;
-    let currentItem;
-
-    for (let i = menuItems.length - 1; i >= 0; i--) {
-      currentItem = menuItems[i];
-      if (currentItem.route && this.history.isActive(currentItem.route)) return i;
-    }
-  },
-
-  _onMenuItemClick(e, index, item) {
-    this.history.pushState(null, item.route);
   },
 
 });
