@@ -12,7 +12,19 @@ const ToolbarTitle = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The css class name of the root `span` element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the `ToolbarTitle`'s root element.
+     */
     style: React.PropTypes.object,
+
+    /**
+     * The text to be displayed.
+     */
     text: React.PropTypes.string,
   },
 
@@ -36,7 +48,7 @@ const ToolbarTitle = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
@@ -44,23 +56,34 @@ const ToolbarTitle = React.createClass({
     return this.state.muiTheme.toolbar;
   },
 
+  getSpacing() {
+    return this.state.muiTheme.rawTheme.spacing;
+  },
+
+  getStyles() {
+    return {
+      root: {
+        paddingRight: this.getSpacing().desktopGutterLess,
+        lineHeight: this.getTheme().height + 'px',
+        fontSize: this.getTheme().titleFontSize + 'px',
+        display: 'inline-block',
+        position: 'relative',
+      },
+    };
+  },
+
   render() {
-    let {
+    const {
+      className,
       style,
       text,
       ...other,
     } = this.props;
 
-    let styles = this.prepareStyles({
-      paddingRight: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
-      lineHeight: this.getTheme().height + 'px',
-      fontSize: this.getTheme().titleFontSize + 'px',
-      display: 'inline-block',
-      position: 'relative',
-    }, style);
+    const styles = this.getStyles();
 
     return (
-      <span style={styles} {...other} >{text}</span>
+      <span {...other} className={className} style={this.prepareStyles(styles.root, style)}>{text}</span>
     );
   },
 

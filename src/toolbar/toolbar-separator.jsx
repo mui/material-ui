@@ -12,7 +12,14 @@ const ToolbarSeparator = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The css class name of the root `span` element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the `ToolbarSeparator`'s root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -36,7 +43,7 @@ const ToolbarSeparator = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
@@ -48,19 +55,32 @@ const ToolbarSeparator = React.createClass({
     return this.state.muiTheme.rawTheme.spacing;
   },
 
+  getStyles() {
+    return {
+      root: {
+        backgroundColor: this.getTheme().separatorColor,
+        display: 'inline-block',
+        height: this.getSpacing().desktopGutterMore,
+        marginLeft: this.getSpacing().desktopGutter,
+        position: 'relative',
+        top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
+        width: 1,
+      },
+    };
+  },
+
   render() {
-    let styles = this.prepareStyles({
-      backgroundColor: this.getTheme().separatorColor,
-      display: 'inline-block',
-      height: this.getSpacing().desktopGutterMore,
-      marginLeft: this.getSpacing().desktopGutter,
-      position: 'relative',
-      top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
-      width: 1,
-    }, this.props.style);
+
+    const {
+      className,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = this.getStyles();
 
     return (
-      <span className={this.props.className} style={styles}/>
+      <span {...other} className={className} style={this.prepareStyles(styles.root, style)}/>
     );
   },
 

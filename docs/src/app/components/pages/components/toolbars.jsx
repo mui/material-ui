@@ -1,143 +1,40 @@
 import React from 'react';
-import mui from 'material-ui';
-import ComponentDoc from '../../component-doc';
-
-const {
-  DropDownIcon,
-  DropDownMenu,
-  FontIcon,
-  RaisedButton,
-  Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator,
-  ToolbarTitle,
-  Paper,
-} = mui;
-import Code from 'toolbars-code';
+import toolbarCode from '!raw!material-ui/toolbar/toolbar';
+import toolbarGroupCode from '!raw!material-ui/toolbar/toolbar-group';
+import toolbarSeparatorCode from '!raw!material-ui/toolbar/toolbar-separator';
+import toolbarTitleCode from '!raw!material-ui/toolbar/toolbar-title';
 import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import PropTypeDescription from '../../PropTypeDescription';
+import ToolbarsExampleSimple from '../../Toolbars/ExampleSimple';
+import toolbarsExampleSimpleCode from '!raw!../../Toolbars/ExampleSimple';
+import MarkdownElement from '../../MarkdownElement';
+import toolbarsReadmeText from '../../Toolbars/README';
+import toolbarReadmeText from '../../Toolbars/Toolbar';
+import toolbarGroupReadmeText from '../../Toolbars/ToolbarGroup';
+import toolbarSeparatorReadmeText from '../../Toolbars/ToolbarSeparator';
+import toolbarTitleReadmeText from '../../Toolbars/ToolbarTitle';
 
 export default class ToolbarPage extends React.Component {
-
   render() {
-
-    let desc = 'Toolbars are collections of components stacked horizontally ' +
-               'against each other. Toolbars provide greater versatility than ' +
-               'appBars. AppBars are a subset of toolbars. The following ' +
-               'toolbar components can help organize your layout. Note that ' +
-               'every component listed here (including Toolbar) have a style ' +
-               'prop which overrides the inline-styles of their root element.';
-
-    let componentInfo = [
-      {
-        name: 'ToolbarGroup',
-        infoArray: [
-          {
-            name: 'Description',
-            desc: 'Toolbar Group contains a collection of components for you. ' +
-                  'It is recommended that all components in a Toolbar are ' +
-                  'contained within a ToolbarGroup.',
-          },
-          {
-            name: 'float',
-            type: 'string',
-            header: 'optional',
-            desc: 'Optional pull "left" or "right"',
-          },
-          {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the toolbar group\'s root element.',
-          },
-        ],
-      },
-      {
-        name: 'ToolbarSeparator',
-        infoArray: [
-          {
-            name: 'Description',
-            desc: 'A vertical bar used to separate groups of components. It ' +
-                  'is used to easily organize components.',
-          },
-          {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the toolbar separator\'s root element.',
-          },
-        ],
-      },
-      {
-        name: 'ToolbarTitle',
-        infoArray: [
-          {
-            name: 'Description',
-            desc: 'Simply a string of text that is displayed in the Toolbar.',
-          },
-          {
-            name: 'text',
-            type: 'string',
-            header: 'optional',
-            desc: 'The text to be displayed for the element.',
-          },
-          {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the toolbar title\'s root element.',
-          },
-        ],
-      },
-    ];
-
-    let filterOptions = [
-      {payload: '1', text: 'All Broadcasts'},
-      {payload: '2', text: 'All Voice'},
-      {payload: '3', text: 'All Text'},
-      {payload: '4', text: 'Complete Voice'},
-      {payload: '5', text: 'Complete Text'},
-      {payload: '6', text: 'Active Voice'},
-      {payload: '7', text: 'Active Text'},
-    ];
-    let iconMenuItems = [
-      {payload: '1', text: 'Download'},
-      {payload: '2', text: 'More Info'},
-    ];
-
     return (
-      <ComponentDoc
-        name="Toolbars"
-        desc={desc}
-        componentInfo={componentInfo}>
-
-        <Paper style = {{marginBottom: '22px'}}>
-          <CodeBlock>
-          {
-            '//Import statement:\nimport Toolbar from \'material-ui/lib/toolbar/toolbar\';\n' +
-            'import ToolbarGroup from \'material-ui/lib/toolbar/toolbar-group\';\n' +
-            'import ToolbarSeparator from \'material-ui/lib/toolbar/toolbar-separator\';\n' +
-            'import ToolbarTitle from \'material-ui/lib/toolbar/toolbar-title\';\n\n' +
-            '//See material-ui/lib/index.js for more\n'
-          }
-          </CodeBlock>
-        </Paper>
-
-        <CodeExample code={Code}>
-          <Toolbar>
-            <ToolbarGroup key={0} float="left">
-              <DropDownMenu menuItems={filterOptions} />
-            </ToolbarGroup>
-            <ToolbarGroup key={1} float="right">
-              <ToolbarTitle text="Options" />
-              <FontIcon className="muidocs-icon-custom-sort" />
-              <DropDownIcon iconClassName="muidocs-icon-navigation-expand-more" menuItems={iconMenuItems} />
-              <ToolbarSeparator/>
-              <RaisedButton label="Create Broadcast" primary={true} />
-            </ToolbarGroup>
-          </Toolbar>
+      <div>
+        <MarkdownElement text={toolbarsReadmeText} />
+        <CodeExample code={toolbarsExampleSimpleCode}>
+          <ToolbarsExampleSimple />
         </CodeExample>
-      </ComponentDoc>
+        <PropTypeDescription
+          code={toolbarCode}
+          header={toolbarReadmeText} />
+        <PropTypeDescription
+          code={toolbarGroupCode}
+          header={toolbarGroupReadmeText} />
+        <PropTypeDescription
+          code={toolbarSeparatorCode}
+          header={toolbarSeparatorReadmeText} />
+        <PropTypeDescription
+          code={toolbarTitleCode}
+          header={toolbarTitleReadmeText} />
+      </div>
     );
   }
 }

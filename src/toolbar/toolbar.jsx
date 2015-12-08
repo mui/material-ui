@@ -12,10 +12,31 @@ const Toolbar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * Can be a `ToolbarGroup` to render a group of related items.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root `div` element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Do not apply `desktopGutter` to the `Toolbar`.
+     */
     noGutter: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the `Toolbar`'s root element.
+     */
     style: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      noGutter: false,
+    };
   },
 
   //for passing default theme context to children
@@ -46,21 +67,36 @@ const Toolbar = React.createClass({
     return this.state.muiTheme.toolbar;
   },
 
+  getSpacing() {
+    return this.state.muiTheme.rawTheme.spacing;
+  },
+
   getStyles() {
-    return this.mergeStyles({
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      backgroundColor: this.getTheme().backgroundColor,
-      height: this.getTheme().height,
-      width: '100%',
-      padding: this.props.noGutter ? 0 : '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutter + 'px',
-    }, this.props.style);
+    return {
+      root: {
+        boxSizing: 'border-box',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        backgroundColor: this.getTheme().backgroundColor,
+        height: this.getTheme().height,
+        width: '100%',
+        padding: this.props.noGutter ? 0 : '0px ' + this.getSpacing().desktopGutter + 'px',
+      },
+    };
   },
 
   render() {
+    const {
+      children,
+      className,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = this.getStyles();
+
     return (
-      <div className={this.props.className} style={this.prepareStyles(this.getStyles())}>
-        {this.props.children}
+      <div {...other} className={className} style={this.prepareStyles(styles.root, style)}>
+        {children}
       </div>
     );
   },

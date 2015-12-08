@@ -21,6 +21,12 @@ function generatePropType(type) {
 const PropTypeDescription = React.createClass({
   propTypes: {
     code: React.PropTypes.string,
+    header: React.PropTypes.string,
+  },
+  getDefaultProps() {
+    return {
+      header: '### Properties',
+    };
   },
   mixins: [
     PureRenderMixin,
@@ -28,9 +34,10 @@ const PropTypeDescription = React.createClass({
   render() {
     const {
       code,
+      header,
     } = this.props;
 
-    let text = `### Properties
+    let text = `${header}
 | Name | Type | Default | Description|
 |:-----|:-----|:-----|:-----|\n`;
 
