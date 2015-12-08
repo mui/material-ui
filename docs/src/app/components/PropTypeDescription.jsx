@@ -3,6 +3,8 @@ import {parse} from 'react-docgen';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import MarkdownElement from './MarkdownElement';
 
+require('./prop-type-description.css');
+
 function generatePropType(type) {
   switch (type.name) {
     case 'func':
@@ -51,7 +53,9 @@ const PropTypeDescription = React.createClass({
     }
 
     return (
-      <MarkdownElement text={text} />
+      <div className="propTypeDescription">
+        <MarkdownElement text={text} />
+      </div>
     );
   },
 });
