@@ -12,6 +12,3 @@ export default {
   desktopSubheaderHeight: 48,
   desktopToolbarHeight: 56,
 };
-
-
-

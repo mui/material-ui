@@ -10,27 +10,15 @@ export default class LeftNavPage extends React.Component {
   constructor() {
     super();
     this._toggleLeftNavChildrenClick = this._toggleLeftNavChildrenClick.bind(this);
-    this._toggleLeftNavControlledClick = this._toggleLeftNavControlledClick.bind(this);
     this._showLeftNavUndockedControlledClick = this._showLeftNavUndockedControlledClick.bind(this);
     this._changeLeftNavUndockedControlledClick = this._changeLeftNavUndockedControlledClick.bind(this);
     this.state = {
-      navOpen: false,
       navWithChildrenOpen: false,
       undockedNavOpen: false,
     };
   }
 
   render() {
-    let menuItems = [
-      {route: 'get-started', text: 'Get Started'},
-      {route: 'customization', text: 'Customization'},
-      {route: 'components', text: 'Components'},
-      {type: MenuItem.Types.SUBHEADER, text: 'Resources'},
-      {type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub'},
-      {text: 'Disabled', disabled: true},
-      {type: MenuItem.Types.LINK, payload: 'https://www.google.com', text: 'Disabled Link', disabled: true},
-    ];
-
     this.desc = 'The api of Left Nav has been changed to be declarative. ' +
                 'The methods close, open and toggle have been deprecated. ' +
                 'In order to control the Left Nav use the open property and handle ' +
@@ -202,9 +190,6 @@ import LeftNav from 'material-ui/lib/left-nav/';
         <CodeExample code={Code}>
           <div>
             <div>
-              <RaisedButton label="Toggle Docked Controlled Left Nav"
-                onTouchTap={this._toggleLeftNavControlledClick} />
-              <br/><br/>
               <RaisedButton label="Toggle Docked Controlled Left Nav With Children"
                 onTouchTap={this._toggleLeftNavChildrenClick} />
               <br/><br/>
@@ -215,14 +200,16 @@ import LeftNav from 'material-ui/lib/left-nav/';
 
             <LeftNav ref="leftNavChildren" open={this.state.navWithChildrenOpen}>
               <MenuItem index={0}>Menu Item</MenuItem>
-              <MenuItem index={1}><a href="/link">Link</a></MenuItem>
+              <MenuItem index={1}>Menu Item 2</MenuItem>
             </LeftNav>
-            <LeftNav open={this.state.navOpen} menuItems={menuItems} />
             <LeftNav
               open={this.state.undockedNavOpen}
               onRequestChange={this._changeLeftNavUndockedControlledClick}
               docked={false}
-              menuItems={menuItems} />
+            >
+              <MenuItem index={0}>Menu Item</MenuItem>
+              <MenuItem index={1}>Menu Item 2</MenuItem>
+            </LeftNav>
           </div>
         </CodeExample>
       </ComponentDoc>
@@ -232,12 +219,6 @@ import LeftNav from 'material-ui/lib/left-nav/';
   _toggleLeftNavChildrenClick() {
     this.setState({
       navWithChildrenOpen: !this.state.navWithChildrenOpen,
-    });
-  }
-
-  _toggleLeftNavControlledClick() {
-    this.setState({
-      navOpen: !this.state.navOpen,
     });
   }
 

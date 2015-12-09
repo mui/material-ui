@@ -12,6 +12,7 @@ import LinkMenuItem from './link-menu-item';
 import SubheaderMenuItem from './subheader-menu-item';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
+import warning from 'warning';
 
 /***********************
 * Nested Menu Component
@@ -250,6 +251,8 @@ const Menu = React.createClass({
   },
 
   getInitialState() {
+    warning(false, 'This menu component is deprecated use menus/menu instead.');
+
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       nestedMenuShown: false,
