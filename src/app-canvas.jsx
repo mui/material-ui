@@ -1,10 +1,9 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
+import Stylable from './mixins/stylable';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
-import {mixin} from 'core-decorators';
 
-@mixin(StylePropable)
+@Stylable
 export default class AppCanvas extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -17,15 +16,15 @@ export default class AppCanvas extends React.Component {
   //for passing default theme context to children
   static childContextTypes = {
     muiTheme: React.PropTypes.object,
-  }
+  };
 
   static contextTypes = {
     muiTheme: React.PropTypes.object,
-  }
+  };
 
   static propTypes = {
     children: React.PropTypes.node,
-  }
+  };
 
   getChildContext() {
     return {
