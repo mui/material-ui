@@ -90,7 +90,6 @@ const RadioButton = React.createClass({
       },
       label: {
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       },
     };
 
