@@ -68,13 +68,16 @@ const Tooltip = React.createClass({
     let offset = verticalPosition === 'bottom' ?
       14 + touchMarginOffset : -14 - touchMarginOffset;
 
+    const rawTheme = this.state.muiTheme.rawTheme;
+
     let styles = {
       root: {
         position: 'absolute',
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+        fontFamily: rawTheme.fontFamily,
         fontSize: '10px',
         lineHeight: '22px',
         padding: '0 8px',
+        zIndex: rawTheme.zIndex.tooltip,
         color: Colors.white,
         overflow: 'hidden',
         top: -10000,
@@ -134,24 +137,30 @@ const Tooltip = React.createClass({
   },
 
   render() {
-    let {
+    const {
       label,
-      ...other} = this.props;
-    let styles = this.getStyles();
+      ...other,
+    } = this.props;
+    const styles = this.getStyles();
+
     return (
-      <div {...other}
+      <div
+        {...other}
         style={this.prepareStyles(
-            styles.root,
-            this.props.show && styles.rootWhenShown,
-            this.props.touch && styles.rootWhenTouched,
-            this.props.style
-          )}>
+          styles.root,
+          this.props.show && styles.rootWhenShown,
+          this.props.touch && styles.rootWhenTouched,
+          this.props.style
+        )}
+      >
         <div
           ref="ripple"
           style={this.prepareStyles(
             styles.ripple,
             this.props.show && styles.rippleWhenShown)} />
-        <span style={this.prepareStyles(styles.label)}>{this.props.label}</span>
+        <span style={this.prepareStyles(styles.label)}>
+          {label}
+        </span>
       </div>
     );
   },

@@ -146,12 +146,14 @@ const Menu = React.createClass({
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
+    const rawTheme = this.state.muiTheme.rawTheme;
+
     let styles = {
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
         transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
-        zIndex: 10,
+        zIndex: rawTheme.zIndex.menu,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
@@ -183,7 +185,7 @@ const Menu = React.createClass({
       },
 
       selectedMenuItem: {
-        color: this.state.muiTheme.rawTheme.palette.accent1Color,
+        color: rawTheme.palette.accent1Color,
       },
     };
 

@@ -170,13 +170,14 @@ const DialogInline = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
+    const rawTheme = this.state.muiTheme.rawTheme;
+    let spacing = rawTheme.spacing;
 
     let main = {
       position: 'fixed',
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      zIndex: 10,
+      zIndex: rawTheme.zIndex.dialog,
       top: 0,
       left: -10000,
       width: '100%',
@@ -192,7 +193,7 @@ const DialogInline = React.createClass({
       width: this.props.width,
       maxWidth: spacing.desktopKeylineIncrement * 12,
       margin: '0 auto',
-      zIndex: 10,
+      zIndex: rawTheme.zIndex.dialog,
     };
 
     let body = {
@@ -225,12 +226,20 @@ const DialogInline = React.createClass({
       paper: {
         background: this.state.muiTheme.rawTheme.palette.canvasColor,
       },
+      overlay: {
+        zIndex: rawTheme.zIndex.dialogOverlay,
+      },
       body: this.mergeStyles(body, this.props.bodyStyle),
       title: this.mergeStyles(title, this.props.titleStyle),
     };
   },
 
   render() {
+    const {
+      open,
+      overlayStyle,
+    } = this.props;
+
     let styles = this.getStyles();
     let actions = this._getActionsContainer(this.props.actions);
     let title;
@@ -247,7 +256,7 @@ const DialogInline = React.createClass({
         <ReactTransitionGroup component="div" ref="dialogWindow"
           transitionAppear={true} transitionAppearTimeout={450}
           transitionEnter={true} transitionEnterTimeout={450}>
-          {this.props.open &&
+          {open &&
             <TransitionItem
               className={this.props.contentClassName}
               style={styles.content}>
@@ -263,8 +272,8 @@ const DialogInline = React.createClass({
           </TransitionItem>}
         </ReactTransitionGroup>
         <Overlay
-          show={this.props.open}
-          style={this.props.overlayStyle}
+          show={open}
+          style={this.mergeStyles(styles.overlay, overlayStyle)}
           onTouchTap={this._handleOverlayTouchTap} />
       </div>
     );

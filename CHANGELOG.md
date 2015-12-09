@@ -3,6 +3,7 @@
 ##### Breaking Changes
 
 - [Menu] Depreciation of the old menu (#2443)
+- zIndex, rework them to be more coherent (#2444)
 
 ## 0.14.0-rc1
 ###### _Dec 4, 2015_

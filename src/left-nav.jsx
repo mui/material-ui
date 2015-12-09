@@ -151,13 +151,15 @@ const LeftNav = React.createClass({
   },
 
   getStyles() {
+    const rawTheme = this.state.muiTheme.rawTheme;
+
     let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
     let styles = {
       root: {
         height: '100%',
         width: this.getTheme().width,
         position: 'fixed',
-        zIndex: 10,
+        zIndex: rawTheme.zIndex.leftNav,
         left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
         top: 0,
         transform: 'translate3d(' + x + 'px, 0, 0)',
@@ -172,11 +174,12 @@ const LeftNav = React.createClass({
         borderRadius: '0',
       },
       overlay: {
+        zIndex: rawTheme.zIndex.leftNavOverlay,
         pointerEvents: this.state.open ? 'auto' : 'none', // Bypass mouse events when left nav is closing.
       },
       menuItem: {
-        height: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineHeight: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
+        height: rawTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineHeight: rawTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
       },
       rootWhenOpenRight: {
         left: 'auto',
