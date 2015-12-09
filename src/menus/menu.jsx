@@ -151,7 +151,6 @@ const Menu = React.createClass({
         //Nested div bacause the List scales x faster than
         //it scales y
         transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
-        position: 'absolute',
         zIndex: 10,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
