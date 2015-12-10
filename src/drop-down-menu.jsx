@@ -308,7 +308,7 @@ const DropDownMenu = React.createClass({
     switch (e.which) {
       case KeyCode.UP:
         if (!this.state.open) {
-          this._selectPreviousItem();
+          this._selectPreviousItem(e);
         }
         else {
           if (e.altKey) {
@@ -322,7 +322,7 @@ const DropDownMenu = React.createClass({
             this.setState({open:true});
           }
           else {
-            this._selectNextItem();
+            this._selectNextItem(e);
           }
         }
         break;
@@ -366,12 +366,20 @@ const DropDownMenu = React.createClass({
     });
   },
 
-  _selectPreviousItem() {
-    this.setState({selectedIndex: Math.max(this.state.selectedIndex - 1, 0)});
+  _selectPreviousItem(e) {
+    const index = Math.max(this.state.selectedIndex - 1, 0);
+    this.setState({selectedIndex: index});
+    if (this.props.onChange) {
+      this.props.onChange(e, index, this.props.menuItems[index]);
+    }
   },
 
-  _selectNextItem() {
-    this.setState({selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1)});
+  _selectNextItem(e) {
+    const index = Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1);
+    this.setState({selectedIndex: index});
+    if (this.props.onChange) {
+      this.props.onChange(e, index, this.props.menuItems[index]);
+    }
   },
 
   _isControlled() {
