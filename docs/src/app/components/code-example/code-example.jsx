@@ -65,7 +65,6 @@ const CodeExample = React.createClass({
       root: {
         backgroundColor: canvasColor,
         marginBottom: 32,
-        overflow: 'hidden',
       },
       exampleLabel: {
         color: borderColor,

@@ -22,7 +22,7 @@ import InlineStyles from './components/pages/customization/inline-styles';
 import Components from './components/pages/components';
 import AppBar from './components/pages/components/app-bar';
 import AutoComplete from './components/pages/components/auto-complete';
-import Avatars from './components/pages/components/avatars';
+import Avatar from './components/pages/components/avatar';
 import Badge from './components/pages/components/badge';
 import Buttons from './components/pages/components/buttons';
 import Cards from './components/pages/components/cards';
@@ -77,11 +77,11 @@ const AppRoutes = (
       <Route path="inline-styles" component={InlineStyles} />
     </Route>
 
-    <Redirect from="components" to="/components/appbar" />
+    <Redirect from="components" to="/components/app-bar" />
     <Route path="components" component={Components}>
-      <Route path="appbar" component={AppBar} />
+      <Route path="app-bar" component={AppBar} />
       <Route path="auto-complete" component={AutoComplete} />
-      <Route path="avatars" component={Avatars} />
+      <Route path="avatar" component={Avatar} />
       <Route path="badge" component={Badge} />
       <Route path="buttons" component={Buttons} />
       <Route path="cards" component={Cards} />
