@@ -193,6 +193,12 @@ const Checkbox = React.createClass({
   _handleStateChange(newSwitched) {
     this.setState({switched: newSwitched});
   },
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.checked !== this.state.switched) {
+      this.setState({switched: nextProps.checked});
+    }
+  },
 
 });
 
