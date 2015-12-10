@@ -1,48 +1,25 @@
 import React from 'react';
-import {MenuItem, LeftNav, Mixins, Styles} from 'material-ui';
+import {
+  LeftNav,
+  Mixins,
+  Styles,
+} from 'material-ui';
+
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import ListDivider from 'material-ui/lib/lists/list-divider';
+import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
+
 const {Colors, Spacing, Typography} = Styles;
 const {StylePropable} = Mixins;
-
-const menuItems = [
-  {
-    route: 'get-started',
-    text: 'Get Started',
-  },
-  {
-    route: 'customization',
-    text: 'Customization',
-  },
-  {
-    route: 'components',
-    text: 'Components',
-  },
-  {
-    type: MenuItem.Types.SUBHEADER,
-    text: 'Resources',
-  },
-  {
-    type: MenuItem.Types.LINK,
-    payload: 'https://github.com/callemall/material-ui',
-    text: 'GitHub',
-  },
-  {
-    type: MenuItem.Types.LINK,
-    payload: 'http://facebook.github.io/react',
-    text: 'React',
-  },
-  {
-    type: MenuItem.Types.LINK,
-    payload: 'https://www.google.com/design/spec/material-design/introduction.html',
-    text: 'Material Design',
-  },
-];
-
+const SelectableList = SelectableContainerEnhance(List);
 
 const AppLeftNav = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
     history: React.PropTypes.object,
+    location: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -59,35 +36,70 @@ const AppLeftNav = React.createClass({
   getStyles() {
     return {
       cursor: 'pointer',
-      //.mui-font-style-headline
-      fontSize: '24px',
+      fontSize: 24,
       color: Typography.textFullWhite,
       lineHeight: Spacing.desktopKeylineIncrement + 'px',
       fontWeight: Typography.fontWeightLight,
       backgroundColor: Colors.cyan500,
       paddingLeft: Spacing.desktopGutter,
-      paddingTop: '0px',
-      marginBottom: '8px',
+      marginBottom: 8,
     };
   },
 
   render() {
-    let header = (
-      <div style={this.prepareStyles(this.getStyles())} onTouchTap={this._onHeaderClick}>
-        material ui
-      </div>
-    );
-
     return (
       <LeftNav
-        ref="leftNav"
         docked={false}
         open={this.state.leftNavOpen}
-        onRequestChange={this._onLeftNavChangeRequest}
-        header={header}
-        menuItems={menuItems}
-        selectedIndex={this._getSelectedIndex()}
-        onChange={this._onLeftNavChange} />
+        onRequestChange={this.handleChangeRequestLeftNav}
+      >
+        <div
+          style={this.prepareStyles(this.getStyles())}
+          onTouchTap={this.handleTouchTapHeader}
+        >
+          material ui
+        </div>
+        <SelectableList
+          valueLink={{
+            value: this._getSelectedIndex(),
+            requestChange: this.handleRequestChangeList,
+          }}
+        >
+          <ListItem
+            value="get-started"
+            primaryText="Get Started"
+          />
+          <ListItem
+            value="customization"
+            primaryText="Customization"
+          />
+          <ListItem
+            value="components"
+            primaryText="Components"
+          />
+        </SelectableList>
+        <ListDivider />
+        <SelectableList
+          subheader="Resources"
+          valueLink={{
+            value: '',
+            requestChange: this.handleRequestChangeLink,
+          }}
+        >
+          <ListItem
+            value="https://github.com/callemall/material-ui"
+            primaryText="GitHub"
+          />
+          <ListItem
+            value="http://facebook.github.io/react"
+            primaryText="React"
+          />
+          <ListItem
+            value="https://www.google.com/design/spec/material-design/introduction.html"
+            primaryText="Material Design"
+          />
+        </SelectableList>
+      </LeftNav>
     );
   },
 
@@ -96,25 +108,34 @@ const AppLeftNav = React.createClass({
   },
 
   _getSelectedIndex() {
-    let currentItem;
-
-    for (let i = menuItems.length - 1; i >= 0; i--) {
-      currentItem = menuItems[i];
-      if (currentItem.route && this.props.history.isActive(currentItem.route)) return i;
-    }
+    return this.props.location.pathname.split('/')[1];
   },
 
-  _onLeftNavChangeRequest(open) {
-    this.setState({leftNavOpen: open});
+  handleChangeRequestLeftNav(open) {
+    this.setState({
+      leftNavOpen: open,
+    });
   },
 
-  _onLeftNavChange(e, key, payload) {
-    this.props.history.pushState(null, payload.route);
+  handleRequestChangeList(event, value) {
+    this.props.history.push(value);
+    this.setState({
+      leftNavOpen: false,
+    });
   },
 
-  _onHeaderClick() {
-    this.props.history.pushState(null, '/');
-    this.setState({leftNavOpen: false});
+  handleRequestChangeLink(event, value) {
+    window.location = value;
+    this.setState({
+      leftNavOpen: false,
+    });
+  },
+
+  handleTouchTapHeader() {
+    this.props.history.push('/');
+    this.setState({
+      leftNavOpen: false,
+    });
   },
 
 });

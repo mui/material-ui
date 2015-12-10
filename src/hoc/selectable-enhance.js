@@ -21,7 +21,7 @@ export const SelectableContainerEnhance = (Component) => {
       children: React.PropTypes.node,
       selectedItemStyle: React.PropTypes.object,
       valueLink: React.PropTypes.shape({
-        value: React.PropTypes.number,
+        value: React.PropTypes.any,
         requestChange: React.PropTypes.func,
       }).isRequired,
     },
