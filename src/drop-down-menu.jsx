@@ -367,15 +367,19 @@ const DropDownMenu = React.createClass({
   },
 
   _selectPreviousItem(e) {
-    let index = Math.max(this.state.selectedIndex - 1, 0);
+    const index = Math.max(this.state.selectedIndex - 1, 0);
     this.setState({selectedIndex: index});
-    this.props.onChange(e, index, this.props.menuItems[index]);
+    if (this.props.onChange) {
+      this.props.onChange(e, index, this.props.menuItems[index]);
+    }
   },
 
   _selectNextItem(e) {
-    let index = Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1);
+    const index = Math.min(this.state.selectedIndex + 1, this.props.menuItems.length - 1);
     this.setState({selectedIndex: index});
-    this.props.onChange(e, index, this.props.menuItems[index]);
+    if (this.props.onChange) {
+      this.props.onChange(e, index, this.props.menuItems[index]);
+    }
   },
 
   _isControlled() {
