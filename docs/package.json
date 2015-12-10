@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "css-loader": "^0.23.0",
-    "highlight.js": "^8.9.1",
-    "history": "^1.11.1",
+    "highlight.js": "^9.0.0",
+    "history": "1.13.x",
     "intl": "^1.0.1",
     "marked": "^0.3.5",
     "react-addons-perf": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-motion": "^0.3.1",
-    "react-router": "^1.0.0-rc1",
+    "react-router": "1.0.2",
     "react-swipeable-views": "^0.3.0",
     "style-loader": "0.13.0"
   },
