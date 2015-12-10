@@ -55,7 +55,12 @@ const Checkbox = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: newMuiTheme,
+      switched: this.props.checked !== nextProps.checked
+        ? nextProps.checked
+        : this.state.switched,
+    });
   },
 
   getTheme() {
