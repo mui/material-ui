@@ -3,42 +3,20 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Colors from './styles/colors';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
-
 
 const Overlay = React.createClass({
 
   _originalBodyOverflow: '',
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  componentWillReceiveProps(nextProps) {
     if (this.props.show !== nextProps.show) {
       this._applyAutoLockScrolling(nextProps);
     }
@@ -55,7 +33,7 @@ const Overlay = React.createClass({
     return {
       autoLockScrolling: true,
       transitionEnabled: true,
-      style:{},
+      style: {},
     };
   },
 
@@ -76,12 +54,11 @@ const Overlay = React.createClass({
   },
 
   getStyles() {
-    let styles = {
+    return {
       root: {
         position: 'fixed',
         height: '100%',
         width: '100%',
-        zIndex: 9,
         top: 0,
         left: '-100%',
         opacity: 0,
@@ -106,7 +83,6 @@ const Overlay = React.createClass({
           Transitions.easeOut('400ms', 'opacity'),
       },
     };
-    return styles;
   },
 
   render() {
@@ -134,12 +110,12 @@ const Overlay = React.createClass({
   },
 
   _preventScrolling() {
-    let body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
   },
 
   _allowScrolling() {
-    let body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.style.overflow = this._originalBodyOverflow || '';
   },
 

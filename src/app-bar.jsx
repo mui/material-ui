@@ -149,20 +149,23 @@ const AppBar = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
-    let themeVariables = this.state.muiTheme.appBar;
-    let iconButtonSize = this.state.muiTheme.button.iconButtonSize;
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
+
+    let themeVariables = muiTheme.appBar;
+    let iconButtonSize = muiTheme.button.iconButtonSize;
     let flatButtonSize = 36;
+
     let styles = {
       root: {
         position: 'relative',
-        zIndex: 5,
+        zIndex: rawTheme.zIndex.appBar,
         width: '100%',
         display: 'flex',
         minHeight: themeVariables.height,
         backgroundColor: themeVariables.color,
-        paddingLeft: spacing.desktopGutter,
-        paddingRight: spacing.desktopGutter,
+        paddingLeft: rawTheme.spacing.desktopGutter,
+        paddingRight: rawTheme.spacing.desktopGutter,
       },
       title: {
         whiteSpace: 'nowrap',
