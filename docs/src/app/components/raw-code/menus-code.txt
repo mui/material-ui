@@ -4,7 +4,7 @@
 
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import MenuDivider from 'material-ui/lib/menus/menu-divider';
+import Divider from 'material-ui/lib/divider';
 
 <Menu>
   <MenuItem primaryText="Maps" />
@@ -20,13 +20,13 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
   <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
   <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
   <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
-  <MenuDivider />
+  <Divider />
   <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
-  <MenuDivider />
+  <Divider />
   <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
 </Menu>
 
@@ -47,9 +47,9 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
       <MenuItem primaryText="Rules" checked={true} />,
     ]}>
   </MenuItem>
-  <MenuDivider />
+  <Divider />
   <MenuItem primaryText="Add space before paragraph" />
   <MenuItem primaryText="Add space after paragraph" />
-  <MenuDivider />
+  <Divider />
   <MenuItem primaryText="Custom spacing..." />
 </Menu>

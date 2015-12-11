@@ -2,7 +2,7 @@ import React from 'react';
 import {IconButton, Paper} from 'material-ui';
 import IconMenu from 'menus/icon-menu';
 import MenuItem from 'menus/menu-item';
-import MenuDivider from 'menus/menu-divider';
+import Divider from 'divider';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ComponentDoc from '../../component-doc';
 
@@ -286,7 +286,7 @@ export default class IconMenus extends React.Component {
               <MenuItem primaryText="Home" />
               <MenuItem primaryText="Back" />
               <MenuItem primaryText="Forward" disabled={true} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Recently closed" disabled={true} />
               <MenuItem primaryText="Google" disabled={true} />
               <MenuItem primaryText="YouTube" />
@@ -297,10 +297,10 @@ export default class IconMenus extends React.Component {
               <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
               <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
               <MenuItem primaryText="Get link" leftIcon={<ContentLink />} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
               <MenuItem primaryText="Download" leftIcon={<Download />} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Remove" leftIcon={<Delete />} />
             </IconMenu>
           </div>
@@ -314,10 +314,10 @@ export default class IconMenus extends React.Component {
               <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
               <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
               <MenuItem primaryText="Get link" leftIcon={<ContentLink />} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
               <MenuItem primaryText="Download" leftIcon={<Download />} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Remove" leftIcon={<Delete />} />
             </IconMenu>
           </div>

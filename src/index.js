@@ -18,6 +18,7 @@ export default {
   DatePicker: require('./date-picker/date-picker'),
   DatePickerDialog: require('./date-picker/date-picker-dialog'),
   Dialog: require('./dialog'),
+  Divider: require('./divider'),
   DropDownIcon: require('./drop-down-icon'),
   DropDownMenu: require('./drop-down-menu'),
   EnhancedButton: require('./enhanced-button'),

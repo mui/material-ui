@@ -6,7 +6,7 @@ import KeyCode from './utils/key-code';
 import TextField from './text-field';
 import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
-import MenuDivider from './menus/menu-divider';
+import Divider from './divider';
 
 const AutoComplete = React.createClass({
 
@@ -311,6 +311,6 @@ const AutoComplete = React.createClass({
 });
 
 AutoComplete.Item = MenuItem;
-AutoComplete.Divider = MenuDivider;
+AutoComplete.Divider = Divider;
 
 export default AutoComplete;

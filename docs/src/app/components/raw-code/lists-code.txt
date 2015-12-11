@@ -6,7 +6,7 @@
   <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
   <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
 </List>
-<ListDivider />
+<Divider />
 <List>
   <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
   <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
@@ -27,7 +27,7 @@
       </p>
     }
     secondaryTextLines={2} />
-  <ListDivider inset={true} />
+  <Divider inset={true} />
   <ListItem
     leftAvatar={<Avatar src="images/kolage-128.jpg" />}
     rightIconButton={rightIconMenu}
@@ -39,7 +39,7 @@
       </p>
     }
     secondaryTextLines={2} />
-  <ListDivider inset={true} />
+  <Divider inset={true} />
   <ListItem
     leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
     rightIconButton={rightIconMenu}
@@ -51,7 +51,7 @@
       </p>
     }
     secondaryTextLines={2} />
-  <ListDivider inset={true} />
+  <Divider inset={true} />
   <ListItem
     leftAvatar={<Avatar src="images/kerem-128.jpg" />}
     rightIconButton={rightIconMenu}
@@ -63,7 +63,7 @@
       </p>
     }
     secondaryTextLines={2} />
-  <ListDivider inset={true} />
+  <Divider inset={true} />
   <ListItem
     leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
     rightIconButton={rightIconMenu}

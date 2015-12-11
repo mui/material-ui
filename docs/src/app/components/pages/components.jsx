@@ -13,6 +13,7 @@ export default class Components extends React.Component {
       {route: '/components/cards', text: 'Cards'},
       {route: '/components/date-picker', text: 'Date Picker'},
       {route: '/components/dialog', text: 'Dialog'},
+      {route: '/components/divider', text: 'Divider'},
       {route: '/components/dropdown-menu', text: 'Dropdown Menu'},
       {route: '/components/grid-list', text: 'Grid List'},
       {route: '/components/icons', text: 'Icons'},

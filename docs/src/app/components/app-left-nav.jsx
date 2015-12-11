@@ -7,7 +7,7 @@ import {
 
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
-import ListDivider from 'material-ui/lib/lists/list-divider';
+import Divider from 'material-ui/lib/divider';
 import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
 
 const {Colors, Spacing, Typography} = Styles;
@@ -78,7 +78,7 @@ const AppLeftNav = React.createClass({
             primaryText="Components"
           />
         </SelectableList>
-        <ListDivider />
+        <Divider />
         <SelectableList
           subheader="Resources"
           valueLink={{
