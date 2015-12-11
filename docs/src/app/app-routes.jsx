@@ -28,6 +28,7 @@ import Buttons from './components/pages/components/buttons';
 import Cards from './components/pages/components/cards';
 import DatePicker from './components/pages/components/date-picker';
 import Dialog from './components/pages/components/dialog';
+import Divider from './components/pages/components/divider';
 import DropDownMenu from './components/pages/components/drop-down-menu';
 import GridList from './components/pages/components/grid-list';
 import Icons from './components/pages/components/icons';
@@ -87,6 +88,7 @@ const AppRoutes = (
       <Route path="cards" component={Cards} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={Dialog} />
+      <Route path="divider" component={Divider} />
       <Route path="dropdown-menu" component={DropDownMenu} />
       <Route path="grid-list" component={GridList} />
       <Route path="icons" component={Icons} />

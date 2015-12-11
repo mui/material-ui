@@ -3,7 +3,7 @@
 //require them like this:
 
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import MenuDivider from 'material-ui/lib/menus/menu-divider';
+import Divider from 'material-ui/lib/divider';
 
 <IconMenu iconButtonElement={iconButtonElement}>
   <MenuItem primaryText="Refresh" />

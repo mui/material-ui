@@ -164,6 +164,11 @@ const Menu = React.createClass({
         transformOrigin: openLeft ? 'right' : 'left',
       },
 
+      divider: {
+        marginTop: 7,
+        marginBottom: 8,
+      },
+
       list: {
         display: 'table-cell',
         paddingBottom: desktop ? 16 : 8,
@@ -203,7 +208,7 @@ const Menu = React.createClass({
 
     let menuItemIndex = 0;
     let newChildren = React.Children.map(filteredChildren, child => {
-      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
       let childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 
@@ -225,7 +230,7 @@ const Menu = React.createClass({
         });
       }
 
-      let clonedChild = childIsADivider ? child :
+      let clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this._cloneMenuItem(child, menuItemIndex, styles);
 
@@ -348,7 +353,7 @@ const Menu = React.createClass({
     //max menu height
     filteredChildren.forEach(child => {
       if (currentHeight < maxHeight) {
-        let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
+        let childIsADivider = child.type && child.type.displayName === 'Divider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -361,7 +366,7 @@ const Menu = React.createClass({
   _getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach(child => {
-      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
       let childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
@@ -373,7 +378,7 @@ const Menu = React.createClass({
     let menuItemIndex = 0;
 
     filteredChildren.forEach(child => {
-      let childIsADivider = child.type && child.type.displayName === 'MenuDivider';
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;

@@ -21,7 +21,7 @@ const {
   Checkbox,
   IconButton,
   List,
-  ListDivider,
+  Divider,
   ListItem,
   Styles,
   Toggle,
@@ -345,7 +345,7 @@ This is automatically disabled if leftCheckbox or rightToggle is set.`,
           {
             `//Import statement:
 import List from 'material-ui/lib/lists/list';
-import ListDivider from 'material-ui/lib/lists/list-divider';
+import Divider from 'material-ui/lib/divider';
 import ListItem from 'material-ui/lib/lists/list-item';
 
 //See material-ui/lib/index.js for more
@@ -363,7 +363,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
               <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
               <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
             </List>
-            <ListDivider />
+            <Divider />
             <List>
               <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
               <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
@@ -395,7 +395,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 rightIcon={<CommunicationChatBubble />} />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Previous chats">
               <ListItem
                 primaryText="Chelsea Otakan"
@@ -425,7 +425,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 insetChildren={true}
                 rightAvatar={<Avatar src="images/kerem-128.jpg" />} />
             </List>
-            <ListDivider inset={true} />
+            <Divider inset={true} />
             <List>
               <ListItem
                 primaryText="Adelle Charles"
@@ -465,7 +465,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 primaryText="Work"
                 secondaryText="Jan 28, 2014" />
             </List>
-            <ListDivider inset={true} />
+            <Divider inset={true} />
             <List subheader="Files" insetSubheader={true}>
               <ListItem
                 leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
@@ -510,7 +510,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 primaryText="Show your status"
                 secondaryText="Your status is visible to everyone you use with" />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Hangout notifications">
               <ListItem
                 leftCheckbox={<Checkbox />}
@@ -532,13 +532,13 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 primaryText="When calls and notifications arrive"
                 secondaryText="Always interrupt" />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Priority interruptions">
               <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
               <ListItem primaryText="Calls" rightToggle={<Toggle />} />
               <ListItem primaryText="Messages" rightToggle={<Toggle />} />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Hangout notifications">
               <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />} />
               <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
@@ -559,7 +559,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                 primaryText="(323) 555 - 6789"
                 secondaryText="Work" />
             </List>
-            <ListDivider inset={true} />
+            <Divider inset={true} />
             <List>
               <ListItem
                 leftIcon={<CommunicationEmail color={Colors.indigo500} />}
@@ -583,7 +583,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                     I&apos;ll be in your neighborhood this weekend.
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 primaryText={
@@ -595,7 +595,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                     Wish I could but I can
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 primaryText="Oui oui"
@@ -605,7 +605,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                     Do you have Paris recommendations?
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 primaryText="Birthday gift"
@@ -615,7 +615,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                     Do you have any ideas on what I
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 primaryText="Recipe to try"
@@ -625,7 +625,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                     We should eat this: grated cheese
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/chexee-128.jpg" />}
                 primaryText="Giants game"
@@ -650,7 +650,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 primaryText={
@@ -663,7 +663,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 primaryText="Oui oui"
@@ -674,7 +674,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 primaryText="Birdthday gift"
@@ -685,7 +685,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 primaryText="Recipe to try"
@@ -712,7 +712,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -724,7 +724,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -736,7 +736,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -748,7 +748,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 rightIconButton={rightIconMenu}

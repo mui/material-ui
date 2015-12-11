@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from 'paper';
 import Menu from 'menus/menu';
 import MenuItem from 'menus/menu-item';
-import MenuDivider from 'menus/menu-divider';
+import Divider from 'divider';
 import ComponentDoc from '../../component-doc';
 
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
@@ -233,7 +233,7 @@ export default class MenusPage extends React.Component {
             `//Import statement:
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import MenuDivider from 'material-ui/lib/menus/menu-divider';
+import Divider from 'material-ui/lib/menus/menu-divider';
 
 //See material-ui/lib/index.js for more
           `
@@ -259,7 +259,7 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
           <Menu style={styles.menu} desktop={true}>
             <MenuItem primaryText="Back" />
             <MenuItem primaryText="Forward" disabled={true} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Recently closed" disabled={true} />
             <MenuItem primaryText="Google" disabled={true} />
             <MenuItem primaryText="YouTube" />
@@ -269,17 +269,17 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
             <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
             <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
             <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
             <MenuItem primaryText="Download" leftIcon={<Download />} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Remove" leftIcon={<Delete />} />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
             <MenuItem primaryText="Undo" />
             <MenuItem primaryText="Redo" disabled={true} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Cut" disabled={true} />
             <MenuItem primaryText="Copy" disabled={true} />
             <MenuItem primaryText="Paste" />
@@ -316,13 +316,13 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
             <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
             <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
             <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
           </Menu>
 
@@ -341,10 +341,10 @@ import MenuDivider from 'material-ui/lib/menus/menu-divider';
               <MenuItem primaryText="Page breaks" insetChildren={true} />,
               <MenuItem primaryText="Rules" checked={true} />,
             ]} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Add space before paragraph" />
             <MenuItem primaryText="Add space after paragraph" />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Custom spacing..." />
           </Menu>
 
