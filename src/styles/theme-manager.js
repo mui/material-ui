@@ -51,7 +51,8 @@ export default {
         accentColor: rawTheme.palette.borderColor,
       },
       flatButton: {
-        color: rawTheme.palette.alternateTextColor,
+        color: Colors.transparent,
+        buttonFilterColor: '#999999',
         textColor: rawTheme.palette.textColor,
         primaryTextColor: rawTheme.palette.accent1Color,
         secondaryTextColor: rawTheme.palette.primary1Color,

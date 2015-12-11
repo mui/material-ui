@@ -30,6 +30,7 @@ const FlatButton = React.createClass({
 
       return {
         buttonColor: flatButtonTheme.color,
+        buttonFilterColor: flatButtonTheme.buttonFilterColor,
         buttonHeight: buttonTheme.height,
         buttonMinWidth: buttonTheme.minWidth,
         disabledTextColor: flatButtonTheme.disabledTextColor,
@@ -136,26 +137,27 @@ const FlatButton = React.createClass({
       buttonHeight,
       buttonMinWidth,
       disabledTextColor,
+      buttonFilterColor,
       primaryTextColor,
       secondaryTextColor,
       textColor,
       textTransform,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const defaultColor = disabled ? disabledTextColor :
+    const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
       secondary ? secondaryTextColor :
       textColor;
 
-    const defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
-    const defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
+    const defaultHoverColor = ColorManipulator.fade(buttonFilterColor, 0.2);
+    const defaultRippleColor = buttonFilterColor;
     const buttonHoverColor = hoverColor || defaultHoverColor;
     const buttonRippleColor = rippleColor || defaultRippleColor;
-    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
     const buttonBackgroundColor = backgroundColor || buttonColor;
+    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
     const mergedRootStyles = ImmutabilityHelper.merge({
-      color: defaultColor,
+      color: defaultTextColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
@@ -191,12 +193,14 @@ const FlatButton = React.createClass({
         {...other}
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
+        focusRippleOpacity={0.3}
         onKeyboardFocus={this._handleKeyboardFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}
-        touchRippleColor={buttonRippleColor}>
+        touchRippleColor={buttonRippleColor}
+        touchRippleOpacity={0.3} >
         {enhancedButtonChildren}
       </EnhancedButton>
     );
