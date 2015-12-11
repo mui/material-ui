@@ -49,7 +49,6 @@ import Tabs from './components/pages/components/tabs';
 import TextFields from './components/pages/components/text-fields';
 import TimePicker from './components/pages/components/time-picker';
 import Toolbars from './components/pages/components/toolbars';
-import AppBarWaterfall from './components/examples/app-bar-waterfall';
 
 
 /**
@@ -62,63 +61,57 @@ import AppBarWaterfall from './components/examples/app-bar-waterfall';
  * handler and its parent handler like so: Paper > Components > Master
  */
 const AppRoutes = (
-  <Route>
-    <Route path="/" component={Master}>
-      <Route path="home" component={Home} />
-      <Redirect from="get-started" to="/get-started/prerequisites" />
-      <Route path="get-started" component={GetStarted}>
-        <Route path="prerequisites" component={Prerequisites} />
-        <Route path="installation" component={Installation} />
-        <Route path="examples" component={Examples} />
-      </Route>
-
-      <Redirect from="customization" to="/customization/themes" />
-      <Route path="customization" component={Customization}>
-        <Route path="colors" component={Colors} />
-        <Route path="themes" component={Themes} />
-        <Route path="inline-styles" component={InlineStyles} />
-      </Route>
-
-      <Redirect from="components" to="/components/appbar" />
-      <Route path="components" component={Components}>
-        <Route path="appbar" component={AppBar} />
-        <Route path="auto-complete" component={AutoComplete} />
-        <Route path="avatar" component={Avatar} />
-        <Route path="badge" component={Badge} />
-        <Route path="buttons" component={Buttons} />
-        <Route path="cards" component={Cards} />
-        <Route path="date-picker" component={DatePicker} />
-        <Route path="dialog" component={Dialog} />
-        <Route path="dropdown-menu" component={DropDownMenu} />
-        <Route path="grid-list" component={GridList} />
-        <Route path="icons" component={Icons} />
-        <Route path="icon-buttons" component={IconButtons} />
-        <Route path="icon-menus" component={IconMenus} />
-        <Route path="left-nav" component={LeftNav} />
-        <Route path="lists" component={Lists} />
-        <Route path="menus" component={Menus} />
-        <Route path="paper" component={Paper} />
-        <Route path="popover" component={Popover} />
-        <Route path="progress" component={Progress} />
-        <Route path="refresh-indicator" component={RefreshIndicator} />
-        <Route path="select-fields" component={SelectFields} />
-        <Route path="sliders" component={Sliders} />
-        <Route path="switches" component={Switches} />
-        <Route path="snackbar" component={Snackbar} />
-        <Route path="table" component={Table} />
-        <Route path="tabs" component={Tabs} />
-        <Route path="text-fields" component={TextFields} />
-        <Route path="time-picker" component={TimePicker} />
-        <Route path="toolbars" component={Toolbars} />
-      </Route>
-
-      <IndexRoute component={Home}/>
+  <Route path="/" component={Master}>
+    <Route path="home" component={Home} />
+    <Redirect from="get-started" to="/get-started/prerequisites" />
+    <Route path="get-started" component={GetStarted}>
+      <Route path="prerequisites" component={Prerequisites} />
+      <Route path="installation" component={Installation} />
+      <Route path="examples" component={Examples} />
     </Route>
-    <Route path="/examples">
-      <Route path="app-bar-waterfall" component={AppBarWaterfall} />
+
+    <Redirect from="customization" to="/customization/themes" />
+    <Route path="customization" component={Customization}>
+      <Route path="colors" component={Colors} />
+      <Route path="themes" component={Themes} />
+      <Route path="inline-styles" component={InlineStyles} />
     </Route>
+
+    <Redirect from="components" to="/components/app-bar" />
+    <Route path="components" component={Components}>
+      <Route path="app-bar" component={AppBar} />
+      <Route path="auto-complete" component={AutoComplete} />
+      <Route path="avatar" component={Avatar} />
+      <Route path="badge" component={Badge} />
+      <Route path="buttons" component={Buttons} />
+      <Route path="cards" component={Cards} />
+      <Route path="date-picker" component={DatePicker} />
+      <Route path="dialog" component={Dialog} />
+      <Route path="dropdown-menu" component={DropDownMenu} />
+      <Route path="grid-list" component={GridList} />
+      <Route path="icons" component={Icons} />
+      <Route path="icon-buttons" component={IconButtons} />
+      <Route path="icon-menus" component={IconMenus} />
+      <Route path="left-nav" component={LeftNav} />
+      <Route path="lists" component={Lists} />
+      <Route path="menus" component={Menus} />
+      <Route path="paper" component={Paper} />
+      <Route path="popover" component={Popover} />
+      <Route path="progress" component={Progress} />
+      <Route path="refresh-indicator" component={RefreshIndicator} />
+      <Route path="select-fields" component={SelectFields} />
+      <Route path="sliders" component={Sliders} />
+      <Route path="switches" component={Switches} />
+      <Route path="snackbar" component={Snackbar} />
+      <Route path="table" component={Table} />
+      <Route path="tabs" component={Tabs} />
+      <Route path="text-fields" component={TextFields} />
+      <Route path="time-picker" component={TimePicker} />
+      <Route path="toolbars" component={Toolbars} />
+    </Route>
+
+    <IndexRoute component={Home}/>
   </Route>
-
 );
 
 export default AppRoutes;

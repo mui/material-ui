@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Typography from './styles/typography';
 import IconButton from './icon-button';
@@ -207,7 +206,7 @@ const AppBar = React.createClass({
     // so we call the handler from the start
     this.waterfallScrollHandler();
 
-    ReactDOM.findDOMNode(this.refs.slideEl).style.position = 'absolute';
+    this.waterfallSlideEL.style.position = 'absolute';
 
     window.addEventListener('scroll', this.waterfallScrollHandler);
   },
@@ -230,7 +229,7 @@ const AppBar = React.createClass({
             height: waterfallHeight,
             maxHeight: waterfall.maxHeight,
             minHeight: waterfall.minHeight,
-            childrenEl: ReactDOM.findDOMNode(this.refs.root),
+            childrenEl: this.waterfallRootEl,
           });
         }
       }
@@ -258,6 +257,7 @@ const AppBar = React.createClass({
       root: {
         position: 'fixed',
         top: 0,
+        left: 0,
         zIndex: rawTheme.zIndex.appBar,
         width: '100%',
         display: 'flex',
@@ -429,7 +429,7 @@ const AppBar = React.createClass({
         <div
           {...other}
           className={className}
-          ref="root"
+          ref={el => { this.waterfallRootEl = el; }}
           style={{
             height: waterfall.maxHeight,
           }}>
@@ -443,10 +443,11 @@ const AppBar = React.createClass({
             position will be transformed to absolute in setupWaterfall
           */}
           <div
-            ref="slideEl"
+            ref={el => { this.waterfallSlideEL = el; }}
             style={{
               position: 'fixed',
               top: 0,
+              left: 0,
               zIndex: paperElStyle.zIndex + 1,
               width: '100%',
               height: waterfall.maxHeight,
