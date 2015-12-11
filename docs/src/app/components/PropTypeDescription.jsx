@@ -13,6 +13,10 @@ function generatePropType(type) {
     case 'custom':
       return type.raw;
 
+    case 'enum':
+      const values = type.value.map(v => v.value).join(', ');
+      return `enum[${values}]`;
+
     default:
       return type.name;
   }
