@@ -60,11 +60,13 @@ const LeftNav = React.createClass({
     openRight: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
+    width: React.PropTypes.number,
   },
 
   windowListeners: {
     keyup: '_onWindowKeyUp',
     resize: '_onWindowResize',
+    width: 256,
   },
 
   getDefaultProps() {
@@ -157,7 +159,7 @@ const LeftNav = React.createClass({
     let styles = {
       root: {
         height: '100%',
-        width: this.getTheme().width,
+        width: this.props.width,
         position: 'fixed',
         zIndex: rawTheme.zIndex.leftNav,
         left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
@@ -313,7 +315,7 @@ const LeftNav = React.createClass({
   },
 
   _getMaxTranslateX() {
-    return this.getTheme().width + 10;
+    return this.props.width + 10;
   },
 
   _getTranslateMultiplier() {
