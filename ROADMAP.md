@@ -15,6 +15,7 @@
 1. Full support for react-native.
 1. Improve performance with `shouldComponentUpdate` and removed inefficient computations.
 1. Standardize API naming and available `prop` convention across the library.
+1. Standardize API callback signature and provide formal documentation.
 
 ##### Breaking Changes
 
