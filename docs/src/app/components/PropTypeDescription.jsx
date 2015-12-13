@@ -14,8 +14,8 @@ function generatePropType(type) {
       return type.raw;
 
     case 'enum':
-      const values = type.value.map(v => v.value).join(', ');
-      return `enum[${values}]`;
+      const values = type.value.map(v => v.value).join('<br>&nbsp;');
+      return `enum:<br>&nbsp;${values}<br>`;
 
     default:
       return type.name;
@@ -42,7 +42,7 @@ const PropTypeDescription = React.createClass({
     } = this.props;
 
     let text = `${header}
-| Name | Type | Default | Description|
+| Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|\n`;
 
     const componentInfo = parse(code);
@@ -56,11 +56,15 @@ const PropTypeDescription = React.createClass({
         defaultValue = prop.defaultValue.value;
       }
 
-      const description = (prop.required ? '**required**' : '*optional*') +
-        '. ' + prop.description.replace(/\n/g, '<br>');
+      const requirement = `${prop.required ? '**required**' : '*optional*'}.`;
 
-      text += `| ${key} | ${generatePropType(prop.type)} |`;
-      text += `${defaultValue} |${description} |\n`;
+      // two new lines result in a newline in the table. all other new lines
+      // must be eliminated to prevent markdown mayhem.
+      const jsDocText = prop.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
+
+      const description = `${requirement} ${jsDocText}`;
+
+      text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }
 
     return (
