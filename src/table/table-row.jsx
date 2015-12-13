@@ -162,7 +162,7 @@ const TableRow = React.createClass({
   },
 
   _onRowClick(e) {
-    if (this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
+    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
   },
 
   _onRowHover(e) {
