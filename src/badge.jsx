@@ -36,7 +36,7 @@ const Badge = React.createClass({
     children: React.PropTypes.node,
 
     /**
-     * Applied to the root element.
+     * The css class name of the root element.
      */
     className: React.PropTypes.string,
 

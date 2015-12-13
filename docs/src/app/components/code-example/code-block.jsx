@@ -14,8 +14,8 @@ const styles = {
   },
   markdown: {
     overflow: 'auto',
-    maxHeight: 2000,
-    transition: Transitions.easeOut('1s', 'max-height'),
+    maxHeight: 1400,
+    transition: Transitions.create('max-height', '800ms', '0ms', 'ease-in-out'),
   },
   markdownRetracted: {
     maxHeight: LINE_MAX * 18,
