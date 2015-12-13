@@ -173,7 +173,7 @@ const SelectFieldsPage = React.createClass({
           },
           {
             name: 'onChange',
-            header: 'function(name, event)',
+            header: 'function(event, name)',
             desc: 'Callback function that is fired when the selectfield\'s value ' +
                   'changes.',
           },
