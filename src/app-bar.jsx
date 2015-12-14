@@ -196,7 +196,6 @@ const AppBar = React.createClass({
       },
       flatButton: {
         color: themeVariables.textColor,
-        backgroundColor: 'transparent',
         marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
       },
     };
