@@ -4,6 +4,7 @@ import FontIcon from '../font-icon';
 import Toggle from '../toggle';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
+import warning from 'warning';
 
 const Types = {
   LINK: 'LINK',
@@ -55,6 +56,8 @@ const MenuItem = React.createClass({
   },
 
   getInitialState() {
+    warning(false, 'This menu item component is deprecated use menus/menu-item instead.');
+
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };

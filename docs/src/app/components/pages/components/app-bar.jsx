@@ -1,5 +1,5 @@
 import React from 'react';
-import appBarCode from '!raw!material-ui/app-bar';
+import appBarCode from '!raw!material-ui/lib/app-bar';
 import CodeExample from '../../code-example/code-example';
 import PropTypeDescription from '../../PropTypeDescription';
 import AppBarExampleIcon from '../../AppBar/ExampleIcon';

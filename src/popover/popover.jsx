@@ -24,7 +24,7 @@ const Popover = React.createClass({
     animation: React.PropTypes.func,
     autoCloseWhenOffScreen: React.PropTypes.bool,
     canAutoPosition: React.PropTypes.bool,
-    children: React.PropTypes.object,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     onRequestClose: React.PropTypes.func,
     open: React.PropTypes.bool,

@@ -482,28 +482,6 @@ const ThemesPage = React.createClass({
       {text: 'Submit', onTouchTap: this._onDialogSubmit},
     ];
 
-    let menuItemsNav = [
-      {route: 'get-started', text: 'Get Started'},
-      {route: 'customization', text: 'Customization'},
-      {route: 'component', text: 'Component'},
-      {type: MenuItem.Types.SUBHEADER, text: 'Resources'},
-      {
-        type: MenuItem.Types.LINK,
-        payload: 'https://github.com/callemall/material-ui',
-        text: 'GitHub',
-      },
-      {
-        text: 'Disabled',
-        disabled: true,
-      },
-      {
-        type: MenuItem.Types.LINK,
-        payload: 'https://www.google.com',
-        text: 'Disabled Link',
-        disabled: true,
-      },
-    ];
-
     let styles = this.getStyles();
 
     let menuItems = [
@@ -610,8 +588,11 @@ const ThemesPage = React.createClass({
               <FlatButton
                 onTouchTap={this.handleTouchTapLeftNav}
                 label="View LeftNav" />
-              <LeftNav open={this.state.leftNavOpen} docked={false} menuItems={menuItemsNav}
-                onRequestChange={this.handleRequestChangeLeftNav} />
+              <LeftNav open={this.state.leftNavOpen} docked={false}
+                onRequestChange={this.handleRequestChangeLeftNav}>
+                <MenuItem index={0}>Menu Item</MenuItem>
+                <MenuItem index={1}>Menu Item 2</MenuItem>
+              </LeftNav>
             </div>
           </div>
 

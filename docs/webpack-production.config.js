@@ -23,10 +23,11 @@ var config = {
     modulesDirectories: [
       "web_modules",
       "node_modules",
+      path.resolve(__dirname, "node_modules"),
       path.resolve(__dirname, '../src'),
       path.resolve(__dirname, '../node_modules'),
       path.resolve(__dirname, 'src/app/components/raw-code'),
-      path.resolve(__dirname, 'src/app/components')
+      path.resolve(__dirname, 'src/app/components/markdown')
     ]
   },
   devtool: 'source-map',
@@ -92,7 +93,7 @@ var config = {
           {
             test:/\.md$/,
             loader: 'raw-loader',
-            include: path.resolve(__dirname, 'src/app/components/markdown')
+            include: path.resolve(__dirname, 'src/app/components')
           },
           {
             test: /\.css$/,

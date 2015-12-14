@@ -7,6 +7,10 @@ const reSkew = /((^|\s)skew(x|y)?\()\s*(\-?[\d]+)(deg|rad|grad)(,\s*(\-?[\d]+)(d
 
 export default {
 
+  merge() {
+    return ImmutabilityHelper.merge.apply(this, arguments);
+  },
+
   mergeAndPrefix() {
     let mergedStyles = ImmutabilityHelper.merge.apply(this, arguments);
     return AutoPrefix.all(mergedStyles);

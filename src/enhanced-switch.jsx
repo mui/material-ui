@@ -175,6 +175,7 @@ const EnhancedSwitch = React.createClass({
         width: labelWidth,
         lineHeight: '24px',
         color: this.getTheme().textColor,
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       },
       wrap: {
         transition: Transitions.easeOut(),

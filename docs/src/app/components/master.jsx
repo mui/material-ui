@@ -142,7 +142,7 @@ const Master = React.createClass({
         height: 64,
         top: 0,
         right: 0,
-        zIndex: 15,
+        zIndex: 1101,
         width: '100%',
       },
       container: {

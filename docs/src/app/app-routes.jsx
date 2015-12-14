@@ -22,12 +22,13 @@ import InlineStyles from './components/pages/customization/inline-styles';
 import Components from './components/pages/components';
 import AppBar from './components/pages/components/app-bar';
 import AutoComplete from './components/pages/components/auto-complete';
-import Avatars from './components/pages/components/avatars';
+import Avatar from './components/pages/components/avatar';
 import Badge from './components/pages/components/badge';
 import Buttons from './components/pages/components/buttons';
 import Cards from './components/pages/components/cards';
 import DatePicker from './components/pages/components/date-picker';
 import Dialog from './components/pages/components/dialog';
+import Divider from './components/pages/components/divider';
 import DropDownMenu from './components/pages/components/drop-down-menu';
 import GridList from './components/pages/components/grid-list';
 import Icons from './components/pages/components/icons';
@@ -77,16 +78,17 @@ const AppRoutes = (
       <Route path="inline-styles" component={InlineStyles} />
     </Route>
 
-    <Redirect from="components" to="/components/appbar" />
+    <Redirect from="components" to="/components/app-bar" />
     <Route path="components" component={Components}>
-      <Route path="appbar" component={AppBar} />
+      <Route path="app-bar" component={AppBar} />
       <Route path="auto-complete" component={AutoComplete} />
-      <Route path="avatars" component={Avatars} />
+      <Route path="avatar" component={Avatar} />
       <Route path="badge" component={Badge} />
       <Route path="buttons" component={Buttons} />
       <Route path="cards" component={Cards} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={Dialog} />
+      <Route path="divider" component={Divider} />
       <Route path="dropdown-menu" component={DropDownMenu} />
       <Route path="grid-list" component={GridList} />
       <Route path="icons" component={Icons} />
