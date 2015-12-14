@@ -20,13 +20,15 @@
 ##### Breaking Changes
 
 * Remove usage of JSON to generate children across the components.
+* Remove the old menu folder.
 
 ## 0.14.0
 
+- [x] Deprecate the old menu folder. #2443
 - [ ] Deprecate usage of JSON in favor of composability.
 - [ ] Documentation versioning (This is a must before removing deprecations).
 - [ ] Enforce eslint rules.
 
 ##### Breaking Changes
 
-- [x] Remove Dialog's deprecated API.
+- [x] Remove Dialog's deprecated API. #2396
