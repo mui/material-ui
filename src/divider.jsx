@@ -31,7 +31,7 @@ let Divider = ({inset, muiTheme, style, ...other}) => {
       marginLeft: inset ? 72 : 0,
       height: 1,
       border: 'none',
-      backgroundColor: muiTheme.rawTheme.palette.borderColor,
+      backgroundColor: muiTheme.borderColor,
     },
   };
 
@@ -40,8 +40,12 @@ let Divider = ({inset, muiTheme, style, ...other}) => {
   );
 };
 
+
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-Divider = muiThemeable(Divider);
+
+Divider = muiThemeable((baseTheme) => ({
+  borderColor: baseTheme.palette.borderColor,
+}))(Divider);
 
 export default Divider;
