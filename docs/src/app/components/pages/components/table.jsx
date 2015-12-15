@@ -23,7 +23,7 @@ export default class TablePage extends React.Component {
     super(props);
 
     this._onToggle = this._onToggle.bind(this);
-    this.onChange = this._onChange.bind(this);
+    this._onChange = this._onChange.bind(this);
     this._onRowSelection = this._onRowSelection.bind(this);
 
     this.state = {

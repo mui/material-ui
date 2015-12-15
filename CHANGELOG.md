@@ -1,9 +1,55 @@
 ## HEAD
 
+## 0.14.0-rc2
+###### _Dec 15, 2015_
+
 ##### Breaking Changes
 
-- [Menu] Depreciation of the old menu (#2443)
+- [Menu] Depreciation of the old menu, introduces a very small breaking change (#2443)
+- [Dialog] Removed deprecated API (#2396)
 - zIndex, rework them to be more coherent (#2444)
+
+##### General
+- Decoupled `Popover` animation from the component to increase flexibility (#2367)
+- [Tests] Migrated tests to use the new `react-addons-test-utils` package (#2401)
+- [Docs] Improvements to the documentation site (#2426, #2421, #2438, #2479, #2508)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [AppBar] (#2382) *also where the new standard was introduced by @oliviertassinari*
+  1. [Avatar] (#2407)
+  1. [Toolbars] (#2415)
+  1. [Badge] (#2489)
+  1. [Dialog] (#2483)
+  1. [LeftNav] (#2507)
+- Added the following eslint rules:
+  1. react/jsx-indent-props (#2377)
+  1. max-len (#2381)
+  1. wrap-multilines (#2419)
+
+##### Component Fixes / Enhancements
+- [Card] Use `preventDefault()` when handling expansion (#2495)
+- [CardHeader] Made `avatar` property optional (#2397)
+- [Checkbox] Now updates it's state when `checked` property changes (#2464)
+- [DatePicker] Fix year selection (#2410)
+- [Dialog] Added `overlayStyle` property (#2431)
+- [Dialog] Added `width` property (#2387)
+- [Divider] Initial implementation. Thanks to @newoga (#2473)
+- [DropDownMenu] Added `menuStyle` property (#2389)
+- [DropDownMenu] Now uses `Popover` (#2150)
+- [DropDownMenu] Now bubbles keyboard events (#2461)
+- [FlatButton] Adjusted background, hover and ripple colors (#2488)
+- [IconMenu] Added `open` and `onRequestChange` properties (#2383)
+- [ListItem] Added option to toggle nested list items on primary action (#2390)
+- [Menu] Fixed an error when children is only one child (#2402)
+- [Menu] Remove absolute positioning (#2455)
+- [Menu] Fixed issue when passed null children (#2429)
+- [SelectField] Fixed the propagation of underline styles (#2405)
+- [TableRow] Fixed a bug when unselectable rows could still be selected (#2503)
+
+##### Deprecations
+- The old menu components under the `material-ui/lib/menu` folder (#2443)
+- The `actions` property of `Dialog` accepting a JSON is deprecated (#2483)
+- The `menuItems` of `LeftNav` and all the related properties are now deprecated in favor of composibility (#2507)
+
 
 ## 0.14.0-rc1
 ###### _Dec 4, 2015_

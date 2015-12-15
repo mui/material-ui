@@ -195,7 +195,6 @@ export default class AppBar extends React.Component {
       },
       flatButton: {
         color: themeVariables.textColor,
-        backgroundColor: 'transparent',
         marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
       },
     };

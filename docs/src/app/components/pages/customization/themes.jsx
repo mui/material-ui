@@ -476,12 +476,6 @@ const ThemesPage = React.createClass({
   },
 
   getComponentGroup() {
-    //Standard Actions
-    let standardActions = [
-      {text: 'Cancel'},
-      {text: 'Submit', onTouchTap: this._onDialogSubmit},
-    ];
-
     let styles = this.getStyles();
 
     let menuItems = [
@@ -576,7 +570,20 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
-              <Dialog open={this.state.dialogOpen} title="Dialog With Standard Actions" actions={standardActions}
+              <Dialog
+                open={this.state.dialogOpen}
+                title="Dialog With Standard Actions"
+                actions={[
+                  <FlatButton
+                    label="Cancel"
+                    keyboardFocus={true}
+                    onTouchTap={this.handleRequestCloseDialog}
+                    secondary={true} />,
+                  <FlatButton
+                    label="Submit"
+                    onTouchTap={this.handleRequestCloseDialog}
+                    primary={true} />,
+                ]}
                 onRequestClose={this.handleRequestCloseDialog}>
                 The actions in this window are created from the json that&#39;s passed in.
               </Dialog>
@@ -675,9 +682,6 @@ const ThemesPage = React.createClass({
     });
   },
 
-  _onDialogSubmit() {
-    console.log('Submitting');
-  },
 });
 
 export default ThemesPage;
