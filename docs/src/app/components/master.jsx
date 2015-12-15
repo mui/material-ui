@@ -14,7 +14,7 @@ import {AppBar,
 const {StylePropable} = Mixins;
 const {Colors, Spacing, Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
+const DefaultRawTheme = Styles.lightBaseTheme;
 
 
 const Master = React.createClass({
