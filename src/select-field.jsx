@@ -122,9 +122,15 @@ const SelectField = React.createClass({
     };
 
     if (this.props.floatingLabelText) {
+      styles.input.height = 'auto';
+      styles.input.minHeight = 72;
+      styles.underline.bottom = 'auto';
+      styles.underline.top = 62;
       styles.icon.top = 22;
       styles.label.top = 8;
+      styles.error.bottom = -4;
     }
+
     return styles;
   },
 
