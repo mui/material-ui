@@ -80,6 +80,8 @@ const SvgIcon = React.createClass({
       width: 24,
       userSelect: 'none',
       transition: Transitions.easeOut(),
+      // Fix incompatibility with Bootstrap (Issue #2522)
+      boxSizing: 'content-box',
     }, style, {
       // Make sure our fill color overrides fill provided in props.style
       fill: this.state.hovered ? onColor : offColor,
