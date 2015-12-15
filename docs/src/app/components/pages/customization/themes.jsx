@@ -160,9 +160,11 @@ const ThemesPage = React.createClass({
     let lightRawTheme =
       'import Colors from \'material-ui/lib/styles/colors\';\n' +
       'import ColorManipulator from \'material-ui/lib/utils/color-manipulator\';\n' +
-      'import Spacing from \'material-ui/lib/styles/spacing\';\n\n' +
+      'import Spacing from \'material-ui/lib/styles/spacing\';\n' +
+      'import zIndex from \'material-ui/lib/styles/zIndex\';\n\n' +
       'export default {\n' +
       '  spacing: Spacing,\n' +
+      '  zIndex: zIndex,\n' +
       '  fontFamily: \'Roboto, sans-serif\',\n' +
       '  palette: {\n' +
       '    primary1Color: Colors.cyan500,\n' +
@@ -177,7 +179,7 @@ const ThemesPage = React.createClass({
       '    borderColor: Colors.grey300,\n' +
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
       '    pickerHeaderColor: Colors.cyan500,\n' +
-      '  },\n' +
+      '  }\n' +
       '};\n';
 
     let reactContextExampleCode =
