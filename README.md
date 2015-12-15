@@ -82,6 +82,10 @@ There are 2 projects that you can look at to get started. They can be found in t
 
 The source code for this documentation site is also included in the repository. This is a slightly more complex project that also uses webpack, and contains examples of every material-ui component. Check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs) for build instructions.
 
+## Roadmap 
+
+The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) file.
+
 ## Contribute
 
 [Material-UI](http://www.material-ui.com/) came about from our love of [React](http://facebook.github.io/react/) and [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html). We're currently using it on a project at [Call-Em-All](https://www.call-em-all.com/) and plan on adding to it and making it better. If you'd like to help, check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs). We'd greatly appreciate any contribution you make. :)
