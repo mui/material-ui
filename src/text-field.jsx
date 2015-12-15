@@ -224,6 +224,8 @@ const TextField = React.createClass({
       },
     };
 
+    if (props.floatingLabelText && this.state.errorText) styles.error.bottom = 18;
+
     styles.error = this.mergeAndPrefix(styles.error, props.errorStyle);
     styles.underline = this.mergeAndPrefix(styles.underline, props.underlineStyle);
     styles.underlineAfter = this.mergeAndPrefix(styles.underlineAfter, props.underlineDisabledStyle);
