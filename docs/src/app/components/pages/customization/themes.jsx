@@ -179,7 +179,7 @@ const ThemesPage = React.createClass({
       '    borderColor: Colors.grey300,\n' +
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
       '    pickerHeaderColor: Colors.cyan500,\n' +
-      '  }\n'+
+      '  }\n' +
       '};\n';
 
     let reactContextExampleCode =
