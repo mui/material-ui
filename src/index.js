@@ -68,7 +68,7 @@ export default {
   Toggle: require('./toggle'),
   ThemeWrapper: require('./theme-wrapper'),
   TimePicker: require('./time-picker'),
-  TextField: require('./text-field'),
+  TextField: require('./TextField'),
   Toolbar: require('./toolbar/toolbar'),
   ToolbarGroup: require('./toolbar/toolbar-group'),
   ToolbarSeparator: require('./toolbar/toolbar-separator'),
