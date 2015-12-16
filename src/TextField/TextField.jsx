@@ -9,6 +9,8 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import ContextPure from '../mixins/context-pure';
 import TextFieldUnderline from './TextFieldUnderline';
+import warning from 'warning';
+
 /**
  * Check if a value is valid to be displayed inside an input.
  *
@@ -170,7 +172,7 @@ const TextField = React.createClass({
       },
       error: {
         position: 'relative',
-        bottom: 5,
+        bottom: 2,
         fontSize: 12,
         lineHeight: '12px',
         color: errorColor,
@@ -198,7 +200,7 @@ const TextField = React.createClass({
       },
     };
 
-    styles.error = this.mergeAndPrefix(styles.error, props.errorStyle);
+    styles.error = this.mergeStyles(styles.error, props.errorStyle);
 
     styles.floatingLabel = this.mergeStyles(styles.hint, {
       lineHeight: '22px',
@@ -233,15 +235,29 @@ const TextField = React.createClass({
     if (props.floatingLabelText) {
       styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
-      if (this.state.isFocused && !this.state.hasValue) styles.hint.opacity = 1;
+
+      if (this.state.isFocused && !this.state.hasValue) {
+        styles.hint.opacity = 1;
+      }
+
+      if (!props.multiLine) {
+        styles.input.marginTop = 14;
+      }
+
+      if (this.state.errorText) {
+        styles.error.bottom = styles.error.fontSize + 3;
+      }
     }
 
     if (props.style && props.style.height) {
       styles.hint.lineHeight = props.style.height;
     }
 
-    if (this.state.errorText && this.state.isFocused) styles.floatingLabel.color = styles.error.color;
-    if (props.floatingLabelText && !props.multiLine) styles.input.marginTop = 14;
+    if (this.state.errorText) {
+      if (this.state.isFocused) {
+        styles.floatingLabel.color = styles.error.color;
+      }
+    }
 
     return styles;
   },
@@ -316,8 +332,7 @@ const TextField = React.createClass({
           ...this.props.children.props,
           style: this.mergeStyles(inputStyle, this.props.children.props.style),
         });
-    }
-    else {
+    } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
           {...other}
@@ -326,7 +341,7 @@ const TextField = React.createClass({
           rows={rows}
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
-          textareaStyle={this.mergeAndPrefix(styles.textarea)} />
+          textareaStyle={styles.textarea} />
       ) : (
         <input
           {...other}
@@ -341,16 +356,19 @@ const TextField = React.createClass({
         {floatingLabelTextElement}
         {hintTextElement}
         {inputElement}
-        {this.props.underlineShow ? <TextFieldUnderline
-          disabled={disabled}
-          disabledStyle={underlineDisabledStyle}
-          error={this.state.errorText ? true : false}
-          errorStyle={errorStyle}
-          focus={this.state.isFocused}
-          focusStyle={underlineFocusStyle}
-          muiTheme={this.state.muiTheme}
-          style={underlineStyle}
-        /> : null}
+        {this.props.underlineShow ?
+          <TextFieldUnderline
+            disabled={disabled}
+            disabledStyle={underlineDisabledStyle}
+            error={this.state.errorText ? true : false}
+            errorStyle={errorStyle}
+            focus={this.state.isFocused}
+            focusStyle={underlineFocusStyle}
+            muiTheme={this.state.muiTheme}
+            style={underlineStyle}
+          /> :
+          null
+        }
         {errorTextElement}
       </div>
     );
@@ -373,6 +391,8 @@ const TextField = React.createClass({
   },
 
   setErrorText(newErrorText) {
+    warning(false, 'setErrorText() method is deprectated. Use the errorText property instead.');
+
     if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
     }
@@ -382,6 +402,10 @@ const TextField = React.createClass({
   },
 
   setValue(newValue) {
+    warning(false,
+      `setValue() method is deprectated. Use the defaultValue property instead.
+      Or use this the TextField as a controlled component with the value property.`);
+
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     }
