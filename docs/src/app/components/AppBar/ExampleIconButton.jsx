@@ -19,6 +19,7 @@ const AppBarExampleIconButton = React.createClass({
     return (
       <AppBar
         title={<span style={styles.title} onTouchTap={handleTouchTap}>Title</span>}
+        position="static"
         iconElementLeft={<IconButton><NavigationClose /></IconButton>}
         iconElementRight={<FlatButton label="Save" />}
       />

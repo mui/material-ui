@@ -6,6 +6,7 @@ const AppBarExampleIcon = React.createClass({
     return (
       <AppBar
         title="Title"
+        position="static"
         iconClassNameRight="muidocs-icon-navigation-expand-more"
       />
     );
