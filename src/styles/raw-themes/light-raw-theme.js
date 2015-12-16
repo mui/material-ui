@@ -1,6 +1,7 @@
-let Colors = require('../colors');
-let ColorManipulator = require('../../utils/color-manipulator');
-let Spacing = require('../spacing');
+import Colors from '../colors';
+import ColorManipulator from '../../utils/color-manipulator';
+import Spacing from '../spacing';
+import zIndex from '../zIndex';
 
 /*
  *  Default TCNE theme
@@ -10,9 +11,10 @@ let Spacing = require('../spacing');
  *  in a custom theme will default to these values.
  */
 
-module.exports = {
+export default {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
+  zIndex: zIndex,
   palette: {
      primaryTextColor: Colors.white,
      secondaryTextColor: Colors.pesca,
@@ -28,7 +30,9 @@ module.exports = {
     alternateTextColor: Colors.white,
     canvasColor: Colors.white,
     borderColor: Colors.grey300,
-     disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
+    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+    pickerHeaderColor: Colors.cyan500,
+    clockCircleColor: ColorManipulator.fade(Colors.darkBlack, 0.07),
   },
 
 

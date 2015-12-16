@@ -1,16 +1,16 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const ColorManipulator = require('./utils/color-manipulator');
-const Children = require('./utils/children');
-const Typography = require('./styles/typography');
-const EnhancedButton = require('./enhanced-raisedbutton');
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import ColorManipulator from './utils/color-manipulator';
+import Children from './utils/children';
+import Typography from './styles/typography';
+import EnhancedButton from './enhanced-button';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
-function validateLabel (props, propName, componentName) {
+function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
     return new Error('Required prop label or children was not ' +
       'specified in ' + componentName + '.');
@@ -20,7 +20,9 @@ function validateLabel (props, propName, componentName) {
 
 const RaisedButton = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -31,33 +33,35 @@ const RaisedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
+    disabledBackgroundColor: React.PropTypes.string,
+    disabledLabelColor: React.PropTypes.string,
+    fullWidth: React.PropTypes.bool,
     label: validateLabel,
+    labelColor: React.PropTypes.string,
     labelPosition: React.PropTypes.oneOf([
       'before',
       'after',
     ]),
+    labelStyle: React.PropTypes.object,
     onMouseDown: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
-    labelStyle: React.PropTypes.object,
-    backgroundColor: React.PropTypes.string,
-    labelColor: React.PropTypes.string,
-    disabledBackgroundColor: React.PropTypes.string,
-    disabledLabelColor: React.PropTypes.string,
-    fullWidth: React.PropTypes.bool,
     style: React.PropTypes.object,
   },
 
@@ -139,10 +143,12 @@ const RaisedButton = React.createClass({
         borderRadius: '25px',
         transition: Transitions.easeOut(),
         backgroundColor: this._getBackgroundColor(),
-
-        //This is need so that ripples do not bleed
-        //past border radius.
-        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+        /*
+          This is need so that ripples do not bleed
+          past border radius.
+          See: http://stackoverflow.com/questions/17298739/
+            css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+         */
         transform: 'translate3d(0, 0, 0)',
       },
       label: {
@@ -209,9 +215,9 @@ const RaisedButton = React.createClass({
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      { labelElement, children }
+      {labelElement, children}
       :
-      { children, labelElement };
+      {children, labelElement};
     const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (
@@ -242,18 +248,18 @@ const RaisedButton = React.createClass({
   _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
     }
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleMouseLeave(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
+    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(e);
   },
 
@@ -273,21 +279,22 @@ const RaisedButton = React.createClass({
   },
 
   _handleTouchEnd(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
+        ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
     }
     else if (!this.state.hovered) {
-      this.setState({ zDepth: this.state.initialZDepth });
+      this.setState({zDepth: this.state.initialZDepth});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 });
 
-module.exports = RaisedButton;
+export default RaisedButton;

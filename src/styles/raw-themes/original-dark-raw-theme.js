@@ -1,12 +1,12 @@
-let Colors = require('../colors');
-let ColorManipulator = require('../../utils/color-manipulator');
-let Spacing = require('../spacing');
+import Colors from '../colors';
+import ColorManipulator from '../../utils/color-manipulator';
+import Spacing from '../spacing';
+import zIndex from '../zIndex';
 
-// Original dark theme from Material UI.
-
-module.exports = {
+export default {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
+  zIndex: zIndex,
   palette: {
     primaryTextColor: Colors.white,
     secondaryTextColor: Colors.pesca,
@@ -23,5 +23,7 @@ module.exports = {
     canvasColor: '#303030',
     borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
     disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3),
+    pickerHeaderColor: ColorManipulator.fade(Colors.fullWhite, 0.12),
+    clockCircleColor: ColorManipulator.fade(Colors.fullWhite, 0.12),
   },
 };

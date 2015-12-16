@@ -1,14 +1,14 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const StylePropable = require('./mixins/style-propable');
-const Colors = require('./styles/colors');
-const Children = require('./utils/children');
-const Events = require('./utils/events');
-const KeyCode = require('./utils/key-code');
-const FocusRipple = require('./ripples/focus-ripple');
-const TouchRipple = require('./ripples/touch-ripple');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from './mixins/style-propable';
+import Colors from './styles/colors';
+import Children from './utils/children';
+import Events from './utils/events';
+import KeyCode from './utils/key-code';
+import FocusRipple from './ripples/focus-ripple';
+import TouchRipple from './ripples/touch-ripple';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 let styleInjected = false;
 let listening = false;
@@ -17,7 +17,7 @@ let tabPressed = false;
 function injectStyle() {
   if (!styleInjected) {
     // Remove inner padding and border in Firefox 4+.
-    let style = document.createElement("style");
+    let style = document.createElement('style');
     style.innerHTML = `
       button::-moz-focus-inner,
       input::-moz-focus-inner {
@@ -33,7 +33,7 @@ function injectStyle() {
 
 function listenForTabPresses() {
   if (!listening) {
-    Events.on(window, 'keydown', (e) =>{
+    Events.on(window, 'keydown', (e) => {
       tabPressed = e.keyCode === KeyCode.TAB;
     });
     listening = true;
@@ -53,7 +53,7 @@ const EnhancedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -61,28 +61,30 @@ const EnhancedButton = React.createClass({
 
   propTypes: {
     centerRipple: React.PropTypes.bool,
+    children: React.PropTypes.node,
     containerElement: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.element,
     ]),
-    disabled: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableKeyboardFocus: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    focusRippleColor: React.PropTypes.string,
+    focusRippleOpacity: React.PropTypes.number,
     keyboardFocused: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
-    focusRippleColor: React.PropTypes.string,
-    touchRippleColor: React.PropTypes.string,
-    focusRippleOpacity: React.PropTypes.number,
-    touchRippleOpacity: React.PropTypes.number,
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onKeyboardFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     onKeyUp: React.PropTypes.func,
+    onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
-    tabIndex: React.PropTypes.number,
     style: React.PropTypes.object,
+    tabIndex: React.PropTypes.number,
+    touchRippleColor: React.PropTypes.string,
+    touchRippleOpacity: React.PropTypes.number,
+    type: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -233,7 +235,7 @@ const EnhancedButton = React.createClass({
       touchRippleColor,
       touchRippleOpacity,
     } = this.props;
-    const { isKeyboardFocused } = this.state;
+    const {isKeyboardFocused} = this.state;
 
     //Focus Ripple
     const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
@@ -311,4 +313,4 @@ const EnhancedButton = React.createClass({
 
 });
 
-module.exports = EnhancedButton;
+export default EnhancedButton;

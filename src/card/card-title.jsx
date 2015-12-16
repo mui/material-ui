@@ -1,13 +1,14 @@
-const React = require('react');
-const Styles = require('../styles');
-const StylePropable = require('../mixins/style-propable');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-
+import React from 'react';
+import Styles from '../styles';
+import StylePropable from '../mixins/style-propable';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const CardTitle = React.createClass({
 
-  mixins:[StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -18,36 +19,39 @@ const CardTitle = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   getInitialState() {
-    return { 
+    return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
   },
 
   propTypes: {
-    title: React.PropTypes.node,
-    titleColor: React.PropTypes.string,
-    titleStyle: React.PropTypes.object,
+    actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
+    expandable: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,
     subtitle: React.PropTypes.node,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
-    expandable: React.PropTypes.bool,
-    actAsExpander: React.PropTypes.bool,
-    showExpandableButton: React.PropTypes.bool,
+    title: React.PropTypes.node,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -78,19 +82,23 @@ const CardTitle = React.createClass({
   },
 
   render() {
-    let styles = this.getStyles();
-    let rootStyle = this.prepareStyles(styles.root, this.props.style);
-    let titleStyle = this.prepareStyles(styles.title, this.props.titleStyle);
-    let subtitleStyle = this.prepareStyles(styles.subtitle, this.props.subtitleStyle);
+    const styles = this.getStyles();
+    const rootStyle = this.prepareStyles(styles.root, this.props.style);
+    const titleStyle = this.prepareStyles(styles.title, this.props.titleStyle);
+    const subtitleStyle = this.prepareStyles(styles.subtitle, this.props.subtitleStyle);
 
     return (
       <div {...this.props} style={rootStyle}>
-        <span style={titleStyle}>{this.props.title}</span>
-        <span style={subtitleStyle}>{this.props.subtitle}</span>
+        <span style={titleStyle}>
+          {this.props.title}
+        </span>
+        <span style={subtitleStyle}>
+          {this.props.subtitle}
+        </span>
         {this.props.children}
       </div>
     );
   },
 });
 
-module.exports = CardTitle;
+export default CardTitle;

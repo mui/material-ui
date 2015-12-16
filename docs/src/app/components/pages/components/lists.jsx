@@ -1,44 +1,102 @@
-const React = require('react');
-const mui = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const MobileTearSheet = require('../../mobile-tear-sheet');
-const ActionAssignment = require('svg-icons/action/assignment');
-const ActionGrade = require('svg-icons/action/grade');
-const ActionInfo = require('svg-icons/action/info');
-const CommunicationCall = require('svg-icons/communication/call');
-const CommunicationChatBubble = require('svg-icons/communication/chat-bubble');
-const CommunicationEmail = require('svg-icons/communication/email');
-const ContentDrafts = require('svg-icons/content/drafts');
-const ContentInbox = require('svg-icons/content/inbox');
-const ContentSend = require('svg-icons/content/send');
-const EditorInsertChart = require('svg-icons/editor/insert-chart');
-const FileFolder = require('svg-icons/file/folder');
-const MoreVertIcon = require('svg-icons/navigation/more-vert');
+import React from 'react';
+import mui from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import MobileTearSheet from '../../mobile-tear-sheet';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import CommunicationCall from 'material-ui/svg-icons/communication/call';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import CommunicationEmail from 'material-ui/svg-icons/communication/email';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
 
 const {
   Avatar,
   Checkbox,
   IconButton,
   List,
-  ListDivider,
+  Divider,
   ListItem,
   Styles,
   Toggle,
   Paper,
 } = mui;
 
-const IconMenu = require('menus/icon-menu');
-const MenuItem = require('menus/menu-item');
+import IconMenu from 'menus/icon-menu';
+import MenuItem from 'menus/menu-item';
 
-const { Colors } = Styles;
-const Code = require('lists-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+const {Colors} = Styles;
+import Code from 'lists-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
+let SelectableList = SelectableContainerEnhance(List);
+
+const Typography = Styles.Typography;
+let styles = {
+  headline: {
+    fontSize: '24px',
+    lineHeight: '32px',
+    paddingTop: '16px',
+    marginBottom: '12px',
+    letterSpacing: '0',
+    fontWeight: Typography.fontWeightNormal,
+    color: Typography.textDarkBlack,
+  },
+  subheadline: {
+    fontSize: 18,
+    lineHeight: '27px',
+    paddingTop: 12,
+    marginBottom: 9,
+    letterSpacing: '0',
+    fontWeight: Typography.fontWeightNormal,
+    color: Typography.textDarkBlack,
+  },
+  codeblock: {
+    padding: 24,
+    marginBottom: 32,
+  },
+};
+
+function wrapState(ComposedComponent) {
+  const StateWrapper = React.createClass({
+    getInitialState() {
+      return {selectedIndex: 1};
+    },
+    handleUpdateSelectedIndex(e, index) {
+      this.setState({
+        selectedIndex: index,
+      });
+    },
+    render() {
+      return (
+        <ComposedComponent {...this.props} {...this.state}
+          valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}} />
+      );
+    },
+  });
+  return StateWrapper;
+}
+
+SelectableList = wrapState(SelectableList);
+
 
 export default class ListsPage extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {selectedIndex: 1};
+
+    this.handleUpdateSelectedIndex = (e, index) => {
+      this.setState({
+        selectedIndex: index,
+      });
+    };
   }
 
   render() {
@@ -52,6 +110,13 @@ export default class ListsPage extends React.Component {
             type: 'bool',
             header: 'default: false',
             desc: 'If true, the subheader will be indented by 72px.',
+          },
+          {
+            name: 'selectedItemStyle',
+            type: 'object',
+            header: 'optional, only available if HOC SelectableContainerEnhance is used',
+            desc: 'Override the choosen inline-styles to indicate a <ListItem> is highlighted.' +
+              ' You can set e.g. the background color here like this way: {{backgroundColor: #da4e49}}.',
           },
           {
             name: 'style',
@@ -71,6 +136,14 @@ export default class ListsPage extends React.Component {
             header: 'optional',
             desc: 'The style object to override subheader styles.',
           },
+          {
+            name: 'valueLink',
+            type: 'valueLink',
+            header: 'optional, only available if HOC SelectableContainerEnhance is used',
+            desc: 'Makes List controllable. Highlights the ListItem whose index prop matches' +
+              ' this "selectedLink.value". ' +
+              '"selectedLink.requestChange" represents a callback function to change that value (e.g. in state).',
+          },
         ],
       },
       {
@@ -80,19 +153,23 @@ export default class ListsPage extends React.Component {
             name: 'autoGenerateNestedIndicator',
             type: 'bool',
             header: 'default: true',
-            desc: 'Generate a nested list indicator icon when nested list items are detected. Set to false if you do not want an indicator auto-generated. Note that an indicator will not be created if a rightIcon/Button has been specified.',
+            desc: 'Generate a nested list indicator icon when nested list items are detected.' +
+              ' Set to false if you do not want an indicator auto-generated. ' +
+              'Note that an indicator will not be created if a rightIcon/Button has been specified.',
           },
           {
             name: 'disabled',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the list-item will not be clickable and will not display hover affects. This is automatically disabled if leftCheckbox or rightToggle is set.',
+            desc: `If true, the list-item will not be clickable and will not display hover affects.
+This is automatically disabled if leftCheckbox or rightToggle is set.`,
           },
           {
             name: 'insetChildren',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the children will be indented by 72px. Only needed if there is no left avatar or left icon.',
+            desc: `If true, the children will be indented by 72px.
+              Only needed if there is no left avatar or left icon.`,
           },
           {
             name: 'leftAvatar',
@@ -122,7 +199,8 @@ export default class ListsPage extends React.Component {
             name: 'nestedLevel',
             type: 'number',
             header: 'optional',
-            desc: 'Controls how deep a ListItem appears. This property is automatically managed so modify at your own risk.',
+            desc: `Controls how deep a ListItem appears.
+              This property is automatically managed so modify at your own risk.`,
           },
           {
             name: 'initiallyOpen',
@@ -136,6 +214,12 @@ export default class ListsPage extends React.Component {
             header: 'optional',
             desc: 'This is the block element that contains the primary text. If a string is passed in, a div ' +
               'tag will be rendered.',
+          },
+          {
+            name: 'primaryTogglesNestedList',
+            type: 'bool',
+            header: 'default: false',
+            desc: 'If provided, tapping on the primary text of the item toggles the nested list.',
           },
           {
             name: 'rightAvatar',
@@ -181,6 +265,13 @@ export default class ListsPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Override the inline-styles of the list item\'s root element.',
+          },
+          {
+            name: 'value',
+            type: 'number',
+            header: 'optional, only available if HOC SelectableContainerEnhance is used',
+            desc: `If valueLink prop is passed to List component, this prop is also required.
+              It assigns an identifier to the listItem so that it can be hightlighted by the List.`,
           },
         ],
       },
@@ -252,10 +343,13 @@ export default class ListsPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst List = require(\'material-ui/lib/lists/list\');\n' +
-            'const ListDivider = require(\'material-ui/lib/lists/list-divider\');\n' +
-            'const ListItem = require(\'material-ui/lib/lists/list-item\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import List from 'material-ui/lib/lists/list';
+import Divider from 'material-ui/lib/divider';
+import ListItem from 'material-ui/lib/lists/list-item';
+
+//See material-ui/lib/index.js for more
+            `
           }
           </CodeBlock>
         </Paper>
@@ -269,7 +363,7 @@ export default class ListsPage extends React.Component {
               <ListItem primaryText="Drafts"leftIcon={<ContentDrafts />} />
               <ListItem primaryText="Inbox"leftIcon={<ContentInbox />} />
             </List>
-            <ListDivider />
+            <Divider />
             <List>
               <ListItem primaryText="All mail" rightIcon={<ActionInfo />} />
               <ListItem primaryText="Trash" rightIcon={<ActionInfo />} />
@@ -301,7 +395,7 @@ export default class ListsPage extends React.Component {
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 rightIcon={<CommunicationChatBubble />} />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Previous chats">
               <ListItem
                 primaryText="Chelsea Otakan"
@@ -331,11 +425,12 @@ export default class ListsPage extends React.Component {
                 insetChildren={true}
                 rightAvatar={<Avatar src="images/kerem-128.jpg" />} />
             </List>
-            <ListDivider inset={true} />
+            <Divider inset={true} />
             <List>
               <ListItem
                 primaryText="Adelle Charles"
-                leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent} style={{left:8}}>A</Avatar>}
+                leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent}
+                  style={{left:8}}>A</Avatar>}
                 rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
               <ListItem
                 primaryText="Adham Dannaway"
@@ -370,7 +465,7 @@ export default class ListsPage extends React.Component {
                 primaryText="Work"
                 secondaryText="Jan 28, 2014" />
             </List>
-            <ListDivider inset={true} />
+            <Divider inset={true} />
             <List subheader="Files" insetSubheader={true}>
               <ListItem
                 leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
@@ -392,6 +487,7 @@ export default class ListsPage extends React.Component {
                 primaryText="Inbox"
                 leftIcon={<ContentInbox />}
                 initiallyOpen={true}
+                primaryTogglesNestedList={true}
                 nestedItems={[
                   <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />,
                   <ListItem
@@ -414,7 +510,7 @@ export default class ListsPage extends React.Component {
                 primaryText="Show your status"
                 secondaryText="Your status is visible to everyone you use with" />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Hangout notifications">
               <ListItem
                 leftCheckbox={<Checkbox />}
@@ -436,13 +532,13 @@ export default class ListsPage extends React.Component {
                 primaryText="When calls and notifications arrive"
                 secondaryText="Always interrupt" />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Priority interruptions">
               <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
               <ListItem primaryText="Calls" rightToggle={<Toggle />} />
               <ListItem primaryText="Messages" rightToggle={<Toggle />} />
             </List>
-            <ListDivider />
+            <Divider />
             <List subheader="Hangout notifications">
               <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />} />
               <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
@@ -463,7 +559,7 @@ export default class ListsPage extends React.Component {
                 primaryText="(323) 555 - 6789"
                 secondaryText="Work" />
             </List>
-            <ListDivider inset={true} />
+            <Divider inset={true} />
             <List>
               <ListItem
                 leftIcon={<CommunicationEmail color={Colors.indigo500} />}
@@ -487,7 +583,7 @@ export default class ListsPage extends React.Component {
                     I&apos;ll be in your neighborhood this weekend.
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 primaryText={
@@ -499,7 +595,7 @@ export default class ListsPage extends React.Component {
                     Wish I could but I can
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 primaryText="Oui oui"
@@ -509,7 +605,7 @@ export default class ListsPage extends React.Component {
                     Do you have Paris recommendations?
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 primaryText="Birthday gift"
@@ -519,7 +615,7 @@ export default class ListsPage extends React.Component {
                     Do you have any ideas on what I
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 primaryText="Recipe to try"
@@ -529,7 +625,7 @@ export default class ListsPage extends React.Component {
                     We should eat this: grated cheese
                   </p>
                 } />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/chexee-128.jpg" />}
                 primaryText="Giants game"
@@ -554,7 +650,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 primaryText={
@@ -567,7 +663,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 primaryText="Oui oui"
@@ -578,7 +674,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 primaryText="Birdthday gift"
@@ -589,7 +685,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 primaryText="Recipe to try"
@@ -616,7 +712,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kolage-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -628,7 +724,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -640,7 +736,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -652,7 +748,7 @@ export default class ListsPage extends React.Component {
                   </p>
                 }
                 secondaryTextLines={2} />
-              <ListDivider inset={true} />
+              <Divider inset={true} />
               <ListItem
                 leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
                 rightIconButton={rightIconMenu}
@@ -666,9 +762,106 @@ export default class ListsPage extends React.Component {
                 secondaryTextLines={2} />
             </List>
           </MobileTearSheet>
+          <MobileTearSheet>
+            <SelectableList
+              value={3}
+              subheader="SelectableContacts">
+
+              <ListItem
+                value={1}
+                primaryText="Brendan Lim"
+                leftAvatar={<Avatar src="images/ok-128.jpg" />} />
+              <ListItem value={2}
+                primaryText="Grace Ng"
+                leftAvatar={<Avatar src="images/uxceo-128.jpg" />} />
+              <ListItem value={3}
+                primaryText="Kerem Suer"
+                leftAvatar={<Avatar src="images/kerem-128.jpg" />} />
+              <ListItem value={4}
+                primaryText="Eric Hoffman"
+                leftAvatar={<Avatar src="images/kolage-128.jpg" />} />
+              <ListItem value={5}
+                primaryText="Raquel Parrado"
+                leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />} />
+            </SelectableList>
+          </MobileTearSheet>
         </CodeExample>
+
+        <Paper style={{padding: '24px', marginBottom: '32px'}}>
+        <div>
+          <h2 style={styles.headline}>Selectable Lists</h2>
+          <p>
+            Basically three steps are needed:
+          </p>
+          <ul>
+            <li>enhance <code>&lt;List&gt;</code> with HOC</li>
+            <li>decide where to put state</li>
+            <li>implement and set valueLink</li>
+          </ul>
+
+
+          <h3 style={styles.subheadline}> Enhance List</h3>
+          <p>
+            Wrapping the <code>&lt;List&gt;</code> component with the higher order component "SelectableEnhance" enables
+            the clicked <code>&lt;ListItem&gt;</code> to be highlighted.
+          </p>
+          <div style={styles.codeblock}>
+            <CodeBlock>
+ {`import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
+.
+.
+.
+var SelectableList = SelectableContainerEnhance(List);
+`}
+            </CodeBlock>
+          </div>
+
+
+          <h3 style={styles.subheadline}>Where to put state</h3>
+          <p>
+            If this component is used in conjunction with flux or redux this is a no-brainer. The callback-handler
+            just has to update the store. Otherwise the state can be held within e.g the parent, but it is to be to
+            considered that each time a <code>&lt;ListItem&gt;</code>
+            is clicked, the state will update and the parent - including it's
+            children - will rerender.
+          </p>
+          <p>
+            A possible solution for this is to use another hoc. An example can be found in the sourcecode
+            of <code>docs/src/app/components/pages/components/lists.jsx</code>.
+          </p>
+          <h3 style={styles.subheadline}>The valueLink</h3>
+          <p>
+            The prop 'valueLink' of <code>&lt;List&gt;</code> has to be set, to make the highlighting controllable:
+          </p>
+          <div style={styles.codeblock}>
+            <CodeBlock>
+{`valueLink={{
+    value: this.state.selectedIndex,
+    requestChange: this.handleUpdateSelectedIndex}}
+`}
+            </CodeBlock>
+          </div>
+          A sample implementation might look like this.
+          <div style={styles.codeblock}>
+            <CodeBlock>
+{`getInitialState() {
+ return { selectedIndex: 1 };
+},
+handleUpdateSelectedIndex(e,index) {
+  this.setState({
+    selectedIndex: index,
+});
+`}
+            </CodeBlock>
+          </div>
+          <h3 style={styles.subheadline}>Adjust the <code>&lt;ListItem&gt;</code></h3>
+          <p>
+            The prop "value" on each ListItem has to be set. This makes the item addressable for the callback.
+          </p>
+        </div>
+        </Paper>
       </ComponentDoc>
     );
-  }
 
+  }
 }

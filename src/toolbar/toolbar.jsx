@@ -1,7 +1,7 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const Toolbar = React.createClass({
 
@@ -12,8 +12,31 @@ const Toolbar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * Can be a `ToolbarGroup` to render a group of related items.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root `div` element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Do not apply `desktopGutter` to the `Toolbar`.
+     */
+    noGutter: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the `Toolbar`'s root element.
+     */
     style: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      noGutter: false,
+    };
   },
 
   //for passing default theme context to children
@@ -21,13 +44,13 @@ const Toolbar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -35,7 +58,7 @@ const Toolbar = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -44,25 +67,40 @@ const Toolbar = React.createClass({
     return this.state.muiTheme.toolbar;
   },
 
+  getSpacing() {
+    return this.state.muiTheme.rawTheme.spacing;
+  },
+
   getStyles() {
-    return this.mergeStyles({
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      backgroundColor: this.getTheme().backgroundColor,
-      height: this.getTheme().height,
-      width: '100%',
-      padding: this.props.noGutter ? 0 : '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutter + 'px',
-    }, this.props.style);
+    return {
+      root: {
+        boxSizing: 'border-box',
+        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+        backgroundColor: this.getTheme().backgroundColor,
+        height: this.getTheme().height,
+        width: '100%',
+        padding: this.props.noGutter ? 0 : '0px ' + this.getSpacing().desktopGutter + 'px',
+      },
+    };
   },
 
   render() {
+    const {
+      children,
+      className,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = this.getStyles();
+
     return (
-      <div className={this.props.className} style={this.prepareStyles(this.getStyles())}>
-        {this.props.children}
+      <div {...other} className={className} style={this.prepareStyles(styles.root, style)}>
+        {children}
       </div>
     );
   },
 
 });
 
-module.exports = Toolbar;
+export default Toolbar;

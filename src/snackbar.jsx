@@ -1,12 +1,12 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const ClickAwayable = require('./mixins/click-awayable');
-const FlatButton = require('./flat-button');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const ContextPure = require('./mixins/context-pure');
-const StyleResizable = require('./mixins/style-resizable');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import ClickAwayable from './mixins/click-awayable';
+import FlatButton from './flat-button';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import ContextPure from './mixins/context-pure';
+import StyleResizable from './mixins/style-resizable';
 
 const Snackbar = React.createClass({
 
@@ -55,15 +55,15 @@ const Snackbar = React.createClass({
   },
 
   propTypes: {
-    message: React.PropTypes.node.isRequired,
     action: React.PropTypes.string,
     autoHideDuration: React.PropTypes.number,
+    bodyStyle: React.PropTypes.object,
+    message: React.PropTypes.node.isRequired,
     onActionTouchTap: React.PropTypes.func,
-    onShow: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
+    onShow: React.PropTypes.func,
     openOnMount: React.PropTypes.bool,
     style: React.PropTypes.object,
-    bodyStyle: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -71,7 +71,7 @@ const Snackbar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -164,7 +164,7 @@ const Snackbar = React.createClass({
       root: {
         position: 'fixed',
         left: 0,
-        display: '-webkit-box; display: -webkit-flex; display: flex',
+        display: 'flex',
         right: 0,
         bottom: 0,
         zIndex: 10,
@@ -290,4 +290,4 @@ const Snackbar = React.createClass({
 
 });
 
-module.exports = Snackbar;
+export default Snackbar;

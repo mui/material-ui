@@ -1,14 +1,14 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const ContextPure = require('./mixins/context-pure');
-const Transitions = require('./styles/transitions');
-const PropTypes = require('./utils/prop-types');
-const EnhancedButton = require('./enhanced-button');
-const FontIcon = require('./font-icon');
-const Tooltip = require('./tooltip');
-const Children = require('./utils/children');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import ContextPure from './mixins/context-pure';
+import Transitions from './styles/transitions';
+import PropTypes from './utils/prop-types';
+import EnhancedButton from './enhanced-button';
+import FontIcon from './font-icon';
+import Tooltip from './tooltip';
+import Children from './utils/children';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const IconButton = React.createClass({
 
@@ -47,13 +47,14 @@ const IconButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,
@@ -61,11 +62,13 @@ const IconButton = React.createClass({
     onBlur: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
-    tooltip: React.PropTypes.node,
-    tooltipStyles: React.PropTypes.object,
-    tooltipPosition: PropTypes.cornersAndCenter,
-    touch: React.PropTypes.bool,
+    onMouseEnter: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
     style: React.PropTypes.object,
+    tooltip: React.PropTypes.node,
+    tooltipPosition: PropTypes.cornersAndCenter,
+    tooltipStyles: React.PropTypes.object,
+    touch: React.PropTypes.bool,
   },
 
   getInitialState() {
@@ -77,7 +80,7 @@ const IconButton = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -202,13 +205,13 @@ const IconButton = React.createClass({
   },
 
   _showTooltip() {
-    if (!this.props.disabled && this.props.tooltip) {
-      this.setState({ tooltipShown: true });
+    if (this.props.tooltip) {
+      this.setState({tooltipShown: true});
     }
   },
 
   _hideTooltip() {
-    if (this.props.tooltip) this.setState({ tooltipShown: false });
+    if (this.props.tooltip) this.setState({tooltipShown: false});
   },
 
   _handleBlur(e) {
@@ -246,4 +249,4 @@ const IconButton = React.createClass({
 
 });
 
-module.exports = IconButton;
+export default IconButton;

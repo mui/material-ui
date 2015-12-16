@@ -1,12 +1,12 @@
-const React = require('react');
-const IconButton = require('../icon-button');
-const Toolbar = require('../toolbar/toolbar');
-const ToolbarGroup = require('../toolbar/toolbar-group');
-const NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
-const NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
-const SlideInTransitionGroup = require('../transition-groups/slide-in');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+import React from 'react';
+import IconButton from '../icon-button';
+import Toolbar from '../toolbar/toolbar';
+import ToolbarGroup from '../toolbar/toolbar-group';
+import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
+import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
+import SlideInTransitionGroup from '../transition-groups/slide-in';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const styles = {
   root: {
@@ -36,7 +36,7 @@ const CalendarToolbar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -44,8 +44,8 @@ const CalendarToolbar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
-    locale: React.PropTypes.string.isRequired,
     displayDate: React.PropTypes.object.isRequired,
+    locale: React.PropTypes.string.isRequired,
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
     prevMonth: React.PropTypes.bool,
@@ -67,7 +67,7 @@ const CalendarToolbar = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
@@ -86,7 +86,7 @@ const CalendarToolbar = React.createClass({
       DateTimeFormat,
       locale,
       displayDate,
-    } = this.props
+    } = this.props;
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
@@ -135,4 +135,4 @@ const CalendarToolbar = React.createClass({
 
 });
 
-module.exports = CalendarToolbar;
+export default CalendarToolbar;

@@ -1,16 +1,16 @@
-const React = require('react');
-const ContextPure = require('./mixins/context-pure');
-const Transitions = require('./styles/transitions');
-const Children = require('./utils/children');
-const ColorManipulator = require('./utils/color-manipulator');
-const ImmutabilityHelper = require('./utils/immutability-helper');
-const Typography = require('./styles/typography');
-const EnhancedButton = require('./enhanced-button');
-const FlatButtonLabel = require('./buttons/flat-button-label');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ContextPure from './mixins/context-pure';
+import Transitions from './styles/transitions';
+import Children from './utils/children';
+import ColorManipulator from './utils/color-manipulator';
+import ImmutabilityHelper from './utils/immutability-helper';
+import Typography from './styles/typography';
+import EnhancedButton from './enhanced-button';
+import FlatButtonLabel from './buttons/flat-button-label';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
-function validateLabel (props, propName, componentName) {
+function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
     return new Error('Required prop label or children was not ' +
       'specified in ' + componentName + '.');
@@ -30,6 +30,7 @@ const FlatButton = React.createClass({
 
       return {
         buttonColor: flatButtonTheme.color,
+        buttonFilterColor: flatButtonTheme.buttonFilterColor,
         buttonHeight: buttonTheme.height,
         buttonMinWidth: buttonTheme.minWidth,
         disabledTextColor: flatButtonTheme.disabledTextColor,
@@ -57,13 +58,15 @@ const FlatButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
     disabled: React.PropTypes.bool,
     hoverColor: React.PropTypes.string,
     label: validateLabel,
@@ -104,7 +107,7 @@ const FlatButton = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -118,10 +121,6 @@ const FlatButton = React.createClass({
       label,
       labelStyle,
       labelPosition,
-      onKeyboardFocus,
-      onMouseLeave,
-      onMouseEnter,
-      onTouchStart,
       primary,
       rippleColor,
       secondary,
@@ -134,26 +133,27 @@ const FlatButton = React.createClass({
       buttonHeight,
       buttonMinWidth,
       disabledTextColor,
+      buttonFilterColor,
       primaryTextColor,
       secondaryTextColor,
       textColor,
       textTransform,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const defaultColor = disabled ? disabledTextColor :
+    const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
       secondary ? secondaryTextColor :
       textColor;
 
-    const defaultHoverColor = ColorManipulator.fade(ColorManipulator.lighten(defaultColor, 0.4), 0.15);
-    const defaultRippleColor = ColorManipulator.fade(defaultColor, 0.8);
+    const defaultHoverColor = ColorManipulator.fade(buttonFilterColor, 0.2);
+    const defaultRippleColor = buttonFilterColor;
     const buttonHoverColor = hoverColor || defaultHoverColor;
     const buttonRippleColor = rippleColor || defaultRippleColor;
-    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
     const buttonBackgroundColor = backgroundColor || buttonColor;
+    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
     const mergedRootStyles = ImmutabilityHelper.merge({
-      color: defaultColor,
+      color: defaultTextColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
       letterSpacing: 0,
@@ -180,9 +180,9 @@ const FlatButton = React.createClass({
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      { labelElement, children }
+      {labelElement, children}
       :
-      { children, labelElement };
+      {children, labelElement};
     const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (
@@ -190,12 +190,14 @@ const FlatButton = React.createClass({
         {...other}
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
+        focusRippleOpacity={0.3}
         onKeyboardFocus={this._handleKeyboardFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}
-        touchRippleColor={buttonRippleColor}>
+        touchRippleColor={buttonRippleColor}
+        touchRippleOpacity={0.3} >
         {enhancedButtonChildren}
       </EnhancedButton>
     );
@@ -224,4 +226,4 @@ const FlatButton = React.createClass({
 
 });
 
-module.exports = FlatButton;
+export default FlatButton;

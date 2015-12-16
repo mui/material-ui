@@ -1,12 +1,12 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const Typography = require('./styles/typography');
-const IconButton = require('./icon-button');
-const NavigationMenu = require('./svg-icons/navigation/menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const Paper = require('./paper');
-const PropTypes = require('./utils/prop-types');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Typography from './styles/typography';
+import IconButton from './icon-button';
+import NavigationMenu from './svg-icons/navigation/menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import Paper from './paper';
+import PropTypes from './utils/prop-types';
 
 const AppBar = React.createClass({
 
@@ -21,28 +21,95 @@ const AppBar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
-    onLeftIconButtonTouchTap: React.PropTypes.func,
-    onRightIconButtonTouchTap: React.PropTypes.func,
-    onTitleTouchTap: React.PropTypes.func,
-    showMenuIconButton: React.PropTypes.bool,
-    style: React.PropTypes.object,
+    /**
+     * Can be used to render a tab inside an app bar for instance.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * Applied to the app bar's root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * The classname of the icon on the left of the app bar.
+     * If you are using a stylesheet for your icons, enter the class name for the icon to be used here.
+     */
     iconClassNameLeft: React.PropTypes.string,
+
+    /**
+     * Similiar to the iconClassNameLeft prop except that
+     * it applies to the icon displayed on the right of the app bar.
+     */
     iconClassNameRight: React.PropTypes.string,
+
+    /**
+     * The custom element to be displayed on the left side of the
+     * app bar such as an SvgIcon.
+     */
     iconElementLeft: React.PropTypes.element,
+
+    /**
+     * Similiar to the iconElementLeft prop except that this element is displayed on the right of the app bar.
+     */
     iconElementRight: React.PropTypes.element,
+
+    /**
+     * Override the inline-styles of the element displayed on the right side of the app bar.
+     */
     iconStyleRight: React.PropTypes.object,
+
+    /**
+     * Callback function for when the left icon is selected via a touch tap.
+     */
+    onLeftIconButtonTouchTap: React.PropTypes.func,
+
+    /**
+     * Callback function for when the right icon is selected via a touch tap.
+     */
+    onRightIconButtonTouchTap: React.PropTypes.func,
+
+    /**
+     * Callback function for when the title text is selected via a touch tap.
+     */
+    onTitleTouchTap: React.PropTypes.func,
+
+    /**
+     * Determines whether or not to display the Menu icon next to the title.
+     * Setting this prop to false will hide the icon.
+     */
+    showMenuIconButton: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the app bar's root element.
+     */
+    style: React.PropTypes.object,
+
+    /**
+     * The title to display on the app bar.
+     */
     title: React.PropTypes.node,
+
+    /**
+     * Override the inline-styles of the app bar's title element.
+     */
+    titleStyle: React.PropTypes.object,
+
+    /**
+     * The zDepth of the app bar.
+     * The shadow of the app bar is also dependent on this property.
+     */
     zDepth: PropTypes.zDepth,
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -50,7 +117,7 @@ const AppBar = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -82,20 +149,23 @@ const AppBar = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
-    let themeVariables = this.state.muiTheme.appBar;
-    let iconButtonSize = this.state.muiTheme.button.iconButtonSize;
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
+
+    let themeVariables = muiTheme.appBar;
+    let iconButtonSize = muiTheme.button.iconButtonSize;
     let flatButtonSize = 36;
+
     let styles = {
       root: {
         position: 'relative',
-        zIndex: 5,
+        zIndex: rawTheme.zIndex.appBar,
         width: '100%',
-        display: '-webkit-box; display: -webkit-flex; display: flex',
+        display: 'flex',
         minHeight: themeVariables.height,
         backgroundColor: themeVariables.color,
-        paddingLeft: spacing.desktopGutter,
-        paddingRight: spacing.desktopGutter,
+        paddingLeft: rawTheme.spacing.desktopGutter,
+        paddingRight: rawTheme.spacing.desktopGutter,
       },
       title: {
         whiteSpace: 'nowrap',
@@ -126,7 +196,6 @@ const AppBar = React.createClass({
       },
       flatButton: {
         color: themeVariables.textColor,
-        backgroundColor: 'transparent',
         marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
       },
     };
@@ -137,6 +206,7 @@ const AppBar = React.createClass({
   render() {
     let {
       title,
+      titleStyle,
       iconStyleRight,
       showMenuIconButton,
       iconElementLeft,
@@ -163,8 +233,14 @@ const AppBar = React.createClass({
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</h1> :
-        <div onTouchTap={this._onTitleTouchTap} style={this.prepareStyles(styles.title, styles.mainElement)}>{title}</div>;
+        <h1 onTouchTap={this._onTitleTouchTap}
+          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
+          {title}
+        </h1> :
+        <div onTouchTap={this._onTitleTouchTap}
+          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
+          {title}
+        </div>;
     }
 
     if (showMenuIconButton) {
@@ -183,7 +259,7 @@ const AppBar = React.createClass({
           </div>
         );
       } else {
-        let child = (iconClassNameLeft) ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
+        let child = iconClassNameLeft ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
             style={this.mergeStyles(styles.iconButton.style)}
@@ -223,8 +299,7 @@ const AppBar = React.createClass({
           style={iconRightStyle}
           iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
           iconClassName={iconClassNameRight}
-          onTouchTap={this._onRightIconButtonTouchTap}>
-        </IconButton>
+          onTouchTap={this._onRightIconButtonTouchTap} />
       );
     }
 
@@ -263,4 +338,4 @@ const AppBar = React.createClass({
 
 });
 
-module.exports = AppBar;
+export default AppBar;

@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 #TCNE-UI-Kit
 
 ...based on:
+=======
+#### Note
+
+For *how-to* questions and other non-issues, please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
+
+>>>>>>> upstream/master
 #[Material-UI](http://callemall.github.io/material-ui/)
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
 [![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
@@ -80,6 +87,10 @@ We have implemented a default theme to render all Material-UI components. Stylin
 There are 2 projects that you can look at to get started. They can be found in the [examples folder](https://github.com/callemall/material-ui/tree/master/examples). These projects are basic examples that show how to consume material-ui components in your own project. The first project uses [browserify](http://browserify.org/) for module bundling and [gulp](http://gulpjs.com/) for JS task automation, while the second project uses [webpack](http://webpack.github.io/) for module bundling and building.
 
 The source code for this documentation site is also included in the repository. This is a slightly more complex project that also uses webpack, and contains examples of every material-ui component. Check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs) for build instructions.
+
+## Roadmap 
+
+The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) file.
 
 ## Contribute
 

@@ -1,7 +1,7 @@
 let index = 0;
 
-module.exports = {
+export default {
   generate() {
-    return "mui-id-" + (index++);
+    return 'mui-id-' + (index++);
   },
 };

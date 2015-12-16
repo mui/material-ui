@@ -1,26 +1,31 @@
-const isBrowser = require('./utils/is-browser');
+import isBrowser from './utils/is-browser';
 
-let Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
+import warning from 'warning';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const KeyCode = require('./utils/key-code');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const Transitions = require('./styles/transitions');
-const WindowListenable = require('./mixins/window-listenable');
-const Overlay = require('./overlay');
-const Paper = require('./paper');
-const Menu = require('./menu/menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+const Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import KeyCode from './utils/key-code';
+import StylePropable from './mixins/style-propable';
+import AutoPrefix from './styles/auto-prefix';
+import Transitions from './styles/transitions';
+import WindowListenable from './mixins/window-listenable';
+import Overlay from './overlay';
+import Paper from './paper';
+import Menu from './menu/menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 let openNavEventHandler = null;
 
 
 const LeftNav = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -31,38 +36,145 @@ const LeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
+    /**
+     * The contents of the `LeftNav`
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Indicates whether swiping sideways when the `LeftNav` is closed should open it.
+     */
     disableSwipeToOpen: React.PropTypes.bool,
+
+    /**
+     * Indicates that the `LeftNav` should be docked. In this state, the overlay won't
+     * show and clicking on a menu item will not close the `LeftNav`.
+     */
     docked: React.PropTypes.bool,
+
+    /**
+     * **DEPRECATED** A react component that will be displayed above all the menu items.
+     * Usually, this is used for a logo or a profile image.
+     */
     header: React.PropTypes.element,
-    menuItems: React.PropTypes.array,
-    onChange: React.PropTypes.func,
-    onNavOpen: React.PropTypes.func,
-    onNavClose: React.PropTypes.func,
-    openRight: React.PropTypes.bool,
-    selectedIndex: React.PropTypes.number,
+
+    /**
+     * **DEPRECATED** Class name for the menuItem.
+     */
     menuItemClassName: React.PropTypes.string,
-    menuItemClassNameSubheader: React.PropTypes.string,
+
+    /**
+     * **DEPRECATED** Class name for the link menuItem.
+     */
     menuItemClassNameLink: React.PropTypes.string,
+
+    /**
+     * **DEPRECATED** Class name for the subheader menuItem.
+     */
+    menuItemClassNameSubheader: React.PropTypes.string,
+
+    /**
+     * **DEPRECATED** JSON data representing all menu items to render.
+     */
+    menuItems: React.PropTypes.array,
+
+    /**
+     * **DEPRECATED** Fired when a menu item is clicked that is not the
+     * one currently selected. Note that this requires the `injectTapEventPlugin`
+     * component. See the "Get Started" section for more detail.
+     */
+    onChange: React.PropTypes.func,
+
+    /**
+     * **DEPRECATED** Fired when the component is opened.
+     */
+    onNavClose: React.PropTypes.func,
+
+    /**
+     * **DEPRECATED** Fired when the component is closed.
+     */
+    onNavOpen: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the open state of the `LeftNav` is
+     * requested to be changed. The provided open argument determines whether
+     * the `LeftNav` is requested to be opened or closed. Also, the reason
+     * argument states why the `LeftNav` got closed or opend. It can be either
+     * `'clickaway'` for menuItem and overlay clicks, `'escape'` for pressing the
+     * escape key and 'swipe' for swiping. For opening the reason is always `'swipe'`.
+     */
+    onRequestChange: React.PropTypes.func,
+
+    /**
+     * Indicates that the `LeftNav` should be opened, closed or uncontrolled.
+     * Providing a boolean will turn the `LeftNav` into a controlled component.
+     */
+    open: React.PropTypes.bool,
+
+    /**
+     * Positions the `LeftNav` to open from the right side.
+     */
+    openRight: React.PropTypes.bool,
+
+    /**
+     * The `className` to add to the `Overlay` component that is rendered behind the `LeftNav`.
+     */
+    overlayClassName: React.PropTypes.string,
+
+    /**
+     * Overrides the inline-styles of the `Overlay` component that is rendered behind the `LeftNav`.
+     */
+    overlayStyle: React.PropTypes.object,
+
+    /**
+     * **DEPRECATED** Indicates the particular item in the menuItems array that is currently selected.
+     */
+    selectedIndex: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
+
+    /**
+     * The width of the left most (or right most) area in pixels where the `LeftNav` can be
+     * swiped open from. Setting this to `null` spans that area to the entire page
+     * (**CAUTION!** Setting this property to `null` might cause issues with sliders and
+     * swipeable `Tabs`, use at your own risk).
+     */
+    swipeAreaWidth: React.PropTypes.number,
+
+    /**
+     * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
+     */
+    width: React.PropTypes.number,
   },
 
   windowListeners: {
-    'keyup': '_onWindowKeyUp',
-    'resize': '_onWindowResize',
+    keyup: '_onWindowKeyUp',
+    resize: '_onWindowResize',
   },
 
   getDefaultProps() {
     return {
       disableSwipeToOpen: false,
       docked: true,
+      open: null,
+      openRight: false,
+      swipeAreaWidth: 30,
+      width: null,
     };
   },
 
@@ -72,8 +184,10 @@ const LeftNav = React.createClass({
     this._touchStartY = null;
     this._swipeStartX = null;
 
+    this._testDeprecations();
+
     return {
-      open: this.props.docked,
+      open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -83,9 +197,15 @@ const LeftNav = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps (nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    const newState = { muiTheme: newMuiTheme };
+    const newState = {muiTheme: newMuiTheme};
 
+    this._testDeprecations();
+
+    // If docked is changed, change the open state for when uncontrolled.
     if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
+
+    // If controlled then the open prop takes precedence.
+    if (nextProps.open !== null) newState.open = nextProps.open;
 
     this.setState(newState);
   },
@@ -105,43 +225,42 @@ const LeftNav = React.createClass({
   },
 
   toggle() {
-    this.setState({ open: !this.state.open });
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
+    if (this.state.open) this.close();
+    else this.open();
     return this;
   },
 
   close() {
-    this.setState({ open: false });
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
+    this.setState({open: false});
     if (this.props.onNavClose) this.props.onNavClose();
     return this;
   },
 
   open() {
-    this.setState({ open: true });
+    warning(false, 'using methods on left nav has been deprecated. Please refer to documentations.');
+    this.setState({open: true});
     if (this.props.onNavOpen) this.props.onNavOpen();
     return this;
   },
 
-  getThemePalette() {
-    return this.state.muiTheme.rawTheme.palette;
-  },
-
-  getTheme() {
-    return this.state.muiTheme.leftNav;
-  },
-
   getStyles() {
-    let x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
-    let styles = {
+    const theme = this.state.muiTheme.leftNav;
+    const rawTheme = this.state.muiTheme.rawTheme;
+
+    const x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
+    const styles = {
       root: {
         height: '100%',
-        width: this.getTheme().width,
+        width: this.props.width || theme.width,
         position: 'fixed',
-        zIndex: 10,
+        zIndex: rawTheme.zIndex.leftNav,
         left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
         top: 0,
-        transform: 'translate3d(' + x + 'px, 0, 0)',
+        transform: `translate3d(${x}px, 0, 0)`,
         transition: !this.state.swiping && Transitions.easeOut(),
-        backgroundColor: this.getTheme().color,
+        backgroundColor: theme.color,
         overflow: 'hidden',
       },
       menu: {
@@ -150,9 +269,13 @@ const LeftNav = React.createClass({
         height: '100%',
         borderRadius: '0',
       },
+      overlay: {
+        zIndex: rawTheme.zIndex.leftNavOverlay,
+        pointerEvents: this.state.open ? 'auto' : 'none', // Bypass mouse events when left nav is closing.
+      },
       menuItem: {
-        height: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineHeight: this.state.muiTheme.rawTheme.spacing.desktopLeftNavMenuItemHeight + 'px',
+        height: rawTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineHeight: `${rawTheme.spacing.desktopLeftNavMenuItemHeight}px`,
       },
       rootWhenOpenRight: {
         left: 'auto',
@@ -163,7 +286,7 @@ const LeftNav = React.createClass({
     styles.menuItemLink = this.mergeStyles(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',
-      color: this.getThemePalette().textColor,
+      color: rawTheme.palette.textColor,
     });
     styles.menuItemSubheader = this.mergeStyles(styles.menuItem, {
       overflow: 'hidden',
@@ -173,63 +296,125 @@ const LeftNav = React.createClass({
   },
 
   render() {
-    let selectedIndex = this.props.selectedIndex;
-    let overlay;
+    const {
+      className,
+      docked,
+      header,
+      menuItemClassName,
+      menuItemClassNameSubheader,
+      menuItemClassNameLink,
+      menuItems,
+      openRight,
+      overlayClassName,
+      overlayStyle,
+      selectedIndex,
+      style,
+    } = this.props;
 
-    let styles = this.getStyles();
-    if (!this.props.docked) {
+    const styles = this.getStyles();
+
+    let overlay;
+    if (!docked) {
       overlay = (
         <Overlay
           ref="overlay"
-          show={this.state.open || !!this.state.swiping}
+          show={this._shouldShow()}
+          className={overlayClassName}
+          style={this.mergeStyles(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}
           onTouchTap={this._onOverlayTouchTap} />
       );
     }
     let children;
-    if (this.props.menuItems === undefined) {
+    if (menuItems === undefined) {
       children = this.props.children;
     }
     else {
-       children = (
+      children = (
         <Menu
           ref="menuItems"
           style={this.mergeStyles(styles.menu)}
           zDepth={0}
-          menuItems={this.props.menuItems}
+          menuItems={menuItems}
           menuItemStyle={this.mergeStyles(styles.menuItem)}
           menuItemStyleLink={this.mergeStyles(styles.menuItemLink)}
           menuItemStyleSubheader={this.mergeStyles(styles.menuItemSubheader)}
-          menuItemClassName={this.props.menuItemClassName}
-          menuItemClassNameSubheader={this.props.menuItemClassNameSubheader}
-          menuItemClassNameLink={this.props.menuItemClassNameLink}
+          menuItemClassName={menuItemClassName}
+          menuItemClassNameSubheader={menuItemClassNameSubheader}
+          menuItemClassNameLink={menuItemClassNameLink}
           selectedIndex={selectedIndex}
           onItemTap={this._onMenuItemClick} />
         );
     }
     return (
-      <div className={this.props.className}>
+      <div>
         {overlay}
         <Paper
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
           transitionEnabled={!this.state.swiping}
-          style={this.mergeStyles(
-            styles.root,
-            this.props.openRight && styles.rootWhenOpenRight,
-            this.props.style)}>
-            {this.props.header}
+          className={className}
+          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
+            {header}
             {children}
         </Paper>
       </div>
     );
   },
 
+  _testDeprecations() {
+    warning(!(typeof this.props.onNavClose === 'function'),
+      'onNavClose will be removed in favor of onRequestChange');
+
+    warning(!(typeof this.props.onNavOpen === 'function'),
+      'onNavOpen will be removed in favor of onRequestChange');
+
+    warning(!this.props.hasOwnProperty('header'),
+      'header will be removed in favor of composability. refer to the documentation for more information');
+
+    warning(!this.props.hasOwnProperty('menuItems'),
+      'menuItems will be removed in favor of composability. refer to the documentation for more information');
+
+    warning(!this.props.hasOwnProperty('menuItemClassName'),
+      'menuItemClassName will be removed with menuItems.');
+
+    warning(!this.props.hasOwnProperty('menuItemClassName'),
+      'menuItemClassName will be removed with menuItems.');
+
+    warning(!this.props.hasOwnProperty('menuItemClassNameLink'),
+      'menuItemClassNameLink will be removed with menuItems.');
+
+    warning(!this.props.hasOwnProperty('menuItemClassNameSubheader'),
+      'menuItemClassNameSubheader will be removed with menuItems.');
+
+    warning(!(typeof this.props.onChange === 'function'),
+      'onChange will be removed with menuItems.');
+
+    warning(!this.props.hasOwnProperty('selectedIndex'),
+      'selectedIndex will be removed with menuItems.');
+  },
+
+  _shouldShow() {
+    return this.state.open || !!this.state.swiping;  // component is swiping
+  },
+
+  _close(reason) {
+    if (this.props.open === null) this.setState({open: false});
+    if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
+    return this;
+  },
+
+  _open(reason) {
+    if (this.props.open === null) this.setState({open: true});
+    if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
+    return this;
+  },
+
   _updateMenuHeight() {
     if (this.props.header) {
       const menu = ReactDOM.findDOMNode(this.refs.menuItems);
-      if (menu){
+      if (menu) {
         const container = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
         const menuHeight = container.clientHeight - menu.offsetTop;
       menu.style.height = menuHeight + 'px';
@@ -241,18 +426,18 @@ const LeftNav = React.createClass({
     if (this.props.onChange && this.props.selectedIndex !== key) {
       this.props.onChange(e, key, payload);
     }
-    if (!this.props.docked) this.close();
+    if (!this.props.docked) this._close('clickaway');
   },
 
   _onOverlayTouchTap() {
-    this.close();
+    this._close('clickaway');
   },
 
   _onWindowKeyUp(e) {
     if (e.keyCode === KeyCode.ESC &&
         !this.props.docked &&
         this.state.open) {
-      this.close();
+      this._close('escape');
     }
   },
 
@@ -261,7 +446,8 @@ const LeftNav = React.createClass({
   },
 
   _getMaxTranslateX() {
-    return this.getTheme().width + 10;
+    const width = this.props.width || this.state.muiTheme.leftNav.width;
+    return width + 10;
   },
 
   _getTranslateMultiplier() {
@@ -287,15 +473,29 @@ const LeftNav = React.createClass({
   },
 
   _onBodyTouchStart(e) {
+
+    const swipeAreaWidth = this.props.swipeAreaWidth;
+
+    const touchStartX = e.touches[0].pageX;
+    const touchStartY = e.touches[0].pageY;
+
+    // Open only if swiping from far left (or right) while closed
+    if (swipeAreaWidth !== null && !this.state.open) {
+      if (this.props.openRight) {
+        // If openRight is true calculate from the far right
+        if (touchStartX < document.body.offsetWidth - swipeAreaWidth) return;
+      } else {
+        // If openRight is false calculate from the far left
+        if (touchStartX > swipeAreaWidth) return;
+      }
+    }
+
     if (!this.state.open &&
          (openNavEventHandler !== this._onBodyTouchStart ||
           this.props.disableSwipeToOpen)
        ) {
       return;
     }
-
-    let touchStartX = e.touches[0].pageX;
-    let touchStartY = e.touches[0].pageY;
 
     this._maybeSwiping = true;
     this._touchStartX = touchStartX;
@@ -307,8 +507,8 @@ const LeftNav = React.createClass({
   },
 
   _setPosition(translateX) {
-    let leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    let transformCSS = 'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
+    const leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
+    const transformCSS = 'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
     AutoPrefix.set(leftNav.style, 'transform', transformCSS);
   },
@@ -326,20 +526,20 @@ const LeftNav = React.createClass({
   },
 
   _onBodyTouchMove(e) {
-    let currentX = e.touches[0].pageX;
-    let currentY = e.touches[0].pageY;
+    const currentX = e.touches[0].pageX;
+    const currentY = e.touches[0].pageY;
 
     if (this.state.swiping) {
       e.preventDefault();
       this._setPosition(this._getTranslateX(currentX));
     }
     else if (this._maybeSwiping) {
-      let dXAbs = Math.abs(currentX - this._touchStartX);
-      let dYAbs = Math.abs(currentY - this._touchStartY);
+      const dXAbs = Math.abs(currentX - this._touchStartX);
+      const dYAbs = Math.abs(currentY - this._touchStartY);
       // If the user has moved his thumb ten pixels in either direction,
       // we can safely make an assumption about whether he was intending
       // to swipe or scroll.
-      let threshold = 10;
+      const threshold = 10;
 
       if (dXAbs > threshold && dYAbs <= threshold) {
         this._swipeStartX = currentX;
@@ -356,11 +556,11 @@ const LeftNav = React.createClass({
 
   _onBodyTouchEnd(e) {
     if (this.state.swiping) {
-      let currentX = e.changedTouches[0].pageX;
-      let translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
+      const currentX = e.changedTouches[0].pageX;
+      const translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
       this._maybeSwiping = false;
-      let swiping = this.state.swiping;
+      const swiping = this.state.swiping;
       this.setState({
         swiping: null,
       });
@@ -371,12 +571,12 @@ const LeftNav = React.createClass({
         if (swiping === 'opening') {
           this._setPosition(this._getMaxTranslateX());
         } else {
-          this.close();
+          this._close('swipe');
         }
       }
       else {
         if (swiping === 'opening') {
-          this.open();
+          this._open('swipe');
         } else {
           this._setPosition(0);
         }
@@ -393,4 +593,4 @@ const LeftNav = React.createClass({
 
 });
 
-module.exports = LeftNav;
+export default LeftNav;

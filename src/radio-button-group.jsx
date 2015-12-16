@@ -1,12 +1,13 @@
-const React = require('react');
-const RadioButton = require('./radio-button');
-const StylePropable = require('./mixins/style-propable');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-
+import React from 'react';
+import RadioButton from './radio-button';
+import StylePropable from './mixins/style-propable';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const RadioButtonGroup = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -17,19 +18,21 @@ const RadioButtonGroup = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
-    name: React.PropTypes.string.isRequired,
-    valueSelected: React.PropTypes.string,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     defaultSelected: React.PropTypes.string,
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
     style: React.PropTypes.object,
+    valueSelected: React.PropTypes.string,
   },
 
   _hasCheckAttribute(radioButton) {
@@ -68,7 +71,7 @@ const RadioButtonGroup = React.createClass({
     if (nextProps.hasOwnProperty('valueSelected')) {
       newState.selected = nextProps.valueSelected;
     }
-    
+
     this.setState(newState);
   },
 
@@ -82,17 +85,19 @@ const RadioButtonGroup = React.createClass({
         ...other,
       } = option.props;
 
-      return <RadioButton
-        {...other}
-        ref={option.props.value}
-        name={this.props.name}
-        key={option.props.value}
-        value={option.props.value}
-        label={option.props.label}
-        labelPosition={this.props.labelPosition}
-        onCheck={this._onChange}
-        checked={option.props.value === this.state.selected}/>;
-
+      return (
+        <RadioButton
+          {...other}
+          ref={option.props.value}
+          name={this.props.name}
+          key={option.props.value}
+          value={option.props.value}
+          label={option.props.label}
+          labelPosition={this.props.labelPosition}
+          onCheck={this._onChange}
+          checked={option.props.value === this.state.selected}
+        />
+      );
     }, this);
 
     return (
@@ -109,7 +114,7 @@ const RadioButtonGroup = React.createClass({
       this.setState({selected: newSelection});
     }
     else if (process.env.NODE_ENV !== 'production') {
-      let message = "Cannot select a different radio button while another radio button " +
+      let message = 'Cannot select a different radio button while another radio button ' +
                     "has the 'checked' property set to true.";
       console.error(message);
     }
@@ -138,4 +143,4 @@ const RadioButtonGroup = React.createClass({
 
 });
 
-module.exports = RadioButtonGroup;
+export default RadioButtonGroup;

@@ -1,22 +1,22 @@
-const React = require('react');
-const { IconButton, Paper } = require('material-ui');
-const IconMenu = require('menus/icon-menu');
-const MenuItem = require('menus/menu-item');
-const MenuDivider = require('menus/menu-divider');
-const MoreVertIcon = require('svg-icons/navigation/more-vert');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import {IconButton, Paper} from 'material-ui';
+import IconMenu from 'menus/icon-menu';
+import MenuItem from 'menus/menu-item';
+import Divider from 'divider';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import ComponentDoc from '../../component-doc';
 
-const ContentCopy = require('svg-icons/content/content-copy');
-const ContentFilter = require('svg-icons/content/filter-list');
-const ContentLink = require('svg-icons/content/link');
-const Delete = require('svg-icons/action/delete');
-const Download = require('svg-icons/file/file-download');
-const MapsPlace = require('svg-icons/maps/place');
-const PersonAdd = require('svg-icons/social/person-add');
-const RemoveRedEye = require('svg-icons/image/remove-red-eye');
-const Code = require('icon-menus-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import ContentCopy from 'material-ui/svg-icons/content/content-copy';
+import ContentFilter from 'material-ui/svg-icons/content/filter-list';
+import ContentLink from 'material-ui/svg-icons/content/link';
+import Delete from 'material-ui/svg-icons/action/delete';
+import Download from 'material-ui/svg-icons/file/file-download';
+import MapsPlace from 'material-ui/svg-icons/maps/place';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
+import Code from 'icon-menus-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class IconMenus extends React.Component {
 
@@ -45,10 +45,36 @@ export default class IconMenus extends React.Component {
         name: 'Props',
         infoArray: [
           {
+            name: 'anchorOrigin',
+            type: 'origin object',
+            header: 'optional',
+            desc:
+              'This is the point on the icon where the menu targetOrigin will stick to.\n' +
+              'Options:\n' +
+              'vertical: [top, middle, bottom]\n' +
+              'horizontal: [left, center, right]\n',
+          },
+          {
+            name: 'targetOrigin',
+            type: 'origin object',
+            header: 'optional',
+            desc:
+              'This is the point on the menu which will stick to the menu origin.' +
+              'Options:' +
+              'vertical: [top, middle, bottom]' +
+              'horizontal: [left, center, right]',
+          },
+          {
             name: 'closeOnItemTouchTap',
             type: 'bool',
             header: 'default: true',
             desc: 'If true, menu will close after an item is touchTapped.',
+          },
+          {
+            name: 'open',
+            type: 'bool',
+            header: 'default: null',
+            desc: 'Controls whether the IconMenu is opened or not.',
           },
           {
             name: 'desktop',
@@ -73,12 +99,6 @@ export default class IconMenus extends React.Component {
             type: 'element: IconButton',
             header: 'required',
             desc: 'This is the IconButton to render. This button will open the menu.',
-          },
-          {
-            name: 'openDirection',
-            type: 'oneOf ["bottom-left", "bottom-right", "top-left", "top-right"]',
-            header: 'default: bottom-left',
-            desc: 'This is the placement of the menu relative to the IconButton.',
           },
           {
             name: 'menuStyle',
@@ -119,6 +139,16 @@ export default class IconMenus extends React.Component {
         name: 'Events',
         infoArray: [
           {
+            name: 'onRequestChange',
+            header: 'function(open, reason)',
+            desc: 'Callback function that is fired when the open state of the menu is ' +
+              'requested to be changed. The provided open argument determines whether the ' +
+              'menu is requested to be opened or closed. Also, the reason argument states ' +
+              'why the menu got closed or opened. It can be \'keyboard\', \'iconTap\' for ' +
+              'open action and \'enter\', \'escape\', \'itemTap\', \'clickAway\' for close ' +
+              'action.',
+          },
+          {
             name: 'onItemTouchTap',
             header: 'function(event, item)',
             desc: 'Fired when a menu item is touchTapped.',
@@ -156,8 +186,8 @@ export default class IconMenus extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst IconMenu = require(\'material-ui/lib/menus/icon-menu\');\n' +
-            'const MenuItem = require(\'material-ui/lib/menus/menu-item\');\n\n' +
+            '//Import statement:\nimport IconMenu from \'material-ui/lib/menus/icon-menu\';\n' +
+            'import MenuItem from \'material-ui/lib/menus/menu-item\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -168,7 +198,9 @@ export default class IconMenus extends React.Component {
 
           <p>Menu with various open directions</p>
           <div>
-            <IconMenu iconButtonElement={iconButtonElement}>
+            <IconMenu iconButtonElement={iconButtonElement}
+              anchorOrigin={{horizontal:'right', vertical:'top'}}
+              targetOrigin={{horizontal:'right', vertical:'top'}}>
               <MenuItem primaryText="Refresh" />
               <MenuItem primaryText="Send feedback" />
               <MenuItem primaryText="Settings" />
@@ -178,7 +210,8 @@ export default class IconMenus extends React.Component {
 
             <IconMenu
               iconButtonElement={iconButtonElement}
-              openDirection="bottom-right">
+              anchorOrigin={{horizontal:'left', vertical:'top'}}
+              targetOrigin={{horizontal:'left', vertical:'top'}}>
               <MenuItem primaryText="Refresh" />
               <MenuItem primaryText="Send feedback" />
               <MenuItem primaryText="Settings" />
@@ -188,7 +221,8 @@ export default class IconMenus extends React.Component {
 
             <IconMenu
               iconButtonElement={iconButtonElement}
-              openDirection="top-left">
+              anchorOrigin={{horizontal:'right', vertical:'bottom'}}
+              targetOrigin={{horizontal:'right', vertical:'bottom'}}>
               <MenuItem primaryText="Refresh" />
               <MenuItem primaryText="Send feedback" />
               <MenuItem primaryText="Settings" />
@@ -198,7 +232,8 @@ export default class IconMenus extends React.Component {
 
             <IconMenu
               iconButtonElement={iconButtonElement}
-              openDirection="top-right">
+              anchorOrigin={{horizontal:'left', vertical:'bottom'}}
+              targetOrigin={{horizontal:'left', vertical:'bottom'}}>
               <MenuItem primaryText="Refresh" />
               <MenuItem primaryText="Send feedback" />
               <MenuItem primaryText="Settings" />
@@ -212,7 +247,6 @@ export default class IconMenus extends React.Component {
             <IconMenu
               iconButtonElement={iconButtonElement}
               onChange={this._handleIconMenuChange}
-              openDirection="bottom-right"
               value={this.state.iconMenuValue}>
               <MenuItem value="1" primaryText="Refresh" />
               <MenuItem value="2" primaryText="Send feedback" />
@@ -223,7 +257,6 @@ export default class IconMenus extends React.Component {
 
             <IconMenu
               iconButtonElement={iconButtonElement}
-              openDirection="bottom-right"
               valueLink={iconMenuValueLink}>
               <MenuItem value="1" primaryText="Refresh" />
               <MenuItem value="2" primaryText="Send feedback" />
@@ -236,7 +269,6 @@ export default class IconMenus extends React.Component {
               iconButtonElement={filterButtonElement}
               multiple={true}
               onChange={this._handleIconMenuMultiChange}
-              openDirection="bottom-right"
               value={this.state.iconMenuMultiValue}>
               <MenuItem value="1" primaryText="Blu-ray" />
               <MenuItem value="2" primaryText="Cassette" />
@@ -250,27 +282,42 @@ export default class IconMenus extends React.Component {
           <p>Menu Item variations</p>
           <div>
             <IconMenu
-              iconButtonElement={iconButtonElement}
-              openDirection="bottom-right">
+              iconButtonElement={iconButtonElement}>
               <MenuItem primaryText="Home" />
               <MenuItem primaryText="Back" />
               <MenuItem primaryText="Forward" disabled={true} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Recently closed" disabled={true} />
               <MenuItem primaryText="Google" disabled={true} />
               <MenuItem primaryText="YouTube" />
             </IconMenu>
 
             <IconMenu
-              iconButtonElement={iconButtonElement}
-              openDirection="bottom-right">
+              iconButtonElement={iconButtonElement}>
               <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
               <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
               <MenuItem primaryText="Get link" leftIcon={<ContentLink />} />
-              <MenuDivider />
+              <Divider />
               <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
               <MenuItem primaryText="Download" leftIcon={<Download />} />
-              <MenuDivider />
+              <Divider />
+              <MenuItem primaryText="Remove" leftIcon={<Delete />} />
+            </IconMenu>
+          </div>
+
+          <p>Stateless Menu with open property</p>
+          <div>
+            <IconMenu
+              open={this.state.isIconMenuOpened || false}
+              onRequestChange={open => this.setState({isIconMenuOpened: open})}
+              iconButtonElement={iconButtonElement}>
+              <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
+              <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
+              <MenuItem primaryText="Get link" leftIcon={<ContentLink />} />
+              <Divider />
+              <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
+              <MenuItem primaryText="Download" leftIcon={<Download />} />
+              <Divider />
               <MenuItem primaryText="Remove" leftIcon={<Delete />} />
             </IconMenu>
           </div>
@@ -280,7 +327,8 @@ export default class IconMenus extends React.Component {
             <IconMenu
               iconButtonElement={mapsButtonElement}
               maxHeight={272}
-              openDirection="bottom-right"
+              anchorOrigin={{horizontal:'right', vertical:'top'}}
+              targetOrigin={{horizontal:'right', vertical:'top'}}
               valueLink={usStateValueLink}>
               <MenuItem value="AL" primaryText="Alabama" />
               <MenuItem value="AK" primaryText="Alaska" />
@@ -338,7 +386,8 @@ export default class IconMenus extends React.Component {
             <IconMenu
               iconButtonElement={mapsButtonElement}
               maxHeight={272}
-              openDirection="bottom-left"
+              anchorOrigin={{horizontal:'left', vertical:'top'}}
+              targetOrigin={{horizontal:'left', vertical:'top'}}
               valueLink={usStateValueLink}>
               <MenuItem value="AL" primaryText="Alabama" />
               <MenuItem value="AK" primaryText="Alaska" />
@@ -396,7 +445,8 @@ export default class IconMenus extends React.Component {
             <IconMenu
               iconButtonElement={mapsButtonElement}
               maxHeight={272}
-              openDirection="top-right"
+              anchorOrigin={{horizontal:'right', vertical:'bottom'}}
+              targetOrigin={{horizontal:'right', vertical:'bottom'}}
               valueLink={usStateValueLink}>
               <MenuItem value="AL" primaryText="Alabama" />
               <MenuItem value="AK" primaryText="Alaska" />
@@ -454,7 +504,8 @@ export default class IconMenus extends React.Component {
             <IconMenu
               iconButtonElement={mapsButtonElement}
               maxHeight={272}
-              openDirection="top-left"
+              anchorOrigin={{horizontal:'left', vertical:'bottom'}}
+              targetOrigin={{horizontal:'left', vertical:'bottom'}}
               valueLink={usStateValueLink}>
               <MenuItem value="AL" primaryText="Alabama" />
               <MenuItem value="AK" primaryText="Alaska" />

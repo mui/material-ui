@@ -1,12 +1,12 @@
-const React = require('react');
-const { ClearFix, Mixins, SelectField, TextField, Styles, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const { Colors } = Styles;
-const { StyleResizable } = Mixins;
-const Code = require('text-fields-code');
-const CodeExample = require('../../code-example/code-example');
-const LinkedStateMixin = require('react-addons-linked-state-mixin');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import {ClearFix, Mixins, TextField, Styles, Paper} from 'material-ui';
+import ComponentDoc from '../../component-doc';
+const {Colors} = Styles;
+const {StyleResizable} = Mixins;
+import Code from 'text-fields-code';
+import CodeExample from '../../code-example/code-example';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import CodeBlock from '../../code-example/code-block';
 
 const TextFieldsPage = React.createClass({
 
@@ -21,10 +21,6 @@ const TextFieldsPage = React.createClass({
       propValue: 'Prop Value',
       floatingPropValue: 'Prop Value',
       valueLinkValue: 'Value Link',
-      selectValue: undefined,
-      selectValue2: undefined,
-      selectValueLinkValue: 4,
-      selectValueLinkValue2: 3,
       floatingValueLinkValue: 'Value Link',
     };
   },
@@ -49,9 +45,8 @@ const TextFieldsPage = React.createClass({
   },
 
   render() {
-
-    let desc = 'This component extends the current input element and will support all of its props and events. It supports ' +
-      'valueLink and can be controlled or uncontrolled.';
+    let desc = `This component extends the current input element and will support all of its props and events.
+It supports valueLink and can be controlled or uncontrolled.`;
 
     let componentInfo = [
       {
@@ -77,9 +72,9 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'errorText',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The error text string to display.',
+            desc: 'The error content to display.',
           },
           {
             name: 'floatingLabelStyle',
@@ -89,9 +84,9 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'floatingLabelText',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The text string to use for the floating label element.',
+            desc: 'The content to use for the floating label element.',
           },
           {
             name: 'fullWidth',
@@ -107,9 +102,9 @@ const TextFieldsPage = React.createClass({
           },
           {
             name: 'hintText',
-            type: 'string',
+            type: 'node',
             header: 'optional',
-            desc: 'The hint text string to display.',
+            desc: 'The hint content to display.',
           },
           {
             name: 'inputStyle',
@@ -121,7 +116,8 @@ const TextFieldsPage = React.createClass({
             name: 'multiLine',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, a textarea element will be rendered. The textarea also grows and shrinks according to the number of lines.',
+            desc: `If true, a textarea element will be rendered.
+The textarea also grows and shrinks according to the number of lines.`,
           },
           {
             name: 'rows',
@@ -234,20 +230,6 @@ const TextFieldsPage = React.createClass({
     ];
 
     let styles = this.getStyles();
-    let menuItems = [
-      { payload: '1', text: 'Never' },
-      { payload: '2', text: 'Every Night' },
-      { payload: '3', text: 'Weeknights' },
-      { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
-    ];
-    let arbitraryArrayMenuItems = [
-      {id:1, name:'Never'},
-      {id:2, name:'Every Night'},
-      {id:3, name:'Weeknights'},
-      {id:4, name:'Weekends'},
-      {id:5, name:'Weekly'},
-    ];
 
     return (
       <ComponentDoc
@@ -258,8 +240,7 @@ const TextFieldsPage = React.createClass({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst TextField = require(\'material-ui/lib/text-field\');\n' +
-            'const SelectField = require(\'material-ui/lib/select-field\');\n\n' +
+            '//Import statement:\nimport TextField from \'material-ui/lib/text-field\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -336,31 +317,7 @@ const TextFieldsPage = React.createClass({
                 style={styles.textfield}
                 hintText="Disabled Hint Text"
                 disabled={true}
-                defaultValue="Disabled With Value" /><br/>
-              <SelectField
-                style={styles.textfield}
-                value={this.state.selectValue}
-                onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
-                hintText="Hint Text"
-                menuItems={menuItems} /><br/>
-              <SelectField
-                valueLink={this.linkState('selectValueLinkValue')}
-                floatingLabelText="Float Label Text"
-                valueMember="id"
-                displayMember="name"
-                menuItems={arbitraryArrayMenuItems} /><br/>
-              <SelectField
-                valueLink={this.linkState('selectValueLinkValue2')}
-                floatingLabelText="Float Custom Label Text"
-                floatingLabelStyle={{color: "red"}}
-                valueMember="id"
-                displayMember="name"
-                menuItems={arbitraryArrayMenuItems} /><br/>
-              <SelectField
-                style={styles.textfield}
-                value={this.state.selectValue2}
-                onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
-                menuItems={arbitraryArrayMenuItems} />
+                defaultValue="Disabled With Value" />
             </div>
             <div style={styles.group}>
               <TextField
@@ -448,12 +405,6 @@ const TextFieldsPage = React.createClass({
     });
   },
 
-  _handleSelectValueChange(name, e) {
-    let change = {};
-    change[name] = e.target.value;
-    this.setState(change);
-  },
-
   _handleFloatingInputChange(e) {
     this.setState({
       floatingPropValue: e.target.value,
@@ -462,4 +413,4 @@ const TextFieldsPage = React.createClass({
 
 });
 
-module.exports = TextFieldsPage;
+export default TextFieldsPage;

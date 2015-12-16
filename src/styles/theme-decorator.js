@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 
-module.exports = (customTheme) => {
+export default (customTheme) => {
 
   return function(Component) {
 
@@ -10,7 +10,7 @@ module.exports = (customTheme) => {
         muiTheme: React.PropTypes.object,
       },
 
-      getChildContext () {
+      getChildContext() {
         return {
           muiTheme: customTheme,
         };
@@ -22,4 +22,4 @@ module.exports = (customTheme) => {
     });
 
   };
-}
+};

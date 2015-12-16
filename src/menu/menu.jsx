@@ -1,17 +1,18 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const CssEvent = require('../utils/css-event');
-const KeyLine = require('../utils/key-line');
-const KeyCode = require('../utils/key-code');
-const StylePropable = require('../mixins/style-propable');
-const Transitions = require('../styles/transitions');
-const ClickAwayable = require('../mixins/click-awayable');
-const Paper = require('../paper');
-const MenuItem = require('./menu-item');
-const LinkMenuItem = require('./link-menu-item');
-const SubheaderMenuItem = require('./subheader-menu-item');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CssEvent from '../utils/css-event';
+import KeyLine from '../utils/key-line';
+import KeyCode from '../utils/key-code';
+import StylePropable from '../mixins/style-propable';
+import Transitions from '../styles/transitions';
+import ClickAwayable from '../mixins/click-awayable';
+import Paper from '../paper';
+import MenuItem from './menu-item';
+import LinkMenuItem from './link-menu-item';
+import SubheaderMenuItem from './subheader-menu-item';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
+import warning from 'warning';
 
 /***********************
 * Nested Menu Component
@@ -25,15 +26,17 @@ const NestedMenuItem = React.createClass({
   },
 
   propTypes: {
-    index: React.PropTypes.number.isRequired,
-    text: React.PropTypes.string,
-    menuItems: React.PropTypes.array.isRequired,
-    zDepth: React.PropTypes.number,
-    disabled: React.PropTypes.bool,
     active: React.PropTypes.bool,
-    onItemTap: React.PropTypes.func,
+    disabled: React.PropTypes.bool,
+    index: React.PropTypes.number.isRequired,
     menuItemStyle: React.PropTypes.object,
+    menuItems: React.PropTypes.array.isRequired,
+    onItemTap: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func,
+    onMouseOver: React.PropTypes.func,
     style: React.PropTypes.object,
+    text: React.PropTypes.string,
+    zDepth: React.PropTypes.number,
   },
 
   getDefaultProps() {
@@ -47,13 +50,13 @@ const NestedMenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       open: false,
@@ -119,8 +122,8 @@ const NestedMenuItem = React.createClass({
     let styles = this.getStyles();
     styles = this.prepareStyles(styles.root,
       (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
-      position: 'relative',
-    }, this.props.style);
+        position: 'relative',
+      }, this.props.style);
 
     let iconCustomArrowDropRight = {
       marginRight: this.getSpacing().desktopGutterMini * -1,
@@ -135,12 +138,12 @@ const NestedMenuItem = React.createClass({
 
     return (
       <div
-          ref="root"
-          style={styles}
-          onMouseEnter={this._openNestedMenu}
-          onMouseLeave={this._closeNestedMenu}
-          onMouseOver={this._handleMouseOver}
-          onMouseOut={this._handleMouseOut}>
+        ref="root"
+        style={styles}
+        onMouseEnter={this._openNestedMenu}
+        onMouseLeave={this._closeNestedMenu}
+        onMouseOver={this._handleMouseOver}
+        onMouseOut={this._handleMouseOut}>
         <MenuItem
           index={index}
           style={menuItemStyle}
@@ -164,7 +167,7 @@ const NestedMenuItem = React.createClass({
   },
 
   toggleNestedMenu() {
-    if (!this.props.disabled) this.setState({ open: !this.state.open });
+    if (!this.props.disabled) this.setState({open: !this.state.open});
   },
 
   isOpen() {
@@ -178,11 +181,11 @@ const NestedMenuItem = React.createClass({
   },
 
   _openNestedMenu() {
-    if (!this.props.disabled) this.setState({ open: true });
+    if (!this.props.disabled) this.setState({open: true});
   },
 
   _closeNestedMenu() {
-    this.setState({ open: false });
+    this.setState({open: false});
     ReactDOM.findDOMNode(this).focus();
   },
 
@@ -218,21 +221,22 @@ const Menu = React.createClass({
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
-    onItemTap: React.PropTypes.func,
-    onToggle: React.PropTypes.func,
-    onRequestClose: React.PropTypes.func,
+    hideable: React.PropTypes.bool,
+    menuItemClassName: React.PropTypes.string,
+    menuItemClassNameLink: React.PropTypes.string,
+    menuItemClassNameSubheader: React.PropTypes.string,
+    menuItemStyle: React.PropTypes.object,
+    menuItemStyleLink: React.PropTypes.object,
+    menuItemStyleSubheader: React.PropTypes.object,
     menuItems: React.PropTypes.array.isRequired,
+    onItemTap: React.PropTypes.func,
+    onItemToggle: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
+    onToggle: React.PropTypes.func,
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
-    hideable: React.PropTypes.bool,
     visible: React.PropTypes.bool,
     zDepth: React.PropTypes.number,
-    menuItemStyle: React.PropTypes.object,
-    menuItemStyleSubheader: React.PropTypes.object,
-    menuItemStyleLink: React.PropTypes.object,
-    menuItemClassName: React.PropTypes.string,
-    menuItemClassNameSubheader: React.PropTypes.string,
-    menuItemClassNameLink: React.PropTypes.string,
   },
 
   //for passing default theme context to children
@@ -240,13 +244,15 @@ const Menu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
+    warning(false, 'This menu component is deprecated use menus/menu instead.');
+
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       nestedMenuShown: false,
@@ -282,7 +288,7 @@ const Menu = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
@@ -353,7 +359,7 @@ const Menu = React.createClass({
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
 
-    for (let i=0; i < this.props.menuItems.length; i++) {
+    for (let i = 0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
 
@@ -398,9 +404,6 @@ const Menu = React.createClass({
 
         case MenuItem.Types.NESTED:
           let {
-            ref,
-            key,
-            index,
             zDepth,
             ...other,
           } = this.props;
@@ -535,7 +538,7 @@ const Menu = React.createClass({
       el.style.transition = Transitions.easeOut();
     }
 
-    this._nextAnimationFrame(function () {
+    this._nextAnimationFrame(function() {
       //Set the overflow to hidden so that animation works properly
       container.style.overflow = 'hidden';
 
@@ -588,7 +591,7 @@ const Menu = React.createClass({
     if (nested && nested.props.nested && this.refs[this.state.activeIndex].isOpen())
       return;
 
-    switch(e.which) {
+    switch (e.which) {
       case KeyCode.UP:
         this._activatePreviousItem();
         break;
@@ -627,7 +630,7 @@ const Menu = React.createClass({
 
   _activateNextItem() {
     let active = this.state.activeIndex || 0;
-    active = Math.min(active+1, this._children.length -1);
+    active = Math.min(active + 1, this._children.length - 1);
     this.setState({activeIndex:active});
   },
 
@@ -648,4 +651,4 @@ const Menu = React.createClass({
 
 });
 
-module.exports = Menu;
+export default Menu;

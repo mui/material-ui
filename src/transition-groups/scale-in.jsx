@@ -1,10 +1,10 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const StylePropable = require('../mixins/style-propable');
-const ScaleInChild = require('./scale-in-child');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import StylePropable from '../mixins/style-propable';
+import ScaleInChild from './scale-in-child';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 
 const ScaleIn = React.createClass({
@@ -20,13 +20,13 @@ const ScaleIn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -34,13 +34,14 @@ const ScaleIn = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
   propTypes: {
     childStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,
     minScale: React.PropTypes.number,
@@ -95,4 +96,4 @@ const ScaleIn = React.createClass({
 
 });
 
-module.exports = ScaleIn;
+export default ScaleIn;

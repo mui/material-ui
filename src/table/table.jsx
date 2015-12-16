@@ -1,8 +1,8 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const Table = React.createClass({
 
@@ -14,8 +14,13 @@ const Table = React.createClass({
 
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
+    bodyStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     fixedFooter: React.PropTypes.bool,
     fixedHeader: React.PropTypes.bool,
+    footerStyle: React.PropTypes.object,
+    headerStyle: React.PropTypes.object,
     height: React.PropTypes.string,
     multiSelectable: React.PropTypes.bool,
     onCellClick: React.PropTypes.func,
@@ -26,6 +31,7 @@ const Table = React.createClass({
     onRowSelection: React.PropTypes.func,
     selectable: React.PropTypes.bool,
     style: React.PropTypes.object,
+    wrapperStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -44,13 +50,13 @@ const Table = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       allRowsSelected: this.props.allRowsSelected,
@@ -59,7 +65,7 @@ const Table = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -99,6 +105,10 @@ const Table = React.createClass({
       fixedFooter,
       fixedHeader,
       style,
+      wrapperStyle,
+      headerStyle,
+      bodyStyle,
+      footerStyle,
       ...other,
     } = this.props;
     let classes = 'mui-table';
@@ -129,7 +139,7 @@ const Table = React.createClass({
     let inlineHeader, inlineFooter;
     if (fixedHeader) {
       headerTable = (
-        <div className="mui-header-table">
+        <div className="mui-header-table" style={this.prepareStyles(headerStyle)}>
           <table className={className} style={mergedTableStyle}>
             {tHead}
           </table>
@@ -142,7 +152,7 @@ const Table = React.createClass({
     if (tFoot !== undefined) {
       if (fixedFooter) {
         footerTable = (
-          <div className="mui-footer-table">
+          <div className="mui-footer-table" style={this.prepareStyles(footerStyle)}>
             <table className={className} style={mergedTableStyle}>
               {tFoot}
             </table>
@@ -155,9 +165,9 @@ const Table = React.createClass({
     }
 
     return (
-      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper)}>
+      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
         {headerTable}
-        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable)} ref="tableDiv">
+        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
           <table className={classes} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}
@@ -230,7 +240,7 @@ const Table = React.createClass({
   },
 
   _onRowSelection(selectedRows) {
-    if (this.state.allRowsSelected) this.setState({ allRowsSelected: false });
+    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
     if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
   },
 
@@ -242,10 +252,10 @@ const Table = React.createClass({
         this.props.onRowSelection('none');
       }
     }
-  
+
     this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 
 });
 
-module.exports = Table;
+export default Table;

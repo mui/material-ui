@@ -1,21 +1,20 @@
-const React = require('react');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const Paper = require('paper');
-const Menu = require('menus/menu');
-const MenuItem = require('menus/menu-item');
-const MenuDivider = require('menus/menu-divider');
-const ComponentDoc = require('../../component-doc');
+import React from 'react';
+import Paper from 'paper';
+import Menu from 'menus/menu';
+import MenuItem from 'menus/menu-item';
+import Divider from 'divider';
+import ComponentDoc from '../../component-doc';
 
-const ArrowDropRight = require('svg-icons/navigation-arrow-drop-right');
-const ContentCopy = require('svg-icons/content/content-copy');
-const ContentLink = require('svg-icons/content/link');
-const Delete = require('svg-icons/action/delete');
-const Download = require('svg-icons/file/file-download');
-const PersonAdd = require('svg-icons/social/person-add');
-const RemoveRedEye = require('svg-icons/image/remove-red-eye');
-const Code = require('menus-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import ContentCopy from 'material-ui/svg-icons/content/content-copy';
+import ContentLink from 'material-ui/svg-icons/content/link';
+import Delete from 'material-ui/svg-icons/action/delete';
+import Download from 'material-ui/svg-icons/file/file-download';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
+import Code from 'menus-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class MenusPage extends React.Component {
 
@@ -31,8 +30,8 @@ export default class MenusPage extends React.Component {
             name: 'animated',
             type: 'bool',
             header: 'default: false',
-            desc: 'If true, the menu will apply transitions when added it gets added to the DOM. In order for transitions ' +
-              'to work, wrap the menu inside a ReactTransitionGroup.',
+            desc: `If true, the menu will apply transitions when added it gets added to the DOM.
+              In order for transitions to work, wrap the menu inside a ReactTransitionGroup.`,
           },
           {
             name: 'autoWidth',
@@ -63,7 +62,8 @@ export default class MenusPage extends React.Component {
             name: 'maxHeight',
             type: 'number',
             header: 'optional',
-            desc: 'The maxHeight of the menu in pixels. If specified, the menu will scroll if larger than the maxHeight.',
+            desc: `The maxHeight of the menu in pixels.
+              If specified, the menu will scroll if larger than the maxHeight.`,
           },
           {
             name: 'multiple',
@@ -97,6 +97,27 @@ export default class MenusPage extends React.Component {
             header: 'optional',
             desc: 'Sets the width of the menu. If not specified, the menu width will be dictated by its ' +
               'children. The rendered width will always be a keyline increment (64px for desktop, 56px otherwise).',
+          },
+        ],
+      },
+      {
+        name: 'Menu Events',
+        infoArray: [
+          {
+            name: 'onEscKeyDown',
+            header: 'function(event)',
+            desc: 'Fired when an Esc key is keyed down.',
+          },
+          {
+            name: 'onItemTouchTap',
+            header: 'function(event, item)',
+            desc: 'Fired when a menu item is touchTapped.',
+          },
+          {
+            name: 'onChange',
+            header: 'function(event, value)',
+            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
+              'is not equal to the current menu value.',
           },
         ],
       },
@@ -174,23 +195,12 @@ export default class MenusPage extends React.Component {
         ],
       },
       {
-        name: 'Events',
+        name: 'Menu Item Events',
         infoArray: [
           {
-            name: 'onEscKeyDown',
-            header: 'function(event)',
-            desc: 'Fired when an Esc key is keyed down.',
-          },
-          {
-            name: 'onItemTouchTap',
+            name: 'onTouchTap',
             header: 'function(event, item)',
             desc: 'Fired when a menu item is touchTapped.',
-          },
-          {
-            name: 'onChange',
-            header: 'function(event, value)',
-            desc: 'Fired when a menu item is touchTapped and the menu item value ' +
-              'is not equal to the current menu value.',
           },
         ],
       },
@@ -220,10 +230,13 @@ export default class MenusPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst Menu = require(\'material-ui/lib/menus/menu\');\n' +
-            'const MenuItem = require(\'material-ui/lib/menus/menu-item\');\n' +
-            'const MenuDivider = require(\'material-ui/lib/menus/menu-divider\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
+            `//Import statement:
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import Divider from 'material-ui/lib/menus/menu-divider';
+
+//See material-ui/lib/index.js for more
+          `
           }
           </CodeBlock>
         </Paper>
@@ -246,7 +259,7 @@ export default class MenusPage extends React.Component {
           <Menu style={styles.menu} desktop={true}>
             <MenuItem primaryText="Back" />
             <MenuItem primaryText="Forward" disabled={true} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Recently closed" disabled={true} />
             <MenuItem primaryText="Google" disabled={true} />
             <MenuItem primaryText="YouTube" />
@@ -256,17 +269,17 @@ export default class MenusPage extends React.Component {
             <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
             <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
             <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
             <MenuItem primaryText="Download" leftIcon={<Download />} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Remove" leftIcon={<Delete />} />
           </Menu>
 
           <Menu style={styles.menu} desktop={true}>
             <MenuItem primaryText="Undo" />
             <MenuItem primaryText="Redo" disabled={true} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Cut" disabled={true} />
             <MenuItem primaryText="Copy" disabled={true} />
             <MenuItem primaryText="Paste" />
@@ -303,13 +316,13 @@ export default class MenusPage extends React.Component {
             <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
             <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
             <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
             <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
           </Menu>
 
@@ -317,11 +330,21 @@ export default class MenusPage extends React.Component {
             <MenuItem primaryText="Single" insetChildren={true} />
             <MenuItem primaryText="1.15" insetChildren={true} />
             <MenuItem primaryText="Double" insetChildren={true} />
-            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} />
-            <MenuDivider />
+            <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} menuItems={[
+              <MenuItem primaryText="Show" rightIcon={<ArrowDropRight />} menuItems={[
+                <MenuItem primaryText="Show Level 2" />,
+                <MenuItem primaryText="Grid lines" checked={true} />,
+                <MenuItem primaryText="Page breaks" insetChildren={true} />,
+                <MenuItem primaryText="Rules" checked={true} />,
+              ]}/>,
+              <MenuItem primaryText="Grid lines" checked={true} />,
+              <MenuItem primaryText="Page breaks" insetChildren={true} />,
+              <MenuItem primaryText="Rules" checked={true} />,
+            ]} />
+            <Divider />
             <MenuItem primaryText="Add space before paragraph" />
             <MenuItem primaryText="Add space after paragraph" />
-            <MenuDivider />
+            <Divider />
             <MenuItem primaryText="Custom spacing..." />
           </Menu>
 

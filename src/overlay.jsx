@@ -1,71 +1,46 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const Colors = require('./styles/colors');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import Colors from './styles/colors';
 
 const Overlay = React.createClass({
 
   _originalBodyOverflow: '',
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext () {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState () {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  componentWillReceiveProps(nextProps) {
+    if (this.props.show !== nextProps.show) {
+      this._applyAutoLockScrolling(nextProps);
+    }
   },
 
   propTypes: {
     autoLockScrolling: React.PropTypes.bool,
-    show: React.PropTypes.bool,
-    transitionEnabled: React.PropTypes.bool,
+    show: React.PropTypes.bool.isRequired,
     style: React.PropTypes.object,
+    transitionEnabled: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       autoLockScrolling: true,
       transitionEnabled: true,
+      style: {},
     };
   },
 
   componentDidMount() {
     this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.overflow;
-  },
-
-  componentDidUpdate() {
-    if (this.props.autoLockScrolling) {
-      if (this.props.show) {
-        this._preventScrolling();
-      } else {
-        this._allowScrolling();
-      }
+    if (this.props.show) {
+      this._applyAutoLockScrolling(this.props);
     }
   },
 
@@ -79,12 +54,11 @@ const Overlay = React.createClass({
   },
 
   getStyles() {
-    let styles = {
+    return {
       root: {
         position: 'fixed',
         height: '100%',
         width: '100%',
-        zIndex: 9,
         top: 0,
         left: '-100%',
         opacity: 0,
@@ -109,41 +83,42 @@ const Overlay = React.createClass({
           Transitions.easeOut('400ms', 'opacity'),
       },
     };
-    return styles;
   },
 
   render() {
-    let {
+    const {
       show,
       style,
       ...other,
     } = this.props;
 
-    let styles = this.prepareStyles(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);
+    const styles = this.prepareStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
 
     return (
       <div {...other} style={styles} />
     );
   },
 
-  preventScrolling() {
-    if (!this.props.autoLockScrolling) this._preventScrolling();
-  },
-
-  allowScrolling() {
-    if (!this.props.autoLockScrolling) this._allowScrolling();
+  _applyAutoLockScrolling(props) {
+    if (props.autoLockScrolling) {
+      if (props.show) {
+        this._preventScrolling();
+      } else {
+        this._allowScrolling();
+      }
+    }
   },
 
   _preventScrolling() {
-    let body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
   },
 
   _allowScrolling() {
-    let body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     body.style.overflow = this._originalBodyOverflow || '';
   },
 
 });
 
-module.exports = Overlay;
+export default Overlay;

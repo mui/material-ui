@@ -1,8 +1,8 @@
-const fs = require('fs');
-const rrs = require('recursive-readdir-sync');
+import fs from 'fs';
+import rrs from 'recursive-readdir-sync';
 
 const outArray = [];
-outArray.push('module.exports = {\n');
+outArray.push('export default {\n');
 
 rrs('./').forEach(function(file) {
 	if(file !== 'index-generator.js' && file !== 'index.js')

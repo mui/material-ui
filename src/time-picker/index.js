@@ -1,1 +1,1 @@
-module.exports = require('./time-picker');
+export default require('./time-picker');

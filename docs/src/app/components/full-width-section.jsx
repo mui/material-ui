@@ -1,6 +1,6 @@
-let React = require('react');
-let { ClearFix, Mixins, Styles } = require('material-ui');
-let { StylePropable, StyleResizable } = Mixins;
+import React from 'react';
+import {ClearFix, Mixins, Styles} from 'material-ui';
+let {StylePropable, StyleResizable} = Mixins;
 let DesktopGutter = Styles.Spacing.desktopGutter;
 
 
@@ -9,9 +9,11 @@ let FullWidthSection = React.createClass({
   mixins: [StylePropable, StyleResizable],
 
   propTypes: {
-    useContent: React.PropTypes.bool,
-    contentType: React.PropTypes.string,
+    children: React.PropTypes.node,
     contentStyle: React.PropTypes.object,
+    contentType: React.PropTypes.string,
+    style: React.PropTypes.object,
+    useContent: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -22,22 +24,22 @@ let FullWidthSection = React.createClass({
   },
 
   getStyles() {
-    return  {
+    return {
       root: {
         padding: DesktopGutter + 'px',
         boxSizing: 'border-box',
       },
       content: {
-          maxWidth: '1200px',
-          margin: '0 auto',
+        maxWidth: '1200px',
+        margin: '0 auto',
       },
       rootWhenSmall: {
-          paddingTop: (DesktopGutter * 2) + 'px',
-          paddingBottom: (DesktopGutter * 2) + 'px',
+        paddingTop: (DesktopGutter * 2) + 'px',
+        paddingBottom: (DesktopGutter * 2) + 'px',
       },
       rootWhenLarge: {
-          paddingTop: (DesktopGutter * 3) + 'px',
-          paddingBottom: (DesktopGutter * 3) + 'px',
+        paddingTop: (DesktopGutter * 3) + 'px',
+        paddingBottom: (DesktopGutter * 3) + 'px',
       },
     };
   },
@@ -78,4 +80,4 @@ let FullWidthSection = React.createClass({
   },
 });
 
-module.exports = FullWidthSection;
+export default FullWidthSection;

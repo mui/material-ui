@@ -2,9 +2,9 @@
 //If you'd like to use the new menu before our migration is complete, please directly
 //require them like this:
 
-let Menu = require('material-ui/lib/menus/menu');
-let MenuItem = require('material-ui/lib/menus/menu-item');
-let MenuDivider = require('material-ui/lib/menus/menu-divider');
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import Divider from 'material-ui/lib/divider';
 
 <Menu>
   <MenuItem primaryText="Maps" />
@@ -20,12 +20,36 @@ let MenuDivider = require('material-ui/lib/menus/menu-divider');
   <MenuItem primaryText="Strikethrough" secondaryText="Alt+Shift+5" />
   <MenuItem primaryText="Superscript" secondaryText="&#8984;." />
   <MenuItem primaryText="Subscript" secondaryText="&#8984;," />
-  <MenuDivider />
+  <Divider />
   <MenuItem primaryText="Paragraph styles" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="Align" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="Line spacing" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="Numbered list" rightIcon={<ArrowDropRight />} />
   <MenuItem primaryText="List options" rightIcon={<ArrowDropRight />} />
-  <MenuDivider />
+  <Divider />
   <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
+</Menu>
+
+// With Nested SubMenus
+<Menu style={styles.menu} desktop={true} width={320}>
+  <MenuItem primaryText="Single" insetChildren={true} />
+  <MenuItem primaryText="1.15" insetChildren={true} />
+  <MenuItem primaryText="Double" insetChildren={true} />
+  <MenuItem primaryText="Custom: 1.2" checked={true} rightIcon={<ArrowDropRight />} menuItems={[
+      <MenuItem primaryText="Show" rightIcon={<ArrowDropRight />} menuItems={[
+        <MenuItem primaryText="Show" />,
+        <MenuItem primaryText="Grid lines" checked={true} />,
+        <MenuItem primaryText="Page breaks" insetChildren={true} />,
+        <MenuItem primaryText="Rules" checked={true} />,
+        ]}/>,
+      <MenuItem primaryText="Grid lines" checked={true} />,
+      <MenuItem primaryText="Page breaks" insetChildren={true} />,
+      <MenuItem primaryText="Rules" checked={true} />,
+    ]}>
+  </MenuItem>
+  <Divider />
+  <MenuItem primaryText="Add space before paragraph" />
+  <MenuItem primaryText="Add space after paragraph" />
+  <Divider />
+  <MenuItem primaryText="Custom spacing..." />
 </Menu>

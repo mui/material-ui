@@ -1,10 +1,10 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const TextField = require('./text-field');
-const DropDownMenu = require('./drop-down-menu');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const ContextPure = require('./mixins/context-pure');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import TextField from './text-field';
+import DropDownMenu from './drop-down-menu';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import ContextPure from './mixins/context-pure';
 
 const SelectField = React.createClass({
 
@@ -27,30 +27,35 @@ const SelectField = React.createClass({
   },
 
   propTypes: {
-    errorText: React.PropTypes.string,
-    floatingLabelText: React.PropTypes.string,
-    selectFieldRoot: React.PropTypes.object,
-    underlineStyle: React.PropTypes.object,
-    labelStyle: React.PropTypes.object,
+    autoWidth: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     errorStyle: React.PropTypes.object,
-    hintText: React.PropTypes.string,
+    errorText: React.PropTypes.node,
+    floatingLabelStyle: React.PropTypes.object,
+    floatingLabelText: React.PropTypes.node,
+    fullWidth: React.PropTypes.bool,
+    hintText: React.PropTypes.node,
+    iconStyle: React.PropTypes.object,
     id: React.PropTypes.string,
+    labelMember: React.PropTypes.string,
+    labelStyle: React.PropTypes.object,
+    menuItemStyle: React.PropTypes.object,
+    menuItems: React.PropTypes.array.isRequired,
     multiLine: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
+    onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    onEnterKeyDown: React.PropTypes.func,
-    type: React.PropTypes.string,
     rows: React.PropTypes.number,
-    inputStyle: React.PropTypes.object,
-    iconStyle: React.PropTypes.object,
-    floatingLabelStyle: React.PropTypes.object,
-    autoWidth: React.PropTypes.bool,
-    menuItems: React.PropTypes.array.isRequired,
-    menuItemStyle: React.PropTypes.object,
+    selectFieldRoot: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
+    type: React.PropTypes.string,
+    underlineDisabledStyle: React.PropTypes.object,
+    underlineFocusStyle: React.PropTypes.object,
+    underlineStyle: React.PropTypes.object,
+    value: React.PropTypes.any,
   },
 
   //for passing default theme context to children
@@ -58,13 +63,13 @@ const SelectField = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -73,52 +78,35 @@ const SelectField = React.createClass({
   getDefaultProps() {
     return {
       fullWidth: false,
+      labelMember: 'text',
     };
   },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
   getStyles() {
-    let styles = {
-      root: {
-        height: 46,
-        position: 'relative',
-        width: '100%',
-        top: 16,
-        fontSize: 16,
-      },
+    const styles = {
       label: {
         paddingLeft: 0,
-        top: 4,
-        width: '100%',
+        top: -4,
       },
       icon: {
-        top: 20,
         right: 0,
+        top: 14,
       },
-      underline: {
+      hideDropDownUnderline: {
         borderTop: 'none',
       },
-      input: {},
-      error: {},
     };
 
-    if (!this.props.floatingLabelText) {
-      styles.label.top = -6;
-      styles.icon.top = 11;
-
-      if(this.props.hintText) {
-        styles.root.top = -5;
-      } else {
-        styles.root.top = -8;
-      }
-    } else {
-      styles.error.bottom = -15;
+    if (this.props.floatingLabelText) {
+      styles.icon.top = 22;
+      styles.label.top = 6;
     }
 
     return styles;
@@ -130,6 +118,8 @@ const SelectField = React.createClass({
       style,
       labelStyle,
       iconStyle,
+      underlineDisabledStyle,
+      underlineFocusStyle,
       underlineStyle,
       errorStyle,
       selectFieldRoot,
@@ -140,34 +130,41 @@ const SelectField = React.createClass({
       hintText,
       fullWidth,
       errorText,
+      onFocus,
+      onBlur,
+      labelMember,
       ...other,
     } = this.props;
 
-    const textFieldProps = {
-      style: this.mergeAndPrefix(styles.input, style),
-      floatingLabelText: floatingLabelText,
-      floatingLabelStyle: floatingLabelStyle,
-      hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
-      fullWidth: fullWidth,
-      errorText: errorText,
-      errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
-    };
-    const dropDownMenuProps = {
-      menuItems: menuItems,
-      disabled: disabled,
-      style: this.mergeAndPrefix(styles.root, selectFieldRoot),
-      labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
-      iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
-      underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
-      autoWidth: false,
-    };
-
     return (
-      <TextField {...textFieldProps}>
-        <DropDownMenu {...dropDownMenuProps} {...other} />
+      <TextField
+        style={style}
+        floatingLabelText={floatingLabelText}
+        floatingLabelStyle={floatingLabelStyle}
+        hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
+        fullWidth={fullWidth}
+        errorText={errorText}
+        underlineStyle={underlineStyle}
+        errorStyle={errorStyle}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        underlineDisabledStyle={underlineDisabledStyle}
+        underlineFocusStyle={underlineFocusStyle}
+      >
+        <DropDownMenu
+          menuItems={menuItems}
+          disabled={disabled}
+          style={selectFieldRoot}
+          labelStyle={this.mergeStyles(styles.label, labelStyle)}
+          iconStyle={this.mergeStyles(styles.icon, iconStyle)}
+          underlineStyle={styles.hideDropDownUnderline}
+          autoWidth={false}
+          labelMember={labelMember}
+          {...other}
+        />
       </TextField>
     );
   },
 });
 
-module.exports = SelectField;
+export default SelectField;

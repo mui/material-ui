@@ -1,20 +1,25 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const update = require('react-addons-update');
-const Controllable = require('../mixins/controllable');
-const StylePropable = require('../mixins/style-propable');
-const AutoPrefix = require('../styles/auto-prefix');
-const Transitions = require('../styles/transitions');
-const KeyCode = require('../utils/key-code');
-const PropTypes = require('../utils/prop-types');
-const List = require('../lists/list');
-const Paper = require('../paper');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import update from 'react-addons-update';
+import Controllable from '../mixins/controllable';
+import StylePropable from '../mixins/style-propable';
+import ClickAwayable from '../mixins/click-awayable';
+import AutoPrefix from '../styles/auto-prefix';
+import Transitions from '../styles/transitions';
+import KeyCode from '../utils/key-code';
+import PropTypes from '../utils/prop-types';
+import List from '../lists/list';
+import Paper from '../paper';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const Menu = React.createClass({
 
-  mixins: [StylePropable, Controllable],
+  mixins: [
+    StylePropable,
+    Controllable,
+    ClickAwayable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -23,6 +28,7 @@ const Menu = React.createClass({
   propTypes: {
     animated: React.PropTypes.bool,
     autoWidth: React.PropTypes.bool,
+    children: React.PropTypes.node,
     desktop: React.PropTypes.bool,
     initiallyKeyboardFocused: React.PropTypes.bool,
     listStyle: React.PropTypes.object,
@@ -32,8 +38,10 @@ const Menu = React.createClass({
     onItemTouchTap: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     openDirection: PropTypes.corners,
-    style: React.PropTypes.object,
     selectedMenuItemStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
+    value: React.PropTypes.any,
+    valueLink: React.PropTypes.object,
     width: PropTypes.stringOrNumber,
     zDepth: PropTypes.zDepth,
   },
@@ -56,14 +64,15 @@ const Menu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   getInitialState() {
-    let selectedIndex = this._getSelectedIndex(this.props);
+    const filteredChildren = this._getFilteredChildren(this.props.children);
+    let selectedIndex = this._getSelectedIndex(this.props, filteredChildren);
 
     return {
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
@@ -99,7 +108,8 @@ const Menu = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let selectedIndex = this._getSelectedIndex(nextProps);
+    const filteredChildren = this._getFilteredChildren(nextProps.children);
+    let selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     this.setState({
@@ -107,6 +117,12 @@ const Menu = React.createClass({
       keyWidth: nextProps.desktop ? 64 : 56,
       muiTheme: newMuiTheme,
     });
+  },
+
+  componentClickAway(e) {
+    if (e.defaultPrevented)
+      return;
+    this._setFocusIndex(-1, false);
   },
 
   render() {
@@ -132,19 +148,25 @@ const Menu = React.createClass({
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
+    const rawTheme = this.state.muiTheme.rawTheme;
+
     let styles = {
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
         transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
-        position: 'absolute',
-        zIndex: 10,
+        zIndex: rawTheme.zIndex.menu,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
         transform: 'scaleX(0)',
         transformOrigin: openLeft ? 'right' : 'left',
+      },
+
+      divider: {
+        marginTop: 7,
+        marginBottom: 8,
       },
 
       list: {
@@ -166,26 +188,27 @@ const Menu = React.createClass({
         transformOrigin: openDown ? 'top' : 'bottom',
         opacity: 0,
         maxHeight: maxHeight,
-        overflowY: maxHeight ? 'scroll' : null,
+        overflowY: maxHeight ? 'auto' : null,
       },
 
       selectedMenuItem: {
-        color: this.state.muiTheme.rawTheme.palette.accent1Color,
+        color: rawTheme.palette.accent1Color,
       },
     };
 
     let mergedRootStyles = this.prepareStyles(styles.root, style);
     let mergedListStyles = this.mergeStyles(styles.list, listStyle);
 
+    const filteredChildren = this._getFilteredChildren(children);
+
     //Cascade children opacity
     let cumulativeDelay = openDown ? 175 : 325;
-    let cascadeChildrenCount = this._getCascadeChildrenCount();
-    let cumulativeDelayIncrement = Math.ceil(150/cascadeChildrenCount);
+    let cascadeChildrenCount = this._getCascadeChildrenCount(filteredChildren);
+    let cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
 
     let menuItemIndex = 0;
-    let newChildren = React.Children.map(children, (child) => {
-
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+    let newChildren = React.Children.map(filteredChildren, child => {
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
       let childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 
@@ -207,7 +230,7 @@ const Menu = React.createClass({
         });
       }
 
-      let clonedChild = childIsADivider ? child :
+      let clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this._cloneMenuItem(child, menuItemIndex, styles);
 
@@ -244,6 +267,16 @@ const Menu = React.createClass({
     });
   },
 
+  _getFilteredChildren(children) {
+    const filteredChildren = [];
+    React.Children.forEach(children, child => {
+      if (child) {
+        filteredChildren.push(child);
+      }
+    });
+    return filteredChildren;
+  },
+
   _animateOpen() {
     let rootStyle = ReactDOM.findDOMNode(this).style;
     let scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
@@ -259,7 +292,6 @@ const Menu = React.createClass({
   },
 
   _cloneMenuItem(child, childIndex, styles) {
-
     let {
       desktop,
       selectedMenuItemStyle,
@@ -305,9 +337,8 @@ const Menu = React.createClass({
     this._setFocusIndex(index, true);
   },
 
-  _getCascadeChildrenCount() {
+  _getCascadeChildrenCount(filteredChildren) {
     let {
-      children,
       desktop,
       maxHeight,
     } = this.props;
@@ -316,13 +347,13 @@ const Menu = React.createClass({
     let menuItemHeight = desktop ? 32 : 48;
 
     //MaxHeight isn't set - cascade all of the children
-    if (!maxHeight) return React.Children.count(children);
+    if (!maxHeight) return filteredChildren.length;
 
     //Count all the children that will fit inside the
     //max menu height
-    React.Children.forEach(children, (child) => {
+    filteredChildren.forEach(child => {
       if (currentHeight < maxHeight) {
-        let childIsADivider = child.type.displayName === 'MenuDivider';
+        let childIsADivider = child.type && child.type.displayName === 'Divider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -330,28 +361,24 @@ const Menu = React.createClass({
     });
 
     return count;
-
   },
 
-  _getMenuItemCount() {
+  _getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
-    React.Children.forEach(this.props.children, (child) => {
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+    filteredChildren.forEach(child => {
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
       let childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
     return menuItemCount;
   },
 
-  _getSelectedIndex(props) {
-    let {
-      children,
-    } = props;
+  _getSelectedIndex(props, filteredChildren) {
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
-    React.Children.forEach(children, (child) => {
-      let childIsADivider = child.type.displayName === 'MenuDivider';
+    filteredChildren.forEach(child => {
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
@@ -361,10 +388,11 @@ const Menu = React.createClass({
   },
 
   _handleKeyDown(e) {
+    const filteredChildren = this._getFilteredChildren(this.props.children);
     switch (e.keyCode) {
       case KeyCode.DOWN:
         e.preventDefault();
-        this._incrementKeyboardFocusIndex();
+        this._incrementKeyboardFocusIndex(filteredChildren);
         break;
       case KeyCode.ESC:
         this.props.onEscKeyDown(e);
@@ -375,7 +403,7 @@ const Menu = React.createClass({
           this._decrementKeyboardFocusIndex();
         }
         else {
-          this._incrementKeyboardFocusIndex();
+          this._incrementKeyboardFocusIndex(filteredChildren);
         }
         break;
       case KeyCode.UP:
@@ -387,10 +415,14 @@ const Menu = React.createClass({
   },
 
   _handleMenuItemTouchTap(e, item) {
+    let children = this.props.children;
     let multiple = this.props.multiple;
     let valueLink = this.getValueLink(this.props);
     let menuValue = valueLink.value;
     let itemValue = item.props.value;
+    let focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
+
+    this._setFocusIndex(focusIndex, false);
 
     if (multiple) {
       let index = menuValue.indexOf(itemValue);
@@ -407,9 +439,9 @@ const Menu = React.createClass({
     this.props.onItemTouchTap(e, item);
   },
 
-  _incrementKeyboardFocusIndex() {
+  _incrementKeyboardFocusIndex(filteredChildren) {
     let index = this.state.focusIndex;
-    let maxIndex = this._getMenuItemCount() - 1;
+    let maxIndex = this._getMenuItemCount(filteredChildren) - 1;
 
     index++;
     if (index > maxIndex) index = maxIndex;
@@ -470,4 +502,4 @@ const Menu = React.createClass({
 
 });
 
-module.exports = Menu;
+export default Menu;

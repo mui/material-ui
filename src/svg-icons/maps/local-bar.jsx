@@ -1,6 +1,6 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const MapsLocalBar = React.createClass({
 
@@ -9,11 +9,11 @@ const MapsLocalBar = React.createClass({
   render() {
     return (
       <SvgIcon {...this.props}>
-        <path d="M11 13v6H6v2h12v-2h-5v-6l8-8V3H3v2l8 8zM7.5 7l-2-2h13l-2 2h-9z"/>
+        <path d="M21 5V3H3v2l8 9v5H6v2h12v-2h-5v-5l8-9zM7.43 7L5.66 5h12.69l-1.78 2H7.43z"/>
       </SvgIcon>
     );
   }
 
 });
 
-module.exports = MapsLocalBar;
+export default MapsLocalBar;

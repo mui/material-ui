@@ -19,7 +19,8 @@
 
 <DatePicker
   hintText="fr version"
-  // Intl is defined by the browser see http://caniuse.com/#search=intl
+  // Intl is supported by most modern browsers, see http://caniuse.com/#search=intl
+  // for browsers that don't support it use this polyfill https://github.com/andyearnshaw/Intl.js
   DateTimeFormat={Intl.DateTimeFormat}
   wordings={{ok: 'OK', cancel: 'Annuler'}}
   locale="fr" />

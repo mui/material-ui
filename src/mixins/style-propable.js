@@ -1,15 +1,15 @@
-const React = require('react');
-const ImmutabilityHelper = require('../utils/immutability-helper');
-const Styles = require('../utils/styles');
+import React from 'react';
+import ImmutabilityHelper from '../utils/immutability-helper';
+import Styles from '../utils/styles';
 
-// This mixin isn't necessary and will be removed in v0.11
+// This mixin isn't necessary and will be removed
 
 /**
  *	@params:
  *	styles = Current styles.
  *  props = New style properties that will override the current style.
  */
-module.exports = {
+export default {
 
   propTypes: {
     style: React.PropTypes.object,
@@ -28,11 +28,12 @@ module.exports = {
   // prepareStyles is used to merge multiple styles, make sure they are flipped to rtl
   // if needed, and then autoprefix them. It should probably always be used instead of
   // mergeAndPrefix.
-  // 
-  // Never call this on the same style object twice. As a rule of thumb, 
-  //   only call it when passing style attribute to html elements.
+  //
+  // Never call this on the same style object twice. As a rule of thumb,
+  // only call it when passing style attribute to html elements.
   // If you call it twice you'll get a warning anyway.
   prepareStyles() {
-    return Styles.prepareStyles.apply(Styles, [(this.state && this.state.muiTheme) || this.context.muiTheme].concat([].slice.apply(arguments)));
+    return Styles.prepareStyles.apply(Styles,
+      [(this.state && this.state.muiTheme) || this.context.muiTheme].concat([].slice.apply(arguments)));
   },
 };

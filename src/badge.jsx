@@ -1,12 +1,11 @@
-const React = require('react');
-const Typography = require('./styles/typography');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
-const StylePropable = require('./mixins/style-propable');
+import React from 'react';
+import Typography from './styles/typography';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
+import StylePropable from './mixins/style-propable';
 
 // Badge
-export default React.createClass({
-  displayName: 'Badge',
+const Badge = React.createClass({
   mixins: [StylePropable],
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -15,18 +14,46 @@ export default React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
   propTypes: {
-    className: React.PropTypes.string,
+    /**
+     * This is the content rendered within the badge.
+     */
     badgeContent: React.PropTypes.node.isRequired,
-    primary: React.PropTypes.bool,
-    secondary: React.PropTypes.bool,
-    style: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the badge element.
+     */
     badgeStyle: React.PropTypes.object,
+
+    /**
+     * The badge will be added relativelty to this node.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * If true, the badge will use the primary badge colors.
+     */
+    primary: React.PropTypes.bool,
+
+    /**
+     * If true, the badge will use the secondary badge colors.
+     */
+    secondary: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
   },
   getInitialState() {
     return {
@@ -35,11 +62,8 @@ export default React.createClass({
   },
   getDefaultProps() {
     return {
-      className: '',
       primary: false,
       secondary: false,
-      style: {},
-      badgeStyle: {},
     };
   },
   componentWillReceiveProps(nextProps, nextContext) {
@@ -64,13 +88,13 @@ export default React.createClass({
         : theme.textColor;
 
     const radius = 12;
-    const radius2x = Math.floor(2*radius);
+    const radius2x = Math.floor(2 * radius);
 
     return {
       root: {
         position: 'relative',
         display: 'inline-block',
-        padding: [radius2x+'px', radius2x+'px', radius+'px', radius+'px'].join(' '),
+        padding: [radius2x + 'px', radius2x + 'px', radius + 'px', radius + 'px'].join(' '),
       },
       badge: {
         display: 'flex',
@@ -93,14 +117,25 @@ export default React.createClass({
     };
   },
   render() {
+    const {
+      style,
+      children,
+      badgeContent,
+      badgeStyle,
+      ...other,
+    } = this.props;
+
     const styles = this.getStyles();
+
     return (
-      <div style={this.prepareStyles(styles.root, this.props.style)} className={this.props.className}>
-        {this.props.children}
-        <span style={this.prepareStyles(styles.badge, this.props.badgeStyle)}>
-          {this.props.badgeContent}
+      <div {...other} style={this.prepareStyles(styles.root, style)}>
+        {children}
+        <span style={this.prepareStyles(styles.badge, badgeStyle)}>
+          {badgeContent}
         </span>
       </div>
     );
   },
 });
+
+export default Badge;

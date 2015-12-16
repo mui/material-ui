@@ -1,22 +1,25 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const WindowListenable = require('../mixins/window-listenable');
-const DateTime = require('../utils/date-time');
-const KeyCode = require('../utils/key-code');
-const Transitions = require('../styles/transitions');
-const CalendarMonth = require('./calendar-month');
-const CalendarYear = require('./calendar-year');
-const CalendarToolbar = require('./calendar-toolbar');
-const DateDisplay = require('./date-display');
-const SlideInTransitionGroup = require('../transition-groups/slide-in');
-const ClearFix = require('../clearfix');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import WindowListenable from '../mixins/window-listenable';
+import DateTime from '../utils/date-time';
+import KeyCode from '../utils/key-code';
+import Transitions from '../styles/transitions';
+import CalendarMonth from './calendar-month';
+import CalendarYear from './calendar-year';
+import CalendarToolbar from './calendar-toolbar';
+import DateDisplay from './date-display';
+import SlideInTransitionGroup from '../transition-groups/slide-in';
+import ClearFix from '../clearfix';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 
 const Calendar = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -27,7 +30,7 @@ const Calendar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -35,18 +38,19 @@ const Calendar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
-    locale: React.PropTypes.string.isRequired,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,
-    open: React.PropTypes.bool,
-    minDate: React.PropTypes.object,
+    locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     onDayTouchTap: React.PropTypes.func,
+    open: React.PropTypes.bool,
     shouldDisableDate: React.PropTypes.func,
   },
 
   windowListeners: {
-    'keydown': '_handleWindowKeyDown',
+    keydown: '_handleWindowKeyDown',
   },
 
   getDefaultProps() {
@@ -71,7 +75,7 @@ const Calendar = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
@@ -213,6 +217,10 @@ const Calendar = React.createClass({
   },
 
   isSelectedDateDisabled() {
+    if (!this.state.displayMonthDay) {
+      return false;
+    }
+
     return this.refs.calendar.isSelectedDateDisabled();
   },
 
@@ -352,4 +360,4 @@ const Calendar = React.createClass({
 
 });
 
-module.exports = Calendar;
+export default Calendar;

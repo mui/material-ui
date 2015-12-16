@@ -1,7 +1,7 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const ClockNumber = React.createClass({
 
@@ -12,10 +12,10 @@ const ClockNumber = React.createClass({
   },
 
   propTypes: {
-    value: React.PropTypes.number,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
-    onSelected: React.PropTypes.func,
     isSelected: React.PropTypes.bool,
+    onSelected: React.PropTypes.func,
+    type: React.PropTypes.oneOf(['hour', 'minute']),
+    value: React.PropTypes.number,
   },
 
   //for passing default theme context to children
@@ -23,13 +23,13 @@ const ClockNumber = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -37,7 +37,7 @@ const ClockNumber = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -58,7 +58,7 @@ const ClockNumber = React.createClass({
     let pos = this.props.value;
     let inner = false;
 
-    if (this.props.type === "hour") {
+    if (this.props.type === 'hour') {
       inner = pos < 1 || pos > 12;
       pos %= 12;
     }
@@ -98,19 +98,19 @@ const ClockNumber = React.createClass({
 
     let styles = {
       root: {
-        display: "inline-block",
-        position: "absolute",
+        display: 'inline-block',
+        position: 'absolute',
         width: 32,
         height: 32,
-        borderRadius: "100%",
+        borderRadius: '100%',
         left: 'calc(50% - 16px)',
         top: 10,
-        textAlign: "center",
+        textAlign: 'center',
         paddingTop: 5,
-        userSelect: "none",  /* Chrome all / Safari all */
-        fontSize: "1.1em",
-        pointerEvents: "none",
-        boxSizing: "border-box",
+        userSelect: 'none',  /* Chrome all / Safari all */
+        fontSize: '1.1em',
+        pointerEvents: 'none',
+        boxSizing: 'border-box',
       },
     };
 
@@ -122,15 +122,15 @@ const ClockNumber = React.createClass({
     let transformPos = positions[pos];
 
     if (inner) {
-      styles.root.width = "28px";
-      styles.root.height = "28px";
+      styles.root.width = '28px';
+      styles.root.height = '28px';
       styles.root.left = 'calc(50% - 14px)';
       transformPos = innerPositions[pos];
     }
 
     let [x, y] = transformPos;
 
-    styles.root.transform = "translate(" + x + "px, " + y + "px)";
+    styles.root.transform = 'translate(' + x + 'px, ' + y + 'px)';
 
     return (
         <span style={this.prepareStyles(styles.root)}>{this.props.value}</span>
@@ -138,4 +138,4 @@ const ClockNumber = React.createClass({
   },
 });
 
-module.exports = ClockNumber;
+export default ClockNumber;

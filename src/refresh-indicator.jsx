@@ -1,11 +1,11 @@
 import React from 'react';
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const Transitions = require("./styles/transitions");
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import AutoPrefix from './styles/auto-prefix';
+import Transitions from './styles/transitions';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
@@ -16,7 +16,9 @@ const RefreshIndicator = React.createClass({
   },
 
   propTypes: {
+    color: React.PropTypes.string,
     left: React.PropTypes.number.isRequired,
+    loadingColor: React.PropTypes.string,
     percentage: React.PropTypes.number,
     size: React.PropTypes.number,
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
@@ -37,13 +39,13 @@ const RefreshIndicator = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -51,7 +53,7 @@ const RefreshIndicator = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -85,15 +87,15 @@ const RefreshIndicator = React.createClass({
       const circleStyle = this._getCircleStyle(paperSize);
       childrenCmp = (
         <div ref="wrapper" style={this.prepareStyles({
-            transition: Transitions.create('transform', '20s', null, 'linear'),
-            width: '100%',
-            height: '100%',
-          })}
+          transition: Transitions.create('transform', '20s', null, 'linear'),
+          width: '100%',
+          height: '100%',
+        })}
         >
           <svg style={{
-              width: paperSize,
-              height: paperSize,
-            }}
+            width: paperSize,
+            height: paperSize,
+          }}
             viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
           >
             <circle ref="path"
@@ -110,9 +112,9 @@ const RefreshIndicator = React.createClass({
       const polygonStyle = this._getPolygonStyle(paperSize);
       childrenCmp = (
         <svg style={{
-            width: paperSize,
-            height: paperSize,
-          }}
+          width: paperSize,
+          height: paperSize,
+        }}
           viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         >
           <circle
@@ -171,7 +173,7 @@ const RefreshIndicator = React.createClass({
   _getRootStyle() {
     const padding = this._getPaddingSize();
     return {
-      position: "absolute",
+      position: 'absolute',
       zIndex: 2,
       width: this.props.size,
       height: this.props.size,
@@ -199,7 +201,9 @@ const RefreshIndicator = React.createClass({
       style: {
         strokeDasharray: arcLen + ', ' + (perimeter - arcLen),
         strokeDashoffset: dashOffset,
-        stroke: (isLoading || this.props.percentage === 100) ? theme.loadingStrokeColor : theme.strokeColor,
+        stroke: (isLoading || this.props.percentage === 100) ?
+          (this.props.loadingColor || theme.loadingStrokeColor) :
+          (this.props.color || theme.strokeColor),
         strokeLinecap: 'round',
         opacity: p1,
         strokeWidth: circle.strokeWidth * p1,
@@ -220,14 +224,17 @@ const RefreshIndicator = React.createClass({
     const triangleCx = circle.originX + circle.radiu;
     const triangleCy = circle.originY;
     const dx = (circle.strokeWidth * 7 / 4) * p1;
-    const trianglePath = (triangleCx - dx) + ',' + triangleCy + ' ' + (triangleCx + dx) + ',' + triangleCy + ' ' + triangleCx + ',' + (triangleCy + dx);
+    const trianglePath = (triangleCx - dx) + ',' + triangleCy + ' ' + (triangleCx + dx) + ',' +
+      triangleCy + ' ' + triangleCx + ',' + (triangleCy + dx);
 
     const [, endDeg] = this._getArcDeg();
 
     const theme = this._getTheme();
     return {
       style: {
-        fill: this.props.percentage === 100 ? theme.loadingStrokeColor : theme.strokeColor,
+        fill: this.props.percentage === 100 ?
+          (this.props.loadingColor || theme.loadingStrokeColor) :
+          (this.props.color || theme.strokeColor),
         transform: `rotate(${endDeg}deg)`,
         transformOrigin: `${circle.originX}px ${circle.originY}px`,
         opacity: p1,
@@ -265,9 +272,9 @@ const RefreshIndicator = React.createClass({
       transitionDuration = '850ms';
     }
 
-    AutoPrefix.set(path.style, "strokeDasharray", strokeDasharray);
-    AutoPrefix.set(path.style, "strokeDashoffset", strokeDashoffset);
-    AutoPrefix.set(path.style, "transitionDuration", transitionDuration);
+    AutoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
+    AutoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
+    AutoPrefix.set(path.style, 'transitionDuration', transitionDuration);
   },
 
   _rotateWrapper(wrapper) {
@@ -276,15 +283,15 @@ const RefreshIndicator = React.createClass({
     clearTimeout(this._timer2);
     this._timer2 = setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
-    AutoPrefix.set(wrapper.style, "transform", null);
-    AutoPrefix.set(wrapper.style, "transform", "rotate(0deg)");
-    AutoPrefix.set(wrapper.style, "transitionDuration", "0ms");
+    AutoPrefix.set(wrapper.style, 'transform', null);
+    AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
+    AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
     setTimeout(() => {
       if (this.isMounted()) {
-        AutoPrefix.set(wrapper.style, "transform", "rotate(1800deg)");
-        AutoPrefix.set(wrapper.style, "transitionDuration", "10s");
-        AutoPrefix.set(wrapper.style, "transitionTimingFunction", "linear");
+        AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
+        AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
+        AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
       }
     }, 50);
   },
@@ -295,4 +302,4 @@ const RefreshIndicator = React.createClass({
 
 });
 
-module.exports = RefreshIndicator;
+export default RefreshIndicator;

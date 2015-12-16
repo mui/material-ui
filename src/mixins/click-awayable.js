@@ -1,10 +1,8 @@
-let React = require('react');
-let ReactDOM = require('react-dom');
-let Events = require('../utils/events');
-let Dom = require('../utils/dom');
+import ReactDOM from 'react-dom';
+import Events from '../utils/events';
+import Dom from '../utils/dom';
 
-
-module.exports = {
+export default {
 
   //When the component mounts, listen to click events and check if we need to
   //Call the componentClickAway function.
@@ -17,13 +15,15 @@ module.exports = {
   },
 
   _checkClickAway(event) {
-    let el = ReactDOM.findDOMNode(this);
+    if (this.isMounted()) {
+      let el = ReactDOM.findDOMNode(this);
 
-    // Check if the target is inside the current component
-    if (event.target !== el &&
-        !Dom.isDescendant(el, event.target) &&
-        document.documentElement.contains(event.target)) {
-      if (this.componentClickAway) this.componentClickAway(event);
+      // Check if the target is inside the current component
+      if (event.target !== el &&
+          !Dom.isDescendant(el, event.target) &&
+          document.documentElement.contains(event.target)) {
+        if (this.componentClickAway) this.componentClickAway(event);
+      }
     }
   },
 

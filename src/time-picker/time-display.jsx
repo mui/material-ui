@@ -1,7 +1,7 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const TimeDisplay = React.createClass({
 
@@ -12,10 +12,12 @@ const TimeDisplay = React.createClass({
   },
 
   propTypes: {
-    selectedTime: React.PropTypes.object.isRequired,
+    affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     mode: React.PropTypes.oneOf(['hour', 'minute']),
-    affix: React.PropTypes.oneOf(['', 'pm', 'am']),
+    onSelectHour: React.PropTypes.func,
+    onSelectMin: React.PropTypes.func,
+    selectedTime: React.PropTypes.object.isRequired,
   },
 
   //for passing default theme context to children
@@ -23,7 +25,7 @@ const TimeDisplay = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -61,14 +63,14 @@ const TimeDisplay = React.createClass({
     let hour = this.props.selectedTime.getHours();
     let min = this.props.selectedTime.getMinutes().toString();
 
-    if (this.props.format === "ampm") {
+    if (this.props.format === 'ampm') {
       hour %= 12;
       hour = hour || 12;
     }
 
     hour = hour.toString();
-    if (hour.length < 2 ) hour = "0" + hour;
-    if (min.length < 2 ) min = "0" + min;
+    if (hour.length < 2 ) hour = '0' + hour;
+    if (min.length < 2 ) min = '0' + min;
 
     return [hour, min];
   },
@@ -86,23 +88,30 @@ const TimeDisplay = React.createClass({
 
     let styles = {
       root: {
-        textAlign: "center",
-        position: "relative",
+        textAlign: 'center',
+        position: 'relative',
         width: 280,
-        height: "100%",
+        height: '100%',
       },
 
       time: {
-        margin: "6px 0",
-        lineHeight: "58px",
+        margin: '6px 0',
+        lineHeight: '58px',
         height: 58,
-        fontSize: "58px",
+        fontSize: '58px',
       },
 
       box: {
-        padding: "16px 0",
-        backgroundColor: this.getTheme().color,
+        padding: '16px 0',
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2,
+        backgroundColor: this.getTheme().headerColor,
         color: this.getTheme().textColor,
+      },
+
+      text: {
+        color: 'white',
+        opacity: 0.7,
       },
 
       hour: {},
@@ -112,18 +121,21 @@ const TimeDisplay = React.createClass({
 
     let [hour, min] = this.sanitizeTime();
 
-    styles[mode].color = this.getTheme().accentColor;
+    styles[mode].opacity = 1.0;
 
     return (
       <div {...other} style={this.prepareStyles(styles.root)}>
         <div style={this.prepareStyles(styles.box)}>
           <div style={this.prepareStyles(styles.time)}>
-            <span style={this.prepareStyles(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
-            <span>:</span>
-            <span style={this.prepareStyles(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
+            <span style={this.prepareStyles(styles.text, styles.hour)} onTouchTap={this.props.onSelectHour}>
+              {hour}
+            </span>
+            <span style={this.prepareStyles(styles.text)}>:</span>
+            <span style={this.prepareStyles(styles.text, styles.minute)} onTouchTap={this.props.onSelectMin}>
+              {min}
+            </span>
           </div>
-
-         <span key={"affix"}>{this.props.affix.toUpperCase()}</span>
+          <span key={"affix"}>{this.props.affix.toUpperCase()}</span>
         </div>
       </div>
     );
@@ -131,4 +143,4 @@ const TimeDisplay = React.createClass({
 
 });
 
-module.exports = TimeDisplay;
+export default TimeDisplay;

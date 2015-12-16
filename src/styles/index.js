@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   AutoPrefix: require('./auto-prefix'),
   Colors: require('./colors'),
   Spacing: require('./spacing'),
@@ -9,4 +9,5 @@ module.exports = {
   OriginalDarkRawTheme: require('./raw-themes/original-dark-raw-theme'),
   OriginalLightRawTheme: require('./raw-themes/original-light-raw-theme'),
   ThemeDecorator: require('./theme-decorator'),
+  ZIndex: require('./zIndex'),
 };

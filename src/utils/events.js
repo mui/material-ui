@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
   once(el, type, callback) {
     let typeArray = type ? type.split(' ') : [];

@@ -1,20 +1,23 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const KeyCode = require('./utils/key-code');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const UniqueId = require('./utils/unique-id');
-const WindowListenable = require('./mixins/window-listenable');
-const ClearFix = require('./clearfix');
-const FocusRipple = require('./ripples/focus-ripple');
-const TouchRipple = require('./ripples/touch-ripple');
-const Paper = require('./paper');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import KeyCode from './utils/key-code';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import UniqueId from './utils/unique-id';
+import WindowListenable from './mixins/window-listenable';
+import ClearFix from './clearfix';
+import FocusRipple from './ripples/focus-ripple';
+import TouchRipple from './ripples/touch-ripple';
+import Paper from './paper';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 const EnhancedSwitch = React.createClass({
 
-  mixins: [WindowListenable, StylePropable],
+  mixins: [
+    WindowListenable,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -25,36 +28,45 @@ const EnhancedSwitch = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
-      id: React.PropTypes.string,
-      inputType: React.PropTypes.string.isRequired,
-      switchElement: React.PropTypes.element.isRequired,
-      onParentShouldUpdate: React.PropTypes.func.isRequired,
-      switched: React.PropTypes.bool.isRequired,
-      rippleStyle: React.PropTypes.object,
-      rippleColor: React.PropTypes.string,
-      iconStyle: React.PropTypes.object,
-      thumbStyle: React.PropTypes.object,
-      trackStyle: React.PropTypes.object,
-      labelStyle: React.PropTypes.object,
-      name: React.PropTypes.string,
-      value: React.PropTypes.string,
-      label: React.PropTypes.node,
-      onSwitch: React.PropTypes.func,
-      required: React.PropTypes.bool,
-      disabled: React.PropTypes.bool,
-      defaultSwitched: React.PropTypes.bool,
-      labelPosition: React.PropTypes.oneOf(['left', 'right']),
-      disableFocusRipple: React.PropTypes.bool,
-      disableTouchRipple: React.PropTypes.bool,
-      style: React.PropTypes.object,
-    },
+    checked: React.PropTypes.bool,
+    className: React.PropTypes.string,
+    defaultSwitched: React.PropTypes.bool,
+    disableFocusRipple: React.PropTypes.bool,
+    disableTouchRipple: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    iconStyle: React.PropTypes.object,
+    id: React.PropTypes.string,
+    inputType: React.PropTypes.string.isRequired,
+    label: React.PropTypes.node,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelStyle: React.PropTypes.object,
+    name: React.PropTypes.string,
+    onBlur: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onMouseDown: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onMouseUp: React.PropTypes.func,
+    onParentShouldUpdate: React.PropTypes.func.isRequired,
+    onSwitch: React.PropTypes.func,
+    onTouchEnd: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
+    required: React.PropTypes.bool,
+    rippleColor: React.PropTypes.string,
+    rippleStyle: React.PropTypes.object,
+    style: React.PropTypes.object,
+    switchElement: React.PropTypes.element.isRequired,
+    switched: React.PropTypes.bool.isRequired,
+    thumbStyle: React.PropTypes.object,
+    trackStyle: React.PropTypes.object,
+    value: React.PropTypes.string,
+  },
 
   windowListeners: {
     keydown: '_handleWindowKeydown',
@@ -69,7 +81,7 @@ const EnhancedSwitch = React.createClass({
     };
   },
 
-  getEvenWidth(){
+  getEvenWidth() {
     return (
       parseInt(window
         .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
@@ -83,13 +95,13 @@ const EnhancedSwitch = React.createClass({
       this.props.onParentShouldUpdate(inputNode.checked);
     }
 
-    window.addEventListener("resize", this._handleResize);
+    window.addEventListener('resize', this._handleResize);
 
     this._handleResize();
   },
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this._handleResize);
+    window.removeEventListener('resize', this._handleResize);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -163,6 +175,7 @@ const EnhancedSwitch = React.createClass({
         width: labelWidth,
         lineHeight: '24px',
         color: this.getTheme().textColor,
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       },
       wrap: {
         transition: Transitions.easeOut(),
@@ -188,7 +201,6 @@ const EnhancedSwitch = React.createClass({
 
   render() {
     let {
-      type,
       name,
       value,
       label,
@@ -227,8 +239,8 @@ const EnhancedSwitch = React.createClass({
       </label>
     ) : null;
 
-    let inputProps = {
-      ref: "checkbox",
+    const inputProps = {
+      ref: 'checkbox',
       type: this.props.inputType,
       style: this.prepareStyles(styles.input),
       name: this.props.name,
@@ -298,7 +310,7 @@ const EnhancedSwitch = React.createClass({
 
     // Position is left if not defined or invalid.
     let elementsInOrder = (labelPositionExist &&
-      (this.props.labelPosition.toUpperCase() === "RIGHT")) ? (
+      (this.props.labelPosition.toUpperCase() === 'RIGHT')) ? (
         <ClearFix style={styles.controls}>
           {switchElement}
           {labelElement}
@@ -437,4 +449,4 @@ const EnhancedSwitch = React.createClass({
 
 });
 
-module.exports = EnhancedSwitch;
+export default EnhancedSwitch;

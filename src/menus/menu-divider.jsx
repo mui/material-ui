@@ -1,60 +1,37 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const ListDivider = require('../lists/list-divider');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import Divider from '../divider';
+import styleUtils from '../utils/styles';
+import warning from 'warning';
 
 const MenuDivider = React.createClass({
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+  getInitialState() {
+    warning(false, '<MenuDivider /> has been deprecated. Please use the <Divider /> component.');
   },
 
-  getChildContext () {
+  getStyles() {
     return {
-      muiTheme: this.state.muiTheme,
+      root: {
+        marginTop: 7,
+        marginBottom: 8,
+      },
     };
-  },
-
-  getInitialState () {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
-    let {
+    const {
       style,
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeStyles({
-      marginTop: 7,
-      marginBottom: 8,
-    }, style);
+    const styles = this.getStyles();
 
-    return (
-      <ListDivider {...other} style={mergedStyles} />
-    );
+    return <Divider {...this.props} style={styleUtils.merge(styles.root, style)} />;
   },
 });
 
-module.exports = MenuDivider;
+export default MenuDivider;

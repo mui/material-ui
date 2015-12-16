@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
   isDescendant(parent, child) {
     let node = child.parentNode;
@@ -23,7 +23,7 @@ module.exports = {
     let attrStyle = el.style[attr];
     let attrNum = 0;
     if (attrStyle && attrStyle.length) {
-        attrNum = parseInt(attrStyle);
+      attrNum = parseInt(attrStyle);
     }
 
     return attrNum;
@@ -37,10 +37,12 @@ module.exports = {
   },
 
   removeClass(el, className) {
-    if (el.classList)
+    if (el.classList) {
       el.classList.remove(className);
-    else
-      el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    } else {
+      el.className = el.className
+        .replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    }
   },
 
   hasClass(el, className) {

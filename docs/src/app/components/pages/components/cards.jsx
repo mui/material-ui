@@ -1,13 +1,12 @@
-const React = require('react');
-const mui = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const CodeExample = require('../../code-example/code-example');
+import React from 'react';
+import mui from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import CodeExample from '../../code-example/code-example';
 
 const {
   Avatar,
   Card,
   CardActions,
-  CardExpandable,
   CardHeader,
   CardMedia,
   CardText,
@@ -15,8 +14,8 @@ const {
   FlatButton,
   Paper,
 } = mui;
-const Code = require('cards-code');
-const CodeBlock = require('../../code-example/code-block');
+import Code from 'cards-code';
+import CodeBlock from '../../code-example/code-block';
 
 export default class CardPage extends React.Component {
 
@@ -24,13 +23,13 @@ export default class CardPage extends React.Component {
     super(props);
 
     this.desc =
-      'A card is a piece of paper with unique related data that serves as an '+
-      'entry point to more detailed information. For example, a card could '+
-      'contain a photo, text, and a link about a single subject.'+
-      '\n\n'+
-      'Cards have a constant width and variable height. The maximum height is '+
-      'limited to the height of the available space on a platform, '+
-      'but it can temporarily expand (for example, to display a comment field). '+
+      'A card is a piece of paper with unique related data that serves as an ' +
+      'entry point to more detailed information. For example, a card could ' +
+      'contain a photo, text, and a link about a single subject.' +
+      '\n\n' +
+      'Cards have a constant width and variable height. The maximum height is ' +
+      'limited to the height of the available space on a platform, ' +
+      'but it can temporarily expand (for example, to display a comment field). ' +
       'Cards do not flip over to reveal information on the back.';
 
 
@@ -102,13 +101,12 @@ export default class CardPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statements:\nconst Card = require(\'material-ui/lib/card/card\');\n' +
-            'const CardActions = require(\'material-ui/lib/card/card-actions\');\n' +
-            'const CardExpandable = require(\'material-ui/lib/card/card-expandable\');\n' +
-            'const CardHeader = require(\'material-ui/lib/card/card-header\');\n' +
-            'const CardMedia = require(\'material-ui/lib/card/card-media\');\n' +
-            'const CardText = require(\'material-ui/lib/card/card-text\');\n' +
-            'const CardTitle = require(\'material-ui/lib/card/card-title\');\n\n' +
+            '//Import statements:\nimport Card from \'material-ui/lib/card/card\';\n' +
+            'import CardActions from \'material-ui/lib/card/card-actions\';\n' +
+            'import CardHeader from \'material-ui/lib/card/card-header\';\n' +
+            'import CardMedia from \'material-ui/lib/card/card-media\';\n' +
+            'import CardText from \'material-ui/lib/card/card-text\';\n' +
+            'import CardTitle from \'material-ui/lib/card/card-title\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -142,12 +140,10 @@ export default class CardPage extends React.Component {
           <br />
           <Card initiallyExpanded={true}>
             <CardHeader
-              title="Title"
+              title="Without Avatar"
               subtitle="Subtitle"
-              avatar={<Avatar style={{color:'red'}}>A</Avatar>}
               actAsExpander={true}
-              showExpandableButton={true}>
-            </CardHeader>
+              showExpandableButton={true} />
             <CardText expandable={true}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.

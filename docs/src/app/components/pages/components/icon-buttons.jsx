@@ -1,22 +1,26 @@
-const React = require('react');
-const { FontIcon, IconButton, NavigationMenu, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const ActionGrade = require('svg-icons/action/grade');
-const ActionHome = require('svg-icons/action/home');
-const Code = require('icon-buttons-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import {
+  FontIcon,
+  IconButton,
+  Paper,
+} from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Code from 'icon-buttons-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class IconButtonsPage extends React.Component {
 
   render() {
 
     let desc = (
-      <p>
-        This component generates a button element and all props.
-        Also, focus styles will happen on tab but not on click.
-        There are three ways to add an icon:
-        <br/>
+      <div>
+        <p>
+          This component generates a button element and all props.
+          Also, focus styles will happen on tab but not on click.
+          There are three ways to add an icon:
+        </p>
         <ol>
           <li>
             For stylesheets: Set the prop "iconClassName" to the
@@ -24,8 +28,9 @@ export default class IconButtonsPage extends React.Component {
           </li>
           <li>
             For svg icons: Insert the svg component as a child of icon
-            buttons. This is the method we are using. <a title="Source
-            code for ActionGrade" href="https://github.com/callemall/material-ui/blob/master/src/svg-icons/action/grade.jsx">
+            buttons. This is the method we are using.
+            <a title="Source code for ActionGrade"
+              href="https://github.com/callemall/material-ui/blob/master/src/svg-icons/action/grade.jsx">
             View our source</a> to see how ActionGrade was created
             using mui.SvgIcon.
           </li>
@@ -41,7 +46,7 @@ export default class IconButtonsPage extends React.Component {
             iconClassName prop.
           </li>
         </ol>
-      </p>
+      </div>
     );
 
     let componentInfo = [
@@ -77,7 +82,8 @@ export default class IconButtonsPage extends React.Component {
             name: 'tooltipPosition',
             type: 'string',
             header: 'default: bottom-center',
-            desc: 'Allows the tooltip to be viewed with different alignments: "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"',
+            desc: `Allows the tooltip to be viewed with different alignments:
+              "bottom-center", "top-center", "bottom-right", "top-right", "bottom-left" and "top-left"`,
           },
           {
             name: 'tooltipStyles',
@@ -106,6 +112,11 @@ export default class IconButtonsPage extends React.Component {
             header: 'IconButton.onFocus(e)',
             desc: 'Callback function for when the component gains focus.',
           },
+          {
+            name: 'onTouchTap',
+            header: 'IconButton.onTouchTap(e)',
+            desc: 'Callback function for when a touch tap / click event occurs on the button.',
+          },
         ],
       },
     ];
@@ -119,24 +130,25 @@ export default class IconButtonsPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst IconButton = require(\'material-ui/lib/icon-button\');\n\n' +
+            '//Import statement:\nimport IconButton from \'material-ui/lib/icon-button\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
         </Paper>
 
         <CodeExample code={Code}>
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"  tooltipPosition = "bottom-right" />
-
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-center" tooltipPosition = "bottom-center" />
-
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-left" tooltipPosition = "bottom-left" />
-
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-right" tooltipPosition = "top-right" />
-
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-center" tooltipPosition = "top-center" />
-
-          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-left" tooltipPosition = "top-left" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-right"
+            tooltipPosition="bottom-right" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-center"
+            tooltipPosition="bottom-center" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="bottom-left"
+            tooltipPosition="bottom-left" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-right"
+            tooltipPosition="top-right" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-center"
+            tooltipPosition="top-center" />
+          <IconButton iconClassName="muidocs-icon-custom-github" tooltip="top-left"
+            tooltipPosition="top-left" />
           <br/><br/><br/><br/>
 
           <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">

@@ -1,9 +1,9 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const EnhancedButton = require('../enhanced-button');
-const Transitions = require('../styles/transitions');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import EnhancedButton from '../enhanced-button';
+import Transitions from '../styles/transitions';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const ClockButton = React.createClass({
 
@@ -14,7 +14,11 @@ const ClockButton = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
+    onTouchTap: React.PropTypes.func,
     position: React.PropTypes.oneOf(['left', 'right']),
+    selected: React.PropTypes.bool,
   },
 
   //for passing default theme context to children
@@ -22,13 +26,13 @@ const ClockButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -36,14 +40,14 @@ const ClockButton = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
     return {
-        position: "left",
+      position: 'left',
     };
   },
 
@@ -61,20 +65,21 @@ const ClockButton = React.createClass({
   render() {
     let {
       className,
-      ...other} = this.props;
+      ...other,
+    } = this.props;
 
     let styles = {
       root: {
-        position: "absolute",
+        position: 'absolute',
         bottom: 65,
-        pointerEvents: "auto",
+        pointerEvents: 'auto',
         height: 50,
         width: 50,
-        borderRadius: "100%",
+        borderRadius: '100%',
       },
 
-      label : {
-        position: "absolute",
+      label: {
+        position: 'absolute',
         top: 17,
         left: 14,
       },
@@ -99,24 +104,26 @@ const ClockButton = React.createClass({
       styles.select.transform = 'scale(1)';
     }
 
-    if ( this.props.position === "right" ){
-      styles.root.right = "5px";
-    }
-    else {
-      styles.root.left = "5px";
+    if (this.props.position === 'right') {
+      styles.root.right = 5;
+    } else {
+      styles.root.left = 5;
     }
 
     return (
-        <EnhancedButton {...other}
-          style={this.mergeStyles(styles.root)}
-          disableFocusRipple={true}
-          disableTouchRipple={true}
-          onTouchTap={this._handleTouchTap}>
-          <span style={this.prepareStyles(styles.select)} />
-          <span style={this.prepareStyles(styles.label)} >{this.props.children}</span>
-        </EnhancedButton>
+      <EnhancedButton
+        {...other}
+        style={this.mergeStyles(styles.root)}
+        disableFocusRipple={true}
+        disableTouchRipple={true}
+        onTouchTap={this._handleTouchTap}>
+        <span style={this.prepareStyles(styles.select)} />
+        <span style={this.prepareStyles(styles.label)}>
+          {this.props.children}
+        </span>
+      </EnhancedButton>
     );
   },
 });
 
-module.exports = ClockButton;
+export default ClockButton;

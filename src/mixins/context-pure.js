@@ -1,4 +1,4 @@
-const shallowEqual = require('../utils/shallow-equal');
+import shallowEqual from '../utils/shallow-equal';
 
 function relevantContextKeysEqual(classObject, currentContext, nextContext) {
 
@@ -27,23 +27,23 @@ function relevantContextKeysEqual(classObject, currentContext, nextContext) {
   return true;
 }
 
-module.exports = {
+export default {
 
   //Don't update if state, prop, and context are equal
   shouldComponentUpdate(nextProps, nextState, nextContext) {
 
     //If either the props or state have changed, component should update
-    if(!shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState)) {
+    if (!shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState)) {
       return true;
     }
 
     //If current theme and next theme are both undefined, do not update
-    if(!this.context.muiTheme && !nextContext.muiTheme) {
+    if (!this.context.muiTheme && !nextContext.muiTheme) {
       return false;
     }
 
     //If both themes exist, compare keys only if current theme is not static
-    if(this.context.muiTheme && nextContext.muiTheme) {
+    if (this.context.muiTheme && nextContext.muiTheme) {
       return !this.context.muiTheme.static &&
         !relevantContextKeysEqual(this.constructor, this.context.muiTheme, nextContext.muiTheme);
     }

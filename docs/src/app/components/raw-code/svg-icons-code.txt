@@ -1,9 +1,9 @@
 /** action-home.jsx */
-let React = require('react');
-let mui = require('mui');
-let SvgIcon = mui.SvgIcon;
+import React from 'react';
+import mui from 'mui';
+const SvgIcon = mui.SvgIcon;
 
-let ActionHome = React.createClass({
+const ActionHome = React.createClass({
   render: function() {
     return (
       <SvgIcon {...this.props}>
@@ -13,11 +13,11 @@ let ActionHome = React.createClass({
   }
 });
 
-module.exports = ActionHome;
+export default ActionHome;
 
 
 /** Some other component. */
-let ActionHome = require('./path/to/action-home.jsx');
+import ActionHome from './path/to/action-home.jsx';
 ...
 <ActionHome/>
 ...

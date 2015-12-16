@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ColorManipulator: require('./color-manipulator'),
   CssEvent: require('./css-event'),
   Dom: require('./dom'),

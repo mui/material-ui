@@ -1,9 +1,9 @@
-const React = require('react');
-const { RefreshIndicator, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('refresh-indicator-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import {RefreshIndicator, Paper} from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'refresh-indicator-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 let RefreshIndicatorPage = React.createClass({
 
@@ -13,12 +13,6 @@ let RefreshIndicatorPage = React.createClass({
       {
         name: 'Props',
         infoArray: [
-          {
-            name: 'left',
-            type: 'number',
-            header: 'required',
-            desc: 'The absolute left position of the indicator in pixels.',
-          },
           {
             name: 'percentage',
             type: 'number',
@@ -35,7 +29,10 @@ let RefreshIndicatorPage = React.createClass({
             name: 'status',
             type: 'oneOf ["ready", "loading", "hide"]',
             header: 'default: hide',
-            desc: 'The display status of the indicator. If the status is "ready", the indicator will display the ready state arrow. If the status is "loading", it will display the loading progress indicator. If the status is "hide", the indicator will be hidden.',
+            desc: `The display status of the indicator.
+              If the status is "ready", the indicator will display the ready state arrow.
+              If the status is "loading", it will display the loading progress indicator.
+              If the status is "hide", the indicator will be hidden.`,
           },
           {
             name: 'style',
@@ -44,10 +41,30 @@ let RefreshIndicatorPage = React.createClass({
             desc: 'Override the inline-styles of the indicator\'s root element.',
           },
           {
+            name: 'color',
+            type: 'string',
+            header: 'optional',
+            desc: `Override the theme's color of the indicator while it's
+              status is "ready" or it's percentage is less than 100.`,
+          },
+          {
+            name: 'loadingColor',
+            type: 'string',
+            header: 'optional',
+            desc: `Override the theme's color of the indicator
+              while it's status is "loading" or it's percentage is 100.`,
+          },
+          {
             name: 'top',
             type: 'number',
             header: 'required',
             desc: 'The absolute right position of the indicator in pixels.',
+          },
+          {
+            name: 'left',
+            type: 'number',
+            header: 'required',
+            desc: 'The absolute left position of the indicator in pixels.',
           },
         ],
       },
@@ -62,14 +79,14 @@ let RefreshIndicatorPage = React.createClass({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst RefreshIndicator = require(\'material-ui/lib/refresh-indicator\');\n\n' +
+            '//Import statement:\nimport RefreshIndicator from \'material-ui/lib/refresh-indicator\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
         </Paper>
 
         <CodeExample code={Code}>
-          <div style={{ position: "relative" }}>
+          <div style={{position: 'relative'}}>
             <p>
               Ready status
             </p>
@@ -90,6 +107,7 @@ let RefreshIndicatorPage = React.createClass({
               size={40}
               left={120}
               top={30}
+              color={"red"}
               status="ready" />
             <RefreshIndicator
               percentage={100}
@@ -101,6 +119,8 @@ let RefreshIndicatorPage = React.createClass({
               Loading status
             </p>
             <RefreshIndicator size={40} left={10} top={130} status="loading" />
+            <RefreshIndicator size={40} left={70} top={130} loadingColor={"#FF9800"}
+              status="loading" />
           </div>
         </CodeExample>
       </ComponentDoc>
@@ -109,4 +129,4 @@ let RefreshIndicatorPage = React.createClass({
 
 });
 
-module.exports = RefreshIndicatorPage;
+export default RefreshIndicatorPage;

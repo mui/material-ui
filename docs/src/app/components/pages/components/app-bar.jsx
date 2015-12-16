@@ -1,170 +1,37 @@
-const React = require('react');
-const { AppBar, DropDownMenu, Paper } = require('material-ui');
-const IconButton = require('icon-button');
-const NavigationClose = require('svg-icons/navigation/close');
-const FlatButton = require('flat-button');
-const ComponentDoc = require('../../component-doc');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
-const Code = require('app-bar-code');
-const IconMenu = require('menus/icon-menu');
-const MenuItem = require('menus/menu-item');
-const MoreVertIcon = require('svg-icons/navigation/more-vert');
-
-const styles = {
-  title: {
-    cursor: 'pointer',
-  },
-};
+import React from 'react';
+import appBarCode from '!raw!material-ui/lib/app-bar';
+import CodeExample from '../../code-example/code-example';
+import PropTypeDescription from '../../PropTypeDescription';
+import AppBarExampleIcon from '../../AppBar/ExampleIcon';
+import appBarExampleIconCode from '!raw!../../AppBar/ExampleIcon';
+import AppBarExampleIconButton from '../../AppBar/ExampleIconButton';
+import appBarExampleIconButtonCode from '!raw!../../AppBar/ExampleIconButton';
+import AppBarExampleIconMenu from '../../AppBar/ExampleIconMenu';
+import appBarExampleIconMenuCode from '!raw!../../AppBar/ExampleIconMenu';
+import MarkdownElement from '../../MarkdownElement';
+import appBarReadmeText from '../../AppBar/README';
 
 export default class AppBarPage extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.desc = 'App bars are a collection of components placed as a static ' +
-                'header for an application. It is used for navigation, search ' +
-                'branding, and actions. An app bar is also referred to as the ' +
-                'primary toolbar or action bar for Android.';
-
-    this.componentInfo = [
-      {
-        name: 'Props',
-        infoArray: [
-          {
-            name: 'iconClassNameLeft',
-            type: 'string',
-            header: 'optional',
-            desc: 'The classname of the icon on the left of the app bar. If you ' +
-                  'are using a stylesheet for your icons, enter the class name ' +
-                  'for the icon to be used here.',
-          },
-          {
-            name: 'iconClassNameRight',
-            type: 'string',
-            header: 'optional',
-            desc: 'Similiar to the iconClassNameLeft prop except that it applies ' +
-                  'to the icon displayed on the right of the app bar.',
-          },
-          {
-            name: 'iconElementLeft',
-            type: 'element',
-            header: 'optional',
-            desc: 'The custom element to be displayed on the left side of the ' +
-                  'app bar such as an SvgIcon.',
-          },
-          {
-            name: 'iconElementRight',
-            type: 'element',
-            header: 'optional',
-            desc: 'Similiar to the iconElementLeft prop except that this element ' +
-                  'is displayed on the right of the app bar.',
-          },
-          {
-            name: 'iconStyleRight',
-            type: 'string',
-            header: 'optional',
-            desc: 'Override the inline-styles of the element displayed on the right side of the app bar.',
-          },
-          {
-            name: 'style',
-            type: 'object',
-            header: 'optional',
-            desc: 'Override the inline-styles of the app bar\'s root element.',
-          },
-          {
-            name: 'showMenuIconButton',
-            type: 'bool',
-            header: 'default: true',
-            desc: 'Determines whether or not to display the Menu icon next to ' +
-                  'the title. Setting this prop to false will hide the icon.',
-          },
-          {
-            name: 'title',
-            type: 'node',
-            header: 'optional',
-            desc: 'The title to display on the app bar. Could be number, string, element or an array containing these types.',
-          },
-          {
-            name: 'zDepth',
-            type: 'oneOf [0,1,2,3,4,5]',
-            header: 'default: 1',
-            desc: 'The zDepth of the app bar. The shadow of the app bar is also ' +
-                  'dependent on this property.',
-          },
-        ],
-      },
-      {
-        name: 'Events',
-        infoArray: [
-          {
-            name: 'onLeftIconButtonTouchTap',
-            header: 'AppBar.onLeftIconButtonTouchTap(e)',
-            desc: 'Callback function for when the left icon is selected via ' +
-                  'a touch tap.',
-          },
-          {
-            name: 'onRightIconButtonTouchTap',
-            header: 'AppBar.onRightIconButtonTouchTap(e)',
-            desc: 'Callback function for when the right icon is selected via ' +
-                  'a touch tap.',
-          },
-          {
-            name: 'onTitleTouchTap',
-            header: 'AppBar.onTitleTouchTap(e)',
-            desc: 'Callback function for when the title text is selected via ' +
-                  'a touch tap.',
-          },
-        ],
-      },
-    ];
   }
 
   render() {
     return (
-      <ComponentDoc
-        name="AppBar"
-        desc={this.desc}
-        componentInfo={this.componentInfo}>
-
-        <Paper style = {{marginBottom: '22px'}}>
-          <CodeBlock>
-          {
-            '//Import statement:\nconst AppBar = require(\'material-ui/lib/app-bar\');\n\n' +
-            '//See material-ui/lib/index.js for more\n'
-          }
-          </CodeBlock>
-        </Paper>
-
-        <CodeExample code={Code}>
-          <AppBar
-            title="Title"
-            iconClassNameRight="muidocs-icon-navigation-expand-more" />
-          <br />
-          <AppBar
-            title={<span style={styles.title} onTouchTap={this._onTouchTap}>Title</span>}
-            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-            iconElementRight={<FlatButton label="Save" />} />
-          <br />
-          <AppBar
-            title="Title"
-            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-            iconElementRight={
-              <IconMenu iconButtonElement={
-                <IconButton><MoreVertIcon /></IconButton>
-              }>
-                <MenuItem primaryText="Refresh" />
-                <MenuItem primaryText="Help" />
-                <MenuItem primaryText="Sign out" />
-              </IconMenu>
-          } />
+      <div>
+        <MarkdownElement text={appBarReadmeText} />
+        <CodeExample code={appBarExampleIconCode}>
+          <AppBarExampleIcon />
         </CodeExample>
-      </ComponentDoc>
+        <CodeExample code={appBarExampleIconButtonCode}>
+          <AppBarExampleIconButton />
+        </CodeExample>
+        <CodeExample code={appBarExampleIconMenuCode}>
+          <AppBarExampleIconMenu />
+        </CodeExample>
+        <PropTypeDescription code={appBarCode}/>
+      </div>
     );
   }
-
-  _onTouchTap() {
-    alert('onTouchTap triggered on the title component');
-  }
-
 }

@@ -1,6 +1,6 @@
-const React = require('react');
-const {Mixins} = require('material-ui');
-const { StylePropable } = Mixins;
+import React from 'react';
+import {Mixins} from 'material-ui';
+const {StylePropable} = Mixins;
 
 
 const MobileTearSheet = React.createClass({
@@ -11,6 +11,7 @@ const MobileTearSheet = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
     height: React.PropTypes.number,
   },
 
@@ -57,4 +58,4 @@ const MobileTearSheet = React.createClass({
 
 });
 
-module.exports = MobileTearSheet;
+export default MobileTearSheet;

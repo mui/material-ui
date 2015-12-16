@@ -1,3 +1,121 @@
+## HEAD
+
+## 0.14.0-rc2
+###### _Dec 15, 2015_
+
+##### Breaking Changes
+
+- [Menu] Depreciation of the old menu, introduces a very small breaking change (#2443)
+- [Dialog] Removed deprecated API (#2396)
+- zIndex, rework them to be more coherent (#2444)
+
+##### General
+- Decoupled `Popover` animation from the component to increase flexibility (#2367)
+- [Tests] Migrated tests to use the new `react-addons-test-utils` package (#2401)
+- [Docs] Improvements to the documentation site (#2426, #2421, #2438, #2479, #2508)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [AppBar] (#2382) *also where the new standard was introduced by @oliviertassinari*
+  1. [Avatar] (#2407)
+  1. [Toolbars] (#2415)
+  1. [Badge] (#2489)
+  1. [Dialog] (#2483)
+  1. [LeftNav] (#2507)
+- Added the following eslint rules:
+  1. react/jsx-indent-props (#2377)
+  1. max-len (#2381)
+  1. wrap-multilines (#2419)
+
+##### Component Fixes / Enhancements
+- [Card] Use `preventDefault()` when handling expansion (#2495)
+- [CardHeader] Made `avatar` property optional (#2397)
+- [Checkbox] Now updates it's state when `checked` property changes (#2464)
+- [DatePicker] Fix year selection (#2410)
+- [Dialog] Added `overlayStyle` property (#2431)
+- [Dialog] Added `width` property (#2387)
+- [Divider] Initial implementation. Thanks to @newoga (#2473)
+- [DropDownMenu] Added `menuStyle` property (#2389)
+- [DropDownMenu] Now uses `Popover` (#2150)
+- [DropDownMenu] Now bubbles keyboard events (#2461)
+- [FlatButton] Adjusted background, hover and ripple colors (#2488)
+- [IconMenu] Added `open` and `onRequestChange` properties (#2383)
+- [ListItem] Added option to toggle nested list items on primary action (#2390)
+- [Menu] Fixed an error when children is only one child (#2402)
+- [Menu] Remove absolute positioning (#2455)
+- [Menu] Fixed issue when passed null children (#2429)
+- [SelectField] Fixed the propagation of underline styles (#2405)
+- [TableRow] Fixed a bug when unselectable rows could still be selected (#2503)
+
+##### Deprecations
+- The old menu components under the `material-ui/lib/menu` folder (#2443)
+- The `actions` property of `Dialog` accepting a JSON is deprecated (#2483)
+- The `menuItems` of `LeftNav` and all the related properties are now deprecated in favor of composibility (#2507)
+
+
+## 0.14.0-rc1
+###### _Dec 4, 2015_
+
+##### Breaking Changes
+- [IconMenu] removed openDirection prop in favor of anchorOrigin and targetOrigin (#2149)
+
+##### General
+- Use ES6 import / export syntax over require (#2253, #2333, #2334)
+- Dialog render-to-layer version (#2129)
+- Add declarative props to LeftNav, deprecate methods (#2180, #2351)
+- Add linting to test files (#2273)
+- Support nested menu items using Popover (#2148)
+- [DropdownMenu] add labelMember prop (#2285)
+- Add new ESLint rules (#2293, #2314, #2319, #2348, #2360, #2365, #2366)
+- Add unit tests for Dialog (#2298)
+- [AutoComplete] Support changing searchText via props (#2306)
+- [AutoComplete] dataSource prop is of type array (#2286)
+- [AppBar] add titleStyle prop (#2324)
+- [TimePicker] update as per spec (#2358)
+- [Popover] add useLayerForClickAway prop (#2359)
+
+##### Component Fixes / Enhancements
+- Fix wrong proptype for value in RadioButton (#2276)
+- Make LeftNav swipeable only from far left / right (#2263)
+- [TextField] allow rowsMax prop to equal rows prop (#2312)
+- Fix Invariant Violation error in ClickAwayable mixin (#2296)
+- [DatePicker] fix calendarTextColor context key (#2318)
+- Fix and improve examples (#2344, #2345)
+- [Dropdown][SelectField] change value PropType to React.PropTypes.any (#2352)
+- [CardActions] prevent children styles from being overridden (#2361)
+
+## 0.13.4
+###### _Nov 24, 2015_
+
+##### General
+- Introduced SelectableEnhance HOC to wrap List with valueLink (#1976)
+- Added color prop to LinearProgress and RefreshIndicator (#2206)
+- [AutoComplete] new component! (#2187) (thanks @yongxu)
+- [Table] added wrapperStyle prop to override table wrapper's styles (#2238)
+- Updated SVG icons (#2240)
+- [Table] added props for headerStyle, bodyStyle and footerStyle (#2246)
+
+##### Component Fixes / Enhancements
+- Fixed double ripple due to compat mouse down (#2216)
+- [RenderToLayer] iframe support for clickaway (#2210)
+- [TextField] Fixed floating label element not allowing focus (#2228)
+- [SelectField] onFocus and onBlur handlers passed to underlying TextField component (#2102)
+
+## 0.13.3
+###### _Nov 17, 2015_
+
+##### General
+- [Snackbar] add bodyStyle prop to style child div (#2104)
+- [DatePicker] add container prop to display DatePicker in-line or inside Dialog (#2120 and #2153)
+- [AppBar] add relative positioning for z-index to take effect (#1478)
+- [AppBar] add onTitleTouchTap prop to AppBar (#2125)
+- [Popover] new component! (#2043) (thanks @chrismcv)
+- Split [SelectField] and [TextField] doc pages (#2161)
+
+##### Component Fixes / Enhancements
+- [SelectField] onChange triggered consistently when using value prop (#1610)
+- [Dialog] fix page scrolling behind dialog after resizing (#1946)
+- [DatePicker] fix calendar height (#2141)
+- [TimePicker] allow to set time to null (#2108)
+
 ## 0.13.2
 ###### _Nov 9, 2015_
 
@@ -103,7 +221,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - Fix theme display switch problem in doc (#1696)
   - Fix typo in src/card-expandable.jsx (#1724)
   - Fix broken link to v0.12.0 release tag
-- Use correct require calls 
+- Use correct require calls
   - for react addons (#1729)
   - for raw themes (#1742)
 - Remove hard-coded color values from theme-manager

@@ -1,10 +1,10 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const FocusRipple = require('./ripples/focus-ripple');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import FocusRipple from './ripples/focus-ripple';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 /**
   * Verifies min/max range.
@@ -50,22 +50,23 @@ const Slider = React.createClass({
   },
 
   propTypes: {
-    name: React.PropTypes.string.isRequired,
     defaultValue: valueInRangePropType,
     description: React.PropTypes.string,
+    disableFocusRipple: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     error: React.PropTypes.string,
     max: minMaxPropType,
     min: minMaxPropType,
-    required: React.PropTypes.bool,
-    step: React.PropTypes.number,
+    name: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
     onDragStart: React.PropTypes.func,
     onDragStop: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    value: valueInRangePropType,
+    required: React.PropTypes.bool,
+    step: React.PropTypes.number,
     style: React.PropTypes.object,
+    value: valueInRangePropType,
   },
 
   //for passing default theme context to children
@@ -73,7 +74,7 @@ const Slider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -233,7 +234,7 @@ const Slider = React.createClass({
   },
 
   render() {
-    let { ...others } = this.props;
+    let {...others} = this.props;
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
@@ -284,9 +285,9 @@ const Slider = React.createClass({
 
     if (!this.props.disabled) {
       handleDragProps = {
-          onTouchStart: this._onHandleTouchStart,
-          onMouseDown: this._onHandleMouseDown,
-      }
+        onTouchStart: this._onHandleTouchStart,
+        onMouseDown: this._onHandleMouseDown,
+      };
     }
 
     return (
@@ -398,7 +399,7 @@ const Slider = React.createClass({
 
   setPercent(percent, callback) {
     let value = this._alignValue(this._percentToValue(percent));
-    let { min, max } = this.props;
+    let {min, max} = this.props;
     let alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
       this.setState({value: value, percent: alignedPercent}, callback);
@@ -410,7 +411,7 @@ const Slider = React.createClass({
   },
 
   _alignValue(val) {
-    let { step, min } = this.props;
+    let {step, min} = this.props;
     let alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
   },
@@ -490,4 +491,4 @@ const Slider = React.createClass({
 
 });
 
-module.exports = Slider;
+export default Slider;

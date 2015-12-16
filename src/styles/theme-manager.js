@@ -1,12 +1,12 @@
-const Colors = require('./colors');
-const ColorManipulator = require('../utils/color-manipulator');
-const Extend = require('../utils/extend');
-const update = require('react-addons-update');
+import Colors from './colors';
+import ColorManipulator from '../utils/color-manipulator';
+import Extend from '../utils/extend';
+import update from 'react-addons-update';
 
-module.exports = {
+export default {
 
   //get the MUI theme corresponding to a raw theme
-  getMuiTheme: function (rawTheme) {
+  getMuiTheme: function(rawTheme) {
     let returnObj = {
       appBar: {
         color: rawTheme.palette.primary1Color,
@@ -51,7 +51,8 @@ module.exports = {
         accentColor: rawTheme.palette.borderColor,
       },
       flatButton: {
-        color: rawTheme.palette.alternateTextColor,
+        color: Colors.transparent,
+        buttonFilterColor: '#999999',
         textColor: rawTheme.palette.textColor,
         primaryTextColor: rawTheme.palette.accent1Color,
         secondaryTextColor: rawTheme.palette.primary1Color,
@@ -167,6 +168,8 @@ module.exports = {
         textColor: rawTheme.palette.accent3Color,
         accentColor: rawTheme.palette.primary1Color,
         clockColor: rawTheme.palette.textColor,
+        clockCircleColor: rawTheme.palette.clockCircleColor,
+        headerColor: rawTheme.palette.pickerHeaderColor || rawTheme.palette.primary1Color,
         selectColor: rawTheme.palette.primary2Color,
         selectTextColor: rawTheme.palette.alternateTextColor,
       },
@@ -205,6 +208,7 @@ module.exports = {
         borderColor: rawTheme.palette.borderColor,
       },
       isRtl: false,
+      zIndex: rawTheme.zIndex,
     };
 
     //add properties to objects inside 'returnObj' that depend on existing properties
@@ -228,8 +232,8 @@ module.exports = {
 
   //function to modify the spacing of the raw theme. This function recomputes
   //the MUI theme and returns it based on the new theme.
-  modifyRawThemeSpacing: function (muiTheme, newSpacing) {
-    let newRawTheme = update (muiTheme.rawTheme, {spacing: {$set: newSpacing}});
+  modifyRawThemeSpacing: function(muiTheme, newSpacing) {
+    let newRawTheme = update(muiTheme.rawTheme, {spacing: {$set: newSpacing}});
     return this.getMuiTheme(newRawTheme);
   },
 
@@ -237,16 +241,16 @@ module.exports = {
   //function to modify the palette of the raw theme. This function recomputes
   //the MUI theme and returns it based on the new raw theme.
   //keys inside 'newPalette' override values for existing keys in palette
-  modifyRawThemePalette: function (muiTheme, newPaletteKeys) {
+  modifyRawThemePalette: function(muiTheme, newPaletteKeys) {
     let newPalette = Extend(muiTheme.rawTheme.palette, newPaletteKeys);
-    let newRawTheme = update (muiTheme.rawTheme, {palette: {$set: newPalette}});
+    let newRawTheme = update(muiTheme.rawTheme, {palette: {$set: newPalette}});
     return this.getMuiTheme(newRawTheme);
   },
 
   //function to modify the font family of the raw theme. This function recomputes
   //the MUI theme and returns it based on the new raw theme.
-  modifyRawThemeFontFamily: function (muiTheme, newFontFamily) {
-    let newRawTheme = update (muiTheme.rawTheme, {fontFamily: {$set: newFontFamily}});
+  modifyRawThemeFontFamily: function(muiTheme, newFontFamily) {
+    let newRawTheme = update(muiTheme.rawTheme, {fontFamily: {$set: newFontFamily}});
     return this.getMuiTheme(newRawTheme);
   },
 

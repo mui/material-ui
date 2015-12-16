@@ -1,5 +1,4 @@
-const React = require('react');
-const update = require('react-addons-update');
+import update from 'react-addons-update';
 
 function mergeSingle(objA, objB) {
   if (!objA) return objB;
@@ -7,7 +6,7 @@ function mergeSingle(objA, objB) {
   return update(objA, {$merge: objB});
 }
 
-module.exports = {
+export default {
 
   merge() {
     const args = Array.prototype.slice.call(arguments, 0);

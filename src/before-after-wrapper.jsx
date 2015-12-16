@@ -1,8 +1,8 @@
-const React = require('react');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import AutoPrefix from './styles/auto-prefix';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 /**
  *  BeforeAfterWrapper
@@ -47,11 +47,13 @@ const BeforeAfterWrapper = React.createClass({
   },
 
   propTypes: {
-    beforeStyle: React.PropTypes.object,
+    afterElementType: React.PropTypes.string,
     afterStyle: React.PropTypes.object,
     beforeElementType: React.PropTypes.string,
-    afterElementType: React.PropTypes.string,
+    beforeStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     elementType: React.PropTypes.string,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -67,13 +69,13 @@ const BeforeAfterWrapper = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -81,7 +83,7 @@ const BeforeAfterWrapper = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -103,16 +105,16 @@ const BeforeAfterWrapper = React.createClass({
 
     if (this.props.beforeStyle) beforeElement =
       React.createElement(this.props.beforeElementType,
-                            {
-                              style: this.prepareStyles(beforeStyle, this.props.beforeStyle),
-                              key: "::before",
-                            });
+        {
+          style: this.prepareStyles(beforeStyle, this.props.beforeStyle),
+          key: '::before',
+        });
     if (this.props.afterStyle) afterElement =
       React.createElement(this.props.afterElementType,
-                            {
-                              style: this.prepareStyles(afterStyle, this.props.afterStyle),
-                              key: "::after",
-                            });
+        {
+          style: this.prepareStyles(afterStyle, this.props.afterStyle),
+          key: '::after',
+        });
 
     let children = [beforeElement, this.props.children, afterElement];
 
@@ -124,4 +126,4 @@ const BeforeAfterWrapper = React.createClass({
 
 });
 
-module.exports = BeforeAfterWrapper;
+export default BeforeAfterWrapper;

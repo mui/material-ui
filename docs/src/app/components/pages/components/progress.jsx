@@ -1,13 +1,13 @@
-const React = require('react');
-const { CircularProgress, LinearProgress, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('progress-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import {CircularProgress, LinearProgress, Paper} from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'progress-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 const ProgressPage = React.createClass({
 
-  getInitialState () {
+  getInitialState() {
     return {
       completed: 0,
     };
@@ -72,6 +72,12 @@ const ProgressPage = React.createClass({
             header: 'optional',
             desc: 'Override the inline-styles of the progress\'s root element.',
           },
+          {
+            name: 'color',
+            type: 'string',
+            header: 'optional',
+            desc: 'Override the progress\'s color.',
+          },
         ],
       },
     ];
@@ -85,8 +91,8 @@ const ProgressPage = React.createClass({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst CircularProgress = require(\'material-ui/lib/circular-progress\');\n' +
-            'const LinearProgress = require(\'material-ui/lib/linear-progress\');\n\n' +
+            '//Import statement:\import CircularProgress from \'material-ui/lib/circular-progress\';\n' +
+            'import LinearProgress from \'material-ui/lib/linear-progress\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -101,8 +107,11 @@ const ProgressPage = React.createClass({
           <p>
             Indeterminate
           </p>
-          <LinearProgress mode="indeterminate"  />
-
+          <LinearProgress mode="indeterminate" />
+          <p>
+            Overriding the theme's color
+          </p>
+          <LinearProgress mode="determinate" color={"#4CAF50"} value={this.state.completed} />
           <br/><br/>
           <h2>Circular Progress</h2>
           <p>
@@ -114,9 +123,9 @@ const ProgressPage = React.createClass({
           <p>
             Indeterminate
           </p>
-          <CircularProgress mode="indeterminate"  />
+          <CircularProgress mode="indeterminate" />
           <CircularProgress mode="indeterminate" size={1.5} />
-          <CircularProgress mode="indeterminate" size={2} />
+          <CircularProgress mode="indeterminate" color={"red"} size={2} />
         </CodeExample>
       </ComponentDoc>
     );
@@ -124,4 +133,4 @@ const ProgressPage = React.createClass({
 
 });
 
-module.exports = ProgressPage;
+export default ProgressPage;

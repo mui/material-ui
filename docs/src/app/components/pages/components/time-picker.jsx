@@ -1,9 +1,9 @@
-const React = require('react');
-const { TimePicker, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('time-picker-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import {TimePicker, Paper} from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'time-picker-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 const TimePickerPage = React.createClass({
 
@@ -47,7 +47,9 @@ const TimePickerPage = React.createClass({
             name: 'pedantic',
             type: 'bool',
             header: 'default: false',
-            desc: 'It\'s technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales. By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.',
+            desc: `It's technically more correct to refer to "12 noon" and "12 midnight"
+rather than "12 a.m." and "12 p.m." and it avoids real confusion between different locales.
+By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.`,
           },
           {
             name: 'style',
@@ -135,7 +137,7 @@ const TimePickerPage = React.createClass({
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst TimePicker = require(\'material-ui/lib/time-picker\');\n\n' +
+            '//Import statement:\nimport TimePicker from \'material-ui/lib/time-picker\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -152,7 +154,7 @@ const TimePickerPage = React.createClass({
             ref="picker24hr"
             format="24hr"
             hintText="24hr Format"
-            onChange={this._changeTimePicker12}  />
+            onChange={this._changeTimePicker12} />
 
           <TimePicker
             ref="pickerAutoOk"
@@ -164,26 +166,26 @@ const TimePickerPage = React.createClass({
             ref="pickerTextfieldStyle"
             format="24hr"
             hintText="Override text field style"
-            textFieldStyle={{ fontSize: 'x-large' }} />
+            textFieldStyle={{fontSize: 'x-large'}} />
 
           <TimePicker
             ref="pickerStyle"
             format="24hr"
             hintText="Override style"
-            textFieldStyle={{ width: '80%' }}
-            style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#d1d1d1' }} />
+            textFieldStyle={{width: '80%'}}
+            style={{padding: '5px', borderRadius: '5px', backgroundColor: '#d1d1d1'}} />
 
         </CodeExample>
       </ComponentDoc>
     );
   },
-  _changeTimePicker24(err, t){
+  _changeTimePicker24(err, t) {
     this.refs.picker24hr.setTime(t);
   },
-  _changeTimePicker12(err, t){
+  _changeTimePicker12(err, t) {
     this.refs.picker12hr.setTime(t);
   },
 
 });
 
-module.exports = TimePickerPage;
+export default TimePickerPage;

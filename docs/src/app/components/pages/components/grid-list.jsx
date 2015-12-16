@@ -1,26 +1,30 @@
-const React = require('react');
-const { GridList, GridTile, Paper } = require('material-ui');
+import React from 'react';
+import {GridList, GridTile, Paper} from 'material-ui';
 
-const StarBorder = require('svg-icons/toggle/star-border');
-const IconButton = require('icon-button');
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import IconButton from 'icon-button';
 
-const ComponentDoc = require('../../component-doc');
-const Code = require('grid-list-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import ComponentDoc from '../../component-doc';
+import Code from 'grid-list-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 class GridListPage extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.desc = <p>Simple flex-box based <a
-                  href="https://www.google.com/design/spec/components/grid-lists.html"
-                  >Grid List</a> implementation. Support tiles with arbitrary cell size,
-                  but cannot implement complex layouts (like <a
-                  href="https://material.angularjs.org/latest/#/demo/material.components.gridList"
-                  >Angular Material GridList</a>)
-                  , is limited to flex-box limitations.</p>;
+    this.desc = (
+      <p>
+        Simple flex-box based <a
+          href="https://www.google.com/design/spec/components/grid-lists.html"
+        >Grid List</a> implementation. Support tiles with arbitrary cell size,
+        but cannot implement complex layouts (like <a
+          href="https://material.angularjs.org/latest/#/demo/material.components.gridList"
+        >Angular Material GridList</a>)
+        , is limited to flex-box limitations.
+      </p>
+    );
 
     this.componentInfo = [
       {
@@ -71,19 +75,23 @@ class GridListPage extends React.Component {
             name: 'titlePosition',
             type: 'oneOf ["top", "bottom"]',
             header: 'optional',
-            desc: 'Position of the title bar (container of title, subtitle and action icon). Defaults to "bottom".',
+            desc: `Position of the title bar (container of title, subtitle and action icon).
+              Defaults to "bottom".`,
           },
           {
             name: 'titleBackground',
             type: 'string',
             header: 'optional',
-            desc: 'Style used for title bar background. Defaults to "rgba(0, 0, 0, 0.4)". Useful for setting custom gradients for example',
+            desc: `Style used for title bar background.
+              Defaults to "rgba(0, 0, 0, 0.4)".
+              Useful for setting custom gradients for example`,
           },
           {
             name: 'actionIcon',
             type: 'element',
             header: 'optional',
-            desc: 'An IconButton element to be used as secondary action target (primary action target is the tile itself).',
+            desc: `An IconButton element to be used as secondary action target
+              (primary action target is the tile itself).`,
           },
           {
             name: 'actionPosition',
@@ -113,19 +121,20 @@ class GridListPage extends React.Component {
             name: 'rootClass',
             type: 'string|ReactComponent',
             header: 'optional',
-            desc: 'Either a string used as tag name for the tile root element, or a ReactComponent. Defaults to "div".' +
-                  'This is useful when you have, for example, a custom implementation of a navigation link (that knows' +
-                  'about your routes) and you want to use it as primary tile action. In case you pass a ReactComponent' +
-                  ', please make sure that it passes all props, accepts styles overrides and render it\'s children.',
-
+            desc: `Either a string used as tag name for the tile root element, or a ReactComponent.
+              Defaults to "div".
+              This is useful when you have, for example,
+              a custom implementation of a navigation link (that knows about your routes)
+              and you want to use it as primary tile action. In case you pass a ReactComponent,
+              please make sure that it passes all props, accepts styles overrides and render it's children.`,
           },
           {
             name: 'children',
             type: 'node',
             header: 'required',
-            desc: 'Theoretically you can pass any node as children, but the main use case is to pass an img, in which' +
-                  'case GridTile takes care of making the image "cover" available space (similar to background-size: cover' +
-                  ' or to object-fit:cover)',
+            desc: `Theoretically you can pass any node as children, but the main use case is to pass an img,
+              in which case GridTile takes care of making the image "cover" available space
+              (similar to background-size: cover or to object-fit:cover)`,
           },
         ],
       },
@@ -190,8 +199,8 @@ class GridListPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst GridList = require(\'material-ui/lib/grid-list/grid-list\');\n' +
-            'const GridTile = require(\'material-ui/lib/grid-list/grid-tile\');\n\n' +
+            '//Import statement:\nimport GridList from \'material-ui/lib/grid-list/grid-list\';\n' +
+            'import GridTile from \'material-ui/lib/grid-list/grid-tile\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
@@ -241,4 +250,4 @@ class GridListPage extends React.Component {
 
 }
 
-module.exports = GridListPage;
+export default GridListPage;

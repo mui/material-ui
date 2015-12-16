@@ -1,11 +1,11 @@
-const React = require('react');
-const EnhancedSwitch = require('./enhanced-switch');
-const StylePropable = require('./mixins/style-propable');
-const Transitions = require('./styles/transitions');
-const CheckboxOutline = require('./svg-icons/toggle/check-box-outline-blank');
-const CheckboxChecked = require('./svg-icons/toggle/check-box');
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+import React from 'react';
+import EnhancedSwitch from './enhanced-switch';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
+import CheckboxChecked from './svg-icons/toggle/check-box';
+import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
+import ThemeManager from './styles/theme-manager';
 
 
 const Checkbox = React.createClass({
@@ -21,7 +21,7 @@ const Checkbox = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -31,10 +31,13 @@ const Checkbox = React.createClass({
     checked: React.PropTypes.bool,
     checkedIcon: React.PropTypes.element,
     defaultChecked: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
     labelStyle: React.PropTypes.object,
     onCheck: React.PropTypes.func,
     unCheckedIcon: React.PropTypes.element,
+    valueLink: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -50,9 +53,14 @@ const Checkbox = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: newMuiTheme,
+      switched: this.props.checked !== nextProps.checked
+        ? nextProps.checked
+        : this.state.switched,
+    });
   },
 
   getTheme() {
@@ -63,23 +71,23 @@ const Checkbox = React.createClass({
     let checkboxSize = 24;
     let styles = {
       icon: {
-          height: checkboxSize,
-          width: checkboxSize,
+        height: checkboxSize,
+        width: checkboxSize,
       },
       check: {
-          position: 'absolute',
-          opacity: 0,
-          transform: 'scale(0)',
-          transitionOrigin: '50% 50%',
-          transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' +
+        position: 'absolute',
+        opacity: 0,
+        transform: 'scale(0)',
+        transitionOrigin: '50% 50%',
+        transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' +
                       Transitions.easeOut('0ms', 'transform', '450ms'),
-          fill: this.getTheme().checkedColor,
+        fill: this.getTheme().checkedColor,
       },
       box: {
-          position: 'absolute',
-          opacity: 1,
-          fill: this.getTheme().boxColor,
-          transition: Transitions.easeOut('2s', null, '200ms'),
+        position: 'absolute',
+        opacity: 1,
+        fill: this.getTheme().boxColor,
+        transition: Transitions.easeOut('2s', null, '200ms'),
       },
       checkWhenSwitched: {
         opacity: 1,
@@ -155,8 +163,8 @@ const Checkbox = React.createClass({
     );
 
     let enhancedSwitchProps = {
-      ref: "enhancedSwitch",
-      inputType: "checkbox",
+      ref: 'enhancedSwitch',
+      inputType: 'checkbox',
       switched: this.state.switched,
       switchElement: checkboxElement,
       rippleColor: rippleColor,
@@ -165,7 +173,7 @@ const Checkbox = React.createClass({
       labelStyle: labelStyle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right",
+      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : 'right',
     };
 
     return (
@@ -193,4 +201,4 @@ const Checkbox = React.createClass({
 
 });
 
-module.exports = Checkbox;
+export default Checkbox;

@@ -1,10 +1,31 @@
-const React = require('react');
-const Paper = require('../paper');
+import React from 'react';
+import Paper from '../paper';
+
+const styles = {
+  actions: {
+    marginRight: 8,
+    paddingBottom: 12,
+    textAlign: 'right',
+  },
+  container: {
+    zIndex: 3,
+    width: '100%',
+    position: 'relative',
+    display: 'block',
+  },
+  subContainer: {
+    position: 'absolute',
+    height: 'auto',
+  },
+};
 
 const DatePickerInline = React.createClass({
 
   propTypes: {
+    actions: React.PropTypes.node,
+    children: React.PropTypes.node,
     open: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -26,23 +47,6 @@ const DatePickerInline = React.createClass({
       return <span />;
     }
 
-    const styles = {
-      actions: {
-        marginRight: 8,
-        paddingBottom: 12,
-        textAlign: 'right',
-      },
-      container: {
-        zIndex: 3,
-        width: '100%',
-        position: 'relative',
-        display: 'block',
-      },
-      subContainer: {
-        position: 'absolute',
-        height: 'auto',
-      },
-    };
     return (
       <div style={styles.container}>
         <div style={styles.subContainer}>
@@ -59,4 +63,4 @@ const DatePickerInline = React.createClass({
 
 });
 
-module.exports = DatePickerInline;
+export default DatePickerInline;

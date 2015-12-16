@@ -1,9 +1,9 @@
-const React = require('react');
-const ReactTransitionGroup = require('react-addons-transition-group');
-const StylePropable = require('../mixins/style-propable');
-const SlideInChild = require('./slide-in-child');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import StylePropable from '../mixins/style-propable';
+import SlideInChild from './slide-in-child';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 
 const SlideIn = React.createClass({
@@ -19,13 +19,13 @@ const SlideIn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -33,15 +33,16 @@ const SlideIn = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
   propTypes: {
-    enterDelay: React.PropTypes.number,
     childStyle: React.PropTypes.object,
+    children: React.PropTypes.node,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    enterDelay: React.PropTypes.number,
     style: React.PropTypes.object,
   },
 
@@ -97,4 +98,4 @@ const SlideIn = React.createClass({
 
 });
 
-module.exports = SlideIn;
+export default SlideIn;

@@ -1,21 +1,29 @@
-const React = require('react');
-const { DropDownMenu, Paper } = require('material-ui');
-const ComponentDoc = require('../../component-doc');
-const Code = require('drop-down-menu-code');
-const CodeExample = require('../../code-example/code-example');
-const CodeBlock = require('../../code-example/code-block');
+import React from 'react';
+import {DropDownMenu, Paper} from 'material-ui';
+import ComponentDoc from '../../component-doc';
+import Code from 'drop-down-menu-code';
+import CodeExample from '../../code-example/code-example';
+import CodeBlock from '../../code-example/code-block';
 
 export default class DropDownMenuPage extends React.Component {
 
   render() {
 
     let menuItems = [
-      { payload: '1', text: 'Never' },
-      { payload: '2', text: 'Every Night' },
-      { payload: '3', text: 'Weeknights' },
-      { payload: '4', text: 'Weekends' },
-      { payload: '5', text: 'Weekly' },
+      {payload: '1', text: 'Never'},
+      {payload: '2', text: 'Every Night'},
+      {payload: '3', text: 'Weeknights'},
+      {payload: '4', text: 'Weekends'},
+      {payload: '5', text: 'Weekly'},
     ];
+
+    let longMenuItems = [];
+    for (let i = 0; i < 100; i++ ) {
+      longMenuItems.push({
+        payload:i.toString(),
+        text:'Item ' + i,
+      });
+    }
 
     let componentInfo = [
       {
@@ -33,6 +41,13 @@ export default class DropDownMenuPage extends React.Component {
             type: 'string',
             header: 'default: payload',
             desc: 'DropDownMenu will use payload as default value, with this ' +
+              'property you can choose another name.',
+          },
+          {
+            name: 'labelMember',
+            type: 'string',
+            header: 'default: text',
+            desc: 'DropDownMenu will use text as default value, with this ' +
               'property you can choose another name.',
           },
           {
@@ -54,6 +69,13 @@ export default class DropDownMenuPage extends React.Component {
             type: 'object',
             header: 'optional',
             desc: 'Overrides the inline-styles of the MenuItems when the ' +
+                  'DropDownMenu is expanded.',
+          },
+          {
+            name: 'menuStyle',
+            type: 'object',
+            header: 'optional',
+            desc: 'Overrides the inline-styles of the Menu when the ' +
                   'DropDownMenu is expanded.',
           },
           {
@@ -113,6 +135,13 @@ export default class DropDownMenuPage extends React.Component {
       },
     ];
 
+    let menuItemsWithLabel = [
+      {payload: '1', text: 'Morning', period: '5 am - 12 pm'},
+      {payload: '2', text: 'Afternoon', period: '12 pm - 5 pm'},
+      {payload: '3', text: 'Evening', period: '5 pm to 9 pm'},
+      {payload: '4', text: 'Night', period: '9 pm to 4 am'},
+    ];
+
     return (
       <ComponentDoc
         name="Drop Down Menu"
@@ -121,14 +150,21 @@ export default class DropDownMenuPage extends React.Component {
         <Paper style = {{marginBottom: '22px'}}>
           <CodeBlock>
           {
-            '//Import statement:\nconst DropDownMenu = require(\'material-ui/lib/drop-down-menu\');\n\n' +
+            '//Import statement:\nimport DropDownMenu from \'material-ui/lib/drop-down-menu\';\n\n' +
             '//See material-ui/lib/index.js for more\n'
           }
           </CodeBlock>
         </Paper>
 
         <CodeExample code={Code}>
-          <DropDownMenu menuItems={menuItems} />
+          <DropDownMenu menuItems={menuItems} /><br/>
+          <DropDownMenu
+            menuItems={menuItemsWithLabel}
+            labelMember="period"
+          />
+
+          <DropDownMenu menuItems={longMenuItems} maxHeight={300} /><br/>
+
         </CodeExample>
       </ComponentDoc>
     );

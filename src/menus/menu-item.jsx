@@ -1,15 +1,25 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const StylePropable = require('../mixins/style-propable');
-const Colors = require('../styles/colors');
-const CheckIcon = require('../svg-icons/navigation/check');
-const ListItem = require('../lists/list-item');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from '../mixins/style-propable';
+import Colors from '../styles/colors';
+import Popover from '../popover/popover';
+import CheckIcon from '../svg-icons/navigation/check';
+import ListItem from '../lists/list-item';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
+import Menu from './menu';
+
+const nestedMenuStyle = {
+  position: 'relative',
+};
 
 const MenuItem = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -17,20 +27,23 @@ const MenuItem = React.createClass({
 
   propTypes: {
     checked: React.PropTypes.bool,
+    children: React.PropTypes.node,
     desktop: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
-    innerDivStyle: React.PropTypes.object,
-    insetChildren: React.PropTypes.bool,
     focusState: React.PropTypes.oneOf([
       'none',
       'focused',
       'keyboard-focused',
     ]),
+    innerDivStyle: React.PropTypes.object,
+    insetChildren: React.PropTypes.bool,
     leftIcon: React.PropTypes.element,
+    menuItems: React.PropTypes.node,
+    onTouchTap: React.PropTypes.func,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     style: React.PropTypes.object,
-    value: React.PropTypes.string,
+    value: React.PropTypes.any,
   },
 
   //for passing default theme context to children
@@ -38,23 +51,28 @@ const MenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      open: false,
     };
   },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+
+    if (this.state.open && nextProps.focusState === 'none') {
+      this._onRequestClose();
+    }
   },
 
   getDefaultProps() {
@@ -71,6 +89,14 @@ const MenuItem = React.createClass({
     this._applyFocusState();
   },
 
+  componentWillUnmount() {
+    if (this.state.open) {
+      this.setState({
+        open: false,
+      });
+    }
+  },
+
   render() {
     const {
       checked,
@@ -81,6 +107,7 @@ const MenuItem = React.createClass({
       innerDivStyle,
       insetChildren,
       leftIcon,
+      menuItems,
       rightIcon,
       secondaryText,
       style,
@@ -155,6 +182,22 @@ const MenuItem = React.createClass({
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
         <div style={this.prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
     }
+    let childMenuPopover;
+    if (menuItems) {
+      childMenuPopover = (
+        <Popover
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+          anchorEl={this.state.anchorEl}
+          open={this.state.open}
+          useLayerForClickAway={false}
+          onRequestClose={this._onRequestClose}>
+          <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
+            {React.Children.map(menuItems, this._cloneMenuItem)}
+          </Menu>
+        </Popover>
+      );
+      other.onTouchTap = this._onTouchTap;
+    }
 
     return (
       <ListItem
@@ -168,6 +211,7 @@ const MenuItem = React.createClass({
         style={mergedRootStyles}>
         {children}
         {secondaryTextElement}
+        {childMenuPopover}
       </ListItem>
     );
   },
@@ -175,6 +219,42 @@ const MenuItem = React.createClass({
   _applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
   },
+
+  _cloneMenuItem(item) {
+    return React.cloneElement(item, {
+      onTouchTap: (event) =>
+      {
+        if (!item.props.menuItems) {
+          this._onRequestClose();
+        }
+
+        if (item.props.onTouchTap) {
+          item.props.onTouchTap(event);
+        }
+      },
+      onRequestClose: this._onRequestClose,
+    });
+  },
+
+  _onTouchTap(event) {
+    event.preventDefault();
+
+    this.setState({
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this),
+    });
+
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
+  },
+
+  _onRequestClose() {
+    this.setState({
+      open: false,
+      anchorEl: null,
+    });
+  },
 });
 
-module.exports = MenuItem;
+export default MenuItem;

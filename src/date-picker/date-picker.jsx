@@ -1,16 +1,18 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const WindowListenable = require('../mixins/window-listenable');
-const DateTime = require('../utils/date-time');
-const DatePickerDialog = require('./date-picker-dialog');
-const TextField = require('../text-field');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import WindowListenable from '../mixins/window-listenable';
+import DateTime from '../utils/date-time';
+import DatePickerDialog from './date-picker-dialog';
+import TextField from '../text-field';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const DatePicker = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -21,26 +23,25 @@ const DatePicker = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   propTypes: {
-    container: React.PropTypes.oneOf(['dialog', 'inline']),
     DateTimeFormat: React.PropTypes.func,
-    locale: React.PropTypes.string,
-    wordings: React.PropTypes.object,
     autoOk: React.PropTypes.bool,
+    container: React.PropTypes.oneOf(['dialog', 'inline']),
     defaultDate: React.PropTypes.object,
     formatDate: React.PropTypes.func,
     hideToolbarYearChange: React.PropTypes.bool,
+    locale: React.PropTypes.string,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    onDismiss: React.PropTypes.func,
     onChange: React.PropTypes.func,
+    onDismiss: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onShow: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
@@ -48,6 +49,9 @@ const DatePicker = React.createClass({
     showYearSelector: React.PropTypes.bool,
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
+    value: React.PropTypes.any,
+    valueLink: React.PropTypes.object,
+    wordings: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -205,4 +209,4 @@ const DatePicker = React.createClass({
 
 });
 
-module.exports = DatePicker;
+export default DatePicker;

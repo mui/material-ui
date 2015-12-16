@@ -1,18 +1,18 @@
-const React = require('react');
-const DateTime = require('../utils/date-time');
-const DayButton = require('./day-button');
-const ClearFix = require('../clearfix');
+import React from 'react';
+import DateTime from '../utils/date-time';
+import DayButton from './day-button';
+import ClearFix from '../clearfix';
 
 
 const CalendarMonth = React.createClass({
 
   propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
     autoOk: React.PropTypes.bool,
+    displayDate: React.PropTypes.object.isRequired,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
+    selectedDate: React.PropTypes.object.isRequired,
     shouldDisableDate: React.PropTypes.func,
   },
 
@@ -86,4 +86,4 @@ const CalendarMonth = React.createClass({
 
 });
 
-module.exports = CalendarMonth;
+export default CalendarMonth;

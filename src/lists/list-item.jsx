@@ -1,22 +1,25 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const ColorManipulator = require('../utils/color-manipulator');
-const StylePropable = require('../mixins/style-propable');
-const Colors = require('../styles/colors');
-const Transitions = require('../styles/transitions');
-const Typography = require('../styles/typography');
-const EnhancedButton = require('../enhanced-button');
-const IconButton = require('../icon-button');
-const OpenIcon = require('../svg-icons/navigation/arrow-drop-up');
-const CloseIcon = require('../svg-icons/navigation/arrow-drop-down');
-const NestedList = require('./nested-list');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ColorManipulator from '../utils/color-manipulator';
+import StylePropable from '../mixins/style-propable';
+import Colors from '../styles/colors';
+import Transitions from '../styles/transitions';
+import Typography from '../styles/typography';
+import EnhancedButton from '../enhanced-button';
+import IconButton from '../icon-button';
+import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
+import CloseIcon from '../svg-icons/navigation/arrow-drop-down';
+import NestedList from './nested-list';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const ListItem = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -24,31 +27,33 @@ const ListItem = React.createClass({
 
   propTypes: {
     autoGenerateNestedIndicator: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
+    children: React.PropTypes.node,
     disableKeyboardFocus: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
     initiallyOpen: React.PropTypes.bool,
     innerDivStyle: React.PropTypes.object,
-    insetChildren: React.PropTypes.bool,
     innerStyle: React.PropTypes.object,
+    insetChildren: React.PropTypes.bool,
     leftAvatar: React.PropTypes.element,
     leftCheckbox: React.PropTypes.element,
     leftIcon: React.PropTypes.element,
-    nestedLevel: React.PropTypes.number,
     nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
+    nestedLevel: React.PropTypes.number,
     onKeyboardFocus: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     onNestedListToggle: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
+    primaryText: React.PropTypes.node,
+    primaryTogglesNestedList: React.PropTypes.bool,
     rightAvatar: React.PropTypes.element,
     rightIcon: React.PropTypes.element,
     rightIconButton: React.PropTypes.element,
     rightToggle: React.PropTypes.element,
-    primaryText: React.PropTypes.node,
-    style: React.PropTypes.object,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
+    style: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -56,7 +61,7 @@ const ListItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -73,6 +78,7 @@ const ListItem = React.createClass({
       onMouseLeave: () => {},
       onNestedListToggle: () => {},
       onTouchStart: () => {},
+      primaryTogglesNestedList: false,
       secondaryTextLines: 1,
     };
   },
@@ -91,7 +97,7 @@ const ListItem = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -119,6 +125,7 @@ const ListItem = React.createClass({
       rightIconButton,
       rightToggle,
       primaryText,
+      primaryTogglesNestedList,
       secondaryText,
       secondaryTextLines,
       style,
@@ -356,7 +363,7 @@ const ListItem = React.createClass({
           onMouseLeave={this._handleMouseLeave}
           onMouseEnter={this._handleMouseEnter}
           onTouchStart={this._handleTouchStart}
-          onTouchTap={onTouchTap}
+          onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
           ref="enhancedButton"
           style={this.mergeStyles(styles.root, style)}>
           <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
@@ -374,7 +381,7 @@ const ListItem = React.createClass({
     const buttonEl = ReactDOM.findDOMNode(button);
 
     if (button) {
-      switch(focusState) {
+      switch (focusState) {
         case 'none':
           buttonEl.blur();
           break;
@@ -402,7 +409,7 @@ const ListItem = React.createClass({
       style
     );
 
-    return React.createElement('div', { style: mergedDivStyles }, contentChildren);
+    return React.createElement('div', {style: mergedDivStyles}, contentChildren);
   },
 
   _createLabelElement(styles, contentChildren) {
@@ -419,7 +426,7 @@ const ListItem = React.createClass({
       style
     );
 
-    return React.createElement('label', { style: mergedLabelStyles }, contentChildren);
+    return React.createElement('label', {style: mergedLabelStyles}, contentChildren);
   },
 
   _createTextElement(styles, data, key) {
@@ -523,4 +530,4 @@ const ListItem = React.createClass({
 
 });
 
-module.exports = ListItem;
+export default ListItem;

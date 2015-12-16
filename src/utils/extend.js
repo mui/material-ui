@@ -1,5 +1,5 @@
 function isObject(obj) {
-  return typeof(obj) === 'object' && obj !== null;
+  return typeof (obj) === 'object' && obj !== null;
 }
 
 /**
@@ -47,4 +47,4 @@ let extend = (base, override) => {
   return mergedObject;
 };
 
-module.exports = extend;
+export default extend;

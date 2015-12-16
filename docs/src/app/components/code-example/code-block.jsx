@@ -1,61 +1,88 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const { Styles } = require('material-ui');
-const { Spacing } = Styles;
-const { ThemeManager } = Styles;
-const DefaultRawTheme = Styles.LightRawTheme;
+import React from 'react';
+import MarkdownElement from '../MarkdownElement';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from 'material-ui/lib/mixins/style-propable';
+import FlatButton from 'material-ui/lib/flat-button';
+import Transitions from 'material-ui/lib/styles/transitions';
 
+const LINE_MAX = 17;
+
+const styles = {
+  root: {
+    background: '#f8f8f8',
+    borderTop: 'solid 1px #e0e0e0',
+  },
+  markdown: {
+    overflow: 'auto',
+    maxHeight: 1400,
+    transition: Transitions.create('max-height', '800ms', '0ms', 'ease-in-out'),
+  },
+  markdownRetracted: {
+    maxHeight: LINE_MAX * 18,
+  },
+  expand: {
+    padding: 10,
+    textAlign: 'center',
+  },
+};
 
 const CodeBlock = React.createClass({
-
-  contextTypes : {
-    muiTheme: React.PropTypes.object,
+  propTypes: {
+    children: React.PropTypes.string,
   },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext () {
+  mixins: [
+    PureRenderMixin,
+  ],
+  getInitialState: function() {
     return {
-      muiTheme: this.state.muiTheme,
+      expand: false,
     };
   },
-
-  getInitialState () {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  componentWillReceiveProps (nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  componentDidMount() {
-    let code = ReactDOM.findDOMNode(this.refs.code);
-    require([
-      "codemirror/lib/codemirror.js",
-      "codemirror/mode/htmlmixed/htmlmixed.js",
-    ], function(Codemirror){
-      Codemirror.fromTextArea(code, {
-        mode: "htmlmixed",
-        readOnly: true,
-      });
+  handleTouchTap() {
+    this.setState({
+      expand: !this.state.expand,
     });
   },
-
-  shouldComponentUpdate({children}, nextState){
-    return this.props.children !== children;
-  },
-
   render() {
+    const text = `\`\`\`js
+${this.props.children}
+    \`\`\``;
+
+    const lineNumber = (text.match(/\n/g) || []).length;
+
+    let expand;
+    let style = styles.markdown;
+
+    if (lineNumber > LINE_MAX) {
+      let label;
+
+      if (this.state.expand) {
+        label = 'Retract the example';
+      } else {
+        style = StylePropable.mergeStyles(styles.markdown, styles.markdownRetracted);
+        label = 'Expand the example';
+      }
+
+      expand = (
+        <div
+          style={styles.expand}
+          onTouchTap={this.handleTouchTap}
+        >
+          <FlatButton label={label} />
+        </div>
+      );
+    }
+
     return (
-      <textarea ref="code" value={this.props.children} readOnly={true}/>
+      <div style={styles.root}>
+        <MarkdownElement
+          style={style}
+          text={text}
+        />
+        {expand}
+      </div>
     );
   },
 });
 
-module.exports = CodeBlock;
+export default CodeBlock;

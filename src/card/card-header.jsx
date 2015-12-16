@@ -1,14 +1,15 @@
-const React = require('react');
-const Styles = require('../styles');
-const Avatar = require('../avatar');
-const StylePropable = require('../mixins/style-propable');
-const ThemeManager = require('../styles/theme-manager');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-
+import React from 'react';
+import Styles from '../styles';
+import Avatar from '../avatar';
+import StylePropable from '../mixins/style-propable';
+import ThemeManager from '../styles/theme-manager';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const CardHeader = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -19,43 +20,46 @@ const CardHeader = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
   getInitialState() {
-    return { 
+    return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
   propTypes: {
-    title: React.PropTypes.node,
-    titleColor: React.PropTypes.string,
-    titleStyle: React.PropTypes.object,
+    actAsExpander: React.PropTypes.bool,
+    avatar: React.PropTypes.node,
+    children: React.PropTypes.node,
+    expandable: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
     style: React.PropTypes.object,
     subtitle: React.PropTypes.node,
     subtitleColor: React.PropTypes.string,
     subtitleStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object,
-    expandable: React.PropTypes.bool,
-    actAsExpander: React.PropTypes.bool,
-    showExpandableButton: React.PropTypes.bool,
+    title: React.PropTypes.node,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
       titleColor: Styles.Colors.darkBlack,
       subtitleColor: Styles.Colors.lightBlack,
+      avatar: null,
     };
   },
 
@@ -100,8 +104,9 @@ const CardHeader = React.createClass({
       let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
       avatar = React.cloneElement(avatar, {style:avatarMergedStyle});
     }
-    else
+    else if (avatar !== null) {
       avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;
+    }
 
     return (
       <div {...this.props} style={rootStyle}>
@@ -116,4 +121,4 @@ const CardHeader = React.createClass({
   },
 });
 
-module.exports = CardHeader;
+export default CardHeader;

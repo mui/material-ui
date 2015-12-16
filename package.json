@@ -1,14 +1,17 @@
 {
   "name": "@tcne/ui-kit",
   "author": "Call-em-all Engineering Team & TCNE Web Team 1",
-  "version": "0.13.2",
+  "version": "0.14.0-rc2",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
     "test": "npm run test-base -- --single-run",
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
-    "build": "babel ./src --out-dir ./lib"
+    "prebuild": "rimraf lib",
+    "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
+    "build": "babel ./src --out-dir ./lib",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "react",
@@ -27,9 +30,8 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "inline-style-prefixer": "^0.5.1",
+    "inline-style-prefixer": "^0.5.2",
     "lodash.throttle": "~3.0.4",
-    "lodash.debounce": "~3.1.1",
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
     "react-addons-create-fragment": "^0.14.0",
@@ -57,6 +59,7 @@
     "fbjs": "^0.2.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
+    "gulp-if": "^2.0.0",
     "html-webpack-plugin": "^1.6.1",
     "karma": "^0.13.3",
     "karma-browserify": "^4.2.1",
@@ -69,10 +72,10 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.3",
     "react-dom": "^0.14.0",
-    "react-tap-event-plugin": "^0.2.0",
     "react-hot-loader": "^1.2.8",
-    "react-router": "^1.0.0-rc1",
+    "react-tap-event-plugin": "^0.2.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.4.3",
     "sinon": "^1.15.4",

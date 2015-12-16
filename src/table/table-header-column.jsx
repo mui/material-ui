@@ -1,8 +1,8 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const Tooltip = require('../tooltip');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import Tooltip from '../tooltip';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const TableHeaderColumn = React.createClass({
 
@@ -13,7 +13,10 @@ const TableHeaderColumn = React.createClass({
   },
 
   propTypes: {
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
     columnNumber: React.PropTypes.number,
+    key: React.PropTypes.string,
     onClick: React.PropTypes.func,
     style: React.PropTypes.object,
     tooltip: React.PropTypes.string,
@@ -25,13 +28,13 @@ const TableHeaderColumn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       hovered: false,
@@ -40,7 +43,7 @@ const TableHeaderColumn = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -128,4 +131,4 @@ const TableHeaderColumn = React.createClass({
 
 });
 
-module.exports = TableHeaderColumn;
+export default TableHeaderColumn;

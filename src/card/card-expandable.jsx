@@ -1,12 +1,12 @@
-const React = require('react');
-const Extend = require('../utils/extend');
-const OpenIcon = require('../svg-icons/hardware/keyboard-arrow-up');
-const CloseIcon = require('../svg-icons/hardware/keyboard-arrow-down');
-const IconButton = require('../icon-button');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
-const ContextPure = require('../mixins/context-pure');
+import React from 'react';
+import Extend from '../utils/extend';
+import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
+import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
+import IconButton from '../icon-button';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
+import ContextPure from '../mixins/context-pure';
 
 const CardExpandable = React.createClass({
   mixins: [
@@ -38,8 +38,8 @@ const CardExpandable = React.createClass({
   },
 
   propTypes: {
-    onExpanding: React.PropTypes.func.isRequired,
     expanded: React.PropTypes.bool,
+    onExpanding: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
   },
 
@@ -48,7 +48,7 @@ const CardExpandable = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -75,7 +75,7 @@ const CardExpandable = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
@@ -104,4 +104,4 @@ const CardExpandable = React.createClass({
   },
 });
 
-module.exports = CardExpandable;
+export default CardExpandable;

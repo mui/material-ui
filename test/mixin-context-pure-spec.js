@@ -2,8 +2,8 @@ import React from 'react/addons';
 import ContextPure from 'mixins/context-pure';
 import ThemeManager from 'styles/theme-manager';
 import DefaultRawTheme from 'styles/raw-themes/light-raw-theme';
+import TestUtils from 'react-addons-test-utils';
 
-const TestUtils = React.addons.TestUtils;
 const update = React.addons.update;
 
 const GrandChildComponent = React.createClass({
@@ -17,7 +17,7 @@ const GrandChildComponent = React.createClass({
     getRelevantContextKeys(muiTheme) {
       return {
         grandChildThemeProp: muiTheme.grandChildThemeProp,
-      }
+      };
     },
   },
 
@@ -50,7 +50,7 @@ const ChildComponent = React.createClass({
     getRelevantContextKeys(muiTheme) {
       return {
         childThemeProp: muiTheme.childThemeProp,
-      }
+      };
     },
     getChildrenClasses() {
       return [
@@ -139,14 +139,14 @@ const ParentComponent = React.createClass({
 
   updateChildContextKey(childThemeProp) {
     this.theme = update(this.theme, {
-      childThemeProp: { $set: childThemeProp },
+      childThemeProp: {$set: childThemeProp},
     });
     this.forceUpdate();
   },
 
   updateGrandChildContextKey(grandChildThemeProp) {
     this.theme = update(this.theme, {
-      grandChildThemeProp: { $set: grandChildThemeProp },
+      grandChildThemeProp: {$set: grandChildThemeProp},
     });
     this.forceUpdate();
   },

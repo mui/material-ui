@@ -1,21 +1,22 @@
-const React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-	propTypes: {
-		theme: React.PropTypes.object.isRequired,
-	},
+export default React.createClass({
+  propTypes: {
+    children: React.PropTypes.node,
+    theme: React.PropTypes.object.isRequired,
+  },
 
-	childContextTypes: {
-		muiTheme: React.PropTypes.object,
-	},
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
-	getChildContext() {
-		return {
-			muiTheme: this.props.theme,
-		};
-	},
+  getChildContext() {
+    return {
+      muiTheme: this.props.theme,
+    };
+  },
 
-	render() {
-		return this.props.children();
-	},
+  render() {
+    return this.props.children;
+  },
 });

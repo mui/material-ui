@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   Toolbar: require('./toolbar'),
   ToolbarGroup: require('./toolbar-group'),
   ToolbarSeparator: require('./toolbar-separator'),

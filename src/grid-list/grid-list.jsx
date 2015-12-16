@@ -1,20 +1,23 @@
-const React = require('react');
-const StylePropable = require('../mixins/style-propable');
-const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
-const ThemeManager = require('../styles/theme-manager');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import ThemeManager from '../styles/theme-manager';
 
 const GridList = React.createClass({
 
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
+    cellHeight: React.PropTypes.number,
+    children: React.PropTypes.node,
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
-    cellHeight: React.PropTypes.number,
     style: React.PropTypes.object,
   },
 
@@ -23,7 +26,7 @@ const GridList = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext () {
+  getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
@@ -37,7 +40,7 @@ const GridList = React.createClass({
     };
   },
 
-  getInitialState () {
+  getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
@@ -45,26 +48,24 @@ const GridList = React.createClass({
 
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
-  componentWillReceiveProps (nextProps, nextContext) {
+  componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
-  getStyles()
-  {
+  getStyles() {
     return {
       root: {
-        display: '-webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex',
+        display: 'flex',
         flexWrap: 'wrap',
-        margin: `-${this.props.padding/2}px`,
+        margin: -this.props.padding / 2,
       },
       item: {
         boxSizing: 'border-box',
-        padding: `${this.props.padding/2}px`,
+        padding: this.props.padding / 2,
       },
     };
   },
-
 
   render() {
     const {
@@ -74,7 +75,7 @@ const GridList = React.createClass({
       children,
       style,
       ...other,
-      } = this.props;
+    } = this.props;
 
     const styles = this.getStyles();
 
@@ -97,4 +98,4 @@ const GridList = React.createClass({
   },
 });
 
-module.exports = GridList;
+export default GridList;
