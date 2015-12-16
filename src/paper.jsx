@@ -45,6 +45,10 @@ const Paper = React.createClass({
     children: React.PropTypes.node,
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     transitionEnabled: React.PropTypes.bool,
     zDepth: PropTypes.zDepth,

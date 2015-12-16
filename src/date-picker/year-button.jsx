@@ -15,6 +15,9 @@ const YearButton = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,

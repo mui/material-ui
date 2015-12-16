@@ -15,6 +15,10 @@ const ClockButton = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     onTouchTap: React.PropTypes.func,
     position: React.PropTypes.oneOf(['left', 'right']),

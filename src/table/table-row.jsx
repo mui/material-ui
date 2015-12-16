@@ -13,6 +13,10 @@ const TableRow = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     displayBorder: React.PropTypes.bool,
     hoverable: React.PropTypes.bool,
@@ -26,6 +30,10 @@ const TableRow = React.createClass({
     selectable: React.PropTypes.bool,
     selected: React.PropTypes.bool,
     striped: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

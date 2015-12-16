@@ -24,6 +24,10 @@ const GridTile = React.createClass({
       React.PropTypes.object,
     ]),
     rows: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     subtitle: React.PropTypes.node,
     title: React.PropTypes.node,

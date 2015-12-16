@@ -36,6 +36,10 @@ const EnhancedSwitch = React.createClass({
 
   propTypes: {
     checked: React.PropTypes.bool,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     defaultSwitched: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
@@ -60,6 +64,10 @@ const EnhancedSwitch = React.createClass({
     required: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     rippleStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     switchElement: React.PropTypes.element.isRequired,
     switched: React.PropTypes.bool.isRequired,

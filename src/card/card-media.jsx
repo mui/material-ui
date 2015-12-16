@@ -48,6 +48,10 @@ const CardMedia = React.createClass({
     overlayContainerStyle: React.PropTypes.object,
     overlayContentStyle: React.PropTypes.object,
     overlayStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

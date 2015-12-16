@@ -19,6 +19,10 @@ const Card = React.createClass({
     initiallyExpanded: React.PropTypes.bool,
     onExpandChange: React.PropTypes.func,
     showExpandableButton: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

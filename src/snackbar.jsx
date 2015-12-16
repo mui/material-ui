@@ -55,14 +55,57 @@ const Snackbar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The name of the action on the snackbar.
+     */
     action: React.PropTypes.string,
+
+    /**
+     * The number of milliseconds to wait before automatically dismissing.
+     * If no value is specified the snackbar will dismiss normally.
+     * If a value is provided the snackbar can still be dismissed normally.
+     * If a snackbar is dismissed before the timer expires, the timer will be cleared.
+     */
     autoHideDuration: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the body element.
+     */
     bodyStyle: React.PropTypes.object,
+
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * The message to be displayed on the snackbar.
+     */
     message: React.PropTypes.node.isRequired,
+
+    /**
+     * Fired when the action button is touchtapped.
+     */
     onActionTouchTap: React.PropTypes.func,
+
+    /**
+     * Fired when the snackbar is dismissed.
+     */
     onDismiss: React.PropTypes.func,
+
+    /**
+     * Fired when the snackbar is shown.
+     */
     onShow: React.PropTypes.func,
+
+    /**
+     * If true, the snackbar will open once mounted.
+     */
     openOnMount: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -219,6 +262,7 @@ const Snackbar = React.createClass({
       bodyStyle,
       ...others,
     } = this.props;
+
     const styles = this.getStyles();
 
     const {

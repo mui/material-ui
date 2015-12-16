@@ -24,6 +24,10 @@ const DateDisplay = React.createClass({
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     monthDaySelected: React.PropTypes.bool,
     selectedDate: React.PropTypes.object.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     weekCount: React.PropTypes.number,
   },

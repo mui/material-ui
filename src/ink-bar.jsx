@@ -24,6 +24,10 @@ const InkBar = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     width: React.PropTypes.string.isRequired,
   },

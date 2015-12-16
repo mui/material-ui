@@ -45,6 +45,10 @@ const ScaleInChild = React.createClass({
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,
     minScale: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

@@ -50,6 +50,10 @@ const SelectField = React.createClass({
     rows: React.PropTypes.number,
     selectFieldRoot: React.PropTypes.object,
     selectedIndex: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     type: React.PropTypes.string,
     underlineDisabledStyle: React.PropTypes.object,

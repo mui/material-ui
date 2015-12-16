@@ -18,11 +18,19 @@ const TableHeader = React.createClass({
   propTypes: {
     adjustForCheckbox: React.PropTypes.bool,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     displaySelectAll: React.PropTypes.bool,
     enableSelectAll: React.PropTypes.bool,
     onSelectAll: React.PropTypes.func,
     selectAllSelected: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

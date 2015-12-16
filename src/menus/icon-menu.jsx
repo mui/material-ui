@@ -22,6 +22,10 @@ const IconMenu = React.createClass({
   propTypes: {
     anchorOrigin: PropTypes.origin,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     closeOnItemTouchTap: React.PropTypes.bool,
     iconButtonElement: React.PropTypes.element.isRequired,
@@ -36,6 +40,10 @@ const IconMenu = React.createClass({
     onRequestChange: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     touchTapCloseDelay: React.PropTypes.number,

@@ -25,9 +25,17 @@ const Popover = React.createClass({
     autoCloseWhenOffScreen: React.PropTypes.bool,
     canAutoPosition: React.PropTypes.bool,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     onRequestClose: React.PropTypes.func,
     open: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     useLayerForClickAway: React.PropTypes.bool,

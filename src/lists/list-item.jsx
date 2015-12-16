@@ -53,6 +53,10 @@ const ListItem = React.createClass({
     rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

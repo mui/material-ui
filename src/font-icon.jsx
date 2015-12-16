@@ -28,6 +28,10 @@ const FontIcon = React.createClass({
     hoverColor: React.PropTypes.string,
     onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

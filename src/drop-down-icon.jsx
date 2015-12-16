@@ -35,6 +35,10 @@ const DropDownIcon = React.createClass({
     iconStyle: React.PropTypes.object,
     menuItems: React.PropTypes.array.isRequired,
     onChange: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

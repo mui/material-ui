@@ -39,6 +39,10 @@ const Menu = React.createClass({
     onKeyDown: React.PropTypes.func,
     openDirection: PropTypes.corners,
     selectedMenuItemStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     value: React.PropTypes.any,
     valueLink: React.PropTypes.object,

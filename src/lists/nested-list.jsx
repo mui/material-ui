@@ -9,6 +9,10 @@ const NestedList = React.createClass({
     children: React.PropTypes.node,
     nestedLevel: React.PropTypes.number,
     open: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

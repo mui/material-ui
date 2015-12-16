@@ -25,6 +25,10 @@ const Overlay = React.createClass({
   propTypes: {
     autoLockScrolling: React.PropTypes.bool,
     show: React.PropTypes.bool.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     transitionEnabled: React.PropTypes.bool,
   },

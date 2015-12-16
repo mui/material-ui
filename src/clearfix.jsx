@@ -27,6 +27,10 @@ ClearFix.displayName = 'ClearFix';
 
 ClearFix.propTypes = {
   children: React.PropTypes.node,
+
+  /**
+   * Override the inline-styles of the root element.
+   */
   style: React.PropTypes.object,
 };
 

@@ -28,6 +28,10 @@ const TimePicker = React.createClass({
     onShow: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     pedantic: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
   },

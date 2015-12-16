@@ -15,10 +15,17 @@ const Tooltip = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
     label: React.PropTypes.node.isRequired,
     show: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     touch: React.PropTypes.bool,
     verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),

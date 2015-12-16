@@ -80,6 +80,10 @@ const EnhancedButton = React.createClass({
     onKeyUp: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     tabIndex: React.PropTypes.number,
     touchRippleColor: React.PropTypes.string,

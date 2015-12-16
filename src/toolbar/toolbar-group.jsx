@@ -19,7 +19,7 @@ const ToolbarGroup = React.createClass({
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root `div` element.
+     * The css class name of the root element.
      */
     className: React.PropTypes.string,
 
@@ -41,7 +41,7 @@ const ToolbarGroup = React.createClass({
     lastChild: React.PropTypes.bool,
 
     /**
-     * Override the inline-styles of the `ToolbarGroup`'s root element.
+     * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
   },
