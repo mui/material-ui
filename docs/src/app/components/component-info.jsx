@@ -100,7 +100,7 @@ const ComponentInfo = React.createClass({
         position: 'inherit',
         paddingRight: desktopGutter + 'px',
       },
-      descWhenMedium :{
+      descWhenMedium: {
         paddingTop: '16px',
       },
       tdWhenLarge: {
@@ -109,7 +109,7 @@ const ComponentInfo = React.createClass({
       nameWhenLarge: {
         minWidth: '128px',
       },
-      descWhenLarge :{
+      descWhenLarge: {
         paddingTop: '32px',
       },
       descWhenLastChild: {

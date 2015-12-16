@@ -8,7 +8,7 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const Installation = React.createClass({
 
-  contextTypes : {
+  contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 

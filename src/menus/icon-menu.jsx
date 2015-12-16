@@ -54,12 +54,12 @@ const IconMenu = React.createClass({
       onTouchTap: () => {},
       onRequestChange: () => {},
       anchorOrigin: {
-        vertical:'top',
-        horizontal:'left',
+        vertical: 'top',
+        horizontal: 'left',
       },
       targetOrigin: {
-        vertical:'top',
-        horizontal:'left',
+        vertical: 'top',
+        horizontal: 'left',
       },
       touchTapCloseDelay: 200,
     };
@@ -144,7 +144,7 @@ const IconMenu = React.createClass({
       },
 
       menu: {
-        position:'relative',
+        position: 'relative',
       },
     };
 

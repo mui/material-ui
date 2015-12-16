@@ -12,13 +12,13 @@ export default {
     'top-right',
   ]),
 
-  horizontal:horizontal,
+  horizontal: horizontal,
 
-  vertical:vertical,
+  vertical: vertical,
 
   origin: React.PropTypes.shape({
     horizontal: horizontal,
-    vertical:vertical,
+    vertical: vertical,
   }),
 
   cornersAndCenter: React.PropTypes.oneOf([

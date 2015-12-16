@@ -48,15 +48,15 @@ const PopoverDefaultAnimation = React.createClass({
   },
 
   componentDidMount() {
-    this.setState({open:true}); //eslint-disable-line react/no-did-mount-set-state
+    this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     this.setState({
-      open:nextProps.open,
-      muiTheme:newMuiTheme,
+      open: nextProps.open,
+      muiTheme: newMuiTheme,
     });
   },
 
@@ -67,26 +67,26 @@ const PopoverDefaultAnimation = React.createClass({
 
     return {
       base: {
-        opacity:0,
-        transform:'scale(0, 0)',
+        opacity: 0,
+        transform: 'scale(0, 0)',
         transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
         position: 'fixed',
         zIndex: this.state.muiTheme.zIndex.popover,
         transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
-        maxHeight:'100%',
+        maxHeight: '100%',
 
       },
       horizontal: {
-        maxHeight:'100%',
-        overflowY:'auto',
-        transform:'scaleX(0)',
-        opacity:0,
+        maxHeight: '100%',
+        overflowY: 'auto',
+        transform: 'scaleX(0)',
+        opacity: 0,
         transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
         transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
       },
       vertical: {
-        opacity:0,
-        transform:'scaleY(0)',
+        opacity: 0,
+        transform: 'scaleY(0)',
         transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
         transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
       },
@@ -97,15 +97,15 @@ const PopoverDefaultAnimation = React.createClass({
     return {
       base: {
         opacity: 1,
-        transform:'scale(1, 1)',
+        transform: 'scale(1, 1)',
       },
       horizontal: {
         opacity: 1,
-        transform:'scaleX(1)',
+        transform: 'scaleX(1)',
       },
       vertical: {
         opacity: 1,
-        transform:'scaleY(1)',
+        transform: 'scaleY(1)',
       },
     };
   },

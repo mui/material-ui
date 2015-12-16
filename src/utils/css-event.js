@@ -17,10 +17,10 @@ export default {
   //Returns the correct event name to use
   transitionEndEventName() {
     return this._testSupportedProps({
-      'transition':'transitionend',
-      'OTransition':'otransitionend',
-      'MozTransition':'transitionend',
-      'WebkitTransition':'webkitTransitionEnd',
+      'transition': 'transitionend',
+      'OTransition': 'otransitionend',
+      'MozTransition': 'transitionend',
+      'WebkitTransition': 'webkitTransitionEnd',
     });
   },
 

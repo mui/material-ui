@@ -481,17 +481,17 @@ export default class SwitchesPage extends React.Component {
             id="radioButtonId1"
             value="light"
             label="prepare for light speed"
-            style={{marginBottom:16}} />
+            style={{marginBottom: 16}} />
           <RadioButton
             id="radioButtonId2"
             value="not_light"
             label="light speed too slow"
-            style={{marginBottom:16}}/>
+            style={{marginBottom: 16}}/>
           <RadioButton
             id="radioButtonId3"
             value="ludicrous"
             label="go to ludicrous speed"
-            style={{marginBottom:16}}
+            style={{marginBottom: 16}}
             disabled={true}/>
         </RadioButtonGroup>
       </div>

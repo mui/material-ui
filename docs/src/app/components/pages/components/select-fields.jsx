@@ -196,11 +196,11 @@ const SelectFieldsPage = React.createClass({
       {payload: '5', text: 'Weekly'},
     ];
     let arbitraryArrayMenuItems = [
-      {id:1, name:'Never'},
-      {id:2, name:'Every Night'},
-      {id:3, name:'Weeknights'},
-      {id:4, name:'Weekends'},
-      {id:5, name:'Weekly'},
+      {id: 1, name: 'Never'},
+      {id: 2, name: 'Every Night'},
+      {id: 3, name: 'Weeknights'},
+      {id: 4, name: 'Weekends'},
+      {id: 5, name: 'Weekly'},
     ];
     let menuItemsWithLabel = [
       {payload: '1', text: 'Morning', period: '5 am - 12 pm'},

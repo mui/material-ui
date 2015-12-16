@@ -55,7 +55,7 @@ const TableHeaderColumn = React.createClass({
   getStyles() {
     let theme = this.getTheme();
     let styles = {
-      root:  {
+      root: {
         fontWeight: 'normal',
         fontSize: 12,
         paddingLeft: theme.spacing,

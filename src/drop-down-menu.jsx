@@ -40,10 +40,10 @@ const DropDownMenu = React.createClass({
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     displayMember: React.PropTypes.string,
-    iconStyle:React.PropTypes.object,
+    iconStyle: React.PropTypes.object,
     labelMember: React.PropTypes.string,
-    labelStyle:React.PropTypes.object,
-    maxHeight:React.PropTypes.number,
+    labelStyle: React.PropTypes.object,
+    maxHeight: React.PropTypes.number,
     menuItemStyle: React.PropTypes.object,
     menuItems: React.PropTypes.array.isRequired,
     menuStyle: React.PropTypes.object,
@@ -51,7 +51,7 @@ const DropDownMenu = React.createClass({
     openImmediately: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
     style: React.PropTypes.object,
-    underlineStyle:React.PropTypes.object,
+    underlineStyle: React.PropTypes.object,
     value: React.PropTypes.any,
     valueLink: React.PropTypes.object,
     valueMember: React.PropTypes.string,
@@ -114,7 +114,7 @@ const DropDownMenu = React.createClass({
         cursor: disabled ? 'not-allowed' : 'pointer',
         position: 'relative',
         height: '100%',
-        width:'100%',
+        width: '100%',
       },
       controlBg: {
         transition: Transitions.easeOut(),
@@ -145,13 +145,13 @@ const DropDownMenu = React.createClass({
         position: 'absolute',
         borderTop: 'solid 1px ' + accentColor,
         margin: '-1px ' + spacing.desktopGutter + 'px',
-        bottom:1,
-        left:0,
-        right:0,
+        bottom: 1,
+        left: 0,
+        right: 0,
       },
       menu: {
         zIndex: zIndex + 1,
-        position:'relative',
+        position: 'relative',
       },
       menuItem: {
         paddingRight: spacing.iconSize +
@@ -235,7 +235,7 @@ const DropDownMenu = React.createClass({
     );
 
     if (this.state.anchorEl && !autoWidth) {
-      popoverStyle = {width:this.state.anchorEl.clientWidth};
+      popoverStyle = {width: this.state.anchorEl.clientWidth};
     }
 
     return (
@@ -257,7 +257,7 @@ const DropDownMenu = React.createClass({
             <div style={this.prepareStyles(styles.underline, underlineStyle)}/>
           </ClearFix>
           <Popover
-            anchorOrigin={{horizontal:'left', vertical:'top'}}
+            anchorOrigin={{horizontal: 'left', vertical: 'top'}}
             anchorEl={this.state.anchorEl}
             style={popoverStyle}
             animation={PopoverAnimationFromTop}
@@ -312,14 +312,14 @@ const DropDownMenu = React.createClass({
         }
         else {
           if (e.altKey) {
-            this.setState({open:false});
+            this.setState({open: false});
           }
         }
         break;
       case KeyCode.DOWN:
         if (!this.state.open) {
           if (e.altKey) {
-            this.setState({open:true});
+            this.setState({open: true});
           }
           else {
             this._selectNextItem(e);
@@ -328,7 +328,7 @@ const DropDownMenu = React.createClass({
         break;
       case KeyCode.ENTER:
       case KeyCode.SPACE:
-        this.setState({open:true});
+        this.setState({open: true});
         break;
       default:
         return; //important
@@ -361,8 +361,8 @@ const DropDownMenu = React.createClass({
 
   _onMenuRequestClose() {
     this.setState({
-      open:false,
-      anchorEl:null,
+      open: false,
+      anchorEl: null,
     });
   },
 

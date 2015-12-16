@@ -264,7 +264,7 @@ The textarea also grows and shrinks according to the number of lines.`,
                 style={styles.textfield}
                 hintText="Custom Underline Color"
                 value={this.state.propValue}
-                underlineStyle={{borderColor:Colors.green500}}
+                underlineStyle={{borderColor: Colors.green500}}
                 onChange={this._handleInputChange} /><br/>
               <TextField
                 style={styles.textfield}
@@ -274,7 +274,7 @@ The textarea also grows and shrinks according to the number of lines.`,
                 style={styles.textfield}
                 disabled={true}
                 hintText="Custom Underline Disabled Style"
-                underlineDisabledStyle={{borderColor:Colors.purple500, borderBottom: 'solid 1px'}} /><br />
+                underlineDisabledStyle={{borderColor: Colors.purple500, borderBottom: 'solid 1px'}} /><br />
               <TextField
                 style={styles.textfield}
                 hintText="Hint Text"
@@ -306,7 +306,7 @@ The textarea also grows and shrinks according to the number of lines.`,
                 style={styles.textfield}
                 hintText="Hint Text (custom error color)"
                 errorText={this.state.error2Text}
-                errorStyle={{color:Colors.orange500}}
+                errorStyle={{color: Colors.orange500}}
                 onChange={this._handleError2InputChange}
                 defaultValue="Custom error color" /><br/>
               <TextField
