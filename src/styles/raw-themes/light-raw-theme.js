@@ -7,4 +7,3 @@ export default {
   palette: LightBaseTheme.palette,
 };
 
-console.warn("light-raw-theme is deprecated, please use 'styles/base-themes/light-base-theme' instead.");
