@@ -2,6 +2,7 @@ node_modules
 npm-debug.log
 build
 coverage
+lib
 
 # Exclude compiled files
 icon-builder/js
