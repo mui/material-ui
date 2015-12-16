@@ -1,6 +1,6 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
-import Styles from '../utils/styles';
+import styleUtils from '../utils/styles';
 
 const propTypes = {
   /**
@@ -81,7 +81,7 @@ const TextFieldUnderline = (props) => {
   } = muiTheme;
 
 
-  let styles = {
+  const styles = {
     root: {
       border: 'none',
       borderBottom: 'solid 1px',
@@ -108,17 +108,17 @@ const TextFieldUnderline = (props) => {
     },
   };
 
-  let underline = Styles.merge(styles.root, style);
-  let focusedUnderline = Styles.merge(styles.root, styles.focus, focusStyle);
+  let underline = styleUtils.merge(styles.root, style);
+  let focusedUnderline = styleUtils.merge(underline, styles.focus, focusStyle);
 
-  if (disabled) underline = Styles.merge(underline, styles.disabled, disabledStyle);
-  if (focus) focusedUnderline = Styles.merge(focusedUnderline, {transform: 'scaleX(1)'});
-  if (error) focusedUnderline = Styles.merge(focusedUnderline, styles.error);
+  if (disabled) underline = styleUtils.merge(underline, styles.disabled, disabledStyle);
+  if (focus) focusedUnderline = styleUtils.merge(focusedUnderline, {transform: 'scaleX(1)'});
+  if (error) focusedUnderline = styleUtils.merge(focusedUnderline, styles.error);
 
   return (
     <div>
-      <hr style={Styles.prepareStyles(muiTheme, underline)}/>
-      <hr style={Styles.prepareStyles(muiTheme, focusedUnderline)}/>
+      <hr style={styleUtils.prepareStyles(muiTheme, underline)}/>
+      <hr style={styleUtils.prepareStyles(muiTheme, focusedUnderline)}/>
     </div>
   );
 };
