@@ -29,6 +29,7 @@
 - [ ] Documentation versioning (This is a must before removing deprecations).
 - [ ] Enforce eslint rules.
 - [ ] #2433 Auto-generate Docs from source-code.
+- [ ] #2460 Enhance `ThemeManager` to perform a deep merge with default baseTheme. (easier customization)
 - [ ] #2493 Use higher order components across the library to abstract themes passed down from context.
 
 ##### Breaking Changes
