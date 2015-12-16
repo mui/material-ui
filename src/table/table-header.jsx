@@ -65,7 +65,7 @@ const TableHeader = React.createClass({
 
   getStyles() {
     let styles = {
-      root:  {
+      root: {
         borderBottom: '1px solid ' + this.getTheme().borderColor,
       },
     };

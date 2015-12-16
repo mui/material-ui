@@ -117,7 +117,7 @@ export default class CardPage extends React.Component {
             <CardHeader
               title="Title"
               subtitle="Subtitle"
-              avatar={<Avatar style={{color:'red'}}>A</Avatar>}/>
+              avatar={<Avatar style={{color: 'red'}}>A</Avatar>}/>
             <CardHeader
               title="Demo Url Based Avatar"
               subtitle="Subtitle"

@@ -64,7 +64,7 @@ const Popover = React.createClass({
 
     return {
       open: this.props.open,
-      closing:false,
+      closing: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -97,12 +97,12 @@ const Popover = React.createClass({
         this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
         this.setState({
           open: true,
-          closing:false,
+          closing: false,
           muiTheme: newMuiTheme,
         });
       } else {
         if (nextProps.animated) {
-          this.setState({closing:true});
+          this.setState({closing: true});
           this._timeout = setTimeout(() => {
             if (this.isMounted()) {
               this.setState({

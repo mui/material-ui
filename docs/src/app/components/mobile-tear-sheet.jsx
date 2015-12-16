@@ -6,7 +6,7 @@ const {StylePropable} = Mixins;
 const MobileTearSheet = React.createClass({
   mixins: [StylePropable],
 
-  contextTypes : {
+  contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 

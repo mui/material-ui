@@ -99,7 +99,7 @@ export default {
         backgroundColor: rawTheme.palette.canvasColor,
       },
       radioButton: {
-        borderColor:  rawTheme.palette.textColor,
+        borderColor: rawTheme.palette.textColor,
         backgroundColor: rawTheme.palette.alternateTextColor,
         checkedColor: rawTheme.palette.primary1Color,
         requiredColor: rawTheme.palette.primary1Color,

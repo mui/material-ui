@@ -8,11 +8,11 @@ import CodeExample from '../../code-example/code-example';
 let PopoverPage = React.createClass({
   getInitialState() {
     return {
-      selectValue:'1',
-      textValue:'here is a value',
-      activePopover:'none',
-      anchorOrigin:{horizontal:'left', vertical:'bottom'},
-      targetOrigin:{horizontal:'left', vertical:'top'},
+      selectValue: '1',
+      textValue: 'here is a value',
+      activePopover: 'none',
+      anchorOrigin: {horizontal: 'left', vertical: 'bottom'},
+      targetOrigin: {horizontal: 'left', vertical: 'top'},
     };
   },
 
@@ -114,7 +114,7 @@ let PopoverPage = React.createClass({
             targetOrigin: {JSON.stringify(this.state.targetOrigin)}
           </pre>
           <h3>Anchor Origin</h3>
-          <div style={{float:'left'}}>
+          <div style={{float: 'left'}}>
             <strong>Vertical</strong>
             <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'top')}
               label="Top" checked={this.state.anchorOrigin.vertical === 'top'} />
@@ -123,7 +123,7 @@ let PopoverPage = React.createClass({
             <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'bottom')}
               label="Bottom" checked={this.state.anchorOrigin.vertical === 'bottom'} />
           </div>
-          <div style={{float:'left'}}>
+          <div style={{float: 'left'}}>
             <strong>Horizontal</strong>
             <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'left')}
               label="Left" checked={this.state.anchorOrigin.horizontal === 'left'} />
@@ -132,11 +132,11 @@ let PopoverPage = React.createClass({
             <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'right')}
               label="Right" checked={this.state.anchorOrigin.horizontal === 'right'} />
           </div>
-          <br style={{clear:'both'}} />
-          <br style={{clear:'both'}} />
+          <br style={{clear: 'both'}} />
+          <br style={{clear: 'both'}} />
 
           <h3>Target Origin</h3>
-          <div style={{float:'left'}}>
+          <div style={{float: 'left'}}>
             <strong>Vertical</strong>
             <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'top')}
               label="Top" checked={this.state.targetOrigin.vertical === 'top'} />
@@ -145,7 +145,7 @@ let PopoverPage = React.createClass({
             <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'bottom')}
               label="Bottom" checked={this.state.targetOrigin.vertical === 'bottom'} />
           </div>
-          <div style={{float:'left'}}>
+          <div style={{float: 'left'}}>
             <strong>Horizontal</strong>
             <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'left')}
               label="Left" checked={this.state.targetOrigin.horizontal === 'left'} />
@@ -160,7 +160,7 @@ let PopoverPage = React.createClass({
             anchorOrigin={this.state.anchorOrigin}
             targetOrigin={this.state.targetOrigin}
             onRequestClose={this.closePopover.bind(this, 'pop')} >
-            <div style={{padding:20}}>
+            <div style={{padding: 20}}>
               <h2>Here is an arbitrary popover</h2>
               <p>Hi - here is some content</p>
               <RaisedButton primary={true} label="Here is a button"/>
@@ -173,8 +173,8 @@ let PopoverPage = React.createClass({
 
   show(key, e) {
     this.setState({
-      activePopover:key,
-      anchorEl:e.currentTarget,
+      activePopover: key,
+      anchorEl: e.currentTarget,
     });
   },
 
@@ -182,7 +182,7 @@ let PopoverPage = React.createClass({
     if (this.state.activePopover !== key)
       return;
     this.setState({
-      activePopover:'none',
+      activePopover: 'none',
     });
   },
 
@@ -191,7 +191,7 @@ let PopoverPage = React.createClass({
     anchorOrigin[positionElement] = position;
 
     this.setState({
-      anchorOrigin:anchorOrigin,
+      anchorOrigin: anchorOrigin,
     });
   },
 
@@ -200,7 +200,7 @@ let PopoverPage = React.createClass({
     targetOrigin[positionElement] = position;
 
     this.setState({
-      targetOrigin:targetOrigin,
+      targetOrigin: targetOrigin,
     });
   },
 

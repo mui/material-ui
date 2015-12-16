@@ -17,13 +17,13 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const CodeExample = React.createClass({
 
-  propTypes : {
+  propTypes: {
     children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
     layoutSideBySide: React.PropTypes.bool,
   },
 
-  contextTypes : {
+  contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 

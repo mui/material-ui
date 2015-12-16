@@ -162,7 +162,7 @@ const RaisedButton = React.createClass({
         userSelect: 'none',
         lineHeight: (this.props.style && this.props.style.height) ?
          this.props.style.height : this.getThemeButton().height + 'px',
-        color:  this._getLabelColor(),
+        color: this._getLabelColor(),
       },
       overlay: {
         transition: Transitions.easeOut(),

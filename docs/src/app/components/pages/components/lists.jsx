@@ -430,7 +430,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
               <ListItem
                 primaryText="Adelle Charles"
                 leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent}
-                  style={{left:8}}>A</Avatar>}
+                  style={{left: 8}}>A</Avatar>}
                 rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
               <ListItem
                 primaryText="Adham Dannaway"

@@ -62,11 +62,11 @@ class AutoCompletePage extends React.Component {
             dataSource={[
               {
                 text: 'text-value1',
-                value:(<AutoComplete.Item primaryText={'text-value1'} secondaryText="&#9786;" />),
+                value: (<AutoComplete.Item primaryText={'text-value1'} secondaryText="&#9786;" />),
               },
               {
                 text: 'text-value2',
-                value:(<AutoComplete.Item primaryText={'text-value2'} secondaryText="&#9786;" />),
+                value: (<AutoComplete.Item primaryText={'text-value2'} secondaryText="&#9786;" />),
               },
             ]}
             onNewRequest={(t, index) => { console.log('request:' + index); }} />

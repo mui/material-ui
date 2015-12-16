@@ -20,8 +20,8 @@ export default class DropDownMenuPage extends React.Component {
     let longMenuItems = [];
     for (let i = 0; i < 100; i++ ) {
       longMenuItems.push({
-        payload:i.toString(),
-        text:'Item ' + i,
+        payload: i.toString(),
+        text: 'Item ' + i,
       });
     }
 

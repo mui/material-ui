@@ -7,7 +7,7 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const Prerequisites = React.createClass({
 
-  contextTypes : {
+  contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
