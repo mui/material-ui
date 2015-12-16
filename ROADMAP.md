@@ -6,8 +6,7 @@
 1. NavBar component (To address the hamburger anti-pattern).
 1. Add jsdoc to the source code (Preparing for auto generation).
 1. Make extensive use of `popover` and `render-to-layer`.
-1. Auto-generate Docs from source-code.
-1. Full ES6 Classes.
+1. [\[es6-classes\]](https://github.com/callemall/material-ui/tree/es6-classes) Full ES6 Classes.
 1. Full featured Table.
 1. Comprehensive contribution guide for the docs and changelogs.
 1. I18n for the doc-site.
@@ -16,6 +15,7 @@
 1. Improve performance with `shouldComponentUpdate` and removed inefficient computations.
 1. Standardize API naming and available `prop` convention across the library.
 1. Standardize API callback signature and provide formal documentation.
+1. #2416 TextField as a composable component for various field types.
 
 ##### Breaking Changes
 
@@ -24,11 +24,13 @@
 
 ## 0.14.0
 
-- [x] Deprecate the old menu folder. #2443
-- [ ] Deprecate usage of JSON in favor of composability.
+- [x] #2443 Deprecate the old menu folder.
+- [ ] #2456 Deprecate usage of JSON in favor of composability.
 - [ ] Documentation versioning (This is a must before removing deprecations).
 - [ ] Enforce eslint rules.
+- [ ] #2433 Auto-generate Docs from source-code.
+- [ ] #2493 Use higher order components across the library to abstract themes passed down from context.
 
 ##### Breaking Changes
 
-- [x] Remove Dialog's deprecated API. #2396
+- [x] #2396 Remove Dialog's deprecated API.
