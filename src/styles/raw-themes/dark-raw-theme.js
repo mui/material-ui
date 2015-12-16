@@ -6,5 +6,3 @@ export default {
   zIndex: DarkBaseTheme.zIndex,
   palette: DarkBaseTheme.palette,
 };
-
-console.warn("dark-raw-theme is deprecated, please use 'styles/base-themes/dark-base-theme' instead.");
