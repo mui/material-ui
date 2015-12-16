@@ -254,4 +254,12 @@ export default {
     return this.getMuiTheme(newRawTheme);
   },
 
+  //function to modify the zIndex of the raw theme. This function recomputes
+  //the MUI theme and returns it based on the new raw theme.
+  modifyRawThemeZIndex: function(muiTheme, newZIndexKeys) {
+    let newZIndex = Extend(muiTheme.rawTheme.zIndex, newZIndexKeys);
+    let newRawTheme = update(muiTheme.rawTheme, {zIndex: {$set: newZIndex}});
+    return this.getMuiTheme(newRawTheme);
+  },
+
 };
