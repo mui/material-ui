@@ -8,6 +8,7 @@ import EnhancedTextarea from '../enhanced-textarea';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import ContextPure from '../mixins/context-pure';
+import TextFieldHint from './TextFieldHint';
 import TextFieldUnderline from './TextFieldUnderline';
 import warning from 'warning';
 
@@ -186,13 +187,17 @@ const TextField = React.createClass({
         color: errorColor,
         transition: Transitions.easeOut(),
       },
-      hint: {
+      floatingLabel: {
         position: 'absolute',
         lineHeight: '22px',
+        top: 38,
         opacity: 1,
         color: hintColor,
         transition: Transitions.easeOut(),
-        bottom: 12,
+        zIndex: 1, // Needed to display label above Chrome's autocomplete field background
+        cursor: 'text',
+        transform: 'scale(1) translate3d(0, 0, 0)',
+        transformOrigin: 'left top',
       },
       input: {
         tapHighlightColor: 'rgba(0,0,0,0)',
@@ -210,17 +215,6 @@ const TextField = React.createClass({
 
     styles.error = this.mergeStyles(styles.error, props.errorStyle);
 
-    styles.floatingLabel = this.mergeStyles(styles.hint, {
-      lineHeight: '22px',
-      top: 38,
-      bottom: 'none',
-      opacity: 1,
-      zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-      cursor: 'text',
-      transform: 'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: 'left top',
-    });
-
     styles.textarea = this.mergeStyles(styles.input, {
       marginTop: props.floatingLabelText ? 36 : 12,
       marginBottom: props.floatingLabelText ? -36 : -12,
@@ -237,16 +231,10 @@ const TextField = React.createClass({
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
       styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
-      styles.hint.opacity = 0;
     }
 
     if (props.floatingLabelText) {
-      styles.hint.opacity = 0;
       styles.input.boxSizing = 'border-box';
-
-      if (this.state.isFocused && !this.state.hasValue) {
-        styles.hint.opacity = 1;
-      }
 
       if (!props.multiLine) {
         styles.input.marginTop = 14;
@@ -255,10 +243,6 @@ const TextField = React.createClass({
       if (this.state.errorText) {
         styles.error.bottom = styles.error.fontSize + 3;
       }
-    }
-
-    if (props.style && props.style.height) {
-      styles.hint.lineHeight = props.style.height;
     }
 
     if (this.state.errorText) {
@@ -285,6 +269,7 @@ const TextField = React.createClass({
       onBlur,
       onChange,
       onFocus,
+      style,
       type,
       underlineDisabledStyle,
       underlineFocusStyle,
@@ -301,10 +286,6 @@ const TextField = React.createClass({
 
     let errorTextElement = this.state.errorText ? (
       <div style={this.prepareStyles(styles.error)}>{this.state.errorText}</div>
-    ) : null;
-
-    let hintTextElement = hintText ? (
-      <div style={this.prepareStyles(styles.hint, hintStyle)}>{hintText}</div>
     ) : null;
 
     let floatingLabelTextElement = floatingLabelText ? (
@@ -362,9 +343,17 @@ const TextField = React.createClass({
     return (
       <div className={className} style={this.prepareStyles(styles.root, this.props.style)}>
         {floatingLabelTextElement}
-        {hintTextElement}
+        {hintText ?
+          <TextFieldHint
+            muiTheme={this.state.muiTheme}
+            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused))}
+            style={hintStyle}
+            text={hintText}
+          /> :
+          null
+        }
         {inputElement}
-        {this.props.underlineShow ?
+        {underlineShow ?
           <TextFieldUnderline
             disabled={disabled}
             disabledStyle={underlineDisabledStyle}
