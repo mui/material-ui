@@ -4,14 +4,14 @@ import styleUtils from '../utils/styles';
 
 const propTypes = {
   /**
-   * True if the hint text should be hidden.
-   */
-  hidden: React.PropTypes.bool,
-
-  /**
    * The material-ui theme applied to this component.
    */
   muiTheme: React.PropTypes.object.isRequired,
+
+  /**
+   * True if the hint text should be visible.
+   */
+  show: React.PropTypes.bool,
 
   /**
    * Override the inline-styles of the hint text.
@@ -25,14 +25,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-  visible: true,
+  show: true,
 };
 
 const TextFieldHint = (props) => {
 
   const {
-    hidden,
     muiTheme,
+    show,
     style,
     text,
   } = props;
@@ -46,7 +46,7 @@ const TextFieldHint = (props) => {
   const styles = {
     root: {
       position: 'absolute',
-      opacity: hidden ? 0 : 1,
+      opacity: show ? 1 : 0,
       color: hintColor,
       transition: Transitions.easeOut(),
       bottom: 12,

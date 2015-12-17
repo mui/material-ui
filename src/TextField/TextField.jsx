@@ -337,8 +337,8 @@ const TextField = React.createClass({
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint
-            hidden={this.state.hasValue || (floatingLabelText && !this.state.isFocused)}
             muiTheme={this.state.muiTheme}
+            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused))}
             style={hintStyle}
             text={hintText}
           /> :
