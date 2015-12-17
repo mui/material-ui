@@ -30,8 +30,8 @@ const {
 const {StylePropable, StyleResizable} = Mixins;
 const {Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightBaseTheme;
-const DarkRawTheme = Styles.DarkBaseTheme;
+const DefaultRawTheme = Styles.lightBaseTheme;
+const DarkRawTheme = Styles.darkBaseTheme;
 
 const ThemesPage = React.createClass({
 

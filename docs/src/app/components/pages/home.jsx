@@ -6,7 +6,7 @@ import FullWidthSection from '../full-width-section';
 
 const {StylePropable, StyleResizable} = Mixins;
 const {Colors, Spacing, Typography} = Styles;
-const DefaultRawTheme = Styles.LightBaseTheme;
+const DefaultRawTheme = Styles.lightBaseTheme;
 
 
 const HomePage = React.createClass({

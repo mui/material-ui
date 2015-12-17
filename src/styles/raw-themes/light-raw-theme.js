@@ -1,9 +1,8 @@
-import LightBaseTheme from '../base-themes/light-base-theme';
+import lightBaseTheme from '../baseThemes/lightBaseTheme';
+import deprecatedExport from '../../utils/deprecatedExport';
 
-export default {
-  spacing: LightBaseTheme.spacing,
-  fontFamily: LightBaseTheme.fontFamily,
-  zIndex: LightBaseTheme.zIndex,
-  palette: LightBaseTheme.palette,
-};
-
+export default deprecatedExport(
+  lightBaseTheme,
+  'material-ui/lib/styles/raw-themes/light-raw-theme',
+  'material-ui/lib/styles/baseThemes/lightBaseTheme'
+);

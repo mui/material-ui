@@ -1,8 +1,8 @@
-import DarkBaseTheme from '../base-themes/dark-base-theme';
+import darkBaseTheme from '../baseThemes/darkBaseTheme';
+import deprecatedExport from '../../utils/deprecatedExport';
 
-export default {
-  spacing: DarkBaseTheme.spacing,
-  fontFamily: DarkBaseTheme.fontFamily,
-  zIndex: DarkBaseTheme.zIndex,
-  palette: DarkBaseTheme.palette,
-};
+export default deprecatedExport(
+  darkBaseTheme,
+  'material-ui/lib/styles/raw-themes/dark-raw-theme',
+  'material-ui/lib/styles/baseThemes/darkBaseTheme'
+);
