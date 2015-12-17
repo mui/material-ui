@@ -8,11 +8,10 @@ import ClearFix from '../clearfix';
 import ThemeManager from '../styles/theme-manager';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
+import styleUtils from '../utils/styles';
 import warning from 'warning';
 
 const DropDownMenu = React.createClass({
-
-  mixins: [StylePropable],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -33,25 +32,103 @@ const DropDownMenu = React.createClass({
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
   propTypes: {
+    /**
+     * The width will automatically be set according to the items inside the menu.
+     * To control this width in css instead, set this prop to false.
+     */
     autoWidth: React.PropTypes.bool,
+
+    /**
+     * The `MenuItem`s to populate the `Menu` with.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
+
+    /**
+     * Disables the menu.
+     */
     disabled: React.PropTypes.bool,
-    displayMember: React.PropTypes.string, // DEPRECATE
+
+    /**
+     * **DEPRECATED** `DropDownMenu` will use this member to display
+     * the name of the item.
+     */
+    displayMember: React.PropTypes.string,
+
+    /**
+     * Overrides the styles of icon element.
+     */
     iconStyle: React.PropTypes.object,
-    labelMember: React.PropTypes.string, // DEPRECATE
-    labelStyle: React.PropTypes.object, // DEPRECATE
+
+    /**
+     * **DEPRECATED** `DropDownMenu` will use this member to display
+     * the name of the item on the label.
+     */
+    labelMember: React.PropTypes.string,
+
+    /**
+     * Overrides the styles of label when the `DropDownMenu` is inactive.
+     */
+    labelStyle: React.PropTypes.object,
+
+    /**
+     * The maximum height of the `Menu` when it is displayed.
+     */
     maxHeight: React.PropTypes.number,
-    menuItems: React.PropTypes.array, // DEPRECATE
+
+    /**
+     * **DEPRECATED** JSON data representing all menu items in the dropdown.
+     */
+    menuItems: React.PropTypes.array,
+
+    /**
+     * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
+     */
     menuStyle: React.PropTypes.object,
+
+    /**
+     * Fired when a menu item is clicked that is not the one currently selected.
+     */
     onChange: React.PropTypes.func,
+
+    /**
+     * Set to true to have the `DropDownMenu` automatically open on mount.
+     */
     openImmediately: React.PropTypes.bool,
-    selectedIndex: React.PropTypes.number, // DEPRECATE
+
+    /**
+     * **DEPRECATED** Index of the item selected.
+     */
+    selectedIndex: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
+
+    /**
+     * Overrides the inline-styles of the underline.
+     */
     underlineStyle: React.PropTypes.object,
+
+    /**
+     * The value that is currently selected.
+     */
     value: React.PropTypes.any,
-    valueLink: React.PropTypes.object, // DEPRECATE
-    valueMember: React.PropTypes.string, // DEPRECATE
+
+    /**
+     * **DEPRECATED** Two-way binding link.
+     */
+    valueLink: React.PropTypes.object,
+
+    /**
+     * **DEPRECATED** `DropDownMenu` will use this member as the value representing an item.
+     */
+    valueMember: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -99,57 +176,57 @@ const DropDownMenu = React.createClass({
     const palette = this.state.muiTheme.rawTheme.palette;
     const accentColor = this.state.muiTheme.dropDownMenu.accentColor;
     return {
-      root: {
-        transition: Transitions.easeOut(),
-        position: 'relative',
-        display: 'inline-block',
-        height: spacing.desktopSubheaderHeight,
-        fontSize: spacing.desktopDropDownMenuFontSize,
-        outline: 'none',
-      },
       control: {
         cursor: disabled ? 'not-allowed' : 'pointer',
-        position: 'relative',
         height: '100%',
+        position: 'relative',
         width: '100%',
       },
       icon: {
-        position: 'absolute',
-        top: ((spacing.desktopToolbarHeight - 24) / 2),
-        right: spacing.desktopGutterLess,
         fill: accentColor,
+        position: 'absolute',
+        right: spacing.desktopGutterLess,
+        top: ((spacing.desktopToolbarHeight - 24) / 2),
       },
       label: {
+        color: disabled ? palette.disabledColor : palette.textColor,
         lineHeight: `${spacing.desktopToolbarHeight}px`,
+        opacity: 1,
         position: 'relative',
         paddingLeft: spacing.desktopGutter,
         paddingRight: spacing.iconSize +
                       spacing.desktopGutterLess +
                       spacing.desktopGutterMini,
         top: 0,
-        opacity: 1,
-        color: disabled ? palette.disabledColor : palette.textColor,
-      },
-      underline: {
-        position: 'absolute',
-        borderTop: `solid 1px ${accentColor}`,
-        margin: `-1px ${spacing.desktopGutter}px`,
-        bottom: 1,
-        left: 0,
-        right: 0,
-      },
-      rootWhenOpen: {
-        opacity: 1,
       },
       labelWhenOpen: {
         opacity: 0,
         top: (spacing.desktopToolbarHeight / 8),
       },
+      rootWhenOpen: {
+        opacity: 1,
+      },
+      root: {
+        display: 'inline-block',
+        fontSize: spacing.desktopDropDownMenuFontSize,
+        height: spacing.desktopSubheaderHeight,
+        outline: 'none',
+        position: 'relative',
+        transition: Transitions.easeOut(),
+      },
+      underline: {
+        borderTop: `solid 1px ${accentColor}`,
+        bottom: 1,
+        left: 0,
+        margin: `-1px ${spacing.desktopGutter}px`,
+        right: 0,
+        position: 'absolute',
+      },
     };
   },
 
   getInputNode() {
-    warning(false, `This imperative method will be removed in favor of composability.`);
+    warning(false, `The imperative method getInputNode will be removed in favor of composability.`);
     const root = this.refs.root;
     const item = this.props.menuItems && this.props.menuItems[this.state.selectedIndex];
     if (item) {
@@ -181,6 +258,7 @@ const DropDownMenu = React.createClass({
     const {
       anchorEl,
       open,
+      muiTheme,
     } = this.state;
 
     const styles = this.getStyles();
@@ -246,14 +324,14 @@ const DropDownMenu = React.createClass({
         {...other}
         ref="root"
         className={className}
-        style={this.prepareStyles(styles.root, open && styles.rootWhenOpen, style)}
+        style={styleUtils.prepareStyles(muiTheme, styles.root, open && styles.rootWhenOpen, style)}
       >
-        <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlTouchTap}>
-          <div style={this.prepareStyles(styles.label, open && styles.labelWhenOpen, labelStyle)}>
+        <ClearFix style={styleUtils.merge(styles.control)} onTouchTap={this._onControlTouchTap}>
+          <div style={styleUtils.prepareStyles(muiTheme, styles.label, open && styles.labelWhenOpen, labelStyle)}>
             {displayValue}
           </div>
-          <DropDownArrow style={this.mergeStyles(styles.icon, iconStyle)}/>
-          <div style={this.prepareStyles(styles.underline, underlineStyle)}/>
+          <DropDownArrow style={styleUtils.merge(styles.icon, iconStyle)}/>
+          <div style={styleUtils.prepareStyles(muiTheme, styles.underline, underlineStyle)}/>
         </ClearFix>
         <Popover
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
@@ -276,14 +354,11 @@ const DropDownMenu = React.createClass({
   },
 
   _testDeprecations() {
-    warning(!this.props.hasOwnProperty('displayMember'),
+    warning(this.props.displayMember === 'text',
       'displayMember will be removed in favor of composability. refer to the documentation for more information');
 
-    warning(!this.props.hasOwnProperty('labelMember'),
+    warning(this.props.labelMember === 'text',
       'labelMember will be removed in favor of composability. refer to the documentation for more information');
-
-    warning(!this.props.hasOwnProperty('labelStyle'),
-      'labelStyle will be removed with labelMember.');
 
     warning(!this.props.hasOwnProperty('menuItems'),
       'menuItems will be removed in favor of composability. refer to the documentation for more information');
@@ -294,7 +369,7 @@ const DropDownMenu = React.createClass({
     warning(!this.props.hasOwnProperty('valueLink'),
       'valueLink will be removed. use value and onChange');
 
-    warning(!this.props.hasOwnProperty('valueMember'),
+    warning(this.props.valueMember === 'payload',
       'valueMember will be removed in favor of composability. refer to the documentation for more information');
   },
 
@@ -306,10 +381,7 @@ const DropDownMenu = React.createClass({
   },
 
   _setSelectedIndex(index) {
-    if (process.env.NODE_ENV !== 'production') {
-      warning(index >= 0, 'Cannot set selectedIndex to a negative index.');
-    }
-
+    warning(index >= 0, 'Cannot set selectedIndex to a negative index.');
     this.setState({selectedIndex: (index >= 0) ? index : 0});
   },
 
@@ -337,21 +409,13 @@ const DropDownMenu = React.createClass({
       if (selectedItem) {
         e.target.value = selectedItem[valueMember];
       }
-
-      if (valueLink) {
-        valueLink.requestChange(e.target.value);
-      }
-      else if (onChange) {
-        onChange(e, key, payload);
-      }
       this._onMenuRequestClose();
+    }
+
+    if (valueLink) {
+      valueLink.requestChange(e.target.value);
     } else if (onChange) {
-      if (valueLink) {
-        valueLink.requestChange(e.target.value);
-      }
-      else if (onChange) {
-        onChange(e, key, payload);
-      }
+      onChange(e, key, payload);
     }
 
     this.setState({
