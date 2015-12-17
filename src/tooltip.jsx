@@ -75,7 +75,8 @@ const Tooltip = React.createClass({
     let offset = verticalPosition === 'bottom' ?
       14 + touchMarginOffset : -14 - touchMarginOffset;
 
-    const rawTheme = this.state.muiTheme.rawTheme;
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
 
     let styles = {
       root: {
@@ -84,7 +85,7 @@ const Tooltip = React.createClass({
         fontSize: '10px',
         lineHeight: '22px',
         padding: '0 8px',
-        zIndex: rawTheme.zIndex.tooltip,
+        zIndex: muiTheme.zIndex.tooltip,
         color: Colors.white,
         overflow: 'hidden',
         top: -10000,

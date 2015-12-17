@@ -1,7 +1,6 @@
 import Colors from '../colors';
 import ColorManipulator from '../../utils/color-manipulator';
 import Spacing from '../spacing';
-import zIndex from '../zIndex';
 
 /*
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
@@ -12,7 +11,6 @@ import zIndex from '../zIndex';
 export default {
   spacing: Spacing,
   fontFamily: 'Roboto, sans-serif',
-  zIndex: zIndex,
   palette: {
     primary1Color: Colors.cyan500,
     primary2Color: Colors.cyan700,

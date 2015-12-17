@@ -86,18 +86,18 @@ const Snackbar = React.createClass({
     onActionTouchTap: React.PropTypes.func,
 
     /**
-     * **DEPRECATED** Fired when the snackbar is dismissed.
+     * **DEPRECATED** Fired when the `Snackbar` is dismissed.
      */
     onDismiss: deprecated(React.PropTypes.func,
       'Instead, use the open property to control the component'),
 
     /**
-     * Fired when the `Snackbar is requested to be closed by a click outside or when the time runs out.
+     * Fired when the `Snackbar` is requested to be closed by a click outside or when the time runs out.
      */
     onRequestClose: React.PropTypes.func,
 
     /**
-     * **DEPRECATED** Fired when the snackbar is shown.
+     * **DEPRECATED** Fired when the `Snackbar` is shown.
      */
     onShow: deprecated(React.PropTypes.func,
       'Instead, use the open property to control the component'),
@@ -108,7 +108,7 @@ const Snackbar = React.createClass({
     open: React.PropTypes.bool.isRequired,
 
     /**
-     * **DEPRECATED** If true, the snackbar will open once mounted.
+     * **DEPRECATED** If true, the `Snackbar` will open once mounted.
      */
     openOnMount: deprecated(React.PropTypes.bool,
       'Instead, use the open property to control the component'),
@@ -236,7 +236,7 @@ const Snackbar = React.createClass({
         display: 'flex',
         right: 0,
         bottom: 0,
-        zIndex: 10,
+        zIndex: this.state.muiTheme.zIndex.snackbar,
         visibility: 'hidden',
         transform: 'translate3d(0, ' + desktopSubheaderHeight + 'px, 0)',
         transition:

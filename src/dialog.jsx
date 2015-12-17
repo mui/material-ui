@@ -172,7 +172,8 @@ const DialogInline = React.createClass({
       width,
     } = this.props;
 
-    const rawTheme = this.state.muiTheme.rawTheme;
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
     const spacing = rawTheme.spacing;
     const gutter = spacing.desktopGutter;
 
@@ -181,7 +182,7 @@ const DialogInline = React.createClass({
         position: 'fixed',
         boxSizing: 'border-box',
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        zIndex: rawTheme.zIndex.dialog,
+        zIndex: muiTheme.zIndex.dialog,
         top: 0,
         left: open ? 0 : -10000,
         width: '100%',
@@ -198,7 +199,7 @@ const DialogInline = React.createClass({
         width: width,
         maxWidth: spacing.desktopKeylineIncrement * 12,
         margin: '0 auto',
-        zIndex: rawTheme.zIndex.dialog,
+        zIndex: muiTheme.zIndex.dialog,
       },
       body: {
         padding: spacing.desktopGutter,
@@ -217,7 +218,7 @@ const DialogInline = React.createClass({
         background: rawTheme.palette.canvasColor,
       },
       overlay: {
-        zIndex: rawTheme.zIndex.dialogOverlay,
+        zIndex: muiTheme.zIndex.dialogOverlay,
       },
       title: {
         margin: 0,

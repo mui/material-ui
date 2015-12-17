@@ -13,7 +13,7 @@ export default class SnackbarExampleTwice extends React.Component {
     this._timerId = undefined;
   }
 
-  componentWillMount() {
+  componentWillUnMount() {
     clearTimeout(this._timerId);
   }
 

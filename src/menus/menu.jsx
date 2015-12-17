@@ -152,14 +152,15 @@ const Menu = React.createClass({
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
-    const rawTheme = this.state.muiTheme.rawTheme;
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
 
     let styles = {
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
         transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
-        zIndex: rawTheme.zIndex.menu,
+        zIndex: muiTheme.zIndex.menu,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
