@@ -47,6 +47,10 @@ export default class FontIconPage extends React.Component {
             {'<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">'}
           </CodeBlock>
         </Paper>
+        <p style={this.getStyles()}>
+          To see available Material Icons, go to <a href="https://www.google.com/design/icons/">
+          material icons library</a>. The names are in snake_case format, for example: <i>find_in_page</i>
+        </p>
       </div>
     );
 
@@ -165,9 +169,9 @@ import SocialNotificationsActive from 'material-ui/lib/svg-icons/social/notifica
               color={Colors.blue500} hoverColor={Colors.greenA200} />
             <br/><br/>
             <FontIcon className="material-icons" style={iconStyles} >home</FontIcon>
-            <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>home</FontIcon>
-            <FontIcon className="material-icons" style={iconStyles} color={Colors.yellow500}>home</FontIcon>
-            <FontIcon className="material-icons" style={iconStyles} color={Colors.blue500}>home</FontIcon>
+            <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>flight_takeoff</FontIcon>
+            <FontIcon className="material-icons" style={iconStyles} color={Colors.yellow500}>cloud_download</FontIcon>
+            <FontIcon className="material-icons" style={iconStyles} color={Colors.blue500}>videogame_asset</FontIcon>
           </CodeExample>
         </ComponentDoc>
         <ComponentDoc

@@ -13,6 +13,6 @@
   hoverColor={Colors.greenA200} />
 
 <FontIcon className="material-icons">home</FontIcon>
-<FontIcon className="material-icons" color={Colors.red500}>home</FontIcon>
-<FontIcon className="material-icons" color={Colors.yellow500}>home</FontIcon>
-<FontIcon className="material-icons" color={Colors.blue500}>home</FontIcon>
+<FontIcon className="material-icons" color={Colors.red500}>flight_takeoff</FontIcon>
+<FontIcon className="material-icons" color={Colors.yellow500}>cloud_download</FontIcon>
+<FontIcon className="material-icons" color={Colors.blue500}>videogame_asset</FontIcon>
