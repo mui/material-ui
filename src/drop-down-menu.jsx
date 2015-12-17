@@ -37,10 +37,6 @@ const DropDownMenu = React.createClass({
   // than just the parent.
   propTypes: {
     autoWidth: React.PropTypes.bool,
-
-    /**
-     * The css class name of the root element.
-     */
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     displayMember: React.PropTypes.string,
@@ -54,10 +50,6 @@ const DropDownMenu = React.createClass({
     onChange: React.PropTypes.func,
     openImmediately: React.PropTypes.bool,
     selectedIndex: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
     value: React.PropTypes.any,

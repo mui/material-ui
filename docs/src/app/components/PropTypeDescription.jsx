@@ -5,12 +5,22 @@ import MarkdownElement from './MarkdownElement';
 
 require('./prop-type-description.css');
 
+const deprecatedPropType = 'deprecated(React.PropTypes.';
+
 function generatePropType(type) {
   switch (type.name) {
     case 'func':
       return 'function';
 
     case 'custom':
+      const indexStart = type.raw.indexOf(deprecatedPropType);
+      if (indexStart !== -1) {
+        return generatePropType({
+          name: type.raw.substring(indexStart +
+            deprecatedPropType.length, type.raw.indexOf(',')),
+        });
+      }
+
       return type.raw;
 
     case 'enum':
