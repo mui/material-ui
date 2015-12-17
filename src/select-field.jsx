@@ -28,6 +28,7 @@ const SelectField = React.createClass({
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
+    children: React.PropTypes.node,
     disabled: React.PropTypes.bool,
     errorStyle: React.PropTypes.object,
     errorText: React.PropTypes.node,
@@ -36,26 +37,19 @@ const SelectField = React.createClass({
     fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.node,
     iconStyle: React.PropTypes.object,
-    id: React.PropTypes.string,
-    labelMember: React.PropTypes.string,
-    labelStyle: React.PropTypes.object,
-    menuItemStyle: React.PropTypes.object,
-    menuItems: React.PropTypes.array.isRequired,
-    multiLine: React.PropTypes.bool,
+    labelMember: React.PropTypes.string, //DEPRECATE
+    labelStyle: React.PropTypes.object, //DEPRECATE
+    menuItems: React.PropTypes.array, //DEPRECATE
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func,
-    onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    rows: React.PropTypes.number,
     selectFieldRoot: React.PropTypes.object,
-    selectedIndex: React.PropTypes.number,
+    selectedIndex: React.PropTypes.number, //DEPRECATE
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-    type: React.PropTypes.string,
     underlineDisabledStyle: React.PropTypes.object,
     underlineFocusStyle: React.PropTypes.object,
     underlineStyle: React.PropTypes.object,
@@ -81,8 +75,8 @@ const SelectField = React.createClass({
 
   getDefaultProps() {
     return {
+      autoWidth: false,
       fullWidth: false,
-      labelMember: 'text',
     };
   },
 
@@ -94,31 +88,28 @@ const SelectField = React.createClass({
   },
 
   getStyles() {
-    const styles = {
+    const {floatingLabelText} = this.props;
+
+    return {
       label: {
         paddingLeft: 0,
-        top: -4,
+        top: floatingLabelText ? 6 : -4,
       },
       icon: {
         right: 0,
-        top: 14,
+        top: floatingLabelText ? 22 : 14,
       },
       hideDropDownUnderline: {
         borderTop: 'none',
       },
     };
-
-    if (this.props.floatingLabelText) {
-      styles.icon.top = 22;
-      styles.label.top = 6;
-    }
-
-    return styles;
   },
 
   render() {
     const styles = this.getStyles();
     const {
+      autoWidth,
+      children,
       style,
       labelStyle,
       iconStyle,
@@ -127,7 +118,6 @@ const SelectField = React.createClass({
       underlineStyle,
       errorStyle,
       selectFieldRoot,
-      menuItems,
       disabled,
       floatingLabelText,
       floatingLabelStyle,
@@ -136,7 +126,8 @@ const SelectField = React.createClass({
       errorText,
       onFocus,
       onBlur,
-      labelMember,
+      onChange,
+      value,
       ...other,
     } = this.props;
 
@@ -156,16 +147,18 @@ const SelectField = React.createClass({
         underlineFocusStyle={underlineFocusStyle}
       >
         <DropDownMenu
-          menuItems={menuItems}
           disabled={disabled}
           style={selectFieldRoot}
           labelStyle={this.mergeStyles(styles.label, labelStyle)}
           iconStyle={this.mergeStyles(styles.icon, iconStyle)}
           underlineStyle={styles.hideDropDownUnderline}
-          autoWidth={false}
-          labelMember={labelMember}
+          autoWidth={autoWidth}
+          value={value}
+          onChange={onChange}
           {...other}
-        />
+        >
+          {children}
+        </DropDownMenu>
       </TextField>
     );
   },

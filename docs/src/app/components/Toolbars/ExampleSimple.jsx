@@ -11,22 +11,20 @@ import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
-const menuItems = [
-  {payload: '1', text: 'All Broadcasts'},
-  {payload: '2', text: 'All Voice'},
-  {payload: '3', text: 'All Text'},
-  {payload: '4', text: 'Complete Voice'},
-  {payload: '5', text: 'Complete Text'},
-  {payload: '6', text: 'Active Voice'},
-  {payload: '7', text: 'Active Text'},
-];
-
 const ToolbarsExamplesSimple = React.createClass({
   render() {
     return (
       <Toolbar>
         <ToolbarGroup firstChild={true} float="left">
-          <DropDownMenu menuItems={menuItems} />
+          <DropDownMenu value={3}>
+            <MenuItem value={1} primaryText="All Broadcasts" />
+            <MenuItem value={2} primaryText="All Voice" />
+            <MenuItem value={3} primaryText="All Text" />
+            <MenuItem value={4} primaryText="Complete Voice" />
+            <MenuItem value={5} primaryText="Complete Text" />
+            <MenuItem value={6} primaryText="Active Voice" />
+            <MenuItem value={7} primaryText="Active Text" />
+          </DropDownMenu>
         </ToolbarGroup>
         <ToolbarGroup float="right">
           <ToolbarTitle text="Options" />

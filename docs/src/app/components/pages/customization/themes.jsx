@@ -479,15 +479,7 @@ const ThemesPage = React.createClass({
   },
 
   getComponentGroup() {
-    let styles = this.getStyles();
-
-    let menuItems = [
-       {payload: '1', text: 'Never'},
-       {payload: '2', text: 'Every Night'},
-       {payload: '3', text: 'Weeknights'},
-       {payload: '4', text: 'Weekends'},
-       {payload: '5', text: 'Weekly'},
-    ];
+    const styles = this.getStyles();
 
     return (
       <ClearFix>
@@ -562,7 +554,13 @@ const ThemesPage = React.createClass({
                 style={{width: '100%'}}/>
             </div>
             <div style={styles.container}>
-              <DropDownMenu menuItems={menuItems} style={{width: '100%'}}/>
+              <DropDownMenu value={3} style={{width: '100%'}}>
+                <MenuItem value={1} primaryText={'Never'}/>
+                <MenuItem value={2} primaryText={'Every Night'}/>
+                <MenuItem value={3} primaryText={'Weeknights'}/>
+                <MenuItem value={4} primaryText={'Weekends'}/>
+                <MenuItem value={5} primaryText={'Weekly'}/>
+              </DropDownMenu>
            </div>
           </div>
 

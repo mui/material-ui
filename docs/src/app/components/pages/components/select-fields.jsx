@@ -1,5 +1,5 @@
 import React from 'react';
-import {ClearFix, Mixins, SelectField, Paper} from 'material-ui';
+import {ClearFix, Mixins, SelectField, Paper, MenuItem} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 const {StyleResizable} = Mixins;
 import Code from 'select-fields-code';
@@ -15,9 +15,10 @@ const SelectFieldsPage = React.createClass({
     return {
       selectValue: undefined,
       selectValue2: 1,
-      selectValue3: '1',
-      selectValueLinkValue: 4,
-      selectValueLinkValue2: 3,
+      selectValue3: 1,
+      selectValue4: 4,
+      selectValue5: 3,
+      selectValue6: 2,
     };
   },
 
@@ -188,27 +189,6 @@ const SelectFieldsPage = React.createClass({
       },
     ];
 
-    let menuItems = [
-      {payload: '1', text: 'Never'},
-      {payload: '2', text: 'Every Night'},
-      {payload: '3', text: 'Weeknights'},
-      {payload: '4', text: 'Weekends'},
-      {payload: '5', text: 'Weekly'},
-    ];
-    let arbitraryArrayMenuItems = [
-      {id: 1, name: 'Never'},
-      {id: 2, name: 'Every Night'},
-      {id: 3, name: 'Weeknights'},
-      {id: 4, name: 'Weekends'},
-      {id: 5, name: 'Weekly'},
-    ];
-    let menuItemsWithLabel = [
-      {payload: '1', text: 'Morning', period: '5 am - 12 pm'},
-      {payload: '2', text: 'Afternoon', period: '12 pm - 5 pm'},
-      {payload: '3', text: 'Evening', period: '5 pm to 9 pm'},
-      {payload: '4', text: 'Night', period: '9 pm to 4 am'},
-    ];
-
     let styles = this.getStyles();
 
     return (
@@ -234,60 +214,118 @@ const SelectFieldsPage = React.createClass({
               value={this.state.selectValue}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
               hintText="Hint Text"
-              menuItems={menuItems} /><br/>
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
-              menuItems={menuItemsWithLabel}
-              labelMember="period" /><br/>
-            <SelectField
-              valueLink={this.linkState('selectValueLinkValue')}
+              value={this.state.selectValue4}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue4')}
               floatingLabelText="Float Label Text"
-              valueMember="id"
-              displayMember="name"
-              menuItems={arbitraryArrayMenuItems} /><br/>
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
-              valueLink={this.linkState('selectValueLinkValue2')}
+              value={this.state.selectValue6}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue6')}
+              floatingLabelText="With custom label"
+            >
+              <MenuItem value={1} label="5 am - 12 pm" primaryText="Morning" />
+              <MenuItem value={2} label="12 pm - 5 pm" primaryText="Afternoon" />
+              <MenuItem value={3} label="5 pm to 9 pm" primaryText="Evening" />
+              <MenuItem value={4} label="9 pm to 4 am" primaryText="Night" />
+            </SelectField>
+            <br/>
+            <SelectField
+              value={this.state.selectValue5}
+              onChange={this._handleSelectValueChange.bind(null, 'selectValue5')}
               floatingLabelText="Float Custom Label Text"
               floatingLabelStyle={{color: 'red'}}
-              valueMember="id"
-              displayMember="name"
-              menuItems={arbitraryArrayMenuItems} /><br/>
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
               floatingLabelText="With default value"
               value={this.state.selectValue2}
-              valueMember="id"
-              displayMember="name"
               onChange={this._handleSelectValueChange.bind(null, 'selectValue2')}
-              menuItems={arbitraryArrayMenuItems} /><br/>
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
               floatingLabelText="Disabled"
               disabled={true}
-              value={'4'}
-              menuItems={menuItems} /><br/>
+              value={4}
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
               value={this.state.selectValue}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
-              menuItems={menuItems} /><br/>
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
               floatingLabelText="With default value"
               value={this.state.selectValue3}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue3')}
-              menuItems={menuItems}
-              errorText="This is always wrong" /><br/>
+              errorText="This is always wrong"
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
             <SelectField
               value={this.state.selectValue3}
               onChange={this._handleSelectValueChange.bind(null, 'selectValue3')}
-              menuItems={menuItems}
-              errorText="This is always wrong" /><br/>
+              errorText="This is always wrong"
+            >
+              <MenuItem value={1} primaryText="Never" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <br/>
           </ClearFix>
         </CodeExample>
       </ComponentDoc>
     );
   },
 
-  _handleSelectValueChange(name, e) {
-    let change = {};
-    change[name] = e.target.value;
-    this.setState(change);
+  _handleSelectValueChange(name, e, index, value) {
+    this.setState({[name]: value});
   },
 });
 
