@@ -10,11 +10,14 @@ export default class SnackbarExampleSimple extends React.Component {
     this.state = {
       autoHideDuration: 0,
       message: 'Event added to your calendar',
+      open: false,
     };
   }
 
   handleTouchTap = () => {
-    this.refs.snackbar.show();
+    this.setState({
+      open: true,
+    });
   }
 
   handleActionTouchTap = () => {
@@ -25,6 +28,12 @@ export default class SnackbarExampleSimple extends React.Component {
     const value = event.target.value;
     this.setState({
       autoHideDuration: value.length > 0 ? parseInt(value) : 0,
+    });
+  }
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
     });
   }
 
@@ -42,11 +51,12 @@ export default class SnackbarExampleSimple extends React.Component {
           onChange={this.handleChangeDuration}
         />
         <Snackbar
-          ref="snackbar"
+          open={this.state.open}
           message={this.state.message}
           action="undo"
           autoHideDuration={this.state.autoHideDuration}
           onActionTouchTap={this.handleActionTouchTap}
+          onRequestClose={this.handleRequestClose}
         />
       </div>
     );

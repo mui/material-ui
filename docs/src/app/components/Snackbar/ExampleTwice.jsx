@@ -8,17 +8,31 @@ export default class SnackbarExampleTwice extends React.Component {
     super(props);
     this.state = {
       message: 'Event added to your calendar',
+      open: false,
     };
+    this._timerId = undefined;
+  }
+
+  componentWillMount() {
+    clearTimeout(this._timerId);
   }
 
   handleTouchTap = () => {
-    this.refs.snackbar.show();
+    this.setState({
+      open: true,
+    });
 
-    setTimeout(() => {
+    this._timerId = setTimeout(() => {
       this.setState({
         message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
       });
     }, 1500);
+  }
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
   }
 
   render() {
@@ -29,10 +43,11 @@ export default class SnackbarExampleTwice extends React.Component {
           label="Add to my calendar two times"
         />
         <Snackbar
-          ref="snackbar"
+          open={this.state.open}
           message={this.state.message}
           action="undo"
           autoHideDuration={3000}
+          onRequestClose={this.handleRequestClose}
         />
       </div>
     );

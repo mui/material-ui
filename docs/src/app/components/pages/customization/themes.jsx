@@ -57,6 +57,7 @@ const ThemesPage = React.createClass({
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
       isThemeDark: false,
       dialogOpen: false,
+      snackbarOpen: false,
       leftNavOpen: false,
     };
   },
@@ -608,13 +609,14 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                onTouchTap={this.handleClickSnackbar}
+                onTouchTap={this.handleTouchTapSnackbar}
                 label="View Snackbar" />
               <Snackbar
-                ref="snackbar"
+                open={this.state.snackbarOpen}
+                onRequestClose={this.handleRequestCloseSnackbar}
                 message="This is a snackbar"
                 action="Got It!"
-                onActionTouchTap={this.handleAction}/>
+                onActionTouchTap={this.handleRequestCloseSnackbar}/>
             </div>
           </div>
       </ClearFix>
@@ -652,10 +654,6 @@ const ThemesPage = React.createClass({
       isThemeDark: isDark});
   },
 
-  handleAction() {
-    this.refs.snackbar.dismiss();
-  },
-
   handleTouchTapLeftNav() {
     this.setState({
       leftNavOpen: true,
@@ -666,10 +664,6 @@ const ThemesPage = React.createClass({
     this.setState({
       leftNavOpen: open,
     });
-  },
-
-  handleClickSnackbar() {
-    this.refs.snackbar.show();
   },
 
   handleTouchTapDialog() {
@@ -684,6 +678,17 @@ const ThemesPage = React.createClass({
     });
   },
 
+  handleTouchTapSnackbar() {
+    this.setState({
+      snackbarOpen: true,
+    });
+  },
+
+  handleRequestCloseSnackbar() {
+    this.setState({
+      snackbarOpen: false,
+    });
+  },
 });
 
 export default ThemesPage;

@@ -76,7 +76,7 @@ const Snackbar = React.createClass({
     className: React.PropTypes.string,
 
     /**
-     * The message to be displayed on the snackbar.
+     * The message to be displayed.
      */
     message: React.PropTypes.node.isRequired,
 
@@ -188,8 +188,8 @@ const Snackbar = React.createClass({
   },
 
   componentClickAway() {
-    if (this.props.open !== null && this.onRequestClose) {
-      this.onRequestClose('clickaway');
+    if (this.props.open !== null && this.props.onRequestClose) {
+      this.props.onRequestClose('clickaway');
     } else {
       this.dismiss();
     }
@@ -357,8 +357,8 @@ const Snackbar = React.createClass({
     if (autoHideDuration > 0) {
       clearTimeout(this._timerAutoHideId);
       this._timerAutoHideId = setTimeout(() => {
-        if (this.props.open !== null && this.onRequestClose) {
-          this.onRequestClose('timeout');
+        if (this.props.open !== null && this.props.onRequestClose) {
+          this.props.onRequestClose('timeout');
         } else {
           this.dismiss();
         }
