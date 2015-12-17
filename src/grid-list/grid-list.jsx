@@ -18,6 +18,10 @@ const GridList = React.createClass({
     children: React.PropTypes.node,
     cols: React.PropTypes.number,
     padding: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

@@ -26,11 +26,19 @@ const RadioButtonGroup = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     defaultSelected: React.PropTypes.string,
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
     name: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     valueSelected: React.PropTypes.string,
   },

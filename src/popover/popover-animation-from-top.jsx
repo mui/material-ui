@@ -13,6 +13,10 @@ const PopoverAnimationFromTop = React.createClass({
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     open: React.PropTypes.bool.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     zDepth: PropTypes.zDepth,

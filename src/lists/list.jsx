@@ -21,6 +21,10 @@ const List = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     insetSubheader: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     subheader: React.PropTypes.node,
     subheaderStyle: React.PropTypes.object,

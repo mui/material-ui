@@ -47,6 +47,10 @@ const DatePicker = React.createClass({
     onTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
     value: React.PropTypes.any,

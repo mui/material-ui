@@ -34,6 +34,10 @@ const TextField = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     defaultValue: React.PropTypes.any,
     disabled: React.PropTypes.bool,
@@ -55,6 +59,10 @@ const TextField = React.createClass({
     ref: React.PropTypes.string,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     type: React.PropTypes.string,
     underlineDisabledStyle: React.PropTypes.object,

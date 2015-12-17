@@ -16,6 +16,10 @@ const Table = React.createClass({
     allRowsSelected: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     fixedFooter: React.PropTypes.bool,
     fixedHeader: React.PropTypes.bool,
@@ -30,6 +34,10 @@ const Table = React.createClass({
     onRowHoverExit: React.PropTypes.func,
     onRowSelection: React.PropTypes.func,
     selectable: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object,
   },

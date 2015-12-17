@@ -55,6 +55,10 @@ const EnhancedTextarea = React.createClass({
     onHeightChange: React.PropTypes.func,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     textareaStyle: React.PropTypes.object,
     value: React.PropTypes.string,

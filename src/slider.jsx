@@ -65,6 +65,10 @@ const Slider = React.createClass({
     onFocus: React.PropTypes.func,
     required: React.PropTypes.bool,
     step: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     value: valueInRangePropType,
   },

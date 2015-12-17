@@ -42,6 +42,10 @@ const CardText = React.createClass({
     children: React.PropTypes.node,
     color: React.PropTypes.string,
     expandable: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

@@ -14,6 +14,10 @@ const CircleRipple = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

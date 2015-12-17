@@ -22,6 +22,10 @@ const RefreshIndicator = React.createClass({
     percentage: React.PropTypes.number,
     size: React.PropTypes.number,
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     top: React.PropTypes.number.isRequired,
   },

@@ -2,6 +2,7 @@ import Colors from './colors';
 import ColorManipulator from '../utils/color-manipulator';
 import Extend from '../utils/extend';
 import update from 'react-addons-update';
+import zIndex from './zIndex';
 
 export default {
 
@@ -208,7 +209,7 @@ export default {
         borderColor: rawTheme.palette.borderColor,
       },
       isRtl: false,
-      zIndex: rawTheme.zIndex,
+      zIndex: zIndex,
     };
 
     //add properties to objects inside 'returnObj' that depend on existing properties
@@ -253,13 +254,4 @@ export default {
     let newRawTheme = update(muiTheme.rawTheme, {fontFamily: {$set: newFontFamily}});
     return this.getMuiTheme(newRawTheme);
   },
-
-  //function to modify the zIndex of the raw theme. This function recomputes
-  //the MUI theme and returns it based on the new raw theme.
-  modifyRawThemeZIndex: function(muiTheme, newZIndexKeys) {
-    let newZIndex = Extend(muiTheme.rawTheme.zIndex, newZIndexKeys);
-    let newRawTheme = update(muiTheme.rawTheme, {zIndex: {$set: newZIndex}});
-    return this.getMuiTheme(newRawTheme);
-  },
-
 };

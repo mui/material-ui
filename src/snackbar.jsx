@@ -7,6 +7,8 @@ import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 import ContextPure from './mixins/context-pure';
 import StyleResizable from './mixins/style-resizable';
+import warning from 'warning';
+import deprecated from './utils/deprecatedPropType';
 
 const Snackbar = React.createClass({
 
@@ -19,19 +21,14 @@ const Snackbar = React.createClass({
 
   manuallyBindClickAway: true,
 
-  // ID of the active timer.
-  _autoHideTimerId: undefined,
+  _timerAutoHideId: undefined,
 
-  _oneAtTheTimeTimerId: undefined,
+  _timerTransitionId: undefined,
+
+  _timerOneAtTheTimeId: undefined,
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps: function() {
-    return {
-      openOnMount: false,
-    };
   },
 
   statics: {
@@ -55,14 +52,70 @@ const Snackbar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The name of the action on the snackbar.
+     */
     action: React.PropTypes.string,
+
+    /**
+     * The number of milliseconds to wait before automatically dismissing.
+     * If no value is specified the snackbar will dismiss normally.
+     * If a value is provided the snackbar can still be dismissed normally.
+     * If a snackbar is dismissed before the timer expires, the timer will be cleared.
+     */
     autoHideDuration: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the body element.
+     */
     bodyStyle: React.PropTypes.object,
+
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * The message to be displayed.
+     */
     message: React.PropTypes.node.isRequired,
+
+    /**
+     * Fired when the action button is touchtapped.
+     */
     onActionTouchTap: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    openOnMount: React.PropTypes.bool,
+
+    /**
+     * **DEPRECATED** Fired when the `Snackbar` is dismissed.
+     */
+    onDismiss: deprecated(React.PropTypes.func,
+      'Instead, use the open property to control the component'),
+
+    /**
+     * Fired when the `Snackbar` is requested to be closed by a click outside or when the time runs out.
+     */
+    onRequestClose: React.PropTypes.func,
+
+    /**
+     * **DEPRECATED** Fired when the `Snackbar` is shown.
+     */
+    onShow: deprecated(React.PropTypes.func,
+      'Instead, use the open property to control the component'),
+
+    /**
+     * Controls whether the `Snackbar` is opened or not.
+     */
+    open: React.PropTypes.bool.isRequired,
+
+    /**
+     * **DEPRECATED** If true, the `Snackbar` will open once mounted.
+     */
+    openOnMount: deprecated(React.PropTypes.bool,
+      'Instead, use the open property to control the component'),
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -78,8 +131,14 @@ const Snackbar = React.createClass({
   },
 
   getInitialState() {
+    let open = this.props.open;
+
+    if (open === null) {
+      open = this.props.openOnMount;
+    }
+
     return {
-      open: this.props.openOnMount,
+      open: open,
       message: this.props.message,
       action: this.props.action,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
@@ -87,28 +146,30 @@ const Snackbar = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    //to update theme inside state whenever a new theme is passed down
-    //from the parent / owner using context
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
 
-    if (this.state.open && (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
+    if (this.state.open && nextProps.open === this.props.open &&
+        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
         open: false,
       });
 
-      clearTimeout(this._oneAtTheTimeTimerId);
-      this._oneAtTheTimeTimerId = setTimeout(() => {
-        if (this.isMounted()) {
-          this.setState({
-            message: nextProps.message,
-            action: nextProps.action,
-            open: true,
-          });
-        }
+      clearTimeout(this._timerOneAtTheTimeId);
+      this._timerOneAtTheTimeId = setTimeout(() => {
+        this.setState({
+          message: nextProps.message,
+          action: nextProps.action,
+          open: true,
+        });
       }, 400);
     } else {
+      const open = nextProps.open;
+
       this.setState({
+        open: open !== null ? open : this.state.open,
         message: nextProps.message,
         action: nextProps.action,
       });
@@ -116,14 +177,22 @@ const Snackbar = React.createClass({
   },
 
   componentDidMount() {
-    if (this.props.openOnMount) {
+    if (this.state.open) {
       this._setAutoHideTimer();
-      this._bindClickAway();
+
+      //Only Bind clickaway after transition finishes
+      this._timerTransitionId = setTimeout(() => {
+        this._bindClickAway();
+      }, 400);
     }
   },
 
   componentClickAway() {
-    this.dismiss();
+    if (this.props.open !== null && this.props.onRequestClose) {
+      this.props.onRequestClose('clickaway');
+    } else {
+      this.dismiss();
+    }
   },
 
   componentDidUpdate(prevProps, prevState) {
@@ -132,20 +201,20 @@ const Snackbar = React.createClass({
         this._setAutoHideTimer();
 
         //Only Bind clickaway after transition finishes
-        setTimeout(() => {
-          if (this.isMounted()) {
-            this._bindClickAway();
-          }
+        this._timerTransitionId = setTimeout(() => {
+          this._bindClickAway();
         }, 400);
       } else {
-        clearTimeout(this._autoHideTimerId);
+        clearTimeout(this._timerAutoHideId);
         this._unbindClickAway();
       }
     }
   },
 
   componentWillUnmount() {
-    clearTimeout(this._autoHideTimerId);
+    clearTimeout(this._timerAutoHideId);
+    clearTimeout(this._timerTransitionId);
+    clearTimeout(this._timerOneAtTheTimeId);
     this._unbindClickAway();
   },
 
@@ -167,7 +236,7 @@ const Snackbar = React.createClass({
         display: 'flex',
         right: 0,
         bottom: 0,
-        zIndex: 10,
+        zIndex: this.state.muiTheme.zIndex.snackbar,
         visibility: 'hidden',
         transform: 'translate3d(0, ' + desktopSubheaderHeight + 'px, 0)',
         transition:
@@ -219,6 +288,7 @@ const Snackbar = React.createClass({
       bodyStyle,
       ...others,
     } = this.props;
+
     const styles = this.getStyles();
 
     const {
@@ -258,6 +328,8 @@ const Snackbar = React.createClass({
   },
 
   show() {
+    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
+
     this.setState({
       open: true,
     });
@@ -268,6 +340,8 @@ const Snackbar = React.createClass({
   },
 
   dismiss() {
+    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
+
     this.setState({
       open: false,
     });
@@ -278,13 +352,17 @@ const Snackbar = React.createClass({
   },
 
   _setAutoHideTimer() {
-    if (this.props.autoHideDuration > 0) {
-      clearTimeout(this._autoHideTimerId);
-      this._autoHideTimerId = setTimeout(() => {
-        if (this.isMounted()) {
+    const autoHideDuration = this.props.autoHideDuration;
+
+    if (autoHideDuration > 0) {
+      clearTimeout(this._timerAutoHideId);
+      this._timerAutoHideId = setTimeout(() => {
+        if (this.props.open !== null && this.props.onRequestClose) {
+          this.props.onRequestClose('timeout');
+        } else {
           this.dismiss();
         }
-      }, this.props.autoHideDuration);
+      }, autoHideDuration);
     }
   },
 

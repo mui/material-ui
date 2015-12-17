@@ -17,6 +17,10 @@ const CircularProgress = React.createClass({
     min: React.PropTypes.number,
     mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
     size: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     value: React.PropTypes.number,
   },

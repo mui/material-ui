@@ -11,8 +11,16 @@ const PopoverDefaultAnimation = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     open: React.PropTypes.bool.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     zDepth: PropTypes.zDepth,

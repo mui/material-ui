@@ -18,7 +18,7 @@ const Toolbar = React.createClass({
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root `div` element.
+     * The css class name of the root element.
      */
     className: React.PropTypes.string,
 
@@ -28,7 +28,7 @@ const Toolbar = React.createClass({
     noGutter: React.PropTypes.bool,
 
     /**
-     * Override the inline-styles of the `Toolbar`'s root element.
+     * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
   },

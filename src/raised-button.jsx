@@ -42,6 +42,10 @@ const RaisedButton = React.createClass({
   propTypes: {
     backgroundColor: React.PropTypes.string,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     disabledBackgroundColor: React.PropTypes.string,
@@ -62,6 +66,10 @@ const RaisedButton = React.createClass({
     onTouchStart: React.PropTypes.func,
     primary: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
