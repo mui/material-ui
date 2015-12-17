@@ -39,7 +39,9 @@ const DropDownMenu = React.createClass({
     autoWidth: React.PropTypes.bool,
 
     /**
-     * The `MenuItem`s to populate the `Menu` with.
+     * The `MenuItem`s to populate the `Menu` with. If the `MenuItems` have the
+     * prop `label` that value will be used to render the representation of that
+     * item within the field.
      */
     children: React.PropTypes.node,
 
@@ -292,7 +294,7 @@ const DropDownMenu = React.createClass({
       React.Children.forEach(children, child => {
         if (value === child.props.value) {
           // This will need to be improved (in case primaryText is a node)
-          displayValue = child.props.primaryText;
+          displayValue = child.props.label || child.props.primaryText;
         }
       });
     }

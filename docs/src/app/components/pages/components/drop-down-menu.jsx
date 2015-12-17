@@ -7,6 +7,8 @@ import DropDownMenuSimpleExample from './DropDownMenu/ExampleSimple';
 import dropDownMenuSimpleExampleCode from '!raw!./DropDownMenu/ExampleSimple';
 import DropDownMenuLongMenuExample from './DropDownMenu/ExampleLongMenu';
 import dropDownMenuLongMenuExampleCode from '!raw!./DropDownMenu/ExampleLongMenu';
+import DropDownMenuLabeledExample from './DropDownMenu/ExampleLabeled';
+import dropDownMenuLabeledExampleCode from '!raw!./DropDownMenu/ExampleLabeled';
 import dropDownMenuCode from '!raw!material-ui/lib/DropDownMenu/DropDownMenu';
 
 export default class LeftNavPage extends React.Component {
@@ -19,6 +21,9 @@ export default class LeftNavPage extends React.Component {
         </CodeExample>
         <CodeExample code={dropDownMenuLongMenuExampleCode}>
           <DropDownMenuLongMenuExample />
+        </CodeExample>
+        <CodeExample code={dropDownMenuLabeledExampleCode}>
+          <DropDownMenuLabeledExample />
         </CodeExample>
         <PropTypeDescription code={dropDownMenuCode}/>
       </div>
