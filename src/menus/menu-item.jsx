@@ -171,7 +171,7 @@ const MenuItem = React.createClass({
     let rightIconElement;
     if (rightIcon) {
       const mergedRightIconStyles = desktop ?
-        this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : null;
+        this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : rightIcon.props.style;
       rightIconElement = React.cloneElement(rightIcon, {style: mergedRightIconStyles});
     }
 
