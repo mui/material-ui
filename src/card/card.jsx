@@ -12,12 +12,46 @@ const Card = React.createClass({
     };
   },
 
+  getDefaultProps() {
+    return {
+      expandable: false,
+      initiallyExpanded: true,
+      actAsExpander: false,
+    };
+  },
+
   propTypes: {
+    /**
+     * Whether a click on this card component expands the card. Can be set on any child of the Card component.
+     */
     actAsExpander: React.PropTypes.bool,
+
+    /**
+     * Can be used to render elements inside the Card.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Whether this card component is expandable. Can be set on any child of the Card component.
+     */
     expandable: React.PropTypes.bool,
+
+    /**
+     * Whether this card is initially expanded.
+     */
     initiallyExpanded: React.PropTypes.bool,
+
+    /**
+     * Fired when the expandable state changes.
+     */
     onExpandChange: React.PropTypes.func,
+
+    /**
+     * Whether this card component include a button to expand the card. CardTitle,
+     * CardHeader and CardActions implement showExpandableButton. Any child component
+     * of Card can implements showExpandableButton or forwards the property to a child
+     * component supporting it.
+     */
     showExpandableButton: React.PropTypes.bool,
 
     /**
