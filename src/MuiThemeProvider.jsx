@@ -1,6 +1,6 @@
 import {Component, PropTypes} from 'react';
 
-class ThemeProvider extends Component {
+class MuiThemeProvider extends Component {
 
   static propTypes = {
     children: PropTypes.element,
@@ -22,4 +22,4 @@ class ThemeProvider extends Component {
   }
 }
 
-export default ThemeProvider;
+export default MuiThemeProvider;
