@@ -46,6 +46,7 @@ export default {
   RefreshIndicator: require('./refresh-indicator'),
   Ripples: require('./ripples/'),
   SelectField: require('./select-field'),
+  SimpleButton: require('./simple-button'),
   SelectableContainerEnhance: require('./hoc/selectable-enhance'),
   Slider: require('./slider'),
   SvgIcon: require('./svg-icon'),
