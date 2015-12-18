@@ -1,5 +1,5 @@
 import React from 'react';
-import muiThemeable from './mui-themeable';
+import muiThemeable from './muiThemeable';
 import styleUtils from './utils/styles';
 
 const propTypes = {
