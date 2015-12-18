@@ -7,12 +7,12 @@ export default (customTheme) => {
     return React.createClass({
 
       childContextTypes: {
-        muiTheme: React.PropTypes.object,
+        _muiTheme: React.PropTypes.object,
       },
 
       getChildContext() {
         return {
-          muiTheme: customTheme,
+          _muiTheme: customTheme,
         };
       },
 
