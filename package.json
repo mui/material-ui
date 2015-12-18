@@ -1,5 +1,5 @@
 {
-  "name": "material-ui",
+  "name": "material-ui-express",
   "author": "Call-em-all Engineering Team",
   "version": "0.14.0-rc2",
   "description": "Material Design UI components built with React",
@@ -22,11 +22,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/gfelizola/material-ui.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
+    "url": "https://github.com/gfelizola/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
