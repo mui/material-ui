@@ -79,7 +79,11 @@ const DatePicker = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (nextContext.muiTheme) {
+      this.setState({muiTheme: nextContext.muiTheme});
+    }
+
     if (this._isControlled()) {
       let newDate = this._getControlledDate(nextProps);
       if (!DateTime.isEqualDate(this.state.date, newDate)) {
