@@ -1,11 +1,15 @@
 import merge from 'lodash.merge';
-import Colors from './colors';
 import ColorManipulator from '../utils/color-manipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
 import {autoprefixer, callOnce, rtl} from './transformers';
 import compose from 'lodash.flowright';
 import Typography from '../styles/typography';
+import {
+red500,
+grey400, grey600, grey700,
+transparent, lightWhite, white, darkWhite, lightBlack,
+} from './colors';
 
 /**
  * Get the MUI theme corresponding to a base theme.
@@ -67,10 +71,10 @@ export default function getMuiTheme(muiTheme, ...more) {
       fontWeight: Typography.fontWeightMedium,
     },
     cardMedia: {
-      color: Colors.darkWhite,
-      overlayContentBackground: Colors.lightBlack,
-      titleColor: Colors.darkWhite,
-      subtitleColor: Colors.lightWhite,
+      color: darkWhite,
+      overlayContentBackground: lightBlack,
+      titleColor: darkWhite,
+      subtitleColor: lightWhite,
     },
     cardText: {
       textColor: palette.textColor,
@@ -89,16 +93,16 @@ export default function getMuiTheme(muiTheme, ...more) {
       calendarTextColor: palette.textColor,
       selectColor: palette.primary2Color,
       selectTextColor: palette.alternateTextColor,
-      calendarYearBackgroundColor: Colors.white,
+      calendarYearBackgroundColor: white,
     },
     dropDownMenu: {
       accentColor: palette.borderColor,
     },
     enhancedButton: {
-      tapHighlightColor: Colors.transparent,
+      tapHighlightColor: transparent,
     },
     flatButton: {
-      color: Colors.transparent,
+      color: transparent,
       buttonFilterColor: '#999999',
       disabledTextColor: ColorManipulator.fade(palette.textColor, 0.3),
       textColor: palette.textColor,
@@ -120,7 +124,7 @@ export default function getMuiTheme(muiTheme, ...more) {
         ColorManipulator.lighten(palette.canvasColor, 1.12, 1.0),
     },
     gridTile: {
-      textColor: Colors.white,
+      textColor: white,
     },
     inkBar: {
       backgroundColor: palette.accent1Color,
@@ -131,9 +135,9 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     listItem: {
       nestedLevelDepth: 18,
-      secondaryTextColor: Colors.lightBlack,
-      leftIconColor: Colors.grey600,
-      rightIconColor: Colors.grey400,
+      secondaryTextColor: lightBlack,
+      leftIconColor: grey600,
+      rightIconColor: grey400,
     },
     menu: {
       backgroundColor: palette.canvasColor,
@@ -145,7 +149,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       hoverColor: ColorManipulator.fade(palette.textColor, 0.035),
       padding: spacing.desktopGutter,
       selectedTextColor: palette.accent1Color,
-      rightIconDesktopFill: Colors.grey600,
+      rightIconDesktopFill: grey600,
     },
     menuSubheader: {
       padding: spacing.desktopGutter,
@@ -153,7 +157,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.primary1Color,
     },
     overlay: {
-      backgroundColor: Colors.lightBlack,
+      backgroundColor: lightBlack,
     },
     paper: {
       color: palette.textColor,
@@ -278,8 +282,8 @@ export default function getMuiTheme(muiTheme, ...more) {
       menuHoverColor: ColorManipulator.fade(palette.textColor, 0.1),
     },
     tooltip: {
-      color: Colors.white,
-      rippleBackgroundColor: Colors.grey700,
+      color: white,
+      rippleBackgroundColor: grey700,
     },
     tabs: {
       backgroundColor: palette.primary1Color,
@@ -291,7 +295,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       hintColor: palette.disabledColor,
       floatingLabelColor: palette.textColor,
       disabledTextColor: palette.disabledColor,
-      errorColor: Colors.red500,
+      errorColor: red500,
       focusColor: palette.primary1Color,
       backgroundColor: 'transparent',
       borderColor: palette.borderColor,

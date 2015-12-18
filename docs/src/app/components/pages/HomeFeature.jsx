@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {Paper, Mixins, Styles} from 'material-ui';
+import {grey200} from 'material-ui/lib/styles/colors';
 
 const {StyleResizable} = Mixins;
-const {Colors, Spacing, Transitions, Typography} = Styles;
-
+const {Spacing, Transitions, Typography} = Styles;
 
 const HomeFeature = React.createClass({
 
@@ -58,7 +58,7 @@ const HomeFeature = React.createClass({
         letterSpacing: 0,
         fontWeight: Typography.fontWeightMedium,
         color: Typography.textDarkBlack,
-        backgroundColor: Colors.grey200,
+        backgroundColor: grey200,
         textAlign: 'center',
         margin: 0,
         padding: 0,

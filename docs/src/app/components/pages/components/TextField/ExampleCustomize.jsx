@@ -1,13 +1,13 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
-import Colors from 'material-ui/lib/styles/colors';
+import {orange500} from 'material-ui/lib/styles/colors';
 
 const styles = {
   errorStyle: {
-    color: Colors.orange500,
+    color: orange500,
   },
   underlineStyle: {
-    borderColor: Colors.orange500,
+    borderColor: orange500,
   },
 };
 

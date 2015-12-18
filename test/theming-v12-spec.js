@@ -8,7 +8,7 @@ import TestUtils from 'react-addons-test-utils';
 import MuiThemeProvider from 'MuiThemeProvider';
 import getMuiTheme from 'styles/getMuiTheme';
 import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
-import Colors from 'styles/colors';
+import {deepPurpleA700} from 'styles/colors';
 
 describe('Theming', () => {
 
@@ -125,7 +125,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
 
   getInitialState() {
     const newMuiTheme = getMuiTheme(darkBaseTheme);
-    newMuiTheme.appBar.textColor = Colors.deepPurpleA700;
+    newMuiTheme.appBar.textColor = deepPurpleA700;
 
     return {
       muiTheme: newMuiTheme,
@@ -156,7 +156,7 @@ const AppBarDarkTheme = React.createClass({
 
 const darkMuiThemeWithOverride = getMuiTheme(darkBaseTheme, {
   appBar: {
-    textColor: Colors.deepPurpleA700,
+    textColor: deepPurpleA700,
   },
 });
 const AppBarDarkThemeOverride = React.createClass({
@@ -190,7 +190,7 @@ const ButtonToUpdateThemeWithAppBar = React.createClass({
 
   handleClick() {
     const newMuiThemeWithOverride = getMuiTheme();
-    newMuiThemeWithOverride.appBar.textColor = Colors.deepPurpleA700;
+    newMuiThemeWithOverride.appBar.textColor = deepPurpleA700;
 
     this.setState({
       muiTheme: newMuiThemeWithOverride,

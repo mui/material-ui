@@ -6,7 +6,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Dialog from 'material-ui/lib/dialog';
-import Colors from 'material-ui/lib/styles/colors';
+import {deepOrange500} from 'material-ui/lib/styles/colors';
 import FlatButton from 'material-ui/lib/flat-button';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
@@ -20,7 +20,7 @@ const styles = {
 
 const muiTheme = getMuiTheme({
   palette: {
-    accent1Color: Colors.deepOrange500,
+    accent1Color: deepOrange500,
   },
 });
 

@@ -6,7 +6,8 @@ import IconButton from 'material-ui/lib/icon-button';
 import {Spacing} from 'material-ui/lib/styles';
 import {StyleResizable} from 'material-ui/lib/mixins';
 
-import {Colors, getMuiTheme} from 'material-ui/lib/styles';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import {darkWhite, lightWhite, grey900} from 'material-ui/lib/styles/colors';
 
 import AppLeftNav from './AppLeftNav';
 import FullWidthSection from './FullWidthSection';
@@ -65,8 +66,6 @@ const Master = React.createClass({
   },
 
   getStyles() {
-    const darkWhite = Colors.darkWhite;
-
     const styles = {
       appBar: {
         position: 'fixed',
@@ -85,7 +84,7 @@ const Master = React.createClass({
         margin: `${Spacing.desktopGutter * 2}px ${Spacing.desktopGutter * 3}px`,
       },
       footer: {
-        backgroundColor: Colors.grey900,
+        backgroundColor: grey900,
         textAlign: 'center',
       },
       a: {
@@ -94,7 +93,7 @@ const Master = React.createClass({
       p: {
         margin: '0 auto',
         padding: 0,
-        color: Colors.lightWhite,
+        color: lightWhite,
         maxWidth: 335,
       },
       iconButton: {

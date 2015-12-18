@@ -4,7 +4,8 @@ import FullWidthSection from '../FullWidthSection';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 import {StyleResizable} from 'material-ui/lib/mixins';
-import {Colors, Spacing, Typography, lightBaseTheme} from 'material-ui/lib/styles';
+import {Spacing, Typography, lightBaseTheme} from 'material-ui/lib/styles';
+import {cyan500, grey200, darkWhite} from 'material-ui/lib/styles/colors';
 
 const HomePage = React.createClass({
 
@@ -19,7 +20,7 @@ const HomePage = React.createClass({
   _getHomePageHero() {
     const styles = {
       root: {
-        backgroundColor: Colors.cyan500,
+        backgroundColor: cyan500,
         overflow: 'hidden',
       },
       svgLogo: {
@@ -42,7 +43,7 @@ const HomePage = React.createClass({
         margin: '16px 32px 0px 32px',
       },
       h1: {
-        color: Colors.darkWhite,
+        color: darkWhite,
         fontWeight: Typography.fontWeightLight,
       },
       h2: {
@@ -103,7 +104,7 @@ const HomePage = React.createClass({
   _getHomePurpose() {
     const styles = {
       root: {
-        backgroundColor: Colors.grey200,
+        backgroundColor: grey200,
       },
       content: {
         maxWidth: 700,
@@ -167,7 +168,7 @@ const HomePage = React.createClass({
   _getHomeContribute() {
     const styles = {
       root: {
-        backgroundColor: Colors.grey200,
+        backgroundColor: grey200,
         textAlign: 'center',
       },
       h3: {

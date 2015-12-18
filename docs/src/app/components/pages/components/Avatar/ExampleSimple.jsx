@@ -1,12 +1,18 @@
 import React from 'react';
 import Avatar from 'material-ui/lib/avatar';
 import FileFolder from 'material-ui/lib/svg-icons/file/folder';
-import styles from 'material-ui/lib/styles';
 import FontIcon from 'material-ui/lib/font-icon';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 
-const colors = styles.Colors;
+import {
+blue300,
+indigo900,
+orange200,
+deepOrange300,
+pink400,
+purple500,
+} from 'material-ui/lib/styles/colors';
 
 const AvatarExampleSimple = () => (
   <List>
@@ -31,8 +37,8 @@ const AvatarExampleSimple = () => (
       leftAvatar={
         <Avatar
           icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
-          color={colors.blue300}
-          backgroundColor={colors.indigo900}
+          color={blue300}
+          backgroundColor={indigo900}
         />
       }
     >
@@ -51,8 +57,8 @@ const AvatarExampleSimple = () => (
       leftAvatar={
         <Avatar
           icon={<FileFolder />}
-          color={colors.orange200}
-          backgroundColor={colors.pink400}
+          color={orange200}
+          backgroundColor={pink400}
         />
       }
     >
@@ -68,8 +74,8 @@ const AvatarExampleSimple = () => (
       disabled={true}
       leftAvatar={
         <Avatar
-          color={colors.deepOrange300}
-          backgroundColor={colors.purple500}
+          color={deepOrange300}
+          backgroundColor={purple500}
         >
           A
         </Avatar>

@@ -21,13 +21,13 @@ For instance, you can provide it like this:
 ```js
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-import colors from 'material-ui/lib/styles/colors';
+import {green100, green500, green700} from 'material-ui/lib/styles/colors';
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: colors.green500,
-    primary2Color: colors.green700,
-    primary3Color: colors.green100,
+    primary1Color: green500,
+    primary2Color: green700,
+    primary3Color: green100,
   },
 }, {
   avatar: {

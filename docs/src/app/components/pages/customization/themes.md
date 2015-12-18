@@ -23,7 +23,7 @@ Then, you can use `<MuiThemeProvider />` to provide it down the tree to componen
 
 ```js
 import React from 'react';
-import Colors from 'material-ui/lib/styles/colors';
+import {cyan500} from 'material-ui/lib/styles/colors';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
@@ -33,7 +33,7 @@ import AppBar from 'material-ui/lib/app-bar';
 // More on Colors: http://www.material-ui.com/#/customization/colors
 const muiTheme = getMuiTheme({
   palette: {
-    textColor: Colors.cyan500,
+    textColor: cyan500,
   },
   appBar: {
     height: 50,
@@ -192,7 +192,12 @@ To see what are the values you can override, use the
 The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js
-import Colors from 'material-ui/lib/styles/colors';
+import {
+cyan500, cyan700,
+grey100, grey300, grey400, grey500,
+pinkA200,
+white, darkBlack, fullBlack,
+} from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 
 const lightBaseTheme = {
@@ -211,20 +216,20 @@ const lightBaseTheme = {
   },
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: Colors.cyan500,
-    primary2Color: Colors.cyan700,
-    primary3Color: Colors.grey400,
-    accent1Color: Colors.pinkA200,
-    accent2Color: Colors.grey100,
-    accent3Color: Colors.grey500,
-    textColor: Colors.darkBlack,
-    alternateTextColor: Colors.white,
-    canvasColor: Colors.white,
-    borderColor: Colors.grey300,
-    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
-    pickerHeaderColor: Colors.cyan500,
-    clockCircleColor: ColorManipulator.fade(Colors.darkBlack, 0.07),
-    shadowColor: Colors.fullBlack,
+    primary1Color: cyan500,
+    primary2Color: cyan700,
+    primary3Color: grey400,
+    accent1Color: pinkA200,
+    accent2Color: grey100,
+    accent3Color: grey500,
+    textColor: darkBlack,
+    alternateTextColor: white,
+    canvasColor: white,
+    borderColor: grey300,
+    disabledColor: ColorManipulator.fade(darkBlack, 0.3),
+    pickerHeaderColor: cyan500,
+    clockCircleColor: ColorManipulator.fade(darkBlack, 0.07),
+    shadowColor: fullBlack,
   },
 };
 ```

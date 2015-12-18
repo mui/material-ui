@@ -5,14 +5,14 @@ import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
 import Divider from 'material-ui/lib/divider';
 import Avatar from 'material-ui/lib/avatar';
-import Colors from 'material-ui/lib/styles/colors';
+import {pinkA200, transparent} from 'material-ui/lib/styles/colors';
 
 const ListExampleContacts = () => (
   <MobileTearSheet>
     <List>
       <ListItem
         primaryText="Chelsea Otakan"
-        leftIcon={<ActionGrade color={Colors.pinkA200} />}
+        leftIcon={<ActionGrade color={pinkA200} />}
         rightAvatar={<Avatar src="images/chexee-128.jpg" />}
       />
       <ListItem
@@ -37,7 +37,7 @@ const ListExampleContacts = () => (
         primaryText="Adelle Charles"
         leftAvatar={
           <Avatar
-            color={Colors.pinkA200} backgroundColor={Colors.transparent}
+            color={pinkA200} backgroundColor={transparent}
             style={{left: 8}}
           >
             A
