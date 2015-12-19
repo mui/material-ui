@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import Dialog from 'dialog';
 import {spy} from 'sinon';
 import TestUtils from 'react-addons-test-utils';
