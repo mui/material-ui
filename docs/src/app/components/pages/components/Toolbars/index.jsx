@@ -1,18 +1,18 @@
 import React from 'react';
+import CodeExample from '../../../CodeExample';
+import PropTypeDescription from '../../../PropTypeDescription';
+import MarkdownElement from '../../../MarkdownElement';
+import toolbarsReadmeText from './README';
+import toolbarsExampleSimpleCode from '!raw!./ExampleSimple';
+import ToolbarsExampleSimple from './ExampleSimple';
 import toolbarCode from '!raw!material-ui/toolbar/toolbar';
+import toolbarReadmeText from './Toolbar';
 import toolbarGroupCode from '!raw!material-ui/toolbar/toolbar-group';
+import toolbarGroupReadmeText from './ToolbarGroup';
 import toolbarSeparatorCode from '!raw!material-ui/toolbar/toolbar-separator';
+import toolbarSeparatorReadmeText from './ToolbarSeparator';
 import toolbarTitleCode from '!raw!material-ui/toolbar/toolbar-title';
-import CodeExample from '../../code-example/code-example';
-import PropTypeDescription from '../../PropTypeDescription';
-import ToolbarsExampleSimple from '../../Toolbars/ExampleSimple';
-import toolbarsExampleSimpleCode from '!raw!../../Toolbars/ExampleSimple';
-import MarkdownElement from '../../MarkdownElement';
-import toolbarsReadmeText from '../../Toolbars/README';
-import toolbarReadmeText from '../../Toolbars/Toolbar';
-import toolbarGroupReadmeText from '../../Toolbars/ToolbarGroup';
-import toolbarSeparatorReadmeText from '../../Toolbars/ToolbarSeparator';
-import toolbarTitleReadmeText from '../../Toolbars/ToolbarTitle';
+import toolbarTitleReadmeText from './ToolbarTitle';
 
 export default class ToolbarPage extends React.Component {
   render() {

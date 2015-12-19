@@ -3,7 +3,7 @@ import Divider from 'material-ui/lib/divider';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 
-import MobileTearSheet from '../mobile-tear-sheet';
+import MobileTearSheet from '../../../MobileTearSheet';
 
 const DividerExampleList = () => (
   <MobileTearSheet height={250}>

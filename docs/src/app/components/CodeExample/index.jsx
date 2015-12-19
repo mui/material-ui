@@ -1,67 +1,33 @@
 import React from 'react';
+import CodeBlock from './CodeBlock';
+import ClearFix from 'material-ui/lib/clearfix';
+import Paper from 'material-ui/lib/paper';
+import Spacing from 'material-ui/lib/styles/spacing';
+import Typography from 'material-ui/lib/styles/typography';
+import muiThemeable from 'material-ui/lib/muiThemeable';
 
-import {
-  ClearFix,
-  Paper,
-  Styles,
-} from 'material-ui';
-
-const {
-  Spacing,
-  Typography,
-} = Styles;
-
-import CodeBlock from './code-block';
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
-
-const CodeExample = React.createClass({
+let CodeExample = React.createClass({
 
   propTypes: {
+    _muiTheme: React.PropTypes.object.isRequired,
     children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
     layoutSideBySide: React.PropTypes.bool,
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   render() {
-
-    let {
+    const {
+      _muiTheme,
       children,
       code,
       layoutSideBySide,
     } = this.props;
 
-    let palette = this.state.muiTheme.rawTheme.palette;
-    let borderColor = palette.borderColor;
-    let canvasColor = palette.canvasColor;
+    const palette = _muiTheme.baseTheme.palette;
+    const borderColor = palette.borderColor;
+    const canvasColor = palette.canvasColor;
 
-    let styles = {
+    const styles = {
       root: {
         backgroundColor: canvasColor,
         marginBottom: 32,
@@ -93,5 +59,7 @@ const CodeExample = React.createClass({
     );
   },
 });
+
+CodeExample = muiThemeable(CodeExample);
 
 export default CodeExample;

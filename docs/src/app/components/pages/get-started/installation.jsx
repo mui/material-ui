@@ -1,6 +1,6 @@
 import React from 'react';
 import {Paper, Styles} from 'material-ui';
-import CodeBlock from '../../code-example/code-block';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 const {Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;

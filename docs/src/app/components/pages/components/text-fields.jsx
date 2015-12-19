@@ -4,9 +4,9 @@ import ComponentDoc from '../../component-doc';
 const {Colors} = Styles;
 const {StyleResizable} = Mixins;
 import Code from 'text-fields-code';
-import CodeExample from '../../code-example/code-example';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 const TextFieldsPage = React.createClass({
 
