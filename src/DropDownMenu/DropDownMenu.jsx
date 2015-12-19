@@ -3,36 +3,22 @@ import Transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../menus/menu';
 import MenuItem from '../menus/menu-item';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ClearFix from '../clearfix';
-import ThemeManager from '../styles/theme-manager';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 import styleUtils from '../utils/styles';
+import muiThemeable from '../muiThemeable';
 import warning from 'warning';
 import deprecated from '../utils/deprecatedPropType';
 
-const DropDownMenu = React.createClass({
+let DropDownMenu = React.createClass({
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  // The nested styles for drop-down-menu are modified by toolbar and possibly
-  // other user components, so it will give full access to its js styles rather
-  // than just the parent.
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * The width will automatically be set according to the items inside the menu.
      * To control this width in css instead, set this prop to false.
@@ -153,7 +139,6 @@ const DropDownMenu = React.createClass({
     return {
       open: this.props.openImmediately,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -162,10 +147,7 @@ const DropDownMenu = React.createClass({
     if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props.selectedIndex);
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
@@ -176,10 +158,10 @@ const DropDownMenu = React.createClass({
   },
 
   getStyles() {
-    const {disabled} = this.props;
-    const spacing = this.state.muiTheme.rawTheme.spacing;
-    const palette = this.state.muiTheme.rawTheme.palette;
-    const accentColor = this.state.muiTheme.dropDownMenu.accentColor;
+    const {_muiTheme, disabled} = this.props;
+    const spacing = _muiTheme.rawTheme.spacing;
+    const palette = _muiTheme.rawTheme.palette;
+    const accentColor = _muiTheme.dropDownMenu.accentColor;
     return {
       control: {
         cursor: disabled ? 'not-allowed' : 'pointer',
@@ -243,6 +225,7 @@ const DropDownMenu = React.createClass({
 
   render() {
     const {
+      _muiTheme,
       autoWidth,
       children,
       className,
@@ -263,7 +246,6 @@ const DropDownMenu = React.createClass({
     const {
       anchorEl,
       open,
-      muiTheme,
     } = this.state;
 
     const styles = this.getStyles();
@@ -331,14 +313,14 @@ const DropDownMenu = React.createClass({
         {...other}
         ref="root"
         className={className}
-        style={styleUtils.prepareStyles(muiTheme, styles.root, open && styles.rootWhenOpen, style)}
+        style={styleUtils.prepareStyles(_muiTheme, styles.root, open && styles.rootWhenOpen, style)}
       >
         <ClearFix style={styleUtils.merge(styles.control)} onTouchTap={this._onControlTouchTap}>
-          <div style={styleUtils.prepareStyles(muiTheme, styles.label, open && styles.labelWhenOpen, labelStyle)}>
+          <div style={styleUtils.prepareStyles(_muiTheme, styles.label, open && styles.labelWhenOpen, labelStyle)}>
             {displayValue}
           </div>
           <DropDownArrow style={styleUtils.merge(styles.icon, iconStyle)}/>
-          <div style={styleUtils.prepareStyles(muiTheme, styles.underline, underlineStyle)}/>
+          <div style={styleUtils.prepareStyles(_muiTheme, styles.underline, underlineStyle)}/>
         </ClearFix>
         <Popover
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
@@ -424,5 +406,7 @@ const DropDownMenu = React.createClass({
   },
 
 });
+
+DropDownMenu = muiThemeable(DropDownMenu);
 
 export default DropDownMenu;
