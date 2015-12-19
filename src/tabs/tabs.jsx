@@ -5,20 +5,15 @@ const TabTemplate = require('./tabTemplate');
 import InkBar from '../ink-bar';
 import StylePropable from '../mixins/style-propable';
 import Controllable from '../mixins/controllable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 import warning from 'warning';
 
-const Tabs = React.createClass({
+let Tabs = React.createClass({
 
   mixins: [
     StylePropable,
     Controllable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -85,16 +80,6 @@ const Tabs = React.createClass({
     value: React.PropTypes.any,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       initialSelectedIndex: 0,
@@ -112,7 +97,6 @@ const Tabs = React.createClass({
         initialIndex < this.getTabCount() ?
         initialIndex :
         0,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -128,19 +112,16 @@ const Tabs = React.createClass({
     return React.Children.count(this.props.children);
   },
 
-  componentWillReceiveProps(newProps, nextContext) {
+  componentWillReceiveProps(newProps) {
     const valueLink = this.getValueLink(newProps);
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-
     if (valueLink.value !== undefined) {
       this.setState({selectedIndex: this._getSelectedIndex(newProps)});
     }
-
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
     let {
+      _muiTheme,
       children,
       contentContainerClassName,
       contentContainerStyle,
@@ -152,7 +133,7 @@ const Tabs = React.createClass({
       ...other,
     } = this.props;
 
-    let themeVariables = this.state.muiTheme.tabs;
+    let themeVariables = _muiTheme.tabs;
     let styles = {
       tabItemContainer: {
         margin: 0,
@@ -265,5 +246,7 @@ const Tabs = React.createClass({
   },
 
 });
+
+Tabs = muiThemeable(Tabs);
 
 export default Tabs;

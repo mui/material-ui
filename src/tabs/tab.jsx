@@ -1,17 +1,12 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const Tab = React.createClass({
+let Tab = React.createClass({
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -65,32 +60,9 @@ const Tab = React.createClass({
     width: React.PropTypes.string,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   render() {
     const {
+      _muiTheme,
       label,
       onActive,
       onTouchTap,
@@ -107,12 +79,12 @@ const Tab = React.createClass({
       textAlign: 'center',
       verticalAlign: 'middle',
       height: 48,
-      color: selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor,
+      color: selected ? _muiTheme.tabs.selectedTextColor : _muiTheme.tabs.textColor,
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
       whiteSpace: 'initial',
-      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+      fontFamily: _muiTheme.baseTheme.fontFamily,
       boxSizing: 'border-box',
       width: width,
     }, style);
@@ -134,5 +106,7 @@ const Tab = React.createClass({
   },
 
 });
+
+Tab = muiThemeable(Tab);
 
 export default Tab;
