@@ -16,6 +16,11 @@ const Tooltip = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,

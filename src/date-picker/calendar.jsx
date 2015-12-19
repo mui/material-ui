@@ -37,6 +37,11 @@ const Calendar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
     initialDate: React.PropTypes.object,

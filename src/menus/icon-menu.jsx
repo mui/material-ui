@@ -20,6 +20,11 @@ const IconMenu = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     anchorOrigin: PropTypes.origin,
     children: React.PropTypes.node,
 

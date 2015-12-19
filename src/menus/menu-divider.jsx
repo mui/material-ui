@@ -7,6 +7,11 @@ const MenuDivider = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,

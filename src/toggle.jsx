@@ -17,6 +17,11 @@ const Toggle = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     defaultToggled: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     elementStyle: React.PropTypes.object,

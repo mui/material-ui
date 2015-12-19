@@ -57,6 +57,11 @@ const ClockHours = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialHours: React.PropTypes.number,
     onChange: React.PropTypes.func,

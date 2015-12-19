@@ -41,6 +41,11 @@ const ScaleInChild = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,

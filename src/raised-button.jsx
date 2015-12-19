@@ -40,6 +40,11 @@ const RaisedButton = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     backgroundColor: React.PropTypes.string,
     children: React.PropTypes.node,
 

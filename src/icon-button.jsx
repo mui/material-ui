@@ -54,6 +54,11 @@ const IconButton = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
 
     /**

@@ -39,6 +39,11 @@ const SlideIn = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     childStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),

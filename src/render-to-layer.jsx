@@ -8,6 +8,11 @@ import ThemeManager from './styles/theme-manager';
 const RenderToLayer = React.createClass({
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     componentClickAway: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     render: React.PropTypes.func.isRequired,

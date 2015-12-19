@@ -26,6 +26,11 @@ const ListItem = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     autoGenerateNestedIndicator: React.PropTypes.bool,
     children: React.PropTypes.node,
     disableKeyboardFocus: React.PropTypes.bool,

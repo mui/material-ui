@@ -22,6 +22,11 @@ const Tabs = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * Should be used to pass Tab components.
      */
     children: React.PropTypes.node,

@@ -16,6 +16,11 @@ const RefreshIndicator = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     left: React.PropTypes.number.isRequired,
     loadingColor: React.PropTypes.string,

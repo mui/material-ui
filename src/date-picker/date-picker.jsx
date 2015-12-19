@@ -30,6 +30,11 @@ const DatePicker = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     DateTimeFormat: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
     container: React.PropTypes.oneOf(['dialog', 'inline']),

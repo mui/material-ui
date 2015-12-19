@@ -38,6 +38,11 @@ const CardText = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     actAsExpander: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,

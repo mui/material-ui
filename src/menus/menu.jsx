@@ -26,6 +26,11 @@ const Menu = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     animated: React.PropTypes.bool,
     autoWidth: React.PropTypes.bool,
     children: React.PropTypes.node,

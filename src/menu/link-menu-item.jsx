@@ -12,6 +12,11 @@ const LinkMenuItem = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     active: React.PropTypes.bool,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,

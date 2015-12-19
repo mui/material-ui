@@ -60,6 +60,11 @@ const EnhancedButton = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     containerElement: React.PropTypes.oneOfType([

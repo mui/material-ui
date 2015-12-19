@@ -40,6 +40,11 @@ const CardHeader = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     actAsExpander: React.PropTypes.bool,
     avatar: React.PropTypes.node,
     children: React.PropTypes.node,

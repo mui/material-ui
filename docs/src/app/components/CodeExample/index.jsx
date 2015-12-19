@@ -9,7 +9,11 @@ import muiThemeable from 'material-ui/lib/muiThemeable';
 let CodeExample = React.createClass({
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
     _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
     layoutSideBySide: React.PropTypes.bool,

@@ -37,6 +37,13 @@ const ThemesPage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
+  propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },

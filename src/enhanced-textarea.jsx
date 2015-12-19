@@ -49,6 +49,11 @@ const EnhancedTextarea = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     defaultValue: React.PropTypes.any,
     disabled: React.PropTypes.bool,
     onChange: React.PropTypes.func,

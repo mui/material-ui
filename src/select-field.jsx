@@ -27,6 +27,11 @@ const SelectField = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     autoWidth: React.PropTypes.bool,
     children: React.PropTypes.node,
     disabled: React.PropTypes.bool,

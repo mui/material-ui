@@ -24,6 +24,11 @@ const FontIcon = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
     onMouseEnter: React.PropTypes.func,

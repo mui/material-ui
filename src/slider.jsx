@@ -50,6 +50,11 @@ const Slider = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     defaultValue: valueInRangePropType,
     description: React.PropTypes.string,
     disableFocusRipple: React.PropTypes.bool,

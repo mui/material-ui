@@ -28,6 +28,11 @@ const Checkbox = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     checked: React.PropTypes.bool,
     checkedIcon: React.PropTypes.element,
     defaultChecked: React.PropTypes.bool,

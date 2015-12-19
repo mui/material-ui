@@ -13,6 +13,11 @@ const Table = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     allRowsSelected: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
     children: React.PropTypes.node,

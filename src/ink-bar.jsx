@@ -22,6 +22,11 @@ const InkBar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
 

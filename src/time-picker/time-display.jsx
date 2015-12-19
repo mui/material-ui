@@ -12,6 +12,11 @@ const TimeDisplay = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     mode: React.PropTypes.oneOf(['hour', 'minute']),

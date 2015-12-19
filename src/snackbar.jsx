@@ -53,6 +53,11 @@ const Snackbar = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * The name of the action on the snackbar.
      */
     action: React.PropTypes.string,

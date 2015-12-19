@@ -42,6 +42,11 @@ const LeftNav = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * The contents of the `LeftNav`
      */
     children: React.PropTypes.node,

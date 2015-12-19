@@ -12,6 +12,11 @@ const ClockNumber = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     isSelected: React.PropTypes.bool,
     onSelected: React.PropTypes.func,
     type: React.PropTypes.oneOf(['hour', 'minute']),

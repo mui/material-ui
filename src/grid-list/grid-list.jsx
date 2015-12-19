@@ -14,6 +14,11 @@ const GridList = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     cellHeight: React.PropTypes.number,
     children: React.PropTypes.node,
     cols: React.PropTypes.number,

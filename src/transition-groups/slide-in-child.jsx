@@ -40,6 +40,11 @@ const SlideInChild = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     direction: React.PropTypes.string,
     enterDelay: React.PropTypes.number,

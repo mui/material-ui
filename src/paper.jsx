@@ -42,6 +42,11 @@ const Paper = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,

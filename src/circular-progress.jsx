@@ -11,6 +11,11 @@ const CircularProgress = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
     max: React.PropTypes.number,

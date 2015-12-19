@@ -15,6 +15,11 @@ const SvgIcon = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,

@@ -25,6 +25,11 @@ const Avatar = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * The backgroundColor of the avatar. Does not apply to image avatars.
      */
     backgroundColor: React.PropTypes.string,

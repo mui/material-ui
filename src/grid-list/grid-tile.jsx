@@ -15,6 +15,11 @@ const GridTile = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     actionIcon: React.PropTypes.element,
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
     children: React.PropTypes.node,

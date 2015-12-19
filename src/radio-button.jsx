@@ -40,6 +40,11 @@ const RadioButton = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     checked: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,

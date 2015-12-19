@@ -10,6 +10,11 @@ const PopoverAnimationFromTop = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     open: React.PropTypes.bool.isRequired,

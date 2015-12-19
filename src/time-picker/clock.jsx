@@ -13,6 +13,11 @@ const Clock = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialTime: React.PropTypes.object,
     isActive: React.PropTypes.bool,

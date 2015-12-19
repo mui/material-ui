@@ -18,6 +18,11 @@ let PageWithNav = React.createClass({
   mixins: [StyleResizable, StylePropable, History],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     location: React.PropTypes.object,
     menuItems: React.PropTypes.array,

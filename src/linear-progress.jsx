@@ -10,6 +10,11 @@ const LinearProgress = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     max: React.PropTypes.number,
     min: React.PropTypes.number,

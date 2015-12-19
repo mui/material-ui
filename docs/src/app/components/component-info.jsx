@@ -15,6 +15,11 @@ const ComponentInfo = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     infoArray: React.PropTypes.array.isRequired,
     name: React.PropTypes.string.isRequired,
     style: React.PropTypes.object,

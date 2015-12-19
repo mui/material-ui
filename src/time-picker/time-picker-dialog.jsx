@@ -17,6 +17,11 @@ const TimePickerDialog = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     autoOk: React.PropTypes.bool,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialTime: React.PropTypes.object,

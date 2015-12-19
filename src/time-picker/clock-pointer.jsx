@@ -12,6 +12,11 @@ const ClockPointer = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     hasSelected: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     value: React.PropTypes.number,

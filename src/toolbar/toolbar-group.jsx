@@ -14,6 +14,11 @@ const ToolbarGroup = React.createClass({
 
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * Can be any node or number of nodes.
      */
     children: React.PropTypes.node,

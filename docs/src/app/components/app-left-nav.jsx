@@ -18,6 +18,11 @@ const AppLeftNav = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     history: React.PropTypes.object,
     location: React.PropTypes.object,
   },

@@ -21,6 +21,11 @@ const Badge = React.createClass({
   },
   propTypes: {
     /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
+    /**
      * This is the content rendered within the badge.
      */
     badgeContent: React.PropTypes.node.isRequired,
