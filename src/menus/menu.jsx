@@ -99,7 +99,7 @@ let Menu = React.createClass({
     }, 250);
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const filteredChildren = this._getFilteredChildren(nextProps.children);
     let selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
 
