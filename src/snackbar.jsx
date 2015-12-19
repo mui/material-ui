@@ -86,10 +86,10 @@ const Snackbar = React.createClass({
     onActionTouchTap: React.PropTypes.func,
 
     /**
-     * **DEPRECATED** Fired when the `Snackbar` is dismissed.
+     * Fired when the `Snackbar` is dismissed.
      */
     onDismiss: deprecated(React.PropTypes.func,
-      'Instead, use the open property to control the component'),
+      'Instead, use the open property to control the component.'),
 
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside or when the time runs out.
@@ -97,10 +97,10 @@ const Snackbar = React.createClass({
     onRequestClose: React.PropTypes.func,
 
     /**
-     * **DEPRECATED** Fired when the `Snackbar` is shown.
+     * Fired when the `Snackbar` is shown.
      */
     onShow: deprecated(React.PropTypes.func,
-      'Instead, use the open property to control the component'),
+      'Instead, use the open property to control the component.'),
 
     /**
      * Controls whether the `Snackbar` is opened or not.
@@ -108,10 +108,10 @@ const Snackbar = React.createClass({
     open: React.PropTypes.bool.isRequired,
 
     /**
-     * **DEPRECATED** If true, the `Snackbar` will open once mounted.
+     * If true, the `Snackbar` will open once mounted.
      */
     openOnMount: deprecated(React.PropTypes.bool,
-      'Instead, use the open property to control the component'),
+      'Instead, use the open property to control the component.'),
 
     /**
      * Override the inline-styles of the root element.

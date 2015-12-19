@@ -11,6 +11,7 @@ import Paper from './paper';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 import warning from 'warning';
+import deprecated from './utils/deprecatedPropType';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
@@ -461,9 +462,10 @@ const Dialog = React.createClass({
 
   propTypes: {
     /**
-     * **DEPRECATED** The `ref` of the action to focus on when the `Dialog` is displayed.
+     * The `ref` of the action to focus on when the `Dialog` is displayed.
      */
-    actionFocus: React.PropTypes.string,
+    actionFocus: deprecated(React.PropTypes.string,
+      'Instead, use a custom `actions` property.'),
 
     /**
      * This prop can be either a JSON object containing the actions to render (This is **DEPRECATED**),
@@ -587,12 +589,6 @@ const Dialog = React.createClass({
       repositionOnUpdate: true,
       width: '75%',
     };
-  },
-
-  getInitialState() {
-    warning(!this.props.actionFocus,
-      'actionFocus is deprecated on Dialog. Since actions JSON objects are deprecated.');
-    return {};
   },
 
   render() {

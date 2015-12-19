@@ -1,9 +1,3 @@
-import isBrowser from './utils/is-browser';
-
-import warning from 'warning';
-
-const Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import KeyCode from './utils/key-code';
@@ -16,7 +10,11 @@ import Paper from './paper';
 import Menu from './menu/menu';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import warning from 'warning';
+import deprecated from './utils/deprecatedPropType';
+import isBrowser from './utils/is-browser';
 
+const Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 let openNavEventHandler = null;
 
 
@@ -65,47 +63,55 @@ const LeftNav = React.createClass({
     docked: React.PropTypes.bool,
 
     /**
-     * **DEPRECATED** A react component that will be displayed above all the menu items.
+     * A react component that will be displayed above all the menu items.
      * Usually, this is used for a logo or a profile image.
      */
-    header: React.PropTypes.element,
+    header: deprecated(React.PropTypes.element,
+      'Instead, use composability.'),
 
     /**
-     * **DEPRECATED** Class name for the menuItem.
+     * Class name for the menuItem.
      */
-    menuItemClassName: React.PropTypes.string,
+    menuItemClassName: deprecated(React.PropTypes.string,
+      'It will be removed with menuItems.'),
 
     /**
-     * **DEPRECATED** Class name for the link menuItem.
+     * Class name for the link menuItem.
      */
-    menuItemClassNameLink: React.PropTypes.string,
+    menuItemClassNameLink: deprecated(React.PropTypes.string,
+      'It will be removed with menuItems.'),
 
     /**
-     * **DEPRECATED** Class name for the subheader menuItem.
+     * Class name for the subheader menuItem.
      */
-    menuItemClassNameSubheader: React.PropTypes.string,
+    menuItemClassNameSubheader: deprecated(React.PropTypes.string,
+      'It will be removed with menuItems.'),
 
     /**
-     * **DEPRECATED** JSON data representing all menu items to render.
+     * JSON data representing all menu items to render.
      */
-    menuItems: React.PropTypes.array,
+    menuItems: deprecated(React.PropTypes.array,
+      'Instead, use composability.'),
 
     /**
-     * **DEPRECATED** Fired when a menu item is clicked that is not the
+     * Fired when a menu item is clicked that is not the
      * one currently selected. Note that this requires the `injectTapEventPlugin`
      * component. See the "Get Started" section for more detail.
      */
-    onChange: React.PropTypes.func,
+    onChange: deprecated(React.PropTypes.func,
+      'It will be removed with menuItems.'),
 
     /**
-     * **DEPRECATED** Fired when the component is opened.
+     * Fired when the component is opened.
      */
-    onNavClose: React.PropTypes.func,
+    onNavClose: deprecated(React.PropTypes.func,
+      'Instead, use onRequestChange.'),
 
     /**
-     * **DEPRECATED** Fired when the component is closed.
+     * Fired when the component is closed.
      */
-    onNavOpen: React.PropTypes.func,
+    onNavOpen: deprecated(React.PropTypes.func,
+      'Instead, use onRequestChange.'),
 
     /**
      * Callback function that is fired when the open state of the `LeftNav` is
@@ -139,9 +145,10 @@ const LeftNav = React.createClass({
     overlayStyle: React.PropTypes.object,
 
     /**
-     * **DEPRECATED** Indicates the particular item in the menuItems array that is currently selected.
+     * Indicates the particular item in the menuItems array that is currently selected.
      */
-    selectedIndex: React.PropTypes.number,
+    selectedIndex: deprecated(React.PropTypes.number,
+      'It will be removed with menuItems.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -184,8 +191,6 @@ const LeftNav = React.createClass({
     this._touchStartY = null;
     this._swipeStartX = null;
 
-    this._testDeprecations();
-
     return {
       open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
@@ -198,8 +203,6 @@ const LeftNav = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     const newState = {muiTheme: newMuiTheme};
-
-    this._testDeprecations();
 
     // If docked is changed, change the open state for when uncontrolled.
     if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
@@ -362,38 +365,6 @@ const LeftNav = React.createClass({
         </Paper>
       </div>
     );
-  },
-
-  _testDeprecations() {
-    warning(!(typeof this.props.onNavClose === 'function'),
-      'onNavClose will be removed in favor of onRequestChange');
-
-    warning(!(typeof this.props.onNavOpen === 'function'),
-      'onNavOpen will be removed in favor of onRequestChange');
-
-    warning(!this.props.hasOwnProperty('header'),
-      'header will be removed in favor of composability. refer to the documentation for more information');
-
-    warning(!this.props.hasOwnProperty('menuItems'),
-      'menuItems will be removed in favor of composability. refer to the documentation for more information');
-
-    warning(!this.props.hasOwnProperty('menuItemClassName'),
-      'menuItemClassName will be removed with menuItems.');
-
-    warning(!this.props.hasOwnProperty('menuItemClassName'),
-      'menuItemClassName will be removed with menuItems.');
-
-    warning(!this.props.hasOwnProperty('menuItemClassNameLink'),
-      'menuItemClassNameLink will be removed with menuItems.');
-
-    warning(!this.props.hasOwnProperty('menuItemClassNameSubheader'),
-      'menuItemClassNameSubheader will be removed with menuItems.');
-
-    warning(!(typeof this.props.onChange === 'function'),
-      'onChange will be removed with menuItems.');
-
-    warning(!this.props.hasOwnProperty('selectedIndex'),
-      'selectedIndex will be removed with menuItems.');
   },
 
   _shouldShow() {
