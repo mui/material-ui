@@ -1,27 +1,11 @@
 import React from 'react';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const FontIcon = React.createClass({
+let FontIcon = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     /**
@@ -43,19 +27,12 @@ const FontIcon = React.createClass({
   getInitialState() {
     return {
       hovered: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
     let {
+      _muiTheme,
       color,
       hoverColor,
       onMouseLeave,
@@ -64,10 +41,10 @@ const FontIcon = React.createClass({
       ...other,
     } = this.props;
 
-    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let spacing = _muiTheme.baseTheme.spacing;
     let offColor = color ? color :
       style && style.color ? style.color :
-      this.state.muiTheme.rawTheme.palette.textColor;
+      _muiTheme.baseTheme.palette.textColor;
     let onColor = hoverColor ? hoverColor : offColor;
 
     let mergedStyles = this.prepareStyles({
@@ -107,5 +84,7 @@ const FontIcon = React.createClass({
     }
   },
 });
+
+FontIcon = muiThemeable(FontIcon);
 
 export default FontIcon;
