@@ -6,7 +6,7 @@ const propTypes = {
   /**
    * The material-ui theme applied to this component.
    */
-  muiTheme: React.PropTypes.object.isRequired,
+  _muiTheme: React.PropTypes.object.isRequired,
 
   /**
    * True if the hint text should be visible.
@@ -31,7 +31,7 @@ const defaultProps = {
 const TextFieldHint = (props) => {
 
   const {
-    muiTheme,
+    _muiTheme,
     show,
     style,
     text,
@@ -41,7 +41,7 @@ const TextFieldHint = (props) => {
     textField: {
       hintColor,
     },
-  } = muiTheme;
+  } = _muiTheme;
 
   const styles = {
     root: {
@@ -55,7 +55,7 @@ const TextFieldHint = (props) => {
 
   return (
     <div
-      style={styleUtils.prepareStyles(muiTheme, styles.root, style)}>{text}
+      style={styleUtils.prepareStyles(_muiTheme, styles.root, style)}>{text}
     </div>
   );
 };
