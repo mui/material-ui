@@ -7,24 +7,19 @@ import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
 import Tooltip from './tooltip';
 import Children from './utils/children';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const IconButton = React.createClass({
+let IconButton = React.createClass({
 
   mixins: [
     StylePropable,
     ContextPure,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   statics: {
     getRelevantContextKeys(muiTheme) {
-      const spacing = muiTheme.rawTheme.spacing;
-      const palette = muiTheme.rawTheme.palette;
+      const spacing = muiTheme.baseTheme.spacing;
+      const palette = muiTheme.baseTheme.palette;
 
       return {
         iconSize: spacing.iconSize,
@@ -40,17 +35,6 @@ const IconButton = React.createClass({
         Tooltip,
       ];
     },
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
   },
 
   propTypes: {
@@ -87,15 +71,7 @@ const IconButton = React.createClass({
   getInitialState() {
     return {
       tooltipShown: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
@@ -110,7 +86,7 @@ const IconButton = React.createClass({
       iconSize,
       textColor,
       disabledColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.constructor.getRelevantContextKeys(this.props._muiTheme);
 
     let styles = {
       root: {
@@ -261,5 +237,7 @@ const IconButton = React.createClass({
   },
 
 });
+
+IconButton = muiThemeable(IconButton);
 
 export default IconButton;
