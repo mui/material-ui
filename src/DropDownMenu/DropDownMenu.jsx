@@ -10,6 +10,7 @@ import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 import styleUtils from '../utils/styles';
 import warning from 'warning';
+import deprecated from '../utils/deprecatedPropType';
 
 const DropDownMenu = React.createClass({
 
@@ -56,10 +57,11 @@ const DropDownMenu = React.createClass({
     disabled: React.PropTypes.bool,
 
     /**
-     * **DEPRECATED** `DropDownMenu` will use this member to display
+     * `DropDownMenu` will use this member to display
      * the name of the item.
      */
-    displayMember: React.PropTypes.string,
+    displayMember: deprecated(React.PropTypes.string,
+      'Instead, use composability.'),
 
     /**
      * Overrides the styles of icon element.
@@ -67,10 +69,11 @@ const DropDownMenu = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
-     * **DEPRECATED** `DropDownMenu` will use this member to display
+     * `DropDownMenu` will use this member to display
      * the name of the item on the label.
      */
-    labelMember: React.PropTypes.string,
+    labelMember: deprecated(React.PropTypes.string,
+      'Instead, use composability.'),
 
     /**
      * Overrides the styles of label when the `DropDownMenu` is inactive.
@@ -83,9 +86,10 @@ const DropDownMenu = React.createClass({
     maxHeight: React.PropTypes.number,
 
     /**
-     * **DEPRECATED** JSON data representing all menu items in the dropdown.
+     * JSON data representing all menu items in the dropdown.
      */
-    menuItems: React.PropTypes.array,
+    menuItems: deprecated(React.PropTypes.array,
+      'Instead, use composability.'),
 
     /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
@@ -103,9 +107,10 @@ const DropDownMenu = React.createClass({
     openImmediately: React.PropTypes.bool,
 
     /**
-     * **DEPRECATED** Index of the item selected.
+     * Index of the item selected.
      */
-    selectedIndex: React.PropTypes.number,
+    selectedIndex: deprecated(React.PropTypes.number,
+      'Use value instead to control the component.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -123,30 +128,28 @@ const DropDownMenu = React.createClass({
     value: React.PropTypes.any,
 
     /**
-     * **DEPRECATED** Two-way binding link.
+     * Two-way binding link.
      */
-    valueLink: React.PropTypes.object,
+    valueLink: deprecated(React.PropTypes.object,
+      'It\'s deprecated by React too.'),
 
     /**
-     * **DEPRECATED** `DropDownMenu` will use this member as the value representing an item.
+     * `DropDownMenu` will use this member as the value representing an item.
      */
-    valueMember: React.PropTypes.string,
+    valueMember: deprecated(React.PropTypes.string,
+      'Instead, use composability.'),
   },
 
   getDefaultProps() {
     return {
       autoWidth: true,
       disabled: false,
-      valueMember: 'payload',
-      displayMember: 'text',
       openImmediately: false,
       maxHeight: 500,
-      labelMember: 'text',
     };
   },
 
   getInitialState() {
-    this._testDeprecations();
     return {
       open: this.props.openImmediately,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
@@ -232,7 +235,7 @@ const DropDownMenu = React.createClass({
     const root = this.refs.root;
     const item = this.props.menuItems && this.props.menuItems[this.state.selectedIndex];
     if (item) {
-      root.value = item[this.props.displayMember];
+      root.value = item[this.props.displayMember || 'text'];
     }
 
     return root;
@@ -273,11 +276,13 @@ const DropDownMenu = React.createClass({
         `SelectedIndex of ${selectedIndex} does not exist in menuItems.`);
     }
 
-    if (valueMember && this._isControlled()) {
+    let valueMember2 = valueMember || 'payload';
+
+    if (valueMember2 && this._isControlled()) {
       value = this.props.hasOwnProperty('value') ? this.props.value : valueLink.value;
       if (menuItems && value !== null && value !== undefined) {
         for (let i = 0; i < menuItems.length; i++) {
-          if (menuItems[i][valueMember] === value) {
+          if (menuItems[i][valueMember2] === value) {
             selectedIndex = i;
           }
         }
@@ -288,7 +293,7 @@ const DropDownMenu = React.createClass({
     if (menuItems) {
       const selectedItem = menuItems[selectedIndex];
       if (selectedItem) {
-        displayValue = selectedItem[labelMember] || selectedItem[displayMember];
+        displayValue = selectedItem[labelMember || 'text'] || selectedItem[displayMember || 'text'];
       }
     } else {
       React.Children.forEach(children, child => {
@@ -304,9 +309,9 @@ const DropDownMenu = React.createClass({
       ? menuItems.map((item, idx) => (
           <MenuItem
             key={idx}
-            primaryText={item[displayMember]}
-            value={item[valueMember]}
-            onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item[valueMember])} />
+            primaryText={item[displayMember || 'text']}
+            value={item[valueMember2]}
+            onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item[valueMember2])} />
         ))
       : React.Children.map(children, child => {
         const clone = React.cloneElement(child, {
@@ -355,26 +360,6 @@ const DropDownMenu = React.createClass({
     );
   },
 
-  _testDeprecations() {
-    warning(this.props.displayMember === 'text',
-      'displayMember will be removed in favor of composability. refer to the documentation for more information');
-
-    warning(this.props.labelMember === 'text',
-      'labelMember will be removed in favor of composability. refer to the documentation for more information');
-
-    warning(!this.props.hasOwnProperty('menuItems'),
-      'menuItems will be removed in favor of composability. refer to the documentation for more information');
-
-    warning(!this.props.hasOwnProperty('selectedIndex'),
-      'selectedIndex will be removed. use value instead to control the component.');
-
-    warning(!this.props.hasOwnProperty('valueLink'),
-      'valueLink will be removed. use value and onChange');
-
-    warning(this.props.valueMember === 'payload',
-      'valueMember will be removed in favor of composability. refer to the documentation for more information');
-  },
-
   _setWidth() {
     const el = this.refs.root;
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
@@ -409,7 +394,7 @@ const DropDownMenu = React.createClass({
     if (menuItems && (this.state.selectedIndex !== key || e.target.value !== value)) {
       const selectedItem = menuItems[key];
       if (selectedItem) {
-        e.target.value = selectedItem[valueMember];
+        e.target.value = selectedItem[valueMember || 'payload'];
       }
       this._onMenuRequestClose();
     }
