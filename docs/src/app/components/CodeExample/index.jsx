@@ -1,19 +1,11 @@
 import React from 'react';
-
-import {
-  ClearFix,
-  Paper,
-  Styles,
-} from 'material-ui';
-
-const {
-  Spacing,
-  Typography,
-} = Styles;
-
-import CodeBlock from './code-block';
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
+import CodeBlock from './CodeBlock';
+import ClearFix from 'material-ui/lib/clearfix';
+import Paper from 'material-ui/lib/paper';
+import Spacing from 'material-ui/lib/styles/spacing';
+import Typography from 'material-ui/lib/styles/typography';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import DefaultRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 
 const CodeExample = React.createClass({
 

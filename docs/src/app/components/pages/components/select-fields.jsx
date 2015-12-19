@@ -3,9 +3,9 @@ import {ClearFix, Mixins, SelectField, Paper, MenuItem} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 const {StyleResizable} = Mixins;
 import Code from 'select-fields-code';
-import CodeExample from '../../code-example/code-example';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 const SelectFieldsPage = React.createClass({
 

@@ -6,8 +6,8 @@ import IconButton from 'icon-button';
 
 import ComponentDoc from '../../component-doc';
 import Code from 'grid-list-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 class GridListPage extends React.Component {
 

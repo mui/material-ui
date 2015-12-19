@@ -2,7 +2,7 @@ import React from 'react';
 
 import {AutoComplete} from 'material-ui';
 import ComponentDoc from '../../component-doc';
-import CodeExample from '../../code-example/code-example';
+import CodeExample from '../../CodeExample';
 
 import Code from 'auto-complete-code';
 

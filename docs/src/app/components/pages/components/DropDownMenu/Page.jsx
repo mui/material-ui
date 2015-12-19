@@ -1,14 +1,14 @@
 import React from 'react';
-import MarkdownElement from '../../MarkdownElement';
-import CodeExample from '../../code-example/code-example';
-import PropTypeDescription from '../../PropTypeDescription';
-import dropDownMenuReadmeText from './DropDownMenu/README';
-import DropDownMenuSimpleExample from './DropDownMenu/ExampleSimple';
-import dropDownMenuSimpleExampleCode from '!raw!./DropDownMenu/ExampleSimple';
-import DropDownMenuLongMenuExample from './DropDownMenu/ExampleLongMenu';
-import dropDownMenuLongMenuExampleCode from '!raw!./DropDownMenu/ExampleLongMenu';
-import DropDownMenuLabeledExample from './DropDownMenu/ExampleLabeled';
-import dropDownMenuLabeledExampleCode from '!raw!./DropDownMenu/ExampleLabeled';
+import CodeExample from '../../../CodeExample';
+import PropTypeDescription from '../../../PropTypeDescription';
+import MarkdownElement from '../../../MarkdownElement';
+import dropDownMenuReadmeText from './README';
+import DropDownMenuSimpleExample from './ExampleSimple';
+import dropDownMenuSimpleExampleCode from '!raw!./ExampleSimple';
+import DropDownMenuLongMenuExample from './ExampleLongMenu';
+import dropDownMenuLongMenuExampleCode from '!raw!./ExampleLongMenu';
+import DropDownMenuLabeledExample from './ExampleLabeled';
+import dropDownMenuLabeledExampleCode from '!raw!./ExampleLabeled';
 import dropDownMenuCode from '!raw!material-ui/lib/DropDownMenu/DropDownMenu';
 
 export default class LeftNavPage extends React.Component {
