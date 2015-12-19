@@ -6,24 +6,19 @@ import Colors from '../styles/colors';
 import Popover from '../popover/popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../lists/list-item';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 import Menu from './menu';
 
 const nestedMenuStyle = {
   position: 'relative',
 };
 
-const MenuItem = React.createClass({
+let MenuItem = React.createClass({
 
   mixins: [
     PureRenderMixin,
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -55,30 +50,13 @@ const MenuItem = React.createClass({
     value: React.PropTypes.any,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       open: false,
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.focusState === 'none') {
       this._onRequestClose();
     }
@@ -108,6 +86,7 @@ const MenuItem = React.createClass({
 
   render() {
     const {
+      _muiTheme,
       checked,
       children,
       desktop,
@@ -124,8 +103,8 @@ const MenuItem = React.createClass({
       ...other,
     } = this.props;
 
-    const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
-    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+    const disabledColor = _muiTheme.baseTheme.palette.disabledColor;
+    const textColor = _muiTheme.baseTheme.palette.textColor;
     const leftIndent = desktop ? 64 : 72;
     const sidePadding = desktop ? 24 : 16;
 
@@ -265,5 +244,7 @@ const MenuItem = React.createClass({
     });
   },
 });
+
+MenuItem = muiThemeable(MenuItem);
 
 export default MenuItem;

@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
 import Events from '../utils/events';
 import PropTypes from '../utils/prop-types';
-import Menu from '../menus/menu';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import Menu from './menu';
 import Popover from '../popover/popover';
 import warning from 'warning';
 
@@ -15,16 +13,7 @@ const IconMenu = React.createClass({
     StylePropable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
-    /**
-     * The MUI Theme to use to render this component with.
-     */
-    _muiTheme: React.PropTypes.object.isRequired,
-
     anchorOrigin: PropTypes.origin,
     children: React.PropTypes.node,
 
@@ -78,24 +67,12 @@ const IconMenu = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     if (process.env.NODE_ENV !== 'production') {
       this._warningIfNeeded();
     }
 
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       menuInitiallyKeyboardFocused: false,
       open: false,
@@ -108,9 +85,6 @@ const IconMenu = React.createClass({
     if (process.env.NODE_ENV !== 'production') {
       this._warningIfNeeded();
     }
-
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
 
     if (nextProps.open === true || nextProps.open === false) {
       this.setState({open: nextProps.open});

@@ -10,20 +10,15 @@ import KeyCode from '../utils/key-code';
 import PropTypes from '../utils/prop-types';
 import List from '../lists/list';
 import Paper from '../paper';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const Menu = React.createClass({
+let Menu = React.createClass({
 
   mixins: [
     StylePropable,
     Controllable,
     ClickAwayable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -68,17 +63,6 @@ const Menu = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     const filteredChildren = this._getFilteredChildren(this.props.children);
     let selectedIndex = this._getSelectedIndex(this.props, filteredChildren);
@@ -87,7 +71,6 @@ const Menu = React.createClass({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -119,12 +102,10 @@ const Menu = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     const filteredChildren = this._getFilteredChildren(nextProps.children);
     let selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     this.setState({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
-      muiTheme: newMuiTheme,
     });
   },
 
@@ -136,6 +117,7 @@ const Menu = React.createClass({
 
   render() {
     let {
+      _muiTheme,
       animated,
       autoWidth,
       children,
@@ -157,15 +139,12 @@ const Menu = React.createClass({
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
-    const muiTheme = this.state.muiTheme;
-    const rawTheme = muiTheme.rawTheme;
-
     let styles = {
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
         transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
-        zIndex: muiTheme.zIndex.menu,
+        zIndex: _muiTheme.zIndex.menu,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
@@ -202,7 +181,7 @@ const Menu = React.createClass({
       },
 
       selectedMenuItem: {
-        color: rawTheme.palette.accent1Color,
+        color: _muiTheme.baseTheme.palette.accent1Color,
       },
     };
 
@@ -511,5 +490,7 @@ const Menu = React.createClass({
   },
 
 });
+
+Menu = muiThemeable(Menu);
 
 export default Menu;
