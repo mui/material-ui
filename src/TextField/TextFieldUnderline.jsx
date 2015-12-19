@@ -117,8 +117,8 @@ const TextFieldUnderline = (props) => {
 
   return (
     <div>
-      <hr style={styleUtils.prepareStyles(muiTheme, underline)}/>
-      <hr style={styleUtils.prepareStyles(muiTheme, focusedUnderline)}/>
+      <hr style={styleUtils.prepareStyles(_muiTheme, underline)}/>
+      <hr style={styleUtils.prepareStyles(_muiTheme, focusedUnderline)}/>
     </div>
   );
 };

@@ -43,12 +43,12 @@ const CalendarToolbar = React.createClass({
   },
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
     /**
      * The MUI Theme to use to render this component with.
      */
     _muiTheme: React.PropTypes.object.isRequired,
 
-    DateTimeFormat: React.PropTypes.func.isRequired,
     displayDate: React.PropTypes.object.isRequired,
     locale: React.PropTypes.string.isRequired,
     nextMonth: React.PropTypes.bool,
