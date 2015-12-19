@@ -8,15 +8,10 @@ const LinkMenuItem = React.createClass({
   mixins: [StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
-    /**
-     * The MUI Theme to use to render this component with.
-     */
-    _muiTheme: React.PropTypes.object.isRequired,
-
     active: React.PropTypes.bool,
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
@@ -39,18 +34,18 @@ const LinkMenuItem = React.createClass({
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
+      _muiTheme: this.state.muiTheme,
     };
   },
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context._muiTheme ? this.context._muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       hovered: false,
     };
   },
@@ -58,7 +53,7 @@ const LinkMenuItem = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    let newMuiTheme = nextContext._muiTheme ? nextContext._muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
