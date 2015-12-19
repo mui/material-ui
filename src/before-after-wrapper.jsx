@@ -1,6 +1,7 @@
 import React from 'react';
 import StylePropable from './mixins/style-propable';
 import AutoPrefix from './styles/auto-prefix';
+import muiThemeable from './muiThemeable';
 
 /**
  *  BeforeAfterWrapper
@@ -36,11 +37,16 @@ import AutoPrefix from './styles/auto-prefix';
  *  and afterElement have a defined style position.
  */
 
-const BeforeAfterWrapper = React.createClass({
+let BeforeAfterWrapper = React.createClass({
 
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     afterElementType: React.PropTypes.string,
     afterStyle: React.PropTypes.object,
     beforeElementType: React.PropTypes.string,
@@ -99,5 +105,7 @@ const BeforeAfterWrapper = React.createClass({
   },
 
 });
+
+BeforeAfterWrapper = muiThemeable(BeforeAfterWrapper);
 
 export default BeforeAfterWrapper;
