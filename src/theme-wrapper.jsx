@@ -7,12 +7,12 @@ export default React.createClass({
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      muiTheme: this.props.theme,
+      _muiTheme: this.props.theme,
     };
   },
 
