@@ -14,16 +14,12 @@ const styles = {
   },
 };
 
-const AppBarExampleIconButton = React.createClass({
-  render() {
-    return (
-      <AppBar
-        title={<span style={styles.title} onTouchTap={handleTouchTap}>Title</span>}
-        iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-        iconElementRight={<FlatButton label="Save" />}
-      />
-   );
-  },
-});
+const AppBarExampleIconButton = () => (
+  <AppBar
+    title={<span style={styles.title} onTouchTap={handleTouchTap}>Title</span>}
+    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+    iconElementRight={<FlatButton label="Save" />}
+  />
+);
 
 export default AppBarExampleIconButton;

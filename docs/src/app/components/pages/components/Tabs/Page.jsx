@@ -14,27 +14,25 @@ import tabsText from './Tabs';
 import tabCode from '!raw!material-ui/lib/tabs/tab';
 import tabText from './Tab';
 
-const TabsPage = () => {
-  return (
-    <div>
-      <MarkdownElement text={tabsReadmeText} />
-      <CodeExample code={tabsExampleSimpleCode}>
-        <TabsExampleSimple />
-      </CodeExample>
-      <CodeExample code={tabsExampleControlledCode}>
-        <TabsExampleControlled />
-      </CodeExample>
-      <CodeExample code={tabsExampleSwipeableCode}>
-        <TabsExampleSwipeable />
-      </CodeExample>
-      <PropTypeDescription
-        code={tabsCode}
-        header={tabsText} />
-      <PropTypeDescription
-        code={tabCode}
-        header={tabText} />
-    </div>
-  );
-};
+const TabsPage = () => (
+  <div>
+    <MarkdownElement text={tabsReadmeText} />
+    <CodeExample code={tabsExampleSimpleCode}>
+      <TabsExampleSimple />
+    </CodeExample>
+    <CodeExample code={tabsExampleControlledCode}>
+      <TabsExampleControlled />
+    </CodeExample>
+    <CodeExample code={tabsExampleSwipeableCode}>
+      <TabsExampleSwipeable />
+    </CodeExample>
+    <PropTypeDescription
+      code={tabsCode}
+      header={tabsText} />
+    <PropTypeDescription
+      code={tabCode}
+      header={tabText} />
+  </div>
+);
 
 export default TabsPage;
