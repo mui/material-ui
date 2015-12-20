@@ -67,7 +67,6 @@ rules:
   react/jsx-indent-props: [2, 2]
   react/jsx-max-props-per-line: [2, {maximum: 4}]
   react/jsx-no-duplicate-props: 2
-  react/jsx-no-literals: 0 # Wishlist, one day
   react/jsx-no-undef: 2
   react/jsx-sort-prop-types: 2
   react/jsx-uses-react: 2
@@ -87,6 +86,7 @@ rules:
 
   # Disabled
   react/jsx-no-bind: 0
+  react/jsx-no-literals: 0
   react/jsx-closing-bracket-location: 0
   react/jsx-sort-props: 0
   react/no-set-state: 0
