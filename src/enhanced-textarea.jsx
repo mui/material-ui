@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
 const rowsHeight = 24;
 
@@ -27,26 +26,11 @@ const styles = {
   },
 };
 
-const EnhancedTextarea = React.createClass({
+let EnhancedTextarea = React.createClass({
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     /**
@@ -79,7 +63,6 @@ const EnhancedTextarea = React.createClass({
   getInitialState() {
     return {
       height: this.props.rows * rowsHeight,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -180,13 +163,13 @@ const EnhancedTextarea = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
-    let newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
   },
 });
+
+EnhancedTextarea = muiThemeable(EnhancedTextarea);
 
 export default EnhancedTextarea;
