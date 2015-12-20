@@ -7,8 +7,7 @@ import Children from './utils/children';
 import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import Paper from './paper';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -17,27 +16,11 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-
-const RaisedButton = React.createClass({
+let RaisedButton = React.createClass({
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     /**
@@ -91,17 +74,14 @@ const RaisedButton = React.createClass({
       touched: false,
       initialZDepth: zDepth,
       zDepth: zDepth,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
     let zDepth = nextProps.disabled ? 0 : 1;
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       zDepth: zDepth,
       initialZDepth: zDepth,
-      muiTheme: newMuiTheme,
     });
   },
 
@@ -128,11 +108,11 @@ const RaisedButton = React.createClass({
   },
 
   getThemeButton() {
-    return this.state.muiTheme.button;
+    return this.props._muiTheme.button;
   },
 
   getTheme() {
-    return this.state.muiTheme.raisedButton;
+    return this.props._muiTheme.raisedButton;
   },
 
   getStyles() {
@@ -171,7 +151,7 @@ const RaisedButton = React.createClass({
                     (this.getThemeButton().textTransform ? this.getThemeButton().textTransform : 'uppercase'),
         fontWeight: Typography.fontWeightMedium,
         margin: 0,
-        padding: '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutterLess + 'px',
+        padding: '0px ' + this.props._muiTheme.baseTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
         lineHeight: (this.props.style && this.props.style.height) ?
          this.props.style.height : this.getThemeButton().height + 'px',
@@ -307,5 +287,7 @@ const RaisedButton = React.createClass({
     }
   },
 });
+
+RaisedButton = muiThemeable(RaisedButton);
 
 export default RaisedButton;
