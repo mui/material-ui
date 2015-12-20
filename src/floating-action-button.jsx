@@ -7,30 +7,14 @@ import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
 import Paper from './paper';
 import Children from './utils/children';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
 import warning from 'warning';
+import muiThemeable from './muiThemeable';
 
-const FloatingActionButton = React.createClass({
+let FloatingActionButton = React.createClass({
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     /**
@@ -67,14 +51,10 @@ const FloatingActionButton = React.createClass({
       initialZDepth: zDepth,
       touch: false,
       zDepth: zDepth,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(newProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(newProps) {
     if (newProps.disabled !== this.props.disabled) {
       const zDepth = newProps.disabled ? 0 : 2;
 
@@ -101,7 +81,7 @@ const FloatingActionButton = React.createClass({
 
 
   getTheme() {
-    return this.state.muiTheme.floatingActionButton;
+    return this.props._muiTheme.floatingActionButton;
   },
 
   _getIconColor() {
@@ -111,7 +91,7 @@ const FloatingActionButton = React.createClass({
   },
 
   getStyles() {
-    let themeVariables = this.state.muiTheme.floatingActionButton;
+    let themeVariables = this.props._muiTheme.floatingActionButton;
 
     let styles = {
       root: {
@@ -286,5 +266,7 @@ const FloatingActionButton = React.createClass({
   },
 
 });
+
+FloatingActionButton = muiThemeable(FloatingActionButton);
 
 export default FloatingActionButton;
