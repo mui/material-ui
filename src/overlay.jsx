@@ -3,18 +3,15 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Colors from './styles/colors';
+import muiThemeable from './muiThemeable';
 
-const Overlay = React.createClass({
+let Overlay = React.createClass({
 
   _originalBodyOverflow: '',
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   componentWillReceiveProps(nextProps) {
     if (this.props.show !== nextProps.show) {
@@ -129,5 +126,7 @@ const Overlay = React.createClass({
   },
 
 });
+
+Overlay = muiThemeable(Overlay);
 
 export default Overlay;
