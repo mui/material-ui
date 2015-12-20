@@ -1,15 +1,10 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const TimeDisplay = React.createClass({
+let TimeDisplay = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -25,21 +20,9 @@ const TimeDisplay = React.createClass({
     selectedTime: React.PropTypes.object.isRequired,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     return {
       transitionDirection: 'up',
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -50,11 +33,8 @@ const TimeDisplay = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     let direction;
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
     if (nextProps.selectedTime !== this.props.selectedTime) {
       direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
 
@@ -81,7 +61,7 @@ const TimeDisplay = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.timePicker;
+    return this.props._muiTheme.timePicker;
   },
 
   render() {
@@ -147,5 +127,7 @@ const TimeDisplay = React.createClass({
   },
 
 });
+
+TimeDisplay = muiThemeable(TimeDisplay);
 
 export default TimeDisplay;

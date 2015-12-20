@@ -4,11 +4,9 @@ import TimeDisplay from './time-display';
 import ClockButton from './clock-button';
 import ClockHours from './clock-hours';
 import ClockMinutes from './clock-minutes';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import muiThemeable from '../muiThemeable';
 
-
-const Clock = React.createClass({
+let Clock = React.createClass({
 
   mixins: [StylePropable],
 
@@ -26,10 +24,6 @@ const Clock = React.createClass({
     onChangeMinutes: React.PropTypes.func,
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       initialTime: new Date(),
@@ -37,16 +31,13 @@ const Clock = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
-      muiTheme: newMuiTheme,
       selectedTime: nextProps.initialTime,
     });
   },
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       selectedTime: this.props.initialTime,
       mode: 'hour',
     };
@@ -124,7 +115,7 @@ const Clock = React.createClass({
         width: 260,
         height: 260,
         borderRadius: '100%',
-        backgroundColor: this.state.muiTheme.timePicker.clockCircleColor,
+        backgroundColor: this.props._muiTheme.timePicker.clockCircleColor,
       },
     };
 
@@ -213,5 +204,7 @@ const Clock = React.createClass({
     return this.state.selectedTime;
   },
 });
+
+Clock = muiThemeable(Clock);
 
 export default Clock;

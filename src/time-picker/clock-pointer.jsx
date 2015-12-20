@@ -1,15 +1,10 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const ClockPointer = React.createClass({
+let ClockPointer = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -22,21 +17,9 @@ const ClockPointer = React.createClass({
     value: React.PropTypes.number,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     return {
       inner: this.isInner(this.props.value),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -48,11 +31,9 @@ const ClockPointer = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+  componentWillReceiveProps(nextProps) {
     this.setState({
       inner: this.isInner(nextProps.value),
-      muiTheme: newMuiTheme,
     });
   },
 
@@ -78,7 +59,7 @@ const ClockPointer = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.timePicker;
+    return this.props._muiTheme.timePicker;
   },
 
   render() {
@@ -127,5 +108,7 @@ const ClockPointer = React.createClass({
     );
   },
 });
+
+ClockPointer = muiThemeable(ClockPointer);
 
 export default ClockPointer;

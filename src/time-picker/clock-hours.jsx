@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
 import ClockNumber from './clock-number';
 import ClockPointer from './clock-pointer';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
-
+import muiThemeable from '../muiThemeable';
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
@@ -24,37 +22,9 @@ function getTouchEventOffsetValues(e) {
 }
 
 
-const ClockHours = React.createClass({
+let ClockHours = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
 
   propTypes: {
     /**
@@ -233,5 +203,7 @@ const ClockHours = React.createClass({
     );
   },
 });
+
+ClockHours = muiThemeable(ClockHours);
 
 export default ClockHours;
