@@ -4,40 +4,11 @@ import Transitions from './styles/transitions';
 import EnhancedSwitch from './enhanced-switch';
 import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from './svg-icons/toggle/radio-button-checked';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const RadioButton = React.createClass({
+let RadioButton = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
 
   propTypes: {
     /**
@@ -55,7 +26,7 @@ const RadioButton = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.radioButton;
+    return this.props._muiTheme.radioButton;
   },
 
   getStyles() {
@@ -183,5 +154,7 @@ const RadioButton = React.createClass({
   },
 
 });
+
+RadioButton = muiThemeable(RadioButton);
 
 export default RadioButton;
