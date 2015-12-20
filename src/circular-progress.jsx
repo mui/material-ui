@@ -101,7 +101,7 @@ let CircularProgress = React.createClass({
   },
 
   getTheme() {
-    return this.prop._muiTheme.baseTheme.palette;
+    return this.props._muiTheme.baseTheme.palette;
   },
 
   getStyles(zoom) {

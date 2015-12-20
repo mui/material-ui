@@ -31,6 +31,12 @@ let TableHeaderColumn = React.createClass({
     tooltipStyle: React.PropTypes.object,
   },
 
+  getInitialState() {
+    return {
+      hovered: false,
+    };
+  },
+
   getTheme() {
     return this.props._muiTheme.tableHeaderColumn;
   },

@@ -6,14 +6,19 @@ import PropTypes from '../utils/prop-types';
 import Menu from './menu';
 import Popover from '../popover/popover';
 import warning from 'warning';
+import muiThemeable from '../muiThemeable';
 
-const IconMenu = React.createClass({
+let IconMenu = React.createClass({
 
   mixins: [
     StylePropable,
   ],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
     anchorOrigin: PropTypes.origin,
     children: React.PropTypes.node,
 
@@ -248,5 +253,7 @@ const IconMenu = React.createClass({
   },
 
 });
+
+IconMenu = muiThemeable(IconMenu);
 
 export default IconMenu;

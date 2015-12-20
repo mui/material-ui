@@ -47,7 +47,7 @@ let Checkbox = React.createClass({
   },
 
   getTheme() {
-    return this.state._muiTheme.checkbox;
+    return this.props._muiTheme.checkbox;
   },
 
   getStyles() {
