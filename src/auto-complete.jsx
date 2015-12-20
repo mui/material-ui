@@ -15,16 +15,7 @@ const AutoComplete = React.createClass({
     ClickAwayable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
-    /**
-     * The MUI Theme to use to render this component with.
-     */
-    _muiTheme: React.PropTypes.object.isRequired,
-
     animated: React.PropTypes.bool,
     dataSource: React.PropTypes.array,
     disableFocusRipple: React.PropTypes.bool,
