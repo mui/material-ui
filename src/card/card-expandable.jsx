@@ -4,18 +4,17 @@ import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../icon-button';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 import ContextPure from '../mixins/context-pure';
 
-const CardExpandable = React.createClass({
+let CardExpandable = React.createClass({
   mixins: [
     StylePropable,
     ContextPure,
   ],
 
   getStyles() {
-    const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    const contextKeys = this.constructor.getRelevantContextKeys(this.props._muiTheme);
 
     const directionStyle = contextKeys.isRtl ? {
       left: 4,
@@ -33,10 +32,6 @@ const CardExpandable = React.createClass({
     };
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * The MUI Theme to use to render this component with.
@@ -52,17 +47,6 @@ const CardExpandable = React.createClass({
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   statics: {
     getRelevantContextKeys(muiTheme) {
       return {
@@ -74,19 +58,6 @@ const CardExpandable = React.createClass({
         IconButton,
       ];
     },
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -112,5 +83,7 @@ const CardExpandable = React.createClass({
     return expandableBtn;
   },
 });
+
+CardExpandable = muiThemeable(CardExpandable);
 
 export default CardExpandable;

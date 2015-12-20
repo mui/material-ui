@@ -14,11 +14,6 @@ const Card = React.createClass({
 
   propTypes: {
     /**
-     * The MUI Theme to use to render this component with.
-     */
-    _muiTheme: React.PropTypes.object.isRequired,
-
-    /**
      * Whether a click on this card component expands the card. Can be set on any child of the Card component.
      */
     actAsExpander: React.PropTypes.bool,
