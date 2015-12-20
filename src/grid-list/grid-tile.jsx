@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const GridTile = React.createClass({
+let GridTile = React.createClass({
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -40,17 +35,6 @@ const GridTile = React.createClass({
     titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       titlePosition: 'bottom',
@@ -62,23 +46,10 @@ const GridTile = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getStyles()
   {
-    const spacing = this.state.muiTheme.rawTheme.spacing;
-    const themeVariables = this.state.muiTheme.gridTile;
+    const spacing = this.props._muiTheme.baseTheme.spacing;
+    const themeVariables = this.props._muiTheme.gridTile;
     const actionPos = this.props.actionIcon ? this.props.actionPosition : null;
     const gutterLess = spacing.desktopGutterLess;
 
@@ -225,5 +196,7 @@ const GridTile = React.createClass({
     );
   },
 });
+
+GridTile = muiThemeable(GridTile);
 
 export default GridTile;
