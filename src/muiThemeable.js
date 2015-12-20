@@ -12,7 +12,8 @@ export default function muiThemeable(WrappedComponent, forwardMethods) {
 
   const methods = {};
   if (forwardMethods) {
-    forwardMethods.map(name => methods[name] = (function(...args) { this.refs.WrappedComponent[name](...args); }));
+    forwardMethods.map(name => methods[name] =
+      (function(...args) { return this.refs.WrappedComponent[name](...args); }));
   }
 
   return React.createClass(merge({
