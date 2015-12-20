@@ -11,19 +11,14 @@ import IconButton from '../icon-button';
 import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
 import CloseIcon from '../svg-icons/navigation/arrow-drop-down';
 import NestedList from './nested-list';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const ListItem = React.createClass({
+let ListItem = React.createClass({
 
   mixins: [
     PureRenderMixin,
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -65,17 +60,6 @@ const ListItem = React.createClass({
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       autoGenerateNestedIndicator: true,
@@ -100,15 +84,7 @@ const ListItem = React.createClass({
       rightIconButtonHovered: false,
       rightIconButtonKeyboardFocused: false,
       touch: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -141,7 +117,7 @@ const ListItem = React.createClass({
       ...other,
     } = this.props;
 
-    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+    const textColor = this.props._muiTheme.baseTheme.palette.textColor;
     const hoverColor = ColorManipulator.fade(textColor, 0.1);
     const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
     const singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
@@ -164,7 +140,7 @@ const ListItem = React.createClass({
 
       //This inner div is needed so that ripples will span the entire container
       innerDiv: {
-        marginLeft: nestedLevel * this.state.muiTheme.listItem.nestedLevelDepth,
+        marginLeft: nestedLevel * this.props._muiTheme.listItem.nestedLevelDepth,
         paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
         paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
         paddingBottom: singleAvatar ? 20 : 16,
@@ -538,5 +514,7 @@ const ListItem = React.createClass({
   },
 
 });
+
+ListItem = muiThemeable(ListItem);
 
 export default ListItem;
