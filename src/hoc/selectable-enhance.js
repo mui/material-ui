@@ -1,19 +1,14 @@
 import React from 'react';
-import ThemeManager from '../styles/theme-manager';
 import StylePropable from '../mixins/style-propable';
 import ColorManipulator from '../utils/color-manipulator';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import muiThemeable from '../muiThemeable';
 
-export const SelectableContainerEnhance = (Component) => {
-  const composed = React.createClass({
+const SelectableContainerEnhance = (Component) => {
+  let composed = React.createClass({
 
     mixins: [
       StylePropable,
     ],
-
-    contextTypes: {
-      muiTheme: React.PropTypes.object,
-    },
 
     displayName: `Selectable${Component.displayName}`,
 
@@ -31,27 +26,6 @@ export const SelectableContainerEnhance = (Component) => {
       }).isRequired,
     },
 
-    childContextTypes: {
-      muiTheme: React.PropTypes.object,
-    },
-
-    getChildContext() {
-      return {
-        muiTheme: this.state.muiTheme,
-      };
-    },
-
-    componentWillReceiveProps(nextProps, nextContext) {
-      let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-      this.setState({muiTheme: newMuiTheme});
-    },
-
-    getInitialState() {
-      return {
-        muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      };
-    },
-
     getValueLink: function(props) {
       return props.valueLink || {
         value: props.value,
@@ -66,7 +40,7 @@ export const SelectableContainerEnhance = (Component) => {
       let styles = {};
 
       if (!selectedItemStyle) {
-        let textColor = this.state.muiTheme.rawTheme.palette.textColor;
+        let textColor = this.props._muiTheme.baseTheme.palette.textColor;
         let selectedColor = ColorManipulator.fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,
@@ -127,6 +101,9 @@ export const SelectableContainerEnhance = (Component) => {
     },
   });
 
+  composed = muiThemeable(composed);
+
   return composed;
 };
 
+export default SelectableContainerEnhance;
