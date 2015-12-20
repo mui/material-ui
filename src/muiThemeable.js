@@ -1,22 +1,38 @@
 import React from 'react';
 import getMuiTheme from './styles/getMuiTheme';
+import merge from 'lodash.merge';
+
+const defaultTheme = getMuiTheme();
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
-export default function muiThemeable(WrappedComponent) {
-  function MuiComponent(props, {_muiTheme = getMuiTheme()}) {
-    return React.createElement(WrappedComponent, {_muiTheme, ...props});
+export default function muiThemeable(WrappedComponent, forwardMethods) {
+
+  const methods = {};
+  if (forwardMethods) {
+    forwardMethods.map(name => methods[name] = (function(...args) { this.refs.WrappedComponent[name](...args); }));
   }
 
-  MuiComponent.displayName = getDisplayName(WrappedComponent);
-  MuiComponent.contextTypes = {
-    _muiTheme: React.PropTypes.object,
-  };
-  MuiComponent.childContextTypes = {
-    _muiTheme: React.PropTypes.object,
-  };
+  return React.createClass(merge({
+    displayName: getDisplayName(WrappedComponent),
 
-  return MuiComponent;
+    contextTypes: {
+      _muiTheme: React.PropTypes.object,
+    },
+
+    childContextTypes: {
+      _muiTheme: React.PropTypes.object,
+    },
+
+    render() {
+      const {_muiTheme = defaultTheme} = this.context;
+      return React.createElement(WrappedComponent, {
+        _muiTheme,
+        ref: forwardMethods ? 'WrappedComponent' : undefined,
+        ...this.props,
+      });
+    },
+  }, methods));
 }

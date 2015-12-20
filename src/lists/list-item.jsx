@@ -515,6 +515,6 @@ let ListItem = React.createClass({
 
 });
 
-ListItem = muiThemeable(ListItem);
+ListItem = muiThemeable(ListItem, ['applyFocusState']);
 
 export default ListItem;
