@@ -1,923 +1,920 @@
-export default {
-	ActionAccessibility: require('./action/accessibility'),
-	ActionAccessible: require('./action/accessible'),
-	ActionAccountBalanceWallet: require('./action/account-balance-wallet'),
-	ActionAccountBalance: require('./action/account-balance'),
-	ActionAccountBox: require('./action/account-box'),
-	ActionAccountCircle: require('./action/account-circle'),
-	ActionAddShoppingCart: require('./action/add-shopping-cart'),
-	ActionAlarmAdd: require('./action/alarm-add'),
-	ActionAlarmOff: require('./action/alarm-off'),
-	ActionAlarmOn: require('./action/alarm-on'),
-	ActionAlarm: require('./action/alarm'),
-	ActionAllOut: require('./action/all-out'),
-	ActionAndroid: require('./action/android'),
-	ActionAnnouncement: require('./action/announcement'),
-	ActionAspectRatio: require('./action/aspect-ratio'),
-	ActionAssessment: require('./action/assessment'),
-	ActionAssignmentInd: require('./action/assignment-ind'),
-	ActionAssignmentLate: require('./action/assignment-late'),
-	ActionAssignmentReturn: require('./action/assignment-return'),
-	ActionAssignmentReturned: require('./action/assignment-returned'),
-	ActionAssignmentTurnedIn: require('./action/assignment-turned-in'),
-	ActionAssignment: require('./action/assignment'),
-	ActionAutorenew: require('./action/autorenew'),
-	ActionBackup: require('./action/backup'),
-	ActionBook: require('./action/book'),
-	ActionBookmarkBorder: require('./action/bookmark-border'),
-	ActionBookmark: require('./action/bookmark'),
-	ActionBugReport: require('./action/bug-report'),
-	ActionBuild: require('./action/build'),
-	ActionCached: require('./action/cached'),
-	ActionCameraEnhance: require('./action/camera-enhance'),
-	ActionCardGiftcard: require('./action/card-giftcard'),
-	ActionCardMembership: require('./action/card-membership'),
-	ActionCardTravel: require('./action/card-travel'),
-	ActionChangeHistory: require('./action/change-history'),
-	ActionCheckCircle: require('./action/check-circle'),
-	ActionChromeReaderMode: require('./action/chrome-reader-mode'),
-	ActionClass: require('./action/class'),
-	ActionCode: require('./action/code'),
-	ActionCompareArrows: require('./action/compare-arrows'),
-	ActionCopyright: require('./action/copyright'),
-	ActionCreditCard: require('./action/credit-card'),
-	ActionDashboard: require('./action/dashboard'),
-	ActionDateRange: require('./action/date-range'),
-	ActionDelete: require('./action/delete'),
-	ActionDescription: require('./action/description'),
-	ActionDns: require('./action/dns'),
-	ActionDoneAll: require('./action/done-all'),
-	ActionDone: require('./action/done'),
-	ActionDonutLarge: require('./action/donut-large'),
-	ActionDonutSmall: require('./action/donut-small'),
-	ActionEject: require('./action/eject'),
-	ActionEventSeat: require('./action/event-seat'),
-	ActionEvent: require('./action/event'),
-	ActionExitToApp: require('./action/exit-to-app'),
-	ActionExplore: require('./action/explore'),
-	ActionExtension: require('./action/extension'),
-	ActionFace: require('./action/face'),
-	ActionFavoriteBorder: require('./action/favorite-border'),
-	ActionFavorite: require('./action/favorite'),
-	ActionFeedback: require('./action/feedback'),
-	ActionFindInPage: require('./action/find-in-page'),
-	ActionFindReplace: require('./action/find-replace'),
-	ActionFingerprint: require('./action/fingerprint'),
-	ActionFlightLand: require('./action/flight-land'),
-	ActionFlightTakeoff: require('./action/flight-takeoff'),
-	ActionFlipToBack: require('./action/flip-to-back'),
-	ActionFlipToFront: require('./action/flip-to-front'),
-	ActionGavel: require('./action/gavel'),
-	ActionGetApp: require('./action/get-app'),
-	ActionGif: require('./action/gif'),
-	ActionGrade: require('./action/grade'),
-	ActionGroupWork: require('./action/group-work'),
-	ActionHelpOutline: require('./action/help-outline'),
-	ActionHelp: require('./action/help'),
-	ActionHighlightOff: require('./action/highlight-off'),
-	ActionHistory: require('./action/history'),
-	ActionHome: require('./action/home'),
-	ActionHourglassEmpty: require('./action/hourglass-empty'),
-	ActionHourglassFull: require('./action/hourglass-full'),
-	ActionHttp: require('./action/http'),
-	ActionHttps: require('./action/https'),
-	ActionImportantDevices: require('./action/important-devices'),
-	ActionInfoOutline: require('./action/info-outline'),
-	ActionInfo: require('./action/info'),
-	ActionInput: require('./action/input'),
-	ActionInvertColors: require('./action/invert-colors'),
-	ActionLabelOutline: require('./action/label-outline'),
-	ActionLabel: require('./action/label'),
-	ActionLanguage: require('./action/language'),
-	ActionLaunch: require('./action/launch'),
-	ActionLightbulbOutline: require('./action/lightbulb-outline'),
-	ActionLineStyle: require('./action/line-style'),
-	ActionLineWeight: require('./action/line-weight'),
-	ActionList: require('./action/list'),
-	ActionLockOpen: require('./action/lock-open'),
-	ActionLockOutline: require('./action/lock-outline'),
-	ActionLock: require('./action/lock'),
-	ActionLoyalty: require('./action/loyalty'),
-	ActionMarkunreadMailbox: require('./action/markunread-mailbox'),
-	ActionMotorcycle: require('./action/motorcycle'),
-	ActionNoteAdd: require('./action/note-add'),
-	ActionOfflinePin: require('./action/offline-pin'),
-	ActionOpacity: require('./action/opacity'),
-	ActionOpenInBrowser: require('./action/open-in-browser'),
-	ActionOpenInNew: require('./action/open-in-new'),
-	ActionOpenWith: require('./action/open-with'),
-	ActionPageview: require('./action/pageview'),
-	ActionPanTool: require('./action/pan-tool'),
-	ActionPayment: require('./action/payment'),
-	ActionPermCameraMic: require('./action/perm-camera-mic'),
-	ActionPermContactCalendar: require('./action/perm-contact-calendar'),
-	ActionPermDataSetting: require('./action/perm-data-setting'),
-	ActionPermDeviceInformation: require('./action/perm-device-information'),
-	ActionPermIdentity: require('./action/perm-identity'),
-	ActionPermMedia: require('./action/perm-media'),
-	ActionPermPhoneMsg: require('./action/perm-phone-msg'),
-	ActionPermScanWifi: require('./action/perm-scan-wifi'),
-	ActionPets: require('./action/pets'),
-	ActionPictureInPictureAlt: require('./action/picture-in-picture-alt'),
-	ActionPictureInPicture: require('./action/picture-in-picture'),
-	ActionPlayForWork: require('./action/play-for-work'),
-	ActionPolymer: require('./action/polymer'),
-	ActionPowerSettingsNew: require('./action/power-settings-new'),
-	ActionPregnantWoman: require('./action/pregnant-woman'),
-	ActionPrint: require('./action/print'),
-	ActionQueryBuilder: require('./action/query-builder'),
-	ActionQuestionAnswer: require('./action/question-answer'),
-	ActionReceipt: require('./action/receipt'),
-	ActionRecordVoiceOver: require('./action/record-voice-over'),
-	ActionRedeem: require('./action/redeem'),
-	ActionReorder: require('./action/reorder'),
-	ActionReportProblem: require('./action/report-problem'),
-	ActionRestore: require('./action/restore'),
-	ActionRoom: require('./action/room'),
-	ActionRoundedCorner: require('./action/rounded-corner'),
-	ActionRowing: require('./action/rowing'),
-	ActionSchedule: require('./action/schedule'),
-	ActionSearch: require('./action/search'),
-	ActionSettingsApplications: require('./action/settings-applications'),
-	ActionSettingsBackupRestore: require('./action/settings-backup-restore'),
-	ActionSettingsBluetooth: require('./action/settings-bluetooth'),
-	ActionSettingsBrightness: require('./action/settings-brightness'),
-	ActionSettingsCell: require('./action/settings-cell'),
-	ActionSettingsEthernet: require('./action/settings-ethernet'),
-	ActionSettingsInputAntenna: require('./action/settings-input-antenna'),
-	ActionSettingsInputComponent: require('./action/settings-input-component'),
-	ActionSettingsInputComposite: require('./action/settings-input-composite'),
-	ActionSettingsInputHdmi: require('./action/settings-input-hdmi'),
-	ActionSettingsInputSvideo: require('./action/settings-input-svideo'),
-	ActionSettingsOverscan: require('./action/settings-overscan'),
-	ActionSettingsPhone: require('./action/settings-phone'),
-	ActionSettingsPower: require('./action/settings-power'),
-	ActionSettingsRemote: require('./action/settings-remote'),
-	ActionSettingsVoice: require('./action/settings-voice'),
-	ActionSettings: require('./action/settings'),
-	ActionShopTwo: require('./action/shop-two'),
-	ActionShop: require('./action/shop'),
-	ActionShoppingBasket: require('./action/shopping-basket'),
-	ActionShoppingCart: require('./action/shopping-cart'),
-	ActionSpeakerNotes: require('./action/speaker-notes'),
-	ActionSpellcheck: require('./action/spellcheck'),
-	ActionStars: require('./action/stars'),
-	ActionStore: require('./action/store'),
-	ActionSubject: require('./action/subject'),
-	ActionSupervisorAccount: require('./action/supervisor-account'),
-	ActionSwapHoriz: require('./action/swap-horiz'),
-	ActionSwapVert: require('./action/swap-vert'),
-	ActionSwapVerticalCircle: require('./action/swap-vertical-circle'),
-	ActionSystemUpdateAlt: require('./action/system-update-alt'),
-	ActionTabUnselected: require('./action/tab-unselected'),
-	ActionTab: require('./action/tab'),
-	ActionTheaters: require('./action/theaters'),
-	ActionThreeDRotation: require('./action/three-d-rotation'),
-	ActionThumbDown: require('./action/thumb-down'),
-	ActionThumbUp: require('./action/thumb-up'),
-	ActionThumbsUpDown: require('./action/thumbs-up-down'),
-	ActionTimeline: require('./action/timeline'),
-	ActionToc: require('./action/toc'),
-	ActionToday: require('./action/today'),
-	ActionToll: require('./action/toll'),
-	ActionTouchApp: require('./action/touch-app'),
-	ActionTrackChanges: require('./action/track-changes'),
-	ActionTranslate: require('./action/translate'),
-	ActionTrendingDown: require('./action/trending-down'),
-	ActionTrendingFlat: require('./action/trending-flat'),
-	ActionTrendingUp: require('./action/trending-up'),
-	ActionTurnedInNot: require('./action/turned-in-not'),
-	ActionTurnedIn: require('./action/turned-in'),
-	ActionUpdate: require('./action/update'),
-	ActionVerifiedUser: require('./action/verified-user'),
-	ActionViewAgenda: require('./action/view-agenda'),
-	ActionViewArray: require('./action/view-array'),
-	ActionViewCarousel: require('./action/view-carousel'),
-	ActionViewColumn: require('./action/view-column'),
-	ActionViewDay: require('./action/view-day'),
-	ActionViewHeadline: require('./action/view-headline'),
-	ActionViewList: require('./action/view-list'),
-	ActionViewModule: require('./action/view-module'),
-	ActionViewQuilt: require('./action/view-quilt'),
-	ActionViewStream: require('./action/view-stream'),
-	ActionViewWeek: require('./action/view-week'),
-	ActionVisibilityOff: require('./action/visibility-off'),
-	ActionVisibility: require('./action/visibility'),
-	ActionWatchLater: require('./action/watch-later'),
-	ActionWork: require('./action/work'),
-	ActionYoutubeSearchedFor: require('./action/youtube-searched-for'),
-	ActionZoomIn: require('./action/zoom-in'),
-	ActionZoomOut: require('./action/zoom-out'),
-	AlertAddAlert: require('./alert/add-alert'),
-	AlertErrorOutline: require('./alert/error-outline'),
-	AlertError: require('./alert/error'),
-	AlertWarning: require('./alert/warning'),
-	AvAddToQueue: require('./av/add-to-queue'),
-	AvAirplay: require('./av/airplay'),
-	AvAlbum: require('./av/album'),
-	AvArtTrack: require('./av/art-track'),
-	AvAvTimer: require('./av/av-timer'),
-	AvClosedCaption: require('./av/closed-caption'),
-	AvEqualizer: require('./av/equalizer'),
-	AvExplicit: require('./av/explicit'),
-	AvFastForward: require('./av/fast-forward'),
-	AvFastRewind: require('./av/fast-rewind'),
-	AvFiberDvr: require('./av/fiber-dvr'),
-	AvFiberManualRecord: require('./av/fiber-manual-record'),
-	AvFiberNew: require('./av/fiber-new'),
-	AvFiberPin: require('./av/fiber-pin'),
-	AvFiberSmartRecord: require('./av/fiber-smart-record'),
-	AvForward10: require('./av/forward-10'),
-	AvForward30: require('./av/forward-30'),
-	AvForward5: require('./av/forward-5'),
-	AvGames: require('./av/games'),
-	AvHd: require('./av/hd'),
-	AvHearing: require('./av/hearing'),
-	AvHighQuality: require('./av/high-quality'),
-	AvLibraryAdd: require('./av/library-add'),
-	AvLibraryBooks: require('./av/library-books'),
-	AvLibraryMusic: require('./av/library-music'),
-	AvLoop: require('./av/loop'),
-	AvMicNone: require('./av/mic-none'),
-	AvMicOff: require('./av/mic-off'),
-	AvMic: require('./av/mic'),
-	AvMovie: require('./av/movie'),
-	AvMusicVideo: require('./av/music-video'),
-	AvNewReleases: require('./av/new-releases'),
-	AvNotInterested: require('./av/not-interested'),
-	AvPauseCircleFilled: require('./av/pause-circle-filled'),
-	AvPauseCircleOutline: require('./av/pause-circle-outline'),
-	AvPause: require('./av/pause'),
-	AvPlayArrow: require('./av/play-arrow'),
-	AvPlayCircleFilled: require('./av/play-circle-filled'),
-	AvPlayCircleOutline: require('./av/play-circle-outline'),
-	AvPlaylistAddCheck: require('./av/playlist-add-check'),
-	AvPlaylistAdd: require('./av/playlist-add'),
-	AvPlaylistPlay: require('./av/playlist-play'),
-	AvQueueMusic: require('./av/queue-music'),
-	AvQueuePlayNext: require('./av/queue-play-next'),
-	AvQueue: require('./av/queue'),
-	AvRadio: require('./av/radio'),
-	AvRecentActors: require('./av/recent-actors'),
-	AvRemoveFromQueue: require('./av/remove-from-queue'),
-	AvRepeatOne: require('./av/repeat-one'),
-	AvRepeat: require('./av/repeat'),
-	AvReplay10: require('./av/replay-10'),
-	AvReplay30: require('./av/replay-30'),
-	AvReplay5: require('./av/replay-5'),
-	AvReplay: require('./av/replay'),
-	AvShuffle: require('./av/shuffle'),
-	AvSkipNext: require('./av/skip-next'),
-	AvSkipPrevious: require('./av/skip-previous'),
-	AvSlowMotionVideo: require('./av/slow-motion-video'),
-	AvSnooze: require('./av/snooze'),
-	AvSortByAlpha: require('./av/sort-by-alpha'),
-	AvStop: require('./av/stop'),
-	AvSubscriptions: require('./av/subscriptions'),
-	AvSubtitles: require('./av/subtitles'),
-	AvSurroundSound: require('./av/surround-sound'),
-	AvVideoLibrary: require('./av/video-library'),
-	AvVideocamOff: require('./av/videocam-off'),
-	AvVideocam: require('./av/videocam'),
-	AvVolumeDown: require('./av/volume-down'),
-	AvVolumeMute: require('./av/volume-mute'),
-	AvVolumeOff: require('./av/volume-off'),
-	AvVolumeUp: require('./av/volume-up'),
-	AvWebAsset: require('./av/web-asset'),
-	AvWeb: require('./av/web'),
-	CommunicationBusiness: require('./communication/business'),
-	CommunicationCallEnd: require('./communication/call-end'),
-	CommunicationCallMade: require('./communication/call-made'),
-	CommunicationCallMerge: require('./communication/call-merge'),
-	CommunicationCallMissedOutgoing: require('./communication/call-missed-outgoing'),
-	CommunicationCallMissed: require('./communication/call-missed'),
-	CommunicationCallReceived: require('./communication/call-received'),
-	CommunicationCallSplit: require('./communication/call-split'),
-	CommunicationCall: require('./communication/call'),
-	CommunicationChatBubbleOutline: require('./communication/chat-bubble-outline'),
-	CommunicationChatBubble: require('./communication/chat-bubble'),
-	CommunicationChat: require('./communication/chat'),
-	CommunicationClearAll: require('./communication/clear-all'),
-	CommunicationComment: require('./communication/comment'),
-	CommunicationContactMail: require('./communication/contact-mail'),
-	CommunicationContactPhone: require('./communication/contact-phone'),
-	CommunicationContacts: require('./communication/contacts'),
-	CommunicationDialerSip: require('./communication/dialer-sip'),
-	CommunicationDialpad: require('./communication/dialpad'),
-	CommunicationEmail: require('./communication/email'),
-	CommunicationForum: require('./communication/forum'),
-	CommunicationImportContacts: require('./communication/import-contacts'),
-	CommunicationImportExport: require('./communication/import-export'),
-	CommunicationInvertColorsOff: require('./communication/invert-colors-off'),
-	CommunicationLiveHelp: require('./communication/live-help'),
-	CommunicationLocationOff: require('./communication/location-off'),
-	CommunicationLocationOn: require('./communication/location-on'),
-	CommunicationMailOutline: require('./communication/mail-outline'),
-	CommunicationMessage: require('./communication/message'),
-	CommunicationNoSim: require('./communication/no-sim'),
-	CommunicationPhone: require('./communication/phone'),
-	CommunicationPhonelinkErase: require('./communication/phonelink-erase'),
-	CommunicationPhonelinkLock: require('./communication/phonelink-lock'),
-	CommunicationPhonelinkRing: require('./communication/phonelink-ring'),
-	CommunicationPhonelinkSetup: require('./communication/phonelink-setup'),
-	CommunicationPortableWifiOff: require('./communication/portable-wifi-off'),
-	CommunicationPresentToAll: require('./communication/present-to-all'),
-	CommunicationRingVolume: require('./communication/ring-volume'),
-	CommunicationScreenShare: require('./communication/screen-share'),
-	CommunicationSpeakerPhone: require('./communication/speaker-phone'),
-	CommunicationStayCurrentLandscape: require('./communication/stay-current-landscape'),
-	CommunicationStayCurrentPortrait: require('./communication/stay-current-portrait'),
-	CommunicationStayPrimaryLandscape: require('./communication/stay-primary-landscape'),
-	CommunicationStayPrimaryPortrait: require('./communication/stay-primary-portrait'),
-	CommunicationStopScreenShare: require('./communication/stop-screen-share'),
-	CommunicationSwapCalls: require('./communication/swap-calls'),
-	CommunicationTactMail: require('./communication/tact-mail'),
-	CommunicationTextsms: require('./communication/textsms'),
-	CommunicationVoicemail: require('./communication/voicemail'),
-	CommunicationVpnKey: require('./communication/vpn-key'),
-	ContentAddBox: require('./content/add-box'),
-	ContentAddCircleOutline: require('./content/add-circle-outline'),
-	ContentAddCircle: require('./content/add-circle'),
-	ContentAdd: require('./content/add'),
-	ContentArchive: require('./content/archive'),
-	ContentBackspace: require('./content/backspace'),
-	ContentBlock: require('./content/block'),
-	ContentClear: require('./content/clear'),
-	ContentContentCopy: require('./content/content-copy'),
-	ContentContentCut: require('./content/content-cut'),
-	ContentContentPaste: require('./content/content-paste'),
-	ContentCreate: require('./content/create'),
-	ContentDrafts: require('./content/drafts'),
-	ContentFilterList: require('./content/filter-list'),
-	ContentFlag: require('./content/flag'),
-	ContentFontDownload: require('./content/font-download'),
-	ContentForward: require('./content/forward'),
-	ContentGesture: require('./content/gesture'),
-	ContentInbox: require('./content/inbox'),
-	ContentLink: require('./content/link'),
-	ContentMail: require('./content/mail'),
-	ContentMarkunread: require('./content/markunread'),
-	ContentMoveToInbox: require('./content/move-to-inbox'),
-	ContentNextWeek: require('./content/next-week'),
-	ContentRedo: require('./content/redo'),
-	ContentRemoveCircleOutline: require('./content/remove-circle-outline'),
-	ContentRemoveCircle: require('./content/remove-circle'),
-	ContentRemove: require('./content/remove'),
-	ContentReplyAll: require('./content/reply-all'),
-	ContentReply: require('./content/reply'),
-	ContentReport: require('./content/report'),
-	ContentSave: require('./content/save'),
-	ContentSelectAll: require('./content/select-all'),
-	ContentSend: require('./content/send'),
-	ContentSort: require('./content/sort'),
-	ContentTextFormat: require('./content/text-format'),
-	ContentUnarchive: require('./content/unarchive'),
-	ContentUndo: require('./content/undo'),
-	ContentWeekend: require('./content/weekend'),
-	DeviceAccessAlarm: require('./device/access-alarm'),
-	DeviceAccessAlarms: require('./device/access-alarms'),
-	DeviceAccessTime: require('./device/access-time'),
-	DeviceAddAlarm: require('./device/add-alarm'),
-	DeviceAirplanemodeActive: require('./device/airplanemode-active'),
-	DeviceAirplanemodeInactive: require('./device/airplanemode-inactive'),
-	DeviceBattery20: require('./device/battery-20'),
-	DeviceBattery30: require('./device/battery-30'),
-	DeviceBattery50: require('./device/battery-50'),
-	DeviceBattery60: require('./device/battery-60'),
-	DeviceBattery80: require('./device/battery-80'),
-	DeviceBattery90: require('./device/battery-90'),
-	DeviceBatteryAlert: require('./device/battery-alert'),
-	DeviceBatteryCharging20: require('./device/battery-charging-20'),
-	DeviceBatteryCharging30: require('./device/battery-charging-30'),
-	DeviceBatteryCharging50: require('./device/battery-charging-50'),
-	DeviceBatteryCharging60: require('./device/battery-charging-60'),
-	DeviceBatteryCharging80: require('./device/battery-charging-80'),
-	DeviceBatteryCharging90: require('./device/battery-charging-90'),
-	DeviceBatteryChargingFull: require('./device/battery-charging-full'),
-	DeviceBatteryFull: require('./device/battery-full'),
-	DeviceBatteryStd: require('./device/battery-std'),
-	DeviceBatteryUnknown: require('./device/battery-unknown'),
-	DeviceBluetoothConnected: require('./device/bluetooth-connected'),
-	DeviceBluetoothDisabled: require('./device/bluetooth-disabled'),
-	DeviceBluetoothSearching: require('./device/bluetooth-searching'),
-	DeviceBluetooth: require('./device/bluetooth'),
-	DeviceBrightnessAuto: require('./device/brightness-auto'),
-	DeviceBrightnessHigh: require('./device/brightness-high'),
-	DeviceBrightnessLow: require('./device/brightness-low'),
-	DeviceBrightnessMedium: require('./device/brightness-medium'),
-	DeviceDataUsage: require('./device/data-usage'),
-	DeviceDeveloperMode: require('./device/developer-mode'),
-	DeviceDevices: require('./device/devices'),
-	DeviceDvr: require('./device/dvr'),
-	DeviceGpsFixed: require('./device/gps-fixed'),
-	DeviceGpsNotFixed: require('./device/gps-not-fixed'),
-	DeviceGpsOff: require('./device/gps-off'),
-	DeviceGraphicEq: require('./device/graphic-eq'),
-	DeviceLocationDisabled: require('./device/location-disabled'),
-	DeviceLocationSearching: require('./device/location-searching'),
-	DeviceNetworkCell: require('./device/network-cell'),
-	DeviceNetworkWifi: require('./device/network-wifi'),
-	DeviceNfc: require('./device/nfc'),
-	DeviceScreenLockLandscape: require('./device/screen-lock-landscape'),
-	DeviceScreenLockPortrait: require('./device/screen-lock-portrait'),
-	DeviceScreenLockRotation: require('./device/screen-lock-rotation'),
-	DeviceScreenRotation: require('./device/screen-rotation'),
-	DeviceSdStorage: require('./device/sd-storage'),
-	DeviceSettingsSystemDaydream: require('./device/settings-system-daydream'),
-	DeviceSignalCellular0Bar: require('./device/signal-cellular-0-bar'),
-	DeviceSignalCellular1Bar: require('./device/signal-cellular-1-bar'),
-	DeviceSignalCellular2Bar: require('./device/signal-cellular-2-bar'),
-	DeviceSignalCellular3Bar: require('./device/signal-cellular-3-bar'),
-	DeviceSignalCellular4Bar: require('./device/signal-cellular-4-bar'),
-	DeviceSignalCellularConnectedNoInternet0Bar: require('./device/signal-cellular-connected-no-internet-0-bar'),
-	DeviceSignalCellularConnectedNoInternet1Bar: require('./device/signal-cellular-connected-no-internet-1-bar'),
-	DeviceSignalCellularConnectedNoInternet2Bar: require('./device/signal-cellular-connected-no-internet-2-bar'),
-	DeviceSignalCellularConnectedNoInternet3Bar: require('./device/signal-cellular-connected-no-internet-3-bar'),
-	DeviceSignalCellularConnectedNoInternet4Bar: require('./device/signal-cellular-connected-no-internet-4-bar'),
-	DeviceSignalCellularNoSim: require('./device/signal-cellular-no-sim'),
-	DeviceSignalCellularNull: require('./device/signal-cellular-null'),
-	DeviceSignalCellularOff: require('./device/signal-cellular-off'),
-	DeviceSignalWifi0Bar: require('./device/signal-wifi-0-bar'),
-	DeviceSignalWifi1BarLock: require('./device/signal-wifi-1-bar-lock'),
-	DeviceSignalWifi1Bar: require('./device/signal-wifi-1-bar'),
-	DeviceSignalWifi2BarLock: require('./device/signal-wifi-2-bar-lock'),
-	DeviceSignalWifi2Bar: require('./device/signal-wifi-2-bar'),
-	DeviceSignalWifi3BarLock: require('./device/signal-wifi-3-bar-lock'),
-	DeviceSignalWifi3Bar: require('./device/signal-wifi-3-bar'),
-	DeviceSignalWifi4BarLock: require('./device/signal-wifi-4-bar-lock'),
-	DeviceSignalWifi4Bar: require('./device/signal-wifi-4-bar'),
-	DeviceSignalWifiOff: require('./device/signal-wifi-off'),
-	DeviceStorage: require('./device/storage'),
-	DeviceUsb: require('./device/usb'),
-	DeviceWallpaper: require('./device/wallpaper'),
-	DeviceWidgets: require('./device/widgets'),
-	DeviceWifiLock: require('./device/wifi-lock'),
-	DeviceWifiTethering: require('./device/wifi-tethering'),
-	EditorAttachFile: require('./editor/attach-file'),
-	EditorAttachMoney: require('./editor/attach-money'),
-	EditorBorderAll: require('./editor/border-all'),
-	EditorBorderBottom: require('./editor/border-bottom'),
-	EditorBorderClear: require('./editor/border-clear'),
-	EditorBorderColor: require('./editor/border-color'),
-	EditorBorderHorizontal: require('./editor/border-horizontal'),
-	EditorBorderInner: require('./editor/border-inner'),
-	EditorBorderLeft: require('./editor/border-left'),
-	EditorBorderOuter: require('./editor/border-outer'),
-	EditorBorderRight: require('./editor/border-right'),
-	EditorBorderStyle: require('./editor/border-style'),
-	EditorBorderTop: require('./editor/border-top'),
-	EditorBorderVertical: require('./editor/border-vertical'),
-	EditorDragHandle: require('./editor/drag-handle'),
-	EditorFormatAlignCenter: require('./editor/format-align-center'),
-	EditorFormatAlignJustify: require('./editor/format-align-justify'),
-	EditorFormatAlignLeft: require('./editor/format-align-left'),
-	EditorFormatAlignRight: require('./editor/format-align-right'),
-	EditorFormatBold: require('./editor/format-bold'),
-	EditorFormatClear: require('./editor/format-clear'),
-	EditorFormatColorFill: require('./editor/format-color-fill'),
-	EditorFormatColorReset: require('./editor/format-color-reset'),
-	EditorFormatColorText: require('./editor/format-color-text'),
-	EditorFormatIndentDecrease: require('./editor/format-indent-decrease'),
-	EditorFormatIndentIncrease: require('./editor/format-indent-increase'),
-	EditorFormatItalic: require('./editor/format-italic'),
-	EditorFormatLineSpacing: require('./editor/format-line-spacing'),
-	EditorFormatListBulleted: require('./editor/format-list-bulleted'),
-	EditorFormatListNumbered: require('./editor/format-list-numbered'),
-	EditorFormatPaint: require('./editor/format-paint'),
-	EditorFormatQuote: require('./editor/format-quote'),
-	EditorFormatShapes: require('./editor/format-shapes'),
-	EditorFormatSize: require('./editor/format-size'),
-	EditorFormatStrikethrough: require('./editor/format-strikethrough'),
-	EditorFormatTextdirectionLToR: require('./editor/format-textdirection-l-to-r'),
-	EditorFormatTextdirectionRToL: require('./editor/format-textdirection-r-to-l'),
-	EditorFormatUnderlined: require('./editor/format-underlined'),
-	EditorFunctions: require('./editor/functions'),
-	EditorHighlight: require('./editor/highlight'),
-	EditorInsertChart: require('./editor/insert-chart'),
-	EditorInsertComment: require('./editor/insert-comment'),
-	EditorInsertDriveFile: require('./editor/insert-drive-file'),
-	EditorInsertEmoticon: require('./editor/insert-emoticon'),
-	EditorInsertInvitation: require('./editor/insert-invitation'),
-	EditorInsertLink: require('./editor/insert-link'),
-	EditorInsertPhoto: require('./editor/insert-photo'),
-	EditorLinearScale: require('./editor/linear-scale'),
-	EditorMergeType: require('./editor/merge-type'),
-	EditorModeComment: require('./editor/mode-comment'),
-	EditorModeEdit: require('./editor/mode-edit'),
-	EditorMoneyOff: require('./editor/money-off'),
-	EditorPublish: require('./editor/publish'),
-	EditorShortText: require('./editor/short-text'),
-	EditorSpaceBar: require('./editor/space-bar'),
-	EditorStrikethroughS: require('./editor/strikethrough-s'),
-	EditorTextFields: require('./editor/text-fields'),
-	EditorVerticalAlignBottom: require('./editor/vertical-align-bottom'),
-	EditorVerticalAlignCenter: require('./editor/vertical-align-center'),
-	EditorVerticalAlignTop: require('./editor/vertical-align-top'),
-	EditorWrapText: require('./editor/wrap-text'),
-	FileAttachment: require('./file/attachment'),
-	FileCloudCircle: require('./file/cloud-circle'),
-	FileCloudDone: require('./file/cloud-done'),
-	FileCloudDownload: require('./file/cloud-download'),
-	FileCloudOff: require('./file/cloud-off'),
-	FileCloudQueue: require('./file/cloud-queue'),
-	FileCloudUpload: require('./file/cloud-upload'),
-	FileCloud: require('./file/cloud'),
-	FileCreateNewFolder: require('./file/create-new-folder'),
-	FileFileDownload: require('./file/file-download'),
-	FileFileUpload: require('./file/file-upload'),
-	FileFolderOpen: require('./file/folder-open'),
-	FileFolderShared: require('./file/folder-shared'),
-	FileFolder: require('./file/folder'),
-	HardwareCastConnected: require('./hardware/cast-connected'),
-	HardwareCast: require('./hardware/cast'),
-	HardwareComputer: require('./hardware/computer'),
-	HardwareDesktopMac: require('./hardware/desktop-mac'),
-	HardwareDesktopWindows: require('./hardware/desktop-windows'),
-	HardwareDeveloperBoard: require('./hardware/developer-board'),
-	HardwareDeviceHub: require('./hardware/device-hub'),
-	HardwareDevicesOther: require('./hardware/devices-other'),
-	HardwareDock: require('./hardware/dock'),
-	HardwareGamepad: require('./hardware/gamepad'),
-	HardwareHeadsetMic: require('./hardware/headset-mic'),
-	HardwareHeadset: require('./hardware/headset'),
-	HardwareKeyboardArrowDown: require('./hardware/keyboard-arrow-down'),
-	HardwareKeyboardArrowLeft: require('./hardware/keyboard-arrow-left'),
-	HardwareKeyboardArrowRight: require('./hardware/keyboard-arrow-right'),
-	HardwareKeyboardArrowUp: require('./hardware/keyboard-arrow-up'),
-	HardwareKeyboardBackspace: require('./hardware/keyboard-backspace'),
-	HardwareKeyboardCapslock: require('./hardware/keyboard-capslock'),
-	HardwareKeyboardHide: require('./hardware/keyboard-hide'),
-	HardwareKeyboardReturn: require('./hardware/keyboard-return'),
-	HardwareKeyboardTab: require('./hardware/keyboard-tab'),
-	HardwareKeyboardVoice: require('./hardware/keyboard-voice'),
-	HardwareKeyboard: require('./hardware/keyboard'),
-	HardwareLaptopChromebook: require('./hardware/laptop-chromebook'),
-	HardwareLaptopMac: require('./hardware/laptop-mac'),
-	HardwareLaptopWindows: require('./hardware/laptop-windows'),
-	HardwareLaptop: require('./hardware/laptop'),
-	HardwareMemory: require('./hardware/memory'),
-	HardwareMouse: require('./hardware/mouse'),
-	HardwarePhoneAndroid: require('./hardware/phone-android'),
-	HardwarePhoneIphone: require('./hardware/phone-iphone'),
-	HardwarePhonelinkOff: require('./hardware/phonelink-off'),
-	HardwarePhonelink: require('./hardware/phonelink'),
-	HardwarePowerInput: require('./hardware/power-input'),
-	HardwareRouter: require('./hardware/router'),
-	HardwareScanner: require('./hardware/scanner'),
-	HardwareSecurity: require('./hardware/security'),
-	HardwareSimCard: require('./hardware/sim-card'),
-	HardwareSmartphone: require('./hardware/smartphone'),
-	HardwareSpeakerGroup: require('./hardware/speaker-group'),
-	HardwareSpeaker: require('./hardware/speaker'),
-	HardwareTabletAndroid: require('./hardware/tablet-android'),
-	HardwareTabletMac: require('./hardware/tablet-mac'),
-	HardwareTablet: require('./hardware/tablet'),
-	HardwareToys: require('./hardware/toys'),
-	HardwareTv: require('./hardware/tv'),
-	HardwareVideogameAsset: require('./hardware/videogame-asset'),
-	HardwareWatch: require('./hardware/watch'),
-	ImageAddAPhoto: require('./image/add-a-photo'),
-	ImageAddToPhotos: require('./image/add-to-photos'),
-	ImageAdjust: require('./image/adjust'),
-	ImageAssistantPhoto: require('./image/assistant-photo'),
-	ImageAssistant: require('./image/assistant'),
-	ImageAudiotrack: require('./image/audiotrack'),
-	ImageBlurCircular: require('./image/blur-circular'),
-	ImageBlurLinear: require('./image/blur-linear'),
-	ImageBlurOff: require('./image/blur-off'),
-	ImageBlurOn: require('./image/blur-on'),
-	ImageBrightness1: require('./image/brightness-1'),
-	ImageBrightness2: require('./image/brightness-2'),
-	ImageBrightness3: require('./image/brightness-3'),
-	ImageBrightness4: require('./image/brightness-4'),
-	ImageBrightness5: require('./image/brightness-5'),
-	ImageBrightness6: require('./image/brightness-6'),
-	ImageBrightness7: require('./image/brightness-7'),
-	ImageBrokenImage: require('./image/broken-image'),
-	ImageBrush: require('./image/brush'),
-	ImageCameraAlt: require('./image/camera-alt'),
-	ImageCameraFront: require('./image/camera-front'),
-	ImageCameraRear: require('./image/camera-rear'),
-	ImageCameraRoll: require('./image/camera-roll'),
-	ImageCamera: require('./image/camera'),
-	ImageCenterFocusStrong: require('./image/center-focus-strong'),
-	ImageCenterFocusWeak: require('./image/center-focus-weak'),
-	ImageCollectionsBookmark: require('./image/collections-bookmark'),
-	ImageCollections: require('./image/collections'),
-	ImageColorLens: require('./image/color-lens'),
-	ImageColorize: require('./image/colorize'),
-	ImageCompare: require('./image/compare'),
-	ImageControlPointDuplicate: require('./image/control-point-duplicate'),
-	ImageControlPoint: require('./image/control-point'),
-	ImageCrop169: require('./image/crop-16-9'),
-	ImageCrop32: require('./image/crop-3-2'),
-	ImageCrop54: require('./image/crop-5-4'),
-	ImageCrop75: require('./image/crop-7-5'),
-	ImageCropDin: require('./image/crop-din'),
-	ImageCropFree: require('./image/crop-free'),
-	ImageCropLandscape: require('./image/crop-landscape'),
-	ImageCropOriginal: require('./image/crop-original'),
-	ImageCropPortrait: require('./image/crop-portrait'),
-	ImageCropRotate: require('./image/crop-rotate'),
-	ImageCropSquare: require('./image/crop-square'),
-	ImageCrop: require('./image/crop'),
-	ImageDehaze: require('./image/dehaze'),
-	ImageDetails: require('./image/details'),
-	ImageEdit: require('./image/edit'),
-	ImageExposureNeg1: require('./image/exposure-neg-1'),
-	ImageExposureNeg2: require('./image/exposure-neg-2'),
-	ImageExposurePlus1: require('./image/exposure-plus-1'),
-	ImageExposurePlus2: require('./image/exposure-plus-2'),
-	ImageExposureZero: require('./image/exposure-zero'),
-	ImageExposure: require('./image/exposure'),
-	ImageFilter1: require('./image/filter-1'),
-	ImageFilter2: require('./image/filter-2'),
-	ImageFilter3: require('./image/filter-3'),
-	ImageFilter4: require('./image/filter-4'),
-	ImageFilter5: require('./image/filter-5'),
-	ImageFilter6: require('./image/filter-6'),
-	ImageFilter7: require('./image/filter-7'),
-	ImageFilter8: require('./image/filter-8'),
-	ImageFilter9Plus: require('./image/filter-9-plus'),
-	ImageFilter9: require('./image/filter-9'),
-	ImageFilterBAndW: require('./image/filter-b-and-w'),
-	ImageFilterCenterFocus: require('./image/filter-center-focus'),
-	ImageFilterDrama: require('./image/filter-drama'),
-	ImageFilterFrames: require('./image/filter-frames'),
-	ImageFilterHdr: require('./image/filter-hdr'),
-	ImageFilterNone: require('./image/filter-none'),
-	ImageFilterTiltShift: require('./image/filter-tilt-shift'),
-	ImageFilterVintage: require('./image/filter-vintage'),
-	ImageFilter: require('./image/filter'),
-	ImageFlare: require('./image/flare'),
-	ImageFlashAuto: require('./image/flash-auto'),
-	ImageFlashOff: require('./image/flash-off'),
-	ImageFlashOn: require('./image/flash-on'),
-	ImageFlip: require('./image/flip'),
-	ImageGradient: require('./image/gradient'),
-	ImageGrain: require('./image/grain'),
-	ImageGridOff: require('./image/grid-off'),
-	ImageGridOn: require('./image/grid-on'),
-	ImageHdrOff: require('./image/hdr-off'),
-	ImageHdrOn: require('./image/hdr-on'),
-	ImageHdrStrong: require('./image/hdr-strong'),
-	ImageHdrWeak: require('./image/hdr-weak'),
-	ImageHealing: require('./image/healing'),
-	ImageImageAspectRatio: require('./image/image-aspect-ratio'),
-	ImageImage: require('./image/image'),
-	ImageIso: require('./image/iso'),
-	ImageLandscape: require('./image/landscape'),
-	ImageLeakAdd: require('./image/leak-add'),
-	ImageLeakRemove: require('./image/leak-remove'),
-	ImageLens: require('./image/lens'),
-	ImageLinkedCamera: require('./image/linked-camera'),
-	ImageLooks3: require('./image/looks-3'),
-	ImageLooks4: require('./image/looks-4'),
-	ImageLooks5: require('./image/looks-5'),
-	ImageLooks6: require('./image/looks-6'),
-	ImageLooksOne: require('./image/looks-one'),
-	ImageLooksTwo: require('./image/looks-two'),
-	ImageLooks: require('./image/looks'),
-	ImageLoupe: require('./image/loupe'),
-	ImageMonochromePhotos: require('./image/monochrome-photos'),
-	ImageMovieCreation: require('./image/movie-creation'),
-	ImageMovieFilter: require('./image/movie-filter'),
-	ImageMusicNote: require('./image/music-note'),
-	ImageNaturePeople: require('./image/nature-people'),
-	ImageNature: require('./image/nature'),
-	ImageNavigateBefore: require('./image/navigate-before'),
-	ImageNavigateNext: require('./image/navigate-next'),
-	ImagePalette: require('./image/palette'),
-	ImagePanoramaFishEye: require('./image/panorama-fish-eye'),
-	ImagePanoramaHorizontal: require('./image/panorama-horizontal'),
-	ImagePanoramaVertical: require('./image/panorama-vertical'),
-	ImagePanoramaWideAngle: require('./image/panorama-wide-angle'),
-	ImagePanorama: require('./image/panorama'),
-	ImagePhotoAlbum: require('./image/photo-album'),
-	ImagePhotoCamera: require('./image/photo-camera'),
-	ImagePhotoFilter: require('./image/photo-filter'),
-	ImagePhotoLibrary: require('./image/photo-library'),
-	ImagePhotoSizeSelectActual: require('./image/photo-size-select-actual'),
-	ImagePhotoSizeSelectLarge: require('./image/photo-size-select-large'),
-	ImagePhotoSizeSelectSmall: require('./image/photo-size-select-small'),
-	ImagePhoto: require('./image/photo'),
-	ImagePictureAsPdf: require('./image/picture-as-pdf'),
-	ImagePortrait: require('./image/portrait'),
-	ImageRemoveRedEye: require('./image/remove-red-eye'),
-	ImageRotate90DegreesCcw: require('./image/rotate-90-degrees-ccw'),
-	ImageRotateLeft: require('./image/rotate-left'),
-	ImageRotateRight: require('./image/rotate-right'),
-	ImageSlideshow: require('./image/slideshow'),
-	ImageStraighten: require('./image/straighten'),
-	ImageStyle: require('./image/style'),
-	ImageSwitchCamera: require('./image/switch-camera'),
-	ImageSwitchVideo: require('./image/switch-video'),
-	ImageTagFaces: require('./image/tag-faces'),
-	ImageTexture: require('./image/texture'),
-	ImageTimelapse: require('./image/timelapse'),
-	ImageTimer10: require('./image/timer-10'),
-	ImageTimer3: require('./image/timer-3'),
-	ImageTimerOff: require('./image/timer-off'),
-	ImageTimer: require('./image/timer'),
-	ImageTonality: require('./image/tonality'),
-	ImageTransform: require('./image/transform'),
-	ImageTune: require('./image/tune'),
-	ImageViewComfy: require('./image/view-comfy'),
-	ImageViewCompact: require('./image/view-compact'),
-	ImageVignette: require('./image/vignette'),
-	ImageWbAuto: require('./image/wb-auto'),
-	ImageWbCloudy: require('./image/wb-cloudy'),
-	ImageWbIncandescent: require('./image/wb-incandescent'),
-	ImageWbIridescent: require('./image/wb-iridescent'),
-	ImageWbSunny: require('./image/wb-sunny'),
-	MapsAddLocation: require('./maps/add-location'),
-	MapsBeenhere: require('./maps/beenhere'),
-	MapsDirectionsBike: require('./maps/directions-bike'),
-	MapsDirectionsBoat: require('./maps/directions-boat'),
-	MapsDirectionsBus: require('./maps/directions-bus'),
-	MapsDirectionsCar: require('./maps/directions-car'),
-	MapsDirectionsRailway: require('./maps/directions-railway'),
-	MapsDirectionsRun: require('./maps/directions-run'),
-	MapsDirectionsSubway: require('./maps/directions-subway'),
-	MapsDirectionsTransit: require('./maps/directions-transit'),
-	MapsDirectionsWalk: require('./maps/directions-walk'),
-	MapsDirections: require('./maps/directions'),
-	MapsEditLocation: require('./maps/edit-location'),
-	MapsFlight: require('./maps/flight'),
-	MapsHotel: require('./maps/hotel'),
-	MapsLayersClear: require('./maps/layers-clear'),
-	MapsLayers: require('./maps/layers'),
-	MapsLocalActivity: require('./maps/local-activity'),
-	MapsLocalAirport: require('./maps/local-airport'),
-	MapsLocalAtm: require('./maps/local-atm'),
-	MapsLocalBar: require('./maps/local-bar'),
-	MapsLocalCafe: require('./maps/local-cafe'),
-	MapsLocalCarWash: require('./maps/local-car-wash'),
-	MapsLocalConvenienceStore: require('./maps/local-convenience-store'),
-	MapsLocalDining: require('./maps/local-dining'),
-	MapsLocalDrink: require('./maps/local-drink'),
-	MapsLocalFlorist: require('./maps/local-florist'),
-	MapsLocalGasStation: require('./maps/local-gas-station'),
-	MapsLocalGroceryStore: require('./maps/local-grocery-store'),
-	MapsLocalHospital: require('./maps/local-hospital'),
-	MapsLocalHotel: require('./maps/local-hotel'),
-	MapsLocalLaundryService: require('./maps/local-laundry-service'),
-	MapsLocalLibrary: require('./maps/local-library'),
-	MapsLocalMall: require('./maps/local-mall'),
-	MapsLocalMovies: require('./maps/local-movies'),
-	MapsLocalOffer: require('./maps/local-offer'),
-	MapsLocalParking: require('./maps/local-parking'),
-	MapsLocalPharmacy: require('./maps/local-pharmacy'),
-	MapsLocalPhone: require('./maps/local-phone'),
-	MapsLocalPizza: require('./maps/local-pizza'),
-	MapsLocalPlay: require('./maps/local-play'),
-	MapsLocalPostOffice: require('./maps/local-post-office'),
-	MapsLocalPrintshop: require('./maps/local-printshop'),
-	MapsLocalSee: require('./maps/local-see'),
-	MapsLocalShipping: require('./maps/local-shipping'),
-	MapsLocalTaxi: require('./maps/local-taxi'),
-	MapsMap: require('./maps/map'),
-	MapsMyLocation: require('./maps/my-location'),
-	MapsNavigation: require('./maps/navigation'),
-	MapsNearMe: require('./maps/near-me'),
-	MapsPersonPinCircle: require('./maps/person-pin-circle'),
-	MapsPersonPin: require('./maps/person-pin'),
-	MapsPinDrop: require('./maps/pin-drop'),
-	MapsPlace: require('./maps/place'),
-	MapsRateReview: require('./maps/rate-review'),
-	MapsRestaurantMenu: require('./maps/restaurant-menu'),
-	MapsSatellite: require('./maps/satellite'),
-	MapsStoreMallDirectory: require('./maps/store-mall-directory'),
-	MapsTerrain: require('./maps/terrain'),
-	MapsTraffic: require('./maps/traffic'),
-	MapsZoomOutMap: require('./maps/zoom-out-map'),
-	NavigationApps: require('./navigation/apps'),
-	NavigationArrowBack: require('./navigation/arrow-back'),
-	NavigationArrowDownward: require('./navigation/arrow-downward'),
-	NavigationArrowDropDownCircle: require('./navigation/arrow-drop-down-circle'),
-	NavigationArrowDropDown: require('./navigation/arrow-drop-down'),
-	NavigationArrowDropUp: require('./navigation/arrow-drop-up'),
-	NavigationArrowForward: require('./navigation/arrow-forward'),
-	NavigationArrowUpward: require('./navigation/arrow-upward'),
-	NavigationCancel: require('./navigation/cancel'),
-	NavigationCheck: require('./navigation/check'),
-	NavigationChevronLeft: require('./navigation/chevron-left'),
-	NavigationChevronRight: require('./navigation/chevron-right'),
-	NavigationClose: require('./navigation/close'),
-	NavigationExpandLess: require('./navigation/expand-less'),
-	NavigationExpandMore: require('./navigation/expand-more'),
-	NavigationFullscreenExit: require('./navigation/fullscreen-exit'),
-	NavigationFullscreen: require('./navigation/fullscreen'),
-	NavigationMenu: require('./navigation/menu'),
-	NavigationMoreHoriz: require('./navigation/more-horiz'),
-	NavigationMoreVert: require('./navigation/more-vert'),
-	NavigationRefresh: require('./navigation/refresh'),
-	NavigationSubdirectoryArrowLeft: require('./navigation/subdirectory-arrow-left'),
-	NavigationSubdirectoryArrowRight: require('./navigation/subdirectory-arrow-right'),
-	NavigationUnfoldLess: require('./navigation/unfold-less'),
-	NavigationUnfoldMore: require('./navigation/unfold-more'),
-	NavigationArrowDropRight: require('./navigation-arrow-drop-right'),
-	NotificationAdb: require('./notification/adb'),
-	NotificationAirlineSeatFlatAngled: require('./notification/airline-seat-flat-angled'),
-	NotificationAirlineSeatFlat: require('./notification/airline-seat-flat'),
-	NotificationAirlineSeatIndividualSuite: require('./notification/airline-seat-individual-suite'),
-	NotificationAirlineSeatLegroomExtra: require('./notification/airline-seat-legroom-extra'),
-	NotificationAirlineSeatLegroomNormal: require('./notification/airline-seat-legroom-normal'),
-	NotificationAirlineSeatLegroomReduced: require('./notification/airline-seat-legroom-reduced'),
-	NotificationAirlineSeatReclineExtra: require('./notification/airline-seat-recline-extra'),
-	NotificationAirlineSeatReclineNormal: require('./notification/airline-seat-recline-normal'),
-	NotificationBluetoothAudio: require('./notification/bluetooth-audio'),
-	NotificationConfirmationNumber: require('./notification/confirmation-number'),
-	NotificationDiscFull: require('./notification/disc-full'),
-	NotificationDoNotDisturbAlt: require('./notification/do-not-disturb-alt'),
-	NotificationDoNotDisturb: require('./notification/do-not-disturb'),
-	NotificationDriveEta: require('./notification/drive-eta'),
-	NotificationEnhancedEncryption: require('./notification/enhanced-encryption'),
-	NotificationEventAvailable: require('./notification/event-available'),
-	NotificationEventBusy: require('./notification/event-busy'),
-	NotificationEventNote: require('./notification/event-note'),
-	NotificationFolderSpecial: require('./notification/folder-special'),
-	NotificationLiveTv: require('./notification/live-tv'),
-	NotificationMms: require('./notification/mms'),
-	NotificationMore: require('./notification/more'),
-	NotificationNetworkCheck: require('./notification/network-check'),
-	NotificationNetworkLocked: require('./notification/network-locked'),
-	NotificationNoEncryption: require('./notification/no-encryption'),
-	NotificationOndemandVideo: require('./notification/ondemand-video'),
-	NotificationPersonalVideo: require('./notification/personal-video'),
-	NotificationPhoneBluetoothSpeaker: require('./notification/phone-bluetooth-speaker'),
-	NotificationPhoneForwarded: require('./notification/phone-forwarded'),
-	NotificationPhoneInTalk: require('./notification/phone-in-talk'),
-	NotificationPhoneLocked: require('./notification/phone-locked'),
-	NotificationPhoneMissed: require('./notification/phone-missed'),
-	NotificationPhonePaused: require('./notification/phone-paused'),
-	NotificationPower: require('./notification/power'),
-	NotificationRvHookup: require('./notification/rv-hookup'),
-	NotificationSdCard: require('./notification/sd-card'),
-	NotificationSimCardAlert: require('./notification/sim-card-alert'),
-	NotificationSmsFailed: require('./notification/sms-failed'),
-	NotificationSms: require('./notification/sms'),
-	NotificationSyncDisabled: require('./notification/sync-disabled'),
-	NotificationSyncProblem: require('./notification/sync-problem'),
-	NotificationSync: require('./notification/sync'),
-	NotificationSystemUpdate: require('./notification/system-update'),
-	NotificationTapAndPlay: require('./notification/tap-and-play'),
-	NotificationTimeToLeave: require('./notification/time-to-leave'),
-	NotificationVibration: require('./notification/vibration'),
-	NotificationVoiceChat: require('./notification/voice-chat'),
-	NotificationVpnLock: require('./notification/vpn-lock'),
-	NotificationWc: require('./notification/wc'),
-	NotificationWifi: require('./notification/wifi'),
-	PlacesAcUnit: require('./places/ac-unit'),
-	PlacesAirportShuttle: require('./places/airport-shuttle'),
-	PlacesAllInclusive: require('./places/all-inclusive'),
-	PlacesBeachAccess: require('./places/beach-access'),
-	PlacesBusinessCenter: require('./places/business-center'),
-	PlacesCasino: require('./places/casino'),
-	PlacesChildCare: require('./places/child-care'),
-	PlacesChildFriendly: require('./places/child-friendly'),
-	PlacesFitnessCenter: require('./places/fitness-center'),
-	PlacesFreeBreakfast: require('./places/free-breakfast'),
-	PlacesGolfCourse: require('./places/golf-course'),
-	PlacesHotTub: require('./places/hot-tub'),
-	PlacesKitchen: require('./places/kitchen'),
-	PlacesPool: require('./places/pool'),
-	PlacesRoomService: require('./places/room-service'),
-	PlacesSmokeFree: require('./places/smoke-free'),
-	PlacesSmokingRooms: require('./places/smoking-rooms'),
-	PlacesSpa: require('./places/spa'),
-	SocialCake: require('./social/cake'),
-	SocialDomain: require('./social/domain'),
-	SocialGroupAdd: require('./social/group-add'),
-	SocialGroup: require('./social/group'),
-	SocialLocationCity: require('./social/location-city'),
-	SocialMoodBad: require('./social/mood-bad'),
-	SocialMood: require('./social/mood'),
-	SocialNotificationsActive: require('./social/notifications-active'),
-	SocialNotificationsNone: require('./social/notifications-none'),
-	SocialNotificationsOff: require('./social/notifications-off'),
-	SocialNotificationsPaused: require('./social/notifications-paused'),
-	SocialNotifications: require('./social/notifications'),
-	SocialPages: require('./social/pages'),
-	SocialPartyMode: require('./social/party-mode'),
-	SocialPeopleOutline: require('./social/people-outline'),
-	SocialPeople: require('./social/people'),
-	SocialPersonAdd: require('./social/person-add'),
-	SocialPersonOutline: require('./social/person-outline'),
-	SocialPerson: require('./social/person'),
-	SocialPlusOne: require('./social/plus-one'),
-	SocialPoll: require('./social/poll'),
-	SocialPublic: require('./social/public'),
-	SocialSchool: require('./social/school'),
-	SocialShare: require('./social/share'),
-	SocialWhatshot: require('./social/whatshot'),
-	ToggleCheckBoxOutlineBlank: require('./toggle/check-box-outline-blank'),
-	ToggleCheckBox: require('./toggle/check-box'),
-	ToggleIndeterminateCheckBox: require('./toggle/indeterminate-check-box'),
-	ToggleRadioButtonChecked: require('./toggle/radio-button-checked'),
-	ToggleRadioButtonUnchecked: require('./toggle/radio-button-unchecked'),
-	ToggleStarBorder: require('./toggle/star-border'),
-	ToggleStarHalf: require('./toggle/star-half'),
-	ToggleStar: require('./toggle/star'),
-
-};
+export {default as ActionAccessibility} from './action/accessibility';
+export {default as ActionAccessible} from './action/accessible';
+export {default as ActionAccountBalanceWallet} from './action/account-balance-wallet';
+export {default as ActionAccountBalance} from './action/account-balance';
+export {default as ActionAccountBox} from './action/account-box';
+export {default as ActionAccountCircle} from './action/account-circle';
+export {default as ActionAddShoppingCart} from './action/add-shopping-cart';
+export {default as ActionAlarmAdd} from './action/alarm-add';
+export {default as ActionAlarmOff} from './action/alarm-off';
+export {default as ActionAlarmOn} from './action/alarm-on';
+export {default as ActionAlarm} from './action/alarm';
+export {default as ActionAllOut} from './action/all-out';
+export {default as ActionAndroid} from './action/android';
+export {default as ActionAnnouncement} from './action/announcement';
+export {default as ActionAspectRatio} from './action/aspect-ratio';
+export {default as ActionAssessment} from './action/assessment';
+export {default as ActionAssignmentInd} from './action/assignment-ind';
+export {default as ActionAssignmentLate} from './action/assignment-late';
+export {default as ActionAssignmentReturn} from './action/assignment-return';
+export {default as ActionAssignmentReturned} from './action/assignment-returned';
+export {default as ActionAssignmentTurnedIn} from './action/assignment-turned-in';
+export {default as ActionAssignment} from './action/assignment';
+export {default as ActionAutorenew} from './action/autorenew';
+export {default as ActionBackup} from './action/backup';
+export {default as ActionBook} from './action/book';
+export {default as ActionBookmarkBorder} from './action/bookmark-border';
+export {default as ActionBookmark} from './action/bookmark';
+export {default as ActionBugReport} from './action/bug-report';
+export {default as ActionBuild} from './action/build';
+export {default as ActionCached} from './action/cached';
+export {default as ActionCameraEnhance} from './action/camera-enhance';
+export {default as ActionCardGiftcard} from './action/card-giftcard';
+export {default as ActionCardMembership} from './action/card-membership';
+export {default as ActionCardTravel} from './action/card-travel';
+export {default as ActionChangeHistory} from './action/change-history';
+export {default as ActionCheckCircle} from './action/check-circle';
+export {default as ActionChromeReaderMode} from './action/chrome-reader-mode';
+export {default as ActionClass} from './action/class';
+export {default as ActionCode} from './action/code';
+export {default as ActionCompareArrows} from './action/compare-arrows';
+export {default as ActionCopyright} from './action/copyright';
+export {default as ActionCreditCard} from './action/credit-card';
+export {default as ActionDashboard} from './action/dashboard';
+export {default as ActionDateRange} from './action/date-range';
+export {default as ActionDelete} from './action/delete';
+export {default as ActionDescription} from './action/description';
+export {default as ActionDns} from './action/dns';
+export {default as ActionDoneAll} from './action/done-all';
+export {default as ActionDone} from './action/done';
+export {default as ActionDonutLarge} from './action/donut-large';
+export {default as ActionDonutSmall} from './action/donut-small';
+export {default as ActionEject} from './action/eject';
+export {default as ActionEventSeat} from './action/event-seat';
+export {default as ActionEvent} from './action/event';
+export {default as ActionExitToApp} from './action/exit-to-app';
+export {default as ActionExplore} from './action/explore';
+export {default as ActionExtension} from './action/extension';
+export {default as ActionFace} from './action/face';
+export {default as ActionFavoriteBorder} from './action/favorite-border';
+export {default as ActionFavorite} from './action/favorite';
+export {default as ActionFeedback} from './action/feedback';
+export {default as ActionFindInPage} from './action/find-in-page';
+export {default as ActionFindReplace} from './action/find-replace';
+export {default as ActionFingerprint} from './action/fingerprint';
+export {default as ActionFlightLand} from './action/flight-land';
+export {default as ActionFlightTakeoff} from './action/flight-takeoff';
+export {default as ActionFlipToBack} from './action/flip-to-back';
+export {default as ActionFlipToFront} from './action/flip-to-front';
+export {default as ActionGavel} from './action/gavel';
+export {default as ActionGetApp} from './action/get-app';
+export {default as ActionGif} from './action/gif';
+export {default as ActionGrade} from './action/grade';
+export {default as ActionGroupWork} from './action/group-work';
+export {default as ActionHelpOutline} from './action/help-outline';
+export {default as ActionHelp} from './action/help';
+export {default as ActionHighlightOff} from './action/highlight-off';
+export {default as ActionHistory} from './action/history';
+export {default as ActionHome} from './action/home';
+export {default as ActionHourglassEmpty} from './action/hourglass-empty';
+export {default as ActionHourglassFull} from './action/hourglass-full';
+export {default as ActionHttp} from './action/http';
+export {default as ActionHttps} from './action/https';
+export {default as ActionImportantDevices} from './action/important-devices';
+export {default as ActionInfoOutline} from './action/info-outline';
+export {default as ActionInfo} from './action/info';
+export {default as ActionInput} from './action/input';
+export {default as ActionInvertColors} from './action/invert-colors';
+export {default as ActionLabelOutline} from './action/label-outline';
+export {default as ActionLabel} from './action/label';
+export {default as ActionLanguage} from './action/language';
+export {default as ActionLaunch} from './action/launch';
+export {default as ActionLightbulbOutline} from './action/lightbulb-outline';
+export {default as ActionLineStyle} from './action/line-style';
+export {default as ActionLineWeight} from './action/line-weight';
+export {default as ActionList} from './action/list';
+export {default as ActionLockOpen} from './action/lock-open';
+export {default as ActionLockOutline} from './action/lock-outline';
+export {default as ActionLock} from './action/lock';
+export {default as ActionLoyalty} from './action/loyalty';
+export {default as ActionMarkunreadMailbox} from './action/markunread-mailbox';
+export {default as ActionMotorcycle} from './action/motorcycle';
+export {default as ActionNoteAdd} from './action/note-add';
+export {default as ActionOfflinePin} from './action/offline-pin';
+export {default as ActionOpacity} from './action/opacity';
+export {default as ActionOpenInBrowser} from './action/open-in-browser';
+export {default as ActionOpenInNew} from './action/open-in-new';
+export {default as ActionOpenWith} from './action/open-with';
+export {default as ActionPageview} from './action/pageview';
+export {default as ActionPanTool} from './action/pan-tool';
+export {default as ActionPayment} from './action/payment';
+export {default as ActionPermCameraMic} from './action/perm-camera-mic';
+export {default as ActionPermContactCalendar} from './action/perm-contact-calendar';
+export {default as ActionPermDataSetting} from './action/perm-data-setting';
+export {default as ActionPermDeviceInformation} from './action/perm-device-information';
+export {default as ActionPermIdentity} from './action/perm-identity';
+export {default as ActionPermMedia} from './action/perm-media';
+export {default as ActionPermPhoneMsg} from './action/perm-phone-msg';
+export {default as ActionPermScanWifi} from './action/perm-scan-wifi';
+export {default as ActionPets} from './action/pets';
+export {default as ActionPictureInPictureAlt} from './action/picture-in-picture-alt';
+export {default as ActionPictureInPicture} from './action/picture-in-picture';
+export {default as ActionPlayForWork} from './action/play-for-work';
+export {default as ActionPolymer} from './action/polymer';
+export {default as ActionPowerSettingsNew} from './action/power-settings-new';
+export {default as ActionPregnantWoman} from './action/pregnant-woman';
+export {default as ActionPrint} from './action/print';
+export {default as ActionQueryBuilder} from './action/query-builder';
+export {default as ActionQuestionAnswer} from './action/question-answer';
+export {default as ActionReceipt} from './action/receipt';
+export {default as ActionRecordVoiceOver} from './action/record-voice-over';
+export {default as ActionRedeem} from './action/redeem';
+export {default as ActionReorder} from './action/reorder';
+export {default as ActionReportProblem} from './action/report-problem';
+export {default as ActionRestore} from './action/restore';
+export {default as ActionRoom} from './action/room';
+export {default as ActionRoundedCorner} from './action/rounded-corner';
+export {default as ActionRowing} from './action/rowing';
+export {default as ActionSchedule} from './action/schedule';
+export {default as ActionSearch} from './action/search';
+export {default as ActionSettingsApplications} from './action/settings-applications';
+export {default as ActionSettingsBackupRestore} from './action/settings-backup-restore';
+export {default as ActionSettingsBluetooth} from './action/settings-bluetooth';
+export {default as ActionSettingsBrightness} from './action/settings-brightness';
+export {default as ActionSettingsCell} from './action/settings-cell';
+export {default as ActionSettingsEthernet} from './action/settings-ethernet';
+export {default as ActionSettingsInputAntenna} from './action/settings-input-antenna';
+export {default as ActionSettingsInputComponent} from './action/settings-input-component';
+export {default as ActionSettingsInputComposite} from './action/settings-input-composite';
+export {default as ActionSettingsInputHdmi} from './action/settings-input-hdmi';
+export {default as ActionSettingsInputSvideo} from './action/settings-input-svideo';
+export {default as ActionSettingsOverscan} from './action/settings-overscan';
+export {default as ActionSettingsPhone} from './action/settings-phone';
+export {default as ActionSettingsPower} from './action/settings-power';
+export {default as ActionSettingsRemote} from './action/settings-remote';
+export {default as ActionSettingsVoice} from './action/settings-voice';
+export {default as ActionSettings} from './action/settings';
+export {default as ActionShopTwo} from './action/shop-two';
+export {default as ActionShop} from './action/shop';
+export {default as ActionShoppingBasket} from './action/shopping-basket';
+export {default as ActionShoppingCart} from './action/shopping-cart';
+export {default as ActionSpeakerNotes} from './action/speaker-notes';
+export {default as ActionSpellcheck} from './action/spellcheck';
+export {default as ActionStars} from './action/stars';
+export {default as ActionStore} from './action/store';
+export {default as ActionSubject} from './action/subject';
+export {default as ActionSupervisorAccount} from './action/supervisor-account';
+export {default as ActionSwapHoriz} from './action/swap-horiz';
+export {default as ActionSwapVert} from './action/swap-vert';
+export {default as ActionSwapVerticalCircle} from './action/swap-vertical-circle';
+export {default as ActionSystemUpdateAlt} from './action/system-update-alt';
+export {default as ActionTabUnselected} from './action/tab-unselected';
+export {default as ActionTab} from './action/tab';
+export {default as ActionTheaters} from './action/theaters';
+export {default as ActionThreeDRotation} from './action/three-d-rotation';
+export {default as ActionThumbDown} from './action/thumb-down';
+export {default as ActionThumbUp} from './action/thumb-up';
+export {default as ActionThumbsUpDown} from './action/thumbs-up-down';
+export {default as ActionTimeline} from './action/timeline';
+export {default as ActionToc} from './action/toc';
+export {default as ActionToday} from './action/today';
+export {default as ActionToll} from './action/toll';
+export {default as ActionTouchApp} from './action/touch-app';
+export {default as ActionTrackChanges} from './action/track-changes';
+export {default as ActionTranslate} from './action/translate';
+export {default as ActionTrendingDown} from './action/trending-down';
+export {default as ActionTrendingFlat} from './action/trending-flat';
+export {default as ActionTrendingUp} from './action/trending-up';
+export {default as ActionTurnedInNot} from './action/turned-in-not';
+export {default as ActionTurnedIn} from './action/turned-in';
+export {default as ActionUpdate} from './action/update';
+export {default as ActionVerifiedUser} from './action/verified-user';
+export {default as ActionViewAgenda} from './action/view-agenda';
+export {default as ActionViewArray} from './action/view-array';
+export {default as ActionViewCarousel} from './action/view-carousel';
+export {default as ActionViewColumn} from './action/view-column';
+export {default as ActionViewDay} from './action/view-day';
+export {default as ActionViewHeadline} from './action/view-headline';
+export {default as ActionViewList} from './action/view-list';
+export {default as ActionViewModule} from './action/view-module';
+export {default as ActionViewQuilt} from './action/view-quilt';
+export {default as ActionViewStream} from './action/view-stream';
+export {default as ActionViewWeek} from './action/view-week';
+export {default as ActionVisibilityOff} from './action/visibility-off';
+export {default as ActionVisibility} from './action/visibility';
+export {default as ActionWatchLater} from './action/watch-later';
+export {default as ActionWork} from './action/work';
+export {default as ActionYoutubeSearchedFor} from './action/youtube-searched-for';
+export {default as ActionZoomIn} from './action/zoom-in';
+export {default as ActionZoomOut} from './action/zoom-out';
+export {default as AlertAddAlert} from './alert/add-alert';
+export {default as AlertErrorOutline} from './alert/error-outline';
+export {default as AlertError} from './alert/error';
+export {default as AlertWarning} from './alert/warning';
+export {default as AvAddToQueue} from './av/add-to-queue';
+export {default as AvAirplay} from './av/airplay';
+export {default as AvAlbum} from './av/album';
+export {default as AvArtTrack} from './av/art-track';
+export {default as AvAvTimer} from './av/av-timer';
+export {default as AvClosedCaption} from './av/closed-caption';
+export {default as AvEqualizer} from './av/equalizer';
+export {default as AvExplicit} from './av/explicit';
+export {default as AvFastForward} from './av/fast-forward';
+export {default as AvFastRewind} from './av/fast-rewind';
+export {default as AvFiberDvr} from './av/fiber-dvr';
+export {default as AvFiberManualRecord} from './av/fiber-manual-record';
+export {default as AvFiberNew} from './av/fiber-new';
+export {default as AvFiberPin} from './av/fiber-pin';
+export {default as AvFiberSmartRecord} from './av/fiber-smart-record';
+export {default as AvForward10} from './av/forward-10';
+export {default as AvForward30} from './av/forward-30';
+export {default as AvForward5} from './av/forward-5';
+export {default as AvGames} from './av/games';
+export {default as AvHd} from './av/hd';
+export {default as AvHearing} from './av/hearing';
+export {default as AvHighQuality} from './av/high-quality';
+export {default as AvLibraryAdd} from './av/library-add';
+export {default as AvLibraryBooks} from './av/library-books';
+export {default as AvLibraryMusic} from './av/library-music';
+export {default as AvLoop} from './av/loop';
+export {default as AvMicNone} from './av/mic-none';
+export {default as AvMicOff} from './av/mic-off';
+export {default as AvMic} from './av/mic';
+export {default as AvMovie} from './av/movie';
+export {default as AvMusicVideo} from './av/music-video';
+export {default as AvNewReleases} from './av/new-releases';
+export {default as AvNotInterested} from './av/not-interested';
+export {default as AvPauseCircleFilled} from './av/pause-circle-filled';
+export {default as AvPauseCircleOutline} from './av/pause-circle-outline';
+export {default as AvPause} from './av/pause';
+export {default as AvPlayArrow} from './av/play-arrow';
+export {default as AvPlayCircleFilled} from './av/play-circle-filled';
+export {default as AvPlayCircleOutline} from './av/play-circle-outline';
+export {default as AvPlaylistAddCheck} from './av/playlist-add-check';
+export {default as AvPlaylistAdd} from './av/playlist-add';
+export {default as AvPlaylistPlay} from './av/playlist-play';
+export {default as AvQueueMusic} from './av/queue-music';
+export {default as AvQueuePlayNext} from './av/queue-play-next';
+export {default as AvQueue} from './av/queue';
+export {default as AvRadio} from './av/radio';
+export {default as AvRecentActors} from './av/recent-actors';
+export {default as AvRemoveFromQueue} from './av/remove-from-queue';
+export {default as AvRepeatOne} from './av/repeat-one';
+export {default as AvRepeat} from './av/repeat';
+export {default as AvReplay10} from './av/replay-10';
+export {default as AvReplay30} from './av/replay-30';
+export {default as AvReplay5} from './av/replay-5';
+export {default as AvReplay} from './av/replay';
+export {default as AvShuffle} from './av/shuffle';
+export {default as AvSkipNext} from './av/skip-next';
+export {default as AvSkipPrevious} from './av/skip-previous';
+export {default as AvSlowMotionVideo} from './av/slow-motion-video';
+export {default as AvSnooze} from './av/snooze';
+export {default as AvSortByAlpha} from './av/sort-by-alpha';
+export {default as AvStop} from './av/stop';
+export {default as AvSubscriptions} from './av/subscriptions';
+export {default as AvSubtitles} from './av/subtitles';
+export {default as AvSurroundSound} from './av/surround-sound';
+export {default as AvVideoLibrary} from './av/video-library';
+export {default as AvVideocamOff} from './av/videocam-off';
+export {default as AvVideocam} from './av/videocam';
+export {default as AvVolumeDown} from './av/volume-down';
+export {default as AvVolumeMute} from './av/volume-mute';
+export {default as AvVolumeOff} from './av/volume-off';
+export {default as AvVolumeUp} from './av/volume-up';
+export {default as AvWebAsset} from './av/web-asset';
+export {default as AvWeb} from './av/web';
+export {default as CommunicationBusiness} from './communication/business';
+export {default as CommunicationCallEnd} from './communication/call-end';
+export {default as CommunicationCallMade} from './communication/call-made';
+export {default as CommunicationCallMerge} from './communication/call-merge';
+export {default as CommunicationCallMissedOutgoing} from './communication/call-missed-outgoing';
+export {default as CommunicationCallMissed} from './communication/call-missed';
+export {default as CommunicationCallReceived} from './communication/call-received';
+export {default as CommunicationCallSplit} from './communication/call-split';
+export {default as CommunicationCall} from './communication/call';
+export {default as CommunicationChatBubbleOutline} from './communication/chat-bubble-outline';
+export {default as CommunicationChatBubble} from './communication/chat-bubble';
+export {default as CommunicationChat} from './communication/chat';
+export {default as CommunicationClearAll} from './communication/clear-all';
+export {default as CommunicationComment} from './communication/comment';
+export {default as CommunicationContactMail} from './communication/contact-mail';
+export {default as CommunicationContactPhone} from './communication/contact-phone';
+export {default as CommunicationContacts} from './communication/contacts';
+export {default as CommunicationDialerSip} from './communication/dialer-sip';
+export {default as CommunicationDialpad} from './communication/dialpad';
+export {default as CommunicationEmail} from './communication/email';
+export {default as CommunicationForum} from './communication/forum';
+export {default as CommunicationImportContacts} from './communication/import-contacts';
+export {default as CommunicationImportExport} from './communication/import-export';
+export {default as CommunicationInvertColorsOff} from './communication/invert-colors-off';
+export {default as CommunicationLiveHelp} from './communication/live-help';
+export {default as CommunicationLocationOff} from './communication/location-off';
+export {default as CommunicationLocationOn} from './communication/location-on';
+export {default as CommunicationMailOutline} from './communication/mail-outline';
+export {default as CommunicationMessage} from './communication/message';
+export {default as CommunicationNoSim} from './communication/no-sim';
+export {default as CommunicationPhone} from './communication/phone';
+export {default as CommunicationPhonelinkErase} from './communication/phonelink-erase';
+export {default as CommunicationPhonelinkLock} from './communication/phonelink-lock';
+export {default as CommunicationPhonelinkRing} from './communication/phonelink-ring';
+export {default as CommunicationPhonelinkSetup} from './communication/phonelink-setup';
+export {default as CommunicationPortableWifiOff} from './communication/portable-wifi-off';
+export {default as CommunicationPresentToAll} from './communication/present-to-all';
+export {default as CommunicationRingVolume} from './communication/ring-volume';
+export {default as CommunicationScreenShare} from './communication/screen-share';
+export {default as CommunicationSpeakerPhone} from './communication/speaker-phone';
+export {default as CommunicationStayCurrentLandscape} from './communication/stay-current-landscape';
+export {default as CommunicationStayCurrentPortrait} from './communication/stay-current-portrait';
+export {default as CommunicationStayPrimaryLandscape} from './communication/stay-primary-landscape';
+export {default as CommunicationStayPrimaryPortrait} from './communication/stay-primary-portrait';
+export {default as CommunicationStopScreenShare} from './communication/stop-screen-share';
+export {default as CommunicationSwapCalls} from './communication/swap-calls';
+export {default as CommunicationTactMail} from './communication/tact-mail';
+export {default as CommunicationTextsms} from './communication/textsms';
+export {default as CommunicationVoicemail} from './communication/voicemail';
+export {default as CommunicationVpnKey} from './communication/vpn-key';
+export {default as ContentAddBox} from './content/add-box';
+export {default as ContentAddCircleOutline} from './content/add-circle-outline';
+export {default as ContentAddCircle} from './content/add-circle';
+export {default as ContentAdd} from './content/add';
+export {default as ContentArchive} from './content/archive';
+export {default as ContentBackspace} from './content/backspace';
+export {default as ContentBlock} from './content/block';
+export {default as ContentClear} from './content/clear';
+export {default as ContentContentCopy} from './content/content-copy';
+export {default as ContentContentCut} from './content/content-cut';
+export {default as ContentContentPaste} from './content/content-paste';
+export {default as ContentCreate} from './content/create';
+export {default as ContentDrafts} from './content/drafts';
+export {default as ContentFilterList} from './content/filter-list';
+export {default as ContentFlag} from './content/flag';
+export {default as ContentFontDownload} from './content/font-download';
+export {default as ContentForward} from './content/forward';
+export {default as ContentGesture} from './content/gesture';
+export {default as ContentInbox} from './content/inbox';
+export {default as ContentLink} from './content/link';
+export {default as ContentMail} from './content/mail';
+export {default as ContentMarkunread} from './content/markunread';
+export {default as ContentMoveToInbox} from './content/move-to-inbox';
+export {default as ContentNextWeek} from './content/next-week';
+export {default as ContentRedo} from './content/redo';
+export {default as ContentRemoveCircleOutline} from './content/remove-circle-outline';
+export {default as ContentRemoveCircle} from './content/remove-circle';
+export {default as ContentRemove} from './content/remove';
+export {default as ContentReplyAll} from './content/reply-all';
+export {default as ContentReply} from './content/reply';
+export {default as ContentReport} from './content/report';
+export {default as ContentSave} from './content/save';
+export {default as ContentSelectAll} from './content/select-all';
+export {default as ContentSend} from './content/send';
+export {default as ContentSort} from './content/sort';
+export {default as ContentTextFormat} from './content/text-format';
+export {default as ContentUnarchive} from './content/unarchive';
+export {default as ContentUndo} from './content/undo';
+export {default as ContentWeekend} from './content/weekend';
+export {default as DeviceAccessAlarm} from './device/access-alarm';
+export {default as DeviceAccessAlarms} from './device/access-alarms';
+export {default as DeviceAccessTime} from './device/access-time';
+export {default as DeviceAddAlarm} from './device/add-alarm';
+export {default as DeviceAirplanemodeActive} from './device/airplanemode-active';
+export {default as DeviceAirplanemodeInactive} from './device/airplanemode-inactive';
+export {default as DeviceBattery20} from './device/battery-20';
+export {default as DeviceBattery30} from './device/battery-30';
+export {default as DeviceBattery50} from './device/battery-50';
+export {default as DeviceBattery60} from './device/battery-60';
+export {default as DeviceBattery80} from './device/battery-80';
+export {default as DeviceBattery90} from './device/battery-90';
+export {default as DeviceBatteryAlert} from './device/battery-alert';
+export {default as DeviceBatteryCharging20} from './device/battery-charging-20';
+export {default as DeviceBatteryCharging30} from './device/battery-charging-30';
+export {default as DeviceBatteryCharging50} from './device/battery-charging-50';
+export {default as DeviceBatteryCharging60} from './device/battery-charging-60';
+export {default as DeviceBatteryCharging80} from './device/battery-charging-80';
+export {default as DeviceBatteryCharging90} from './device/battery-charging-90';
+export {default as DeviceBatteryChargingFull} from './device/battery-charging-full';
+export {default as DeviceBatteryFull} from './device/battery-full';
+export {default as DeviceBatteryStd} from './device/battery-std';
+export {default as DeviceBatteryUnknown} from './device/battery-unknown';
+export {default as DeviceBluetoothConnected} from './device/bluetooth-connected';
+export {default as DeviceBluetoothDisabled} from './device/bluetooth-disabled';
+export {default as DeviceBluetoothSearching} from './device/bluetooth-searching';
+export {default as DeviceBluetooth} from './device/bluetooth';
+export {default as DeviceBrightnessAuto} from './device/brightness-auto';
+export {default as DeviceBrightnessHigh} from './device/brightness-high';
+export {default as DeviceBrightnessLow} from './device/brightness-low';
+export {default as DeviceBrightnessMedium} from './device/brightness-medium';
+export {default as DeviceDataUsage} from './device/data-usage';
+export {default as DeviceDeveloperMode} from './device/developer-mode';
+export {default as DeviceDevices} from './device/devices';
+export {default as DeviceDvr} from './device/dvr';
+export {default as DeviceGpsFixed} from './device/gps-fixed';
+export {default as DeviceGpsNotFixed} from './device/gps-not-fixed';
+export {default as DeviceGpsOff} from './device/gps-off';
+export {default as DeviceGraphicEq} from './device/graphic-eq';
+export {default as DeviceLocationDisabled} from './device/location-disabled';
+export {default as DeviceLocationSearching} from './device/location-searching';
+export {default as DeviceNetworkCell} from './device/network-cell';
+export {default as DeviceNetworkWifi} from './device/network-wifi';
+export {default as DeviceNfc} from './device/nfc';
+export {default as DeviceScreenLockLandscape} from './device/screen-lock-landscape';
+export {default as DeviceScreenLockPortrait} from './device/screen-lock-portrait';
+export {default as DeviceScreenLockRotation} from './device/screen-lock-rotation';
+export {default as DeviceScreenRotation} from './device/screen-rotation';
+export {default as DeviceSdStorage} from './device/sd-storage';
+export {default as DeviceSettingsSystemDaydream} from './device/settings-system-daydream';
+export {default as DeviceSignalCellular0Bar} from './device/signal-cellular-0-bar';
+export {default as DeviceSignalCellular1Bar} from './device/signal-cellular-1-bar';
+export {default as DeviceSignalCellular2Bar} from './device/signal-cellular-2-bar';
+export {default as DeviceSignalCellular3Bar} from './device/signal-cellular-3-bar';
+export {default as DeviceSignalCellular4Bar} from './device/signal-cellular-4-bar';
+export {default as DeviceSignalCellularConnectedNoInternet0Bar} from './device/signal-cellular-connected-no-internet-0-bar';
+export {default as DeviceSignalCellularConnectedNoInternet1Bar} from './device/signal-cellular-connected-no-internet-1-bar';
+export {default as DeviceSignalCellularConnectedNoInternet2Bar} from './device/signal-cellular-connected-no-internet-2-bar';
+export {default as DeviceSignalCellularConnectedNoInternet3Bar} from './device/signal-cellular-connected-no-internet-3-bar';
+export {default as DeviceSignalCellularConnectedNoInternet4Bar} from './device/signal-cellular-connected-no-internet-4-bar';
+export {default as DeviceSignalCellularNoSim} from './device/signal-cellular-no-sim';
+export {default as DeviceSignalCellularNull} from './device/signal-cellular-null';
+export {default as DeviceSignalCellularOff} from './device/signal-cellular-off';
+export {default as DeviceSignalWifi0Bar} from './device/signal-wifi-0-bar';
+export {default as DeviceSignalWifi1BarLock} from './device/signal-wifi-1-bar-lock';
+export {default as DeviceSignalWifi1Bar} from './device/signal-wifi-1-bar';
+export {default as DeviceSignalWifi2BarLock} from './device/signal-wifi-2-bar-lock';
+export {default as DeviceSignalWifi2Bar} from './device/signal-wifi-2-bar';
+export {default as DeviceSignalWifi3BarLock} from './device/signal-wifi-3-bar-lock';
+export {default as DeviceSignalWifi3Bar} from './device/signal-wifi-3-bar';
+export {default as DeviceSignalWifi4BarLock} from './device/signal-wifi-4-bar-lock';
+export {default as DeviceSignalWifi4Bar} from './device/signal-wifi-4-bar';
+export {default as DeviceSignalWifiOff} from './device/signal-wifi-off';
+export {default as DeviceStorage} from './device/storage';
+export {default as DeviceUsb} from './device/usb';
+export {default as DeviceWallpaper} from './device/wallpaper';
+export {default as DeviceWidgets} from './device/widgets';
+export {default as DeviceWifiLock} from './device/wifi-lock';
+export {default as DeviceWifiTethering} from './device/wifi-tethering';
+export {default as EditorAttachFile} from './editor/attach-file';
+export {default as EditorAttachMoney} from './editor/attach-money';
+export {default as EditorBorderAll} from './editor/border-all';
+export {default as EditorBorderBottom} from './editor/border-bottom';
+export {default as EditorBorderClear} from './editor/border-clear';
+export {default as EditorBorderColor} from './editor/border-color';
+export {default as EditorBorderHorizontal} from './editor/border-horizontal';
+export {default as EditorBorderInner} from './editor/border-inner';
+export {default as EditorBorderLeft} from './editor/border-left';
+export {default as EditorBorderOuter} from './editor/border-outer';
+export {default as EditorBorderRight} from './editor/border-right';
+export {default as EditorBorderStyle} from './editor/border-style';
+export {default as EditorBorderTop} from './editor/border-top';
+export {default as EditorBorderVertical} from './editor/border-vertical';
+export {default as EditorDragHandle} from './editor/drag-handle';
+export {default as EditorFormatAlignCenter} from './editor/format-align-center';
+export {default as EditorFormatAlignJustify} from './editor/format-align-justify';
+export {default as EditorFormatAlignLeft} from './editor/format-align-left';
+export {default as EditorFormatAlignRight} from './editor/format-align-right';
+export {default as EditorFormatBold} from './editor/format-bold';
+export {default as EditorFormatClear} from './editor/format-clear';
+export {default as EditorFormatColorFill} from './editor/format-color-fill';
+export {default as EditorFormatColorReset} from './editor/format-color-reset';
+export {default as EditorFormatColorText} from './editor/format-color-text';
+export {default as EditorFormatIndentDecrease} from './editor/format-indent-decrease';
+export {default as EditorFormatIndentIncrease} from './editor/format-indent-increase';
+export {default as EditorFormatItalic} from './editor/format-italic';
+export {default as EditorFormatLineSpacing} from './editor/format-line-spacing';
+export {default as EditorFormatListBulleted} from './editor/format-list-bulleted';
+export {default as EditorFormatListNumbered} from './editor/format-list-numbered';
+export {default as EditorFormatPaint} from './editor/format-paint';
+export {default as EditorFormatQuote} from './editor/format-quote';
+export {default as EditorFormatShapes} from './editor/format-shapes';
+export {default as EditorFormatSize} from './editor/format-size';
+export {default as EditorFormatStrikethrough} from './editor/format-strikethrough';
+export {default as EditorFormatTextdirectionLToR} from './editor/format-textdirection-l-to-r';
+export {default as EditorFormatTextdirectionRToL} from './editor/format-textdirection-r-to-l';
+export {default as EditorFormatUnderlined} from './editor/format-underlined';
+export {default as EditorFunctions} from './editor/functions';
+export {default as EditorHighlight} from './editor/highlight';
+export {default as EditorInsertChart} from './editor/insert-chart';
+export {default as EditorInsertComment} from './editor/insert-comment';
+export {default as EditorInsertDriveFile} from './editor/insert-drive-file';
+export {default as EditorInsertEmoticon} from './editor/insert-emoticon';
+export {default as EditorInsertInvitation} from './editor/insert-invitation';
+export {default as EditorInsertLink} from './editor/insert-link';
+export {default as EditorInsertPhoto} from './editor/insert-photo';
+export {default as EditorLinearScale} from './editor/linear-scale';
+export {default as EditorMergeType} from './editor/merge-type';
+export {default as EditorModeComment} from './editor/mode-comment';
+export {default as EditorModeEdit} from './editor/mode-edit';
+export {default as EditorMoneyOff} from './editor/money-off';
+export {default as EditorPublish} from './editor/publish';
+export {default as EditorShortText} from './editor/short-text';
+export {default as EditorSpaceBar} from './editor/space-bar';
+export {default as EditorStrikethroughS} from './editor/strikethrough-s';
+export {default as EditorTextFields} from './editor/text-fields';
+export {default as EditorVerticalAlignBottom} from './editor/vertical-align-bottom';
+export {default as EditorVerticalAlignCenter} from './editor/vertical-align-center';
+export {default as EditorVerticalAlignTop} from './editor/vertical-align-top';
+export {default as EditorWrapText} from './editor/wrap-text';
+export {default as FileAttachment} from './file/attachment';
+export {default as FileCloudCircle} from './file/cloud-circle';
+export {default as FileCloudDone} from './file/cloud-done';
+export {default as FileCloudDownload} from './file/cloud-download';
+export {default as FileCloudOff} from './file/cloud-off';
+export {default as FileCloudQueue} from './file/cloud-queue';
+export {default as FileCloudUpload} from './file/cloud-upload';
+export {default as FileCloud} from './file/cloud';
+export {default as FileCreateNewFolder} from './file/create-new-folder';
+export {default as FileFileDownload} from './file/file-download';
+export {default as FileFileUpload} from './file/file-upload';
+export {default as FileFolderOpen} from './file/folder-open';
+export {default as FileFolderShared} from './file/folder-shared';
+export {default as FileFolder} from './file/folder';
+export {default as HardwareCastConnected} from './hardware/cast-connected';
+export {default as HardwareCast} from './hardware/cast';
+export {default as HardwareComputer} from './hardware/computer';
+export {default as HardwareDesktopMac} from './hardware/desktop-mac';
+export {default as HardwareDesktopWindows} from './hardware/desktop-windows';
+export {default as HardwareDeveloperBoard} from './hardware/developer-board';
+export {default as HardwareDeviceHub} from './hardware/device-hub';
+export {default as HardwareDevicesOther} from './hardware/devices-other';
+export {default as HardwareDock} from './hardware/dock';
+export {default as HardwareGamepad} from './hardware/gamepad';
+export {default as HardwareHeadsetMic} from './hardware/headset-mic';
+export {default as HardwareHeadset} from './hardware/headset';
+export {default as HardwareKeyboardArrowDown} from './hardware/keyboard-arrow-down';
+export {default as HardwareKeyboardArrowLeft} from './hardware/keyboard-arrow-left';
+export {default as HardwareKeyboardArrowRight} from './hardware/keyboard-arrow-right';
+export {default as HardwareKeyboardArrowUp} from './hardware/keyboard-arrow-up';
+export {default as HardwareKeyboardBackspace} from './hardware/keyboard-backspace';
+export {default as HardwareKeyboardCapslock} from './hardware/keyboard-capslock';
+export {default as HardwareKeyboardHide} from './hardware/keyboard-hide';
+export {default as HardwareKeyboardReturn} from './hardware/keyboard-return';
+export {default as HardwareKeyboardTab} from './hardware/keyboard-tab';
+export {default as HardwareKeyboardVoice} from './hardware/keyboard-voice';
+export {default as HardwareKeyboard} from './hardware/keyboard';
+export {default as HardwareLaptopChromebook} from './hardware/laptop-chromebook';
+export {default as HardwareLaptopMac} from './hardware/laptop-mac';
+export {default as HardwareLaptopWindows} from './hardware/laptop-windows';
+export {default as HardwareLaptop} from './hardware/laptop';
+export {default as HardwareMemory} from './hardware/memory';
+export {default as HardwareMouse} from './hardware/mouse';
+export {default as HardwarePhoneAndroid} from './hardware/phone-android';
+export {default as HardwarePhoneIphone} from './hardware/phone-iphone';
+export {default as HardwarePhonelinkOff} from './hardware/phonelink-off';
+export {default as HardwarePhonelink} from './hardware/phonelink';
+export {default as HardwarePowerInput} from './hardware/power-input';
+export {default as HardwareRouter} from './hardware/router';
+export {default as HardwareScanner} from './hardware/scanner';
+export {default as HardwareSecurity} from './hardware/security';
+export {default as HardwareSimCard} from './hardware/sim-card';
+export {default as HardwareSmartphone} from './hardware/smartphone';
+export {default as HardwareSpeakerGroup} from './hardware/speaker-group';
+export {default as HardwareSpeaker} from './hardware/speaker';
+export {default as HardwareTabletAndroid} from './hardware/tablet-android';
+export {default as HardwareTabletMac} from './hardware/tablet-mac';
+export {default as HardwareTablet} from './hardware/tablet';
+export {default as HardwareToys} from './hardware/toys';
+export {default as HardwareTv} from './hardware/tv';
+export {default as HardwareVideogameAsset} from './hardware/videogame-asset';
+export {default as HardwareWatch} from './hardware/watch';
+export {default as ImageAddAPhoto} from './image/add-a-photo';
+export {default as ImageAddToPhotos} from './image/add-to-photos';
+export {default as ImageAdjust} from './image/adjust';
+export {default as ImageAssistantPhoto} from './image/assistant-photo';
+export {default as ImageAssistant} from './image/assistant';
+export {default as ImageAudiotrack} from './image/audiotrack';
+export {default as ImageBlurCircular} from './image/blur-circular';
+export {default as ImageBlurLinear} from './image/blur-linear';
+export {default as ImageBlurOff} from './image/blur-off';
+export {default as ImageBlurOn} from './image/blur-on';
+export {default as ImageBrightness1} from './image/brightness-1';
+export {default as ImageBrightness2} from './image/brightness-2';
+export {default as ImageBrightness3} from './image/brightness-3';
+export {default as ImageBrightness4} from './image/brightness-4';
+export {default as ImageBrightness5} from './image/brightness-5';
+export {default as ImageBrightness6} from './image/brightness-6';
+export {default as ImageBrightness7} from './image/brightness-7';
+export {default as ImageBrokenImage} from './image/broken-image';
+export {default as ImageBrush} from './image/brush';
+export {default as ImageCameraAlt} from './image/camera-alt';
+export {default as ImageCameraFront} from './image/camera-front';
+export {default as ImageCameraRear} from './image/camera-rear';
+export {default as ImageCameraRoll} from './image/camera-roll';
+export {default as ImageCamera} from './image/camera';
+export {default as ImageCenterFocusStrong} from './image/center-focus-strong';
+export {default as ImageCenterFocusWeak} from './image/center-focus-weak';
+export {default as ImageCollectionsBookmark} from './image/collections-bookmark';
+export {default as ImageCollections} from './image/collections';
+export {default as ImageColorLens} from './image/color-lens';
+export {default as ImageColorize} from './image/colorize';
+export {default as ImageCompare} from './image/compare';
+export {default as ImageControlPointDuplicate} from './image/control-point-duplicate';
+export {default as ImageControlPoint} from './image/control-point';
+export {default as ImageCrop169} from './image/crop-16-9';
+export {default as ImageCrop32} from './image/crop-3-2';
+export {default as ImageCrop54} from './image/crop-5-4';
+export {default as ImageCrop75} from './image/crop-7-5';
+export {default as ImageCropDin} from './image/crop-din';
+export {default as ImageCropFree} from './image/crop-free';
+export {default as ImageCropLandscape} from './image/crop-landscape';
+export {default as ImageCropOriginal} from './image/crop-original';
+export {default as ImageCropPortrait} from './image/crop-portrait';
+export {default as ImageCropRotate} from './image/crop-rotate';
+export {default as ImageCropSquare} from './image/crop-square';
+export {default as ImageCrop} from './image/crop';
+export {default as ImageDehaze} from './image/dehaze';
+export {default as ImageDetails} from './image/details';
+export {default as ImageEdit} from './image/edit';
+export {default as ImageExposureNeg1} from './image/exposure-neg-1';
+export {default as ImageExposureNeg2} from './image/exposure-neg-2';
+export {default as ImageExposurePlus1} from './image/exposure-plus-1';
+export {default as ImageExposurePlus2} from './image/exposure-plus-2';
+export {default as ImageExposureZero} from './image/exposure-zero';
+export {default as ImageExposure} from './image/exposure';
+export {default as ImageFilter1} from './image/filter-1';
+export {default as ImageFilter2} from './image/filter-2';
+export {default as ImageFilter3} from './image/filter-3';
+export {default as ImageFilter4} from './image/filter-4';
+export {default as ImageFilter5} from './image/filter-5';
+export {default as ImageFilter6} from './image/filter-6';
+export {default as ImageFilter7} from './image/filter-7';
+export {default as ImageFilter8} from './image/filter-8';
+export {default as ImageFilter9Plus} from './image/filter-9-plus';
+export {default as ImageFilter9} from './image/filter-9';
+export {default as ImageFilterBAndW} from './image/filter-b-and-w';
+export {default as ImageFilterCenterFocus} from './image/filter-center-focus';
+export {default as ImageFilterDrama} from './image/filter-drama';
+export {default as ImageFilterFrames} from './image/filter-frames';
+export {default as ImageFilterHdr} from './image/filter-hdr';
+export {default as ImageFilterNone} from './image/filter-none';
+export {default as ImageFilterTiltShift} from './image/filter-tilt-shift';
+export {default as ImageFilterVintage} from './image/filter-vintage';
+export {default as ImageFilter} from './image/filter';
+export {default as ImageFlare} from './image/flare';
+export {default as ImageFlashAuto} from './image/flash-auto';
+export {default as ImageFlashOff} from './image/flash-off';
+export {default as ImageFlashOn} from './image/flash-on';
+export {default as ImageFlip} from './image/flip';
+export {default as ImageGradient} from './image/gradient';
+export {default as ImageGrain} from './image/grain';
+export {default as ImageGridOff} from './image/grid-off';
+export {default as ImageGridOn} from './image/grid-on';
+export {default as ImageHdrOff} from './image/hdr-off';
+export {default as ImageHdrOn} from './image/hdr-on';
+export {default as ImageHdrStrong} from './image/hdr-strong';
+export {default as ImageHdrWeak} from './image/hdr-weak';
+export {default as ImageHealing} from './image/healing';
+export {default as ImageImageAspectRatio} from './image/image-aspect-ratio';
+export {default as ImageImage} from './image/image';
+export {default as ImageIso} from './image/iso';
+export {default as ImageLandscape} from './image/landscape';
+export {default as ImageLeakAdd} from './image/leak-add';
+export {default as ImageLeakRemove} from './image/leak-remove';
+export {default as ImageLens} from './image/lens';
+export {default as ImageLinkedCamera} from './image/linked-camera';
+export {default as ImageLooks3} from './image/looks-3';
+export {default as ImageLooks4} from './image/looks-4';
+export {default as ImageLooks5} from './image/looks-5';
+export {default as ImageLooks6} from './image/looks-6';
+export {default as ImageLooksOne} from './image/looks-one';
+export {default as ImageLooksTwo} from './image/looks-two';
+export {default as ImageLooks} from './image/looks';
+export {default as ImageLoupe} from './image/loupe';
+export {default as ImageMonochromePhotos} from './image/monochrome-photos';
+export {default as ImageMovieCreation} from './image/movie-creation';
+export {default as ImageMovieFilter} from './image/movie-filter';
+export {default as ImageMusicNote} from './image/music-note';
+export {default as ImageNaturePeople} from './image/nature-people';
+export {default as ImageNature} from './image/nature';
+export {default as ImageNavigateBefore} from './image/navigate-before';
+export {default as ImageNavigateNext} from './image/navigate-next';
+export {default as ImagePalette} from './image/palette';
+export {default as ImagePanoramaFishEye} from './image/panorama-fish-eye';
+export {default as ImagePanoramaHorizontal} from './image/panorama-horizontal';
+export {default as ImagePanoramaVertical} from './image/panorama-vertical';
+export {default as ImagePanoramaWideAngle} from './image/panorama-wide-angle';
+export {default as ImagePanorama} from './image/panorama';
+export {default as ImagePhotoAlbum} from './image/photo-album';
+export {default as ImagePhotoCamera} from './image/photo-camera';
+export {default as ImagePhotoFilter} from './image/photo-filter';
+export {default as ImagePhotoLibrary} from './image/photo-library';
+export {default as ImagePhotoSizeSelectActual} from './image/photo-size-select-actual';
+export {default as ImagePhotoSizeSelectLarge} from './image/photo-size-select-large';
+export {default as ImagePhotoSizeSelectSmall} from './image/photo-size-select-small';
+export {default as ImagePhoto} from './image/photo';
+export {default as ImagePictureAsPdf} from './image/picture-as-pdf';
+export {default as ImagePortrait} from './image/portrait';
+export {default as ImageRemoveRedEye} from './image/remove-red-eye';
+export {default as ImageRotate90DegreesCcw} from './image/rotate-90-degrees-ccw';
+export {default as ImageRotateLeft} from './image/rotate-left';
+export {default as ImageRotateRight} from './image/rotate-right';
+export {default as ImageSlideshow} from './image/slideshow';
+export {default as ImageStraighten} from './image/straighten';
+export {default as ImageStyle} from './image/style';
+export {default as ImageSwitchCamera} from './image/switch-camera';
+export {default as ImageSwitchVideo} from './image/switch-video';
+export {default as ImageTagFaces} from './image/tag-faces';
+export {default as ImageTexture} from './image/texture';
+export {default as ImageTimelapse} from './image/timelapse';
+export {default as ImageTimer10} from './image/timer-10';
+export {default as ImageTimer3} from './image/timer-3';
+export {default as ImageTimerOff} from './image/timer-off';
+export {default as ImageTimer} from './image/timer';
+export {default as ImageTonality} from './image/tonality';
+export {default as ImageTransform} from './image/transform';
+export {default as ImageTune} from './image/tune';
+export {default as ImageViewComfy} from './image/view-comfy';
+export {default as ImageViewCompact} from './image/view-compact';
+export {default as ImageVignette} from './image/vignette';
+export {default as ImageWbAuto} from './image/wb-auto';
+export {default as ImageWbCloudy} from './image/wb-cloudy';
+export {default as ImageWbIncandescent} from './image/wb-incandescent';
+export {default as ImageWbIridescent} from './image/wb-iridescent';
+export {default as ImageWbSunny} from './image/wb-sunny';
+export {default as MapsAddLocation} from './maps/add-location';
+export {default as MapsBeenhere} from './maps/beenhere';
+export {default as MapsDirectionsBike} from './maps/directions-bike';
+export {default as MapsDirectionsBoat} from './maps/directions-boat';
+export {default as MapsDirectionsBus} from './maps/directions-bus';
+export {default as MapsDirectionsCar} from './maps/directions-car';
+export {default as MapsDirectionsRailway} from './maps/directions-railway';
+export {default as MapsDirectionsRun} from './maps/directions-run';
+export {default as MapsDirectionsSubway} from './maps/directions-subway';
+export {default as MapsDirectionsTransit} from './maps/directions-transit';
+export {default as MapsDirectionsWalk} from './maps/directions-walk';
+export {default as MapsDirections} from './maps/directions';
+export {default as MapsEditLocation} from './maps/edit-location';
+export {default as MapsFlight} from './maps/flight';
+export {default as MapsHotel} from './maps/hotel';
+export {default as MapsLayersClear} from './maps/layers-clear';
+export {default as MapsLayers} from './maps/layers';
+export {default as MapsLocalActivity} from './maps/local-activity';
+export {default as MapsLocalAirport} from './maps/local-airport';
+export {default as MapsLocalAtm} from './maps/local-atm';
+export {default as MapsLocalBar} from './maps/local-bar';
+export {default as MapsLocalCafe} from './maps/local-cafe';
+export {default as MapsLocalCarWash} from './maps/local-car-wash';
+export {default as MapsLocalConvenienceStore} from './maps/local-convenience-store';
+export {default as MapsLocalDining} from './maps/local-dining';
+export {default as MapsLocalDrink} from './maps/local-drink';
+export {default as MapsLocalFlorist} from './maps/local-florist';
+export {default as MapsLocalGasStation} from './maps/local-gas-station';
+export {default as MapsLocalGroceryStore} from './maps/local-grocery-store';
+export {default as MapsLocalHospital} from './maps/local-hospital';
+export {default as MapsLocalHotel} from './maps/local-hotel';
+export {default as MapsLocalLaundryService} from './maps/local-laundry-service';
+export {default as MapsLocalLibrary} from './maps/local-library';
+export {default as MapsLocalMall} from './maps/local-mall';
+export {default as MapsLocalMovies} from './maps/local-movies';
+export {default as MapsLocalOffer} from './maps/local-offer';
+export {default as MapsLocalParking} from './maps/local-parking';
+export {default as MapsLocalPharmacy} from './maps/local-pharmacy';
+export {default as MapsLocalPhone} from './maps/local-phone';
+export {default as MapsLocalPizza} from './maps/local-pizza';
+export {default as MapsLocalPlay} from './maps/local-play';
+export {default as MapsLocalPostOffice} from './maps/local-post-office';
+export {default as MapsLocalPrintshop} from './maps/local-printshop';
+export {default as MapsLocalSee} from './maps/local-see';
+export {default as MapsLocalShipping} from './maps/local-shipping';
+export {default as MapsLocalTaxi} from './maps/local-taxi';
+export {default as MapsMap} from './maps/map';
+export {default as MapsMyLocation} from './maps/my-location';
+export {default as MapsNavigation} from './maps/navigation';
+export {default as MapsNearMe} from './maps/near-me';
+export {default as MapsPersonPinCircle} from './maps/person-pin-circle';
+export {default as MapsPersonPin} from './maps/person-pin';
+export {default as MapsPinDrop} from './maps/pin-drop';
+export {default as MapsPlace} from './maps/place';
+export {default as MapsRateReview} from './maps/rate-review';
+export {default as MapsRestaurantMenu} from './maps/restaurant-menu';
+export {default as MapsSatellite} from './maps/satellite';
+export {default as MapsStoreMallDirectory} from './maps/store-mall-directory';
+export {default as MapsTerrain} from './maps/terrain';
+export {default as MapsTraffic} from './maps/traffic';
+export {default as MapsZoomOutMap} from './maps/zoom-out-map';
+export {default as NavigationApps} from './navigation/apps';
+export {default as NavigationArrowBack} from './navigation/arrow-back';
+export {default as NavigationArrowDownward} from './navigation/arrow-downward';
+export {default as NavigationArrowDropDownCircle} from './navigation/arrow-drop-down-circle';
+export {default as NavigationArrowDropDown} from './navigation/arrow-drop-down';
+export {default as NavigationArrowDropUp} from './navigation/arrow-drop-up';
+export {default as NavigationArrowForward} from './navigation/arrow-forward';
+export {default as NavigationArrowUpward} from './navigation/arrow-upward';
+export {default as NavigationCancel} from './navigation/cancel';
+export {default as NavigationCheck} from './navigation/check';
+export {default as NavigationChevronLeft} from './navigation/chevron-left';
+export {default as NavigationChevronRight} from './navigation/chevron-right';
+export {default as NavigationClose} from './navigation/close';
+export {default as NavigationExpandLess} from './navigation/expand-less';
+export {default as NavigationExpandMore} from './navigation/expand-more';
+export {default as NavigationFullscreenExit} from './navigation/fullscreen-exit';
+export {default as NavigationFullscreen} from './navigation/fullscreen';
+export {default as NavigationMenu} from './navigation/menu';
+export {default as NavigationMoreHoriz} from './navigation/more-horiz';
+export {default as NavigationMoreVert} from './navigation/more-vert';
+export {default as NavigationRefresh} from './navigation/refresh';
+export {default as NavigationSubdirectoryArrowLeft} from './navigation/subdirectory-arrow-left';
+export {default as NavigationSubdirectoryArrowRight} from './navigation/subdirectory-arrow-right';
+export {default as NavigationUnfoldLess} from './navigation/unfold-less';
+export {default as NavigationUnfoldMore} from './navigation/unfold-more';
+export {default as NavigationArrowDropRight} from './navigation-arrow-drop-right';
+export {default as NotificationAdb} from './notification/adb';
+export {default as NotificationAirlineSeatFlatAngled} from './notification/airline-seat-flat-angled';
+export {default as NotificationAirlineSeatFlat} from './notification/airline-seat-flat';
+export {default as NotificationAirlineSeatIndividualSuite} from './notification/airline-seat-individual-suite';
+export {default as NotificationAirlineSeatLegroomExtra} from './notification/airline-seat-legroom-extra';
+export {default as NotificationAirlineSeatLegroomNormal} from './notification/airline-seat-legroom-normal';
+export {default as NotificationAirlineSeatLegroomReduced} from './notification/airline-seat-legroom-reduced';
+export {default as NotificationAirlineSeatReclineExtra} from './notification/airline-seat-recline-extra';
+export {default as NotificationAirlineSeatReclineNormal} from './notification/airline-seat-recline-normal';
+export {default as NotificationBluetoothAudio} from './notification/bluetooth-audio';
+export {default as NotificationConfirmationNumber} from './notification/confirmation-number';
+export {default as NotificationDiscFull} from './notification/disc-full';
+export {default as NotificationDoNotDisturbAlt} from './notification/do-not-disturb-alt';
+export {default as NotificationDoNotDisturb} from './notification/do-not-disturb';
+export {default as NotificationDriveEta} from './notification/drive-eta';
+export {default as NotificationEnhancedEncryption} from './notification/enhanced-encryption';
+export {default as NotificationEventAvailable} from './notification/event-available';
+export {default as NotificationEventBusy} from './notification/event-busy';
+export {default as NotificationEventNote} from './notification/event-note';
+export {default as NotificationFolderSpecial} from './notification/folder-special';
+export {default as NotificationLiveTv} from './notification/live-tv';
+export {default as NotificationMms} from './notification/mms';
+export {default as NotificationMore} from './notification/more';
+export {default as NotificationNetworkCheck} from './notification/network-check';
+export {default as NotificationNetworkLocked} from './notification/network-locked';
+export {default as NotificationNoEncryption} from './notification/no-encryption';
+export {default as NotificationOndemandVideo} from './notification/ondemand-video';
+export {default as NotificationPersonalVideo} from './notification/personal-video';
+export {default as NotificationPhoneBluetoothSpeaker} from './notification/phone-bluetooth-speaker';
+export {default as NotificationPhoneForwarded} from './notification/phone-forwarded';
+export {default as NotificationPhoneInTalk} from './notification/phone-in-talk';
+export {default as NotificationPhoneLocked} from './notification/phone-locked';
+export {default as NotificationPhoneMissed} from './notification/phone-missed';
+export {default as NotificationPhonePaused} from './notification/phone-paused';
+export {default as NotificationPower} from './notification/power';
+export {default as NotificationRvHookup} from './notification/rv-hookup';
+export {default as NotificationSdCard} from './notification/sd-card';
+export {default as NotificationSimCardAlert} from './notification/sim-card-alert';
+export {default as NotificationSmsFailed} from './notification/sms-failed';
+export {default as NotificationSms} from './notification/sms';
+export {default as NotificationSyncDisabled} from './notification/sync-disabled';
+export {default as NotificationSyncProblem} from './notification/sync-problem';
+export {default as NotificationSync} from './notification/sync';
+export {default as NotificationSystemUpdate} from './notification/system-update';
+export {default as NotificationTapAndPlay} from './notification/tap-and-play';
+export {default as NotificationTimeToLeave} from './notification/time-to-leave';
+export {default as NotificationVibration} from './notification/vibration';
+export {default as NotificationVoiceChat} from './notification/voice-chat';
+export {default as NotificationVpnLock} from './notification/vpn-lock';
+export {default as NotificationWc} from './notification/wc';
+export {default as NotificationWifi} from './notification/wifi';
+export {default as PlacesAcUnit} from './places/ac-unit';
+export {default as PlacesAirportShuttle} from './places/airport-shuttle';
+export {default as PlacesAllInclusive} from './places/all-inclusive';
+export {default as PlacesBeachAccess} from './places/beach-access';
+export {default as PlacesBusinessCenter} from './places/business-center';
+export {default as PlacesCasino} from './places/casino';
+export {default as PlacesChildCare} from './places/child-care';
+export {default as PlacesChildFriendly} from './places/child-friendly';
+export {default as PlacesFitnessCenter} from './places/fitness-center';
+export {default as PlacesFreeBreakfast} from './places/free-breakfast';
+export {default as PlacesGolfCourse} from './places/golf-course';
+export {default as PlacesHotTub} from './places/hot-tub';
+export {default as PlacesKitchen} from './places/kitchen';
+export {default as PlacesPool} from './places/pool';
+export {default as PlacesRoomService} from './places/room-service';
+export {default as PlacesSmokeFree} from './places/smoke-free';
+export {default as PlacesSmokingRooms} from './places/smoking-rooms';
+export {default as PlacesSpa} from './places/spa';
+export {default as SocialCake} from './social/cake';
+export {default as SocialDomain} from './social/domain';
+export {default as SocialGroupAdd} from './social/group-add';
+export {default as SocialGroup} from './social/group';
+export {default as SocialLocationCity} from './social/location-city';
+export {default as SocialMoodBad} from './social/mood-bad';
+export {default as SocialMood} from './social/mood';
+export {default as SocialNotificationsActive} from './social/notifications-active';
+export {default as SocialNotificationsNone} from './social/notifications-none';
+export {default as SocialNotificationsOff} from './social/notifications-off';
+export {default as SocialNotificationsPaused} from './social/notifications-paused';
+export {default as SocialNotifications} from './social/notifications';
+export {default as SocialPages} from './social/pages';
+export {default as SocialPartyMode} from './social/party-mode';
+export {default as SocialPeopleOutline} from './social/people-outline';
+export {default as SocialPeople} from './social/people';
+export {default as SocialPersonAdd} from './social/person-add';
+export {default as SocialPersonOutline} from './social/person-outline';
+export {default as SocialPerson} from './social/person';
+export {default as SocialPlusOne} from './social/plus-one';
+export {default as SocialPoll} from './social/poll';
+export {default as SocialPublic} from './social/public';
+export {default as SocialSchool} from './social/school';
+export {default as SocialShare} from './social/share';
+export {default as SocialWhatshot} from './social/whatshot';
+export {default as ToggleCheckBoxOutlineBlank} from './toggle/check-box-outline-blank';
+export {default as ToggleCheckBox} from './toggle/check-box';
+export {default as ToggleIndeterminateCheckBox} from './toggle/indeterminate-check-box';
+export {default as ToggleRadioButtonChecked} from './toggle/radio-button-checked';
+export {default as ToggleRadioButtonUnchecked} from './toggle/radio-button-unchecked';
+export {default as ToggleStarBorder} from './toggle/star-border';
+export {default as ToggleStarHalf} from './toggle/star-half';
+export {default as ToggleStar} from './toggle/star';
