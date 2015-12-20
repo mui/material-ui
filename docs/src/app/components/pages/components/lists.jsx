@@ -14,7 +14,7 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 import FileFolder from 'material-ui/svg-icons/file/folder';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
+import SelectableContainerEnhance from 'material-ui/hoc/selectable-enhance';
 
 const {
   Avatar,

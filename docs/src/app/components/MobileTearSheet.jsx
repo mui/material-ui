@@ -1,14 +1,10 @@
 import React from 'react';
 import {Mixins} from 'material-ui';
+import muiThemeable from 'material-ui/lib/muiThemeable';
 const {StylePropable} = Mixins;
 
-
-const MobileTearSheet = React.createClass({
+let MobileTearSheet = React.createClass({
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -62,5 +58,7 @@ const MobileTearSheet = React.createClass({
   },
 
 });
+
+MobileTearSheet = muiThemeable(MobileTearSheet);
 
 export default MobileTearSheet;

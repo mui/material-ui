@@ -1,5 +1,7 @@
 import React from 'react';
 import mui from 'material-ui';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import muiThemeable from 'material-ui/lib/muiThemeable';
 import CodeBlock from '../../CodeExample/CodeBlock';
 import ComponentDoc from '../../component-doc';
 
@@ -29,39 +31,15 @@ const {
 
 const {StylePropable, StyleResizable} = Mixins;
 const {Typography} = Styles;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.lightBaseTheme;
-const DarkRawTheme = Styles.darkBaseTheme;
+const DarkBaseTheme = Styles.darkBaseTheme;
 
-const ThemesPage = React.createClass({
+let ThemesPage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
-  propTypes: {
-    /**
-     * The MUI Theme to use to render this component with.
-     */
-    _muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
+      muiTheme: getMuiTheme(),
       isThemeDark: false,
       dialogOpen: false,
       snackbarOpen: false,
@@ -69,16 +47,9 @@ const ThemesPage = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getStyles() {
-    let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
-    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
+    let canvasColor = this.state.muiTheme.baseTheme.palette.canvasColor;
+    let borderColor = this.state.muiTheme.baseTheme.palette.borderColor;
     let styles = {
       group: {
         float: 'left',
@@ -132,7 +103,7 @@ const ThemesPage = React.createClass({
       },
       liveExampleBlock: {
         borderRadius: '0 0 2px 0',
-        padding: this.state.muiTheme.rawTheme.spacing.desktopGutter,
+        padding: this.state.muiTheme.baseTheme.spacing.desktopGutter,
         margin: 0,
       },
       headline: {
@@ -649,10 +620,10 @@ const ThemesPage = React.createClass({
     let newMuiTheme = null;
 
     if (!this.state.isThemeDark) {
-      newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+      newMuiTheme = getMuiTheme(DarkBaseTheme);
     }
     else {
-      newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
+      newMuiTheme = getMuiTheme();
     }
 
     this.setState({muiTheme: newMuiTheme,
@@ -695,5 +666,7 @@ const ThemesPage = React.createClass({
     });
   },
 });
+
+ThemesPage = muiThemeable(ThemesPage);
 
 export default ThemesPage;
