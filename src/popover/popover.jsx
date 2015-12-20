@@ -6,12 +6,11 @@ import StylePropable from '../mixins/style-propable';
 import PropTypes from '../utils/prop-types';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
 import Extend from '../utils/extend';
 import PopoverDefaultAnimation from './popover-default-animation';
+import muiThemeable from '../muiThemeable';
 
-const Popover = React.createClass({
+let Popover = React.createClass({
   mixins: [
     StylePropable,
     WindowListenable,
@@ -78,22 +77,6 @@ const Popover = React.createClass({
     return {
       open: this.props.open,
       closing: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -103,7 +86,6 @@ const Popover = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
@@ -111,7 +93,6 @@ const Popover = React.createClass({
         this.setState({
           open: true,
           closing: false,
-          muiTheme: newMuiTheme,
         });
       } else {
         if (nextProps.animated) {
@@ -120,14 +101,12 @@ const Popover = React.createClass({
             if (this.isMounted()) {
               this.setState({
                 open: false,
-                muiTheme: newMuiTheme,
               });
             }
           }, 500);
         } else {
           this.setState({
             open: false,
-            muiTheme: newMuiTheme,
           });
         }
       }
@@ -341,5 +320,7 @@ const Popover = React.createClass({
   },
 
 });
+
+Popover = muiThemeable(Popover);
 
 export default Popover;

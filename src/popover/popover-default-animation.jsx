@@ -2,11 +2,10 @@ import Transitions from '../styles/transitions';
 import React from 'react';
 import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
 import Paper from '../paper';
+import muiThemeable from '../muiThemeable';
 
-const PopoverDefaultAnimation = React.createClass({
+let PopoverDefaultAnimation = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
@@ -33,23 +32,7 @@ const PopoverDefaultAnimation = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       open: false,
-    };
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -64,12 +47,9 @@ const PopoverDefaultAnimation = React.createClass({
     this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-
+  componentWillReceiveProps(nextProps, ) {
     this.setState({
       open: nextProps.open,
-      muiTheme: newMuiTheme,
     });
   },
 
@@ -84,10 +64,9 @@ const PopoverDefaultAnimation = React.createClass({
         transform: 'scale(0, 0)',
         transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
         position: 'fixed',
-        zIndex: this.state.muiTheme.zIndex.popover,
+        zIndex: this.props._muiTheme.zIndex.popover,
         transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
         maxHeight: '100%',
-
       },
       horizontal: {
         maxHeight: '100%',
@@ -149,5 +128,7 @@ const PopoverDefaultAnimation = React.createClass({
     );
   },
 });
+
+PopoverDefaultAnimation = muiThemeable(PopoverDefaultAnimation);
 
 export default PopoverDefaultAnimation;
