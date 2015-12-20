@@ -1,15 +1,10 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const ToolbarSeparator = React.createClass({
+let ToolbarSeparator = React.createClass({
 
   mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     /**
@@ -28,36 +23,12 @@ const ToolbarSeparator = React.createClass({
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getTheme() {
-    return this.state.muiTheme.toolbar;
+    return this.props._muiTheme.toolbar;
   },
 
   getSpacing() {
-    return this.state.muiTheme.rawTheme.spacing;
+    return this.props._muiTheme.baseTheme.spacing;
   },
 
   getStyles() {
@@ -90,5 +61,7 @@ const ToolbarSeparator = React.createClass({
   },
 
 });
+
+ToolbarSeparator = muiThemeable(ToolbarSeparator);
 
 export default ToolbarSeparator;
