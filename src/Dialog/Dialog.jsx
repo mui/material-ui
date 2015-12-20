@@ -156,6 +156,6 @@ let Dialog = React.createClass({
 
 });
 
-Dialog = muiThemeable(Dialog);
+Dialog = muiThemeable(Dialog, ['show', 'dismiss']);
 
 export default Dialog;

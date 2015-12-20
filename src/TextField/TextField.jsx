@@ -450,6 +450,12 @@ let TextField = React.createClass({
 
 });
 
-TextField = muiThemeable(TextField);
-
+TextField = muiThemeable(TextField, [
+  'blur',
+  'clearValue',
+  'focus',
+  'getValue',
+  'setErrorText',
+  'setValue',
+]);
 export default TextField;

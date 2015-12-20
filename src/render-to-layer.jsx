@@ -130,6 +130,6 @@ let RenderToLayer = React.createClass({
 
 });
 
-RenderToLayer = muiThemeable(RenderToLayer);
+RenderToLayer = muiThemeable(RenderToLayer, ['getLayer']);
 
 export default RenderToLayer;
