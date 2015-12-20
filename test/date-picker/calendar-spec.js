@@ -1,7 +1,7 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import React from 'react/addons';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from 'date-picker/calendar';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
