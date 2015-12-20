@@ -2,18 +2,13 @@ import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import Transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const DateDisplay = React.createClass({
+let DateDisplay = React.createClass({
 
   mixins: [
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
@@ -37,17 +32,6 @@ const DateDisplay = React.createClass({
     weekCount: React.PropTypes.number,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       disableYearSelection: false,
@@ -60,14 +44,10 @@ const DateDisplay = React.createClass({
     return {
       selectedYear: !this.props.monthDaySelected,
       transitionDirection: 'up',
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     let direction;
 
     if (nextProps.selectedDate !== this.props.selectedDate) {
@@ -83,7 +63,7 @@ const DateDisplay = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.datePicker;
+    return this.props._muiTheme.datePicker;
   },
 
   getStyles() {
@@ -196,5 +176,7 @@ const DateDisplay = React.createClass({
   },
 
 });
+
+DateDisplay = muiThemeable(DateDisplay);
 
 export default DateDisplay;

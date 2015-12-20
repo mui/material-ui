@@ -10,31 +10,14 @@ import CalendarToolbar from './calendar-toolbar';
 import DateDisplay from './date-display';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
 import ClearFix from '../clearfix';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import muiThemeable from './muiThemeable';
 
-
-const Calendar = React.createClass({
+let Calendar = React.createClass({
 
   mixins: [
     StylePropable,
     WindowListenable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
@@ -69,7 +52,6 @@ const Calendar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
       displayMonthDay: true,
       selectedDate: this.props.initialDate,
@@ -78,12 +60,7 @@ const Calendar = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
       let d = nextProps.initialDate || new Date();
       this.setState({
@@ -364,5 +341,7 @@ const Calendar = React.createClass({
   },
 
 });
+
+Calendar = muiThemeable(Calendar);
 
 export default Calendar;

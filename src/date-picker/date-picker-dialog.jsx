@@ -7,11 +7,10 @@ import Calendar from './calendar';
 import Dialog from '../dialog';
 import DatePickerInline from './date-picker-inline';
 import FlatButton from '../flat-button';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
 import DateTime from '../utils/date-time';
+import muiThemeable from '../muiThemeable';
 
-const DatePickerDialog = React.createClass({
+let DatePickerDialog = React.createClass({
 
   mixins: [
     StylePropable,
@@ -31,10 +30,6 @@ const DatePickerDialog = React.createClass({
         Dialog,
       ];
     },
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -65,17 +60,6 @@ const DatePickerDialog = React.createClass({
     wordings: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps: function() {
     return {
       DateTimeFormat: DateTime.DateTimeFormat,
@@ -95,15 +79,7 @@ const DatePickerDialog = React.createClass({
   getInitialState() {
     return {
       open: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -120,7 +96,7 @@ const DatePickerDialog = React.createClass({
 
     const {
       calendarTextColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.constructor.getRelevantContextKeys(this.props._muiTheme);
 
     let styles = {
       root: {
@@ -234,5 +210,7 @@ const DatePickerDialog = React.createClass({
   },
 
 });
+
+DatePickerDialog = muiThemeable(DatePickerDialog);
 
 export default DatePickerDialog;
