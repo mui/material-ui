@@ -9,7 +9,7 @@ const DeviceSignalCellular0Bar = React.createClass({
   render() {
     return (
       <SvgIcon {...this.props}>
-        <path fill-opacity=".3" d="M2 22h20V2z"/>
+        <path fillOpacity=".3" d="M2 22h20V2z"/>
       </SvgIcon>
     );
   }
