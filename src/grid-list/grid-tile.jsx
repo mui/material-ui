@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
-import muiThemeable from './muiThemeable';
+import muiThemeable from '../muiThemeable';
 
 let GridTile = React.createClass({
 

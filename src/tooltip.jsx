@@ -36,7 +36,7 @@ let Tooltip = React.createClass({
     this._setTooltipPosition();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps() {
     this._setTooltipPosition();
   },
 

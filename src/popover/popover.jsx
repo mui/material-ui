@@ -85,7 +85,7 @@ let Popover = React.createClass({
     scroll: 'setPlacementThrottledScrolled',
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
 
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {

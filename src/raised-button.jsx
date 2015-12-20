@@ -77,7 +77,7 @@ let RaisedButton = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     let zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,

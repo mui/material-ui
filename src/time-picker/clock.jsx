@@ -30,7 +30,7 @@ let Clock = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       selectedTime: nextProps.initialTime,
     });

@@ -10,7 +10,7 @@ import CalendarToolbar from './calendar-toolbar';
 import DateDisplay from './date-display';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
 import ClearFix from '../clearfix';
-import muiThemeable from './muiThemeable';
+import muiThemeable from '../muiThemeable';
 
 let Calendar = React.createClass({
 

@@ -133,7 +133,7 @@ let Snackbar = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.open === this.props.open &&
         (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({

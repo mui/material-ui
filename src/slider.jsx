@@ -102,7 +102,7 @@ let Slider = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
       this.setValue(nextProps.value);
     }

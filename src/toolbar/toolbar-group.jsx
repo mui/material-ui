@@ -199,4 +199,6 @@ let ToolbarGroup = React.createClass({
   },
 });
 
+ToolbarGroup = muiThemeable(ToolbarGroup);
+
 export default ToolbarGroup;
