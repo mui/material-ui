@@ -1,6 +1,6 @@
-const React = require('react');
-const PureRenderMixin = require('react-addons-pure-render-mixin');
-const SvgIcon = {{{ muiRequireStmt }}};
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '{{{ muiRequireStmt }}}';
 
 const {{className}} = React.createClass({
 
@@ -16,4 +16,4 @@ const {{className}} = React.createClass({
 
 });
 
-module.exports = {{className}};
+export default {{className}};
