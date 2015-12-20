@@ -156,8 +156,9 @@ function getJsxString(svgPath, destPath, options) {
   let paths = data.slice(data.indexOf('>') + 1);
   paths = paths.slice(0, -6);
   //clean xml paths
-  paths = paths.replace('xlink:href="#a"', '');
-  paths = paths.replace('xlink:href="#c"', '');
+  paths = paths.replace(/xlink:href="#a"/g, '');
+  paths = paths.replace(/xlink:href="#c"/g, '');
+  paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
 
   // Node acts wierd if we put this directly into string concatenation
 
