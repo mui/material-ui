@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const LinearProgress = React.createClass({
+let LinearProgress = React.createClass({
 
   mixins: [StylePropable],
 
@@ -25,34 +24,6 @@ const LinearProgress = React.createClass({
      */
     style: React.PropTypes.object,
     value: React.PropTypes.number,
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   _getRelativeValue() {
@@ -90,8 +61,8 @@ const LinearProgress = React.createClass({
     if (!this.isMounted()) return;
     if (this.props.mode !== 'indeterminate') return;
 
-    const right = this.state.muiTheme.isRtl ? 'left' : 'right';
-    const left = this.state.muiTheme.isRtl ? 'right' : 'left';
+    const right = this.props._muiTheme.isRtl ? 'left' : 'right';
+    const left = this.props._muiTheme.isRtl ? 'right' : 'left';
 
     if (step === 0) {
       barElement.style[left] = stepValues[0][0] + '%';
@@ -119,7 +90,7 @@ const LinearProgress = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.rawTheme.palette;
+    return this.props._muiTheme.baseTheme.palette;
   },
 
   getStyles() {
@@ -187,5 +158,7 @@ const LinearProgress = React.createClass({
     );
   },
 });
+
+LinearProgress = muiThemeable(LinearProgress);
 
 export default LinearProgress;
