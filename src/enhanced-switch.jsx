@@ -9,30 +9,14 @@ import ClearFix from './clearfix';
 import FocusRipple from './ripples/focus-ripple';
 import TouchRipple from './ripples/touch-ripple';
 import Paper from './paper';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const EnhancedSwitch = React.createClass({
+let EnhancedSwitch = React.createClass({
 
   mixins: [
     WindowListenable,
     StylePropable,
   ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     /**
@@ -90,7 +74,6 @@ const EnhancedSwitch = React.createClass({
     return {
       isKeyboardFocused: false,
       parentWidth: 100,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -117,7 +100,7 @@ const EnhancedSwitch = React.createClass({
     window.removeEventListener('resize', this._handleResize);
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     let hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
     let hasCheckedProp = nextProps.hasOwnProperty('checked');
     let hasToggledProp = nextProps.hasOwnProperty('toggled');
@@ -125,7 +108,6 @@ const EnhancedSwitch = React.createClass({
       (nextProps.hasOwnProperty('defaultSwitched') &&
       (nextProps.defaultSwitched !== this.props.defaultSwitched));
     let newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     if (hasCheckedProp) {
       newState.switched = nextProps.checked;
@@ -148,11 +130,11 @@ const EnhancedSwitch = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.rawTheme.palette;
+    return this.props._muiTheme.rawTheme.palette;
   },
 
   getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let spacing = this.props._muiTheme.rawTheme.spacing;
     let switchWidth = 60 - spacing.desktopGutterLess;
     let labelWidth = 'calc(100% - 60px)';
     let styles = {
@@ -188,7 +170,7 @@ const EnhancedSwitch = React.createClass({
         width: labelWidth,
         lineHeight: '24px',
         color: this.getTheme().textColor,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+        fontFamily: this.props._muiTheme.rawTheme.fontFamily,
       },
       wrap: {
         transition: Transitions.easeOut(),
@@ -461,5 +443,7 @@ const EnhancedSwitch = React.createClass({
   },
 
 });
+
+EnhancedSwitch = muiThemeable(EnhancedSwitch);
 
 export default EnhancedSwitch;
