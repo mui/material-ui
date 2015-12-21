@@ -312,8 +312,9 @@ let ThemesPage = React.createClass({
             <div style={styles.bottomBorderWrapper}>
             <p>
                 We changed how themes work in v0.12.0 (check out
-                <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
-                There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
+                <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a>
+                for more details). There are now two kinds of themes in Material-UI:
+                <b>raw theme</b> and <b>mui theme</b>.
                 The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
                 The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
                 component, and the value corresponding to that key describes the styling of that particular component
@@ -336,7 +337,7 @@ let ThemesPage = React.createClass({
             </div>
 
             <div style={styles.bottomBorderWrapper}>
-            <ComponentDoc
+              <ComponentDoc
                 name=""
                 componentInfo={info} />
             </div>
