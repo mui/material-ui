@@ -1,7 +1,11 @@
 import React from 'react';
 import getMuiTheme from './styles/getMuiTheme';
 
-const defaultTheme = getMuiTheme();
+let defaultTheme;
+
+function getDefaultTheme() {
+  return defaultTheme || (defaultTheme = getMuiTheme());
+}
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -25,7 +29,7 @@ export default function muiThemeable(WrappedComponent, forwardMethods) {
     },
 
     render() {
-      const {_muiTheme = defaultTheme} = this.context;
+      const {_muiTheme = getDefaultTheme()} = this.context;
       return React.createElement(WrappedComponent, {
         _muiTheme,
         ref: forwardMethods ? 'WrappedComponent' : undefined,
