@@ -31,6 +31,12 @@ let ClockButton = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      selected: false,
+    };
+  },
+
   _handleTouchTap() {
     this.setState({
       selected: true,

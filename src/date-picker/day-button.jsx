@@ -31,6 +31,12 @@ let DayButton = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      hover: false,
+    };
+  },
+
   getTheme() {
     return this.props._muiTheme.datePicker;
   },

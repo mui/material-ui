@@ -30,6 +30,12 @@ let YearButton = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      hover: false,
+    };
+  },
+
   getTheme() {
     return this.props._muiTheme.datePicker;
   },

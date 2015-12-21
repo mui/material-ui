@@ -27,7 +27,7 @@ let ClockNumber = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.timePicker;
+    return this.props._muiTheme.timePicker;
   },
 
   render() {
