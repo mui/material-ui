@@ -1,1 +1,2 @@
-export default require('./time-picker');
+import TimePicker from './time-picker';
+export default TimePicker;
