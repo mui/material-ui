@@ -126,12 +126,12 @@ describe('Theming', () => {
 const AppBarDarkUsingContext = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(DarkRawTheme),
+      _muiTheme: ThemeManager.getMuiTheme(DarkRawTheme),
     };
   },
 
@@ -143,7 +143,7 @@ const AppBarDarkUsingContext = React.createClass({
 const AppBarDarkUsingContextWithOverride = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -157,7 +157,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
+      _muiTheme: this.state.muiTheme,
     };
   },
 
@@ -197,12 +197,12 @@ const ButtonToUpdateThemeWithAppBar = React.createClass({
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
+      _muiTheme: this.state.muiTheme,
     };
   },
 
