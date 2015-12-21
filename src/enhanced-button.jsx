@@ -303,6 +303,10 @@ let EnhancedButton = React.createClass({
 
 });
 
-EnhancedButton = muiThemeable(EnhancedButton, ['isKeyboardFocused']);
+EnhancedButton = muiThemeable(EnhancedButton, [
+  'isKeyboardFocused',
+  'removeKeyboardFocus',
+  'setKeyboardFocus',
+]);
 
 export default EnhancedButton;

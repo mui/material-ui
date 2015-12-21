@@ -238,6 +238,6 @@ let IconButton = React.createClass({
 
 });
 
-IconButton = muiThemeable(IconButton);
+IconButton = muiThemeable(IconButton, ['setKeyboardFocus']);
 
 export default IconButton;

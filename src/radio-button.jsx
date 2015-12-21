@@ -155,6 +155,10 @@ let RadioButton = React.createClass({
 
 });
 
-RadioButton = muiThemeable(RadioButton);
+RadioButton = muiThemeable(RadioButton, [
+  'isChecked',
+  'setChecked',
+  'getValue',
+]);
 
 export default RadioButton;

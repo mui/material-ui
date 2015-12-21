@@ -342,6 +342,9 @@ let Calendar = React.createClass({
 
 });
 
-Calendar = muiThemeable(Calendar);
+Calendar = muiThemeable(Calendar, [
+  'getSelectedDate',
+  'isSelectedDateDisabled',
+]);
 
 export default Calendar;

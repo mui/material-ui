@@ -254,6 +254,10 @@ let IconMenu = React.createClass({
 
 });
 
-IconMenu = muiThemeable(IconMenu);
+IconMenu = muiThemeable(IconMenu, [
+  'isOpen',
+  'close',
+  'open',
+]);
 
 export default IconMenu;

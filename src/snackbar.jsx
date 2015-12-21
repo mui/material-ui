@@ -351,6 +351,9 @@ let Snackbar = React.createClass({
 
 });
 
-Snackbar = muiThemeable(Snackbar);
+Snackbar = muiThemeable(Snackbar, [
+  'show',
+  'dismiss',
+]);
 
 export default Snackbar;

@@ -129,6 +129,9 @@ let TimePickerDialog = React.createClass({
 
 });
 
-TimePickerDialog = muiThemeable(TimePickerDialog);
+TimePickerDialog = muiThemeable(TimePickerDialog, [
+  'show',
+  'dismiss',
+]);
 
 export default TimePickerDialog;

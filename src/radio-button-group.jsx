@@ -134,6 +134,10 @@ let RadioButtonGroup = React.createClass({
 
 });
 
-RadioButtonGroup = muiThemeable(RadioButtonGroup);
+RadioButtonGroup = muiThemeable(RadioButtonGroup, [
+  'getSelectedValue',
+  'setSelectedValue',
+  'clearValue',
+]);
 
 export default RadioButtonGroup;

@@ -491,6 +491,6 @@ let Menu = React.createClass({
 
 });
 
-Menu = muiThemeable(Menu);
+Menu = muiThemeable(Menu, ['setKeyboardFocused']);
 
 export default Menu;

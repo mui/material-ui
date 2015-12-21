@@ -247,6 +247,6 @@ let Table = React.createClass({
 
 });
 
-Table = muiThemeable(Table);
+Table = muiThemeable(Table, ['isScrollbarVisible']);
 
 export default Table;

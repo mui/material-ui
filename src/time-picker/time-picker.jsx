@@ -184,6 +184,11 @@ let TimePicker = React.createClass({
   },
 });
 
-TimePicker = muiThemeable(TimePicker);
+TimePicker = muiThemeable(TimePicker, [
+  'getTime',
+  'setTime',
+  'focus',
+  'openDialog',
+]);
 
 export default TimePicker;

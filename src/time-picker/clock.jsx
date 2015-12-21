@@ -57,11 +57,11 @@ let Clock = React.createClass({
     let hours = this.state.selectedTime.getHours();
 
     if (affix === 'am') {
-      this.handleChangeHours(hours - 12, affix);
+      this._handleChangeHours(hours - 12, affix);
       return;
     }
 
-    this.handleChangeHours(hours + 12, affix);
+    this._handleChangeHours(hours + 12, affix);
   },
 
   _getAffix() {
@@ -123,14 +123,14 @@ let Clock = React.createClass({
       clock = (
         <ClockHours key="hours"
           format={this.props.format}
-          onChange={this.handleChangeHours}
+          onChange={this._handleChangeHours}
           initialHours={this.state.selectedTime.getHours()} />
         );
     }
     else {
       clock = (
         <ClockMinutes key="minutes"
-          onChange={this.handleChangeMinutes}
+          onChange={this._handleChangeMinutes}
           initialMinutes={this.state.selectedTime.getMinutes()} />
       );
     }
@@ -153,7 +153,7 @@ let Clock = React.createClass({
     );
   },
 
-  handleChangeHours(hours, finished) {
+  _handleChangeHours(hours, finished) {
     let time = new Date(this.state.selectedTime);
     let affix;
 
@@ -187,7 +187,7 @@ let Clock = React.createClass({
     }
   },
 
-  handleChangeMinutes(minutes) {
+  _handleChangeMinutes(minutes) {
     let time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
@@ -205,6 +205,6 @@ let Clock = React.createClass({
   },
 });
 
-Clock = muiThemeable(Clock);
+Clock = muiThemeable(Clock, ['getSelectedTime']);
 
 export default Clock;

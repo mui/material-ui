@@ -480,6 +480,12 @@ let Slider = React.createClass({
 
 });
 
-Slider = muiThemeable(Slider);
+Slider = muiThemeable(Slider, [
+  'getValue',
+  'setValue',
+  'getPercent',
+  'setPercent',
+  'clearValue',
+]);
 
 export default Slider;

@@ -211,6 +211,9 @@ let DatePickerDialog = React.createClass({
 
 });
 
-DatePickerDialog = muiThemeable(DatePickerDialog);
+DatePickerDialog = muiThemeable(DatePickerDialog, [
+  'show',
+  'dismiss',
+]);
 
 export default DatePickerDialog;

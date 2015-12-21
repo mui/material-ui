@@ -201,6 +201,11 @@ let DatePicker = React.createClass({
 
 });
 
-DatePicker = muiThemeable(DatePicker);
+DatePicker = muiThemeable(DatePicker, [
+  'getDate',
+  'setDate',
+  'openDialog',
+  'focus',
+]);
 
 export default DatePicker;

@@ -184,6 +184,9 @@ let Checkbox = React.createClass({
 
 });
 
-Checkbox = muiThemeable(Checkbox);
+Checkbox = muiThemeable(Checkbox, [
+  'isChecked',
+  'setChecked',
+]);
 
 export default Checkbox;

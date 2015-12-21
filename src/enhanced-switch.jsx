@@ -444,6 +444,11 @@ let EnhancedSwitch = React.createClass({
 
 });
 
-EnhancedSwitch = muiThemeable(EnhancedSwitch);
+EnhancedSwitch = muiThemeable(EnhancedSwitch, [
+  'isSwitched',
+  'setSwitched',
+  'getValue',
+  'isKeyboardFocused',
+]);
 
 export default EnhancedSwitch;

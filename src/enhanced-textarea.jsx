@@ -170,6 +170,9 @@ let EnhancedTextarea = React.createClass({
   },
 });
 
-EnhancedTextarea = muiThemeable(EnhancedTextarea);
+EnhancedTextarea = muiThemeable(EnhancedTextarea, [
+  'getInputNode',
+  'setValue',
+]);
 
 export default EnhancedTextarea;

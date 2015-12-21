@@ -549,6 +549,10 @@ let LeftNav = React.createClass({
 
 });
 
-LeftNav = muiThemeable(LeftNav);
+LeftNav = muiThemeable(LeftNav, [
+  'toggle',
+  'close',
+  'open',
+]);
 
 export default LeftNav;

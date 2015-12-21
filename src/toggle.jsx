@@ -193,6 +193,9 @@ let Toggle = React.createClass({
 
 });
 
-Toggle = muiThemeable(Toggle);
+Toggle = muiThemeable(Toggle, [
+  'isToggled',
+  'setToggled',
+]);
 
 export default Toggle;
