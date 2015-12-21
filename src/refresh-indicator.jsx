@@ -4,18 +4,18 @@ import StylePropable from './mixins/style-propable';
 import AutoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import Paper from './paper';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
 const VIEWBOX_SIZE = 32;
-const RefreshIndicator = React.createClass({
+let RefreshIndicator = React.createClass({
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     left: React.PropTypes.number.isRequired,
     loadingColor: React.PropTypes.string,
@@ -36,30 +36,6 @@ const RefreshIndicator = React.createClass({
       size: 40,
       status: 'hide',
     };
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   componentDidMount() {
@@ -138,7 +114,7 @@ const RefreshIndicator = React.createClass({
   },
 
   _getTheme() {
-    return this.state.muiTheme.refreshIndicator;
+    return this.props._muiTheme.refreshIndicator;
   },
 
   _getPaddingSize() {
@@ -305,5 +281,7 @@ const RefreshIndicator = React.createClass({
   },
 
 });
+
+RefreshIndicator = muiThemeable(RefreshIndicator);
 
 export default RefreshIndicator;

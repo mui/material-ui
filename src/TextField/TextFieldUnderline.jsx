@@ -4,6 +4,11 @@ import styleUtils from '../utils/styles';
 
 const propTypes = {
   /**
+   * The MUI Theme to use to render this component with.
+   */
+  _muiTheme: React.PropTypes.object.isRequired,
+
+  /**
    * True if the parent `TextField` is disabled.
    */
   disabled: React.PropTypes.bool,
@@ -34,11 +39,6 @@ const propTypes = {
   focusStyle: React.PropTypes.object,
 
   /**
-   * The material-ui theme applied to this component.
-   */
-  muiTheme: React.PropTypes.object.isRequired,
-
-  /**
    * Override the inline-styles of the underline.
    */
   style: React.PropTypes.object,
@@ -57,13 +57,13 @@ const defaultProps = {
 const TextFieldUnderline = (props) => {
 
   const {
+    _muiTheme,
     disabled,
     disabledStyle,
     error,
     errorStyle,
     focus,
     focusStyle,
-    muiTheme,
     style,
   } = props;
 
@@ -78,7 +78,7 @@ const TextFieldUnderline = (props) => {
       errorColor,
       focusColor,
     },
-  } = muiTheme;
+  } = _muiTheme;
 
 
   const styles = {
@@ -117,8 +117,8 @@ const TextFieldUnderline = (props) => {
 
   return (
     <div>
-      <hr style={styleUtils.prepareStyles(muiTheme, underline)}/>
-      <hr style={styleUtils.prepareStyles(muiTheme, focusedUnderline)}/>
+      <hr style={styleUtils.prepareStyles(_muiTheme, underline)}/>
+      <hr style={styleUtils.prepareStyles(_muiTheme, focusedUnderline)}/>
     </div>
   );
 };

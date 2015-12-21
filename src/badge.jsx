@@ -1,25 +1,17 @@
 import React from 'react';
 import Typography from './styles/typography';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
 import StylePropable from './mixins/style-propable';
+import muiThemeable from './muiThemeable';
 
-// Badge
-const Badge = React.createClass({
+let Badge = React.createClass({
   mixins: [StylePropable],
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * This is the content rendered within the badge.
      */
@@ -55,25 +47,16 @@ const Badge = React.createClass({
      */
     style: React.PropTypes.object,
   },
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
+
   getDefaultProps() {
     return {
       primary: false,
       secondary: false,
     };
   },
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
-  },
+
   getStyles() {
-    const theme = this.state.muiTheme.badge;
+    const theme = this.props._muiTheme.badge;
 
     const badgeBackgroundColor = this.props.primary
       ? theme.primaryColor
@@ -137,5 +120,7 @@ const Badge = React.createClass({
     );
   },
 });
+
+Badge = muiThemeable(Badge);
 
 export default Badge;

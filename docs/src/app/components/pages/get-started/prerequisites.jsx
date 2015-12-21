@@ -1,38 +1,16 @@
 import React from 'react';
 import {Styles} from 'material-ui';
+import muiThemeable from 'material-ui/lib/muiThemeable';
 
 const {Typography} = Styles;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
 
-const Prerequisites = React.createClass({
+let Prerequisites = React.createClass({
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
   },
 
   getStyles() {
@@ -56,7 +34,7 @@ const Prerequisites = React.createClass({
         color: Typography.textDarkBlack,
       },
       codeExample: {
-        backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
+        backgroundColor: this.props._muiTheme.baseTheme.palette.canvasColor,
         marginBottom: '32px',
       },
       inlineCode: {
@@ -178,5 +156,7 @@ const Prerequisites = React.createClass({
   },
 
 });
+
+Prerequisites = muiThemeable(Prerequisites);
 
 export default Prerequisites;

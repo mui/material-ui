@@ -1,6 +1,8 @@
 import React from 'react';
 import AppLeftNav from './app-left-nav';
 import FullWidthSection from './full-width-section';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import {AppBar,
       AppCanvas,
       IconButton,
@@ -13,36 +15,20 @@ import {AppBar,
 
 const {StylePropable} = Mixins;
 const {Colors, Spacing, Typography} = Styles;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
-
 
 const Master = React.createClass({
   mixins: [StylePropable],
 
   getInitialState() {
-    let muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
-    // To switch to RTL...
-    // muiTheme.isRtl = true;
-    return {
-      muiTheme,
-    };
+    let muiTheme = getMuiTheme();
+    muiTheme.inkBar.backgroundColor = Colors.yellow200;
+    return {muiTheme};
   },
 
   propTypes: {
     children: React.PropTypes.node,
     history: React.PropTypes.object,
     location: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
   },
 
   getStyles() {
@@ -75,10 +61,7 @@ const Master = React.createClass({
   },
 
   componentWillMount() {
-    let newMuiTheme = this.state.muiTheme;
-    newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
     this.setState({
-      muiTheme: newMuiTheme,
       tabIndex: this._getSelectedIndex()});
     let setTabsState = function() {
       this.setState({renderTabs: !(document.body.clientWidth <= 647)});
@@ -87,11 +70,9 @@ const Master = React.createClass({
     window.onresize = setTabsState;
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+  componentWillReceiveProps() {
     this.setState({
       tabIndex: this._getSelectedIndex(),
-      muiTheme: newMuiTheme,
     });
   },
 
@@ -115,22 +96,23 @@ const Master = React.createClass({
         linkButton={true}/>
     );
     return (
-      <AppCanvas>
-        {githubButton}
-        {this.state.renderTabs ? this._getTabs() : this._getAppBar()}
-
-        {this.props.children}
-        <AppLeftNav ref="leftNav" history={this.props.history} location={this.props.location} />
-        <FullWidthSection style={styles.footer}>
-          <p style={this.prepareStyles(styles.p)}>
-            Hand crafted with love by the engineers at
-            <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={this.prepareStyles(styles.a)}
-              href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
-          </p>
-          {githubButton2}
-        </FullWidthSection>
-      </AppCanvas>
+      <MuiThemeProvider muiTheme={this.state.muiTheme}>
+        <AppCanvas>
+          {githubButton}
+          {this.state.renderTabs ? this._getTabs() : this._getAppBar()}
+          {this.props.children}
+          <AppLeftNav ref="leftNav" history={this.props.history} location={this.props.location} />
+          <FullWidthSection style={styles.footer}>
+            <p style={this.prepareStyles(styles.p)}>
+              Hand crafted with love by the engineers at
+              <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
+              awesome <a style={this.prepareStyles(styles.a)}
+                href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+            </p>
+            {githubButton2}
+          </FullWidthSection>
+        </AppCanvas>
+      </MuiThemeProvider>
     );
   },
 

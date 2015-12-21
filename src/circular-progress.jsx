@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import AutoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const CircularProgress = React.createClass({
+let CircularProgress = React.createClass({
 
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
     max: React.PropTypes.number,
@@ -23,34 +27,6 @@ const CircularProgress = React.createClass({
      */
     style: React.PropTypes.object,
     value: React.PropTypes.number,
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   _getRelativeValue() {
@@ -125,7 +101,7 @@ const CircularProgress = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.rawTheme.palette;
+    return this.props._muiTheme.baseTheme.palette;
   },
 
   getStyles(zoom) {
@@ -200,5 +176,7 @@ const CircularProgress = React.createClass({
     );
   },
 });
+
+CircularProgress = muiThemeable(CircularProgress);
 
 export default CircularProgress;

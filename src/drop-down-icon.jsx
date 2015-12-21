@@ -4,30 +4,18 @@ import Transitions from './styles/transitions';
 import ClickAwayable from './mixins/click-awayable';
 import FontIcon from './font-icon';
 import Menu from './menu/menu';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-
-const DropDownIcon = React.createClass({
+let DropDownIcon = React.createClass({
 
   mixins: [StylePropable, ClickAwayable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     closeOnMenuItemTouchTap: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,
@@ -45,15 +33,7 @@ const DropDownIcon = React.createClass({
   getInitialState() {
     return {
       open: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   getDefaultProps() {
@@ -74,7 +54,7 @@ const DropDownIcon = React.createClass({
   },
 
   getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let spacing = this.props._muiTheme.baseTheme.spacing;
     let iconWidth = 48;
     let styles = {
       root: {
@@ -150,5 +130,7 @@ const DropDownIcon = React.createClass({
     }
   },
 });
+
+DropDownIcon = muiThemeable(DropDownIcon);
 
 export default DropDownIcon;

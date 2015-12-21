@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
 /**
   * Verifies min/max range.
@@ -41,15 +40,16 @@ let valueInRangePropType = (props, propName, componentName) => {
 };
 
 
-const Slider = React.createClass({
+let Slider = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     defaultValue: valueInRangePropType,
     description: React.PropTypes.string,
     disableFocusRipple: React.PropTypes.bool,
@@ -71,17 +71,6 @@ const Slider = React.createClass({
      */
     style: React.PropTypes.object,
     value: valueInRangePropType,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
   },
 
   getDefaultProps() {
@@ -110,21 +99,17 @@ const Slider = React.createClass({
       hovered: false,
       percent: percent,
       value: value,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
       this.setValue(nextProps.value);
     }
   },
 
   getTheme() {
-    return this.state.muiTheme.slider;
+    return this.props._muiTheme.slider;
   },
 
   getStyles() {
@@ -494,5 +479,13 @@ const Slider = React.createClass({
   },
 
 });
+
+Slider = muiThemeable(Slider, [
+  'getValue',
+  'setValue',
+  'getPercent',
+  'setPercent',
+  'clearValue',
+]);
 
 export default Slider;

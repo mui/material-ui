@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const Table = React.createClass({
+let Table = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     allRowsSelected: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
     children: React.PropTypes.node,
@@ -53,40 +53,21 @@ const Table = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       allRowsSelected: this.props.allRowsSelected,
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getTheme() {
-    return this.state.muiTheme.table;
+    return this.props._muiTheme.table;
   },
 
   getStyles() {
     let styles = {
       root: {
         backgroundColor: this.getTheme().backgroundColor,
-        padding: '0 ' + this.state.muiTheme.rawTheme.spacing.desktopGutter + 'px',
+        padding: '0 ' + this.props._muiTheme.baseTheme.spacing.desktopGutter + 'px',
         width: '100%',
         borderCollapse: 'collapse',
         borderSpacing: 0,
@@ -265,5 +246,7 @@ const Table = React.createClass({
   },
 
 });
+
+Table = muiThemeable(Table, ['isScrollbarVisible']);
 
 export default Table;

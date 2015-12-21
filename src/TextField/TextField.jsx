@@ -5,11 +5,10 @@ import StylePropable from '../mixins/style-propable';
 import Transitions from '../styles/transitions';
 import UniqueId from '../utils/unique-id';
 import EnhancedTextarea from '../enhanced-textarea';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
 import ContextPure from '../mixins/context-pure';
 import TextFieldHint from './TextFieldHint';
 import TextFieldUnderline from './TextFieldUnderline';
+import muiThemeable from '../muiThemeable';
 import warning from 'warning';
 
 /**
@@ -22,18 +21,19 @@ function isValid(value) {
   return Boolean(value || value === 0);
 }
 
-const TextField = React.createClass({
+let TextField = React.createClass({
 
   mixins: [
     ContextPure,
     StylePropable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
 
     /**
@@ -73,17 +73,6 @@ const TextField = React.createClass({
     value: React.PropTypes.any,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       fullWidth: false,
@@ -121,7 +110,6 @@ const TextField = React.createClass({
       errorText: this.props.errorText,
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -129,9 +117,8 @@ const TextField = React.createClass({
     this._uniqueId = UniqueId.generate();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     let newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props) {
@@ -165,7 +152,7 @@ const TextField = React.createClass({
       backgroundColor,
       hintColor,
       errorColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.constructor.getRelevantContextKeys(props._muiTheme);
 
     let styles = {
       root: {
@@ -176,7 +163,7 @@ const TextField = React.createClass({
         display: 'inline-block',
         position: 'relative',
         backgroundColor: backgroundColor,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+        fontFamily: props._muiTheme.baseTheme.fontFamily,
         transition: Transitions.easeOut('200ms', 'height'),
       },
       error: {
@@ -256,6 +243,7 @@ const TextField = React.createClass({
 
   render() {
     let {
+      _muiTheme,
       className,
       disabled,
       errorStyle,
@@ -345,7 +333,7 @@ const TextField = React.createClass({
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint
-            muiTheme={this.state.muiTheme}
+            _muiTheme={_muiTheme}
             show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused))}
             style={hintStyle}
             text={hintText}
@@ -355,13 +343,13 @@ const TextField = React.createClass({
         {inputElement}
         {underlineShow ?
           <TextFieldUnderline
+            _muiTheme={_muiTheme}
             disabled={disabled}
             disabledStyle={underlineDisabledStyle}
             error={this.state.errorText ? true : false}
             errorStyle={errorStyle}
             focus={this.state.isFocused}
             focusStyle={underlineFocusStyle}
-            muiTheme={this.state.muiTheme}
             style={underlineStyle}
           /> :
           null
@@ -462,4 +450,12 @@ const TextField = React.createClass({
 
 });
 
+TextField = muiThemeable(TextField, [
+  'blur',
+  'clearValue',
+  'focus',
+  'getValue',
+  'setErrorText',
+  'setValue',
+]);
 export default TextField;

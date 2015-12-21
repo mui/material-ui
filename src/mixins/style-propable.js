@@ -34,6 +34,7 @@ export default {
   // If you call it twice you'll get a warning anyway.
   prepareStyles() {
     return Styles.prepareStyles.apply(Styles,
-      [(this.state && this.state.muiTheme) || this.context.muiTheme].concat([].slice.apply(arguments)));
+      [(this.state && (this.state._muiTheme || this.state.muiTheme))
+        || this.props._muiTheme].concat([].slice.apply(arguments)));
   },
 };

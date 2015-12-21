@@ -22,7 +22,7 @@ const NestedMenuItem = React.createClass({
   mixins: [ClickAwayable, StylePropable],
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   propTypes: {
@@ -47,18 +47,18 @@ const NestedMenuItem = React.createClass({
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
+      _muiTheme: this.state.muiTheme,
     };
   },
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context._muiTheme ? this.context._muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       open: false,
       activeIndex: 0,
     };
@@ -241,12 +241,12 @@ const Menu = React.createClass({
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    _muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
+      _muiTheme: this.state.muiTheme,
     };
   },
 
@@ -254,7 +254,7 @@ const Menu = React.createClass({
     warning(false, 'This menu component is deprecated use menus/menu instead.');
 
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context._muiTheme ? this.context._muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       nestedMenuShown: false,
       activeIndex: 0,
     };
@@ -289,7 +289,7 @@ const Menu = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    let newMuiTheme = nextContext._muiTheme ? nextContext._muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
     //Set the menu width

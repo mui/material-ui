@@ -1,18 +1,18 @@
 import React from 'react';
 import Colors from '../styles/colors';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const ToolbarGroup = React.createClass({
+let ToolbarGroup = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * Can be any node or number of nodes.
      */
@@ -46,17 +46,6 @@ const ToolbarGroup = React.createClass({
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       firstChild: false,
@@ -65,25 +54,12 @@ const ToolbarGroup = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getTheme() {
-    return this.state.muiTheme.toolbar;
+    return this.props._muiTheme.toolbar;
   },
 
   getSpacing() {
-    return this.state.muiTheme.rawTheme.spacing;
+    return this.props._muiTheme.baseTheme.spacing;
   },
 
   getStyles() {
@@ -94,7 +70,7 @@ const ToolbarGroup = React.createClass({
     } = this.props;
 
     const marginHorizontal = this.getSpacing().desktopGutter;
-    const marginVertical = (this.getTheme().height - this.state.muiTheme.button.height) / 2;
+    const marginVertical = (this.getTheme().height - this.props._muiTheme.button.height) / 2;
     const styles = {
       root: {
         float,
@@ -222,5 +198,7 @@ const ToolbarGroup = React.createClass({
     e.target.style.color = this.getStyles().icon.root.color;
   },
 });
+
+ToolbarGroup = muiThemeable(ToolbarGroup);
 
 export default ToolbarGroup;

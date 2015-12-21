@@ -5,8 +5,7 @@ import ToolbarGroup from '../toolbar/toolbar-group';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import muiThemeable from '../muiThemeable';
 
 const styles = {
   root: {
@@ -26,24 +25,15 @@ const styles = {
   },
 };
 
-const CalendarToolbar = React.createClass({
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+let CalendarToolbar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     displayDate: React.PropTypes.object.isRequired,
     locale: React.PropTypes.string.isRequired,
     nextMonth: React.PropTypes.bool,
@@ -60,17 +50,11 @@ const CalendarToolbar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       transitionDirection: 'up',
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     let direction;
 
     if (nextProps.displayDate !== this.props.displayDate) {
@@ -93,8 +77,8 @@ const CalendarToolbar = React.createClass({
       year: 'numeric',
     }).format(displayDate);
 
-    const nextButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
-    const prevButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const nextButtonIcon = this.props._muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
+    const prevButtonIcon = this.props._muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
 
     return (
       <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
@@ -134,5 +118,7 @@ const CalendarToolbar = React.createClass({
   },
 
 });
+
+CalendarToolbar = muiThemeable(CalendarToolbar);
 
 export default CalendarToolbar;

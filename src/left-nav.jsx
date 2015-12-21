@@ -8,39 +8,27 @@ import WindowListenable from './mixins/window-listenable';
 import Overlay from './overlay';
 import Paper from './paper';
 import Menu from './menu/menu';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';
 import isBrowser from './utils/is-browser';
+import muiThemeable from './muiThemeable';
 
 const Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 let openNavEventHandler = null;
 
-
-const LeftNav = React.createClass({
+let LeftNav = React.createClass({
 
   mixins: [
     StylePropable,
     WindowListenable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * The contents of the `LeftNav`
      */
@@ -194,15 +182,11 @@ const LeftNav = React.createClass({
     return {
       open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    const newState = {muiTheme: newMuiTheme};
+  componentWillReceiveProps(nextProps) {
+    const newState = {};
 
     // If docked is changed, change the open state for when uncontrolled.
     if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
@@ -249,9 +233,9 @@ const LeftNav = React.createClass({
   },
 
   getStyles() {
-    const muiTheme = this.state.muiTheme;
+    const muiTheme = this.props._muiTheme;
     const theme = muiTheme.leftNav;
-    const rawTheme = muiTheme.rawTheme;
+    const baseTheme = muiTheme.baseTheme;
 
     const x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
     const styles = {
@@ -278,8 +262,8 @@ const LeftNav = React.createClass({
         pointerEvents: this.state.open ? 'auto' : 'none', // Bypass mouse events when left nav is closing.
       },
       menuItem: {
-        height: rawTheme.spacing.desktopLeftNavMenuItemHeight,
-        lineHeight: `${rawTheme.spacing.desktopLeftNavMenuItemHeight}px`,
+        height: baseTheme.spacing.desktopLeftNavMenuItemHeight,
+        lineHeight: `${baseTheme.spacing.desktopLeftNavMenuItemHeight}px`,
       },
       rootWhenOpenRight: {
         left: 'auto',
@@ -290,7 +274,7 @@ const LeftNav = React.createClass({
     styles.menuItemLink = this.mergeStyles(styles.menuItem, {
       display: 'block',
       textDecoration: 'none',
-      color: rawTheme.palette.textColor,
+      color: baseTheme.palette.textColor,
     });
     styles.menuItemSubheader = this.mergeStyles(styles.menuItem, {
       overflow: 'hidden',
@@ -418,7 +402,7 @@ const LeftNav = React.createClass({
   },
 
   _getMaxTranslateX() {
-    const width = this.props.width || this.state.muiTheme.leftNav.width;
+    const width = this.props.width || this.props._muiTheme.leftNav.width;
     return width + 10;
   },
 
@@ -564,5 +548,11 @@ const LeftNav = React.createClass({
   },
 
 });
+
+LeftNav = muiThemeable(LeftNav, [
+  'toggle',
+  'close',
+  'open',
+]);
 
 export default LeftNav;

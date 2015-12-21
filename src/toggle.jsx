@@ -3,20 +3,20 @@ import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Paper from './paper';
 import EnhancedSwitch from './enhanced-switch';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const Toggle = React.createClass({
+let Toggle = React.createClass({
 
   mixins: [
     StylePropable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     defaultToggled: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     elementStyle: React.PropTypes.object,
@@ -31,17 +31,6 @@ const Toggle = React.createClass({
     valueLink: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     return {
       switched:
@@ -49,19 +38,11 @@ const Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getTheme() {
-    return this.state.muiTheme.toggle;
+    return this.props._muiTheme.toggle;
   },
 
   getStyles() {
@@ -156,7 +137,7 @@ const Toggle = React.createClass({
     }, this.props.rippleStyle);
 
     let rippleColor = this.state.switched ?
-      this.getTheme().thumbOnColor : this.state.muiTheme.textColor;
+      this.getTheme().thumbOnColor : this.props._muiTheme.textColor;
 
     let iconStyle = this.mergeStyles(
       styles.icon,
@@ -211,5 +192,10 @@ const Toggle = React.createClass({
   },
 
 });
+
+Toggle = muiThemeable(Toggle, [
+  'isToggled',
+  'setToggled',
+]);
 
 export default Toggle;

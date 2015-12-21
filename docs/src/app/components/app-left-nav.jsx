@@ -8,22 +8,27 @@ import {
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
-import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
+import SelectableContainerEnhance from 'material-ui/hoc/selectable-enhance';
+import muiThemeable from 'material-ui/lib/muiThemeable';
 
 const {Colors, Spacing, Typography} = Styles;
 const {StylePropable} = Mixins;
 const SelectableList = SelectableContainerEnhance(List);
 
-const AppLeftNav = React.createClass({
+let AppLeftNav = React.createClass({
   mixins: [StylePropable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     history: React.PropTypes.object,
     location: React.PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
   },
 
@@ -139,5 +144,7 @@ const AppLeftNav = React.createClass({
   },
 
 });
+
+AppLeftNav = muiThemeable(AppLeftNav);
 
 export default AppLeftNav;

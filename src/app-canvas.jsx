@@ -1,48 +1,24 @@
 import React from 'react';
 import StylePropable from './mixins/style-propable';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const AppCanvas = React.createClass({
+let AppCanvas = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
     let styles = {
       height: '100%',
-      backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
+      backgroundColor: this.props._muiTheme.baseTheme.palette.canvasColor,
       WebkitFontSmoothing: 'antialiased',
       direction: 'ltr',
     };
@@ -72,5 +48,7 @@ const AppCanvas = React.createClass({
   },
 
 });
+
+AppCanvas = muiThemeable(AppCanvas);
 
 export default AppCanvas;

@@ -3,45 +3,21 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from './mixins/style-propable';
 import PropTypes from './utils/prop-types';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const Paper = React.createClass({
+let Paper = React.createClass({
 
   mixins: [
     PureRenderMixin,
     StylePropable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     circle: React.PropTypes.bool,
     rounded: React.PropTypes.bool,
@@ -65,6 +41,7 @@ const Paper = React.createClass({
 
   render() {
     const {
+      _muiTheme,
       children,
       circle,
       rounded,
@@ -75,10 +52,10 @@ const Paper = React.createClass({
     } = this.props;
 
     const styles = {
-      backgroundColor: this.state.muiTheme.paper.backgroundColor,
+      backgroundColor: _muiTheme.paper.backgroundColor,
       transition: transitionEnabled && Transitions.easeOut(),
       boxSizing: 'border-box',
-      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+      fontFamily: _muiTheme.baseTheme.fontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
       boxShadow: this._getZDepthShadows(zDepth),
       borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
@@ -105,5 +82,7 @@ const Paper = React.createClass({
   },
 
 });
+
+Paper = muiThemeable(Paper);
 
 export default Paper;

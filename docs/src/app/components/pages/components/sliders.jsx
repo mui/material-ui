@@ -2,8 +2,8 @@ import React from 'react';
 import {Paper, Slider} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import Code from 'sliders-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class SlidersPage extends React.Component {
 

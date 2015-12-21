@@ -20,21 +20,21 @@ import Themes from './components/pages/customization/themes';
 import InlineStyles from './components/pages/customization/inline-styles';
 
 import Components from './components/pages/components';
-import AppBar from './components/pages/components/app-bar';
+import AppBar from './components/pages/components/AppBar';
 import AutoComplete from './components/pages/components/auto-complete';
-import Avatar from './components/pages/components/avatar';
-import Badge from './components/pages/components/badge';
+import Avatar from './components/pages/components/Avatar';
+import Badge from './components/pages/components/Badge';
 import Buttons from './components/pages/components/buttons';
-import Cards from './components/pages/components/cards';
+import Cards from './components/pages/components/Cards';
 import DatePicker from './components/pages/components/date-picker';
-import Dialog from './components/pages/components/dialog';
-import Divider from './components/pages/components/divider';
-import DropDownMenu from './components/pages/components/drop-down-menu';
+import Dialog from './components/pages/components/Dialog';
+import Divider from './components/pages/components/Divider';
+import DropDownMenu from './components/pages/components/DropDownMenu';
 import GridList from './components/pages/components/grid-list';
 import Icons from './components/pages/components/icons';
 import IconButtons from './components/pages/components/icon-buttons';
 import IconMenus from './components/pages/components/icon-menus';
-import LeftNav from './components/pages/components/left-nav';
+import LeftNav from './components/pages/components/LeftNav';
 import Lists from './components/pages/components/lists';
 import Menus from './components/pages/components/menus';
 import Paper from './components/pages/components/paper';
@@ -43,14 +43,13 @@ import Progress from './components/pages/components/progress';
 import RefreshIndicator from './components/pages/components/refresh-indicator';
 import SelectFields from './components/pages/components/select-fields';
 import Sliders from './components/pages/components/sliders';
-import Snackbar from './components/pages/components/snackbar';
+import Snackbar from './components/pages/components/Snackbar';
 import Switches from './components/pages/components/switches';
 import Table from './components/pages/components/table';
-import Tabs from './components/pages/components/tabs';
+import Tabs from './components/pages/components/Tabs';
 import TextFields from './components/pages/components/text-fields';
 import TimePicker from './components/pages/components/time-picker';
-import Toolbars from './components/pages/components/toolbars';
-
+import Toolbars from './components/pages/components/Toolbars';
 
 /**
  * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md

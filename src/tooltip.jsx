@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Colors from './styles/colors';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const Tooltip = React.createClass({
+let Tooltip = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * The css class name of the root element.
      */
@@ -31,29 +31,13 @@ const Tooltip = React.createClass({
     verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     this._setRippleSize();
     this._setTooltipPosition();
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps() {
     this._setTooltipPosition();
-
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   componentDidUpdate() {
@@ -63,7 +47,6 @@ const Tooltip = React.createClass({
   getInitialState() {
     return {
       offsetWidth: null,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -75,17 +58,17 @@ const Tooltip = React.createClass({
     let offset = verticalPosition === 'bottom' ?
       14 + touchMarginOffset : -14 - touchMarginOffset;
 
-    const muiTheme = this.state.muiTheme;
-    const rawTheme = muiTheme.rawTheme;
+    const theme = this.props._muiTheme;
+    const baseTheme = theme.baseTheme;
 
     let styles = {
       root: {
         position: 'absolute',
-        fontFamily: rawTheme.fontFamily,
+        fontFamily: baseTheme.fontFamily,
         fontSize: '10px',
         lineHeight: '22px',
         padding: '0 8px',
-        zIndex: muiTheme.zIndex.tooltip,
+        zIndex: theme.zIndex.tooltip,
         color: Colors.white,
         overflow: 'hidden',
         top: -10000,
@@ -198,5 +181,7 @@ const Tooltip = React.createClass({
   },
 
 });
+
+Tooltip = muiThemeable(Tooltip);
 
 export default Tooltip;

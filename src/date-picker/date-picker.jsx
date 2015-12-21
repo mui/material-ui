@@ -4,33 +4,22 @@ import WindowListenable from '../mixins/window-listenable';
 import DateTime from '../utils/date-time';
 import DatePickerDialog from './date-picker-dialog';
 import TextField from '../text-field';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import muiThemeable from '../muiThemeable';
 
-const DatePicker = React.createClass({
+let DatePicker = React.createClass({
 
   mixins: [
     StylePropable,
     WindowListenable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     DateTimeFormat: React.PropTypes.func,
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     autoOk: React.PropTypes.bool,
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     defaultDate: React.PropTypes.object,
@@ -75,15 +64,10 @@ const DatePicker = React.createClass({
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
       dialogDate: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    if (nextContext.muiTheme) {
-      this.setState({muiTheme: nextContext.muiTheme});
-    }
-
+  componentWillReceiveProps(nextProps) {
     if (this._isControlled()) {
       let newDate = this._getControlledDate(nextProps);
       if (!DateTime.isEqualDate(this.state.date, newDate)) {
@@ -216,5 +200,12 @@ const DatePicker = React.createClass({
   },
 
 });
+
+DatePicker = muiThemeable(DatePicker, [
+  'getDate',
+  'setDate',
+  'openDialog',
+  'focus',
+]);
 
 export default DatePicker;

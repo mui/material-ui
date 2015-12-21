@@ -3,9 +3,7 @@ import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 import TimePickerDialog from './time-picker-dialog';
 import TextField from '../text-field';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-
+import muiThemeable from '../muiThemeable';
 
 let emptyTime = new Date();
 emptyTime.setHours(0);
@@ -14,11 +12,16 @@ emptyTime.setSeconds(0);
 emptyTime.setMilliseconds(0);
 
 
-const TimePicker = React.createClass({
+let TimePicker = React.createClass({
 
   mixins: [StylePropable, WindowListenable],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     autoOk: React.PropTypes.bool,
     defaultTime: React.PropTypes.object,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
@@ -34,10 +37,6 @@ const TimePicker = React.createClass({
      */
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
   },
 
   windowListeners: {
@@ -58,7 +57,6 @@ const TimePicker = React.createClass({
     return {
       time: this.props.defaultTime || emptyTime,
       dialogTime: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -185,5 +183,12 @@ const TimePicker = React.createClass({
     if (this.props.onTouchTap) this.props.onTouchTap(e);
   },
 });
+
+TimePicker = muiThemeable(TimePicker, [
+  'getTime',
+  'setTime',
+  'focus',
+  'openDialog',
+]);
 
 export default TimePicker;

@@ -1,20 +1,20 @@
 import React from 'react';
 import {ClearFix, Mixins, Styles} from 'material-ui';
+import muiThemeable from 'material-ui/lib/muiThemeable';
 import ComponentInfo from './component-info';
 const Typography = Styles.Typography;
 const {StylePropable} = Mixins;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
 
-const ComponentDoc = React.createClass({
+let ComponentDoc = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     componentInfo: React.PropTypes.array.isRequired,
     desc: React.PropTypes.oneOfType([
@@ -24,32 +24,8 @@ const ComponentDoc = React.createClass({
     name: React.PropTypes.string.isRequired,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getStyles() {
-    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
+    let borderColor = this.props._muiTheme.baseTheme.palette.borderColor;
     return {
       desc: {
         borderBottom: 'solid 1px ' + borderColor,
@@ -135,5 +111,7 @@ const ComponentDoc = React.createClass({
   },
 
 });
+
+ComponentDoc = muiThemeable(ComponentDoc);
 
 export default ComponentDoc;

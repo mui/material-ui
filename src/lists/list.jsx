@@ -4,21 +4,21 @@ import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
 import Typography from '../styles/typography';
 import Paper from '../paper';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-const List = React.createClass({
+let List = React.createClass({
 
   mixins: [
     PureRenderMixin,
     StylePropable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     insetSubheader: React.PropTypes.bool,
 
@@ -31,34 +31,10 @@ const List = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps() {
     return {
       zDepth: 0,
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -105,5 +81,7 @@ const List = React.createClass({
     );
   },
 });
+
+List = muiThemeable(List);
 
 export default List;

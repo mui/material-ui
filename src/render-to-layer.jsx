@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Dom from './utils/dom';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
-const RenderToLayer = React.createClass({
+let RenderToLayer = React.createClass({
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     componentClickAway: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     render: React.PropTypes.func.isRequired,
@@ -18,36 +22,6 @@ const RenderToLayer = React.createClass({
     return {
       useLayerForClickAway: true,
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
   },
 
   componentDidMount() {
@@ -111,7 +85,7 @@ const RenderToLayer = React.createClass({
           this._layer.style.bottom = 0;
           this._layer.style.left = 0;
           this._layer.style.right = 0;
-          this._layer.style.zIndex = this.state.muiTheme.zIndex.layer;
+          this._layer.style.zIndex = this.props._muiTheme.zIndex.layer;
         } else {
           setTimeout(() => {
             window.addEventListener('touchstart', this.onClickAway);
@@ -155,5 +129,7 @@ const RenderToLayer = React.createClass({
   },
 
 });
+
+RenderToLayer = muiThemeable(RenderToLayer, ['getLayer']);
 
 export default RenderToLayer;

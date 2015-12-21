@@ -1,23 +1,40 @@
 import React from 'react';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
+
+let defaultTheme;
+
+function getDefaultTheme() {
+  return defaultTheme || (defaultTheme = getMuiTheme());
+}
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
-export default function muiThemeable(WrappedComponent) {
-  const MuiComponent = (props, {muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme)}) => {
-    return <WrappedComponent {...props} muiTheme={muiTheme} />;
-  };
+function proxy(name) {
+  return function(...args) { return this.refs.WrappedComponent[name](...args); };
+}
 
-  MuiComponent.displayName = getDisplayName(WrappedComponent);
-  MuiComponent.contextTypes = {
-    muiTheme: React.PropTypes.object,
-  };
-  MuiComponent.childContextTypes = {
-    muiTheme: React.PropTypes.object,
-  };
+export default function muiThemeable(WrappedComponent, forwardMethods) {
+  const methods = {};
+  if (forwardMethods) {
+    forwardMethods.forEach(name => methods[name] = proxy(name));
+  }
 
-  return MuiComponent;
+  return React.createClass(Object.assign({
+    displayName: getDisplayName(WrappedComponent),
+
+    contextTypes: {
+      _muiTheme: React.PropTypes.object,
+    },
+
+    render() {
+      const {_muiTheme = getDefaultTheme()} = this.context;
+      return React.createElement(WrappedComponent, {
+        _muiTheme,
+        ref: forwardMethods ? 'WrappedComponent' : undefined,
+        ...this.props,
+      });
+    },
+  }, methods));
 }

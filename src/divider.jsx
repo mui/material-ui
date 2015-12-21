@@ -4,6 +4,11 @@ import styleUtils from './utils/styles';
 
 const propTypes = {
   /**
+   * The MUI Theme to use to render this component with.
+   */
+  _muiTheme: React.PropTypes.object.isRequired,
+
+  /**
    * CSS class that will be added to the divider's root element
    */
   className: React.PropTypes.string,
@@ -23,7 +28,7 @@ const defaultProps = {
   inset: false,
 };
 
-let Divider = ({inset, muiTheme, style, ...other}) => {
+let Divider = ({inset, _muiTheme, style, ...other}) => {
   const styles = {
     root: {
       margin: 0,
@@ -31,12 +36,12 @@ let Divider = ({inset, muiTheme, style, ...other}) => {
       marginLeft: inset ? 72 : 0,
       height: 1,
       border: 'none',
-      backgroundColor: muiTheme.rawTheme.palette.borderColor,
+      backgroundColor: _muiTheme.baseTheme.palette.borderColor,
     },
   };
 
   return (
-    <hr {...other} style={styleUtils.prepareStyles(muiTheme, styles.root, style)} />
+    <hr {...other} style={styleUtils.prepareStyles(_muiTheme, styles.root, style)} />
   );
 };
 

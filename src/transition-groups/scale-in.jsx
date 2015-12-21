@@ -3,43 +3,18 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import StylePropable from '../mixins/style-propable';
 import ScaleInChild from './scale-in-child';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import muiThemeable from '../muiThemeable';
 
-
-const ScaleIn = React.createClass({
+let ScaleIn = React.createClass({
 
   mixins: [PureRenderMixin, StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     childStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
@@ -99,5 +74,7 @@ const ScaleIn = React.createClass({
   },
 
 });
+
+ScaleIn = muiThemeable(ScaleIn);
 
 export default ScaleIn;

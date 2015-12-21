@@ -3,31 +3,20 @@ import StylePropable from './mixins/style-propable';
 import Typography from './styles/typography';
 import IconButton from './icon-button';
 import NavigationMenu from './svg-icons/navigation/menu';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
 import Paper from './paper';
 import PropTypes from './utils/prop-types';
+import muiThemeable from './muiThemeable';
 
-const AppBar = React.createClass({
+let AppBar = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * Can be used to render a tab inside an app bar for instance.
      */
@@ -109,19 +98,6 @@ const AppBar = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getDefaultProps() {
     return {
       showMenuIconButton: true,
@@ -149,17 +125,17 @@ const AppBar = React.createClass({
   },
 
   getStyles() {
-    const muiTheme = this.state.muiTheme;
-    const rawTheme = muiTheme.rawTheme;
+    const theme = this.props._muiTheme;
+    const rawTheme = theme.baseTheme;
 
-    let themeVariables = muiTheme.appBar;
-    let iconButtonSize = muiTheme.button.iconButtonSize;
+    let themeVariables = theme.appBar;
+    let iconButtonSize = theme.button.iconButtonSize;
     let flatButtonSize = 36;
 
     let styles = {
       root: {
         position: 'relative',
-        zIndex: muiTheme.zIndex.appBar,
+        zIndex: theme.zIndex.appBar,
         width: '100%',
         display: 'flex',
         minHeight: themeVariables.height,
@@ -337,5 +313,7 @@ const AppBar = React.createClass({
   },
 
 });
+
+AppBar = muiThemeable(AppBar);
 
 export default AppBar;

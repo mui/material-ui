@@ -4,8 +4,8 @@ import ComponentDoc from '../../component-doc';
 
 const {StyleResizable} = Mixins;
 import Code from 'paper-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 const PaperPage = React.createClass({
 

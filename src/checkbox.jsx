@@ -4,30 +4,18 @@ import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from './svg-icons/toggle/check-box';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-
-const Checkbox = React.createClass({
+let Checkbox = React.createClass({
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     checked: React.PropTypes.bool,
     checkedIcon: React.PropTypes.element,
     defaultChecked: React.PropTypes.bool,
@@ -47,16 +35,11 @@ const Checkbox = React.createClass({
         this.props.defaultChecked ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      muiTheme: newMuiTheme,
       switched: this.props.checked !== nextProps.checked
         ? nextProps.checked
         : this.state.switched,
@@ -64,7 +47,7 @@ const Checkbox = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.checkbox;
+    return this.props._muiTheme.checkbox;
   },
 
   getStyles() {
@@ -200,5 +183,10 @@ const Checkbox = React.createClass({
   },
 
 });
+
+Checkbox = muiThemeable(Checkbox, [
+  'isChecked',
+  'setChecked',
+]);
 
 export default Checkbox;

@@ -3,14 +3,13 @@ import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import ClickAwayable from './mixins/click-awayable';
 import FlatButton from './flat-button';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
 import ContextPure from './mixins/context-pure';
 import StyleResizable from './mixins/style-resizable';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';
+import muiThemeable from './muiThemeable';
 
-const Snackbar = React.createClass({
+let Snackbar = React.createClass({
 
   mixins: [
     StylePropable,
@@ -26,10 +25,6 @@ const Snackbar = React.createClass({
   _timerTransitionId: undefined,
 
   _timerOneAtTheTimeId: undefined,
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   statics: {
     getRelevantContextKeys(muiTheme) {
@@ -52,6 +47,11 @@ const Snackbar = React.createClass({
   },
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     /**
      * The name of the action on the snackbar.
      */
@@ -119,17 +119,6 @@ const Snackbar = React.createClass({
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     let open = this.props.open;
 
@@ -141,16 +130,10 @@ const Snackbar = React.createClass({
       open: open,
       message: this.props.message,
       action: this.props.action,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.open === this.props.open &&
         (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
@@ -225,7 +208,7 @@ const Snackbar = React.createClass({
       desktopGutter,
       desktopSubheaderHeight,
       actionColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.constructor.getRelevantContextKeys(this.props._muiTheme);
 
     const isSmall = this.state.deviceSize === this.constructor.Sizes.SMALL;
 
@@ -236,7 +219,7 @@ const Snackbar = React.createClass({
         display: 'flex',
         right: 0,
         bottom: 0,
-        zIndex: this.state.muiTheme.zIndex.snackbar,
+        zIndex: this.props._muiTheme.zIndex.snackbar,
         visibility: 'hidden',
         transform: 'translate3d(0, ' + desktopSubheaderHeight + 'px, 0)',
         transition:
@@ -367,5 +350,10 @@ const Snackbar = React.createClass({
   },
 
 });
+
+Snackbar = muiThemeable(Snackbar, [
+  'show',
+  'dismiss',
+]);
 
 export default Snackbar;

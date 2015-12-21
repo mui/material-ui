@@ -7,8 +7,7 @@ import ImmutabilityHelper from './utils/immutability-helper';
 import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import FlatButtonLabel from './buttons/flat-button-label';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -17,7 +16,7 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-const FlatButton = React.createClass({
+let FlatButton = React.createClass({
 
   mixins: [
     ContextPure,
@@ -49,22 +48,12 @@ const FlatButton = React.createClass({
     },
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     backgroundColor: React.PropTypes.string,
     children: React.PropTypes.node,
     disabled: React.PropTypes.bool,
@@ -105,19 +94,12 @@ const FlatButton = React.createClass({
       hovered: false,
       isKeyboardFocused: false,
       touch: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
     const {
+      _muiTheme,
       children,
       disabled,
       hoverColor,
@@ -142,7 +124,7 @@ const FlatButton = React.createClass({
       secondaryTextColor,
       textColor,
       textTransform,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.constructor.getRelevantContextKeys(_muiTheme);
 
     const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
@@ -228,5 +210,7 @@ const FlatButton = React.createClass({
   },
 
 });
+
+FlatButton = muiThemeable(FlatButton);
 
 export default FlatButton;

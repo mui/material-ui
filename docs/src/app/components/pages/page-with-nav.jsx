@@ -3,6 +3,7 @@ import {History} from 'react-router';
 import {Mixins, Styles} from 'material-ui';
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import muiThemeable from 'material-ui/muiThemeable';
 
 let {Spacing, Colors} = Styles;
 let {StyleResizable, StylePropable} = Mixins;
@@ -11,13 +12,17 @@ let {StyleResizable, StylePropable} = Mixins;
 let PageWithNav = React.createClass({
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
   },
 
   mixins: [StyleResizable, StylePropable, History],
 
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
     location: React.PropTypes.object,
     menuItems: React.PropTypes.array,
@@ -109,5 +114,7 @@ let PageWithNav = React.createClass({
   },
 
 });
+
+PageWithNav = muiThemeable(PageWithNav);
 
 export default PageWithNav;

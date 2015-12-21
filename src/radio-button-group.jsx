@@ -1,30 +1,19 @@
 import React from 'react';
 import RadioButton from './radio-button';
 import StylePropable from './mixins/style-propable';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import muiThemeable from './muiThemeable';
 
-const RadioButtonGroup = React.createClass({
+let RadioButtonGroup = React.createClass({
   mixins: [
     StylePropable,
   ],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
+    /**
+     * The MUI Theme to use to render this component with.
+     */
+    _muiTheme: React.PropTypes.object.isRequired,
+
     children: React.PropTypes.node,
 
     /**
@@ -52,7 +41,6 @@ const RadioButtonGroup = React.createClass({
     return {
       numberCheckedRadioButtons: 0,
       selected: this.props.valueSelected || this.props.defaultSelected || '',
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 
@@ -72,15 +60,10 @@ const RadioButtonGroup = React.createClass({
     this.setState({numberCheckedRadioButtons: cnt});
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    let newState = {muiTheme: newMuiTheme};
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
-      newState.selected = nextProps.valueSelected;
+      this.setState({selected: nextProps.valueSelected});
     }
-
-    this.setState(newState);
   },
 
   render() {
@@ -150,5 +133,11 @@ const RadioButtonGroup = React.createClass({
   },
 
 });
+
+RadioButtonGroup = muiThemeable(RadioButtonGroup, [
+  'getSelectedValue',
+  'setSelectedValue',
+  'clearValue',
+]);
 
 export default RadioButtonGroup;
