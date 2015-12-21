@@ -251,7 +251,7 @@ const Menu = React.createClass({
   },
 
   getInitialState() {
-    warning(false, 'This menu component is deprecated use menus/menu instead.');
+    // warning(false, 'This menu component is deprecated use menus/menu instead.');
 
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
