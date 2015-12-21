@@ -1,7 +1,7 @@
 {
-  "breakConfig": true,
-  "stage": 1,
+  "presets": ["es2015", "stage-1", "react"],
   "plugins": [
-    "dev-expression"
+    "transform-decorators-legacy",
+    "transform-dev-warning"
   ]
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// I'm using require not to break react-codmod
-const TabTemplate = require('./tabTemplate');
+import TabTemplate from './tabTemplate';
 import InkBar from '../ink-bar';
 import StylePropable from '../mixins/style-propable';
 import Controllable from '../mixins/controllable';
@@ -93,7 +92,6 @@ const Tabs = React.createClass({
   getDefaultProps() {
     return {
       initialSelectedIndex: 0,
-      tabTemplate: TabTemplate,
     };
   },
 
@@ -179,7 +177,7 @@ const Tabs = React.createClass({
         to be a controlled component.`);
 
       tabContent.push(tab.props.children ?
-        React.createElement(tabTemplate, {
+        React.createElement(tabTemplate || TabTemplate, {
           key: index,
           selected: this._getSelected(tab, index),
         }, tab.props.children) : undefined);
