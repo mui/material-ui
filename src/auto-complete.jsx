@@ -293,6 +293,7 @@ const AutoComplete = React.createClass({
   _handleKeyDown(e) {
     switch (e.keyCode) {
       case KeyCode.ESC:
+      case KeyCode.TAB:
         this.setState({open: false});
         break;
       case KeyCode.DOWN:
