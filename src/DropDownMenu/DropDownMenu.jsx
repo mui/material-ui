@@ -256,7 +256,7 @@ const DropDownMenu = React.createClass({
       style,
       underlineStyle,
       valueLink,
-      valueMember,
+      valueMember = 'payload',
       ...other,
     } = this.props;
 
@@ -276,13 +276,11 @@ const DropDownMenu = React.createClass({
         `SelectedIndex of ${selectedIndex} does not exist in menuItems.`);
     }
 
-    let valueMember2 = valueMember || 'payload';
-
-    if (valueMember2 && this._isControlled()) {
+    if (valueMember && this._isControlled()) {
       value = this.props.hasOwnProperty('value') ? this.props.value : valueLink.value;
       if (menuItems && value !== null && value !== undefined) {
         for (let i = 0; i < menuItems.length; i++) {
-          if (menuItems[i][valueMember2] === value) {
+          if (menuItems[i][valueMember] === value) {
             selectedIndex = i;
           }
         }
@@ -310,8 +308,8 @@ const DropDownMenu = React.createClass({
           <MenuItem
             key={idx}
             primaryText={item[displayMember || 'text']}
-            value={item[valueMember2]}
-            onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item[valueMember2])} />
+            value={item[valueMember]}
+            onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item)} />
         ))
       : React.Children.map(children, child => {
         const clone = React.cloneElement(child, {
