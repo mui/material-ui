@@ -15,8 +15,8 @@ import MapsPlace from 'material-ui/svg-icons/maps/place';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import Code from 'icon-menus-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class IconMenus extends React.Component {
 

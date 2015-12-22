@@ -1,5 +1,4 @@
 import React from 'react';
-import CodeExample from '../../code-example/code-example';
 import ComponentDoc from '../../component-doc';
 import {
   Table,
@@ -15,7 +14,8 @@ import {
 } from 'material-ui';
 
 import Code from 'table-code';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class TablePage extends React.Component {
 

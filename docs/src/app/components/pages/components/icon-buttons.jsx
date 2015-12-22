@@ -7,8 +7,8 @@ import {
 import ComponentDoc from '../../component-doc';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import Code from 'icon-buttons-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class IconButtonsPage extends React.Component {
 

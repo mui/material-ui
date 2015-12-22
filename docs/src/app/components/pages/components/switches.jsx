@@ -1,6 +1,5 @@
 import React from 'react';
 import mui from 'material-ui';
-import CodeExample from '../../code-example/code-example';
 import ComponentDoc from '../../component-doc';
 import ToggleStar from 'material-ui/svg-icons/toggle/star';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -20,7 +19,8 @@ const {Typography} = Styles;
 import CheckboxCode from 'checkbox-code';
 import RadioButtonCode from 'radio-buttons-code';
 import ToggleCode from 'toggle-code';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class SwitchesPage extends React.Component {
 

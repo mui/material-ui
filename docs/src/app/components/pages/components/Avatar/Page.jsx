@@ -1,11 +1,11 @@
 import React from 'react';
+import CodeExample from '../../../CodeExample';
+import PropTypeDescription from '../../../PropTypeDescription';
+import MarkdownElement from '../../../MarkdownElement';
+import avatarReadmeText from './README';
+import AvatarExampleSimple from './ExampleSimple';
+import avatarExampleSimpleCode from '!raw!./ExampleSimple';
 import avatarCode from '!raw!material-ui/lib/avatar';
-import CodeExample from '../../code-example/code-example';
-import PropTypeDescription from '../../PropTypeDescription';
-import AvatarExampleSimple from '../../Avatar/ExampleSimple';
-import avatarExampleSimpleCode from '!raw!../../Avatar/ExampleSimple';
-import MarkdownElement from '../../MarkdownElement';
-import avatarReadmeText from '../../Avatar/README';
 
 export default class AvatarsPage extends React.Component {
   render() {

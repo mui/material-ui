@@ -12,14 +12,6 @@ const Card = React.createClass({
     };
   },
 
-  getDefaultProps() {
-    return {
-      expandable: false,
-      initiallyExpanded: true,
-      actAsExpander: false,
-    };
-  },
-
   propTypes: {
     /**
      * Whether a click on this card component expands the card. Can be set on any child of the Card component.
@@ -58,6 +50,14 @@ const Card = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      expandable: false,
+      initiallyExpanded: false,
+      actAsExpander: false,
+    };
   },
 
   _onExpandable(event) {

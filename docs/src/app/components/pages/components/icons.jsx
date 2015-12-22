@@ -1,13 +1,13 @@
 import React from 'react';
 import {FontIcon, Styles, Paper} from 'material-ui';
-import CodeBlock from '../../code-example/code-block';
 import ComponentDoc from '../../component-doc';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
 const {Colors, Typography} = Styles;
 import IconButtonCode from 'icons-code';
 import SvgIconsCode from 'svg-icons-code';
-import CodeExample from '../../code-example/code-example';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class FontIconPage extends React.Component {
 
