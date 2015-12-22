@@ -215,6 +215,7 @@ const DropDownMenu = React.createClass({
         display: 'inline-block',
         fontSize: spacing.desktopDropDownMenuFontSize,
         height: spacing.desktopSubheaderHeight,
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
         outline: 'none',
         position: 'relative',
         transition: Transitions.easeOut(),
