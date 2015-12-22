@@ -1,7 +1,7 @@
 ## Left Nav
 
-To find out more about the `LeftNav` component please visit the Material Design's
-specifications [here](https://www.google.com/design/spec/patterns/navigation-drawer.html).
+The [Left Nav](https://www.google.com/design/spec/patterns/navigation-drawer.html) slides in from the left.
+It is a common pattern found in Google apps and follows the keylines and metrics for lists.
 
 The API of `LeftNav` has been changed to be declarative and composable.
 The methods `close()`, `open()` and `toggle()` have been deprecated.

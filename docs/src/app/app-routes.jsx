@@ -25,7 +25,7 @@ import AutoComplete from './components/pages/components/auto-complete';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
 import Buttons from './components/pages/components/buttons';
-import CardsPage from './components/pages/components/Cards/Page';
+import CardPage from './components/pages/components/Card/Page';
 import DatePicker from './components/pages/components/date-picker';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
@@ -84,7 +84,7 @@ const AppRoutes = (
       <Route path="avatar" component={AvatarPage} />
       <Route path="badge" component={BadgePage} />
       <Route path="buttons" component={Buttons} />
-      <Route path="cards" component={CardsPage} />
+      <Route path="card" component={CardPage} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />

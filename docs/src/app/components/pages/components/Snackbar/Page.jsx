@@ -2,6 +2,7 @@ import React from 'react';
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
+
 import SnackbarReadmeText from './README';
 import SnackbarExampleSimple from './ExampleSimple';
 import SnackbarExampleSimpleCode from '!raw!./ExampleSimple';

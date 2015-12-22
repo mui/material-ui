@@ -7,8 +7,8 @@ require('./mui-github-markdown.css');
 
 const styles = {
   root: {
-    marginTop: 10,
-    marginBottom: 14,
+    marginTop: 20,
+    marginBottom: 20,
     padding: '0 10px',
   },
 };
