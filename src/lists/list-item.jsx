@@ -173,7 +173,7 @@ const ListItem = React.createClass({
         display: 'block',
         position: 'absolute',
         top: twoLine ? 12 : singleAvatar ? 4 : 0,
-        padding: 12,
+        margin: 12,
       },
 
       leftIcon: {
