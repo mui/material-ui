@@ -97,7 +97,7 @@ const CalendarToolbar = React.createClass({
     const prevButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
 
     return (
-      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
+      <Toolbar style={styles.root} noGutter={true}>
         <SlideInTransitionGroup
           style={styles.title}
           direction={this.state.transitionDirection}>

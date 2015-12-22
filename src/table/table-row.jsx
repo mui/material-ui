@@ -125,13 +125,11 @@ const TableRow = React.createClass({
       style,
       ...other,
     } = this.props;
-    let classes = 'mui-table-row';
-    if (className) classes += ' ' + className;
     let rowColumns = this._createColumns();
 
     return (
       <tr
-        className={classes}
+        className={className}
         style={this.prepareStyles(this.getStyles().root, style)}
         {...other}>
         {rowColumns}

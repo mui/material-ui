@@ -107,13 +107,11 @@ const TableRowColumn = React.createClass({
       onMouseEnter: this._onMouseEnter,
       onMouseLeave: this._onMouseLeave,
     };
-    let classes = 'mui-table-row-column';
-    if (className) classes += ' ' + className;
 
     return (
       <td
         key={this.props.key}
-        className={classes}
+        className={className}
         style={this.prepareStyles(styles.root, style)}
         {...handlers}
         {...other}>

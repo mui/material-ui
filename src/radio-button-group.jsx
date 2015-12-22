@@ -111,7 +111,7 @@ const RadioButtonGroup = React.createClass({
     return (
       <div
         style={this.prepareStyles(this.props.style)}
-        className={this.props.className || ''}>
+        className={this.props.className}>
         {options}
       </div>
     );

@@ -87,14 +87,11 @@ const TableHeader = React.createClass({
       style,
       ...other,
     } = this.props;
-    let classes = 'mui-table-header';
-    if (className) classes += ' ' + className;
-
     let superHeaderRows = this._createSuperHeaderRows();
     let baseHeaderRow = this._createBaseHeaderRow();
 
     return (
-      <thead className={classes} style={this.prepareStyles(this.getStyles().root, style)}>
+      <thead className={className} style={this.prepareStyles(this.getStyles().root, style)}>
         {superHeaderRows}
         {baseHeaderRow}
       </thead>
@@ -112,7 +109,6 @@ const TableHeader = React.createClass({
       if (!React.isValidElement(child)) continue;
 
       let props = {
-        className: 'mui-table-super-header-row',
         displayRowCheckbox: false,
         key: 'sh' + index,
         rowNumber: index,
@@ -139,7 +135,6 @@ const TableHeader = React.createClass({
     let numChildren = React.Children.count(this.props.children);
     let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     let props = {
-      className: 'mui-table-header-row',
       key: 'h' + numChildren,
       rowNumber: numChildren,
     };

@@ -84,13 +84,10 @@ const TableFooter = React.createClass({
       style,
       ...other,
     } = this.props;
-    let classes = 'mui-table-footer';
-    if (className) classes += ' ' + className;
-
     let footerRows = this._createRows();
 
     return (
-      <tfoot className={classes} style={this.prepareStyles(style)} {...other}>
+      <tfoot className={className} style={this.prepareStyles(style)} {...other}>
         {footerRows}
       </tfoot>
     );
@@ -108,7 +105,6 @@ const TableFooter = React.createClass({
   _createRow(child, rowNumber) {
     let styles = this.getStyles();
     let props = {
-      className: 'mui-table-footer-row',
       displayBorder: false,
       key: 'f-' + rowNumber,
       rowNumber: rowNumber,
