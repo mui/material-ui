@@ -158,7 +158,7 @@ export default class AppBar extends React.Component {
     let styles = {
       root: {
         position: 'relative',
-        zIndex: rawTheme.zIndex.appBar,
+        zIndex: muiTheme.zIndex.appBar,
         width: '100%',
         display: 'flex',
         minHeight: themeVariables.height,

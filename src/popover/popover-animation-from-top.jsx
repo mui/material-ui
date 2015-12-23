@@ -13,6 +13,10 @@ const PopoverAnimationFromTop = React.createClass({
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     open: React.PropTypes.bool.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     zDepth: PropTypes.zDepth,
@@ -48,15 +52,15 @@ const PopoverAnimationFromTop = React.createClass({
   },
 
   componentDidMount() {
-    this.setState({open:true}); //eslint-disable-line react/no-did-mount-set-state
+    this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     this.setState({
-      open:nextProps.open,
-      muiTheme:newMuiTheme,
+      open: nextProps.open,
+      muiTheme: newMuiTheme,
     });
   },
 
@@ -66,13 +70,13 @@ const PopoverAnimationFromTop = React.createClass({
 
     return {
       base: {
-        opacity:0,
-        transform:'scaleY(0)',
+        opacity: 0,
+        transform: 'scaleY(0)',
         transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
         position: 'fixed',
         zIndex: this.state.muiTheme.zIndex.popover,
         transition: Transitions.easeOut('450ms', ['transform', 'opacity']),
-        maxHeight:'100%',
+        maxHeight: '100%',
       },
 
     };
@@ -82,7 +86,7 @@ const PopoverAnimationFromTop = React.createClass({
     return {
       base: {
         opacity: 1,
-        transform:'scaleY(1)',
+        transform: 'scaleY(1)',
       },
     };
   },

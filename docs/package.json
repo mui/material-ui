@@ -32,6 +32,7 @@
     "react-addons-linked-state-mixin": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.3",
     "react-docgen": "^2.4.0",
+    "recast": "^0.10.39",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   }

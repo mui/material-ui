@@ -15,6 +15,10 @@ const TableRowColumn = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     columnNumber: React.PropTypes.number,
     hoverable: React.PropTypes.bool,
@@ -22,6 +26,10 @@ const TableRowColumn = React.createClass({
     onClick: React.PropTypes.func,
     onHover: React.PropTypes.func,
     onHoverExit: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -99,13 +107,11 @@ const TableRowColumn = React.createClass({
       onMouseEnter: this._onMouseEnter,
       onMouseLeave: this._onMouseLeave,
     };
-    let classes = 'mui-table-row-column';
-    if (className) classes += ' ' + className;
 
     return (
       <td
         key={this.props.key}
-        className={classes}
+        className={className}
         style={this.prepareStyles(styles.root, style)}
         {...handlers}
         {...other}>

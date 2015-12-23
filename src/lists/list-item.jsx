@@ -53,6 +53,10 @@ const ListItem = React.createClass({
     rightToggle: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -169,7 +173,7 @@ const ListItem = React.createClass({
         display: 'block',
         position: 'absolute',
         top: twoLine ? 12 : singleAvatar ? 4 : 0,
-        padding: 12,
+        margin: 12,
       },
 
       leftIcon: {
@@ -463,7 +467,7 @@ const ListItem = React.createClass({
 
   _handleNestedListToggle(e) {
     e.stopPropagation();
-    this.setState({open : !this.state.open});
+    this.setState({open: !this.state.open});
     this.props.onNestedListToggle(this);
   },
 

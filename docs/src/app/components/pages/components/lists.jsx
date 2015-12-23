@@ -1,7 +1,7 @@
 import React from 'react';
 import mui from 'material-ui';
 import ComponentDoc from '../../component-doc';
-import MobileTearSheet from '../../mobile-tear-sheet';
+import MobileTearSheet from '../../MobileTearSheet';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ActionInfo from 'material-ui/svg-icons/action/info';
@@ -33,8 +33,8 @@ import MenuItem from 'menus/menu-item';
 
 const {Colors} = Styles;
 import Code from 'lists-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 let SelectableList = SelectableContainerEnhance(List);
 
 const Typography = Styles.Typography;
@@ -430,7 +430,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
               <ListItem
                 primaryText="Adelle Charles"
                 leftAvatar={<Avatar color={Colors.pinkA200} backgroundColor={Colors.transparent}
-                  style={{left:8}}>A</Avatar>}
+                  style={{left: 8}}>A</Avatar>}
                 rightAvatar={<Avatar src="images/adellecharles-128.jpg" />} />
               <ListItem
                 primaryText="Adham Dannaway"

@@ -311,7 +311,7 @@ const Menu = React.createClass({
         paddingTop: this.getSpacing().desktopGutterMini,
         paddingBottom: this.getSpacing().desktopGutterMini,
         transition: Transitions.easeOut(null, 'height'),
-        outline:'none !important',
+        outline: 'none !important',
       },
       subheader: {
         paddingLeft: this.state.muiTheme.menuSubheader.padding,
@@ -625,13 +625,13 @@ const Menu = React.createClass({
   _activatePreviousItem() {
     let active = this.state.activeIndex || 0;
     active = Math.max(active - 1, 0);
-    this.setState({activeIndex:active});
+    this.setState({activeIndex: active});
   },
 
   _activateNextItem() {
     let active = this.state.activeIndex || 0;
     active = Math.min(active + 1, this._children.length - 1);
-    this.setState({activeIndex:active});
+    this.setState({activeIndex: active});
   },
 
   _triggerSelection(e) {

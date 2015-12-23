@@ -40,6 +40,10 @@ const CardExpandable = React.createClass({
   propTypes: {
     expanded: React.PropTypes.bool,
     onExpanding: React.PropTypes.func.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

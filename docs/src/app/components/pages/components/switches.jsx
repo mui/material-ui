@@ -1,6 +1,5 @@
 import React from 'react';
 import mui from 'material-ui';
-import CodeExample from '../../code-example/code-example';
 import ComponentDoc from '../../component-doc';
 import ToggleStar from 'material-ui/svg-icons/toggle/star';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -20,7 +19,8 @@ const {Typography} = Styles;
 import CheckboxCode from 'checkbox-code';
 import RadioButtonCode from 'radio-buttons-code';
 import ToggleCode from 'toggle-code';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class SwitchesPage extends React.Component {
 
@@ -481,17 +481,17 @@ export default class SwitchesPage extends React.Component {
             id="radioButtonId1"
             value="light"
             label="prepare for light speed"
-            style={{marginBottom:16}} />
+            style={{marginBottom: 16}} />
           <RadioButton
             id="radioButtonId2"
             value="not_light"
             label="light speed too slow"
-            style={{marginBottom:16}}/>
+            style={{marginBottom: 16}}/>
           <RadioButton
             id="radioButtonId3"
             value="ludicrous"
             label="go to ludicrous speed"
-            style={{marginBottom:16}}
+            style={{marginBottom: 16}}
             disabled={true}/>
         </RadioButtonGroup>
       </div>

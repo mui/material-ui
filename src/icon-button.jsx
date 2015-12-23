@@ -55,6 +55,10 @@ const IconButton = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     disabled: React.PropTypes.bool,
     iconClassName: React.PropTypes.string,
@@ -64,6 +68,10 @@ const IconButton = React.createClass({
     onKeyboardFocus: React.PropTypes.func,
     onMouseEnter: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     tooltip: React.PropTypes.node,
     tooltipPosition: PropTypes.cornersAndCenter,

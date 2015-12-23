@@ -2,6 +2,7 @@ import Colors from './colors';
 import ColorManipulator from '../utils/color-manipulator';
 import Extend from '../utils/extend';
 import update from 'react-addons-update';
+import zIndex from './zIndex';
 
 export default {
 
@@ -99,7 +100,7 @@ export default {
         backgroundColor: rawTheme.palette.canvasColor,
       },
       radioButton: {
-        borderColor:  rawTheme.palette.textColor,
+        borderColor: rawTheme.palette.textColor,
         backgroundColor: rawTheme.palette.alternateTextColor,
         checkedColor: rawTheme.palette.primary1Color,
         requiredColor: rawTheme.palette.primary1Color,
@@ -208,7 +209,7 @@ export default {
         borderColor: rawTheme.palette.borderColor,
       },
       isRtl: false,
-      zIndex: rawTheme.zIndex,
+      zIndex: zIndex,
     };
 
     //add properties to objects inside 'returnObj' that depend on existing properties
@@ -253,5 +254,4 @@ export default {
     let newRawTheme = update(muiTheme.rawTheme, {fontFamily: {$set: newFontFamily}});
     return this.getMuiTheme(newRawTheme);
   },
-
 };

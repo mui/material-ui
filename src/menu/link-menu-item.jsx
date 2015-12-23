@@ -27,7 +27,7 @@ const LinkMenuItem = React.createClass({
 
   getDefaultProps() {
     return {
-      active:false,
+      active: false,
       disabled: false,
     };
   },

@@ -45,6 +45,10 @@ const CardHeader = React.createClass({
     children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     subtitle: React.PropTypes.node,
     subtitleColor: React.PropTypes.string,
@@ -102,7 +106,7 @@ const CardHeader = React.createClass({
     let avatar = this.props.avatar;
     if (React.isValidElement(this.props.avatar)) {
       let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
-      avatar = React.cloneElement(avatar, {style:avatarMergedStyle});
+      avatar = React.cloneElement(avatar, {style: avatarMergedStyle});
     }
     else if (avatar !== null) {
       avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;

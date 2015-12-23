@@ -16,6 +16,10 @@ const Table = React.createClass({
     allRowsSelected: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     fixedFooter: React.PropTypes.bool,
     fixedHeader: React.PropTypes.bool,
@@ -30,6 +34,10 @@ const Table = React.createClass({
     onRowHoverExit: React.PropTypes.func,
     onRowSelection: React.PropTypes.func,
     selectable: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object,
   },
@@ -111,8 +119,6 @@ const Table = React.createClass({
       footerStyle,
       ...other,
     } = this.props;
-    let classes = 'mui-table';
-    if (className) classes += ' ' + className;
     let styles = this.getStyles();
 
     let tHead, tFoot, tBody;
@@ -139,7 +145,7 @@ const Table = React.createClass({
     let inlineHeader, inlineFooter;
     if (fixedHeader) {
       headerTable = (
-        <div className="mui-header-table" style={this.prepareStyles(headerStyle)}>
+        <div style={this.prepareStyles(headerStyle)}>
           <table className={className} style={mergedTableStyle}>
             {tHead}
           </table>
@@ -152,7 +158,7 @@ const Table = React.createClass({
     if (tFoot !== undefined) {
       if (fixedFooter) {
         footerTable = (
-          <div className="mui-footer-table" style={this.prepareStyles(footerStyle)}>
+          <div style={this.prepareStyles(footerStyle)}>
             <table className={className} style={mergedTableStyle}>
               {tFoot}
             </table>
@@ -165,10 +171,10 @@ const Table = React.createClass({
     }
 
     return (
-      <div className="mui-table-wrapper" style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
+      <div style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
         {headerTable}
-        <div className="mui-body-table" style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
-          <table className={classes} style={mergedTableStyle} ref="tableBody">
+        <div style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
+          <table className={className} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}
             {tBody}

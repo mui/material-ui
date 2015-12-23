@@ -1,9 +1,11 @@
 import warning from 'warning';
 
-function deprecatedExport(Component, deprecatedPath, supportedPath) {
+const getName = (object) => object.displayName ? `${object.displayName} ` : '';
+
+function deprecatedExport(object, deprecatedPath, supportedPath) {
   warning(false,
-    `Importing ${Component.displayName} from '${deprecatedPath}' has been deprecated, use '${supportedPath}' instead.`);
-  return Component;
+    `Importing ${getName(object)}from '${deprecatedPath}' has been deprecated, use '${supportedPath}' instead.`);
+  return object;
 }
 
 export default deprecatedExport;

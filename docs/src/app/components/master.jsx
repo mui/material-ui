@@ -35,7 +35,7 @@ const Master = React.createClass({
     location: React.PropTypes.object,
   },
 
-  childContextTypes : {
+  childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
@@ -171,12 +171,11 @@ const Master = React.createClass({
       },
       tabs: {
         width: 425,
-        bottom:0,
+        bottom: 0,
       },
       tab: {
         height: 64,
       },
-
     };
 
     let materialIcon = this.state.tabIndex !== '0' ? (

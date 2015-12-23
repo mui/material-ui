@@ -14,10 +14,18 @@ const TableHeaderColumn = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     columnNumber: React.PropTypes.number,
     key: React.PropTypes.string,
     onClick: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     tooltip: React.PropTypes.string,
     tooltipStyle: React.PropTypes.object,
@@ -55,7 +63,7 @@ const TableHeaderColumn = React.createClass({
   getStyles() {
     let theme = this.getTheme();
     let styles = {
-      root:  {
+      root: {
         fontWeight: 'normal',
         fontSize: 12,
         paddingLeft: theme.spacing,
@@ -92,9 +100,6 @@ const TableHeaderColumn = React.createClass({
       tooltipStyle,
       ...other,
     } = this.props;
-    let classes = 'mui-table-header-column';
-    if (className) classes += ' ' + className;
-
     if (this.props.tooltip !== undefined) {
       tooltip = (
         <Tooltip
@@ -107,7 +112,7 @@ const TableHeaderColumn = React.createClass({
     return (
       <th
         key={this.props.key}
-        className={classes}
+        className={className}
         style={this.prepareStyles(styles.root, style)}
         {...handlers}
         {...other}>

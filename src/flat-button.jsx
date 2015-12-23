@@ -82,6 +82,10 @@ const FlatButton = React.createClass({
     primary: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     secondary: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -121,10 +125,6 @@ const FlatButton = React.createClass({
       label,
       labelStyle,
       labelPosition,
-      onKeyboardFocus,
-      onMouseLeave,
-      onMouseEnter,
-      onTouchStart,
       primary,
       rippleColor,
       secondary,

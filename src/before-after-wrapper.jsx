@@ -53,6 +53,10 @@ const BeforeAfterWrapper = React.createClass({
     beforeStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     elementType: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

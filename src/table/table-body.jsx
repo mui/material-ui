@@ -32,6 +32,10 @@ const TableBody = React.createClass({
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     deselectOnClickaway: React.PropTypes.bool,
     displayRowCheckbox: React.PropTypes.bool,
@@ -46,6 +50,10 @@ const TableBody = React.createClass({
     selectable: React.PropTypes.bool,
     showRowHover: React.PropTypes.bool,
     stripedRows: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -101,13 +109,10 @@ const TableBody = React.createClass({
       style,
       ...other,
     } = this.props;
-    let classes = 'mui-table-body';
-    if (className) classes += ' ' + className;
-
     let rows = this._createRows();
 
     return (
-      <tbody className={classes} style={this.prepareStyles(style)}>
+      <tbody className={className} style={this.prepareStyles(style)}>
         {rows}
       </tbody>
     );

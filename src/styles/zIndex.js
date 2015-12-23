@@ -7,5 +7,6 @@ export default {
   dialog: 1500,
   layer: 2000,
   popover: 2100,
+  snackbar: 2900,
   tooltip: 3000,
 };

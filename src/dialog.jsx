@@ -11,6 +11,7 @@ import Paper from './paper';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 import warning from 'warning';
+import deprecated from './utils/deprecatedPropType';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
@@ -172,7 +173,8 @@ const DialogInline = React.createClass({
       width,
     } = this.props;
 
-    const rawTheme = this.state.muiTheme.rawTheme;
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
     const spacing = rawTheme.spacing;
     const gutter = spacing.desktopGutter;
 
@@ -181,7 +183,7 @@ const DialogInline = React.createClass({
         position: 'fixed',
         boxSizing: 'border-box',
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        zIndex: rawTheme.zIndex.dialog,
+        zIndex: muiTheme.zIndex.dialog,
         top: 0,
         left: open ? 0 : -10000,
         width: '100%',
@@ -198,7 +200,7 @@ const DialogInline = React.createClass({
         width: width,
         maxWidth: spacing.desktopKeylineIncrement * 12,
         margin: '0 auto',
-        zIndex: rawTheme.zIndex.dialog,
+        zIndex: muiTheme.zIndex.dialog,
       },
       body: {
         padding: spacing.desktopGutter,
@@ -217,7 +219,7 @@ const DialogInline = React.createClass({
         background: rawTheme.palette.canvasColor,
       },
       overlay: {
-        zIndex: rawTheme.zIndex.dialogOverlay,
+        zIndex: muiTheme.zIndex.dialogOverlay,
       },
       title: {
         margin: 0,
@@ -460,9 +462,10 @@ const Dialog = React.createClass({
 
   propTypes: {
     /**
-     * **DEPRECATED** The `ref` of the action to focus on when the `Dialog` is displayed.
+     * The `ref` of the action to focus on when the `Dialog` is displayed.
      */
-    actionFocus: React.PropTypes.string,
+    actionFocus: deprecated(React.PropTypes.string,
+      'Instead, use a custom `actions` property.'),
 
     /**
      * This prop can be either a JSON object containing the actions to render (This is **DEPRECATED**),
@@ -586,12 +589,6 @@ const Dialog = React.createClass({
       repositionOnUpdate: true,
       width: '75%',
     };
-  },
-
-  getInitialState() {
-    warning(!this.props.actionFocus,
-      'actionFocus is deprecated on Dialog. Since actions JSON objects are deprecated.');
-    return {};
   },
 
   render() {

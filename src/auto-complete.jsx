@@ -78,7 +78,7 @@ const AutoComplete = React.createClass({
   },
 
   componentClickAway() {
-    this.setState({open:false});
+    this.setState({open: false});
     this.focusOnInput = false;
   },
 
@@ -164,7 +164,7 @@ const AutoComplete = React.createClass({
         animated={animated}
         autoWidth={false}
         initiallyKeyboardFocused={false}
-        onEscKeyDown={() => this.setState({open:false})}
+        onEscKeyDown={() => this.setState({open: false})}
         onItemTouchTap={this._handleItemTouchTap}
         listStyle={this.mergeAndPrefix(styles.list, listStyle)}
         openDirection="bottom-left"
@@ -176,7 +176,7 @@ const AutoComplete = React.createClass({
                 return (
                   <MenuItem
                     disableFocusRipple={this.props.disableFocusRipple}
-                    innerDivStyle={{overflow:'hidden'}}
+                    innerDivStyle={{overflow: 'hidden'}}
                     key={index}
                     value={request}
                     primaryText={request}
@@ -206,7 +206,7 @@ const AutoComplete = React.createClass({
         onKeyDown={this._handleKeyDown}>
         <div
           style={{
-            width:'100%',
+            width: '100%',
           }}>
           <TextField
             {...other}
@@ -214,7 +214,7 @@ const AutoComplete = React.createClass({
             value={this.state.searchText}
             onEnterKeyDown={() => {
               setTimeout(() => {
-                this.setState({open:false});
+                this.setState({open: false});
               }, this.props.touchTapCloseDelay);
               this.props.onNewRequest(this.state.searchText);
             }}
@@ -254,7 +254,7 @@ const AutoComplete = React.createClass({
   _updateRequests(searchText) {
 
     this.setState({
-      searchText:searchText,
+      searchText: searchText,
       open: true,
     });
 
@@ -266,7 +266,7 @@ const AutoComplete = React.createClass({
 
   _handleItemTouchTap(e, child) {
     setTimeout(() => {
-      this.setState({open:false});
+      this.setState({open: false});
     }, this.props.touchTapCloseDelay);
 
     let dataSource = this.props.dataSource;
@@ -293,13 +293,13 @@ const AutoComplete = React.createClass({
   _handleKeyDown(e) {
     switch (e.keyCode) {
       case KeyCode.ESC:
-        this.setState({open:false});
+        this.setState({open: false});
         break;
       case KeyCode.DOWN:
         if (this.focusOnInput && this.state.open) {
           e.preventDefault();
           this.focusOnInput = false;
-          this.setState({open:true});
+          this.setState({open: true});
         }
         break;
       default:

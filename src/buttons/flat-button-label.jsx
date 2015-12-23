@@ -17,6 +17,10 @@ const FlatButtonLabel = React.createClass({
 
   propTypes: {
     label: React.PropTypes.node,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 

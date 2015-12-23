@@ -25,9 +25,17 @@ const Popover = React.createClass({
     autoCloseWhenOffScreen: React.PropTypes.bool,
     canAutoPosition: React.PropTypes.bool,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     onRequestClose: React.PropTypes.func,
     open: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     useLayerForClickAway: React.PropTypes.bool,
@@ -64,7 +72,7 @@ const Popover = React.createClass({
 
     return {
       open: this.props.open,
-      closing:false,
+      closing: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
@@ -97,12 +105,12 @@ const Popover = React.createClass({
         this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
         this.setState({
           open: true,
-          closing:false,
+          closing: false,
           muiTheme: newMuiTheme,
         });
       } else {
         if (nextProps.animated) {
-          this.setState({closing:true});
+          this.setState({closing: true});
           this._timeout = setTimeout(() => {
             if (this.isMounted()) {
               this.setState({

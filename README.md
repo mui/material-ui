@@ -34,7 +34,7 @@ Some components use [react-tap-event-plugin](https://github.com/zilverline/react
 listen for touch events. This dependency is temporary and will go away once react v1.0 is released. Until then, be
 sure to inject this plugin at the start of your app.
 ```js
-let injectTapEventPlugin = require("react-tap-event-plugin");
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release
@@ -51,22 +51,14 @@ Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/
 Using material-ui components is very straightforward. Once material-ui is included in your project, you can use the components this way:
 
 ```js
-//Basic React component that renders a material-ui
-//raised button with the text "Default"
+import React from 'react';
+import RaisedButton from 'material-ui/lib/raised-button';
 
-const React = require('react');
-const RaisedButton = require('material-ui/lib/raised-button');
+const MyAwesomeReactComponent = () => (
+  <RaisedButton label="Default" />
+);
 
-const MyAwesomeReactComponent = React.createClass({
-  render() {
-    return (
-        <RaisedButton label="Default" />
-    );
-  },
-});
-
-module.exports = MyAwesomeReactComponent;
-
+export default MyAwesomeReactComponent;
 ```
 
 ## Customization
@@ -81,6 +73,10 @@ We have implemented a default theme to render all Material-UI components. Stylin
 There are 2 projects that you can look at to get started. They can be found in the [examples folder](https://github.com/callemall/material-ui/tree/master/examples). These projects are basic examples that show how to consume material-ui components in your own project. The first project uses [browserify](http://browserify.org/) for module bundling and [gulp](http://gulpjs.com/) for JS task automation, while the second project uses [webpack](http://webpack.github.io/) for module bundling and building.
 
 The source code for this documentation site is also included in the repository. This is a slightly more complex project that also uses webpack, and contains examples of every material-ui component. Check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs) for build instructions.
+
+## Roadmap
+
+The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) file.
 
 ## Contribute
 

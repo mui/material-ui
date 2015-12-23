@@ -42,6 +42,10 @@ const MenuItem = React.createClass({
     onTouchTap: React.PropTypes.func,
     rightIcon: React.PropTypes.element,
     secondaryText: React.PropTypes.node,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     value: React.PropTypes.any,
   },
@@ -167,7 +171,7 @@ const MenuItem = React.createClass({
     let rightIconElement;
     if (rightIcon) {
       const mergedRightIconStyles = desktop ?
-        this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : null;
+        this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : rightIcon.props.style;
       rightIconElement = React.cloneElement(rightIcon, {style: mergedRightIconStyles});
     }
 

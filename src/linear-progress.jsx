@@ -14,6 +14,10 @@ const LinearProgress = React.createClass({
     max: React.PropTypes.number,
     min: React.PropTypes.number,
     mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     value: React.PropTypes.number,
   },

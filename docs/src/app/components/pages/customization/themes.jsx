@@ -1,6 +1,6 @@
 import React from 'react';
 import mui from 'material-ui';
-import CodeBlock from '../../code-example/code-block';
+import CodeBlock from '../../CodeExample/CodeBlock';
 import ComponentDoc from '../../component-doc';
 
 const {
@@ -37,7 +37,7 @@ const ThemesPage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
 
-  contextTypes : {
+  contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
@@ -57,6 +57,7 @@ const ThemesPage = React.createClass({
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
       isThemeDark: false,
       dialogOpen: false,
+      snackbarOpen: false,
       leftNavOpen: false,
     };
   },
@@ -160,9 +161,11 @@ const ThemesPage = React.createClass({
     let lightRawTheme =
       'import Colors from \'material-ui/lib/styles/colors\';\n' +
       'import ColorManipulator from \'material-ui/lib/utils/color-manipulator\';\n' +
-      'import Spacing from \'material-ui/lib/styles/spacing\';\n\n' +
+      'import Spacing from \'material-ui/lib/styles/spacing\';\n' +
+      'import zIndex from \'material-ui/lib/styles/zIndex\';\n\n' +
       'export default {\n' +
       '  spacing: Spacing,\n' +
+      '  zIndex: zIndex,\n' +
       '  fontFamily: \'Roboto, sans-serif\',\n' +
       '  palette: {\n' +
       '    primary1Color: Colors.cyan500,\n' +
@@ -177,7 +180,7 @@ const ThemesPage = React.createClass({
       '    borderColor: Colors.grey300,\n' +
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
       '    pickerHeaderColor: Colors.cyan500,\n' +
-      '  },\n' +
+      '  }\n' +
       '};\n';
 
     let reactContextExampleCode =
@@ -476,15 +479,7 @@ const ThemesPage = React.createClass({
   },
 
   getComponentGroup() {
-    let styles = this.getStyles();
-
-    let menuItems = [
-       {payload: '1', text: 'Never'},
-       {payload: '2', text: 'Every Night'},
-       {payload: '3', text: 'Weeknights'},
-       {payload: '4', text: 'Weekends'},
-       {payload: '5', text: 'Weekly'},
-    ];
+    const styles = this.getStyles();
 
     return (
       <ClearFix>
@@ -559,7 +554,13 @@ const ThemesPage = React.createClass({
                 style={{width: '100%'}}/>
             </div>
             <div style={styles.container}>
-              <DropDownMenu menuItems={menuItems} style={{width: '100%'}}/>
+              <DropDownMenu value={3} style={{width: '100%'}}>
+                <MenuItem value={1} primaryText={'Never'}/>
+                <MenuItem value={2} primaryText={'Every Night'}/>
+                <MenuItem value={3} primaryText={'Weeknights'}/>
+                <MenuItem value={4} primaryText={'Weekends'}/>
+                <MenuItem value={5} primaryText={'Weekly'}/>
+              </DropDownMenu>
            </div>
           </div>
 
@@ -606,13 +607,14 @@ const ThemesPage = React.createClass({
           <div style={styles.group}>
             <div style={styles.containerCentered}>
               <FlatButton
-                onTouchTap={this.handleClickSnackbar}
+                onTouchTap={this.handleTouchTapSnackbar}
                 label="View Snackbar" />
               <Snackbar
-                ref="snackbar"
+                open={this.state.snackbarOpen}
+                onRequestClose={this.handleRequestCloseSnackbar}
                 message="This is a snackbar"
                 action="Got It!"
-                onActionTouchTap={this.handleAction}/>
+                onActionTouchTap={this.handleRequestCloseSnackbar}/>
             </div>
           </div>
       </ClearFix>
@@ -650,10 +652,6 @@ const ThemesPage = React.createClass({
       isThemeDark: isDark});
   },
 
-  handleAction() {
-    this.refs.snackbar.dismiss();
-  },
-
   handleTouchTapLeftNav() {
     this.setState({
       leftNavOpen: true,
@@ -664,10 +662,6 @@ const ThemesPage = React.createClass({
     this.setState({
       leftNavOpen: open,
     });
-  },
-
-  handleClickSnackbar() {
-    this.refs.snackbar.show();
   },
 
   handleTouchTapDialog() {
@@ -682,6 +676,17 @@ const ThemesPage = React.createClass({
     });
   },
 
+  handleTouchTapSnackbar() {
+    this.setState({
+      snackbarOpen: true,
+    });
+  },
+
+  handleRequestCloseSnackbar() {
+    this.setState({
+      snackbarOpen: false,
+    });
+  },
 });
 
 export default ThemesPage;

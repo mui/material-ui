@@ -47,6 +47,10 @@ const DatePicker = React.createClass({
     onTouchTap: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     textFieldStyle: React.PropTypes.object,
     value: React.PropTypes.any,
@@ -75,7 +79,11 @@ const DatePicker = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (nextContext.muiTheme) {
+      this.setState({muiTheme: nextContext.muiTheme});
+    }
+
     if (this._isControlled()) {
       let newDate = this._getControlledDate(nextProps);
       if (!DateTime.isEqualDate(this.state.date, newDate)) {

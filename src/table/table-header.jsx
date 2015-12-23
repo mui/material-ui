@@ -18,11 +18,19 @@ const TableHeader = React.createClass({
   propTypes: {
     adjustForCheckbox: React.PropTypes.bool,
     children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
     className: React.PropTypes.string,
     displaySelectAll: React.PropTypes.bool,
     enableSelectAll: React.PropTypes.bool,
     onSelectAll: React.PropTypes.func,
     selectAllSelected: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
 
@@ -65,7 +73,7 @@ const TableHeader = React.createClass({
 
   getStyles() {
     let styles = {
-      root:  {
+      root: {
         borderBottom: '1px solid ' + this.getTheme().borderColor,
       },
     };
@@ -79,14 +87,11 @@ const TableHeader = React.createClass({
       style,
       ...other,
     } = this.props;
-    let classes = 'mui-table-header';
-    if (className) classes += ' ' + className;
-
     let superHeaderRows = this._createSuperHeaderRows();
     let baseHeaderRow = this._createBaseHeaderRow();
 
     return (
-      <thead className={classes} style={this.prepareStyles(this.getStyles().root, style)}>
+      <thead className={className} style={this.prepareStyles(this.getStyles().root, style)}>
         {superHeaderRows}
         {baseHeaderRow}
       </thead>
@@ -104,7 +109,6 @@ const TableHeader = React.createClass({
       if (!React.isValidElement(child)) continue;
 
       let props = {
-        className: 'mui-table-super-header-row',
         displayRowCheckbox: false,
         key: 'sh' + index,
         rowNumber: index,
@@ -131,7 +135,6 @@ const TableHeader = React.createClass({
     let numChildren = React.Children.count(this.props.children);
     let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     let props = {
-      className: 'mui-table-header-row',
       key: 'h' + numChildren,
       rowNumber: numChildren,
     };

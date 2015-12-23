@@ -10,7 +10,7 @@ export default class Components extends React.Component {
       {route: '/components/avatar', text: 'Avatar'},
       {route: '/components/badge', text: 'Badge'},
       {route: '/components/buttons', text: 'Buttons'},
-      {route: '/components/cards', text: 'Cards'},
+      {route: '/components/card', text: 'Card'},
       {route: '/components/date-picker', text: 'Date Picker'},
       {route: '/components/dialog', text: 'Dialog'},
       {route: '/components/divider', text: 'Divider'},

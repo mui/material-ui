@@ -52,6 +52,10 @@ const DatePickerDialog = React.createClass({
     onShow: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
     showYearSelector: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
     wordings: React.PropTypes.object,
   },
