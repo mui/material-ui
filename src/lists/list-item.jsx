@@ -355,29 +355,32 @@ const ListItem = React.createClass({
       </NestedList>
     ) : undefined;
 
-    return hasCheckbox ? this._createLabelElement(styles, contentChildren) :
-      disabled ? this._createDisabledElement(styles, contentChildren) : (
+    return (
       <div>
-        <EnhancedButton
-          {...other}
-          disabled={disabled}
-          disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
-          linkButton={true}
-          onKeyboardFocus={this._handleKeyboardFocus}
-          onMouseLeave={this._handleMouseLeave}
-          onMouseEnter={this._handleMouseEnter}
-          onTouchStart={this._handleTouchStart}
-          onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
-          ref="enhancedButton"
-          style={this.mergeStyles(styles.root, style)}>
-          <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
-            {contentChildren}
-          </div>
-        </EnhancedButton>
+        {
+          hasCheckbox ? this._createLabelElement(styles, contentChildren) :
+          disabled ? this._createDisabledElement(styles, contentChildren) : (
+            <EnhancedButton
+              {...other}
+              disabled={disabled}
+              disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
+              linkButton={true}
+              onKeyboardFocus={this._handleKeyboardFocus}
+              onMouseLeave={this._handleMouseLeave}
+              onMouseEnter={this._handleMouseEnter}
+              onTouchStart={this._handleTouchStart}
+              onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
+              ref="enhancedButton"
+              style={this.mergeStyles(styles.root, style)}>
+              <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
+                {contentChildren}
+              </div>
+            </EnhancedButton>
+          )
+        }
         {nestedList}
       </div>
     );
-
   },
 
   applyFocusState(focusState) {

@@ -493,6 +493,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   <ListItem
                     primaryText="Sent Mail"
                     leftIcon={<ContentSend />}
+                    disabled={true}
                     nestedItems={[
                       <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />,
                     ]}
