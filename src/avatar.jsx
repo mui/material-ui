@@ -1,34 +1,9 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
+import MuiComponent from './MuiComponent';
+import styleUtils from './utils/styles';
 import Colors from './styles/colors';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
-import {mixin} from 'core-decorators';
 
-@mixin(StylePropable)
-export default class Avatar extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      muiTheme: context.muiTheme ? context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  }
-
-  //for passing default theme context to children
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object,
-  }
-
-  static contextTypes = {
-    muiTheme: React.PropTypes.object,
-  }
-
-  static defaultProps = {
-    backgroundColor: Colors.grey400,
-    color: Colors.white,
-    size: 40,
-  }
+export default class Avatar extends MuiComponent {
 
   static propTypes = {
     /**
@@ -72,22 +47,16 @@ export default class Avatar extends React.Component {
     style: React.PropTypes.object,
   }
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  }
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  static defaultProps = {
+    backgroundColor: Colors.grey400,
+    color: Colors.white,
+    size: 40,
   }
 
   render() {
     let {
       backgroundColor,
+      children,
       color,
       icon,
       size,
@@ -96,6 +65,8 @@ export default class Avatar extends React.Component {
       className,
       ...other,
     } = this.props;
+
+    const {muiTheme} = this.state;
 
     let styles = {
       root: {
@@ -108,10 +79,10 @@ export default class Avatar extends React.Component {
     };
 
     if (src) {
-      const borderColor = this.state.muiTheme.avatar.borderColor;
+      const borderColor = muiTheme.avatar.borderColor;
 
       if (borderColor) {
-        styles.root = this.mergeStyles(styles.root, {
+        styles.root = styleUtils.merge(styles.root, {
           height: size - 2,
           width: size - 2,
           border: 'solid 1px ' + borderColor,
@@ -122,12 +93,12 @@ export default class Avatar extends React.Component {
         <img
           {...other}
           src={src}
-          style={this.prepareStyles(styles.root, style)}
+          style={styleUtils.prepareStyles(muiTheme, styles.root, style)}
           className={className}
         />
       );
     } else {
-      styles.root = this.mergeStyles(styles.root, {
+      styles.root = styleUtils.merge(styles.root, {
         backgroundColor: backgroundColor,
         textAlign: 'center',
         lineHeight: size + 'px',
@@ -141,17 +112,17 @@ export default class Avatar extends React.Component {
 
       const iconElement = icon ? React.cloneElement(icon, {
         color: color,
-        style: this.mergeStyles(styleIcon, icon.props.style),
+        style: styleUtils.merge(styleIcon, icon.props.style),
       }) : null;
 
       return (
         <div
           {...other}
-          style={this.prepareStyles(styles.root, style)}
+          style={styleUtils.prepareStyles(muiTheme, styles.root, style)}
           className={className}
         >
           {iconElement}
-          {this.props.children}
+          {children}
         </div>
       );
     }
