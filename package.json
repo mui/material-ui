@@ -8,9 +8,10 @@
     "test": "npm run test-base -- --single-run",
     "test-watch": "npm run test-base -- --auto-watch",
     "test-base": "./node_modules/.bin/karma start",
-    "prebuild": "rimraf lib",
+    "RRRprebuild": "rimraf lib",
     "lint": "gulp eslint",
-    "build": "babel ./src --out-dir ./lib",
+    "build": "echo 'Tudo OK!'",
+    "watch": "babel ./src --out-dir ./lib --watch",
     "prepublish": "npm run build"
   },
   "keywords": [

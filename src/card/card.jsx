@@ -63,7 +63,7 @@ const Card = React.createClass({
     } = this.props;
 
     let mergedStyles = this.mergeStyles({
-      overflow: 'hidden',
+      overflow: 'visible',
       zIndex: 1,
     }, style);
 

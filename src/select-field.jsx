@@ -91,6 +91,7 @@ const SelectField = React.createClass({
         width: '100%',
         top: 16,
         fontSize: 16,
+        zIndex: 4
       },
       label: {
         paddingLeft: 0,
@@ -163,7 +164,7 @@ const SelectField = React.createClass({
       labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
       iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
       underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
-      autoWidth: false,
+      autoWidth: true,
     };
 
     return (

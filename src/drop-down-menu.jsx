@@ -101,6 +101,7 @@ const DropDownMenu = React.createClass({
         height: spacing.desktopSubheaderHeight,
         fontSize: spacing.desktopDropDownMenuFontSize,
         outline: 'none',
+        zIndex: zIndex
       },
       control: {
         cursor: disabled ? 'not-allowed' : 'pointer',
@@ -127,6 +128,7 @@ const DropDownMenu = React.createClass({
         paddingLeft: spacing.desktopGutter,
         top: 0,
         opacity: 1,
+        overflow: 'hidden',
         color: disabled ? this.state.muiTheme.rawTheme.palette.disabledColor : this.state.muiTheme.rawTheme.palette.textColor,
       },
       underline: {
@@ -219,16 +221,18 @@ const DropDownMenu = React.createClass({
       return item;
     });
 
+    let rootStyle = this.prepareStyles(
+          styles.root,
+          this.state.open && styles.rootWhenOpen,
+          style);
+
     return (
       <div
         {...other}
         ref="root"
         onKeyDown={this._onKeyDown}
         className={className}
-        style={this.prepareStyles(
-          styles.root,
-          this.state.open && styles.rootWhenOpen,
-          style)} >
+        style={rootStyle} >
 
           <ClearFix style={this.mergeStyles(styles.control)} onTouchTap={this._onControlClick}>
             <Paper style={this.mergeStyles(styles.controlBg)} zDepth={0} />

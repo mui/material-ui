@@ -64,7 +64,7 @@ const AutoComplete = React.createClass({
       open: this.props.open,
     };
   },
-  
+
   componentWillMount(){
     this.focusOnInput = false;
     this.requestsList = [];
@@ -266,7 +266,7 @@ const AutoComplete = React.createClass({
 
     let index = Array.isArray(dataSource) ? dataSource.indexOf(chosenRequest) :
                   Object.keys(dataSource).filter((key) => chosenRequest === dataSource[key])[0];
-    
+
     this.setState({searchText: Array.isArray(dataSource) ? dataSource[index] : index});
 
     this.props.onNewRequest(chosenRequest, index, dataSource);
@@ -276,6 +276,7 @@ const AutoComplete = React.createClass({
   _handleKeyDown(e){
    switch(e.keyCode){
      case KeyCode.ESC:
+     case KeyCode.TAB:
        this.setState({open:false});
        break;
      case KeyCode.DOWN:
