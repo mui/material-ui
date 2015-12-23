@@ -1,18 +1,18 @@
 import React from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
-import ClickAwayable from './mixins/click-awayable';
 import KeyCode from './utils/key-code';
 import TextField from './text-field';
 import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
 import Divider from './divider';
+import Popover from './popover/popover';
+import PropTypes from './utils/prop-types';
 
 const AutoComplete = React.createClass({
 
   mixins: [
     StylePropable,
-    ClickAwayable,
   ],
 
   contextTypes: {
@@ -20,6 +20,7 @@ const AutoComplete = React.createClass({
   },
 
   propTypes: {
+    anchorOrigin: PropTypes.origin,
     animated: React.PropTypes.bool,
     dataSource: React.PropTypes.array,
     disableFocusRipple: React.PropTypes.bool,
@@ -39,12 +40,21 @@ const AutoComplete = React.createClass({
     searchText: React.PropTypes.string,
     showAllItems: React.PropTypes.bool,
     style: React.PropTypes.object,
+    targetOrigin: PropTypes.origin,
     touchTapCloseDelay: React.PropTypes.number,
     updateWhenFocused: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
+      anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'left',
+      },
+      targetOrigin: {
+        vertical: 'top',
+        horizontal: 'left',
+      },
       animated: true,
       fullWidth: false,
       open: false,
@@ -63,6 +73,7 @@ const AutoComplete = React.createClass({
     return {
       searchText: this.props.searchText,
       open: this.props.open,
+      anchorEl: null,
     };
   },
   componentWillReceiveProps: function(nextProps) {
@@ -78,12 +89,13 @@ const AutoComplete = React.createClass({
   },
 
   componentClickAway() {
-    this.setState({open: false});
+    this._close();
     this.focusOnInput = false;
   },
 
   render() {
     let {
+      anchorOrigin,
       animated,
       style,
       errorStyle,
@@ -94,8 +106,11 @@ const AutoComplete = React.createClass({
       menuProps,
       listStyle,
       showAllItems,
+      targetOrigin,
       ...other,
     } = this.props;
+
+    const {open, anchorEl} = this.state;
 
     let styles = {
       root: {
@@ -108,8 +123,6 @@ const AutoComplete = React.createClass({
       error: {
       },
       menu: {
-        top: this.props.floatingLabelText ? 64 : 40,
-        left: 0,
         width: '100%',
       },
       list: {
@@ -155,19 +168,17 @@ const AutoComplete = React.createClass({
 
     this.requestsList = requestsList;
 
-    let menu = this.state.open && (this.state.searchText !== '' || showAllItems)
+    let menu = open && (this.state.searchText !== '' || showAllItems)
                && requestsList.length > 0 ? (
       <Menu
         {...menuProps}
         ref="menu"
         key="dropDownMenu"
-        animated={animated}
         autoWidth={false}
+        onEscKeyDown={this._close}
         initiallyKeyboardFocused={false}
-        onEscKeyDown={() => this.setState({open: false})}
         onItemTouchTap={this._handleItemTouchTap}
         listStyle={this.mergeAndPrefix(styles.list, listStyle)}
-        openDirection="bottom-left"
         style={mergedMenuStyles}>
         {
           requestsList.map((request, index) => {
@@ -201,6 +212,11 @@ const AutoComplete = React.createClass({
       </Menu>
     ) : null;
 
+    let popoverStyle;
+    if (anchorEl && fullWidth) {
+      popoverStyle = {width: anchorEl.clientWidth};
+    }
+
     return (
       <div style={mergedRootStyles}
         onKeyDown={this._handleKeyDown}>
@@ -214,7 +230,7 @@ const AutoComplete = React.createClass({
             value={this.state.searchText}
             onEnterKeyDown={() => {
               setTimeout(() => {
-                this.setState({open: false});
+                this._close();
               }, this.props.touchTapCloseDelay);
               this.props.onNewRequest(this.state.searchText);
             }}
@@ -223,11 +239,11 @@ const AutoComplete = React.createClass({
               this._updateRequests(searchText);
             }}
             onBlur={() => {
-              if (this.focusOnInput && this.state.open)
+              if (this.focusOnInput && open)
                 this.refs.searchTextField.focus();
             }}
             onFocus={() => {
-              if (!this.state.open && ( showAllItems ||
+              if (!open && ( showAllItems ||
                   this.props.updateWhenFocused || this.state.searchText !== '')) {
                 this._updateRequests(this.state.searchText);
               }
@@ -236,9 +252,32 @@ const AutoComplete = React.createClass({
 
             {...textFieldProps} />
         </div>
-        <ReactTransitionGroup>{menu}</ReactTransitionGroup>
+        <Popover
+          style={popoverStyle}
+          anchorOrigin={anchorOrigin}
+          targetOrigin={targetOrigin}
+          open={open}
+          anchorEl={anchorEl}
+          useLayerForClickAway={false}
+          onRequestClose={this._close}>
+            {menu}
+        </Popover>
       </div>
     );
+  },
+
+  _open() {
+    this.setState({
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+    });
+  },
+
+  _close() {
+    this.setState({
+      open: false,
+      anchorEl: null,
+    });
   },
 
   setValue(textValue) {
@@ -256,6 +295,7 @@ const AutoComplete = React.createClass({
     this.setState({
       searchText: searchText,
       open: true,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
     });
 
     this.focusOnInput = true;
@@ -266,7 +306,7 @@ const AutoComplete = React.createClass({
 
   _handleItemTouchTap(e, child) {
     setTimeout(() => {
-      this.setState({open: false});
+      this._close();
     }, this.props.touchTapCloseDelay);
 
     let dataSource = this.props.dataSource;
@@ -293,13 +333,13 @@ const AutoComplete = React.createClass({
   _handleKeyDown(e) {
     switch (e.keyCode) {
       case KeyCode.ESC:
-        this.setState({open: false});
+        this._close();
         break;
       case KeyCode.DOWN:
         if (this.focusOnInput && this.state.open) {
           e.preventDefault();
           this.focusOnInput = false;
-          this.setState({open: true});
+          this._open();
         }
         break;
       default:
