@@ -7,8 +7,10 @@ export default class GetStarted extends React.Component {
   render() {
     let menuItems = [
       {route: '/get-started/prerequisites', text: 'Prerequisites'},
-      {route: '/get-started/installation', text: 'Installation & Usage'},
+      {route: '/get-started/installation', text: 'Installation'},
+      {route: '/get-started/usage', text: 'Usage'},
       {route: '/get-started/examples', text: 'Examples'},
+      {route: '/get-started/community', text: 'Community'},
     ];
 
     return (
