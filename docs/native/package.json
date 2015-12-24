@@ -1,6 +1,6 @@
 {
   "name": "material-ui-docs",
-  "version": "0.14.0-rc2",
+  "version": "0.14.0",
   "description": "Documentation site for material-ui",
   "repository": {
     "type": "git",
