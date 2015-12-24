@@ -147,7 +147,6 @@ const CircularProgress = React.createClass({
       wrapper: {
         width: size,
         height: size,
-        margin: '5px',
         display: 'inline-block',
         transition: Transitions.create('transform', '20s', null, 'linear'),
       },
