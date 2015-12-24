@@ -1,29 +1,8 @@
-import Colors from '../colors';
-import ColorManipulator from '../../utils/color-manipulator';
-import Spacing from '../spacing';
+export {default} from '../baseThemes/lightBaseTheme';
+// import deprecatedExport from '../../utils/deprecatedExport';
 
-/*
- *  Light Theme is the default theme used in material-ui. It is guaranteed to
- *  have all theme variables needed for every component. Variables not defined
- *  in a custom theme will default to these values.
- */
-
-export default {
-  spacing: Spacing,
-  fontFamily: 'Roboto, sans-serif',
-  palette: {
-    primary1Color: Colors.cyan500,
-    primary2Color: Colors.cyan700,
-    primary3Color: Colors.grey400,
-    accent1Color: Colors.pinkA200,
-    accent2Color: Colors.grey100,
-    accent3Color: Colors.grey500,
-    textColor: Colors.darkBlack,
-    alternateTextColor: Colors.white,
-    canvasColor: Colors.white,
-    borderColor: Colors.grey300,
-    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
-    pickerHeaderColor: Colors.cyan500,
-    clockCircleColor: ColorManipulator.fade(Colors.darkBlack, 0.07),
-  },
-};
+// export default deprecatedExport(
+//   lightBaseTheme,
+//   'material-ui/lib/styles/raw-themes/light-raw-theme',
+//   'material-ui/lib/styles/baseThemes/lightBaseTheme'
+// );

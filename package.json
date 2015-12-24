@@ -31,11 +31,12 @@
   "homepage": "http://material-ui.com/",
   "dependencies": {
     "inline-style-prefixer": "^0.5.2",
+    "lodash.merge": "^3.3.2",
     "lodash.throttle": "~3.0.4",
-    "react-addons-transition-group": "^0.14.0",
-    "react-addons-update": "^0.14.0",
     "react-addons-create-fragment": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.0",
+    "react-addons-transition-group": "^0.14.0",
+    "react-addons-update": "^0.14.0",
     "warning": "^2.1.0"
   },
   "peerDependencies": {
