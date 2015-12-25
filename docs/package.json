@@ -13,26 +13,31 @@
     "build": "webpack --config webpack-production.config.js --progress --colors --profile",
     "prd": "webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
     "css-loader": "^0.23.0",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.13.0",
     "highlight.js": "^9.0.0",
     "history": "1.13.x",
+    "html-webpack-plugin": "^1.6.1",
     "intl": "^1.0.1",
     "marked": "^0.3.5",
-    "react-addons-perf": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "react-motion": "^0.3.1",
-    "react-router": "1.0.2",
-    "react-swipeable-views": "^0.3.0",
-    "style-loader": "0.13.0"
-  },
-  "devDependencies": {
     "raw-loader": "^0.5.1",
     "react": "^0.14.0",
     "react-addons-linked-state-mixin": "^0.14.0",
+    "react-addons-perf": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.3",
     "react-docgen": "^2.4.0",
+    "react-dom": "^0.14.0",
+    "react-hot-loader": "^1.2.8",
+    "react-motion": "^0.3.1",
+    "react-router": "1.0.2",
+    "react-swipeable-views": "^0.3.0",
     "recast": "^0.10.39",
+    "style-loader": "0.13.0",
+    "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   }
