@@ -4,8 +4,6 @@
 /* hightlight.js for syntax highlighting */
 @import "github.css";
 
-@import "codemirror.css";
-
 a {
   color: #ff4081;
   text-decoration: none;
