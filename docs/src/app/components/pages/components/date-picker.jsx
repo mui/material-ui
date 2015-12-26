@@ -243,6 +243,11 @@ export default class DatePickerPage extends React.Component {
             onChange={this._handleChange.bind(this)} />
 
           <DatePicker
+            hintText="With Disabled Dates"
+            maxDate={new Date()}
+            onChange={this._handleChange.bind(this)} />
+
+          <DatePicker
             hintText="Ranged Date Picker"
             autoOk={this.state.autoOk}
             minDate={this.state.minDate}

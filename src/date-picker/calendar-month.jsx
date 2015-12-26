@@ -34,6 +34,14 @@ const CalendarMonth = React.createClass({
     return this._selectedDateDisabled;
   },
 
+  isDateDisabled(day) {
+    if (day === null) return false;
+    let disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
+    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
+
+    return disabled;
+  },
+
   _getWeekElements() {
     let weekArray = DateTime.getWeekArray(this.props.displayDate);
 
@@ -49,16 +57,11 @@ const CalendarMonth = React.createClass({
   _getDayElements(week, i) {
     return week.map((day, j) => {
       let isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
-      let disabled = this._shouldDisableDate(day);
+      let disabled = this.isDateDisabled(day);
       let selected = !disabled && isSameDate;
 
       if (isSameDate) {
-        if (disabled) {
-          this._selectedDateDisabled = true;
-        }
-        else {
-          this._selectedDateDisabled = false;
-        }
+        this._selectedDateDisabled = disabled;
       }
 
       return (
@@ -74,14 +77,6 @@ const CalendarMonth = React.createClass({
 
   _handleDayTouchTap(e, date) {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
-  },
-
-  _shouldDisableDate(day) {
-    if (day === null) return false;
-    let disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
-    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
-
-    return disabled;
   },
 
 });
