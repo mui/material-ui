@@ -10,12 +10,15 @@
   "scripts": {
     "prestart": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
     "start": "open http://localhost:3000",
-    "build": "webpack --config webpack-production.config.js --progress --colors --profile",
-    "prd": "webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
+    "build": "NODE_ENV=production webpack --config webpack-production.config.js --progress --colors --profile",
+    "prd": "NODE_ENV=production webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^4.1.6",
+    "babel-plugin-transform-react-constant-elements": "^6.3.13",
+    "babel-plugin-transform-react-inline-elements": "^6.3.13",
+    "babel-plugin-transform-runtime": "^6.3.13",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.13.0",
