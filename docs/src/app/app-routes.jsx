@@ -10,10 +10,10 @@ import Master from './components/master';
 import Home from './components/pages/home';
 
 import GetStarted from './components/pages/get-started';
-import Prerequisites from './components/pages/get-started/prerequisites';
-import Installation from './components/pages/get-started/installation';
+import Prerequisites from './components/pages/get-started/Prerequisites';
+import Installation from './components/pages/get-started/Installation';
 import Usage from './components/pages/get-started/Usage';
-import Examples from './components/pages/get-started/examples';
+import Examples from './components/pages/get-started/Examples';
 import Community from './components/pages/get-started/Community';
 
 import Customization from './components/pages/customization';
