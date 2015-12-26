@@ -6,16 +6,24 @@
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
   },
+  "engines": {
+    "node": ">=4"
+  },
   "private": true,
   "scripts": {
-    "prestart": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
-    "start": "open http://localhost:3000",
-    "build": "webpack --config webpack-production.config.js --progress --colors --profile",
-    "prd": "webpack-dev-server --config webpack-production.config.js --progress --colors --profile"
+    "start": "npm run browser:development",
+    "browser:development": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
+    "browser:build": "NODE_ENV=production webpack --config webpack-production.config.js --progress --colors --profile",
+    "browser:prd": "NODE_ENV=production webpack-dev-server --config webpack-production.config.js --progress --colors --profile",
+    "native:development": "node_modules/react-native/packager/packager.sh --reset-cache",
+    "android:setup-port": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^4.1.6",
+    "babel-plugin-transform-react-constant-elements": "^6.3.13",
+    "babel-plugin-transform-react-inline-elements": "^6.3.13",
+    "babel-plugin-transform-runtime": "^6.3.13",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.13.0",
@@ -33,6 +41,7 @@
     "react-dom": "^0.14.0",
     "react-hot-loader": "^1.2.8",
     "react-motion": "^0.3.1",
+    "react-native": "^0.17.0",
     "react-router": "1.0.2",
     "react-swipeable-views": "^0.3.0",
     "recast": "^0.10.39",

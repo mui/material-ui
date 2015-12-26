@@ -1,0 +1,11 @@
+{
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-runtime",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    }
+  }
+}
