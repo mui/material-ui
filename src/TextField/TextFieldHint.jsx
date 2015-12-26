@@ -21,7 +21,7 @@ const propTypes = {
   /**
    * The hint text displayed.
    */
-  text: React.PropTypes.string,
+  text: React.PropTypes.node,
 };
 
 const defaultProps = {
