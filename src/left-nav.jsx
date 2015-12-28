@@ -351,14 +351,13 @@ const LeftNav = React.createClass({
         );
     }
     return (
-      <div>
+      <div className={className}>
         {overlay}
         <Paper
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
           transitionEnabled={!this.state.swiping}
-          className={className}
           style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
             {header}
             {children}
