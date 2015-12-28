@@ -32,7 +32,7 @@ import DatePicker from './components/pages/components/date-picker';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
-import GridList from './components/pages/components/grid-list';
+import GridListPage from './components/pages/components/GridList/Page';
 import Icons from './components/pages/components/icons';
 import IconButtons from './components/pages/components/icon-buttons';
 import IconMenus from './components/pages/components/icon-menus';
@@ -93,7 +93,7 @@ const AppRoutes = (
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
-      <Route path="grid-list" component={GridList} />
+      <Route path="grid-list" component={GridListPage} />
       <Route path="icons" component={Icons} />
       <Route path="icon-buttons" component={IconButtons} />
       <Route path="icon-menus" component={IconMenus} />

@@ -14,9 +14,24 @@ const GridList = React.createClass({
   },
 
   propTypes: {
+    /**
+     * Number of px for one cell height.
+     */
     cellHeight: React.PropTypes.number,
+
+    /**
+     * Grid Tiles that will be in Grid List.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Number of columns.
+     */
     cols: React.PropTypes.number,
+
+    /**
+     * Number of px for the padding/spacing between items.
+     */
     padding: React.PropTypes.number,
 
     /**
