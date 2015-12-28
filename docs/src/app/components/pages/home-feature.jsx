@@ -43,8 +43,8 @@ let HomeFeature = React.createClass({
       rootWhenMedium: {
         float: 'left',
         width: '33%',
-        marginRight: '4px',
-        marginBottom: '0px',
+        marginRight: 4,
+        marginBottom: 0,
       },
       image: {
         //Not sure why this is needed but it fixes a display
@@ -52,27 +52,27 @@ let HomeFeature = React.createClass({
         marginBottom: -6,
       },
       heading: {
-        fontSize: '20px',
+        fontSize: 20,
         paddingTop: 19,
-        marginBottom: '13',
+        marginBottom: 13,
         letterSpacing: 0,
         fontWeight: Typography.fontWeightMedium,
         color: Typography.textDarkBlack,
         backgroundColor: Colors.grey200,
         textAlign: 'center',
-        margin: '0px',
-        padding: '0px',
+        margin: 0,
+        padding: 0,
         lineHeight: desktopKeylineIncrement + 'px',
       },
       rootWhenLastChild: {
-        marginBottom: '0px',
+        marginBottom: 0,
       },
       rootWhenMediumAndLastChild: {
-        marginRight: '0px',
-        marginBottom: '0px',
+        marginRight: 0,
+        marginBottom: 0,
       },
       rootWhenMediumAndFirstChild: {
-        marginLeft: '0px',
+        marginLeft: 0,
       },
     };
 

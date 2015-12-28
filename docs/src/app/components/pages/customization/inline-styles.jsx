@@ -10,19 +10,19 @@ const InlineStyles = React.createClass({
   getStyles() {
     return {
       headline: {
-        fontSize: '24px',
+        fontSize: 24,
         lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px',
+        paddingTop: 16,
+        marginBottom: 12,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
         color: Typography.textDarkBlack,
       },
       title: {
-        fontSize: '20px',
+        fontSize: 20,
         lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
+        paddingTop: 19,
+        marginBottom: 13,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
         color: Typography.textDarkBlack,
@@ -121,8 +121,6 @@ const InlineStyles = React.createClass({
           in a CSS class. Take a look at a component&#39;s <code>getStyles
           </code> function to see what properties are defined inline.
         </p>
-
-
       </div>
     );
   },

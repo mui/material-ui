@@ -1,31 +1,28 @@
 import React from 'react';
 import AppLeftNav from './app-left-nav';
 import FullWidthSection from './full-width-section';
-import {AppBar,
-      AppCanvas,
-      IconButton,
-      EnhancedButton,
-      Mixins,
-      Styles,
-      Tab,
-      Tabs,
-      Paper} from 'material-ui';
+import AppBar from 'material-ui/lib/app-bar';
+import AppCanvas from 'material-ui/lib/app-canvas';
+import IconButton from 'material-ui/lib/icon-button';
+import EnhancedButton from 'material-ui/lib/enhanced-button';
+import Paper from 'material-ui/lib/paper';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
+import {StylePropable} from 'material-ui/lib/mixins';
 
-const {StylePropable} = Mixins;
-const {Colors, Spacing, Typography} = Styles;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.lightBaseTheme;
-
+import {
+  Colors,
+  Spacing,
+  Typography,
+  getMuiTheme,
+} from 'material-ui/lib/styles';
 
 const Master = React.createClass({
   mixins: [StylePropable],
 
   getInitialState() {
-    let muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
-    // To switch to RTL...
-    // muiTheme.isRtl = true;
     return {
-      muiTheme,
+      muiTheme: getMuiTheme(),
     };
   },
 
