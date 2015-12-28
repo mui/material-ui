@@ -10,6 +10,8 @@ import DatePickerExampleInline from './ExampleInline';
 import datePickerExampleInlineCode from '!raw!./ExampleInline';
 import DatePickerExampleToggle from './ExampleToggle';
 import datePickerExampleToggleCode from '!raw!./ExampleToggle';
+import DatePickerExampleControlled from './ExampleControlled';
+import datePickerExampleControlledCode from '!raw!./ExampleControlled';
 import DatePickerExampleInternational from './ExampleInternational';
 import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import datePickerReadmeText from './README';
@@ -30,6 +32,9 @@ const DatePickerPage = () => (
     </CodeExample>
     <CodeExample code={datePickerExampleToggleCode}>
       <DatePickerExampleToggle/>
+    </CodeExample>
+    <CodeExample code={datePickerExampleControlledCode}>
+      <DatePickerExampleControlled/>
     </CodeExample>
     <CodeExample code={datePickerExampleInternationalCode}>
       <DatePickerExampleInternational/>

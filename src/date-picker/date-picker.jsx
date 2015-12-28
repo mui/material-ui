@@ -128,7 +128,7 @@ const DatePicker = React.createClass({
     /**
      *  Enables the year selection in the date picker.
      */
-    showYearSelector: deprecated(React.PropTypes.element,
+    showYearSelector: deprecated(React.PropTypes.bool,
           'Instead, use disableYearSelection.'),
 
     /**
