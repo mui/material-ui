@@ -28,7 +28,7 @@ import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
 import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
-import DatePicker from './components/pages/components/date-picker';
+import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
