@@ -1,13 +1,11 @@
 import React from 'react';
 import {History} from 'react-router';
-import {Mixins, RaisedButton, Styles} from 'material-ui';
 import HomeFeature from './home-feature';
 import FullWidthSection from '../full-width-section';
 
-const {StylePropable, StyleResizable} = Mixins;
-const {Colors, Spacing, Typography} = Styles;
-const DefaultRawTheme = Styles.lightBaseTheme;
-
+import RaisedButton from 'material-ui/lib/raised-button';
+import {StylePropable, StyleResizable} from 'material-ui/lib/mixins';
+import {Colors, Spacing, Typography, lightBaseTheme} from 'material-ui/lib/styles';
 
 const HomePage = React.createClass({
 
@@ -39,8 +37,9 @@ const HomePage = React.createClass({
         overflow: 'hidden',
       },
       svgLogo: {
-        marginLeft: (window.innerWidth * 0.5) - 130 + 'px',
+        marginLeft: window.innerWidth * 0.5 - 130,
         width: 420,
+        height: 157,
       },
       tagline: {
         margin: '16px auto 0 auto',
@@ -48,7 +47,7 @@ const HomePage = React.createClass({
         maxWidth: 575,
       },
       label: {
-        color: DefaultRawTheme.palette.primary1Color,
+        color: lightBaseTheme.palette.primary1Color,
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',
@@ -152,7 +151,7 @@ const HomePage = React.createClass({
   },
 
   _getHomeFeatures() {
-    let styles = {maxWidth: '906px'};
+    let styles = {maxWidth: 906};
     return (
       <FullWidthSection useContent={true} contentStyle={styles}>
         <HomeFeature

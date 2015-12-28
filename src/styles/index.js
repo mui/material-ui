@@ -17,6 +17,7 @@ export {Spacing};
 export {ThemeManager};
 export {Transitions};
 export {Typography};
+export {lightBaseTheme};
 export {LightRawTheme};
 export {DarkRawTheme};
 export {ThemeDecorator};
