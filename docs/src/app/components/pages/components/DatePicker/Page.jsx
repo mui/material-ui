@@ -20,22 +20,22 @@ if (!window.Intl) {
 }
 
 const DatePickerPage = () => (
-    <div>
-      <MarkdownElement text={datePickerReadmeText} />
-      <CodeExample code={datePickerExampleSimpleCode}>
-        <DatePickerExampleSimple/>
-      </CodeExample>
-      <CodeExample code={datePickerExampleInlineCode}>
-        <DatePickerExampleInline/>
-      </CodeExample>
-      <CodeExample code={datePickerExampleToggleCode}>
-        <DatePickerExampleToggle/>
-      </CodeExample>
-      <CodeExample code={datePickerExampleInternationalCode}>
-        <DatePickerExampleInternational/>
-      </CodeExample>
-      <PropTypeDescription code={datePickerCode} />
-    </div>
+  <div>
+    <MarkdownElement text={datePickerReadmeText} />
+    <CodeExample code={datePickerExampleSimpleCode}>
+      <DatePickerExampleSimple/>
+    </CodeExample>
+    <CodeExample code={datePickerExampleInlineCode}>
+      <DatePickerExampleInline/>
+    </CodeExample>
+    <CodeExample code={datePickerExampleToggleCode}>
+      <DatePickerExampleToggle/>
+    </CodeExample>
+    <CodeExample code={datePickerExampleInternationalCode}>
+      <DatePickerExampleInternational/>
+    </CodeExample>
+    <PropTypeDescription code={datePickerCode} />
+  </div>
 );
 
 export default DatePickerPage;

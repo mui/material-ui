@@ -82,7 +82,7 @@ export default class DatePickerExampleToggle extends React.Component {
   }
 
   _handleToggle = (event, toggled) => {
-    let state = {};
+    const state = {};
     state[event.target.name] = toggled;
     this.setState(state);
   }
