@@ -9,6 +9,7 @@ import lightBaseTheme from './baseThemes/lightBaseTheme';
 import DarkRawTheme from './raw-themes/dark-raw-theme';
 import darkBaseTheme from './baseThemes/darkBaseTheme';
 import ThemeDecorator from './theme-decorator';
+import getMuiTheme from './getMuiTheme';
 import ZIndex from './zIndex';
 
 export {AutoPrefix};
@@ -21,6 +22,7 @@ export {lightBaseTheme};
 export {LightRawTheme};
 export {DarkRawTheme};
 export {ThemeDecorator};
+export {getMuiTheme};
 export {ZIndex};
 
 export default {
@@ -35,5 +37,6 @@ export default {
   darkBaseTheme,
   DarkRawTheme,
   ThemeDecorator,
+  getMuiTheme,
   ZIndex,
 };

@@ -14,18 +14,15 @@ import {
   Colors,
   Spacing,
   Typography,
-  ThemeManager,
+  getMuiTheme,
 } from 'material-ui/lib/styles';
 
 const Master = React.createClass({
   mixins: [StylePropable],
 
   getInitialState() {
-    let muiTheme = ThemeManager.getMuiTheme();
-    // To switch to RTL...
-    // muiTheme.isRtl = true;
     return {
-      muiTheme,
+      muiTheme: getMuiTheme(),
     };
   },
 
