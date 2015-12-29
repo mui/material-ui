@@ -15,23 +15,71 @@ const GridTile = React.createClass({
   },
 
   propTypes: {
+
+    /**
+     * An IconButton element to be used as secondary action target
+     * (primary action target is the tile itself).
+     */
     actionIcon: React.PropTypes.element,
+
+    /**
+     * Position of secondary action IconButton.
+     */
     actionPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Theoretically you can pass any node as children, but the main use case is to pass an img,
+     * in whichcase GridTile takes care of making the image "cover" available space
+     * (similar to background-size: cover or to object-fit:cover).
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Width of the tile in number of grid cells.
+     */
     cols: React.PropTypes.number,
+
+    /**
+     * Either a string used as tag name for the tile root element, or a ReactComponent.
+     * This is useful when you have, for example, a custom implementation of
+     * a navigation link (that knowsabout your routes) and you want to use it as primary tile action.
+     * In case you pass a ReactComponent, please make sure that it passes all props,
+     * accepts styles overrides and render it's children.
+     */
     rootClass: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.object,
     ]),
+
+    /**
+     * Height of the tile in number of grid cells.
+     */
     rows: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * String or element serving as subtitle (support text).
+     */
     subtitle: React.PropTypes.node,
+
+    /**
+     * Title to be displayed on tile.
+     */
     title: React.PropTypes.node,
+
+    /**
+     * Style used for title bar background.
+     * Useful for setting custom gradients for example
+     */
     titleBackground: React.PropTypes.string,
+
+    /**
+     * Position of the title bar (container of title, subtitle and action icon).
+     */
     titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
   },
 
