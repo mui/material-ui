@@ -313,6 +313,8 @@ const LeftNav = React.createClass({
       overlayStyle,
       selectedIndex,
       style,
+      containerClassName,
+      containerStyle
     } = this.props;
 
     const styles = this.getStyles();
@@ -351,14 +353,17 @@ const LeftNav = React.createClass({
         );
     }
     return (
-      <div className={className}>
-        {overlay}
+      <div 
+        className={className}
+        style={style}>
+          {overlay}
         <Paper
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
           transitionEnabled={!this.state.swiping}
-          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
+          containerClassName={containerClassName}
+          containerStyle={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight)}>
             {header}
             {children}
         </Paper>
