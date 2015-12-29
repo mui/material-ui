@@ -31,7 +31,7 @@ import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import Icons from './components/pages/components/icons';
-import IconButtons from './components/pages/components/icon-buttons';
+import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenus from './components/pages/components/icon-menus';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
 import Lists from './components/pages/components/lists';
@@ -92,7 +92,7 @@ const AppRoutes = (
       <Route path="dropdown-menu" component={DropDownMenuPage} />
       <Route path="grid-list" component={GridListPage} />
       <Route path="icons" component={Icons} />
-      <Route path="icon-buttons" component={IconButtons} />
+      <Route path="icon-button" component={IconButtonPage} />
       <Route path="icon-menus" component={IconMenus} />
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="lists" component={Lists} />
