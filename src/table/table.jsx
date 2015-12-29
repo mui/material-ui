@@ -250,7 +250,7 @@ const Table = React.createClass({
         this.props.onRowSelection('none');
       }
     }
-  
+
     this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 

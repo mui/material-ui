@@ -4,8 +4,9 @@ import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 import ThemeManager  from 'material-ui/lib/styles/theme-manager';
 import Colors        from 'material-ui/lib/styles/colors';
 
-const { RaisedButton, Dialog,
-    Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } = MUI;
+import Tabela        from './tabela';
+
+const { RaisedButton, Dialog, FontIcon } = MUI;
 
 export default React.createClass({
 
@@ -57,25 +58,11 @@ export default React.createClass({
 
                 <hr />
 
-                <Table fixedHeader={true} multiSelectable={true} selectable={true} onRowSelection={this._handleRowSelect}>
-                    <TableHeader enableSelectAll={true} displaySelectAll={true}>
-                        <TableRow>
-                            <TableHeaderColumn key={0}>H1</TableHeaderColumn>
-                            <TableHeaderColumn key={1}>H2</TableHeaderColumn>
-                            <TableHeaderColumn key={2}>H3</TableHeaderColumn>
-                            <TableHeaderColumn key={3}>H4</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody deselectOnClickaway={false} showRowHover={true} displayRowCheckbox={true}>
-                        { [1,2,3,4].map(function(e, i) {
-                            return (<TableRow key={i} selectable={true}>
-                                { [1,2,3,4].map(function(e, j) {
-                                    return (<TableRowColumn key={j}>{'C' + j}</TableRowColumn>);
-                                }) }
-                            </TableRow>);
-                        }) }
-                    </TableBody>
-                </Table>
+                <RaisedButton label="Botão com ícone" primary={true}>
+                    <FontIcon className="material-icons">person</FontIcon>
+                </RaisedButton>
+
+                {/*<Tabela />*/}
             </div>
             );
     },
