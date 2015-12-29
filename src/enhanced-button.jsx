@@ -195,9 +195,12 @@ const EnhancedButton = React.createClass({
     };
     const buttonChildren = this._createButtonChildren();
 
+    // Provides backward compatibity. Added to support wrapping around <a> element.
+    const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
+
     return React.isValidElement(containerElement) ?
       React.cloneElement(containerElement, buttonProps, buttonChildren) :
-      React.createElement(linkButton ? 'a' : containerElement, buttonProps, buttonChildren);
+      React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
 
   },
 
