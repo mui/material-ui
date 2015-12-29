@@ -36,6 +36,7 @@ const SelectField = React.createClass({
     floatingLabelText: React.PropTypes.node,
     fullWidth: React.PropTypes.bool,
     hintText: React.PropTypes.node,
+    hintStyle: React.PropTypes.object,
     iconStyle: React.PropTypes.object,
     labelMember: React.PropTypes.string, //DEPRECATE
     labelStyle: React.PropTypes.object, //DEPRECATE
@@ -122,6 +123,7 @@ const SelectField = React.createClass({
       floatingLabelText,
       floatingLabelStyle,
       hintText,
+      hintStyle,
       fullWidth,
       errorText,
       onFocus,
@@ -137,6 +139,7 @@ const SelectField = React.createClass({
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
         hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
+        hintStyle={hintStyle}
         fullWidth={fullWidth}
         errorText={errorText}
         underlineStyle={underlineStyle}
