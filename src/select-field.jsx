@@ -131,30 +131,6 @@ const SelectField = React.createClass({
       ...other,
     } = this.props;
 
-<<<<<<< HEAD
-=======
-    const textFieldProps = {
-      style: this.mergeAndPrefix(styles.input, style),
-      floatingLabelText: floatingLabelText,
-      floatingLabelStyle: floatingLabelStyle,
-      hintText: (!hintText && !floatingLabelText) ? ' ' : hintText,
-      fullWidth: fullWidth,
-      errorText: errorText,
-      errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
-      onFocus: onFocus,
-      onBlur: onBlur,
-    };
-    const dropDownMenuProps = {
-      menuItems: menuItems,
-      disabled: disabled,
-      style: this.mergeAndPrefix(styles.root, selectFieldRoot),
-      labelStyle: this.mergeAndPrefix(styles.label, labelStyle),
-      iconStyle: this.mergeAndPrefix(styles.icon, iconStyle),
-      underlineStyle: this.mergeAndPrefix(styles.underline, underlineStyle),
-      autoWidth: true,
-    };
-
->>>>>>> 4a27f61
     return (
       <TextField
         style={style}

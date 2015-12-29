@@ -11,8 +11,6 @@
     "prebuild": "rimraf lib",
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "build": "babel ./src --out-dir ./lib",
-    "watch": "babel ./src --out-dir ./lib --watch",
-    "watch-dev": "babel ./src --out-dir ./dev/src/lib --watch",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -24,11 +22,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gfelizola/material-ui.git"
+    "url": "https://github.com/callemall/material-ui.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gfelizola/material-ui/issues"
+    "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
