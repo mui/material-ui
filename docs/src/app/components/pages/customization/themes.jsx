@@ -1,6 +1,6 @@
 import React from 'react';
 import mui from 'material-ui';
-import CodeBlock from '../../code-example/code-block';
+import CodeBlock from '../../CodeExample/CodeBlock';
 import ComponentDoc from '../../component-doc';
 
 const {
@@ -30,8 +30,8 @@ const {
 const {StylePropable, StyleResizable} = Mixins;
 const {Typography} = Styles;
 const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
-const DarkRawTheme = Styles.DarkRawTheme;
+const DefaultRawTheme = Styles.lightBaseTheme;
+const DarkRawTheme = Styles.darkBaseTheme;
 
 const ThemesPage = React.createClass({
 

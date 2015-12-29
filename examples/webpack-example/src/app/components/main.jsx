@@ -6,17 +6,12 @@ import Dialog from 'material-ui/lib/dialog';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 import Colors from 'material-ui/lib/styles/colors';
+import FlatButton from 'material-ui/lib/flat-button';
 
 const containerStyle = {
   textAlign: 'center',
   paddingTop: 200,
 };
-
-const standardActions = [
-  {
-    text: 'Okay',
-  },
-];
 
 const Main = React.createClass({
 
@@ -27,6 +22,7 @@ const Main = React.createClass({
   getInitialState() {
     return {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+      open: false,
     };
   },
 
@@ -57,6 +53,14 @@ const Main = React.createClass({
   },
 
   render() {
+    const standardActions = (
+      <FlatButton
+        label="Okey"
+        secondary={true}
+        onTouchTap={this._handleRequestClose}
+      />
+    );
+
     return (
       <div style={containerStyle}>
         <Dialog

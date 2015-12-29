@@ -4,6 +4,7 @@ import Menu from 'menus/menu';
 import MenuItem from 'menus/menu-item';
 import Divider from 'divider';
 import ComponentDoc from '../../component-doc';
+import FontIcon from 'font-icon';
 
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ContentCopy from 'material-ui/svg-icons/content/content-copy';
@@ -13,8 +14,8 @@ import Download from 'material-ui/svg-icons/file/file-download';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import Code from 'menus-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 
 export default class MenusPage extends React.Component {
 
@@ -353,6 +354,17 @@ import Divider from 'material-ui/lib/menus/menu-divider';
             <MenuItem primaryText="Grid lines" checked={true} />
             <MenuItem primaryText="Page breaks" insetChildren={true} />
             <MenuItem primaryText="Rules" checked={true} />
+          </Menu>
+
+          <Menu style={styles.menu} desktop={false}>
+            <MenuItem primaryText="Clear Config" />
+            <MenuItem primaryText="New Config" rightIcon={<PersonAdd />} />
+            <MenuItem primaryText="Project" rightIcon={<FontIcon className="material-icons">settings</FontIcon>}/>
+            <MenuItem primaryText="Workspace" rightIcon={
+              <FontIcon className="material-icons" style={{color: '#559'}}>settings</FontIcon>
+              }/>
+            <MenuItem primaryText="Paragraph" rightIcon={<b style={{paddingTop: 0}}>¶</b>} />
+            <MenuItem primaryText="Section" rightIcon={<b style={{paddingTop: 0}}>§</b>} />
           </Menu>
         </CodeExample>
       </ComponentDoc>

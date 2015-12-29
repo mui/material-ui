@@ -2,10 +2,24 @@ import React from 'react';
 import {parse} from 'react-docgen';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import MarkdownElement from './MarkdownElement';
+import recast from 'recast';
 
 require('./prop-type-description.css');
 
-const deprecatedPropType = 'deprecated(React.PropTypes.';
+function getDeprecatedInfo(type) {
+  const deprecatedPropType = 'deprecated(React.PropTypes.';
+
+  const indexStart = type.raw.indexOf(deprecatedPropType);
+
+  if (indexStart !== -1) {
+    return {
+      propTypes: type.raw.substring(indexStart + deprecatedPropType.length, type.raw.indexOf(',')),
+      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+    };
+  }
+
+  return false;
+}
 
 function generatePropType(type) {
   switch (type.name) {
@@ -13,11 +27,11 @@ function generatePropType(type) {
       return 'function';
 
     case 'custom':
-      const indexStart = type.raw.indexOf(deprecatedPropType);
-      if (indexStart !== -1) {
+      const deprecatedInfo = getDeprecatedInfo(type);
+
+      if (deprecatedInfo !== false) {
         return generatePropType({
-          name: type.raw.substring(indexStart +
-            deprecatedPropType.length, type.raw.indexOf(',')),
+          name: deprecatedInfo.propTypes,
         });
       }
 
@@ -30,6 +44,26 @@ function generatePropType(type) {
     default:
       return type.name;
   }
+}
+
+function generateDescription(required, description, type) {
+  let deprecated = '';
+
+  if (type.name === 'custom') {
+    const deprecatedInfo = getDeprecatedInfo(type);
+
+    if (deprecatedInfo !== false) {
+      deprecated = `**DEPRECATED**. ${deprecatedInfo.explanation}<br><br>`;
+    }
+  }
+
+  const requirement = `${required ? '**required**' : '*optional*'}.`;
+
+  // two new lines result in a newline in the table. all other new lines
+  // must be eliminated to prevent markdown mayhem.
+  const jsDocText = description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
+
+  return `${deprecated} ${requirement} ${jsDocText}`;
 }
 
 const PropTypeDescription = React.createClass({
@@ -66,13 +100,7 @@ const PropTypeDescription = React.createClass({
         defaultValue = prop.defaultValue.value;
       }
 
-      const requirement = `${prop.required ? '**required**' : '*optional*'}.`;
-
-      // two new lines result in a newline in the table. all other new lines
-      // must be eliminated to prevent markdown mayhem.
-      const jsDocText = prop.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
-
-      const description = `${requirement} ${jsDocText}`;
+      const description = generateDescription(prop.required, prop.description, prop.type);
 
       text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }

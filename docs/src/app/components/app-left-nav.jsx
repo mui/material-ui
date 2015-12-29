@@ -1,21 +1,18 @@
 import React from 'react';
-import {
-  LeftNav,
-  Mixins,
-  Styles,
-} from 'material-ui';
-
+import LeftNav from 'material-ui/lib/left-nav';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
-import {SelectableContainerEnhance} from 'material-ui/hoc/selectable-enhance';
+import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
 
-const {Colors, Spacing, Typography} = Styles;
-const {StylePropable} = Mixins;
+import {Colors, Spacing, Typography} from 'material-ui/lib/styles';
+import {StylePropable} from 'material-ui/lib/mixins';
 const SelectableList = SelectableContainerEnhance(List);
 
 const AppLeftNav = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   propTypes: {
     history: React.PropTypes.object,

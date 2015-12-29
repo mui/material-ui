@@ -39,7 +39,7 @@ let PageWithNav = React.createClass({
     let subNavWidth = Spacing.desktopKeylineIncrement * 3 + 'px';
     let styles = {
       root: {
-        paddingTop: Spacing.desktopKeylineIncrement + 'px',
+        paddingTop: Spacing.desktopKeylineIncrement,
       },
       rootWhenMedium: {
         position: 'relative',
@@ -53,8 +53,8 @@ let PageWithNav = React.createClass({
       },
       content: {
         boxSizing: 'border-box',
-        padding: Spacing.desktopGutter + 'px',
-        maxWidth: (Spacing.desktopKeylineIncrement * 14) + 'px',
+        padding: Spacing.desktopGutter,
+        maxWidth: Spacing.desktopKeylineIncrement * 14,
       },
       secondaryNavWhenMedium: {
         borderTop: 'none',

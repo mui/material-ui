@@ -1,5 +1,32 @@
 ## HEAD
 
+## 0.14.0
+###### _Dec 25, 2015_
+
+The chagnes in `0.14.0-rc1` and `o.14.0-rc2` are also included as part of this release.
+Have a look at them as well.
+
+##### General
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [Tabs] (#2515)
+  1. [Snackbar] (#2562)
+  1. [DropDownMenu] (#2565)
+  1. [Card] (#2590)
+- Added the following eslint rules:
+  1. key-spacing (#2552)
+- [SvgIcon] Improved the code generation tasks (#2606)
+- [ES6] Use module everywhere (#2614)
+- Added a temporary bootstrap project for ReactNative to pave the way for ReactNative support (#2611)
+- Clean up CSS classes (#2630)
+
+##### Component Fixes / Enhancements
+- [SelectField] [TextField] Fixed error styling issue (#2539)
+- [TextField] Implemented optional underline (#2476)
+- [AutoComplete] Migrated to use popover (#2634)
+
+##### Deprecations
+- [DropDownMenu] [SelectField] Deprecated `menuItems`, these components are now composable. (#2565)
+
 ## 0.14.0-rc2
 ###### _Dec 15, 2015_
 

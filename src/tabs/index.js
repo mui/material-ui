@@ -1,4 +1,10 @@
+import Tab from './tab';
+import Tabs from './tabs';
+
+export {Tab};
+export {Tabs};
+
 export default {
-  Tab: require('./tab'),
-  Tabs: require('./tabs'),
+  Tab,
+  Tabs,
 };

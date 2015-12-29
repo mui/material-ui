@@ -1,7 +1,9 @@
-import React from 'react/addons';
-import DropDownMenu from 'drop-down-menu';
-import injectTheme from './fixtures/inject-theme';
+import React from 'react';
 import TestUtils from 'react-addons-test-utils';
+import injectTheme from './fixtures/inject-theme';
+
+import DropDownMenu from 'drop-down-menu';
+import MenuItem from 'menus/menu-item';
 
 describe('DropDownMenu', () => {
   let ThemedDropdownMenu;
@@ -11,31 +13,15 @@ describe('DropDownMenu', () => {
   });
 
   it(`displays the text field of menuItems prop at index x when value prop is x`, () => {
-    let menuItems = [
-      {
-        text: 'Text1',
-        payload: 0,
-      },
-      {
-        text: 'Text2',
-        payload: 1,
-      },
-      {
-        text: 'Text3',
-        payload: 2,
-      },
-    ];
-
-    let value = 0;
-    let expectedSelectedText = menuItems[0].text;
-
-    let render = TestUtils.renderIntoDocument(
-      <ThemedDropdownMenu
-        menuItems={menuItems}
-        value={value}/>
+    const render = TestUtils.renderIntoDocument(
+      <ThemedDropdownMenu value={1}>
+        <MenuItem value={1} primaryText="Never" />
+        <MenuItem value={2} primaryText="Every Night" />
+        <MenuItem value={3} primaryText="Weeknights" />
+      </ThemedDropdownMenu>
     );
-    let divWithSelectedText = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div')[1];
+    const divWithSelectedText = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div')[1];
 
-    expect(divWithSelectedText.textContent).to.be.equal(expectedSelectedText);
+    expect(divWithSelectedText.textContent).to.be.equal('Never');
   });
 });

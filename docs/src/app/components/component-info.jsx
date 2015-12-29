@@ -49,13 +49,12 @@ const ComponentInfo = React.createClass({
     let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       root: {
-        //.mui-font-style-subhead-1
-        fontSize: '15px',
+        fontSize: 15,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
         lineHeight: '24px',
-        paddingTop: '3px',
-        marginBottom: '13px',
+        paddingTop: 3,
+        marginBottom: 13,
         color: Typography.textDarkBlack,
         width: '100%',
       },
@@ -73,44 +72,43 @@ const ComponentInfo = React.createClass({
       },
       type: {
         color: Typography.textLightBlack,
-        paddingRight: desktopGutter + 'px',
+        paddingRight: desktopGutter,
       },
       header: {
         paddingTop: '0',
       },
       desc: {
         width: '100%',
-        paddingTop: '48px',
+        paddingTop: 48,
         borderBottom: 'solid 1px ' + borderColor,
       },
       p: {
         margin: '0',
       },
       h3: {
-        //mui-font-style-title
-        fontSize: '20px',
+        fontSize: 20,
         lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
+        paddingTop: 19,
+        marginBottom: 13,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
         color: Typography.textDarkBlack,
       },
       nameWhenMedium: {
         position: 'inherit',
-        paddingRight: desktopGutter + 'px',
+        paddingRight: desktopGutter,
       },
       descWhenMedium: {
-        paddingTop: '16px',
+        paddingTop: 16,
       },
       tdWhenLarge: {
         padding: '32px 0',
       },
       nameWhenLarge: {
-        minWidth: '128px',
+        minWidth: 128,
       },
       descWhenLarge: {
-        paddingTop: '32px',
+        paddingTop: 32,
       },
       descWhenLastChild: {
         borderBottom: 'none',

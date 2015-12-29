@@ -296,10 +296,8 @@ const Slider = React.createClass({
 
     return (
       <div {...others } style={this.prepareStyles(this.props.style)}>
-        <span className="mui-input-highlight"></span>
-        <span className="mui-input-bar"></span>
-        <span className="mui-input-description">{this.props.description}</span>
-        <span className="mui-input-error">{this.props.error}</span>
+        <span>{this.props.description}</span>
+        <span>{this.props.error}</span>
         <div style={sliderStyles}
           onFocus={this._onFocus}
           onBlur={this._onBlur}

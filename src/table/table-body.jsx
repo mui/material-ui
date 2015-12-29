@@ -108,13 +108,10 @@ const TableBody = React.createClass({
       style,
       ...other,
     } = this.props;
-    let classes = 'mui-table-body';
-    if (className) classes += ' ' + className;
-
     let rows = this._createRows();
 
     return (
-      <tbody className={classes} style={this.prepareStyles(style)}>
+      <tbody className={className} style={this.prepareStyles(style)}>
         {rows}
       </tbody>
     );

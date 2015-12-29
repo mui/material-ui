@@ -100,9 +100,6 @@ const TableHeaderColumn = React.createClass({
       tooltipStyle,
       ...other,
     } = this.props;
-    let classes = 'mui-table-header-column';
-    if (className) classes += ' ' + className;
-
     if (this.props.tooltip !== undefined) {
       tooltip = (
         <Tooltip
@@ -115,7 +112,7 @@ const TableHeaderColumn = React.createClass({
     return (
       <th
         key={this.props.key}
-        className={classes}
+        className={className}
         style={this.prepareStyles(styles.root, style)}
         {...handlers}
         {...other}>

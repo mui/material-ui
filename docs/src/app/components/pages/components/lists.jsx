@@ -1,7 +1,7 @@
 import React from 'react';
 import mui from 'material-ui';
 import ComponentDoc from '../../component-doc';
-import MobileTearSheet from '../../mobile-tear-sheet';
+import MobileTearSheet from '../../MobileTearSheet';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ActionInfo from 'material-ui/svg-icons/action/info';
@@ -33,8 +33,8 @@ import MenuItem from 'menus/menu-item';
 
 const {Colors} = Styles;
 import Code from 'lists-code';
-import CodeExample from '../../code-example/code-example';
-import CodeBlock from '../../code-example/code-block';
+import CodeExample from '../../CodeExample';
+import CodeBlock from '../../CodeExample/CodeBlock';
 let SelectableList = SelectableContainerEnhance(List);
 
 const Typography = Styles.Typography;
@@ -493,6 +493,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
                   <ListItem
                     primaryText="Sent Mail"
                     leftIcon={<ContentSend />}
+                    disabled={true}
                     nestedItems={[
                       <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />,
                     ]}
@@ -770,10 +771,12 @@ import ListItem from 'material-ui/lib/lists/list-item';
               <ListItem
                 value={1}
                 primaryText="Brendan Lim"
-                leftAvatar={<Avatar src="images/ok-128.jpg" />} />
-              <ListItem value={2}
-                primaryText="Grace Ng"
-                leftAvatar={<Avatar src="images/uxceo-128.jpg" />} />
+                leftAvatar={<Avatar src="images/ok-128.jpg" />}
+                nestedItems={[
+                  <ListItem value={2}
+                    primaryText="Grace Ng"
+                    leftAvatar={<Avatar src="images/uxceo-128.jpg" />} />,
+                ]} />
               <ListItem value={3}
                 primaryText="Kerem Suer"
                 leftAvatar={<Avatar src="images/kerem-128.jpg" />} />
