@@ -6,6 +6,7 @@ const ListDivider = React.createClass({
 
   getInitialState() {
     warning(false, '<ListDivider /> has been deprecated. Please use the <Divider /> component.');
+    return null;
   },
 
   render() {

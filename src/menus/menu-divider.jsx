@@ -14,6 +14,7 @@ const MenuDivider = React.createClass({
 
   getInitialState() {
     warning(false, '<MenuDivider /> has been deprecated. Please use the <Divider /> component.');
+    return null;
   },
 
   getStyles() {
