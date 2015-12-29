@@ -77,7 +77,7 @@ export const SelectableContainerEnhance = (Component) => {
     },
 
     _extendChild(child, styles, selectedItemStyle) {
-      if (child.type.displayName === 'ListItem') {
+      if (child.type && child.type.displayName === 'ListItem') {
         let selected = this._isChildSelected(child, this.props);
         let selectedChildrenStyles = {};
         if (selected) {

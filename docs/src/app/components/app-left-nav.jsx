@@ -58,21 +58,179 @@ const AppLeftNav = React.createClass({
         </div>
         <SelectableList
           valueLink={{
-            value: this._getSelectedIndex(),
+            value: this.props.location.pathname,
             requestChange: this.handleRequestChangeList,
           }}
         >
           <ListItem
-            value="get-started"
             primaryText="Get Started"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem
+                value="/get-started/prerequisites"
+                primaryText="Prerequisites"
+              />,
+              <ListItem
+                value="/get-started/installation"
+                primaryText="Installation"
+              />,
+              <ListItem
+                value="/get-started/usage"
+                primaryText="Usage"
+              />,
+              <ListItem
+                value="/get-started/examples"
+                primaryText="Examples"
+              />,
+              <ListItem
+                value="/get-started/community"
+                primaryText="Community"
+              />,
+            ]}
           />
           <ListItem
-            value="customization"
             primaryText="Customization"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem
+                value="/customization/themes"
+                primaryText="Themes"
+              />,
+              <ListItem
+                value="/customization/inline-styles"
+                primaryText="Inline Styles"
+              />,
+              <ListItem
+                value="/customization/colors"
+                primaryText="Colors"
+              />,
+            ]}
           />
           <ListItem
-            value="components"
             primaryText="Components"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem
+                value="/components/app-bar"
+                primaryText="App Bar"
+              />,
+              <ListItem
+                value="/components/auto-complete"
+                primaryText="Auto Complete"
+              />,
+              <ListItem
+                value="/components/avatar"
+                primaryText="Avatar"
+              />,
+              <ListItem
+                value="/components/badge"
+                primaryText="Badge"
+              />,
+              <ListItem
+                value="/components/buttons"
+                primaryText="Buttons"
+              />,
+              <ListItem
+                value="/components/card"
+                primaryText="Card"
+              />,
+              <ListItem
+                value="/components/date-picker"
+                primaryText="Date Picker"
+              />,
+              <ListItem
+                value="/components/dialog"
+                primaryText="Dialog"
+              />,
+              <ListItem
+                value="/components/divider"
+                primaryText="Divider"
+              />,
+              <ListItem
+                value="/components/dropdown-menu"
+                primaryText="Dropdown Menu"
+              />,
+              <ListItem
+                value="/components/grid-list"
+                primaryText="Grid List"
+              />,
+              <ListItem
+                value="/components/icons"
+                primaryText="Icons"
+              />,
+              <ListItem
+                value="/components/icon-buttons"
+                primaryText="Icon Buttons"
+              />,
+              <ListItem
+                value="/components/icon-menus"
+                primaryText="Icon Menus"
+              />,
+              <ListItem
+                value="/components/left-nav"
+                primaryText="Left Nav"
+              />,
+              <ListItem
+                value="/components/lists"
+                primaryText="Lists"
+              />,
+              <ListItem
+                value="/components/menus"
+                primaryText="Menus"
+              />,
+              <ListItem
+                value="/components/paper"
+                primaryText="Paper"
+              />,
+              <ListItem
+                value="/components/popover"
+                primaryText="Popover"
+              />,
+              <ListItem
+                value="/components/progress"
+                primaryText="Progress"
+              />,
+              <ListItem
+                value="/components/refresh-indicator"
+                primaryText="Refresh Indicator"
+              />,
+              <ListItem
+                value="/components/select-fields"
+                primaryText="Select Fields"
+              />,
+              <ListItem
+                value="/components/sliders"
+                primaryText="Sliders"
+              />,
+              <ListItem
+                value="/components/switches"
+                primaryText="Switches"
+              />,
+              <ListItem
+                value="/components/snackbar"
+                primaryText="Snackbar"
+              />,
+              <ListItem
+                value="/components/table"
+                primaryText="Table"
+              />,
+              <ListItem
+                value="/components/tabs"
+                primaryText="Tabs"
+              />,
+              <ListItem
+                value="/components/text-fields"
+                primaryText="Text Fields"
+              />,
+              <ListItem
+                value="/components/time-picker"
+                primaryText="Time Picker"
+              />,
+              <ListItem
+                value="/components/toolbars"
+                primaryText="Toolbars"
+              />,
+            ]}
           />
         </SelectableList>
         <Divider />
@@ -101,11 +259,9 @@ const AppLeftNav = React.createClass({
   },
 
   toggle() {
-    this.setState({leftNavOpen: !this.state.leftNavOpen});
-  },
-
-  _getSelectedIndex() {
-    return this.props.location.pathname.split('/')[1];
+    this.setState({
+      leftNavOpen: !this.state.leftNavOpen,
+    });
   },
 
   handleChangeRequestLeftNav(open) {
