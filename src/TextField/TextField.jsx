@@ -240,7 +240,7 @@ const TextField = React.createClass({
       }
 
       if (this.state.errorText) {
-        styles.error.bottom = styles.error.fontSize + 3;
+        styles.error.bottom = 5;
       }
     }
 
