@@ -57,7 +57,6 @@ const TextField = React.createClass({
     onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    ref: React.PropTypes.string,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
 
@@ -302,7 +301,7 @@ const TextField = React.createClass({
 
     inputProps = {
       id: inputId,
-      ref: this._getRef(),
+      ref: 'input',
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
@@ -408,7 +407,7 @@ const TextField = React.createClass({
     }
     else if (this.isMounted()) {
       if (this.props.multiLine) {
-        this.refs[this._getRef()].setValue(newValue);
+        this.refs.input.setValue(newValue);
       }
       else {
         this._getInputNode().value = newValue;
@@ -418,13 +417,9 @@ const TextField = React.createClass({
     }
   },
 
-  _getRef() {
-    return this.props.ref ? this.props.ref : 'input';
-  },
-
   _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
-      this.refs[this._getRef()].getInputNode() : ReactDOM.findDOMNode(this.refs[this._getRef()]);
+      this.refs.input.getInputNode() : ReactDOM.findDOMNode(this.refs.input);
   },
 
   _handleInputBlur(e) {
