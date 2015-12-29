@@ -80,14 +80,13 @@ const TableBody = React.createClass({
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
 
-    let newState = {};
+    let newState = {muiTheme: newMuiTheme};
 
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
+
       const lastSelectedRow = this.state.selectedRows.length ?
         this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
-
       newState.selectedRows = [lastSelectedRow];
     } else {
       newState.selectedRows = this._calculatePreselectedRows(nextProps);
@@ -188,6 +187,7 @@ const TableBody = React.createClass({
 
     if (props.selectable && props.preScanRows) {
       let index = 0;
+      console.log('_calculatePreselectedRows', 'entrou');
       React.Children.forEach(props.children, (child) => {
         if (React.isValidElement(child)) {
           if (child.props.selected && (preSelectedRows.length === 0 || props.multiSelectable)) {
@@ -199,6 +199,8 @@ const TableBody = React.createClass({
       });
     }
 
+    console.log('_calculatePreselectedRows', preSelectedRows);
+
     return preSelectedRows;
   },
 
@@ -206,6 +208,8 @@ const TableBody = React.createClass({
     if (this.props.allRowsSelected) {
       return true;
     }
+
+    // console.log('aqui', rowNumber, this.state.selectedRows);
 
     for (let i = 0; i < this.state.selectedRows.length; i++) {
       let selection = this.state.selectedRows[i];
@@ -244,6 +248,9 @@ const TableBody = React.createClass({
   _processRowSelection(e, rowNumber) {
     let selectedRows = this.state.selectedRows;
 
+    let ctrl = e.ctrlKey;
+    ctrl = e.nativeEvent ? (e.nativeEvent.ctrlKey && ctrl) : ctrl;
+
     if (e.shiftKey && this.props.multiSelectable && selectedRows.length) {
       let lastIndex = selectedRows.length - 1;
       let lastSelection = selectedRows[lastIndex];
@@ -255,33 +262,19 @@ const TableBody = React.createClass({
         selectedRows.splice(lastIndex, 1, {start: lastSelection, end: rowNumber});
       }
     }
-    else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
-      let idx = selectedRows.indexOf(rowNumber);
-      if (idx < 0) {
-        let foundRange = false;
-        for (let i = 0; i < selectedRows.length; i++) {
-          let range = selectedRows[i];
-          if (typeof range !== 'object') continue;
-
-          if (this._isValueInRange(rowNumber, range)) {
-            foundRange = true;
-            let values = this._splitRange(range, rowNumber);
-            selectedRows.splice(i, 1, ...values);
-          }
-        }
-
-        if (!foundRange) selectedRows.push(rowNumber);
-      }
-      else {
-        selectedRows.splice(idx, 1);
-      }
+    else if (((ctrl && !e.metaKey) || (e.metaKey && !ctrl)) && this.props.multiSelectable) {
+      selectedRows = [rowNumber];
     }
     else {
-      if (selectedRows.length === 1 && selectedRows[0] === rowNumber) {
-        selectedRows = [];
-      }
-      else {
-        selectedRows = [rowNumber];
+      let idx = selectedRows.indexOf( rowNumber );
+      if ( this.props.allRowsSelected ) {
+        selectedRows.splice( idx, 1 );
+      } else {
+        if ( idx >= 0 ) {
+          selectedRows.splice( idx, 1 );
+        } else {
+          selectedRows.push(rowNumber);
+        }
       }
     }
 

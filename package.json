@@ -1,6 +1,6 @@
 {
   "name": "material-ui-express",
-  "author": "Call-em-all Engineering Team",
+  "author": "KPL Express Team",
   "version": "0.14.1",
   "description": "Material Design UI components built with React",
   "main": "./lib",
@@ -11,6 +11,8 @@
     "prebuild": "rimraf lib",
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "build": "babel ./src --out-dir ./lib",
+    "watch": "babel ./src --out-dir ./lib --watch",
+    "watch-dev": "babel ./src --out-dir ./dev/src/lib --watch",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -36,9 +38,7 @@
     "react-addons-update": "^0.14.0",
     "react-addons-create-fragment": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.0",
-    "warning": "^2.1.0"
-  },
-  "peerDependencies": {
+    "warning": "^2.1.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.0"
