@@ -4,9 +4,13 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
 import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-
-import {Colors, Spacing, Typography} from 'material-ui/lib/styles';
+import {
+  Colors,
+  Spacing,
+  Typography,
+} from 'material-ui/lib/styles';
 import {StylePropable} from 'material-ui/lib/mixins';
+
 const SelectableList = SelectableContainerEnhance(List);
 
 const AppLeftNav = React.createClass({
@@ -15,8 +19,13 @@ const AppLeftNav = React.createClass({
   ],
 
   propTypes: {
-    history: React.PropTypes.object,
-    location: React.PropTypes.object,
+    docked: React.PropTypes.bool.isRequired,
+    history: React.PropTypes.object.isRequired,
+    location: React.PropTypes.object.isRequired,
+    onRequestChangeLeftNav: React.PropTypes.func.isRequired,
+    onRequestChangeList: React.PropTypes.func.isRequired,
+    open: React.PropTypes.bool.isRequired,
+    style: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -24,42 +33,61 @@ const AppLeftNav = React.createClass({
     router: React.PropTypes.func,
   },
 
-  getInitialState() {
-    return {
+  handleRequestChangeLink(event, value) {
+    window.location = value;
+  },
+
+  handleTouchTapHeader() {
+    this.props.history.push('/');
+    this.setState({
       leftNavOpen: false,
-    };
+    });
   },
 
   getStyles() {
     return {
-      cursor: 'pointer',
-      fontSize: 24,
-      color: Typography.textFullWhite,
-      lineHeight: Spacing.desktopKeylineIncrement + 'px',
-      fontWeight: Typography.fontWeightLight,
-      backgroundColor: Colors.cyan500,
-      paddingLeft: Spacing.desktopGutter,
-      marginBottom: 8,
+      logo: {
+        cursor: 'pointer',
+        fontSize: 24,
+        color: Typography.textFullWhite,
+        lineHeight: Spacing.desktopKeylineIncrement + 'px',
+        fontWeight: Typography.fontWeightLight,
+        backgroundColor: Colors.cyan500,
+        paddingLeft: Spacing.desktopGutter,
+        marginBottom: 8,
+      },
     };
   },
 
   render() {
+    const {
+      location,
+      docked,
+      onRequestChangeLeftNav,
+      onRequestChangeList,
+      open,
+      style,
+    } = this.props;
+
+    const styles = this.getStyles();
+
     return (
       <LeftNav
-        docked={false}
-        open={this.state.leftNavOpen}
-        onRequestChange={this.handleChangeRequestLeftNav}
+        style={style}
+        docked={docked}
+        open={open}
+        onRequestChange={onRequestChangeLeftNav}
       >
         <div
-          style={this.prepareStyles(this.getStyles())}
+          style={this.prepareStyles(styles.logo)}
           onTouchTap={this.handleTouchTapHeader}
         >
           material ui
         </div>
         <SelectableList
           valueLink={{
-            value: this.props.location.pathname,
-            requestChange: this.handleRequestChangeList,
+            value: location.pathname,
+            requestChange: onRequestChangeList,
           }}
         >
           <ListItem
@@ -195,8 +223,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Refresh Indicator"
               />,
               <ListItem
-                value="/components/select-fields"
-                primaryText="Select Fields"
+                value="/components/select-field"
+                primaryText="Select Field"
               />,
               <ListItem
                 value="/components/sliders"
@@ -257,40 +285,6 @@ const AppLeftNav = React.createClass({
       </LeftNav>
     );
   },
-
-  toggle() {
-    this.setState({
-      leftNavOpen: !this.state.leftNavOpen,
-    });
-  },
-
-  handleChangeRequestLeftNav(open) {
-    this.setState({
-      leftNavOpen: open,
-    });
-  },
-
-  handleRequestChangeList(event, value) {
-    this.props.history.push(value);
-    this.setState({
-      leftNavOpen: false,
-    });
-  },
-
-  handleRequestChangeLink(event, value) {
-    window.location = value;
-    this.setState({
-      leftNavOpen: false,
-    });
-  },
-
-  handleTouchTapHeader() {
-    this.props.history.push('/');
-    this.setState({
-      leftNavOpen: false,
-    });
-  },
-
 });
 
 export default AppLeftNav;
