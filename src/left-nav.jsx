@@ -163,6 +163,12 @@ const LeftNav = React.createClass({
      */
     swipeAreaWidth: React.PropTypes.number,
 
+	/**
+	 * The number of pixels which the user needs to drag before the gesture is
+	 * consider to be a swipe.
+	 */
+	swipeThreshold: React.PropTypes.number,
+
     /**
      * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
      */
@@ -181,6 +187,7 @@ const LeftNav = React.createClass({
       open: null,
       openRight: false,
       swipeAreaWidth: 30,
+	  swipeThreshold: 10,
       width: null,
     };
   },
@@ -511,7 +518,7 @@ const LeftNav = React.createClass({
       // If the user has moved his thumb ten pixels in either direction,
       // we can safely make an assumption about whether he was intending
       // to swipe or scroll.
-      const threshold = 10;
+      const threshold = this.props.swipeThreshold;
 
       if (dXAbs > threshold && dYAbs <= threshold) {
         this._swipeStartX = currentX;
