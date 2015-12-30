@@ -163,11 +163,11 @@ const LeftNav = React.createClass({
      */
     swipeAreaWidth: React.PropTypes.number,
 
-	/**
-	 * The number of pixels which the user needs to drag before the gesture is
-	 * consider to be a swipe.
-	 */
-	swipeThreshold: React.PropTypes.number,
+    /**
+     * The number of pixels which the user needs to drag before the gesture is
+     * consider to be a swipe.
+     */
+     swipeThreshold: React.PropTypes.number,
 
     /**
      * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
@@ -187,7 +187,7 @@ const LeftNav = React.createClass({
       open: null,
       openRight: false,
       swipeAreaWidth: 30,
-	  swipeThreshold: 10,
+      swipeThreshold: 10,
       width: null,
     };
   },
