@@ -14,11 +14,13 @@
 1. Standardize API naming and available `prop` convention across the library.
 1. Standardize API callback signature and provide formal documentation.
 1. #2416 TextField as a composable component for various field types.
+1. Responsive components to better support MD spec for mobile component sizes, and in preparation for react-native support
 
 ##### Breaking Changes
 
 * Remove usage of JSON to generate children across the components.
 * Remove the old menu folder.
+* Remove old component file naming
 
 ## 0.14.1
 
@@ -31,3 +33,5 @@
 - [ ] Document the new theme calcualtion, and it's usage. (#2635)
 
 ##### Breaking Changes
+
+None
