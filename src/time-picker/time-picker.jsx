@@ -93,7 +93,7 @@ const TimePicker = React.createClass({
   },
 
   render() {
-    let {
+    const {
       autoOk,
       format,
       onFocus,
@@ -105,11 +105,7 @@ const TimePicker = React.createClass({
       ...other,
     } = this.props;
 
-    let defaultInputValue;
-
-    if (this.props.defaultTime) {
-      defaultInputValue = this.formatTime(this.props.defaultTime);
-    }
+    const {time} = this.state;
 
     return (
       <div style={this.prepareStyles(style)}>
@@ -117,7 +113,7 @@ const TimePicker = React.createClass({
           {...other}
           style={textFieldStyle}
           ref="input"
-          defaultValue={defaultInputValue}
+          value={time === emptyTime ? null : this.formatTime(time)}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap} />
         <TimePickerDialog
@@ -136,20 +132,8 @@ const TimePicker = React.createClass({
     return this.state.time;
   },
 
-  setTime(t) {
-    if (t) {
-      this.setState({
-        time: t,
-      });
-
-      this.refs.input.setValue(this.formatTime(t));
-    } else {
-      this.setState({
-        time: emptyTime,
-      });
-
-      this.refs.input.setValue(null);
-    }
+  setTime(time) {
+    this.setState({time: time ? time : emptyTime});
   },
 
   /**
