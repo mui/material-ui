@@ -52,6 +52,16 @@ const LeftNav = React.createClass({
     className: React.PropTypes.string,
 
     /**
+     * The css class name of the container element.
+     */
+    containerClassName: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the container element.
+     */
+    containerStyle: React.PropTypes.object,
+
+    /**
      * Indicates whether swiping sideways when the `LeftNav` is closed should open it.
      */
     disableSwipeToOpen: React.PropTypes.bool,
@@ -167,16 +177,6 @@ const LeftNav = React.createClass({
      * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
      */
     width: React.PropTypes.number,
-    
-    /**
-     * The css class name of the container element.
-     */
-    containerClassName: React.PropTypes.string,
-    
-    /**
-     * Override the inline-styles of the container element.
-     */
-     containerStyle: React.PropTypes.object
   },
 
   windowListeners: {
@@ -324,7 +324,7 @@ const LeftNav = React.createClass({
       selectedIndex,
       style,
       containerClassName,
-      containerStyle
+      containerStyle,
     } = this.props;
 
     const styles = this.getStyles();
@@ -363,7 +363,7 @@ const LeftNav = React.createClass({
         );
     }
     return (
-      <div 
+      <div
         className={className}
         style={style}>
           {overlay}
