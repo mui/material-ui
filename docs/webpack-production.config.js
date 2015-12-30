@@ -78,7 +78,6 @@ const config = {
         include: [path.resolve(__dirname, '../src')],
         exclude: [
           path.resolve(__dirname, '../src/svg-icons'),
-          path.resolve(__dirname, '../src/utils/modernizr.custom.js'),
         ],
       },
     ],
