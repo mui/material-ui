@@ -23,7 +23,7 @@ const menuItems = [
   {route: '/components/popover', text: 'Popover'},
   {route: '/components/progress', text: 'Progress'},
   {route: '/components/refresh-indicator', text: 'Refresh Indicator'},
-  {route: '/components/select-fields', text: 'Select Fields'},
+  {route: '/components/select-field', text: 'Select Field'},
   {route: '/components/sliders', text: 'Sliders'},
   {route: '/components/switches', text: 'Switches'},
   {route: '/components/snackbar', text: 'Snackbar'},
