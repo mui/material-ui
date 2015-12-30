@@ -9,19 +9,16 @@ import {
 import Master from './components/master';
 import Home from './components/pages/home';
 
-import GetStarted from './components/pages/get-started';
 import Prerequisites from './components/pages/get-started/Prerequisites';
 import Installation from './components/pages/get-started/Installation';
 import Usage from './components/pages/get-started/Usage';
 import Examples from './components/pages/get-started/Examples';
 import Community from './components/pages/get-started/Community';
 
-import Customization from './components/pages/customization';
 import Colors from './components/pages/customization/colors';
 import Themes from './components/pages/customization/themes';
 import InlineStyles from './components/pages/customization/inline-styles';
 
-import Components from './components/pages/components';
 import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoComplete from './components/pages/components/auto-complete';
 import AvatarPage from './components/pages/components/Avatar/Page';
@@ -66,7 +63,7 @@ const AppRoutes = (
   <Route path="/" component={Master}>
     <Route path="home" component={Home} />
     <Redirect from="get-started" to="/get-started/prerequisites" />
-    <Route path="get-started" component={GetStarted}>
+    <Route path="get-started">
       <Route path="prerequisites" component={Prerequisites} />
       <Route path="installation" component={Installation} />
       <Route path="usage" component={Usage} />
@@ -75,14 +72,14 @@ const AppRoutes = (
     </Route>
 
     <Redirect from="customization" to="/customization/themes" />
-    <Route path="customization" component={Customization}>
+    <Route path="customization">
       <Route path="colors" component={Colors} />
       <Route path="themes" component={Themes} />
       <Route path="inline-styles" component={InlineStyles} />
     </Route>
 
     <Redirect from="components" to="/components/app-bar" />
-    <Route path="components" component={Components}>
+    <Route path="components">
       <Route path="app-bar" component={AppBarPage} />
       <Route path="auto-complete" component={AutoComplete} />
       <Route path="avatar" component={AvatarPage} />

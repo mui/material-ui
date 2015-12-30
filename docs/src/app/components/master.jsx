@@ -1,28 +1,38 @@
 import React from 'react';
-import AppLeftNav from './app-left-nav';
-import FullWidthSection from './full-width-section';
 import AppBar from 'material-ui/lib/app-bar';
-import AppCanvas from 'material-ui/lib/app-canvas';
 import IconButton from 'material-ui/lib/icon-button';
-import EnhancedButton from 'material-ui/lib/enhanced-button';
-import Paper from 'material-ui/lib/paper';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
-import {StylePropable} from 'material-ui/lib/mixins';
+import {Spacing} from 'material-ui/lib/styles';
+import {
+  StylePropable,
+  StyleResizable,
+} from 'material-ui/lib/mixins';
 
 import {
   Colors,
-  Spacing,
-  Typography,
   getMuiTheme,
 } from 'material-ui/lib/styles';
 
+import AppLeftNav from './app-left-nav';
+import FullWidthSection from './full-width-section';
+
+const githubButton = (
+  <IconButton
+    iconClassName="muidocs-icon-custom-github"
+    href="https://github.com/callemall/material-ui"
+    linkButton={true}
+  />
+);
+
 const Master = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+    StyleResizable,
+  ],
 
   getInitialState() {
     return {
       muiTheme: getMuiTheme(),
+      leftNavOpen: false,
     };
   },
 
@@ -43,8 +53,26 @@ const Master = React.createClass({
   },
 
   getStyles() {
-    let darkWhite = Colors.darkWhite;
-    return {
+    const darkWhite = Colors.darkWhite;
+
+    const styles = {
+      appBar: {
+        WebkitFontSmoothing: 'antialiased',
+        position: 'fixed',
+        // Needed to overlap the examples
+        zIndex: this.state.muiTheme.zIndex.appBar + 1,
+        top: 0,
+      },
+      root: {
+        paddingTop: Spacing.desktopKeylineIncrement,
+        minHeight: 400,
+      },
+      content: {
+        margin: Spacing.desktopGutter,
+      },
+      contentWhenMedium: {
+        margin: `${Spacing.desktopGutter * 2}px ${Spacing.desktopGutter * 3}px`,
+      },
       footer: {
         backgroundColor: Colors.grey900,
         textAlign: 'center',
@@ -58,53 +86,119 @@ const Master = React.createClass({
         color: Colors.lightWhite,
         maxWidth: 335,
       },
-      github: {
-        position: 'fixed',
-        right: Spacing.desktopGutter / 2,
-        top: 8,
-        zIndex: 5,
-        color: 'white',
-      },
       iconButton: {
         color: darkWhite,
       },
     };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
+        this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+      styles.content = this.mergeStyles(styles.content, styles.contentWhenMedium);
+    }
+
+    return styles;
   },
 
   componentWillMount() {
-    let newMuiTheme = this.state.muiTheme;
+    const newMuiTheme = this.state.muiTheme;
     newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
     this.setState({
-      muiTheme: newMuiTheme,
-      tabIndex: this._getSelectedIndex()});
-    let setTabsState = function() {
-      this.setState({renderTabs: !(document.body.clientWidth <= 647)});
-    }.bind(this);
-    setTabsState();
-    window.onresize = setTabsState;
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      tabIndex: this._getSelectedIndex(),
       muiTheme: newMuiTheme,
     });
   },
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
+  },
+
+  handleTouchTapLeftIconButton() {
+    this.setState({
+      leftNavOpen: !this.state.leftNavOpen,
+    });
+  },
+
+  handleChangeRequestLeftNav(open) {
+    this.setState({
+      leftNavOpen: open,
+    });
+  },
+
+  handleRequestChangeList(event, value) {
+    this.props.history.push(value);
+    this.setState({
+      leftNavOpen: false,
+    });
+  },
+
   render() {
+    const {
+      history,
+      location,
+      children,
+    } = this.props;
+
+    let {
+      leftNavOpen,
+    } = this.state;
+
     const styles = this.getStyles();
+    const title =
+      history.isActive('/get-started') ? 'Get Started' :
+      history.isActive('/customization') ? 'Customization' :
+      history.isActive('/components') ? 'Components' : '';
+
+    let docked = false;
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && title !== '') {
+      docked = true;
+      leftNavOpen = true;
+      styles.leftNav = {
+        zIndex: styles.appBar.zIndex - 1,
+      };
+      styles.root.paddingLeft = 256;
+    }
+
     return (
-      <AppCanvas>
-        {this.state.renderTabs ? this._getTabs() : this._getAppBar()}
-        {this.props.children}
-        <AppLeftNav ref="leftNav" history={this.props.history} location={this.props.location} />
+      <div>
+        <AppBar
+          onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
+          title={title}
+          zDepth={0}
+          iconElementRight={githubButton}
+          style={styles.appBar}
+        />
+        {title !== '' ?
+          <div style={this.prepareStyles(styles.root)}>
+            <div style={this.prepareStyles(styles.content)}>
+              {children}
+            </div>
+          </div>
+          :
+          children
+        }
+        <AppLeftNav
+          style={styles.leftNav}
+          history={history}
+          location={location}
+          docked={docked}
+          onRequestChangeLeftNav={this.handleChangeRequestLeftNav}
+          onRequestChangeList={this.handleRequestChangeList}
+          open={leftNavOpen}
+        />
         <FullWidthSection style={styles.footer}>
           <p style={this.prepareStyles(styles.p)}>
-            Hand crafted with love by the engineers at
-            <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={this.prepareStyles(styles.a)}
-              href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+            {'Hand crafted with love by the engineers at '}
+            <a style={styles.a} href="http://call-em-all.com">
+              Call-Em-All
+            </a>
+            {' and our awesome '}
+            <a style={this.prepareStyles(styles.a)}
+              href="https://github.com/callemall/material-ui/graphs/contributors">
+              contributors
+            </a>.
           </p>
           <IconButton
             iconStyle={styles.iconButton}
@@ -113,134 +207,8 @@ const Master = React.createClass({
             linkButton={true}
           />
         </FullWidthSection>
-      </AppCanvas>
-    );
-  },
-
-  _getTabs() {
-    let styles = {
-      root: {
-        backgroundColor: Colors.cyan500,
-        position: 'fixed',
-        height: 64,
-        top: 0,
-        right: 0,
-        zIndex: 1101,
-        width: '100%',
-      },
-      container: {
-        position: 'absolute',
-        right: (Spacing.desktopGutter / 2) + 48,
-        bottom: 0,
-      },
-      span: {
-        color: Colors.white,
-        fontWeight: Typography.fontWeightLight,
-        left: 45,
-        top: 22,
-        position: 'absolute',
-        fontSize: 26,
-      },
-      svgLogoContainer: {
-        position: 'fixed',
-        width: 300,
-        left: Spacing.desktopGutter,
-      },
-      svgLogo: {
-        width: 65,
-        backgroundColor: Colors.cyan500,
-        position: 'absolute',
-        top: 20,
-      },
-      tabs: {
-        width: 425,
-        bottom: 0,
-      },
-      tab: {
-        height: 64,
-      },
-    };
-
-    let materialIcon = this.state.tabIndex !== '0' ? (
-      <EnhancedButton
-        style={styles.svgLogoContainer}
-        linkButton={true}
-        href="/#/home">
-        <img style={this.prepareStyles(styles.svgLogo)} src="images/material-ui-logo.svg"/>
-        <span style={this.prepareStyles(styles.span)}>material ui</span>
-      </EnhancedButton>) : null;
-
-    return (
-      <div>
-        <Paper
-          zDepth={0}
-          rounded={false}
-          style={styles.root}>
-          {materialIcon}
-          <div style={this.prepareStyles(styles.container)}>
-            <Tabs
-              style={styles.tabs}
-              value={this.state.tabIndex}
-              onChange={this._handleTabChange}>
-              <Tab
-                value="1"
-                label="GETTING STARTED"
-                style={styles.tab}
-                route="/get-started" />
-              <Tab
-                value="2"
-                label="CUSTOMIZATION"
-                style={styles.tab}
-                route="/customization"/>
-              <Tab
-                value="3"
-                label="COMPONENTS"
-                style={styles.tab}
-                route="/components"/>
-            </Tabs>
-          </div>
-        </Paper>
       </div>
     );
-  },
-
-  _getSelectedIndex() {
-    return this.props.history.isActive('/get-started') ? '1' :
-      this.props.history.isActive('/customization') ? '2' :
-      this.props.history.isActive('/components') ? '3' : '0';
-  },
-
-  _handleTabChange(value, e, tab) {
-    this.props.history.pushState(null, tab.props.route);
-    this.setState({tabIndex: this._getSelectedIndex()});
-  },
-
-  _getAppBar() {
-    let title =
-      this.props.history.isActive('/get-started') ? 'Get Started' :
-      this.props.history.isActive('/customization') ? 'Customization' :
-      this.props.history.isActive('/components') ? 'Components' : '';
-
-    let githubButton = (
-      <IconButton
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true}/>
-    );
-
-    return (
-      <div>
-        <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
-          title={title}
-          zDepth={0}
-          iconElementRight={githubButton}
-          style={{position: 'absolute', top: 0}}/>
-      </div>);
-  },
-
-  _onLeftIconButtonTouchTap() {
-    this.refs.leftNav.toggle();
   },
 });
 

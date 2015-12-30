@@ -2,7 +2,9 @@ import React from 'react';
 import {StylePropable} from 'material-ui/lib/mixins';
 
 const MobileTearSheet = React.createClass({
-  mixins: [StylePropable],
+  mixins: [
+    StylePropable,
+  ],
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -20,22 +22,19 @@ const MobileTearSheet = React.createClass({
   },
 
   render() {
-
-    let styles = {
+    const styles = {
       root: {
         float: 'left',
         marginBottom: 24,
         marginRight: 24,
         width: 360,
       },
-
       container: {
         border: 'solid 1px #d9d9d9',
         borderBottom: 'none',
         height: this.props.height,
         overflow: 'hidden',
       },
-
       bottomTear: {
         display: 'block',
         position: 'relative',

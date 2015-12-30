@@ -16,7 +16,7 @@ const HomePage = React.createClass({
   ],
 
   render() {
-    let style = {
+    const style = {
       paddingTop: Spacing.desktopKeylineIncrement,
     };
 
@@ -114,7 +114,7 @@ const HomePage = React.createClass({
   },
 
   _getHomePurpose() {
-    let styles = {
+    const styles = {
       root: {
         backgroundColor: Colors.grey200,
       },
@@ -151,7 +151,8 @@ const HomePage = React.createClass({
   },
 
   _getHomeFeatures() {
-    let styles = {maxWidth: 906};
+    const styles = {maxWidth: 906};
+
     return (
       <FullWidthSection useContent={true} contentStyle={styles}>
         <HomeFeature
@@ -173,7 +174,7 @@ const HomePage = React.createClass({
   },
 
   _getHomeContribute() {
-    let styles = {
+    const styles = {
       root: {
         backgroundColor: Colors.grey200,
         textAlign: 'center',
