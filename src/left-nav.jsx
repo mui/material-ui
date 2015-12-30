@@ -401,7 +401,8 @@ const LeftNav = React.createClass({
     if (!this.props.docked) this._close('clickaway');
   },
 
-  _onOverlayTouchTap() {
+  _onOverlayTouchTap(event) {
+    event.preventDefault();
     this._close('clickaway');
   },
 
