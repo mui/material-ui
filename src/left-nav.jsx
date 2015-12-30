@@ -167,6 +167,16 @@ const LeftNav = React.createClass({
      * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
      */
     width: React.PropTypes.number,
+    
+    /**
+     * The css class name of the container element.
+     */
+    containerClassName: React.PropTypes.string,
+    
+    /**
+     * Override the inline-styles of the container element.
+     */
+     containerStyle: React.PropTypes.object
   },
 
   windowListeners: {
@@ -363,7 +373,7 @@ const LeftNav = React.createClass({
           rounded={false}
           transitionEnabled={!this.state.swiping}
           containerClassName={containerClassName}
-          containerStyle={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight)}>
+          containerStyle={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, containerStyle)}>
             {header}
             {children}
         </Paper>
