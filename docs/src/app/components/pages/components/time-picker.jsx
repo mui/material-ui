@@ -148,13 +148,13 @@ By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use 
             ref="picker12hr"
             format="ampm"
             hintText="12hr Format"
-            onChange={this._changeTimePicker24} />
+            onChange={this._changeTimePicker12} />
 
           <TimePicker
             ref="picker24hr"
             format="24hr"
             hintText="24hr Format"
-            onChange={this._changeTimePicker12} />
+            onChange={this._changeTimePicker24} />
 
           <TimePicker
             ref="pickerAutoOk"
