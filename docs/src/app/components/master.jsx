@@ -93,29 +93,10 @@ const Master = React.createClass({
   },
 
   render() {
-    let styles = this.getStyles();
-
-    let githubButton = (
-      <IconButton
-        iconStyle={styles.iconButton}
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true}
-        style={styles.github} />
-    );
-
-    let githubButton2 = (
-      <IconButton
-        iconStyle={styles.iconButton}
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true}/>
-    );
+    const styles = this.getStyles();
     return (
       <AppCanvas>
-        {githubButton}
         {this.state.renderTabs ? this._getTabs() : this._getAppBar()}
-
         {this.props.children}
         <AppLeftNav ref="leftNav" history={this.props.history} location={this.props.location} />
         <FullWidthSection style={styles.footer}>
@@ -125,7 +106,12 @@ const Master = React.createClass({
             awesome <a style={this.prepareStyles(styles.a)}
               href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
           </p>
-          {githubButton2}
+          <IconButton
+            iconStyle={styles.iconButton}
+            iconClassName="muidocs-icon-custom-github"
+            href="https://github.com/callemall/material-ui"
+            linkButton={true}
+          />
         </FullWidthSection>
       </AppCanvas>
     );

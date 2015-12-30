@@ -7,15 +7,18 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 let {Spacing, Colors} = Styles;
 let {StyleResizable, StylePropable} = Mixins;
 
-
-let PageWithNav = React.createClass({
+const PageWithNav = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
   },
 
-  mixins: [StyleResizable, StylePropable, History],
+  mixins: [
+    StyleResizable,
+    StylePropable,
+    History,
+  ],
 
   propTypes: {
     children: React.PropTypes.node,

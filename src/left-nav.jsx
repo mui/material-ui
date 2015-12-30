@@ -265,7 +265,7 @@ const LeftNav = React.createClass({
         transform: `translate3d(${x}px, 0, 0)`,
         transition: !this.state.swiping && Transitions.easeOut(),
         backgroundColor: theme.color,
-        overflow: 'hidden',
+        overflow: 'auto',
       },
       menu: {
         overflowY: 'auto',
