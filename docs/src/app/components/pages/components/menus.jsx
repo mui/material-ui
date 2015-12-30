@@ -234,7 +234,7 @@ export default class MenusPage extends React.Component {
             `//Import statement:
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import Divider from 'material-ui/lib/menus/menu-divider';
+import Divider from 'material-ui/lib/divider';
 
 //See material-ui/lib/index.js for more
           `
