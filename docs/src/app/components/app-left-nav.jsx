@@ -187,8 +187,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Icons"
               />,
               <ListItem
-                value="/components/icon-buttons"
-                primaryText="Icon Buttons"
+                value="/components/icon-button"
+                primaryText="Icon Button"
               />,
               <ListItem
                 value="/components/icon-menus"
