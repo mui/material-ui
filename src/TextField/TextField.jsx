@@ -380,7 +380,7 @@ const TextField = React.createClass({
   },
 
   setErrorText(newErrorText) {
-    warning(false, 'setErrorText() method is deprectated. Use the errorText property instead.');
+    warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
 
     if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
@@ -392,8 +392,8 @@ const TextField = React.createClass({
 
   setValue(newValue) {
     warning(false,
-      `setValue() method is deprectated. Use the defaultValue property instead.
-      Or use this the TextField as a controlled component with the value property.`);
+      `setValue() method is deprecated. Use the defaultValue property instead.
+      Or use the TextField as a controlled component with the value property.`);
 
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
