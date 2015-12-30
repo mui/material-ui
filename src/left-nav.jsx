@@ -12,11 +12,8 @@ import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';
-import isBrowser from './utils/is-browser';
 
-const Modernizr = isBrowser ? require('./utils/modernizr.custom') : undefined;
 let openNavEventHandler = null;
-
 
 const LeftNav = React.createClass({
 
@@ -254,16 +251,17 @@ const LeftNav = React.createClass({
     const rawTheme = muiTheme.rawTheme;
 
     const x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
+
     const styles = {
       root: {
         height: '100%',
         width: this.props.width || theme.width,
         position: 'fixed',
         zIndex: muiTheme.zIndex.leftNav,
-        left: isBrowser && Modernizr.csstransforms3d ? 0 : x,
+        left: 0,
         top: 0,
         transform: `translate3d(${x}px, 0, 0)`,
-        transition: !this.state.swiping && Transitions.easeOut(),
+        transition: !this.state.swiping && Transitions.easeOut(null, 'transform', null),
         backgroundColor: theme.color,
         overflow: 'auto',
       },
@@ -350,6 +348,7 @@ const LeftNav = React.createClass({
           onItemTap={this._onMenuItemClick} />
         );
     }
+
     return (
       <div>
         {overlay}
