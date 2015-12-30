@@ -103,6 +103,11 @@ const DropDownMenu = React.createClass({
     menuAutoWidth: React.PropTypes.bool,
 
     /**
+     * Overrides the styles of `List` in `Menu` when the `DropDownMenu` is displayed.
+     */
+    menuListStyle: React.PropTypes.object,
+
+    /**
      * Fired when a menu item is clicked that is not the one currently selected.
      */
     onChange: React.PropTypes.func,
@@ -274,6 +279,7 @@ const DropDownMenu = React.createClass({
       menuItems,
       menuStyle,
       menuAutoWidth,
+      menuListStyle,
       style,
       underlineStyle,
       valueLink,
@@ -372,6 +378,7 @@ const DropDownMenu = React.createClass({
             value={value}
             style={menuStyle}
             autoWidth={menuAutoWidth}
+            listStyle={menuListStyle}
             >
             {menuItemElements}
           </Menu>
