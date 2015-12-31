@@ -11,6 +11,10 @@ const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
   mixins: [StylePropable],
 
+  scalePathTimer: undefined,
+  rotateWrapperTimer: undefined,
+  rotateWrapperSecondTimer: undefined,
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -72,8 +76,9 @@ const RefreshIndicator = React.createClass({
   },
 
   componentWillUnmount() {
-    clearTimeout(this._scalePathTimer);
-    clearTimeout(this._rotateWrapperTimer);
+    clearTimeout(this.scalePathTimer);
+    clearTimeout(this.rotateWrapperTimer);
+    clearTimeout(this.rotateWrapperSecondTimer);
   },
 
   render() {
@@ -282,7 +287,7 @@ const RefreshIndicator = React.createClass({
     AutoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
     AutoPrefix.set(path.style, 'transitionDuration', transitionDuration);
 
-    this._scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
+    this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
 
   _rotateWrapper(wrapper) {
@@ -292,13 +297,13 @@ const RefreshIndicator = React.createClass({
     AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
     AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
-    setTimeout(() => {
+    this.rotateWrapperSecondTimer = setTimeout(() => {
       AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
       AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
       AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
-    this._rotateWrapperTimer = setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
+    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
   },
 
   prefixed(key) {

@@ -9,6 +9,11 @@ const LinearProgress = React.createClass({
 
   mixins: [StylePropable],
 
+  timers: {
+    bar1: undefined,
+    bar2: undefined,
+  },
+
   propTypes: {
     color: React.PropTypes.string,
     max: React.PropTypes.number,
@@ -38,7 +43,6 @@ const LinearProgress = React.createClass({
   },
 
   getInitialState() {
-    this.timers = {};
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };

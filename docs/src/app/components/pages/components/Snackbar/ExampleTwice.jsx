@@ -10,11 +10,11 @@ export default class SnackbarExampleTwice extends React.Component {
       message: 'Event added to your calendar',
       open: false,
     };
-    this._timerId = undefined;
+    this.timer = undefined;
   }
 
   componentWillUnMount() {
-    clearTimeout(this._timerId);
+    clearTimeout(this.timer);
   }
 
   handleTouchTap = () => {
@@ -22,7 +22,7 @@ export default class SnackbarExampleTwice extends React.Component {
       open: true,
     });
 
-    this._timerId = setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.setState({
         message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
       });
