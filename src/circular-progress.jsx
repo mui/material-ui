@@ -10,6 +10,9 @@ const CircularProgress = React.createClass({
 
   mixins: [StylePropable],
 
+  scalePathTimer: undefined,
+  rotateWrapperTimer: undefined,
+
   propTypes: {
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
@@ -72,14 +75,16 @@ const CircularProgress = React.createClass({
     this._rotateWrapper(wrapper);
   },
 
+  componentWillUnmount() {
+    clearTimeout(this.scalePathTimer);
+    clearTimeout(this.rotateWrapperTimer);
+  },
+
   _scalePath(path, step) {
+    if (this.props.mode !== 'indeterminate') return;
+
     step = step || 0;
     step %= 3;
-
-    setTimeout(this._scalePath.bind(this, path, step + 1), step ? 750 : 250);
-
-    if (!this.isMounted()) return;
-    if (this.props.mode !== 'indeterminate') return;
 
     if (step === 0) {
       path.style.strokeDasharray = '1, 200';
@@ -96,12 +101,11 @@ const CircularProgress = React.createClass({
       path.style.strokeDashoffset = -124;
       path.style.transitionDuration = '850ms';
     }
+
+    this.scalePathTimer = setTimeout(() => this._scalePath(path, step + 1), step ? 750 : 250);
   },
 
   _rotateWrapper(wrapper) {
-    setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
-
-    if (!this.isMounted()) return;
     if (this.props.mode !== 'indeterminate') return;
 
     AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
@@ -112,6 +116,8 @@ const CircularProgress = React.createClass({
       AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
       AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
+
+    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
   },
 
   getDefaultProps() {

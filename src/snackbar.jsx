@@ -21,11 +21,9 @@ const Snackbar = React.createClass({
 
   manuallyBindClickAway: true,
 
-  _timerAutoHideId: undefined,
-
-  _timerTransitionId: undefined,
-
-  _timerOneAtTheTimeId: undefined,
+  timerAutoHideId: undefined,
+  timerTransitionId: undefined,
+  timerOneAtTheTimeId: undefined,
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -157,8 +155,8 @@ const Snackbar = React.createClass({
         open: false,
       });
 
-      clearTimeout(this._timerOneAtTheTimeId);
-      this._timerOneAtTheTimeId = setTimeout(() => {
+      clearTimeout(this.timerOneAtTheTimeId);
+      this.timerOneAtTheTimeId = setTimeout(() => {
         this.setState({
           message: nextProps.message,
           action: nextProps.action,
@@ -181,7 +179,7 @@ const Snackbar = React.createClass({
       this._setAutoHideTimer();
 
       //Only Bind clickaway after transition finishes
-      this._timerTransitionId = setTimeout(() => {
+      this.timerTransitionId = setTimeout(() => {
         this._bindClickAway();
       }, 400);
     }
@@ -201,20 +199,20 @@ const Snackbar = React.createClass({
         this._setAutoHideTimer();
 
         //Only Bind clickaway after transition finishes
-        this._timerTransitionId = setTimeout(() => {
+        this.timerTransitionId = setTimeout(() => {
           this._bindClickAway();
         }, 400);
       } else {
-        clearTimeout(this._timerAutoHideId);
+        clearTimeout(this.timerAutoHideId);
         this._unbindClickAway();
       }
     }
   },
 
   componentWillUnmount() {
-    clearTimeout(this._timerAutoHideId);
-    clearTimeout(this._timerTransitionId);
-    clearTimeout(this._timerOneAtTheTimeId);
+    clearTimeout(this.timerAutoHideId);
+    clearTimeout(this.timerTransitionId);
+    clearTimeout(this.timerOneAtTheTimeId);
     this._unbindClickAway();
   },
 
@@ -355,8 +353,8 @@ const Snackbar = React.createClass({
     const autoHideDuration = this.props.autoHideDuration;
 
     if (autoHideDuration > 0) {
-      clearTimeout(this._timerAutoHideId);
-      this._timerAutoHideId = setTimeout(() => {
+      clearTimeout(this.timerAutoHideId);
+      this.timerAutoHideId = setTimeout(() => {
         if (this.props.open !== null && this.props.onRequestClose) {
           this.props.onRequestClose('timeout');
         } else {

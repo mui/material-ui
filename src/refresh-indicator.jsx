@@ -11,6 +11,10 @@ const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
   mixins: [StylePropable],
 
+  scalePathTimer: undefined,
+  rotateWrapperTimer: undefined,
+  rotateWrapperSecondTimer: undefined,
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -69,6 +73,12 @@ const RefreshIndicator = React.createClass({
   componentDidUpdate() {
     this._scalePath(ReactDOM.findDOMNode(this.refs.path), 0);
     this._rotateWrapper(ReactDOM.findDOMNode(this.refs.wrapper));
+  },
+
+  componentWillUnmount() {
+    clearTimeout(this.scalePathTimer);
+    clearTimeout(this.rotateWrapperTimer);
+    clearTimeout(this.rotateWrapperSecondTimer);
   },
 
   render() {
@@ -250,12 +260,9 @@ const RefreshIndicator = React.createClass({
   },
 
   _scalePath(path, step) {
-    if (this.props.status !== 'loading' || !this.isMounted()) return;
+    if (this.props.status !== 'loading') return;
 
     const currStep = (step || 0) % 3;
-
-    clearTimeout(this._timer1);
-    this._timer1 = setTimeout(this._scalePath.bind(this, path, currStep + 1), currStep ? 750 : 250);
 
     const circle = this._getCircleAttr();
     const perimeter = Math.PI * 2 * circle.radiu;
@@ -279,25 +286,24 @@ const RefreshIndicator = React.createClass({
     AutoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
     AutoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
     AutoPrefix.set(path.style, 'transitionDuration', transitionDuration);
+
+    this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
 
   _rotateWrapper(wrapper) {
-    if (this.props.status !== 'loading' || !this.isMounted()) return;
-
-    clearTimeout(this._timer2);
-    this._timer2 = setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
+    if (this.props.status !== 'loading') return;
 
     AutoPrefix.set(wrapper.style, 'transform', null);
     AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
     AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
-    setTimeout(() => {
-      if (this.isMounted()) {
-        AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-        AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-        AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
-      }
+    this.rotateWrapperSecondTimer = setTimeout(() => {
+      AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
+      AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
+      AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
+
+    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
   },
 
   prefixed(key) {
