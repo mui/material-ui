@@ -23,12 +23,13 @@ import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoComplete from './components/pages/components/auto-complete';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
-import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
 import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
+import FlatButtonPage from './components/pages/components/FlatButton/Page';
+import FloatingActionButtonPage from './components/pages/components/FloatingActionButton/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import Icons from './components/pages/components/icons';
 import IconButtonPage from './components/pages/components/IconButton/Page';
@@ -39,6 +40,7 @@ import Menus from './components/pages/components/menus';
 import Paper from './components/pages/components/paper';
 import Popover from './components/pages/components/popover';
 import Progress from './components/pages/components/progress';
+import RaisedButtonPage from './components/pages/components/RaisedButton/Page';
 import RefreshIndicator from './components/pages/components/refresh-indicator';
 import SelectField from './components/pages/components/SelectField/Page';
 import Sliders from './components/pages/components/sliders';
@@ -84,12 +86,13 @@ const AppRoutes = (
       <Route path="auto-complete" component={AutoComplete} />
       <Route path="avatar" component={AvatarPage} />
       <Route path="badge" component={BadgePage} />
-      <Route path="buttons" component={Buttons} />
       <Route path="card" component={CardPage} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
+      <Route path="flat-button" component={FlatButtonPage} />
+      <Route path="floating-action-button" component={FloatingActionButtonPage} />
       <Route path="grid-list" component={GridListPage} />
       <Route path="icons" component={Icons} />
       <Route path="icon-button" component={IconButtonPage} />
@@ -100,6 +103,7 @@ const AppRoutes = (
       <Route path="paper" component={Paper} />
       <Route path="popover" component={Popover} />
       <Route path="progress" component={Progress} />
+      <Route path="raised-button" component={RaisedButtonPage} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
       <Route path="select-field" component={SelectField} />
       <Route path="sliders" component={Sliders} />
