@@ -124,3 +124,4 @@ export const SelectableContainerEnhance = (Component) => {
   return composed;
 };
 
+export default SelectableContainerEnhance;

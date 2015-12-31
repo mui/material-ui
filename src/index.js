@@ -153,6 +153,7 @@ export const Icons = {
 };
 
 export default {
+  AppBar,
   AppCanvas,
   AutoComplete,
   Avatar,
