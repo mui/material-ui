@@ -1,38 +1,13 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
+import MuiComponent from './MuiComponent';
+import styleUtils from './utils/styles';
 import Typography from './styles/typography';
 import IconButton from './icon-button';
 import NavigationMenu from './svg-icons/navigation/menu';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
 import Paper from './paper';
 import PropTypes from './utils/prop-types';
-import {autobind, mixin} from 'core-decorators';
 
-@mixin(StylePropable)
-export default class AppBar extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  }
-
-  //for passing default theme context to children
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object,
-  }
-
-  static contextTypes = {
-    muiTheme: React.PropTypes.object,
-  }
-
-  static defaultProps = {
-    showMenuIconButton: true,
-    title: '',
-    zDepth: 1,
-  }
+export default class AppBar extends MuiComponent {
 
   static propTypes = {
     /**
@@ -116,17 +91,10 @@ export default class AppBar extends React.Component {
     zDepth: PropTypes.zDepth,
   }
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  }
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  static defaultProps = {
+    showMenuIconButton: true,
+    title: '',
+    zDepth: 1,
   }
 
   componentDidMount() {
@@ -219,10 +187,12 @@ export default class AppBar extends React.Component {
       ...other,
     } = this.props;
 
+    const {muiTheme} = this.state;
+
     let menuElementLeft;
     let menuElementRight;
     let styles = this.getStyles();
-    let iconRightStyle = this.mergeStyles(styles.iconButton.style, {
+    let iconRightStyle = styleUtils.merge(styles.iconButton.style, {
       marginRight: -16,
       marginLeft: 'auto',
     }, iconStyleRight);
@@ -233,11 +203,11 @@ export default class AppBar extends React.Component {
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
         <h1 onTouchTap={this._onTitleTouchTap}
-          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
+          style={styleUtils.prepareStyles(muiTheme, styles.title, styles.mainElement, titleStyle)}>
           {title}
         </h1> :
         <div onTouchTap={this._onTitleTouchTap}
-          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
+          style={styleUtils.prepareStyles(muiTheme, styles.title, styles.mainElement, titleStyle)}>
           {title}
         </div>;
     }
@@ -247,22 +217,22 @@ export default class AppBar extends React.Component {
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
             iconElementLeft = React.cloneElement(iconElementLeft, {
-              iconStyle: this.mergeStyles(styles.iconButton.iconStyle, iconElementLeft.props.iconStyle),
+              iconStyle: styleUtils.merge(styles.iconButton.iconStyle, iconElementLeft.props.iconStyle),
             });
             break;
         }
 
         menuElementLeft = (
-          <div style={this.prepareStyles(styles.iconButton.style)}>
+          <div style={styleUtils.prepareStyles(muiTheme, styles.iconButton.style)}>
             {iconElementLeft}
           </div>
         );
       } else {
-        let child = iconClassNameLeft ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
+        let child = iconClassNameLeft ? '' : <NavigationMenu style={styleUtils.merge(styles.iconButton.iconStyle)}/>;
         menuElementLeft = (
           <IconButton
-            style={this.mergeStyles(styles.iconButton.style)}
-            iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
+            style={styleUtils.merge(styles.iconButton.style)}
+            iconStyle={styleUtils.merge(styles.iconButton.iconStyle)}
             iconClassName={iconClassNameLeft}
             onTouchTap={this._onLeftIconButtonTouchTap}>
               {child}
@@ -276,19 +246,19 @@ export default class AppBar extends React.Component {
         case 'IconMenu':
         case 'IconButton':
           iconElementRight = React.cloneElement(iconElementRight, {
-            iconStyle: this.mergeStyles(styles.iconButton.iconStyle, iconElementRight.props.iconStyle),
+            iconStyle: styleUtils.merge(styles.iconButton.iconStyle, iconElementRight.props.iconStyle),
           });
           break;
 
         case 'FlatButton':
           iconElementRight = React.cloneElement(iconElementRight, {
-            style: this.mergeStyles(styles.flatButton, iconElementRight.props.style),
+            style: styleUtils.merge(styles.flatButton, iconElementRight.props.style),
           });
           break;
       }
 
       menuElementRight = (
-        <div style={this.prepareStyles(iconRightStyle)}>
+        <div style={styleUtils.prepareStyles(muiTheme, iconRightStyle)}>
           {iconElementRight}
         </div>
       );
@@ -296,7 +266,7 @@ export default class AppBar extends React.Component {
       menuElementRight = (
         <IconButton
           style={iconRightStyle}
-          iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
+          iconStyle={styleUtils.merge(styles.iconButton.iconStyle)}
           iconClassName={iconClassNameRight}
           onTouchTap={this._onRightIconButtonTouchTap} />
       );
@@ -307,7 +277,7 @@ export default class AppBar extends React.Component {
         {...other}
         rounded={false}
         className={className}
-        style={this.mergeStyles(styles.root, style)}
+        style={styleUtils.merge(styles.root, style)}
         zDepth={zDepth}>
           {menuElementLeft}
           {titleElement}
@@ -317,22 +287,20 @@ export default class AppBar extends React.Component {
     );
   }
 
-  @autobind
-  _onLeftIconButtonTouchTap(event) {
+
+  _onLeftIconButtonTouchTap = (event) => {
     if (this.props.onLeftIconButtonTouchTap) {
       this.props.onLeftIconButtonTouchTap(event);
     }
   }
 
-  @autobind
-  _onRightIconButtonTouchTap(event) {
+  _onRightIconButtonTouchTap = (event) => {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }
   }
 
-  @autobind
-  _onTitleTouchTap(event) {
+  _onTitleTouchTap = (event) => {
     if (this.props.onTitleTouchTap) {
       this.props.onTitleTouchTap(event);
     }
