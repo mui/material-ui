@@ -159,6 +159,7 @@ const Master = React.createClass({
         zIndex: styles.appBar.zIndex - 1,
       };
       styles.root.paddingLeft = 256;
+      styles.footer.paddingLeft = 256;
     }
 
     return (
