@@ -16,7 +16,7 @@ const ProgressPage = React.createClass({
   componentDidMount() {
     let self = this;
 
-    let id = window.setInterval(() => {
+    this.timer = window.setInterval(() => {
 
       let diff = Math.random() * 10;
 
@@ -25,9 +25,13 @@ const ProgressPage = React.createClass({
       });
 
       if (self.state.completed > 100) {
-        window.clearInterval(id);
+        window.clearInterval(this.timer);
       }
     }, 1000);
+  },
+
+  componentWillUnmount() {
+    window.clearInterval(this.timer);
   },
 
   render() {
