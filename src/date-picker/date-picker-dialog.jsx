@@ -51,7 +51,6 @@ const DatePickerDialog = React.createClass({
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
-    showYearSelector: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
@@ -180,7 +179,7 @@ const DatePickerDialog = React.createClass({
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           shouldDisableDate={this.props.shouldDisableDate}
-          showYearSelector={this.props.showYearSelector}
+          disableYearSelection={this.props.disableYearSelection}
           mode={this.props.mode} />
       </Container>
     );

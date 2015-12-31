@@ -9,30 +9,29 @@ import {
 import Master from './components/master';
 import Home from './components/pages/home';
 
-import GetStarted from './components/pages/get-started';
-import Prerequisites from './components/pages/get-started/prerequisites';
-import Installation from './components/pages/get-started/installation';
-import Examples from './components/pages/get-started/examples';
+import Prerequisites from './components/pages/get-started/Prerequisites';
+import Installation from './components/pages/get-started/Installation';
+import Usage from './components/pages/get-started/Usage';
+import Examples from './components/pages/get-started/Examples';
+import Community from './components/pages/get-started/Community';
 
-import Customization from './components/pages/customization';
 import Colors from './components/pages/customization/colors';
 import Themes from './components/pages/customization/themes';
 import InlineStyles from './components/pages/customization/inline-styles';
 
-import Components from './components/pages/components';
 import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoComplete from './components/pages/components/auto-complete';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
 import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
-import DatePicker from './components/pages/components/date-picker';
+import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
-import GridList from './components/pages/components/grid-list';
+import GridListPage from './components/pages/components/GridList/Page';
 import Icons from './components/pages/components/icons';
-import IconButtons from './components/pages/components/icon-buttons';
+import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenus from './components/pages/components/icon-menus';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
 import Lists from './components/pages/components/lists';
@@ -41,7 +40,7 @@ import Paper from './components/pages/components/paper';
 import Popover from './components/pages/components/popover';
 import Progress from './components/pages/components/progress';
 import RefreshIndicator from './components/pages/components/refresh-indicator';
-import SelectFields from './components/pages/components/select-fields';
+import SelectField from './components/pages/components/SelectField/Page';
 import Sliders from './components/pages/components/sliders';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
 import Switches from './components/pages/components/switches';
@@ -64,21 +63,23 @@ const AppRoutes = (
   <Route path="/" component={Master}>
     <Route path="home" component={Home} />
     <Redirect from="get-started" to="/get-started/prerequisites" />
-    <Route path="get-started" component={GetStarted}>
+    <Route path="get-started">
       <Route path="prerequisites" component={Prerequisites} />
       <Route path="installation" component={Installation} />
+      <Route path="usage" component={Usage} />
       <Route path="examples" component={Examples} />
+      <Route path="community" component={Community} />
     </Route>
 
     <Redirect from="customization" to="/customization/themes" />
-    <Route path="customization" component={Customization}>
+    <Route path="customization">
       <Route path="colors" component={Colors} />
       <Route path="themes" component={Themes} />
       <Route path="inline-styles" component={InlineStyles} />
     </Route>
 
     <Redirect from="components" to="/components/app-bar" />
-    <Route path="components" component={Components}>
+    <Route path="components">
       <Route path="app-bar" component={AppBarPage} />
       <Route path="auto-complete" component={AutoComplete} />
       <Route path="avatar" component={AvatarPage} />
@@ -89,9 +90,9 @@ const AppRoutes = (
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
-      <Route path="grid-list" component={GridList} />
+      <Route path="grid-list" component={GridListPage} />
       <Route path="icons" component={Icons} />
-      <Route path="icon-buttons" component={IconButtons} />
+      <Route path="icon-button" component={IconButtonPage} />
       <Route path="icon-menus" component={IconMenus} />
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="lists" component={Lists} />
@@ -100,7 +101,7 @@ const AppRoutes = (
       <Route path="popover" component={Popover} />
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
-      <Route path="select-fields" component={SelectFields} />
+      <Route path="select-field" component={SelectField} />
       <Route path="sliders" component={Sliders} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={SnackbarPage} />

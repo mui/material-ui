@@ -3,10 +3,12 @@ import {ClearFix, Mixins, Styles} from 'material-ui';
 let {StylePropable, StyleResizable} = Mixins;
 let DesktopGutter = Styles.Spacing.desktopGutter;
 
+const FullWidthSection = React.createClass({
 
-let FullWidthSection = React.createClass({
-
-  mixins: [StylePropable, StyleResizable],
+  mixins: [
+    StylePropable,
+    StyleResizable,
+  ],
 
   propTypes: {
     children: React.PropTypes.node,
@@ -34,12 +36,12 @@ let FullWidthSection = React.createClass({
         margin: '0 auto',
       },
       rootWhenSmall: {
-        paddingTop: (DesktopGutter * 2) + 'px',
-        paddingBottom: (DesktopGutter * 2) + 'px',
+        paddingTop: DesktopGutter * 2,
+        paddingBottom: DesktopGutter * 2,
       },
       rootWhenLarge: {
-        paddingTop: (DesktopGutter * 3) + 'px',
-        paddingBottom: (DesktopGutter * 3) + 'px',
+        paddingTop: DesktopGutter * 3,
+        paddingBottom: DesktopGutter * 3,
       },
     };
   },

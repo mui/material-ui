@@ -7,6 +7,8 @@ import CodeBlock from '../../CodeExample/CodeBlock';
 
 const ProgressPage = React.createClass({
 
+  timer: undefined,
+
   getInitialState() {
     return {
       completed: 0,
@@ -14,20 +16,21 @@ const ProgressPage = React.createClass({
   },
 
   componentDidMount() {
-    let self = this;
+    this.timer = setTimeout(() => this._progress(5), 1000);
+  },
 
-    let id = window.setInterval(() => {
+  _progress(completed) {
+    if (completed > 100) {
+      this.setState({completed: 100});
+    } else {
+      this.setState({completed});
+      const diff = Math.random() * 10;
+      this.timer = setTimeout(() => this._progress(completed + diff), 1000);
+    }
+  },
 
-      let diff = Math.random() * 10;
-
-      self.setState({
-        completed: self.state.completed + diff,
-      });
-
-      if (self.state.completed > 100) {
-        window.clearInterval(id);
-      }
-    }, 1000);
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   },
 
   render() {

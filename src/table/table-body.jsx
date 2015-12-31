@@ -85,10 +85,9 @@ const TableBody = React.createClass({
     let newState = {};
 
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      const lastSelectedRow = this.state.selectedRows.length ?
-        this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
-
-      newState.selectedRows = [lastSelectedRow];
+      newState.selectedRows = this.state.selectedRows.length > 0
+        ? [this.state.selectedRows[this.state.selectedRows.length - 1]]
+        : [];
     } else {
       newState.selectedRows = this._calculatePreselectedRows(nextProps);
     }

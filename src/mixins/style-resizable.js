@@ -6,7 +6,6 @@ const Sizes = {
   LARGE: 3,
 };
 
-
 export default {
 
   statics: {
@@ -34,9 +33,14 @@ export default {
 
   _updateDeviceSize() {
     const width = window.innerWidth;
-    if (width >= 992) this.setState({deviceSize: Sizes.LARGE});
-    else if (width >= 768) this.setState({deviceSize: Sizes.MEDIUM});
-    else this.setState({deviceSize: Sizes.SMALL}); // width < 768
+
+    if (width >= 992) {
+      this.setState({deviceSize: Sizes.LARGE});
+    } else if (width >= 768) {
+      this.setState({deviceSize: Sizes.MEDIUM});
+    } else { // width < 768
+      this.setState({deviceSize: Sizes.SMALL});
+    }
   },
 
   _bindResize() {

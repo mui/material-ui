@@ -1,10 +1,30 @@
 import React from 'react';
-
 import {AutoComplete} from 'material-ui';
 import ComponentDoc from '../../component-doc';
 import CodeExample from '../../CodeExample';
-
 import Code from 'auto-complete-code';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+
+const dataSource = [
+  {
+    text: 'text-value1',
+    value: (
+      <MenuItem
+        primaryText="text-value1"
+        secondaryText="&#9786;"
+      />
+    ),
+  },
+  {
+    text: 'text-value2',
+    value: (
+      <MenuItem
+        primaryText="text-value2"
+        secondaryText="&#9786;"
+      />
+    ),
+  },
+];
 
 class AutoCompletePage extends React.Component {
 
@@ -17,8 +37,29 @@ class AutoCompletePage extends React.Component {
     };
   }
 
-  render() {
+  handleNewRequest = (t) => {
+    console.log(`New request: ${t}`);
+  }
 
+  handleUpdateInput1 = (t) => {
+    this.setState({
+      input1: [t, t + t, t + t + t],
+    });
+  }
+
+  handleUpdateInput2 = (t) => {
+    this.setState({
+      input2: [t, t + t, t + t + t],
+    });
+  }
+
+  handleUpdateInput3 = (t) => {
+    this.setState({
+      input3: [t, t + t, t + t + t],
+    });
+  }
+
+  render() {
     return (
       <ComponentDoc
         name="Auto Complete"
@@ -28,68 +69,51 @@ class AutoCompletePage extends React.Component {
             infoArray: [],
           },
         ]}>
-
         <br/>
-
         <CodeExample code={Code}>
           <AutoComplete
             dataSource={this.state.input1}
-            onUpdateInput={(t) => { console.log(t); this.setState({input1: [t, t + t, t + t + t]}); }}
-            onNewRequest={(t) => { console.log('request:' + t); }} />
-
+            onUpdateInput={this.handleUpdateInput1}
+            onNewRequest={this.handleNewRequest}
+          />
+          <br/>
           <AutoComplete
-            fullWidth={true}
             hintText="hint"
             dataSource={this.state.input2}
-            onUpdateInput={(t) => { console.log(t); this.setState({input2: [t, t + t, t + t + t]}); }}
-            onNewRequest={(t) => { console.log('request:' + t); }} />
-
+            onUpdateInput={this.handleUpdateInput2}
+            onNewRequest={this.handleNewRequest}
+          />
+          <br/>
           <AutoComplete
             fullWidth={true}
-            searchText="***************"
+            searchText="*****"
             errorText="error message"
             dataSource={this.state.input3}
-            onUpdateInput={(t) => { console.log(t); this.setState({input3: [t, t + t, t + t + t]}); }}
-            onNewRequest={(t) => { console.log('request:' + t); }} />
-
+            onUpdateInput={this.handleUpdateInput3}
+            onNewRequest={this.handleNewRequest}
+          />
           <AutoComplete
-            fullWidth={true}
             hintText="text-value data"
-            onUpdateInput={(t) => {
-              console.log(t);
-            }}
             showAllItems={true}
-            dataSource={[
-              {
-                text: 'text-value1',
-                value: (<AutoComplete.Item primaryText={'text-value1'} secondaryText="&#9786;" />),
-              },
-              {
-                text: 'text-value2',
-                value: (<AutoComplete.Item primaryText={'text-value2'} secondaryText="&#9786;" />),
-              },
-            ]}
-            onNewRequest={(t, index) => { console.log('request:' + index); }} />
-
+            dataSource={dataSource}
+            onNewRequest={this.handleNewRequest}
+          />
+          <br/>
           <AutoComplete
             floatingLabelText="floating Label"
-            dataSource={['12345', '23456', '34567']} />
-
+            dataSource={['12345', '23456', '34567']}
+          />
+          <br/>
           <AutoComplete
-            fullWidth={true}
             floatingLabelText="showAllItems"
             showAllItems={true}
             animated={false}
-            dataSource={['12345', '23456', '34567']} />
-
+            dataSource={['12345', '23456', '34567']}
+          />
         </CodeExample>
-
       </ComponentDoc>
     );
-
   }
-
-
 }
 
 export default AutoCompletePage;

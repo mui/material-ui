@@ -4,7 +4,7 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['browserify', 'mocha', 'chai-sinon'],
     files: [
-      'node_modules/babel-core/browser-polyfill.js',
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'test/**/*spec.js',
     ],
     preprocessors: {
@@ -16,7 +16,6 @@ module.exports = function(config) {
       paths: ['./node_modules', './src'],
       transform: [
         ['babelify', {
-          stage: 1,
           sourceMap: 'inline',
         }],
         'browserify-istanbul',

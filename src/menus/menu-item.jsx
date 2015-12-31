@@ -144,13 +144,13 @@ const MenuItem = React.createClass({
       },
 
       leftIconDesktop: {
-        padding: 0,
+        margin: 0,
         left: 24,
         top: 4,
       },
 
       rightIconDesktop: {
-        padding: 0,
+        margin: 0,
         right: 24,
         top: 4,
         fill: Colors.grey600,

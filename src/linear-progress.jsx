@@ -9,6 +9,11 @@ const LinearProgress = React.createClass({
 
   mixins: [StylePropable],
 
+  timers: {
+    bar1: undefined,
+    bar2: undefined,
+  },
+
   propTypes: {
     color: React.PropTypes.string,
     max: React.PropTypes.number,
@@ -65,25 +70,29 @@ const LinearProgress = React.createClass({
     let bar1 = ReactDOM.findDOMNode(this.refs.bar1);
     let bar2 = ReactDOM.findDOMNode(this.refs.bar2);
 
-    this._barUpdate(0, bar1, [
+    this.timers.bar1 = this._barUpdate('bar1', 0, bar1, [
       [-35, 100],
       [100, -90],
     ]);
 
-    setTimeout(() => {
-      this._barUpdate(0, bar2, [
+    this.timers.bar2 = setTimeout(() => {
+      this._barUpdate('bar2', 0, bar2, [
         [-200, 100],
         [107, -8],
       ]);
     }, 850);
   },
 
-  _barUpdate(step, barElement, stepValues) {
+  componentWillUnmount() {
+    clearTimeout(this.timers.bar1);
+    clearTimeout(this.timers.bar2);
+  },
+
+  _barUpdate(id, step, barElement, stepValues) {
+    if (this.props.mode !== 'indeterminate') return;
+
     step = step || 0;
     step %= 4;
-    setTimeout(this._barUpdate.bind(this, step + 1, barElement, stepValues), 420);
-    if (!this.isMounted()) return;
-    if (this.props.mode !== 'indeterminate') return;
 
     const right = this.state.muiTheme.isRtl ? 'left' : 'right';
     const left = this.state.muiTheme.isRtl ? 'right' : 'left';
@@ -102,6 +111,7 @@ const LinearProgress = React.createClass({
     else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
+    this.timers[id] = setTimeout(() => this._barUpdate(id, step + 1, barElement, stepValues), 420);
   },
 
   getDefaultProps() {

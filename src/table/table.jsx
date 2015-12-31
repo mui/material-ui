@@ -91,6 +91,7 @@ const Table = React.createClass({
         borderCollapse: 'collapse',
         borderSpacing: 0,
         tableLayout: 'fixed',
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       },
       bodyTable: {
         height: (this.props.fixedHeader || this.props.fixedFooter) ? this.props.height : 'auto',

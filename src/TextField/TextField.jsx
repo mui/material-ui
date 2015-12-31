@@ -9,6 +9,7 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import ContextPure from '../mixins/context-pure';
 import TextFieldHint from './TextFieldHint';
+import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
 import warning from 'warning';
 
@@ -57,7 +58,6 @@ const TextField = React.createClass({
     onEnterKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    ref: React.PropTypes.string,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
 
@@ -118,6 +118,7 @@ const TextField = React.createClass({
     let props = (this.props.children) ? this.props.children.props : this.props;
 
     return {
+      isFocused: false,
       errorText: this.props.errorText,
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
@@ -188,16 +189,7 @@ const TextField = React.createClass({
         transition: Transitions.easeOut(),
       },
       floatingLabel: {
-        position: 'absolute',
-        lineHeight: '22px',
-        top: 38,
-        opacity: 1,
         color: hintColor,
-        transition: Transitions.easeOut(),
-        zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-        cursor: 'text',
-        transform: 'scale(1) translate3d(0, 0, 0)',
-        transformOrigin: 'left top',
       },
       input: {
         tapHighlightColor: 'rgba(0,0,0,0)',
@@ -222,15 +214,12 @@ const TextField = React.createClass({
       font: 'inherit',
     });
 
-
     if (this.state.isFocused) {
       styles.floatingLabel.color = focusColor;
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
     }
 
     if (props.floatingLabelText) {
@@ -289,12 +278,15 @@ const TextField = React.createClass({
     ) : null;
 
     let floatingLabelTextElement = floatingLabelText ? (
-      <label
-        style={this.prepareStyles(styles.floatingLabel, this.props.floatingLabelStyle)}
+      <TextFieldLabel
+        muiTheme={this.state.muiTheme}
+        style={this.mergeStyles(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}
+        shrink={this.state.hasValue || this.state.isFocused}
+        disabled={disabled}
         onTouchTap={this.focus}>
         {floatingLabelText}
-      </label>
+      </TextFieldLabel>
     ) : null;
 
     let inputProps;
@@ -302,7 +294,7 @@ const TextField = React.createClass({
 
     inputProps = {
       id: inputId,
-      ref: this._getRef(),
+      ref: 'input',
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
@@ -388,7 +380,7 @@ const TextField = React.createClass({
   },
 
   setErrorText(newErrorText) {
-    warning(false, 'setErrorText() method is deprectated. Use the errorText property instead.');
+    warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
 
     if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
       console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
@@ -400,15 +392,15 @@ const TextField = React.createClass({
 
   setValue(newValue) {
     warning(false,
-      `setValue() method is deprectated. Use the defaultValue property instead.
-      Or use this the TextField as a controlled component with the value property.`);
+      `setValue() method is deprecated. Use the defaultValue property instead.
+      Or use the TextField as a controlled component with the value property.`);
 
     if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     }
     else if (this.isMounted()) {
       if (this.props.multiLine) {
-        this.refs[this._getRef()].setValue(newValue);
+        this.refs.input.setValue(newValue);
       }
       else {
         this._getInputNode().value = newValue;
@@ -418,13 +410,9 @@ const TextField = React.createClass({
     }
   },
 
-  _getRef() {
-    return this.props.ref ? this.props.ref : 'input';
-  },
-
   _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
-      this.refs[this._getRef()].getInputNode() : ReactDOM.findDOMNode(this.refs[this._getRef()]);
+      this.refs.input.getInputNode() : ReactDOM.findDOMNode(this.refs.input);
   },
 
   _handleInputBlur(e) {

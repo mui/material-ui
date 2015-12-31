@@ -1,7 +1,17 @@
 {
-  "breakConfig": true,
-  "stage": 1,
+  "presets": ["es2015", "stage-1", "react"],
   "plugins": [
-    "dev-expression"
-  ]
+    "transform-decorators-legacy",
+    "transform-dev-warning"
+  ],
+  "env": {
+    "docs-production": {
+      "plugins": [
+        "transform-react-remove-prop-types",
+        "transform-runtime",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    }
+  }
 }
