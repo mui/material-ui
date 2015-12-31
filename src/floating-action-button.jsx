@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
+import Colors from './styles/colors';
 import ColorManipulator from './utils/color-manipulator';
 import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
@@ -14,19 +15,80 @@ import warning from 'warning';
 const FloatingActionButton = React.createClass({
 
   propTypes: {
+    /**
+     * This value will override the default background color for the button.
+     * However it will not override the default disabled background color.
+     * This has to be set separately using the disabledColor attribute.
+     */
     backgroundColor: React.PropTypes.string,
+
+    /**
+     * This is what displayed inside the floating action button; for example, a SVG Icon.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Disables the button if set to true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * This value will override the default background color for the button when it is disabled.
+     */
     disabledColor: React.PropTypes.string,
+
+    /**
+     * The icon within the FloatingActionButton is a FontIcon component.
+     * This property is the classname of the icon to be displayed inside the button.
+     * An alternative to adding an iconClassName would be to manually insert a
+     * FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.
+     */
     iconClassName: React.PropTypes.string,
+
+    /**
+     * This is the equivalent to iconClassName except that it is used for
+     * overriding the inline-styles of the FontIcon component.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * If true, the button will be a small floating action button.
+     */
     mini: React.PropTypes.bool,
+
+    /**
+     * Called when mouse down event occurs on the button.
+     */
     onMouseDown: React.PropTypes.func,
+
+    /**
+     * Called when mouse enter event occurs on the button.
+     */
     onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Called when mouse leave event occurs on the button.
+     */
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Called when mouse up event occurs on the button.
+     */
     onMouseUp: React.PropTypes.func,
+
+    /**
+     * Called when touch end event occurs on the button.
+     */
     onTouchEnd: React.PropTypes.func,
+
+    /**
+     * Called when touch start event occurs on the button.
+     */
     onTouchStart: React.PropTypes.func,
+
+    /**
+     * If true, the button will use the secondary button colors.
+     */
     secondary: React.PropTypes.bool,
 
     /**
@@ -47,6 +109,15 @@ const FloatingActionButton = React.createClass({
   mixins: [
     StylePropable,
   ],
+
+  getDefaultProps() {
+    return {
+      disabled: false,
+      disabledColor: Colors.grey300,
+      mini: false,
+      secondary: false,
+    };
+  },
 
   getInitialState() {
     const zDepth = this.props.disabled ? 0 : 2;

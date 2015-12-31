@@ -20,31 +20,112 @@ function validateLabel(props, propName, componentName) {
 const RaisedButton = React.createClass({
 
   propTypes: {
+    /**
+     * Override the background color. Always takes precedence unless the button is disabled.
+     */
     backgroundColor: React.PropTypes.string,
+
+    /**
+     * This is what will be displayed inside the button.
+     * If a label is specified, the text within the label prop will
+     * be displayed. Otherwise, the component will expect children
+     * which will then be displayed (in our example,
+     * we are nesting an <input type="file" />and a span
+     * that acts as our label to be displayed.) This only
+     * applies to flat and raised buttons.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * Disables the button if set to true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Override the background color if the button is disabled.
+     */
     disabledBackgroundColor: React.PropTypes.string,
+
+    /**
+     * Color of the label if disabled is true.
+     */
     disabledLabelColor: React.PropTypes.string,
+
+    /**
+     * If true, then the button will take up the full
+     * width of its container.
+     */
     fullWidth: React.PropTypes.bool,
+
+    /**
+     * The label for the button.
+     */
     label: validateLabel,
+
+    /**
+     * The color of the label for the button.
+     */
     labelColor: React.PropTypes.string,
+
+    /**
+     * Place label before or after the passed children.
+     */
     labelPosition: React.PropTypes.oneOf([
       'before',
       'after',
     ]),
+
+    /**
+     * Override the inline-styles of the button's label element.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function for when the mouse is pressed down inside this element.
+     */
     onMouseDown: React.PropTypes.func,
+
+    /**
+     * Callback function for when the mouse enters this element.
+     */
     onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Callback function for when the mouse leaves this element.
+     */
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Callback function for when the mouse is realeased
+     * above this element.
+     */
     onMouseUp: React.PropTypes.func,
+
+    /**
+     * Callback function for when a touchTap event ends.
+     */
     onTouchEnd: React.PropTypes.func,
+
+    /**
+     * Callback function for when a touchTap event starts.
+     */
     onTouchStart: React.PropTypes.func,
+
+    /**
+     * If true, colors button according to
+     * primaryTextColor from the Theme.
+     */
     primary: React.PropTypes.bool,
+
+    /**
+     * If true, colors button according to secondaryTextColor from the theme.
+     * The primary prop has precendent if set to true.
+     */
     secondary: React.PropTypes.bool,
 
     /**
@@ -68,7 +149,11 @@ const RaisedButton = React.createClass({
 
   getDefaultProps: function() {
     return {
+      disabled: false,
       labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
+      fullWidth: false,
+      primary: false,
+      secondary: false,
     };
   },
 
