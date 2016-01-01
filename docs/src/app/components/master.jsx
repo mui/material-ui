@@ -57,7 +57,6 @@ const Master = React.createClass({
 
     const styles = {
       appBar: {
-        WebkitFontSmoothing: 'antialiased',
         position: 'fixed',
         // Needed to overlap the examples
         zIndex: this.state.muiTheme.zIndex.appBar + 1,
@@ -151,10 +150,13 @@ const Master = React.createClass({
       history.isActive('/components') ? 'Components' : '';
 
     let docked = false;
+    let showMenuIconButton = true;
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && title !== '') {
       docked = true;
       leftNavOpen = true;
+      showMenuIconButton = false;
+
       styles.leftNav = {
         zIndex: styles.appBar.zIndex - 1,
       };
@@ -170,6 +172,7 @@ const Master = React.createClass({
           zDepth={0}
           iconElementRight={githubButton}
           style={styles.appBar}
+          showMenuIconButton={showMenuIconButton}
         />
         {title !== '' ?
           <div style={this.prepareStyles(styles.root)}>
