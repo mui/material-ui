@@ -364,6 +364,12 @@ The textarea also grows and shrinks according to the number of lines.`,
                 hintText="Password Field"
                 floatingLabelText="Password"
                 type="password" /><br/>
+              <TextField
+                hintText="Message Field"
+                floatingLabelText="MultiLine with Error Text"
+                multiLine={true}
+                errorText="This field is required."
+                rows={5} /><br/>
             </div>
           </ClearFix>
         </CodeExample>
