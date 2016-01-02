@@ -63,12 +63,56 @@ class AutoCompletePage extends React.Component {
     return (
       <ComponentDoc
         name="Auto Complete"
-        componentInfo={[
-          {
-            name: 'Auto Complete',
-            infoArray: [],
-          },
-        ]}>
+        componentInfo={[{
+          name: 'props',
+          infoArray: [
+            {
+              name: 'dataSource',
+              type: 'array',
+              header: 'optional',
+              desc: 'Array of type string or type object that populate the auto complete list.',
+            }, {
+              name: 'errorText',
+              type: 'string',
+              header: 'optional',
+              desc: 'The error content to display.',
+            }, {
+              name: 'floatingLabelText',
+              type: 'string',
+              header: 'optional',
+              desc: 'The content to use for adding floating label element.',
+            }, {
+              name: 'fullWidth',
+              type: 'string',
+              header: 'optional',
+              desc: 'If true, the field receives the property width 100%.',
+            }, {
+              name: 'hintText',
+              type: 'string',
+              header: 'optional',
+              desc: 'The hint content to display.',
+            }, {
+              name: 'showAllItems',
+              type: 'bool',
+              header: 'optional',
+              desc: 'If true, the item list will not be filtered and will '
+                    + 'show when the control is focused (works like a drop down list).',
+            },
+          ],
+        }, {
+          name: 'events',
+          infoArray: [{
+            name: 'onUpdateInput',
+            type: 'func',
+            header: 'optional',
+            desc: 'Gets called each time the user updates the text field',
+          }, {
+            name: 'onNewRequest',
+            type: 'func',
+            header: 'optional',
+            desc: 'Gets called when list item is clicked or pressed enter',
+          }],
+        }]}>
         <br/>
         <CodeExample code={Code}>
           <AutoComplete
