@@ -350,6 +350,33 @@ const AutoComplete = React.createClass({
 
 });
 
+AutoComplete.CaseInsensitiveFilter = (searchText, key) => {
+  return key.toLowerCase().includes(searchText.toLowerCase());
+};
+
+AutoComplete.LevenshteinDistanceFilter = (distanceLessThan) => {
+  if (typeof distanceLessThan !== 'number') {
+    throw 'Error: AutoComplete.LevenshteinDistanceFilter is a filter generator, not a filter!';
+  }
+  return (searchText, key) => {
+    let current = [], prev, value;
+    for (let i = 0; i <= key.length; i++) {
+      for (let j = 0; j <= searchText.length; j++) {
+        if (i && j) {
+          if (searchText.charAt(j - 1) === key.charAt(i - 1)) value = prev;
+          else value = Math.min(current[j], current[j - 1], prev) + 1;
+        }
+        else {
+          value = i + j;
+        }
+        prev = current[j];
+        current[j] = value;
+      }
+    }
+    return current.pop() < distanceLessThan;
+  };
+};
+
 AutoComplete.Item = MenuItem;
 AutoComplete.Divider = Divider;
 
