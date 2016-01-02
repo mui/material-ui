@@ -197,7 +197,7 @@ const DialogInline = React.createClass({
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         transition: Transitions.easeOut(),
         position: 'relative',
-        width: width,
+        width: width || '75%',
         maxWidth: spacing.desktopKeylineIncrement * 12,
         margin: '0 auto',
         zIndex: muiTheme.zIndex.dialog,
@@ -578,7 +578,8 @@ const Dialog = React.createClass({
     /**
      * Changes the width of the `Dialog`.
      */
-    width: React.PropTypes.any,
+    width: deprecated(React.PropTypes.any,
+      'Use the contentStyle.'),
   },
 
   getDefaultProps() {
@@ -587,7 +588,6 @@ const Dialog = React.createClass({
       autoScrollBodyContent: false,
       modal: false,
       repositionOnUpdate: true,
-      width: '75%',
     };
   },
 
