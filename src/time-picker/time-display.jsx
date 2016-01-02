@@ -90,21 +90,9 @@ const TimeDisplay = React.createClass({
 
     let styles = {
       root: {
-        textAlign: 'center',
         position: 'relative',
         width: 280,
         height: '100%',
-      },
-
-      text: {
-        margin: '6px 0',
-        lineHeight: '58px',
-        height: 58,
-        fontSize: 58,
-      },
-
-      time: {
-        margin: '0 10px',
       },
 
       box: {
@@ -115,7 +103,22 @@ const TimeDisplay = React.createClass({
         color: 'white',
       },
 
+      text: {
+        margin: '6px 0',
+        lineHeight: '58px',
+        height: 58,
+        fontSize: 58,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'baseline',
+      },
+
+      time: {
+        margin: '0 10px',
+      },
+
       affix: {
+        flex: 1,
         position: 'relative',
         lineHeight: '17px',
         height: 17,
@@ -139,33 +142,28 @@ const TimeDisplay = React.createClass({
 
     let [hour, min] = this.sanitizeTime();
 
-    let buttons = null;
-    let buttonsLeft = null;
+    let buttons = [];
     if (this.props.format === 'ampm') {
-      buttons = (
-        <span style={this.prepareStyles(styles.affix)}>
-          <span
-            style={this.prepareStyles(styles.clickable, affix === 'pm' ? {} : styles.inactive)}
-            onTouchTap={() => this.props.onSelectAffix('pm')}>
-            {"PM"}
-          </span>
-          <span
-            style={this.prepareStyles(styles.affixTop, styles.clickable, affix === 'am' ? {} : styles.inactive)}
-            onTouchTap={() => this.props.onSelectAffix('am')}>
-            {"AM"}
-          </span>
-        </span>
-      );
-
-      buttonsLeft = (<span style={this.prepareStyles(styles.affix, {opacity: 0.0})}>{"AM"}</span>);
+      buttons = [
+        <div key="pm"
+          style={this.prepareStyles(styles.clickable, affix === 'pm' ? {} : styles.inactive)}
+          onTouchTap={() => this.props.onSelectAffix('pm')}>
+          {"PM"}
+        </div>,
+        <div key="am"
+          style={this.prepareStyles(styles.affixTop, styles.clickable, affix === 'am' ? {} : styles.inactive)}
+          onTouchTap={() => this.props.onSelectAffix('am')}>
+          {"AM"}
+        </div>,
+      ];
     }
 
     return (
       <div {...other} style={this.prepareStyles(styles.root)}>
         <div style={this.prepareStyles(styles.box)}>
           <div style={this.prepareStyles(styles.text)}>
-            {buttonsLeft}
-            <span style={this.prepareStyles(styles.time)}>
+            <div style={this.prepareStyles(styles.affix)} />
+            <div style={this.prepareStyles(styles.time)}>
               <span
                 style={this.prepareStyles(styles.clickable, mode === 'hour' ? {} : styles.inactive)}
                 onTouchTap={this.props.onSelectHour}>
@@ -177,8 +175,10 @@ const TimeDisplay = React.createClass({
                 onTouchTap={this.props.onSelectMin}>
                 {min}
               </span>
-            </span>
-            {buttons}
+            </div>
+            <div style={this.prepareStyles(styles.affix)}>
+              {buttons}
+            </div>
           </div>
         </div>
       </div>
