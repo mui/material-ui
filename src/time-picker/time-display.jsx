@@ -96,11 +96,15 @@ const TimeDisplay = React.createClass({
         height: '100%',
       },
 
-      time: {
+      text: {
         margin: '6px 0',
         lineHeight: '58px',
         height: 58,
-        fontSize: '58px',
+        fontSize: 58,
+      },
+
+      time: {
+        margin: '0 10px',
       },
 
       box: {
@@ -115,12 +119,12 @@ const TimeDisplay = React.createClass({
         position: 'relative',
         lineHeight: '17px',
         height: 17,
-        fontSize: '17px',
+        fontSize: 17,
       },
 
       affixTop: {
         position: 'absolute',
-        top: '-20px',
+        top: -20,
         left: 0,
       },
 
@@ -159,9 +163,9 @@ const TimeDisplay = React.createClass({
     return (
       <div {...other} style={this.prepareStyles(styles.root)}>
         <div style={this.prepareStyles(styles.box)}>
-          <div style={this.prepareStyles(styles.time)}>
+          <div style={this.prepareStyles(styles.text)}>
             {buttonsLeft}
-            <span style={{margin: '0px 10px'}}>
+            <span style={this.prepareStyles(styles.time)}>
               <span
                 style={this.prepareStyles(styles.clickable, mode === 'hour' ? {} : styles.inactive)}
                 onTouchTap={this.props.onSelectHour}>
