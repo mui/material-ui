@@ -231,13 +231,25 @@ const DropDownMenu = React.createClass({
     };
   },
 
+  /**
+   * This method is deprecated but still here because the TextField
+   * need it in order to work. That will be addressed later.
+   */
   getInputNode() {
-    warning(false, `The imperative method getInputNode will be removed in favor of composability.`);
     const root = this.refs.root;
     const item = this.props.menuItems && this.props.menuItems[this.state.selectedIndex];
     if (item) {
       root.value = item[this.props.displayMember || 'text'];
     }
+
+    root.focus = () => {
+      if (!this.props.disabled) {
+        this.setState({
+          open: !this.state.open,
+          anchorEl: this.refs.root,
+        });
+      }
+    };
 
     return root;
   },
