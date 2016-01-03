@@ -284,6 +284,7 @@ const DialogInline = React.createClass({
                   ref="dialogContent"
                   className={bodyClassName}
                   style={this.prepareStyles(styles.body)}
+                  onScroll={this._handleScrollContent}
                 >
                   {children}
                 </div>
@@ -456,6 +457,12 @@ const DialogInline = React.createClass({
     }
   },
 
+  _handleScrollContent() {
+    if (this.props.autoScrollBodyContent) {
+      this.props.onScroll.apply(this, arguments);
+    }
+  },
+
 });
 
 const Dialog = React.createClass({
@@ -534,6 +541,11 @@ const Dialog = React.createClass({
      * Fired when the `Dialog is requested to be closed by a click outside the `Dialog` or on the buttons.
      */
     onRequestClose: React.PropTypes.func,
+
+    /**
+     * Called when the dialog contents are scrolled and autoScrollBodyContent is true
+     */
+    onScroll: React.PropTypes.func,
 
     /**
      * Controls whether the Dialog is opened or not.
