@@ -189,7 +189,7 @@ const Snackbar = React.createClass({
     if (this.props.open !== null && this.props.onRequestClose) {
       this.props.onRequestClose('clickaway');
     } else {
-      this.dismiss();
+      this.setState({open: false});
     }
   },
 
@@ -358,7 +358,7 @@ const Snackbar = React.createClass({
         if (this.props.open !== null && this.props.onRequestClose) {
           this.props.onRequestClose('timeout');
         } else {
-          this.dismiss();
+          this.setState({open: false});
         }
       }, autoHideDuration);
     }
