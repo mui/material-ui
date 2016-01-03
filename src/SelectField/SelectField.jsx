@@ -98,8 +98,7 @@ const SelectField = React.createClass({
     /**
      * Overrides the styles of label when the `SelectField` is inactive.
      */
-    labelStyle: deprecated(React.PropTypes.object,
-      'to promote composability.'),
+    labelStyle: React.PropTypes.object,
 
     /**
      * JSON data representing all menu items in the dropdown.
