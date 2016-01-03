@@ -1,7 +1,6 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import TimeDisplay from './time-display';
-import ClockButton from './clock-button';
 import ClockHours from './clock-hours';
 import ClockMinutes from './clock-minutes';
 import ThemeManager from '../styles/theme-manager';
@@ -79,30 +78,8 @@ const Clock = React.createClass({
     return 'pm';
   },
 
-  _getButtons() {
-    let buttons = [];
-    let isAM = this._getIsAM();
-
-    if (this.props.format === 'ampm') {
-      buttons = [
-        <ClockButton key="AM" position="left" onTouchTap={this._setAffix.bind(this, 'am')} selected={isAM}>
-          {"AM"}
-        </ClockButton>,
-        <ClockButton key="PM" position="right" onTouchTap={this._setAffix.bind(this, 'pm')} selected={!isAM}>
-          {"PM"}
-        </ClockButton>,
-      ];
-    }
-    return buttons;
-  },
-
-  _getIsAM() {
-    return this._getAffix() === 'am';
-  },
-
   render() {
     let clock = null;
-    let buttons = this._getButtons();
 
     let styles = {
       root: {},
@@ -146,13 +123,13 @@ const Clock = React.createClass({
           mode={this.state.mode}
           format={this.props.format}
           affix={this._getAffix()}
+          onSelectAffix={this._setAffix}
           onSelectHour={this._setMode.bind(this, 'hour')}
           onSelectMin={this._setMode.bind(this, 'minute')} />
         <div style={this.prepareStyles(styles.container)} >
           <div style={this.prepareStyles(styles.circle)} />
           {clock}
         </div>
-       {buttons}
       </div>
     );
   },
