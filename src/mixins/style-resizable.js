@@ -1,5 +1,10 @@
 import Events from '../utils/events';
 
+const Widths = {
+  LARGE_DEVICE_MINIMUM: 992,
+  MEDIUM_DEVICE_MINIMUM: 786,
+}
+
 const Sizes = {
   SMALL: 1,
   MEDIUM: 2,
@@ -31,16 +36,15 @@ export default {
     return this.state.deviceSize >= desiredSize;
   },
 
-  _updateDeviceSize() {
+  getDeviceSize() {
     const width = window.innerWidth;
+    if (width >= Widths.LARGE_DEVICE_MINIMUM) return Sizes.LARGE;
+    if (width >= Widths.MEDIUM_DEVICE_MINIMUM) return Sizes.MEDIUM;
+    return Sizes.SMALL; // width < 768
+  },
 
-    if (width >= 992) {
-      this.setState({deviceSize: Sizes.LARGE});
-    } else if (width >= 768) {
-      this.setState({deviceSize: Sizes.MEDIUM});
-    } else { // width < 768
-      this.setState({deviceSize: Sizes.SMALL});
-    }
+  _updateDeviceSize() {
+    this.setState({deviceSize: this.getDeviceSize()});
   },
 
   _bindResize() {

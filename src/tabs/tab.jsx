@@ -1,6 +1,7 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+import ColorManipulator from '../utils/color-manipulator';
 
 const Tab = React.createClass({
 
@@ -45,6 +46,11 @@ const Tab = React.createClass({
     style: React.PropTypes.object,
 
     /**
+     * Index of tab
+     */
+    tabIndex: React.PropTypes.number,
+
+    /**
      * If value prop passed to Tabs component, this value prop is also required.
      * It assigns a value to the tab so that it can be selected by the Tabs.
      */
@@ -53,7 +59,7 @@ const Tab = React.createClass({
     /**
      * This property is overriden by the Tabs component.
      */
-    width: React.PropTypes.string,
+    width: React.PropTypes.number,
   },
 
   contextTypes: {
@@ -101,6 +107,7 @@ const Tab = React.createClass({
       onTouchTap,
       selected,
       style,
+      tabIndex,
       value,
       width,
       icon,
@@ -109,7 +116,8 @@ const Tab = React.createClass({
 
     const textColor = selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor;
 
-    const styles = this.mergeStyles({
+    // https://www.google.com/design/spec/components/tabs.html#tabs-specs
+    const styles = this.prepareStyles({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',
@@ -120,11 +128,20 @@ const Tab = React.createClass({
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
-      whiteSpace: 'initial',
+      whiteSpace: 'nowrap',
       fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       boxSizing: 'border-box',
       width: width,
+      paddingLeft: 12,
+      paddingRight: 12,
     }, style);
+
+    // handled fade of provided label color
+    const colorStyleMerge = this.mergeStyles(styles,
+      style && style.color ?
+      {color: selected ? style.color : ColorManipulator.fade(style.color, 0.6)}
+      : {}
+    );
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {

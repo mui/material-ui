@@ -1,5 +1,4 @@
 import React from 'react';
-import Transitions from './styles/transitions';
 import StylePropable from './mixins/style-propable';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -7,13 +6,14 @@ const InkBar = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
-    left: React.PropTypes.string.isRequired,
+    left: React.PropTypes.number.isRequired,
+    moveBarLeft: React.PropTypes.bool.isRequired,
+    right: React.PropTypes.number.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-    width: React.PropTypes.string.isRequired,
   },
 
   contextTypes: {
@@ -52,7 +52,8 @@ const InkBar = React.createClass({
     let {
       color,
       left,
-      width,
+      right,
+      moveBarLeft,
       style,
       ...other,
     } = this.props;
@@ -60,14 +61,15 @@ const InkBar = React.createClass({
     let colorStyle = color ? {backgroundColor: color} : undefined;
     let styles = this.mergeStyles({
       left: left,
-      width: width,
+      right: right,
       bottom: 0,
       display: 'block',
       backgroundColor: this.state.muiTheme.inkBar.backgroundColor,
       height: 2,
       marginTop: -2,
-      position: 'relative',
-      transition: Transitions.easeOut('1s', 'left'),
+      position: 'absolute',
+      transition: `left ${moveBarLeft ? '0.125' : '0.25'}s cubic-bezier(.35,0,.25,1),
+        right ${moveBarLeft ? '0.25' : '0.125'}s cubic-bezier(.35,0,.25,1)`,
     }, this.props.style, colorStyle);
 
     return (
