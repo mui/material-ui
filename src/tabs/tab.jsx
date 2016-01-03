@@ -116,7 +116,6 @@ const Tab = React.createClass({
 
     const textColor = selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor;
 
-    // https://www.google.com/design/spec/components/tabs.html#tabs-specs
     const styles = this.prepareStyles({
       display: 'table-cell',
       cursor: 'pointer',
@@ -163,7 +162,7 @@ const Tab = React.createClass({
     return (
       <div
         {...other}
-        style={this.prepareStyles(styles)}
+        style={colorStyleMerge}
         onTouchTap={this._handleTouchTap}
       >
         {iconElement}

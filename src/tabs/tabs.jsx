@@ -5,7 +5,6 @@ import InkBar from '../ink-bar';
 import TabPaginatorButton from './tab-paginator-button';
 import StylePropable from '../mixins/style-propable';
 import StyleResizable from '../mixins/style-resizable';
-import Controllable from '../mixins/controllable';
 import getMuiTheme from '../styles/getMuiTheme';
 import Events from '../utils/events';
 import warning from 'warning';
@@ -457,7 +456,8 @@ const Tabs = React.createClass({
     return (
       <div
         {...other}
-        style={this.prepareStyles(style)}>
+        style={this.prepareStyles(style)}
+      >
         <div
           ref={Constants.TAB_WRAPPER_REF_NAME}
           style={this.prepareStyles(styles.tabWrapper, tabWrapperStyle)}>
