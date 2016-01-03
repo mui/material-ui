@@ -58,6 +58,11 @@ const IconButton = React.createClass({
     className: React.PropTypes.string,
 
     /**
+     * Disables the ripple effect.
+     */
+    disableTouchRipple: React.PropTypes.bool,
+
+    /**
      * Disables the icon button.
      */
     disabled: React.PropTypes.bool,
@@ -143,6 +148,7 @@ const IconButton = React.createClass({
   getDefaultProps() {
     return {
       disabled: false,
+      disableTouchRipple: false,
       iconStyle: {},
       tooltipPosition: 'bottom-center',
       touch: false,
@@ -222,6 +228,7 @@ const IconButton = React.createClass({
   render() {
     const {
       disabled,
+      disableTouchRipple,
       iconClassName,
       tooltip,
       touch,
@@ -275,6 +282,7 @@ const IconButton = React.createClass({
         centerRipple={true}
         disabled={disabled}
         style={Object.assign(styles.root, this.props.style)}
+        disableTouchRipple={disableTouchRipple}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
         onMouseLeave={this._handleMouseLeave}
