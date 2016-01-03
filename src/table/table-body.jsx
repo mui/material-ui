@@ -46,6 +46,7 @@ const TableBody = React.createClass({
     onRowHover: React.PropTypes.func,
     onRowHoverExit: React.PropTypes.func,
     onRowSelection: React.PropTypes.func,
+    onRowClick: React.PropTypes.func,
     preScanRows: React.PropTypes.bool,
     selectable: React.PropTypes.bool,
     showRowHover: React.PropTypes.bool,
@@ -227,16 +228,6 @@ const TableBody = React.createClass({
     return false;
   },
 
-  _onRowClick(e, rowNumber) {
-    e.stopPropagation();
-
-    if (this.props.selectable) {
-      // Prevent text selection while selecting rows.
-      window.getSelection().removeAllRanges();
-      this._processRowSelection(e, rowNumber);
-    }
-  },
-
   _processRowSelection(e, rowNumber) {
     let selectedRows = this.state.selectedRows;
 
@@ -346,6 +337,18 @@ const TableBody = React.createClass({
 
   _onRowHoverExit(e, rowNumber) {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
+  },
+
+  _onRowClick(e, rowNumber) {
+    e.stopPropagation();
+
+    if (this.props.selectable) {
+      // Prevent text selection while selecting rows.
+      window.getSelection().removeAllRanges();
+      this._processRowSelection(e, rowNumber);
+    }
+
+    if (this.props.onRowClick) this.props.onRowClick(rowNumber);
   },
 
   _getColumnId(columnNumber) {

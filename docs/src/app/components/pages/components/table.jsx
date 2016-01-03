@@ -452,7 +452,8 @@ export default class TablePage extends React.Component {
               fixedFooter={this.state.fixedFooter}
               selectable={this.state.selectable}
               multiSelectable={this.state.multiSelectable}
-              onRowSelection={this._onRowSelection}>
+              onRowSelection={this._onRowSelection}
+              onRowClick={this._onRowClick}>
               <TableHeader enableSelectAll={this.state.enableSelectAll}>
                 <TableRow>
                   <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
@@ -593,5 +594,9 @@ export default class TablePage extends React.Component {
 
   _onRowSelection(rows) {
     console.log(rows);
+  }
+
+  _onRowClick(rows) {
+    console.log(rows)
   }
 }
