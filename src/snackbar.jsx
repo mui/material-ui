@@ -92,7 +92,7 @@ const Snackbar = React.createClass({
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside or when the time runs out.
      */
-    onRequestClose: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func.isRequired,
 
     /**
      * Fired when the `Snackbar` is shown.
