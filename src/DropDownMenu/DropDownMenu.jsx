@@ -86,26 +86,26 @@ const DropDownMenu = React.createClass({
     maxHeight: React.PropTypes.number,
 
     /**
-     * JSON data representing all menu items in the dropdown.
-     */
-    menuItems: deprecated(React.PropTypes.array,
-      'Instead, use composability.'),
-
-    /**
-     * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
-     */
-    menuStyle: React.PropTypes.object,
-
-    /**
      * If true, the width of menu will automatically be set according to the items
      * inside the menu using the proper keyline increment.
      */
     menuAutoWidth: React.PropTypes.bool,
 
     /**
+     * JSON data representing all menu items in the dropdown.
+     */
+    menuItems: deprecated(React.PropTypes.array,
+      'Instead, use composability.'),
+
+    /**
      * Overrides the styles of `List` in `Menu` when the `DropDownMenu` is displayed.
      */
     menuListStyle: React.PropTypes.object,
+
+    /**
+     * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
+     */
+    menuStyle: React.PropTypes.object,
 
     /**
      * Fired when a menu item is clicked that is not the one currently selected.
