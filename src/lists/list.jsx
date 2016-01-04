@@ -9,15 +9,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const List = React.createClass({
 
-  mixins: [
-    PureRenderMixin,
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     children: React.PropTypes.node,
     insetSubheader: React.PropTypes.bool,
@@ -31,16 +22,19 @@ const List = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -51,6 +45,12 @@ const List = React.createClass({
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 

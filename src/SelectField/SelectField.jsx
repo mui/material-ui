@@ -9,24 +9,6 @@ import deprecated from '../utils/deprecatedPropType';
 
 const SelectField = React.createClass({
 
-  mixins: [
-    StylePropable,
-    ContextPure,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  statics: {
-    getChildrenClasses() {
-      return [
-        TextField,
-        DropDownMenu,
-      ];
-    },
-  },
-
   propTypes: {
     /**
      * The width will automatically be set according to the
@@ -158,14 +140,34 @@ const SelectField = React.createClass({
     value: React.PropTypes.any,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+    ContextPure,
+  ],
+
+  statics: {
+    getChildrenClasses() {
+      return [
+        TextField,
+        DropDownMenu,
+      ];
+    },
+  },
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      autoWidth: false,
+      disabled: false,
+      fullWidth: false,
     };
   },
 
@@ -175,11 +177,9 @@ const SelectField = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      autoWidth: false,
-      disabled: false,
-      fullWidth: false,
+      muiTheme: this.state.muiTheme,
     };
   },
 

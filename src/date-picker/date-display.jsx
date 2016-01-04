@@ -7,14 +7,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const DateDisplay = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
@@ -32,16 +24,18 @@ const DateDisplay = React.createClass({
     weekCount: React.PropTypes.number,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -56,6 +50,12 @@ const DateDisplay = React.createClass({
       selectedYear: !this.props.monthDaySelected,
       transitionDirection: 'up',
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -133,6 +133,24 @@ const DateDisplay = React.createClass({
     return styles;
   },
 
+  _handleMonthDayClick() {
+    if (this.props.handleMonthDayClick && this.state.selectedYear) {
+      this.props.handleMonthDayClick();
+    }
+
+    this.setState({selectedYear: false});
+  },
+
+  _handleYearClick() {
+    if (this.props.handleYearClick && !this.props.disableYearSelection && !this.state.selectedYear) {
+      this.props.handleYearClick();
+    }
+
+    if (!this.props.disableYearSelection) {
+      this.setState({selectedYear: true});
+    }
+  },
+
   render() {
     let {
       DateTimeFormat,
@@ -170,24 +188,6 @@ const DateDisplay = React.createClass({
         </SlideInTransitionGroup>
       </div>
     );
-  },
-
-  _handleMonthDayClick() {
-    if (this.props.handleMonthDayClick && this.state.selectedYear) {
-      this.props.handleMonthDayClick();
-    }
-
-    this.setState({selectedYear: false});
-  },
-
-  _handleYearClick() {
-    if (this.props.handleYearClick && !this.props.disableYearSelection && !this.state.selectedYear) {
-      this.props.handleYearClick();
-    }
-
-    if (!this.props.disableYearSelection) {
-      this.setState({selectedYear: true});
-    }
   },
 
 });

@@ -12,43 +12,6 @@ import deprecated from './utils/deprecatedPropType';
 
 const Snackbar = React.createClass({
 
-  mixins: [
-    StylePropable,
-    StyleResizable,
-    ClickAwayable,
-    ContextPure,
-  ],
-
-  manuallyBindClickAway: true,
-
-  timerAutoHideId: undefined,
-  timerTransitionId: undefined,
-  timerOneAtTheTimeId: undefined,
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const theme = muiTheme.snackbar;
-      const spacing = muiTheme.rawTheme.spacing;
-
-      return {
-        textColor: theme.textColor,
-        backgroundColor: theme.backgroundColor,
-        desktopGutter: spacing.desktopGutter,
-        desktopSubheaderHeight: spacing.desktopSubheaderHeight,
-        actionColor: theme.actionColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        FlatButton,
-      ];
-    },
-  },
-
   propTypes: {
     /**
      * The name of the action on the snackbar.
@@ -117,15 +80,40 @@ const Snackbar = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
+  mixins: [
+    StylePropable,
+    StyleResizable,
+    ClickAwayable,
+    ContextPure,
+  ],
+
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      const theme = muiTheme.snackbar;
+      const spacing = muiTheme.rawTheme.spacing;
+
+      return {
+        textColor: theme.textColor,
+        backgroundColor: theme.backgroundColor,
+        desktopGutter: spacing.desktopGutter,
+        desktopSubheaderHeight: spacing.desktopSubheaderHeight,
+        actionColor: theme.actionColor,
+      };
+    },
+    getChildrenClasses() {
+      return [
+        FlatButton,
+      ];
+    },
   },
 
   getInitialState() {
@@ -141,6 +129,23 @@ const Snackbar = React.createClass({
       action: this.props.action,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    if (this.state.open) {
+      this._setAutoHideTimer();
+
+      //Only Bind clickaway after transition finishes
+      this.timerTransitionId = setTimeout(() => {
+        this._bindClickAway();
+      }, 400);
+    }
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -174,25 +179,6 @@ const Snackbar = React.createClass({
     }
   },
 
-  componentDidMount() {
-    if (this.state.open) {
-      this._setAutoHideTimer();
-
-      //Only Bind clickaway after transition finishes
-      this.timerTransitionId = setTimeout(() => {
-        this._bindClickAway();
-      }, 400);
-    }
-  },
-
-  componentClickAway() {
-    if (this.props.open !== null && this.props.onRequestClose) {
-      this.props.onRequestClose('clickaway');
-    } else {
-      this.setState({open: false});
-    }
-  },
-
   componentDidUpdate(prevProps, prevState) {
     if (prevState.open !== this.state.open) {
       if (this.state.open) {
@@ -214,6 +200,20 @@ const Snackbar = React.createClass({
     clearTimeout(this.timerTransitionId);
     clearTimeout(this.timerOneAtTheTimeId);
     this._unbindClickAway();
+  },
+
+  manuallyBindClickAway: true,
+
+  timerAutoHideId: undefined,
+  timerTransitionId: undefined,
+  timerOneAtTheTimeId: undefined,
+
+  componentClickAway() {
+    if (this.props.open !== null && this.props.onRequestClose) {
+      this.props.onRequestClose('clickaway');
+    } else {
+      this.setState({open: false});
+    }
   },
 
   getStyles() {
@@ -279,6 +279,45 @@ const Snackbar = React.createClass({
     return styles;
   },
 
+  show() {
+    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
+
+    this.setState({
+      open: true,
+    });
+
+    if (this.props.onShow) {
+      this.props.onShow();
+    }
+  },
+
+  dismiss() {
+    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
+
+    this.setState({
+      open: false,
+    });
+
+    if (this.props.onDismiss) {
+      this.props.onDismiss();
+    }
+  },
+
+  _setAutoHideTimer() {
+    const autoHideDuration = this.props.autoHideDuration;
+
+    if (autoHideDuration > 0) {
+      clearTimeout(this.timerAutoHideId);
+      this.timerAutoHideId = setTimeout(() => {
+        if (this.props.open !== null && this.props.onRequestClose) {
+          this.props.onRequestClose('timeout');
+        } else {
+          this.setState({open: false});
+        }
+      }, autoHideDuration);
+    }
+  },
+
   render() {
     const {
       onActionTouchTap,
@@ -323,45 +362,6 @@ const Snackbar = React.createClass({
         </div>
       </div>
     );
-  },
-
-  show() {
-    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
-
-    this.setState({
-      open: true,
-    });
-
-    if (this.props.onShow) {
-      this.props.onShow();
-    }
-  },
-
-  dismiss() {
-    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
-
-    this.setState({
-      open: false,
-    });
-
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
-  },
-
-  _setAutoHideTimer() {
-    const autoHideDuration = this.props.autoHideDuration;
-
-    if (autoHideDuration > 0) {
-      clearTimeout(this.timerAutoHideId);
-      this.timerAutoHideId = setTimeout(() => {
-        if (this.props.open !== null && this.props.onRequestClose) {
-          this.props.onRequestClose('timeout');
-        } else {
-          this.setState({open: false});
-        }
-      }, autoHideDuration);
-    }
   },
 
 });

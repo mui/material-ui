@@ -5,10 +5,7 @@ import Colors from '../styles/colors';
 import DateTime from '../utils/date-time';
 import YearButton from './year-button';
 
-
 const CalendarYear = React.createClass({
-
-  mixins: [StylePropable],
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
@@ -18,32 +15,16 @@ const CalendarYear = React.createClass({
     selectedDate: React.PropTypes.object.isRequired,
   },
 
+  mixins: [
+    StylePropable,
+  ],
+
   componentDidMount() {
     this._scrollToSelectedYear();
   },
 
   componentDidUpdate() {
     this._scrollToSelectedYear();
-  },
-
-  render() {
-    let years = this._getYears();
-    let styles = {
-      position: 'relative',
-      height: 'inherit',
-      lineHeight: '36px',
-      textAlign: 'center',
-      padding: '8px 14px 0 14px',
-      backgroundColor: Colors.white,
-      overflowX: 'hidden',
-      overflowY: 'scroll',
-    };
-
-    return (
-      <div style={styles}>
-        {years}
-      </div>
-    );
   },
 
   _getYears() {
@@ -91,6 +72,26 @@ const CalendarYear = React.createClass({
 
   _handleYearTouchTap(e, year) {
     if (this.props.onYearTouchTap) this.props.onYearTouchTap(e, year);
+  },
+
+  render() {
+    let years = this._getYears();
+    let styles = {
+      position: 'relative',
+      height: 'inherit',
+      lineHeight: '36px',
+      textAlign: 'center',
+      padding: '8px 14px 0 14px',
+      backgroundColor: Colors.white,
+      overflowX: 'hidden',
+      overflowY: 'scroll',
+    };
+
+    return (
+      <div style={styles}>
+        {years}
+      </div>
+    );
   },
 
 });

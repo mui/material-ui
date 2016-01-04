@@ -5,12 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const ClockNumber = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     isSelected: React.PropTypes.bool,
     onSelected: React.PropTypes.func,
@@ -18,14 +12,22 @@ const ClockNumber = React.createClass({
     value: React.PropTypes.number,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      value: 0,
+      type: 'minute',
+      isSelected: false,
     };
   },
 
@@ -35,19 +37,17 @@ const ClockNumber = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  getDefaultProps() {
-    return {
-      value: 0,
-      type: 'minute',
-      isSelected: false,
-    };
   },
 
   getTheme() {

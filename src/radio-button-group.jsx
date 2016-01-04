@@ -5,24 +5,6 @@ import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
 const RadioButtonGroup = React.createClass({
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     children: React.PropTypes.node,
@@ -43,9 +25,23 @@ const RadioButtonGroup = React.createClass({
     valueSelected: React.PropTypes.string,
   },
 
-  _hasCheckAttribute(radioButton) {
-    return radioButton.props.hasOwnProperty('checked') &&
-      radioButton.props.checked;
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
+    return {
+      style: {},
+    };
   },
 
   getInitialState() {
@@ -56,9 +52,9 @@ const RadioButtonGroup = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      style: {},
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -81,6 +77,43 @@ const RadioButtonGroup = React.createClass({
     }
 
     this.setState(newState);
+  },
+
+  _hasCheckAttribute(radioButton) {
+    return radioButton.props.hasOwnProperty('checked') &&
+      radioButton.props.checked;
+  },
+
+  _updateRadioButtons(newSelection) {
+    if (this.state.numberCheckedRadioButtons === 0) {
+      this.setState({selected: newSelection});
+    }
+    else if (process.env.NODE_ENV !== 'production') {
+      let message = 'Cannot select a different radio button while another radio button ' +
+                    "has the 'checked' property set to true.";
+      console.error(message);
+    }
+  },
+
+  _onChange(e, newSelection) {
+    this._updateRadioButtons(newSelection);
+
+    // Successful update
+    if (this.state.numberCheckedRadioButtons === 0) {
+      if (this.props.onChange) this.props.onChange(e, newSelection);
+    }
+  },
+
+  getSelectedValue() {
+    return this.state.selected;
+  },
+
+  setSelectedValue(newSelectionValue) {
+    this._updateRadioButtons(newSelectionValue);
+  },
+
+  clearValue() {
+    this.setSelectedValue('');
   },
 
   render() {
@@ -115,38 +148,6 @@ const RadioButtonGroup = React.createClass({
         {options}
       </div>
     );
-  },
-
-  _updateRadioButtons(newSelection) {
-    if (this.state.numberCheckedRadioButtons === 0) {
-      this.setState({selected: newSelection});
-    }
-    else if (process.env.NODE_ENV !== 'production') {
-      let message = 'Cannot select a different radio button while another radio button ' +
-                    "has the 'checked' property set to true.";
-      console.error(message);
-    }
-  },
-
-  _onChange(e, newSelection) {
-    this._updateRadioButtons(newSelection);
-
-    // Successful update
-    if (this.state.numberCheckedRadioButtons === 0) {
-      if (this.props.onChange) this.props.onChange(e, newSelection);
-    }
-  },
-
-  getSelectedValue() {
-    return this.state.selected;
-  },
-
-  setSelectedValue(newSelectionValue) {
-    this._updateRadioButtons(newSelectionValue);
-  },
-
-  clearValue() {
-    this.setSelectedValue('');
   },
 
 });

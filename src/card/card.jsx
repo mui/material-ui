@@ -4,13 +4,6 @@ import StylePropable from '../mixins/style-propable';
 import CardExpandable from './card-expandable';
 
 const Card = React.createClass({
-  mixins: [StylePropable],
-
-  getInitialState() {
-    return {
-      expanded: this.props.initiallyExpanded ? true : false,
-    };
-  },
 
   propTypes: {
     /**
@@ -52,11 +45,21 @@ const Card = React.createClass({
     style: React.PropTypes.object,
   },
 
+  mixins: [
+    StylePropable,
+  ],
+
   getDefaultProps() {
     return {
       expandable: false,
       initiallyExpanded: false,
       actAsExpander: false,
+    };
+  },
+
+  getInitialState() {
+    return {
+      expanded: this.props.initiallyExpanded ? true : false,
     };
   },
 

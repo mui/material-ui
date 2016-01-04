@@ -16,15 +16,6 @@ const nestedMenuStyle = {
 
 const MenuItem = React.createClass({
 
-  mixins: [
-    PureRenderMixin,
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     checked: React.PropTypes.bool,
     children: React.PropTypes.node,
@@ -50,14 +41,23 @@ const MenuItem = React.createClass({
     value: React.PropTypes.any,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      focusState: 'none',
     };
   },
 
@@ -66,6 +66,16 @@ const MenuItem = React.createClass({
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       open: false,
     };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    this._applyFocusState();
   },
 
   //to update theme inside state whenever a new theme is passed down
@@ -79,16 +89,6 @@ const MenuItem = React.createClass({
     }
   },
 
-  getDefaultProps() {
-    return {
-      focusState: 'none',
-    };
-  },
-
-  componentDidMount() {
-    this._applyFocusState();
-  },
-
   componentDidUpdate() {
     this._applyFocusState();
   },
@@ -99,6 +99,46 @@ const MenuItem = React.createClass({
         open: false,
       });
     }
+  },
+
+  _applyFocusState() {
+    this.refs.listItem.applyFocusState(this.props.focusState);
+  },
+
+  _cloneMenuItem(item) {
+    return React.cloneElement(item, {
+      onTouchTap: (event) =>
+      {
+        if (!item.props.menuItems) {
+          this._onRequestClose();
+        }
+
+        if (item.props.onTouchTap) {
+          item.props.onTouchTap(event);
+        }
+      },
+      onRequestClose: this._onRequestClose,
+    });
+  },
+
+  _onTouchTap(event) {
+    event.preventDefault();
+
+    this.setState({
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this),
+    });
+
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
+  },
+
+  _onRequestClose() {
+    this.setState({
+      open: false,
+      anchorEl: null,
+    });
   },
 
   render() {
@@ -220,45 +260,6 @@ const MenuItem = React.createClass({
     );
   },
 
-  _applyFocusState() {
-    this.refs.listItem.applyFocusState(this.props.focusState);
-  },
-
-  _cloneMenuItem(item) {
-    return React.cloneElement(item, {
-      onTouchTap: (event) =>
-      {
-        if (!item.props.menuItems) {
-          this._onRequestClose();
-        }
-
-        if (item.props.onTouchTap) {
-          item.props.onTouchTap(event);
-        }
-      },
-      onRequestClose: this._onRequestClose,
-    });
-  },
-
-  _onTouchTap(event) {
-    event.preventDefault();
-
-    this.setState({
-      open: true,
-      anchorEl: ReactDOM.findDOMNode(this),
-    });
-
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(event);
-    }
-  },
-
-  _onRequestClose() {
-    this.setState({
-      open: false,
-      anchorEl: null,
-    });
-  },
 });
 
 export default MenuItem;

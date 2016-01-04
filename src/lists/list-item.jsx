@@ -16,15 +16,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const ListItem = React.createClass({
 
-  mixins: [
-    PureRenderMixin,
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     autoGenerateNestedIndicator: React.PropTypes.bool,
     children: React.PropTypes.node,
@@ -60,16 +51,19 @@ const ListItem = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -99,11 +93,169 @@ const ListItem = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  applyFocusState(focusState) {
+    const button = this.refs.enhancedButton;
+    const buttonEl = ReactDOM.findDOMNode(button);
+
+    if (button) {
+      switch (focusState) {
+        case 'none':
+          buttonEl.blur();
+          break;
+        case 'focused':
+          buttonEl.focus();
+          break;
+        case 'keyboard-focused':
+          button.setKeyboardFocus();
+          buttonEl.focus();
+          break;
+      }
+    }
+  },
+
+  _createDisabledElement(styles, contentChildren) {
+    const {
+      innerDivStyle,
+      style,
+    } = this.props;
+
+    const mergedDivStyles = this.prepareStyles(
+      styles.root,
+      styles.innerDiv,
+      innerDivStyle,
+      style
+    );
+
+    return React.createElement('div', {style: mergedDivStyles}, contentChildren);
+  },
+
+  _createLabelElement(styles, contentChildren) {
+    const {
+      innerDivStyle,
+      style,
+    } = this.props;
+
+    const mergedLabelStyles = this.prepareStyles(
+      styles.root,
+      styles.innerDiv,
+      innerDivStyle,
+      styles.label,
+      style
+    );
+
+    return React.createElement('label', {style: mergedLabelStyles}, contentChildren);
+  },
+
+  _createTextElement(styles, data, key) {
+    const isAnElement = React.isValidElement(data);
+    const mergedStyles = isAnElement ?
+      this.prepareStyles(styles, data.props.style) : null;
+
+    return isAnElement ? (
+      React.cloneElement(data, {
+        key: key,
+        style: mergedStyles,
+      })
+    ) : (
+      <div key={key} style={this.prepareStyles(styles)}>
+        {data}
+      </div>
+    );
+  },
+
+  _handleKeyboardFocus(e, isKeyboardFocused) {
+    this.setState({isKeyboardFocused: isKeyboardFocused});
+    this.props.onKeyboardFocus(e, isKeyboardFocused);
+  },
+
+  _handleMouseEnter(e) {
+    if (!this.state.touch) this.setState({hovered: true});
+    this.props.onMouseEnter(e);
+  },
+
+  _handleMouseLeave(e) {
+    this.setState({hovered: false});
+    this.props.onMouseLeave(e);
+  },
+
+  _handleNestedListToggle(e) {
+    e.stopPropagation();
+    this.setState({open: !this.state.open});
+    this.props.onNestedListToggle(this);
+  },
+
+  _handleRightIconButtonKeyboardFocus(e, isKeyboardFocused) {
+    const iconButton = this.props.rightIconButton;
+    let newState = {};
+
+    newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
+    if (isKeyboardFocused) newState.isKeyboardFocused = false;
+    this.setState(newState);
+
+    if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(e, isKeyboardFocused);
+  },
+
+  _handleRightIconButtonMouseDown(e) {
+    const iconButton = this.props.rightIconButton;
+    e.stopPropagation();
+    if (iconButton && iconButton.props.onMouseDown) iconButton.props.onMouseDown(e);
+  },
+
+  _handleRightIconButtonMouseLeave(e) {
+    const iconButton = this.props.rightIconButton;
+    this.setState({rightIconButtonHovered: false});
+    if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(e);
+  },
+
+  _handleRightIconButtonMouseEnter(e) {
+    const iconButton = this.props.rightIconButton;
+    this.setState({rightIconButtonHovered: true});
+    if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(e);
+  },
+
+  _handleRightIconButtonMouseUp(e) {
+    const iconButton = this.props.rightIconButton;
+    e.stopPropagation();
+    if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
+  },
+
+  _handleRightIconButtonTouchTap(e) {
+    const iconButton = this.props.rightIconButton;
+
+    //Stop the event from bubbling up to the list-item
+    e.stopPropagation();
+    if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
+  },
+
+  _handleTouchStart(e) {
+    this.setState({touch: true});
+    this.props.onTouchStart(e);
+  },
+
+  _pushElement(children, element, baseStyles, additionalProps) {
+    if (element) {
+      const styles = this.mergeStyles(baseStyles, element.props.style);
+      children.push(
+        React.cloneElement(element, {
+          key: children.length,
+          style: styles,
+          ...additionalProps,
+        })
+      );
+    }
   },
 
   render() {
@@ -381,158 +533,6 @@ const ListItem = React.createClass({
         {nestedList}
       </div>
     );
-  },
-
-  applyFocusState(focusState) {
-    const button = this.refs.enhancedButton;
-    const buttonEl = ReactDOM.findDOMNode(button);
-
-    if (button) {
-      switch (focusState) {
-        case 'none':
-          buttonEl.blur();
-          break;
-        case 'focused':
-          buttonEl.focus();
-          break;
-        case 'keyboard-focused':
-          button.setKeyboardFocus();
-          buttonEl.focus();
-          break;
-      }
-    }
-  },
-
-  _createDisabledElement(styles, contentChildren) {
-    const {
-      innerDivStyle,
-      style,
-    } = this.props;
-
-    const mergedDivStyles = this.prepareStyles(
-      styles.root,
-      styles.innerDiv,
-      innerDivStyle,
-      style
-    );
-
-    return React.createElement('div', {style: mergedDivStyles}, contentChildren);
-  },
-
-  _createLabelElement(styles, contentChildren) {
-    const {
-      innerDivStyle,
-      style,
-    } = this.props;
-
-    const mergedLabelStyles = this.prepareStyles(
-      styles.root,
-      styles.innerDiv,
-      innerDivStyle,
-      styles.label,
-      style
-    );
-
-    return React.createElement('label', {style: mergedLabelStyles}, contentChildren);
-  },
-
-  _createTextElement(styles, data, key) {
-    const isAnElement = React.isValidElement(data);
-    const mergedStyles = isAnElement ?
-      this.prepareStyles(styles, data.props.style) : null;
-
-    return isAnElement ? (
-      React.cloneElement(data, {
-        key: key,
-        style: mergedStyles,
-      })
-    ) : (
-      <div key={key} style={this.prepareStyles(styles)}>
-        {data}
-      </div>
-    );
-  },
-
-  _handleKeyboardFocus(e, isKeyboardFocused) {
-    this.setState({isKeyboardFocused: isKeyboardFocused});
-    this.props.onKeyboardFocus(e, isKeyboardFocused);
-  },
-
-  _handleMouseEnter(e) {
-    if (!this.state.touch) this.setState({hovered: true});
-    this.props.onMouseEnter(e);
-  },
-
-  _handleMouseLeave(e) {
-    this.setState({hovered: false});
-    this.props.onMouseLeave(e);
-  },
-
-  _handleNestedListToggle(e) {
-    e.stopPropagation();
-    this.setState({open: !this.state.open});
-    this.props.onNestedListToggle(this);
-  },
-
-  _handleRightIconButtonKeyboardFocus(e, isKeyboardFocused) {
-    const iconButton = this.props.rightIconButton;
-    let newState = {};
-
-    newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
-    if (isKeyboardFocused) newState.isKeyboardFocused = false;
-    this.setState(newState);
-
-    if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(e, isKeyboardFocused);
-  },
-
-  _handleRightIconButtonMouseDown(e) {
-    const iconButton = this.props.rightIconButton;
-    e.stopPropagation();
-    if (iconButton && iconButton.props.onMouseDown) iconButton.props.onMouseDown(e);
-  },
-
-  _handleRightIconButtonMouseLeave(e) {
-    const iconButton = this.props.rightIconButton;
-    this.setState({rightIconButtonHovered: false});
-    if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(e);
-  },
-
-  _handleRightIconButtonMouseEnter(e) {
-    const iconButton = this.props.rightIconButton;
-    this.setState({rightIconButtonHovered: true});
-    if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(e);
-  },
-
-  _handleRightIconButtonMouseUp(e) {
-    const iconButton = this.props.rightIconButton;
-    e.stopPropagation();
-    if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
-  },
-
-  _handleRightIconButtonTouchTap(e) {
-    const iconButton = this.props.rightIconButton;
-
-    //Stop the event from bubbling up to the list-item
-    e.stopPropagation();
-    if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
-  },
-
-  _handleTouchStart(e) {
-    this.setState({touch: true});
-    this.props.onTouchStart(e);
-  },
-
-  _pushElement(children, element, baseStyles, additionalProps) {
-    if (element) {
-      const styles = this.mergeStyles(baseStyles, element.props.style);
-      children.push(
-        React.cloneElement(element, {
-          key: children.length,
-          style: styles,
-          ...additionalProps,
-        })
-      );
-    }
   },
 
 });

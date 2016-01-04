@@ -11,14 +11,6 @@ import warning from 'warning';
 
 const IconMenu = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     anchorOrigin: PropTypes.origin,
     children: React.PropTypes.node,
@@ -49,6 +41,19 @@ const IconMenu = React.createClass({
     touchTapCloseDelay: React.PropTypes.number,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
   getDefaultProps() {
     return {
       closeOnItemTouchTap: true,
@@ -73,17 +78,6 @@ const IconMenu = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getInitialState() {
     if (process.env.NODE_ENV !== 'production') {
       this._warningIfNeeded();
@@ -94,6 +88,12 @@ const IconMenu = React.createClass({
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       menuInitiallyKeyboardFocused: false,
       open: false,
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -112,6 +112,10 @@ const IconMenu = React.createClass({
     }
   },
 
+  componentWillUnmount() {
+    if (this._timeout) clearTimeout(this._timeout);
+  },
+
   _warningIfNeeded() {
     if (this.props.hasOwnProperty('open')) {
       warning(this.props.hasOwnProperty('closeOnItemTouchTap'),
@@ -119,8 +123,65 @@ const IconMenu = React.createClass({
     }
   },
 
-  componentWillUnmount() {
-    if (this._timeout) clearTimeout(this._timeout);
+  isOpen() {
+    return this.state.open;
+  },
+
+  close(reason, isKeyboard) {
+    if (!this.state.open) {
+      return;
+    }
+
+    if (this.props.open !== null) {
+      this.props.onRequestChange(false, reason);
+    }
+
+    this.setState({open: false}, () => {
+      //Set focus on the icon button when the menu close
+      if (isKeyboard) {
+        let iconButton = this.refs[this.state.iconButtonRef];
+        ReactDOM.findDOMNode(iconButton).focus();
+        iconButton.setKeyboardFocus();
+      }
+    });
+  },
+
+  open(reason, event) {
+    if (this.props.open !== null) {
+      this.props.onRequestChange(true, reason);
+
+      return this.setState({
+        menuInitiallyKeyboardFocused: Events.isKeyboard(event),
+        anchorEl: event.currentTarget,
+      });
+    }
+
+    this.setState({
+      open: true,
+      menuInitiallyKeyboardFocused: Events.isKeyboard(event),
+      anchorEl: event.currentTarget,
+    });
+
+    event.preventDefault();
+  },
+
+  _handleItemTouchTap(event, child) {
+    if (this.props.closeOnItemTouchTap) {
+      const isKeyboard = Events.isKeyboard(event);
+      this._timeout = setTimeout(() => {
+        if (!this.isMounted()) {
+          return;
+        }
+
+        this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
+      }, this.props.touchTapCloseDelay);
+    }
+
+    this.props.onItemTouchTap(event, child);
+  },
+
+  _handleMenuEscKeyDown(event) {
+    this.close('escape', event);
   },
 
   render() {
@@ -205,67 +266,6 @@ const IconMenu = React.createClass({
         </Popover>
       </div>
     );
-  },
-
-  isOpen() {
-    return this.state.open;
-  },
-
-  close(reason, isKeyboard) {
-    if (!this.state.open) {
-      return;
-    }
-
-    if (this.props.open !== null) {
-      this.props.onRequestChange(false, reason);
-    }
-
-    this.setState({open: false}, () => {
-      //Set focus on the icon button when the menu close
-      if (isKeyboard) {
-        let iconButton = this.refs[this.state.iconButtonRef];
-        ReactDOM.findDOMNode(iconButton).focus();
-        iconButton.setKeyboardFocus();
-      }
-    });
-  },
-
-  open(reason, event) {
-    if (this.props.open !== null) {
-      this.props.onRequestChange(true, reason);
-
-      return this.setState({
-        menuInitiallyKeyboardFocused: Events.isKeyboard(event),
-        anchorEl: event.currentTarget,
-      });
-    }
-
-    this.setState({
-      open: true,
-      menuInitiallyKeyboardFocused: Events.isKeyboard(event),
-      anchorEl: event.currentTarget,
-    });
-
-    event.preventDefault();
-  },
-
-  _handleItemTouchTap(event, child) {
-    if (this.props.closeOnItemTouchTap) {
-      const isKeyboard = Events.isKeyboard(event);
-      this._timeout = setTimeout(() => {
-        if (!this.isMounted()) {
-          return;
-        }
-
-        this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
-      }, this.props.touchTapCloseDelay);
-    }
-
-    this.props.onItemTouchTap(event, child);
-  },
-
-  _handleMenuEscKeyDown(event) {
-    this.close('escape', event);
   },
 
 });

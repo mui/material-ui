@@ -17,27 +17,7 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-
 const RaisedButton = React.createClass({
-
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     backgroundColor: React.PropTypes.string,
@@ -73,6 +53,19 @@ const RaisedButton = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
   getDefaultProps: function() {
     return {
       labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
@@ -87,6 +80,12 @@ const RaisedButton = React.createClass({
       initialZDepth: zDepth,
       zDepth: zDepth,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -183,6 +182,58 @@ const RaisedButton = React.createClass({
     return styles;
   },
 
+
+  _handleMouseDown(e) {
+    //only listen to left clicks
+    if (e.button === 0) {
+      this.setState({zDepth: this.state.initialZDepth + 1});
+    }
+    if (this.props.onMouseDown) this.props.onMouseDown(e);
+  },
+
+  _handleMouseUp(e) {
+    this.setState({zDepth: this.state.initialZDepth});
+    if (this.props.onMouseUp) this.props.onMouseUp(e);
+  },
+
+  _handleMouseLeave(e) {
+    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
+    if (this.props.onMouseLeave) this.props.onMouseLeave(e);
+  },
+
+  _handleMouseEnter(e) {
+    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
+      this.setState({hovered: true});
+    }
+    if (this.props.onMouseEnter) this.props.onMouseEnter(e);
+  },
+
+  _handleTouchStart(e) {
+    this.setState({
+      touch: true,
+      zDepth: this.state.initialZDepth + 1,
+    });
+    if (this.props.onTouchStart) this.props.onTouchStart(e);
+  },
+
+  _handleTouchEnd(e) {
+    this.setState({zDepth: this.state.initialZDepth});
+    if (this.props.onTouchEnd) this.props.onTouchEnd(e);
+  },
+
+  _handleKeyboardFocus(e, keyboardFocused) {
+    if (keyboardFocused && !this.props.disabled) {
+      this.setState({zDepth: this.state.initialZDepth + 1});
+      let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
+        ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
+    }
+    else if (!this.state.hovered) {
+      this.setState({zDepth: this.state.initialZDepth});
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+    }
+  },
+
   render() {
     let {
       children,
@@ -251,56 +302,6 @@ const RaisedButton = React.createClass({
     );
   },
 
-  _handleMouseDown(e) {
-    //only listen to left clicks
-    if (e.button === 0) {
-      this.setState({zDepth: this.state.initialZDepth + 1});
-    }
-    if (this.props.onMouseDown) this.props.onMouseDown(e);
-  },
-
-  _handleMouseUp(e) {
-    this.setState({zDepth: this.state.initialZDepth});
-    if (this.props.onMouseUp) this.props.onMouseUp(e);
-  },
-
-  _handleMouseLeave(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(e);
-  },
-
-  _handleMouseEnter(e) {
-    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
-      this.setState({hovered: true});
-    }
-    if (this.props.onMouseEnter) this.props.onMouseEnter(e);
-  },
-
-  _handleTouchStart(e) {
-    this.setState({
-      touch: true,
-      zDepth: this.state.initialZDepth + 1,
-    });
-    if (this.props.onTouchStart) this.props.onTouchStart(e);
-  },
-
-  _handleTouchEnd(e) {
-    this.setState({zDepth: this.state.initialZDepth});
-    if (this.props.onTouchEnd) this.props.onTouchEnd(e);
-  },
-
-  _handleKeyboardFocus(e, keyboardFocused) {
-    if (keyboardFocused && !this.props.disabled) {
-      this.setState({zDepth: this.state.initialZDepth + 1});
-      let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
-        ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
-    }
-    else if (!this.state.hovered) {
-      this.setState({zDepth: this.state.initialZDepth});
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
-    }
-  },
 });
 
 export default RaisedButton;

@@ -6,16 +6,7 @@ import ThemeManager from '../styles/theme-manager';
 
 const GridTile = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
-
     /**
      * An IconButton element to be used as secondary action target
      * (primary action target is the tile itself).
@@ -83,16 +74,18 @@ const GridTile = React.createClass({
     titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -111,6 +104,16 @@ const GridTile = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    this._ensureImageCover();
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -118,8 +121,7 @@ const GridTile = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  getStyles()
-  {
+  getStyles() {
     const spacing = this.state.muiTheme.rawTheme.spacing;
     const themeVariables = this.state.muiTheme.gridTile;
     const actionPos = this.props.actionIcon ? this.props.actionPosition : null;
@@ -172,10 +174,6 @@ const GridTile = React.createClass({
       },
     };
     return styles;
-  },
-
-  componentDidMount() {
-    this._ensureImageCover();
   },
 
   componeneDidUpdate() {

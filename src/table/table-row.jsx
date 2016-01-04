@@ -5,12 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableRow = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     children: React.PropTypes.node,
 
@@ -37,6 +31,19 @@ const TableRow = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
   getDefaultProps() {
     return {
       displayBorder: true,
@@ -48,21 +55,16 @@ const TableRow = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      hovered: false,
+    };
   },
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      hovered: false,
     };
   },
 
@@ -105,36 +107,6 @@ const TableRow = React.createClass({
     }
 
     return styles;
-  },
-
-  render() {
-    let {
-      className,
-      displayBorder,
-      hoverable,
-      onCellClick,
-      onCellHover,
-      onCellHoverExit,
-      onRowClick,
-      onRowHover,
-      onRowHoverExit,
-      rowNumber,
-      selectable,
-      selected,
-      striped,
-      style,
-      ...other,
-    } = this.props;
-    let rowColumns = this._createColumns();
-
-    return (
-      <tr
-        className={className}
-        style={this.prepareStyles(this.getStyles().root, style)}
-        {...other}>
-        {rowColumns}
-      </tr>
-    );
   },
 
   _createColumns() {
@@ -201,6 +173,35 @@ const TableRow = React.createClass({
     }
   },
 
+  render() {
+    let {
+      className,
+      displayBorder,
+      hoverable,
+      onCellClick,
+      onCellHover,
+      onCellHoverExit,
+      onRowClick,
+      onRowHover,
+      onRowHoverExit,
+      rowNumber,
+      selectable,
+      selected,
+      striped,
+      style,
+      ...other,
+    } = this.props;
+    let rowColumns = this._createColumns();
+
+    return (
+      <tr
+        className={className}
+        style={this.prepareStyles(this.getStyles().root, style)}
+        {...other}>
+        {rowColumns}
+      </tr>
+    );
+  },
 });
 
 export default TableRow;

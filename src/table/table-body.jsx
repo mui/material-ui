@@ -9,26 +9,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableBody = React.createClass({
 
-  mixins: [
-    ClickAwayable,
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
     children: React.PropTypes.node,
@@ -57,6 +37,20 @@ const TableBody = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    ClickAwayable,
+    StylePropable,
+  ],
+
   getDefaultProps() {
     return {
       allRowsSelected: false,
@@ -73,6 +67,12 @@ const TableBody = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       selectedRows: this._calculatePreselectedRows(this.props),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -100,21 +100,6 @@ const TableBody = React.createClass({
       this.setState({selectedRows: []});
       if (this.props.onRowSelection) this.props.onRowSelection([]);
     }
-  },
-
-  render() {
-    let {
-      className,
-      style,
-      ...other,
-    } = this.props;
-    let rows = this._createRows();
-
-    return (
-      <tbody className={className} style={this.prepareStyles(style)}>
-        {rows}
-      </tbody>
-    );
   },
 
   _createRows() {
@@ -353,6 +338,21 @@ const TableBody = React.createClass({
     if (this.props.displayRowCheckbox) columnId--;
 
     return columnId;
+  },
+
+  render() {
+    let {
+      className,
+      style,
+      ...other,
+    } = this.props;
+    let rows = this._createRows();
+
+    return (
+      <tbody className={className} style={this.prepareStyles(style)}>
+        {rows}
+      </tbody>
+    );
   },
 
 });

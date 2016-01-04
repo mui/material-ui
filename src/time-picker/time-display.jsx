@@ -5,12 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TimeDisplay = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
@@ -21,14 +15,21 @@ const TimeDisplay = React.createClass({
     selectedTime: React.PropTypes.object.isRequired,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      mode: 'hour',
+      affix: '',
     };
   },
 
@@ -39,10 +40,9 @@ const TimeDisplay = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      mode: 'hour',
-      affix: '',
+      muiTheme: this.state.muiTheme,
     };
   },
 

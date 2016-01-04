@@ -6,10 +6,7 @@ import AutoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import Colors from '../styles/colors';
 
-
 const CircleRipple = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     color: React.PropTypes.string,
@@ -20,6 +17,11 @@ const CircleRipple = React.createClass({
      */
     style: React.PropTypes.object,
   },
+
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -52,6 +54,25 @@ const CircleRipple = React.createClass({
     }, 2000);
   },
 
+  _animate() {
+    let style = ReactDOM.findDOMNode(this).style;
+    const transitionValue = (
+      Transitions.easeOut('2s', 'opacity') + ',' +
+      Transitions.easeOut('1s', 'transform')
+    );
+    AutoPrefix.set(style, 'transition', transitionValue);
+    AutoPrefix.set(style, 'transform', 'scale(1)');
+  },
+
+  _initializeAnimation(callback) {
+    let style = ReactDOM.findDOMNode(this).style;
+    style.opacity = this.props.opacity;
+    AutoPrefix.set(style, 'transform', 'scale(0)');
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }, 0);
+  },
+
   render() {
     const {
       color,
@@ -74,26 +95,6 @@ const CircleRipple = React.createClass({
       <div {...other} style={mergedStyles} />
     );
   },
-
-  _animate() {
-    let style = ReactDOM.findDOMNode(this).style;
-    const transitionValue = (
-      Transitions.easeOut('2s', 'opacity') + ',' +
-      Transitions.easeOut('1s', 'transform')
-    );
-    AutoPrefix.set(style, 'transition', transitionValue);
-    AutoPrefix.set(style, 'transform', 'scale(1)');
-  },
-
-  _initializeAnimation(callback) {
-    let style = ReactDOM.findDOMNode(this).style;
-    style.opacity = this.props.opacity;
-    AutoPrefix.set(style, 'transform', 'scale(0)');
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 0);
-  },
-
 });
 
 export default CircleRipple;

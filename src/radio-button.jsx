@@ -9,7 +9,15 @@ import ThemeManager from './styles/theme-manager';
 
 const RadioButton = React.createClass({
 
-  mixins: [StylePropable],
+  propTypes: {
+    checked: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    iconStyle: React.PropTypes.object,
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelStyle: React.PropTypes.object,
+    onCheck: React.PropTypes.func,
+    value: React.PropTypes.string,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -20,15 +28,17 @@ const RadioButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [StylePropable],
 
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -37,16 +47,6 @@ const RadioButton = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  propTypes: {
-    checked: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    iconStyle: React.PropTypes.object,
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    labelStyle: React.PropTypes.object,
-    onCheck: React.PropTypes.func,
-    value: React.PropTypes.string,
   },
 
   getTheme() {
@@ -94,6 +94,28 @@ const RadioButton = React.createClass({
     };
 
     return styles;
+  },
+
+  // Only called when selected, not when unselected.
+  _handleCheck(e) {
+    if (this.props.onCheck) this.props.onCheck(e, this.props.value);
+  },
+
+  _handleStateChange() {
+  },
+
+  isChecked() {
+    return this.refs.enhancedSwitch.isSwitched();
+  },
+
+  // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a
+  // RadioButton's checked value.
+  setChecked(newCheckedValue) {
+    this.refs.enhancedSwitch.setSwitched(newCheckedValue);
+  },
+
+  getValue() {
+    return this.refs.enhancedSwitch.getValue();
   },
 
   render() {
@@ -153,28 +175,6 @@ const RadioButton = React.createClass({
         {...other}
         {...enhancedSwitchProps}/>
     );
-  },
-
-  // Only called when selected, not when unselected.
-  _handleCheck(e) {
-    if (this.props.onCheck) this.props.onCheck(e, this.props.value);
-  },
-
-  _handleStateChange() {
-  },
-
-  isChecked() {
-    return this.refs.enhancedSwitch.isSwitched();
-  },
-
-  // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a
-  // RadioButton's checked value.
-  setChecked(newCheckedValue) {
-    this.refs.enhancedSwitch.setSwitched(newCheckedValue);
-  },
-
-  getValue() {
-    return this.refs.enhancedSwitch.getValue();
   },
 
 });

@@ -6,14 +6,6 @@ import ThemeManager from './styles/theme-manager';
 
 const SvgIcon = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     children: React.PropTypes.node,
     color: React.PropTypes.string,
@@ -28,14 +20,24 @@ const SvgIcon = React.createClass({
     viewBox: React.PropTypes.string,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      onMouseEnter: () => {},
+      onMouseLeave: () => {},
+      viewBox: '0 0 24 24',
     };
   },
 
@@ -46,11 +48,9 @@ const SvgIcon = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      viewBox: '0 0 24 24',
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -59,6 +59,16 @@ const SvgIcon = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  _handleMouseLeave(e) {
+    this.setState({hovered: false});
+    this.props.onMouseLeave(e);
+  },
+
+  _handleMouseEnter(e) {
+    this.setState({hovered: true});
+    this.props.onMouseEnter(e);
   },
 
   render() {
@@ -105,15 +115,6 @@ const SvgIcon = React.createClass({
     );
   },
 
-  _handleMouseLeave(e) {
-    this.setState({hovered: false});
-    this.props.onMouseLeave(e);
-  },
-
-  _handleMouseEnter(e) {
-    this.setState({hovered: true});
-    this.props.onMouseEnter(e);
-  },
 });
 
 export default SvgIcon;

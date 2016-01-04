@@ -16,7 +16,6 @@ import deprecated from './utils/deprecatedPropType';
 import ReactTransitionGroup from 'react-addons-transition-group';
 
 const TransitionItem = React.createClass({
-  mixins: [StylePropable],
 
   propTypes: {
     children: React.PropTypes.node,
@@ -32,16 +31,18 @@ const TransitionItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [StylePropable],
 
   getInitialState() {
     return {
       style: {},
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -99,23 +100,6 @@ const TransitionItem = React.createClass({
 
 const DialogInline = React.createClass({
 
-  mixins: [WindowListenable, StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     actionFocus: React.PropTypes.string,
     actions: React.PropTypes.node,
@@ -142,10 +126,16 @@ const DialogInline = React.createClass({
     width: React.PropTypes.any,
   },
 
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
-    resize: '_handleResize',
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [WindowListenable, StylePropable],
 
   getInitialState() {
     return {
@@ -153,17 +143,28 @@ const DialogInline = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
     this._positionDialog();
   },
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   componentDidUpdate() {
     this._positionDialog();
+  },
+
+  windowListeners: {
+    keyup: '_handleWindowKeyUp',
+    resize: '_handleResize',
   },
 
   getStyles() {
@@ -232,73 +233,6 @@ const DialogInline = React.createClass({
     };
   },
 
-  render() {
-    const {
-      actions,
-      actionsContainerClassName,
-      actionsContainerStyle,
-      bodyClassName,
-      bodyStyle,
-      children,
-      className,
-      contentClassName,
-      contentStyle,
-      overlayClassName,
-      overlayStyle,
-      open,
-      titleClassName,
-      titleStyle,
-      title,
-      style,
-    } = this.props;
-
-    const styles = this.getStyles();
-
-    styles.root = this.mergeStyles(styles.root, style);
-    styles.content = this.mergeStyles(styles.content, contentStyle);
-    styles.body = this.mergeStyles(styles.body, bodyStyle);
-    styles.actionsContainer = this.mergeStyles(styles.actionsContainer, actionsContainerStyle);
-    styles.overlay = this.mergeStyles(styles.overlay, overlayStyle);
-    styles.title = this.mergeStyles(styles.title, titleStyle);
-
-    const actionsContainer = this._getActionsContainer(actions, styles.actionsContainer, actionsContainerClassName);
-
-    const titleElement = typeof title === 'string'
-        ? <h3 className={titleClassName} style={this.prepareStyles(styles.title)}>{title}</h3>
-        : title;
-
-    return (
-      <div className={className} style={this.prepareStyles(styles.root)}>
-        <ReactTransitionGroup component="div" ref="dialogWindow"
-          transitionAppear={true} transitionAppearTimeout={450}
-          transitionEnter={true} transitionEnterTimeout={450}>
-          {open &&
-            <TransitionItem
-              className={contentClassName}
-              style={styles.content}>
-              <Paper
-                style={styles.paper}
-                zDepth={4}>
-                {titleElement}
-                <div
-                  ref="dialogContent"
-                  className={bodyClassName}
-                  style={this.prepareStyles(styles.body)}
-                >
-                  {children}
-                </div>
-                {actionsContainer}
-            </Paper>
-          </TransitionItem>}
-        </ReactTransitionGroup>
-        <Overlay
-          show={open}
-          className={overlayClassName}
-          style={styles.overlay}
-          onTouchTap={this._handleOverlayTouchTap} />
-      </div>
-    );
-  },
 
   _getAction(actionJSON) {
     warning(false, `using actionsJSON is deprecated on Dialog, please provide an array of
@@ -456,6 +390,74 @@ const DialogInline = React.createClass({
     }
   },
 
+  render() {
+    const {
+      actions,
+      actionsContainerClassName,
+      actionsContainerStyle,
+      bodyClassName,
+      bodyStyle,
+      children,
+      className,
+      contentClassName,
+      contentStyle,
+      overlayClassName,
+      overlayStyle,
+      open,
+      titleClassName,
+      titleStyle,
+      title,
+      style,
+    } = this.props;
+
+    const styles = this.getStyles();
+
+    styles.root = this.mergeStyles(styles.root, style);
+    styles.content = this.mergeStyles(styles.content, contentStyle);
+    styles.body = this.mergeStyles(styles.body, bodyStyle);
+    styles.actionsContainer = this.mergeStyles(styles.actionsContainer, actionsContainerStyle);
+    styles.overlay = this.mergeStyles(styles.overlay, overlayStyle);
+    styles.title = this.mergeStyles(styles.title, titleStyle);
+
+    const actionsContainer = this._getActionsContainer(actions, styles.actionsContainer, actionsContainerClassName);
+
+    const titleElement = typeof title === 'string'
+        ? <h3 className={titleClassName} style={this.prepareStyles(styles.title)}>{title}</h3>
+        : title;
+
+    return (
+      <div className={className} style={this.prepareStyles(styles.root)}>
+        <ReactTransitionGroup component="div" ref="dialogWindow"
+          transitionAppear={true} transitionAppearTimeout={450}
+          transitionEnter={true} transitionEnterTimeout={450}>
+          {open &&
+            <TransitionItem
+              className={contentClassName}
+              style={styles.content}>
+              <Paper
+                style={styles.paper}
+                zDepth={4}>
+                {titleElement}
+                <div
+                  ref="dialogContent"
+                  className={bodyClassName}
+                  style={this.prepareStyles(styles.body)}
+                >
+                  {children}
+                </div>
+                {actionsContainer}
+            </Paper>
+          </TransitionItem>}
+        </ReactTransitionGroup>
+        <Overlay
+          show={open}
+          className={overlayClassName}
+          style={styles.overlay}
+          onTouchTap={this._handleOverlayTouchTap} />
+      </div>
+    );
+  },
+
 });
 
 const Dialog = React.createClass({
@@ -591,15 +593,15 @@ const Dialog = React.createClass({
     };
   },
 
-  render() {
-    return (
-      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
-    );
-  },
-
   renderLayer() {
     return (
       <DialogInline {...this.props} />
+    );
+  },
+
+  render() {
+    return (
+      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
     );
   },
 

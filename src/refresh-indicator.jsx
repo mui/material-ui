@@ -9,15 +9,6 @@ import ThemeManager from './styles/theme-manager';
 
 const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
-  mixins: [StylePropable],
-
-  scalePathTimer: undefined,
-  rotateWrapperTimer: undefined,
-  rotateWrapperSecondTimer: undefined,
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     color: React.PropTypes.string,
@@ -34,12 +25,8 @@ const RefreshIndicator = React.createClass({
     top: React.PropTypes.number.isRequired,
   },
 
-  getDefaultProps() {
-    return {
-      percentage: 0,
-      size: 40,
-      status: 'hide',
-    };
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -47,9 +34,15 @@ const RefreshIndicator = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      percentage: 0,
+      size: 40,
+      status: 'hide',
     };
   },
 
@@ -59,15 +52,21 @@ const RefreshIndicator = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    this.componentDidUpdate();
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  componentDidMount() {
-    this.componentDidUpdate();
   },
 
   componentDidUpdate() {
@@ -81,18 +80,9 @@ const RefreshIndicator = React.createClass({
     clearTimeout(this.rotateWrapperSecondTimer);
   },
 
-  render() {
-    const rootStyle = this._getRootStyle();
-    return (
-      <Paper
-        circle={true}
-        style={this.mergeStyles(rootStyle, this.props.style)}
-        ref="indicatorCt"
-      >
-        {this._renderChildren()}
-      </Paper>
-    );
-  },
+  scalePathTimer: undefined,
+  rotateWrapperTimer: undefined,
+  rotateWrapperSecondTimer: undefined,
 
   _renderChildren() {
     const paperSize = this._getPaperSize();
@@ -308,6 +298,19 @@ const RefreshIndicator = React.createClass({
 
   prefixed(key) {
     return AutoPrefix.single(key);
+  },
+
+  render() {
+    const rootStyle = this._getRootStyle();
+    return (
+      <Paper
+        circle={true}
+        style={this.mergeStyles(rootStyle, this.props.style)}
+        ref="indicatorCt"
+      >
+        {this._renderChildren()}
+      </Paper>
+    );
   },
 
 });

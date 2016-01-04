@@ -7,14 +7,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableHeader = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     adjustForCheckbox: React.PropTypes.bool,
     children: React.PropTypes.node,
@@ -34,14 +26,25 @@ const TableHeader = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      adjustForCheckbox: true,
+      displaySelectAll: true,
+      enableSelectAll: true,
+      selectAllSelected: false,
     };
   },
 
@@ -51,20 +54,17 @@ const TableHeader = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  getDefaultProps() {
-    return {
-      adjustForCheckbox: true,
-      displaySelectAll: true,
-      enableSelectAll: true,
-      selectAllSelected: false,
-    };
   },
 
   getTheme() {
@@ -79,23 +79,6 @@ const TableHeader = React.createClass({
     };
 
     return styles;
-  },
-
-  render() {
-    let {
-      className,
-      style,
-      ...other,
-    } = this.props;
-    let superHeaderRows = this._createSuperHeaderRows();
-    let baseHeaderRow = this._createBaseHeaderRow();
-
-    return (
-      <thead className={className} style={this.prepareStyles(this.getStyles().root, style)}>
-        {superHeaderRows}
-        {baseHeaderRow}
-      </thead>
-    );
   },
 
   _createSuperHeaderRows() {
@@ -182,6 +165,23 @@ const TableHeader = React.createClass({
 
   _onSelectAll(e, checked) {
     if (this.props.onSelectAll) this.props.onSelectAll(checked);
+  },
+
+  render() {
+    let {
+      className,
+      style,
+      ...other,
+    } = this.props;
+    let superHeaderRows = this._createSuperHeaderRows();
+    let baseHeaderRow = this._createBaseHeaderRow();
+
+    return (
+      <thead className={className} style={this.prepareStyles(this.getStyles().root, style)}>
+        {superHeaderRows}
+        {baseHeaderRow}
+      </thead>
+    );
   },
 
 });

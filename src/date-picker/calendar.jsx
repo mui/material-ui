@@ -13,28 +13,7 @@ import ClearFix from '../clearfix';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const Calendar = React.createClass({
-
-  mixins: [
-    StylePropable,
-    WindowListenable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
@@ -49,9 +28,19 @@ const Calendar = React.createClass({
     shouldDisableDate: React.PropTypes.func,
   },
 
-  windowListeners: {
-    keydown: '_handleWindowKeyDown',
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   getDefaultProps() {
     return {
@@ -73,6 +62,12 @@ const Calendar = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -88,114 +83,8 @@ const Calendar = React.createClass({
     }
   },
 
-  render() {
-    let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
-    let weekCount = DateTime.getWeekArray(this.state.displayDate).length;
-    let toolbarInteractions = this._getToolbarInteractions();
-    let isLandscape = this.props.mode === 'landscape';
-    let styles = {
-      root: {
-        fontSize: 12,
-      },
-      calendarContainer: {
-        width: isLandscape ? 320 : '100%',
-        height: weekCount === 5 ? 284 :
-          weekCount === 6 ? 324 : 244,
-        float: isLandscape ? 'right' : 'none',
-        transition: Transitions.easeOut('150ms', 'height'),
-        overflow: 'hidden',
-      },
-      yearContainer: {
-        width: 280,
-        overflow: 'hidden',
-        height: yearCount < 6 ? yearCount * 56 + 10 :
-          weekCount === 5 ? 284 :
-          weekCount === 6 ? 324 : 244,
-        float: isLandscape ? 'right' : 'none',
-      },
-      dateDisplay: {
-        width: isLandscape ? 120 : '',
-        height: isLandscape ?
-          weekCount === 5 ? 238 :
-          weekCount === 6 ? 278 :
-          198 : 'auto',
-        float: isLandscape ? 'left' : 'none',
-      },
-      weekTitle: {
-        padding: '0 14px',
-        lineHeight: '12px',
-        opacity: '0.5',
-        height: 12,
-        fontWeight: '500',
-        margin: 0,
-      },
-      weekTitleDay: {
-        listStyle: 'none',
-        float: 'left',
-        width: 37,
-        textAlign: 'center',
-        margin: '0 2px',
-      },
-    };
-
-    const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
-    const {
-      DateTimeFormat,
-      locale,
-    } = this.props;
-
-    return (
-      <ClearFix style={this.mergeStyles(styles.root)}>
-        <DateDisplay
-          DateTimeFormat={DateTimeFormat}
-          locale={locale}
-          disableYearSelection={this.props.disableYearSelection}
-          style={styles.dateDisplay}
-          selectedDate={this.state.selectedDate}
-          handleMonthDayClick={this._handleMonthDayClick}
-          handleYearClick={this._handleYearClick}
-          monthDaySelected={this.state.displayMonthDay}
-          mode={this.props.mode}
-          weekCount={weekCount} />
-        {this.state.displayMonthDay &&
-        <div style={this.prepareStyles(styles.calendarContainer)}>
-          <CalendarToolbar
-            DateTimeFormat={DateTimeFormat}
-            locale={locale}
-            displayDate={this.state.displayDate}
-            onMonthChange={this._handleMonthChange}
-            prevMonth={toolbarInteractions.prevMonth}
-            nextMonth={toolbarInteractions.nextMonth} />
-          <ClearFix
-            elementType="ul"
-            style={styles.weekTitle}>
-            <li style={weekTitleDayStyle}>S</li>
-            <li style={weekTitleDayStyle}>M</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>W</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>F</li>
-            <li style={weekTitleDayStyle}>S</li>
-          </ClearFix>
-          <SlideInTransitionGroup
-            direction={this.state.transitionDirection}>
-            <CalendarMonth
-              key={this.state.displayDate.toDateString()}
-              ref="calendar"
-              displayDate={this.state.displayDate}
-              onDayTouchTap={this._handleDayTouchTap}
-              selectedDate={this.state.selectedDate}
-              minDate={this.props.minDate}
-              maxDate={this.props.maxDate}
-              shouldDisableDate={this.props.shouldDisableDate} />
-          </SlideInTransitionGroup>
-        </div>}
-        {!this.state.displayMonthDay &&
-        <div style={this.prepareStyles(styles.yearContainer)}>
-          {this._yearSelector()}
-        </div>}
-      </ClearFix>
-    );
+  windowListeners: {
+    keydown: '_handleWindowKeyDown',
   },
 
   _yearSelector() {
@@ -356,6 +245,116 @@ const Calendar = React.createClass({
           break;
       }
     }
+  },
+
+  render() {
+    let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
+    let weekCount = DateTime.getWeekArray(this.state.displayDate).length;
+    let toolbarInteractions = this._getToolbarInteractions();
+    let isLandscape = this.props.mode === 'landscape';
+    let styles = {
+      root: {
+        fontSize: 12,
+      },
+      calendarContainer: {
+        width: isLandscape ? 320 : '100%',
+        height: weekCount === 5 ? 284 :
+          weekCount === 6 ? 324 : 244,
+        float: isLandscape ? 'right' : 'none',
+        transition: Transitions.easeOut('150ms', 'height'),
+        overflow: 'hidden',
+      },
+      yearContainer: {
+        width: 280,
+        overflow: 'hidden',
+        height: yearCount < 6 ? yearCount * 56 + 10 :
+          weekCount === 5 ? 284 :
+          weekCount === 6 ? 324 : 244,
+        float: isLandscape ? 'right' : 'none',
+      },
+      dateDisplay: {
+        width: isLandscape ? 120 : '',
+        height: isLandscape ?
+          weekCount === 5 ? 238 :
+          weekCount === 6 ? 278 :
+          198 : 'auto',
+        float: isLandscape ? 'left' : 'none',
+      },
+      weekTitle: {
+        padding: '0 14px',
+        lineHeight: '12px',
+        opacity: '0.5',
+        height: 12,
+        fontWeight: '500',
+        margin: 0,
+      },
+      weekTitleDay: {
+        listStyle: 'none',
+        float: 'left',
+        width: 37,
+        textAlign: 'center',
+        margin: '0 2px',
+      },
+    };
+
+    const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
+    const {
+      DateTimeFormat,
+      locale,
+    } = this.props;
+
+    return (
+      <ClearFix style={this.mergeStyles(styles.root)}>
+        <DateDisplay
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
+          disableYearSelection={this.props.disableYearSelection}
+          style={styles.dateDisplay}
+          selectedDate={this.state.selectedDate}
+          handleMonthDayClick={this._handleMonthDayClick}
+          handleYearClick={this._handleYearClick}
+          monthDaySelected={this.state.displayMonthDay}
+          mode={this.props.mode}
+          weekCount={weekCount} />
+        {this.state.displayMonthDay &&
+        <div style={this.prepareStyles(styles.calendarContainer)}>
+          <CalendarToolbar
+            DateTimeFormat={DateTimeFormat}
+            locale={locale}
+            displayDate={this.state.displayDate}
+            onMonthChange={this._handleMonthChange}
+            prevMonth={toolbarInteractions.prevMonth}
+            nextMonth={toolbarInteractions.nextMonth} />
+          <ClearFix
+            elementType="ul"
+            style={styles.weekTitle}>
+            <li style={weekTitleDayStyle}>S</li>
+            <li style={weekTitleDayStyle}>M</li>
+            <li style={weekTitleDayStyle}>T</li>
+            <li style={weekTitleDayStyle}>W</li>
+            <li style={weekTitleDayStyle}>T</li>
+            <li style={weekTitleDayStyle}>F</li>
+            <li style={weekTitleDayStyle}>S</li>
+          </ClearFix>
+          <SlideInTransitionGroup
+            direction={this.state.transitionDirection}>
+            <CalendarMonth
+              key={this.state.displayDate.toDateString()}
+              ref="calendar"
+              displayDate={this.state.displayDate}
+              onDayTouchTap={this._handleDayTouchTap}
+              selectedDate={this.state.selectedDate}
+              minDate={this.props.minDate}
+              maxDate={this.props.maxDate}
+              shouldDisableDate={this.props.shouldDisableDate} />
+          </SlideInTransitionGroup>
+        </div>}
+        {!this.state.displayMonthDay &&
+        <div style={this.prepareStyles(styles.yearContainer)}>
+          {this._yearSelector()}
+        </div>}
+      </ClearFix>
+    );
   },
 
 });

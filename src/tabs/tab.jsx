@@ -5,14 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const Tab = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * The css class name of the root element.
@@ -60,9 +52,23 @@ const Tab = React.createClass({
     width: React.PropTypes.string,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
   },
 
   getChildContext() {
@@ -71,17 +77,17 @@ const Tab = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  _handleTouchTap(event) {
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(this.props.value, event, this);
+    }
   },
 
   render() {
@@ -120,12 +126,6 @@ const Tab = React.createClass({
         {label}
       </div>
     );
-  },
-
-  _handleTouchTap(event) {
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(this.props.value, event, this);
-    }
   },
 
 });
