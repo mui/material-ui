@@ -3,7 +3,6 @@ import DateTime from '../utils/date-time';
 import DayButton from './day-button';
 import ClearFix from '../clearfix';
 
-
 const CalendarMonth = React.createClass({
 
   propTypes: {
@@ -14,20 +13,6 @@ const CalendarMonth = React.createClass({
     onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
     shouldDisableDate: React.PropTypes.func,
-  },
-
-  render() {
-    let styles = {
-      lineHeight: '32px',
-      textAlign: 'center',
-      padding: '16px 14px 0 14px',
-    };
-
-    return (
-      <div style={styles}>
-        {this._getWeekElements()}
-      </div>
-    );
   },
 
   isSelectedDateDisabled() {
@@ -82,6 +67,20 @@ const CalendarMonth = React.createClass({
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
 
     return disabled;
+  },
+
+  render() {
+    let styles = {
+      lineHeight: '32px',
+      textAlign: 'center',
+      padding: '16px 14px 0 14px',
+    };
+
+    return (
+      <div style={styles}>
+        {this._getWeekElements()}
+      </div>
+    );
   },
 
 });

@@ -22,18 +22,14 @@ function getTouchEventOffsetValues(e) {
   return offset;
 }
 
-
 const ClockMinutes = React.createClass({
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     initialMinutes: React.PropTypes.number,
     onChange: React.PropTypes.func,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -41,9 +37,12 @@ const ClockMinutes = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      initialMinutes: new Date().getMinutes(),
+      onChange: () => {},
     };
   },
 
@@ -53,29 +52,9 @@ const ClockMinutes = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  center: {x: 0, y: 0},
-  basePoint: {x: 0, y: 0},
-
-  isMousePressed(e) {
-
-    if (typeof e.buttons === 'undefined') {
-      return e.nativeEvent.which;
-    }
-    return e.buttons;
-
-  },
-
-  getDefaultProps() {
+  getChildContext() {
     return {
-      initialMinutes: new Date().getMinutes(),
-      onChange: () => {},
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -91,6 +70,23 @@ const ClockMinutes = React.createClass({
       x: this.center.x,
       y: 0,
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
+  center: {x: 0, y: 0},
+  basePoint: {x: 0, y: 0},
+
+  isMousePressed(e) {
+    if (typeof e.buttons === 'undefined') {
+      return e.nativeEvent.which;
+    }
+    return e.buttons;
   },
 
   handleUp(e) {

@@ -10,26 +10,6 @@ import deprecated from '../utils/deprecatedPropType';
 
 const DatePicker = React.createClass({
 
-  mixins: [
-    StylePropable,
-    WindowListenable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     /**
      * Constructor for time formatting.
@@ -157,9 +137,19 @@ const DatePicker = React.createClass({
     wordings: React.PropTypes.object,
   },
 
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   getDefaultProps() {
     return {
@@ -178,6 +168,12 @@ const DatePicker = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   componentWillReceiveProps(nextProps, nextContext) {
     if (nextContext.muiTheme) {
       this.setState({muiTheme: nextContext.muiTheme});
@@ -193,57 +189,8 @@ const DatePicker = React.createClass({
     }
   },
 
-  render() {
-    let {
-      container,
-      DateTimeFormat,
-      locale,
-      wordings,
-      autoOk,
-      defaultDate,
-      formatDate,
-      maxDate,
-      minDate,
-      mode,
-      onDismiss,
-      onFocus,
-      onShow,
-      onTouchTap,
-      disableYearSelection,
-      style,
-      textFieldStyle,
-      valueLink,
-      ...other,
-    } = this.props;
-
-    return (
-      <div style={this.prepareStyles(style)}>
-        <TextField
-          {...other}
-          style={textFieldStyle}
-          ref="input"
-          value={this.state.date ? formatDate(this.state.date) : undefined}
-          onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap}/>
-        <DatePickerDialog
-          container={container}
-          ref="dialogWindow"
-          DateTimeFormat={DateTimeFormat}
-          locale={locale}
-          wordings={wordings}
-          mode={mode}
-          initialDate={this.state.dialogDate}
-          onAccept={this._handleDialogAccept}
-          onShow={onShow}
-          onDismiss={onDismiss}
-          minDate={minDate}
-          maxDate={maxDate}
-          autoOk={autoOk}
-          disableYearSelection={disableYearSelection}
-          shouldDisableDate={this.props.shouldDisableDate}/>
-      </div>
-
-    );
+  windowListeners: {
+    keyup: '_handleWindowKeyUp',
   },
 
   getDate() {
@@ -311,6 +258,59 @@ const DatePicker = React.createClass({
     } else if (props.valueLink && DateTime.isDateObject(props.valueLink.value)) {
       return props.valueLink.value;
     }
+  },
+
+  render() {
+    let {
+      container,
+      DateTimeFormat,
+      locale,
+      wordings,
+      autoOk,
+      defaultDate,
+      formatDate,
+      maxDate,
+      minDate,
+      mode,
+      onDismiss,
+      onFocus,
+      onShow,
+      onTouchTap,
+      disableYearSelection,
+      style,
+      textFieldStyle,
+      valueLink,
+      ...other,
+    } = this.props;
+
+    return (
+      <div style={this.prepareStyles(style)}>
+        <TextField
+          {...other}
+          style={textFieldStyle}
+          ref="input"
+          value={this.state.date ? formatDate(this.state.date) : undefined}
+          onFocus={this._handleInputFocus}
+          onTouchTap={this._handleInputTouchTap}/>
+        <DatePickerDialog
+          container={container}
+          ref="dialogWindow"
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
+          wordings={wordings}
+          mode={mode}
+          initialDate={this.state.dialogDate}
+          onAccept={this._handleDialogAccept}
+          onShow={onShow}
+          onDismiss={onDismiss}
+          minDate={minDate}
+          maxDate={maxDate}
+          autoOk={autoOk}
+          disableYearSelection={disableYearSelection}
+          shouldDisableDate={this.props.shouldDisableDate}/>
+      </div>
+
+    );
   },
 
 });

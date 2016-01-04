@@ -12,10 +12,6 @@ import Extend from '../utils/extend';
 import PopoverDefaultAnimation from './popover-default-animation';
 
 const Popover = React.createClass({
-  mixins: [
-    StylePropable,
-    WindowListenable,
-  ],
 
   propTypes: {
     anchorEl: React.PropTypes.object,
@@ -41,6 +37,20 @@ const Popover = React.createClass({
     useLayerForClickAway: React.PropTypes.bool,
     zDepth: PropTypes.zDepth,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   getDefaultProps() {
     return {
@@ -77,24 +87,10 @@ const Popover = React.createClass({
     };
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
-
-  windowListeners: {
-    resize: 'setPlacementThrottled',
-    scroll: 'setPlacementThrottledScrolled',
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -133,14 +129,9 @@ const Popover = React.createClass({
     this.setPlacement();
   },
 
-  render() {
-    return (
-      <RenderToLayer
-        ref="layer"
-        open={this.state.open}
-        componentClickAway={this.componentClickAway}
-        render={this.renderLayer} />
-    );
+  windowListeners: {
+    resize: 'setPlacementThrottled',
+    scroll: 'setPlacementThrottledScrolled',
   },
 
   renderLayer() {
@@ -333,6 +324,16 @@ const Popover = React.createClass({
       }
     }
     return targetPosition;
+  },
+
+  render() {
+    return (
+      <RenderToLayer
+        ref="layer"
+        open={this.state.open}
+        componentClickAway={this.componentClickAway}
+        render={this.renderLayer} />
+    );
   },
 
 });

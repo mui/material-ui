@@ -27,20 +27,6 @@ const styles = {
 };
 
 const CalendarToolbar = React.createClass({
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
@@ -49,6 +35,15 @@ const CalendarToolbar = React.createClass({
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
     prevMonth: React.PropTypes.bool,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -62,6 +57,12 @@ const CalendarToolbar = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       transitionDirection: 'up',
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -79,6 +80,14 @@ const CalendarToolbar = React.createClass({
         transitionDirection: direction,
       });
     }
+  },
+
+  _prevMonthTouchTap() {
+    if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
+  },
+
+  _nextMonthTouchTap() {
+    if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   },
 
   render() {
@@ -123,14 +132,6 @@ const CalendarToolbar = React.createClass({
         </ToolbarGroup>
       </Toolbar>
     );
-  },
-
-  _prevMonthTouchTap() {
-    if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
-  },
-
-  _nextMonthTouchTap() {
-    if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   },
 
 });

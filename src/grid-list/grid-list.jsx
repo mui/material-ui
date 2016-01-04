@@ -5,14 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const GridList = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * Number of px for one cell height.
@@ -40,16 +32,18 @@ const GridList = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -62,6 +56,12 @@ const GridList = React.createClass({
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 

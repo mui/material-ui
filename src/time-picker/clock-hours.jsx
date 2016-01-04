@@ -6,7 +6,6 @@ import ClockPointer from './clock-pointer';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 
-
 function rad2deg(rad) {
   return rad * 57.29577951308232;
 }
@@ -23,10 +22,13 @@ function getTouchEventOffsetValues(e) {
   return offset;
 }
 
-
 const ClockHours = React.createClass({
 
-  mixins: [StylePropable],
+  propTypes: {
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
+    initialHours: React.PropTypes.number,
+    onChange: React.PropTypes.func,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -37,9 +39,13 @@ const ClockHours = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      initialHours: new Date().getHours(),
+      onChange: () => {},
+      format: 'ampm',
     };
   },
 
@@ -49,35 +55,9 @@ const ClockHours = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  propTypes: {
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialHours: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-  },
-
-  center: {x: 0, y: 0},
-  basePoint: {x: 0, y: 0},
-
-  isMousePressed(e) {
-    if (typeof e.buttons === 'undefined') {
-      return e.nativeEvent.which;
-    }
-
-    return e.buttons;
-  },
-
-  getDefaultProps() {
+  getChildContext() {
     return {
-      initialHours: new Date().getHours(),
-      onChange: () => {},
-      format: 'ampm',
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -93,6 +73,24 @@ const ClockHours = React.createClass({
       x: this.center.x,
       y: 0,
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
+  center: {x: 0, y: 0},
+  basePoint: {x: 0, y: 0},
+
+  isMousePressed(e) {
+    if (typeof e.buttons === 'undefined') {
+      return e.nativeEvent.which;
+    }
+
+    return e.buttons;
   },
 
   handleUp(e) {

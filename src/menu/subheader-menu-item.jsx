@@ -6,12 +6,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const SubheaderMenuItem = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     className: React.PropTypes.string,
     firstChild: React.PropTypes.bool,
@@ -20,20 +14,28 @@ const SubheaderMenuItem = React.createClass({
     text: React.PropTypes.string.isRequired,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -82,16 +84,16 @@ const SubheaderMenuItem = React.createClass({
 
   render() {
     return (
-        <div
-          key={this.props.index}
-          className={this.props.className}
-          style={this.prepareStyles(
-            this.getStyles().root,
-            this.props.firstChild && this.getStyles().rootWhenFirstChild,
-            this.props.style
-          )}>
-            {this.props.text}
-        </div>
+      <div
+        key={this.props.index}
+        className={this.props.className}
+        style={this.prepareStyles(
+          this.getStyles().root,
+          this.props.firstChild && this.getStyles().rootWhenFirstChild,
+          this.props.style
+        )}>
+          {this.props.text}
+      </div>
     );
   },
 

@@ -6,14 +6,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TableFooter = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     adjustForCheckbox: React.PropTypes.bool,
     children: React.PropTypes.node,
@@ -29,14 +21,23 @@ const TableFooter = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      adjustForCheckbox: true,
+      style: {},
     };
   },
 
@@ -46,18 +47,17 @@ const TableFooter = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  getDefaultProps() {
-    return {
-      adjustForCheckbox: true,
-      style: {},
-    };
   },
 
   getTheme() {
@@ -76,21 +76,6 @@ const TableFooter = React.createClass({
     };
 
     return styles;
-  },
-
-  render() {
-    let {
-      className,
-      style,
-      ...other,
-    } = this.props;
-    let footerRows = this._createRows();
-
-    return (
-      <tfoot className={className} style={this.prepareStyles(style)} {...other}>
-        {footerRows}
-      </tfoot>
-    );
   },
 
   _createRows() {
@@ -124,6 +109,21 @@ const TableFooter = React.createClass({
 
     let key = 'fpcb' + props.rowNumber;
     return <TableRowColumn key={key} style={{width: 24}} />;
+  },
+
+  render() {
+    let {
+      className,
+      style,
+      ...other,
+    } = this.props;
+    let footerRows = this._createRows();
+
+    return (
+      <tfoot className={className} style={this.prepareStyles(style)} {...other}>
+        {footerRows}
+      </tfoot>
+    );
   },
 
 });

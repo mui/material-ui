@@ -14,6 +14,15 @@ const RenderToLayer = React.createClass({
     useLayerForClickAway: React.PropTypes.bool,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   getDefaultProps() {
     return {
       useLayerForClickAway: true,
@@ -26,19 +35,14 @@ const RenderToLayer = React.createClass({
     };
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentDidMount() {
+    this._renderLayer();
   },
 
   //to update theme inside state whenever a new theme is passed down
@@ -48,10 +52,6 @@ const RenderToLayer = React.createClass({
     this.setState({
       muiTheme: newMuiTheme,
     });
-  },
-
-  componentDidMount() {
-    this._renderLayer();
   },
 
   componentDidUpdate() {
@@ -88,8 +88,10 @@ const RenderToLayer = React.createClass({
     return this._layer;
   },
 
-  render() {
-    return null;
+  _unrenderLayer: function() {
+    ReactDOM.unmountComponentAtNode(this._layer);
+    document.body.removeChild(this._layer);
+    this._layer = null;
   },
 
   _renderLayer() {
@@ -148,10 +150,8 @@ const RenderToLayer = React.createClass({
     }
   },
 
-  _unrenderLayer: function() {
-    ReactDOM.unmountComponentAtNode(this._layer);
-    document.body.removeChild(this._layer);
-    this._layer = null;
+  render() {
+    return null;
   },
 
 });

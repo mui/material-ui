@@ -17,7 +17,7 @@ rules:
   comma-style: [2, last]
   computed-property-spacing: [2, never]
   consistent-this: [2, self]
-  consistent-return: 0
+  consistent-return: 0 # Wishlist, one day
   dot-notation: 2
   dot-location: [2, property]
   eqeqeq: [2, smart]

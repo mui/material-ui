@@ -10,23 +10,6 @@ import PropTypes from './utils/prop-types';
 
 const AppBar = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     /**
      * Can be used to render a tab inside an app bar for instance.
@@ -109,24 +92,34 @@ const AppBar = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
       showMenuIconButton: true,
       title: '',
       zDepth: 1,
+    };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -146,6 +139,13 @@ const AppBar = React.createClass({
         );
       }
     }
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getStyles() {
@@ -201,6 +201,24 @@ const AppBar = React.createClass({
     };
 
     return styles;
+  },
+
+  _onLeftIconButtonTouchTap(event) {
+    if (this.props.onLeftIconButtonTouchTap) {
+      this.props.onLeftIconButtonTouchTap(event);
+    }
+  },
+
+  _onRightIconButtonTouchTap(event) {
+    if (this.props.onRightIconButtonTouchTap) {
+      this.props.onRightIconButtonTouchTap(event);
+    }
+  },
+
+  _onTitleTouchTap(event) {
+    if (this.props.onTitleTouchTap) {
+      this.props.onTitleTouchTap(event);
+    }
   },
 
   render() {
@@ -317,25 +335,6 @@ const AppBar = React.createClass({
       </Paper>
     );
   },
-
-  _onLeftIconButtonTouchTap(event) {
-    if (this.props.onLeftIconButtonTouchTap) {
-      this.props.onLeftIconButtonTouchTap(event);
-    }
-  },
-
-  _onRightIconButtonTouchTap(event) {
-    if (this.props.onRightIconButtonTouchTap) {
-      this.props.onRightIconButtonTouchTap(event);
-    }
-  },
-
-  _onTitleTouchTap(event) {
-    if (this.props.onTitleTouchTap) {
-      this.props.onTitleTouchTap(event);
-    }
-  },
-
 });
 
 export default AppBar;

@@ -5,16 +5,14 @@ import ThemeManager from '../styles/theme-manager';
 
 const ClockPointer = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     hasSelected: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     value: React.PropTypes.number,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -22,9 +20,13 @@ const ClockPointer = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      value: null,
+      type: 'minute',
+      hasSelected: false,
     };
   },
 
@@ -35,11 +37,9 @@ const ClockPointer = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      value: null,
-      type: 'minute',
-      hasSelected: false,
+      muiTheme: this.state.muiTheme,
     };
   },
 

@@ -10,12 +10,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TimePickerDialog = React.createClass({
 
-  mixins: [StylePropable, WindowListenable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     autoOk: React.PropTypes.bool,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
@@ -25,21 +19,27 @@ const TimePickerDialog = React.createClass({
     onShow: React.PropTypes.func,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [StylePropable, WindowListenable],
 
   getInitialState() {
     return {
       open: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -54,9 +54,39 @@ const TimePickerDialog = React.createClass({
     keyup: '_handleWindowKeyUp',
   },
 
-
   getTheme() {
     return this.state.muiTheme.timePicker;
+  },
+
+  show() {
+    if (this.props.onShow && !this.state.open) this.props.onShow();
+    this.setState({
+      open: true,
+    });
+  },
+
+  dismiss() {
+    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
+    this.setState({
+      open: false,
+    });
+  },
+
+  _handleOKTouchTap() {
+    this.dismiss();
+    if (this.props.onAccept) {
+      this.props.onAccept(this.refs.clock.getSelectedTime());
+    }
+  },
+
+  _handleWindowKeyUp(event) {
+    if (this.state.open) {
+      switch (event.keyCode) {
+        case KeyCode.ENTER:
+          this._handleOKTouchTap();
+          break;
+      }
+    }
   },
 
   render() {
@@ -113,37 +143,6 @@ const TimePickerDialog = React.createClass({
           onChangeMinutes={onClockChangeMinutes} />
       </Dialog>
     );
-  },
-
-  show() {
-    if (this.props.onShow && !this.state.open) this.props.onShow();
-    this.setState({
-      open: true,
-    });
-  },
-
-  dismiss() {
-    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
-    this.setState({
-      open: false,
-    });
-  },
-
-  _handleOKTouchTap() {
-    this.dismiss();
-    if (this.props.onAccept) {
-      this.props.onAccept(this.refs.clock.getSelectedTime());
-    }
-  },
-
-  _handleWindowKeyUp(event) {
-    if (this.state.open) {
-      switch (event.keyCode) {
-        case KeyCode.ENTER:
-          this._handleOKTouchTap();
-          break;
-      }
-    }
   },
 
 });

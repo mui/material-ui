@@ -8,12 +8,6 @@ import ThemeManager from './styles/theme-manager';
 
 const Tooltip = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * The css class name of the root element.
@@ -31,9 +25,24 @@ const Tooltip = React.createClass({
     verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
+  getInitialState() {
+    return {
+      offsetWidth: null,
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
   },
 
   getChildContext() {
@@ -58,13 +67,6 @@ const Tooltip = React.createClass({
 
   componentDidUpdate() {
     this._setRippleSize();
-  },
-
-  getInitialState() {
-    return {
-      offsetWidth: null,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
   },
 
   getStyles() {
@@ -144,6 +146,30 @@ const Tooltip = React.createClass({
     return styles;
   },
 
+  _setRippleSize() {
+    let ripple = ReactDOM.findDOMNode(this.refs.ripple);
+    let tooltip = window.getComputedStyle(ReactDOM.findDOMNode(this));
+    let tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10) /
+      (this.props.horizontalPosition === 'center' ? 2 : 1);
+    let tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
+
+    let rippleDiameter = Math.ceil((Math.sqrt(Math.pow(tooltipHeight, 2) +
+                                    Math.pow(tooltipWidth, 2) ) * 2));
+    if (this.props.show) {
+      ripple.style.height = rippleDiameter + 'px';
+      ripple.style.width = rippleDiameter + 'px';
+    }
+    else {
+      ripple.style.width = '0px';
+      ripple.style.height = '0px';
+    }
+  },
+
+  _setTooltipPosition() {
+    let tooltip = ReactDOM.findDOMNode(this);
+    this.setState({offsetWidth: tooltip.offsetWidth});
+  },
+
   render() {
     const {
       label,
@@ -171,30 +197,6 @@ const Tooltip = React.createClass({
         </span>
       </div>
     );
-  },
-
-  _setRippleSize() {
-    let ripple = ReactDOM.findDOMNode(this.refs.ripple);
-    let tooltip = window.getComputedStyle(ReactDOM.findDOMNode(this));
-    let tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10) /
-      (this.props.horizontalPosition === 'center' ? 2 : 1);
-    let tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
-
-    let rippleDiameter = Math.ceil((Math.sqrt(Math.pow(tooltipHeight, 2) +
-                                    Math.pow(tooltipWidth, 2) ) * 2));
-    if (this.props.show) {
-      ripple.style.height = rippleDiameter + 'px';
-      ripple.style.width = rippleDiameter + 'px';
-    }
-    else {
-      ripple.style.width = '0px';
-      ripple.style.height = '0px';
-    }
-  },
-
-  _setTooltipPosition() {
-    let tooltip = ReactDOM.findDOMNode(this);
-    this.setState({offsetWidth: tooltip.offsetWidth});
   },
 
 });

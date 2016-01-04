@@ -8,14 +8,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const DayButton = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
@@ -24,16 +16,18 @@ const DayButton = React.createClass({
     selected: React.PropTypes.bool,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -49,6 +43,12 @@ const DayButton = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -58,6 +58,24 @@ const DayButton = React.createClass({
 
   getTheme() {
     return this.state.muiTheme.datePicker;
+  },
+
+  _handleMouseEnter() {
+    if (!this.props.disabled) this.setState({hover: true});
+  },
+
+  _handleMouseLeave() {
+    if (!this.props.disabled) this.setState({hover: false});
+  },
+
+  _handleTouchTap(e) {
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
+  },
+
+  _handleKeyboardFocus(e, keyboardFocused) {
+    if (!this.props.disabled && this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+    }
   },
 
   render() {
@@ -132,24 +150,6 @@ const DayButton = React.createClass({
     ) : (
       <span style={this.prepareStyles(styles.root)} />
     );
-  },
-
-  _handleMouseEnter() {
-    if (!this.props.disabled) this.setState({hover: true});
-  },
-
-  _handleMouseLeave() {
-    if (!this.props.disabled) this.setState({hover: false});
-  },
-
-  _handleTouchTap(e) {
-    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
-  },
-
-  _handleKeyboardFocus(e, keyboardFocused) {
-    if (!this.props.disabled && this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
-    }
   },
 
 });

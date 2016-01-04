@@ -25,15 +25,6 @@ function isValid(value) {
 
 const TextField = React.createClass({
 
-  mixins: [
-    ContextPure,
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     children: React.PropTypes.node,
 
@@ -73,25 +64,19 @@ const TextField = React.createClass({
     value: React.PropTypes.any,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getDefaultProps() {
-    return {
-      fullWidth: false,
-      type: 'text',
-      underlineShow: true,
-      rows: 1,
-    };
-  },
+  mixins: [
+    ContextPure,
+    StylePropable,
+  ],
 
   statics: {
     getRelevantContextKeys(muiTheme) {
@@ -114,6 +99,15 @@ const TextField = React.createClass({
     },
   },
 
+  getDefaultProps() {
+    return {
+      fullWidth: false,
+      type: 'text',
+      underlineShow: true,
+      rows: 1,
+    };
+  },
+
   getInitialState() {
     let props = (this.props.children) ? this.props.children.props : this.props;
 
@@ -123,6 +117,12 @@ const TextField = React.createClass({
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -243,6 +243,91 @@ const TextField = React.createClass({
     return styles;
   },
 
+  blur() {
+    if (this.isMounted()) this._getInputNode().blur();
+  },
+
+  clearValue() {
+    this.setValue('');
+  },
+
+  focus() {
+    if (this.isMounted()) this._getInputNode().focus();
+  },
+
+  getValue() {
+    return this.isMounted() ? this._getInputNode().value : undefined;
+  },
+
+  setErrorText(newErrorText) {
+    warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
+
+    if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
+      console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
+    }
+    else if (this.isMounted()) {
+      this.setState({errorText: newErrorText});
+    }
+  },
+
+  setValue(newValue) {
+    warning(false,
+      `setValue() method is deprecated. Use the defaultValue property instead.
+      Or use the TextField as a controlled component with the value property.`);
+
+    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
+      console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
+    }
+    else if (this.isMounted()) {
+      if (this.props.multiLine) {
+        this.refs.input.setValue(newValue);
+      }
+      else {
+        this._getInputNode().value = newValue;
+      }
+
+      this.setState({hasValue: isValid(newValue)});
+    }
+  },
+
+  _getInputNode() {
+    return (this.props.children || this.props.multiLine) ?
+      this.refs.input.getInputNode() : ReactDOM.findDOMNode(this.refs.input);
+  },
+
+  _handleInputBlur(e) {
+    this.setState({isFocused: false});
+    if (this.props.onBlur) this.props.onBlur(e);
+  },
+
+  _handleInputChange(e) {
+    this.setState({hasValue: isValid(e.target.value)});
+    if (this.props.onChange) this.props.onChange(e);
+  },
+
+  _handleInputFocus(e) {
+    if (this.props.disabled)
+      return;
+    this.setState({isFocused: true});
+    if (this.props.onFocus) this.props.onFocus(e);
+  },
+
+  _handleInputKeyDown(e) {
+    if (e.keyCode === 13 && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
+    if (this.props.onKeyDown) this.props.onKeyDown(e);
+  },
+
+  _handleTextAreaHeightChange(e, height) {
+    let newHeight = height + 24;
+    if (this.props.floatingLabelText) newHeight += 24;
+    ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
+  },
+
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
+  },
+
   render() {
     let {
       className,
@@ -361,91 +446,6 @@ const TextField = React.createClass({
         {errorTextElement}
       </div>
     );
-  },
-
-  blur() {
-    if (this.isMounted()) this._getInputNode().blur();
-  },
-
-  clearValue() {
-    this.setValue('');
-  },
-
-  focus() {
-    if (this.isMounted()) this._getInputNode().focus();
-  },
-
-  getValue() {
-    return this.isMounted() ? this._getInputNode().value : undefined;
-  },
-
-  setErrorText(newErrorText) {
-    warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
-
-    if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
-      console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
-    }
-    else if (this.isMounted()) {
-      this.setState({errorText: newErrorText});
-    }
-  },
-
-  setValue(newValue) {
-    warning(false,
-      `setValue() method is deprecated. Use the defaultValue property instead.
-      Or use the TextField as a controlled component with the value property.`);
-
-    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
-      console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
-    }
-    else if (this.isMounted()) {
-      if (this.props.multiLine) {
-        this.refs.input.setValue(newValue);
-      }
-      else {
-        this._getInputNode().value = newValue;
-      }
-
-      this.setState({hasValue: isValid(newValue)});
-    }
-  },
-
-  _getInputNode() {
-    return (this.props.children || this.props.multiLine) ?
-      this.refs.input.getInputNode() : ReactDOM.findDOMNode(this.refs.input);
-  },
-
-  _handleInputBlur(e) {
-    this.setState({isFocused: false});
-    if (this.props.onBlur) this.props.onBlur(e);
-  },
-
-  _handleInputChange(e) {
-    this.setState({hasValue: isValid(e.target.value)});
-    if (this.props.onChange) this.props.onChange(e);
-  },
-
-  _handleInputFocus(e) {
-    if (this.props.disabled)
-      return;
-    this.setState({isFocused: true});
-    if (this.props.onFocus) this.props.onFocus(e);
-  },
-
-  _handleInputKeyDown(e) {
-    if (e.keyCode === 13 && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
-    if (this.props.onKeyDown) this.props.onKeyDown(e);
-  },
-
-  _handleTextAreaHeightChange(e, height) {
-    let newHeight = height + 24;
-    if (this.props.floatingLabelText) newHeight += 24;
-    ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
-  },
-
-  _isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
   },
 
 });

@@ -5,14 +5,12 @@ import ThemeManager from './styles/theme-manager';
 
 const AppCanvas = React.createClass({
 
-  mixins: [StylePropable],
+  propTypes: {
+    children: React.PropTypes.node,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  propTypes: {
-    children: React.PropTypes.node,
   },
 
   //for passing default theme context to children
@@ -20,11 +18,7 @@ const AppCanvas = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [StylePropable],
 
   getInitialState() {
     return {
@@ -32,6 +26,11 @@ const AppCanvas = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {

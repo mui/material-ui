@@ -6,10 +6,7 @@ import ClockMinutes from './clock-minutes';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 const Clock = React.createClass({
-
-  mixins: [StylePropable],
 
   propTypes: {
     format: React.PropTypes.oneOf(['ampm', '24hr']),
@@ -24,9 +21,19 @@ const Clock = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  mixins: [StylePropable],
+
   getDefaultProps() {
     return {
       initialTime: new Date(),
+    };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      selectedTime: this.props.initialTime,
+      mode: 'hour',
     };
   },
 
@@ -36,14 +43,6 @@ const Clock = React.createClass({
       muiTheme: newMuiTheme,
       selectedTime: nextProps.initialTime,
     });
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      selectedTime: this.props.initialTime,
-      mode: 'hour',
-    };
   },
 
   _setMode(mode) {
@@ -76,6 +75,57 @@ const Clock = React.createClass({
     }
 
     return 'pm';
+  },
+
+  handleChangeHours(hours, finished) {
+    let time = new Date(this.state.selectedTime);
+    let affix;
+
+    if ( typeof finished === 'string' ) {
+      affix = finished;
+      finished = undefined;
+    }
+    if (!affix) {
+      affix = this._getAffix();
+    }
+    if (affix === 'pm' && hours < 12) {
+      hours += 12;
+    }
+
+    time.setHours(hours);
+    this.setState({
+      selectedTime: time,
+    });
+
+    const {onChangeHours} = this.props;
+
+    if (finished) {
+      setTimeout(() => {
+        this.setState({
+          mode: 'minute',
+        });
+        if (typeof (onChangeHours) === 'function') {
+          onChangeHours(time);
+        }
+      }, 100);
+    }
+  },
+
+  handleChangeMinutes(minutes) {
+    let time = new Date(this.state.selectedTime);
+    time.setMinutes(minutes);
+    this.setState({
+      selectedTime: time,
+    });
+
+    const {onChangeMinutes} = this.props;
+    if (typeof (onChangeMinutes) === 'function') {
+      setTimeout(() => { onChangeMinutes(time); }, 0);
+    }
+  },
+
+  getSelectedTime() {
+    return this.state.selectedTime;
   },
 
   render() {
@@ -132,57 +182,6 @@ const Clock = React.createClass({
         </div>
       </div>
     );
-  },
-
-  handleChangeHours(hours, finished) {
-    let time = new Date(this.state.selectedTime);
-    let affix;
-
-    if ( typeof finished === 'string' ) {
-      affix = finished;
-      finished = undefined;
-    }
-    if (!affix) {
-      affix = this._getAffix();
-    }
-    if (affix === 'pm' && hours < 12) {
-      hours += 12;
-    }
-
-    time.setHours(hours);
-    this.setState({
-      selectedTime: time,
-    });
-
-    const {onChangeHours} = this.props;
-
-    if (finished) {
-      setTimeout(() => {
-        this.setState({
-          mode: 'minute',
-        });
-        if (typeof (onChangeHours) === 'function') {
-          onChangeHours(time);
-        }
-      }, 100);
-    }
-  },
-
-  handleChangeMinutes(minutes) {
-    let time = new Date(this.state.selectedTime);
-    time.setMinutes(minutes);
-    this.setState({
-      selectedTime: time,
-    });
-
-    const {onChangeMinutes} = this.props;
-    if (typeof (onChangeMinutes) === 'function') {
-      setTimeout(() => { onChangeMinutes(time); }, 0);
-    }
-  },
-
-  getSelectedTime() {
-    return this.state.selectedTime;
   },
 });
 

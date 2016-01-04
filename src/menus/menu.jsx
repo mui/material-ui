@@ -15,16 +15,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const Menu = React.createClass({
 
-  mixins: [
-    StylePropable,
-    Controllable,
-    ClickAwayable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     animated: React.PropTypes.bool,
     autoWidth: React.PropTypes.bool,
@@ -50,6 +40,21 @@ const Menu = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    Controllable,
+    ClickAwayable,
+  ],
+
   getDefaultProps() {
     return {
       animated: false,
@@ -60,17 +65,6 @@ const Menu = React.createClass({
       onKeyDown: () => {},
       openDirection: 'bottom-left',
       zDepth: 1,
-    };
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -86,29 +80,16 @@ const Menu = React.createClass({
     };
   },
 
-  componentDidEnter() {
-    this._animateOpen();
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
     if (this.props.autoWidth) this._setWidth();
     if (!this.props.animated) this._animateOpen();
     this._setScollPosition();
-  },
-
-  componentDidUpdate() {
-    if (this.props.autoWidth) this._setWidth();
-  },
-
-  componentWillLeave(callback) {
-    let rootStyle = ReactDOM.findDOMNode(this).style;
-    rootStyle.transition = Transitions.easeOut('250ms', ['opacity', 'transform']);
-    rootStyle.transform = 'translate3d(0,-8px,0)';
-    rootStyle.opacity = 0;
-    rootStyle = AutoPrefix.all(rootStyle);
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 250);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -123,148 +104,31 @@ const Menu = React.createClass({
     });
   },
 
+  componentDidUpdate() {
+    if (this.props.autoWidth) this._setWidth();
+  },
+
+  componentDidEnter() {
+    this._animateOpen();
+  },
+
+  componentWillLeave(callback) {
+    let rootStyle = ReactDOM.findDOMNode(this).style;
+    rootStyle.transition = Transitions.easeOut('250ms', ['opacity', 'transform']);
+    rootStyle.transform = 'translate3d(0,-8px,0)';
+    rootStyle.opacity = 0;
+    rootStyle = AutoPrefix.all(rootStyle);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }, 250);
+  },
+
   componentClickAway(e) {
     if (e.defaultPrevented)
       return;
     this._setFocusIndex(-1, false);
   },
 
-  render() {
-    let {
-      animated,
-      autoWidth,
-      children,
-      desktop,
-      initiallyKeyboardFocused,
-      listStyle,
-      maxHeight,
-      multiple,
-      openDirection,
-      selectedMenuItemStyle,
-      style,
-      value,
-      valueLink,
-      width,
-      zDepth,
-      ...other,
-    } = this.props;
-
-    let openDown = openDirection.split('-')[0] === 'bottom';
-    let openLeft = openDirection.split('-')[1] === 'left';
-
-    const muiTheme = this.state.muiTheme;
-    const rawTheme = muiTheme.rawTheme;
-
-    let styles = {
-      root: {
-        //Nested div bacause the List scales x faster than
-        //it scales y
-        transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
-        zIndex: muiTheme.zIndex.menu,
-        top: openDown ? 0 : null,
-        bottom: !openDown ? 0 : null,
-        left: !openLeft ? 0 : null,
-        right: openLeft ? 0 : null,
-        transform: 'scaleX(0)',
-        transformOrigin: openLeft ? 'right' : 'left',
-      },
-
-      divider: {
-        marginTop: 7,
-        marginBottom: 8,
-      },
-
-      list: {
-        display: 'table-cell',
-        paddingBottom: desktop ? 16 : 8,
-        paddingTop: desktop ? 16 : 8,
-        userSelect: 'none',
-        width: width,
-      },
-
-      menuItemContainer: {
-        transition: animated ? Transitions.easeOut(null, 'opacity') : null,
-        opacity: 0,
-      },
-
-      paper: {
-        transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-        transform: 'scaleY(0)',
-        transformOrigin: openDown ? 'top' : 'bottom',
-        opacity: 0,
-        maxHeight: maxHeight,
-        overflowY: maxHeight ? 'auto' : null,
-      },
-
-      selectedMenuItem: {
-        color: rawTheme.palette.accent1Color,
-      },
-    };
-
-    let mergedRootStyles = this.prepareStyles(styles.root, style);
-    let mergedListStyles = this.mergeStyles(styles.list, listStyle);
-
-    const filteredChildren = this._getFilteredChildren(children);
-
-    //Cascade children opacity
-    let cumulativeDelay = openDown ? 175 : 325;
-    let cascadeChildrenCount = this._getCascadeChildrenCount(filteredChildren);
-    let cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
-
-    let menuItemIndex = 0;
-    let newChildren = React.Children.map(filteredChildren, child => {
-      let childIsADivider = child.type && child.type.displayName === 'Divider';
-      let childIsDisabled = child.props.disabled;
-      let childrenContainerStyles = {};
-
-      if (animated) {
-        let focusIndex = this.state.focusIndex;
-        let transitionDelay = 0;
-
-        //Only cascade the visible menu items
-        if ((menuItemIndex >= focusIndex - 1) &&
-          (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
-          cumulativeDelay = openDown ?
-            cumulativeDelay + cumulativeDelayIncrement :
-            cumulativeDelay - cumulativeDelayIncrement;
-          transitionDelay = cumulativeDelay;
-        }
-
-        childrenContainerStyles = this.prepareStyles(styles.menuItemContainer, {
-          transitionDelay: transitionDelay + 'ms',
-        });
-      }
-
-      let clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
-        childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
-        this._cloneMenuItem(child, menuItemIndex, styles);
-
-      if (!childIsADivider && !childIsDisabled) menuItemIndex++;
-
-      return animated ? (
-        <div style={childrenContainerStyles}>{clonedChild}</div>
-      ) : clonedChild;
-
-    });
-
-    return (
-      <div
-        onKeyDown={this._handleKeyDown}
-        style={mergedRootStyles}>
-        <Paper
-          ref="scrollContainer"
-          style={styles.paper}
-          zDepth={zDepth}>
-          <List
-            {...other}
-            ref="list"
-            style={mergedListStyles}>
-            {newChildren}
-          </List>
-        </Paper>
-      </div>
-    );
-  },
 
   setKeyboardFocused(keyboardFocused) {
     this.setState({
@@ -503,6 +367,143 @@ const Menu = React.createClass({
 
     el.style.width = newWidth + 'px';
     listEl.style.width = newWidth + 'px';
+  },
+
+  render() {
+    let {
+      animated,
+      autoWidth,
+      children,
+      desktop,
+      initiallyKeyboardFocused,
+      listStyle,
+      maxHeight,
+      multiple,
+      openDirection,
+      selectedMenuItemStyle,
+      style,
+      value,
+      valueLink,
+      width,
+      zDepth,
+      ...other,
+    } = this.props;
+
+    let openDown = openDirection.split('-')[0] === 'bottom';
+    let openLeft = openDirection.split('-')[1] === 'left';
+
+    const muiTheme = this.state.muiTheme;
+    const rawTheme = muiTheme.rawTheme;
+
+    let styles = {
+      root: {
+        //Nested div bacause the List scales x faster than
+        //it scales y
+        transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
+        zIndex: muiTheme.zIndex.menu,
+        top: openDown ? 0 : null,
+        bottom: !openDown ? 0 : null,
+        left: !openLeft ? 0 : null,
+        right: openLeft ? 0 : null,
+        transform: 'scaleX(0)',
+        transformOrigin: openLeft ? 'right' : 'left',
+      },
+
+      divider: {
+        marginTop: 7,
+        marginBottom: 8,
+      },
+
+      list: {
+        display: 'table-cell',
+        paddingBottom: desktop ? 16 : 8,
+        paddingTop: desktop ? 16 : 8,
+        userSelect: 'none',
+        width: width,
+      },
+
+      menuItemContainer: {
+        transition: animated ? Transitions.easeOut(null, 'opacity') : null,
+        opacity: 0,
+      },
+
+      paper: {
+        transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
+        transform: 'scaleY(0)',
+        transformOrigin: openDown ? 'top' : 'bottom',
+        opacity: 0,
+        maxHeight: maxHeight,
+        overflowY: maxHeight ? 'auto' : null,
+      },
+
+      selectedMenuItem: {
+        color: rawTheme.palette.accent1Color,
+      },
+    };
+
+    let mergedRootStyles = this.prepareStyles(styles.root, style);
+    let mergedListStyles = this.mergeStyles(styles.list, listStyle);
+
+    const filteredChildren = this._getFilteredChildren(children);
+
+    //Cascade children opacity
+    let cumulativeDelay = openDown ? 175 : 325;
+    let cascadeChildrenCount = this._getCascadeChildrenCount(filteredChildren);
+    let cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
+
+    let menuItemIndex = 0;
+    let newChildren = React.Children.map(filteredChildren, child => {
+      let childIsADivider = child.type && child.type.displayName === 'Divider';
+      let childIsDisabled = child.props.disabled;
+      let childrenContainerStyles = {};
+
+      if (animated) {
+        let focusIndex = this.state.focusIndex;
+        let transitionDelay = 0;
+
+        //Only cascade the visible menu items
+        if ((menuItemIndex >= focusIndex - 1) &&
+          (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
+          cumulativeDelay = openDown ?
+            cumulativeDelay + cumulativeDelayIncrement :
+            cumulativeDelay - cumulativeDelayIncrement;
+          transitionDelay = cumulativeDelay;
+        }
+
+        childrenContainerStyles = this.prepareStyles(styles.menuItemContainer, {
+          transitionDelay: transitionDelay + 'ms',
+        });
+      }
+
+      let clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
+        childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
+        this._cloneMenuItem(child, menuItemIndex, styles);
+
+      if (!childIsADivider && !childIsDisabled) menuItemIndex++;
+
+      return animated ? (
+        <div style={childrenContainerStyles}>{clonedChild}</div>
+      ) : clonedChild;
+
+    });
+
+    return (
+      <div
+        onKeyDown={this._handleKeyDown}
+        style={mergedRootStyles}>
+        <Paper
+          ref="scrollContainer"
+          style={styles.paper}
+          zDepth={zDepth}>
+          <List
+            {...other}
+            ref="list"
+            style={mergedListStyles}>
+            {newChildren}
+          </List>
+        </Paper>
+      </div>
+    );
   },
 
 });

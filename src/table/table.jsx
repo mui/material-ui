@@ -6,12 +6,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const Table = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     allRowsSelected: React.PropTypes.bool,
     bodyStyle: React.PropTypes.object,
@@ -42,6 +36,17 @@ const Table = React.createClass({
     wrapperStyle: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
+
   getDefaultProps() {
     return {
       allRowsSelected: false,
@@ -53,21 +58,16 @@ const Table = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      allRowsSelected: this.props.allRowsSelected,
+    };
   },
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      allRowsSelected: this.props.allRowsSelected,
     };
   },
 
@@ -105,6 +105,83 @@ const Table = React.createClass({
     };
 
     return styles;
+  },
+
+  isScrollbarVisible() {
+    const tableDivHeight = ReactDOM.findDOMNode(this.refs.tableDiv).clientHeight;
+    const tableBodyHeight = ReactDOM.findDOMNode(this.refs.tableBody).clientHeight;
+
+    return tableBodyHeight > tableDivHeight;
+  },
+
+  _createTableHeader(base) {
+    return React.cloneElement(
+      base,
+      {
+        enableSelectAll: base.props.enableSelectAll && this.props.selectable && this.props.multiSelectable,
+        onSelectAll: this._onSelectAll,
+        selectAllSelected: this.state.allRowsSelected,
+      }
+    );
+  },
+
+  _createTableBody(base) {
+    return React.cloneElement(
+      base,
+      {
+        allRowsSelected: this.state.allRowsSelected,
+        multiSelectable: this.props.multiSelectable,
+        onCellClick: this._onCellClick,
+        onCellHover: this._onCellHover,
+        onCellHoverExit: this._onCellHoverExit,
+        onRowHover: this._onRowHover,
+        onRowHoverExit: this._onRowHoverExit,
+        onRowSelection: this._onRowSelection,
+        selectable: this.props.selectable,
+        style: this.mergeAndPrefix({height: this.props.height}, base.props.style),
+      }
+    );
+  },
+
+  _createTableFooter(base) {
+    return base;
+  },
+
+  _onCellClick(rowNumber, columnNumber) {
+    if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber);
+  },
+
+  _onCellHover(rowNumber, columnNumber) {
+    if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber);
+  },
+
+  _onCellHoverExit(rowNumber, columnNumber) {
+    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, columnNumber);
+  },
+
+  _onRowHover(rowNumber) {
+    if (this.props.onRowHover) this.props.onRowHover(rowNumber);
+  },
+
+  _onRowHoverExit(rowNumber) {
+    if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
+  },
+
+  _onRowSelection(selectedRows) {
+    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
+    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+  },
+
+  _onSelectAll() {
+    if (this.props.onRowSelection) {
+      if (!this.state.allRowsSelected) {
+        this.props.onRowSelection('all');
+      } else {
+        this.props.onRowSelection('none');
+      }
+    }
+
+    this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 
   render() {
@@ -185,84 +262,6 @@ const Table = React.createClass({
       </div>
     );
   },
-
-  isScrollbarVisible() {
-    const tableDivHeight = ReactDOM.findDOMNode(this.refs.tableDiv).clientHeight;
-    const tableBodyHeight = ReactDOM.findDOMNode(this.refs.tableBody).clientHeight;
-
-    return tableBodyHeight > tableDivHeight;
-  },
-
-  _createTableHeader(base) {
-    return React.cloneElement(
-      base,
-      {
-        enableSelectAll: base.props.enableSelectAll && this.props.selectable && this.props.multiSelectable,
-        onSelectAll: this._onSelectAll,
-        selectAllSelected: this.state.allRowsSelected,
-      }
-    );
-  },
-
-  _createTableBody(base) {
-    return React.cloneElement(
-      base,
-      {
-        allRowsSelected: this.state.allRowsSelected,
-        multiSelectable: this.props.multiSelectable,
-        onCellClick: this._onCellClick,
-        onCellHover: this._onCellHover,
-        onCellHoverExit: this._onCellHoverExit,
-        onRowHover: this._onRowHover,
-        onRowHoverExit: this._onRowHoverExit,
-        onRowSelection: this._onRowSelection,
-        selectable: this.props.selectable,
-        style: this.mergeAndPrefix({height: this.props.height}, base.props.style),
-      }
-    );
-  },
-
-  _createTableFooter(base) {
-    return base;
-  },
-
-  _onCellClick(rowNumber, columnNumber) {
-    if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber);
-  },
-
-  _onCellHover(rowNumber, columnNumber) {
-    if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber);
-  },
-
-  _onCellHoverExit(rowNumber, columnNumber) {
-    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, columnNumber);
-  },
-
-  _onRowHover(rowNumber) {
-    if (this.props.onRowHover) this.props.onRowHover(rowNumber);
-  },
-
-  _onRowHoverExit(rowNumber) {
-    if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
-  },
-
-  _onRowSelection(selectedRows) {
-    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
-    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
-  },
-
-  _onSelectAll() {
-    if (this.props.onRowSelection) {
-      if (!this.state.allRowsSelected) {
-        this.props.onRowSelection('all');
-      } else {
-        this.props.onRowSelection('none');
-      }
-    }
-
-    this.setState({allRowsSelected: !this.state.allRowsSelected});
-  },
-
 });
 
 export default Table;

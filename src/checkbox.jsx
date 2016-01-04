@@ -7,25 +7,7 @@ import CheckboxChecked from './svg-icons/toggle/check-box';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
-
 const Checkbox = React.createClass({
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     checked: React.PropTypes.bool,
@@ -40,6 +22,17 @@ const Checkbox = React.createClass({
     valueLink: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
+
   getInitialState() {
     return {
       switched:
@@ -48,6 +41,12 @@ const Checkbox = React.createClass({
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -111,6 +110,22 @@ const Checkbox = React.createClass({
     };
 
     return styles;
+  },
+
+  isChecked() {
+    return this.refs.enhancedSwitch.isSwitched();
+  },
+
+  setChecked(newCheckedValue) {
+    this.refs.enhancedSwitch.setSwitched(newCheckedValue);
+  },
+
+  _handleCheck(e, isInputChecked) {
+    if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
+  },
+
+  _handleStateChange(newSwitched) {
+    this.setState({switched: newSwitched});
   },
 
   render() {
@@ -182,23 +197,6 @@ const Checkbox = React.createClass({
         {...enhancedSwitchProps}/>
     );
   },
-
-  isChecked() {
-    return this.refs.enhancedSwitch.isSwitched();
-  },
-
-  setChecked(newCheckedValue) {
-    this.refs.enhancedSwitch.setSwitched(newCheckedValue);
-  },
-
-  _handleCheck(e, isInputChecked) {
-    if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
-  },
-
-  _handleStateChange(newSwitched) {
-    this.setState({switched: newSwitched});
-  },
-
 });
 
 export default Checkbox;

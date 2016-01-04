@@ -8,14 +8,6 @@ import ThemeManager from './styles/theme-manager';
 
 const Toggle = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     defaultToggled: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
@@ -31,16 +23,18 @@ const Toggle = React.createClass({
     valueLink: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getInitialState() {
     return {
@@ -50,6 +44,12 @@ const Toggle = React.createClass({
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -113,6 +113,22 @@ const Toggle = React.createClass({
     };
 
     return styles;
+  },
+
+  isToggled() {
+    return this.refs.enhancedSwitch.isSwitched();
+  },
+
+  setToggled(newToggledValue) {
+    this.refs.enhancedSwitch.setSwitched(newToggledValue);
+  },
+
+  _handleToggle(e, isInputChecked) {
+    if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
+  },
+
+  _handleStateChange(newSwitched) {
+    this.setState({switched: newSwitched});
   },
 
   render() {
@@ -192,22 +208,6 @@ const Toggle = React.createClass({
         {...other}
         {...enhancedSwitchProps}/>
     );
-  },
-
-  isToggled() {
-    return this.refs.enhancedSwitch.isSwitched();
-  },
-
-  setToggled(newToggledValue) {
-    this.refs.enhancedSwitch.setSwitched(newToggledValue);
-  },
-
-  _handleToggle(e, isInputChecked) {
-    if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
-  },
-
-  _handleStateChange(newSwitched) {
-    this.setState({switched: newSwitched});
   },
 
 });

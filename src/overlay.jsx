@@ -6,22 +6,6 @@ import Colors from './styles/colors';
 
 const Overlay = React.createClass({
 
-  _originalBodyOverflow: '',
-
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.show !== nextProps.show) {
-      this._applyAutoLockScrolling(nextProps);
-    }
-  },
-
   propTypes: {
     autoLockScrolling: React.PropTypes.bool,
     show: React.PropTypes.bool.isRequired,
@@ -32,6 +16,14 @@ const Overlay = React.createClass({
     style: React.PropTypes.object,
     transitionEnabled: React.PropTypes.bool,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -48,9 +40,17 @@ const Overlay = React.createClass({
     }
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.show !== nextProps.show) {
+      this._applyAutoLockScrolling(nextProps);
+    }
+  },
+
   componentWillUnmount() {
     this._allowScrolling();
   },
+
+  _originalBodyOverflow: '',
 
   setOpacity(opacity) {
     let overlay = ReactDOM.findDOMNode(this);
@@ -89,20 +89,6 @@ const Overlay = React.createClass({
     };
   },
 
-  render() {
-    const {
-      show,
-      style,
-      ...other,
-    } = this.props;
-
-    const styles = this.prepareStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
-
-    return (
-      <div {...other} style={styles} />
-    );
-  },
-
   _applyAutoLockScrolling(props) {
     if (props.autoLockScrolling) {
       if (props.show) {
@@ -121,6 +107,20 @@ const Overlay = React.createClass({
   _allowScrolling() {
     const body = document.getElementsByTagName('body')[0];
     body.style.overflow = this._originalBodyOverflow || '';
+  },
+
+  render() {
+    const {
+      show,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = this.prepareStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
+
+    return (
+      <div {...other} style={styles} />
+    );
   },
 
 });

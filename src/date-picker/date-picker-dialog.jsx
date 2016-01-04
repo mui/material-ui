@@ -13,30 +13,6 @@ import DateTime from '../utils/date-time';
 
 const DatePickerDialog = React.createClass({
 
-  mixins: [
-    StylePropable,
-    WindowListenable,
-    ContextPure,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      return {
-        calendarTextColor: muiTheme.datePicker.calendarTextColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        Calendar,
-        Dialog,
-      ];
-    },
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     DateTimeFormat: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
@@ -59,15 +35,33 @@ const DatePickerDialog = React.createClass({
     wordings: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
+  mixins: [
+    StylePropable,
+    WindowListenable,
+    ContextPure,
+  ],
+
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      return {
+        calendarTextColor: muiTheme.datePicker.calendarTextColor,
+      };
+    },
+    getChildrenClasses() {
+      return [
+        Calendar,
+        Dialog,
+      ];
+    },
   },
 
   getDefaultProps: function() {
@@ -82,14 +76,16 @@ const DatePickerDialog = React.createClass({
     };
   },
 
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
-  },
-
   getInitialState() {
     return {
       open: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -98,6 +94,52 @@ const DatePickerDialog = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  windowListeners: {
+    keyup: '_handleWindowKeyUp',
+  },
+
+  show() {
+    if (this.props.onShow && !this.state.open) this.props.onShow();
+    this.setState({
+      open: true,
+    });
+  },
+
+  dismiss() {
+    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
+    this.setState({
+      open: false,
+    });
+  },
+
+  _onDayTouchTap() {
+    if (this.props.autoOk) {
+      setTimeout(this._handleOKTouchTap, 300);
+    }
+  },
+
+  _handleCancelTouchTap() {
+    this.dismiss();
+  },
+
+  _handleOKTouchTap() {
+    if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
+      this.props.onAccept(this.refs.calendar.getSelectedDate());
+    }
+
+    this.dismiss();
+  },
+
+  _handleWindowKeyUp(e) {
+    if (this.state.open) {
+      switch (e.keyCode) {
+        case KeyCode.ENTER:
+          this._handleOKTouchTap();
+          break;
+      }
+    }
   },
 
   render() {
@@ -183,48 +225,6 @@ const DatePickerDialog = React.createClass({
           mode={this.props.mode} />
       </Container>
     );
-  },
-
-  show() {
-    if (this.props.onShow && !this.state.open) this.props.onShow();
-    this.setState({
-      open: true,
-    });
-  },
-
-  dismiss() {
-    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
-    this.setState({
-      open: false,
-    });
-  },
-
-  _onDayTouchTap() {
-    if (this.props.autoOk) {
-      setTimeout(this._handleOKTouchTap, 300);
-    }
-  },
-
-  _handleCancelTouchTap() {
-    this.dismiss();
-  },
-
-  _handleOKTouchTap() {
-    if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
-      this.props.onAccept(this.refs.calendar.getSelectedDate());
-    }
-
-    this.dismiss();
-  },
-
-  _handleWindowKeyUp(e) {
-    if (this.state.open) {
-      switch (e.keyCode) {
-        case KeyCode.ENTER:
-          this._handleOKTouchTap();
-          break;
-      }
-    }
   },
 
 });

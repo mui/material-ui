@@ -14,21 +14,6 @@ import deprecated from '../utils/deprecatedPropType';
 
 const DropDownMenu = React.createClass({
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   // The nested styles for drop-down-menu are modified by toolbar and possibly
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
@@ -140,6 +125,15 @@ const DropDownMenu = React.createClass({
       'Instead, use composability.'),
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   getDefaultProps() {
     return {
       autoWidth: true,
@@ -154,6 +148,12 @@ const DropDownMenu = React.createClass({
       open: this.props.openImmediately,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -252,6 +252,70 @@ const DropDownMenu = React.createClass({
     };
 
     return root;
+  },
+
+
+  _setWidth() {
+    const el = this.refs.root;
+    if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
+      el.style.width = 'auto';
+    }
+  },
+
+  _setSelectedIndex(index) {
+    warning(index >= 0, 'Cannot set selectedIndex to a negative index.');
+    this.setState({selectedIndex: (index >= 0) ? index : 0});
+  },
+
+  _onControlTouchTap(event) {
+    event.preventDefault();
+    if (!this.props.disabled) {
+      this.setState({
+        open: !this.state.open,
+        anchorEl: this.refs.root,
+      });
+    }
+  },
+
+  _onMenuItemTouchTap(key, payload, e) {
+    const {
+      onChange,
+      menuItems,
+      value,
+      valueLink,
+      valueMember,
+    } = this.props;
+
+    if (menuItems && (this.state.selectedIndex !== key || e.target.value !== value)) {
+      const selectedItem = menuItems[key];
+      if (selectedItem) {
+        e.target.value = selectedItem[valueMember || 'payload'];
+      }
+      this._onMenuRequestClose();
+    }
+
+    if (valueLink) {
+      valueLink.requestChange(e.target.value);
+    } else if (onChange) {
+      onChange(e, key, payload);
+    }
+
+    this.setState({
+      selectedIndex: key,
+      open: false,
+    });
+  },
+
+  _onMenuRequestClose() {
+    this.setState({
+      open: false,
+      anchorEl: null,
+    });
+  },
+
+  _isControlled() {
+    return this.props.hasOwnProperty('value') ||
+      this.props.hasOwnProperty('valueLink');
   },
 
   render() {
@@ -369,69 +433,6 @@ const DropDownMenu = React.createClass({
         </Popover>
       </div>
     );
-  },
-
-  _setWidth() {
-    const el = this.refs.root;
-    if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
-      el.style.width = 'auto';
-    }
-  },
-
-  _setSelectedIndex(index) {
-    warning(index >= 0, 'Cannot set selectedIndex to a negative index.');
-    this.setState({selectedIndex: (index >= 0) ? index : 0});
-  },
-
-  _onControlTouchTap(event) {
-    event.preventDefault();
-    if (!this.props.disabled) {
-      this.setState({
-        open: !this.state.open,
-        anchorEl: this.refs.root,
-      });
-    }
-  },
-
-  _onMenuItemTouchTap(key, payload, e) {
-    const {
-      onChange,
-      menuItems,
-      value,
-      valueLink,
-      valueMember,
-    } = this.props;
-
-    if (menuItems && (this.state.selectedIndex !== key || e.target.value !== value)) {
-      const selectedItem = menuItems[key];
-      if (selectedItem) {
-        e.target.value = selectedItem[valueMember || 'payload'];
-      }
-      this._onMenuRequestClose();
-    }
-
-    if (valueLink) {
-      valueLink.requestChange(e.target.value);
-    } else if (onChange) {
-      onChange(e, key, payload);
-    }
-
-    this.setState({
-      selectedIndex: key,
-      open: false,
-    });
-  },
-
-  _onMenuRequestClose() {
-    this.setState({
-      open: false,
-      anchorEl: null,
-    });
-  },
-
-  _isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
   },
 
 });

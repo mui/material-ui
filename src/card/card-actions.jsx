@@ -4,9 +4,18 @@ import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 const CardActions = React.createClass({
-  mixins: [
-    StylePropable,
-  ],
+
+  propTypes: {
+    actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
+    expandable: React.PropTypes.bool,
+    showExpandableButton: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -17,15 +26,19 @@ const CardActions = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -43,18 +56,6 @@ const CardActions = React.createClass({
         position: 'relative',
       },
     };
-  },
-
-  propTypes: {
-    actAsExpander: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    expandable: React.PropTypes.bool,
-    showExpandableButton: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
   },
 
   render() {

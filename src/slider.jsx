@@ -43,12 +43,6 @@ let valueInRangePropType = (props, propName, componentName) => {
 
 const Slider = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     defaultValue: valueInRangePropType,
     description: React.PropTypes.string,
@@ -73,16 +67,18 @@ const Slider = React.createClass({
     value: valueInRangePropType,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -111,6 +107,12 @@ const Slider = React.createClass({
       percent: percent,
       value: value,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -237,92 +239,6 @@ const Slider = React.createClass({
     return styles;
   },
 
-  render() {
-    let {...others} = this.props;
-    let percent = this.state.percent;
-    if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
-
-    let styles = this.getStyles();
-    const sliderStyles = this.prepareStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.prepareStyles(
-      styles.handle,
-      styles.handleWhenPercentZero,
-      this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      (this.state.hovered || this.state.focused) && !this.props.disabled
-        && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.prepareStyles(
-      styles.handle,
-      this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      this.props.disabled && styles.handleWhenDisabled,
-      {
-        left: (percent * 100) + '%',
-      }
-    );
-    let rippleStyle = this.mergeAndPrefix(
-      styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero
-    );
-    let remainingStyles = styles.remaining;
-    if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
-      remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
-    }
-
-    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
-    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
-    let focusRipple;
-    if (!this.props.disabled && !this.props.disableFocusRipple) {
-      focusRipple = (
-        <FocusRipple
-          ref="focusRipple"
-          key="focusRipple"
-          style={rippleStyle}
-          innerStyle={styles.rippleInner}
-          show={rippleShowCondition}
-          color={rippleColor}/>
-      );
-    }
-
-    let handleDragProps = {};
-
-    if (!this.props.disabled) {
-      handleDragProps = {
-        onTouchStart: this._onHandleTouchStart,
-        onMouseDown: this._onHandleMouseDown,
-      };
-    }
-
-    return (
-      <div {...others } style={this.prepareStyles(this.props.style)}>
-        <span>{this.props.description}</span>
-        <span>{this.props.error}</span>
-        <div style={sliderStyles}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-          onMouseDown={this._onMouseDown}
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-          onMouseUp={this._onMouseUp} >
-          <div ref="track" style={this.prepareStyles(styles.track)}>
-              <div style={this.prepareStyles(styles.filled)}></div>
-              <div style={this.prepareStyles(remainingStyles)}></div>
-              <div style={handleStyles} tabIndex={0} {...handleDragProps}>
-                {focusRipple}
-              </div>
-            </div>
-        </div>
-        <input ref="input" type="hidden"
-          name={this.props.name}
-          value={this.state.value}
-          required={this.props.required}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step} />
-      </div>
-    );
-  },
 
   _onHandleTouchStart(e) {
     if (document) {
@@ -489,6 +405,93 @@ const Slider = React.createClass({
 
   _percentToValue(percent) {
     return percent * (this.props.max - this.props.min) + this.props.min;
+  },
+
+  render() {
+    let {...others} = this.props;
+    let percent = this.state.percent;
+    if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
+
+    let styles = this.getStyles();
+    const sliderStyles = this.prepareStyles(styles.root, this.props.style);
+    const handleStyles = percent === 0 ? this.prepareStyles(
+      styles.handle,
+      styles.handleWhenPercentZero,
+      this.state.active && styles.handleWhenActive,
+      this.state.focused && {outline: 'none'},
+      (this.state.hovered || this.state.focused) && !this.props.disabled
+        && styles.handleWhenPercentZeroAndFocused,
+      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
+    ) : this.prepareStyles(
+      styles.handle,
+      this.state.active && styles.handleWhenActive,
+      this.state.focused && {outline: 'none'},
+      this.props.disabled && styles.handleWhenDisabled,
+      {
+        left: (percent * 100) + '%',
+      }
+    );
+    let rippleStyle = this.mergeAndPrefix(
+      styles.ripple,
+      percent === 0 && styles.rippleWhenPercentZero
+    );
+    let remainingStyles = styles.remaining;
+    if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
+      remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
+    }
+
+    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
+    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
+    let focusRipple;
+    if (!this.props.disabled && !this.props.disableFocusRipple) {
+      focusRipple = (
+        <FocusRipple
+          ref="focusRipple"
+          key="focusRipple"
+          style={rippleStyle}
+          innerStyle={styles.rippleInner}
+          show={rippleShowCondition}
+          color={rippleColor}/>
+      );
+    }
+
+    let handleDragProps = {};
+
+    if (!this.props.disabled) {
+      handleDragProps = {
+        onTouchStart: this._onHandleTouchStart,
+        onMouseDown: this._onHandleMouseDown,
+      };
+    }
+
+    return (
+      <div {...others } style={this.prepareStyles(this.props.style)}>
+        <span>{this.props.description}</span>
+        <span>{this.props.error}</span>
+        <div style={sliderStyles}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+          onMouseDown={this._onMouseDown}
+          onMouseEnter={this._onMouseEnter}
+          onMouseLeave={this._onMouseLeave}
+          onMouseUp={this._onMouseUp} >
+          <div ref="track" style={this.prepareStyles(styles.track)}>
+              <div style={this.prepareStyles(styles.filled)}></div>
+              <div style={this.prepareStyles(remainingStyles)}></div>
+              <div style={handleStyles} tabIndex={0} {...handleDragProps}>
+                {focusRipple}
+              </div>
+            </div>
+        </div>
+        <input ref="input" type="hidden"
+          name={this.props.name}
+          value={this.state.value}
+          required={this.props.required}
+          min={this.props.min}
+          max={this.props.max}
+          step={this.props.step} />
+      </div>
+    );
   },
 
 });

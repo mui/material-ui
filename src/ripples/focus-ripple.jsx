@@ -9,10 +9,7 @@ import ScaleInTransitionGroup from '../transition-groups/scale-in';
 
 const pulsateDuration = 750;
 
-
 const FocusRipple = React.createClass({
-
-  mixins: [PureRenderMixin, StylePropable],
 
   propTypes: {
     color: React.PropTypes.string,
@@ -25,6 +22,11 @@ const FocusRipple = React.createClass({
      */
     style: React.PropTypes.object,
   },
+
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -46,32 +48,6 @@ const FocusRipple = React.createClass({
     } else {
       if (this._timeout) clearTimeout(this._timeout);
     }
-  },
-
-  render() {
-
-    const {
-      show,
-      style,
-    } = this.props;
-
-    const mergedRootStyles = this.mergeStyles({
-      height: '100%',
-      width: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-    }, style);
-
-    const ripple = show ? this._getRippleElement(this.props) : null;
-
-    return (
-      <ScaleInTransitionGroup
-        maxScale={0.85}
-        style={mergedRootStyles}>
-        {ripple}
-      </ScaleInTransitionGroup>
-    );
   },
 
   _getRippleElement(props) {
@@ -128,6 +104,30 @@ const FocusRipple = React.createClass({
     el.style.top = (height / 2) - (size / 2 ) + oldTop + 'px';
   },
 
+  render() {
+    const {
+      show,
+      style,
+    } = this.props;
+
+    const mergedRootStyles = this.mergeStyles({
+      height: '100%',
+      width: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+    }, style);
+
+    const ripple = show ? this._getRippleElement(this.props) : null;
+
+    return (
+      <ScaleInTransitionGroup
+        maxScale={0.85}
+        style={mergedRootStyles}>
+        {ripple}
+      </ScaleInTransitionGroup>
+    );
+  },
 });
 
 export default FocusRipple;

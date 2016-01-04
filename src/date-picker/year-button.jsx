@@ -6,14 +6,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const YearButton = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * The css class name of the root element.
@@ -24,16 +16,18 @@ const YearButton = React.createClass({
     year: React.PropTypes.number,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -48,6 +42,12 @@ const YearButton = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -57,6 +57,18 @@ const YearButton = React.createClass({
 
   getTheme() {
     return this.state.muiTheme.datePicker;
+  },
+
+  _handleMouseEnter() {
+    this.setState({hover: true});
+  },
+
+  _handleMouseLeave() {
+    this.setState({hover: false});
+  },
+
+  _handleTouchTap(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
   },
 
   render() {
@@ -125,18 +137,6 @@ const YearButton = React.createClass({
         <span style={this.prepareStyles(styles.label)}>{year}</span>
       </EnhancedButton>
     );
-  },
-
-  _handleMouseEnter() {
-    this.setState({hover: true});
-  },
-
-  _handleMouseLeave() {
-    this.setState({hover: false});
-  },
-
-  _handleTouchTap(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
   },
 
 });
