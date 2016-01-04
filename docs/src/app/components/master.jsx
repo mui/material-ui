@@ -24,6 +24,17 @@ const githubButton = (
 );
 
 const Master = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.node,
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
+  },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   mixins: [
     StylePropable,
     StyleResizable,
@@ -36,20 +47,25 @@ const Master = React.createClass({
     };
   },
 
-  propTypes: {
-    children: React.PropTypes.node,
-    history: React.PropTypes.object,
-    location: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentWillMount() {
+    const newMuiTheme = this.state.muiTheme;
+    newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
   },
 
   getStyles() {
@@ -96,21 +112,6 @@ const Master = React.createClass({
     }
 
     return styles;
-  },
-
-  componentWillMount() {
-    const newMuiTheme = this.state.muiTheme;
-    newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
   },
 
   handleTouchTapLeftIconButton() {

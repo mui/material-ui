@@ -36,6 +36,30 @@ export default class IconMenus extends React.Component {
     };
   }
 
+  _handleIconMenuChange(e, value) {
+    this.setState({
+      iconMenuValue: value,
+    });
+  }
+
+  _handleIconMenuMultiChange(e, value) {
+    this.setState({
+      iconMenuMultiValue: value,
+    });
+  }
+
+  _handleIconMenuUsStateChange(e, value) {
+    this.setState({
+      usState: value,
+    });
+  }
+
+  _handleIconMenuValueLinkChange(e, value) {
+    this.setState({
+      iconMenuValueLink: value,
+    });
+  }
+
   render() {
 
     let desc = null;
@@ -563,31 +587,6 @@ export default class IconMenus extends React.Component {
         </CodeExample>
       </ComponentDoc>
     );
-
-  }
-
-  _handleIconMenuChange(e, value) {
-    this.setState({
-      iconMenuValue: value,
-    });
-  }
-
-  _handleIconMenuMultiChange(e, value) {
-    this.setState({
-      iconMenuMultiValue: value,
-    });
-  }
-
-  _handleIconMenuUsStateChange(e, value) {
-    this.setState({
-      usState: value,
-    });
-  }
-
-  _handleIconMenuValueLinkChange(e, value) {
-    this.setState({
-      iconMenuValueLink: value,
-    });
   }
 
 }

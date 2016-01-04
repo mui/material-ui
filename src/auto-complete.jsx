@@ -11,14 +11,6 @@ import PropTypes from './utils/prop-types';
 
 const AutoComplete = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     anchorOrigin: PropTypes.origin,
     animated: React.PropTypes.bool,
@@ -44,6 +36,14 @@ const AutoComplete = React.createClass({
     touchTapCloseDelay: React.PropTypes.number,
     updateWhenFocused: React.PropTypes.bool,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -76,6 +76,11 @@ const AutoComplete = React.createClass({
       anchorEl: null,
     };
   },
+  componentWillMount() {
+    this.focusOnInput = false;
+    this.requestsList = [];
+  },
+
   componentWillReceiveProps: function(nextProps) {
     if (this.props.searchText !== nextProps.searchText) {
       this.setState({
@@ -83,14 +88,91 @@ const AutoComplete = React.createClass({
       });
     }
   },
-  componentWillMount() {
-    this.focusOnInput = false;
-    this.requestsList = [];
-  },
 
   componentClickAway() {
     this._close();
     this.focusOnInput = false;
+  },
+
+  _open() {
+    this.setState({
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+    });
+  },
+
+  _close() {
+    this.setState({
+      open: false,
+      anchorEl: null,
+    });
+  },
+
+  setValue(textValue) {
+    this.setState({
+      searchText: textValue,
+    });
+  },
+
+  getValue() {
+    return this.state.searchText;
+  },
+
+  _updateRequests(searchText) {
+
+    this.setState({
+      searchText: searchText,
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+    });
+
+    this.focusOnInput = true;
+
+    this.props.onUpdateInput(searchText, this.props.dataSource);
+
+  },
+
+  _handleItemTouchTap(e, child) {
+    setTimeout(() => {
+      this._close();
+    }, this.props.touchTapCloseDelay);
+
+    let dataSource = this.props.dataSource;
+
+    let chosenRequest, index, searchText;
+    if (typeof dataSource[0] === 'string') {
+      chosenRequest = this.requestsList[parseInt(child.key, 10)];
+      index = dataSource.indexOf(chosenRequest);
+      searchText = dataSource[index];
+    }
+    else {
+      chosenRequest = child.key;
+      index = dataSource.indexOf(
+          dataSource.filter((item) => chosenRequest === item.text)[0]);
+      searchText = chosenRequest;
+    }
+
+    this.setState({searchText: searchText});
+
+    this.props.onNewRequest(chosenRequest, index, dataSource);
+
+  },
+
+  _handleKeyDown(e) {
+    switch (e.keyCode) {
+      case KeyCode.ESC:
+        this._close();
+        break;
+      case KeyCode.DOWN:
+        if (this.focusOnInput && this.state.open) {
+          e.preventDefault();
+          this.focusOnInput = false;
+          this._open();
+        }
+        break;
+      default:
+        break;
+    }
   },
 
   render() {
@@ -265,88 +347,6 @@ const AutoComplete = React.createClass({
       </div>
     );
   },
-
-  _open() {
-    this.setState({
-      open: true,
-      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
-    });
-  },
-
-  _close() {
-    this.setState({
-      open: false,
-      anchorEl: null,
-    });
-  },
-
-  setValue(textValue) {
-    this.setState({
-      searchText: textValue,
-    });
-  },
-
-  getValue() {
-    return this.state.searchText;
-  },
-
-  _updateRequests(searchText) {
-
-    this.setState({
-      searchText: searchText,
-      open: true,
-      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
-    });
-
-    this.focusOnInput = true;
-
-    this.props.onUpdateInput(searchText, this.props.dataSource);
-
-  },
-
-  _handleItemTouchTap(e, child) {
-    setTimeout(() => {
-      this._close();
-    }, this.props.touchTapCloseDelay);
-
-    let dataSource = this.props.dataSource;
-
-    let chosenRequest, index, searchText;
-    if (typeof dataSource[0] === 'string') {
-      chosenRequest = this.requestsList[parseInt(child.key, 10)];
-      index = dataSource.indexOf(chosenRequest);
-      searchText = dataSource[index];
-    }
-    else {
-      chosenRequest = child.key;
-      index = dataSource.indexOf(
-          dataSource.filter((item) => chosenRequest === item.text)[0]);
-      searchText = chosenRequest;
-    }
-
-    this.setState({searchText: searchText});
-
-    this.props.onNewRequest(chosenRequest, index, dataSource);
-
-  },
-
-  _handleKeyDown(e) {
-    switch (e.keyCode) {
-      case KeyCode.ESC:
-        this._close();
-        break;
-      case KeyCode.DOWN:
-        if (this.focusOnInput && this.state.open) {
-          e.preventDefault();
-          this.focusOnInput = false;
-          this._open();
-        }
-        break;
-      default:
-        break;
-    }
-  },
-
 
 });
 

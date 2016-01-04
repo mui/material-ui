@@ -15,21 +15,6 @@ const HomePage = React.createClass({
     History,
   ],
 
-  render() {
-    const style = {
-      paddingTop: Spacing.desktopKeylineIncrement,
-    };
-
-    return (
-      <div style={style}>
-        {this._getHomePageHero()}
-        {this._getHomePurpose()}
-        {this._getHomeFeatures()}
-        {this._getHomeContribute()}
-      </div>
-    );
-  },
-
   _getHomePageHero() {
     let styles = {
       root: {
@@ -209,6 +194,22 @@ const HomePage = React.createClass({
   _onDemoClick() {
     this.history.pushState(null, '/components');
   },
+
+  render() {
+    const style = {
+      paddingTop: Spacing.desktopKeylineIncrement,
+    };
+
+    return (
+      <div style={style}>
+        {this._getHomePageHero()}
+        {this._getHomePurpose()}
+        {this._getHomeFeatures()}
+        {this._getHomeContribute()}
+      </div>
+    );
+  },
+
 });
 
 export default HomePage;

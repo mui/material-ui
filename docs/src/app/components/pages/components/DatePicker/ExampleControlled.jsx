@@ -11,18 +11,19 @@ export default class DatePickerExampleControlled extends React.Component {
     };
   }
 
+  _handleChange = (event, date) => {
+    this.setState({
+      controlledDate: date,
+    });
+  }
+
   render() {
     return (
-        <DatePicker
-          hintText="Controlled Date Input"
-          value={this.state.controlledDate}
-          onChange={this._handleChange} />
+      <DatePicker
+        hintText="Controlled Date Input"
+        value={this.state.controlledDate}
+        onChange={this._handleChange}
+      />
     );
   }
-
-  _handleChange = (e, date) => {
-    this.setState({controlledDate: date});
-  }
 }
-
-export default DatePickerExampleControlled;

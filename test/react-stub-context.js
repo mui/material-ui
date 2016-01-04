@@ -17,13 +17,13 @@ function stubContext(BaseComponent, context) {
 
   let StubbedContextParent = React.createClass({
     displayName: 'StubbedContextParent',
+    propTypes: {
+      children: React.PropTypes.node,
+    },
+    contextTypes: _contextTypes,
     childContextTypes: _contextTypes,
     getChildContext() {
       return _context;
-    },
-    contextTypes: _contextTypes,
-    propTypes: {
-      children: React.PropTypes.node,
     },
     render() {
       return React.Children.only(this.props.children);

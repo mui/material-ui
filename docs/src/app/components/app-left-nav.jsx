@@ -14,9 +14,6 @@ import {StylePropable} from 'material-ui/lib/mixins';
 const SelectableList = SelectableContainerEnhance(List);
 
 const AppLeftNav = React.createClass({
-  mixins: [
-    StylePropable,
-  ],
 
   propTypes: {
     docked: React.PropTypes.bool.isRequired,
@@ -32,6 +29,10 @@ const AppLeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
   },
+
+  mixins: [
+    StylePropable,
+  ],
 
   handleRequestChangeLink(event, value) {
     window.location = value;

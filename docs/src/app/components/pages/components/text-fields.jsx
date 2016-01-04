@@ -25,6 +25,46 @@ const TextFieldsPage = React.createClass({
     };
   },
 
+  _handleErrorInputChange(e) {
+    this.setState({
+      errorText: e.target.value ? '' : 'This field is required.',
+    });
+  },
+
+  _handleError2InputChange(e) {
+    let value = e.target.value;
+    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
+    this.setState({
+      error2Text: isNumeric ? '' : 'This field must be numeric.',
+    });
+  },
+
+  _handleFloatingErrorInputChange(e) {
+    this.setState({
+      floatingErrorText: e.target.value ? '' : 'This field is required.',
+    });
+  },
+
+  _handleFloating2ErrorInputChange(e) {
+    let value = e.target.value;
+    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
+    this.setState({
+      floatingError2Text: isNumeric ? '' : 'This field must be numeric.',
+    });
+  },
+
+  _handleInputChange(e) {
+    this.setState({
+      propValue: e.target.value,
+    });
+  },
+
+  _handleFloatingInputChange(e) {
+    this.setState({
+      floatingPropValue: e.target.value,
+    });
+  },
+
   getStyles() {
     let styles = {
       group: {
@@ -375,46 +415,6 @@ The textarea also grows and shrinks according to the number of lines.`,
         </CodeExample>
       </ComponentDoc>
     );
-  },
-
-  _handleErrorInputChange(e) {
-    this.setState({
-      errorText: e.target.value ? '' : 'This field is required.',
-    });
-  },
-
-  _handleError2InputChange(e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
-    this.setState({
-      error2Text: isNumeric ? '' : 'This field must be numeric.',
-    });
-  },
-
-  _handleFloatingErrorInputChange(e) {
-    this.setState({
-      floatingErrorText: e.target.value ? '' : 'This field is required.',
-    });
-  },
-
-  _handleFloating2ErrorInputChange(e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
-    this.setState({
-      floatingError2Text: isNumeric ? '' : 'This field must be numeric.',
-    });
-  },
-
-  _handleInputChange(e) {
-    this.setState({
-      propValue: e.target.value,
-    });
-  },
-
-  _handleFloatingInputChange(e) {
-    this.setState({
-      floatingPropValue: e.target.value,
-    });
   },
 
 });

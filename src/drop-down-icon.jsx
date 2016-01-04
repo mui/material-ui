@@ -7,25 +7,7 @@ import Menu from './menu/menu';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
-
 const DropDownIcon = React.createClass({
-
-  mixins: [StylePropable, ClickAwayable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   propTypes: {
     children: React.PropTypes.node,
@@ -42,6 +24,23 @@ const DropDownIcon = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable, ClickAwayable],
+
+  getDefaultProps() {
+    return {
+      closeOnMenuItemTouchTap: true,
+    };
+  },
+
   getInitialState() {
     return {
       open: false,
@@ -49,16 +48,9 @@ const DropDownIcon = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getDefaultProps() {
+  getChildContext() {
     return {
-      closeOnMenuItemTouchTap: true,
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -67,6 +59,13 @@ const DropDownIcon = React.createClass({
     // if (process.env.NODE_ENV !== 'production') {
     //   console.warn('DropDownIcon has been deprecated. Use IconMenu instead.');
     // }
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentClickAway() {
@@ -98,6 +97,18 @@ const DropDownIcon = React.createClass({
       },
     };
     return styles;
+  },
+
+  _onControlClick() {
+    this.setState({open: !this.state.open});
+  },
+
+  _onMenuItemClick(e, key, payload) {
+    if (this.props.onChange) this.props.onChange(e, key, payload);
+
+    if (this.props.closeOnMenuItemTouchTap) {
+      this.setState({open: false});
+    }
   },
 
   render() {
@@ -138,17 +149,6 @@ const DropDownIcon = React.createClass({
     );
   },
 
-  _onControlClick() {
-    this.setState({open: !this.state.open});
-  },
-
-  _onMenuItemClick(e, key, payload) {
-    if (this.props.onChange) this.props.onChange(e, key, payload);
-
-    if (this.props.closeOnMenuItemTouchTap) {
-      this.setState({open: false});
-    }
-  },
 });
 
 export default DropDownIcon;

@@ -16,6 +16,39 @@ let PopoverPage = React.createClass({
     };
   },
 
+  show(key, e) {
+    this.setState({
+      activePopover: key,
+      anchorEl: e.currentTarget,
+    });
+  },
+
+  closePopover(key) {
+    if (this.state.activePopover !== key)
+      return;
+    this.setState({
+      activePopover: 'none',
+    });
+  },
+
+  setAnchor(positionElement, position) {
+    let {anchorOrigin} = this.state;
+    anchorOrigin[positionElement] = position;
+
+    this.setState({
+      anchorOrigin: anchorOrigin,
+    });
+  },
+
+  setTarget(positionElement, position) {
+    let {targetOrigin} = this.state;
+    targetOrigin[positionElement] = position;
+
+    this.setState({
+      targetOrigin: targetOrigin,
+    });
+  },
+
   render() {
 
     let componentInfo = [
@@ -169,39 +202,6 @@ let PopoverPage = React.createClass({
         </CodeExample>
       </ComponentDoc>
     );
-  },
-
-  show(key, e) {
-    this.setState({
-      activePopover: key,
-      anchorEl: e.currentTarget,
-    });
-  },
-
-  closePopover(key) {
-    if (this.state.activePopover !== key)
-      return;
-    this.setState({
-      activePopover: 'none',
-    });
-  },
-
-  setAnchor(positionElement, position) {
-    let {anchorOrigin} = this.state;
-    anchorOrigin[positionElement] = position;
-
-    this.setState({
-      anchorOrigin: anchorOrigin,
-    });
-  },
-
-  setTarget(positionElement, position) {
-    let {targetOrigin} = this.state;
-    targetOrigin[positionElement] = position;
-
-    this.setState({
-      targetOrigin: targetOrigin,
-    });
   },
 
 });

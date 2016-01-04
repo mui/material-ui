@@ -28,6 +28,24 @@ export default class DatePickerExampleToggle extends React.Component {
     };
   }
 
+  handleChangeMinDate = (event) => {
+    this.setState({
+      minDate: new Date(event.target.value),
+    });
+  }
+
+  handleChangeMaxDate = (event) => {
+    this.setState({
+      maxDate: new Date(event.target.value),
+    });
+  }
+
+  handleToggle = (event, toggled) => {
+    this.setState({
+      [event.target.name]: toggled,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -44,48 +62,28 @@ export default class DatePickerExampleToggle extends React.Component {
           <TextField
             floatingLabelText="Min Date"
             defaultValue={this.state.minDate.toDateString()}
-            onChange={this._updateMinDate} />
+            onChange={this.handleChangeMinDate} />
 
           <TextField
             floatingLabelText="Max Date"
             defaultValue={this.state.maxDate.toDateString()}
-            onChange={this._updateMaxDate} />
+            onChange={this.handleChangeMaxDate} />
 
           <Toggle
             name="autoOk"
             value="autoOk"
             label="Auto Accept"
             defaultToggled={this.state.autoOk}
-            onToggle={this._handleToggle} />
+            onToggle={this.handleToggle} />
 
           <Toggle
             name="disableYearSelection"
             value="disableYearSelection"
             label="Disable Year Selection"
             defaultToggled={this.state.disableYearSelection}
-            onToggle={this._handleToggle} />
+            onToggle={this.handleToggle} />
         </div>
       </div>
     );
   }
-
-  _updateMinDate = (event) => {
-    this.setState({
-      minDate: new Date(event.target.value),
-    });
-  }
-
-  _updateMaxDate = (event) => {
-    this.setState({
-      maxDate: new Date(event.target.value),
-    });
-  }
-
-  _handleToggle = (event, toggled) => {
-    const state = {};
-    state[event.target.name] = toggled;
-    this.setState(state);
-  }
 }
-
-export default DatePickerExampleToggle;

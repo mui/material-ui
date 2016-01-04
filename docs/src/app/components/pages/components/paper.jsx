@@ -37,6 +37,44 @@ const PaperPage = React.createClass({
     return styles;
   },
 
+  _createParagraphElement(text) {
+    return <p style={this.getStyles().p}>{text}</p>;
+  },
+
+  _createPaperElement(zDepth, text) {
+    return (
+      <Paper
+        style={this.getStyles().root}
+        zDepth={zDepth}>
+        {this._createParagraphElement(text)}
+      </Paper>
+    );
+  },
+
+  _getGroupDefault() {
+    let elements = [];
+    for (let i = 1; i <= 5; i++) {
+      elements.push(this._createPaperElement(i, 'zDepth=' + i));
+    }
+    return elements;
+  },
+
+  _getGroupRounded() {
+    let elements = [];
+    for (let i = 1; i <= 5; i++) {
+      elements.push(React.cloneElement(this._createPaperElement(i, 'rounded=false'), {rounded: false}));
+    }
+    return elements;
+  },
+
+  _getGroupCircle() {
+    let elements = [];
+    for (let i = 1; i <= 5; i++) {
+      elements.push(React.cloneElement(this._createPaperElement(i, 'circle=true'), {circle: true}));
+    }
+    return elements;
+  },
+
   render() {
 
     let componentInfo = [
@@ -112,44 +150,6 @@ import Paper from 'material-ui/lib/paper';
         </CodeExample>
       </ComponentDoc>
     );
-  },
-
-  _createParagraphElement(text) {
-    return <p style={this.getStyles().p}>{text}</p>;
-  },
-
-  _createPaperElement(zDepth, text) {
-    return (
-      <Paper
-        style={this.getStyles().root}
-        zDepth={zDepth}>
-        {this._createParagraphElement(text)}
-      </Paper>
-    );
-  },
-
-  _getGroupDefault() {
-    let elements = [];
-    for (let i = 1; i <= 5; i++) {
-      elements.push(this._createPaperElement(i, 'zDepth=' + i));
-    }
-    return elements;
-  },
-
-  _getGroupRounded() {
-    let elements = [];
-    for (let i = 1; i <= 5; i++) {
-      elements.push(React.cloneElement(this._createPaperElement(i, 'rounded=false'), {rounded: false}));
-    }
-    return elements;
-  },
-
-  _getGroupCircle() {
-    let elements = [];
-    for (let i = 1; i <= 5; i++) {
-      elements.push(React.cloneElement(this._createPaperElement(i, 'circle=true'), {circle: true}));
-    }
-    return elements;
   },
 
 });

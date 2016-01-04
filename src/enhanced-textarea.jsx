@@ -29,25 +29,6 @@ const styles = {
 
 const EnhancedTextarea = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     defaultValue: React.PropTypes.any,
     disabled: React.PropTypes.bool,
@@ -65,6 +46,19 @@ const EnhancedTextarea = React.createClass({
     valueLink: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
   getDefaultProps() {
     return {
       rows: 1,
@@ -78,54 +72,22 @@ const EnhancedTextarea = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   componentDidMount() {
     this._syncHeightWithShadow();
   },
 
-  render() {
-    let {
-      onChange,
-      onHeightChange,
-      rows,
-      style,
-      textareaStyle,
-      valueLink,
-      ...other,
-    } = this.props;
-
-    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
-      height: this.state.height,
-    });
-
-    const shadowStyles = styles.shadow;
-
-    if (this.props.hasOwnProperty('valueLink')) {
-      other.value = this.props.valueLink.value;
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (nextProps.value !== this.props.value) {
+      this._syncHeightWithShadow(nextProps.value);
     }
-
-    if (this.props.disabled) {
-      style.cursor = 'default';
-    }
-
-    return (
-      <div style={this.prepareStyles(this.props.style)}>
-        <textarea
-          ref="shadow"
-          style={this.prepareStyles(shadowStyles)}
-          tabIndex="-1"
-          rows={this.props.rows}
-          defaultValue={this.props.defaultValue}
-          readOnly={true}
-          value={this.props.value}
-          valueLink={this.props.valueLink} />
-        <textarea
-          {...other}
-          ref="input"
-          rows={this.props.rows}
-          style={this.prepareStyles(textareaStyles)}
-          onChange={this._handleChange} />
-      </div>
-    );
+    let newState = {};
+    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
   },
 
   getInputNode() {
@@ -175,13 +137,52 @@ const EnhancedTextarea = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    if (nextProps.value !== this.props.value) {
-      this._syncHeightWithShadow(nextProps.value);
+  render() {
+    let {
+      onChange,
+      onHeightChange,
+      rows,
+      style,
+      textareaStyle,
+      valueLink,
+      ...other,
+    } = this.props;
+
+    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
+      height: this.state.height,
+    });
+
+    const shadowStyles = styles.shadow;
+
+    if (this.props.hasOwnProperty('valueLink')) {
+      other.value = this.props.valueLink.value;
     }
-    let newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+
+    if (this.props.disabled) {
+      style.cursor = 'default';
+    }
+
+    return (
+      <div style={this.prepareStyles(this.props.style)}>
+        <textarea
+          ref="shadow"
+          style={this.prepareStyles(shadowStyles)}
+          tabIndex="-1"
+          rows={this.props.rows}
+          defaultValue={this.props.defaultValue}
+          readOnly={true}
+          value={this.props.value}
+          valueLink={this.props.valueLink} />
+        <textarea
+          {...other}
+          ref="input"
+          rows={this.props.rows}
+          style={this.prepareStyles(textareaStyles)}
+          onChange={this._handleChange} />
+      </div>
+    );
   },
+
 });
 
 export default EnhancedTextarea;

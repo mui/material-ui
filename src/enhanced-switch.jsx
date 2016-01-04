@@ -14,26 +14,6 @@ import ThemeManager from './styles/theme-manager';
 
 const EnhancedSwitch = React.createClass({
 
-  mixins: [
-    WindowListenable,
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     checked: React.PropTypes.bool,
 
@@ -76,10 +56,19 @@ const EnhancedSwitch = React.createClass({
     value: React.PropTypes.string,
   },
 
-  windowListeners: {
-    keydown: '_handleWindowKeydown',
-    keyup: '_handleWindowKeyup',
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    WindowListenable,
+    StylePropable,
+  ],
 
   getInitialState() {
     return {
@@ -89,12 +78,10 @@ const EnhancedSwitch = React.createClass({
     };
   },
 
-  getEvenWidth() {
-    return (
-      parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
-        .getPropertyValue('width'), 10)
-    );
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
@@ -106,10 +93,6 @@ const EnhancedSwitch = React.createClass({
     window.addEventListener('resize', this._handleResize);
 
     this._handleResize();
-  },
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._handleResize);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -140,6 +123,23 @@ const EnhancedSwitch = React.createClass({
     }
 
     this.setState(newState);
+  },
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._handleResize);
+  },
+
+  windowListeners: {
+    keydown: '_handleWindowKeydown',
+    keyup: '_handleWindowKeyup',
+  },
+
+  getEvenWidth() {
+    return (
+      parseInt(window
+        .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
+        .getPropertyValue('width'), 10)
+    );
   },
 
   getTheme() {
@@ -205,6 +205,122 @@ const EnhancedSwitch = React.createClass({
     };
 
     return styles;
+  },
+
+  isSwitched() {
+    return ReactDOM.findDOMNode(this.refs.checkbox).checked;
+  },
+
+  // no callback here because there is no event
+  setSwitched(newSwitchedValue) {
+    if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
+      this.props.onParentShouldUpdate(newSwitchedValue);
+      ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
+    }
+    else if (process.env.NODE_ENV !== 'production') {
+      let message = 'Cannot call set method while checked is defined as a property.';
+      console.error(message);
+    }
+  },
+
+  getValue() {
+    return ReactDOM.findDOMNode(this.refs.checkbox).value;
+  },
+
+  isKeyboardFocused() {
+    return this.state.isKeyboardFocused;
+  },
+
+  _handleChange(e) {
+    this._tabPressed = false;
+    this.setState({
+      isKeyboardFocused: false,
+    });
+
+    let isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
+
+    if (!this.props.hasOwnProperty('checked')) {
+      this.props.onParentShouldUpdate(isInputChecked);
+    }
+    if (this.props.onSwitch) {
+      this.props.onSwitch(e, isInputChecked);
+    }
+  },
+
+  // Checkbox inputs only use SPACE to change their state. Using ENTER will
+  // update the ui but not the input.
+  _handleWindowKeydown(e) {
+    if (e.keyCode === KeyCode.TAB) {
+      this._tabPressed = true;
+    }
+    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
+      this._handleChange(e);
+    }
+  },
+
+  _handleWindowKeyup(e) {
+    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
+      this._handleChange(e);
+    }
+  },
+
+  /**
+   * Because both the ripples and the checkbox input cannot share pointer
+   * events, the checkbox input takes control of pointer events and calls
+   * ripple animations manually.
+   */
+  _handleMouseDown(e) {
+    //only listen to left clicks
+    if (e.button === 0) {
+      this.refs.touchRipple.start(e);
+    }
+  },
+
+  _handleMouseUp() {
+    this.refs.touchRipple.end();
+  },
+
+  _handleMouseLeave() {
+    this.refs.touchRipple.end();
+  },
+
+  _handleTouchStart(e) {
+    this.refs.touchRipple.start(e);
+  },
+
+  _handleTouchEnd() {
+    this.refs.touchRipple.end();
+  },
+
+  _handleBlur(e) {
+    this.setState({
+      isKeyboardFocused: false,
+    });
+
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+  },
+
+  _handleFocus(e) {
+    //setTimeout is needed becuase the focus event fires first
+    //Wait so that we can capture if this was a keyboard focus
+    //or touch focus
+    setTimeout(() => {
+      if (this._tabPressed) {
+        this.setState({
+          isKeyboardFocused: true,
+        });
+      }
+    }, 150);
+
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+  },
+
+  _handleResize() {
+    this.setState({parentWidth: this.getEvenWidth()});
   },
 
   render() {
@@ -336,123 +452,6 @@ const EnhancedSwitch = React.createClass({
           {elementsInOrder}
       </div>
     );
-  },
-
-
-  isSwitched() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).checked;
-  },
-
-  // no callback here because there is no event
-  setSwitched(newSwitchedValue) {
-    if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
-      this.props.onParentShouldUpdate(newSwitchedValue);
-      ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
-    }
-    else if (process.env.NODE_ENV !== 'production') {
-      let message = 'Cannot call set method while checked is defined as a property.';
-      console.error(message);
-    }
-  },
-
-  getValue() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).value;
-  },
-
-  isKeyboardFocused() {
-    return this.state.isKeyboardFocused;
-  },
-
-  _handleChange(e) {
-    this._tabPressed = false;
-    this.setState({
-      isKeyboardFocused: false,
-    });
-
-    let isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
-
-    if (!this.props.hasOwnProperty('checked')) {
-      this.props.onParentShouldUpdate(isInputChecked);
-    }
-    if (this.props.onSwitch) {
-      this.props.onSwitch(e, isInputChecked);
-    }
-  },
-
-  // Checkbox inputs only use SPACE to change their state. Using ENTER will
-  // update the ui but not the input.
-  _handleWindowKeydown(e) {
-    if (e.keyCode === KeyCode.TAB) {
-      this._tabPressed = true;
-    }
-    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
-      this._handleChange(e);
-    }
-  },
-
-  _handleWindowKeyup(e) {
-    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
-      this._handleChange(e);
-    }
-  },
-
-  /**
-   * Because both the ripples and the checkbox input cannot share pointer
-   * events, the checkbox input takes control of pointer events and calls
-   * ripple animations manually.
-   */
-  _handleMouseDown(e) {
-    //only listen to left clicks
-    if (e.button === 0) {
-      this.refs.touchRipple.start(e);
-    }
-  },
-
-  _handleMouseUp() {
-    this.refs.touchRipple.end();
-  },
-
-  _handleMouseLeave() {
-    this.refs.touchRipple.end();
-  },
-
-  _handleTouchStart(e) {
-    this.refs.touchRipple.start(e);
-  },
-
-  _handleTouchEnd() {
-    this.refs.touchRipple.end();
-  },
-
-  _handleBlur(e) {
-    this.setState({
-      isKeyboardFocused: false,
-    });
-
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-  },
-
-  _handleFocus(e) {
-    //setTimeout is needed becuase the focus event fires first
-    //Wait so that we can capture if this was a keyboard focus
-    //or touch focus
-    setTimeout(() => {
-      if (this._tabPressed) {
-        this.setState({
-          isKeyboardFocused: true,
-        });
-      }
-    }, 150);
-
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
-    }
-  },
-
-  _handleResize() {
-    this.setState({parentWidth: this.getEvenWidth()});
   },
 
 });

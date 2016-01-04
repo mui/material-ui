@@ -42,23 +42,6 @@ function listenForTabPresses() {
 
 const EnhancedButton = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
@@ -91,6 +74,17 @@ const EnhancedButton = React.createClass({
     type: React.PropTypes.string,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [PureRenderMixin, StylePropable],
+
   getDefaultProps() {
     return {
       containerElement: 'button',
@@ -114,6 +108,17 @@ const EnhancedButton = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    injectStyle();
+    listenForTabPresses();
+  },
+
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
@@ -125,83 +130,6 @@ const EnhancedButton = React.createClass({
         nextProps.onKeyboardFocus(null, false);
       }
     }
-  },
-
-  componentDidMount() {
-    injectStyle();
-    listenForTabPresses();
-  },
-
-  render() {
-    const {
-      centerRipple,
-      children,
-      containerElement,
-      disabled,
-      disableFocusRipple,
-      disableKeyboardFocus,
-      disableTouchRipple,
-      focusRippleColor,
-      focusRippleOpacity,
-      linkButton,
-      touchRippleColor,
-      touchRippleOpacity,
-      onBlur,
-      onFocus,
-      onKeyUp,
-      onKeyDown,
-      onTouchTap,
-      style,
-      tabIndex,
-      type,
-      ...other,
-    } = this.props;
-
-    const mergedStyles = this.prepareStyles({
-      border: 10,
-      background: 'none',
-      boxSizing: 'border-box',
-      display: 'inline-block',
-      font: 'inherit',
-      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-      tapHighlightColor: Colors.transparent,
-      appearance: linkButton ? null : 'button',
-      cursor: disabled ? 'default' : 'pointer',
-      textDecoration: 'none',
-      outline: 'none',
-    }, style);
-
-    if (disabled && linkButton) {
-      return (
-        <span
-          {...other}
-          style={mergedStyles}>
-          {children}
-        </span>
-      );
-    }
-
-    const buttonProps = {
-      ...other,
-      style: mergedStyles,
-      disabled: disabled,
-      onBlur: this._handleBlur,
-      onFocus: this._handleFocus,
-      onTouchTap: this._handleTouchTap,
-      onKeyUp: this._handleKeyUp,
-      onKeyDown: this._handleKeyDown,
-      tabIndex: tabIndex,
-      type: type,
-    };
-    const buttonChildren = this._createButtonChildren();
-
-    // Provides backward compatibity. Added to support wrapping around <a> element.
-    const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
-
-    return React.isValidElement(containerElement) ?
-      React.cloneElement(containerElement, buttonProps, buttonChildren) :
-      React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
-
   },
 
   isKeyboardFocused() {
@@ -316,6 +244,78 @@ const EnhancedButton = React.createClass({
       this.removeKeyboardFocus(e);
       this.props.onTouchTap(e);
     }
+  },
+
+  render() {
+    const {
+      centerRipple,
+      children,
+      containerElement,
+      disabled,
+      disableFocusRipple,
+      disableKeyboardFocus,
+      disableTouchRipple,
+      focusRippleColor,
+      focusRippleOpacity,
+      linkButton,
+      touchRippleColor,
+      touchRippleOpacity,
+      onBlur,
+      onFocus,
+      onKeyUp,
+      onKeyDown,
+      onTouchTap,
+      style,
+      tabIndex,
+      type,
+      ...other,
+    } = this.props;
+
+    const mergedStyles = this.prepareStyles({
+      border: 10,
+      background: 'none',
+      boxSizing: 'border-box',
+      display: 'inline-block',
+      font: 'inherit',
+      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+      tapHighlightColor: Colors.transparent,
+      appearance: linkButton ? null : 'button',
+      cursor: disabled ? 'default' : 'pointer',
+      textDecoration: 'none',
+      outline: 'none',
+    }, style);
+
+    if (disabled && linkButton) {
+      return (
+        <span
+          {...other}
+          style={mergedStyles}>
+          {children}
+        </span>
+      );
+    }
+
+    const buttonProps = {
+      ...other,
+      style: mergedStyles,
+      disabled: disabled,
+      onBlur: this._handleBlur,
+      onFocus: this._handleFocus,
+      onTouchTap: this._handleTouchTap,
+      onKeyUp: this._handleKeyUp,
+      onKeyDown: this._handleKeyDown,
+      tabIndex: tabIndex,
+      type: type,
+    };
+    const buttonChildren = this._createButtonChildren();
+
+    // Provides backward compatibity. Added to support wrapping around <a> element.
+    const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
+
+    return React.isValidElement(containerElement) ?
+      React.cloneElement(containerElement, buttonProps, buttonChildren) :
+      React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
+
   },
 
 });

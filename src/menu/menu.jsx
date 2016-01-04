@@ -19,12 +19,6 @@ import warning from 'warning';
 ***********************/
 const NestedMenuItem = React.createClass({
 
-  mixins: [ClickAwayable, StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
@@ -39,10 +33,8 @@ const NestedMenuItem = React.createClass({
     zDepth: React.PropTypes.number,
   },
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-    };
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -50,9 +42,11 @@ const NestedMenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [ClickAwayable, StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      disabled: false,
     };
   },
 
@@ -64,8 +58,10 @@ const NestedMenuItem = React.createClass({
     };
   },
 
-  componentClickAway() {
-    this._closeNestedMenu();
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
@@ -75,6 +71,10 @@ const NestedMenuItem = React.createClass({
 
   componentDidUpdate() {
     this._positionNestedMenu();
+  },
+
+  componentClickAway() {
+    this._closeNestedMenu();
   },
 
   getSpacing() {
@@ -116,6 +116,45 @@ const NestedMenuItem = React.createClass({
 
   getTheme() {
     return this.state.muiTheme.menuItem;
+  },
+
+  toggleNestedMenu() {
+    if (!this.props.disabled) this.setState({open: !this.state.open});
+  },
+
+  isOpen() {
+    return this.state.open;
+  },
+
+  _positionNestedMenu() {
+    let el = ReactDOM.findDOMNode(this);
+    let nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
+    nestedMenu.style.left = el.offsetWidth + 'px';
+  },
+
+  _openNestedMenu() {
+    if (!this.props.disabled) this.setState({open: true});
+  },
+
+  _closeNestedMenu() {
+    this.setState({open: false});
+    ReactDOM.findDOMNode(this).focus();
+  },
+
+  _onParentItemTap() {
+    this.toggleNestedMenu();
+  },
+
+  _onMenuItemTap(e, index, menuItem) {
+    if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
+    this._closeNestedMenu();
+  },
+  _handleMouseOver(e) {
+    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
+  },
+
+  _handleMouseOut(e) {
+    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e, this.props.index);
   },
 
   render() {
@@ -166,45 +205,6 @@ const NestedMenuItem = React.createClass({
     );
   },
 
-  toggleNestedMenu() {
-    if (!this.props.disabled) this.setState({open: !this.state.open});
-  },
-
-  isOpen() {
-    return this.state.open;
-  },
-
-  _positionNestedMenu() {
-    let el = ReactDOM.findDOMNode(this);
-    let nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
-    nestedMenu.style.left = el.offsetWidth + 'px';
-  },
-
-  _openNestedMenu() {
-    if (!this.props.disabled) this.setState({open: true});
-  },
-
-  _closeNestedMenu() {
-    this.setState({open: false});
-    ReactDOM.findDOMNode(this).focus();
-  },
-
-  _onParentItemTap() {
-    this.toggleNestedMenu();
-  },
-
-  _onMenuItemTap(e, index, menuItem) {
-    if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-    this._closeNestedMenu();
-  },
-  _handleMouseOver(e) {
-    if (!this.props.disabled && this.props.onMouseOver) this.props.onMouseOver(e, this.props.index);
-  },
-
-  _handleMouseOut(e) {
-    if (!this.props.disabled && this.props.onMouseOut) this.props.onMouseOut(e, this.props.index);
-  },
-
 });
 
 
@@ -212,12 +212,6 @@ const NestedMenuItem = React.createClass({
 * Menu Component
 ****************/
 const Menu = React.createClass({
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
@@ -239,14 +233,24 @@ const Menu = React.createClass({
     zDepth: React.PropTypes.number,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      autoWidth: true,
+      hideable: false,
+      visible: true,
+      zDepth: 1,
+      onRequestClose: () => {},
     };
   },
 
@@ -260,13 +264,9 @@ const Menu = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      autoWidth: true,
-      hideable: false,
-      visible: true,
-      zDepth: 1,
-      onRequestClose: () => {},
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -280,12 +280,6 @@ const Menu = React.createClass({
     this._renderVisibility();
   },
 
-  componentDidUpdate(prevProps) {
-    if (this.props.visible !== prevProps.visible || this.props.menuItems.length !== prevProps.menuItems.length) {
-      this._renderVisibility();
-    }
-  },
-
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -294,6 +288,12 @@ const Menu = React.createClass({
 
     //Set the menu width
     this._setKeyWidth(ReactDOM.findDOMNode(this));
+  },
+
+  componentDidUpdate(prevProps) {
+    if (this.props.visible !== prevProps.visible || this.props.menuItems.length !== prevProps.menuItems.length) {
+      this._renderVisibility();
+    }
   },
 
   getTheme() {
@@ -331,22 +331,6 @@ const Menu = React.createClass({
     return styles;
   },
 
-  render() {
-    let styles = this.getStyles();
-    return (
-      <Paper
-        ref="paperContainer"
-        tabIndex="0"
-        onKeyDown={this._onKeyDown}
-        zDepth={this.props.zDepth}
-        style={this.mergeStyles(
-          styles.root,
-          this.props.hideable && styles.hideable,
-          this.props.style)}>
-        {this._getChildren()}
-      </Paper>
-    );
-  },
 
   _getChildren() {
     let menuItem,
@@ -647,6 +631,23 @@ const Menu = React.createClass({
     let item = this.refs[index];
     if (item && item.toggleNestedMenu)
       item.toggleNestedMenu();
+  },
+
+  render() {
+    let styles = this.getStyles();
+    return (
+      <Paper
+        ref="paperContainer"
+        tabIndex="0"
+        onKeyDown={this._onKeyDown}
+        zDepth={this.props.zDepth}
+        style={this.mergeStyles(
+          styles.root,
+          this.props.hideable && styles.hideable,
+          this.props.style)}>
+        {this._getChildren()}
+      </Paper>
+    );
   },
 
 });
