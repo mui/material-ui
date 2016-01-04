@@ -2,18 +2,19 @@ import React from 'react';
 import {StylePropable} from 'material-ui/lib/mixins';
 
 const MobileTearSheet = React.createClass({
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     children: React.PropTypes.node,
     height: React.PropTypes.number,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {

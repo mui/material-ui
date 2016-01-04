@@ -7,6 +7,14 @@ import CodeBlock from '../../CodeExample/CodeBlock';
 
 const TimePickerPage = React.createClass({
 
+  _changeTimePicker24(err, t) {
+    this.refs.picker24hr.setTime(t);
+  },
+
+  _changeTimePicker12(err, t) {
+    this.refs.picker12hr.setTime(t);
+  },
+
   render() {
 
     let componentInfo = [
@@ -178,12 +186,6 @@ By default (for compatibility reasons) TimePicker uses (12 a.m./12 p.m.) To use 
         </CodeExample>
       </ComponentDoc>
     );
-  },
-  _changeTimePicker24(err, t) {
-    this.refs.picker24hr.setTime(t);
-  },
-  _changeTimePicker12(err, t) {
-    this.refs.picker12hr.setTime(t);
   },
 
 });

@@ -8,8 +8,6 @@ let {Colors, Spacing, Transitions, Typography} = Styles;
 
 let HomeFeature = React.createClass({
 
-  mixins: [StylePropable, StyleResizable],
-
   propTypes: {
     firstChild: React.PropTypes.bool,
     heading: React.PropTypes.string,
@@ -17,6 +15,8 @@ let HomeFeature = React.createClass({
     lastChild: React.PropTypes.bool,
     route: React.PropTypes.string,
   },
+
+  mixins: [StylePropable, StyleResizable],
 
   getDefaultProps() {
     return {
@@ -89,6 +89,18 @@ let HomeFeature = React.createClass({
     return styles;
   },
 
+  _onMouseEnter() {
+    this.setState({
+      zDepth: 4,
+    });
+  },
+
+  _onMouseLeave() {
+    this.setState({
+      zDepth: 0,
+    });
+  },
+
   render() {
     let styles = this.getStyles();
 
@@ -106,18 +118,6 @@ let HomeFeature = React.createClass({
         </Link>
       </Paper>
     );
-  },
-
-  _onMouseEnter() {
-    this.setState({
-      zDepth: 4,
-    });
-  },
-
-  _onMouseLeave() {
-    this.setState({
-      zDepth: 0,
-    });
   },
 
 });

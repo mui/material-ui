@@ -190,14 +190,15 @@ class AppBarDarkUsingDecoratorWithOverride extends React.Component
 
 //react component used to test whether or not theme updates down the hierarchy
 const ButtonToUpdateThemeWithAppBar = React.createClass({
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   getInitialState() {
     return {
       muiTheme: ThemeManager.getMuiTheme(DarkRawTheme),
     };
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
   },
 
   getChildContext() {

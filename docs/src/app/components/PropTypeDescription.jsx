@@ -71,14 +71,14 @@ const PropTypeDescription = React.createClass({
     code: React.PropTypes.string,
     header: React.PropTypes.string,
   },
+  mixins: [
+    PureRenderMixin,
+  ],
   getDefaultProps() {
     return {
       header: '### Properties',
     };
   },
-  mixins: [
-    PureRenderMixin,
-  ],
   render() {
     const {
       code,

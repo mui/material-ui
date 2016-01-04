@@ -39,6 +39,20 @@ export default class TablePage extends React.Component {
     };
   }
 
+  _onChange(e) {
+    this.setState({height: e.target.value});
+  }
+
+  _onToggle(e, toggled) {
+    let state = {};
+    state[e.target.name] = toggled;
+    this.setState(state);
+  }
+
+  _onRowSelection(rows) {
+    console.log(rows);
+  }
+
   render() {
 
     let desc = 'Composible data table component. The table must be contain TableHeader and TableBody. TableFooter ' +
@@ -581,17 +595,4 @@ export default class TablePage extends React.Component {
     );
   }
 
-  _onChange(e) {
-    this.setState({height: e.target.value});
-  }
-
-  _onToggle(e, toggled) {
-    let state = {};
-    state[e.target.name] = toggled;
-    this.setState(state);
-  }
-
-  _onRowSelection(rows) {
-    console.log(rows);
-  }
 }

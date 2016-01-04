@@ -15,12 +15,6 @@ const Types = {
 
 const MenuItem = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     active: React.PropTypes.bool,
     attribute: React.PropTypes.string,
@@ -44,31 +38,16 @@ const MenuItem = React.createClass({
     toggle: React.PropTypes.bool,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    warning(false, 'This menu item component is deprecated use menus/menu-item instead.');
-
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
+  mixins: [StylePropable],
 
   statics: {
     Types: Types,
@@ -80,6 +59,27 @@ const MenuItem = React.createClass({
       disabled: false,
       active: false,
     };
+  },
+
+  getInitialState() {
+    warning(false, 'This menu item component is deprecated use menus/menu-item instead.');
+
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   getTheme() {
@@ -156,6 +156,22 @@ const MenuItem = React.createClass({
     return styles;
   },
 
+  _handleTouchTap(e) {
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
+  },
+
+  _handleToggle(e, toggled) {
+    if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+  },
+
+  _handleMouseEnter(e) {
+    if (!this.props.disabled && this.props.onMouseEnter) this.props.onMouseEnter(e, this.props.index);
+  },
+
+  _handleMouseLeave(e) {
+    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e, this.props.index);
+  },
+
   render() {
     let icon;
     let data;
@@ -225,22 +241,6 @@ const MenuItem = React.createClass({
 
       </div>
     );
-  },
-
-  _handleTouchTap(e) {
-    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
-  },
-
-  _handleToggle(e, toggled) {
-    if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
-  },
-
-  _handleMouseEnter(e) {
-    if (!this.props.disabled && this.props.onMouseEnter) this.props.onMouseEnter(e, this.props.index);
-  },
-
-  _handleMouseLeave(e) {
-    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e, this.props.index);
   },
 });
 

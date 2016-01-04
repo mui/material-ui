@@ -19,6 +19,40 @@ function validateLabel(props, propName, componentName) {
 
 const FlatButton = React.createClass({
 
+  propTypes: {
+    backgroundColor: React.PropTypes.string,
+    children: React.PropTypes.node,
+    disabled: React.PropTypes.bool,
+    hoverColor: React.PropTypes.string,
+    label: validateLabel,
+    labelPosition: React.PropTypes.oneOf([
+      'before',
+      'after',
+    ]),
+    labelStyle: React.PropTypes.object,
+    onKeyboardFocus: React.PropTypes.func,
+    onMouseEnter: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    onTouchStart: React.PropTypes.func,
+    primary: React.PropTypes.bool,
+    rippleColor: React.PropTypes.string,
+    secondary: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   mixins: [
     ContextPure,
   ],
@@ -49,46 +83,6 @@ const FlatButton = React.createClass({
     },
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  propTypes: {
-    backgroundColor: React.PropTypes.string,
-    children: React.PropTypes.node,
-    disabled: React.PropTypes.bool,
-    hoverColor: React.PropTypes.string,
-    label: validateLabel,
-    labelPosition: React.PropTypes.oneOf([
-      'before',
-      'after',
-    ]),
-    labelStyle: React.PropTypes.object,
-    onKeyboardFocus: React.PropTypes.func,
-    onMouseEnter: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    primary: React.PropTypes.bool,
-    rippleColor: React.PropTypes.string,
-    secondary: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       labelStyle: {},
@@ -109,11 +103,38 @@ const FlatButton = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  _handleKeyboardFocus(e, isKeyboardFocused) {
+    this.setState({isKeyboardFocused: isKeyboardFocused});
+    this.props.onKeyboardFocus(e, isKeyboardFocused);
+  },
+
+  _handleMouseEnter(e) {
+    //Cancel hover styles for touch devices
+    if (!this.state.touch) this.setState({hovered: true});
+    this.props.onMouseEnter(e);
+  },
+
+  _handleMouseLeave(e) {
+    this.setState({hovered: false});
+    this.props.onMouseLeave(e);
+  },
+
+  _handleTouchStart(e) {
+    this.setState({touch: true});
+    this.props.onTouchStart(e);
   },
 
   render() {
@@ -204,27 +225,6 @@ const FlatButton = React.createClass({
         {enhancedButtonChildren}
       </EnhancedButton>
     );
-  },
-
-  _handleKeyboardFocus(e, isKeyboardFocused) {
-    this.setState({isKeyboardFocused: isKeyboardFocused});
-    this.props.onKeyboardFocus(e, isKeyboardFocused);
-  },
-
-  _handleMouseEnter(e) {
-    //Cancel hover styles for touch devices
-    if (!this.state.touch) this.setState({hovered: true});
-    this.props.onMouseEnter(e);
-  },
-
-  _handleMouseLeave(e) {
-    this.setState({hovered: false});
-    this.props.onMouseLeave(e);
-  },
-
-  _handleTouchStart(e) {
-    this.setState({touch: true});
-    this.props.onTouchStart(e);
   },
 
 });

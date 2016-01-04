@@ -6,14 +6,6 @@ import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
 const LinearProgress = React.createClass({
-
-  mixins: [StylePropable],
-
-  timers: {
-    bar1: undefined,
-    bar2: undefined,
-  },
-
   propTypes: {
     color: React.PropTypes.string,
     max: React.PropTypes.number,
@@ -36,9 +28,16 @@ const LinearProgress = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      mode: 'indeterminate',
+      value: 0,
+      min: 0,
+      max: 100,
     };
   },
 
@@ -48,22 +47,10 @@ const LinearProgress = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  _getRelativeValue() {
-    let value = this.props.value;
-    let min = this.props.min;
-    let max = this.props.max;
-
-    let clampedValue = Math.min(Math.max(min, value), max);
-    let rangeValue = max - min;
-    let relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
-    return relValue * 100;
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
@@ -83,9 +70,21 @@ const LinearProgress = React.createClass({
     }, 850);
   },
 
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
+  },
+
+  timers: {
+    bar1: undefined,
+    bar2: undefined,
   },
 
   _barUpdate(id, step, barElement, stepValues) {
@@ -112,15 +111,6 @@ const LinearProgress = React.createClass({
       barElement.style.transitionDuration = '0ms';
     }
     this.timers[id] = setTimeout(() => this._barUpdate(id, step + 1, barElement, stepValues), 420);
-  },
-
-  getDefaultProps() {
-    return {
-      mode: 'indeterminate',
-      value: 0,
-      min: 0,
-      max: 100,
-    };
   },
 
   getTheme() {
@@ -172,6 +162,17 @@ const LinearProgress = React.createClass({
     }
 
     return styles;
+  },
+
+  _getRelativeValue() {
+    let value = this.props.value;
+    let min = this.props.min;
+    let max = this.props.max;
+
+    let clampedValue = Math.min(Math.max(min, value), max);
+    let rangeValue = max - min;
+    let relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+    return relValue * 100;
   },
 
   render() {

@@ -17,26 +17,6 @@ let openNavEventHandler = null;
 
 const LeftNav = React.createClass({
 
-  mixins: [
-    StylePropable,
-    WindowListenable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     /**
      * The contents of the `LeftNav`
@@ -166,10 +146,19 @@ const LeftNav = React.createClass({
     width: React.PropTypes.number,
   },
 
-  windowListeners: {
-    keyup: '_onWindowKeyUp',
-    resize: '_onWindowResize',
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   getDefaultProps() {
     return {
@@ -195,6 +184,17 @@ const LeftNav = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    this._updateMenuHeight();
+    this._enableSwipeHandling();
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -210,11 +210,6 @@ const LeftNav = React.createClass({
     this.setState(newState);
   },
 
-  componentDidMount() {
-    this._updateMenuHeight();
-    this._enableSwipeHandling();
-  },
-
   componentDidUpdate() {
     this._updateMenuHeight();
     this._enableSwipeHandling();
@@ -222,6 +217,11 @@ const LeftNav = React.createClass({
 
   componentWillUnmount() {
     this._disableSwipeHandling();
+  },
+
+  windowListeners: {
+    keyup: '_onWindowKeyUp',
+    resize: '_onWindowResize',
   },
 
   toggle() {
@@ -295,75 +295,6 @@ const LeftNav = React.createClass({
     });
 
     return styles;
-  },
-
-  render() {
-    const {
-      className,
-      docked,
-      header,
-      menuItemClassName,
-      menuItemClassNameSubheader,
-      menuItemClassNameLink,
-      menuItems,
-      openRight,
-      overlayClassName,
-      overlayStyle,
-      selectedIndex,
-      style,
-    } = this.props;
-
-    const styles = this.getStyles();
-
-    let overlay;
-    if (!docked) {
-      overlay = (
-        <Overlay
-          ref="overlay"
-          show={this._shouldShow()}
-          className={overlayClassName}
-          style={this.mergeStyles(styles.overlay, overlayStyle)}
-          transitionEnabled={!this.state.swiping}
-          onTouchTap={this._onOverlayTouchTap} />
-      );
-    }
-    let children;
-    if (menuItems === undefined) {
-      children = this.props.children;
-    }
-    else {
-      children = (
-        <Menu
-          ref="menuItems"
-          style={this.mergeStyles(styles.menu)}
-          zDepth={0}
-          menuItems={menuItems}
-          menuItemStyle={this.mergeStyles(styles.menuItem)}
-          menuItemStyleLink={this.mergeStyles(styles.menuItemLink)}
-          menuItemStyleSubheader={this.mergeStyles(styles.menuItemSubheader)}
-          menuItemClassName={menuItemClassName}
-          menuItemClassNameSubheader={menuItemClassNameSubheader}
-          menuItemClassNameLink={menuItemClassNameLink}
-          selectedIndex={selectedIndex}
-          onItemTap={this._onMenuItemClick} />
-        );
-    }
-
-    return (
-      <div>
-        {overlay}
-        <Paper
-          ref="clickAwayableElement"
-          zDepth={2}
-          rounded={false}
-          transitionEnabled={!this.state.swiping}
-          className={className}
-          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
-            {header}
-            {children}
-        </Paper>
-      </div>
-    );
   },
 
   _shouldShow() {
@@ -561,6 +492,75 @@ const LeftNav = React.createClass({
     document.body.removeEventListener('touchmove', this._onBodyTouchMove);
     document.body.removeEventListener('touchend', this._onBodyTouchEnd);
     document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
+  },
+
+  render() {
+    const {
+      className,
+      docked,
+      header,
+      menuItemClassName,
+      menuItemClassNameSubheader,
+      menuItemClassNameLink,
+      menuItems,
+      openRight,
+      overlayClassName,
+      overlayStyle,
+      selectedIndex,
+      style,
+    } = this.props;
+
+    const styles = this.getStyles();
+
+    let overlay;
+    if (!docked) {
+      overlay = (
+        <Overlay
+          ref="overlay"
+          show={this._shouldShow()}
+          className={overlayClassName}
+          style={this.mergeStyles(styles.overlay, overlayStyle)}
+          transitionEnabled={!this.state.swiping}
+          onTouchTap={this._onOverlayTouchTap} />
+      );
+    }
+    let children;
+    if (menuItems === undefined) {
+      children = this.props.children;
+    }
+    else {
+      children = (
+        <Menu
+          ref="menuItems"
+          style={this.mergeStyles(styles.menu)}
+          zDepth={0}
+          menuItems={menuItems}
+          menuItemStyle={this.mergeStyles(styles.menuItem)}
+          menuItemStyleLink={this.mergeStyles(styles.menuItemLink)}
+          menuItemStyleSubheader={this.mergeStyles(styles.menuItemSubheader)}
+          menuItemClassName={menuItemClassName}
+          menuItemClassNameSubheader={menuItemClassNameSubheader}
+          menuItemClassNameLink={menuItemClassNameLink}
+          selectedIndex={selectedIndex}
+          onItemTap={this._onMenuItemClick} />
+        );
+    }
+
+    return (
+      <div>
+        {overlay}
+        <Paper
+          ref="clickAwayableElement"
+          zDepth={2}
+          rounded={false}
+          transitionEnabled={!this.state.swiping}
+          className={className}
+          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
+            {header}
+            {children}
+        </Paper>
+      </div>
+    );
   },
 
 });

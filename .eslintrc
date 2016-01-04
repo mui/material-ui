@@ -81,7 +81,7 @@ rules:
   react/react-in-jsx-scope: 2
   react/require-extension: 2
   react/self-closing-comp: 2
-  react/sort-comp: 0 # Wishlist, one day
+  react/sort-comp: 2
   react/wrap-multilines: 2
 
   # Disabled

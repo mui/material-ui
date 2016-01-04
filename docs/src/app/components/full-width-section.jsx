@@ -5,11 +5,6 @@ let DesktopGutter = Styles.Spacing.desktopGutter;
 
 const FullWidthSection = React.createClass({
 
-  mixins: [
-    StylePropable,
-    StyleResizable,
-  ],
-
   propTypes: {
     children: React.PropTypes.node,
     contentStyle: React.PropTypes.object,
@@ -17,6 +12,11 @@ const FullWidthSection = React.createClass({
     style: React.PropTypes.object,
     useContent: React.PropTypes.bool,
   },
+
+  mixins: [
+    StylePropable,
+    StyleResizable,
+  ],
 
   getDefaultProps() {
     return {

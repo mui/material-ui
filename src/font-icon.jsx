@@ -6,23 +6,6 @@ import ThemeManager from './styles/theme-manager';
 
 const FontIcon = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   propTypes: {
     color: React.PropTypes.string,
     hoverColor: React.PropTypes.string,
@@ -35,10 +18,29 @@ const FontIcon = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
   getInitialState() {
     return {
       hovered: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -47,6 +49,24 @@ const FontIcon = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  _handleMouseLeave(e) {
+    // hover is needed only when a hoverColor is defined
+    if (this.props.hoverColor !== undefined)
+      this.setState({hovered: false});
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
+  },
+
+  _handleMouseEnter(e) {
+    // hover is needed only when a hoverColor is defined
+    if (this.props.hoverColor !== undefined)
+      this.setState({hovered: true});
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
+    }
   },
 
   render() {
@@ -82,24 +102,6 @@ const FontIcon = React.createClass({
         onMouseEnter={this._handleMouseEnter}
         style={mergedStyles} />
     );
-  },
-
-  _handleMouseLeave(e) {
-    // hover is needed only when a hoverColor is defined
-    if (this.props.hoverColor !== undefined)
-      this.setState({hovered: false});
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
-    }
-  },
-
-  _handleMouseEnter(e) {
-    // hover is needed only when a hoverColor is defined
-    if (this.props.hoverColor !== undefined)
-      this.setState({hovered: true});
-    if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(e);
-    }
   },
 });
 
