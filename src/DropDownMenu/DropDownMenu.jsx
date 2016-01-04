@@ -232,7 +232,7 @@ const DropDownMenu = React.createClass({
   },
 
   getInputNode() {
-    warning(false, `The imperative method getInputNode will be removed in favor of composability.`);
+    // warning(false, `The imperative method getInputNode will be removed in favor of composability.`);
     const root = this.refs.root;
     const item = this.props.menuItems && this.props.menuItems[this.state.selectedIndex];
     if (item) {
