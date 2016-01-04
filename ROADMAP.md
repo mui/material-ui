@@ -22,9 +22,8 @@
 * Remove the old menu folder.
 * Remove old component file naming
 
-## 0.14.1
+## 0.14.2
 
-- [ ] #2456 Deprecate usage of JSON in favor of composability.
 - [ ] Documentation versioning.
 - [ ] Enforce eslint rules.
 - [ ] #2433 Auto-generate Docs from source-code.

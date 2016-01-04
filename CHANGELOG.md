@@ -1,5 +1,33 @@
 ## HEAD
 
+## 0.14.1
+###### _Jan 05, 2016_
+
+##### General
+- Upgrade to babel v6 (#2620, #2709)
+- [Docs] Improve the performance of the production build (#2680)
+- [Docs] Improve the AppLeftNav for mobile (#2690)
+- [Docs] Use a single LeftNav (#2721)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [DatePicker] (#2622)
+  1. [GridList] (#2681)
+  1. [SelectField] (#2694)
+  1. [IconButton] (#2700)
+- Added the following eslint rules:
+  1. react/sort-comp (#2774, #2776)
+
+##### Component Fixes / Enhancements
+- [MenuItem] Fix icon position (#2661)
+- [SelectableList] Recursively extend children (#2320)
+- [SelectField] Add hintStyle (#2710)
+- [EnhancedButton] Avoid rendering `<a>` element (#2708)
+- [LeftNav] Only transition the transform property (#2730)
+- [TextField] Fix `errorText` when using `multiLine` (#2742)
+- [TimePicker] Update am/pm buttons (#2757)
+
+##### Deprecations
+- [Dialog] Deprecate width (#2753)
+
 ## 0.14.0
 ###### _Dec 25, 2015_
 
