@@ -1,6 +1,6 @@
 {
   "name": "material-ui-example-browserify",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "material-ui": "^0.14.0",
+    "material-ui": "^0.14.1",
     "react": "^0.14.0",
     "react-dom":"^0.14.0",
     "react-tap-event-plugin": "^0.2.1"
