@@ -97,7 +97,7 @@ const DropDownMenu = React.createClass({
     menuStyle: React.PropTypes.object,
 
     /**
-     * If true, the width of menu will automatically be set according to the items 
+     * If true, the width of menu will automatically be set according to the items
      * inside the menu using the proper keyline increment.
      */
     menuAutoWidth: React.PropTypes.bool,
