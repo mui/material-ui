@@ -49,6 +49,16 @@ const LeftNav = React.createClass({
     className: React.PropTypes.string,
 
     /**
+     * The css class name of the container element.
+     */
+    containerClassName: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the container element.
+     */
+    containerStyle: React.PropTypes.object,
+
+    /**
      * Indicates whether swiping sideways when the `LeftNav` is closed should open it.
      */
     disableSwipeToOpen: React.PropTypes.bool,
@@ -311,6 +321,8 @@ const LeftNav = React.createClass({
       overlayStyle,
       selectedIndex,
       style,
+      containerClassName,
+      containerStyle,
     } = this.props;
 
     const styles = this.getStyles();
@@ -350,15 +362,17 @@ const LeftNav = React.createClass({
     }
 
     return (
-      <div>
-        {overlay}
+      <div
+        className={className}
+        style={style}>
+          {overlay}
         <Paper
           ref="clickAwayableElement"
           zDepth={2}
           rounded={false}
           transitionEnabled={!this.state.swiping}
-          className={className}
-          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
+          containerClassName={containerClassName}
+          containerStyle={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, containerStyle)}>
             {header}
             {children}
         </Paper>
