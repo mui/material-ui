@@ -8,6 +8,7 @@ import MenuItem from './menus/menu-item';
 import Divider from './divider';
 import Popover from './popover/popover';
 import PropTypes from './utils/prop-types';
+import deprecated from './utils/deprecatedPropType';
 
 const AutoComplete = React.createClass({
 
@@ -38,11 +39,14 @@ const AutoComplete = React.createClass({
     onUpdateInput: React.PropTypes.func,
     open: React.PropTypes.bool,
     searchText: React.PropTypes.string,
-    showAllItems: React.PropTypes.bool,
+    showAllItems: deprecated(React.PropTypes.bool,
+      'showAllItems is deprecated, use noFilter instead'),
     style: React.PropTypes.object,
     targetOrigin: PropTypes.origin,
     touchTapCloseDelay: React.PropTypes.number,
-    updateWhenFocused: React.PropTypes.bool,
+    triggerUpdateOnFocus: React.PropTypes.bool,
+    updateWhenFocused: deprecated(React.PropTypes.bool,
+      'updateWhenFocused has been renamed to triggerUpdateOnFocus'),
   },
 
   getDefaultProps() {
@@ -58,14 +62,13 @@ const AutoComplete = React.createClass({
       animated: true,
       fullWidth: false,
       open: false,
-      showAllItems: false,
       searchText: '',
       menuCloseDelay: 100,
       disableFocusRipple: true,
-      updateWhenFocused: false,
       onUpdateInput: () => {},
       onNewRequest: () => {},
-      filter: (searchText, key) => key.includes(searchText),
+      filter: (searchText, key) => searchText !== '' && key.includes(searchText),
+      triggerUpdateOnFocus: false,
     };
   },
 
@@ -105,7 +108,6 @@ const AutoComplete = React.createClass({
       menuStyle,
       menuProps,
       listStyle,
-      showAllItems,
       targetOrigin,
       ...other,
     } = this.props;
@@ -143,22 +145,24 @@ const AutoComplete = React.createClass({
     let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
-    let displayFilter = showAllItems ? () => true : this.props.filter;
     let requestsList = [];
 
     this.props.dataSource.map((item) => {
+      //showAllItems is deprecated, will be removed in the future
+      if (this.props.showAllItems) {
+        requestsList.push(item);
+        return;
+      }
+
       switch (typeof item) {
         case 'string':
-          if (displayFilter(this.state.searchText, item, item)) {
+          if (this.props.filter(this.state.searchText, item, item)) {
             requestsList.push(item);
           }
           break;
         case 'object':
           if (typeof item.text === 'string') {
-            if (displayFilter(this.state.searchText, item.text, item.value)) {
-              requestsList.push(item);
-            }
-            else if (item.display) {
+            if (this.props.filter(this.state.searchText, item.text, item)) {
               requestsList.push(item);
             }
           }
@@ -168,8 +172,7 @@ const AutoComplete = React.createClass({
 
     this.requestsList = requestsList;
 
-    let menu = open && (this.state.searchText !== '' || showAllItems)
-               && requestsList.length > 0 ? (
+    let menu = open && requestsList.length > 0 ? (
       <Menu
         {...menuProps}
         ref="menu"
@@ -243,8 +246,9 @@ const AutoComplete = React.createClass({
                 this.refs.searchTextField.focus();
             }}
             onFocus={() => {
-              if (!open && ( showAllItems ||
-                  this.props.updateWhenFocused || this.state.searchText !== '')) {
+              if (!open && (this.props.triggerUpdateOnFocus
+                || this.props.updateWhenFocused //this line will be removed in the future
+                || this.requestsList > 0)) {
                 this._updateRequests(this.state.searchText);
               }
               this.focusOnInput = true;
@@ -350,31 +354,47 @@ const AutoComplete = React.createClass({
 
 });
 
-AutoComplete.CaseInsensitiveFilter = (searchText, key) => {
+AutoComplete.levenshteinDistance = (searchText, key) => {
+  let current = [], prev, value;
+  for (let i = 0; i <= key.length; i++) {
+    for (let j = 0; j <= searchText.length; j++) {
+      if (i && j) {
+        if (searchText.charAt(j - 1) === key.charAt(i - 1)) value = prev;
+        else value = Math.min(current[j], current[j - 1], prev) + 1;
+      }
+      else {
+        value = i + j;
+      }
+      prev = current[j];
+      current[j] = value;
+    }
+  }
+  return current.pop();
+};
+
+AutoComplete.noFilter = () => true;
+
+AutoComplete.defaultFilter = AutoComplete.caseSensitiveFilter = (searchText, key) => {
+  return searchText !== '' && key.includes(searchText);
+};
+
+AutoComplete.caseInsensitiveFilter = (searchText, key) => {
   return key.toLowerCase().includes(searchText.toLowerCase());
 };
 
-AutoComplete.LevenshteinDistanceFilter = (distanceLessThan) => {
-  if (typeof distanceLessThan !== 'number') {
-    throw 'Error: AutoComplete.LevenshteinDistanceFilter is a filter generator, not a filter!';
+AutoComplete.levenshteinDistanceFilter = (distanceLessThan) => {
+  if (distanceLessThan === undefined) return AutoComplete.levenshteinDistance;
+  else if (typeof distanceLessThan !== 'number') {
+    throw 'Error: AutoComplete.levenshteinDistanceFilter is a filter generator, not a filter!';
   }
-  return (searchText, key) => {
-    let current = [], prev, value;
-    for (let i = 0; i <= key.length; i++) {
-      for (let j = 0; j <= searchText.length; j++) {
-        if (i && j) {
-          if (searchText.charAt(j - 1) === key.charAt(i - 1)) value = prev;
-          else value = Math.min(current[j], current[j - 1], prev) + 1;
-        }
-        else {
-          value = i + j;
-        }
-        prev = current[j];
-        current[j] = value;
-      }
-    }
-    return current.pop() < distanceLessThan;
-  };
+  return (s, k) => AutoComplete.levenshteinDistance(s, k) < distanceLessThan;
+};
+
+AutoComplete.fuzzyFilter = (searchText, key) => {
+  if (searchText.length === 0) return false;
+  let subMatchKey = key.substring(0, searchText.length);
+  let distance = AutoComplete.levenshteinDistance(searchText.toLowerCase(), subMatchKey.toLowerCase());
+  return searchText.length > 3 ? distance < 2 : distance === 0;
 };
 
 AutoComplete.Item = MenuItem;

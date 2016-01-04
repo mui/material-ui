@@ -1,49 +1,48 @@
 <AutoComplete
   dataSource={this.state.input1}
-  onUpdateInput={(t) => { console.log(t); this.setState({input1: [t, t + t, t + t + t]}); }}
-  onNewRequest={(t) => { console.log('request:' + t); }} />
-
+  onUpdateInput={this.handleUpdateInput1}
+  onNewRequest={this.handleNewRequest}
+/>
+<br/>
 <AutoComplete
-  fullWidth={true}
   hintText="hint"
   dataSource={this.state.input2}
-  onUpdateInput={(t) => { console.log(t); this.setState({input2: [t, t + t, t + t + t]}); }}
-  onNewRequest={(t) => { console.log('request:' + t); }} />
-
+  onUpdateInput={this.handleUpdateInput2}
+  onNewRequest={this.handleNewRequest}
+/>
+<br/>
 <AutoComplete
   fullWidth={true}
-  searchText="***************"
+  searchText="*****"
   errorText="error message"
   dataSource={this.state.input3}
-  onUpdateInput={(t) => { console.log(t); this.setState({input3: [t, t + t, t + t + t]}); }}
-  onNewRequest={(t) => { console.log('request:' + t); }} />
-
+  onUpdateInput={this.handleUpdateInput3}
+  onNewRequest={this.handleNewRequest}
+/>
+<br/>
 <AutoComplete
-  fullWidth={true}
   hintText="text-value data"
-  onUpdateInput={(t) => {
-    console.log(t);
-  }}
-  showAllItems={true}
-  dataSource={[
-    {
-      text: 'text-value1',
-      value:(<AutoComplete.Item primaryText={'text-value1'} secondaryText="&#9786;" />),
-    },
-    {
-      text: 'text-value2',
-      value:(<AutoComplete.Item primaryText={'text-value2'} secondaryText="&#9786;" />),
-    },
-  ]}
-  onNewRequest={(t, index) => { console.log('request:' + index); }} />
-
+  filter={AutoComplete.noFilter}
+  dataSource={dataSource}
+  onNewRequest={this.handleNewRequest}
+/>
+<br/>
 <AutoComplete
-  floatingLabelText="floating Label"
-  dataSource={['12345', '23456', '34567']} />
-
+  floatingLabelText="fuzzy search"
+  filter={AutoComplete.fuzzyFilter}
+  dataSource={fruit}
+/>
+<br/>
 <AutoComplete
-  fullWidth={true}
+  floatingLabelText="case insensitive, colors"
+  filter={AutoComplete.caseInsensitiveFilter}
+  dataSource={colors}
+/>
+<br/>
+<AutoComplete
   floatingLabelText="showAllItems"
-  showAllItems={true}
+  filter={AutoComplete.noFilter}
+  triggerUpdateOnFocus={true}
   animated={false}
-  dataSource={['12345', '23456', '34567']} />
+  dataSource={['12345', '23456', '34567']}
+/>
