@@ -10,15 +10,35 @@ import ThemeManager from '../styles/theme-manager';
 const List = React.createClass({
 
   propTypes: {
+    /**
+     * These are usually ListItems that are passed to
+     * be part of the list.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * If true, the subheader will be indented by 72px.
+     */
     insetSubheader: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The subheader string that will be displayed at the top of the list.
+     */
     subheader: React.PropTypes.node,
+
+    /**
+     * The style object to override subheader styles.
+     */
     subheaderStyle: React.PropTypes.object,
+
+    /**
+     * The zDepth prop passed to the Paper element inside list.
+     */
     zDepth: PropTypes.zDepth,
   },
 
@@ -38,6 +58,7 @@ const List = React.createClass({
 
   getDefaultProps() {
     return {
+      insetSubheader: false,
       zDepth: 0,
     };
   },

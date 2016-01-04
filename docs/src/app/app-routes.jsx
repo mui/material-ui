@@ -34,7 +34,7 @@ import Icons from './components/pages/components/icons';
 import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenus from './components/pages/components/icon-menus';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
-import Lists from './components/pages/components/lists';
+import ListPage from './components/pages/components/List/Page';
 import Menus from './components/pages/components/menus';
 import Paper from './components/pages/components/paper';
 import Popover from './components/pages/components/popover';
@@ -95,7 +95,7 @@ const AppRoutes = (
       <Route path="icon-button" component={IconButtonPage} />
       <Route path="icon-menus" component={IconMenus} />
       <Route path="left-nav" component={LeftNavPage} />
-      <Route path="lists" component={Lists} />
+      <Route path="list" component={ListPage} />
       <Route path="menus" component={Menus} />
       <Route path="paper" component={Paper} />
       <Route path="popover" component={Popover} />

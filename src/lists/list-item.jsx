@@ -17,32 +17,151 @@ import ThemeManager from '../styles/theme-manager';
 const ListItem = React.createClass({
 
   propTypes: {
+    /**
+     * Generate a nested list indicator icon when
+     * nested list items are detected. Set to false
+     * if you do not want an indicator auto-generated.
+     * Note that an indicator will not be created if a
+     * rightIcon/Button has been specified.
+     */
     autoGenerateNestedIndicator: React.PropTypes.bool,
+
+    /**
+     * Children passed into the ListItem.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Does not allow the element to be focused by the keyboard.
+     */
     disableKeyboardFocus: React.PropTypes.bool,
+
+    /**
+     * If true, the list-item will not be clickable
+     * and will not display hover affects.
+     * This is automatically disabled if leftCheckbox
+     * or rightToggle is set.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Controls whether or not the child ListItems are initially displayed.
+     */
     initiallyOpen: React.PropTypes.bool,
+
+    /**
+     * Style prop for the innder div element.
+     */
     innerDivStyle: React.PropTypes.object,
-    innerStyle: React.PropTypes.object,
+
+    /**
+     * If true, the children will be indented by 72px.
+     * Only needed if there is no left avatar or left icon.
+     */
     insetChildren: React.PropTypes.bool,
+
+    /**
+     * This is the Avatar element to be displayed on the left side.
+     */
     leftAvatar: React.PropTypes.element,
+
+    /**
+     * This is the Checkbox element to be displayed on the left side.
+     */
     leftCheckbox: React.PropTypes.element,
+
+    /**
+     * This is the SvgIcon or FontIcon to be displayed on the left side.
+     */
     leftIcon: React.PropTypes.element,
+
+    /**
+     * An array of ListItems to nest underneath the current ListItem.
+     */
     nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
+
+    /**
+     * Controls how deep a ListItem appears.
+     * This property is automatically managed so modify at your own risk.
+     */
     nestedLevel: React.PropTypes.number,
+
+    /**
+     * Called when the ListItem has keyboard focus.
+     */
     onKeyboardFocus: React.PropTypes.func,
+
+    /**
+     * Called when the mouse is over the ListItem.
+     */
     onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Called when the mouse is no longer over the ListItem.
+     */
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Called when the ListItem toggles its nested ListItems.
+     */
     onNestedListToggle: React.PropTypes.func,
+
+    /**
+     * Called when touches start.
+     */
     onTouchStart: React.PropTypes.func,
+
+    /**
+     * Called when a touch tap event occures on the component.
+     */
     onTouchTap: React.PropTypes.func,
+
+    /**
+     * This is the block element that contains the primary text.
+     * If a string is passed in, a div tag will be rendered.
+     */
     primaryText: React.PropTypes.node,
+
+    /**
+     * If provided, tapping on the primary text
+     * of the item toggles the nested list.
+     */
     primaryTogglesNestedList: React.PropTypes.bool,
+
+    /**
+     * This is the avatar element to be displayed on the right side.
+     */
     rightAvatar: React.PropTypes.element,
+
+    /**
+     * This is the SvgIcon or FontIcon to be displayed on the right side.
+     */
     rightIcon: React.PropTypes.element,
+
+    /**
+     * This is the IconButton to be displayed on the right side.
+     * Hovering over this button will remove the ListItem hover.
+     * Also, clicking on this button will not trigger a
+     * ListItem ripple. The event will be stopped and prevented
+     * from bubbling up to cause a ListItem click.
+     */
     rightIconButton: React.PropTypes.element,
+
+    /**
+     * This is the Toggle element to display on the right side.
+     */
     rightToggle: React.PropTypes.element,
+
+    /**
+     * This is the block element that contains the secondary text.
+     * If a string is passed in, a div tag will be rendered.
+     */
     secondaryText: React.PropTypes.node,
+
+    /**
+     * Can be 1 or 2. This is the number of secondary
+     * text lines before ellipsis will show.
+     */
     secondaryTextLines: React.PropTypes.oneOf([1, 2]),
 
     /**
@@ -68,7 +187,10 @@ const ListItem = React.createClass({
   getDefaultProps() {
     return {
       autoGenerateNestedIndicator: true,
+      disableKeyboardFocus: false,
+      disabled: false,
       initiallyOpen: false,
+      insetChildren: false,
       nestedItems: [],
       nestedLevel: 0,
       onKeyboardFocus: () => {},
