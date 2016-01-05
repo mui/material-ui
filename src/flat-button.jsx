@@ -20,22 +20,80 @@ function validateLabel(props, propName, componentName) {
 const FlatButton = React.createClass({
 
   propTypes: {
+    /**
+     * Color of button when mouse is not hovering over it.
+     */
     backgroundColor: React.PropTypes.string,
+
+    /**
+     * Elements passed into the button. For example, the font
+     * icon passed into the GitHub button.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Disables the button if set to true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Color of button when mouse hovers over.
+     */
     hoverColor: React.PropTypes.string,
+
+    /**
+     * Label for the button.
+     */
     label: validateLabel,
+
+    /**
+     * Place label before or after the passed children.
+     */
     labelPosition: React.PropTypes.oneOf([
       'before',
       'after',
     ]),
+
+    /**
+     * Override the inline-styles of the button's label element.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Called when element is focused by the keyboard.
+     */
     onKeyboardFocus: React.PropTypes.func,
+
+    /**
+     * Called when the mouse enters the element.
+     */
     onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Called when the mouse leaves the element.
+     */
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     *
+     */
     onTouchStart: React.PropTypes.func,
+
+    /**
+     * If true, colors button according to
+     * primaryTextColor from the Theme.
+     */
     primary: React.PropTypes.bool,
+
+    /**
+     * Color for the ripple after button is clicked.
+     */
     rippleColor: React.PropTypes.string,
+
+    /**
+     * If true, colors button according to secondaryTextColor from the theme.
+     * The primary prop has precendent if set to true.
+     */
     secondary: React.PropTypes.bool,
 
     /**
@@ -85,12 +143,15 @@ const FlatButton = React.createClass({
 
   getDefaultProps() {
     return {
+      disabled: false,
       labelStyle: {},
       labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
       onKeyboardFocus: () => {},
       onMouseEnter: () => {},
       onMouseLeave: () => {},
       onTouchStart: () => {},
+      primary: false,
+      secondary: false,
     };
   },
 
@@ -226,7 +287,6 @@ const FlatButton = React.createClass({
       </EnhancedButton>
     );
   },
-
 });
 
 export default FlatButton;
