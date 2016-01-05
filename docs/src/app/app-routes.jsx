@@ -29,8 +29,8 @@ import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
+import FontIconPage from './components/pages/components/FontIcon/Page';
 import GridListPage from './components/pages/components/GridList/Page';
-import Icons from './components/pages/components/icons';
 import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenus from './components/pages/components/icon-menus';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
@@ -43,6 +43,7 @@ import RefreshIndicator from './components/pages/components/refresh-indicator';
 import SelectField from './components/pages/components/SelectField/Page';
 import Sliders from './components/pages/components/sliders';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
+import SvgIconPage from './components/pages/components/SvgIcon/Page';
 import Switches from './components/pages/components/switches';
 import Table from './components/pages/components/table';
 import TabsPage from './components/pages/components/Tabs/Page';
@@ -90,8 +91,8 @@ const AppRoutes = (
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
+      <Route path="font-icon" component={FontIconPage} />
       <Route path="grid-list" component={GridListPage} />
-      <Route path="icons" component={Icons} />
       <Route path="icon-button" component={IconButtonPage} />
       <Route path="icon-menus" component={IconMenus} />
       <Route path="left-nav" component={LeftNavPage} />
@@ -103,6 +104,7 @@ const AppRoutes = (
       <Route path="refresh-indicator" component={RefreshIndicator} />
       <Route path="select-field" component={SelectField} />
       <Route path="sliders" component={Sliders} />
+      <Route path="svg-icon" component={SvgIconPage} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={SnackbarPage} />
       <Route path="table" component={Table} />
