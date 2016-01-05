@@ -210,8 +210,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Left Nav"
               />,
               <ListItem
-                value="/components/lists"
-                primaryText="Lists"
+                value="/components/list"
+                primaryText="List"
               />,
               <ListItem
                 value="/components/menus"
