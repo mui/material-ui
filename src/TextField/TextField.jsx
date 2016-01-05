@@ -225,12 +225,12 @@ const TextField = React.createClass({
 
     if (this.state.isFocused) {
       styles.floatingLabel.color = focusColor;
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0px, -28px, 0)';
     }
 
     if (this.state.hasValue) {
       styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)';
+      styles.floatingLabel.transform = 'perspective(1px) scale(0.75) translate3d(0px, -28px, 0)';
     }
 
     if (props.floatingLabelText) {
