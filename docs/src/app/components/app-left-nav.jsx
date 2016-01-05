@@ -184,16 +184,26 @@ const AppLeftNav = React.createClass({
                 primaryText="Grid List"
               />,
               <ListItem
-                value="/components/icons"
-                primaryText="Icons"
-              />,
-              <ListItem
                 value="/components/icon-button"
                 primaryText="Icon Button"
               />,
               <ListItem
                 value="/components/icon-menus"
                 primaryText="Icon Menus"
+              />,
+              <ListItem
+                primaryText="Icons"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/font-icon"
+                    primaryText="Font Icon"
+                  />,
+                  <ListItem
+                    value="/components/svg-icon"
+                    primaryText="SVG Icon"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/left-nav"

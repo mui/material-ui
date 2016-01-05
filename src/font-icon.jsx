@@ -7,9 +7,25 @@ import ThemeManager from './styles/theme-manager';
 const FontIcon = React.createClass({
 
   propTypes: {
+    /**
+     * This is the font color of the font icon. If not specified,
+     * this component will default to muiTheme.palette.textColor.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * This is the icon color when the mouse hovers over the icon.
+     */
     hoverColor: React.PropTypes.string,
+
+    /**
+     * Function called when mouse enters this element.
+     */
     onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Function called when mouse leaves this element.
+     */
     onMouseLeave: React.PropTypes.func,
 
     /**
@@ -30,6 +46,13 @@ const FontIcon = React.createClass({
   mixins: [
     StylePropable,
   ],
+
+  getDefaultProps() {
+    return {
+      onMouseEnter: () => {},
+      onMouseLeave: () => {},
+    };
+  },
 
   getInitialState() {
     return {
