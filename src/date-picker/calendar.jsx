@@ -164,7 +164,10 @@ const Calendar = React.createClass({
   },
 
   _handleMonthChange(months) {
-    this.setState({displayDate: DateTime.addMonths(this.state.displayDate, months)});
+    this.setState({
+      transitionDirection: months >= 0 ? 'left' : 'right',
+      displayDate: DateTime.addMonths(this.state.displayDate, months),
+    });
   },
 
   _handleYearTouchTap(e, year) {
