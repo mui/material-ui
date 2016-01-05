@@ -152,7 +152,8 @@ const Snackbar = React.createClass({
     });
 
     if (this.state.open && nextProps.open === this.props.open &&
-        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
+        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)
+        ) {
       this.setState({
         open: false,
       });
@@ -232,10 +233,10 @@ const Snackbar = React.createClass({
     const styles = {
       root: {
         position: 'fixed',
-        left: 0,
+        left: 16,
         display: 'flex',
-        right: 0,
-        bottom: 0,
+        right: 'auto',
+        bottom: 16,
         zIndex: this.state.muiTheme.zIndex.snackbar,
         visibility: 'hidden',
         transform: 'translate3d(0, ' + desktopSubheaderHeight + 'px, 0)',
@@ -340,7 +341,7 @@ const Snackbar = React.createClass({
   },
 
   dismiss() {
-    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
+    // warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
 
     this.setState({
       open: false,

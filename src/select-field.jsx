@@ -99,6 +99,9 @@ const SelectField = React.createClass({
         right: 0,
         top: floatingLabelText ? 22 : 14,
       },
+      root: {
+        zIndex: 4,
+      },
       hideDropDownUnderline: {
         borderTop: 'none',
       },
@@ -148,7 +151,7 @@ const SelectField = React.createClass({
       >
         <DropDownMenu
           disabled={disabled}
-          style={selectFieldRoot}
+          style={this.mergeStyles(styles.root, selectFieldRoot)}
           labelStyle={this.mergeStyles(styles.label, labelStyle)}
           iconStyle={this.mergeStyles(styles.icon, iconStyle)}
           underlineStyle={styles.hideDropDownUnderline}

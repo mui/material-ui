@@ -184,7 +184,6 @@ const TableBody = React.createClass({
 
     if (props.selectable && props.preScanRows) {
       let index = 0;
-      console.log('_calculatePreselectedRows', 'entrou');
       React.Children.forEach(props.children, (child) => {
         if (React.isValidElement(child)) {
           if (child.props.selected && (preSelectedRows.length === 0 || props.multiSelectable)) {
@@ -196,8 +195,6 @@ const TableBody = React.createClass({
       });
     }
 
-    console.log('_calculatePreselectedRows', preSelectedRows);
-
     return preSelectedRows;
   },
 
@@ -205,8 +202,6 @@ const TableBody = React.createClass({
     if (this.props.allRowsSelected) {
       return true;
     }
-
-    // console.log('aqui', rowNumber, this.state.selectedRows);
 
     for (let i = 0; i < this.state.selectedRows.length; i++) {
       let selection = this.state.selectedRows[i];

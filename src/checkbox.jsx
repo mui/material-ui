@@ -196,6 +196,7 @@ const Checkbox = React.createClass({
   },
 
   _handleStateChange(newSwitched) {
+    console.log("Checkbox switch", newSwitched);
     this.setState({switched: newSwitched});
   },
 
