@@ -39,7 +39,7 @@ import Menus from './components/pages/components/menus';
 import Paper from './components/pages/components/paper';
 import Popover from './components/pages/components/popover';
 import Progress from './components/pages/components/progress';
-import RefreshIndicator from './components/pages/components/refresh-indicator';
+import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
 import SelectField from './components/pages/components/SelectField/Page';
 import Sliders from './components/pages/components/sliders';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
@@ -100,7 +100,7 @@ const AppRoutes = (
       <Route path="paper" component={Paper} />
       <Route path="popover" component={Popover} />
       <Route path="progress" component={Progress} />
-      <Route path="refresh-indicator" component={RefreshIndicator} />
+      <Route path="refresh-indicator" component={RefreshIndicatorPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="sliders" component={Sliders} />
       <Route path="switches" component={Switches} />

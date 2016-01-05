@@ -11,17 +11,50 @@ const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
 
   propTypes: {
+    /**
+     * Override the theme's color of the indicator while it's status is
+     * "ready" or it's percentage is less than 100.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * The absolute left position of the indicator in pixels.
+     */
     left: React.PropTypes.number.isRequired,
+
+    /**
+     * Override the theme's color of the indicator while
+     * it's status is "loading" or it's percentage is 100.
+     */
     loadingColor: React.PropTypes.string,
+
+    /**
+     * The confirmation progress to fetch data. Max value is 100.
+     */
     percentage: React.PropTypes.number,
+
+    /**
+     * Size in pixels.
+     */
     size: React.PropTypes.number,
+
+    /**
+     * The display status of the indicator. If the status is
+     * "ready", the indicator will display the ready state
+     * arrow. If the status is "loading", it will display
+     * the loading progress indicator. If the status is "hide",
+     * the indicator will be hidden.
+     */
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The absolute right position of the indicator in pixels.
+     */
     top: React.PropTypes.number.isRequired,
   },
 
