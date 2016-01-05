@@ -9,17 +9,45 @@ import ThemeManager from './styles/theme-manager';
 const CircularProgress = React.createClass({
 
   propTypes: {
+    /**
+     * Override the progress's color.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * Style for inner wrapper div.
+     */
     innerStyle: React.PropTypes.object,
+
+    /**
+     * The max value of progress, only works in determinate mode.
+     */
     max: React.PropTypes.number,
+
+    /**
+     * The min value of progress, only works in determinate mode.
+     */
     min: React.PropTypes.number,
+
+    /**
+     * The mode of show your progress, indeterminate
+     * for when there is no value for progress.
+     */
     mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+
+    /**
+     * The size of the progress.
+     */
     size: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The value of progress, only works in determinate mode.
+     */
     value: React.PropTypes.number,
   },
 
