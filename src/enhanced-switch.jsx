@@ -419,15 +419,15 @@ const EnhancedSwitch = React.createClass({
     // If toggle component (indicated by whether the style includes thumb) manually lay out
     // elements in order to nest ripple elements
     let switchElement = !this.props.thumbStyle ? (
-        <div style={wrapStyles}>
-          {this.props.switchElement}
-          {ripples}
-        </div>
-      ) : (
-        <div style={wrapStyles}>
-          <div style={this.prepareStyles(this.props.trackStyle)}/>
-          <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
-        </div>
+      <div style={wrapStyles}>
+        {this.props.switchElement}
+        {ripples}
+      </div>
+    ) : (
+      <div style={wrapStyles}>
+        <div style={this.prepareStyles(this.props.trackStyle)}/>
+        <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
+      </div>
     );
 
     let labelPositionExist = this.props.labelPosition;
@@ -435,15 +435,15 @@ const EnhancedSwitch = React.createClass({
     // Position is left if not defined or invalid.
     let elementsInOrder = (labelPositionExist &&
       (this.props.labelPosition.toUpperCase() === 'RIGHT')) ? (
-        <ClearFix style={styles.controls}>
-          {switchElement}
-          {labelElement}
-        </ClearFix>
-      ) : (
-        <ClearFix style={styles.controls}>
-          {labelElement}
-          {switchElement}
-        </ClearFix>
+      <ClearFix style={styles.controls}>
+        {switchElement}
+        {labelElement}
+      </ClearFix>
+    ) : (
+      <ClearFix style={styles.controls}>
+        {labelElement}
+        {switchElement}
+      </ClearFix>
     );
 
     return (

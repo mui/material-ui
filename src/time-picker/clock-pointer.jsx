@@ -116,9 +116,9 @@ const ClockPointer = React.createClass({
     }
 
     return (
-        <div style={this.prepareStyles(styles.root)} >
-          <div style={this.prepareStyles(styles.mark)} />
-        </div>
+      <div style={this.prepareStyles(styles.root)} >
+        <div style={this.prepareStyles(styles.mark)} />
+      </div>
     );
   },
 });

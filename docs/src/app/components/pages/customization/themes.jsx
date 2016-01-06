@@ -161,140 +161,134 @@ const ThemesPage = React.createClass({
 
     return (
       <ClearFix>
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
-            </div>
-            <div style={styles.containerCentered}>
-              <RaisedButton label="Secondary" secondary={true} />
-            </div>
-            <div style={styles.containerCentered}>
-              <RaisedButton label="Primary" primary={true}/>
-            </div>
-            <div style={styles.containerCentered}>
-              <RaisedButton label="Default"/>
-            </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
           </div>
-
-          <div style={styles.group}>
-            <div style={styles.container}>
-              <Checkbox
-                name="checkboxName1"
-                value="checkboxValue1"
-                label="checkbox" />
-              <Checkbox
-                name="checkboxName2"
-                value="checkboxValue2"
-                label="disabled checkbox"
-                disabled={true} />
-            </div>
-            <div style={styles.container}>
-              <RadioButtonGroup
-                name="shipSpeed"
-                defaultSelected="usd">
-                <RadioButton
-                  value="usd"
-                  label="USD" />
-                <RadioButton
-                  value="euro"
-                  label="Euro"
-                  defaultChecked={true} />
-                <RadioButton
-                  value="mxn"
-                  label="MXN"
-                  disabled={true}/>
-              </RadioButtonGroup>
-            </div>
-            <div style={styles.container}>
-              <Toggle
-                name="toggleName1"
-                value="toggleValue1"
-                label="toggle" />
-              <Toggle
-                name="toggleName2"
-                value="toggleValue2"
-                label="disabled toggle"
-                defaultToggled={true}
-                disabled={true} />
-            </div>
+          <div style={styles.containerCentered}>
+            <RaisedButton label="Secondary" secondary={true} />
           </div>
-
-          <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
-            <div style={styles.container}>
-              <TextField
-                style={styles.textfield}
-                hintText="TextField"/>
-            </div>
-            <div style={styles.container}>
-              <DatePicker
-                hintText="Landscape Dialog"
-                mode="landscape"
-                style={{width: '100%'}}/>
-            </div>
-            <div style={styles.container}>
-              <DropDownMenu value={3} style={{width: '100%'}}>
-                <MenuItem value={1} primaryText={'Never'}/>
-                <MenuItem value={2} primaryText={'Every Night'}/>
-                <MenuItem value={3} primaryText={'Weeknights'}/>
-                <MenuItem value={4} primaryText={'Weekends'}/>
-                <MenuItem value={5} primaryText={'Weekly'}/>
-              </DropDownMenu>
-           </div>
+          <div style={styles.containerCentered}>
+            <RaisedButton label="Primary" primary={true}/>
           </div>
-
-          <div style={styles.groupSlider}>
-            <Slider style={styles.slider} name="slider2" defaultValue={0.5} />
+          <div style={styles.containerCentered}>
+            <RaisedButton label="Default"/>
           </div>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
-              <Dialog
-                open={this.state.dialogOpen}
-                title="Dialog With Standard Actions"
-                actions={[
-                  <FlatButton
-                    label="Cancel"
-                    keyboardFocus={true}
-                    onTouchTap={this.handleRequestCloseDialog}
-                    secondary={true} />,
-                  <FlatButton
-                    label="Submit"
-                    onTouchTap={this.handleRequestCloseDialog}
-                    primary={true} />,
-                ]}
-                onRequestClose={this.handleRequestCloseDialog}>
-                The actions in this window are created from the json that&#39;s passed in.
-              </Dialog>
-            </div>
+        </div>
+        <div style={styles.group}>
+          <div style={styles.container}>
+            <Checkbox
+              name="checkboxName1"
+              value="checkboxValue1"
+              label="checkbox" />
+            <Checkbox
+              name="checkboxName2"
+              value="checkboxValue2"
+              label="disabled checkbox"
+              disabled={true} />
           </div>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FlatButton
-                onTouchTap={this.handleTouchTapLeftNav}
-                label="View LeftNav" />
-              <LeftNav open={this.state.leftNavOpen} docked={false}
-                onRequestChange={this.handleRequestChangeLeftNav}>
-                <MenuItem index={0}>Menu Item</MenuItem>
-                <MenuItem index={1}>Menu Item 2</MenuItem>
-              </LeftNav>
-            </div>
+          <div style={styles.container}>
+            <RadioButtonGroup
+              name="shipSpeed"
+              defaultSelected="usd">
+              <RadioButton
+                value="usd"
+                label="USD" />
+              <RadioButton
+                value="euro"
+                label="Euro"
+                defaultChecked={true} />
+              <RadioButton
+                value="mxn"
+                label="MXN"
+                disabled={true}/>
+            </RadioButtonGroup>
           </div>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FlatButton
-                onTouchTap={this.handleTouchTapSnackbar}
-                label="View Snackbar" />
-              <Snackbar
-                open={this.state.snackbarOpen}
-                onRequestClose={this.handleRequestCloseSnackbar}
-                message="This is a snackbar"
-                action="Got It!"
-                onActionTouchTap={this.handleRequestCloseSnackbar}/>
-            </div>
+          <div style={styles.container}>
+            <Toggle
+              name="toggleName1"
+              value="toggleValue1"
+              label="toggle" />
+            <Toggle
+              name="toggleName2"
+              value="toggleValue2"
+              label="disabled toggle"
+              defaultToggled={true}
+              disabled={true} />
           </div>
+        </div>
+        <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
+          <div style={styles.container}>
+            <TextField
+              style={styles.textfield}
+              hintText="TextField"/>
+          </div>
+          <div style={styles.container}>
+            <DatePicker
+              hintText="Landscape Dialog"
+              mode="landscape"
+              style={{width: '100%'}}/>
+          </div>
+          <div style={styles.container}>
+            <DropDownMenu value={3} style={{width: '100%'}}>
+              <MenuItem value={1} primaryText={'Never'}/>
+              <MenuItem value={2} primaryText={'Every Night'}/>
+              <MenuItem value={3} primaryText={'Weeknights'}/>
+              <MenuItem value={4} primaryText={'Weekends'}/>
+              <MenuItem value={5} primaryText={'Weekly'}/>
+            </DropDownMenu>
+          </div>
+        </div>
+        <div style={styles.groupSlider}>
+          <Slider style={styles.slider} name="slider2" defaultValue={0.5} />
+        </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
+            <Dialog
+              open={this.state.dialogOpen}
+              title="Dialog With Standard Actions"
+              actions={[
+                <FlatButton
+                  label="Cancel"
+                  keyboardFocus={true}
+                  onTouchTap={this.handleRequestCloseDialog}
+                  secondary={true} />,
+                <FlatButton
+                  label="Submit"
+                  onTouchTap={this.handleRequestCloseDialog}
+                  primary={true} />,
+              ]}
+              onRequestClose={this.handleRequestCloseDialog}>
+              The actions in this window are created from the json that&#39;s passed in.
+            </Dialog>
+          </div>
+        </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FlatButton
+              onTouchTap={this.handleTouchTapLeftNav}
+              label="View LeftNav" />
+            <LeftNav open={this.state.leftNavOpen} docked={false}
+              onRequestChange={this.handleRequestChangeLeftNav}>
+              <MenuItem index={0}>Menu Item</MenuItem>
+              <MenuItem index={1}>Menu Item 2</MenuItem>
+            </LeftNav>
+          </div>
+        </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FlatButton
+              onTouchTap={this.handleTouchTapSnackbar}
+              label="View Snackbar" />
+            <Snackbar
+              open={this.state.snackbarOpen}
+              onRequestClose={this.handleRequestCloseSnackbar}
+              message="This is a snackbar"
+              action="Got It!"
+              onActionTouchTap={this.handleRequestCloseSnackbar}/>
+          </div>
+        </div>
       </ClearFix>
     );
   },
@@ -543,7 +537,7 @@ const ThemesPage = React.createClass({
         <div style={styles.bottomBorderWrapper}>
           <p>
             We changed how themes work in v0.12.0 (check out
-              <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
+            <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
             There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
             The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
             The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
@@ -664,8 +658,10 @@ const ThemesPage = React.createClass({
         </Paper>
 
         <p>
-          Check out the <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
-          <code style={styles.inlineCode}>theme-manager.js</code></a> file for a complete list of
+          Check out the
+          <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
+            <code style={styles.inlineCode}>theme-manager.js</code>
+          </a> file for a complete list of
           component-specific theme values that may be overridden.
         </p>
 

@@ -122,8 +122,8 @@ const ClockNumber = React.createClass({
     let transformPos = positions[pos];
 
     if (inner) {
-      styles.root.width = '28px';
-      styles.root.height = '28px';
+      styles.root.width = 28;
+      styles.root.height = 28;
       styles.root.left = 'calc(50% - 14px)';
       transformPos = innerPositions[pos];
     }
@@ -133,7 +133,7 @@ const ClockNumber = React.createClass({
     styles.root.transform = 'translate(' + x + 'px, ' + y + 'px)';
 
     return (
-        <span style={this.prepareStyles(styles.root)}>{this.props.value}</span>
+      <span style={this.prepareStyles(styles.root)}>{this.props.value}</span>
     );
   },
 });

@@ -483,7 +483,7 @@ export default class TablePage extends React.Component {
                 deselectOnClickaway={this.state.deselectOnClickaway}
                 showRowHover={this.state.showRowHover}
                 stripedRows={this.state.stripedRows}>
-              <TableRow selected={true}>
+                <TableRow selected={true}>
                   <TableRowColumn>1</TableRowColumn>
                   <TableRowColumn>John Smith</TableRowColumn>
                   <TableRowColumn>Employed</TableRowColumn>

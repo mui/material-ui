@@ -543,12 +543,12 @@ const Slider = React.createClass({
           onMouseLeave={this._onMouseLeave}
           onMouseUp={this._onMouseUp} >
           <div ref="track" style={this.prepareStyles(styles.track)}>
-              <div style={this.prepareStyles(styles.filled)}></div>
-              <div style={this.prepareStyles(remainingStyles)}></div>
-              <div style={handleStyles} tabIndex={0} {...handleDragProps}>
-                {focusRipple}
-              </div>
+            <div style={this.prepareStyles(styles.filled)}></div>
+            <div style={this.prepareStyles(remainingStyles)}></div>
+            <div style={handleStyles} tabIndex={0} {...handleDragProps}>
+              {focusRipple}
             </div>
+          </div>
         </div>
         <input ref="input" type="hidden"
           name={this.props.name}
