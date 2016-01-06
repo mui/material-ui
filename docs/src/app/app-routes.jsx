@@ -25,6 +25,7 @@ import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
 import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
+import CircularProgressPage from './components/pages/components/CircularProgress/Page';
 import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
@@ -35,10 +36,10 @@ import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenus from './components/pages/components/icon-menus';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
 import ListPage from './components/pages/components/List/Page';
+import LinearProgressPage from './components/pages/components/LinearProgress/Page';
 import Menus from './components/pages/components/menus';
 import Paper from './components/pages/components/paper';
 import Popover from './components/pages/components/popover';
-import Progress from './components/pages/components/progress';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
 import SelectField from './components/pages/components/SelectField/Page';
 import Sliders from './components/pages/components/sliders';
@@ -87,6 +88,7 @@ const AppRoutes = (
       <Route path="badge" component={BadgePage} />
       <Route path="buttons" component={Buttons} />
       <Route path="card" component={CardPage} />
+      <Route path="circular-progress" component={CircularProgressPage} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
@@ -97,10 +99,10 @@ const AppRoutes = (
       <Route path="icon-menus" component={IconMenus} />
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="list" component={ListPage} />
+      <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="menus" component={Menus} />
       <Route path="paper" component={Paper} />
       <Route path="popover" component={Popover} />
-      <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="sliders" component={Sliders} />

@@ -226,12 +226,22 @@ const AppLeftNav = React.createClass({
                 primaryText="Popover"
               />,
               <ListItem
-                value="/components/progress"
                 primaryText="Progress"
-              />,
-              <ListItem
-                value="/components/refresh-indicator"
-                primaryText="Refresh Indicator"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/circular-progress"
+                    primaryText="Circular Progress"
+                  />,
+                  <ListItem
+                    value="/components/linear-progress"
+                    primaryText="Linear Progress"
+                  />,
+                  <ListItem
+                    value="/components/refresh-indicator"
+                    primaryText="Refresh Indicator"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/select-field"
