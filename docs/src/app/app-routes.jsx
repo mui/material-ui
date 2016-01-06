@@ -38,7 +38,7 @@ import LeftNavPage from './components/pages/components/LeftNav/Page';
 import ListPage from './components/pages/components/List/Page';
 import LinearProgressPage from './components/pages/components/LinearProgress/Page';
 import Menus from './components/pages/components/menus';
-import Paper from './components/pages/components/paper';
+import PaperPage from './components/pages/components/Paper/Page';
 import Popover from './components/pages/components/popover';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
 import SelectField from './components/pages/components/SelectField/Page';
@@ -101,7 +101,7 @@ const AppRoutes = (
       <Route path="list" component={ListPage} />
       <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="menus" component={Menus} />
-      <Route path="paper" component={Paper} />
+      <Route path="paper" component={PaperPage} />
       <Route path="popover" component={Popover} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
       <Route path="select-field" component={SelectField} />
