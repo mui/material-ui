@@ -14,7 +14,7 @@ rrs('./').forEach((file) => {
         const moduleName = fileLines[index].split(' ')[2].replace(';', '').trim();
         const modulePath = file.substring(0, file.length - 4);
 
-        outArray.push(`export {default as ${moduleName}} from './${modulePath}';\n`);
+        outArray.push(`import ${moduleName} from './${modulePath}';\nexport { ${moduleName} };\n`);
 
         found = true;
       } else {
