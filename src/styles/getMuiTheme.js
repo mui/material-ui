@@ -172,6 +172,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       selectedColor: palette.borderColor,
       textColor: palette.textColor,
       borderColor: palette.borderColor,
+      height: 48,
     },
     tableRowColumn: {
       height: 48,
