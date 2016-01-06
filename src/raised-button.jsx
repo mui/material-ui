@@ -281,23 +281,23 @@ const RaisedButton = React.createClass({
       <Paper
         style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}>
-          <EnhancedButton
-            {...other}
-            {...buttonEventHandlers}
-            ref="container"
-            disabled={disabled}
-            style={this.mergeStyles(styles.container)}
-            focusRippleColor={rippleColor}
-            touchRippleColor={rippleColor}
-            focusRippleOpacity={rippleOpacity}
-            touchRippleOpacity={rippleOpacity}>
-              <div ref="overlay" style={this.prepareStyles(
-                  styles.overlay,
-                  (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-                )}>
-                  {enhancedButtonChildren}
-              </div>
-          </EnhancedButton>
+        <EnhancedButton
+          {...other}
+          {...buttonEventHandlers}
+          ref="container"
+          disabled={disabled}
+          style={this.mergeStyles(styles.container)}
+          focusRippleColor={rippleColor}
+          touchRippleColor={rippleColor}
+          focusRippleOpacity={rippleOpacity}
+          touchRippleOpacity={rippleOpacity}>
+          <div ref="overlay" style={this.prepareStyles(
+              styles.overlay,
+              (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
+            )}>
+              {enhancedButtonChildren}
+          </div>
+        </EnhancedButton>
       </Paper>
     );
   },

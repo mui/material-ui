@@ -446,8 +446,9 @@ const DialogInline = React.createClass({
                   {children}
                 </div>
                 {actionsContainer}
-            </Paper>
-          </TransitionItem>}
+              </Paper>
+            </TransitionItem>
+          }
         </ReactTransitionGroup>
         <Overlay
           show={open}

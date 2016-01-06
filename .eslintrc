@@ -83,6 +83,7 @@ rules:
   react/self-closing-comp: 2
   react/sort-comp: 2
   react/wrap-multilines: 2
+  react/jsx-indent: [2, 2]
 
   # Disabled
   react/jsx-no-bind: 0

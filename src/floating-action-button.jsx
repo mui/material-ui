@@ -266,15 +266,15 @@ const FloatingActionButton = React.createClass({
           )}
           focusRippleColor={styles.icon.color}
           touchRippleColor={styles.icon.color}>
-            <div
-              ref="overlay"
-              style={this.prepareStyles(
-                styles.overlay,
-                (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-              )}>
-                {iconElement}
-                {children}
-            </div>
+          <div
+            ref="overlay"
+            style={this.prepareStyles(
+              styles.overlay,
+              (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
+            )}>
+              {iconElement}
+              {children}
+          </div>
         </EnhancedButton>
       </Paper>
     );

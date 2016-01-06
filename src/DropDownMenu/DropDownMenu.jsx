@@ -382,12 +382,12 @@ const DropDownMenu = React.createClass({
     let index = 0;
     const menuItemElements = menuItems
       ? menuItems.map((item, idx) => (
-          <MenuItem
-            key={idx}
-            primaryText={item[displayMember || 'text']}
-            value={item[valueMember]}
-            onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item)} />
-        ))
+        <MenuItem
+          key={idx}
+          primaryText={item[displayMember || 'text']}
+          value={item[valueMember]}
+          onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item)} />
+      ))
       : React.Children.map(children, child => {
         const clone = React.cloneElement(child, {
           onTouchTap: this._onMenuItemTouchTap.bind(this, index, child.props.value),

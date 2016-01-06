@@ -140,8 +140,8 @@ const RadioButton = React.createClass({
 
     let radioButtonElement = (
       <div>
-          <RadioButtonOff style={onStyles} />
-          <RadioButtonOn style={offStyles} />
+        <RadioButtonOff style={onStyles} />
+        <RadioButtonOn style={offStyles} />
       </div>
     );
 

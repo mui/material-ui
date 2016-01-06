@@ -23,12 +23,12 @@ describe(`Calendar`, () => {
       let maxDate = new Date(initialDate.toDateString());
 
       let render = TestUtils.renderIntoDocument(
-          <ThemedCalendar
-            initialDate={initialDate}
-            DateTimeFormat={DateTime.DateTimeFormat}
-            locale="en-US"
-            maxDate={maxDate}
-          />
+        <ThemedCalendar
+          initialDate={initialDate}
+          DateTimeFormat={DateTime.DateTimeFormat}
+          locale="en-US"
+          maxDate={maxDate}
+        />
       );
       let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);

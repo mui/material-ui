@@ -78,22 +78,22 @@ const HomePage = React.createClass({
 
     return (
       <FullWidthSection style={styles.root}>
-          <img style={styles.svgLogo} src="images/material-ui-logo.svg" />
-          <div style={styles.tagline}>
-            <h1 style={styles.h1}>material ui</h1>
-            <h2 style={styles.h2}>
-              A Set of React Components <span style={styles.nowrap}>
-              that Implement</span> <span style={styles.nowrap}>
-              Google&apos;s Material Design</span>
-            </h2>
-            <RaisedButton
-              className="demo-button"
-              label="Demo"
-              onTouchTap={this._onDemoClick}
-              linkButton={true}
-              style={styles.demoStyle}
-              labelStyle={styles.label}/>
-          </div>
+        <img style={styles.svgLogo} src="images/material-ui-logo.svg" />
+        <div style={styles.tagline}>
+          <h1 style={styles.h1}>material ui</h1>
+          <h2 style={styles.h2}>
+            A Set of React Components <span style={styles.nowrap}>
+            that Implement</span> <span style={styles.nowrap}>
+            Google&apos;s Material Design</span>
+          </h2>
+          <RaisedButton
+            className="demo-button"
+            label="Demo"
+            onTouchTap={this._onDemoClick}
+            linkButton={true}
+            style={styles.demoStyle}
+            labelStyle={styles.label}/>
+        </div>
       </FullWidthSection>
     );
   },

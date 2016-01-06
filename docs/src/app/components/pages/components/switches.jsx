@@ -453,58 +453,56 @@ export default class SwitchesPage extends React.Component {
   render() {
     return (
       <div>
-      <h2 style={this.getStyles().headline}>Switches</h2>
-
-      <Paper style = {{marginBottom: '22px'}}>
-        <CodeBlock>
-        {
-          '//Import statements:\nimport Checkbox from \'material-ui/lib/checkbox\';\n' +
-          'import RadioButton from \'material-ui/lib/radio-button\';\n' +
-          'import RadioButtonGroup from \'material-ui/lib/radio-button-group\';\n' +
-          'import Toggle from \'material-ui/lib/toggle\';\n\n' +
-          '//See material-ui/lib/index.js for more\n'
-        }
-        </CodeBlock>
-      </Paper>
-
-      <Tabs>
-        <Tab label="Checkbox">
-          <ComponentDoc
-            name=""
-            desc={this.desc}
-            componentInfo={this.componentInfo.slice(0, 3)}>
-            <CodeExample code={CheckboxCode}>
-              <ClearFix elementType="form">
-                {this._getCheckboxExample()}
-              </ClearFix>
-            </CodeExample>
-          </ComponentDoc>
-        </Tab>
-        <Tab label="RadioButtons">
-          <ComponentDoc
-            name=""
-            desc={this.desc}
-            componentInfo={this.componentInfo.slice(3, 7)}>
-            <CodeExample code={RadioButtonCode}>
-              <ClearFix elementType="form">
-                {this._getRadioButtonExample()}
-              </ClearFix>
-            </CodeExample>
-          </ComponentDoc>
-        </Tab>
-        <Tab label="Toggle">
-          <ComponentDoc
-            name=""
-            desc={this.desc}
-            componentInfo={this.componentInfo.slice(7)}>
-            <CodeExample code={ToggleCode}>
-              <ClearFix elementType="form">
-                {this._getToggleExample()}
-              </ClearFix>
-            </CodeExample>
-          </ComponentDoc>
-        </Tab>
-      </Tabs>
+        <h2 style={this.getStyles().headline}>Switches</h2>
+        <Paper style = {{marginBottom: '22px'}}>
+          <CodeBlock>
+          {
+            '//Import statements:\nimport Checkbox from \'material-ui/lib/checkbox\';\n' +
+            'import RadioButton from \'material-ui/lib/radio-button\';\n' +
+            'import RadioButtonGroup from \'material-ui/lib/radio-button-group\';\n' +
+            'import Toggle from \'material-ui/lib/toggle\';\n\n' +
+            '//See material-ui/lib/index.js for more\n'
+          }
+          </CodeBlock>
+        </Paper>
+        <Tabs>
+          <Tab label="Checkbox">
+            <ComponentDoc
+              name=""
+              desc={this.desc}
+              componentInfo={this.componentInfo.slice(0, 3)}>
+              <CodeExample code={CheckboxCode}>
+                <ClearFix elementType="form">
+                  {this._getCheckboxExample()}
+                </ClearFix>
+              </CodeExample>
+            </ComponentDoc>
+          </Tab>
+          <Tab label="RadioButtons">
+            <ComponentDoc
+              name=""
+              desc={this.desc}
+              componentInfo={this.componentInfo.slice(3, 7)}>
+              <CodeExample code={RadioButtonCode}>
+                <ClearFix elementType="form">
+                  {this._getRadioButtonExample()}
+                </ClearFix>
+              </CodeExample>
+            </ComponentDoc>
+          </Tab>
+          <Tab label="Toggle">
+            <ComponentDoc
+              name=""
+              desc={this.desc}
+              componentInfo={this.componentInfo.slice(7)}>
+              <CodeExample code={ToggleCode}>
+                <ClearFix elementType="form">
+                  {this._getToggleExample()}
+                </ClearFix>
+              </CodeExample>
+            </ComponentDoc>
+          </Tab>
+        </Tabs>
       </div>
     );
   }

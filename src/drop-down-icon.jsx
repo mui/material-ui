@@ -127,24 +127,24 @@ const DropDownIcon = React.createClass({
 
     return (
       <div {...other} style={this.prepareStyles(styles.root, style)}>
-          <div onTouchTap={this._onControlClick}>
-            <FontIcon
-              className={iconClassName}
-              style={iconStyle}
-            >
-              {iconLigature}
-            </FontIcon>
-            {children}
-          </div>
-          <Menu
-            ref="menuItems"
-            style={styles.menu}
-            menuItems={menuItems}
-            menuItemStyle={styles.menuItem}
-            hideable={true}
-            visible={this.state.open}
-            onItemTap={this._onMenuItemClick}
-          />
+        <div onTouchTap={this._onControlClick}>
+          <FontIcon
+            className={iconClassName}
+            style={iconStyle}
+          >
+            {iconLigature}
+          </FontIcon>
+          {children}
+        </div>
+        <Menu
+          ref="menuItems"
+          style={styles.menu}
+          menuItems={menuItems}
+          menuItemStyle={styles.menuItem}
+          hideable={true}
+          visible={this.state.open}
+          onItemTap={this._onMenuItemClick}
+        />
       </div>
     );
   },

@@ -320,42 +320,44 @@ const Calendar = React.createClass({
           mode={this.props.mode}
           weekCount={weekCount} />
         {this.state.displayMonthDay &&
-        <div style={this.prepareStyles(styles.calendarContainer)}>
-          <CalendarToolbar
-            DateTimeFormat={DateTimeFormat}
-            locale={locale}
-            displayDate={this.state.displayDate}
-            onMonthChange={this._handleMonthChange}
-            prevMonth={toolbarInteractions.prevMonth}
-            nextMonth={toolbarInteractions.nextMonth} />
-          <ClearFix
-            elementType="ul"
-            style={styles.weekTitle}>
-            <li style={weekTitleDayStyle}>S</li>
-            <li style={weekTitleDayStyle}>M</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>W</li>
-            <li style={weekTitleDayStyle}>T</li>
-            <li style={weekTitleDayStyle}>F</li>
-            <li style={weekTitleDayStyle}>S</li>
-          </ClearFix>
-          <SlideInTransitionGroup
-            direction={this.state.transitionDirection}>
-            <CalendarMonth
-              key={this.state.displayDate.toDateString()}
-              ref="calendar"
+          <div style={this.prepareStyles(styles.calendarContainer)}>
+            <CalendarToolbar
+              DateTimeFormat={DateTimeFormat}
+              locale={locale}
               displayDate={this.state.displayDate}
-              onDayTouchTap={this._handleDayTouchTap}
-              selectedDate={this.state.selectedDate}
-              minDate={this.props.minDate}
-              maxDate={this.props.maxDate}
-              shouldDisableDate={this.props.shouldDisableDate} />
-          </SlideInTransitionGroup>
-        </div>}
+              onMonthChange={this._handleMonthChange}
+              prevMonth={toolbarInteractions.prevMonth}
+              nextMonth={toolbarInteractions.nextMonth} />
+            <ClearFix
+              elementType="ul"
+              style={styles.weekTitle}>
+              <li style={weekTitleDayStyle}>S</li>
+              <li style={weekTitleDayStyle}>M</li>
+              <li style={weekTitleDayStyle}>T</li>
+              <li style={weekTitleDayStyle}>W</li>
+              <li style={weekTitleDayStyle}>T</li>
+              <li style={weekTitleDayStyle}>F</li>
+              <li style={weekTitleDayStyle}>S</li>
+            </ClearFix>
+            <SlideInTransitionGroup
+              direction={this.state.transitionDirection}>
+              <CalendarMonth
+                key={this.state.displayDate.toDateString()}
+                ref="calendar"
+                displayDate={this.state.displayDate}
+                onDayTouchTap={this._handleDayTouchTap}
+                selectedDate={this.state.selectedDate}
+                minDate={this.props.minDate}
+                maxDate={this.props.maxDate}
+                shouldDisableDate={this.props.shouldDisableDate} />
+            </SlideInTransitionGroup>
+          </div>
+        }
         {!this.state.displayMonthDay &&
-        <div style={this.prepareStyles(styles.yearContainer)}>
-          {this._yearSelector()}
-        </div>}
+          <div style={this.prepareStyles(styles.yearContainer)}>
+            {this._yearSelector()}
+          </div>
+        }
       </ClearFix>
     );
   },
