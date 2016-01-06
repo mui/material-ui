@@ -177,7 +177,7 @@ const AppLeftNav = React.createClass({
               />,
               <ListItem
                 value="/components/dropdown-menu"
-                primaryText="Dropdown Menu"
+                primaryText="Drop Down Menu"
               />,
               <ListItem
                 value="/components/grid-list"
