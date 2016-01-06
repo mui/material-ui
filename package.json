@@ -49,6 +49,7 @@
     "babel-core": "^6.3.21",
     "babel-eslint": "^5.0.0-beta6",
     "babel-loader": "^6.2.0",
+    "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.3.13",
