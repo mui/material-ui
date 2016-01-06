@@ -41,7 +41,7 @@ import Popover from './components/pages/components/popover';
 import Progress from './components/pages/components/progress';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
 import SelectField from './components/pages/components/SelectField/Page';
-import Sliders from './components/pages/components/sliders';
+import SliderPage from './components/pages/components/Slider/Page';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
 import SvgIconPage from './components/pages/components/SvgIcon/Page';
 import Switches from './components/pages/components/switches';
@@ -103,8 +103,8 @@ const AppRoutes = (
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
       <Route path="select-field" component={SelectField} />
-      <Route path="sliders" component={Sliders} />
       <Route path="svg-icon" component={SvgIconPage} />
+      <Route path="slider" component={SliderPage} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={SnackbarPage} />
       <Route path="table" component={Table} />

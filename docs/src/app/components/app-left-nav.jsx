@@ -238,8 +238,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Select Field"
               />,
               <ListItem
-                value="/components/sliders"
-                primaryText="Sliders"
+                value="/components/slider"
+                primaryText="Slider"
               />,
               <ListItem
                 value="/components/switches"
