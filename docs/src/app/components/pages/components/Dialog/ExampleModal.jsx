@@ -13,11 +13,11 @@ export default class DialogExampleModal extends React.Component {
 
   handleOpen = () => {
     this.setState({open: true});
-  }
+  };
 
   handleClose = () => {
     this.setState({open: false});
-  }
+  };
 
   render() {
     const actions = [

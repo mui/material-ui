@@ -24,7 +24,7 @@ export default class TabsExampleControlled extends React.Component {
     this.setState({
       value: value,
     });
-  }
+  };
 
   render() {
     return (

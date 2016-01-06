@@ -18,11 +18,11 @@ export default class DialogExampleCustomWidth extends React.Component {
 
   handleOpen = () => {
     this.setState({open: true});
-  }
+  };
 
   handleClose = () => {
     this.setState({open: false});
-  }
+  };
 
   render() {
     const actions = [
