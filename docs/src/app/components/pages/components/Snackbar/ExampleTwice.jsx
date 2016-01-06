@@ -27,13 +27,13 @@ export default class SnackbarExampleTwice extends React.Component {
         message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
       });
     }, 1500);
-  }
+  };
 
   handleRequestClose = () => {
     this.setState({
       open: false,
     });
-  }
+  };
 
   render() {
     return (

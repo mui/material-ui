@@ -2,7 +2,8 @@
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
     "transform-decorators-legacy",
-    "transform-dev-warning"
+    "transform-dev-warning",
+    "add-module-exports"
   ],
   "env": {
     "docs-production": {

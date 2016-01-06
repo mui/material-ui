@@ -15,7 +15,7 @@ export default class DatePickerExampleControlled extends React.Component {
     this.setState({
       controlledDate: date,
     });
-  }
+  };
 
   render() {
     return (

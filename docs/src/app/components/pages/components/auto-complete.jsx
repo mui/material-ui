@@ -135,25 +135,25 @@ class AutoCompletePage extends React.Component {
 
   handleNewRequest = (t) => {
     console.log(`New request: ${t}`);
-  }
+  };
 
   handleUpdateInput1 = (t) => {
     this.setState({
       input1: [t, t + t, t + t + t],
     });
-  }
+  };
 
   handleUpdateInput2 = (t) => {
     this.setState({
       input2: [t, t + t, t + t + t],
     });
-  }
+  };
 
   handleUpdateInput3 = (t) => {
     this.setState({
       input3: [t, t + t, t + t + t],
     });
-  }
+  };
 
   render() {
     return (
