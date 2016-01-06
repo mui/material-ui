@@ -36,7 +36,7 @@ import IconMenus from './components/pages/components/icon-menus';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
 import Lists from './components/pages/components/lists';
 import Menus from './components/pages/components/menus';
-import Paper from './components/pages/components/paper';
+import PaperPage from './components/pages/components/Paper/Page';
 import Popover from './components/pages/components/popover';
 import Progress from './components/pages/components/progress';
 import RefreshIndicator from './components/pages/components/refresh-indicator';
@@ -97,7 +97,7 @@ const AppRoutes = (
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="lists" component={Lists} />
       <Route path="menus" component={Menus} />
-      <Route path="paper" component={Paper} />
+      <Route path="paper" component={PaperPage} />
       <Route path="popover" component={Popover} />
       <Route path="progress" component={Progress} />
       <Route path="refresh-indicator" component={RefreshIndicator} />
