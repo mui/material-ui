@@ -10,12 +10,41 @@ import ThemeManager from './styles/theme-manager';
 const RadioButton = React.createClass({
 
   propTypes: {
+    /**
+     * Checked if true.
+     */
     checked: React.PropTypes.bool,
+
+    /**
+     * Disabled if true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Overrides the inline-styles of the icon element.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * Where the label will be placed next to the radio button.
+     * Options include "left" and "right" (case-sensitive).
+     * Default option is "right".
+     */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Overrides the inline-styles of the RadioButton element label.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function for checked event.
+     */
     onCheck: React.PropTypes.func,
+
+    /**
+     * The value of our radio button component.
+     */
     value: React.PropTypes.string,
   },
 
@@ -29,6 +58,12 @@ const RadioButton = React.createClass({
   },
 
   mixins: [StylePropable],
+
+  getDefaultProps() {
+    return {
+      disabled: false,
+    };
+  },
 
   getInitialState() {
     return {
