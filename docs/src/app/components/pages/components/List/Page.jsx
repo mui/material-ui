@@ -17,7 +17,6 @@ import listExampleFoldersCode from '!raw!./ExampleFolders.jsx';
 import ListExampleFolders from './ExampleFolders.jsx';
 import listExampleNestedCode from '!raw!./ExampleNested.jsx';
 import ListExampleNested from './ExampleNested.jsx';
-//ExampleNested causes warning!
 import listExampleSettingsCode from '!raw!./ExampleSettings.jsx';
 import ListExampleSettings from './ExampleSettings.jsx';
 import listExamplePhoneCode from '!raw!./ExamplePhone.jsx';

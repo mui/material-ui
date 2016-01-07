@@ -10,15 +10,58 @@ import ThemeManager from './styles/theme-manager';
 const Checkbox = React.createClass({
 
   propTypes: {
+    /**
+     * Checkbox is checked if true.
+     */
     checked: React.PropTypes.bool,
+
+    /**
+     * The SvgIcon to use for the checked state.
+     * This is useful to create icon toggles.
+     */
     checkedIcon: React.PropTypes.element,
+
+    /**
+     * The default state of our checkbox component.
+     */
     defaultChecked: React.PropTypes.bool,
+
+    /**
+     * Disabled if true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Overrides the inline-styles of the icon element.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * Where the label will be placed next to the checkbox.
+     * Options include "left" and "right" (case-sensitive).
+     * Default option is "right".
+     */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Overrides the inline-styles of the Checkbox element label.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function that is fired when the checkbox is checked.
+     */
     onCheck: React.PropTypes.func,
+
+    /**
+     * The SvgIcon to use for the unchecked state.
+     * This is useful to create icon toggles.
+     */
     unCheckedIcon: React.PropTypes.element,
+
+    /**
+     * ValueLink for when using controlled checkbox.
+     */
     valueLink: React.PropTypes.object,
   },
 
@@ -32,6 +75,13 @@ const Checkbox = React.createClass({
   },
 
   mixins: [StylePropable],
+
+  getDefaultProps() {
+    return {
+      defaultChecked: false,
+      disabled: false,
+    };
+  },
 
   getInitialState() {
     return {
