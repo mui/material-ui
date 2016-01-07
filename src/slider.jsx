@@ -307,6 +307,18 @@ const Slider = React.createClass({
   },
 
 
+  // Needed to prevent text selection when dragging the slider handler.
+  // In the future, we should consider use <input type="range"> to avoid
+  // similar issues.
+  _toggleSelection(value) {
+    let body = document.getElementsByTagName('body')[0];
+    body.style['user-select'] = value;
+    body.style['-webkit-user-select'] = value;
+    body.style['-moz-user-select'] = value;
+    body.style['-ms-user-select'] = value;
+    body.style['-o-user-select'] = value;
+  },
+
   _onHandleTouchStart(e) {
     if (document) {
       document.addEventListener('touchmove', this._dragTouchHandler, false);
@@ -321,6 +333,7 @@ const Slider = React.createClass({
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
+      this._toggleSelection('none');
     }
     this._onDragStart(e);
   },
@@ -347,6 +360,7 @@ const Slider = React.createClass({
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
+      this._toggleSelection('');
     }
 
     this._onDragStop(e);
