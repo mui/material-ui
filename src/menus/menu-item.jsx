@@ -17,27 +17,80 @@ const nestedMenuStyle = {
 const MenuItem = React.createClass({
 
   propTypes: {
+    /**
+     * If true, a left check mark will be rendered.
+     */
     checked: React.PropTypes.bool,
+
+    /**
+     * Elements passed as children to inner ListItem.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Indicates if the menu should render with compact desktop styles.
+     */
     desktop: React.PropTypes.bool,
+
+    /**
+     * Disables a menu item.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Prop passed down to ListItem that tells it what kind of focus it has.
+     */
     focusState: React.PropTypes.oneOf([
       'none',
       'focused',
       'keyboard-focused',
     ]),
+
+    /**
+     * Style overrides for the inner div.
+     */
     innerDivStyle: React.PropTypes.object,
+
+    /**
+     * If true, the children will be indented.
+     * Only needed when there is no leftIcon.
+     */
     insetChildren: React.PropTypes.bool,
+
+    /**
+     * This is the SvgIcon or FontIcon to be displayed on the left side.
+     */
     leftIcon: React.PropTypes.element,
+
+    /**
+     * Nested MenuItems for this MenuItem. Used to make nested menus.
+     */
     menuItems: React.PropTypes.node,
+
+    /**
+     * Fired when the element is touchTapped.
+     */
     onTouchTap: React.PropTypes.func,
+
+    /**
+     * This is the SvgIcon or FontIcon to be displayed on the right side.
+     */
     rightIcon: React.PropTypes.element,
+
+    /**
+     * This is the block element that contains the secondary text.
+     * If a string is passed in, a div tag will be rendered.
+     */
     secondaryText: React.PropTypes.node,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The value of the menu item.
+     */
     value: React.PropTypes.any,
   },
 
@@ -57,7 +110,11 @@ const MenuItem = React.createClass({
 
   getDefaultProps() {
     return {
+      checked: false,
+      desktop: false,
+      disabled: false,
       focusState: 'none',
+      insetChildren: false,
     };
   },
 
