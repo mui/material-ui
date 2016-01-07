@@ -53,7 +53,16 @@ const Snackbar = React.createClass({
       'Instead, use the open property to control the component.'),
 
     /**
-     * Fired when the `Snackbar` is requested to be closed by a click outside or when the time runs out.
+     * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
+     * `autoHideDuration` timer expires.
+
+     * Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar`
+     * `open` prop.
+
+     * `onRequestClose` is called with an additional parameter: `reason`, which can be:`"timeout"` (autoHideDuration)
+     * or: `"clickaway"`
+
+     * This can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.
      */
     onRequestClose: React.PropTypes.func.isRequired,
 
