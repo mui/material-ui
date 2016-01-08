@@ -12,11 +12,36 @@ const TableRowColumn = React.createClass({
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * Number to identify the header row. This property
+     * is automatically populated when used with TableHeader.
+     */
     columnNumber: React.PropTypes.number,
+
+    /**
+     * If true, this column responds to hover events.
+     */
     hoverable: React.PropTypes.bool,
+
+    /**
+     * Key for this element.
+     */
     key: React.PropTypes.string,
+
+    /**
+     * Callback function for click event.
+     */
     onClick: React.PropTypes.func,
+
+    /**
+     * Callback function for hover event.
+     */
     onHover: React.PropTypes.func,
+
+    /**
+     * Callback function for hover exit event.
+     */
     onHoverExit: React.PropTypes.func,
 
     /**

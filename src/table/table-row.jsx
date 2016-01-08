@@ -6,23 +6,87 @@ import ThemeManager from '../styles/theme-manager';
 const TableRow = React.createClass({
 
   propTypes: {
+    /**
+     * Children passed to table row.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * If true, row border will be displayed for the row.
+     * If false, no border will be drawn.
+     */
     displayBorder: React.PropTypes.bool,
+
+    /**
+     * Controls whether or not the row reponseds to hover events.
+     */
     hoverable: React.PropTypes.bool,
+
+    /**
+     * Called when a row cell is clicked.
+     * rowNumber is the row number and columnId is
+     * the column number or the column key.
+     */
     onCellClick: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is hovered.
+     * rowNumber is the row number of the hovered row
+     * and columnId is the column number or the column key of the cell.
+     */
     onCellHover: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is no longer hovered.
+     * rowNumber is the row number of the row and columnId
+     * is the column number or the column key of the cell.
+     */
     onCellHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when row is clicked.
+     */
     onRowClick: React.PropTypes.func,
+
+    /**
+     * Called when a table row is hovered.
+     * rowNumber is the row number of the hovered row.
+     */
     onRowHover: React.PropTypes.func,
+
+    /**
+     * Called when a table row is no longer hovered.
+     * rowNumber is the row number of the row that is no longer hovered.
+     */
     onRowHoverExit: React.PropTypes.func,
+
+    /**
+     * Number to identify the row. This property is
+     * automatically populated when used with the TableBody component.
+     */
     rowNumber: React.PropTypes.number,
+
+    /**
+     * If true, table rows can be selected. If multiple row
+     * selection is desired, enable multiSelectable.
+     * The default value is true.
+     */
     selectable: React.PropTypes.bool,
+
+    /**
+     * Indicates that a particular row is selected.
+     * This property can be used to programmatically select rows.
+     */
     selected: React.PropTypes.bool,
+
+    /**
+     * Indicates whether or not the row is striped.
+     */
     striped: React.PropTypes.bool,
 
     /**
@@ -47,7 +111,6 @@ const TableRow = React.createClass({
   getDefaultProps() {
     return {
       displayBorder: true,
-      displayRowCheckbox: true,
       hoverable: false,
       selectable: true,
       selected: false,
