@@ -534,7 +534,9 @@ const Dialog = React.createClass({
     modal: React.PropTypes.bool,
 
     /**
-     * Fired when the `Dialog is requested to be closed by a click outside the `Dialog` or on the buttons.
+     * Fired when the `Dialog` is requested to be closed by a click outside the `Dialog` or on the buttons.
+     *
+     * @param {bool} buttonClicked Determines whether a button click triggered this request.
      */
     onRequestClose: React.PropTypes.func,
 

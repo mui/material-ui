@@ -85,6 +85,10 @@ const config = {
         exclude: /node_modules/,
       },
       {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
         test: /\.txt$/,
         loader: 'raw-loader',
         include: path.resolve(__dirname, 'src/app/components/raw-code'),
