@@ -7,12 +7,11 @@ export default class TimePickerExampleComplex extends React.Component {
     super(props);
   }
 
-
-  changeTimePicker24 = (err, time) => {
+  handleChangeTimePicker24 = (err, time) => {
     this.refs.picker24hr.setTime(time);
   };
 
-  changeTimePicker12 = (err, time) => {
+  handleChangeTimePicker12 = (err, time) => {
     this.refs.picker12hr.setTime(time);
   };
 
@@ -23,13 +22,12 @@ export default class TimePickerExampleComplex extends React.Component {
           ref="picker12hr"
           format="ampm"
           hintText="12hr Format"
-          onChange={this.changeTimePicker24} />
-
+          onChange={this.handleChangeTimePicker24} />
         <TimePicker
           ref="picker24hr"
           format="24hr"
           hintText="24hr Format"
-          onChange={this.changeTimePicker12} />
+          onChange={this.handleChangeTimePicker12} />
       </div>
     );
   }
