@@ -1,4 +1,7 @@
-export {default} from '../baseThemes/darkBaseTheme';
+import darkBaseTheme from '../baseThemes/darkBaseTheme';
+
+export default darkBaseTheme;
+
 // import deprecatedExport from '../../utils/deprecatedExport';
 
 // export default deprecatedExport(

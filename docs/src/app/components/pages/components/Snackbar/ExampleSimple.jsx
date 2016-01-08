@@ -18,24 +18,24 @@ export default class SnackbarExampleSimple extends React.Component {
     this.setState({
       open: true,
     });
-  }
+  };
 
   handleActionTouchTap = () => {
     alert('We removed the event from your calendar.');
-  }
+  };
 
   handleChangeDuration = (event) => {
     const value = event.target.value;
     this.setState({
       autoHideDuration: value.length > 0 ? parseInt(value) : 0,
     });
-  }
+  };
 
   handleRequestClose = () => {
     this.setState({
       open: false,
     });
-  }
+  };
 
   render() {
     return (

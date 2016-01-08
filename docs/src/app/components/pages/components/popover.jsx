@@ -78,7 +78,7 @@ let PopoverPage = React.createClass({
           {
             name: 'animated',
             type: 'bool',
-            header: 'default: false',
+            header: 'default: true',
             desc: 'If true, the popover will apply transitions when added it gets added to the DOM.',
           },
           {
@@ -111,7 +111,7 @@ let PopoverPage = React.createClass({
           {
             name: 'useLayerForClickAway',
             type: 'bool',
-            header: 'default: false',
+            header: 'default: true',
             desc: 'If true, the popover will render on top of an invisible layer, which ' +
             'will prevent clicks to the underlying elements, and trigger an onRequestClose(clickAway) event.',
           },

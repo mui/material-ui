@@ -29,7 +29,7 @@ export default class TabsExampleSwipeable extends React.Component {
     this.setState({
       slideIndex: value,
     });
-  }
+  };
 
   render() {
     return (

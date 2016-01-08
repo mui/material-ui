@@ -11,12 +11,12 @@ class App extends Component {
 
   static propTypes = {
     instructions: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     ...Component.defaultProps,
     instructions: 'Usage instructions not provided.',
-  }
+  };
 
   constructor(props, context) {
     super(props, context);

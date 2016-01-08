@@ -32,19 +32,19 @@ export default class DatePickerExampleToggle extends React.Component {
     this.setState({
       minDate: new Date(event.target.value),
     });
-  }
+  };
 
   handleChangeMaxDate = (event) => {
     this.setState({
       maxDate: new Date(event.target.value),
     });
-  }
+  };
 
   handleToggle = (event, toggled) => {
     this.setState({
       [event.target.name]: toggled,
     });
-  }
+  };
 
   render() {
     return (
