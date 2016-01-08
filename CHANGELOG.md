@@ -1,5 +1,27 @@
 ## HEAD
 
+## 0.14.2
+###### _Jan 08, 2016_
+
+##### General
+- [CRITICAL] Fix imports using require() style syntax (#2804) thanks @newoga
+- [Examples] Upgrade to babel 6 for browserify (#2795)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [RefreshIndicator] (#2799)
+  1. [Icon] (#2695)
+  1. [Lists] (#2782)
+  1. [Progress] (#2798)
+  1. [Sliders] (#2800)
+  1. [Paper] (#2797)
+  1. [Menus] (#2785)
+- Added the following eslint rules:
+  1. `react/jsx-indent` (#2808)
+
+##### Component Fixes / Enhancements
+- [DatePicker] Update slide direction (#2791)
+- [AutoComplete] Add 2 extra filters for text matching (#2755)
+- [TableRow] Fix row height in IE (#2812)
+
 ## 0.14.1
 ###### _Jan 05, 2016_
 
