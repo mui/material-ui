@@ -11,7 +11,8 @@
     "prebuild": "rimraf lib",
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "build": "babel ./src --out-dir ./lib",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "local": "babel ./src/lists/list-item.jsx --watch --out-file ./lib/lists/list-item.js"
   },
   "keywords": [
     "react",
