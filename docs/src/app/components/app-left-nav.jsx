@@ -268,7 +268,7 @@ const AppLeftNav = React.createClass({
                 primaryText="Tabs"
               />,
               <ListItem
-                value="/components/text-fields"
+                value="/components/text-field"
                 primaryText="Text Fields"
               />,
               <ListItem

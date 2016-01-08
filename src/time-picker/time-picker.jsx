@@ -17,20 +17,69 @@ emptyTime.setMilliseconds(0);
 const TimePicker = React.createClass({
 
   propTypes: {
+    /**
+     * If true, automatically accept and close the picker on set minutes.
+     */
     autoOk: React.PropTypes.bool,
+
+    /**
+     * This is the initial time value of the component.
+     */
     defaultTime: React.PropTypes.object,
+
+    /**
+     * Tells the component to display the picker in
+     * ampm (12hr) format or 24hr format.
+     */
     format: React.PropTypes.oneOf(['ampm', '24hr']),
+
+    /**
+     * Callback function that is fired when the time
+     * value changes. The time value is passed in a Date
+     * Object.Since there is no particular event associated
+     * with the change the first argument will always be null
+     * and the second argument will be the new Date instance.
+     */
     onChange: React.PropTypes.func,
+
+    /**
+     * Fired when the timepicker dialog is dismissed.
+     */
     onDismiss: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the timepicker field gains focus.
+     */
     onFocus: React.PropTypes.func,
+
+    /**
+     * Fired when the timepicker dialog is shown.
+     */
     onShow: React.PropTypes.func,
+
+    /**
+     * Callback for touch tap event.
+     */
     onTouchTap: React.PropTypes.func,
+
+    /**
+     * It's technically more correct to refer to
+     * "12 noon" and "12 midnight" rather than
+     * "12 a.m." and "12 p.m." and it avoids real
+     * confusion between different locales. By default
+     * (for compatibility reasons) TimePicker uses
+     * (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.
+     */
     pedantic: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of TimePicker's TextField element.
+     */
     textFieldStyle: React.PropTypes.object,
   },
 
