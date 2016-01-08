@@ -20,16 +20,6 @@ export default class TableExampleSimple extends React.Component {
   constructor(props) {
     super(props);
 
-    this._handleToggle = (event, toggled) => {
-      let state = {};
-      state[event.target.name] = toggled;
-      this.setState(state);
-    };
-
-    this._onChange = (event) => {
-      this.setState({height: event.target.value});
-    };
-
     this.state = {
       fixedHeader: true,
       fixedFooter: true,
@@ -43,8 +33,17 @@ export default class TableExampleSimple extends React.Component {
     };
   }
 
-  render() {
+  handleToggle = (event, toggled) => {
+    this.setState({
+      [event.target.name]: toggled,
+    });
+  };
 
+  handleChange = (event) => {
+    this.setState({height: event.target.value});
+  };
+
+  render() {
     return (
       <div>
         <Table
@@ -125,56 +124,47 @@ export default class TableExampleSimple extends React.Component {
           <TextField
             floatingLabelText="Table Body Height"
             defaultValue={this.state.height}
-            onChange={this._onChange} />
-
+            onChange={this.handleChange} />
           <Toggle
             name="fixedHeader"
             label="Fixed Header"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.fixedHeader} />
-
           <Toggle
             name="fixedFooter"
             label="Fixed Footer"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.fixedFooter} />
-
           <Toggle
             name="stripedRows"
             label="Stripe Rows"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.stripedRows} />
-
           <Toggle
             name="showRowHover"
             label="Show Row Hover"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.showRowHover} />
-
           <Toggle
             name="selectable"
             label="Selectable"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.selectable} />
-
           <Toggle
             name="multiSelectable"
             label="Multi-Selectable"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.multiSelectable} />
-
           <Toggle
             name="enableSelectAll"
             label="Enable Select All"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.enableSelectAll} />
-
           <Toggle
             name="deselectOnClickaway"
             label="Deselect On Clickaway"
-            onToggle={this._handleToggle}
+            onToggle={this.handleToggle}
             defaultToggled={this.state.deselectOnClickaway} />
-
         </div>
       </div>
     );

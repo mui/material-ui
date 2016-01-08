@@ -123,7 +123,6 @@ const TableHeader = React.createClass({
       if (!React.isValidElement(child)) continue;
 
       let props = {
-        displayRowCheckbox: false,
         key: 'sh' + index,
         rowNumber: index,
       };

@@ -21,12 +21,12 @@ const TablePage = () => (
       <TableExampleSimple />
     </CodeExample>
     <PropTypeDescription code={tableCode} header="### Table Properties"/>
-    <PropTypeDescription code={tableBodyCode} header="### Table Body Properties"/>
-    <PropTypeDescription code={tableFooterCode} header="### Table Footer Properties"/>
-    <PropTypeDescription code={tableHeaderColumnCode} header="### Table Header Column Properties"/>
-    <PropTypeDescription code={tableHeaderCode} header="### Table Header Properties"/>
-    <PropTypeDescription code={tableRowColumnCode} header="### Table Row Column Properties"/>
-    <PropTypeDescription code={tableRowCode} header="### Table Row Properties"/>
+    <PropTypeDescription code={tableBodyCode} header="### TableBody Properties"/>
+    <PropTypeDescription code={tableFooterCode} header="### TableFooter Properties"/>
+    <PropTypeDescription code={tableHeaderColumnCode} header="### TableHeaderColumn Properties"/>
+    <PropTypeDescription code={tableHeaderCode} header="### TableHeader Properties"/>
+    <PropTypeDescription code={tableRowColumnCode} header="### TableRowColumn Properties"/>
+    <PropTypeDescription code={tableRowCode} header="### TableRow Properties"/>
   </div>
 );
 
