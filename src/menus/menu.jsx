@@ -16,27 +16,113 @@ import ThemeManager from '../styles/theme-manager';
 const Menu = React.createClass({
 
   propTypes: {
+    /**
+     * If true, the menu will apply transitions when added it
+     * gets added to the DOM. In order for transitions to
+     * work, wrap the menu inside a ReactTransitionGroup.
+     */
     animated: React.PropTypes.bool,
+
+    /**
+     * If true, the width will automatically be
+     * set according to the items inside the menu
+     * using the proper keyline increment.
+     */
     autoWidth: React.PropTypes.bool,
+
+    /**
+     * Children for the Menu. Usually MenuItems.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Indicates if the menu should render with compact desktop styles.
+     */
     desktop: React.PropTypes.bool,
+
+    /**
+     * True if this item should be focused by the keyboard initially.
+     */
     initiallyKeyboardFocused: React.PropTypes.bool,
+
+    /**
+     * The style object to use to override underlying list style.
+     */
     listStyle: React.PropTypes.object,
+
+    /**
+     * The maxHeight of the menu in pixels. If
+     * specified, the menu will scroll if larger than the maxHeight.
+     */
     maxHeight: React.PropTypes.number,
+
+    /**
+     * If true, the value can an array and allow the menu to be a multi-select.
+     */
     multiple: React.PropTypes.bool,
+
+    /**
+     * Fired when a menu item is touchTapped and the menu item
+     * value is not equal to the current menu value.
+     */
+    onChange: React.PropTypes.func,
+
+    /**
+     * Fired when an Esc key is keyed down.
+     */
     onEscKeyDown: React.PropTypes.func,
+
+    /**
+     * Fired when a menu item is touchTapped.
+     */
     onItemTouchTap: React.PropTypes.func,
+
+    /**
+     * Fired when a key is pressed.
+     */
     onKeyDown: React.PropTypes.func,
+
+    /**
+     * This is the placement of the menu relative to the IconButton.
+     */
     openDirection: PropTypes.corners,
+
+    /**
+     * Style for the selected Menu Item.
+     */
     selectedMenuItemStyle: React.PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The value of the selected menu item. If passed in,
+     * this will make the menu a controlled component.
+     * This component also supports valueLink.
+     */
     value: React.PropTypes.any,
+
+    /**
+     * ValueLink for this component when controlled.
+     */
     valueLink: React.PropTypes.object,
+
+    /**
+     * Sets the width of the menu. If not specified, the menu
+     * width will be dictated by its children. The rendered
+     * width will always be a keyline increment
+     * (64px for desktop, 56px otherwise).
+     */
     width: PropTypes.stringOrNumber,
+
+    /**
+     * Sets the width of the menu. If not specified,
+     * the menu width will be dictated by its children.
+     * The rendered width will always be a keyline increment
+     * (64px for desktop, 56px otherwise).
+     */
     zDepth: PropTypes.zDepth,
   },
 
@@ -59,7 +145,10 @@ const Menu = React.createClass({
     return {
       animated: false,
       autoWidth: true,
+      desktop: false,
+      initiallyKeyboardFocused: false,
       maxHeight: null,
+      multiple: false,
       onEscKeyDown: () => {},
       onItemTouchTap: () => {},
       onKeyDown: () => {},
