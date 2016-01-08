@@ -7,16 +7,14 @@ import textFieldReadmeText from './README';
 import textFieldCode from '!raw!material-ui/lib/TextField/TextField';
 import TextFieldExampleSimple from './ExampleSimple';
 import textFieldExampleSimpleCode from '!raw!./ExampleSimple';
-import TextFieldExampleHint from './ExampleHint';
-import textFieldExampleHintCode from '!raw!./ExampleHint';
+import TextFieldExampleCustomize from './ExampleCustomize';
+import textFieldExampleCustomizeCode from '!raw!./ExampleCustomize';
 import TextFieldExampleError from './ExampleError';
 import textFieldExampleErrorCode from '!raw!./ExampleError';
-import TextFieldExampleMultiLine from './ExampleMultiLine';
-import textFieldExampleMultiLineCode from '!raw!./ExampleMultiLine';
+import TextFieldExampleDisabled from './ExampleDisabled';
+import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
 import TextFieldExampleControlled from './ExampleControlled';
 import textFieldExampleControlledCode from '!raw!./ExampleControlled';
-import TextFieldExampleComplex from './ExampleComplex';
-import textFieldExampleComplexCode from '!raw!./ExampleComplex';
 
 const TextFieldsPage = () => (
   <div>
@@ -24,20 +22,17 @@ const TextFieldsPage = () => (
     <CodeExample code={textFieldExampleSimpleCode}>
       <TextFieldExampleSimple />
     </CodeExample>
-    <CodeExample code={textFieldExampleHintCode}>
-      <TextFieldExampleHint />
-    </CodeExample>
     <CodeExample code={textFieldExampleErrorCode}>
       <TextFieldExampleError />
     </CodeExample>
-    <CodeExample code={textFieldExampleMultiLineCode}>
-      <TextFieldExampleMultiLine />
+    <CodeExample code={textFieldExampleCustomizeCode}>
+      <TextFieldExampleCustomize />
+    </CodeExample>
+    <CodeExample code={textFieldExampleDisabledCode}>
+      <TextFieldExampleDisabled />
     </CodeExample>
     <CodeExample code={textFieldExampleControlledCode}>
       <TextFieldExampleControlled />
-    </CodeExample>
-    <CodeExample code={textFieldExampleComplexCode}>
-      <TextFieldExampleComplex />
     </CodeExample>
     <PropTypeDescription code={textFieldCode}/>
   </div>

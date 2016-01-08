@@ -206,6 +206,8 @@ const TextField = React.createClass({
 
   getDefaultProps() {
     return {
+      disabled: false,
+      multiLine: false,
       fullWidth: false,
       type: 'text',
       underlineShow: true,
