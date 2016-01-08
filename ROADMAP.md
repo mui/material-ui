@@ -22,15 +22,14 @@
 * Remove the old menu folder.
 * Remove old component file naming
 
-## 0.14.2
+## 0.15.0
 
 - [ ] Documentation versioning.
 - [ ] Enforce eslint rules.
 - [ ] #2433 Auto-generate Docs from source-code.
 - [ ] #2493 Use higher order components across the library to abstract themes passed down from context.
 - [ ] Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
+
+## 0.14.3
+
 - [ ] Document the new theme calcualtion, and it's usage. (#2635)
-
-##### Breaking Changes
-
-None
