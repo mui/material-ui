@@ -32,4 +32,4 @@
 
 ## 0.14.3
 
-- [ ] Document the new theme calcualtion, and it's usage. (#2635)
+- [ ] Document the new theme calculation, and it's usage. (#2635)
