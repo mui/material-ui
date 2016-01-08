@@ -39,8 +39,8 @@ import ListPage from './components/pages/components/List/Page';
 import LinearProgressPage from './components/pages/components/LinearProgress/Page';
 import PaperPage from './components/pages/components/Paper/Page';
 import MenuPage from './components/pages/components/Menu/Page';
-import Popover from './components/pages/components/popover';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
+import PopoverPage from './components/pages/components/Popover/Page';
 import SelectField from './components/pages/components/SelectField/Page';
 import SliderPage from './components/pages/components/Slider/Page';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
@@ -102,8 +102,8 @@ const AppRoutes = (
       <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="paper" component={PaperPage} />
       <Route path="menu" component={MenuPage} />
-      <Route path="popover" component={Popover} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
+      <Route path="popover" component={PopoverPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />

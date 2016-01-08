@@ -14,27 +14,85 @@ import PopoverDefaultAnimation from './popover-default-animation';
 const Popover = React.createClass({
 
   propTypes: {
+    /**
+     *
+     */
     anchorEl: React.PropTypes.object,
+
+    /**
+     * This is the point on the anchor where the popover
+     * targetOrigin will stick to.
+     * Options: vertical: [top, middle, bottom]
+     * horizontal: [left, center, right]
+     */
     anchorOrigin: PropTypes.origin,
+
+    /**
+     * If true, the popover will apply transitions when
+     * added it gets added to the DOM.
+     */
     animated: React.PropTypes.bool,
+
+    /**
+     *
+     */
     animation: React.PropTypes.func,
+
+    /**
+     * If true, the popover will hide when the anchor scrolls off the screen
+     */
     autoCloseWhenOffScreen: React.PropTypes.bool,
+
+    /**
+     * If true, the popover (potentially) ignores targetOrigin
+     * and anchorOrigin to make itself fit on screen,
+     * which is useful for mobile devices.
+     */
     canAutoPosition: React.PropTypes.bool,
+
+    /**
+     * Children passed to the Popover.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * This is a callback that fires when the popover
+     * thinks it should close. (e.g. clickAway or offScreen)
+     */
     onRequestClose: React.PropTypes.func,
+
+    /**
+     * Controls the visibility of the popover.
+     */
     open: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * This is the point on the popover which will stick to
+     * the anchors origin.
+     * Options: vertical: [top, middle, bottom]horizontal: [left, center, right]
+     */
     targetOrigin: PropTypes.origin,
+
+    /**
+     * If true, the popover will render on top of an invisible
+     * layer, which will prevent clicks to the underlying
+     * elements, and trigger an onRequestClose(clickAway) event.
+     */
     useLayerForClickAway: React.PropTypes.bool,
+
+    /**
+     *
+     */
     zDepth: PropTypes.zDepth,
   },
 
