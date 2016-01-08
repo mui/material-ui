@@ -9,17 +9,67 @@ import ThemeManager from './styles/theme-manager';
 const Toggle = React.createClass({
 
   propTypes: {
+    /**
+     * The value of the toggle button. Is true when toggle
+     * has been turned on. False otherwise.
+     */
     defaultToggled: React.PropTypes.bool,
+
+    /**
+     * Will disable the toggle if true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Overrides the inline-styles of the Toggle element.
+     */
     elementStyle: React.PropTypes.object,
+
+    /**
+     * Overrides the inline-styles of the Icon element.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * Where the label will be placed next to the toggle
+     * switch. Options include "left" and "right" (case-sensitive).
+     * Default option is "left".
+     */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Overrides the inline-styles of the Toggle element label.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function that is fired when the toggle switch is toggled.
+     */
     onToggle: React.PropTypes.func,
+
+    /**
+     * Override style of ripple.
+     */
     rippleStyle: React.PropTypes.object,
+
+    /**
+     * Override style for thumb.
+     */
     thumbStyle: React.PropTypes.object,
+
+    /**
+     * Toggled if set to true.
+     */
     toggled: React.PropTypes.bool,
+
+    /**
+     * Override style for track.
+     */
     trackStyle: React.PropTypes.object,
+
+    /**
+     * ValueLink prop for when using controlled toggle.
+     */
     valueLink: React.PropTypes.object,
   },
 
@@ -35,6 +85,13 @@ const Toggle = React.createClass({
   mixins: [
     StylePropable,
   ],
+
+  getDefaultProps() {
+    return {
+      defaultToggled: false,
+      disabled: false,
+    };
+  },
 
   getInitialState() {
     return {
