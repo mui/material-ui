@@ -268,8 +268,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Tabs"
               />,
               <ListItem
-                value="/components/text-fields"
-                primaryText="Text Fields"
+                value="/components/text-field"
+                primaryText="Text Field"
               />,
               <ListItem
                 value="/components/time-picker"
