@@ -12,32 +12,110 @@ import warning from 'warning';
 const IconMenu = React.createClass({
 
   propTypes: {
+    /**
+     * This is the point on the icon where the menu
+     * targetOrigin will stick to. Options: vertical:
+     * [top, middle, bottom] horizontal: [left, center, right].
+     */
     anchorOrigin: PropTypes.origin,
+
+    /**
+     * Children passed to root element.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * If true, menu will close after an item is touchTapped.
+     */
     closeOnItemTouchTap: React.PropTypes.bool,
+
+    /**
+     * This is the IconButton to render. This button will open the menu.
+     */
     iconButtonElement: React.PropTypes.element.isRequired,
+
+    /**
+     * The style object to use to override underlying icon style.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * The style object to use to override underlying menu style.
+     */
     menuStyle: React.PropTypes.object,
+
+    /**
+     * Fired when a menu item is touchTapped.
+     */
     onItemTouchTap: React.PropTypes.func,
+
+    /**
+     * Fired when keyobard focuses on element.
+     */
     onKeyboardFocus: React.PropTypes.func,
+
+    /**
+     * Fired when mouse is pressed on element.
+     */
     onMouseDown: React.PropTypes.func,
+
+    /**
+     * Fired when mouse enters the element.
+     */
     onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Fired when mouse leaves the element.
+     */
     onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Fired when mouse is lifted inside the element.
+     */
     onMouseUp: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the open state
+     * of the menu is requested to be changed. The provided
+     * open argument determines whether the menu is requested
+     * to be opened or closed. Also, the reason argument states
+     * why the menu got closed or opened. It can be 'keyboard',
+     * 'iconTap' for open action and 'enter', 'escape', 'itemTap',
+     * 'clickAway' for close action.
+     */
     onRequestChange: React.PropTypes.func,
+
+    /**
+     * Fired when element is touch tapped.
+     */
     onTouchTap: React.PropTypes.func,
+
+    /**
+     * Controls whether the IconMenu is opened or not.
+     */
     open: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * This is the point on the menu which will stick to the menu
+     * origin.Options:vertical: [top, middle, bottom]horizontal:
+     * [left, center, right].
+     */
     targetOrigin: PropTypes.origin,
+
+    /**
+     * Sets the delay in milliseconds before closing the
+     * menu when an item is clicked.
+     */
     touchTapCloseDelay: React.PropTypes.number,
   },
 

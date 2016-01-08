@@ -33,7 +33,7 @@ import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
 import FontIconPage from './components/pages/components/FontIcon/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import IconButtonPage from './components/pages/components/IconButton/Page';
-import IconMenus from './components/pages/components/icon-menus';
+import IconMenuPage from './components/pages/components/IconMenu/Page';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
 import ListPage from './components/pages/components/List/Page';
 import LinearProgressPage from './components/pages/components/LinearProgress/Page';
@@ -96,7 +96,7 @@ const AppRoutes = (
       <Route path="font-icon" component={FontIconPage} />
       <Route path="grid-list" component={GridListPage} />
       <Route path="icon-button" component={IconButtonPage} />
-      <Route path="icon-menus" component={IconMenus} />
+      <Route path="icon-menu" component={IconMenuPage} />
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="list" component={ListPage} />
       <Route path="linear-progress" component={LinearProgressPage} />
