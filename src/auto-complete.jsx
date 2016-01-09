@@ -142,7 +142,9 @@ const AutoComplete = React.createClass({
 
     let dataSource = this.props.dataSource;
 
-    let chosenRequest, index, searchText;
+    let chosenRequest;
+    let index;
+    let searchText;
     if (typeof dataSource[0] === 'string') {
       chosenRequest = this.requestsList[parseInt(child.key, 10)];
       index = dataSource.indexOf(chosenRequest);
@@ -355,7 +357,10 @@ const AutoComplete = React.createClass({
 });
 
 AutoComplete.levenshteinDistance = (searchText, key) => {
-  let current = [], prev, value;
+  let current = [];
+  let prev;
+  let value;
+
   for (let i = 0; i <= key.length; i++) {
     for (let j = 0; j <= searchText.length; j++) {
       if (i && j) {

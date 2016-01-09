@@ -283,7 +283,10 @@ const Table = React.createClass({
     } = this.props;
     let styles = this.getStyles();
 
-    let tHead, tFoot, tBody;
+    let tHead;
+    let tFoot;
+    let tBody;
+
     for (let child of children) {
       if (!React.isValidElement(child)) continue;
 
@@ -303,8 +306,11 @@ const Table = React.createClass({
     if (!tBody && !tHead) return null;
 
     let mergedTableStyle = this.prepareStyles(styles.root, style);
-    let headerTable, footerTable;
-    let inlineHeader, inlineFooter;
+    let headerTable;
+    let footerTable;
+    let inlineHeader;
+    let inlineFooter;
+
     if (fixedHeader) {
       headerTable = (
         <div style={this.prepareStyles(headerStyle)}>
