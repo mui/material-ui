@@ -8,16 +8,47 @@ import ThemeManager from '../styles/theme-manager';
 const TableHeader = React.createClass({
 
   propTypes: {
+    /**
+     * Controls whether or not header rows should be
+     * adjusted for a checkbox column. If the select all
+     * checkbox is true, this property will not influence
+     * the number of columns. This is mainly useful for
+     * "super header" rows so that the checkbox column
+     * does not create an offset that needs to be accounted
+     * for manually.
+     */
     adjustForCheckbox: React.PropTypes.bool,
+
+    /**
+     * Children passed to table header.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * Controls whether or not the select all checkbox is displayed.
+     */
     displaySelectAll: React.PropTypes.bool,
+
+    /**
+     * If set to true, the select all button will be interactable.
+     * If set to false, the button will not be interactable.
+     * To hide the checkbox, set displaySelectAll to false.
+     */
     enableSelectAll: React.PropTypes.bool,
+
+    /**
+     * Callback when select all has been checked.
+     */
     onSelectAll: React.PropTypes.func,
+
+    /**
+     * True when select all has been checked.
+     */
     selectAllSelected: React.PropTypes.bool,
 
     /**
@@ -92,7 +123,6 @@ const TableHeader = React.createClass({
       if (!React.isValidElement(child)) continue;
 
       let props = {
-        displayRowCheckbox: false,
         key: 'sh' + index,
         rowNumber: index,
       };

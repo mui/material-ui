@@ -46,7 +46,7 @@ import SliderPage from './components/pages/components/Slider/Page';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
 import SvgIconPage from './components/pages/components/SvgIcon/Page';
 import Switches from './components/pages/components/switches';
-import Table from './components/pages/components/table';
+import TablePage from './components/pages/components/Table/Page';
 import TabsPage from './components/pages/components/Tabs/Page';
 import TextFieldPage from './components/pages/components/TextField/Page';
 import TimePickerPage from './components/pages/components/TimePicker/Page';
@@ -109,7 +109,7 @@ const AppRoutes = (
       <Route path="slider" component={SliderPage} />
       <Route path="switches" component={Switches} />
       <Route path="snackbar" component={SnackbarPage} />
-      <Route path="table" component={Table} />
+      <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />
       <Route path="text-field" component={TextFieldPage} />
       <Route path="time-picker" component={TimePickerPage} />

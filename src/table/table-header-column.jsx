@@ -13,15 +13,37 @@ const TableHeaderColumn = React.createClass({
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * Number to identify the header row. This property
+     * is automatically populated when used with TableHeader.
+     */
     columnNumber: React.PropTypes.number,
+
+    /**
+     * Key prop for table header column.
+     */
     key: React.PropTypes.string,
+
+    /**
+     * Callback function for click event.
+     */
     onClick: React.PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The string to supply to the tooltip. If not
+     * string is supplied no tooltip will be shown.
+     */
     tooltip: React.PropTypes.string,
+
+    /**
+     * Additional styling that can be applied to the tooltip.
+     */
     tooltipStyle: React.PropTypes.object,
   },
 
