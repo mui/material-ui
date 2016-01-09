@@ -46,6 +46,7 @@ rules:
   no-unreachable: 2
   no-var: 2
   object-curly-spacing: [2, never]
+  one-var: [2, never]
   prefer-arrow-callback: 0 # Wishlist, one day
   prefer-const: 0 # Wishlist, one day
   quotes: [2, single, avoid-escape]

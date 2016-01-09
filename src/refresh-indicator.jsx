@@ -291,7 +291,10 @@ const RefreshIndicator = React.createClass({
     const perimeter = Math.PI * 2 * circle.radiu;
     const arcLen = perimeter * 0.64;
 
-    let strokeDasharray, strokeDashoffset, transitionDuration;
+    let strokeDasharray;
+    let strokeDashoffset;
+    let transitionDuration;
+
     if (currStep === 0) {
       strokeDasharray = '1, 200';
       strokeDashoffset = 0;

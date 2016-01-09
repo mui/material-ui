@@ -140,8 +140,8 @@ const ComponentInfo = React.createClass({
   },
 
   render() {
-    let propElements = [],
-      typesSpan;
+    let propElements = [];
+    let typesSpan;
 
     let styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {

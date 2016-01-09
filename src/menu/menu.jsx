@@ -333,9 +333,9 @@ const Menu = React.createClass({
 
 
   _getChildren() {
-    let menuItem,
-      itemComponent,
-      isDisabled;
+    let menuItem;
+    let itemComponent;
+    let isDisabled;
 
     let styles = this.getStyles();
 

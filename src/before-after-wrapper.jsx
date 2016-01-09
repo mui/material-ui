@@ -102,7 +102,8 @@ const BeforeAfterWrapper = React.createClass({
       ...other,
     } = this.props;
 
-    let beforeElement, afterElement;
+    let beforeElement;
+    let afterElement;
 
     beforeStyle = AutoPrefix.all({boxSizing: 'border-box'});
     afterStyle = AutoPrefix.all({boxSizing: 'border-box'});
