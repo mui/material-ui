@@ -1,5 +1,6 @@
 import AutoPrefix from '../styles/auto-prefix';
 import ImmutabilityHelper from '../utils/immutability-helper';
+import warning from 'warning';
 
 const reTranslate = /((^|\s)translate(3d|X)?\()(\-?[\d]+)/;
 
@@ -20,9 +21,9 @@ export default {
   //   `styleConstants` in `muiTheme` and replacing attribute keys if necessary.
   ensureDirection(muiTheme, style) {
     if (process.env.NODE_ENV !== 'production') {
-      if (style.didFlip) {
-        console.warn(new Error('You\'re calling `ensureDirection` on the same style object twice.'));
-      }
+      warning(!style.didFlip, `You're calling ensureDirection() on the same style
+        object twice.`);
+
       style = ImmutabilityHelper.merge({
         didFlip: 'true',
       }, style);
@@ -62,6 +63,7 @@ export default {
             value = 'right';
           }
           break;
+
         case 'direction':
           if (value === 'ltr') {
             value = 'rtl';
@@ -69,6 +71,7 @@ export default {
             value = 'ltr';
           }
           break;
+
         case 'transform':
           let matches;
           if ((matches = value.match(reTranslate))) {
@@ -80,6 +83,7 @@ export default {
             );
           }
           break;
+
         case 'transformOrigin':
           if (value.indexOf('right') > -1) {
             value = value.replace('right', 'left');

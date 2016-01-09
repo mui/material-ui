@@ -7,6 +7,7 @@ import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 import Paper from './paper';
 import PropTypes from './utils/prop-types';
+import warning from 'warning';
 
 const AppBar = React.createClass({
 
@@ -124,21 +125,11 @@ const AppBar = React.createClass({
   },
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      if (this.props.iconElementLeft && this.props.iconClassNameLeft) {
-        console.warn(
-          'Properties iconClassNameLeft and iconElementLeft cannot be simultaneously ' +
-          'defined. Please use one or the other.'
-        );
-      }
+    warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Properties iconElementLeft
+      and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.`);
 
-      if (this.props.iconElementRight && this.props.iconClassNameRight) {
-        console.warn(
-          'Properties iconClassNameRight and iconElementRight cannot be simultaneously ' +
-          'defined. Please use one or the other.'
-        );
-      }
-    }
+    warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Properties iconElementRight
+      and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
   },
 
   //to update theme inside state whenever a new theme is passed down

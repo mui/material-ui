@@ -1,3 +1,5 @@
+import warning from 'warning';
+
 export default {
 
   /**
@@ -23,11 +25,10 @@ export default {
 
       return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
 
-    }
-    else {
-      let message = 'Calculating the relative luminance is not available for ' +
-                    'HSL and HSLA.';
-      console.error(message);
+    } else {
+      warning(false, `Calculating the relative luminance is not available
+        for HSL and HSLA.`);
+
       return -1;
     }
   },
