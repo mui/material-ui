@@ -7,14 +7,6 @@ import ColorManipulator from '../utils/color-manipulator';
 
 const TabPaginatorButton = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * The css class name of the root element.
@@ -52,14 +44,21 @@ const TabPaginatorButton = React.createClass({
     style: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      disableTouchRipple: true,
     };
   },
 
@@ -69,9 +68,9 @@ const TabPaginatorButton = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      disableTouchRipple: true,
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -107,6 +106,8 @@ const TabPaginatorButton = React.createClass({
         backgroundColor: themeVariables.backgroundColor,
       },
       iconStyle: {
+        lineHeight: iconStyle && iconStyle.lineHeight ?
+          iconStyle.lineHeight : '48px',
         color: iconStyle && iconStyle.color ?
           disabled ?
             ColorManipulator.fade(iconStyle.color, 0.3) :

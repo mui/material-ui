@@ -3,7 +3,7 @@ import Events from '../utils/events';
 const Widths = {
   LARGE_DEVICE_MINIMUM: 992,
   MEDIUM_DEVICE_MINIMUM: 786,
-}
+};
 
 const Sizes = {
   SMALL: 1,
