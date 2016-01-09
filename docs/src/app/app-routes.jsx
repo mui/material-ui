@@ -49,7 +49,7 @@ import Switches from './components/pages/components/switches';
 import Table from './components/pages/components/table';
 import TabsPage from './components/pages/components/Tabs/Page';
 import TextFieldPage from './components/pages/components/TextField/Page';
-import TimePicker from './components/pages/components/time-picker';
+import TimePickerPage from './components/pages/components/TimePicker/Page';
 import ToolbarsPage from './components/pages/components/Toolbars/Page';
 
 /**
@@ -112,7 +112,7 @@ const AppRoutes = (
       <Route path="table" component={Table} />
       <Route path="tabs" component={TabsPage} />
       <Route path="text-field" component={TextFieldPage} />
-      <Route path="time-picker" component={TimePicker} />
+      <Route path="time-picker" component={TimePickerPage} />
       <Route path="toolbars" component={ToolbarsPage} />
     </Route>
 
