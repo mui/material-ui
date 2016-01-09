@@ -1,5 +1,6 @@
 import React from 'react';
 import {parse} from 'react-docgen';
+import {parse as parseDoctrine} from 'doctrine';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import MarkdownElement from './MarkdownElement';
 import recast from 'recast';
@@ -59,11 +60,22 @@ function generateDescription(required, description, type) {
 
   const requirement = `${required ? '**required**' : '*optional*'}.`;
 
+  const parsed = parseDoctrine(description);
+
   // two new lines result in a newline in the table. all other new lines
   // must be eliminated to prevent markdown mayhem.
-  const jsDocText = description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
+  const jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
 
-  return `${deprecated} ${requirement} ${jsDocText}`;
+  let signature = '';
+
+  if (type.name === 'func' && parsed.tags.length > 0) {
+    signature += '<br><br>**Signature:**<br>`function(';
+    signature += parsed.tags.map(tag => `${tag.name}: ${tag.type.name}`).join(', ');
+    signature += ') => void`<br>';
+    signature += parsed.tags.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
+  }
+
+  return `${deprecated} ${requirement} ${jsDocText}${signature}`;
 }
 
 const PropTypeDescription = React.createClass({
