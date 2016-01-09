@@ -3,6 +3,7 @@ import RadioButton from './radio-button';
 import StylePropable from './mixins/style-propable';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import warning from 'warning';
 
 const RadioButtonGroup = React.createClass({
 
@@ -87,11 +88,9 @@ const RadioButtonGroup = React.createClass({
   _updateRadioButtons(newSelection) {
     if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
-    }
-    else if (process.env.NODE_ENV !== 'production') {
-      let message = 'Cannot select a different radio button while another radio button ' +
-                    "has the 'checked' property set to true.";
-      console.error(message);
+    } else {
+      warning(false, `Cannot select a different radio button while another radio button
+        has the 'checked' property set to true.`);
     }
   },
 

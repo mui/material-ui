@@ -11,6 +11,7 @@ import TouchRipple from './ripples/touch-ripple';
 import Paper from './paper';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import warning from 'warning';
 
 const EnhancedSwitch = React.createClass({
 
@@ -216,10 +217,8 @@ const EnhancedSwitch = React.createClass({
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
       ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
-    }
-    else if (process.env.NODE_ENV !== 'production') {
-      let message = 'Cannot call set method while checked is defined as a property.';
-      console.error(message);
+    } else {
+      warning(false, 'Cannot call set method while checked is defined as a property.');
     }
   },
 

@@ -6,6 +6,8 @@ env:
   browser: true
   node: true
 
+extends: eslint:recommended
+
 rules:
   # Errors
   array-bracket-spacing: [2, never]
@@ -96,8 +98,6 @@ parser: babel-eslint
 
 plugins:
   - react
-
-# extends: eslint:recommended # Whishlist, one day
 
 ecmaFeatures:
   jsx: true
