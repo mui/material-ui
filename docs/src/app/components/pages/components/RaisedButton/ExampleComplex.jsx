@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import FontIcon from 'material-ui/lib/font-icon';
 import Typography from 'material-ui/lib/styles/typography';
 
-const style = {
+const styles = {
   buttonLabel: {
     padding: '0px 16px 0px 8px',
   },
@@ -27,27 +27,38 @@ const style = {
 
 const RaisedButtonExampleComplex = () => (
   <div>
-    <RaisedButton primary={true} label="Choose an Image" style={style.button}>
-      <input type="file" style={style.exampleImageInput}></input>
+    <RaisedButton
+      label="Choose an Image"
+      primary={true}
+      style={styles.button}
+    >
+      <input type="file" style={styles.exampleImageInput} />
     </RaisedButton>
     <RaisedButton
+      label="Label after"
+      labelPosition="after"
+      labelStyle={styles.buttonLabel}
+      secondary={true}
+      style={styles.button}
+    >
+      <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
+    </RaisedButton>
+    <RaisedButton
+      label="Disabled"
+      disabled={true}
+      style={styles.button}
+    />
+    <br />
+    <RaisedButton
+      label="Github Link"
+      labelStyle={styles.buttonLabel}
       linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
-      style={style.button}
-      label="Github"
-      labelStyle={style.buttonLabel}>
-      <FontIcon style={style.exampleButtonIcon} className="muidocs-icon-custom-github"/>
+      style={styles.button}
+    >
+      <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
     </RaisedButton>
-    <RaisedButton
-      secondary={true}
-      label="Label after"
-      labelPosition="after"
-      labelStyle={style.buttonLabel}
-      style={style.button}>
-      <FontIcon style={style.exampleButtonIcon} className="muidocs-icon-custom-github"/>
-    </RaisedButton>
-    <RaisedButton label="Disabled" disabled={true} style={style.button}/>
   </div>
 );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import Add from 'material-ui/lib/svg-icons/content/add';
+import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
 const style = {
   marginRight: 20,
@@ -8,22 +8,31 @@ const style = {
 
 const FloatingButtonExampleComplex = () => (
   <div>
-    <FloatingActionButton secondary={true} style={style}>
-      <Add/>
+    <FloatingActionButton
+      secondary={true}
+      style={style}
+    >
+      <ContentAdd />
     </FloatingActionButton>
-    <FloatingActionButton mini={true} secondary={true} style={style}>
-      <Add />
+    <FloatingActionButton
+      mini={true}
+      secondary={true}
+      style={style}
+    >
+      <ContentAdd />
     </FloatingActionButton>
     <FloatingActionButton
       disabled={true}
-      style={style}>
-      <Add/>
+      style={style}
+    >
+      <ContentAdd />
     </FloatingActionButton>
     <FloatingActionButton
       mini={true}
       disabled={true}
-      style={style}>
-      <Add/>
+      style={style}
+    >
+      <ContentAdd />
     </FloatingActionButton>
   </div>
 );

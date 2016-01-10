@@ -12,14 +12,14 @@ import FloatingButtonExampleComplex from './ExampleComplex';
 
 const FloatingActionButtonPage = () => (
   <div>
-    <MarkdownElement text={floatingButtonReadmeText}/>
+    <MarkdownElement text={floatingButtonReadmeText} />
     <CodeExample code={floatingButtonExampleSimpleCode}>
       <FloatingButtonExampleSimple />
     </CodeExample>
     <CodeExample code={floatingButtonExampleComplexCode}>
       <FloatingButtonExampleComplex />
     </CodeExample>
-    <PropTypeDescription code={floatingButtonCode}/>
+    <PropTypeDescription code={floatingButtonCode} />
   </div>
 );
 

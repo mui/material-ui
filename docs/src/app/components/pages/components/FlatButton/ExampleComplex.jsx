@@ -20,29 +20,51 @@ const styles = {
   exampleFlatButtonIcon: {
     color: Colors.cyan500,
   },
+  button: {
+    margin: 12,
+  },
 };
 
 const FlatButtonExampleComplex = () => (
   <div>
-    <FlatButton primary={true} label="Choose an Image">
-      <input type="file" id="imageButton" style={styles.exampleImageInput}></input>
-    </FlatButton>
     <FlatButton
-      linkButton={true}
-      href="https://github.com/callemall/material-ui"
-      secondary={true}
-      label="GitHub"
-      labelStyle={styles.buttonLabel}>
-      <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
+      label="Choose an Image"
+      primary={true}
+      style={styles.button}
+    >
+      <input type="file" id="imageButton" style={styles.exampleImageInput} />
     </FlatButton>
     <FlatButton
       secondary={true}
       label="Label after"
       labelPosition="after"
-      labelStyle={styles.buttonLabel}>
-      <FontIcon style={styles.exampleFlatButtonIcon} className="muidocs-icon-custom-github"/>
+      labelStyle={styles.buttonLabel}
+      style={styles.button}
+    >
+      <FontIcon
+        style={styles.exampleFlatButtonIcon}
+        className="muidocs-icon-custom-github"
+      />
     </FlatButton>
-    <FlatButton label="Disabled" disabled={true} />
+    <FlatButton
+      label="Disabled"
+      disabled={true}
+      style={styles.button}
+    />
+    <br />
+    <FlatButton
+      label="GitHub Link"
+      labelStyle={styles.buttonLabel}
+      linkButton={true}
+      href="https://github.com/callemall/material-ui"
+      secondary={true}
+      style={styles.button}
+    >
+      <FontIcon
+        style={styles.exampleFlatButtonIcon}
+        className="muidocs-icon-custom-github"
+      />
+    </FlatButton>
   </div>
 );
 
