@@ -2,7 +2,7 @@ import React from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
-const dataSource = [
+const dataSource1 = [
   {
     text: 'text-value1',
     value: (
@@ -23,38 +23,22 @@ const dataSource = [
   },
 ];
 
-export default class AutoCompleteExampleNoFilter extends React.Component {
+const dataSource2 = ['12345', '23456', '34567'];
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      input1: [],
-      input2: [],
-      input3: [],
-    };
-  }
+const AutoCompleteExampleNoFilter = () => (
+  <div>
+    <AutoComplete
+      hintText="text-value data"
+      filter={AutoComplete.noFilter}
+      dataSource={dataSource1}
+    /><br/>
+    <AutoComplete
+      floatingLabelText="showAllItems"
+      filter={AutoComplete.noFilter}
+      triggerUpdateOnFocus={true}
+      dataSource={dataSource2}
+    />
+  </div>
+);
 
-  handleNewRequest = (t) => {
-    console.log(`New request: ${t}`);
-  };
-
-  render() {
-    return (
-      <div>
-        <AutoComplete
-          hintText="text-value data"
-          filter={AutoComplete.noFilter}
-          dataSource={dataSource}
-          onNewRequest={this.handleNewRequest}
-        /><br/>
-        <AutoComplete
-          floatingLabelText="showAllItems"
-          filter={AutoComplete.noFilter}
-          triggerUpdateOnFocus={true}
-          animated={false}
-          dataSource={['12345', '23456', '34567']}
-        />
-      </div>
-    );
-  }
-}
+export default AutoCompleteExampleNoFilter;

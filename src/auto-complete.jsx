@@ -24,7 +24,7 @@ const AutoComplete = React.createClass({
     animated: React.PropTypes.bool,
 
     /**
-     * Array of type string or type object that populate the auto complete list.
+     * Array of strings or nodes used to populate the list.
      */
     dataSource: React.PropTypes.array,
 
@@ -54,7 +54,7 @@ const AutoComplete = React.createClass({
     floatingLabelText: React.PropTypes.string,
 
     /**
-     * If true, the field receives the property width 100%.
+     * If true, the field receives the property `width: 100%`.
      */
     fullWidth: React.PropTypes.bool,
 
@@ -84,12 +84,12 @@ const AutoComplete = React.createClass({
     menuStyle: React.PropTypes.object,
 
     /**
-     * Gets called when list item is clicked or pressed enter
+     * Gets called when list item is clicked or pressed enter.
      */
     onNewRequest: React.PropTypes.func,
 
     /**
-     * Gets called each time the user updates the text field
+     * Gets called each time the user updates the text field.
      */
     onUpdateInput: React.PropTypes.func,
 

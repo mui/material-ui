@@ -109,7 +109,7 @@ const PropTypeDescription = React.createClass({
       let defaultValue = '';
 
       if (prop.defaultValue) {
-        defaultValue = prop.defaultValue.value;
+        defaultValue = prop.defaultValue.value.replace(/\n/g, '');
       }
 
       const description = generateDescription(prop.required, prop.description, prop.type);

@@ -5,9 +5,9 @@ export default class AutoCompleteExampleSimple extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      input1: [],
-      input2: [],
+      dataSource: [],
     };
   }
 
@@ -15,34 +15,20 @@ export default class AutoCompleteExampleSimple extends React.Component {
     console.log(`New request: ${t}`);
   };
 
-  handleUpdateInput1 = (t) => {
+  handleUpdateInput = (t) => {
     this.setState({
-      input1: [t, t + t, t + t + t],
-    });
-  };
-
-  handleUpdateInput2 = (t) => {
-    this.setState({
-      input2: [t, t + t, t + t + t],
+      dataSource: [t, t + t, t + t + t],
     });
   };
 
   render() {
     return (
-      <div>
-        <AutoComplete
-          dataSource={this.state.input1}
-          onUpdateInput={this.handleUpdateInput1}
-          onNewRequest={this.handleNewRequest}
-        />
-        <br/>
-        <AutoComplete
-          hintText="Hint Text"
-          dataSource={this.state.input2}
-          onUpdateInput={this.handleUpdateInput2}
-          onNewRequest={this.handleNewRequest}
-        />
-      </div>
+      <AutoComplete
+        hintText="Type c"
+        dataSource={this.state.dataSource}
+        onUpdateInput={this.handleUpdateInput}
+        onNewRequest={this.handleNewRequest}
+      />
     );
   }
 }
