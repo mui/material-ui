@@ -55,7 +55,6 @@
     "babel-plugin-transform-react-constant-elements": "^6.3.13",
     "babel-plugin-transform-react-inline-elements": "^6.3.13",
     "babel-plugin-transform-react-remove-prop-types": "^0.1.0",
-    "babel-plugin-transform-runtime": "^6.3.13",
     "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
