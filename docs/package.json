@@ -24,7 +24,6 @@
     "babel-plugin-transform-react-constant-elements": "^6.3.13",
     "babel-plugin-transform-react-inline-elements": "^6.3.13",
     "babel-plugin-transform-react-remove-prop-types": "^0.1.0",
-    "babel-plugin-transform-runtime": "^6.3.13",
     "css-loader": "^0.23.0",
     "doctrine": "^1.1.0",
     "eslint": "^1.10.3",
