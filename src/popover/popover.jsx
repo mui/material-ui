@@ -15,14 +15,16 @@ const Popover = React.createClass({
 
   propTypes: {
     /**
-     *
+     * This is the DOM element that will be used to set the position of the
+     * component.
      */
     anchorEl: React.PropTypes.object,
 
     /**
      * This is the point on the anchor where the popover
      * targetOrigin will stick to.
-     * Options: vertical: [top, middle, bottom]
+     * Options:
+     * vertical: [top, middle, bottom]
      * horizontal: [left, center, right]
      */
     anchorOrigin: PropTypes.origin,
@@ -34,7 +36,7 @@ const Popover = React.createClass({
     animated: React.PropTypes.bool,
 
     /**
-     *
+     * Override the default animation component used.
      */
     animation: React.PropTypes.func,
 
@@ -51,7 +53,7 @@ const Popover = React.createClass({
     canAutoPosition: React.PropTypes.bool,
 
     /**
-     * Children passed to the Popover.
+     * Use this property to render your component inside the `Popover`.
      */
     children: React.PropTypes.node,
 
@@ -63,6 +65,8 @@ const Popover = React.createClass({
     /**
      * This is a callback that fires when the popover
      * thinks it should close. (e.g. clickAway or offScreen)
+     *
+     * @param {string} reason Determines what triggered this request.
      */
     onRequestClose: React.PropTypes.func,
 
@@ -79,7 +83,9 @@ const Popover = React.createClass({
     /**
      * This is the point on the popover which will stick to
      * the anchors origin.
-     * Options: vertical: [top, middle, bottom]horizontal: [left, center, right]
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right]
      */
     targetOrigin: PropTypes.origin,
 
@@ -91,7 +97,7 @@ const Popover = React.createClass({
     useLayerForClickAway: React.PropTypes.bool,
 
     /**
-     *
+     * This number represents the zDepth of the paper shadow.
      */
     zDepth: PropTypes.zDepth,
   },
@@ -116,7 +122,6 @@ const Popover = React.createClass({
         vertical: 'bottom',
         horizontal: 'left',
       },
-      animation: PopoverDefaultAnimation,
       animated: true,
       autoCloseWhenOffScreen: true,
       canAutoPosition: true,
@@ -201,11 +206,13 @@ const Popover = React.createClass({
       ...other,
     } = this.props;
 
-    let Animation = animation;
+    let Animation = animation || PopoverDefaultAnimation;
 
-    if (!animated) {
+    if (!Animation) {
       Animation = Paper;
-      style = {position: 'fixed'};
+      style = {
+        position: 'fixed',
+      };
       if (!this.state.open) {
         return null;
       }

@@ -108,10 +108,10 @@ const AppRoutes = (
       <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="paper" component={PaperPage} />
       <Route path="menu" component={MenuPage} />
+      <Route path="popover" component={PopoverPage} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
       <Route path="radio-button" component={RadioButtonPage} />
       <Route path="raised-button" component={RaisedButtonPage} />
-      <Route path="popover" component={PopoverPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />

@@ -14,7 +14,7 @@ const PopoverPage = () => (
     <CodeExample code={popoverExampleSimpleCode}>
       <PopoverExampleSimple />
     </CodeExample>
+    <PropTypeDescription code={popoverCode}/>
   </div>
 );
-//<PropTypeDescription code={popoverCode}/>
 export default PopoverPage;
