@@ -4,7 +4,7 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import checkboxReadmeText from './README';
-import checkboxCode from '!raw!material-ui/lib/radio-button';
+import checkboxCode from '!raw!material-ui/lib/checkbox';
 import CheckboxExampleSimple from './ExampleSimple';
 import checkboxExampleSimpleCode from '!raw!./ExampleSimple';
 
@@ -14,7 +14,7 @@ const CheckboxPage = () => (
     <CodeExample code={checkboxExampleSimpleCode}>
       <CheckboxExampleSimple />
     </CodeExample>
-    <PropTypeDescription code={checkboxCode}/>
+    <PropTypeDescription code={checkboxCode} />
   </div>
 );
 

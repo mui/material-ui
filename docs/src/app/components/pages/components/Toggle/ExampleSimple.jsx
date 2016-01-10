@@ -2,31 +2,35 @@ import React from 'react';
 import Toggle from 'material-ui/lib/toggle';
 
 const styles = {
-  marginBottom: 16,
+  block: {
+    maxWidth: 350,
+  },
+  toggle: {
+    marginBottom: 16,
+  },
 };
 
 const ToggleExampleSimple = () => (
-  <div>
+  <div style={styles.block}>
     <Toggle
-      id="toggleId1"
-      name="toggleName1"
-      value="toggleValue1"
-      label="activate thrusters"
-      style={styles}/>
+      label="Simple"
+      style={styles.toggle}
+    />
     <Toggle
-      id="toggleId2"
-      name="toggleName2"
-      value="toggleValue2"
-      label="auto-pilot"
+      label="Toggled by default"
       defaultToggled={true}
-      style={styles}/>
+      style={styles.toggle}
+    />
     <Toggle
-      id="toggleId3"
-      name="toggleName3"
-      value="toggleValue3"
-      label="initiate self-destruct sequence"
+      label="Disabled"
       disabled={true}
-      style={styles}/>
+      style={styles.toggle}
+    />
+    <Toggle
+      label="Label on the right"
+      labelPosition="right"
+      style={styles.toggle}
+    />
   </div>
 );
 

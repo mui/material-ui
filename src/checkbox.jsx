@@ -38,8 +38,6 @@ const Checkbox = React.createClass({
 
     /**
      * Where the label will be placed next to the checkbox.
-     * Options include "left" and "right" (case-sensitive).
-     * Default option is "right".
      */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
 
@@ -52,6 +50,11 @@ const Checkbox = React.createClass({
      * Callback function that is fired when the checkbox is checked.
      */
     onCheck: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
 
     /**
      * The SvgIcon to use for the unchecked state.
@@ -79,6 +82,7 @@ const Checkbox = React.createClass({
   getDefaultProps() {
     return {
       defaultChecked: false,
+      labelPosition: 'right',
       disabled: false,
     };
   },
@@ -238,7 +242,7 @@ const Checkbox = React.createClass({
       labelStyle: labelStyle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultChecked,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : 'right',
+      labelPosition: this.props.labelPosition,
     };
 
     return (

@@ -1,41 +1,44 @@
 import React from 'react';
 import Checkbox from 'material-ui/lib/checkbox';
-import ToggleStar from 'material-ui/lib/svg-icons/toggle/star';
-import ToggleStarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
+import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
 
 const styles = {
-  marginBottom: 16,
+  block: {
+    maxWidth: 350,
+  },
+  checkbox: {
+    marginBottom: 16,
+  },
 };
 
 const CheckboxExampleSimple = () => (
-  <div>
+  <div style={styles.block}>
     <Checkbox
-      id="checkboxId1"
-      name="checkboxName1"
-      value="checkboxValue1"
-      label="went for a run today"
-      style={styles}/>
+      label="Simple"
+      style={styles.checkbox}
+    />
     <Checkbox
-      id="checkboxId2"
-      name="checkboxName2"
-      value="checkboxValue2"
-      label="fed the dog"
+      label="Checked by default"
       defaultChecked={true}
-      style={styles}/>
+      style={styles.checkbox}
+    />
     <Checkbox
-      id="checkboxId3"
-      name="checkboxName3"
-      value="checkboxValue3"
-      label="built a house on the moon"
+      label="Disabled"
       disabled={true}
-      style={styles}/>
+      style={styles.checkbox}
+    />
     <Checkbox
-      name="checkboxName4"
-      value="checkboxValue4"
-      checkedIcon={<ToggleStar />}
-      unCheckedIcon={<ToggleStarBorder />}
-      label="custom icon"
-      style={styles}/>
+      checkedIcon={<ActionFavorite />}
+      unCheckedIcon={<ActionFavoriteBorder />}
+      label="Custom icon"
+      style={styles.checkbox}
+    />
+    <Checkbox
+      label="Label on the left"
+      labelPosition="left"
+      style={styles.checkbox}
+    />
   </div>
 );
 

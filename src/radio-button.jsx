@@ -27,8 +27,6 @@ const RadioButton = React.createClass({
 
     /**
      * Where the label will be placed next to the radio button.
-     * Options include "left" and "right" (case-sensitive).
-     * Default option is "right".
      */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
 
@@ -41,6 +39,11 @@ const RadioButton = React.createClass({
      * Callback function for checked event.
      */
     onCheck: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
 
     /**
      * The value of our radio button component.
@@ -61,7 +64,9 @@ const RadioButton = React.createClass({
 
   getDefaultProps() {
     return {
+      checked: false,
       disabled: false,
+      labelPosition: 'right',
     };
   },
 
@@ -195,14 +200,14 @@ const RadioButton = React.createClass({
     let enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'radio',
-      switched: this.props.checked || false,
+      switched: this.props.checked,
       switchElement: radioButtonElement,
       rippleColor: rippleColor,
       iconStyle: iconStyle,
       labelStyle: labelStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : 'right',
+      labelPosition: this.props.labelPosition,
     };
 
     return (

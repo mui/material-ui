@@ -10,8 +10,7 @@ const Toggle = React.createClass({
 
   propTypes: {
     /**
-     * The value of the toggle button. Is true when toggle
-     * has been turned on. False otherwise.
+     * Determines whether the Toggle is initially turned on.
      */
     defaultToggled: React.PropTypes.bool,
 
@@ -31,9 +30,7 @@ const Toggle = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
-     * Where the label will be placed next to the toggle
-     * switch. Options include "left" and "right" (case-sensitive).
-     * Default option is "left".
+     * Where the label will be placed next to the toggle.
      */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
 
@@ -51,6 +48,11 @@ const Toggle = React.createClass({
      * Override style of ripple.
      */
     rippleStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
 
     /**
      * Override style for thumb.
@@ -90,6 +92,7 @@ const Toggle = React.createClass({
     return {
       defaultToggled: false,
       disabled: false,
+      labelPosition: 'left',
     };
   },
 
@@ -255,7 +258,7 @@ const Toggle = React.createClass({
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultToggled,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : 'left',
+      labelPosition: this.props.labelPosition,
     };
 
     if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;

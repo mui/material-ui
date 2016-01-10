@@ -3,28 +3,30 @@ import RadioButton from 'material-ui/lib/radio-button';
 import RadioButtonGroup from 'material-ui/lib/radio-button-group';
 
 const styles = {
-  marginBottom: 16,
+  radioButton: {
+    marginBottom: 16,
+  },
 };
 
 const RadioButtonExampleSimple = () => (
   <div>
     <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
       <RadioButton
-        id="radioButtonId1"
         value="light"
-        label="prepare for light speed"
-        style={styles} />
+        label="Simple"
+        style={styles.radioButton}
+      />
       <RadioButton
-        id="radioButtonId2"
         value="not_light"
-        label="light speed too slow"
-        style={styles}/>
+        label="Selected by default"
+        style={styles.radioButton}
+      />
       <RadioButton
-        id="radioButtonId3"
         value="ludicrous"
-        label="go to ludicrous speed"
-        style={styles}
-        disabled={true}/>
+        label="Disabled"
+        disabled={true}
+        style={styles.radioButton}
+      />
     </RadioButtonGroup>
   </div>
 );

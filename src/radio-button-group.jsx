@@ -8,12 +8,16 @@ import warning from 'warning';
 const RadioButtonGroup = React.createClass({
 
   propTypes: {
+    /**
+     * Should be used to pass `RadioButton` components.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
     /**
      * Sets the default radio button to be the one whose
      * value matches defaultSelected (case-sensitive).
@@ -24,7 +28,6 @@ const RadioButtonGroup = React.createClass({
 
     /**
      * Where the label will be placed for all radio buttons.
-     * Options include "left" and "right" (case-sensitive).
      * This will override any labelPosition properties defined
      * for an individual radio button.
      */

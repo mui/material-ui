@@ -12,7 +12,7 @@ const Tabs = React.createClass({
 
   propTypes: {
     /**
-     * Should be used to pass Tab components.
+     * Should be used to pass `Tab` components.
      */
     children: React.PropTypes.node,
 
