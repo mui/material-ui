@@ -103,7 +103,7 @@ const Slider = React.createClass({
     onDragStart: React.PropTypes.func,
 
     /**
-     * Callback function that is fried when teh slide has stopped moving.
+     * Callback function that is fried when the slide has stopped moving.
      **/
     onDragStop: React.PropTypes.func,
 
