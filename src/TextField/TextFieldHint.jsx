@@ -14,7 +14,7 @@ const propTypes = {
   show: React.PropTypes.bool,
 
   /**
-   * Override the inline-styles of the hint text.
+   * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
 

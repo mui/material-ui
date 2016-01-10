@@ -46,80 +46,80 @@ const Slider = React.createClass({
   propTypes: {
     /**
      * The default value of the slider.
-     **/
+     */
     defaultValue: valueInRangePropType,
 
     /**
      * Describe the slider.
-     **/
+     */
     description: React.PropTypes.string,
 
     /**
      * Disables focus ripple if set to true.
-     **/
+     */
     disableFocusRipple: React.PropTypes.bool,
 
     /**
      * If true, the slider will not be interactable.
-     **/
+     */
     disabled: React.PropTypes.bool,
 
     /**
      * An error message for the slider.
-     **/
+     */
     error: React.PropTypes.string,
 
     /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
-     **/
+     */
     max: minMaxPropType,
 
     /**
      * The minimum value the slider can slide to on a scale
      * from 0 to 1 inclusive. Cannot be equal to max.
-     **/
+     */
     min: minMaxPropType,
 
     /**
      * The name of the slider. Behaves like the name attribute
      * of an input element.
-     **/
+     */
     name: React.PropTypes.string,
 
     /**
      * Callback function that is fired when the focus has left the slider.
-     **/
+     */
     onBlur: React.PropTypes.func,
 
     /**
      * Callback function that is fired when the user changes the slider's value.
-     **/
+     */
     onChange: React.PropTypes.func,
 
     /**
      * Callback function that is fired when the slider has begun to move.
-     **/
+     */
     onDragStart: React.PropTypes.func,
 
     /**
      * Callback function that is fried when the slide has stopped moving.
-     **/
+     */
     onDragStop: React.PropTypes.func,
 
     /**
      * Callback fired when the user has focused on the slider.
-     **/
+     */
     onFocus: React.PropTypes.func,
 
     /**
      * Whether or not the slider is required in a form.
-     **/
+     */
     required: React.PropTypes.bool,
 
     /**
      * The granularity the slider can step through values.
-     **/
+     */
     step: React.PropTypes.number,
 
     /**
@@ -129,7 +129,7 @@ const Slider = React.createClass({
 
     /**
      * The value of the slider.
-     **/
+     */
     value: valueInRangePropType,
   },
 

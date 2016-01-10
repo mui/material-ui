@@ -88,7 +88,7 @@ rules:
   react/wrap-multilines: 2
   react/jsx-indent: [2, 2]
 
-  # Disabled
+  # React Disabled
   react/jsx-no-bind: 0
   react/jsx-no-literals: 0
   react/jsx-closing-bracket-location: 0
