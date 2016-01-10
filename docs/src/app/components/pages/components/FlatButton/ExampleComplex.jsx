@@ -1,11 +1,11 @@
 import React from 'react';
 import FlatButton from 'material-ui/lib/flat-button';
-import Colors from 'material-ui/lib/styles/colors';
 import FontIcon from 'material-ui/lib/font-icon';
+import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 
 const styles = {
-  buttonLabel: {
-    padding: '0px 16px 0px 8px',
+  button: {
+    margin: 12,
   },
   exampleImageInput: {
     cursor: 'pointer',
@@ -17,12 +17,6 @@ const styles = {
     width: '100%',
     opacity: 0,
   },
-  exampleFlatButtonIcon: {
-    color: Colors.cyan500,
-  },
-  button: {
-    margin: 12,
-  },
 };
 
 const FlatButtonExampleComplex = () => (
@@ -32,20 +26,15 @@ const FlatButtonExampleComplex = () => (
       primary={true}
       style={styles.button}
     >
-      <input type="file" id="imageButton" style={styles.exampleImageInput} />
+      <input type="file" style={styles.exampleImageInput} />
     </FlatButton>
     <FlatButton
       secondary={true}
       label="Label after"
       labelPosition="after"
-      labelStyle={styles.buttonLabel}
       style={styles.button}
-    >
-      <FontIcon
-        style={styles.exampleFlatButtonIcon}
-        className="muidocs-icon-custom-github"
-      />
-    </FlatButton>
+      icon={<ActionAndroid />}
+    />
     <FlatButton
       label="Disabled"
       disabled={true}
@@ -54,17 +43,12 @@ const FlatButtonExampleComplex = () => (
     <br />
     <FlatButton
       label="GitHub Link"
-      labelStyle={styles.buttonLabel}
       linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}
-    >
-      <FontIcon
-        style={styles.exampleFlatButtonIcon}
-        className="muidocs-icon-custom-github"
-      />
-    </FlatButton>
+      icon={<FontIcon className="muidocs-icon-custom-github" />}
+    />
   </div>
 );
 

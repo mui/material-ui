@@ -1,11 +1,11 @@
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FontIcon from 'material-ui/lib/font-icon';
-import Typography from 'material-ui/lib/styles/typography';
+import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
 
 const styles = {
-  buttonLabel: {
-    padding: '0px 16px 0px 8px',
+  button: {
+    margin: 12,
   },
   exampleImageInput: {
     cursor: 'pointer',
@@ -16,12 +16,6 @@ const styles = {
     left: 0,
     width: '100%',
     opacity: 0,
-  },
-  exampleButtonIcon: {
-    color: Typography.textFullWhite,
-  },
-  button: {
-    margin: 12,
   },
 };
 
@@ -37,12 +31,10 @@ const RaisedButtonExampleComplex = () => (
     <RaisedButton
       label="Label after"
       labelPosition="after"
-      labelStyle={styles.buttonLabel}
       secondary={true}
+      icon={<ActionAndroid />}
       style={styles.button}
-    >
-      <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
-    </RaisedButton>
+    />
     <RaisedButton
       label="Disabled"
       disabled={true}
@@ -51,14 +43,12 @@ const RaisedButtonExampleComplex = () => (
     <br />
     <RaisedButton
       label="Github Link"
-      labelStyle={styles.buttonLabel}
       linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}
-    >
-      <FontIcon style={styles.exampleButtonIcon} className="muidocs-icon-custom-github"/>
-    </RaisedButton>
+      icon={<FontIcon className="muidocs-icon-custom-github"/>}
+    />
   </div>
 );
 

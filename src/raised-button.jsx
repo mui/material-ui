@@ -63,6 +63,11 @@ const RaisedButton = React.createClass({
     fullWidth: React.PropTypes.bool,
 
     /**
+     * Use this property to display an icon.
+     */
+    icon: React.PropTypes.node,
+
+    /**
      * The label for the button.
      */
     label: validateLabel,
@@ -150,7 +155,8 @@ const RaisedButton = React.createClass({
   getDefaultProps: function() {
     return {
       disabled: false,
-      labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
+      // labelPosition should be after but we keep it like for now (prevent breaking changes)
+      labelPosition: 'before',
       fullWidth: false,
       primary: false,
       secondary: false,
@@ -215,8 +221,14 @@ const RaisedButton = React.createClass({
   },
 
   getStyles() {
+    const {
+      icon,
+      labelPosition,
+      primary,
+      secondary,
+    } = this.props;
 
-    let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+    let amount = (primary || secondary) ? 0.4 : 0.08;
     let styles = {
       root: {
         display: 'inline-block',
@@ -250,8 +262,9 @@ const RaisedButton = React.createClass({
                     (this.getThemeButton().textTransform ? this.getThemeButton().textTransform : 'uppercase'),
         fontWeight: Typography.fontWeightMedium,
         margin: 0,
-        padding: '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
+        paddingLeft: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
+        paddingRight: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
         lineHeight: (this.props.style && this.props.style.height) ?
          this.props.style.height : this.getThemeButton().height + 'px',
         color: this._getLabelColor(),
@@ -264,6 +277,15 @@ const RaisedButton = React.createClass({
         backgroundColor: ColorManipulator.fade(this._getLabelColor(), amount),
       },
     };
+
+    if (icon) {
+      if (labelPosition === 'before') {
+        styles.label.paddingRight = 8;
+      } else {
+        styles.label.paddingLeft = 8;
+      }
+    }
+
     return styles;
   },
 
@@ -323,6 +345,7 @@ const RaisedButton = React.createClass({
     let {
       children,
       disabled,
+      icon,
       label,
       labelPosition,
       labelStyle,
@@ -355,11 +378,32 @@ const RaisedButton = React.createClass({
       onKeyboardFocus: this._handleKeyboardFocus,
     };
 
+    let iconCloned;
+
+    if (icon) {
+      iconCloned = React.cloneElement(icon, {
+        color: styles.label.color,
+        style: {
+          verticalAlign: 'middle',
+          marginLeft: labelPosition === 'before' ? 0 : 12,
+          marginRight: labelPosition === 'before' ? 12 : 0,
+        },
+      });
+    }
+
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      {labelElement, children}
+      {
+        labelElement,
+        iconCloned,
+        children,
+      }
       :
-      {children, labelElement};
+      {
+        children,
+        iconCloned,
+        labelElement,
+      };
     const enhancedButtonChildren = Children.create(childrenFragment);
 
     return (
