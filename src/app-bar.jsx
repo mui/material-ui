@@ -72,7 +72,7 @@ const AppBar = React.createClass({
     showMenuIconButton: React.PropTypes.bool,
 
     /**
-     * Override the inline-styles of the app bar's root element.
+     * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
 
