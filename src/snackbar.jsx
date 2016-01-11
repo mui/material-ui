@@ -300,16 +300,18 @@ const Snackbar = React.createClass({
     }
   },
 
+  _onDismiss() {
+    if (this.props.onDismiss) {
+      this.props.onDismiss();
+    }
+  },
+
   dismiss() {
     warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
 
     this.setState({
       open: false,
-    });
-
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
+    }, this._onDismiss);
   },
 
   _setAutoHideTimer() {
