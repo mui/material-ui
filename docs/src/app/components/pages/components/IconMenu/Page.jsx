@@ -24,7 +24,7 @@ const IconMenusPage = () => (
     <CodeExample code={iconMenuExampleScrollableCode}>
       <IconMenuExampleScrollable />
     </CodeExample>
-    <PropTypeDescription code={iconMenuCode}/>
+    <PropTypeDescription code={iconMenuCode} />
   </div>
 );
 

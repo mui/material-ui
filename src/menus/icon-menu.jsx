@@ -14,13 +14,15 @@ const IconMenu = React.createClass({
   propTypes: {
     /**
      * This is the point on the icon where the menu
-     * targetOrigin will stick to. Options: vertical:
-     * [top, middle, bottom] horizontal: [left, center, right].
+     * targetOrigin will stick to.
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right].
      */
     anchorOrigin: PropTypes.origin,
 
     /**
-     * Children passed to root element.
+     * Should be used to pass `MenuItem` components.
      */
     children: React.PropTypes.node,
 
@@ -107,8 +109,10 @@ const IconMenu = React.createClass({
 
     /**
      * This is the point on the menu which will stick to the menu
-     * origin.Options:vertical: [top, middle, bottom]horizontal:
-     * [left, center, right].
+     * origin.
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right].
      */
     targetOrigin: PropTypes.origin,
 
