@@ -156,8 +156,22 @@ const AppLeftNav = React.createClass({
                 primaryText="Badge"
               />,
               <ListItem
-                value="/components/buttons"
                 primaryText="Buttons"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/flat-button"
+                    primaryText="Flat Button"
+                  />,
+                  <ListItem
+                    value="/components/raised-button"
+                    primaryText="Raised Button"
+                  />,
+                  <ListItem
+                    value="/components/floating-action-button"
+                    primaryText="Floating Action Button"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/card"

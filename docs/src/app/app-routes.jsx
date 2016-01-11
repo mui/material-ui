@@ -23,7 +23,6 @@ import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoComplete from './components/pages/components/auto-complete';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
-import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
 import CircularProgressPage from './components/pages/components/CircularProgress/Page';
 import CheckboxPage from './components/pages/components/Checkbox/Page';
@@ -31,6 +30,8 @@ import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
+import FlatButtonPage from './components/pages/components/FlatButton/Page';
+import FloatingActionButtonPage from './components/pages/components/FloatingActionButton/Page';
 import FontIconPage from './components/pages/components/FontIcon/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import IconButtonPage from './components/pages/components/IconButton/Page';
@@ -41,6 +42,7 @@ import LinearProgressPage from './components/pages/components/LinearProgress/Pag
 import PaperPage from './components/pages/components/Paper/Page';
 import MenuPage from './components/pages/components/Menu/Page';
 import Popover from './components/pages/components/popover';
+import RaisedButtonPage from './components/pages/components/RaisedButton/Page';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
 import RadioButtonPage from './components/pages/components/RadioButton/Page';
 import SelectField from './components/pages/components/SelectField/Page';
@@ -88,7 +90,6 @@ const AppRoutes = (
       <Route path="auto-complete" component={AutoComplete} />
       <Route path="avatar" component={AvatarPage} />
       <Route path="badge" component={BadgePage} />
-      <Route path="buttons" component={Buttons} />
       <Route path="card" component={CardPage} />
       <Route path="circular-progress" component={CircularProgressPage} />
       <Route path="checkbox" component={CheckboxPage} />
@@ -97,6 +98,8 @@ const AppRoutes = (
       <Route path="divider" component={DividerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
       <Route path="font-icon" component={FontIconPage} />
+      <Route path="flat-button" component={FlatButtonPage} />
+      <Route path="floating-action-button" component={FloatingActionButtonPage} />
       <Route path="grid-list" component={GridListPage} />
       <Route path="icon-button" component={IconButtonPage} />
       <Route path="icon-menus" component={IconMenus} />
@@ -108,6 +111,7 @@ const AppRoutes = (
       <Route path="popover" component={Popover} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
       <Route path="radio-button" component={RadioButtonPage} />
+      <Route path="raised-button" component={RaisedButtonPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />
