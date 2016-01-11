@@ -9,17 +9,69 @@ import ThemeManager from './styles/theme-manager';
 const Toggle = React.createClass({
 
   propTypes: {
+    /**
+     * Determines whether the Toggle is initially turned on.
+     */
     defaultToggled: React.PropTypes.bool,
+
+    /**
+     * Will disable the toggle if true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Overrides the inline-styles of the Toggle element.
+     */
     elementStyle: React.PropTypes.object,
+
+    /**
+     * Overrides the inline-styles of the Icon element.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * Where the label will be placed next to the toggle.
+     */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Overrides the inline-styles of the Toggle element label.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function that is fired when the toggle switch is toggled.
+     */
     onToggle: React.PropTypes.func,
+
+    /**
+     * Override style of ripple.
+     */
     rippleStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+
+    /**
+     * Override style for thumb.
+     */
     thumbStyle: React.PropTypes.object,
+
+    /**
+     * Toggled if set to true.
+     */
     toggled: React.PropTypes.bool,
+
+    /**
+     * Override style for track.
+     */
     trackStyle: React.PropTypes.object,
+
+    /**
+     * ValueLink prop for when using controlled toggle.
+     */
     valueLink: React.PropTypes.object,
   },
 
@@ -35,6 +87,14 @@ const Toggle = React.createClass({
   mixins: [
     StylePropable,
   ],
+
+  getDefaultProps() {
+    return {
+      defaultToggled: false,
+      disabled: false,
+      labelPosition: 'left',
+    };
+  },
 
   getInitialState() {
     return {
@@ -198,7 +258,7 @@ const Toggle = React.createClass({
       onSwitch: this._handleToggle,
       onParentShouldUpdate: this._handleStateChange,
       defaultSwitched: this.props.defaultToggled,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : 'left',
+      labelPosition: this.props.labelPosition,
     };
 
     if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;

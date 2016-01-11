@@ -26,6 +26,7 @@ import BadgePage from './components/pages/components/Badge/Page';
 import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
 import CircularProgressPage from './components/pages/components/CircularProgress/Page';
+import CheckboxPage from './components/pages/components/Checkbox/Page';
 import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
@@ -41,15 +42,16 @@ import PaperPage from './components/pages/components/Paper/Page';
 import MenuPage from './components/pages/components/Menu/Page';
 import Popover from './components/pages/components/popover';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
+import RadioButtonPage from './components/pages/components/RadioButton/Page';
 import SelectField from './components/pages/components/SelectField/Page';
 import SliderPage from './components/pages/components/Slider/Page';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
 import SvgIconPage from './components/pages/components/SvgIcon/Page';
-import Switches from './components/pages/components/switches';
 import TablePage from './components/pages/components/Table/Page';
 import TabsPage from './components/pages/components/Tabs/Page';
 import TextFieldPage from './components/pages/components/TextField/Page';
 import TimePickerPage from './components/pages/components/TimePicker/Page';
+import TogglePage from './components/pages/components/Toggle/Page';
 import ToolbarsPage from './components/pages/components/Toolbars/Page';
 
 /**
@@ -89,6 +91,7 @@ const AppRoutes = (
       <Route path="buttons" component={Buttons} />
       <Route path="card" component={CardPage} />
       <Route path="circular-progress" component={CircularProgressPage} />
+      <Route path="checkbox" component={CheckboxPage} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
@@ -104,15 +107,16 @@ const AppRoutes = (
       <Route path="menu" component={MenuPage} />
       <Route path="popover" component={Popover} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
+      <Route path="radio-button" component={RadioButtonPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />
-      <Route path="switches" component={Switches} />
       <Route path="snackbar" component={SnackbarPage} />
       <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />
       <Route path="text-field" component={TextFieldPage} />
       <Route path="time-picker" component={TimePickerPage} />
+      <Route path="toggle" component={TogglePage} />
       <Route path="toolbars" component={ToolbarsPage} />
     </Route>
 

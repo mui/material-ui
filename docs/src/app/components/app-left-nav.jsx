@@ -252,8 +252,22 @@ const AppLeftNav = React.createClass({
                 primaryText="Slider"
               />,
               <ListItem
-                value="/components/switches"
                 primaryText="Switches"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/checkbox"
+                    primaryText="Checkbox"
+                  />,
+                  <ListItem
+                    value="/components/radio-button"
+                    primaryText="Radio Button"
+                  />,
+                  <ListItem
+                    value="/components/toggle"
+                    primaryText="Toggle"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/snackbar"

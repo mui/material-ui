@@ -10,12 +10,44 @@ import ThemeManager from './styles/theme-manager';
 const RadioButton = React.createClass({
 
   propTypes: {
+    /**
+     * Checked if true.
+     */
     checked: React.PropTypes.bool,
+
+    /**
+     * Disabled if true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * Overrides the inline-styles of the icon element.
+     */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * Where the label will be placed next to the radio button.
+     */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Overrides the inline-styles of the RadioButton element label.
+     */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function for checked event.
+     */
     onCheck: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+
+    /**
+     * The value of our radio button component.
+     */
     value: React.PropTypes.string,
   },
 
@@ -29,6 +61,14 @@ const RadioButton = React.createClass({
   },
 
   mixins: [StylePropable],
+
+  getDefaultProps() {
+    return {
+      checked: false,
+      disabled: false,
+      labelPosition: 'right',
+    };
+  },
 
   getInitialState() {
     return {
@@ -160,14 +200,14 @@ const RadioButton = React.createClass({
     let enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'radio',
-      switched: this.props.checked || false,
+      switched: this.props.checked,
       switchElement: radioButtonElement,
       rippleColor: rippleColor,
       iconStyle: iconStyle,
       labelStyle: labelStyle,
       onSwitch: this._handleCheck,
       onParentShouldUpdate: this._handleStateChange,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : 'right',
+      labelPosition: this.props.labelPosition,
     };
 
     return (
