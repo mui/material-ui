@@ -20,7 +20,7 @@ import Themes from './components/pages/customization/themes';
 import InlineStyles from './components/pages/customization/inline-styles';
 
 import AppBarPage from './components/pages/components/AppBar/Page';
-import AutoComplete from './components/pages/components/auto-complete';
+import AutoCompletePage from './components/pages/components/AutoComplete/Page';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
 import CardPage from './components/pages/components/Card/Page';
@@ -87,7 +87,7 @@ const AppRoutes = (
     <Redirect from="components" to="/components/app-bar" />
     <Route path="components">
       <Route path="app-bar" component={AppBarPage} />
-      <Route path="auto-complete" component={AutoComplete} />
+      <Route path="auto-complete" component={AutoCompletePage} />
       <Route path="avatar" component={AvatarPage} />
       <Route path="badge" component={BadgePage} />
       <Route path="card" component={CardPage} />

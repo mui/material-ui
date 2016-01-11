@@ -13,29 +13,116 @@ import deprecated from './utils/deprecatedPropType';
 const AutoComplete = React.createClass({
 
   propTypes: {
+    /**
+     * Location of the anchor for the auto complete.
+     */
     anchorOrigin: PropTypes.origin,
+
+    /**
+     * Whether or not the auto complete is animated as it is toggled.
+     */
     animated: React.PropTypes.bool,
+
+    /**
+     * Array of strings or nodes used to populate the list.
+     */
     dataSource: React.PropTypes.array,
+
+    /**
+     * Disables focus ripple when true.
+     */
     disableFocusRipple: React.PropTypes.bool,
+
+    /**
+     * Override style prop for error.
+     */
     errorStyle: React.PropTypes.object,
+
+    /**
+     * The error content to display.
+     */
     errorText: React.PropTypes.string,
+
+    /**
+     * Function used to filter the auto complete.
+     */
     filter: React.PropTypes.func,
+
+    /**
+     * The content to use for adding floating label element.
+     */
     floatingLabelText: React.PropTypes.string,
+
+    /**
+     * If true, the field receives the property `width: 100%`.
+     */
     fullWidth: React.PropTypes.bool,
+
+    /**
+     * The hint content to display.
+     */
     hintText: React.PropTypes.string,
+
+    /**
+     * Override style for list.
+     */
     listStyle: React.PropTypes.object,
+
+    /**
+     * Delay for closing time of the menu.
+     */
     menuCloseDelay: React.PropTypes.number,
+
+    /**
+     * Props to be passed to menu.
+     */
     menuProps: React.PropTypes.object,
+
+    /**
+     * Override style for menu.
+     */
     menuStyle: React.PropTypes.object,
+
+    /**
+     * Gets called when list item is clicked or pressed enter.
+     */
     onNewRequest: React.PropTypes.func,
+
+    /**
+     * Gets called each time the user updates the text field.
+     */
     onUpdateInput: React.PropTypes.func,
+
+    /**
+     * Auto complete menu is open if true.
+     */
     open: React.PropTypes.bool,
+
+    /**
+     * Text being input to auto complete.
+     */
     searchText: React.PropTypes.string,
     showAllItems: deprecated(React.PropTypes.bool,
       'showAllItems is deprecated, use noFilter instead'),
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
+
+    /**
+     * Origin for location of target.
+     */
     targetOrigin: PropTypes.origin,
+
+    /**
+     * Delay for touch tap event closing of auto complete.
+     */
     touchTapCloseDelay: React.PropTypes.number,
+
+    /**
+     * If true, will update when focus event triggers.
+     */
     triggerUpdateOnFocus: React.PropTypes.bool,
     updateWhenFocused: deprecated(React.PropTypes.bool,
       'updateWhenFocused has been renamed to triggerUpdateOnFocus'),
