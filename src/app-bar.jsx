@@ -87,7 +87,7 @@ const AppBar = React.createClass({
     titleStyle: React.PropTypes.object,
 
     /**
-     * The zDepth of the app bar.
+     * The zDepth of the component.
      * The shadow of the app bar is also dependent on this property.
      */
     zDepth: PropTypes.zDepth,
