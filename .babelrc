@@ -9,7 +9,6 @@
     "docs-production": {
       "plugins": [
         "transform-react-remove-prop-types",
-        "transform-runtime",
         "transform-react-constant-elements",
         "transform-react-inline-elements"
       ]
