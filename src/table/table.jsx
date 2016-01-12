@@ -287,8 +287,8 @@ const Table = React.createClass({
     let tFoot;
     let tBody;
 
-    for (let child of children) {
-      if (!React.isValidElement(child)) continue;
+    React.Children.forEach(children, (child) => {
+      if (!React.isValidElement(child)) return;
 
       let displayName = child.type.displayName;
       if (displayName === 'TableBody') {
@@ -300,7 +300,7 @@ const Table = React.createClass({
       else if (displayName === 'TableFooter') {
         tFoot = this._createTableFooter(child);
       }
-    }
+    });
 
     // If we could not find a table-header and a table-body, do not attempt to display anything.
     if (!tBody && !tHead) return null;
