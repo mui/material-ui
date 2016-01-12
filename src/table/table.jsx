@@ -222,7 +222,7 @@ const Table = React.createClass({
         onRowHoverExit: this._onRowHoverExit,
         onRowSelection: this._onRowSelection,
         selectable: this.props.selectable,
-        style: this.mergeAndPrefix({height: this.props.height}, base.props.style),
+        style: this.mergeStyles({height: this.props.height}, base.props.style),
       }
     );
   },
@@ -305,7 +305,7 @@ const Table = React.createClass({
     // If we could not find a table-header and a table-body, do not attempt to display anything.
     if (!tBody && !tHead) return null;
 
-    let mergedTableStyle = this.prepareStyles(styles.root, style);
+    let mergedTableStyle = this.mergeStyles(styles.root, style);
     let headerTable;
     let footerTable;
     let inlineHeader;
@@ -327,7 +327,7 @@ const Table = React.createClass({
       if (fixedFooter) {
         footerTable = (
           <div style={this.prepareStyles(footerStyle)}>
-            <table className={className} style={mergedTableStyle}>
+            <table className={className} style={this.prepareStyles(mergedTableStyle)}>
               {tFoot}
             </table>
           </div>

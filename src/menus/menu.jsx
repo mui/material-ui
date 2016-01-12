@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
+import Controllable from '../mixins/controllable';
 import StylePropable from '../mixins/style-propable';
 import ClickAwayable from '../mixins/click-awayable';
 import AutoPrefix from '../styles/auto-prefix';
@@ -136,6 +137,7 @@ const Menu = React.createClass({
 
   mixins: [
     StylePropable,
+    Controllable,
     ClickAwayable,
   ],
 
@@ -147,7 +149,6 @@ const Menu = React.createClass({
       initiallyKeyboardFocused: false,
       maxHeight: null,
       multiple: false,
-      onChange: () => {},
       onEscKeyDown: () => {},
       onItemTouchTap: () => {},
       onKeyDown: () => {},
@@ -217,13 +218,6 @@ const Menu = React.createClass({
     this._setFocusIndex(-1, false);
   },
 
-  // Do not use outside of this component, it will be removed once valueLink is deprecated
-  getValueLink(props) {
-    return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange,
-    };
-  },
 
   setKeyboardFocused(keyboardFocused) {
     this.setState({
@@ -536,7 +530,7 @@ const Menu = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.prepareStyles(styles.root, style);
+    let mergedRootStyles = this.mergeStyles(styles.root, style);
     let mergedListStyles = this.mergeStyles(styles.list, listStyle);
 
     const filteredChildren = this._getFilteredChildren(children);
@@ -565,7 +559,7 @@ const Menu = React.createClass({
           transitionDelay = cumulativeDelay;
         }
 
-        childrenContainerStyles = this.prepareStyles(styles.menuItemContainer, {
+        childrenContainerStyles = this.mergeStyles(styles.menuItemContainer, {
           transitionDelay: transitionDelay + 'ms',
         });
       }
@@ -577,7 +571,7 @@ const Menu = React.createClass({
       if (!childIsADivider && !childIsDisabled) menuItemIndex++;
 
       return animated ? (
-        <div style={childrenContainerStyles}>{clonedChild}</div>
+        <div style={this.prepareStyles(childrenContainerStyles)}>{clonedChild}</div>
       ) : clonedChild;
 
     });
@@ -585,7 +579,7 @@ const Menu = React.createClass({
     return (
       <div
         onKeyDown={this._handleKeyDown}
-        style={mergedRootStyles}>
+        style={this.prepareStyles(mergedRootStyles)}>
         <Paper
           ref="scrollContainer"
           style={styles.paper}

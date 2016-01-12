@@ -343,8 +343,8 @@ const EnhancedSwitch = React.createClass({
     } = this.props;
 
     let styles = this.getStyles();
-    let wrapStyles = this.prepareStyles(styles.wrap, this.props.iconStyle);
-    let rippleStyle = this.prepareStyles(styles.ripple, this.props.rippleStyle);
+    let wrapStyles = this.mergeStyles(styles.wrap, this.props.iconStyle);
+    let rippleStyle = this.mergeStyles(styles.ripple, this.props.rippleStyle);
     let rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor :
                       this.getTheme().primary1Color;
 
@@ -355,9 +355,9 @@ const EnhancedSwitch = React.createClass({
 
     let inputId = this.props.id || UniqueId.generate();
 
-    let labelStyle = this.prepareStyles(styles.label, this.props.labelStyle);
+    let labelStyle = this.mergeStyles(styles.label, this.props.labelStyle);
     let labelElement = this.props.label ? (
-      <label style={labelStyle} htmlFor={inputId}>
+      <label style={this.prepareStyles(labelStyle)} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -418,12 +418,12 @@ const EnhancedSwitch = React.createClass({
     // If toggle component (indicated by whether the style includes thumb) manually lay out
     // elements in order to nest ripple elements
     let switchElement = !this.props.thumbStyle ? (
-      <div style={wrapStyles}>
+      <div style={this.prepareStyles(wrapStyles)}>
         {this.props.switchElement}
         {ripples}
       </div>
     ) : (
-      <div style={wrapStyles}>
+      <div style={this.prepareStyles(wrapStyles)}>
         <div style={this.prepareStyles(this.props.trackStyle)}/>
         <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
       </div>

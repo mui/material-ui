@@ -145,7 +145,7 @@ const TouchRipple = React.createClass({
 
     let rippleGroup;
     if (hasRipples) {
-      const mergedStyles = this.mergeAndPrefix({
+      const mergedStyles = this.mergeStyles({
         height: '100%',
         width: '100%',
         position: 'absolute',
@@ -155,7 +155,7 @@ const TouchRipple = React.createClass({
       }, style);
 
       rippleGroup = (
-        <ReactTransitionGroup style={mergedStyles}>
+        <ReactTransitionGroup style={this.prepareStyles(mergedStyles)}>
           {ripples}
         </ReactTransitionGroup>
       );

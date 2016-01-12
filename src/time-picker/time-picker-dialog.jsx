@@ -129,8 +129,8 @@ const TimePickerDialog = React.createClass({
     return (
       <Dialog {...other}
         ref="dialogWindow"
-        style={this.mergeAndPrefix(styles.root)}
-        bodyStyle={this.mergeAndPrefix(styles.body)}
+        style={this.mergeStyles(styles.root)}
+        bodyStyle={styles.body}
         actions={actions}
         contentStyle={styles.dialogContent}
         repositionOnUpdate={false}

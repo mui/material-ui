@@ -5,7 +5,6 @@ import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
-import AutoPrefix from './styles/auto-prefix';
 
 /**
   * Verifies min/max range.
@@ -289,7 +288,7 @@ const Slider = React.createClass({
         left: -this.getTheme().handleSize,
       },
     };
-    styles.filled = this.mergeAndPrefix(styles.filledAndRemaining, {
+    styles.filled = this.mergeStyles(styles.filledAndRemaining, {
       left: 0,
       backgroundColor: (this.props.disabled) ?
         this.getTheme().trackColor :
@@ -297,7 +296,7 @@ const Slider = React.createClass({
       marginRight: fillGutter,
       width: 'calc(' + (this.state.percent * 100) + '%' + calcDisabledSpacing + ')',
     });
-    styles.remaining = this.mergeAndPrefix(styles.filledAndRemaining, {
+    styles.remaining = this.mergeStyles(styles.filledAndRemaining, {
       right: 0,
       backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
@@ -313,7 +312,11 @@ const Slider = React.createClass({
   // similar issues.
   _toggleSelection(value) {
     let body = document.getElementsByTagName('body')[0];
-    AutoPrefix.set(body.style, 'userSelect', value);
+    body.style['user-select'] = value;
+    body.style['-webkit-user-select'] = value;
+    body.style['-moz-user-select'] = value;
+    body.style['-ms-user-select'] = value;
+    body.style['-o-user-select'] = value;
   },
 
   _onHandleTouchStart(e) {
@@ -491,8 +494,8 @@ const Slider = React.createClass({
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     let styles = this.getStyles();
-    const sliderStyles = this.prepareStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.prepareStyles(
+    const sliderStyles = this.mergeStyles(styles.root, this.props.style);
+    const handleStyles = percent === 0 ? this.mergeStyles(
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
@@ -500,7 +503,7 @@ const Slider = React.createClass({
       (this.state.hovered || this.state.focused) && !this.props.disabled
         && styles.handleWhenPercentZeroAndFocused,
       this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.prepareStyles(
+    ) : this.mergeStyles(
       styles.handle,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
@@ -509,7 +512,7 @@ const Slider = React.createClass({
         left: (percent * 100) + '%',
       }
     );
-    let rippleStyle = this.mergeAndPrefix(
+    let rippleStyle = this.mergeStyles(
       styles.ripple,
       percent === 0 && styles.rippleWhenPercentZero
     );
@@ -526,7 +529,7 @@ const Slider = React.createClass({
         <FocusRipple
           ref="focusRipple"
           key="focusRipple"
-          style={rippleStyle}
+          style={this.mergeStyles(rippleStyle)}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
           color={rippleColor}/>
@@ -546,7 +549,7 @@ const Slider = React.createClass({
       <div {...others } style={this.prepareStyles(this.props.style)}>
         <span>{this.props.description}</span>
         <span>{this.props.error}</span>
-        <div style={sliderStyles}
+        <div style={this.prepareStyles(sliderStyles)}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onMouseDown={this._onMouseDown}
@@ -556,7 +559,7 @@ const Slider = React.createClass({
           <div ref="track" style={this.prepareStyles(styles.track)}>
             <div style={this.prepareStyles(styles.filled)}></div>
             <div style={this.prepareStyles(remainingStyles)}></div>
-            <div style={handleStyles} tabIndex={0} {...handleDragProps}>
+            <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
               {focusRipple}
             </div>
           </div>

@@ -70,7 +70,7 @@ const SlideIn = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.prepareStyles({
+    let mergedRootStyles = this.mergeStyles({
       position: 'relative',
       overflow: 'hidden',
       height: '100%',
@@ -92,7 +92,7 @@ const SlideIn = React.createClass({
     return (
       <ReactTransitionGroup
         {...other}
-        style={mergedRootStyles}
+        style={this.prepareStyles(mergedRootStyles)}
         component="div">
         {newChildren}
       </ReactTransitionGroup>

@@ -59,7 +59,7 @@ const InkBar = React.createClass({
     } = this.props;
 
     let colorStyle = color ? {backgroundColor: color} : undefined;
-    let styles = this.prepareStyles({
+    let styles = this.mergeStyles({
       left: left,
       width: width,
       bottom: 0,
@@ -72,7 +72,7 @@ const InkBar = React.createClass({
     }, this.props.style, colorStyle);
 
     return (
-      <div style={styles}>
+      <div style={this.prepareStyles(styles)}>
         &nbsp;
       </div>
     );

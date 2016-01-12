@@ -118,7 +118,7 @@ const SvgIcon = React.createClass({
       this.state.muiTheme.rawTheme.palette.textColor;
     const onColor = hoverColor ? hoverColor : offColor;
 
-    const mergedStyles = this.prepareStyles({
+    const mergedStyles = this.mergeStyles({
       display: 'inline-block',
       height: 24,
       width: 24,
@@ -138,7 +138,7 @@ const SvgIcon = React.createClass({
       <svg
         {...other}
         {...events}
-        style={mergedStyles}
+        style={this.prepareStyles(mergedStyles)}
         viewBox={viewBox}>
         {children}
       </svg>

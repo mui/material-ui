@@ -116,7 +116,7 @@ const ScaleInChild = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedRootStyles = this.prepareStyles({
+    const mergedRootStyles = this.mergeStyles({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -126,7 +126,7 @@ const ScaleInChild = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={mergedRootStyles}>
+      <div {...other} style={this.prepareStyles(mergedRootStyles)}>
         {children}
       </div>
     );

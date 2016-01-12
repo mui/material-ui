@@ -111,8 +111,8 @@ const List = React.createClass({
 
     let subheaderElement;
     if (subheader) {
-      const mergedSubheaderStyles = this.prepareStyles(styles.subheader, subheaderStyle);
-      subheaderElement = <div style={mergedSubheaderStyles}>{subheader}</div>;
+      const mergedSubheaderStyles = this.mergeStyles(styles.subheader, subheaderStyle);
+      subheaderElement = <div style={this.prepareStyles(mergedSubheaderStyles)}>{subheader}</div>;
     }
 
     return (

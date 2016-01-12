@@ -299,7 +299,7 @@ const IconMenu = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.prepareStyles(styles.root, style);
+    let mergedRootStyles = this.mergeStyles(styles.root, style);
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
@@ -333,7 +333,7 @@ const IconMenu = React.createClass({
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
         onTouchTap={onTouchTap}
-        style={mergedRootStyles}>
+        style={this.prepareStyles(mergedRootStyles)}>
         {iconButton}
         <Popover
           anchorOrigin={anchorOrigin}

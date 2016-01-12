@@ -254,14 +254,14 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedDivStyles = this.prepareStyles(
+    const mergedDivStyles = this.mergeStyles(
       styles.root,
       styles.innerDiv,
       innerDivStyle,
       style
     );
 
-    return React.createElement('div', {style: mergedDivStyles}, contentChildren);
+    return React.createElement('div', {style: this.prepareStyles(mergedDivStyles)}, contentChildren);
   },
 
   _createLabelElement(styles, contentChildren) {
@@ -270,7 +270,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedLabelStyles = this.prepareStyles(
+    const mergedLabelStyles = this.mergeStyles(
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -278,18 +278,18 @@ const ListItem = React.createClass({
       style
     );
 
-    return React.createElement('label', {style: mergedLabelStyles}, contentChildren);
+    return React.createElement('label', {style: this.prepareStyles(mergedLabelStyles)}, contentChildren);
   },
 
   _createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
     const mergedStyles = isAnElement ?
-      this.prepareStyles(styles, data.props.style) : null;
+      this.mergeStyles(styles, data.props.style) : null;
 
     return isAnElement ? (
       React.cloneElement(data, {
         key: key,
-        style: mergedStyles,
+        style: this.prepareStyles(mergedStyles),
       })
     ) : (
       <div key={key} style={this.prepareStyles(styles)}>
