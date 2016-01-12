@@ -5,7 +5,8 @@ const React = require('react');
 function stubContext(BaseComponent, context) {
   if (typeof context === 'undefined' || context === null) context = {};
 
-  let _contextTypes = {}, _context = context;
+  let _contextTypes = {};
+  let _context = context;
 
   try {
     Object.keys(_context).forEach(function(key) {

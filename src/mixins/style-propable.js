@@ -32,8 +32,8 @@ export default {
   // Never call this on the same style object twice. As a rule of thumb,
   // only call it when passing style attribute to html elements.
   // If you call it twice you'll get a warning anyway.
-  prepareStyles() {
+  prepareStyles(...args) {
     return Styles.prepareStyles.apply(Styles,
-      [(this.state && this.state.muiTheme) || this.context.muiTheme].concat([].slice.apply(arguments)));
+      [(this.state && this.state.muiTheme) || this.context.muiTheme].concat(args));
   },
 };

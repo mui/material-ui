@@ -14,7 +14,7 @@ const propTypes = {
   inset: React.PropTypes.bool,
 
   /**
-   * Override the inline-styles of the list divider's root element
+   * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
 };

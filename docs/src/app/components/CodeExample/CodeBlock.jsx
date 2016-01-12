@@ -5,7 +5,7 @@ import StylePropable from 'material-ui/lib/mixins/style-propable';
 import FlatButton from 'material-ui/lib/flat-button';
 import Transitions from 'material-ui/lib/styles/transitions';
 
-const LINE_MAX = 17;
+const LINE_MAX = 7;
 
 const styles = {
   root: {

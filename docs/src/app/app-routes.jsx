@@ -20,36 +20,40 @@ import Themes from './components/pages/customization/themes';
 import InlineStyles from './components/pages/customization/inline-styles';
 
 import AppBarPage from './components/pages/components/AppBar/Page';
-import AutoComplete from './components/pages/components/auto-complete';
+import AutoCompletePage from './components/pages/components/AutoComplete/Page';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
-import Buttons from './components/pages/components/buttons';
 import CardPage from './components/pages/components/Card/Page';
 import CircularProgressPage from './components/pages/components/CircularProgress/Page';
+import CheckboxPage from './components/pages/components/Checkbox/Page';
 import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
+import FlatButtonPage from './components/pages/components/FlatButton/Page';
+import FloatingActionButtonPage from './components/pages/components/FloatingActionButton/Page';
 import FontIconPage from './components/pages/components/FontIcon/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import IconButtonPage from './components/pages/components/IconButton/Page';
-import IconMenus from './components/pages/components/icon-menus';
+import IconMenuPage from './components/pages/components/IconMenu/Page';
 import LeftNavPage from './components/pages/components/LeftNav/Page';
 import ListPage from './components/pages/components/List/Page';
 import LinearProgressPage from './components/pages/components/LinearProgress/Page';
 import PaperPage from './components/pages/components/Paper/Page';
 import MenuPage from './components/pages/components/Menu/Page';
-import Popover from './components/pages/components/popover';
+import PopoverPage from './components/pages/components/Popover/Page';
+import RaisedButtonPage from './components/pages/components/RaisedButton/Page';
 import RefreshIndicatorPage from './components/pages/components/RefreshIndicator/Page';
+import RadioButtonPage from './components/pages/components/RadioButton/Page';
 import SelectField from './components/pages/components/SelectField/Page';
 import SliderPage from './components/pages/components/Slider/Page';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
 import SvgIconPage from './components/pages/components/SvgIcon/Page';
-import Switches from './components/pages/components/switches';
-import Table from './components/pages/components/table';
+import TablePage from './components/pages/components/Table/Page';
 import TabsPage from './components/pages/components/Tabs/Page';
-import TextFields from './components/pages/components/text-fields';
-import TimePicker from './components/pages/components/time-picker';
+import TextFieldPage from './components/pages/components/TextField/Page';
+import TimePickerPage from './components/pages/components/TimePicker/Page';
+import TogglePage from './components/pages/components/Toggle/Page';
 import ToolbarsPage from './components/pages/components/Toolbars/Page';
 
 /**
@@ -83,36 +87,40 @@ const AppRoutes = (
     <Redirect from="components" to="/components/app-bar" />
     <Route path="components">
       <Route path="app-bar" component={AppBarPage} />
-      <Route path="auto-complete" component={AutoComplete} />
+      <Route path="auto-complete" component={AutoCompletePage} />
       <Route path="avatar" component={AvatarPage} />
       <Route path="badge" component={BadgePage} />
-      <Route path="buttons" component={Buttons} />
       <Route path="card" component={CardPage} />
       <Route path="circular-progress" component={CircularProgressPage} />
+      <Route path="checkbox" component={CheckboxPage} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
       <Route path="font-icon" component={FontIconPage} />
+      <Route path="flat-button" component={FlatButtonPage} />
+      <Route path="floating-action-button" component={FloatingActionButtonPage} />
       <Route path="grid-list" component={GridListPage} />
       <Route path="icon-button" component={IconButtonPage} />
-      <Route path="icon-menus" component={IconMenus} />
+      <Route path="icon-menu" component={IconMenuPage} />
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="list" component={ListPage} />
       <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="paper" component={PaperPage} />
       <Route path="menu" component={MenuPage} />
-      <Route path="popover" component={Popover} />
+      <Route path="popover" component={PopoverPage} />
       <Route path="refresh-indicator" component={RefreshIndicatorPage} />
+      <Route path="radio-button" component={RadioButtonPage} />
+      <Route path="raised-button" component={RaisedButtonPage} />
       <Route path="select-field" component={SelectField} />
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />
-      <Route path="switches" component={Switches} />
       <Route path="snackbar" component={SnackbarPage} />
-      <Route path="table" component={Table} />
+      <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />
-      <Route path="text-fields" component={TextFields} />
-      <Route path="time-picker" component={TimePicker} />
+      <Route path="text-field" component={TextFieldPage} />
+      <Route path="time-picker" component={TimePickerPage} />
+      <Route path="toggle" component={TogglePage} />
       <Route path="toolbars" component={ToolbarsPage} />
     </Route>
 

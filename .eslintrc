@@ -6,6 +6,8 @@ env:
   browser: true
   node: true
 
+extends: eslint:recommended
+
 rules:
   # Errors
   array-bracket-spacing: [2, never]
@@ -44,6 +46,7 @@ rules:
   no-unreachable: 2
   no-var: 2
   object-curly-spacing: [2, never]
+  one-var: [2, never]
   prefer-arrow-callback: 0 # Wishlist, one day
   prefer-const: 0 # Wishlist, one day
   quotes: [2, single, avoid-escape]
@@ -85,7 +88,7 @@ rules:
   react/wrap-multilines: 2
   react/jsx-indent: [2, 2]
 
-  # Disabled
+  # React Disabled
   react/jsx-no-bind: 0
   react/jsx-no-literals: 0
   react/jsx-closing-bracket-location: 0
@@ -96,8 +99,6 @@ parser: babel-eslint
 
 plugins:
   - react
-
-# extends: eslint:recommended # Whishlist, one day
 
 ecmaFeatures:
   jsx: true

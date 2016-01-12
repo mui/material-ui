@@ -7,6 +7,7 @@ import TextField from '../text-field';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import deprecated from '../utils/deprecatedPropType';
+import warning from 'warning';
 
 const DatePicker = React.createClass({
 
@@ -197,12 +198,12 @@ const DatePicker = React.createClass({
     return this.state.date;
   },
 
-  setDate(d) {
-    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
-      console.error('Cannot call DatePicker.setDate when value or valueLink is defined as a property.');
-    }
+  setDate(date) {
+    warning(false, `setDate() method is deprecated. Use the defaultDate property instead.
+      Or use the DatePicker as a controlled component with the value property.`);
+
     this.setState({
-      date: d,
+      date: date,
     });
   },
 
@@ -222,12 +223,14 @@ const DatePicker = React.createClass({
     this.openDialog();
   },
 
-  _handleDialogAccept(d) {
+  _handleDialogAccept(date) {
     if (!this._isControlled()) {
-      this.setDate(d);
+      this.setState({
+        date: date,
+      });
     }
-    if (this.props.onChange) this.props.onChange(null, d);
-    if (this.props.valueLink) this.props.valueLink.requestChange(d);
+    if (this.props.onChange) this.props.onChange(null, date);
+    if (this.props.valueLink) this.props.valueLink.requestChange(date);
   },
 
   _handleInputFocus(e) {

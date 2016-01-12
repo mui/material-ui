@@ -4,8 +4,8 @@ import Events from './events';
 export default {
 
   _testSupportedProps(props) {
-    let i,
-      el = document.createElement('div');
+    let i;
+    const el = document.createElement('div');
 
     for (i in props) {
       if (props.hasOwnProperty(i) && el.style[i] !== undefined) {

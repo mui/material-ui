@@ -39,7 +39,7 @@ const propTypes = {
   muiTheme: React.PropTypes.object.isRequired,
 
   /**
-   * Override the inline-styles of the underline.
+   * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
 };

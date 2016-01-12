@@ -14,27 +14,91 @@ import PopoverDefaultAnimation from './popover-default-animation';
 const Popover = React.createClass({
 
   propTypes: {
+    /**
+     * This is the DOM element that will be used to set the position of the
+     * component.
+     */
     anchorEl: React.PropTypes.object,
+
+    /**
+     * This is the point on the anchor where the popover
+     * targetOrigin will stick to.
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right]
+     */
     anchorOrigin: PropTypes.origin,
+
+    /**
+     * If true, the popover will apply transitions when
+     * added it gets added to the DOM.
+     */
     animated: React.PropTypes.bool,
+
+    /**
+     * Override the default animation component used.
+     */
     animation: React.PropTypes.func,
+
+    /**
+     * If true, the popover will hide when the anchor scrolls off the screen
+     */
     autoCloseWhenOffScreen: React.PropTypes.bool,
+
+    /**
+     * If true, the popover (potentially) ignores targetOrigin
+     * and anchorOrigin to make itself fit on screen,
+     * which is useful for mobile devices.
+     */
     canAutoPosition: React.PropTypes.bool,
+
+    /**
+     * Use this property to render your component inside the `Popover`.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * This is a callback that fires when the popover
+     * thinks it should close. (e.g. clickAway or offScreen)
+     *
+     * @param {string} reason Determines what triggered this request.
+     */
     onRequestClose: React.PropTypes.func,
+
+    /**
+     * Controls the visibility of the popover.
+     */
     open: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * This is the point on the popover which will stick to
+     * the anchors origin.
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right]
+     */
     targetOrigin: PropTypes.origin,
+
+    /**
+     * If true, the popover will render on top of an invisible
+     * layer, which will prevent clicks to the underlying
+     * elements, and trigger an onRequestClose(clickAway) event.
+     */
     useLayerForClickAway: React.PropTypes.bool,
+
+    /**
+     * This number represents the zDepth of the paper shadow.
+     */
     zDepth: PropTypes.zDepth,
   },
 
@@ -58,7 +122,6 @@ const Popover = React.createClass({
         vertical: 'bottom',
         horizontal: 'left',
       },
-      animation: PopoverDefaultAnimation,
       animated: true,
       autoCloseWhenOffScreen: true,
       canAutoPosition: true,
@@ -143,11 +206,13 @@ const Popover = React.createClass({
       ...other,
     } = this.props;
 
-    let Animation = animation;
+    let Animation = animation || PopoverDefaultAnimation;
 
-    if (!animated) {
+    if (!Animation) {
       Animation = Paper;
-      style = {position: 'fixed'};
+      style = {
+        position: 'fixed',
+      };
       if (!this.state.open) {
         return null;
       }

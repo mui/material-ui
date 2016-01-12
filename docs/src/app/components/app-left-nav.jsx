@@ -156,8 +156,22 @@ const AppLeftNav = React.createClass({
                 primaryText="Badge"
               />,
               <ListItem
-                value="/components/buttons"
                 primaryText="Buttons"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/flat-button"
+                    primaryText="Flat Button"
+                  />,
+                  <ListItem
+                    value="/components/raised-button"
+                    primaryText="Raised Button"
+                  />,
+                  <ListItem
+                    value="/components/floating-action-button"
+                    primaryText="Floating Action Button"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/card"
@@ -188,8 +202,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Icon Button"
               />,
               <ListItem
-                value="/components/icon-menus"
-                primaryText="Icon Menus"
+                value="/components/icon-menu"
+                primaryText="Icon Menu"
               />,
               <ListItem
                 primaryText="Icons"
@@ -252,8 +266,22 @@ const AppLeftNav = React.createClass({
                 primaryText="Slider"
               />,
               <ListItem
-                value="/components/switches"
                 primaryText="Switches"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/checkbox"
+                    primaryText="Checkbox"
+                  />,
+                  <ListItem
+                    value="/components/radio-button"
+                    primaryText="Radio Button"
+                  />,
+                  <ListItem
+                    value="/components/toggle"
+                    primaryText="Toggle"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/snackbar"
@@ -268,8 +296,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Tabs"
               />,
               <ListItem
-                value="/components/text-fields"
-                primaryText="Text Fields"
+                value="/components/text-field"
+                primaryText="Text Field"
               />,
               <ListItem
                 value="/components/time-picker"

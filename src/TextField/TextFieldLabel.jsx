@@ -39,7 +39,7 @@ const propTypes = {
   onTouchTap: React.PropTypes.func,
 
   /**
-   * Override the inline-styles of the floating label.
+   * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
 };

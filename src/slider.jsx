@@ -5,6 +5,7 @@ import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import AutoPrefix from './styles/auto-prefix';
 
 /**
   * Verifies min/max range.
@@ -46,80 +47,80 @@ const Slider = React.createClass({
   propTypes: {
     /**
      * The default value of the slider.
-     **/
+     */
     defaultValue: valueInRangePropType,
 
     /**
      * Describe the slider.
-     **/
+     */
     description: React.PropTypes.string,
 
     /**
      * Disables focus ripple if set to true.
-     **/
+     */
     disableFocusRipple: React.PropTypes.bool,
 
     /**
      * If true, the slider will not be interactable.
-     **/
+     */
     disabled: React.PropTypes.bool,
 
     /**
      * An error message for the slider.
-     **/
+     */
     error: React.PropTypes.string,
 
     /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
-     **/
+     */
     max: minMaxPropType,
 
     /**
      * The minimum value the slider can slide to on a scale
      * from 0 to 1 inclusive. Cannot be equal to max.
-     **/
+     */
     min: minMaxPropType,
 
     /**
      * The name of the slider. Behaves like the name attribute
      * of an input element.
-     **/
+     */
     name: React.PropTypes.string,
 
     /**
      * Callback function that is fired when the focus has left the slider.
-     **/
+     */
     onBlur: React.PropTypes.func,
 
     /**
      * Callback function that is fired when the user changes the slider's value.
-     **/
+     */
     onChange: React.PropTypes.func,
 
     /**
      * Callback function that is fired when the slider has begun to move.
-     **/
+     */
     onDragStart: React.PropTypes.func,
 
     /**
-     * Callback function that is fried when teh slide has stopped moving.
-     **/
+     * Callback function that is fried when the slide has stopped moving.
+     */
     onDragStop: React.PropTypes.func,
 
     /**
      * Callback fired when the user has focused on the slider.
-     **/
+     */
     onFocus: React.PropTypes.func,
 
     /**
      * Whether or not the slider is required in a form.
-     **/
+     */
     required: React.PropTypes.bool,
 
     /**
      * The granularity the slider can step through values.
-     **/
+     */
     step: React.PropTypes.number,
 
     /**
@@ -129,7 +130,7 @@ const Slider = React.createClass({
 
     /**
      * The value of the slider.
-     **/
+     */
     value: valueInRangePropType,
   },
 
@@ -307,6 +308,14 @@ const Slider = React.createClass({
   },
 
 
+  // Needed to prevent text selection when dragging the slider handler.
+  // In the future, we should consider use <input type="range"> to avoid
+  // similar issues.
+  _toggleSelection(value) {
+    let body = document.getElementsByTagName('body')[0];
+    AutoPrefix.set(body.style, 'userSelect', value);
+  },
+
   _onHandleTouchStart(e) {
     if (document) {
       document.addEventListener('touchmove', this._dragTouchHandler, false);
@@ -321,6 +330,7 @@ const Slider = React.createClass({
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
+      this._toggleSelection('none');
     }
     this._onDragStart(e);
   },
@@ -347,6 +357,7 @@ const Slider = React.createClass({
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
+      this._toggleSelection('');
     }
 
     this._onDragStop(e);

@@ -8,11 +8,8 @@ function mergeSingle(objA, objB) {
 
 export default {
 
-  merge() {
-    const args = Array.prototype.slice.call(arguments, 0);
-    let base = args[0];
-
-    for (let i = 1; i < args.length; i++) {
+  merge(base, ...args) {
+    for (let i = 0; i < args.length; i++) {
       if (args[i]) {
         base = mergeSingle(base, args[i]);
       }

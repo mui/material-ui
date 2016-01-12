@@ -32,35 +32,140 @@ const TextField = React.createClass({
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * The text string to use for the default value.
+     */
     defaultValue: React.PropTypes.any,
+
+    /**
+     * Disables the text field if set to true.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * The style object to use to override error styles.
+     */
     errorStyle: React.PropTypes.object,
+
+    /**
+     * The error content to display.
+     */
     errorText: React.PropTypes.node,
+
+    /**
+     * The style object to use to override floating label styles.
+     */
     floatingLabelStyle: React.PropTypes.object,
+
+    /**
+     * The content to use for the floating label element.
+     */
     floatingLabelText: React.PropTypes.node,
+
+    /**
+     * If true, the field receives the property width 100%.
+     */
     fullWidth: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the TextField's hint text element.
+     */
     hintStyle: React.PropTypes.object,
+
+    /**
+     * The hint content to display.
+     */
     hintText: React.PropTypes.node,
+
+    /**
+     * The id prop for the text field.
+     */
     id: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the TextField's input element.
+     */
     inputStyle: React.PropTypes.object,
+
+    /**
+     * If true, a textarea element will be rendered.
+     * The textarea also grows and shrinks according to the number of lines.
+     */
     multiLine: React.PropTypes.bool,
+
+    /**
+     * Callback function that is fired when the textfield loses focus.
+     */
     onBlur: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the textfield's value changes.
+     */
     onChange: React.PropTypes.func,
+
+    /**
+     * The function to call when the user presses the Enter key.
+     */
     onEnterKeyDown: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the textfield gains focus.
+     */
     onFocus: React.PropTypes.func,
+
+    /**
+     * Callback function fired when key is pressed down.
+     */
     onKeyDown: React.PropTypes.func,
+
+    /**
+     * Number of rows to display when multiLine option is set to true.
+     */
     rows: React.PropTypes.number,
+
+    /**
+     * Maximum number of rows to display when
+     * multiLine option is set to true.
+     */
     rowsMax: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Specifies the type of input to display
+     * such as "password" or "text".
+     */
     type: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the
+     * TextField's underline element when disabled.
+     */
     underlineDisabledStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the TextField's
+     * underline element when focussed.
+     */
     underlineFocusStyle: React.PropTypes.object,
+
+    /**
+     * If true, shows the underline for the text field.
+     */
     underlineShow: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the TextField's underline element.
+     */
     underlineStyle: React.PropTypes.object,
+
+    /**
+     * The value of the text field.
+     */
     value: React.PropTypes.any,
   },
 
@@ -101,6 +206,8 @@ const TextField = React.createClass({
 
   getDefaultProps() {
     return {
+      disabled: false,
+      multiLine: false,
       fullWidth: false,
       type: 'text',
       underlineShow: true,
@@ -262,10 +369,7 @@ const TextField = React.createClass({
   setErrorText(newErrorText) {
     warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
 
-    if (process.env.NODE_ENV !== 'production' && this.props.hasOwnProperty('errorText')) {
-      console.error('Cannot call TextField.setErrorText when errorText is defined as a property.');
-    }
-    else if (this.isMounted()) {
+    if (this.isMounted()) {
       this.setState({errorText: newErrorText});
     }
   },
@@ -275,10 +379,7 @@ const TextField = React.createClass({
       `setValue() method is deprecated. Use the defaultValue property instead.
       Or use the TextField as a controlled component with the value property.`);
 
-    if (process.env.NODE_ENV !== 'production' && this._isControlled()) {
-      console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
-    }
-    else if (this.isMounted()) {
+    if (this.isMounted()) {
       if (this.props.multiLine) {
         this.refs.input.setValue(newValue);
       }
