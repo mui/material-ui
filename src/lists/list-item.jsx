@@ -526,8 +526,8 @@ const ListItem = React.createClass({
         display: 'flex',
         position: 'absolute',
         right: 0,
-        top: 0
-      }
+        top: 0,
+      },
     };
 
     let contentChildren = [children];
@@ -574,8 +574,7 @@ const ListItem = React.createClass({
 
     //RightIconButtonElement
     const hasNestListItems = nestedItems.length;
-    const hasRightElement = rightAvatar || rightIcon || rightIconButton || rightToggle;
-    const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator; // && hasRightElement;
+    const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator;
 
     const rightIcons = [];
     let rightIconButtonHandlers = {
@@ -586,19 +585,30 @@ const ListItem = React.createClass({
       onMouseDown: this._handleRightIconButtonMouseUp,
       onMouseUp: this._handleRightIconButtonMouseUp,
     };
-    
-    // Create a nested list indicator icon if we don't have an icon on the right
+
     if (needsNestedIndicator) {
       let nestedIndicator = this.state.open ?
         <IconButton><OpenIcon /></IconButton> :
         <IconButton><CloseIcon /></IconButton>;
       rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
-      rightIcons.push(React.cloneElement(nestedIndicator, { key: rightIcons.length, ...rightIconButtonHandlers }));
+      rightIcons.push(
+        React.cloneElement(
+          nestedIndicator,
+          {
+            key: rightIcons.length, ...rightIconButtonHandlers,
+          }
+        )
+      );
     }
 
     if (rightIconButton) {
       delete rightIconButtonHandlers.onTouchTap;
-      let rightIconButtonElement = React.cloneElement(rightIconButton, { key: rightIcons.length, ...rightIconButtonHandlers });
+      let rightIconButtonElement = React.cloneElement(
+        rightIconButton,
+        {
+          key: rightIcons.length, ...rightIconButtonHandlers,
+        }
+      );
       rightIcons.push(rightIconButtonElement);
     }
 
