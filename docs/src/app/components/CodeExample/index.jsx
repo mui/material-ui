@@ -3,7 +3,6 @@ import CodeBlock from './CodeBlock';
 import ClearFix from 'material-ui/lib/clearfix';
 import Paper from 'material-ui/lib/paper';
 import Spacing from 'material-ui/lib/styles/spacing';
-import Typography from 'material-ui/lib/styles/typography';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import DefaultRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 
@@ -50,7 +49,6 @@ const CodeExample = React.createClass({
     } = this.props;
 
     let palette = this.state.muiTheme.rawTheme.palette;
-    let borderColor = palette.borderColor;
     let canvasColor = palette.canvasColor;
 
     let styles = {
@@ -70,7 +68,7 @@ const CodeExample = React.createClass({
     return (
       <Paper style={styles.root}>
         <ClearFix style={styles.exampleBlock}>{children}</ClearFix>
-        <CodeBlock style={styles.codeBlock}>{code}</CodeBlock>
+        <CodeBlock>{code}</CodeBlock>
       </Paper>
     );
   },
