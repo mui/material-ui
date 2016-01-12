@@ -2,8 +2,6 @@ import React from 'react';
 import CodeBlock from './CodeBlock';
 import ClearFix from 'material-ui/lib/clearfix';
 import Paper from 'material-ui/lib/paper';
-import Spacing from 'material-ui/lib/styles/spacing';
-import Typography from 'material-ui/lib/styles/typography';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import DefaultRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 
@@ -12,7 +10,9 @@ const CodeExample = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string,
     layoutSideBySide: React.PropTypes.bool,
+    title: React.PropTypes.string,
   },
 
   contextTypes: {
@@ -50,7 +50,6 @@ const CodeExample = React.createClass({
     } = this.props;
 
     let palette = this.state.muiTheme.rawTheme.palette;
-    let borderColor = palette.borderColor;
     let canvasColor = palette.canvasColor;
 
     let styles = {
@@ -58,19 +57,9 @@ const CodeExample = React.createClass({
         backgroundColor: canvasColor,
         marginBottom: 32,
       },
-      exampleLabel: {
-        color: borderColor,
-        padding: 8,
-        marginBottom: 0,
-        fontSize: 14,
-        lineHeight: '20px',
-        letterSpacing: 0,
-        textTransform: 'uppercase',
-        fontWeight: Typography.fontWeightMedium,
-      },
       exampleBlock: {
         borderRadius: '0 0 2px 0',
-        padding: Spacing.desktopGutter,
+        padding: '14px 24px 24px',
         margin: 0,
         width: layoutSideBySide ? '45%' : null,
         float: layoutSideBySide ? 'right' : null,
@@ -79,8 +68,8 @@ const CodeExample = React.createClass({
 
     return (
       <Paper style={styles.root}>
+        <CodeBlock title={this.props.title} description={this.props.description}>{code}</CodeBlock>
         <ClearFix style={styles.exampleBlock}>{children}</ClearFix>
-        <CodeBlock style={styles.codeBlock}>{code}</CodeBlock>
       </Paper>
     );
   },
