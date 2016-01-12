@@ -11,10 +11,6 @@ export default class AutoCompleteExampleSimple extends React.Component {
     };
   }
 
-  handleNewRequest = (t) => {
-    console.log(`New request: ${t}`);
-  };
-
   handleUpdateInput = (t) => {
     this.setState({
       dataSource: [t, t + t, t + t + t],
@@ -27,7 +23,6 @@ export default class AutoCompleteExampleSimple extends React.Component {
         hintText="Type c"
         dataSource={this.state.dataSource}
         onUpdateInput={this.handleUpdateInput}
-        onNewRequest={this.handleNewRequest}
       />
     );
   }
