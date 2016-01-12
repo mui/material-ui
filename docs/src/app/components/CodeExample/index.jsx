@@ -58,16 +58,6 @@ const CodeExample = React.createClass({
         backgroundColor: canvasColor,
         marginBottom: 32,
       },
-      exampleLabel: {
-        color: borderColor,
-        padding: 8,
-        marginBottom: 0,
-        fontSize: 14,
-        lineHeight: '20px',
-        letterSpacing: 0,
-        textTransform: 'uppercase',
-        fontWeight: Typography.fontWeightMedium,
-      },
       exampleBlock: {
         borderRadius: '0 0 2px 0',
         padding: Spacing.desktopGutter,
