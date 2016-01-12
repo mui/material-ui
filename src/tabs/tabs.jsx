@@ -131,6 +131,7 @@ const Tabs = React.createClass({
     return React.Children.count(this.props.children);
   },
 
+  // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
     return props.valueLink || {
       value: props.value,

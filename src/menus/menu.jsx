@@ -217,6 +217,7 @@ const Menu = React.createClass({
     this._setFocusIndex(-1, false);
   },
 
+  // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
     return props.valueLink || {
       value: props.value,
