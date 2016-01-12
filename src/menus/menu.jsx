@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
-import Controllable from '../mixins/controllable';
 import StylePropable from '../mixins/style-propable';
 import ClickAwayable from '../mixins/click-awayable';
 import AutoPrefix from '../styles/auto-prefix';
@@ -137,7 +136,6 @@ const Menu = React.createClass({
 
   mixins: [
     StylePropable,
-    Controllable,
     ClickAwayable,
   ],
 
@@ -149,6 +147,7 @@ const Menu = React.createClass({
       initiallyKeyboardFocused: false,
       maxHeight: null,
       multiple: false,
+      onChange: () => {},
       onEscKeyDown: () => {},
       onItemTouchTap: () => {},
       onKeyDown: () => {},
@@ -218,6 +217,12 @@ const Menu = React.createClass({
     this._setFocusIndex(-1, false);
   },
 
+  getValueLink(props) {
+    return props.valueLink || {
+      value: props.value,
+      requestChange: props.onChange,
+    };
+  },
 
   setKeyboardFocused(keyboardFocused) {
     this.setState({
