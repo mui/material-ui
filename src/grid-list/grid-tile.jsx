@@ -220,7 +220,7 @@ const GridTile = React.createClass({
 
     const styles = this.getStyles();
 
-    const mergedRootStyles = this.prepareStyles(styles.root, style);
+    const mergedRootStyles = this.mergeStyles(styles.root, style);
 
     let titleBar = null;
 
@@ -259,7 +259,7 @@ const GridTile = React.createClass({
 
     const RootTag = rootClass;
     return (
-      <RootTag style={mergedRootStyles} {...other}>
+      <RootTag style={this.prepareStyles(mergedRootStyles)} {...other}>
         {newChildren}
         {titleBar}
       </RootTag>

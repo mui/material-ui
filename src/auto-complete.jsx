@@ -305,15 +305,15 @@ const AutoComplete = React.createClass({
     };
 
     let textFieldProps = {
-      style: this.mergeAndPrefix(styles.input, style),
+      style: this.mergeStyles(styles.input, style),
       floatingLabelText: floatingLabelText,
       hintText: (!hintText && !floatingLabelText) ? '' : hintText,
       fullWidth: true,
       multiLine: false,
-      errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
+      errorStyle: this.mergeStyles(styles.error, errorStyle),
     };
 
-    let mergedRootStyles = this.mergeAndPrefix(styles.root, style);
+    let mergedRootStyles = this.mergeStyles(styles.root, style);
     let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
 
     let requestsList = [];
@@ -352,7 +352,7 @@ const AutoComplete = React.createClass({
         onEscKeyDown={this._close}
         initiallyKeyboardFocused={false}
         onItemTouchTap={this._handleItemTouchTap}
-        listStyle={this.mergeAndPrefix(styles.list, listStyle)}
+        listStyle={this.mergeStyles(styles.list, listStyle)}
         style={mergedMenuStyles}>
         {
           requestsList.map((request, index) => {
@@ -392,7 +392,7 @@ const AutoComplete = React.createClass({
     }
 
     return (
-      <div style={mergedRootStyles}
+      <div style={this.prepareStyles(mergedRootStyles)}
         onKeyDown={this._handleKeyDown}>
         <div
           style={{

@@ -102,7 +102,7 @@ const Tab = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.prepareStyles({
+    const styles = this.mergeStyles({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',
@@ -121,7 +121,7 @@ const Tab = React.createClass({
     return (
       <div
         {...other}
-        style={styles}
+        style={this.prepareStyles(styles)}
         onTouchTap={this._handleTouchTap}>
         {label}
       </div>

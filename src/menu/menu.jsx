@@ -159,7 +159,7 @@ const NestedMenuItem = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    styles = this.prepareStyles(styles.root,
+    styles = this.mergeStyles(styles.root,
       (this.props.active && !this.props.disabled) && styles.rootWhenHovered, {
         position: 'relative',
       }, this.props.style);
@@ -178,7 +178,7 @@ const NestedMenuItem = React.createClass({
     return (
       <div
         ref="root"
-        style={styles}
+        style={this.prepareStyles(styles)}
         onMouseEnter={this._openNestedMenu}
         onMouseLeave={this._closeNestedMenu}
         onMouseOver={this._handleMouseOver}

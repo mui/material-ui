@@ -105,7 +105,7 @@ const SlideInChild = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.prepareStyles({
+    let mergedRootStyles = this.mergeStyles({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -115,7 +115,7 @@ const SlideInChild = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={mergedRootStyles}>
+      <div {...other} style={this.prepareStyles(mergedRootStyles)}>
         {children}
       </div>
     );

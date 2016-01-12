@@ -62,7 +62,7 @@ const FullWidthSection = React.createClass({
       content =
         React.createElement(
           contentType,
-          {style: this.mergeAndPrefix(styles.content, contentStyle)},
+          {style: this.mergeStyles(styles.content, contentStyle)},
           this.props.children
         );
     } else {
@@ -71,7 +71,7 @@ const FullWidthSection = React.createClass({
 
     return (
       <ClearFix {...other}
-        style={this.mergeAndPrefix(
+        style={this.mergeStyles(
           styles.root,
           style,
           this.isDeviceSize(StyleResizable.statics.Sizes.SMALL) && styles.rootWhenSmall,

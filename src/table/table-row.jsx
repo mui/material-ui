@@ -197,7 +197,7 @@ const TableRow = React.createClass({
         columnNumber: columnNumber,
         hoverable: this.props.hoverable,
         key: child.props.key || key,
-        style: this.mergeAndPrefix(styles.cell, child.props.style),
+        style: this.mergeStyles(styles.cell, child.props.style),
         ...handlers,
       }
     );

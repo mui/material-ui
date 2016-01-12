@@ -1,6 +1,7 @@
 import React from 'react';
 import ImmutabilityHelper from '../utils/immutability-helper';
 import Styles from '../utils/styles';
+import warning from 'warning';
 
 // This mixin isn't necessary and will be removed
 
@@ -22,6 +23,8 @@ export default {
 
   //Moved this function to /utils/styles.js
   mergeAndPrefix() {
+    warning(false, 'Use of mergeAndPrefix() has been deprecated. ' +
+      'Please use mergeStyles() for merging styles, and then prepareStyles() for prefixing and ensuring direction.');
     return Styles.mergeAndPrefix.apply(this, arguments);
   },
 

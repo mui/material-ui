@@ -62,10 +62,10 @@ const CardText = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    let rootStyle = this.prepareStyles(styles.root, this.props.style);
+    let rootStyle = this.mergeStyles(styles.root, this.props.style);
 
     return (
-      <div {...this.props} style={rootStyle}>
+      <div {...this.props} style={this.prepareStyles(rootStyle)}>
         {this.props.children}
       </div>
     );

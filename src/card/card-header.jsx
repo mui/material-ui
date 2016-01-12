@@ -98,10 +98,10 @@ const CardHeader = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    let rootStyle = this.prepareStyles(styles.root, this.props.style);
-    let textStyle = this.prepareStyles(styles.text, this.props.textStyle);
-    let titleStyle = this.prepareStyles(styles.title, this.props.titleStyle);
-    let subtitleStyle = this.prepareStyles(styles.subtitle, this.props.subtitleStyle);
+    let rootStyle = this.mergeStyles(styles.root, this.props.style);
+    let textStyle = this.mergeStyles(styles.text, this.props.textStyle);
+    let titleStyle = this.mergeStyles(styles.title, this.props.titleStyle);
+    let subtitleStyle = this.mergeStyles(styles.subtitle, this.props.subtitleStyle);
 
     let avatar = this.props.avatar;
     if (React.isValidElement(this.props.avatar)) {
@@ -113,11 +113,11 @@ const CardHeader = React.createClass({
     }
 
     return (
-      <div {...this.props} style={rootStyle}>
+      <div {...this.props} style={this.prepareStyles(rootStyle)}>
         {avatar}
-        <div style={textStyle}>
-          <span style={titleStyle}>{this.props.title}</span>
-          <span style={subtitleStyle}>{this.props.subtitle}</span>
+        <div style={this.prepareStyles(textStyle)}>
+          <span style={this.prepareStyles(titleStyle)}>{this.props.title}</span>
+          <span style={this.prepareStyles(subtitleStyle)}>{this.props.subtitle}</span>
         </div>
         {this.props.children}
       </div>

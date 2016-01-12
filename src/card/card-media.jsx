@@ -90,11 +90,11 @@ const CardMedia = React.createClass({
 
   render() {
     let styles = this.getStyles();
-    let rootStyle = this.prepareStyles(styles.root, this.props.style);
-    let mediaStyle = this.prepareStyles(styles.media, this.props.mediaStyle);
-    let overlayContainerStyle = this.prepareStyles(styles.overlayContainer, this.props.overlayContainerStyle);
-    let overlayContentStyle = this.prepareStyles(styles.overlayContent, this.props.overlayContentStyle);
-    let overlayStyle = this.prepareStyles(styles.overlay, this.props.overlayStyle);
+    let rootStyle = this.mergeStyles(styles.root, this.props.style);
+    let mediaStyle = this.mergeStyles(styles.media, this.props.mediaStyle);
+    let overlayContainerStyle = this.mergeStyles(styles.overlayContainer, this.props.overlayContainerStyle);
+    let overlayContentStyle = this.mergeStyles(styles.overlayContent, this.props.overlayContentStyle);
+    let overlayStyle = this.mergeStyles(styles.overlay, this.props.overlayStyle);
 
     let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {style: this.prepareStyles(styles.mediaChild, child.props.style)});
@@ -118,14 +118,14 @@ const CardMedia = React.createClass({
     });
 
     return (
-      <div {...this.props} style={rootStyle}>
-        <div style={mediaStyle}>
+      <div {...this.props} style={this.prepareStyles(rootStyle)}>
+        <div style={this.prepareStyles(mediaStyle)}>
           {children}
         </div>
         {(this.props.overlay) ?
-          <div style={overlayContainerStyle}>
-            <div style={overlayStyle}>
-              <div style={overlayContentStyle}>
+          <div style={this.prepareStyles(overlayContainerStyle)}>
+            <div style={this.prepareStyles(overlayStyle)}>
+              <div style={this.prepareStyles(overlayContentStyle)}>
                 {overlayChildren}
               </div>
             </div>

@@ -104,7 +104,7 @@ const TableFooter = React.createClass({
       displayBorder: false,
       key: 'f-' + rowNumber,
       rowNumber: rowNumber,
-      style: this.mergeAndPrefix(styles.cell, child.props.style),
+      style: this.mergeStyles(styles.cell, child.props.style),
     };
 
     let children = [this._getCheckboxPlaceholder(props)];

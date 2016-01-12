@@ -57,7 +57,7 @@ const FocusRipple = React.createClass({
       opacity,
     } = props;
 
-    const innerStyles = this.mergeAndPrefix({
+    const innerStyles = this.mergeStyles({
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -67,7 +67,7 @@ const FocusRipple = React.createClass({
       transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
     }, innerStyle);
 
-    return <div ref="innerCircle" style={innerStyles} />;
+    return <div ref="innerCircle" style={this.prepareStyles(innerStyles)} />;
   },
 
   _pulsate() {

@@ -116,10 +116,10 @@ const Overlay = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.prepareStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
+    const styles = this.mergeStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
 
     return (
-      <div {...other} style={styles} />
+      <div {...other} style={this.prepareStyles(styles)} />
     );
   },
 

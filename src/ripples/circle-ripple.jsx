@@ -81,7 +81,7 @@ const CircleRipple = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.mergeStyles({
       position: 'absolute',
       top: 0,
       left: 0,
@@ -92,7 +92,7 @@ const CircleRipple = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={mergedStyles} />
+      <div {...other} style={this.prepareStyles(mergedStyles)} />
     );
   },
 });

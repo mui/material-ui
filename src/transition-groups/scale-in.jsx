@@ -71,7 +71,7 @@ const ScaleIn = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedRootStyles = this.prepareStyles({
+    const mergedRootStyles = this.mergeStyles({
       position: 'relative',
       overflow: 'hidden',
       height: '100%',
@@ -93,7 +93,7 @@ const ScaleIn = React.createClass({
     return (
       <ReactTransitionGroup
         {...other}
-        style={mergedRootStyles}
+        style={this.prepareStyles(mergedRootStyles)}
         component="div">
         {newChildren}
       </ReactTransitionGroup>

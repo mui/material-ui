@@ -87,16 +87,16 @@ const CardTitle = React.createClass({
 
   render() {
     const styles = this.getStyles();
-    const rootStyle = this.prepareStyles(styles.root, this.props.style);
-    const titleStyle = this.prepareStyles(styles.title, this.props.titleStyle);
-    const subtitleStyle = this.prepareStyles(styles.subtitle, this.props.subtitleStyle);
+    const rootStyle = this.mergeStyles(styles.root, this.props.style);
+    const titleStyle = this.mergeStyles(styles.title, this.props.titleStyle);
+    const subtitleStyle = this.mergeStyles(styles.subtitle, this.props.subtitleStyle);
 
     return (
-      <div {...this.props} style={rootStyle}>
-        <span style={titleStyle}>
+      <div {...this.props} style={this.prepareStyles(rootStyle)}>
+        <span style={this.prepareStyles(titleStyle)}>
           {this.props.title}
         </span>
-        <span style={subtitleStyle}>
+        <span style={this.prepareStyles(subtitleStyle)}>
           {this.props.subtitle}
         </span>
         {this.props.children}
