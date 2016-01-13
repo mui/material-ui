@@ -54,10 +54,8 @@ const Master = React.createClass({
   },
 
   componentWillMount() {
-    const newMuiTheme = this.state.muiTheme;
-    newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
     this.setState({
-      muiTheme: newMuiTheme,
+      muiTheme: this.state.muiTheme,
     });
   },
 
@@ -133,6 +131,12 @@ const Master = React.createClass({
     });
   },
 
+  handleChangeMuiTheme(muiTheme) {
+    this.setState({
+      muiTheme: muiTheme,
+    });
+  },
+
   render() {
     const {
       history,
@@ -178,7 +182,9 @@ const Master = React.createClass({
         {title !== '' ?
           <div style={this.prepareStyles(styles.root)}>
             <div style={this.prepareStyles(styles.content)}>
-              {children}
+              {React.cloneElement(children, {
+                onChangeMuiTheme: this.handleChangeMuiTheme,
+              })}
             </div>
           </div>
           :
