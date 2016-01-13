@@ -11,13 +11,16 @@ const CodeBlockTitle = (props) => (
       <ToolbarTitle text={props.title || 'Example'} />
     </ToolbarGroup>
     <ToolbarGroup float="right">
-      <IconButton touch={true}>
+      <IconButton touch={true} tooltip={props.tooltip}>
         <CodeIcon />
       </IconButton>
     </ToolbarGroup>
   </Toolbar>
 );
 
-CodeBlockTitle.propTypes = {title: React.PropTypes.string};
+CodeBlockTitle.propTypes = {
+  title: React.PropTypes.string,
+  tooltip: React.PropTypes.string,
+};
 
 export default CodeBlockTitle;
