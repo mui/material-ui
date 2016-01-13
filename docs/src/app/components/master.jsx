@@ -148,7 +148,8 @@ const Master = React.createClass({
     const title =
       history.isActive('/get-started') ? 'Get Started' :
       history.isActive('/customization') ? 'Customization' :
-      history.isActive('/components') ? 'Components' : '';
+      history.isActive('/components') ? 'Components' :
+      history.isActive('/discover-more') ? 'Discover More' : '';
 
     let docked = false;
     let showMenuIconButton = true;

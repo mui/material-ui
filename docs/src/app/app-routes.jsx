@@ -13,7 +13,6 @@ import Prerequisites from './components/pages/get-started/Prerequisites';
 import Installation from './components/pages/get-started/Installation';
 import Usage from './components/pages/get-started/Usage';
 import Examples from './components/pages/get-started/Examples';
-import Community from './components/pages/get-started/Community';
 
 import Colors from './components/pages/customization/colors';
 import Themes from './components/pages/customization/themes';
@@ -56,6 +55,9 @@ import TimePickerPage from './components/pages/components/TimePicker/Page';
 import TogglePage from './components/pages/components/Toggle/Page';
 import ToolbarsPage from './components/pages/components/Toolbars/Page';
 
+import Community from './components/pages/discover-more/Community';
+import Showcase from './components/pages/discover-more/Showcase';
+
 /**
  * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
  *
@@ -67,6 +69,7 @@ import ToolbarsPage from './components/pages/components/Toolbars/Page';
  */
 const AppRoutes = (
   <Route path="/" component={Master}>
+    <IndexRoute component={Home} />
     <Route path="home" component={Home} />
     <Redirect from="get-started" to="/get-started/prerequisites" />
     <Route path="get-started">
@@ -74,16 +77,13 @@ const AppRoutes = (
       <Route path="installation" component={Installation} />
       <Route path="usage" component={Usage} />
       <Route path="examples" component={Examples} />
-      <Route path="community" component={Community} />
     </Route>
-
     <Redirect from="customization" to="/customization/themes" />
     <Route path="customization">
       <Route path="colors" component={Colors} />
       <Route path="themes" component={Themes} />
       <Route path="inline-styles" component={InlineStyles} />
     </Route>
-
     <Redirect from="components" to="/components/app-bar" />
     <Route path="components">
       <Route path="app-bar" component={AppBarPage} />
@@ -123,8 +123,11 @@ const AppRoutes = (
       <Route path="toggle" component={TogglePage} />
       <Route path="toolbars" component={ToolbarsPage} />
     </Route>
-
-    <IndexRoute component={Home}/>
+    <Redirect from="discover-more" to="/discover-more/community" />
+    <Route path="discover-more">
+      <Route path="community" component={Community} />
+      <Route path="showcase" component={Showcase} />
+    </Route>
   </Route>
 );
 

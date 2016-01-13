@@ -111,10 +111,6 @@ const AppLeftNav = React.createClass({
                 value="/get-started/examples"
                 primaryText="Examples"
               />,
-              <ListItem
-                value="/get-started/community"
-                primaryText="Community"
-              />,
             ]}
           />
           <ListItem
@@ -306,6 +302,20 @@ const AppLeftNav = React.createClass({
               <ListItem
                 value="/components/toolbars"
                 primaryText="Toolbars"
+              />,
+            ]}
+          />
+          <ListItem
+            primaryText="Discover More"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem
+                value="/discover-more/community"
+                primaryText="Community"
+              />,
+              <ListItem
+                value="/discover-more/showcase"
+                primaryText="Showcase"
               />,
             ]}
           />

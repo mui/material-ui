@@ -146,7 +146,7 @@ const GridTile = React.createClass({
       },
       titleWrap: {
         flexGrow: 1,
-        marginLeft: actionPos === 'right' ? gutterLess : 0,
+        marginLeft: actionPos !== 'left' ? gutterLess : 0,
         marginRight: actionPos === 'left' ? gutterLess : 0,
         color: themeVariables.textColor,
         overflow: 'hidden',
