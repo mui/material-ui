@@ -43,6 +43,8 @@ const Snackbar = React.createClass({
 
     /**
      * Fired when the action button is touchtapped.
+     *
+     * @param {object} event Action button event.
      */
     onActionTouchTap: React.PropTypes.func,
 
@@ -55,14 +57,14 @@ const Snackbar = React.createClass({
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
      * `autoHideDuration` timer expires.
-
+     *
      * Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar`
      * `open` prop.
-
-     * `onRequestClose` is called with an additional parameter: `reason`, which can be:`"timeout"` (autoHideDuration)
-     * or: `"clickaway"`
-
-     * This can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.
+     *
+     * The `reason` parameter can optionally be used to control the response to `onRequestClose`,
+     * for example ignoring `clickaway`.
+     *
+     * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
      */
     onRequestClose: React.PropTypes.func.isRequired,
 
