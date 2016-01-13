@@ -120,7 +120,9 @@ const Clock = React.createClass({
 
     const {onChangeMinutes} = this.props;
     if (typeof (onChangeMinutes) === 'function') {
-      setTimeout(() => { onChangeMinutes(time); }, 0);
+      setTimeout(() => {
+        onChangeMinutes(time);
+      }, 0);
     }
   },
 
@@ -157,8 +159,7 @@ const Clock = React.createClass({
           onChange={this.handleChangeHours}
           initialHours={this.state.selectedTime.getHours()} />
         );
-    }
-    else {
+    } else {
       clock = (
         <ClockMinutes key="minutes"
           onChange={this.handleChangeMinutes}

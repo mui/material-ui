@@ -142,16 +142,14 @@ const Calendar = React.createClass({
     let adjustedDate = date;
     if (DateTime.isBeforeDate(date, this.props.minDate)) {
       adjustedDate = this.props.minDate;
-    }
-    else if (DateTime.isAfterDate(date, this.props.maxDate)) {
+    } else if (DateTime.isAfterDate(date, this.props.maxDate)) {
       adjustedDate = this.props.maxDate;
     }
 
     let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
-    }
-    else {
+    } else {
       this.setState({
         selectedDate: adjustedDate,
       });
@@ -202,11 +200,9 @@ const Calendar = React.createClass({
         case KeyCode.UP:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(-1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(-1);
-          }
-          else {
+          } else {
             this._addSelectedDays(-7);
           }
           break;
@@ -214,11 +210,9 @@ const Calendar = React.createClass({
         case KeyCode.DOWN:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(1);
-          }
-          else {
+          } else {
             this._addSelectedDays(7);
           }
           break;
@@ -226,11 +220,9 @@ const Calendar = React.createClass({
         case KeyCode.RIGHT:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(1);
-          }
-          else {
+          } else {
             this._addSelectedDays(1);
           }
           break;
@@ -238,11 +230,9 @@ const Calendar = React.createClass({
         case KeyCode.LEFT:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(-1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(-1);
-          }
-          else {
+          } else {
             this._addSelectedDays(-1);
           }
           break;

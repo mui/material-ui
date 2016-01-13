@@ -108,14 +108,11 @@ const EnhancedSwitch = React.createClass({
 
     if (hasCheckedProp) {
       newState.switched = nextProps.checked;
-    }
-    else if (hasToggledProp) {
+    } else if (hasToggledProp) {
       newState.switched = nextProps.toggled;
-    }
-    else if (hasCheckedLinkProp) {
+    } else if (hasCheckedLinkProp) {
       newState.switched = nextProps.checkedLink.value;
-    }
-    else if (hasNewDefaultProp) {
+    } else if (hasNewDefaultProp) {
       newState.switched = nextProps.defaultSwitched;
     }
 

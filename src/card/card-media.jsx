@@ -106,13 +106,11 @@ const CardMedia = React.createClass({
           titleColor: Styles.Colors.darkWhite,
           subtitleColor: Styles.Colors.lightWhite,
         });
-      }
-      else if (child.type.displayName === 'CardText') {
+      } else if (child.type.displayName === 'CardText') {
         return React.cloneElement(child, {
           color: Styles.Colors.darkWhite,
         });
-      }
-      else {
+      } else {
         return child;
       }
     });

@@ -435,8 +435,7 @@ const LeftNav = React.createClass({
     if (this.state.swiping) {
       e.preventDefault();
       this._setPosition(this._getTranslateX(currentX));
-    }
-    else if (this._maybeSwiping) {
+    } else if (this._maybeSwiping) {
       const dXAbs = Math.abs(currentX - this._touchStartX);
       const dYAbs = Math.abs(currentY - this._touchStartY);
       // If the user has moved his thumb ten pixels in either direction,
@@ -450,8 +449,7 @@ const LeftNav = React.createClass({
           swiping: this.state.open ? 'closing' : 'opening',
         });
         this._setPosition(this._getTranslateX(currentX));
-      }
-      else if (dXAbs <= threshold && dYAbs > threshold) {
+      } else if (dXAbs <= threshold && dYAbs > threshold) {
         this._onBodyTouchEnd();
       }
     }
@@ -476,16 +474,14 @@ const LeftNav = React.createClass({
         } else {
           this._close('swipe');
         }
-      }
-      else {
+      } else {
         if (swiping === 'opening') {
           this._open('swipe');
         } else {
           this._setPosition(0);
         }
       }
-    }
-    else {
+    } else {
       this._maybeSwiping = false;
     }
 
@@ -527,8 +523,7 @@ const LeftNav = React.createClass({
     let children;
     if (menuItems === undefined) {
       children = this.props.children;
-    }
-    else {
+    } else {
       children = (
         <Menu
           ref="menuItems"

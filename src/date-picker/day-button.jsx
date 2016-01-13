@@ -124,8 +124,7 @@ const DayButton = React.createClass({
       styles.label.color = this.getTheme().selectTextColor;
       styles.buttonState.opacity = 1;
       styles.buttonState.transform = 'scale(1)';
-    }
-    else if (this.props.disabled) {
+    } else if (this.props.disabled) {
       styles.root.opacity = '0.6';
     }
 

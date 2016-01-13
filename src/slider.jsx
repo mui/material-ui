@@ -339,7 +339,9 @@ const Slider = React.createClass({
   },
 
   _dragHandler(e) {
-    if (this._dragRunning) { return; }
+    if (this._dragRunning) {
+      return;
+    }
     this._dragRunning = true;
     requestAnimationFrame(() => {
       this._onDragUpdate(e, e.clientX - this._getTrackLeft());
@@ -348,7 +350,9 @@ const Slider = React.createClass({
   },
 
   _dragTouchHandler(e) {
-    if (this._dragRunning) { return; }
+    if (this._dragRunning) {
+      return;
+    }
     this._dragRunning = true;
     requestAnimationFrame(() => {
       this._onDragUpdate(e, e.touches[0].clientX - this._getTrackLeft());

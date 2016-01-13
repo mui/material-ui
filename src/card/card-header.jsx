@@ -107,8 +107,7 @@ const CardHeader = React.createClass({
     if (React.isValidElement(this.props.avatar)) {
       let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
       avatar = React.cloneElement(avatar, {style: avatarMergedStyle});
-    }
-    else if (avatar !== null) {
+    } else if (avatar !== null) {
       avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;
     }
 

@@ -315,8 +315,7 @@ const ThemesPage = React.createClass({
 
     if (!this.state.isThemeDark) {
       newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
-    }
-    else {
+    } else {
       newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
     }
 

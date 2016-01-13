@@ -61,8 +61,7 @@ const ClockNumber = React.createClass({
     if (this.props.type === 'hour') {
       inner = pos < 1 || pos > 12;
       pos %= 12;
-    }
-    else {
+    } else {
       pos = pos / 5;
     }
 

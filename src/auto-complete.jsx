@@ -236,8 +236,7 @@ const AutoComplete = React.createClass({
       chosenRequest = this.requestsList[parseInt(child.key, 10)];
       index = dataSource.indexOf(chosenRequest);
       searchText = dataSource[index];
-    }
-    else {
+    } else {
       chosenRequest = child.key;
       index = dataSource.indexOf(
           dataSource.filter((item) => chosenRequest === item.text)[0]);
@@ -453,8 +452,7 @@ AutoComplete.levenshteinDistance = (searchText, key) => {
       if (i && j) {
         if (searchText.charAt(j - 1) === key.charAt(i - 1)) value = prev;
         else value = Math.min(current[j], current[j - 1], prev) + 1;
-      }
-      else {
+      } else {
         value = i + j;
       }
       prev = current[j];

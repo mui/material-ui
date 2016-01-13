@@ -235,8 +235,7 @@ const IconButton = React.createClass({
     if (keyboardFocused && !this.props.disabled) {
       this._showTooltip();
       if (this.props.onFocus) this.props.onFocus(e);
-    }
-    else if (!this.state.hovered) {
+    } else if (!this.state.hovered) {
       this._hideTooltip();
       if (this.props.onBlur) this.props.onBlur(e);
     }

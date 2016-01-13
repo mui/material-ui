@@ -169,8 +169,7 @@ const DropDownMenu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
     if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
       return;
-    }
-    else if (nextProps.hasOwnProperty('selectedIndex')) {
+    } else if (nextProps.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(nextProps.selectedIndex);
     }
   },

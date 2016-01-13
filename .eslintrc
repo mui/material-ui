@@ -13,7 +13,7 @@ rules:
   array-bracket-spacing: [2, never]
   arrow-spacing: 2
   block-spacing: [2, always]
-  brace-style: 0 # Wishlist, one day
+  brace-style: 2
   comma-dangle: [2, always-multiline]
   comma-spacing: [2, {before: false, after: true}]
   comma-style: [2, last]

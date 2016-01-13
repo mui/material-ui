@@ -293,11 +293,9 @@ const Table = React.createClass({
       let displayName = child.type.displayName;
       if (displayName === 'TableBody') {
         tBody = this._createTableBody(child);
-      }
-      else if (displayName === 'TableHeader') {
+      } else if (displayName === 'TableHeader') {
         tHead = this._createTableHeader(child);
-      }
-      else if (displayName === 'TableFooter') {
+      } else if (displayName === 'TableFooter') {
         tFoot = this._createTableFooter(child);
       }
     });
@@ -319,10 +317,10 @@ const Table = React.createClass({
           </table>
         </div>
       );
-    }
-    else {
+    } else {
       inlineHeader = tHead;
     }
+
     if (tFoot !== undefined) {
       if (fixedFooter) {
         footerTable = (
@@ -332,8 +330,7 @@ const Table = React.createClass({
             </table>
           </div>
         );
-      }
-      else {
+      } else {
         inlineFooter = tFoot;
       }
     }

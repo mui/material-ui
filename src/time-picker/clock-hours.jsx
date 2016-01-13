@@ -151,8 +151,7 @@ const ClockHours = React.createClass({
         value += 12;
         value %= 24;
       }
-    }
-    else {
+    } else {
       value %= 12;
     }
 

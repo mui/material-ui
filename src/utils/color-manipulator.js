@@ -46,11 +46,9 @@ export default {
 
     if (additonalValue !== undefined) {
       str += ',' + additonalValue + ')';
-    }
-    else if (color.values.length === 4) {
+    } else if (color.values.length === 4) {
       str += ',' + color.values[3] + ')';
-    }
-    else {
+    } else {
       str += ')';
     }
 
@@ -106,8 +104,7 @@ export default {
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
       return this._decomposeColor(this._convertColorToString(color));
-    }
-    else if (color.type.indexOf('rgb') > -1) {
+    } else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
         color.values[i] *= 1 + amount;
         if (color.values[i] > 255) color.values[i] = 255;
@@ -125,8 +122,7 @@ export default {
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
       return this._decomposeColor(this._convertColorToString(color));
-    }
-    else if (color.type.indexOf('rgb') > -1) {
+    } else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
         color.values[i] *= 1 - amount;
         if (color.values[i] < 0) color.values[i] = 0;
@@ -146,8 +142,7 @@ export default {
 
     if (lumA >= lumB) {
       return ((lumA + 0.05) / (lumB + 0.05)).toFixed(2);
-    }
-    else {
+    } else {
       return ((lumB + 0.05) / (lumA + 0.05)).toFixed(2);
     }
   },
