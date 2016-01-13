@@ -158,8 +158,7 @@ const Tooltip = React.createClass({
     if (this.props.show) {
       ripple.style.height = rippleDiameter + 'px';
       ripple.style.width = rippleDiameter + 'px';
-    }
-    else {
+    } else {
       ripple.style.width = '0px';
       ripple.style.height = '0px';
     }

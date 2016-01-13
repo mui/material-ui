@@ -120,15 +120,12 @@ const LinearProgress = React.createClass({
     if (step === 0) {
       barElement.style[left] = stepValues[0][0] + '%';
       barElement.style[right] = stepValues[0][1] + '%';
-    }
-    else if (step === 1) {
+    } else if (step === 1) {
       barElement.style.transitionDuration = '840ms';
-    }
-    else if (step === 2) {
+    } else if (step === 2) {
       barElement.style[left] = stepValues[1][0] + '%';
       barElement.style[right] = stepValues[1][1] + '%';
-    }
-    else if (step === 3) {
+    } else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
     this.timers[id] = setTimeout(() => this._barUpdate(id, step + 1, barElement, stepValues), 420);
@@ -175,8 +172,7 @@ const LinearProgress = React.createClass({
         bottom: 0,
         transition: Transitions.create('all', '840ms', null, 'cubic-bezier(0.165, 0.840, 0.440, 1.000)'),
       };
-    }
-    else {
+    } else {
       styles.bar.backgroundColor = this.props.color || this.getTheme().primary1Color;
       styles.bar.transition = Transitions.create('width', '.3s', null, 'linear');
       styles.bar.width = this._getRelativeValue() + '%';

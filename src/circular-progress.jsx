@@ -128,13 +128,11 @@ const CircularProgress = React.createClass({
       path.style.strokeDasharray = '1, 200';
       path.style.strokeDashoffset = 0;
       path.style.transitionDuration = '0ms';
-    }
-    else if (step === 1) {
+    } else if (step === 1) {
       path.style.strokeDasharray = '89, 200';
       path.style.strokeDashoffset = -35;
       path.style.transitionDuration = '750ms';
-    }
-    else {
+    } else {
       path.style.strokeDasharray = '89,200';
       path.style.strokeDashoffset = -124;
       path.style.transitionDuration = '850ms';

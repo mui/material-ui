@@ -164,8 +164,7 @@ const MenuItem = React.createClass({
 
   _cloneMenuItem(item) {
     return React.cloneElement(item, {
-      onTouchTap: (event) =>
-      {
+      onTouchTap: (event) => {
         if (!item.props.menuItems) {
           this._onRequestClose();
         }

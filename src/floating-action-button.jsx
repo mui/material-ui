@@ -271,8 +271,7 @@ const FloatingActionButton = React.createClass({
       this.setState({zDepth: this.state.initialZDepth + 1});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
         ColorManipulator.fade(this.getStyles().icon.color, 0.4);
-    }
-    else if (!this.state.hovered) {
+    } else if (!this.state.hovered) {
       this.setState({zDepth: this.state.initialZDepth});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }

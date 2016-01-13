@@ -334,8 +334,7 @@ const RaisedButton = React.createClass({
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
         ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
-    }
-    else if (!this.state.hovered) {
+    } else if (!this.state.hovered) {
       this.setState({zDepth: this.state.initialZDepth});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }

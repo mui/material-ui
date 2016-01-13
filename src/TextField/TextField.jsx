@@ -252,11 +252,9 @@ const TextField = React.createClass({
 
     if (hasValueLinkProp) {
       newState.hasValue = isValid(nextProps.valueLink.value);
-    }
-    else if (hasValueProp) {
+    } else if (hasValueProp) {
       newState.hasValue = isValid(nextProps.value);
-    }
-    else if (hasNewDefaultValue) {
+    } else if (hasNewDefaultValue) {
       newState.hasValue = isValid(nextProps.defaultValue);
     }
 
@@ -382,8 +380,7 @@ const TextField = React.createClass({
     if (this.isMounted()) {
       if (this.props.multiLine) {
         this.refs.input.setValue(newValue);
-      }
-      else {
+      } else {
         this._getInputNode().value = newValue;
       }
 

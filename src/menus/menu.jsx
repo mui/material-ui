@@ -359,8 +359,7 @@ const Menu = React.createClass({
         e.preventDefault();
         if (e.shiftKey) {
           this._decrementKeyboardFocusIndex();
-        }
-        else {
+        } else {
           this._incrementKeyboardFocusIndex(filteredChildren);
         }
         break;
@@ -389,8 +388,7 @@ const Menu = React.createClass({
         update(menuValue, {$splice: [[index, 1]]});
 
       valueLink.requestChange(e, newMenuValue);
-    }
-    else if (!multiple && itemValue !== menuValue) {
+    } else if (!multiple && itemValue !== menuValue) {
       valueLink.requestChange(e, itemValue);
     }
 

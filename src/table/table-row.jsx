@@ -147,11 +147,9 @@ const TableRow = React.createClass({
     let cellBgColor = 'inherit';
     if (this.state.hovered) {
       cellBgColor = theme.hoverColor;
-    }
-    else if (this.props.selected) {
+    } else if (this.props.selected) {
       cellBgColor = theme.selectedColor;
-    }
-    else if (this.props.striped) {
+    } else if (this.props.striped) {
       cellBgColor = theme.stripeColor;
     }
 

@@ -272,8 +272,7 @@ const TableBody = React.createClass({
 
       if (typeof selection === 'object') {
         if (this._isValueInRange(rowNumber, selection)) return true;
-      }
-      else {
+      } else {
         if (selection === rowNumber) return true;
       }
     }
@@ -310,12 +309,10 @@ const TableBody = React.createClass({
 
       if (typeof lastSelection === 'object') {
         lastSelection.end = rowNumber;
-      }
-      else {
+      } else {
         selectedRows.splice(lastIndex, 1, {start: lastSelection, end: rowNumber});
       }
-    }
-    else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
+    } else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
       let idx = selectedRows.indexOf(rowNumber);
       if (idx < 0) {
         let foundRange = false;
@@ -331,16 +328,13 @@ const TableBody = React.createClass({
         }
 
         if (!foundRange) selectedRows.push(rowNumber);
-      }
-      else {
+      } else {
         selectedRows.splice(idx, 1);
       }
-    }
-    else {
+    } else {
       if (selectedRows.length === 1 && selectedRows[0] === rowNumber) {
         selectedRows = [];
-      }
-      else {
+      } else {
         selectedRows = [rowNumber];
       }
     }
@@ -380,8 +374,7 @@ const TableBody = React.createClass({
       if (typeof selection === 'object') {
         let values = this._genRangeOfValues(selection.end, selection.start - selection.end);
         rows.push(selection.end, ...values);
-      }
-      else {
+      } else {
         rows.push(selection);
       }
     }
