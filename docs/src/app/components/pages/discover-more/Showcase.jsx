@@ -36,7 +36,7 @@ const appList = [
   },
   {
     title: 'Watson explorer',
-    author: 'IMB',
+    author: 'IBM',
     img: 'images/showcase/ibm.png',
     link: 'http://reactmuiwat.mybluemix.net/',
   },
