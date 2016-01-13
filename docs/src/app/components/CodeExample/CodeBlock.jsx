@@ -57,18 +57,18 @@ ${this.props.children}
     \`\`\``;
 
     const descriptionStyle = styles.description;
-    let codeStyle;
+    let codeStyle = StylePropable.mergeStyles(styles.markdown, styles.markdownRetracted);
+    let tooltip = 'Show source';
 
     if (this.state.expand) {
       codeStyle = styles.markdown;
-    } else {
-      codeStyle = StylePropable.mergeStyles(styles.markdown, styles.markdownRetracted);
+      tooltip = 'Hide source';
     }
 
     return (
       <div style={styles.root}>
         <div onTouchTap={this.handleTouchTap} style={styles.codeBlockTitle}>
-          <CodeBlockTitle title={this.props.title} />
+          <CodeBlockTitle title={this.props.title} tooltip={tooltip}/>
         </div>
         <MarkdownElement style={codeStyle} text={text} />
         <MarkdownElement style={descriptionStyle} text={this.props.description} />
