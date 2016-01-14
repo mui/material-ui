@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import extend from '../utils/extend';
+import merge from 'lodash.merge';
 import getMuiTheme from './getMuiTheme';
 // import deprecatedExport from '../utils/deprecatedExport';
 
@@ -10,7 +10,7 @@ export default// deprecatedExport(
       return getMuiTheme(update(muiTheme.baseTheme, {spacing: {$set: spacing}}));
     },
     modifyRawThemePalette(muiTheme, palette) {
-      const newPalette = extend(muiTheme.baseTheme.palette, palette);
+      const newPalette = merge(muiTheme.baseTheme.palette, palette);
       return getMuiTheme(update(muiTheme.baseTheme, {palette: {$set: newPalette}}));
     },
     modifyRawThemeFontFamily(muiTheme, fontFamily) {
