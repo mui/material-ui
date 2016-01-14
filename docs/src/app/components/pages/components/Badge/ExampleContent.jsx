@@ -8,7 +8,6 @@ const BadgeExampleContent = () => (
   <div>
     <Badge
       badgeContent={<IconButton tooltip="Backup"><UploadIcon/></IconButton>}
-      backgroundColor="#d8d8d8"
     >
       <FolderIcon />
     </Badge>
