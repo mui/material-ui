@@ -21,7 +21,7 @@ const AvatarExampleSimple = () => (
     <ListItem
       disabled={true}
       leftAvatar={
-        <Avatar icon={<FileFolder />} />
+        <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />
       }
     >
       FontIcon Avatar
@@ -40,7 +40,9 @@ const AvatarExampleSimple = () => (
     </ListItem>
     <ListItem
       disabled={true}
-      leftAvatar={<Avatar>A</Avatar>}
+      leftAvatar={
+        <Avatar icon={<FileFolder />} />
+      }
     >
       SvgIcon Avatar
     </ListItem>
@@ -58,9 +60,7 @@ const AvatarExampleSimple = () => (
     </ListItem>
     <ListItem
       disabled={true}
-      leftAvatar={
-        <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />
-      }
+      leftAvatar={<Avatar>A</Avatar>}
     >
       Letter Avatar
     </ListItem>
