@@ -8,7 +8,6 @@ import Paper from '../paper';
 import throttle from 'lodash.throttle';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
-import Extend from '../utils/extend';
 import PopoverDefaultAnimation from './popover-default-animation';
 
 const Popover = React.createClass({
@@ -329,8 +328,8 @@ const Popover = React.createClass({
   },
 
   getPositions(anchor, target) {
-    let a = Extend(anchor, {});
-    let t = Extend(target, {});
+    let a = {...anchor};
+    let t = {...target};
 
     let positions = {
       x: ['left', 'right'].filter((p) => p !== t.horizontal),

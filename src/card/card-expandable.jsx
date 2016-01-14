@@ -1,5 +1,4 @@
 import React from 'react';
-import Extend from '../utils/extend';
 import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../icon-button';
@@ -76,7 +75,7 @@ const CardExpandable = React.createClass({
     };
 
     return {
-      root: Extend({
+      root: this.mergeStyles({
         top: 0,
         bottom: 0,
         margin: 'auto',
