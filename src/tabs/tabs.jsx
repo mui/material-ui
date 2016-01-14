@@ -149,7 +149,10 @@ const Tabs = React.createClass({
   },
 
   componentDidMount() {
-    window.requestAnimationFrame(this.handleWindowWidthChange);
+    let self = this;
+    window.requestAnimationFrame(function() {
+      window.setTimeout(self.handleWindowWidthChange, 10);
+    });
     Events.on(window, 'resize', this.handleWindowWidthChange);
   },
 
