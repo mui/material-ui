@@ -1,6 +1,6 @@
 import React from 'react';
 import Divider from '../divider';
-import styleUtils from '../utils/styles';
+import {mergeStyles} from '../utils/styles';
 import warning from 'warning';
 
 const MenuDivider = React.createClass({
@@ -34,7 +34,7 @@ const MenuDivider = React.createClass({
 
     const styles = this.getStyles();
 
-    return <Divider {...this.props} style={styleUtils.merge(styles.root, style)} />;
+    return <Divider {...this.props} style={mergeStyles(styles.root, style)} />;
   },
 });
 

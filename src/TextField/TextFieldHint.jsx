@@ -1,6 +1,6 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
-import styleUtils from '../utils/styles';
+import {mergeStyles, prepareStyles} from '../utils/styles';
 
 const propTypes = {
   /**
@@ -55,7 +55,7 @@ const TextFieldHint = (props) => {
 
   return (
     <div
-      style={styleUtils.prepareStyles(muiTheme, styles.root, style)}>{text}
+      style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}>{text}
     </div>
   );
 };
