@@ -1,6 +1,6 @@
 import React from 'react';
 import muiThemeable from './muiThemeable';
-import styleUtils from './utils/styles';
+import {mergeStyles, prepareStyles} from './utils/styles';
 
 const propTypes = {
   /**
@@ -36,7 +36,7 @@ let Divider = ({inset, muiTheme, style, ...other}) => {
   };
 
   return (
-    <hr {...other} style={styleUtils.prepareStyles(muiTheme, styles.root, style)} />
+    <hr {...other} style={prepareStyles(muiTheme, mergeStyles(styles.root, style))} />
   );
 };
 

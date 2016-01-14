@@ -3,7 +3,7 @@ import ContextPure from './mixins/context-pure';
 import Transitions from './styles/transitions';
 import Children from './utils/children';
 import ColorManipulator from './utils/color-manipulator';
-import ImmutabilityHelper from './utils/immutability-helper';
+import {mergeStyles} from './utils/styles';
 import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import FlatButtonLabel from './buttons/flat-button-label';
@@ -245,7 +245,7 @@ const FlatButton = React.createClass({
     const buttonBackgroundColor = backgroundColor || buttonColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
-    const mergedRootStyles = ImmutabilityHelper.merge({
+    const mergedRootStyles = mergeStyles({
       color: defaultTextColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
