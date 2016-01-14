@@ -59,9 +59,7 @@ const RenderToLayer = React.createClass({
   },
 
   componentWillUnmount() {
-    if (this._layer) {
-      this._unrenderLayer();
-    }
+    this._unrenderLayer();
   },
 
   onClickAway(event) {
@@ -89,6 +87,19 @@ const RenderToLayer = React.createClass({
   },
 
   _unrenderLayer: function() {
+    if (!this._layer) {
+      return;
+    }
+
+    if (this.props.useLayerForClickAway) {
+      this._layer.style.position = 'relative';
+      this._layer.removeEventListener('touchstart', this.onClickAway);
+      this._layer.removeEventListener('click', this.onClickAway);
+    } else {
+      window.removeEventListener('touchstart', this.onClickAway);
+      window.removeEventListener('click', this.onClickAway);
+    }
+
     ReactDOM.unmountComponentAtNode(this._layer);
     document.body.removeChild(this._layer);
     this._layer = null;
@@ -135,18 +146,7 @@ const RenderToLayer = React.createClass({
         this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this._layer);
       }
     } else {
-      if (this._layer) {
-        if (this.props.useLayerForClickAway) {
-          this._layer.style.position = 'relative';
-          this._layer.removeEventListener('touchstart', this.onClickAway);
-          this._layer.removeEventListener('click', this.onClickAway);
-        } else {
-          window.removeEventListener('touchstart', this.onClickAway);
-          window.removeEventListener('click', this.onClickAway);
-        }
-
-        this._unrenderLayer();
-      }
+      this._unrenderLayer();
     }
   },
 
