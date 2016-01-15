@@ -28,16 +28,16 @@ const CardPage = () => (
   <div>
     <MarkdownElement text={cardReadmeText} />
     <CodeExample
-      code={cardExampleWithAvatarCode}
       title="Card components example"
       description={descriptions.avatar}
+      code={cardExampleWithAvatarCode}
     >
       <CardExampleWithAvatar />
     </CodeExample>
     <CodeExample
-      code={cardExampleWithoutAvatarCode}
       title="Expandable card"
       description={descriptions.simple}
+      code={cardExampleWithoutAvatarCode}
     >
       <CardExampleWithoutAvatar />
     </CodeExample>

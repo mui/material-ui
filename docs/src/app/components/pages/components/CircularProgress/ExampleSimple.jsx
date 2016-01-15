@@ -5,7 +5,7 @@ const CircularProgressExampleSimple = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={1.5} />
-    <CircularProgress mode="indeterminate" size={2} />
+    <CircularProgress size={2} />
   </div>
 );
 

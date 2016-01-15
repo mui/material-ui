@@ -12,8 +12,8 @@ const CheckboxPage = () => (
   <div>
     <MarkdownElement text={checkboxReadmeText} />
     <CodeExample
-      code={checkboxExampleSimpleCode}
       title="Checkbox examples"
+      code={checkboxExampleSimpleCode}
     >
       <CheckboxExampleSimple />
     </CodeExample>

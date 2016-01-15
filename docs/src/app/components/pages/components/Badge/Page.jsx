@@ -11,7 +11,7 @@ import badgeExampleContentCode from '!raw!./ExampleContent';
 import badgeCode from '!raw!material-ui/lib/badge';
 
 const descriptions = {
-  simple: 'Two examples of badges containing text, using primary and secondary colors.' +
+  simple: 'Two examples of badges containing text, using primary and secondary colors. ' +
   'The badge is applied to its children - an icon for the first example, and an ' +
   '[Icon Button](/#/components/icon-button) with tooltip for the second.',
   further: 'Badges containing an [Icon Button](/#/components/icon-button) and text, ' +
@@ -23,16 +23,16 @@ const BadgePage = () => (
   <div>
     <MarkdownElement text={badgeReadmeText} />
     <CodeExample
-      code={badgeExampleSimpleCode}
       title="Simple examples"
       description={descriptions.simple}
+      code={badgeExampleSimpleCode}
     >
       <BadgeExampleSimple />
     </CodeExample>
     <CodeExample
-      code={badgeExampleContentCode}
       title="Further examples"
       description={descriptions.further}
+      code={badgeExampleContentCode}
     >
       <BadgeExampleContent />
     </CodeExample>

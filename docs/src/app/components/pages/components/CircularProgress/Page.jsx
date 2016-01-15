@@ -20,16 +20,16 @@ const CircleProgressPage = () => (
   <div>
     <MarkdownElement text={circleProgressReadmeText} />
     <CodeExample
-      code={circleProgressExampleSimpleCode}
       title="Indeterminate progress"
       description={descriptions.indeterminate}
+      code={circleProgressExampleSimpleCode}
     >
       <CircleProgressExampleSimple />
     </CodeExample>
     <CodeExample
-      code={circleProgressExampleDeterminateCode}
       title="Determinate progress"
       description={descriptions.determinate}
+      code={circleProgressExampleDeterminateCode}
     >
       <CircleProgressExampleDeterminate />
     </CodeExample>
