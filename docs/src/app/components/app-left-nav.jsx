@@ -167,6 +167,10 @@ const AppLeftNav = React.createClass({
                     value="/components/floating-action-button"
                     primaryText="Floating Action Button"
                   />,
+                  <ListItem
+                    value="/components/icon-button"
+                    primaryText="Icon Button"
+                  />,
                 ]}
               />,
               <ListItem
@@ -192,10 +196,6 @@ const AppLeftNav = React.createClass({
               <ListItem
                 value="/components/grid-list"
                 primaryText="Grid List"
-              />,
-              <ListItem
-                value="/components/icon-button"
-                primaryText="Icon Button"
               />,
               <ListItem
                 value="/components/icon-menu"
