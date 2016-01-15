@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
+import Paper from './paper';
+import Popover from './popover/popover';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
@@ -113,6 +115,11 @@ const Slider = React.createClass({
     onFocus: React.PropTypes.func,
 
     /**
+     * Whether or not the slider shows popover with value.
+     */
+    popover: React.PropTypes.bool,
+
+    /**
      * Whether or not the slider is required in a form.
      */
     required: React.PropTypes.bool,
@@ -152,6 +159,7 @@ const Slider = React.createClass({
       disableFocusRipple: false,
       max: 1,
       min: 0,
+      popover: false,
       required: true,
       step: 0.01,
       style: {},
@@ -263,6 +271,12 @@ const Slider = React.createClass({
       handleWhenActive: {
         width: this.getTheme().handleSizeActive,
         height: this.getTheme().handleSizeActive,
+      },
+      popover: {
+        display: 'inline-block',
+        textAlign: 'center',
+        margin: 2,
+        padding: '2px 6px',
       },
       ripple: {
         height: this.getTheme().handleSize,
@@ -531,6 +545,27 @@ const Slider = React.createClass({
       };
     }
 
+    let popoverElement = null;
+    if (this.props.popover && this.refs.handle) {
+      let popoverProps = {
+        anchorEl: this.refs.handle,
+        anchorOrigin: {horizontal: 'middle', vertical: 'top'},
+        targetOrigin: {horizontal: 'middle', vertical: 'bottom'},
+        open: this.state.active || this.state.hovered,
+        useLayerForClickAway: false,
+        zDepth: 0,
+      };
+
+      popoverElement = (
+        <Popover {...popoverProps}>
+          <div>
+            <Paper zDepth={1} style={styles.popover}>
+              {this.state.value}
+            </Paper>
+          </div>
+        </Popover>);
+    }
+
     return (
       <div {...others } style={this.prepareStyles(this.props.style)}>
         <span>{this.props.description}</span>
@@ -545,9 +580,10 @@ const Slider = React.createClass({
           <div ref="track" style={this.prepareStyles(styles.track)}>
             <div style={this.prepareStyles(styles.filled)}></div>
             <div style={this.prepareStyles(remainingStyles)}></div>
-            <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+            <div ref="handle" style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
               {focusRipple}
             </div>
+            {popoverElement}
           </div>
         </div>
         <input ref="input" type="hidden"
