@@ -35,6 +35,10 @@ const DarkRawTheme = Styles.darkBaseTheme;
 
 const ThemesPage = React.createClass({
 
+  propTypes: {
+    onChangeMuiTheme: React.PropTypes.func,
+  },
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -48,8 +52,8 @@ const ThemesPage = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
-      isThemeDark: false,
+      muiTheme: this.context.muiTheme,
+      valueTabs: this.context.muiTheme.name || 'light',
       dialogOpen: false,
       snackbarOpen: false,
       leftNavOpen: false,
@@ -293,34 +297,44 @@ const ThemesPage = React.createClass({
     );
   },
 
+  handleChangeTabs(valueTabs) {
+    let newMuiTheme = null;
+
+    if (valueTabs === 'light') {
+      newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
+    } else {
+      newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+    }
+
+    newMuiTheme.name = valueTabs;
+
+    this.setState({
+      muiTheme: newMuiTheme,
+      valueTabs: valueTabs,
+    });
+
+    this.props.onChangeMuiTheme(newMuiTheme);
+  },
+
   getThemeExamples() {
     return (
       <div>
-        <Tabs>
-          <Tab label="Light Theme (Default)" onClick={this.onTabChange.bind(this, false)} />
-          <Tab label="Dark Theme" onClick={this.onTabChange.bind(this, true)} />
+        <Tabs
+          value={this.state.valueTabs}
+          onChange={this.handleChangeTabs}
+        >
+          <Tab
+            label="Light Theme (Default)"
+            value="light"
+          />
+          <Tab
+            label="Dark Theme"
+            value="dark"
+          />
         </Tabs>
         {this.getComponentGroup()}
       </div>
     );
-  },
-
-
-  // Toggles between light and dark themes
-  onTabChange(isDark) {
-    if (this.state.isThemeDark === isDark) {
-      return;
-    }
-    let newMuiTheme = null;
-
-    if (!this.state.isThemeDark) {
-      newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
-    } else {
-      newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
-    }
-
-    this.setState({muiTheme: newMuiTheme,
-      isThemeDark: isDark});
   },
 
   handleTouchTapLeftNav() {

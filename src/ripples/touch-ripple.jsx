@@ -4,8 +4,17 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import StylePropable from '../mixins/style-propable';
 import Dom from '../utils/dom';
-import ImmutabilityHelper from '../utils/immutability-helper';
 import CircleRipple from './circle-ripple';
+import update from 'react-addons-update';
+
+function push(array, obj) {
+  const newObj = Array.isArray(obj) ? obj : [obj];
+  return update(array, {$push: newObj});
+}
+
+function shift(array) {
+  return update(array, {$splice: [[0, 1]]});
+}
 
 const TouchRipple = React.createClass({
 
@@ -52,7 +61,7 @@ const TouchRipple = React.createClass({
     let ripples = this.state.ripples;
 
     //Add a ripple to the ripples array
-    ripples = ImmutabilityHelper.push(ripples, (
+    ripples = push(ripples, (
       <CircleRipple
         key={this.state.nextKey}
         style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
@@ -72,7 +81,7 @@ const TouchRipple = React.createClass({
   end() {
     const currentRipples = this.state.ripples;
     this.setState({
-      ripples: ImmutabilityHelper.shift(currentRipples),
+      ripples: shift(currentRipples),
     });
   },
 
