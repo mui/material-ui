@@ -12,19 +12,40 @@ import DialogExampleCustomWidth from './ExampleCustomWidth';
 import dialogExampleCustomWidthCode from '!raw!./ExampleCustomWidth';
 import dialogCode from '!raw!material-ui/lib/dialog';
 
+const descriptions = {
+  simple: 'Dialog with action buttons. The actions are passed in as an array of React objects, ' +
+  'in this example [FlatButtons](http://localhost:3000/#/components/flat-button). \n\n' +
+  'You can also close this dialog by clicking outside the dialog, or with the \'Esc\' key.',
+  modal: 'A modal dialog can only be closed by selecting one of the actions.',
+  styled: 'The dialog width has been set to occupy the full width of browser through the `contentStyle` property.',
+
+};
+
 const DialogPage = () => (
   <div>
     <MarkdownElement text={dialogReadmeText} />
-    <CodeExample code={dialogExampleSimpleCode}>
+    <CodeExample
+      title="Simple dialog"
+      description={descriptions.simple}
+      code={dialogExampleSimpleCode}
+    >
       <DialogExampleSimple />
     </CodeExample>
-    <CodeExample code={dialogExampleModalCode}>
+    <CodeExample
+      title="Modal dialog"
+      description={descriptions.modal}
+      code={dialogExampleModalCode}
+    >
       <DialogExampleModal />
     </CodeExample>
-    <CodeExample code={dialogExampleCustomWidthCode}>
+    <CodeExample
+      title="Styled dialog"
+      description={descriptions.styled}
+      code={dialogExampleCustomWidthCode}
+    >
       <DialogExampleCustomWidth />
     </CodeExample>
-    <PropTypeDescription code={dialogCode}/>
+    <PropTypeDescription code={dialogCode} />
   </div>
 );
 
