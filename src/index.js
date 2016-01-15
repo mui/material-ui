@@ -47,7 +47,7 @@ export default {
   Ripples: require('./ripples/'),
   SelectField: require('./select-field'),
   SimpleButton: require('./simple-button'),
-  SimpleDialog: require('./simple-dialog'),
+  SimplePopup: require('./simple-popup'),
   SelectableContainerEnhance: require('./hoc/selectable-enhance'),
   Slider: require('./slider'),
   SvgIcon: require('./svg-icon'),
