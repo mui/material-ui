@@ -208,6 +208,14 @@ const SelectField = React.createClass({
     };
   },
 
+  // Hack to refocus field after closing the dropdown
+  _onRequestClose() {
+    setTimeout(() => {
+      let el = this.refs.field._getInputNode();
+      el.focus();
+    }, 700);
+  },
+
   render() {
     const styles = this.getStyles();
     const {
@@ -238,6 +246,7 @@ const SelectField = React.createClass({
     return (
       <TextField
         style={style}
+        ref="field"
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
         hintStyle={hintStyle}
@@ -260,6 +269,7 @@ const SelectField = React.createClass({
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
+          onRequestClose={this._onRequestClose}
           {...other}
         >
           {children}
