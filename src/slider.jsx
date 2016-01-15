@@ -461,6 +461,7 @@ const Slider = React.createClass({
       active: true,
     });
     if (this.props.onDragStart) this.props.onDragStart(e);
+    e.preventDefault();
   },
 
   _onDragStop(e) {
@@ -469,11 +470,13 @@ const Slider = React.createClass({
       active: false,
     });
     if (this.props.onDragStop) this.props.onDragStop(e);
+    e.preventDefault();
   },
 
   _onDragUpdate(e, pos) {
     if (!this.state.dragging) return;
     if (!this.props.disabled) this._dragX(e, pos);
+    e.preventDefault();
   },
 
   _dragX(e, pos) {
