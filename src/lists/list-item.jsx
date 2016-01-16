@@ -248,7 +248,7 @@ const ListItem = React.createClass({
     }
   },
 
-  _createDisabledElement(styles, contentChildren) {
+  _createDisabledElement(styles, contentChildren, additionalProps) {
     const {
       innerDivStyle,
       style,
@@ -261,7 +261,14 @@ const ListItem = React.createClass({
       style
     );
 
-    return React.createElement('div', {style: this.prepareStyles(mergedDivStyles)}, contentChildren);
+    return (
+      <div
+        {...additionalProps}
+        style={mergedDivStyles}
+      >
+        {contentChildren}
+      </div>
+     );
   },
 
   _createLabelElement(styles, contentChildren) {
@@ -633,7 +640,7 @@ const ListItem = React.createClass({
       <div>
         {
           hasCheckbox ? this._createLabelElement(styles, contentChildren) :
-          disabled ? this._createDisabledElement(styles, contentChildren) : (
+          disabled ? this._createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
               {...other}
               disabled={disabled}
