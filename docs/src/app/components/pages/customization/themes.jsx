@@ -184,54 +184,64 @@ const ThemesPage = React.createClass({
             <Checkbox
               name="checkboxName1"
               value="checkboxValue1"
-              label="checkbox" />
+              label="checkbox"
+            />
             <Checkbox
               name="checkboxName2"
               value="checkboxValue2"
               label="disabled checkbox"
-              disabled={true} />
+              disabled={true}
+            />
           </div>
           <div style={styles.container}>
             <RadioButtonGroup
               name="shipSpeed"
-              defaultSelected="usd">
+              defaultSelected="usd"
+            >
               <RadioButton
                 value="usd"
-                label="USD" />
+                label="USD"
+              />
               <RadioButton
                 value="euro"
                 label="Euro"
-                defaultChecked={true} />
+                defaultChecked={true}
+              />
               <RadioButton
                 value="mxn"
                 label="MXN"
-                disabled={true}/>
+                disabled={true}
+              />
             </RadioButtonGroup>
           </div>
           <div style={styles.container}>
             <Toggle
               name="toggleName1"
               value="toggleValue1"
-              label="toggle" />
+              label="toggle"
+            />
             <Toggle
               name="toggleName2"
               value="toggleValue2"
               label="disabled toggle"
               defaultToggled={true}
-              disabled={true} />
+              disabled={true}
+            />
           </div>
         </div>
         <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
           <div style={styles.container}>
             <TextField
               style={styles.textfield}
-              hintText="TextField"/>
+              hintText="TextField"
+            />
           </div>
           <div style={styles.container}>
             <DatePicker
               hintText="Landscape Dialog"
               mode="landscape"
-              style={{width: '100%'}}/>
+              style={{width: '100%'}}
+            />
           </div>
           <div style={styles.container}>
             <DropDownMenu value={3} style={{width: '100%'}}>
@@ -257,13 +267,16 @@ const ThemesPage = React.createClass({
                   label="Cancel"
                   keyboardFocus={true}
                   onTouchTap={this.handleRequestCloseDialog}
-                  secondary={true} />,
+                  secondary={true}
+                />,
                 <FlatButton
                   label="Submit"
                   onTouchTap={this.handleRequestCloseDialog}
-                  primary={true} />,
+                  primary={true}
+                />,
               ]}
-              onRequestClose={this.handleRequestCloseDialog}>
+              onRequestClose={this.handleRequestCloseDialog}
+            >
               The actions in this window are created from the json that&#39;s passed in.
             </Dialog>
           </div>
@@ -272,9 +285,12 @@ const ThemesPage = React.createClass({
           <div style={styles.containerCentered}>
             <FlatButton
               onTouchTap={this.handleTouchTapLeftNav}
-              label="View LeftNav" />
-            <LeftNav open={this.state.leftNavOpen} docked={false}
-              onRequestChange={this.handleRequestChangeLeftNav}>
+              label="View LeftNav"
+            />
+            <LeftNav
+              open={this.state.leftNavOpen} docked={false}
+              onRequestChange={this.handleRequestChangeLeftNav}
+            >
               <MenuItem index={0}>Menu Item</MenuItem>
               <MenuItem index={1}>Menu Item 2</MenuItem>
             </LeftNav>
@@ -284,13 +300,15 @@ const ThemesPage = React.createClass({
           <div style={styles.containerCentered}>
             <FlatButton
               onTouchTap={this.handleTouchTapSnackbar}
-              label="View Snackbar" />
+              label="View Snackbar"
+            />
             <Snackbar
               open={this.state.snackbarOpen}
               onRequestClose={this.handleRequestCloseSnackbar}
               message="This is a snackbar"
               action="Got It!"
-              onActionTouchTap={this.handleRequestCloseSnackbar}/>
+              onActionTouchTap={this.handleRequestCloseSnackbar}
+            />
           </div>
         </div>
       </ClearFix>
@@ -576,7 +594,8 @@ const ThemesPage = React.createClass({
         <div style={styles.bottomBorderWrapper}>
           <ComponentDoc
             name=""
-            componentInfo={info} />
+            componentInfo={info}
+          />
         </div>
 
         <h2 style={styles.headline}>Custom Themes</h2>

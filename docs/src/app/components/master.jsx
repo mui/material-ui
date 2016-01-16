@@ -207,8 +207,10 @@ const Master = React.createClass({
               Call-Em-All
             </a>
             {' and our awesome '}
-            <a style={this.prepareStyles(styles.a)}
-              href="https://github.com/callemall/material-ui/graphs/contributors">
+            <a
+              style={this.prepareStyles(styles.a)}
+              href="https://github.com/callemall/material-ui/graphs/contributors"
+            >
               contributors
             </a>.
           </p>

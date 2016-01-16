@@ -186,7 +186,8 @@ const EnhancedButton = React.createClass({
       <TouchRipple
         centerRipple={centerRipple}
         color={touchRippleColor}
-        opacity={touchRippleOpacity}>
+        opacity={touchRippleOpacity}
+      >
         {children}
       </TouchRipple>
     ) : undefined;
@@ -289,7 +290,8 @@ const EnhancedButton = React.createClass({
       return (
         <span
           {...other}
-          style={mergedStyles}>
+          style={mergedStyles}
+        >
           {children}
         </span>
       );

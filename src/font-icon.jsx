@@ -123,7 +123,8 @@ const FontIcon = React.createClass({
         {...other}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
-        style={this.prepareStyles(mergedStyles)} />
+        style={this.prepareStyles(mergedStyles)}
+      />
     );
   },
 });

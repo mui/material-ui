@@ -17,17 +17,20 @@ const ListExampleFolder = () => (
         leftAvatar={<Avatar icon={<FileFolder />} />}
         rightIcon={<ActionInfo />}
         primaryText="Photos"
-        secondaryText="Jan 9, 2014" />
+        secondaryText="Jan 9, 2014"
+      />
       <ListItem
         leftAvatar={<Avatar icon={<FileFolder />} />}
         rightIcon={<ActionInfo />}
         primaryText="Recipes"
-        secondaryText="Jan 17, 2014" />
+        secondaryText="Jan 17, 2014"
+      />
       <ListItem
         leftAvatar={<Avatar icon={<FileFolder />} />}
         rightIcon={<ActionInfo />}
         primaryText="Work"
-        secondaryText="Jan 28, 2014" />
+        secondaryText="Jan 28, 2014"
+      />
     </List>
     <Divider inset={true} />
     <List subheader="Files" insetSubheader={true}>
@@ -35,12 +38,14 @@ const ListExampleFolder = () => (
         leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
         rightIcon={<ActionInfo />}
         primaryText="Vacation itinerary"
-        secondaryText="Jan 20, 2014" />
+        secondaryText="Jan 20, 2014"
+      />
       <ListItem
         leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={Colors.yellow600} />}
         rightIcon={<ActionInfo />}
         primaryText="Kitchen remodel"
-        secondaryText="Jan 10, 2014" />
+        secondaryText="Jan 10, 2014"
+      />
     </List>
   </MobileTearSheet>
 );

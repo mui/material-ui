@@ -147,7 +147,12 @@ const ClockMinutes = React.createClass({
     let numbers = minutes.map((minute) => {
       let isSelected = selectedMinutes === minute;
       if (isSelected) hasSelected = true;
-      return <ClockNumber key={minute} isSelected={isSelected} type="minute" value={minute} />;
+      return (
+        <ClockNumber
+          key={minute} isSelected={isSelected} type="minute"
+          value={minute}
+        />
+      );
     });
 
     return {
@@ -183,7 +188,8 @@ const ClockMinutes = React.createClass({
         {minutes.numbers}
         <div ref="mask" style={this.prepareStyles(styles.hitMask)} hasSelected={minutes.hasSelected}
           onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch}
-          onMouseUp={this.handleUp} onMouseMove={this.handleMove} />
+          onMouseUp={this.handleUp} onMouseMove={this.handleMove}
+        />
       </div>
     );
   },

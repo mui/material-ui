@@ -536,7 +536,8 @@ const Slider = React.createClass({
           style={this.mergeStyles(rippleStyle)}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
-          color={rippleColor}/>
+          color={rippleColor}
+        />
       );
     }
 
@@ -553,13 +554,15 @@ const Slider = React.createClass({
       <div {...others } style={this.prepareStyles(this.props.style)}>
         <span>{this.props.description}</span>
         <span>{this.props.error}</span>
-        <div style={this.prepareStyles(sliderStyles)}
+        <div
+          style={this.prepareStyles(sliderStyles)}
           onFocus={this._onFocus}
           onBlur={this._onBlur}
           onMouseDown={this._onMouseDown}
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
-          onMouseUp={this._onMouseUp} >
+          onMouseUp={this._onMouseUp}
+        >
           <div ref="track" style={this.prepareStyles(styles.track)}>
             <div style={this.prepareStyles(styles.filled)}></div>
             <div style={this.prepareStyles(remainingStyles)}></div>
@@ -574,11 +577,11 @@ const Slider = React.createClass({
           required={this.props.required}
           min={this.props.min}
           max={this.props.max}
-          step={this.props.step} />
+          step={this.props.step}
+        />
       </div>
     );
   },
-
 });
 
 export default Slider;

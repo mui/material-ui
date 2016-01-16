@@ -352,7 +352,8 @@ const AutoComplete = React.createClass({
         initiallyKeyboardFocused={false}
         onItemTouchTap={this._handleItemTouchTap}
         listStyle={this.mergeStyles(styles.list, listStyle)}
-        style={mergedMenuStyles}>
+        style={mergedMenuStyles}
+      >
         {
           requestsList.map((request, index) => {
             switch (typeof request) {
@@ -391,12 +392,15 @@ const AutoComplete = React.createClass({
     }
 
     return (
-      <div style={this.prepareStyles(mergedRootStyles)}
-        onKeyDown={this._handleKeyDown}>
+      <div
+        style={this.prepareStyles(mergedRootStyles)}
+        onKeyDown={this._handleKeyDown}
+      >
         <div
           style={{
             width: '100%',
-          }}>
+          }}
+        >
           <TextField
             {...other}
             ref="searchTextField"
@@ -424,7 +428,8 @@ const AutoComplete = React.createClass({
               this.focusOnInput = true;
             }}
 
-            {...textFieldProps} />
+            {...textFieldProps}
+          />
         </div>
         <Popover
           style={popoverStyle}
@@ -433,7 +438,8 @@ const AutoComplete = React.createClass({
           open={open}
           anchorEl={anchorEl}
           useLayerForClickAway={false}
-          onRequestClose={this._close}>
+          onRequestClose={this._close}
+        >
             {menu}
         </Popover>
       </div>

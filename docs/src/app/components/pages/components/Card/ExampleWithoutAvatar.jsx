@@ -11,7 +11,8 @@ const CardExampleWithoutAvatar = () => (
       title="Without Avatar"
       subtitle="Subtitle"
       actAsExpander={true}
-      showExpandableButton={true} />
+      showExpandableButton={true}
+    />
     <CardText expandable={true}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.

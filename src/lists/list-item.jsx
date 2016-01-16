@@ -645,7 +645,8 @@ const ListItem = React.createClass({
               onTouchStart={this._handleTouchStart}
               onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
               ref="enhancedButton"
-              style={this.mergeStyles(styles.root, style)}>
+              style={this.mergeStyles(styles.root, style)}
+            >
               <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
                 {contentChildren}
               </div>

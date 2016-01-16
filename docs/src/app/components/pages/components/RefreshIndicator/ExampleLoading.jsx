@@ -18,14 +18,16 @@ const RefreshIndicatorExampleLoading = () => (
       left={10}
       top={0}
       status="loading"
-      style={style.refresh} />
+      style={style.refresh}
+    />
     <RefreshIndicator
       size={40}
       left={70}
       top={0}
       loadingColor={"#FF9800"}
       status="loading"
-      style={style.refresh} />
+      style={style.refresh}
+    />
   </div>
 );
 

@@ -40,9 +40,12 @@ const MenuExampleIcons = () => (
       <MenuItem primaryText="Clear Config" />
       <MenuItem primaryText="New Config" rightIcon={<PersonAdd />} />
       <MenuItem primaryText="Project" rightIcon={<FontIcon className="material-icons">settings</FontIcon>}/>
-      <MenuItem primaryText="Workspace" rightIcon={
-        <FontIcon className="material-icons" style={{color: '#559'}}>settings</FontIcon>
-        }/>
+      <MenuItem
+        primaryText="Workspace"
+        rightIcon={
+          <FontIcon className="material-icons" style={{color: '#559'}}>settings</FontIcon>
+        }
+      />
       <MenuItem primaryText="Paragraph" rightIcon={<b style={style.rightIcon}>¶</b>} />
       <MenuItem primaryText="Section" rightIcon={<b style={style.rightIcon}>§</b>} />
     </Menu>

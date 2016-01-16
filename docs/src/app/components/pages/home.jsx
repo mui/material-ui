@@ -92,7 +92,8 @@ const HomePage = React.createClass({
             onTouchTap={this._onDemoClick}
             linkButton={true}
             style={styles.demoStyle}
-            labelStyle={styles.label}/>
+            labelStyle={styles.label}
+          />
         </div>
       </FullWidthSection>
     );
@@ -123,7 +124,8 @@ const HomePage = React.createClass({
         useContent={true}
         contentStyle={styles.content}
         contentType="p"
-        className="home-purpose">
+        className="home-purpose"
+      >
         Material-UI came about from our love of&nbsp;
         <a href="http://facebook.github.io/react/">React</a> and&nbsp;
         <a href="https://www.google.com/design/spec/material-design/introduction.html">
@@ -144,16 +146,19 @@ const HomePage = React.createClass({
           heading="Get Started"
           route="/get-started"
           img="images/get-started.svg"
-          firstChild={true}/>
+          firstChild={true}
+        />
         <HomeFeature
           heading="Customization"
           route="/customization"
-          img="images/css-framework.svg" />
+          img="images/css-framework.svg"
+        />
         <HomeFeature
           heading="Components"
           route="/components"
           img="images/components.svg"
-          lastChild={true}/>
+          lastChild={true}
+        />
       </FullWidthSection>
     );
   },
@@ -186,7 +191,8 @@ const HomePage = React.createClass({
           primary={true}
           linkButton={true}
           href="https://github.com/callemall/material-ui"
-          style={styles.button}/>
+          style={styles.button}
+        />
       </FullWidthSection>
     );
   },

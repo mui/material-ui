@@ -100,7 +100,8 @@ const ComponentDoc = React.createClass({
           key={i}
           name={info.name}
           style={infoStyle}
-          infoArray={info.infoArray} />
+          infoArray={info.infoArray}
+        />
       );
     }, this);
 

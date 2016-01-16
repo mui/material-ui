@@ -83,7 +83,8 @@ const SlideIn = React.createClass({
           direction={direction}
           enterDelay={enterDelay}
           getLeaveDirection={this._getLeaveDirection}
-          style={childStyle}>
+          style={childStyle}
+        >
           {child}
         </SlideInChild>
       );
@@ -93,7 +94,8 @@ const SlideIn = React.createClass({
       <ReactTransitionGroup
         {...other}
         style={this.prepareStyles(mergedRootStyles)}
-        component="div">
+        component="div"
+      >
         {newChildren}
       </ReactTransitionGroup>
     );

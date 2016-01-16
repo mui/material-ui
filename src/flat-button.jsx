@@ -316,7 +316,8 @@ const FlatButton = React.createClass({
         onTouchStart={this._handleTouchStart}
         style={mergedRootStyles}
         touchRippleColor={buttonRippleColor}
-        touchRippleOpacity={0.3} >
+        touchRippleOpacity={0.3}
+      >
         {enhancedButtonChildren}
       </EnhancedButton>
     );

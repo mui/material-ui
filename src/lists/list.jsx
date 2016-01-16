@@ -119,7 +119,8 @@ const List = React.createClass({
       <Paper
         {...other}
         style={this.mergeStyles(styles.root, style)}
-        zDepth={zDepth}>
+        zDepth={zDepth}
+      >
         {subheaderElement}
         {children}
       </Paper>

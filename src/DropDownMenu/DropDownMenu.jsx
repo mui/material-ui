@@ -385,7 +385,8 @@ const DropDownMenu = React.createClass({
           key={idx}
           primaryText={item[displayMember || 'text']}
           value={item[valueMember]}
-          onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item)} />
+          onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item)}
+        />
       ))
       : React.Children.map(children, child => {
         const clone = React.cloneElement(child, {
@@ -420,13 +421,14 @@ const DropDownMenu = React.createClass({
           style={popoverStyle}
           animation={PopoverAnimationFromTop}
           open={open}
-          onRequestClose={this._onMenuRequestClose} >
+          onRequestClose={this._onMenuRequestClose}
+        >
           <Menu
             maxHeight={maxHeight}
             desktop={true}
             value={value}
             style={menuStyle}
-            >
+          >
             {menuItemElements}
           </Menu>
         </Popover>

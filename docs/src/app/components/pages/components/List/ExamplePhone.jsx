@@ -15,23 +15,27 @@ const ListExamplePhone = () => (
         leftIcon={<CommunicationCall color={Colors.indigo500} />}
         rightIcon={<CommunicationChatBubble />}
         primaryText="(650) 555 - 1234"
-        secondaryText="Mobile" />
+        secondaryText="Mobile"
+      />
       <ListItem
         insetChildren={true}
         rightIcon={<CommunicationChatBubble />}
         primaryText="(323) 555 - 6789"
-        secondaryText="Work" />
+        secondaryText="Work"
+      />
     </List>
     <Divider inset={true} />
     <List>
       <ListItem
         leftIcon={<CommunicationEmail color={Colors.indigo500} />}
         primaryText="aliconnors@example.com"
-        secondaryText="Personal" />
+        secondaryText="Personal"
+      />
       <ListItem
         insetChildren={true}
         primaryText="ali_connors@example.com"
-        secondaryText="Work" />
+        secondaryText="Work"
+      />
     </List>
   </MobileTearSheet>
 );

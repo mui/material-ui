@@ -240,7 +240,8 @@ const Tabs = React.createClass({
     return (
       <div
         {...other}
-        style={this.prepareStyles(style)}>
+        style={this.prepareStyles(style)}
+      >
         <div style={this.prepareStyles(styles.tabItemContainer, tabItemContainerStyle)}>
           {tabs}
         </div>

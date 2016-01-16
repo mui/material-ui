@@ -137,7 +137,8 @@ const PopoverDefaultAnimation = React.createClass({
       <Paper
         style={this.mergeStyles(styles.base, style, openStyles.base)}
         zDepth={zDepth}
-        className={className}>
+        className={className}
+      >
         <div style={this.prepareStyles(styles.horizontal, openStyles.horizontal)}>
           <div style={this.prepareStyles(styles.vertical, openStyles.vertical)}>
             {this.props.children}

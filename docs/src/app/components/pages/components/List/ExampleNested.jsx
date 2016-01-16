@@ -21,7 +21,8 @@ const ListExampleNested = () => (
           <ListItem
             key={1}
             primaryText="Starred"
-            leftIcon={<ActionGrade />} />,
+            leftIcon={<ActionGrade />}
+          />,
           <ListItem
             key={2}
             primaryText="Sent Mail"

@@ -48,7 +48,8 @@ const CalendarYear = React.createClass({
           year={year}
           onTouchTap={this._handleYearTouchTap}
           selected={selected}
-          {...selectedProps} />
+          {...selectedProps}
+        />
       );
 
       years.push(yearButton);

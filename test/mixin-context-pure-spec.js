@@ -164,8 +164,7 @@ describe('Mixin-ContextPure', () => {
 
     beforeEach(() => {
       parentElement = TestUtils.renderIntoDocument(
-        <ParentComponent
-          staticTheme={false} />
+        <ParentComponent staticTheme={false} />
       );
     });
 
@@ -222,8 +221,7 @@ describe('Mixin-ContextPure', () => {
   describe('when muiTheme.static is true', () => {
     beforeEach(() => {
       parentElement = TestUtils.renderIntoDocument(
-        <ParentComponent
-          staticTheme={true} />
+        <ParentComponent staticTheme={true} />
       );
     });
 

@@ -320,7 +320,8 @@ const IconMenu = React.createClass({
         onEscKeyDown={this._handleMenuEscKeyDown}
         onItemTouchTap={this._handleItemTouchTap}
         zDepth={0}
-        style={mergedMenuStyles}>
+        style={mergedMenuStyles}
+      >
         {this.props.children}
       </Menu>
     );
@@ -333,7 +334,8 @@ const IconMenu = React.createClass({
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
         onTouchTap={onTouchTap}
-        style={this.prepareStyles(mergedRootStyles)}>
+        style={this.prepareStyles(mergedRootStyles)}
+      >
         {iconButton}
         <Popover
           anchorOrigin={anchorOrigin}
@@ -343,8 +345,9 @@ const IconMenu = React.createClass({
           childContextTypes={this.constructor.childContextTypes}
           useLayerForClickAway={false}
           onRequestClose={this.close}
-          context={this.context}>
-            {menu}
+          context={this.context}
+        >
+          {menu}
         </Popover>
       </div>
     );

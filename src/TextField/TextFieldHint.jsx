@@ -54,8 +54,8 @@ const TextFieldHint = (props) => {
   };
 
   return (
-    <div
-      style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}>{text}
+    <div style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}>
+      {text}
     </div>
   );
 };

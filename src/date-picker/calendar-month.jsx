@@ -51,7 +51,8 @@ const CalendarMonth = React.createClass({
           date={day}
           onTouchTap={this._handleDayTouchTap}
           selected={selected}
-          disabled={disabled} />
+          disabled={disabled}
+        />
       );
     }, this);
   },

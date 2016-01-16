@@ -265,7 +265,8 @@ const IconButton = React.createClass({
         touch={touch}
         style={this.mergeStyles(styles.tooltip, this.props.tooltipStyles)}
         verticalPosition={tooltipPosition[0]}
-        horizontalPosition={tooltipPosition[1]}/>
+        horizontalPosition={tooltipPosition[1]}
+      />
     ) : null;
 
     if (iconClassName) {
@@ -282,15 +283,18 @@ const IconButton = React.createClass({
             styles.icon,
             disabled ? styles.disabled : {},
             iconStyleFontIcon
-          )}>
-          {this.props.children}</FontIcon>
+          )}
+        >
+          {this.props.children}
+        </FontIcon>
       );
     }
 
     let childrenStyle = disabled ? this.mergeStyles(iconStyle, styles.disabled) : iconStyle;
 
     return (
-      <EnhancedButton {...other}
+      <EnhancedButton
+        {...other}
         ref="button"
         centerRipple={true}
         disabled={disabled}
@@ -299,14 +303,13 @@ const IconButton = React.createClass({
         onFocus={this._handleFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
-        onKeyboardFocus={this._handleKeyboardFocus}>
-
+        onKeyboardFocus={this._handleKeyboardFocus}
+      >
         {tooltipElement}
         {fonticon}
         {Children.extend(this.props.children, {
           style: childrenStyle,
         })}
-
       </EnhancedButton>
     );
   },

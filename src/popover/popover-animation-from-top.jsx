@@ -110,7 +110,8 @@ const PopoverAnimationFromTop = React.createClass({
       <Paper
         style={this.mergeStyles(styles.base, style, openStyles.base)}
         zDepth={zDepth}
-        className={className}>
+        className={className}
+      >
           {this.props.children}
       </Paper>
     );

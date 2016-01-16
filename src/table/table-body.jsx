@@ -6,7 +6,6 @@ import StylePropable from '../mixins/style-propable';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 
-
 const TableBody = React.createClass({
 
   propTypes: {
@@ -236,7 +235,8 @@ const TableBody = React.createClass({
       <TableRowColumn
         key={key}
         columnNumber={0}
-        style={{width: 24}}>
+        style={{width: 24}}
+      >
         {checkbox}
       </TableRowColumn>
     );

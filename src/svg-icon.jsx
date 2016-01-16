@@ -139,7 +139,8 @@ const SvgIcon = React.createClass({
         {...other}
         {...events}
         style={this.prepareStyles(mergedStyles)}
-        viewBox={viewBox}>
+        viewBox={viewBox}
+      >
         {children}
       </svg>
     );

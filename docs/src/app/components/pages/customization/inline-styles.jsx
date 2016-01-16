@@ -86,7 +86,8 @@ const InlineStyles = React.createClass({
             }}
             iconStyle={{
               fill: '#FF4081',
-            }}/>
+            }}
+          />
         </CodeExample>
         <p>
           If you would like to override a style property that has been defined
@@ -111,7 +112,8 @@ const InlineStyles = React.createClass({
             className="muidocs-checkbox-example"
             iconStyle={{
               fill: '#FF9800',
-            }}/>
+            }}
+          />
         </CodeExample>
         <p>
           If you would like to add additional styling via CSS, pass in the

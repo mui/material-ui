@@ -290,7 +290,8 @@ const MenuItem = React.createClass({
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           useLayerForClickAway={false}
-          onRequestClose={this._onRequestClose}>
+          onRequestClose={this._onRequestClose}
+        >
           <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
             {React.Children.map(menuItems, this._cloneMenuItem)}
           </Menu>
@@ -308,7 +309,8 @@ const MenuItem = React.createClass({
         leftIcon={leftIconElement}
         ref="listItem"
         rightIcon={rightIconElement}
-        style={mergedRootStyles}>
+        style={mergedRootStyles}
+      >
         {children}
         {secondaryTextElement}
         {childMenuPopover}

@@ -21,18 +21,10 @@ const ToolbarPage = () => (
     <CodeExample code={toolbarsExampleSimpleCode}>
       <ToolbarsExampleSimple />
     </CodeExample>
-    <PropTypeDescription
-      code={toolbarCode}
-      header={toolbarReadmeText} />
-    <PropTypeDescription
-      code={toolbarGroupCode}
-      header={toolbarGroupReadmeText} />
-    <PropTypeDescription
-      code={toolbarSeparatorCode}
-      header={toolbarSeparatorReadmeText} />
-    <PropTypeDescription
-      code={toolbarTitleCode}
-      header={toolbarTitleReadmeText} />
+    <PropTypeDescription code={toolbarCode} header={toolbarReadmeText} />
+    <PropTypeDescription code={toolbarGroupCode} header={toolbarGroupReadmeText} />
+    <PropTypeDescription code={toolbarSeparatorCode} header={toolbarSeparatorReadmeText} />
+    <PropTypeDescription code={toolbarTitleCode} header={toolbarTitleReadmeText} />
   </div>
 );
 

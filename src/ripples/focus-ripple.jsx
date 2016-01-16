@@ -123,7 +123,8 @@ const FocusRipple = React.createClass({
     return (
       <ScaleInTransitionGroup
         maxScale={0.85}
-        style={mergedRootStyles}>
+        style={mergedRootStyles}
+      >
         {ripple}
       </ScaleInTransitionGroup>
     );

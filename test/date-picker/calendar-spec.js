@@ -46,7 +46,8 @@ describe(`Calendar`, () => {
           initialDate={initialDate}
           DateTimeFormat={DateTime.DateTimeFormat}
           locale="en-US"
-          maxDate={maxDate} />
+          maxDate={maxDate}
+        />
       );
       let renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
@@ -64,7 +65,8 @@ describe(`Calendar`, () => {
           initialDate={initialDate}
           DateTimeFormat={DateTime.DateTimeFormat}
           locale="en-US"
-          maxDate={maxDate} />
+          maxDate={maxDate}
+        />
       );
 
       let renderedCalendarToolbar =
@@ -82,7 +84,8 @@ describe(`Calendar`, () => {
           initialDate={initialDate}
           DateTimeFormat={DateTime.DateTimeFormat}
           locale="en-US"
-          maxDate={maxDate} />
+          maxDate={maxDate}
+        />
       );
       let prevMonthButton = ReactDOM.findDOMNode(
                 TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
@@ -104,7 +107,8 @@ describe(`Calendar`, () => {
           initialDate={initialDate}
           DateTimeFormat={DateTime.DateTimeFormat}
           locale="en-US"
-          maxDate={maxDate} />
+          maxDate={maxDate}
+        />
       );
       let nextMonthButton = ReactDOM.findDOMNode(
                 TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);

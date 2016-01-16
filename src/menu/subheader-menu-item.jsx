@@ -91,8 +91,9 @@ const SubheaderMenuItem = React.createClass({
           this.getStyles().root,
           this.props.firstChild && this.getStyles().rootWhenFirstChild,
           this.props.style
-        )}>
-          {this.props.text}
+        )}
+      >
+        {this.props.text}
       </div>
     );
   },

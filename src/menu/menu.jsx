@@ -14,6 +14,8 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import warning from 'warning';
 
+/*eslint-disable */
+
 /***********************
 * Nested Menu Component
 ***********************/

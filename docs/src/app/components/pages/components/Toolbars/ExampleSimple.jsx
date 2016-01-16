@@ -27,11 +27,13 @@ const ToolbarsExamplesSimple = () => (
     <ToolbarGroup float="right">
       <ToolbarTitle text="Options" />
       <FontIcon className="muidocs-icon-custom-sort" />
-      <IconMenu iconButtonElement={
-        <IconButton touch={true}>
-          <NavigationExpandMoreIcon />
-        </IconButton>
-      }>
+      <IconMenu
+        iconButtonElement={
+          <IconButton touch={true}>
+            <NavigationExpandMoreIcon />
+          </IconButton>
+        }
+      >
         <MenuItem primaryText="Download" />
         <MenuItem primaryText="More Info" />
       </IconMenu>

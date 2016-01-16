@@ -266,7 +266,8 @@ const Toggle = React.createClass({
     return (
       <EnhancedSwitch
         {...other}
-        {...enhancedSwitchProps}/>
+        {...enhancedSwitchProps}
+      />
     );
   },
 

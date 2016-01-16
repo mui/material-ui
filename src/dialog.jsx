@@ -427,16 +427,20 @@ const DialogInline = React.createClass({
 
     return (
       <div className={className} style={this.prepareStyles(styles.root)}>
-        <ReactTransitionGroup component="div" ref="dialogWindow"
+        <ReactTransitionGroup
+          component="div" ref="dialogWindow"
           transitionAppear={true} transitionAppearTimeout={450}
-          transitionEnter={true} transitionEnterTimeout={450}>
+          transitionEnter={true} transitionEnterTimeout={450}
+        >
           {open &&
             <TransitionItem
               className={contentClassName}
-              style={styles.content}>
+              style={styles.content}
+            >
               <Paper
                 style={styles.paper}
-                zDepth={4}>
+                zDepth={4}
+              >
                 {titleElement}
                 <div
                   ref="dialogContent"
@@ -454,7 +458,8 @@ const DialogInline = React.createClass({
           show={open}
           className={overlayClassName}
           style={styles.overlay}
-          onTouchTap={this._handleOverlayTouchTap} />
+          onTouchTap={this._handleOverlayTouchTap}
+        />
       </div>
     );
   },
