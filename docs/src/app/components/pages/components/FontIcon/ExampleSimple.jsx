@@ -12,11 +12,13 @@ const FontIconExampleSimple = () => (
       className="muidocs-icon-action-home"
       style={iconStyles}
     />
+
     <FontIcon
       className="muidocs-icon-action-home"
       style={iconStyles}
       color={Colors.blue500}
     />
+
     <FontIcon
       className="muidocs-icon-action-home"
       style={iconStyles}
@@ -27,3 +29,4 @@ const FontIconExampleSimple = () => (
 );
 
 export default FontIconExampleSimple;
+
