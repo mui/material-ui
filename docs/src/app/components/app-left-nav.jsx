@@ -190,16 +190,8 @@ const AppLeftNav = React.createClass({
                 primaryText="Divider"
               />,
               <ListItem
-                value="/components/dropdown-menu"
-                primaryText="Drop Down Menu"
-              />,
-              <ListItem
                 value="/components/grid-list"
                 primaryText="Grid List"
-              />,
-              <ListItem
-                value="/components/icon-menu"
-                primaryText="Icon Menu"
               />,
               <ListItem
                 primaryText="Icons"
@@ -224,8 +216,22 @@ const AppLeftNav = React.createClass({
                 primaryText="List"
               />,
               <ListItem
-                value="/components/menu"
-                primaryText="Menu"
+                primaryText="Menus"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    value="/components/menu"
+                    primaryText="Menu"
+                  />,
+                  <ListItem
+                    value="/components/icon-menu"
+                    primaryText="Icon Menu"
+                  />,
+                  <ListItem
+                    value="/components/dropdown-menu"
+                    primaryText="Drop Down Menu"
+                  />,
+                ]}
               />,
               <ListItem
                 value="/components/paper"
