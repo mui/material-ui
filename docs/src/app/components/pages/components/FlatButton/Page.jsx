@@ -10,16 +10,31 @@ import FlatButtonExampleSimple from './ExampleSimple';
 import flatButtonExampleComplexCode from '!raw!./ExampleComplex';
 import FlatButtonExampleComplex from './ExampleComplex';
 
+const descriptions = {
+  simple: '`FlatButton` with default color, `primary`, `secondary` and and `disabled` props applied.',
+  complex: 'The first example uses an `input` as a child component, ' +
+  'the next has next has an [SVG Icon](/#/components/svg-icon), with the label positioned after. ' +
+  'The final example uses a [FontIcon](/#/components/font-icon), and is wrapped in an anchor tag.',
+};
+
 const FlatButtonPage = () => (
   <div>
-    <MarkdownElement text={flatButtonReadmeText}/>
-    <CodeExample code={flatButtonExampleSimpleCode}>
+    <MarkdownElement text={flatButtonReadmeText} />
+    <CodeExample
+      title="Simple examples"
+      description={descriptions.simple}
+      code={flatButtonExampleSimpleCode}
+    >
       <FlatButtonExampleSimple />
     </CodeExample>
-    <CodeExample code={flatButtonExampleComplexCode}>
+    <CodeExample
+      title="Complex examples"
+      description={descriptions.complex}
+      code={flatButtonExampleComplexCode}
+    >
       <FlatButtonExampleComplex />
     </CodeExample>
-    <PropTypeDescription code={flatButtonCode}/>
+    <PropTypeDescription code={flatButtonCode} />
   </div>
 );
 
