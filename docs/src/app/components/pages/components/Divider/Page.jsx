@@ -12,17 +12,37 @@ import DividerExampleMenu from './ExampleMenu';
 import dividerExampleMenuCode from '!raw!./ExampleMenu';
 import dividerCode from '!raw!material-ui/lib/divider';
 
+const descriptions = {
+  simple: 'Here, `Divider` is used to separate [TextField](/#/components/text-field) components. ' +
+  'It defaults to "full-bleed" (full width).',
+  inset: 'The `inset` parameter allows the divider to to align with inset content, ' +
+  'such as inset [List](http://localhost:3000/#/components/list) components.',
+  menu: '`Divider` can alo be used in [Menus](/#/components/menu).',
+};
+
 const DividerPage = () => {
   return (
     <div>
       <MarkdownElement text={dividerReadmeText} />
-      <CodeExample code={dividerExampleFormCode}>
+      <CodeExample
+        title="Form divider"
+        description={descriptions.simple}
+        code={dividerExampleFormCode}
+      >
         <DividerExampleForm />
       </CodeExample>
-      <CodeExample code={dividerExampleListCode}>
+      <CodeExample
+        title="Inset divider"
+        description={descriptions.inset}
+        code={dividerExampleListCode}
+      >
         <DividerExampleList />
       </CodeExample>
-      <CodeExample code={dividerExampleMenuCode}>
+      <CodeExample
+        title="Menu divider"
+        description={descriptions.menu}
+        code={dividerExampleMenuCode}
+      >
         <DividerExampleMenu />
       </CodeExample>
       <PropTypeDescription code={dividerCode}/>
