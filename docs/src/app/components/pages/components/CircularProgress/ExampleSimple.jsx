@@ -3,9 +3,9 @@ import CircularProgress from 'material-ui/lib/circular-progress';
 
 const CircularProgressExampleSimple = () => (
   <div>
-    <CircularProgress mode="indeterminate" />
-    <CircularProgress mode="indeterminate" size={1.5}/>
-    <CircularProgress mode="indeterminate" size={2}/>
+    <CircularProgress />
+    <CircularProgress size={1.5} />
+    <CircularProgress size={2} />
   </div>
 );
 

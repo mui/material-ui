@@ -11,7 +11,10 @@ import checkboxExampleSimpleCode from '!raw!./ExampleSimple';
 const CheckboxPage = () => (
   <div>
     <MarkdownElement text={checkboxReadmeText} />
-    <CodeExample code={checkboxExampleSimpleCode}>
+    <CodeExample
+      title="Checkbox examples"
+      code={checkboxExampleSimpleCode}
+    >
       <CheckboxExampleSimple />
     </CodeExample>
     <PropTypeDescription code={checkboxCode} />
