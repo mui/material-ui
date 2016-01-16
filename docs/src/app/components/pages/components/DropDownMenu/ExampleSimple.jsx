@@ -9,7 +9,7 @@ export default class DropDownMenuSimpleExample extends React.Component {
     this.state = {value: 2};
   }
 
-  handleChange = (e, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({value});
 
   render() {
     return (
