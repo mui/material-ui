@@ -116,18 +116,21 @@ const TimePickerDialog = React.createClass({
         key={0}
         label="Cancel"
         secondary={true}
-        onTouchTap={this.dismiss} />,
+        onTouchTap={this.dismiss}
+      />,
       <FlatButton
         key={1}
         label="OK"
         secondary={true}
-        onTouchTap={this._handleOKTouchTap} />,
+        onTouchTap={this._handleOKTouchTap}
+      />,
     ];
 
     const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
 
     return (
-      <Dialog {...other}
+      <Dialog
+        {...other}
         ref="dialogWindow"
         style={this.mergeStyles(styles.root)}
         bodyStyle={styles.body}
@@ -135,12 +138,14 @@ const TimePickerDialog = React.createClass({
         contentStyle={styles.dialogContent}
         repositionOnUpdate={false}
         open={this.state.open}
-        onRequestClose={this.dismiss}>
+        onRequestClose={this.dismiss}
+      >
         <Clock
           ref="clock"
           format={format}
           initialTime={initialTime}
-          onChangeMinutes={onClockChangeMinutes} />
+          onChangeMinutes={onClockChangeMinutes}
+        />
       </Dialog>
     );
   },

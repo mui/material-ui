@@ -172,17 +172,22 @@ const DateDisplay = React.createClass({
       <div {...other} style={this.prepareStyles(styles.root, this.props.style)}>
         <SlideInTransitionGroup
           style={styles.year.root}
-          direction={this.state.transitionDirection}>
-          <div key={year} style={styles.year.title} onTouchTap={this._handleYearClick}>{year}</div>
+          direction={this.state.transitionDirection}
+        >
+          <div key={year} style={styles.year.title} onTouchTap={this._handleYearClick}>
+            {year}
+          </div>
         </SlideInTransitionGroup>
         <SlideInTransitionGroup
           style={styles.monthDay.root}
-          direction={this.state.transitionDirection}>
+          direction={this.state.transitionDirection}
+        >
           <div
             key={dateTimeFormatted}
             style={styles.monthDay.title}
-            onTouchTap={this._handleMonthDayClick}>
-              {dateTimeFormatted}
+            onTouchTap={this._handleMonthDayClick}
+          >
+            {dateTimeFormatted}
           </div>
         </SlideInTransitionGroup>
       </div>

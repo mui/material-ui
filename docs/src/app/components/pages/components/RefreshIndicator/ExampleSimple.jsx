@@ -19,14 +19,16 @@ const RefreshIndicatorExampleSimple = () => (
       left={10}
       top={0}
       status="ready"
-      style={style.refresh} />
+      style={style.refresh}
+    />
     <RefreshIndicator
       percentage={60}
       size={40}
       left={65}
       top={0}
       status="ready"
-      style={style.refresh} />
+      style={style.refresh}
+    />
     <RefreshIndicator
       percentage={80}
       size={40}
@@ -34,14 +36,16 @@ const RefreshIndicatorExampleSimple = () => (
       top={0}
       color={"red"}
       status="ready"
-      style={style.refresh} />
+      style={style.refresh}
+    />
     <RefreshIndicator
       percentage={100}
       size={40}
       left={175}
       top={0}
       status="ready"
-      style={style.refresh} />
+      style={style.refresh}
+    />
   </div>
 );
 

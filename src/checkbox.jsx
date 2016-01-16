@@ -248,7 +248,8 @@ const Checkbox = React.createClass({
     return (
       <EnhancedSwitch
         {...other}
-        {...enhancedSwitchProps}/>
+        {...enhancedSwitchProps}
+      />
     );
   },
 });

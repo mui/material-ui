@@ -133,7 +133,8 @@ const DayButton = React.createClass({
     }
 
     return this.props.date ? (
-      <EnhancedButton {...other}
+      <EnhancedButton
+        {...other}
         style={styles.root}
         hoverStyle={styles.hover}
         disabled={this.props.disabled}
@@ -142,7 +143,8 @@ const DayButton = React.createClass({
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         onTouchTap={this._handleTouchTap}
-        onKeyboardFocus={this._handleKeyboardFocus}>
+        onKeyboardFocus={this._handleKeyboardFocus}
+      >
         <div style={this.prepareStyles(styles.buttonState)} />
         <span style={this.prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
       </EnhancedButton>

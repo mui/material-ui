@@ -29,11 +29,13 @@ export default class DialogExampleCustomWidth extends React.Component {
       <FlatButton
         label="Cancel"
         secondary={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
       <FlatButton
         label="Submit"
         primary={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
     ];
 
     return (

@@ -12,32 +12,38 @@ const ListExampleSettings = () => (
       <List subheader="General">
         <ListItem
           primaryText="Profile photo"
-          secondaryText="Change your Google+ profile photo" />
+          secondaryText="Change your Google+ profile photo"
+        />
         <ListItem
           primaryText="Show your status"
-          secondaryText="Your status is visible to everyone you use with" />
+          secondaryText="Your status is visible to everyone you use with"
+        />
       </List>
       <Divider />
       <List subheader="Hangout notifications">
         <ListItem
           leftCheckbox={<Checkbox />}
           primaryText="Notifications"
-          secondaryText="Allow notifications" />
+          secondaryText="Allow notifications"
+        />
         <ListItem
           leftCheckbox={<Checkbox />}
           primaryText="Sounds"
-          secondaryText="Hangouts message" />
+          secondaryText="Hangouts message"
+        />
         <ListItem
           leftCheckbox={<Checkbox />}
           primaryText="Video sounds"
-          secondaryText="Hangouts video call" />
+          secondaryText="Hangouts video call"
+        />
       </List>
     </MobileTearSheet>
     <MobileTearSheet>
       <List>
         <ListItem
           primaryText="When calls and notifications arrive"
-          secondaryText="Always interrupt" />
+          secondaryText="Always interrupt"
+        />
       </List>
       <Divider />
       <List subheader="Priority interruptions">

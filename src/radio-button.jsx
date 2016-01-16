@@ -213,7 +213,8 @@ const RadioButton = React.createClass({
     return (
       <EnhancedSwitch
         {...other}
-        {...enhancedSwitchProps}/>
+        {...enhancedSwitchProps}
+      />
     );
   },
 

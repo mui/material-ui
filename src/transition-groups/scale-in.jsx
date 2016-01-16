@@ -84,7 +84,8 @@ const ScaleIn = React.createClass({
           enterDelay={enterDelay}
           maxScale={maxScale}
           minScale={minScale}
-          style={childStyle}>
+          style={childStyle}
+        >
           {child}
         </ScaleInChild>
       );
@@ -94,7 +95,8 @@ const ScaleIn = React.createClass({
       <ReactTransitionGroup
         {...other}
         style={this.prepareStyles(mergedRootStyles)}
-        component="div">
+        component="div"
+      >
         {newChildren}
       </ReactTransitionGroup>
     );

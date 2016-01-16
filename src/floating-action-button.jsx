@@ -322,8 +322,8 @@ const FloatingActionButton = React.createClass({
       <Paper
         style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
-        circle={true}>
-
+        circle={true}
+      >
         <EnhancedButton
           {...other}
           {...buttonEventHandlers}
@@ -335,21 +335,22 @@ const FloatingActionButton = React.createClass({
             iconStyle
           )}
           focusRippleColor={styles.icon.color}
-          touchRippleColor={styles.icon.color}>
+          touchRippleColor={styles.icon.color}
+        >
           <div
             ref="overlay"
             style={this.prepareStyles(
               styles.overlay,
               (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-            )}>
-              {iconElement}
-              {children}
+            )}
+          >
+            {iconElement}
+            {children}
           </div>
         </EnhancedButton>
       </Paper>
     );
   },
-
 });
 
 export default FloatingActionButton;

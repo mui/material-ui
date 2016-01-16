@@ -387,7 +387,8 @@ const EnhancedSwitch = React.createClass({
     let inputElement = (
       <input
         {...other}
-        {...inputProps}/>
+        {...inputProps}
+      />
     );
 
     let touchRipple = (
@@ -396,7 +397,8 @@ const EnhancedSwitch = React.createClass({
         key="touchRipple"
         style={rippleStyle}
         color={rippleColor}
-        centerRipple={true} />
+        centerRipple={true}
+      />
     );
 
     let focusRipple = (
@@ -404,7 +406,8 @@ const EnhancedSwitch = React.createClass({
         key="focusRipple"
         innerStyle={rippleStyle}
         color={rippleColor}
-        show={this.state.isKeyboardFocused} />
+        show={this.state.isKeyboardFocused}
+      />
     );
 
     let ripples = [
@@ -444,8 +447,8 @@ const EnhancedSwitch = React.createClass({
 
     return (
       <div ref="root" className={className} style={this.prepareStyles(styles.root, this.props.style)}>
-          {inputElement}
-          {elementsInOrder}
+        {inputElement}
+        {elementsInOrder}
       </div>
     );
   },

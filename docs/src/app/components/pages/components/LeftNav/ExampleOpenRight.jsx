@@ -17,7 +17,8 @@ export default class LeftNavOpenRightExample extends React.Component {
       <div>
         <RaisedButton
           label="Controlled LeftNav That Opens From Right"
-          onTouchTap={this.handleToggle} />
+          onTouchTap={this.handleToggle}
+        />
         <LeftNav width={200} openRight={true} open={this.state.open} >
           <AppBar title="AppBar"/>
         </LeftNav>

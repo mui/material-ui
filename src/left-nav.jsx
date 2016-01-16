@@ -517,7 +517,8 @@ const LeftNav = React.createClass({
           className={overlayClassName}
           style={this.mergeStyles(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}
-          onTouchTap={this._onOverlayTouchTap} />
+          onTouchTap={this._onOverlayTouchTap}
+        />
       );
     }
     let children;
@@ -537,8 +538,9 @@ const LeftNav = React.createClass({
           menuItemClassNameSubheader={menuItemClassNameSubheader}
           menuItemClassNameLink={menuItemClassNameLink}
           selectedIndex={selectedIndex}
-          onItemTap={this._onMenuItemClick} />
-        );
+          onItemTap={this._onMenuItemClick}
+        />
+      );
     }
 
     return (
@@ -550,14 +552,14 @@ const LeftNav = React.createClass({
           rounded={false}
           transitionEnabled={!this.state.swiping}
           className={className}
-          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}>
-            {header}
-            {children}
+          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}
+        >
+          {header}
+          {children}
         </Paper>
       </div>
     );
   },
-
 });
 
 export default LeftNav;

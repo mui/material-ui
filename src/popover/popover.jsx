@@ -397,7 +397,8 @@ const Popover = React.createClass({
         open={this.state.open}
         componentClickAway={this.componentClickAway}
         useLayerForClickAway={this.props.useLayerForClickAway}
-        render={this.renderLayer} />
+        render={this.renderLayer}
+      />
     );
   },
 

@@ -183,7 +183,8 @@ const DatePickerDialog = React.createClass({
         label={wordings.cancel}
         secondary={true}
         style={styles.actions}
-        onTouchTap={this._handleCancelTouchTap} />,
+        onTouchTap={this._handleCancelTouchTap}
+      />,
     ];
 
     if (!this.props.autoOk) {
@@ -194,7 +195,8 @@ const DatePickerDialog = React.createClass({
           secondary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
-          onTouchTap={this._handleOKTouchTap} />
+          onTouchTap={this._handleOKTouchTap}
+        />
       );
     }
 
@@ -210,7 +212,8 @@ const DatePickerDialog = React.createClass({
         actions={actions}
         repositionOnUpdate={false}
         open={this.state.open}
-        onRequestClose={this.dismiss}>
+        onRequestClose={this.dismiss}
+      >
         <Calendar
           DateTimeFormat={DateTimeFormat}
           locale={locale}
@@ -222,7 +225,8 @@ const DatePickerDialog = React.createClass({
           maxDate={this.props.maxDate}
           shouldDisableDate={this.props.shouldDisableDate}
           disableYearSelection={this.props.disableYearSelection}
-          mode={this.props.mode} />
+          mode={this.props.mode}
+        />
       </Container>
     );
   },

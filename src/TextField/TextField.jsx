@@ -467,7 +467,8 @@ const TextField = React.createClass({
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused}
         disabled={disabled}
-        onTouchTap={this.focus}>
+        onTouchTap={this.focus}
+      >
         {floatingLabelText}
       </TextFieldLabel>
     ) : null;
@@ -505,13 +506,15 @@ const TextField = React.createClass({
           rows={rows}
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
-          textareaStyle={styles.textarea} />
+          textareaStyle={styles.textarea}
+        />
       ) : (
         <input
           {...other}
           {...inputProps}
           style={this.prepareStyles(inputStyle)}
-          type={type} />
+          type={type}
+        />
       );
     }
 

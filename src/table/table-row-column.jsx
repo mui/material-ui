@@ -157,7 +157,8 @@ const TableRowColumn = React.createClass({
         className={className}
         style={this.prepareStyles(styles.root, style)}
         {...handlers}
-        {...other}>
+        {...other}
+      >
         {this.props.children}
       </td>
     );

@@ -294,7 +294,8 @@ const DatePicker = React.createClass({
           ref="input"
           value={this.state.date ? formatDate(this.state.date) : undefined}
           onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap}/>
+          onTouchTap={this._handleInputTouchTap}
+        />
         <DatePickerDialog
           container={container}
           ref="dialogWindow"
@@ -310,9 +311,9 @@ const DatePicker = React.createClass({
           maxDate={maxDate}
           autoOk={autoOk}
           disableYearSelection={disableYearSelection}
-          shouldDisableDate={this.props.shouldDisableDate}/>
+          shouldDisableDate={this.props.shouldDisableDate}
+        />
       </div>
-
     );
   },
 

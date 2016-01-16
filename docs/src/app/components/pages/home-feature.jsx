@@ -111,7 +111,8 @@ let HomeFeature = React.createClass({
         onMouseLeave={this._onMouseLeave}
         style={this.mergeStyles(
           styles.root,
-          this.props.lastChild && styles.rootWhenLastChild)}>
+          this.props.lastChild && styles.rootWhenLastChild)}
+      >
         <h3 style={styles.heading}>{this.props.heading}</h3>
         <Link to={this.props.route}>
           <img style={styles.image} src={this.props.img} />

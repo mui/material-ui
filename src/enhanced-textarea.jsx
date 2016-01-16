@@ -172,13 +172,15 @@ const EnhancedTextarea = React.createClass({
           defaultValue={this.props.defaultValue}
           readOnly={true}
           value={this.props.value}
-          valueLink={this.props.valueLink} />
+          valueLink={this.props.valueLink}
+        />
         <textarea
           {...other}
           ref="input"
           rows={this.props.rows}
           style={this.prepareStyles(textareaStyles)}
-          onChange={this._handleChange} />
+          onChange={this._handleChange}
+        />
       </div>
     );
   },

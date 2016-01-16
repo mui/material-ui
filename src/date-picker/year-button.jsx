@@ -126,13 +126,15 @@ const YearButton = React.createClass({
     }
 
     return (
-      <EnhancedButton {...other}
+      <EnhancedButton
+        {...other}
         style={styles.root}
         disableFocusRipple={true}
         disableTouchRipple={true}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
-        onTouchTap={this._handleTouchTap}>
+        onTouchTap={this._handleTouchTap}
+      >
         <div style={this.prepareStyles(styles.buttonState)} />
         <span style={this.prepareStyles(styles.label)}>{year}</span>
       </EnhancedButton>

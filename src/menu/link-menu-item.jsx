@@ -3,6 +3,8 @@ import StylePropable from '../mixins/style-propable';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 
+/*eslint-disable */
+
 const LinkMenuItem = React.createClass({
 
   propTypes: {

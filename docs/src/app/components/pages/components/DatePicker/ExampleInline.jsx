@@ -5,11 +5,13 @@ const DatePickerExampleInline = () => (
   <div>
     <DatePicker
       hintText="Inline"
-      container="inline" />
+      container="inline"
+    />
     <DatePicker
       hintText="Inline (AutoOk)"
       container="inline"
-      autoOk={true} />
+      autoOk={true}
+    />
   </div>
 );
 

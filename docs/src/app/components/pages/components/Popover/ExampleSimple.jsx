@@ -87,42 +87,66 @@ export default class PopoverExampleSimple extends React.Component {
         <div style={styles.block}>
           <div style={styles.block2}>
             <span>Vertical</span>
-            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'top')}
-              label="Top" checked={this.state.anchorOrigin.vertical === 'top'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'center')}
-              label="Center" checked={this.state.anchorOrigin.vertical === 'center'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'vertical', 'bottom')}
-              label="Bottom" checked={this.state.anchorOrigin.vertical === 'bottom'} />
+            <RadioButton
+              onClick={this.setAnchor.bind(this, 'vertical', 'top')}
+              label="Top" checked={this.state.anchorOrigin.vertical === 'top'}
+            />
+            <RadioButton
+              onClick={this.setAnchor.bind(this, 'vertical', 'center')}
+              label="Center" checked={this.state.anchorOrigin.vertical === 'center'}
+            />
+            <RadioButton
+              onClick={this.setAnchor.bind(this, 'vertical', 'bottom')}
+              label="Bottom" checked={this.state.anchorOrigin.vertical === 'bottom'}
+            />
           </div>
           <div style={styles.block2}>
             <span>Horizontal</span>
-            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'left')}
-              label="Left" checked={this.state.anchorOrigin.horizontal === 'left'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'middle')}
-              label="Middle" checked={this.state.anchorOrigin.horizontal === 'middle'} />
-            <RadioButton onClick={this.setAnchor.bind(this, 'horizontal', 'right')}
-              label="Right" checked={this.state.anchorOrigin.horizontal === 'right'} />
+            <RadioButton
+              onClick={this.setAnchor.bind(this, 'horizontal', 'left')}
+              label="Left" checked={this.state.anchorOrigin.horizontal === 'left'}
+            />
+            <RadioButton
+              onClick={this.setAnchor.bind(this, 'horizontal', 'middle')}
+              label="Middle" checked={this.state.anchorOrigin.horizontal === 'middle'}
+            />
+            <RadioButton
+              onClick={this.setAnchor.bind(this, 'horizontal', 'right')}
+              label="Right" checked={this.state.anchorOrigin.horizontal === 'right'}
+            />
           </div>
         </div>
         <h3 style={styles.h3}>Target Origin</h3>
         <div style={styles.block}>
           <div style={styles.block2}>
             <span>Vertical</span>
-            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'top')}
-              label="Top" checked={this.state.targetOrigin.vertical === 'top'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'center')}
-              label="Center" checked={this.state.targetOrigin.vertical === 'center'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'vertical', 'bottom')}
-              label="Bottom" checked={this.state.targetOrigin.vertical === 'bottom'} />
+            <RadioButton
+              onClick={this.setTarget.bind(this, 'vertical', 'top')}
+              label="Top" checked={this.state.targetOrigin.vertical === 'top'}
+            />
+            <RadioButton
+              onClick={this.setTarget.bind(this, 'vertical', 'center')}
+              label="Center" checked={this.state.targetOrigin.vertical === 'center'}
+            />
+            <RadioButton
+              onClick={this.setTarget.bind(this, 'vertical', 'bottom')}
+              label="Bottom" checked={this.state.targetOrigin.vertical === 'bottom'}
+            />
           </div>
           <div style={styles.block2}>
             <span>Horizontal</span>
-            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'left')}
-              label="Left" checked={this.state.targetOrigin.horizontal === 'left'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'middle')}
-              label="Middle" checked={this.state.targetOrigin.horizontal === 'middle'} />
-            <RadioButton onClick={this.setTarget.bind(this, 'horizontal', 'right')}
-              label="Right" checked={this.state.targetOrigin.horizontal === 'right'} />
+            <RadioButton
+              onClick={this.setTarget.bind(this, 'horizontal', 'left')}
+              label="Left" checked={this.state.targetOrigin.horizontal === 'left'}
+            />
+            <RadioButton
+              onClick={this.setTarget.bind(this, 'horizontal', 'middle')}
+              label="Middle" checked={this.state.targetOrigin.horizontal === 'middle'}
+            />
+            <RadioButton
+              onClick={this.setTarget.bind(this, 'horizontal', 'right')}
+              label="Right" checked={this.state.targetOrigin.horizontal === 'right'}
+            />
           </div>
         </div>
         <Popover

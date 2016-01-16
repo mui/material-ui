@@ -577,15 +577,18 @@ const Menu = React.createClass({
     return (
       <div
         onKeyDown={this._handleKeyDown}
-        style={this.prepareStyles(mergedRootStyles)}>
+        style={this.prepareStyles(mergedRootStyles)}
+      >
         <Paper
           ref="scrollContainer"
           style={styles.paper}
-          zDepth={zDepth}>
+          zDepth={zDepth}
+        >
           <List
             {...other}
             ref="list"
-            style={mergedListStyles}>
+            style={mergedListStyles}
+          >
             {newChildren}
           </List>
         </Paper>

@@ -67,7 +67,8 @@ const TouchRipple = React.createClass({
         style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
         color={this.props.color}
         opacity={this.props.opacity}
-        touchGenerated={isRippleTouchGenerated} />
+        touchGenerated={isRippleTouchGenerated}
+      />
     ));
 
     this._ignoreNextMouseDown = isRippleTouchGenerated;
@@ -176,7 +177,8 @@ const TouchRipple = React.createClass({
         onMouseDown={this._handleMouseDown}
         onMouseLeave={this._handleMouseLeave}
         onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}>
+        onTouchEnd={this._handleTouchEnd}
+      >
         {rippleGroup}
         {children}
       </div>

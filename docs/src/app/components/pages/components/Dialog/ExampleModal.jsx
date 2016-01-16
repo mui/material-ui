@@ -24,12 +24,14 @@ export default class DialogExampleModal extends React.Component {
       <FlatButton
         label="Cancel"
         secondary={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
       <FlatButton
         label="Submit"
         primary={true}
         disabled={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
     ];
 
     return (
@@ -39,7 +41,8 @@ export default class DialogExampleModal extends React.Component {
           title="Dialog With Actions"
           actions={actions}
           modal={true}
-          open={this.state.open}>
+          open={this.state.open}
+        >
           Only actions can close this dialog.
         </Dialog>
       </div>

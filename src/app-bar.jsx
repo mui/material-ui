@@ -242,12 +242,16 @@ const AppBar = React.createClass({
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
-        <h1 onTouchTap={this._onTitleTouchTap}
-          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
+        <h1
+          onTouchTap={this._onTitleTouchTap}
+          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}
+        >
           {title}
         </h1> :
-        <div onTouchTap={this._onTitleTouchTap}
-          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}>
+        <div
+          onTouchTap={this._onTitleTouchTap}
+          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}
+        >
           {title}
         </div>;
     }
@@ -274,7 +278,8 @@ const AppBar = React.createClass({
             style={this.mergeStyles(styles.iconButton.style)}
             iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
             iconClassName={iconClassNameLeft}
-            onTouchTap={this._onLeftIconButtonTouchTap}>
+            onTouchTap={this._onLeftIconButtonTouchTap}
+          >
               {child}
           </IconButton>
         );
@@ -308,7 +313,8 @@ const AppBar = React.createClass({
           style={iconRightStyle}
           iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
           iconClassName={iconClassNameRight}
-          onTouchTap={this._onRightIconButtonTouchTap} />
+          onTouchTap={this._onRightIconButtonTouchTap}
+        />
       );
     }
 
@@ -318,11 +324,12 @@ const AppBar = React.createClass({
         rounded={false}
         className={className}
         style={this.mergeStyles(styles.root, style)}
-        zDepth={zDepth}>
-          {menuElementLeft}
-          {titleElement}
-          {menuElementRight}
-          {children}
+        zDepth={zDepth}
+      >
+        {menuElementLeft}
+        {titleElement}
+        {menuElementRight}
+        {children}
       </Paper>
     );
   },

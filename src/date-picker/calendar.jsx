@@ -97,7 +97,8 @@ const Calendar = React.createClass({
         onYearTouchTap={this._handleYearTouchTap}
         selectedDate={this.state.selectedDate}
         minDate={this.props.minDate}
-        maxDate={this.props.maxDate} />
+        maxDate={this.props.maxDate}
+      />
     );
   },
 
@@ -308,7 +309,8 @@ const Calendar = React.createClass({
           handleYearClick={this._handleYearClick}
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
-          weekCount={weekCount} />
+          weekCount={weekCount}
+        />
         {this.state.displayMonthDay &&
           <div style={this.prepareStyles(styles.calendarContainer)}>
             <CalendarToolbar
@@ -317,10 +319,12 @@ const Calendar = React.createClass({
               displayDate={this.state.displayDate}
               onMonthChange={this._handleMonthChange}
               prevMonth={toolbarInteractions.prevMonth}
-              nextMonth={toolbarInteractions.nextMonth} />
+              nextMonth={toolbarInteractions.nextMonth}
+            />
             <ClearFix
               elementType="ul"
-              style={styles.weekTitle}>
+              style={styles.weekTitle}
+            >
               <li style={weekTitleDayStyle}>S</li>
               <li style={weekTitleDayStyle}>M</li>
               <li style={weekTitleDayStyle}>T</li>
@@ -329,8 +333,7 @@ const Calendar = React.createClass({
               <li style={weekTitleDayStyle}>F</li>
               <li style={weekTitleDayStyle}>S</li>
             </ClearFix>
-            <SlideInTransitionGroup
-              direction={this.state.transitionDirection}>
+            <SlideInTransitionGroup direction={this.state.transitionDirection}>
               <CalendarMonth
                 key={this.state.displayDate.toDateString()}
                 ref="calendar"
@@ -339,7 +342,8 @@ const Calendar = React.createClass({
                 selectedDate={this.state.selectedDate}
                 minDate={this.props.minDate}
                 maxDate={this.props.maxDate}
-                shouldDisableDate={this.props.shouldDisableDate} />
+                shouldDisableDate={this.props.shouldDisableDate}
+              />
             </SlideInTransitionGroup>
           </div>
         }

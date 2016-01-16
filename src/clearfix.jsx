@@ -18,7 +18,8 @@ const ClearFix = ({style, children, ...other}) => (
     {...other}
     beforeStyle={styles.before}
     afterStyle={styles.after}
-    style={style}>
+    style={style}
+  >
     {children}
   </BeforeAfterWrapper>
 );

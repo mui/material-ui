@@ -6,13 +6,11 @@ import TextField from '../text-field';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
-
 let emptyTime = new Date();
 emptyTime.setHours(0);
 emptyTime.setMinutes(0);
 emptyTime.setSeconds(0);
 emptyTime.setMilliseconds(0);
-
 
 const TimePicker = React.createClass({
 
@@ -205,7 +203,8 @@ const TimePicker = React.createClass({
           ref="input"
           value={time === emptyTime ? null : this.formatTime(time)}
           onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap} />
+          onTouchTap={this._handleInputTouchTap}
+        />
         <TimePickerDialog
           ref="dialogWindow"
           initialTime={this.state.dialogTime}
@@ -213,7 +212,8 @@ const TimePicker = React.createClass({
           onShow={onShow}
           onDismiss={onDismiss}
           format={format}
-          autoOk={autoOk} />
+          autoOk={autoOk}
+        />
       </div>
     );
   },

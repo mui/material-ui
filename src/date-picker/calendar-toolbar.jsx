@@ -109,25 +109,26 @@ const CalendarToolbar = React.createClass({
       <Toolbar style={styles.root} noGutter={true}>
         <SlideInTransitionGroup
           style={styles.title}
-          direction={this.state.transitionDirection}>
+          direction={this.state.transitionDirection}
+        >
           <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
-
         <ToolbarGroup key={0} float="left">
           <IconButton
             style={styles.button}
             disabled={!this.props.prevMonth}
-            onTouchTap={this._prevMonthTouchTap}>
-              {nextButtonIcon}
+            onTouchTap={this._prevMonthTouchTap}
+          >
+            {nextButtonIcon}
           </IconButton>
         </ToolbarGroup>
-
         <ToolbarGroup key={1} float="right">
           <IconButton
             style={styles.button}
             disabled={!this.props.nextMonth}
-            onTouchTap={this._nextMonthTouchTap}>
-              {prevButtonIcon}
+            onTouchTap={this._nextMonthTouchTap}
+          >
+            {prevButtonIcon}
           </IconButton>
         </ToolbarGroup>
       </Toolbar>

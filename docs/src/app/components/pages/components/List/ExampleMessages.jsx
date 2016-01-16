@@ -14,7 +14,8 @@ const iconButtonElement = (
   <IconButton
     touch={true}
     tooltip="more"
-    tooltipPosition="bottom-left">
+    tooltipPosition="bottom-left"
+  >
     <MoreVertIcon color={Colors.grey400} />
   </IconButton>
 );
@@ -40,7 +41,8 @@ const ListExampleMessages = () => (
               I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/kolage-128.jpg" />}
@@ -53,7 +55,8 @@ const ListExampleMessages = () => (
               Wish I could come, but I&apos;m out of town this weekend.
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
@@ -64,7 +67,8 @@ const ListExampleMessages = () => (
               Do you have Paris recommendations? Have you ever been?
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/kerem-128.jpg" />}
@@ -75,7 +79,8 @@ const ListExampleMessages = () => (
               Do you have any ideas what we can get Heidi for her birthday? How about a pony?
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
@@ -86,7 +91,8 @@ const ListExampleMessages = () => (
               We should eat this: grated squash. Corn and tomatillo tacos.
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
       </List>
     </MobileTearSheet>
     <MobileTearSheet>
@@ -101,7 +107,8 @@ const ListExampleMessages = () => (
               I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/kolage-128.jpg" />}
@@ -113,7 +120,8 @@ const ListExampleMessages = () => (
               Wish I could come, but I&apos;m out of town this weekend.
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
@@ -125,7 +133,8 @@ const ListExampleMessages = () => (
               Do you have any Paris recs? Have you ever been?
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/kerem-128.jpg" />}
@@ -137,7 +146,8 @@ const ListExampleMessages = () => (
               Do you have any ideas what we can get Heidi for her birthday? How about a pony?
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
         <Divider inset={true} />
         <ListItem
           leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
@@ -149,7 +159,8 @@ const ListExampleMessages = () => (
               We should eat this: grated squash. Corn and tomatillo tacos.
             </p>
           }
-          secondaryTextLines={2} />
+          secondaryTextLines={2}
+        />
       </List>
     </MobileTearSheet>
   </div>
