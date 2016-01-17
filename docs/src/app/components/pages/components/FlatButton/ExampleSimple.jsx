@@ -6,6 +6,7 @@ const FlatButtonExampleSimple = () => (
     <FlatButton label="Default" />
     <FlatButton label="Primary" primary={true} />
     <FlatButton label="Secondary" secondary={true} />
+    <FlatButton label="Disabled" disabled={true} />
   </div>
 );
 

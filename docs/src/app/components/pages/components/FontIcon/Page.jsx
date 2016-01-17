@@ -10,13 +10,27 @@ import iconExampleSimpleCode from '!raw!./ExampleSimple';
 import IconExampleIcons from './ExampleIcons';
 import iconExampleIconsCode from '!raw!./ExampleIcons';
 
+const descriptions = {
+  custom: 'These examples use a custom font. The `className` defines the specific icon. ' +
+  'The third example has a `hoverColor` defined.',
+  public: 'These examples use the Material Design icon font, referenced in the `<head>` of the docs site index page.',
+};
+
 const FontIconPage = () => (
   <div>
     <MarkdownElement text={iconReadmeText} />
-    <CodeExample code={iconExampleSimpleCode}>
+    <CodeExample
+      title="Custom icon-font"
+      description={descriptions.custom}
+      code={iconExampleSimpleCode}
+    >
       <IconExampleSimple />
     </CodeExample>
-    <CodeExample code={iconExampleIconsCode}>
+    <CodeExample
+      title="Public icon-font"
+      description={descriptions.public}
+      code={iconExampleIconsCode}
+    >
       <IconExampleIcons />
     </CodeExample>
     <PropTypeDescription code={iconCode} />
