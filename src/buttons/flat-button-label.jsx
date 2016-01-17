@@ -66,7 +66,8 @@ const FlatButtonLabel = React.createClass({
 
     const mergedRootStyles = this.mergeStyles({
       position: 'relative',
-      padding: '0 ' + contextKeys.spacingDesktopGutterLess + 'px',
+      paddingLeft: contextKeys.spacingDesktopGutterLess,
+      paddingRight: contextKeys.spacingDesktopGutterLess,
     }, style);
 
     return (
