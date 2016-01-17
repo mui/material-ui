@@ -12,19 +12,40 @@ import LeftNavOpenRightExample from './ExampleOpenRight';
 import leftNavOpenRightExampleCode from '!raw!./ExampleOpenRight';
 import leftNavCode from '!raw!material-ui/lib/left-nav';
 
+const descriptions = {
+  simple: 'A simple controlled `LeftNav`. The Left Nav is `docked` by default, ' +
+  'remaining open unless closed through the `open` prop.',
+  undocked: 'An undocked controlled `LeftNav` with custom width. ' +
+  'The Left Nav can be cancelled by clicking the overlay or pressing the Esc key. ' +
+  'It closes when an item is selected, handled by controlling the `open` prop.',
+  right: 'The `openRight` prop allows the Left Nav to open on the opposite side.',
+};
+
 const LeftNavPage = () => (
   <div>
     <MarkdownElement text={leftNavReadmeText} />
-    <CodeExample code={leftNavSimpleExampleCode}>
+    <CodeExample
+      title="Docked example"
+      description={descriptions.simple}
+      code={leftNavSimpleExampleCode}
+    >
       <LeftNavSimpleExample />
     </CodeExample>
-    <CodeExample code={leftNavUndockedExampleCode}>
+    <CodeExample
+      title="Undocked example"
+      description={descriptions.undocked}
+      code={leftNavUndockedExampleCode}
+    >
       <LeftNavUndockedExample />
     </CodeExample>
-    <CodeExample code={leftNavOpenRightExampleCode}>
+    <CodeExample
+      title="Open on right"
+      description={descriptions.right}
+      code={leftNavOpenRightExampleCode}
+    >
       <LeftNavOpenRightExample />
     </CodeExample>
-    <PropTypeDescription code={leftNavCode}/>
+    <PropTypeDescription code={leftNavCode} />
   </div>
 );
 
