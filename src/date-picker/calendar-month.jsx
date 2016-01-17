@@ -8,6 +8,7 @@ const CalendarMonth = React.createClass({
   propTypes: {
     autoOk: React.PropTypes.bool,
     displayDate: React.PropTypes.object.isRequired,
+    firstDayOfWeek: React.PropTypes.number,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
@@ -20,7 +21,7 @@ const CalendarMonth = React.createClass({
   },
 
   _getWeekElements() {
-    let weekArray = DateTime.getWeekArray(this.props.displayDate);
+    let weekArray = DateTime.getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
 
     return weekArray.map((week, i) => {
       return (
