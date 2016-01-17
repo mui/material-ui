@@ -267,6 +267,7 @@ const FlatButton = React.createClass({
     }, style);
 
     let iconCloned;
+    const labelStyleIcon = {};
 
     if (icon) {
       iconCloned = React.cloneElement(icon, {
@@ -279,14 +280,14 @@ const FlatButton = React.createClass({
       });
 
       if (labelPosition === 'before') {
-        labelStyle.paddingRight = 8;
+        labelStyleIcon.paddingRight = 8;
       } else {
-        labelStyle.paddingLeft = 8;
+        labelStyleIcon.paddingLeft = 8;
       }
     }
 
     const labelElement = label ? (
-      <FlatButtonLabel label={label} style={labelStyle} />
+      <FlatButtonLabel label={label} style={mergeStyles(labelStyle, labelStyleIcon)} />
     ) : undefined;
 
     // Place label before or after children.
