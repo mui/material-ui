@@ -31,9 +31,9 @@ const MenuExampleSecondary = () => (
       <MenuItem primaryText="Clear formatting" secondaryText="&#8984;/" />
     </Menu>
     <Menu style={style} desktop={true} width={320}>
-      <MenuItem primaryText="Open" secondaryText="Cmnd + O" />
+      <MenuItem primaryText="Open" secondaryText="Cmd + O" />
       <MenuItem primaryText="Paste in place" secondaryText="Shift + V" />
-      <MenuItem primaryText="Research" secondaryText="Opt + Shift + Cmnd + I" />
+      <MenuItem primaryText="Research" secondaryText="Opt + Shift + Cmd + I" />
     </Menu>
     <Menu style={style} desktop={true} width={320}>
       <MenuItem primaryText="Open" secondaryText="&#8984;O" />

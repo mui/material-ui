@@ -1,5 +1,6 @@
 import React from 'react';
 import Popover from 'material-ui/lib/popover/popover';
+import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 const styles = {
@@ -8,7 +9,7 @@ const styles = {
   },
 };
 
-export default class PopoverExampleSimple extends React.Component {
+export default class PopoverExampleAnimation extends React.Component {
 
   constructor(props) {
     super(props);
@@ -44,6 +45,7 @@ export default class PopoverExampleSimple extends React.Component {
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this.handleRequestClose}
+          animation={PopoverAnimationFromTop}
         >
           <div style={styles.popover}>
             <RaisedButton primary={true} label="Here is a button"/>
