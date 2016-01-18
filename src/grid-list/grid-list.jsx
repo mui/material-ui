@@ -2,6 +2,7 @@ import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
+import Subheader from '../Subheader';
 
 const GridList = React.createClass({
 
@@ -30,6 +31,16 @@ const GridList = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The subheader string that will be displayed at the top of the grid.
+     */
+    subheader: React.PropTypes.node,
+
+    /**
+     * The style object to override subheader styles.
+     */
+    subheaderStyle: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -93,6 +104,8 @@ const GridList = React.createClass({
       cellHeight,
       children,
       style,
+      subheader,
+      subheaderStyle,
       ...other,
     } = this.props;
 
@@ -101,6 +114,7 @@ const GridList = React.createClass({
     const mergedRootStyles = this.mergeStyles(styles.root, style);
 
     const wrappedChildren = React.Children.map(children, (currentChild) => {
+      if (currentChild.type.displayName === 'Subheader') return currentChild;
       const childCols = currentChild.props.cols || 1;
       const childRows = currentChild.props.rows || 1;
       const itemStyle = this.mergeStyles(styles.item, {
@@ -112,7 +126,10 @@ const GridList = React.createClass({
     });
 
     return (
-      <div style={this.prepareStyles(mergedRootStyles)} {...other}>{wrappedChildren}</div>
+      <div style={this.prepareStyles(mergedRootStyles)} {...other}>
+        {subheader ? <Subheader style={subheaderStyle}>{subheader}</Subheader> : null}
+        {wrappedChildren}
+      </div>
     );
   },
 });
