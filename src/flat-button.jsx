@@ -42,6 +42,11 @@ const FlatButton = React.createClass({
     hoverColor: React.PropTypes.string,
 
     /**
+     * URL to link to when button clicked if `linkButton` is set to true.
+     */
+    href: React.PropTypes.string,
+
+    /**
      * Use this property to display an icon.
      */
     icon: React.PropTypes.node,
@@ -63,6 +68,11 @@ const FlatButton = React.createClass({
      * Override the inline-styles of the button's label element.
      */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Enables use of `href` property to provide a URL to link to if set to true.
+     */
+    linkButton: React.PropTypes.bool,
 
     /**
      * Called when element is focused by the keyboard.
