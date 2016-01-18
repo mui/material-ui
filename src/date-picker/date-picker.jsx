@@ -43,6 +43,13 @@ const DatePicker = React.createClass({
     disableYearSelection: React.PropTypes.bool,
 
     /**
+     * Used to change the first day of week. It drastically varies from
+     * Saturday to Monday (could even be Friday) between different locales.
+     * The allowed range is 0 (Sunday) to 6 (Saturday).
+     */
+    firstDayOfWeek: React.PropTypes.number,
+
+    /**
      * This function is called to format the date to display in the input box.
      * By default, date objects are formatted to MM/DD/YYYY.
      */
@@ -158,6 +165,7 @@ const DatePicker = React.createClass({
       autoOk: false,
       disableYearSelection: false,
       style: {},
+      firstDayOfWeek: 0,
     };
   },
 
@@ -283,6 +291,7 @@ const DatePicker = React.createClass({
       style,
       textFieldStyle,
       valueLink,
+      firstDayOfWeek,
       ...other,
     } = this.props;
 
@@ -312,6 +321,7 @@ const DatePicker = React.createClass({
           autoOk={autoOk}
           disableYearSelection={disableYearSelection}
           shouldDisableDate={this.props.shouldDisableDate}
+          firstDayOfWeek={firstDayOfWeek}
         />
       </div>
     );

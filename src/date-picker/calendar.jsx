@@ -13,11 +13,14 @@ import ClearFix from '../clearfix';
 import ThemeManager from '../styles/theme-manager';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
+const daysArray = [...Array(7)];
+
 const Calendar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
+    firstDayOfWeek: React.PropTypes.number,
     initialDate: React.PropTypes.object,
     locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
@@ -243,7 +246,7 @@ const Calendar = React.createClass({
 
   render() {
     let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
-    let weekCount = DateTime.getWeekArray(this.state.displayDate).length;
+    let weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     let toolbarInteractions = this._getToolbarInteractions();
     let isLandscape = this.props.mode === 'landscape';
     let styles = {
@@ -295,6 +298,7 @@ const Calendar = React.createClass({
     const {
       DateTimeFormat,
       locale,
+      firstDayOfWeek,
     } = this.props;
 
     return (
@@ -325,13 +329,11 @@ const Calendar = React.createClass({
               elementType="ul"
               style={styles.weekTitle}
             >
-              <li style={weekTitleDayStyle}>S</li>
-              <li style={weekTitleDayStyle}>M</li>
-              <li style={weekTitleDayStyle}>T</li>
-              <li style={weekTitleDayStyle}>W</li>
-              <li style={weekTitleDayStyle}>T</li>
-              <li style={weekTitleDayStyle}>F</li>
-              <li style={weekTitleDayStyle}>S</li>
+              {daysArray.map((e, i) => (
+                <li key={i} style={weekTitleDayStyle}>
+                  {DateTime.localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
+                </li>
+              ))}
             </ClearFix>
             <SlideInTransitionGroup direction={this.state.transitionDirection}>
               <CalendarMonth
@@ -343,6 +345,7 @@ const Calendar = React.createClass({
                 minDate={this.props.minDate}
                 maxDate={this.props.maxDate}
                 shouldDisableDate={this.props.shouldDisableDate}
+                firstDayOfWeek={this.props.firstDayOfWeek}
               />
             </SlideInTransitionGroup>
           </div>

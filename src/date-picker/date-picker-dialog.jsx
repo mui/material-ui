@@ -18,6 +18,7 @@ const DatePickerDialog = React.createClass({
     autoOk: React.PropTypes.bool,
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
+    firstDayOfWeek: React.PropTypes.number,
     initialDate: React.PropTypes.object,
     locale: React.PropTypes.string,
     maxDate: React.PropTypes.object,
@@ -151,6 +152,7 @@ const DatePickerDialog = React.createClass({
       onAccept,
       style,
       container,
+      firstDayOfWeek,
       ...other,
     } = this.props;
 
@@ -216,6 +218,7 @@ const DatePickerDialog = React.createClass({
       >
         <Calendar
           DateTimeFormat={DateTimeFormat}
+          firstDayOfWeek={firstDayOfWeek}
           locale={locale}
           ref="calendar"
           onDayTouchTap={this._onDayTouchTap}

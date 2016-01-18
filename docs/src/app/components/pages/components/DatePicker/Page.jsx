@@ -23,7 +23,7 @@ const descriptions = {
   ranged: 'This example allows you to set a date range, and to toggle `AutoOk`, and `disableYearSelection`.',
   controlled: 'Implements a controlled input, where the value is handled by state in the parent (example) component.',
   localised: 'Demonstrates a localised `DatePicker`, in this case in French. ' +
-  'Note that the buttons must be localised using the `wordings` property.',
+  'Note that the buttons must be localised using the `wordings` property and we set the `firstDayOfWeek` to Monday.',
 };
 
 if (!window.Intl) {
