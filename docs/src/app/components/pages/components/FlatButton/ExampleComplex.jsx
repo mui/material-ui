@@ -30,13 +30,14 @@ const FlatButtonExampleComplex = () => (
       icon={<ActionAndroid />}
     />
 
-    <a href="https://github.com/callemall/material-ui">
-      <FlatButton
-        label="GitHub Link"
-        secondary={true}
-        icon={<FontIcon className="muidocs-icon-custom-github" />}
-      />
-    </a>
+    <FlatButton
+      label="GitHub Link"
+      linkButton={true}
+      href="https://github.com/callemall/material-ui"
+      secondary={true}
+      icon={<FontIcon className="muidocs-icon-custom-github" />}
+    />
+
   </div>
 );
 
