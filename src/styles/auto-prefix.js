@@ -20,7 +20,7 @@ export default {
     let prefixer = prefixers[userAgent];
     // None found, create a new instance
     if (!prefixer) {
-      prefixer = new InlineStylePrefixer(userAgent);
+      prefixer = new InlineStylePrefixer({userAgent: userAgent});
       prefixers[userAgent] = prefixer;
     }
 
