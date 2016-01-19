@@ -21,18 +21,17 @@
 
 .propTypeDescription table td {
   color: #266d90;
-  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
-  font-size: 90%;
+  font-size: 95%;
 }
 
 .propTypeDescription table td + td {
   color: #bf2a5c;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  font-size: 90%;
 }
 
 .propTypeDescription table td + td + td {
   color: #666;
-  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
-  font-size: 90%;
 }
 
 .propTypeDescription table td + td + td + td {

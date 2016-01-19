@@ -53,12 +53,10 @@ function generateDescription(required, description, type) {
   if (type.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
 
-    if (deprecatedInfo !== false) {
-      deprecated = `**DEPRECATED**. ${deprecatedInfo.explanation}<br><br>`;
+    if (deprecatedInfo) {
+      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
     }
   }
-
-  const requirement = `${required ? '**required**' : '*optional*'}.`;
 
   const parsed = parseDoctrine(description);
 
@@ -75,7 +73,7 @@ function generateDescription(required, description, type) {
     signature += parsed.tags.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
   }
 
-  return `${deprecated} ${requirement} ${jsDocText}${signature}`;
+  return `${deprecated} ${jsDocText}${signature}`;
 }
 
 const PropTypeDescription = React.createClass({
@@ -97,6 +95,8 @@ const PropTypeDescription = React.createClass({
       header,
     } = this.props;
 
+    let requiredProps = 0;
+
     let text = `${header}
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|\n`;
@@ -112,14 +112,30 @@ const PropTypeDescription = React.createClass({
         defaultValue = prop.defaultValue.value.replace(/\n/g, '');
       }
 
+      if (prop.required) {
+        key = `<span style="color: #31a148">${key} \*</span>`;
+        requiredProps += 1;
+      }
+
+      if (prop.type.name === 'custom') {
+        if (getDeprecatedInfo(prop.type)) {
+          key = `~~${key}~~`;
+        }
+      }
+
       const description = generateDescription(prop.required, prop.description, prop.type);
 
       text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }
 
+    const requiredPropFootnote = (requiredProps === 1) ? '* required property' :
+      (requiredProps > 1) ? '* required properties' :
+        '';
+
     return (
       <div className="propTypeDescription">
         <MarkdownElement text={text} />
+        <div style={{fontSize: '90%', paddingLeft: '15px'}}>{requiredPropFootnote}</div>
       </div>
     );
   },
