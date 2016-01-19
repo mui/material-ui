@@ -11,8 +11,9 @@ const RadioButton = React.createClass({
 
   propTypes: {
     /**
-     * Checked if true.
+     * Used internally by `RadioButtonGroup`.
      */
+    /* Checked if true. */
     checked: React.PropTypes.bool,
 
     /**

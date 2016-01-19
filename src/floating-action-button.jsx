@@ -38,6 +38,11 @@ const FloatingActionButton = React.createClass({
     disabledColor: React.PropTypes.string,
 
     /**
+     * URL to link to when button clicked if `linkButton` is set to true.
+     */
+    href: React.PropTypes.string,
+
+    /**
      * The icon within the FloatingActionButton is a FontIcon component.
      * This property is the classname of the icon to be displayed inside the button.
      * An alternative to adding an iconClassName would be to manually insert a
@@ -50,6 +55,11 @@ const FloatingActionButton = React.createClass({
      * overriding the inline-styles of the FontIcon component.
      */
     iconStyle: React.PropTypes.object,
+
+    /**
+     * Enables use of `href` property to provide a URL to link to if set to true.
+     */
+    linkButton: React.PropTypes.bool,
 
     /**
      * If true, the button will be a small floating action button.
