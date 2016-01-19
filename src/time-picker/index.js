@@ -1,2 +1,10 @@
 import TimePicker from './time-picker';
-export default TimePicker;
+import TimePickerDialog from './time-picker-dialog';
+
+export {TimePicker};
+export {TimePickerDialog};
+
+export default {
+  TimePicker,
+  TimePickerDialog,
+};
