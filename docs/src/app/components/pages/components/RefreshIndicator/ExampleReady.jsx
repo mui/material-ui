@@ -23,7 +23,7 @@ const RefreshIndicatorExampleSimple = () => (
     />
     <RefreshIndicator
       percentage={60}
-      size={40}
+      size={50}
       left={65}
       top={0}
       status="ready"
@@ -31,7 +31,7 @@ const RefreshIndicatorExampleSimple = () => (
     />
     <RefreshIndicator
       percentage={80}
-      size={40}
+      size={60}
       left={120}
       top={0}
       color={"red"}
@@ -40,9 +40,10 @@ const RefreshIndicatorExampleSimple = () => (
     />
     <RefreshIndicator
       percentage={100}
-      size={40}
+      size={70}
       left={175}
       top={0}
+      color={"red"} // Overridden by percentage={100}
       status="ready"
       style={style.refresh}
     />
