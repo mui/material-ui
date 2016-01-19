@@ -13,11 +13,11 @@ import dropDownMenuLabeledExampleCode from '!raw!./ExampleLabeled';
 import dropDownMenuCode from '!raw!material-ui/lib/DropDownMenu/DropDownMenu';
 
 const descriptions = {
-  simple: '`DropDownMenu` is implemented as a controlled component, ' +
-  'with the current selection set through the `value` prop.',
-  long: 'With `maxHeight` set, the menu will be scrollable if the number of items causes the height ' +
+  simple: '`DropDownMenu` is implemented as a controlled component, with the current selection set through the ' +
+  '`value` property.',
+  long: 'With the `maxHeight` property set, the menu will be scrollable if the number of items causes the height ' +
   'to exceed this limit.',
-  labeled: 'With a `label` applied to each `MenuItem`, `DropDownMenu` displays a complementary description ' +
+  label: 'With a `label` applied to each `MenuItem`, `DropDownMenu` displays a complementary description ' +
   'of the selected item.',
 };
 
@@ -39,8 +39,8 @@ const DropDownMenuPage = () => (
       <DropDownMenuLongMenuExample />
     </CodeExample>
     <CodeExample
-      title="Labeled example"
-      description={descriptions.labeled}
+      title="Label example"
+      description={descriptions.label}
       code={dropDownMenuLabeledExampleCode}
     >
       <DropDownMenuLabeledExample />
