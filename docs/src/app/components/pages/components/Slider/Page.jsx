@@ -12,16 +12,34 @@ import sliderExampleDisabledCode from '!raw!./ExampleDisabled';
 import SliderExampleStep from './ExampleStep';
 import sliderExampleStepCode from '!raw!./ExampleStep';
 
+const descriptions = {
+  simple: 'The `defaultValue` property sets the initial position of the slider. The slider appearance changes when ' +
+  'not at the starting position.',
+  stepped: 'By default, the slider is continuous. The `step` property causes the slider to move in discrete ' +
+  'increments.',
+};
+
 const SliderPage = () => (
   <div>
     <MarkdownElement text={sliderReadmeText} />
-    <CodeExample code={sliderExampleSimpleCode}>
+    <CodeExample
+      title="Simple examples"
+      description={descriptions.simple}
+      code={sliderExampleSimpleCode}
+    >
       <SliderExampleSimple />
     </CodeExample>
-    <CodeExample code={sliderExampleDisabledCode}>
+    <CodeExample
+      title="Disabled examples"
+      code={sliderExampleDisabledCode}
+    >
       <SliderExampleDisabled />
     </CodeExample>
-    <CodeExample code={sliderExampleStepCode}>
+    <CodeExample
+      title="Stepped example"
+      description={descriptions.stepped}
+      code={sliderExampleStepCode}
+    >
       <SliderExampleStep />
     </CodeExample>
     <PropTypeDescription code={sliderCode}/>
