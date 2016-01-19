@@ -26,39 +26,89 @@ import ListExampleMessages from './ExampleMessages.jsx';
 import listExampleSelectableCode from '!raw!./ExampleSelectable.jsx';
 import ListExampleSelectable from './ExampleSelectable.jsx';
 
+const descriptions = {
+  simple: 'A simple `List` with left and right [SVG icons](/#/components/svg-icon).',
+  chat: 'A chat list with Image [Avatars](/#/components/avatar) and List `subheaders`.',
+  contacts: 'Similar to the Chat List example, but with Text [Avatars](/#/components/avatar) ' +
+  '(with transparent background) for section labeling, and an inset Divider. ',
+  folders: 'The folder list uses Icon [Avatars](/#/components/avatar), and introduces `secondaryText`.',
+  nested: 'This example introduces the ListItem `nestedItems` property. "Sent Mail" is `disabled`.',
+  settings: 'ListItem supports [Checkbox](/#/components/checkbox) and [Toggle](/#/components/toggle) switches.',
+  phone: '',
+  messages: 'Two examples showing formatted secondary text. The second example demonstrates an ' +
+  '[IconButton](/#/components/icon-button) with `tooltip`.',
+  selectable: 'The selectable list wraps List in a Higher Order Component. See below for further details.',
+};
+
 const ListPage = () => (
   <div>
     <MarkdownElement text={listReadmeText} />
-    <CodeExample code={listExampleSimpleCode}>
+    <CodeExample
+      title="Simple list"
+      description={descriptions.simple}
+      code={listExampleSimpleCode}
+    >
       <ListExampleSimple />
     </CodeExample>
-    <CodeExample code={listExampleChatCode}>
+    <CodeExample
+      title="Chat list"
+      description={descriptions.chat}
+      code={listExampleChatCode}
+    >
       <ListExampleChat />
     </CodeExample>
-    <CodeExample code={listExampleContactsCode}>
+    <CodeExample
+      title="Contact list"
+      description={descriptions.contacts}
+      code={listExampleContactsCode}
+    >
       <ListExampleContacts />
     </CodeExample>
-    <CodeExample code={listExampleFoldersCode}>
+    <CodeExample
+      title="Folder list"
+      description={descriptions.folder}
+      code={listExampleFoldersCode}
+    >
       <ListExampleFolders />
     </CodeExample>
-    <CodeExample code={listExampleNestedCode}>
+    <CodeExample
+      title="Nested list"
+      description={descriptions.nested}
+      code={listExampleNestedCode}
+    >
       <ListExampleNested />
     </CodeExample>
-    <CodeExample code={listExampleSettingsCode}>
+    <CodeExample
+      title="Settings list"
+      description={descriptions.settings}
+      code={listExampleSettingsCode}
+    >
       <ListExampleSettings />
     </CodeExample>
-    <CodeExample code={listExamplePhoneCode}>
+    <CodeExample
+      title="Phone list"
+      description={descriptions.phone}
+      code={listExamplePhoneCode}
+    >
       <ListExamplePhone />
     </CodeExample>
-    <CodeExample code={listExampleMessagesCode}>
+    <CodeExample
+      title="Messages list"
+      description={descriptions.messages}
+      code={listExampleMessagesCode}
+    >
       <ListExampleMessages />
     </CodeExample>
-    <CodeExample code={listExampleSelectableCode}>
+    <CodeExample
+      title="Selectable list"
+      description={descriptions.selectable}
+      code={listExampleSelectableCode}
+    >
       <ListExampleSelectable />
     </CodeExample>
     <MarkdownElement text={selectableHelpText} />
-    <PropTypeDescription code={listCode} />
-    <PropTypeDescription code={listItemCode} />
+    <PropTypeDescription header="### List Properties" code={listCode} />
+    <PropTypeDescription header="### ListItem Properties" code={listItemCode} />
   </div>
 
 );
