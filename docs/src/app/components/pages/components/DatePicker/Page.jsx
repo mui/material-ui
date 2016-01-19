@@ -17,13 +17,13 @@ import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import datePickerReadmeText from './README';
 
 const descriptions = {
-  simple: 'Basic examples showing the default portrait and alternative landscape `DatePicker`.',
-  inline: 'Inline `DatePicker`\'s are displayed below the input, rather than as a modal dialog. ' +
-  'The `AutoOk` example closes when a date is selected.',
-  ranged: 'This example allows you to set a date range, and to toggle `AutoOk`, and `disableYearSelection`.',
-  controlled: 'Implements a controlled input, where the value is handled by state in the parent (example) component.',
-  localised: 'Demonstrates a localised `DatePicker`, in this case in French. ' +
-  'Note that the buttons must be localised using the `wordings` property and we set the `firstDayOfWeek` to Monday.',
+  simple: 'The Date Picker defaults to a portrait dialog. The `mode` property can be set to `landscape`.',
+  inline: 'Inline Date Pickers are displayed below the input, rather than as a modal dialog. ',
+  ranged: 'This example allows you to set a date range, and to toggle `autoOk`, and `disableYearSelection`.',
+  controlled: '`DatePicker` can be implemented as a controlled input, where `value` is handled by state in the ' +
+  'parent component.',
+  localised: 'Date Picker can be localised using the `locale` property, in this case in French. ' +
+  'Note that the buttons must be localised using the `wordings` property, and we set the `firstDayOfWeek` to Monday.',
 };
 
 if (!window.Intl) {
