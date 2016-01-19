@@ -2,9 +2,9 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
-import Typography from '../styles/typography';
 import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
+import Subheader from '../Subheader';
 
 const List = React.createClass({
 
@@ -92,27 +92,24 @@ const List = React.createClass({
       ...other,
     } = this.props;
 
+    let hasSubheader = false;
+
+    if (subheader) {
+      hasSubheader = true;
+    } else {
+      const firstChild = React.Children.toArray(children)[0];
+      if (React.isValidElement(firstChild) && firstChild.type === Subheader) {
+        hasSubheader = true;
+      }
+    }
+
     const styles = {
       root: {
         padding: 0,
         paddingBottom: 8,
-        paddingTop: subheader ? 0 : 8,
-      },
-
-      subheader: {
-        color: Typography.textLightBlack,
-        fontSize: 14,
-        fontWeight: Typography.fontWeightMedium,
-        lineHeight: '48px',
-        paddingLeft: insetSubheader ? 72 : 16,
+        paddingTop: hasSubheader ? 0 : 8,
       },
     };
-
-    let subheaderElement;
-    if (subheader) {
-      const mergedSubheaderStyles = this.mergeStyles(styles.subheader, subheaderStyle);
-      subheaderElement = <div style={this.prepareStyles(mergedSubheaderStyles)}>{subheader}</div>;
-    }
 
     return (
       <Paper
@@ -120,7 +117,7 @@ const List = React.createClass({
         style={this.mergeStyles(styles.root, style)}
         zDepth={zDepth}
       >
-        {subheaderElement}
+        {subheader && <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader>}
         {children}
       </Paper>
     );
