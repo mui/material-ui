@@ -14,7 +14,7 @@ const Snackbar = React.createClass({
 
   propTypes: {
     /**
-     * The name of the action on the snackbar.
+     * The label for the action on the snackbar.
      */
     action: React.PropTypes.string,
 
