@@ -1,17 +1,23 @@
 import React from 'react';
-import ActionHome from 'material-ui/lib/svg-icons/action/home';
 import Colors from 'material-ui/lib/styles/colors';
+import SvgIcon from 'material-ui/lib/svg-icon';
 
 
 const iconStyles = {
   marginRight: 24,
 };
 
+const HomeIcon = (props) => (
+  <SvgIcon {...props}>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+  </SvgIcon>
+);
+
 const SvgIconExampleSimple = () => (
   <div>
-    <ActionHome style={iconStyles} />
-    <ActionHome style={iconStyles} color={Colors.blue500} />
-    <ActionHome style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
+    <HomeIcon style={iconStyles} />
+    <HomeIcon style={iconStyles} color={Colors.blue500} />
+    <HomeIcon style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
   </div>
 );
 

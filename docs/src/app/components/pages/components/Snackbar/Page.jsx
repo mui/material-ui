@@ -17,7 +17,7 @@ const descriptions = {
   'Snackbar to close it, or wait for `autoHideDuration` to expire.',
   action: 'A single `action` can be added to the Snackbar, and triggers `onActionTouchTap`. Edit the textfield to ' +
   'change `autoHideDuration`',
-  consecutive: 'Changing `message` causes the Snackbar to animate - it isn\'t necessary to cloe and reopen the ' +
+  consecutive: 'Changing `message` causes the Snackbar to animate - it isn\'t necessary to close and reopen the ' +
   'Snackbar with the open prop.',
 
 };

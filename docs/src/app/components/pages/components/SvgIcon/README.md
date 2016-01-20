@@ -1,9 +1,19 @@
-## SVG Icons
-Using material-ui's SVG Icon, we can create a custom [svg component](https://www.google.com/design/spec/style/icons.html#icons-system-icons). In our examples, we are creating the ActionHome SvgIcon for this docs site, and using it in some separate component.
-Custom SvgIcon components can be included as children for other Material UI components that use icons such as [IconButtons](http://www.material-ui.com/#/components/icon-button).
+## SVG Icon
 
-To see available Material Icons, go to [material icons library](https://design.google.com/icons/).
-All those icons are available in the [svg-icons](https://github.com/callemall/material-ui/tree/master/src/svg-icons) folder.
-For instance to use the `home` icon you need to import `material-ui/lib/svg-icons/action/home`
+The `SvgIcon` component takes an SVG `path` element as its child, and converts it to a React component which displays 
+the path and allows the icon to be styled and respond to mouse events.
+
+The resulting icon can be used as is, or included as a child for other Material UI components that use icons, such 
+as [Icon Button](/#/components/icon-button).
+
+### Material icons
+
+For convenience, the full set of google [Material icons](https://design.google.com/icons/) are available in Material-UI 
+as pre-built SVG Icon components. Each icon path is already wrapped with `SvgIcon`, and can be imported and used 
+directly as a React component. Any properties supplied are passed to `SvgIcon`.
+
+The import path for each _Material icons_ component includes the category and icon name, with spaces substituted with 
+dashes. For example to use the [3d rotation](https://design.google.com/icons/#ic_3d_rotation) icon component, import 
+`material-ui/lib/svg-icons/action/3d-rotation`.
 
 ### Examples
