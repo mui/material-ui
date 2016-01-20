@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItem from 'lists/list-item';
+import Checkbox from 'checkbox';
 import injectTheme from '../fixtures/inject-theme';
 import TestUtils from 'react-addons-test-utils';
 
@@ -73,5 +74,34 @@ describe('ListItem', () => {
     expect(itemDiv.tagName).to.equal('DIV');
     expect(itemDiv.hasAttribute('class')).to.be.true;
     expect(itemDiv.getAttribute('class')).to.equal(testClass);
+  });
+
+  it('should display a checkbox in the list-item if specified.', () => {
+    let render = TestUtils.renderIntoDocument(
+      <ThemedListItem
+        leftCheckbox={<Checkbox />}
+      />
+    );
+    let input = TestUtils.findRenderedDOMComponentWithTag(render, 'input');
+
+    expect(input.parentElement.tagName).to.equal('DIV');
+    expect(input.hasAttribute('checked')).to.be.false;
+  });
+
+  it('should have a class if specified with a checkbox.', () => {
+    let testClass = 'test-class';
+    let render = TestUtils.renderIntoDocument(
+      <ThemedListItem
+        leftCheckbox={<Checkbox />}
+        className={testClass}
+      />
+    );
+
+    let input = TestUtils.findRenderedDOMComponentWithTag(render, 'input');
+    let listItemDiv = input.parentElement.parentElement;
+
+    expect(listItemDiv.tagName).to.equal('LABEL');
+    expect(listItemDiv.hasAttribute('class')).to.be.true;
+    expect(listItemDiv.getAttribute('class')).to.equal(testClass);
   });
 });
