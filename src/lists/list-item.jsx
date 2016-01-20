@@ -87,6 +87,11 @@ const ListItem = React.createClass({
     nestedLevel: React.PropTypes.number,
 
     /**
+     * Override the inline-styles of the nestedItems NestedList.
+     */
+    nestedListStyle: React.PropTypes.object,
+
+    /**
      * Called when the ListItem has keyboard focus.
      */
     onKeyboardFocus: React.PropTypes.func,
@@ -400,6 +405,7 @@ const ListItem = React.createClass({
       leftIcon,
       nestedItems,
       nestedLevel,
+      nestedListStyle,
       onKeyboardFocus,
       onMouseLeave,
       onMouseEnter,
@@ -631,7 +637,7 @@ const ListItem = React.createClass({
     }
 
     const nestedList = nestedItems.length ? (
-      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open}>
+      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open} style={nestedListStyle}>
         {nestedItems}
       </NestedList>
     ) : undefined;
