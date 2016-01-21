@@ -536,6 +536,7 @@ const Slider = React.createClass({
           style={this.mergeStyles(rippleStyle)}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
+          muiTheme={this.state.muiTheme}
           color={rippleColor}
         />
       );

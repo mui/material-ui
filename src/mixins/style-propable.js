@@ -22,6 +22,8 @@ export default {
   mergeAndPrefix,
 
   prepareStyles(...args) {
-    return prepare((this.state && this.state.muiTheme) || this.context.muiTheme, ...args);
+    return prepare((this.state && this.state.muiTheme) ||
+      this.context.muiTheme ||
+      (this.props && this.props.muiTheme), ...args);
   },
 };

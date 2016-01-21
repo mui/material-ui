@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import KeyCode from './utils/key-code';
 import StylePropable from './mixins/style-propable';
-import AutoPrefix from './styles/auto-prefix';
+import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import WindowListenable from './mixins/window-listenable';
 import Overlay from './overlay';
@@ -413,7 +413,7 @@ const LeftNav = React.createClass({
     const leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
     const transformCSS = 'translate3d(' + (this._getTranslateMultiplier() * translateX) + 'px, 0, 0)';
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
-    AutoPrefix.set(leftNav.style, 'transform', transformCSS);
+    autoPrefix.set(leftNav.style, 'transform', transformCSS, this.state.muiTheme);
   },
 
   _getTranslateX(currentX) {

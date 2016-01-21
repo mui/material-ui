@@ -309,9 +309,9 @@ const RefreshIndicator = React.createClass({
       transitionDuration = '850ms';
     }
 
-    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
-    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
-    autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
+    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray, this.state.muiTheme);
+    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset, this.state.muiTheme);
+    autoPrefix.set(path.style, 'transitionDuration', transitionDuration, this.state.muiTheme);
 
     this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
@@ -319,14 +319,14 @@ const RefreshIndicator = React.createClass({
   _rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
 
-    autoPrefix.set(wrapper.style, 'transform', null);
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
+    autoPrefix.set(wrapper.style, 'transform', null, this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
 
     this.rotateWrapperSecondTimer = setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);

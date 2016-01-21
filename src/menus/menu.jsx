@@ -206,7 +206,7 @@ const Menu = React.createClass({
     rootStyle.transition = Transitions.easeOut('250ms', ['opacity', 'transform']);
     rootStyle.transform = 'translate3d(0,-8px,0)';
     rootStyle.opacity = 0;
-    rootStyle = autoPrefix.all(rootStyle);
+    rootStyle = autoPrefix.all(rootStyle, this.state.muiTheme);
     setTimeout(() => {
       if (this.isMounted()) callback();
     }, 250);
@@ -240,8 +240,8 @@ const Menu = React.createClass({
     let scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
     let menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
 
-    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
-    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
+    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)', this.state.muiTheme);
+    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)', this.state.muiTheme);
     scrollContainerStyle.opacity = 1;
 
     for (let i = 0; i < menuContainers.length; ++i) {
