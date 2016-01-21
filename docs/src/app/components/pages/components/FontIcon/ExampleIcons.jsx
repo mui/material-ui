@@ -8,7 +8,7 @@ const iconStyles = {
 
 const FontIconExampleIcons = () => (
   <div>
-    <FontIcon className="material-icons" style={iconStyles} >home</FontIcon>
+    <FontIcon className="material-icons" style={iconStyles}>home</FontIcon>
     <FontIcon className="material-icons" style={iconStyles} color={Colors.red500}>flight_takeoff</FontIcon>
     <FontIcon className="material-icons" style={iconStyles} color={Colors.yellow500}>cloud_download</FontIcon>
     <FontIcon className="material-icons" style={iconStyles} color={Colors.blue500}>videogame_asset</FontIcon>
