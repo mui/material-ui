@@ -176,6 +176,7 @@ const EnhancedButton = React.createClass({
     const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
       <FocusRipple
         color={focusRippleColor}
+        muiTheme={this.state.muiTheme}
         opacity={focusRippleOpacity}
         show={isKeyboardFocused}
       />
@@ -186,6 +187,7 @@ const EnhancedButton = React.createClass({
       <TouchRipple
         centerRipple={centerRipple}
         color={touchRippleColor}
+        muiTheme={this.state.muiTheme}
         opacity={touchRippleOpacity}
       >
         {children}

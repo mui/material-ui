@@ -14,6 +14,12 @@ const FocusRipple = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
+
+    /**
+     * The material-ui theme applied to this component.
+     */
+    muiTheme: React.PropTypes.object.isRequired,
+
     opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
 
@@ -85,7 +91,7 @@ const FocusRipple = React.createClass({
     nextScale = currentScale === startScale ?
       endScale : startScale;
 
-    autoPrefix.set(innerCircle.style, 'transform', nextScale);
+    autoPrefix.set(innerCircle.style, 'transform', nextScale, this.props.muiTheme);
     this._timeout = setTimeout(this._pulsate, pulsateDuration);
   },
 

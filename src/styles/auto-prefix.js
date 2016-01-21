@@ -5,18 +5,19 @@ const prefixers = {};
 
 let hasWarnedAboutNavigator = false;
 
-function getPrefixer() {
-  // Server-side renderer needs to supply user agent
-  if (typeof navigator === 'undefined' && !hasWarnedAboutNavigator) {
-    warning(false, `Material-UI expects the global navigator.userAgent to be defined
-      for server-side rendering. Set this property when receiving the request headers.`);
+function getPrefixer(userAgent) {
+  if (typeof navigator !== 'undefined') {
+    userAgent = navigator.userAgent;
+  }
+
+  if (userAgent === null && !hasWarnedAboutNavigator) {
+    warning(false, `Material-UI: userAgent should be supplied in the muiTheme context
+      for server-side rendering.`);
 
     hasWarnedAboutNavigator = true;
 
     return null;
   }
-
-  const userAgent = navigator.userAgent;
 
   // Get prefixing instance for this user agent
   let prefixer = prefixers[userAgent];
@@ -34,38 +35,60 @@ function getPrefixer() {
 export default {
 
   getPrefixer() {
-    warning(false, `getPrefixer() is private to this lib. Do not use it.`);
+    warning(false, `Material UI: getPrefixer() is private to this lib. Do not use it.`);
     return getPrefixer();
   },
 
-  all(style) {
+  getTransform(userAgent) {
+    const prefixer = getPrefixer(userAgent);
+
+    if (prefixer) {
+      return prefixer.prefix;
+    } else {
+      return InlineStylePrefixer.prefixAll;
+    }
+  },
+
+  all(style, muiTheme) {
     if (!style) {
       return {};
     }
 
-    const prefixer = getPrefixer();
-
-    if (prefixer) {
-      return prefixer.prefix(style);
+    if (muiTheme) {
+      return muiTheme.prefix(style);
     } else {
-      return InlineStylePrefixer.prefixAll(style);
+      warning(false, `Material UI: you need to provide the muiTheme to the autoPrefix.all()`);
+
+      const prefixer = getPrefixer();
+
+      if (prefixer) {
+        return prefixer.prefix(style);
+      } else {
+        return InlineStylePrefixer.prefixAll(style);
+      }
     }
   },
 
-  set(style, key, value) {
+  set(style, key, value, muiTheme) {
     style[key] = value;
 
-    const prefixer = getPrefixer();
-
-    if (prefixer) {
-      style = prefixer.prefix(style);
+    if (muiTheme) {
+      style = muiTheme.prefix(style);
     } else {
-      style = InlineStylePrefixer.prefixAll(style);
+      warning(false, `Material UI: you need to provide the muiTheme to the autoPrefix.set()`);
+
+      const prefixer = getPrefixer();
+
+      if (prefixer) {
+        style = prefixer.prefix(style);
+      } else {
+        style = InlineStylePrefixer.prefixAll(style);
+      }
     }
   },
 
   getPrefix(key) {
-    warning(false, `getPrefix() is no longer used, it will be removed. Do not use it`);
+    warning(false, `Material UI: getPrefix() is no longer used, it will be removed. Do not use it`);
 
     let style = {};
     style[key] = true;

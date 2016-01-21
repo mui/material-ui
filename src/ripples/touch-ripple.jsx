@@ -22,6 +22,12 @@ const TouchRipple = React.createClass({
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,
+
+    /**
+     * The material-ui theme applied to this component.
+     */
+    muiTheme: React.PropTypes.object.isRequired,
+
     opacity: React.PropTypes.number,
 
     /**
@@ -64,6 +70,7 @@ const TouchRipple = React.createClass({
     ripples = push(ripples, (
       <CircleRipple
         key={this.state.nextKey}
+        muiTheme={this.props.muiTheme}
         style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
         color={this.props.color}
         opacity={this.props.opacity}

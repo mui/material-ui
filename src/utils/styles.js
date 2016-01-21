@@ -134,7 +134,7 @@ export function prepareStyles(muiTheme, style = {}, ...styles) {
   }
 
   const flipped = ensureDirection(muiTheme, style);
-  return autoPrefix.all(flipped);
+  return muiTheme.prefix(flipped);
 }
 
 export default {
