@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
+import Typography from './styles/typography';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
 import Paper from './paper';
-import Popover from './popover/popover';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
@@ -272,11 +272,37 @@ const Slider = React.createClass({
         width: this.getTheme().handleSizeActive,
         height: this.getTheme().handleSizeActive,
       },
-      popover: {
-        display: 'inline-block',
+      dotsOuter: {
+        boxSizing: 'content-box',
+        position: 'absolute',
+        cursor: 'pointer',
+        pointerEvents: 'inherit',
+        top: 0,
+        left: '0%',
+        margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
+        transform: 'translate(-50%, -50%)',
+        width: this.getTheme().handleSizeDisabled,
+        height: this.getTheme().handleSizeDisabled,
+        padding: this.getTheme().handleSize,
+        overflow: 'visible',
+      },
+      dotsInner: {
+        boxSizing: 'border-box',
+        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().trackColor,
+        borderRadius: '50%',
+        backgroundColor: this.getTheme().handleFillColor,
+        backgroundClip: 'border-box',
+        width: '100%',
+        height: '100%',
+        boxShadow: 'none',
+      },
+      dotsLabel: {
+        color: Typography.textLightBlack,
+        fontSize: 13,
+        // width: '100%',
+        // marginLeft: '-50%',
+        transform: 'translate(-50%, 0)',
         textAlign: 'center',
-        margin: 2,
-        padding: '2px 6px',
       },
       ripple: {
         height: this.getTheme().handleSize,
@@ -290,6 +316,27 @@ const Slider = React.createClass({
         width: '300%',
         top: -this.getTheme().handleSize,
         left: -this.getTheme().handleSize,
+      },
+      popover: {
+        marginTop: -3 * this.getTheme().handleSize,
+        marginLeft: this.getTheme().handleSize / 2,
+        transform: 'translate(-50%, 0)',
+        textAlign: 'center',
+        width: 0,
+        height: 0,
+        overflow: 'hidden',
+      },
+      popoverWhenActive: {
+        marginLeft: this.getTheme().handleSizeActive / 2,
+        width: '10em',
+        height: 'auto',
+        padding: '2px 0',
+      },
+      popoverPaper: {
+        display: 'inline-block',
+        color: Typography.textBlack,
+        fontSize: 12,
+        padding: '2px 6px',
       },
     };
     styles.filled = this.mergeStyles(styles.filledAndRemaining, {
@@ -404,8 +451,8 @@ const Slider = React.createClass({
     return this.state.percent;
   },
 
-  setPercent(percent, callback) {
-    let value = this._alignValue(this._percentToValue(percent));
+  setPercent(percent, round, callback) {
+    let value = this._alignValue(this._percentToValue(percent), round);
     let {min, max} = this.props;
     let alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
@@ -417,9 +464,12 @@ const Slider = React.createClass({
     this.setValue(this.props.min);
   },
 
-  _alignValue(val) {
+  _alignValue(val, round) {
     let {step, min} = this.props;
     let alignValue = Math.round((val - min) / step) * step + min;
+    if (round) {
+      alignValue = Math.round(alignValue / 10) * 10;
+    }
     return parseFloat(alignValue.toFixed(5));
   },
 
@@ -435,6 +485,10 @@ const Slider = React.createClass({
 
   _onMouseDown(e) {
     if (!this.props.disabled) this._pos = e.clientX;
+  },
+
+  _onMouseDownDot() {
+    if (!this.props.disabled) this._closestDot = true;
   },
 
   _onMouseEnter() {
@@ -453,9 +507,9 @@ const Slider = React.createClass({
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
       let pos = e.clientX - this._getTrackLeft();
-      this._dragX(e, pos);
+      this._dragX(e, pos, this._closestDot);
     }
-
+    this._closestDot = undefined;
     this._pos = undefined;
   },
 
@@ -483,14 +537,14 @@ const Slider = React.createClass({
     e.preventDefault();
   },
 
-  _dragX(e, pos) {
+  _dragX(e, pos, round) {
     let max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    this._updateWithChangeEvent(e, pos / max);
+    this._updateWithChangeEvent(e, pos / max, round);
   },
 
-  _updateWithChangeEvent(e, percent) {
-    this.setPercent(percent, () => {
+  _updateWithChangeEvent(e, percent, round) {
+    this.setPercent(percent, round, () => {
       if (this.props.onChange) this.props.onChange(e, this.state.value);
     });
   },
@@ -546,24 +600,38 @@ const Slider = React.createClass({
     }
 
     let popoverElement = null;
-    if (this.props.popover && this.refs.handle) {
-      let popoverProps = {
-        anchorEl: this.refs.handle,
-        anchorOrigin: {horizontal: 'middle', vertical: 'top'},
-        targetOrigin: {horizontal: 'middle', vertical: 'bottom'},
-        open: this.state.active || this.state.hovered,
-        useLayerForClickAway: false,
-        zDepth: 0,
-      };
+    if (this.props.popover) {
+      let stylePopover = this.mergeStyles(styles.popover,
+        this.state.active ? styles.popoverWhenActive : null);
 
       popoverElement = (
-        <Popover {...popoverProps}>
-          <div>
-            <Paper zDepth={1} style={styles.popover}>
-              {this.state.value}
-            </Paper>
+        <div style={this.prepareStyles(stylePopover)}>
+          <Paper zDepth={1} style={styles.popoverPaper}>
+            {this.state.value}
+          </Paper>
+        </div>);
+    }
+
+    let dots = [];
+    if (this.props.popover) {
+      for (let i = 0;i <= 100;i += 10) {
+        let styleOuter = this.mergeStyles(styles.dotsOuter, {
+          left: i + '%',
+        });
+        let styleInner = this.mergeStyles(styles.dotsInner, {
+          borderColor: i <= this.state.percent * 100 ?
+            this.getTheme().selectionColor : this.getTheme().trackColor,
+        });
+        dots.push(
+          <div key={i} style={this.prepareStyles(styleOuter)}
+            onMouseDown={this._onMouseDownDot}>
+            <div style={this.prepareStyles(styleInner)} />
+            <div style={this.prepareStyles(styles.dotsLabel)}>
+            {i}
+            </div>
           </div>
-        </Popover>);
+          );
+      }
     }
 
     return (
@@ -582,8 +650,9 @@ const Slider = React.createClass({
             <div style={this.prepareStyles(remainingStyles)}></div>
             <div ref="handle" style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
               {focusRipple}
+              {popoverElement}
             </div>
-            {popoverElement}
+            {dots}
           </div>
         </div>
         <input ref="input" type="hidden"
