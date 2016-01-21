@@ -2,13 +2,14 @@ import React, {Component, PropTypes} from 'react'; // eslint-disable-line no-unu
 
 class SimplePopup extends Component {
   render() {
-    const {dialogState, hideDialog, content} = this.props;
+    const {popupState, hidePopup, header, content} = this.props;
 
     return (
-      <div className={'simple-popup ' + dialogState}>
+      <div className={'simple-popup ' + popupState}>
         <div className="take-over-wrapper">
           <div className="content-wrapper">
-            <div className="button-close black" onClick={hideDialog}></div>
+            <div className="button-close black" onClick={hidePopup}></div>
+            <div className="popup-header">{header}</div>
             <div className="content-placeholder">
               {content}
             </div>
@@ -20,9 +21,10 @@ class SimplePopup extends Component {
 }
 
 SimplePopup.propTypes = {
+  header: PropTypes.string,
   content: PropTypes.object.isRequired,
-  dialogState: PropTypes.string.isRequired,
-  hideDialog: PropTypes.func.isRequired
+  popupState: PropTypes.string.isRequired,
+  hidePopup: PropTypes.func.isRequired
 };
 
 SimplePopup.contextTypes = {
