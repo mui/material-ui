@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from '../mixins/style-propable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
 import ScaleInTransitionGroup from '../transition-groups/scale-in';
@@ -85,7 +85,7 @@ const FocusRipple = React.createClass({
     nextScale = currentScale === startScale ?
       endScale : startScale;
 
-    AutoPrefix.set(innerCircle.style, 'transform', nextScale);
+    autoPrefix.set(innerCircle.style, 'transform', nextScale);
     this._timeout = setTimeout(this._pulsate, pulsateDuration);
   },
 

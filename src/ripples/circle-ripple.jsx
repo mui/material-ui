@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from '../mixins/style-propable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import Colors from '../styles/colors';
 
@@ -60,14 +60,14 @@ const CircleRipple = React.createClass({
       Transitions.easeOut('2s', 'opacity') + ',' +
       Transitions.easeOut('1s', 'transform')
     );
-    AutoPrefix.set(style, 'transition', transitionValue);
-    AutoPrefix.set(style, 'transform', 'scale(1)');
+    autoPrefix.set(style, 'transition', transitionValue);
+    autoPrefix.set(style, 'transform', 'scale(1)');
   },
 
   _initializeAnimation(callback) {
     let style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
-    AutoPrefix.set(style, 'transform', 'scale(0)');
+    autoPrefix.set(style, 'transform', 'scale(0)');
     setTimeout(() => {
       if (this.isMounted()) callback();
     }, 0);

@@ -4,7 +4,7 @@ import update from 'react-addons-update';
 import Controllable from '../mixins/controllable';
 import StylePropable from '../mixins/style-propable';
 import ClickAwayable from '../mixins/click-awayable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import KeyCode from '../utils/key-code';
 import PropTypes from '../utils/prop-types';
@@ -206,7 +206,7 @@ const Menu = React.createClass({
     rootStyle.transition = Transitions.easeOut('250ms', ['opacity', 'transform']);
     rootStyle.transform = 'translate3d(0,-8px,0)';
     rootStyle.opacity = 0;
-    rootStyle = AutoPrefix.all(rootStyle);
+    rootStyle = autoPrefix.all(rootStyle);
     setTimeout(() => {
       if (this.isMounted()) callback();
     }, 250);
@@ -240,8 +240,8 @@ const Menu = React.createClass({
     let scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
     let menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
 
-    AutoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
-    AutoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
+    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
+    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
     scrollContainerStyle.opacity = 1;
 
     for (let i = 0; i < menuContainers.length; ++i) {
