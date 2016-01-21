@@ -68,7 +68,6 @@ const GridListExampleSimple = () => (
     <GridList
       cellHeight={200}
       style={styles.gridList}
-      subheader="December"
     >
       <Subheader>December</Subheader>
       {tilesData.map(tile => (
