@@ -13,7 +13,7 @@ const RefreshIndicator = React.createClass({
   propTypes: {
     /**
      * Override the theme's color of the indicator while it's status is
-     * "ready" or it's percentage is less than 100.
+     * "ready" and it's percentage is less than 100.
      */
     color: React.PropTypes.string,
 
@@ -24,7 +24,7 @@ const RefreshIndicator = React.createClass({
 
     /**
      * Override the theme's color of the indicator while
-     * it's status is "loading" or it's percentage is 100.
+     * it's status is "loading" or when it's percentage is 100.
      */
     loadingColor: React.PropTypes.string,
 
@@ -53,7 +53,7 @@ const RefreshIndicator = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * The absolute right position of the indicator in pixels.
+     * The absolute top position of the indicator in pixels.
      */
     top: React.PropTypes.number.isRequired,
   },
