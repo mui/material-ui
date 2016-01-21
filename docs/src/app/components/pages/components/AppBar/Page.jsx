@@ -10,6 +10,8 @@ import AppBarExampleIconButton from './ExampleIconButton';
 import appBarExampleIconButtonCode from '!raw!./ExampleIconButton';
 import AppBarExampleIconMenu from './ExampleIconMenu';
 import appBarExampleIconMenuCode from '!raw!./ExampleIconMenu';
+import AppBarExampleTabs from './ExampleTabs';
+import appBarExampleTabsCode from '!raw!./ExampleTabs';
 import appBarCode from '!raw!material-ui/lib/app-bar';
 
 const descriptions = {
@@ -17,6 +19,7 @@ const descriptions = {
   'By default, the left icon is a navigation-menu.',
   iconButton: '`IconButton` left, clickable title, and `FlatButton` right.',
   iconMenu: '`IconMenu` on the right.',
+  tabs: 'Use `Tabs` to organize content at a high level.',
 };
 
 const AppBarPage = () => (
@@ -42,6 +45,13 @@ const AppBarPage = () => (
       description={descriptions.iconMenu}
     >
       <AppBarExampleIconMenu />
+    </CodeExample>
+    <CodeExample
+      code={appBarExampleTabsCode}
+      title="Tabs"
+      description={descriptions.tabs}
+    >
+      <AppBarExampleTabs />
     </CodeExample>
     <PropTypeDescription code={appBarCode} />
   </div>
