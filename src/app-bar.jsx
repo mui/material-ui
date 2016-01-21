@@ -328,8 +328,8 @@ const AppBar = React.createClass({
       >
         {menuElementLeft}
         {titleElement}
-        {menuElementRight}
         {children}
+        {menuElementRight}
       </Paper>
     );
   },
