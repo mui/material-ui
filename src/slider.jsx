@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
+import Typography from './styles/typography';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
+import Paper from './paper';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
@@ -113,6 +115,11 @@ const Slider = React.createClass({
     onFocus: React.PropTypes.func,
 
     /**
+     * Whether or not the slider shows popover with value.
+     */
+    popover: React.PropTypes.bool,
+
+    /**
      * Whether or not the slider is required in a form.
      */
     required: React.PropTypes.bool,
@@ -152,6 +159,7 @@ const Slider = React.createClass({
       disableFocusRipple: false,
       max: 1,
       min: 0,
+      popover: false,
       required: true,
       step: 0.01,
       style: {},
@@ -224,7 +232,7 @@ const Slider = React.createClass({
         transition: Transitions.easeOut(null, 'margin'),
       },
       handle: {
-        boxSizing: 'border-box',
+        boxSizing: 'content-box',
         position: 'absolute',
         cursor: 'pointer',
         pointerEvents: 'inherit',
@@ -234,8 +242,9 @@ const Slider = React.createClass({
         margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
         width: this.getTheme().handleSize,
         height: this.getTheme().handleSize,
+        padding: this.getTheme().handleSize,
         backgroundColor: this.getTheme().selectionColor,
-        backgroundClip: 'padding-box',
+        backgroundClip: 'content-box',
         border: '0px solid transparent',
         borderRadius: '50%',
         transform: 'translate(-50%, -50%)',
@@ -253,39 +262,81 @@ const Slider = React.createClass({
         width: this.getTheme().handleSizeDisabled,
         height: this.getTheme().handleSizeDisabled,
         border: 'none',
+        padding: 0,
       },
       handleWhenPercentZero: {
-        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
-        backgroundColor: this.getTheme().handleFillColor,
+        backgroundColor: this.getTheme().handleColorZero,
         boxShadow: 'none',
-      },
-      handleWhenPercentZeroAndDisabled: {
-        cursor: 'not-allowed',
-        width: this.getTheme().handleSizeDisabled,
-        height: this.getTheme().handleSizeDisabled,
-      },
-      handleWhenPercentZeroAndFocused: {
-        border: this.getTheme().trackSize + 'px solid ' +
-          this.getTheme().trackColorSelected,
       },
       handleWhenActive: {
         width: this.getTheme().handleSizeActive,
         height: this.getTheme().handleSizeActive,
       },
+      dotsOuter: {
+        boxSizing: 'content-box',
+        position: 'absolute',
+        cursor: 'pointer',
+        pointerEvents: 'inherit',
+        top: 0,
+        left: '0%',
+        margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
+        transform: 'translate(-50%, -50%)',
+        width: this.getTheme().handleSizeDisabled,
+        height: this.getTheme().handleSizeDisabled,
+        padding: this.getTheme().handleSize,
+        overflow: 'visible',
+      },
+      dotsInner: {
+        boxSizing: 'border-box',
+        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().trackColor,
+        borderRadius: '50%',
+        backgroundColor: this.getTheme().handleFillColor,
+        backgroundClip: 'border-box',
+        width: '100%',
+        height: '100%',
+        boxShadow: 'none',
+      },
+      dotsLabel: {
+        color: Typography.textLightBlack,
+        fontSize: 13,
+        // width: '100%',
+        // marginLeft: '-50%',
+        transform: 'translate(-50%, 0)',
+        textAlign: 'center',
+      },
       ripple: {
         height: this.getTheme().handleSize,
         width: this.getTheme().handleSize,
         overflow: 'visible',
-      },
-      rippleWhenPercentZero: {
-        top: -this.getTheme().trackSize,
-        left: -this.getTheme().trackSize,
+        top: this.getTheme().handleSize,
+        left: this.getTheme().handleSize,
       },
       rippleInner: {
         height: '300%',
         width: '300%',
         top: -this.getTheme().handleSize,
         left: -this.getTheme().handleSize,
+      },
+      popover: {
+        marginTop: -3 * this.getTheme().handleSize,
+        marginLeft: this.getTheme().handleSize / 2,
+        transform: 'translate(-50%, 0)',
+        textAlign: 'center',
+        width: 0,
+        height: 0,
+        overflow: 'hidden',
+      },
+      popoverWhenActive: {
+        marginLeft: this.getTheme().handleSizeActive / 2,
+        width: '10em',
+        height: 'auto',
+        padding: '2px 0',
+      },
+      popoverPaper: {
+        display: 'inline-block',
+        color: Typography.textBlack,
+        fontSize: 12,
+        padding: '2px 6px',
       },
     };
     styles.filled = this.mergeStyles(styles.filledAndRemaining, {
@@ -400,8 +451,8 @@ const Slider = React.createClass({
     return this.state.percent;
   },
 
-  setPercent(percent, callback) {
-    let value = this._alignValue(this._percentToValue(percent));
+  setPercent(percent, round, callback) {
+    let value = this._alignValue(this._percentToValue(percent), round);
     let {min, max} = this.props;
     let alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
@@ -413,9 +464,12 @@ const Slider = React.createClass({
     this.setValue(this.props.min);
   },
 
-  _alignValue(val) {
+  _alignValue(val, round) {
     let {step, min} = this.props;
     let alignValue = Math.round((val - min) / step) * step + min;
+    if (round) {
+      alignValue = Math.round(alignValue / 10) * 10;
+    }
     return parseFloat(alignValue.toFixed(5));
   },
 
@@ -431,6 +485,10 @@ const Slider = React.createClass({
 
   _onMouseDown(e) {
     if (!this.props.disabled) this._pos = e.clientX;
+  },
+
+  _onMouseDownDot() {
+    if (!this.props.disabled) this._closestDot = true;
   },
 
   _onMouseEnter() {
@@ -449,9 +507,9 @@ const Slider = React.createClass({
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
       let pos = e.clientX - this._getTrackLeft();
-      this._dragX(e, pos);
+      this._dragX(e, pos, this._closestDot);
     }
-
+    this._closestDot = undefined;
     this._pos = undefined;
   },
 
@@ -461,6 +519,7 @@ const Slider = React.createClass({
       active: true,
     });
     if (this.props.onDragStart) this.props.onDragStart(e);
+    e.preventDefault();
   },
 
   _onDragStop(e) {
@@ -469,21 +528,23 @@ const Slider = React.createClass({
       active: false,
     });
     if (this.props.onDragStop) this.props.onDragStop(e);
+    e.preventDefault();
   },
 
   _onDragUpdate(e, pos) {
     if (!this.state.dragging) return;
     if (!this.props.disabled) this._dragX(e, pos);
+    e.preventDefault();
   },
 
-  _dragX(e, pos) {
+  _dragX(e, pos, round) {
     let max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    this._updateWithChangeEvent(e, pos / max);
+    this._updateWithChangeEvent(e, pos / max, round);
   },
 
-  _updateWithChangeEvent(e, percent) {
-    this.setPercent(percent, () => {
+  _updateWithChangeEvent(e, percent, round) {
+    this.setPercent(percent, round, () => {
       if (this.props.onChange) this.props.onChange(e, this.state.value);
     });
   },
@@ -499,16 +560,8 @@ const Slider = React.createClass({
 
     let styles = this.getStyles();
     const sliderStyles = this.mergeStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.mergeStyles(
-      styles.handle,
-      styles.handleWhenPercentZero,
-      this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      (this.state.hovered || this.state.focused) && !this.props.disabled
-        && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.mergeStyles(
-      styles.handle,
+    const handleStyles = this.mergeStyles(styles.handle,
+      percent === 0 && styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
       this.props.disabled && styles.handleWhenDisabled,
@@ -516,15 +569,12 @@ const Slider = React.createClass({
         left: (percent * 100) + '%',
       }
     );
-    let rippleStyle = this.mergeStyles(
-      styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero
-    );
     let remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
     }
 
+    let rippleStyle = styles.ripple;
     let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
     let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
     let focusRipple;
@@ -550,6 +600,41 @@ const Slider = React.createClass({
       };
     }
 
+    let popoverElement = null;
+    if (this.props.popover) {
+      let stylePopover = this.mergeStyles(styles.popover,
+        this.state.active ? styles.popoverWhenActive : null);
+
+      popoverElement = (
+        <div style={this.prepareStyles(stylePopover)}>
+          <Paper zDepth={1} style={styles.popoverPaper}>
+            {this.state.value}
+          </Paper>
+        </div>);
+    }
+
+    let dots = [];
+    if (this.props.popover) {
+      for (let i = 0;i <= 100;i += 10) {
+        let styleOuter = this.mergeStyles(styles.dotsOuter, {
+          left: i + '%',
+        });
+        let styleInner = this.mergeStyles(styles.dotsInner, {
+          borderColor: i <= this.state.percent * 100 ?
+            this.getTheme().selectionColor : this.getTheme().trackColor,
+        });
+        dots.push(
+          <div key={i} style={this.prepareStyles(styleOuter)}
+            onMouseDown={this._onMouseDownDot}>
+            <div style={this.prepareStyles(styleInner)} />
+            <div style={this.prepareStyles(styles.dotsLabel)}>
+            {i}
+            </div>
+          </div>
+          );
+      }
+    }
+
     return (
       <div {...others } style={this.prepareStyles(this.props.style)}>
         <span>{this.props.description}</span>
@@ -566,9 +651,11 @@ const Slider = React.createClass({
           <div ref="track" style={this.prepareStyles(styles.track)}>
             <div style={this.prepareStyles(styles.filled)}></div>
             <div style={this.prepareStyles(remainingStyles)}></div>
-            <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+            <div ref="handle" style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
               {focusRipple}
+              {popoverElement}
             </div>
+            {dots}
           </div>
         </div>
         <input ref="input" type="hidden"
