@@ -3,50 +3,56 @@ import warning from 'warning';
 
 const prefixers = {};
 
-let hasWarnedAboutNavigator = false;
-
-function getPrefixer(userAgent) {
-  if (typeof navigator !== 'undefined') {
-    userAgent = navigator.userAgent;
-  }
-
-  if (userAgent === null && !hasWarnedAboutNavigator) {
-    warning(false, `Material-UI: userAgent should be supplied in the muiTheme context
-      for server-side rendering.`);
-
-    hasWarnedAboutNavigator = true;
-
-    return null;
-  }
-
-  // Get prefixing instance for this user agent
-  let prefixer = prefixers[userAgent];
-  // None found, create a new instance
-  if (!prefixer) {
-    prefixer = new InlineStylePrefixer({
-      userAgent: userAgent,
-    });
-    prefixers[userAgent] = prefixer;
-  }
-
-  return prefixer;
-}
+let hasWarnedAboutUserAgent = false;
 
 export default {
 
-  getPrefixer() {
-    warning(false, `Material UI: getPrefixer() is private to this lib. Do not use it.`);
-    return getPrefixer();
+  getTransform(userAgent) {
+    if (userAgent === undefined && typeof navigator !== 'undefined') {
+      userAgent = navigator.userAgent;
+    }
+
+    if (userAgent === undefined && !hasWarnedAboutUserAgent) {
+      warning(false, `Material UI: userAgent should be supplied in the muiTheme context
+        for server-side rendering.`);
+
+      hasWarnedAboutUserAgent = true;
+    }
+
+    if (userAgent === false) { // Disabled autoprefixer
+      return (style) => style;
+    } else if (userAgent === 'all' || userAgent === undefined) { // Prefix for all user agent
+      return InlineStylePrefixer.prefixAll;
+    } else {
+      const prefixer = new InlineStylePrefixer({
+        userAgent: userAgent,
+      });
+
+      return prefixer.prefix;
+    }
   },
 
-  getTransform(userAgent) {
-    const prefixer = getPrefixer(userAgent);
+  getPrefixer() {
+    warning(false, `Material UI: getPrefixer() is no longer used. Do not use it.`);
 
-    if (prefixer) {
-      return prefixer.prefix;
-    } else {
-      return InlineStylePrefixer.prefixAll;
+    if (typeof navigator === 'undefined') {
+      warning(false, `Material UI expects the global navigator.userAgent to be defined
+        for server-side rendering. Set this property when receiving the request headers.`);
+
+      return null;
     }
+
+    const userAgent = navigator.userAgent;
+
+    // Get prefixing instance for this user agent
+    let prefixer = prefixers[userAgent];
+    // None found, create a new instance
+    if (!prefixer) {
+      prefixer = new InlineStylePrefixer({userAgent: userAgent});
+      prefixers[userAgent] = prefixer;
+    }
+
+    return prefixer;
   },
 
   all(style) {
@@ -56,7 +62,7 @@ export default {
 
     warning(false, `Material UI: all() is no longer used, it will be removed. Do not use it`);
 
-    const prefixer = getPrefixer();
+    const prefixer = this.getPrefixer();
 
     if (prefixer) {
       return prefixer.prefix(style);
@@ -73,7 +79,7 @@ export default {
     } else {
       warning(false, `Material UI: you need to provide the muiTheme to the autoPrefix.set()`);
 
-      const prefixer = getPrefixer();
+      const prefixer = this.getPrefixer();
 
       if (prefixer) {
         style = prefixer.prefix(style);
@@ -89,7 +95,7 @@ export default {
     let style = {};
     style[key] = true;
 
-    const prefixer = getPrefixer();
+    const prefixer = this.getPrefixer();
     let prefixes;
 
     if (prefixer) {
