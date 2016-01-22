@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from '../mixins/style-propable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
 import ScaleInTransitionGroup from '../transition-groups/scale-in';
@@ -14,6 +14,12 @@ const FocusRipple = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
+
+    /**
+     * The material-ui theme applied to this component.
+     */
+    muiTheme: React.PropTypes.object.isRequired,
+
     opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
 
@@ -85,7 +91,7 @@ const FocusRipple = React.createClass({
     nextScale = currentScale === startScale ?
       endScale : startScale;
 
-    AutoPrefix.set(innerCircle.style, 'transform', nextScale);
+    autoPrefix.set(innerCircle.style, 'transform', nextScale, this.props.muiTheme);
     this._timeout = setTimeout(this._pulsate, pulsateDuration);
   },
 

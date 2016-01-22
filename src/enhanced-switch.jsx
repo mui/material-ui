@@ -397,6 +397,7 @@ const EnhancedSwitch = React.createClass({
         key="touchRipple"
         style={rippleStyle}
         color={rippleColor}
+        muiTheme={this.state.muiTheme}
         centerRipple={true}
       />
     );
@@ -406,6 +407,7 @@ const EnhancedSwitch = React.createClass({
         key="focusRipple"
         innerStyle={rippleStyle}
         color={rippleColor}
+        muiTheme={this.state.muiTheme}
         show={this.state.isKeyboardFocused}
       />
     );

@@ -1,6 +1,7 @@
 import merge from 'lodash.merge';
 import Colors from './colors';
 import ColorManipulator from '../utils/color-manipulator';
+import autoPrefix from './auto-prefix';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
 
@@ -12,10 +13,14 @@ import zIndex from './zIndex';
  */
 export default function getMuiTheme(baseTheme, muiTheme) {
   baseTheme = merge({}, lightBaseTheme, baseTheme);
-  const {palette, spacing} = baseTheme;
+  const {
+    palette,
+    spacing,
+  } = baseTheme;
 
-  return merge({
+  muiTheme = merge({
     isRtl: false,
+    userAgent: undefined,
     zIndex,
     baseTheme,
     rawTheme: baseTheme, // To provide backward compatibility.
@@ -224,4 +229,8 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       borderColor: palette.borderColor,
     },
   }, muiTheme);
+
+  muiTheme.prefix = autoPrefix.getTransform(muiTheme.userAgent);
+
+  return muiTheme;
 }

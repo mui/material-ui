@@ -1,4 +1,4 @@
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import update from 'react-addons-update';
 import warning from 'warning';
 
@@ -113,7 +113,7 @@ export function mergeStyles(base, ...args) {
 export function mergeAndPrefix(...args) {
   warning(false, 'Use of mergeAndPrefix() has been deprecated. ' +
     'Please use mergeStyles() for merging styles, and then prepareStyles() for prefixing and ensuring direction.');
-  return AutoPrefix.all(mergeStyles(...args));
+  return autoPrefix.all(mergeStyles(...args));
 }
 
 /**
@@ -134,7 +134,7 @@ export function prepareStyles(muiTheme, style = {}, ...styles) {
   }
 
   const flipped = ensureDirection(muiTheme, style);
-  return AutoPrefix.all(flipped);
+  return muiTheme.prefix(flipped);
 }
 
 export default {

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from '../mixins/style-propable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
@@ -83,7 +83,7 @@ const ScaleInChild = React.createClass({
     let style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'scale(' + this.props.minScale + ')');
+    autoPrefix.set(style, 'transform', 'scale(' + this.props.minScale + ')', this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();
@@ -94,14 +94,14 @@ const ScaleInChild = React.createClass({
     let style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
-    AutoPrefix.set(style, 'transform', 'scale(' + this.props.maxScale + ')');
+    autoPrefix.set(style, 'transform', 'scale(' + this.props.maxScale + ')', this.state.muiTheme);
   },
 
   _initializeAnimation(callback) {
     let style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'scale(0)');
+    autoPrefix.set(style, 'transform', 'scale(0)', this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();

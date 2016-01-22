@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
-import AutoPrefix from './styles/auto-prefix';
+import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import Paper from './paper';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
@@ -309,9 +309,9 @@ const RefreshIndicator = React.createClass({
       transitionDuration = '850ms';
     }
 
-    AutoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
-    AutoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
-    AutoPrefix.set(path.style, 'transitionDuration', transitionDuration);
+    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray, this.state.muiTheme);
+    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset, this.state.muiTheme);
+    autoPrefix.set(path.style, 'transitionDuration', transitionDuration, this.state.muiTheme);
 
     this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
@@ -319,21 +319,17 @@ const RefreshIndicator = React.createClass({
   _rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
 
-    AutoPrefix.set(wrapper.style, 'transform', null);
-    AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
+    autoPrefix.set(wrapper.style, 'transform', null, this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
 
     this.rotateWrapperSecondTimer = setTimeout(() => {
-      AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
-  },
-
-  prefixed(key) {
-    return AutoPrefix.single(key);
   },
 
   render() {

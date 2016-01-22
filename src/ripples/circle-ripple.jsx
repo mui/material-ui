@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from '../mixins/style-propable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import Colors from '../styles/colors';
 
@@ -10,6 +10,12 @@ const CircleRipple = React.createClass({
 
   propTypes: {
     color: React.PropTypes.string,
+
+    /**
+     * The material-ui theme applied to this component.
+     */
+    muiTheme: React.PropTypes.object.isRequired,
+
     opacity: React.PropTypes.number,
 
     /**
@@ -60,14 +66,14 @@ const CircleRipple = React.createClass({
       Transitions.easeOut('2s', 'opacity') + ',' +
       Transitions.easeOut('1s', 'transform')
     );
-    AutoPrefix.set(style, 'transition', transitionValue);
-    AutoPrefix.set(style, 'transform', 'scale(1)');
+    autoPrefix.set(style, 'transition', transitionValue, this.props.muiTheme);
+    autoPrefix.set(style, 'transform', 'scale(1)', this.props.muiTheme);
   },
 
   _initializeAnimation(callback) {
     let style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
-    AutoPrefix.set(style, 'transform', 'scale(0)');
+    autoPrefix.set(style, 'transform', 'scale(0)', this.props.muiTheme);
     setTimeout(() => {
       if (this.isMounted()) callback();
     }, 0);

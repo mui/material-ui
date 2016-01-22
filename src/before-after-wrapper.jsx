@@ -1,6 +1,5 @@
 import React from 'react';
 import StylePropable from './mixins/style-propable';
-import AutoPrefix from './styles/auto-prefix';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
 
@@ -105,8 +104,13 @@ const BeforeAfterWrapper = React.createClass({
     let beforeElement;
     let afterElement;
 
-    beforeStyle = AutoPrefix.all({boxSizing: 'border-box'});
-    afterStyle = AutoPrefix.all({boxSizing: 'border-box'});
+    beforeStyle = {
+      boxSizing: 'border-box',
+    };
+
+    afterStyle = {
+      boxSizing: 'border-box',
+    };
 
     if (this.props.beforeStyle) beforeElement =
       React.createElement(this.props.beforeElementType,
