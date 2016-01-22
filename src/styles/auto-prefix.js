@@ -49,23 +49,19 @@ export default {
     }
   },
 
-  all(style, muiTheme) {
+  all(style) {
     if (!style) {
       return {};
     }
 
-    if (muiTheme) {
-      return muiTheme.prefix(style);
+    warning(false, `Material UI: all() is no longer used, it will be removed. Do not use it`);
+
+    const prefixer = getPrefixer();
+
+    if (prefixer) {
+      return prefixer.prefix(style);
     } else {
-      warning(false, `Material UI: you need to provide the muiTheme to the autoPrefix.all()`);
-
-      const prefixer = getPrefixer();
-
-      if (prefixer) {
-        return prefixer.prefix(style);
-      } else {
-        return InlineStylePrefixer.prefixAll(style);
-      }
+      return InlineStylePrefixer.prefixAll(style);
     }
   },
 
