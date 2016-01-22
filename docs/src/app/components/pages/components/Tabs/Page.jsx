@@ -10,24 +10,43 @@ import TabsExampleControlled from './ExampleControlled';
 import tabsExampleSwipeableCode from '!raw!./ExampleSwipeable';
 import TabsExampleSwipeable from './ExampleSwipeable';
 import tabsCode from '!raw!material-ui/lib/tabs/tabs';
-import tabsText from './Tabs';
 import tabCode from '!raw!material-ui/lib/tabs/tab';
-import tabText from './Tab';
+
+const descriptions = {
+  simple: 'A simple example of Tabs. The third tab demonstrates the `onActive` property of `Tab`.',
+  controlled: 'An example of controlled tabs. The selected tab is handled through state and callbacks in the parent ' +
+  '(example) component.',
+  swipeable: 'This example integrates the [react-swipeable-views]' +
+  '(https://github.com/oliviertassinari/react-swipeable-views) component with Tabs, animating the Tab transition, ' +
+  'and allowing tabs to be swiped on touch devices.',
+};
 
 const TabsPage = () => (
   <div>
     <MarkdownElement text={tabsReadmeText} />
-    <CodeExample code={tabsExampleSimpleCode}>
+    <CodeExample
+      title="Simple Example"
+      description={descriptions.simple}
+      code={tabsExampleSimpleCode}
+    >
       <TabsExampleSimple />
     </CodeExample>
-    <CodeExample code={tabsExampleControlledCode}>
+    <CodeExample
+      title="Controlled example"
+      description={descriptions.controlled}
+      code={tabsExampleControlledCode}
+    >
       <TabsExampleControlled />
     </CodeExample>
-    <CodeExample code={tabsExampleSwipeableCode}>
+    <CodeExample
+      title="Swipeable example"
+      description={descriptions.swipeable}
+      code={tabsExampleSwipeableCode}
+    >
       <TabsExampleSwipeable />
     </CodeExample>
-    <PropTypeDescription code={tabsCode} header={tabsText} />
-    <PropTypeDescription code={tabCode} header={tabText} />
+    <PropTypeDescription code={tabsCode} header="### Tabs Properties" />
+    <PropTypeDescription code={tabCode} header="### Tab Properties" />
   </div>
 );
 
