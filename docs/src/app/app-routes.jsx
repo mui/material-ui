@@ -13,6 +13,7 @@ import Prerequisites from './components/pages/get-started/Prerequisites';
 import Installation from './components/pages/get-started/Installation';
 import Usage from './components/pages/get-started/Usage';
 import Examples from './components/pages/get-started/Examples';
+import ServerRendering from './components/pages/get-started/ServerRendering';
 
 import Colors from './components/pages/customization/colors';
 import Themes from './components/pages/customization/themes';
@@ -77,6 +78,7 @@ const AppRoutes = (
       <Route path="installation" component={Installation} />
       <Route path="usage" component={Usage} />
       <Route path="examples" component={Examples} />
+      <Route path="server-rendering" component={ServerRendering} />
     </Route>
     <Redirect from="customization" to="/customization/themes" />
     <Route path="customization">
