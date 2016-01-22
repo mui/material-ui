@@ -1,7 +1,7 @@
 {
   "name": "@tcne/ui-kit",
   "author": "Call-em-all Engineering Team & TCNE Web Team 1",
-  "version": "0.14.6",
+  "version": "0.14.7",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
