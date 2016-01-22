@@ -136,10 +136,10 @@ const Tooltip = React.createClass({
 
   _setRippleSize() {
     const ripple = this.refs.ripple;
-    const tooltip = window.getComputedStyle(this.refs.tooltip);
-    let tooltipWidth = parseInt(tooltip.getPropertyValue('width'), 10) /
+    const tooltip = this.refs.tooltip;
+    let tooltipWidth = parseInt(tooltip.offsetWidth, 10) /
       (this.props.horizontalPosition === 'center' ? 2 : 1);
-    let tooltipHeight = parseInt(tooltip.getPropertyValue('height'), 10);
+    let tooltipHeight = parseInt(tooltip.offsetHeight, 10);
 
     let rippleDiameter = Math.ceil((Math.sqrt(Math.pow(tooltipHeight, 2) +
                                     Math.pow(tooltipWidth, 2) ) * 2));
