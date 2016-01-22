@@ -440,7 +440,7 @@ const AutoComplete = React.createClass({
           useLayerForClickAway={false}
           onRequestClose={this._close}
         >
-            {menu}
+          {menu}
         </Popover>
       </div>
     );

@@ -197,21 +197,6 @@ const Menu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentDidEnter() {
-    this._animateOpen();
-  },
-
-  componentWillLeave(callback) {
-    let rootStyle = ReactDOM.findDOMNode(this).style;
-    rootStyle.transition = Transitions.easeOut('250ms', ['opacity', 'transform']);
-    rootStyle.transform = 'translate3d(0,-8px,0)';
-    rootStyle.opacity = 0;
-    rootStyle = autoPrefix.all(rootStyle, this.state.muiTheme);
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 250);
-  },
-
   componentClickAway(e) {
     if (e.defaultPrevented)
       return;
