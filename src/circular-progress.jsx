@@ -8,23 +8,46 @@ import ThemeManager from './styles/theme-manager';
 
 const CircularProgress = React.createClass({
 
-  mixins: [StylePropable],
-
-  scalePathTimer: undefined,
-  rotateWrapperTimer: undefined,
-
   propTypes: {
+    /**
+     * Override the progress's color.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * Style for inner wrapper div.
+     */
     innerStyle: React.PropTypes.object,
+
+    /**
+     * The max value of progress, only works in determinate mode.
+     */
     max: React.PropTypes.number,
+
+    /**
+     * The min value of progress, only works in determinate mode.
+     */
     min: React.PropTypes.number,
+
+    /**
+     * The mode of show your progress, indeterminate
+     * for when there is no value for progress.
+     */
     mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+
+    /**
+     * The size of the progress.
+     */
     size: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The value of progress, only works in determinate mode.
+     */
     value: React.PropTypes.number,
   },
 
@@ -37,9 +60,15 @@ const CircularProgress = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      mode: 'indeterminate',
+      value: 0,
+      min: 0,
+      max: 100,
+      size: 1,
     };
   },
 
@@ -49,11 +78,30 @@ const CircularProgress = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentDidMount() {
+    let wrapper = ReactDOM.findDOMNode(this.refs.wrapper);
+    let path = ReactDOM.findDOMNode(this.refs.path);
+
+    this._scalePath(path);
+    this._rotateWrapper(wrapper);
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
+  },
+
+  componentWillUnmount() {
+    clearTimeout(this.scalePathTimer);
+    clearTimeout(this.rotateWrapperTimer);
   },
 
   _getRelativeValue() {
@@ -67,18 +115,8 @@ const CircularProgress = React.createClass({
     return relValue * 100;
   },
 
-  componentDidMount() {
-    let wrapper = ReactDOM.findDOMNode(this.refs.wrapper);
-    let path = ReactDOM.findDOMNode(this.refs.path);
-
-    this._scalePath(path);
-    this._rotateWrapper(wrapper);
-  },
-
-  componentWillUnmount() {
-    clearTimeout(this.scalePathTimer);
-    clearTimeout(this.rotateWrapperTimer);
-  },
+  scalePathTimer: undefined,
+  rotateWrapperTimer: undefined,
 
   _scalePath(path, step) {
     if (this.props.mode !== 'indeterminate') return;
@@ -90,13 +128,11 @@ const CircularProgress = React.createClass({
       path.style.strokeDasharray = '1, 200';
       path.style.strokeDashoffset = 0;
       path.style.transitionDuration = '0ms';
-    }
-    else if (step === 1) {
+    } else if (step === 1) {
       path.style.strokeDasharray = '89, 200';
       path.style.strokeDashoffset = -35;
       path.style.transitionDuration = '750ms';
-    }
-    else {
+    } else {
       path.style.strokeDasharray = '89,200';
       path.style.strokeDashoffset = -124;
       path.style.transitionDuration = '850ms';
@@ -118,16 +154,6 @@ const CircularProgress = React.createClass({
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
-  },
-
-  getDefaultProps() {
-    return {
-      mode: 'indeterminate',
-      value: 0,
-      min: 0,
-      max: 100,
-      size: 1,
-    };
   },
 
   getTheme() {
@@ -197,8 +223,11 @@ const CircularProgress = React.createClass({
       <div {...other} style={this.prepareStyles(styles.root, style)} >
         <div ref="wrapper" style={this.prepareStyles(styles.wrapper, innerStyle)} >
           <svg style={this.prepareStyles(styles.svg)} >
-            <circle ref="path" style={this.prepareStyles(styles.path)} cx="25" cy="25"
-              r="20" fill="none" strokeWidth="2.5" strokeMiterlimit="10" />
+            <circle
+              ref="path" style={this.prepareStyles(styles.path)} cx="25"
+              cy="25" r="20" fill="none"
+              strokeWidth="2.5" strokeMiterlimit="10"
+            />
           </svg>
         </div>
       </div>

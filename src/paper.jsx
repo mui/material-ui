@@ -8,10 +8,38 @@ import ThemeManager from './styles/theme-manager';
 
 const Paper = React.createClass({
 
-  mixins: [
-    PureRenderMixin,
-    StylePropable,
-  ],
+  propTypes: {
+    /**
+     * Children passed into the paper element.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * Set to true to generate a circlular paper container.
+     */
+    circle: React.PropTypes.bool,
+
+    /**
+     * By default, the paper container will have a border radius.
+     * Set this to false to generate a container with sharp corners.
+     */
+    rounded: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+
+    /**
+     * Set to false to disable CSS transitions for the paper element.
+     */
+    transitionEnabled: React.PropTypes.bool,
+
+    /**
+     * This number represents the zDepth of the paper shadow.
+     */
+    zDepth: PropTypes.zDepth,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -22,15 +50,29 @@ const Paper = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      circle: false,
+      rounded: true,
+      transitionEnabled: true,
+      zDepth: 1,
     };
   },
 
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -41,26 +83,17 @@ const Paper = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  propTypes: {
-    children: React.PropTypes.node,
-    circle: React.PropTypes.bool,
-    rounded: React.PropTypes.bool,
+  _getZDepthShadows(zDepth) {
+    const shadows = [
+      null,
+      '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
+      '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)',
+      '0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23)',
+      '0 14px 45px rgba(0, 0, 0, 0.25), 0 10px 18px rgba(0, 0, 0, 0.22)',
+      '0 19px 60px rgba(0, 0, 0, 0.30), 0 15px 20px rgba(0, 0, 0, 0.22)',
+    ];
 
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
-    transitionEnabled: React.PropTypes.bool,
-    zDepth: PropTypes.zDepth,
-  },
-
-  getDefaultProps() {
-    return {
-      circle: false,
-      rounded: true,
-      transitionEnabled: true,
-      zDepth: 1,
-    };
+    return shadows[zDepth];
   },
 
   render() {
@@ -89,19 +122,6 @@ const Paper = React.createClass({
         {children}
       </div>
     );
-  },
-
-  _getZDepthShadows(zDepth) {
-    const shadows = [
-      null,
-      '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
-      '0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23)',
-      '0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23)',
-      '0 14px 45px rgba(0, 0, 0, 0.25), 0 10px 18px rgba(0, 0, 0, 0.22)',
-      '0 19px 60px rgba(0, 0, 0, 0.30), 0 15px 20px rgba(0, 0, 0, 0.22)',
-    ];
-
-    return shadows[zDepth];
   },
 
 });

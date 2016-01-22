@@ -16,7 +16,8 @@ const styles = {
 
 const AppBarExampleIconButton = () => (
   <AppBar
-    title={<span style={styles.title} onTouchTap={handleTouchTap}>Title</span>}
+    title={<span style={styles.title}>Title</span>}
+    onTitleTouchTap={handleTouchTap}
     iconElementLeft={<IconButton><NavigationClose /></IconButton>}
     iconElementRight={<FlatButton label="Save" />}
   />

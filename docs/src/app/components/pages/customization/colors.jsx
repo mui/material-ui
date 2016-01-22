@@ -63,46 +63,6 @@ const ColorsPage = React.createClass({
     return styles;
   },
 
-  render() {
-    let mainColors = [
-      'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
-      'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange',
-    ];
-    let neutralColors = ['Brown', 'Blue Grey', 'Grey'];
-    let colorGroups = [];
-    let neutralGroups = [];
-
-    mainColors.forEach((color) => {
-      colorGroups.push(this._getColorGroup(color, true));
-    }, this);
-
-    neutralColors.forEach((color) => {
-      neutralGroups.push(this._getColorGroup(color, false));
-    }, this);
-
-    let googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
-    let githubLink = 'https://github.com/callemall/material-ui/blob/master/src/styles/colors.js';
-
-    return (
-      <div>
-        <h2 style={this.getStyles().headline}>UI Color Palette</h2>
-        <p>
-          We&#39;ve created javascript variables for every color used in
-          the <a href={googleLink}>UI Color Palette</a>. They are stored
-          in <a href={githubLink}>styles/colors.js</a>.
-        </p>
-
-        <ClearFix>
-          {colorGroups}
-
-          <div>
-            {neutralGroups}
-          </div>
-        </ClearFix>
-      </div>
-    );
-  },
-
   _getColorGroup(color, showAltPalette) {
     let mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
     let altPalette = ['A100', 'A200', 'A400', 'A700'];
@@ -150,6 +110,46 @@ const ColorsPage = React.createClass({
         {blockTitle}
         {bgColorText}
       </li>
+    );
+  },
+
+  render() {
+    let mainColors = [
+      'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
+      'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange',
+    ];
+    let neutralColors = ['Brown', 'Blue Grey', 'Grey'];
+    let colorGroups = [];
+    let neutralGroups = [];
+
+    mainColors.forEach((color) => {
+      colorGroups.push(this._getColorGroup(color, true));
+    }, this);
+
+    neutralColors.forEach((color) => {
+      neutralGroups.push(this._getColorGroup(color, false));
+    }, this);
+
+    let googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
+    let githubLink = 'https://github.com/callemall/material-ui/blob/master/src/styles/colors.js';
+
+    return (
+      <div>
+        <h2 style={this.getStyles().headline}>UI Color Palette</h2>
+        <p>
+          We&#39;ve created javascript variables for every color used in
+          the <a href={googleLink}>UI Color Palette</a>. They are stored
+          in <a href={githubLink}>styles/colors.js</a>.
+        </p>
+
+        <ClearFix>
+          {colorGroups}
+
+          <div>
+            {neutralGroups}
+          </div>
+        </ClearFix>
+      </div>
     );
   },
 

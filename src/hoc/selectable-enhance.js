@@ -7,14 +7,6 @@ import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 export const SelectableContainerEnhance = (Component) => {
   const composed = React.createClass({
 
-    mixins: [
-      StylePropable,
-    ],
-
-    contextTypes: {
-      muiTheme: React.PropTypes.object,
-    },
-
     displayName: `Selectable${Component.displayName}`,
 
     propTypes: {
@@ -26,8 +18,22 @@ export const SelectableContainerEnhance = (Component) => {
       }).isRequired,
     },
 
+    contextTypes: {
+      muiTheme: React.PropTypes.object,
+    },
+
     childContextTypes: {
       muiTheme: React.PropTypes.object,
+    },
+
+    mixins: [
+      StylePropable,
+    ],
+
+    getInitialState() {
+      return {
+        muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      };
     },
 
     getChildContext() {
@@ -41,12 +47,6 @@ export const SelectableContainerEnhance = (Component) => {
       this.setState({muiTheme: newMuiTheme});
     },
 
-    getInitialState() {
-      return {
-        muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      };
-    },
-
     getValueLink: function(props) {
       return props.valueLink || {
         value: props.value,
@@ -54,30 +54,8 @@ export const SelectableContainerEnhance = (Component) => {
       };
     },
 
-    render() {
-      const {children, selectedItemStyle} = this.props;
-      this._keyIndex = 0;
-      let styles = {};
-
-      if (!selectedItemStyle) {
-        let textColor = this.state.muiTheme.rawTheme.palette.textColor;
-        let selectedColor = ColorManipulator.fade(textColor, 0.2);
-        styles = {
-          backgroundColor: selectedColor,
-        };
-      }
-
-      let newChildren = React.Children.map(children, (child) => this._extendChild(child, styles, selectedItemStyle));
-
-      return (
-        <Component {...this.props} {...this.state}>
-          {newChildren}
-        </Component>
-      );
-    },
-
     _extendChild(child, styles, selectedItemStyle) {
-      if (child.type && child.type.displayName === 'ListItem') {
+      if (child && child.type && child.type.displayName === 'ListItem') {
         let selected = this._isChildSelected(child, this.props);
         let selectedChildrenStyles = {};
         if (selected) {
@@ -118,6 +96,28 @@ export const SelectableContainerEnhance = (Component) => {
       if ( itemValue !== menuValue) {
         valueLink.requestChange(e, itemValue);
       }
+    },
+
+    render() {
+      const {children, selectedItemStyle} = this.props;
+      this._keyIndex = 0;
+      let styles = {};
+
+      if (!selectedItemStyle) {
+        let textColor = this.state.muiTheme.rawTheme.palette.textColor;
+        let selectedColor = ColorManipulator.fade(textColor, 0.2);
+        styles = {
+          backgroundColor: selectedColor,
+        };
+      }
+
+      let newChildren = React.Children.map(children, (child) => this._extendChild(child, styles, selectedItemStyle));
+
+      return (
+        <Component {...this.props} {...this.state}>
+          {newChildren}
+        </Component>
+      );
     },
   });
 

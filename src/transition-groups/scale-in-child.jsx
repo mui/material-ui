@@ -10,36 +10,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const ScaleInChild = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   propTypes: {
     children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
@@ -52,12 +22,45 @@ const ScaleInChild = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
+
   getDefaultProps: function() {
     return {
       enterDelay: 0,
       maxScale: 1,
       minScale: 0,
     };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   componentWillAppear(callback) {
@@ -87,30 +90,6 @@ const ScaleInChild = React.createClass({
     }, 450);
   },
 
-  render() {
-    const {
-      children,
-      enterDelay,
-      style,
-      ...other,
-    } = this.props;
-
-    const mergedRootStyles = this.prepareStyles({
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
-      top: 0,
-      left: 0,
-      transition: Transitions.easeOut(null, ['transform', 'opacity']),
-    }, style);
-
-    return (
-      <div {...other} style={mergedRootStyles}>
-        {children}
-      </div>
-    );
-  },
-
   _animate() {
     let style = ReactDOM.findDOMNode(this).style;
 
@@ -129,6 +108,29 @@ const ScaleInChild = React.createClass({
     }, this.props.enterDelay);
   },
 
+  render() {
+    const {
+      children,
+      enterDelay,
+      style,
+      ...other,
+    } = this.props;
+
+    const mergedRootStyles = this.mergeStyles({
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      top: 0,
+      left: 0,
+      transition: Transitions.easeOut(null, ['transform', 'opacity']),
+    }, style);
+
+    return (
+      <div {...other} style={this.prepareStyles(mergedRootStyles)}>
+        {children}
+      </div>
+    );
+  },
 });
 
 export default ScaleInChild;

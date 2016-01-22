@@ -1,5 +1,55 @@
 ## HEAD
 
+## 0.14.2
+###### _Jan 08, 2016_
+
+##### General
+- [CRITICAL] Fix imports using require() style syntax (#2804) thanks @newoga
+- [Examples] Upgrade to babel 6 for browserify (#2795)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [RefreshIndicator] (#2799)
+  1. [Icon] (#2695)
+  1. [Lists] (#2782)
+  1. [Progress] (#2798)
+  1. [Sliders] (#2800)
+  1. [Paper] (#2797)
+  1. [Menus] (#2785)
+- Added the following eslint rules:
+  1. `react/jsx-indent` (#2808)
+
+##### Component Fixes / Enhancements
+- [DatePicker] Update slide direction (#2791)
+- [AutoComplete] Add 2 extra filters for text matching (#2755)
+- [TableRow] Fix row height in IE (#2812)
+
+## 0.14.1
+###### _Jan 05, 2016_
+
+##### General
+- Upgrade to babel v6 (#2620, #2709)
+- [Docs] Improve the performance of the production build (#2680)
+- [Docs] Improve the AppLeftNav for mobile (#2690)
+- [Docs] Use a single LeftNav (#2721)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [DatePicker] (#2622)
+  1. [GridList] (#2681)
+  1. [SelectField] (#2694)
+  1. [IconButton] (#2700)
+- Added the following eslint rules:
+  1. react/sort-comp (#2774, #2776)
+
+##### Component Fixes / Enhancements
+- [MenuItem] Fix icon position (#2661)
+- [SelectableList] Recursively extend children (#2320)
+- [SelectField] Add hintStyle (#2710)
+- [EnhancedButton] Avoid rendering `<a>` element (#2708)
+- [LeftNav] Only transition the transform property (#2730)
+- [TextField] Fix `errorText` when using `multiLine` (#2742)
+- [TimePicker] Update am/pm buttons (#2757)
+
+##### Deprecations
+- [Dialog] Deprecate width (#2753)
+
 ## 0.14.0
 ###### _Dec 25, 2015_
 

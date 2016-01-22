@@ -16,6 +16,16 @@ import DatePickerExampleInternational from './ExampleInternational';
 import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import datePickerReadmeText from './README';
 
+const descriptions = {
+  simple: 'The Date Picker defaults to a portrait dialog. The `mode` property can be set to `landscape`.',
+  inline: 'Inline Date Pickers are displayed below the input, rather than as a modal dialog. ',
+  ranged: 'This example allows you to set a date range, and to toggle `autoOk`, and `disableYearSelection`.',
+  controlled: '`DatePicker` can be implemented as a controlled input, where `value` is handled by state in the ' +
+  'parent component.',
+  localised: 'Date Picker can be localised using the `locale` property, in this case in French. ' +
+  'Note that the buttons must be localised using the `wordings` property, and we set the `firstDayOfWeek` to Monday.',
+};
+
 if (!window.Intl) {
   require('intl');
   require('intl/locale-data/jsonp/fr');
@@ -24,19 +34,39 @@ if (!window.Intl) {
 const DatePickerPage = () => (
   <div>
     <MarkdownElement text={datePickerReadmeText} />
-    <CodeExample code={datePickerExampleSimpleCode}>
+    <CodeExample
+      title="Simple examples"
+      description={descriptions.simple}
+      code={datePickerExampleSimpleCode}
+    >
       <DatePickerExampleSimple/>
     </CodeExample>
-    <CodeExample code={datePickerExampleInlineCode}>
+    <CodeExample
+      title="Inline examples"
+      description={descriptions.inline}
+      code={datePickerExampleInlineCode}
+    >
       <DatePickerExampleInline/>
     </CodeExample>
-    <CodeExample code={datePickerExampleToggleCode}>
+    <CodeExample
+      title="Ranged example"
+      description={descriptions.ranged}
+      code={datePickerExampleToggleCode}
+    >
       <DatePickerExampleToggle/>
     </CodeExample>
-    <CodeExample code={datePickerExampleControlledCode}>
+    <CodeExample
+      title="Controlled example"
+      description={descriptions.controlled}
+      code={datePickerExampleControlledCode}
+    >
       <DatePickerExampleControlled/>
     </CodeExample>
-    <CodeExample code={datePickerExampleInternationalCode}>
+    <CodeExample
+      title="Localised example"
+      description={descriptions.localised}
+      code={datePickerExampleInternationalCode}
+    >
       <DatePickerExampleInternational/>
     </CodeExample>
     <PropTypeDescription code={datePickerCode} />

@@ -13,6 +13,38 @@ import DateTime from '../utils/date-time';
 
 const DatePickerDialog = React.createClass({
 
+  propTypes: {
+    DateTimeFormat: React.PropTypes.func,
+    autoOk: React.PropTypes.bool,
+    container: React.PropTypes.oneOf(['dialog', 'inline']),
+    disableYearSelection: React.PropTypes.bool,
+    firstDayOfWeek: React.PropTypes.number,
+    initialDate: React.PropTypes.object,
+    locale: React.PropTypes.string,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    onAccept: React.PropTypes.func,
+    onDismiss: React.PropTypes.func,
+    onShow: React.PropTypes.func,
+    shouldDisableDate: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+    wordings: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   mixins: [
     StylePropable,
     WindowListenable,
@@ -33,43 +65,6 @@ const DatePickerDialog = React.createClass({
     },
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  propTypes: {
-    DateTimeFormat: React.PropTypes.func,
-    autoOk: React.PropTypes.bool,
-    container: React.PropTypes.oneOf(['dialog', 'inline']),
-    disableYearSelection: React.PropTypes.bool,
-    initialDate: React.PropTypes.object,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    onAccept: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    shouldDisableDate: React.PropTypes.func,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
-    wordings: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   getDefaultProps: function() {
     return {
       DateTimeFormat: DateTime.DateTimeFormat,
@@ -82,14 +77,16 @@ const DatePickerDialog = React.createClass({
     };
   },
 
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
-  },
-
   getInitialState() {
     return {
       open: false,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -100,89 +97,8 @@ const DatePickerDialog = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
-  render() {
-    let {
-      DateTimeFormat,
-      locale,
-      wordings,
-      initialDate,
-      onAccept,
-      style,
-      container,
-      ...other,
-    } = this.props;
-
-    const {
-      calendarTextColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
-
-    let styles = {
-      root: {
-        fontSize: 14,
-        color: calendarTextColor,
-      },
-
-      dialogContent: {
-        width: this.props.mode === 'landscape' ? 480 : 320,
-      },
-
-      dialogBodyContent: {
-        padding: 0,
-      },
-
-      actions: {
-        marginRight: 8,
-      },
-    };
-
-    let actions = [
-      <FlatButton
-        key={0}
-        label={wordings.cancel}
-        secondary={true}
-        style={styles.actions}
-        onTouchTap={this._handleCancelTouchTap} />,
-    ];
-
-    if (!this.props.autoOk) {
-      actions.push(
-        <FlatButton
-          key={1}
-          label={wordings.ok}
-          secondary={true}
-          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-          style={styles.actions}
-          onTouchTap={this._handleOKTouchTap} />
-      );
-    }
-
-    // will change later when Popover is available.
-    const Container = (container === 'inline' ? DatePickerInline : Dialog);
-    return (
-      <Container
-        {...other}
-        ref="dialog"
-        style={styles.root}
-        contentStyle={styles.dialogContent}
-        bodyStyle={styles.dialogBodyContent}
-        actions={actions}
-        repositionOnUpdate={false}
-        open={this.state.open}
-        onRequestClose={this.dismiss}>
-        <Calendar
-          DateTimeFormat={DateTimeFormat}
-          locale={locale}
-          ref="calendar"
-          onDayTouchTap={this._onDayTouchTap}
-          initialDate={this.props.initialDate}
-          open={this.state.open}
-          minDate={this.props.minDate}
-          maxDate={this.props.maxDate}
-          shouldDisableDate={this.props.shouldDisableDate}
-          disableYearSelection={this.props.disableYearSelection}
-          mode={this.props.mode} />
-      </Container>
-    );
+  windowListeners: {
+    keyup: '_handleWindowKeyUp',
   },
 
   show() {
@@ -225,6 +141,97 @@ const DatePickerDialog = React.createClass({
           break;
       }
     }
+  },
+
+  render() {
+    let {
+      DateTimeFormat,
+      locale,
+      wordings,
+      initialDate,
+      onAccept,
+      style,
+      container,
+      firstDayOfWeek,
+      ...other,
+    } = this.props;
+
+    const {
+      calendarTextColor,
+    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+
+    let styles = {
+      root: {
+        fontSize: 14,
+        color: calendarTextColor,
+      },
+
+      dialogContent: {
+        width: this.props.mode === 'landscape' ? 480 : 320,
+      },
+
+      dialogBodyContent: {
+        padding: 0,
+      },
+
+      actions: {
+        marginRight: 8,
+      },
+    };
+
+    let actions = [
+      <FlatButton
+        key={0}
+        label={wordings.cancel}
+        secondary={true}
+        style={styles.actions}
+        onTouchTap={this._handleCancelTouchTap}
+      />,
+    ];
+
+    if (!this.props.autoOk) {
+      actions.push(
+        <FlatButton
+          key={1}
+          label={wordings.ok}
+          secondary={true}
+          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
+          style={styles.actions}
+          onTouchTap={this._handleOKTouchTap}
+        />
+      );
+    }
+
+    // will change later when Popover is available.
+    const Container = (container === 'inline' ? DatePickerInline : Dialog);
+    return (
+      <Container
+        {...other}
+        ref="dialog"
+        style={styles.root}
+        contentStyle={styles.dialogContent}
+        bodyStyle={styles.dialogBodyContent}
+        actions={actions}
+        repositionOnUpdate={false}
+        open={this.state.open}
+        onRequestClose={this.dismiss}
+      >
+        <Calendar
+          DateTimeFormat={DateTimeFormat}
+          firstDayOfWeek={firstDayOfWeek}
+          locale={locale}
+          ref="calendar"
+          onDayTouchTap={this._onDayTouchTap}
+          initialDate={this.props.initialDate}
+          open={this.state.open}
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
+          shouldDisableDate={this.props.shouldDisableDate}
+          disableYearSelection={this.props.disableYearSelection}
+          mode={this.props.mode}
+        />
+      </Container>
+    );
   },
 
 });

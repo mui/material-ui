@@ -6,13 +6,114 @@ import StylePropable from '../mixins/style-propable';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 
-
 const TableBody = React.createClass({
 
-  mixins: [
-    ClickAwayable,
-    StylePropable,
-  ],
+  propTypes: {
+    /**
+     * Set to true to indicate that all rows should be selected.
+     */
+    allRowsSelected: React.PropTypes.bool,
+
+    /**
+     * Children passed to table body.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * Controls whether or not to deselect all selected
+     * rows after clicking outside the table.
+     */
+    deselectOnClickaway: React.PropTypes.bool,
+
+    /**
+     * Controls the display of the row checkbox. The default value is true.
+     */
+    displayRowCheckbox: React.PropTypes.bool,
+
+    /**
+     * If true, multiple table rows can be selected.
+     * CTRL/CMD+Click and SHIFT+Click are valid actions.
+     * The default value is false.
+     */
+    multiSelectable: React.PropTypes.bool,
+
+    /**
+     * Callback function for when a cell is clicked.
+     */
+    onCellClick: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is hovered. rowNumber
+     * is the row number of the hovered row and columnId
+     * is the column number or the column key of the cell.
+     */
+    onCellHover: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is no longer hovered.
+     * rowNumber is the row number of the row and columnId
+     * is the column number or the column key of the cell.
+     */
+    onCellHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when a table row is hovered.
+     * rowNumber is the row number of the hovered row.
+     */
+    onRowHover: React.PropTypes.func,
+
+    /**
+     * Called when a table row is no longer
+     * hovered. rowNumber is the row number of the row
+     * that is no longer hovered.
+     */
+    onRowHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when a row is selected. selectedRows is an
+     * array of all row selections. IF all rows have been selected,
+     * the string "all" will be returned instead to indicate that
+     * all rows have been selected.
+     */
+    onRowSelection: React.PropTypes.func,
+
+    /**
+     * Controls whether or not the rows are pre-scanned to determine
+     * initial state. If your table has a large number of rows and
+     * you are experiencing a delay in rendering, turn off this property.
+     */
+    preScanRows: React.PropTypes.bool,
+
+    /**
+     * If true, table rows can be selected. If multiple
+     * row selection is desired, enable multiSelectable.
+     * The default value is true.
+     */
+    selectable: React.PropTypes.bool,
+
+    /**
+     * If true, table rows will be highlighted when
+     * the cursor is hovering over the row. The default
+     * value is false.
+     */
+    showRowHover: React.PropTypes.bool,
+
+    /**
+     * If true, every other table row starting
+     * with the first row will be striped. The default value is false.
+     */
+    stripedRows: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -23,39 +124,10 @@ const TableBody = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  propTypes: {
-    allRowsSelected: React.PropTypes.bool,
-    children: React.PropTypes.node,
-
-    /**
-     * The css class name of the root element.
-     */
-    className: React.PropTypes.string,
-    deselectOnClickaway: React.PropTypes.bool,
-    displayRowCheckbox: React.PropTypes.bool,
-    multiSelectable: React.PropTypes.bool,
-    onCellClick: React.PropTypes.func,
-    onCellHover: React.PropTypes.func,
-    onCellHoverExit: React.PropTypes.func,
-    onRowHover: React.PropTypes.func,
-    onRowHoverExit: React.PropTypes.func,
-    onRowSelection: React.PropTypes.func,
-    preScanRows: React.PropTypes.bool,
-    selectable: React.PropTypes.bool,
-    showRowHover: React.PropTypes.bool,
-    stripedRows: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
-  },
+  mixins: [
+    ClickAwayable,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -73,6 +145,12 @@ const TableBody = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       selectedRows: this._calculatePreselectedRows(this.props),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -100,21 +178,6 @@ const TableBody = React.createClass({
       this.setState({selectedRows: []});
       if (this.props.onRowSelection) this.props.onRowSelection([]);
     }
-  },
-
-  render() {
-    let {
-      className,
-      style,
-      ...other,
-    } = this.props;
-    let rows = this._createRows();
-
-    return (
-      <tbody className={className} style={this.prepareStyles(style)}>
-        {rows}
-      </tbody>
-    );
   },
 
   _createRows() {
@@ -172,7 +235,8 @@ const TableBody = React.createClass({
       <TableRowColumn
         key={key}
         columnNumber={0}
-        style={{width: 24}}>
+        style={{width: 24}}
+      >
         {checkbox}
       </TableRowColumn>
     );
@@ -208,8 +272,7 @@ const TableBody = React.createClass({
 
       if (typeof selection === 'object') {
         if (this._isValueInRange(rowNumber, selection)) return true;
-      }
-      else {
+      } else {
         if (selection === rowNumber) return true;
       }
     }
@@ -246,12 +309,10 @@ const TableBody = React.createClass({
 
       if (typeof lastSelection === 'object') {
         lastSelection.end = rowNumber;
-      }
-      else {
+      } else {
         selectedRows.splice(lastIndex, 1, {start: lastSelection, end: rowNumber});
       }
-    }
-    else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
+    } else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
       let idx = selectedRows.indexOf(rowNumber);
       if (idx < 0) {
         let foundRange = false;
@@ -267,16 +328,13 @@ const TableBody = React.createClass({
         }
 
         if (!foundRange) selectedRows.push(rowNumber);
-      }
-      else {
+      } else {
         selectedRows.splice(idx, 1);
       }
-    }
-    else {
+    } else {
       if (selectedRows.length === 1 && selectedRows[0] === rowNumber) {
         selectedRows = [];
-      }
-      else {
+      } else {
         selectedRows = [rowNumber];
       }
     }
@@ -316,8 +374,7 @@ const TableBody = React.createClass({
       if (typeof selection === 'object') {
         let values = this._genRangeOfValues(selection.end, selection.start - selection.end);
         rows.push(selection.end, ...values);
-      }
-      else {
+      } else {
         rows.push(selection);
       }
     }
@@ -353,6 +410,21 @@ const TableBody = React.createClass({
     if (this.props.displayRowCheckbox) columnId--;
 
     return columnId;
+  },
+
+  render() {
+    let {
+      className,
+      style,
+      ...other,
+    } = this.props;
+    let rows = this._createRows();
+
+    return (
+      <tbody className={className} style={this.prepareStyles(style)}>
+        {rows}
+      </tbody>
+    );
   },
 
 });

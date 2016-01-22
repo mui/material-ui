@@ -41,7 +41,8 @@ const TabsExampleSimple = () => (
     <Tab
       label="onActive"
       route="/home"
-      onActive={handleActive} />
+      onActive={handleActive}
+    />
   </Tabs>
 );
 

@@ -43,34 +43,98 @@ let valueInRangePropType = (props, propName, componentName) => {
 
 const Slider = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * The default value of the slider.
+     */
     defaultValue: valueInRangePropType,
+
+    /**
+     * Describe the slider.
+     */
     description: React.PropTypes.string,
+
+    /**
+     * Disables focus ripple if set to true.
+     */
     disableFocusRipple: React.PropTypes.bool,
+
+    /**
+     * If true, the slider will not be interactable.
+     */
     disabled: React.PropTypes.bool,
+
+    /**
+     * An error message for the slider.
+     */
     error: React.PropTypes.string,
+
+    /**
+     * The maximum value the slider can slide to on
+     * a scale from 0 to 1 inclusive. Cannot be equal to min.
+     */
     max: minMaxPropType,
+
+    /**
+     * The minimum value the slider can slide to on a scale
+     * from 0 to 1 inclusive. Cannot be equal to max.
+     */
     min: minMaxPropType,
-    name: React.PropTypes.string.isRequired,
+
+    /**
+     * The name of the slider. Behaves like the name attribute
+     * of an input element.
+     */
+    name: React.PropTypes.string,
+
+    /**
+     * Callback function that is fired when the focus has left the slider.
+     */
     onBlur: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the user changes the slider's value.
+     */
     onChange: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the slider has begun to move.
+     */
     onDragStart: React.PropTypes.func,
+
+    /**
+     * Callback function that is fried when the slide has stopped moving.
+     */
     onDragStop: React.PropTypes.func,
+
+    /**
+     * Callback fired when the user has focused on the slider.
+     */
     onFocus: React.PropTypes.func,
+
+    /**
+     * Whether or not the slider is required in a form.
+     */
     required: React.PropTypes.bool,
+
+    /**
+     * The granularity the slider can step through values.
+     */
     step: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The value of the slider.
+     */
     value: valueInRangePropType,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -78,15 +142,14 @@ const Slider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
       disabled: false,
+      disableFocusRipple: false,
       max: 1,
       min: 0,
       required: true,
@@ -111,6 +174,12 @@ const Slider = React.createClass({
       percent: percent,
       value: value,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -219,7 +288,7 @@ const Slider = React.createClass({
         left: -this.getTheme().handleSize,
       },
     };
-    styles.filled = this.mergeAndPrefix(styles.filledAndRemaining, {
+    styles.filled = this.mergeStyles(styles.filledAndRemaining, {
       left: 0,
       backgroundColor: (this.props.disabled) ?
         this.getTheme().trackColor :
@@ -227,7 +296,7 @@ const Slider = React.createClass({
       marginRight: fillGutter,
       width: 'calc(' + (this.state.percent * 100) + '%' + calcDisabledSpacing + ')',
     });
-    styles.remaining = this.mergeAndPrefix(styles.filledAndRemaining, {
+    styles.remaining = this.mergeStyles(styles.filledAndRemaining, {
       right: 0,
       backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
@@ -237,91 +306,17 @@ const Slider = React.createClass({
     return styles;
   },
 
-  render() {
-    let {...others} = this.props;
-    let percent = this.state.percent;
-    if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
-    let styles = this.getStyles();
-    const sliderStyles = this.prepareStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.prepareStyles(
-      styles.handle,
-      styles.handleWhenPercentZero,
-      this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      (this.state.hovered || this.state.focused) && !this.props.disabled
-        && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.prepareStyles(
-      styles.handle,
-      this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      this.props.disabled && styles.handleWhenDisabled,
-      {
-        left: (percent * 100) + '%',
-      }
-    );
-    let rippleStyle = this.mergeAndPrefix(
-      styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero
-    );
-    let remainingStyles = styles.remaining;
-    if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
-      remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
-    }
-
-    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
-    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
-    let focusRipple;
-    if (!this.props.disabled && !this.props.disableFocusRipple) {
-      focusRipple = (
-        <FocusRipple
-          ref="focusRipple"
-          key="focusRipple"
-          style={rippleStyle}
-          innerStyle={styles.rippleInner}
-          show={rippleShowCondition}
-          color={rippleColor}/>
-      );
-    }
-
-    let handleDragProps = {};
-
-    if (!this.props.disabled) {
-      handleDragProps = {
-        onTouchStart: this._onHandleTouchStart,
-        onMouseDown: this._onHandleMouseDown,
-      };
-    }
-
-    return (
-      <div {...others } style={this.prepareStyles(this.props.style)}>
-        <span>{this.props.description}</span>
-        <span>{this.props.error}</span>
-        <div style={sliderStyles}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-          onMouseDown={this._onMouseDown}
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-          onMouseUp={this._onMouseUp} >
-          <div ref="track" style={this.prepareStyles(styles.track)}>
-              <div style={this.prepareStyles(styles.filled)}></div>
-              <div style={this.prepareStyles(remainingStyles)}></div>
-              <div style={handleStyles} tabIndex={0} {...handleDragProps}>
-                {focusRipple}
-              </div>
-            </div>
-        </div>
-        <input ref="input" type="hidden"
-          name={this.props.name}
-          value={this.state.value}
-          required={this.props.required}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step} />
-      </div>
-    );
+  // Needed to prevent text selection when dragging the slider handler.
+  // In the future, we should consider use <input type="range"> to avoid
+  // similar issues.
+  _toggleSelection(value) {
+    let body = document.getElementsByTagName('body')[0];
+    body.style['user-select'] = value;
+    body.style['-webkit-user-select'] = value;
+    body.style['-moz-user-select'] = value;
+    body.style['-ms-user-select'] = value;
+    body.style['-o-user-select'] = value;
   },
 
   _onHandleTouchStart(e) {
@@ -338,12 +333,15 @@ const Slider = React.createClass({
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
+      this._toggleSelection('none');
     }
     this._onDragStart(e);
   },
 
   _dragHandler(e) {
-    if (this._dragRunning) { return; }
+    if (this._dragRunning) {
+      return;
+    }
     this._dragRunning = true;
     requestAnimationFrame(() => {
       this._onDragUpdate(e, e.clientX - this._getTrackLeft());
@@ -352,7 +350,9 @@ const Slider = React.createClass({
   },
 
   _dragTouchHandler(e) {
-    if (this._dragRunning) { return; }
+    if (this._dragRunning) {
+      return;
+    }
     this._dragRunning = true;
     requestAnimationFrame(() => {
       this._onDragUpdate(e, e.touches[0].clientX - this._getTrackLeft());
@@ -364,6 +364,7 @@ const Slider = React.createClass({
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
+      this._toggleSelection('');
     }
 
     this._onDragStop(e);
@@ -491,6 +492,96 @@ const Slider = React.createClass({
     return percent * (this.props.max - this.props.min) + this.props.min;
   },
 
+  render() {
+    let {...others} = this.props;
+    let percent = this.state.percent;
+    if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
+
+    let styles = this.getStyles();
+    const sliderStyles = this.mergeStyles(styles.root, this.props.style);
+    const handleStyles = percent === 0 ? this.mergeStyles(
+      styles.handle,
+      styles.handleWhenPercentZero,
+      this.state.active && styles.handleWhenActive,
+      this.state.focused && {outline: 'none'},
+      (this.state.hovered || this.state.focused) && !this.props.disabled
+        && styles.handleWhenPercentZeroAndFocused,
+      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
+    ) : this.mergeStyles(
+      styles.handle,
+      this.state.active && styles.handleWhenActive,
+      this.state.focused && {outline: 'none'},
+      this.props.disabled && styles.handleWhenDisabled,
+      {
+        left: (percent * 100) + '%',
+      }
+    );
+    let rippleStyle = this.mergeStyles(
+      styles.ripple,
+      percent === 0 && styles.rippleWhenPercentZero
+    );
+    let remainingStyles = styles.remaining;
+    if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
+      remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
+    }
+
+    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
+    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
+    let focusRipple;
+    if (!this.props.disabled && !this.props.disableFocusRipple) {
+      focusRipple = (
+        <FocusRipple
+          ref="focusRipple"
+          key="focusRipple"
+          style={this.mergeStyles(rippleStyle)}
+          innerStyle={styles.rippleInner}
+          show={rippleShowCondition}
+          color={rippleColor}
+        />
+      );
+    }
+
+    let handleDragProps = {};
+
+    if (!this.props.disabled) {
+      handleDragProps = {
+        onTouchStart: this._onHandleTouchStart,
+        onMouseDown: this._onHandleMouseDown,
+      };
+    }
+
+    return (
+      <div {...others } style={this.prepareStyles(this.props.style)}>
+        <span>{this.props.description}</span>
+        <span>{this.props.error}</span>
+        <div
+          style={this.prepareStyles(sliderStyles)}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+          onMouseDown={this._onMouseDown}
+          onMouseEnter={this._onMouseEnter}
+          onMouseLeave={this._onMouseLeave}
+          onMouseUp={this._onMouseUp}
+        >
+          <div ref="track" style={this.prepareStyles(styles.track)}>
+            <div style={this.prepareStyles(styles.filled)}></div>
+            <div style={this.prepareStyles(remainingStyles)}></div>
+            <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+              {focusRipple}
+            </div>
+          </div>
+        </div>
+        <input ref="input" type="hidden"
+          name={this.props.name}
+          value={this.state.value}
+          required={this.props.required}
+          min={this.props.min}
+          max={this.props.max}
+          step={this.props.step}
+        />
+      </div>
+    );
+  },
 });
 
 export default Slider;

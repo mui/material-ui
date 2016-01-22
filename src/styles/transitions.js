@@ -4,7 +4,6 @@ export default {
   easeInOutFunction: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
 
   easeOut(duration, property, delay, easeFunction) {
-
     easeFunction = easeFunction || this.easeOutFunction;
 
     if (property &&
@@ -15,13 +14,11 @@ export default {
         if (transitions) transitions += ',';
         transitions += this.create(duration, property[i], delay, easeFunction);
       }
-      return transitions;
 
-    }
-    else {
+      return transitions;
+    } else {
       return this.create(duration, property, delay, easeFunction);
     }
-
   },
 
   create(duration, property, delay, easeFunction) {

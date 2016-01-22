@@ -7,7 +7,6 @@ import ThemeManager from '../styles/theme-manager';
 import Paper from '../paper';
 
 const PopoverDefaultAnimation = React.createClass({
-  mixins: [StylePropable],
 
   propTypes: {
     children: React.PropTypes.node,
@@ -26,13 +25,6 @@ const PopoverDefaultAnimation = React.createClass({
     zDepth: PropTypes.zDepth,
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      open: false,
-    };
-  },
-
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
@@ -42,16 +34,27 @@ const PopoverDefaultAnimation = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
       style: {},
       zDepth: 1,
+    };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      open: false,
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -134,7 +137,8 @@ const PopoverDefaultAnimation = React.createClass({
       <Paper
         style={this.mergeStyles(styles.base, style, openStyles.base)}
         zDepth={zDepth}
-        className={className}>
+        className={className}
+      >
         <div style={this.prepareStyles(styles.horizontal, openStyles.horizontal)}>
           <div style={this.prepareStyles(styles.vertical, openStyles.vertical)}>
             {this.props.children}

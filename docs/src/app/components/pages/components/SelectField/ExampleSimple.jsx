@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectField from 'material-ui/lib/SelectField';
+import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
 export default class SelectFieldExampleSimple extends React.Component {
@@ -13,13 +13,20 @@ export default class SelectFieldExampleSimple extends React.Component {
 
   render() {
     return (
-      <SelectField value={this.state.value} onChange={this.handleChange}>
-        <MenuItem value={1} primaryText="Never"/>
-        <MenuItem value={2} primaryText="Every Night"/>
-        <MenuItem value={3} primaryText="Weeknights"/>
-        <MenuItem value={4} primaryText="Weekends"/>
-        <MenuItem value={5} primaryText="Weekly"/>
-      </SelectField>
+      <div>
+        <SelectField value={this.state.value} onChange={this.handleChange}>
+          <MenuItem value={1} primaryText="Never"/>
+          <MenuItem value={2} primaryText="Every Night"/>
+          <MenuItem value={3} primaryText="Weeknights"/>
+          <MenuItem value={4} primaryText="Weekends"/>
+          <MenuItem value={5} primaryText="Weekly"/>
+        </SelectField>
+        <br />
+        <SelectField value={1} disabled={true}>
+          <MenuItem value={1} primaryText="Never"/>
+          <MenuItem value={2} primaryText="Every Night"/>
+        </SelectField>
+      </div>
     );
   }
 }

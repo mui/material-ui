@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectField from 'material-ui/lib/SelectField';
+import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
 const items = [
@@ -25,15 +25,15 @@ export default class SelectFieldExampleFloatingLabel extends React.Component {
         <SelectField
           value={this.state.value}
           onChange={this.handleChange}
-          floatingLabelText="Float Label Text"
+          floatingLabelText="Floating Label Text"
         >
           {items}
         </SelectField>
-        <br/>
+        <br />
         <SelectField
           value={this.state.value}
           onChange={this.handleChange}
-          floatingLabelText="Custom Float Label Text"
+          floatingLabelText="Styled Floating Label Text"
           floatingLabelStyle={{color: 'red'}}
         >
           {items}

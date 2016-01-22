@@ -1,6 +1,6 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
-import styleUtils from '../utils/styles';
+import {mergeStyles, prepareStyles} from '../utils/styles';
 
 const propTypes = {
   /**
@@ -14,7 +14,7 @@ const propTypes = {
   show: React.PropTypes.bool,
 
   /**
-   * Override the inline-styles of the hint text.
+   * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
 
@@ -54,8 +54,8 @@ const TextFieldHint = (props) => {
   };
 
   return (
-    <div
-      style={styleUtils.prepareStyles(muiTheme, styles.root, style)}>{text}
+    <div style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}>
+      {text}
     </div>
   );
 };

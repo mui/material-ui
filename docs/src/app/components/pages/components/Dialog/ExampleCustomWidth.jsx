@@ -18,22 +18,24 @@ export default class DialogExampleCustomWidth extends React.Component {
 
   handleOpen = () => {
     this.setState({open: true});
-  }
+  };
 
   handleClose = () => {
     this.setState({open: false});
-  }
+  };
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         secondary={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
       <FlatButton
         label="Submit"
         primary={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
     ];
 
     return (

@@ -9,30 +9,67 @@ import ThemeManager from './styles/theme-manager';
 
 const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
-  mixins: [StylePropable],
-
-  scalePathTimer: undefined,
-  rotateWrapperTimer: undefined,
-  rotateWrapperSecondTimer: undefined,
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
+    /**
+     * Override the theme's color of the indicator while it's status is
+     * "ready" and it's percentage is less than 100.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * The absolute left position of the indicator in pixels.
+     */
     left: React.PropTypes.number.isRequired,
+
+    /**
+     * Override the theme's color of the indicator while
+     * it's status is "loading" or when it's percentage is 100.
+     */
     loadingColor: React.PropTypes.string,
+
+    /**
+     * The confirmation progress to fetch data. Max value is 100.
+     */
     percentage: React.PropTypes.number,
+
+    /**
+     * Size in pixels.
+     */
     size: React.PropTypes.number,
+
+    /**
+     * The display status of the indicator. If the status is
+     * "ready", the indicator will display the ready state
+     * arrow. If the status is "loading", it will display
+     * the loading progress indicator. If the status is "hide",
+     * the indicator will be hidden.
+     */
     status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The absolute top position of the indicator in pixels.
+     */
     top: React.PropTypes.number.isRequired,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -42,9 +79,10 @@ const RefreshIndicator = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
   },
 
   getChildContext() {
@@ -53,10 +91,8 @@ const RefreshIndicator = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
+  componentDidMount() {
+    this.componentDidUpdate();
   },
 
   //to update theme inside state whenever a new theme is passed down
@@ -64,10 +100,6 @@ const RefreshIndicator = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  componentDidMount() {
-    this.componentDidUpdate();
   },
 
   componentDidUpdate() {
@@ -81,18 +113,9 @@ const RefreshIndicator = React.createClass({
     clearTimeout(this.rotateWrapperSecondTimer);
   },
 
-  render() {
-    const rootStyle = this._getRootStyle();
-    return (
-      <Paper
-        circle={true}
-        style={this.mergeStyles(rootStyle, this.props.style)}
-        ref="indicatorCt"
-      >
-        {this._renderChildren()}
-      </Paper>
-    );
-  },
+  scalePathTimer: undefined,
+  rotateWrapperTimer: undefined,
+  rotateWrapperSecondTimer: undefined,
 
   _renderChildren() {
     const paperSize = this._getPaperSize();
@@ -268,7 +291,10 @@ const RefreshIndicator = React.createClass({
     const perimeter = Math.PI * 2 * circle.radiu;
     const arcLen = perimeter * 0.64;
 
-    let strokeDasharray, strokeDashoffset, transitionDuration;
+    let strokeDasharray;
+    let strokeDashoffset;
+    let transitionDuration;
+
     if (currStep === 0) {
       strokeDasharray = '1, 200';
       strokeDashoffset = 0;
@@ -308,6 +334,19 @@ const RefreshIndicator = React.createClass({
 
   prefixed(key) {
     return AutoPrefix.single(key);
+  },
+
+  render() {
+    const rootStyle = this._getRootStyle();
+    return (
+      <Paper
+        circle={true}
+        style={this.mergeStyles(rootStyle, this.props.style)}
+        ref="indicatorCt"
+      >
+        {this._renderChildren()}
+      </Paper>
+    );
   },
 
 });

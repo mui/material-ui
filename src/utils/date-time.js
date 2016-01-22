@@ -1,5 +1,6 @@
 import warning from 'warning';
 
+const dayAbbreviation = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
   'Oct', 'Nov', 'Dec'];
@@ -20,11 +21,11 @@ function DateTimeFormat(locale, options) {
       output = dayList[date.getDay()] + ', ';
       output += monthList[date.getMonth()] + ' ';
       output += date.getDate();
-    } else if (options.month === 'long'
-        && options.year === 'numeric') {
-
+    } else if (options.month === 'long' && options.year === 'numeric') {
       output = monthLongList[date.getMonth()];
       output += ' ' + date.getFullYear();
+    } else if (options.weekday === 'narrow') {
+      output = dayAbbreviation[date.getDay()];
     } else {
       warning(false, 'Wrong usage of DateTimeFormat');
     }
@@ -77,33 +78,48 @@ export default {
     return new Date(d.getFullYear(), d.getMonth(), 1);
   },
 
-  getWeekArray(d) {
+  getFirstDayOfWeek() {
+    const now = new Date();
+    return new Date(now.setDate(now.getDate() - now.getDay()));
+  },
+
+  getWeekArray(d, firstDayOfWeek) {
     let dayArray = [];
     let daysInMonth = this.getDaysInMonth(d);
-    let daysInWeek;
-    let emptyDays;
-    let firstDayOfWeek;
-    let week;
     let weekArray = [];
+    let week = [];
 
     for (let i = 1; i <= daysInMonth; i++) {
       dayArray.push(new Date(d.getFullYear(), d.getMonth(), i));
     }
 
-    while (dayArray.length) {
-      firstDayOfWeek = dayArray[0].getDay();
-      daysInWeek = 7 - firstDayOfWeek;
-      emptyDays = 7 - daysInWeek;
-      week = dayArray.splice(0, daysInWeek);
-
-      for (let i = 0; i < emptyDays; i++) {
-        week.unshift(null);
+    const addWeek = week => {
+      const emptyDays = 7 - week.length;
+      for (let i = 0; i < emptyDays; ++i) {
+        week[weekArray.length ? 'push' : 'unshift'](null);
       }
-
       weekArray.push(week);
-    }
+    };
+
+    dayArray.forEach(day => {
+      if (week.length > 0 && day.getDay() === firstDayOfWeek) {
+        addWeek(week);
+        week = [];
+      }
+      week.push(day);
+      if (dayArray.indexOf(day) === dayArray.length - 1) {
+        addWeek(week);
+      }
+    });
 
     return weekArray;
+  },
+
+  localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
+    const weekdayFormatter = new DateTimeFormat(locale, {weekday: 'narrow'});
+    const firstDayDate = this.getFirstDayOfWeek();
+
+    return weekdayFormatter.format(this.addDays(firstDayDate, day + firstDayOfWeek));
   },
 
   format(date) {

@@ -18,8 +18,9 @@ export default class LeftNavUndockedExample extends React.Component {
     return (
       <div>
         <RaisedButton
-          label="Undocked Controlled LeftNav With Custom Width"
-          onTouchTap={this.handleToggle} />
+          label="Open LeftNav"
+          onTouchTap={this.handleToggle}
+        />
         <LeftNav
           docked={false}
           width={200}

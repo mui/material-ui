@@ -5,11 +5,6 @@ let DesktopGutter = Styles.Spacing.desktopGutter;
 
 const FullWidthSection = React.createClass({
 
-  mixins: [
-    StylePropable,
-    StyleResizable,
-  ],
-
   propTypes: {
     children: React.PropTypes.node,
     contentStyle: React.PropTypes.object,
@@ -17,6 +12,11 @@ const FullWidthSection = React.createClass({
     style: React.PropTypes.object,
     useContent: React.PropTypes.bool,
   },
+
+  mixins: [
+    StylePropable,
+    StyleResizable,
+  ],
 
   getDefaultProps() {
     return {
@@ -62,7 +62,7 @@ const FullWidthSection = React.createClass({
       content =
         React.createElement(
           contentType,
-          {style: this.mergeAndPrefix(styles.content, contentStyle)},
+          {style: this.mergeStyles(styles.content, contentStyle)},
           this.props.children
         );
     } else {
@@ -70,12 +70,14 @@ const FullWidthSection = React.createClass({
     }
 
     return (
-      <ClearFix {...other}
-        style={this.mergeAndPrefix(
+      <ClearFix
+        {...other}
+        style={this.mergeStyles(
           styles.root,
           style,
           this.isDeviceSize(StyleResizable.statics.Sizes.SMALL) && styles.rootWhenSmall,
-          this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && styles.rootWhenLarge)}>
+          this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && styles.rootWhenLarge)}
+      >
         {content}
       </ClearFix>
     );

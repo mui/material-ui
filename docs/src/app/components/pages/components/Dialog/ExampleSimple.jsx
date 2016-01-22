@@ -13,35 +13,38 @@ export default class DialogExampleSimple extends React.Component {
 
   handleOpen = () => {
     this.setState({open: true});
-  }
+  };
 
   handleClose = () => {
     this.setState({open: false});
-  }
+  };
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
         secondary={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleClose} />,
+        onTouchTap={this.handleClose}
+      />,
     ];
 
     return (
       <div>
-        <RaisedButton label="Dialog With Actions" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Dialog" onTouchTap={this.handleOpen} />
         <Dialog
           title="Dialog With Actions"
           actions={actions}
           modal={false}
           open={this.state.open}
-          onRequestClose={this.handleClose}>
-          The actions in this window were passed in as an array of react objects.
+          onRequestClose={this.handleClose}
+        >
+          The actions in this window were passed in as an array of React objects.
         </Dialog>
       </div>
     );

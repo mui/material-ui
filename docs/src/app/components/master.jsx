@@ -24,6 +24,17 @@ const githubButton = (
 );
 
 const Master = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.node,
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
+  },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   mixins: [
     StylePropable,
     StyleResizable,
@@ -36,20 +47,23 @@ const Master = React.createClass({
     };
   },
 
-  propTypes: {
-    children: React.PropTypes.node,
-    history: React.PropTypes.object,
-    location: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentWillMount() {
+    this.setState({
+      muiTheme: this.state.muiTheme,
+    });
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
   },
 
   getStyles() {
@@ -98,21 +112,6 @@ const Master = React.createClass({
     return styles;
   },
 
-  componentWillMount() {
-    const newMuiTheme = this.state.muiTheme;
-    newMuiTheme.inkBar.backgroundColor = Colors.yellow200;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
-  },
-
   handleTouchTapLeftIconButton() {
     this.setState({
       leftNavOpen: !this.state.leftNavOpen,
@@ -132,6 +131,12 @@ const Master = React.createClass({
     });
   },
 
+  handleChangeMuiTheme(muiTheme) {
+    this.setState({
+      muiTheme: muiTheme,
+    });
+  },
+
   render() {
     const {
       history,
@@ -147,7 +152,8 @@ const Master = React.createClass({
     const title =
       history.isActive('/get-started') ? 'Get Started' :
       history.isActive('/customization') ? 'Customization' :
-      history.isActive('/components') ? 'Components' : '';
+      history.isActive('/components') ? 'Components' :
+      history.isActive('/discover-more') ? 'Discover More' : '';
 
     let docked = false;
     let showMenuIconButton = true;
@@ -177,7 +183,9 @@ const Master = React.createClass({
         {title !== '' ?
           <div style={this.prepareStyles(styles.root)}>
             <div style={this.prepareStyles(styles.content)}>
-              {children}
+              {React.cloneElement(children, {
+                onChangeMuiTheme: this.handleChangeMuiTheme,
+              })}
             </div>
           </div>
           :
@@ -199,8 +207,10 @@ const Master = React.createClass({
               Call-Em-All
             </a>
             {' and our awesome '}
-            <a style={this.prepareStyles(styles.a)}
-              href="https://github.com/callemall/material-ui/graphs/contributors">
+            <a
+              style={this.prepareStyles(styles.a)}
+              href="https://github.com/callemall/material-ui/graphs/contributors"
+            >
               contributors
             </a>.
           </p>

@@ -5,12 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const TimeDisplay = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     affix: React.PropTypes.oneOf(['', 'pm', 'am']),
     format: React.PropTypes.oneOf(['ampm', '24hr']),
@@ -21,14 +15,21 @@ const TimeDisplay = React.createClass({
     selectedTime: React.PropTypes.object.isRequired,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      mode: 'hour',
+      affix: '',
     };
   },
 
@@ -39,10 +40,9 @@ const TimeDisplay = React.createClass({
     };
   },
 
-  getDefaultProps() {
+  getChildContext() {
     return {
-      mode: 'hour',
-      affix: '',
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -145,14 +145,18 @@ const TimeDisplay = React.createClass({
     let buttons = [];
     if (this.props.format === 'ampm') {
       buttons = [
-        <div key="pm"
+        <div
+          key="pm"
           style={this.prepareStyles(styles.clickable, affix === 'pm' ? {} : styles.inactive)}
-          onTouchTap={() => this.props.onSelectAffix('pm')}>
+          onTouchTap={() => this.props.onSelectAffix('pm')}
+        >
           {"PM"}
         </div>,
-        <div key="am"
+        <div
+          key="am"
           style={this.prepareStyles(styles.affixTop, styles.clickable, affix === 'am' ? {} : styles.inactive)}
-          onTouchTap={() => this.props.onSelectAffix('am')}>
+          onTouchTap={() => this.props.onSelectAffix('am')}
+        >
           {"AM"}
         </div>,
       ];
@@ -166,13 +170,15 @@ const TimeDisplay = React.createClass({
             <div style={this.prepareStyles(styles.time)}>
               <span
                 style={this.prepareStyles(styles.clickable, mode === 'hour' ? {} : styles.inactive)}
-                onTouchTap={this.props.onSelectHour}>
+                onTouchTap={this.props.onSelectHour}
+              >
                 {hour}
               </span>
               <span>:</span>
               <span
                 style={this.prepareStyles(styles.clickable, mode === 'minute' ? {} : styles.inactive)}
-                onTouchTap={this.props.onSelectMin}>
+                onTouchTap={this.props.onSelectMin}
+              >
                 {min}
               </span>
             </div>

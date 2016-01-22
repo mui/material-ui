@@ -26,12 +26,8 @@ const TabsPage = () => (
     <CodeExample code={tabsExampleSwipeableCode}>
       <TabsExampleSwipeable />
     </CodeExample>
-    <PropTypeDescription
-      code={tabsCode}
-      header={tabsText} />
-    <PropTypeDescription
-      code={tabCode}
-      header={tabText} />
+    <PropTypeDescription code={tabsCode} header={tabsText} />
+    <PropTypeDescription code={tabCode} header={tabText} />
   </div>
 );
 

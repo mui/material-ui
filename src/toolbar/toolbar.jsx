@@ -5,12 +5,6 @@ import ThemeManager from '../styles/theme-manager';
 
 const Toolbar = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     /**
      * Can be a `ToolbarGroup` to render a group of related items.
@@ -33,26 +27,31 @@ const Toolbar = React.createClass({
     style: React.PropTypes.object,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
+
   getDefaultProps() {
     return {
       noGutter: false,
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
   },
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
 

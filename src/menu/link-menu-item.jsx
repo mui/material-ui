@@ -3,13 +3,9 @@ import StylePropable from '../mixins/style-propable';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 
+/*eslint-disable */
+
 const LinkMenuItem = React.createClass({
-
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
 
   propTypes: {
     active: React.PropTypes.bool,
@@ -25,11 +21,8 @@ const LinkMenuItem = React.createClass({
     text: React.PropTypes.string.isRequired,
   },
 
-  getDefaultProps() {
-    return {
-      active: false,
-      disabled: false,
-    };
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -37,9 +30,12 @@ const LinkMenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [StylePropable],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      active: false,
+      disabled: false,
     };
   },
 
@@ -47,6 +43,12 @@ const LinkMenuItem = React.createClass({
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
       hovered: false,
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -86,6 +88,20 @@ const LinkMenuItem = React.createClass({
     return style;
   },
 
+  _stopLink(event) {
+    event.preventDefault();
+  },
+
+  _handleMouseEnter(e) {
+    this.setState({hovered: true});
+    if (!this.props.disabled && this.props.onMouseEnter) this.props.onMouseEnter(e);
+  },
+
+  _handleMouseLeave(e) {
+    this.setState({hovered: false});
+    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e);
+  },
+
   render() {
     let onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
@@ -118,19 +134,6 @@ const LinkMenuItem = React.createClass({
     );
   },
 
-  _stopLink(event) {
-    event.preventDefault();
-  },
-
-  _handleMouseEnter(e) {
-    this.setState({hovered: true});
-    if (!this.props.disabled && this.props.onMouseEnter) this.props.onMouseEnter(e);
-  },
-
-  _handleMouseLeave(e) {
-    this.setState({hovered: false});
-    if (!this.props.disabled && this.props.onMouseLeave) this.props.onMouseLeave(e);
-  },
 });
 
 export default LinkMenuItem;

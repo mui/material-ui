@@ -6,19 +6,6 @@ import StylePropable from './mixins/style-propable';
 
 // Badge
 const Badge = React.createClass({
-  mixins: [StylePropable],
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
   propTypes: {
     /**
      * This is the content rendered within the badge.
@@ -55,15 +42,28 @@ const Badge = React.createClass({
      */
     style: React.PropTypes.object,
   },
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+  mixins: [StylePropable],
+  getDefaultProps() {
+    return {
+      primary: false,
+      secondary: false,
+    };
+  },
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
     };
   },
-  getDefaultProps() {
+  getChildContext() {
     return {
-      primary: false,
-      secondary: false,
+      muiTheme: this.state.muiTheme,
     };
   },
   componentWillReceiveProps(nextProps, nextContext) {

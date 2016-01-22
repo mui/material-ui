@@ -1,4 +1,5 @@
 import InlineStylePrefixer from 'inline-style-prefixer';
+import warning from 'warning';
 
 const prefixers = {};
 
@@ -7,8 +8,9 @@ export default {
   getPrefixer() {
     // Server-side renderer needs to supply user agent
     if (typeof navigator === 'undefined') {
-      console.warn(`Material-UI expects the global navigator.userAgent to be defined
-for server-side rendering. Set this property when receiving the request headers.`);
+      warning(false, `Material-UI expects the global navigator.userAgent to be defined
+        for server-side rendering. Set this property when receiving the request headers.`);
+
       return null;
     }
 
@@ -18,7 +20,7 @@ for server-side rendering. Set this property when receiving the request headers.
     let prefixer = prefixers[userAgent];
     // None found, create a new instance
     if (!prefixer) {
-      prefixer = new InlineStylePrefixer(userAgent);
+      prefixer = new InlineStylePrefixer({userAgent: userAgent});
       prefixers[userAgent] = prefixer;
     }
 

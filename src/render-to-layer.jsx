@@ -14,6 +14,15 @@ const RenderToLayer = React.createClass({
     useLayerForClickAway: React.PropTypes.bool,
   },
 
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   getDefaultProps() {
     return {
       useLayerForClickAway: true,
@@ -26,19 +35,14 @@ const RenderToLayer = React.createClass({
     };
   },
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentDidMount() {
+    this._renderLayer();
   },
 
   //to update theme inside state whenever a new theme is passed down
@@ -50,18 +54,12 @@ const RenderToLayer = React.createClass({
     });
   },
 
-  componentDidMount() {
-    this._renderLayer();
-  },
-
   componentDidUpdate() {
     this._renderLayer();
   },
 
   componentWillUnmount() {
-    if (this._layer) {
-      this._unrenderLayer();
-    }
+    this._unrenderLayer();
   },
 
   onClickAway(event) {
@@ -88,8 +86,23 @@ const RenderToLayer = React.createClass({
     return this._layer;
   },
 
-  render() {
-    return null;
+  _unrenderLayer: function() {
+    if (!this._layer) {
+      return;
+    }
+
+    if (this.props.useLayerForClickAway) {
+      this._layer.style.position = 'relative';
+      this._layer.removeEventListener('touchstart', this.onClickAway);
+      this._layer.removeEventListener('click', this.onClickAway);
+    } else {
+      window.removeEventListener('touchstart', this.onClickAway);
+      window.removeEventListener('click', this.onClickAway);
+    }
+
+    ReactDOM.unmountComponentAtNode(this._layer);
+    document.body.removeChild(this._layer);
+    this._layer = null;
   },
 
   _renderLayer() {
@@ -133,25 +146,12 @@ const RenderToLayer = React.createClass({
         this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this._layer);
       }
     } else {
-      if (this._layer) {
-        if (this.props.useLayerForClickAway) {
-          this._layer.style.position = 'relative';
-          this._layer.removeEventListener('touchstart', this.onClickAway);
-          this._layer.removeEventListener('click', this.onClickAway);
-        } else {
-          window.removeEventListener('touchstart', this.onClickAway);
-          window.removeEventListener('click', this.onClickAway);
-        }
-
-        this._unrenderLayer();
-      }
+      this._unrenderLayer();
     }
   },
 
-  _unrenderLayer: function() {
-    ReactDOM.unmountComponentAtNode(this._layer);
-    document.body.removeChild(this._layer);
-    this._layer = null;
+  render() {
+    return null;
   },
 
 });

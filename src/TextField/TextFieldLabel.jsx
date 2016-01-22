@@ -1,6 +1,6 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
-import styleUtils from '../utils/styles';
+import {mergeStyles, prepareStyles} from '../utils/styles';
 
 const propTypes = {
   /**
@@ -39,7 +39,7 @@ const propTypes = {
   onTouchTap: React.PropTypes.func,
 
   /**
-   * Override the inline-styles of the floating label.
+   * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
 };
@@ -82,7 +82,7 @@ const TextFieldLabel = (props) => {
   return (
     <label
       className={className}
-      style={styleUtils.prepareStyles(muiTheme, styles.root, style)}
+      style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}
       htmlFor={htmlFor}
       onTouchTap={onTouchTap}
     >

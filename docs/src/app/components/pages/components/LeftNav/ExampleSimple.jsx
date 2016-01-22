@@ -16,8 +16,9 @@ export default class LeftNavSimpleExample extends React.Component {
     return (
       <div>
         <RaisedButton
-          label="Simple Controlled LeftNav"
-          onTouchTap={this.handleToggle} />
+          label="Toggle LeftNav"
+          onTouchTap={this.handleToggle}
+        />
         <LeftNav open={this.state.open}>
           <MenuItem>Menu Item</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>

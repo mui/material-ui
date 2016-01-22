@@ -8,7 +8,9 @@ const DatePickerExampleInternational = () => (
     // Intl is supported by most modern browsers, see http://caniuse.com/#search=intl
     // for browsers that don't support it use this polyfill https://github.com/andyearnshaw/Intl.js
     wordings={{ok: 'OK', cancel: 'Annuler'}}
-    locale="fr" />
+    firstDayOfWeek={1}
+    locale="fr"
+  />
 );
 
 export default DatePickerExampleInternational;

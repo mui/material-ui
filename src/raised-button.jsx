@@ -17,12 +17,137 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-
 const RaisedButton = React.createClass({
 
-  mixins: [
-    StylePropable,
-  ],
+  propTypes: {
+    /**
+     * Override the background color. Always takes precedence unless the button is disabled.
+     */
+    backgroundColor: React.PropTypes.string,
+
+    /**
+     * This is what will be displayed inside the button.
+     * If a label is specified, the text within the label prop will
+     * be displayed. Otherwise, the component will expect children
+     * which will then be displayed (in our example,
+     * we are nesting an <input type="file" />and a span
+     * that acts as our label to be displayed.) This only
+     * applies to flat and raised buttons.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * Disables the button if set to true.
+     */
+    disabled: React.PropTypes.bool,
+
+    /**
+     * Override the background color if the button is disabled.
+     */
+    disabledBackgroundColor: React.PropTypes.string,
+
+    /**
+     * Color of the label if disabled is true.
+     */
+    disabledLabelColor: React.PropTypes.string,
+
+    /**
+     * If true, then the button will take up the full
+     * width of its container.
+     */
+    fullWidth: React.PropTypes.bool,
+
+    /**
+     * URL to link to when button clicked if `linkButton` is set to true.
+     */
+    href: React.PropTypes.string,
+
+    /**
+     * Use this property to display an icon.
+     */
+    icon: React.PropTypes.node,
+
+    /**
+     * The label for the button.
+     */
+    label: validateLabel,
+
+    /**
+     * The color of the label for the button.
+     */
+    labelColor: React.PropTypes.string,
+
+    /**
+     * Place label before or after the passed children.
+     */
+    labelPosition: React.PropTypes.oneOf([
+      'before',
+      'after',
+    ]),
+
+    /**
+     * Override the inline-styles of the button's label element.
+     */
+    labelStyle: React.PropTypes.object,
+
+    /**
+     * Enables use of `href` property to provide a URL to link to if set to true.
+     */
+    linkButton: React.PropTypes.bool,
+
+    /**
+     * Callback function for when the mouse is pressed down inside this element.
+     */
+    onMouseDown: React.PropTypes.func,
+
+    /**
+     * Callback function for when the mouse enters this element.
+     */
+    onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Callback function for when the mouse leaves this element.
+     */
+    onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Callback function for when the mouse is realeased
+     * above this element.
+     */
+    onMouseUp: React.PropTypes.func,
+
+    /**
+     * Callback function for when a touchTap event ends.
+     */
+    onTouchEnd: React.PropTypes.func,
+
+    /**
+     * Callback function for when a touchTap event starts.
+     */
+    onTouchStart: React.PropTypes.func,
+
+    /**
+     * If true, colors button according to
+     * primaryTextColor from the Theme.
+     */
+    primary: React.PropTypes.bool,
+
+    /**
+     * If true, colors button according to secondaryTextColor from the theme.
+     * The primary prop has precendent if set to true.
+     */
+    secondary: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -33,49 +158,18 @@ const RaisedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  propTypes: {
-    backgroundColor: React.PropTypes.string,
-    children: React.PropTypes.node,
-
-    /**
-     * The css class name of the root element.
-     */
-    className: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    disabledBackgroundColor: React.PropTypes.string,
-    disabledLabelColor: React.PropTypes.string,
-    fullWidth: React.PropTypes.bool,
-    label: validateLabel,
-    labelColor: React.PropTypes.string,
-    labelPosition: React.PropTypes.oneOf([
-      'before',
-      'after',
-    ]),
-    labelStyle: React.PropTypes.object,
-    onMouseDown: React.PropTypes.func,
-    onMouseEnter: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    primary: React.PropTypes.bool,
-    secondary: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
-  },
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps: function() {
     return {
-      labelPosition: 'before', // Should be after but we keep it like for now (prevent breaking changes)
+      disabled: false,
+      // labelPosition should be after but we keep it like for now (prevent breaking changes)
+      labelPosition: 'before',
+      fullWidth: false,
+      primary: false,
+      secondary: false,
     };
   },
 
@@ -87,6 +181,12 @@ const RaisedButton = React.createClass({
       initialZDepth: zDepth,
       zDepth: zDepth,
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -131,8 +231,14 @@ const RaisedButton = React.createClass({
   },
 
   getStyles() {
+    const {
+      icon,
+      labelPosition,
+      primary,
+      secondary,
+    } = this.props;
 
-    let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+    let amount = (primary || secondary) ? 0.4 : 0.08;
     let styles = {
       root: {
         display: 'inline-block',
@@ -166,8 +272,9 @@ const RaisedButton = React.createClass({
                     (this.getThemeButton().textTransform ? this.getThemeButton().textTransform : 'uppercase'),
         fontWeight: Typography.fontWeightMedium,
         margin: 0,
-        padding: '0px ' + this.state.muiTheme.rawTheme.spacing.desktopGutterLess + 'px',
         userSelect: 'none',
+        paddingLeft: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
+        paddingRight: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
         lineHeight: (this.props.style && this.props.style.height) ?
          this.props.style.height : this.getThemeButton().height + 'px',
         color: this._getLabelColor(),
@@ -180,76 +287,18 @@ const RaisedButton = React.createClass({
         backgroundColor: ColorManipulator.fade(this._getLabelColor(), amount),
       },
     };
+
+    if (icon) {
+      if (labelPosition === 'before') {
+        styles.label.paddingRight = 8;
+      } else {
+        styles.label.paddingLeft = 8;
+      }
+    }
+
     return styles;
   },
 
-  render() {
-    let {
-      children,
-      disabled,
-      label,
-      labelPosition,
-      labelStyle,
-      primary,
-      secondary,
-      ...other,
-    } = this.props;
-
-    let styles = this.getStyles();
-
-    let labelElement;
-    if (label) {
-      labelElement = (
-        <span style={this.prepareStyles(styles.label, labelStyle)}>
-          {label}
-        </span>
-      );
-    }
-
-    let rippleColor = styles.label.color;
-    let rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
-
-    let buttonEventHandlers = disabled ? null : {
-      onMouseDown: this._handleMouseDown,
-      onMouseUp: this._handleMouseUp,
-      onMouseLeave: this._handleMouseLeave,
-      onMouseEnter: this._handleMouseEnter,
-      onTouchStart: this._handleTouchStart,
-      onTouchEnd: this._handleTouchEnd,
-      onKeyboardFocus: this._handleKeyboardFocus,
-    };
-
-    // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ?
-      {labelElement, children}
-      :
-      {children, labelElement};
-    const enhancedButtonChildren = Children.create(childrenFragment);
-
-    return (
-      <Paper
-        style={this.mergeStyles(styles.root, this.props.style)}
-        zDepth={this.state.zDepth}>
-          <EnhancedButton
-            {...other}
-            {...buttonEventHandlers}
-            ref="container"
-            disabled={disabled}
-            style={this.mergeStyles(styles.container)}
-            focusRippleColor={rippleColor}
-            touchRippleColor={rippleColor}
-            focusRippleOpacity={rippleOpacity}
-            touchRippleOpacity={rippleOpacity}>
-              <div ref="overlay" style={this.prepareStyles(
-                  styles.overlay,
-                  (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-                )}>
-                  {enhancedButtonChildren}
-              </div>
-          </EnhancedButton>
-      </Paper>
-    );
-  },
 
   _handleMouseDown(e) {
     //only listen to left clicks
@@ -295,12 +344,107 @@ const RaisedButton = React.createClass({
       let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
         ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
-    }
-    else if (!this.state.hovered) {
+    } else if (!this.state.hovered) {
       this.setState({zDepth: this.state.initialZDepth});
       ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
+
+  render() {
+    let {
+      children,
+      disabled,
+      icon,
+      label,
+      labelPosition,
+      labelStyle,
+      primary,
+      secondary,
+      ...other,
+    } = this.props;
+
+    let styles = this.getStyles();
+
+    let labelElement;
+    if (label) {
+      labelElement = (
+        <span style={this.prepareStyles(styles.label, labelStyle)}>
+          {label}
+        </span>
+      );
+    }
+
+    let rippleColor = styles.label.color;
+    let rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
+
+    let buttonEventHandlers = disabled ? null : {
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onMouseLeave: this._handleMouseLeave,
+      onMouseEnter: this._handleMouseEnter,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd,
+      onKeyboardFocus: this._handleKeyboardFocus,
+    };
+
+    let iconCloned;
+
+    if (icon) {
+      iconCloned = React.cloneElement(icon, {
+        color: styles.label.color,
+        style: {
+          verticalAlign: 'middle',
+          marginLeft: labelPosition === 'before' ? 0 : 12,
+          marginRight: labelPosition === 'before' ? 12 : 0,
+        },
+      });
+    }
+
+    // Place label before or after children.
+    const childrenFragment = labelPosition === 'before' ?
+      {
+        labelElement,
+        iconCloned,
+        children,
+      }
+      :
+      {
+        children,
+        iconCloned,
+        labelElement,
+      };
+    const enhancedButtonChildren = Children.create(childrenFragment);
+
+    return (
+      <Paper
+        style={this.mergeStyles(styles.root, this.props.style)}
+        zDepth={this.state.zDepth}
+      >
+        <EnhancedButton
+          {...other}
+          {...buttonEventHandlers}
+          ref="container"
+          disabled={disabled}
+          style={this.mergeStyles(styles.container)}
+          focusRippleColor={rippleColor}
+          touchRippleColor={rippleColor}
+          focusRippleOpacity={rippleOpacity}
+          touchRippleOpacity={rippleOpacity}
+        >
+          <div
+            ref="overlay"
+            style={this.prepareStyles(
+              styles.overlay,
+              (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
+            )}
+          >
+            {enhancedButtonChildren}
+          </div>
+        </EnhancedButton>
+      </Paper>
+    );
+  },
+
 });
 
 export default RaisedButton;

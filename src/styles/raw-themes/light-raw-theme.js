@@ -1,4 +1,7 @@
-export {default} from '../baseThemes/lightBaseTheme';
+import lightBaseTheme from '../baseThemes/lightBaseTheme';
+
+export default lightBaseTheme;
+
 // import deprecatedExport from '../../utils/deprecatedExport';
 
 // export default deprecatedExport(

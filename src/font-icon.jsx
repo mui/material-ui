@@ -6,7 +6,33 @@ import ThemeManager from './styles/theme-manager';
 
 const FontIcon = React.createClass({
 
-  mixins: [StylePropable],
+  propTypes: {
+    /**
+     * This is the font color of the font icon. If not specified,
+     * this component will default to muiTheme.palette.textColor.
+     */
+    color: React.PropTypes.string,
+
+    /**
+     * This is the icon color when the mouse hovers over the icon.
+     */
+    hoverColor: React.PropTypes.string,
+
+    /**
+     * Function called when mouse enters this element.
+     */
+    onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Function called when mouse leaves this element.
+     */
+    onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
@@ -17,22 +43,15 @@ const FontIcon = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
     return {
-      muiTheme: this.state.muiTheme,
+      onMouseEnter: () => {},
+      onMouseLeave: () => {},
     };
-  },
-
-  propTypes: {
-    color: React.PropTypes.string,
-    hoverColor: React.PropTypes.string,
-    onMouseEnter: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
   },
 
   getInitialState() {
@@ -42,46 +61,17 @@ const FontIcon = React.createClass({
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
     let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
-  },
-
-  render() {
-    let {
-      color,
-      hoverColor,
-      onMouseLeave,
-      onMouseEnter,
-      style,
-      ...other,
-    } = this.props;
-
-    let spacing = this.state.muiTheme.rawTheme.spacing;
-    let offColor = color ? color :
-      style && style.color ? style.color :
-      this.state.muiTheme.rawTheme.palette.textColor;
-    let onColor = hoverColor ? hoverColor : offColor;
-
-    let mergedStyles = this.prepareStyles({
-      position: 'relative',
-      fontSize: spacing.iconSize,
-      display: 'inline-block',
-      userSelect: 'none',
-      transition: Transitions.easeOut(),
-    }, style, {
-      color: this.state.hovered ? onColor : offColor,
-    });
-
-    return (
-      <span
-        {...other}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
-        style={mergedStyles} />
-    );
   },
 
   _handleMouseLeave(e) {
@@ -100,6 +90,42 @@ const FontIcon = React.createClass({
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e);
     }
+  },
+
+  render() {
+    let {
+      color,
+      hoverColor,
+      onMouseLeave,
+      onMouseEnter,
+      style,
+      ...other,
+    } = this.props;
+
+    let spacing = this.state.muiTheme.rawTheme.spacing;
+    let offColor = color ? color :
+      style && style.color ? style.color :
+      this.state.muiTheme.rawTheme.palette.textColor;
+    let onColor = hoverColor ? hoverColor : offColor;
+
+    let mergedStyles = this.mergeStyles({
+      position: 'relative',
+      fontSize: spacing.iconSize,
+      display: 'inline-block',
+      userSelect: 'none',
+      transition: Transitions.easeOut(),
+    }, style, {
+      color: this.state.hovered ? onColor : offColor,
+    });
+
+    return (
+      <span
+        {...other}
+        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this._handleMouseEnter}
+        style={this.prepareStyles(mergedStyles)}
+      />
+    );
   },
 });
 

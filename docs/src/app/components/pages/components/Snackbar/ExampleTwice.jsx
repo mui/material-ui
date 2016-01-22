@@ -7,7 +7,7 @@ export default class SnackbarExampleTwice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: 'Event added to your calendar',
+      message: 'Event 1 added to your calendar',
       open: false,
     };
     this.timer = undefined;
@@ -27,13 +27,13 @@ export default class SnackbarExampleTwice extends React.Component {
         message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
       });
     }, 1500);
-  }
+  };
 
   handleRequestClose = () => {
     this.setState({
       open: false,
     });
-  }
+  };
 
   render() {
     return (

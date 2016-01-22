@@ -8,16 +8,14 @@ const DefaultRawTheme = Styles.LightRawTheme;
 
 const ComponentInfo = React.createClass({
 
-  mixins: [StyleResizable, StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
     infoArray: React.PropTypes.array.isRequired,
     name: React.PropTypes.string.isRequired,
     style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   //for passing default theme context to children
@@ -25,15 +23,17 @@ const ComponentInfo = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  mixins: [StyleResizable, StylePropable],
 
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -140,8 +140,8 @@ const ComponentInfo = React.createClass({
   },
 
   render() {
-    let propElements = [],
-      typesSpan;
+    let propElements = [];
+    let typesSpan;
 
     let styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {

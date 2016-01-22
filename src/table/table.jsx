@@ -6,41 +6,130 @@ import ThemeManager from '../styles/theme-manager';
 
 const Table = React.createClass({
 
-  mixins: [StylePropable],
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   propTypes: {
+    /**
+     * Set to true to indicate that all rows should be selected.
+     */
     allRowsSelected: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the body's table element.
+     */
     bodyStyle: React.PropTypes.object,
+
+    /**
+     * Children passed to table.
+     */
     children: React.PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
     className: React.PropTypes.string,
+
+    /**
+     * If true, the footer will appear fixed below the table.
+     * The default value is true.
+     */
     fixedFooter: React.PropTypes.bool,
+
+    /**
+     * If true, the header will appear fixed above the table.
+     * The default value is true.
+     */
     fixedHeader: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the footer's table element.
+     */
     footerStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the header's table element.
+     */
     headerStyle: React.PropTypes.object,
+
+    /**
+     * The height of the table.
+     */
     height: React.PropTypes.string,
+
+    /**
+     * If true, multiple table rows can be selected.
+     * CTRL/CMD+Click and SHIFT+Click are valid actions.
+     * The default value is false.
+     */
     multiSelectable: React.PropTypes.bool,
+
+    /**
+     * Called when a row cell is clicked.
+     * rowNumber is the row number and columnId is
+     * the column number or the column key.
+     */
     onCellClick: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is hovered.
+     * rowNumber is the row number of the hovered row
+     * and columnId is the column number or the column key of the cell.
+     */
     onCellHover: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is no longer hovered.
+     * rowNumber is the row number of the row and columnId
+     * is the column number or the column key of the cell.
+     */
     onCellHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when a table row is hovered.
+     * rowNumber is the row number of the hovered row.
+     */
     onRowHover: React.PropTypes.func,
+
+    /**
+     * Called when a table row is no longer hovered.
+     * rowNumber is the row number of the row that is no longer hovered.
+     */
     onRowHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when a row is selected.
+     * selectedRows is an array of all row selections.
+     * IF all rows have been selected, the string "all"
+     * will be returned instead to indicate that all rows have been selected.
+     */
     onRowSelection: React.PropTypes.func,
+
+    /**
+     * If true, table rows can be selected.
+     * If multiple row selection is desired, enable multiSelectable.
+     * The default value is true.
+     */
     selectable: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the table's wrapper element.
+     */
     wrapperStyle: React.PropTypes.object,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -53,21 +142,16 @@ const Table = React.createClass({
     };
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      allRowsSelected: this.props.allRowsSelected,
+    };
   },
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-      allRowsSelected: this.props.allRowsSelected,
     };
   },
 
@@ -107,85 +191,6 @@ const Table = React.createClass({
     return styles;
   },
 
-  render() {
-    let {
-      children,
-      className,
-      fixedFooter,
-      fixedHeader,
-      style,
-      wrapperStyle,
-      headerStyle,
-      bodyStyle,
-      footerStyle,
-      ...other,
-    } = this.props;
-    let styles = this.getStyles();
-
-    let tHead, tFoot, tBody;
-    for (let child of children) {
-      if (!React.isValidElement(child)) continue;
-
-      let displayName = child.type.displayName;
-      if (displayName === 'TableBody') {
-        tBody = this._createTableBody(child);
-      }
-      else if (displayName === 'TableHeader') {
-        tHead = this._createTableHeader(child);
-      }
-      else if (displayName === 'TableFooter') {
-        tFoot = this._createTableFooter(child);
-      }
-    }
-
-    // If we could not find a table-header and a table-body, do not attempt to display anything.
-    if (!tBody && !tHead) return null;
-
-    let mergedTableStyle = this.prepareStyles(styles.root, style);
-    let headerTable, footerTable;
-    let inlineHeader, inlineFooter;
-    if (fixedHeader) {
-      headerTable = (
-        <div style={this.prepareStyles(headerStyle)}>
-          <table className={className} style={mergedTableStyle}>
-            {tHead}
-          </table>
-        </div>
-      );
-    }
-    else {
-      inlineHeader = tHead;
-    }
-    if (tFoot !== undefined) {
-      if (fixedFooter) {
-        footerTable = (
-          <div style={this.prepareStyles(footerStyle)}>
-            <table className={className} style={mergedTableStyle}>
-              {tFoot}
-            </table>
-          </div>
-        );
-      }
-      else {
-        inlineFooter = tFoot;
-      }
-    }
-
-    return (
-      <div style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
-        {headerTable}
-        <div style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
-          <table className={className} style={mergedTableStyle} ref="tableBody">
-            {inlineHeader}
-            {inlineFooter}
-            {tBody}
-          </table>
-        </div>
-        {footerTable}
-      </div>
-    );
-  },
-
   isScrollbarVisible() {
     const tableDivHeight = ReactDOM.findDOMNode(this.refs.tableDiv).clientHeight;
     const tableBodyHeight = ReactDOM.findDOMNode(this.refs.tableBody).clientHeight;
@@ -217,7 +222,7 @@ const Table = React.createClass({
         onRowHoverExit: this._onRowHoverExit,
         onRowSelection: this._onRowSelection,
         selectable: this.props.selectable,
-        style: this.mergeAndPrefix({height: this.props.height}, base.props.style),
+        style: this.mergeStyles({height: this.props.height}, base.props.style),
       }
     );
   },
@@ -263,6 +268,87 @@ const Table = React.createClass({
     this.setState({allRowsSelected: !this.state.allRowsSelected});
   },
 
+  render() {
+    let {
+      children,
+      className,
+      fixedFooter,
+      fixedHeader,
+      style,
+      wrapperStyle,
+      headerStyle,
+      bodyStyle,
+      footerStyle,
+      ...other,
+    } = this.props;
+    let styles = this.getStyles();
+
+    let tHead;
+    let tFoot;
+    let tBody;
+
+    React.Children.forEach(children, (child) => {
+      if (!React.isValidElement(child)) return;
+
+      let displayName = child.type.displayName;
+      if (displayName === 'TableBody') {
+        tBody = this._createTableBody(child);
+      } else if (displayName === 'TableHeader') {
+        tHead = this._createTableHeader(child);
+      } else if (displayName === 'TableFooter') {
+        tFoot = this._createTableFooter(child);
+      }
+    });
+
+    // If we could not find a table-header and a table-body, do not attempt to display anything.
+    if (!tBody && !tHead) return null;
+
+    let mergedTableStyle = this.mergeStyles(styles.root, style);
+    let headerTable;
+    let footerTable;
+    let inlineHeader;
+    let inlineFooter;
+
+    if (fixedHeader) {
+      headerTable = (
+        <div style={this.prepareStyles(headerStyle)}>
+          <table className={className} style={mergedTableStyle}>
+            {tHead}
+          </table>
+        </div>
+      );
+    } else {
+      inlineHeader = tHead;
+    }
+
+    if (tFoot !== undefined) {
+      if (fixedFooter) {
+        footerTable = (
+          <div style={this.prepareStyles(footerStyle)}>
+            <table className={className} style={this.prepareStyles(mergedTableStyle)}>
+              {tFoot}
+            </table>
+          </div>
+        );
+      } else {
+        inlineFooter = tFoot;
+      }
+    }
+
+    return (
+      <div style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
+        {headerTable}
+        <div style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
+          <table className={className} style={mergedTableStyle} ref="tableBody">
+            {inlineHeader}
+            {inlineFooter}
+            {tBody}
+          </table>
+        </div>
+        {footerTable}
+      </div>
+    );
+  },
 });
 
 export default Table;
