@@ -48,6 +48,7 @@ export default {
   SelectField: require('./select-field'),
   SimpleButton: require('./simple-button'),
   SimplePopup: require('./simple-popup'),
+  SimpleSlidein: require('./simple-slidein'),
   SelectableContainerEnhance: require('./hoc/selectable-enhance'),
   Slider: require('./slider'),
   SvgIcon: require('./svg-icon'),
