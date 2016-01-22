@@ -20,7 +20,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
 
   muiTheme = merge({
     isRtl: false,
-    userAgent: null,
+    userAgent: undefined,
     zIndex,
     baseTheme,
     rawTheme: baseTheme, // To provide backward compatibility.
