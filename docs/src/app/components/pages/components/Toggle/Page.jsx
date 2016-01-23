@@ -8,10 +8,18 @@ import toggleCode from '!raw!material-ui/lib/toggle';
 import ToggleExampleSimple from './ExampleSimple';
 import toggleExampleSimpleCode from '!raw!./ExampleSimple';
 
+const description = 'The second example is selected by default using the `defaultToggled` property. The third ' +
+  'example is disabled using the `disabled` property. The final example uses the `labelPosition` property to ' +
+  'position the label on the right.';
+
 const TogglePage = () => (
   <div>
     <MarkdownElement text={toggleReadmeText} />
-    <CodeExample code={toggleExampleSimpleCode}>
+    <CodeExample
+      title="Examples"
+      description={description}
+      code={toggleExampleSimpleCode}
+    >
       <ToggleExampleSimple />
     </CodeExample>
     <PropTypeDescription code={toggleCode}/>
