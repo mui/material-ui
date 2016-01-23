@@ -3,6 +3,9 @@ import RadioButton from 'material-ui/lib/radio-button';
 import RadioButtonGroup from 'material-ui/lib/radio-button-group';
 
 const styles = {
+  block: {
+    maxWidth: 250,
+  },
   radioButton: {
     marginBottom: 16,
   },
@@ -25,6 +28,14 @@ const RadioButtonExampleSimple = () => (
         value="ludicrous"
         label="Disabled"
         disabled={true}
+        style={styles.radioButton}
+      />
+    </RadioButtonGroup>
+
+    <RadioButtonGroup name="notRight" labelPosition="left" style={styles.block}>
+      <RadioButton
+        value="reverse"
+        label="Label on the left"
         style={styles.radioButton}
       />
     </RadioButtonGroup>
