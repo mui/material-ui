@@ -3,16 +3,13 @@ import TimePicker from 'material-ui/lib/time-picker/time-picker';
 
 export default class TimePickerExampleComplex extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
-  handleChangeTimePicker24 = (err, time) => {
-    this.refs.picker24hr.setTime(time);
-  };
 
   handleChangeTimePicker12 = (err, time) => {
     this.refs.picker12hr.setTime(time);
+  };
+
+  handleChangeTimePicker24 = (err, time) => {
+    this.refs.picker24hr.setTime(time);
   };
 
   render() {

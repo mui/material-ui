@@ -16,22 +16,49 @@ import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
 import TextFieldExampleControlled from './ExampleControlled';
 import textFieldExampleControlledCode from '!raw!./ExampleControlled';
 
+const descriptions = {
+  simple: 'Examples demonstrating key Text Field features.',
+  error: 'The `errorText` property used in combination with various other features.',
+  styled: 'Examples of styling various Text Field features.',
+  disabled: 'Various examples of `disabled` Text Fields.',
+  controlled: 'A controlled Text Field example.',
+};
 const TextFieldsPage = () => (
   <div>
     <MarkdownElement text={textFieldReadmeText} />
-    <CodeExample code={textFieldExampleSimpleCode}>
+    <CodeExample
+      title="Simple examples"
+      description={descriptions.simple}
+      code={textFieldExampleSimpleCode}
+    >
       <TextFieldExampleSimple />
     </CodeExample>
-    <CodeExample code={textFieldExampleErrorCode}>
+    <CodeExample
+      title="Error examples"
+      description={descriptions.error}
+      code={textFieldExampleErrorCode}
+    >
       <TextFieldExampleError />
     </CodeExample>
-    <CodeExample code={textFieldExampleCustomizeCode}>
+    <CodeExample
+      title="Styled examples"
+      description={descriptions.styled}
+      code={textFieldExampleCustomizeCode}
+    >
       <TextFieldExampleCustomize />
     </CodeExample>
-    <CodeExample code={textFieldExampleDisabledCode}>
+    <CodeExample
+      title="Disabled examples"
+      description={descriptions.disabled}
+      code={textFieldExampleDisabledCode}
+    >
       <TextFieldExampleDisabled />
     </CodeExample>
-    <CodeExample code={textFieldExampleControlledCode}>
+    <CodeExample
+      title="Controlled example"
+      description={descriptions.controlled}
+      code={textFieldExampleControlledCode}
+    >
       <TextFieldExampleControlled />
     </CodeExample>
     <PropTypeDescription code={textFieldCode}/>
