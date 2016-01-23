@@ -2,10 +2,10 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
-import Typography from '../styles/typography';
 import Paper from '../paper';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
+import Subheader from '../Subheader';
 
 const List = React.createClass({
 
@@ -99,21 +99,7 @@ const List = React.createClass({
         paddingBottom: 8,
         paddingTop: subheader ? 0 : 8,
       },
-
-      subheader: {
-        color: Typography.textLightBlack,
-        fontSize: 14,
-        fontWeight: Typography.fontWeightMedium,
-        lineHeight: '48px',
-        paddingLeft: insetSubheader ? 72 : 16,
-      },
     };
-
-    let subheaderElement;
-    if (subheader) {
-      const mergedSubheaderStyles = this.mergeStyles(styles.subheader, subheaderStyle);
-      subheaderElement = <div style={this.prepareStyles(mergedSubheaderStyles)}>{subheader}</div>;
-    }
 
     return (
       <Paper
@@ -121,7 +107,7 @@ const List = React.createClass({
         style={this.mergeStyles(styles.root, style)}
         zDepth={zDepth}
       >
-        {subheaderElement}
+        {subheader ? <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader> : null}
         {children}
       </Paper>
     );
