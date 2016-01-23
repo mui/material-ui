@@ -27,8 +27,9 @@ const RadioButton = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
-     * Where the label will be placed next to the radio button.
+     * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      */
+    /* Where the label will be placed next to the radio button. */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
 
     /**

@@ -8,11 +8,17 @@ import checkboxCode from '!raw!material-ui/lib/checkbox';
 import CheckboxExampleSimple from './ExampleSimple';
 import checkboxExampleSimpleCode from '!raw!./ExampleSimple';
 
+const description = 'The second example is selected by default using the `defaultChecked` property. The third ' +
+  'example is disabled using the `disabled` property. The fourth example uses custom icons through the ' +
+  '`checkedIcon` and `uncheckedIcon` properties. The final example uses the `labelPosition` property to position the ' +
+  'label on the left. ';
+
 const CheckboxPage = () => (
   <div>
     <MarkdownElement text={checkboxReadmeText} />
     <CodeExample
-      title="Checkbox examples"
+      title="Examples"
+      description={description}
       code={checkboxExampleSimpleCode}
     >
       <CheckboxExampleSimple />

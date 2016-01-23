@@ -11,7 +11,7 @@ import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
-const ToolbarsExamplesSimple = () => (
+const ToolbarExamplesSimple = () => (
   <Toolbar>
     <ToolbarGroup firstChild={true} float="left">
       <DropDownMenu value={3}>
@@ -43,4 +43,4 @@ const ToolbarsExamplesSimple = () => (
   </Toolbar>
 );
 
-export default ToolbarsExamplesSimple;
+export default ToolbarExamplesSimple;

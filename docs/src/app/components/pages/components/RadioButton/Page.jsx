@@ -10,12 +10,17 @@ import RadioButtonExampleSimple from './ExampleSimple';
 import radioButtonExampleSimpleCode from '!raw!./ExampleSimple';
 
 const description = 'The second button is selected by default using the `defaultSelected` property of ' +
-  '`RadioButtonGroup`. The third button is disabled using the `disabled` property of `RadioButton.';
+  '`RadioButtonGroup`. The third button is disabled using the `disabled` property of `RadioButton`. The final ' +
+  'example uses the `labelPosition` property to position the label on the left. ';
 
 const RadioButtonPage = () => (
   <div>
     <MarkdownElement text={radioButtonReadmeText} />
-    <CodeExample description={description} code={radioButtonExampleSimpleCode}>
+    <CodeExample
+      title="Examples"
+      description={description}
+      code={radioButtonExampleSimpleCode}
+    >
       <RadioButtonExampleSimple />
     </CodeExample>
     <PropTypeDescription header="### RadioButton Properties" code={radioButtonCode} />

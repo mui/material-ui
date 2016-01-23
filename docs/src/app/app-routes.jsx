@@ -54,7 +54,7 @@ import TabsPage from './components/pages/components/Tabs/Page';
 import TextFieldPage from './components/pages/components/TextField/Page';
 import TimePickerPage from './components/pages/components/TimePicker/Page';
 import TogglePage from './components/pages/components/Toggle/Page';
-import ToolbarsPage from './components/pages/components/Toolbars/Page';
+import ToolbarPage from './components/pages/components/Toolbar/Page';
 
 import Community from './components/pages/discover-more/Community';
 import Showcase from './components/pages/discover-more/Showcase';
@@ -123,7 +123,7 @@ const AppRoutes = (
       <Route path="text-field" component={TextFieldPage} />
       <Route path="time-picker" component={TimePickerPage} />
       <Route path="toggle" component={TogglePage} />
-      <Route path="toolbars" component={ToolbarsPage} />
+      <Route path="toolbar" component={ToolbarPage} />
     </Route>
     <Redirect from="discover-more" to="/discover-more/community" />
     <Route path="discover-more">
