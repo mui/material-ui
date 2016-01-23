@@ -5,7 +5,7 @@ import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-bord
 
 const styles = {
   block: {
-    maxWidth: 350,
+    maxWidth: 250,
   },
   checkbox: {
     marginBottom: 16,
