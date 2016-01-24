@@ -16,20 +16,16 @@
 1. #2416 TextField as a composable component for various field types.
 1. Responsive components to better support MD spec for mobile component sizes, and in preparation for react-native support
 
-##### Breaking Changes
-
-* Remove usage of JSON to generate children across the components.
-* Remove the old menu folder.
-* Remove old component file naming
-
 ## 0.15.0
 
 - [ ] Documentation versioning.
 - [ ] Enforce eslint rules.
-- [ ] #2433 Auto-generate Docs from source-code.
 - [ ] #2493 Use higher order components across the library to abstract themes passed down from context.
 - [ ] Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
-
-## 0.14.3
-
 - [ ] Document the new theme calculation, and it's usage. (#2635)
+
+##### Breaking Changes
+
+* Remove usage of JSON to generate children across the components.
+* Remove the old menu folder.
+* Remove old component file naming.
