@@ -17,6 +17,7 @@ const TimePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
+    wordings: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -29,6 +30,15 @@ const TimePickerDialog = React.createClass({
   },
 
   mixins: [StylePropable, WindowListenable],
+
+  getDefaultProps() {
+    return {
+      wordings: {
+        ok: 'OK',
+        cancel: 'Cancel',
+      },
+    };
+  },
 
   getInitialState() {
     return {
@@ -95,6 +105,7 @@ const TimePickerDialog = React.createClass({
       onAccept,
       format,
       autoOk,
+      wordings,
       ...other,
     } = this.props;
 
@@ -114,17 +125,22 @@ const TimePickerDialog = React.createClass({
     let actions = [
       <FlatButton
         key={0}
-        label="Cancel"
+        label={wordings.cancel}
         secondary={true}
         onTouchTap={this.dismiss}
       />,
-      <FlatButton
-        key={1}
-        label="OK"
-        secondary={true}
-        onTouchTap={this._handleOKTouchTap}
-      />,
     ];
+
+    if (!autoOk) {
+      actions.push(
+        <FlatButton
+          key={1}
+          label={wordings.ok}
+          secondary={true}
+          onTouchTap={this._handleOKTouchTap}
+        />
+      );
+    }
 
     const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
 
