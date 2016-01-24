@@ -27,16 +27,17 @@ import listExampleSelectableCode from '!raw!./ExampleSelectable.jsx';
 import ListExampleSelectable from './ExampleSelectable.jsx';
 
 const descriptions = {
-  simple: 'A simple `List` with left and right [SVG icons](/#/components/svg-icon).',
+  simple: 'A simple `List` with left and right [SVG icons](/#/components/icons/svg-icon).',
   chat: 'A chat list with Image [Avatars](/#/components/avatar) and List `subheaders`.',
   contacts: 'Similar to the Chat List example, but with Text [Avatars](/#/components/avatar) ' +
   '(with transparent background) for section labeling, and an inset Divider. ',
   folders: 'The folder list uses Icon [Avatars](/#/components/avatar), and introduces `secondaryText`.',
   nested: 'This example introduces the ListItem `nestedItems` property. "Sent Mail" is `disabled`.',
-  settings: 'ListItem supports [Checkbox](/#/components/checkbox) and [Toggle](/#/components/toggle) switches.',
+  settings: 'ListItem supports [Checkbox](/#/components/switches/checkbox) and ' +
+  '[Toggle](/#/components/switches/toggle) switches.',
   phone: '',
   messages: 'Two examples showing formatted secondary text. The second example demonstrates an ' +
-  '[IconButton](/#/components/icon-button) with `tooltip`.',
+  '[IconButton](/#/components/buttons/icon-button) with `tooltip`.',
   selectable: 'The selectable list wraps List in a Higher Order Component. See below for further details.',
 };
 

@@ -18,8 +18,8 @@ const descriptions = {
   simple: 'An Icon Button using an icon specified with the `iconClassName` property, and a `disabled` example.',
   tooltip: 'Icon Buttons showing the available `tooltip` positions.',
   touch: 'The `touch` property adjusts the tooltip size for better visibility on mobile devices.',
-  other: 'An Icon Button using a nested [Font Icon](/#/components/font-icon), ' +
-  'a nested [SVG Icon](/#/components/svg-icon) and an icon font ligature.',
+  other: 'An Icon Button using a nested [Font Icon](/#/components/icons/font-icon), ' +
+  'a nested [SVG Icon](/#/components/icons/svg-icon) and an icon font ligature.',
 };
 
 const IconButtonPage = () => (

@@ -77,8 +77,8 @@ const AppRoutes = (
       <Route path="prerequisites" component={Prerequisites} />
       <Route path="installation" component={Installation} />
       <Route path="usage" component={Usage} />
-      <Route path="examples" component={Examples} />
       <Route path="server-rendering" component={ServerRendering} />
+      <Route path="examples" component={Examples} />
     </Route>
     <Redirect from="customization" to="/customization/themes" />
     <Route path="customization">
@@ -92,39 +92,54 @@ const AppRoutes = (
       <Route path="auto-complete" component={AutoCompletePage} />
       <Route path="avatar" component={AvatarPage} />
       <Route path="badge" component={BadgePage} />
+      <Redirect from="buttons" to="/components/buttons/flat-button" />
+      <Route path="buttons">
+        <Route path="flat-button" component={FlatButtonPage} />
+        <Route path="floating-action-button" component={FloatingActionButtonPage} />
+        <Route path="raised-button" component={RaisedButtonPage} />
+        <Route path="icon-button" component={IconButtonPage} />
+      </Route>
       <Route path="card" component={CardPage} />
-      <Route path="circular-progress" component={CircularProgressPage} />
-      <Route path="checkbox" component={CheckboxPage} />
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
-      <Route path="dropdown-menu" component={DropDownMenuPage} />
-      <Route path="font-icon" component={FontIconPage} />
-      <Route path="flat-button" component={FlatButtonPage} />
-      <Route path="floating-action-button" component={FloatingActionButtonPage} />
       <Route path="grid-list" component={GridListPage} />
-      <Route path="icon-button" component={IconButtonPage} />
-      <Route path="icon-menu" component={IconMenuPage} />
+      <Redirect from="icons" to="/components/icons/font-icon" />
+      <Route path="icons">
+        <Route path="font-icon" component={FontIconPage} />
+        <Route path="svg-icon" component={SvgIconPage} />
+      </Route>
       <Route path="left-nav" component={LeftNavPage} />
       <Route path="list" component={ListPage} />
-      <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="paper" component={PaperPage} />
-      <Route path="menu" component={MenuPage} />
+      <Redirect from="menus" to="/components/menus/menu" />
+      <Route path="menus">
+        <Route path="menu" component={MenuPage} />
+        <Route path="icon-menu" component={IconMenuPage} />
+        <Route path="dropdown-menu" component={DropDownMenuPage} />
+      </Route>
       <Route path="popover" component={PopoverPage} />
-      <Route path="refresh-indicator" component={RefreshIndicatorPage} />
-      <Route path="radio-button" component={RadioButtonPage} />
-      <Route path="raised-button" component={RaisedButtonPage} />
+      <Redirect from="progress" to="/components/progress/circular-progress" />
+      <Route path="progress">
+        <Route path="circular-progress" component={CircularProgressPage} />
+        <Route path="linear-progress" component={LinearProgressPage} />
+        <Route path="refresh-indicator" component={RefreshIndicatorPage} />
+      </Route>
       <Route path="select-field" component={SelectField} />
-      <Route path="svg-icon" component={SvgIconPage} />
+      <Redirect from="switches" to="/components/switches/checkbox" />
+      <Route path="switches">
+        <Route path="checkbox" component={CheckboxPage} />
+        <Route path="radio-button" component={RadioButtonPage} />
+        <Route path="toggle" component={TogglePage} />
+      </Route>
       <Route path="slider" component={SliderPage} />
       <Route path="snackbar" component={SnackbarPage} />
       <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />
       <Route path="text-field" component={TextFieldPage} />
       <Route path="time-picker" component={TimePickerPage} />
-      <Route path="toggle" component={TogglePage} />
       <Route path="toolbar" component={ToolbarPage} />
-    </Route>
+    </Route>gi
     <Redirect from="discover-more" to="/discover-more/community" />
     <Route path="discover-more">
       <Route path="community" component={Community} />
