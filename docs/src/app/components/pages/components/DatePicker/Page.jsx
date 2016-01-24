@@ -26,11 +26,6 @@ const descriptions = {
   'Note that the buttons must be localised using the `wordings` property, and we set the `firstDayOfWeek` to Monday.',
 };
 
-if (!window.Intl) {
-  require('intl');
-  require('intl/locale-data/jsonp/fr');
-}
-
 const DatePickerPage = () => (
   <div>
     <MarkdownElement text={datePickerReadmeText} />

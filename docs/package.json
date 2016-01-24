@@ -33,6 +33,7 @@
     "history": "1.13.x",
     "html-webpack-plugin": "^1.6.1",
     "intl": "^1.0.1",
+    "intl-locales-supported": "^1.0.0",
     "json-loader": "^0.5.4",
     "marked": "^0.3.5",
     "raw-loader": "^0.5.1",
