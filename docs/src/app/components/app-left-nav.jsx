@@ -45,6 +45,10 @@ const AppLeftNav = React.createClass({
     });
   },
 
+  isCurrentSection(path) {
+    return (this.props.location.pathname).includes(path);
+  },
+
   getStyles() {
     return {
       logo: {
@@ -71,7 +75,6 @@ const AppLeftNav = React.createClass({
     } = this.props;
 
     const styles = this.getStyles();
-
     return (
       <LeftNav
         style={style}
@@ -88,6 +91,7 @@ const AppLeftNav = React.createClass({
           <ListItem
             primaryText="Get Started"
             primaryTogglesNestedList={true}
+            initiallyOpen={this.isCurrentSection('/get-started/')}
             nestedItems={[
               <ListItem primaryText="Prerequisites" value="/get-started/prerequisites" />,
               <ListItem primaryText="Installation" value="/get-started/installation" />,
@@ -99,6 +103,7 @@ const AppLeftNav = React.createClass({
           <ListItem
             primaryText="Customization"
             primaryTogglesNestedList={true}
+            initiallyOpen={this.isCurrentSection('/customization/')}
             nestedItems={[
               <ListItem primaryText="Themes" value="/customization/themes" />,
               <ListItem primaryText="Inline Styles" value="/customization/inline-styles" />,
@@ -108,6 +113,7 @@ const AppLeftNav = React.createClass({
           <ListItem
             primaryText="Components"
             primaryTogglesNestedList={true}
+            initiallyOpen={this.isCurrentSection('/components/')}
             nestedItems={[
               <ListItem primaryText="App Bar" value="/components/app-bar" />,
               <ListItem primaryText="Auto Complete" value="/components/auto-complete" />,
@@ -116,11 +122,12 @@ const AppLeftNav = React.createClass({
               <ListItem
                 primaryText="Buttons"
                 primaryTogglesNestedList={true}
+                initiallyOpen={this.isCurrentSection('/buttons/')}
                 nestedItems={[
-                  <ListItem primaryText="Flat Button" value="/components/flat-button" />,
-                  <ListItem primaryText="Raised Button" value="/components/raised-button" />,
-                  <ListItem primaryText="Floating Action Button" value="/components/floating-action-button" />,
-                  <ListItem primaryText="Icon Button" value="/components/icon-button" />,
+                  <ListItem primaryText="Flat Button" value="/components/buttons/flat-button" />,
+                  <ListItem primaryText="Raised Button" value="/components/buttons/raised-button" />,
+                  <ListItem primaryText="Floating Action Button" value="/components/buttons/floating-action-button" />,
+                  <ListItem primaryText="Icon Button" value="/components/buttons/icon-button" />,
                 ]}
               />,
               <ListItem primaryText="Card" value="/components/card" />,
@@ -131,9 +138,10 @@ const AppLeftNav = React.createClass({
               <ListItem
                 primaryText="Icons"
                 primaryTogglesNestedList={true}
+                initiallyOpen={this.isCurrentSection('/icons/')}
                 nestedItems={[
-                  <ListItem primaryText="Font Icon" value="/components/font-icon" />,
-                  <ListItem primaryText="SVG Icon" value="/components/svg-icon" />,
+                  <ListItem primaryText="Font Icon" value="/components/icons/font-icon" />,
+                  <ListItem primaryText="SVG Icon" value="/components/icons/svg-icon" />,
                 ]}
               />,
               <ListItem primaryText="Left Nav" value="/components/left-nav" />,
@@ -141,10 +149,11 @@ const AppLeftNav = React.createClass({
               <ListItem
                 primaryText="Menus"
                 primaryTogglesNestedList={true}
+                initiallyOpen={this.isCurrentSection('/menus/')}
                 nestedItems={[
-                  <ListItem primaryText="Menu" value="/components/menu" />,
-                  <ListItem primaryText="Icon Menu" value="/components/icon-menu" />,
-                  <ListItem primaryText="Drop Down Menu" value="/components/dropdown-menu" />,
+                  <ListItem primaryText="Menu" value="/components/menus/menu" />,
+                  <ListItem primaryText="Icon Menu" value="/components/menus/icon-menu" />,
+                  <ListItem primaryText="Drop Down Menu" value="/components/menus/dropdown-menu" />,
                 ]}
               />,
               <ListItem primaryText="Paper" value="/components/paper" />,
@@ -152,10 +161,11 @@ const AppLeftNav = React.createClass({
               <ListItem
                 primaryText="Progress"
                 primaryTogglesNestedList={true}
+                initiallyOpen={this.isCurrentSection('/progress/')}
                 nestedItems={[
-                  <ListItem primaryText="Circular Progress" value="/components/circular-progress" />,
-                  <ListItem primaryText="Linear Progress" value="/components/linear-progress" />,
-                  <ListItem primaryText="Refresh Indicator" value="/components/refresh-indicator" />,
+                  <ListItem primaryText="Circular Progress" value="/components/progress/circular-progress" />,
+                  <ListItem primaryText="Linear Progress" value="/components/progress/linear-progress" />,
+                  <ListItem primaryText="Refresh Indicator" value="/components/progress/refresh-indicator" />,
                 ]}
               />,
               <ListItem primaryText="Select Field" value="/components/select-field" />,
@@ -163,10 +173,11 @@ const AppLeftNav = React.createClass({
               <ListItem
                 primaryText="Switches"
                 primaryTogglesNestedList={true}
+                initiallyOpen={this.isCurrentSection('/switches/')}
                 nestedItems={[
-                  <ListItem primaryText="Checkbox" value="/components/checkbox" />,
-                  <ListItem primaryText="Radio Button" value="/components/radio-button" />,
-                  <ListItem primaryText="Toggle" value="/components/toggle" />,
+                  <ListItem primaryText="Checkbox" value="/components/switches/checkbox" />,
+                  <ListItem primaryText="Radio Button" value="/components/switches/radio-button" />,
+                  <ListItem primaryText="Toggle" value="/components/switches/toggle" />,
                 ]}
               />,
               <ListItem primaryText="Snackbar" value="/components/snackbar" />,
@@ -180,6 +191,7 @@ const AppLeftNav = React.createClass({
           <ListItem
             primaryText="Discover More"
             primaryTogglesNestedList={true}
+            initiallyOpen={this.isCurrentSection('/discover-more/')}
             nestedItems={[
               <ListItem primaryText="Community" value="/discover-more/community" />,
               <ListItem primaryText="Showcase" value="/discover-more/showcase" />,

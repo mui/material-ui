@@ -4,7 +4,7 @@ The `SvgIcon` component takes an SVG `path` element as its child, and converts i
 the path and allows the icon to be styled and respond to mouse events.
 
 The resulting icon can be used as is, or included as a child for other Material UI components that use icons, such 
-as [Icon Button](/#/components/icon-button).
+as [Icon Button](/#/components/buttons/icon-button).
 
 ### Material icons
 
