@@ -34,7 +34,6 @@ const Overlay = React.createClass({
   },
 
   componentDidMount() {
-    this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.overflow;
     if (this.props.show) {
       this._applyAutoLockScrolling(this.props);
     }
@@ -47,7 +46,9 @@ const Overlay = React.createClass({
   },
 
   componentWillUnmount() {
-    this._allowScrolling();
+    if (this.props.show === true) {
+      this._allowScrolling();
+    }
   },
 
   _originalBodyOverflow: '',
@@ -101,6 +102,8 @@ const Overlay = React.createClass({
 
   _preventScrolling() {
     const body = document.getElementsByTagName('body')[0];
+    this._originalBodyOverflow = body.style.overflow;
+
     body.style.overflow = 'hidden';
   },
 
