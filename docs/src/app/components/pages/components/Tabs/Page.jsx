@@ -9,6 +9,10 @@ import tabsExampleControlledCode from '!raw!./ExampleControlled';
 import TabsExampleControlled from './ExampleControlled';
 import tabsExampleSwipeableCode from '!raw!./ExampleSwipeable';
 import TabsExampleSwipeable from './ExampleSwipeable';
+import tabsExampleIconCode from '!raw!./ExampleIcon';
+import TabsExampleIcon from './ExampleIcon';
+import tabsExampleIconTextCode from '!raw!./ExampleIconText';
+import TabsExampleIconText from './ExampleIconText';
 import tabsCode from '!raw!material-ui/lib/tabs/tabs';
 import tabCode from '!raw!material-ui/lib/tabs/tab';
 
@@ -19,13 +23,15 @@ const descriptions = {
   swipeable: 'This example integrates the [react-swipeable-views]' +
   '(https://github.com/oliviertassinari/react-swipeable-views) component with Tabs, animating the Tab transition, ' +
   'and allowing tabs to be swiped on touch devices.',
+  icon: 'An example of tabs with icon.',
+  iconText: 'An example of tabs with icon and text.',
 };
 
 const TabsPage = () => (
   <div>
     <MarkdownElement text={tabsReadmeText} />
     <CodeExample
-      title="Simple Example"
+      title="Simple example"
       description={descriptions.simple}
       code={tabsExampleSimpleCode}
     >
@@ -44,6 +50,20 @@ const TabsPage = () => (
       code={tabsExampleSwipeableCode}
     >
       <TabsExampleSwipeable />
+    </CodeExample>
+    <CodeExample
+      title="Icon example"
+      description={descriptions.icon}
+      code={tabsExampleIconCode}
+    >
+      <TabsExampleIcon />
+    </CodeExample>
+    <CodeExample
+      title="Icon and text example"
+      description={descriptions.iconText}
+      code={tabsExampleIconTextCode}
+    >
+      <TabsExampleIconText />
     </CodeExample>
     <PropTypeDescription code={tabsCode} header="### Tabs Properties" />
     <PropTypeDescription code={tabCode} header="### Tab Properties" />

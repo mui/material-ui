@@ -12,6 +12,11 @@ const Tab = React.createClass({
     className: React.PropTypes.string,
 
     /**
+     * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
+     */
+    icon: React.PropTypes.node,
+
+    /**
      * Sets the text value of the tab item to the string specified.
      */
     label: React.PropTypes.node,
@@ -99,16 +104,20 @@ const Tab = React.createClass({
       style,
       value,
       width,
+      icon,
       ...other,
     } = this.props;
+
+    const textColor = selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor;
 
     const styles = this.mergeStyles({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',
       verticalAlign: 'middle',
-      height: 48,
-      color: selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor,
+      paddingTop: (icon && !label) ? 4 : 0,
+      height: (label && icon) ? 72 : 48,
+      color: textColor,
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
@@ -118,12 +127,30 @@ const Tab = React.createClass({
       width: width,
     }, style);
 
+    let iconElement;
+    if (icon && React.isValidElement(icon)) {
+      const params = {
+        style: {
+          fontSize: 24,
+          marginBottom: (label) ? 4 : 0,
+          display: label ? 'block' : 'inline-block',
+          color: textColor,
+        },
+      };
+      // If it's svg icon set color via props
+      if (icon.type.displayName !== 'FontIcon') {
+        params.color = textColor;
+      }
+      iconElement = React.cloneElement(icon, params);
+    }
+
     return (
       <div
         {...other}
         style={this.prepareStyles(styles)}
         onTouchTap={this._handleTouchTap}
       >
+        {iconElement}
         {label}
       </div>
     );
