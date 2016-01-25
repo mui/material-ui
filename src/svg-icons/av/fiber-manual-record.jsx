@@ -9,7 +9,7 @@ const AvFiberManualRecord = React.createClass({
   render() {
     return (
       <SvgIcon {...this.props}>
-        <circle fill="#010101" cx="12" cy="12" r="8"/>
+        <circle cx="12" cy="12" r="8"/>
       </SvgIcon>
     );
   }
