@@ -18,7 +18,7 @@ const ToolbarGroup = React.createClass({
 
     /**
      * Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
-     * to prevent setting the right gap.
+     * to prevent setting the left gap.
      */
     firstChild: React.PropTypes.bool,
 
