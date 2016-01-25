@@ -16,6 +16,7 @@ const propTypes = {
 
   /**
    * The material-ui theme applied to this component.
+   * @ignore
    */
   muiTheme: React.PropTypes.object.isRequired,
 
