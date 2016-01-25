@@ -15,7 +15,7 @@ import iconMenuExampleScrollableCode from '!raw!./ExampleScrollable';
 const descriptions = {
   simple: 'Simple Icon Menus demonstrating some of the layouts possible using the `anchorOrigin` and `' +
   'targetOrigin` properties.',
-  controlled: 'Two controlled examples, the first allowing a singel selection, the second multiple selections.',
+  controlled: 'Two controlled examples, the first allowing a single selection, the second multiple selections.',
   scrollable: 'The `maxHeight` property limits the height of the menu, above which it will be scrollable.',
 };
 
