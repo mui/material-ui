@@ -92,8 +92,8 @@ const AppLeftNav = React.createClass({
               <ListItem primaryText="Prerequisites" value="/get-started/prerequisites" />,
               <ListItem primaryText="Installation" value="/get-started/installation" />,
               <ListItem primaryText="Usage" value="/get-started/usage" />,
-              <ListItem primaryText="Examples" value="/get-started/examples" />,
               <ListItem primaryText="Server Rendering" value="/get-started/server-rendering" />,
+              <ListItem primaryText="Examples" value="/get-started/examples" />,
             ]}
           />
           <ListItem
