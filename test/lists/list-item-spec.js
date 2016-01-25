@@ -25,7 +25,7 @@ describe('ListItem', () => {
     let testText = 'Primary Text';
     let render = TestUtils.renderIntoDocument(
       <ThemedListItem
-        primaryText = {testText}
+        primaryText={testText}
       />
     );
     let nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
@@ -38,7 +38,7 @@ describe('ListItem', () => {
     let testClass = 'test-class';
     let render = TestUtils.renderIntoDocument(
       <ThemedListItem
-        className = {testClass}
+        className={testClass}
       />
     );
     let nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
@@ -51,7 +51,7 @@ describe('ListItem', () => {
   it('should display a disabled list-item if specified.', () => {
     let render = TestUtils.renderIntoDocument(
       <ThemedListItem
-        disabled = {true}
+        disabled={true}
       />
     );
     let nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
@@ -64,8 +64,8 @@ describe('ListItem', () => {
     let testClass = 'test-class';
     let render = TestUtils.renderIntoDocument(
       <ThemedListItem
-        className = {testClass}
-        disabled = {true}
+        className={testClass}
+        disabled={true}
       />
     );
     let nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
