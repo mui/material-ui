@@ -25,5 +25,6 @@ export default {
     disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
     pickerHeaderColor: Colors.cyan500,
     clockCircleColor: ColorManipulator.fade(Colors.darkBlack, 0.07),
+    shadowColor: Colors.fullBlack,
   },
 };
