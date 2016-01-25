@@ -40,6 +40,12 @@ const appList = [
     img: 'images/showcase/ibm.png',
     link: 'http://reactmuiwat.mybluemix.net/',
   },
+  {
+    title: 'Cloudcraft',
+    author: 'Cloudcraft',
+    img: 'images/showcase/cloudcraft.png',
+    link: 'https://cloudcraft.co/',
+  },
 ];
 
 const Showcase = () => (
