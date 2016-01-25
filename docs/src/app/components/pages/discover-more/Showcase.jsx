@@ -35,12 +35,6 @@ const appList = [
     link: 'https://dashboard.syncano.io/',
   },
   {
-    title: 'Watson explorer',
-    author: 'IBM',
-    img: 'images/showcase/ibm.png',
-    link: 'http://reactmuiwat.mybluemix.net/',
-  },
-  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
