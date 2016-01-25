@@ -4,6 +4,7 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionInfo from 'material-ui/lib/svg-icons/action/info';
 import Divider from 'material-ui/lib/divider';
+import Subheader from 'material-ui/lib/Subheader';
 import Avatar from 'material-ui/lib/avatar';
 import FileFolder from 'material-ui/lib/svg-icons/file/folder';
 import ActionAssignment from 'material-ui/lib/svg-icons/action/assignment';
@@ -12,7 +13,8 @@ import EditorInsertChart from 'material-ui/lib/svg-icons/editor/insert-chart';
 
 const ListExampleFolder = () => (
   <MobileTearSheet>
-    <List subheader="Folders" insetSubheader={true}>
+    <List>
+      <Subheader inset={true}>Folders</Subheader>
       <ListItem
         leftAvatar={<Avatar icon={<FileFolder />} />}
         rightIcon={<ActionInfo />}
@@ -33,7 +35,8 @@ const ListExampleFolder = () => (
       />
     </List>
     <Divider inset={true} />
-    <List subheader="Files" insetSubheader={true}>
+    <List>
+      <Subheader inset={true}>Files</Subheader>
       <ListItem
         leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={Colors.blue500} />}
         rightIcon={<ActionInfo />}

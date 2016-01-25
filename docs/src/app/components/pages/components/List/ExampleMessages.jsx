@@ -3,6 +3,7 @@ import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
+import Subheader from 'material-ui/lib/Subheader';
 import Avatar from 'material-ui/lib/avatar';
 import Colors from 'material-ui/lib/styles/colors';
 import IconButton from 'material-ui/lib/icon-button';
@@ -31,7 +32,8 @@ const rightIconMenu = (
 const ListExampleMessages = () => (
   <div>
     <MobileTearSheet>
-      <List subheader="Today">
+      <List>
+        <Subheader>Today</Subheader>
         <ListItem
           leftAvatar={<Avatar src="images/ok-128.jpg" />}
           primaryText="Brunch this weekend?"
@@ -96,7 +98,8 @@ const ListExampleMessages = () => (
       </List>
     </MobileTearSheet>
     <MobileTearSheet>
-      <List subheader="Today">
+      <List>
+        <Subheader>Today</Subheader>
         <ListItem
           leftAvatar={<Avatar src="images/ok-128.jpg" />}
           rightIconButton={rightIconMenu}

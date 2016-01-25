@@ -6,10 +6,12 @@ import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
 import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
+import Subheader from 'material-ui/lib/Subheader';
 
 const ListExampleNested = () => (
   <MobileTearSheet>
-    <List subheader="Nested List Items">
+    <List>
+      <Subheader>Nested List Items</Subheader>
       <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
       <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
       <ListItem

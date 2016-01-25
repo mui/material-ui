@@ -3,6 +3,7 @@ import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
+import Subheader from 'material-ui/lib/Subheader';
 import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
 let SelectableList = SelectableContainerEnhance(List);
 
@@ -33,10 +34,8 @@ SelectableList = wrapState(SelectableList);
 
 const ListExampleSelectable = () => (
   <MobileTearSheet>
-    <SelectableList
-      value={3}
-      subheader="SelectableContacts"
-    >
+    <SelectableList value={3}>
+      <Subheader>Selectable Contacts</Subheader>
       <ListItem
         value={1}
         primaryText="Brendan Lim"
