@@ -28,6 +28,14 @@ const TableRow = React.createClass({
     hoverable: React.PropTypes.bool,
 
     /**
+     * Controls whether or not the row should be rendered as being
+     * hovered. This property is evaluated in addition to this.state.hovered
+     * and can be used to synchronize the hovered state with some other
+     * external events.
+     */
+    hovered: React.PropTypes.bool,
+
+    /**
      * Called when a row cell is clicked.
      * rowNumber is the row number and columnId is
      * the column number or the column key.
@@ -112,6 +120,7 @@ const TableRow = React.createClass({
     return {
       displayBorder: true,
       hoverable: false,
+      hovered: false,
       selectable: true,
       selected: false,
       striped: false,
@@ -145,7 +154,7 @@ const TableRow = React.createClass({
   getStyles() {
     let theme = this.getTheme();
     let cellBgColor = 'inherit';
-    if (this.state.hovered) {
+    if (this.props.hovered || this.state.hovered) {
       cellBgColor = theme.hoverColor;
     } else if (this.props.selected) {
       cellBgColor = theme.selectedColor;
