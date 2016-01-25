@@ -109,6 +109,7 @@ const Tab = React.createClass({
       verticalAlign: 'middle',
       height: 48,
       color: selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor,
+      backgroundColor: selected ? this.state.muiTheme.tabs.selectedBGColor : this.state.muiTheme.tabs.bgColor,
       outline: 'none',
       fontSize: 14,
       fontWeight: 500,
