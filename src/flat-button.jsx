@@ -270,9 +270,6 @@ const FlatButton = React.createClass({
       minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,
-      //This is need so that ripples do not bleed past border radius.
-      //See: http://stackoverflow.com/questions/17298739
-      transform: 'translate3d(0, 0, 0)',
     }, style);
 
     let iconCloned;

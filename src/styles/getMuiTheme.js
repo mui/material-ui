@@ -225,7 +225,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     },
     tabs: {
       backgroundColor: palette.primary1Color,
-      textColor: ColorManipulator.fade(palette.alternateTextColor, 0.6),
+      textColor: ColorManipulator.fade(palette.alternateTextColor, 0.7),
       selectedTextColor: palette.alternateTextColor,
     },
     textField: {

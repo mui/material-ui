@@ -192,10 +192,8 @@ const Tabs = React.createClass({
         margin: 0,
         padding: 0,
         width: '100%',
-        height: 48,
         backgroundColor: themeVariables.backgroundColor,
         whiteSpace: 'nowrap',
-        display: 'table',
       },
     };
 

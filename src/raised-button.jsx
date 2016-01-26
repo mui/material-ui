@@ -254,13 +254,6 @@ const RaisedButton = React.createClass({
         borderRadius: 2,
         transition: Transitions.easeOut(),
         backgroundColor: this._getBackgroundColor(),
-        /*
-          This is need so that ripples do not bleed
-          past border radius.
-          See: http://stackoverflow.com/questions/17298739/
-            css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-         */
-        transform: 'translate3d(0, 0, 0)',
       },
       label: {
         position: 'relative',
