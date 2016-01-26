@@ -5,6 +5,7 @@ import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
 import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
 import ThemeManager from './styles/theme-manager';
+import autoPrefix from './styles/auto-prefix';
 
 /**
   * Verifies min/max range.
@@ -312,11 +313,7 @@ const Slider = React.createClass({
   // similar issues.
   _toggleSelection(value) {
     let body = document.getElementsByTagName('body')[0];
-    body.style['user-select'] = value;
-    body.style['-webkit-user-select'] = value;
-    body.style['-moz-user-select'] = value;
-    body.style['-ms-user-select'] = value;
-    body.style['-o-user-select'] = value;
+    autoPrefix.set(body.style, 'userSelect', value, this.state.muiTheme);
   },
 
   _onHandleTouchStart(e) {
