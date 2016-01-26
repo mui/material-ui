@@ -32,7 +32,7 @@ const appList = [
     title: 'Syncano',
     author: 'Syncano',
     img: 'images/showcase/syncano.png',
-    link: 'https://dashboard.syncano.io/',
+    link: 'https://syncano.io/',
   },
   {
     title: 'Cloudcraft',
