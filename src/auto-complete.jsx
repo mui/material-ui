@@ -9,7 +9,7 @@ import Divider from './divider';
 import Popover from './popover/popover';
 import PropTypes from './utils/prop-types';
 import deprecated from './utils/deprecatedPropType';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const AutoComplete = React.createClass({
 
@@ -170,7 +170,7 @@ const AutoComplete = React.createClass({
       searchText: this.props.searchText,
       open: this.props.open,
       anchorEl: null,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

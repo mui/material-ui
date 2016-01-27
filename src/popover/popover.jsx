@@ -6,8 +6,7 @@ import StylePropable from '../mixins/style-propable';
 import PropTypes from '../utils/prop-types';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import PopoverDefaultAnimation from './popover-default-animation';
 
 const Popover = React.createClass({
@@ -145,7 +144,7 @@ const Popover = React.createClass({
     return {
       open: this.props.open,
       closing: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

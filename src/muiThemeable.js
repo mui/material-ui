@@ -1,13 +1,12 @@
 import React from 'react';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
 export default function muiThemeable(WrappedComponent) {
-  const MuiComponent = (props, {muiTheme = ThemeManager.getMuiTheme(DefaultRawTheme)}) => {
+  const MuiComponent = (props, {muiTheme = getMuiTheme()}) => {
     return <WrappedComponent {...props} muiTheme={muiTheme} />;
   };
 

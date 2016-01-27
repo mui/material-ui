@@ -6,8 +6,7 @@ import Colors from '../styles/colors';
 import Popover from '../popover/popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../lists/list-item';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import Menu from './menu';
 
 const nestedMenuStyle = {
@@ -120,7 +119,7 @@ const MenuItem = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
     };
   },

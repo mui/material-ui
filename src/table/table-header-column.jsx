@@ -1,8 +1,7 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import Tooltip from '../tooltip';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const TableHeaderColumn = React.createClass({
 
@@ -60,7 +59,7 @@ const TableHeaderColumn = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       hovered: false,
     };
   },

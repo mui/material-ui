@@ -4,8 +4,7 @@ import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
 import Typography from '../styles/typography';
 import Paper from '../paper';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const List = React.createClass({
 
@@ -65,7 +64,7 @@ const List = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

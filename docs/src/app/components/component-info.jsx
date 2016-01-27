@@ -3,8 +3,6 @@ import {Mixins, Styles} from 'material-ui';
 
 const {StyleResizable, StylePropable} = Mixins;
 const {Typography, Spacing} = Styles;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.LightRawTheme;
 
 const ComponentInfo = React.createClass({
 
@@ -18,35 +16,11 @@ const ComponentInfo = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   mixins: [StyleResizable, StylePropable],
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
 
   getStyles() {
     let desktopGutter = Spacing.desktopGutter;
-    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
+    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       root: {
         fontSize: 15,

@@ -1,10 +1,9 @@
 // import stubContext from 'react-stub-context';
 import stubContext from '../react-stub-context';
-import ThemeManager from 'styles/theme-manager';
-import DefaultRawTheme from 'styles/raw-themes/light-raw-theme';
+import getMuiTheme from 'styles/getMuiTheme';
 
 function injectTheme(Component, theme) {
-  let injectedTheme = theme || ThemeManager.getMuiTheme(DefaultRawTheme);
+  let injectedTheme = theme || getMuiTheme();
   return stubContext(Component, {muiTheme: injectedTheme});
 }
 

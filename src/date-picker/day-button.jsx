@@ -3,8 +3,7 @@ import StylePropable from '../mixins/style-propable';
 import Transition from '../styles/transitions';
 import DateTime from '../utils/date-time';
 import EnhancedButton from '../enhanced-button';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const DayButton = React.createClass({
 
@@ -39,7 +38,7 @@ const DayButton = React.createClass({
   getInitialState() {
     return {
       hover: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

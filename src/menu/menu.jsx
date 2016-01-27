@@ -10,8 +10,7 @@ import Paper from '../paper';
 import MenuItem from './menu-item';
 import LinkMenuItem from './link-menu-item';
 import SubheaderMenuItem from './subheader-menu-item';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
 /*eslint-disable */
@@ -54,7 +53,7 @@ const NestedMenuItem = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
       activeIndex: 0,
     };
@@ -260,7 +259,7 @@ const Menu = React.createClass({
     warning(false, 'This menu component is deprecated use menus/menu instead.');
 
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       nestedMenuShown: false,
       activeIndex: 0,
     };

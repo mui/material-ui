@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 
 const SlideInChild = React.createClass({
@@ -42,7 +41,7 @@ const SlideInChild = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

@@ -3,8 +3,7 @@ import StylePropable from '../mixins/style-propable';
 import TimeDisplay from './time-display';
 import ClockHours from './clock-hours';
 import ClockMinutes from './clock-minutes';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const Clock = React.createClass({
 
@@ -31,7 +30,7 @@ const Clock = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       selectedTime: this.props.initialTime,
       mode: 'hour',
     };

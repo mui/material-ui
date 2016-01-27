@@ -2,8 +2,7 @@ import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import Transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const DateDisplay = React.createClass({
 
@@ -49,7 +48,7 @@ const DateDisplay = React.createClass({
     return {
       selectedYear: !this.props.monthDaySelected,
       transitionDirection: 'up',
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

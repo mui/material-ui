@@ -3,9 +3,8 @@ import Transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../menus/menu';
 import MenuItem from '../menus/menu-item';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ClearFix from '../clearfix';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 import {mergeStyles, prepareStyles} from '../utils/styles';
@@ -147,7 +146,7 @@ const DropDownMenu = React.createClass({
     return {
       open: this.props.openImmediately,
       selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
