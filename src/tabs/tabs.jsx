@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import TabTemplate from './tabTemplate';
 import InkBar from '../ink-bar';
 import StylePropable from '../mixins/style-propable';
-import Controllable from '../mixins/controllable';
 import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 import ThemeManager from '../styles/theme-manager';
 import warning from 'warning';
@@ -80,12 +79,12 @@ const Tabs = React.createClass({
 
   mixins: [
     StylePropable,
-    Controllable,
   ],
 
   getDefaultProps() {
     return {
       initialSelectedIndex: 0,
+      onChange: () => {},
     };
   },
 
@@ -130,6 +129,14 @@ const Tabs = React.createClass({
 
   getTabCount() {
     return React.Children.count(this.props.children);
+  },
+
+  // Do not use outside of this component, it will be removed once valueLink is deprecated
+  getValueLink(props) {
+    return props.valueLink || {
+      value: props.value,
+      requestChange: props.onChange,
+    };
   },
 
   _getSelectedIndex(props) {
