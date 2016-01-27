@@ -197,9 +197,7 @@ const Tabs = React.createClass({
     let tabValue = valueLink.value;
     let tabContent = [];
 
-    let width = 100 / this.getTabCount() + '%';
-
-    let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
+    const width = 100 / this.getTabCount();
 
     let tabs = React.Children.map(children, (tab, index) => {
       warning(tab.type && tab.type.displayName === 'Tab',
@@ -221,15 +219,15 @@ const Tabs = React.createClass({
         key: index,
         selected: this._getSelected(tab, index),
         tabIndex: index,
-        width: width,
+        width: width + '%',
         onTouchTap: this._handleTabTouchTap,
       });
     });
 
     const inkBar = this.state.selectedIndex !== -1 ? (
       <InkBar
-        left={left}
-        width={width}
+        left={width * this.state.selectedIndex + '%'}
+        width={width + '%'}
         style={inkBarStyle}
       />
     ) : null;
