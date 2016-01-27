@@ -79,6 +79,11 @@ const TimePicker = React.createClass({
      * Override the inline-styles of TimePicker's TextField element.
      */
     textFieldStyle: React.PropTypes.object,
+
+    /**
+     * Wordings used inside the button of the dialog.
+     */
+    wordings: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -189,6 +194,7 @@ const TimePicker = React.createClass({
       onShow,
       onDismiss,
       style,
+      wordings,
       textFieldStyle,
       ...other,
     } = this.props;
@@ -212,6 +218,7 @@ const TimePicker = React.createClass({
           onShow={onShow}
           onDismiss={onDismiss}
           format={format}
+          wordings={wordings}
           autoOk={autoOk}
         />
       </div>
