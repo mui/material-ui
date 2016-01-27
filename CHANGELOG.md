@@ -1,5 +1,60 @@
 ## HEAD
 
+## 0.14.3
+###### _Jan 25, 2016_
+
+##### Breaking Changes
+
+Note that these are not essentially breaking changes.
+Unless you have used these implementation details in your code.
+
+- [Internal] Remove `controllable.js` mixin (#2889)
+- [Internal] Remove `mergeAndPrefix()` (#2886)
+- [Internal] Remove `utils/extend.js` (#2933)
+- [Internal] Remove `utils/immutability-helper.js` (#2907)
+
+##### General
+- [Examples] Move `DateTimeFormat` polyfill to the example (#3024)
+- [Docs] Add title and description to code examples, thanks to @mbrookes's hard work (#2927)
+- [Docs] Add a showcase section (#2910)
+- [Docs] Hide code examples by default (#2911)
+- [Docs] Add [Cloudcraft](https://cloudcraft.co/) to Showcase (#3036)
+- [Docs] Migrated the following pages to use the new documentation standard:
+  1. [TimePicker] (#2849)
+  1. [Table] (#2848)
+  1. [Switches] (#2872)
+  1. [Buttons] (#2874)
+  1. [AutoComplete] (#2871)
+  1. [Popover] (#2870)
+  1. [IconMenu] (#2882)
+- Added the following eslint rules:
+  1. Extend `eslint:recommended` (#2854)
+  1. `one-var` (#2855)
+  1. `brace-style` (#2855)
+  1. `react/jsx-pascal-case` (#2953)
+  1. `react/jsx-max-props-per-line` (#2953)
+  1. `react/jsx-closing-bracket-location` (#2953)
+  1. `jsx-equals-spacing` (#3035)
+- [Performance] Fix V8 deopt, leakage of `arguments` (#2876)
+- [ServerSideRendering] Make userAgent contexual (#3009)
+
+##### Component Fixes / Enhancements
+- [Slider] Avoid selection when dragging (#2827)
+- [Snackbar] Execute onDimiss callback after snackbar has closed (#2881)
+- [Table] Don't use `for...of` on table children (#2904)
+- [RenderToLayer] Fix leaking of event (#2935)
+- [FlatButton] Fix shared memory property modification (#2964)
+- [DatePicker] Add `firstDayOfWeek` and days abbreviations (#2899)
+- [ListItem] Added nestedItemStyle prop (#2990)
+- [ListItem] when disabled, `className` is ignored (#2723)
+- [EnhancedButton] Make keyup event respect `disableKeyboardFocus` (#3000)
+- [Dialog] Fix overlay scroll for nested dialogs (#2893)
+- [SvgIcons] Remove fill attributes (#3034)
+- [Paper] Allow the box shadow color to be changed (#3003)
+
+##### Deprecations
+- [DropDownIcon] Will be removed with `0.15.0` (#2994)
+
 ## 0.14.2
 ###### _Jan 08, 2016_
 
