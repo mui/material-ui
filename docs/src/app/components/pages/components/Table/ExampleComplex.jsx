@@ -109,9 +109,9 @@ export default class TableExampleComplex extends React.Component {
             showRowHover={this.state.showRowHover}
             stripedRows={this.state.stripedRows}
           >
-            {tableData.map( row => (
-              <TableRow selected={row.selected}>
-                <TableRowColumn>{row.index}</TableRowColumn>
+            {tableData.map( (row, index) => (
+              <TableRow key={index} selected={row.selected}>
+                <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{row.name}</TableRowColumn>
                 <TableRowColumn>{row.status}</TableRowColumn>
               </TableRow>
