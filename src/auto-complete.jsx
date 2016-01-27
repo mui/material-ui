@@ -9,6 +9,7 @@ import Divider from './divider';
 import Popover from './popover/popover';
 import PropTypes from './utils/prop-types';
 import deprecated from './utils/deprecatedPropType';
+import getMuiTheme from './styles/getMuiTheme';
 
 const AutoComplete = React.createClass({
 
@@ -132,6 +133,11 @@ const AutoComplete = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
   mixins: [
     StylePropable,
   ],
@@ -164,8 +170,16 @@ const AutoComplete = React.createClass({
       searchText: this.props.searchText,
       open: this.props.open,
       anchorEl: null,
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   componentWillMount() {
     this.focusOnInput = false;
     this.requestsList = [];

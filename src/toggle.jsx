@@ -3,8 +3,7 @@ import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Paper from './paper';
 import EnhancedSwitch from './enhanced-switch';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const Toggle = React.createClass({
 
@@ -103,7 +102,7 @@ const Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

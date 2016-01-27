@@ -1,8 +1,7 @@
 import React from 'react';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const SvgIcon = React.createClass({
 
@@ -74,7 +73,7 @@ const SvgIcon = React.createClass({
   getInitialState() {
     return {
       hovered: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

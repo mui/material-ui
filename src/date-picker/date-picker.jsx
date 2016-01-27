@@ -4,8 +4,7 @@ import WindowListenable from '../mixins/window-listenable';
 import DateTime from '../utils/date-time';
 import DatePickerDialog from './date-picker-dialog';
 import TextField from '../text-field';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
 
@@ -173,7 +172,7 @@ const DatePicker = React.createClass({
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
       dialogDate: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

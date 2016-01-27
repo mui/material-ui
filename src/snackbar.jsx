@@ -3,8 +3,7 @@ import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import ClickAwayable from './mixins/click-awayable';
 import FlatButton from './flat-button';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 import ContextPure from './mixins/context-pure';
 import StyleResizable from './mixins/style-resizable';
 import warning from 'warning';
@@ -138,7 +137,7 @@ const Snackbar = React.createClass({
       open: open,
       message: this.props.message,
       action: this.props.action,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

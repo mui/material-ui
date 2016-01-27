@@ -8,8 +8,7 @@ import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
 import Paper from './paper';
 import Children from './utils/children';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
 
 const FloatingActionButton = React.createClass({
@@ -137,7 +136,7 @@ const FloatingActionButton = React.createClass({
       initialZDepth: zDepth,
       touch: false,
       zDepth: zDepth,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

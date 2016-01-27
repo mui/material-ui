@@ -10,8 +10,7 @@ import CalendarToolbar from './calendar-toolbar';
 import DateDisplay from './date-display';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
 import ClearFix from '../clearfix';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const daysArray = [...Array(7)];
 
@@ -56,7 +55,7 @@ const Calendar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
       displayMonthDay: true,
       selectedDate: this.props.initialDate,

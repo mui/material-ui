@@ -1,8 +1,7 @@
 import React from 'react';
 import Styles from '../styles';
 import StylePropable from '../mixins/style-propable';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const CardMedia = React.createClass({
 
@@ -37,7 +36,7 @@ const CardMedia = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

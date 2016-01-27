@@ -3,8 +3,7 @@ import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 import TimePickerDialog from './time-picker-dialog';
 import TextField from '../text-field';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 
 let emptyTime = new Date();
 emptyTime.setHours(0);
@@ -106,7 +105,7 @@ const TimePicker = React.createClass({
     return {
       time: this.props.defaultTime || emptyTime,
       dialogTime: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

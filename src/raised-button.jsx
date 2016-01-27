@@ -7,8 +7,7 @@ import Children from './utils/children';
 import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import Paper from './paper';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
@@ -180,7 +179,7 @@ const RaisedButton = React.createClass({
       touched: false,
       initialZDepth: zDepth,
       zDepth: zDepth,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

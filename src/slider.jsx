@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 import autoPrefix from './styles/auto-prefix';
 
 /**
@@ -174,7 +173,7 @@ const Slider = React.createClass({
       hovered: false,
       percent: percent,
       value: value,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

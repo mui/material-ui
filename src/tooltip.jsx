@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Colors from './styles/colors';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const Tooltip = React.createClass({
 
@@ -41,7 +40,7 @@ const Tooltip = React.createClass({
   getInitialState() {
     return {
       offsetWidth: null,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

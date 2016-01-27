@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import TabTemplate from './tabTemplate';
 import InkBar from '../ink-bar';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
 const Tabs = React.createClass({
@@ -98,7 +97,7 @@ const Tabs = React.createClass({
         initialIndex < this.getTabCount() ?
         initialIndex :
         0,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

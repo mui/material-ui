@@ -2,8 +2,7 @@ import Transitions from '../styles/transitions';
 import React from 'react';
 import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../paper';
 
 const PopoverDefaultAnimation = React.createClass({
@@ -47,7 +46,7 @@ const PopoverDefaultAnimation = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
     };
   },

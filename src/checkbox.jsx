@@ -4,8 +4,7 @@ import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from './svg-icons/toggle/check-box';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const Checkbox = React.createClass({
 
@@ -94,7 +93,7 @@ const Checkbox = React.createClass({
         this.props.defaultChecked ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

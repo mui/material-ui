@@ -2,8 +2,7 @@ import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import TextField from '../text-field';
 import DropDownMenu from '../DropDownMenu';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import ContextPure from '../mixins/context-pure';
 import deprecated from '../utils/deprecatedPropType';
 
@@ -173,7 +172,7 @@ const SelectField = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

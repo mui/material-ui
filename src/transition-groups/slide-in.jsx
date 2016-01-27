@@ -2,8 +2,7 @@ import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import StylePropable from '../mixins/style-propable';
 import SlideInChild from './slide-in-child';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const SlideIn = React.createClass({
 
@@ -39,7 +38,7 @@ const SlideIn = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

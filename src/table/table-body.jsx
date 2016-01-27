@@ -3,8 +3,7 @@ import Checkbox from '../checkbox';
 import TableRowColumn from './table-row-column';
 import ClickAwayable from '../mixins/click-awayable';
 import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const TableBody = React.createClass({
 
@@ -143,7 +142,7 @@ const TableBody = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       selectedRows: this._calculatePreselectedRows(this.props),
     };
   },

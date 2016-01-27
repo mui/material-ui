@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import StylePropable from '../mixins/style-propable';
 import ClockNumber from './clock-number';
 import ClockPointer from './clock-pointer';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
@@ -48,7 +47,7 @@ const ClockMinutes = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

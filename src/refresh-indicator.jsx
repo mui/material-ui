@@ -4,8 +4,7 @@ import StylePropable from './mixins/style-propable';
 import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import Paper from './paper';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const VIEWBOX_SIZE = 32;
 const RefreshIndicator = React.createClass({
@@ -81,7 +80,7 @@ const RefreshIndicator = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

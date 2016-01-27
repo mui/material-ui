@@ -2,8 +2,7 @@ import React from 'react';
 import Checkbox from '../checkbox';
 import StylePropable from '../mixins/style-propable';
 import TableHeaderColumn from './table-header-column';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const TableHeader = React.createClass({
 
@@ -81,7 +80,7 @@ const TableHeader = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

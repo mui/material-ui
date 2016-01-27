@@ -2,6 +2,7 @@ import React from 'react';
 import mui from 'material-ui';
 import CodeBlock from '../../CodeExample/CodeBlock';
 import ComponentDoc from '../../component-doc';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
 const {
   Checkbox,
@@ -29,8 +30,6 @@ const {
 
 const {StylePropable, StyleResizable} = Mixins;
 const {Typography} = Styles;
-const ThemeManager = Styles.ThemeManager;
-const DefaultRawTheme = Styles.lightBaseTheme;
 const DarkRawTheme = Styles.darkBaseTheme;
 
 const ThemesPage = React.createClass({
@@ -43,16 +42,10 @@ const ThemesPage = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   mixins: [StylePropable, StyleResizable],
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme,
       valueTabs: this.context.muiTheme.name || 'light',
       dialogOpen: false,
       snackbarOpen: false,
@@ -60,22 +53,9 @@ const ThemesPage = React.createClass({
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
   getStyles() {
-    let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
-    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
+    let canvasColor = this.context.muiTheme.rawTheme.palette.canvasColor;
+    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       group: {
         float: 'left',
@@ -129,7 +109,7 @@ const ThemesPage = React.createClass({
       },
       liveExampleBlock: {
         borderRadius: '0 0 2px 0',
-        padding: this.state.muiTheme.rawTheme.spacing.desktopGutter,
+        padding: this.context.muiTheme.rawTheme.spacing.desktopGutter,
         margin: 0,
       },
       headline: {
@@ -319,15 +299,14 @@ const ThemesPage = React.createClass({
     let newMuiTheme = null;
 
     if (valueTabs === 'light') {
-      newMuiTheme = ThemeManager.getMuiTheme(DefaultRawTheme);
+      newMuiTheme = getMuiTheme();
     } else {
-      newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+      newMuiTheme = getMuiTheme(DarkRawTheme);
     }
 
     newMuiTheme.name = valueTabs;
 
     this.setState({
-      muiTheme: newMuiTheme,
       valueTabs: valueTabs,
     });
 

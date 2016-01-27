@@ -7,8 +7,7 @@ import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
 import Tooltip from './tooltip';
 import Children from './utils/children';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const IconButton = React.createClass({
 
@@ -140,7 +139,7 @@ const IconButton = React.createClass({
   getInitialState() {
     return {
       tooltipShown: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

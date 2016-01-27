@@ -5,8 +5,7 @@ import StylePropable from '../mixins/style-propable';
 import Transitions from '../styles/transitions';
 import UniqueId from '../utils/unique-id';
 import EnhancedTextarea from '../enhanced-textarea';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import ContextPure from '../mixins/context-pure';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
@@ -223,7 +222,7 @@ const TextField = React.createClass({
       errorText: this.props.errorText,
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 

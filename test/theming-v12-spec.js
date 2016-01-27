@@ -7,27 +7,27 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import ThemeManager from 'styles/theme-manager';
 import ThemeDecorator from 'styles/theme-decorator';
+import getMuiTheme from 'styles/getMuiTheme';
 import DarkRawTheme from 'styles/raw-themes/dark-raw-theme';
-import LightRawTheme from 'styles/raw-themes/light-raw-theme';
 import Colors from 'styles/colors';
 
 describe('Theming', () => {
   describe('ThemeManager', () => {
     it('should return new theme object when spacing modifier invoked', () => {
-      let currentMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+      let currentMuiTheme = getMuiTheme(DarkRawTheme);
       let modifiedMuiTheme = ThemeManager.modifyRawThemeSpacing(currentMuiTheme, currentMuiTheme.rawTheme.spacing);
       expect(currentMuiTheme === modifiedMuiTheme).to.be.false;
     });
 
     it('should return new theme object when palette modifier invoked', () => {
-      let currentMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+      let currentMuiTheme = getMuiTheme(DarkRawTheme);
       let modifiedMuiTheme = ThemeManager.modifyRawThemePalette(currentMuiTheme, currentMuiTheme.rawTheme.palette);
 
       expect(currentMuiTheme === modifiedMuiTheme).to.be.false;
     });
 
     it('should return new theme object when fontFamily modifier invoked', () => {
-      let currentMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+      let currentMuiTheme = getMuiTheme(DarkRawTheme);
       let modifiedMuiTheme = ThemeManager.modifyRawThemeFontFamily(currentMuiTheme,
         currentMuiTheme.rawTheme.fontFamily);
 
@@ -131,7 +131,7 @@ const AppBarDarkUsingContext = React.createClass({
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(DarkRawTheme),
+      muiTheme: getMuiTheme(DarkRawTheme),
     };
   },
 
@@ -147,7 +147,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
   },
 
   getInitialState() {
-    let newMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+    let newMuiTheme = getMuiTheme(DarkRawTheme);
     newMuiTheme.appBar.textColor = Colors.deepPurpleA700;
 
     return {
@@ -167,7 +167,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
 });
 
 //react components used decorator-theme-passing texting
-let darkMuiTheme = ThemeManager.getMuiTheme(DarkRawTheme);
+let darkMuiTheme = getMuiTheme(DarkRawTheme);
 
 @ThemeDecorator(darkMuiTheme)
 class AppBarDarkUsingDecorator extends React.Component
@@ -177,7 +177,7 @@ class AppBarDarkUsingDecorator extends React.Component
   }
 }
 
-let darkMuiThemeWithOverride = ThemeManager.getMuiTheme(DarkRawTheme);
+let darkMuiThemeWithOverride = getMuiTheme(DarkRawTheme);
 darkMuiThemeWithOverride.appBar.textColor = Colors.deepPurpleA700;
 
 @ThemeDecorator(darkMuiThemeWithOverride)
@@ -197,7 +197,7 @@ const ButtonToUpdateThemeWithAppBar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(DarkRawTheme),
+      muiTheme: getMuiTheme(DarkRawTheme),
     };
   },
 
@@ -208,7 +208,7 @@ const ButtonToUpdateThemeWithAppBar = React.createClass({
   },
 
   handleClick() {
-    let newMuiThemeWithOverride = ThemeManager.getMuiTheme(LightRawTheme);
+    let newMuiThemeWithOverride = getMuiTheme();
     newMuiThemeWithOverride.appBar.textColor = Colors.deepPurpleA700;
 
     this.setState({

@@ -4,8 +4,7 @@ import StylePropable from '../mixins/style-propable';
 import Events from '../utils/events';
 import PropTypes from '../utils/prop-types';
 import Menu from '../menus/menu';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../popover/popover';
 import warning from 'warning';
 
@@ -166,7 +165,7 @@ const IconMenu = React.createClass({
     }
 
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       menuInitiallyKeyboardFocused: false,
       open: false,
