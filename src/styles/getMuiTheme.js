@@ -1,4 +1,5 @@
 import merge from 'lodash.merge';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import Colors from './colors';
 import ColorManipulator from '../utils/color-manipulator';
 import autoPrefix from './auto-prefix';
@@ -12,6 +13,7 @@ import zIndex from './zIndex';
  * theme will be deeply merged with the second argument.
  */
 export default function getMuiTheme(baseTheme, muiTheme) {
+  injectTapEventPlugin();
   baseTheme = merge({}, lightBaseTheme, baseTheme);
   const {
     palette,
