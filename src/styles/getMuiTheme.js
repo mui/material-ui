@@ -4,6 +4,7 @@ import ColorManipulator from '../utils/color-manipulator';
 import autoPrefix from './auto-prefix';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
+import checkTapEventPlugin from '../utils/checkTapEventPlugin';
 
 /**
  * Get the MUI theme corresponding to a base theme.
@@ -12,6 +13,8 @@ import zIndex from './zIndex';
  * theme will be deeply merged with the second argument.
  */
 export default function getMuiTheme(baseTheme, muiTheme) {
+  if (process.env.NODE_ENV !== 'production') checkTapEventPlugin();
+
   baseTheme = merge({}, lightBaseTheme, baseTheme);
   const {
     palette,
