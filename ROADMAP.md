@@ -29,3 +29,4 @@
 * Remove usage of JSON to generate children across the components.
 * Remove the old menu folder.
 * Remove old component file naming.
+* Remove deprecated properties.
