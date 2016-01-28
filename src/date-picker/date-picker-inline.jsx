@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from '../paper';
+import Popover from '../popover/popover';
 
 const styles = {
   actions: {
@@ -35,6 +35,14 @@ const DatePickerInline = React.createClass({
   getDefaultProps() {
     return {
       open: false,
+      anchorOrigin: {
+        horizontal: 'left',
+        vertical: 'bottom',
+      },
+      targetOrigin: {
+        horizontal: 'left',
+        vertical: 'top',
+      },
     };
   },
 
@@ -47,19 +55,15 @@ const DatePickerInline = React.createClass({
       ...other,
     } = this.props;
 
-    if (!open) {
-      return <span />;
-    }
-
     return (
       <div style={styles.container}>
-        <div style={styles.subContainer}>
-          <Paper {...other}>
+        <div style={styles.subContainer} ref="anchor">
+          <Popover {...other} open={open} anchorEl={this.refs.anchor}>
             {children}
             <div style={styles.actions}>
               {actions}
             </div>
-          </Paper>
+          </Popover>
         </div>
       </div>
     );
