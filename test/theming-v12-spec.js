@@ -76,7 +76,7 @@ describe('Theming', () => {
     describe('using theme decorator, AppBar', () => {
 
       it('should display with passed down dark theme', () => {
-        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingDecorator />);
+        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkTheme />);
         let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
         let firstDiv = appbarDivs[0];
 
@@ -84,7 +84,7 @@ describe('Theming', () => {
       });
 
       it('should display with passed down dark theme and overriden specific attribute', () => {
-        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingDecoratorWithOverride />);
+        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkThemeOverride />);
         let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
         let firstDiv = appbarDivs[0];
 
@@ -166,27 +166,20 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
   },
 });
 
-//react components used decorator-theme-passing texting
-let darkMuiTheme = getMuiTheme(DarkRawTheme);
 
-@ThemeDecorator(darkMuiTheme)
-class AppBarDarkUsingDecorator extends React.Component
-{
-  render() {
-    return (<AppBar />);
-  }
-}
+const darkMuiTheme = getMuiTheme(DarkRawTheme);
+const AppBarDarkTheme = ThemeDecorator(darkMuiTheme)(AppBar);
 
-let darkMuiThemeWithOverride = getMuiTheme(DarkRawTheme);
-darkMuiThemeWithOverride.appBar.textColor = Colors.deepPurpleA700;
+const AppBarTitle = () => (
+  <AppBar title="My AppBar" />
+);
 
-@ThemeDecorator(darkMuiThemeWithOverride)
-class AppBarDarkUsingDecoratorWithOverride extends React.Component
-{
-  render() {
-    return (<AppBar title="My AppBar"/>);
-  }
-}
+const darkMuiThemeWithOverride = getMuiTheme(DarkRawTheme, {
+  appBar: {
+    textColor: Colors.deepPurpleA700,
+  },
+});
+const AppBarDarkThemeOverride = ThemeDecorator(darkMuiThemeWithOverride)(AppBarTitle);
 
 //react component used to test whether or not theme updates down the hierarchy
 const ButtonToUpdateThemeWithAppBar = React.createClass({
