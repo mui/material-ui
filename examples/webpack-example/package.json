@@ -21,7 +21,7 @@
     "eslint": "^1.10.3",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.13.1",
-    "html-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^2.7.2",
     "react-hot-loader": "^1.3.0",
     "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.12.9",
@@ -30,7 +30,7 @@
   "dependencies": {
     "material-ui": "^0.14.3",
     "react": "^0.14.3",
-    "react-dom":"^0.14.3",
+    "react-dom": "^0.14.3",
     "react-tap-event-plugin": "^0.2.1"
   }
 }
