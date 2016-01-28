@@ -57,6 +57,7 @@ import TogglePage from './components/pages/components/Toggle/Page';
 import ToolbarPage from './components/pages/components/Toolbar/Page';
 
 import Community from './components/pages/discover-more/Community';
+import Contributing from './components/pages/discover-more/Contributing';
 import Showcase from './components/pages/discover-more/Showcase';
 
 /**
@@ -128,6 +129,7 @@ const AppRoutes = (
     <Redirect from="discover-more" to="/discover-more/community" />
     <Route path="discover-more">
       <Route path="community" component={Community} />
+      <Route path="contributing" component={Contributing} />
       <Route path="showcase" component={Showcase} />
     </Route>
   </Route>
