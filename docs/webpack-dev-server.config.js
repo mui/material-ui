@@ -96,7 +96,6 @@ const config = {
       {
         test: /\.md$/,
         loader: 'raw-loader',
-        include: path.resolve(__dirname, 'src/app/components'),
       },
       {
         test: /\.css$/,
