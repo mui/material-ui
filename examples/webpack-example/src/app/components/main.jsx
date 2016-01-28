@@ -7,6 +7,7 @@ import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import LightRawTheme from 'material-ui/lib/styles/raw-themes/light-raw-theme';
 import Colors from 'material-ui/lib/styles/colors';
 import FlatButton from 'material-ui/lib/flat-button';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
 const containerStyle = {
   textAlign: 'center',
