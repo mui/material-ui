@@ -34,7 +34,7 @@ And please don't just '+1' an issue. It spams the maintainers and doesn't help m
 
 Material-UI is a community project, so pull requests are always welcome, but before working on a large change, it is best to open an issue first to discuss it with the maintainers.
 
-When in doubt, keep your pull requests small. To give a PR the best chance of getting accepted, do not bundle more than one feature or bug fix per pull request. It's always best to create two smaller PRs than one big one.
+When in doubt, keep your pull requests small. To give a PR the best chance of getting accepted, don't bundle more than one feature or bug fix per pull request. It's always best to create two smaller PRs than one big one.
 
 As with issues, please begin the title with [ComponentName].
 
@@ -48,7 +48,7 @@ Please create a new branch from an up to date master on your fork.
 4. Make your changes, lint, then push to to github with `git push --set-upstream origin my-topic-branch`.
 5. Visit github and make your pull request.
 
-If you have an existing local repositiry, please update it before you start to minimise the chance of merge conflicts.
+If you have an existing local repositiry, please update it before you start, to minimise the chance of merge conflicts.
 ```js
 git remote add upstream git@github.com:callemall/material-ui.git
 git checkout master
@@ -66,7 +66,8 @@ cd docs
 npm install
 npm run start
 ```
-You can now access
+You can now access the documentation site [locally](http://localhost:3000).
+
 If you find you need to use `console.log()` or `debugger`, you will need to temporarily disable linting. Simply comment out the [`preLoaders` section](https://github.com/callemall/material-ui/blob/master/docs/webpack-dev-server.config.js#L62) of `docs/webpack-dev-server.config.js`
 
 ### Coding style
