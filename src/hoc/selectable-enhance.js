@@ -53,9 +53,9 @@ export const SelectableContainerEnhance = (Component) => {
       };
     },
 
-    _extendChild(child, styles, selectedItemStyle) {
+    extendChild(child, styles, selectedItemStyle) {
       if (child && child.type && child.type.displayName === 'ListItem') {
-        let selected = this._isChildSelected(child, this.props);
+        let selected = this.isChildSelected(child, this.props);
         let selectedChildrenStyles = {};
         if (selected) {
           selectedChildrenStyles = this.mergeStyles(styles, selectedItemStyle);
@@ -63,32 +63,47 @@ export const SelectableContainerEnhance = (Component) => {
 
         let mergedChildrenStyles = this.mergeStyles(child.props.style || {}, selectedChildrenStyles);
 
-        this._keyIndex += 1;
+        this.keyIndex += 1;
 
         return React.cloneElement(child, {
           onTouchTap: (e) => {
-            this._handleItemTouchTap(e, child);
+            this.handleItemTouchTap(e, child);
             if (child.props.onTouchTap) {
               child.props.onTouchTap(e);
             }
           },
-          key: this._keyIndex,
+          key: this.keyIndex,
           style: mergedChildrenStyles,
-          nestedItems: child.props.nestedItems.map((child) => this._extendChild(child, styles, selectedItemStyle)),
+          nestedItems: child.props.nestedItems.map((child) => this.extendChild(child, styles, selectedItemStyle)),
+          initiallyOpen: this.isInitiallyOpen(child),
         });
       } else {
         return child;
       }
     },
 
-    _isChildSelected(child, props) {
+    isInitiallyOpen(child) {
+      if (child.props.initiallyOpen) {
+        return child.props.initiallyOpen;
+      }
+      return this.hasSelectedDescendant(false, child);
+    },
+
+    hasSelectedDescendant(previousValue, child) {
+      if (React.isValidElement(child) && child.props.nestedItems && child.props.nestedItems.length > 0) {
+        return child.props.nestedItems.reduce(this.hasSelectedDescendant, previousValue);
+      }
+      return previousValue || this.isChildSelected(child, this.props);
+    },
+
+    isChildSelected(child, props) {
       let itemValue = this.getValueLink(props).value;
       let childValue = child.props.value;
 
-      return (itemValue && itemValue === childValue);
+      return (itemValue === childValue);
     },
 
-    _handleItemTouchTap(e, item) {
+    handleItemTouchTap(e, item) {
       let valueLink = this.getValueLink(this.props);
       let itemValue = item.props.value;
       let menuValue = valueLink.value;
@@ -99,7 +114,7 @@ export const SelectableContainerEnhance = (Component) => {
 
     render() {
       const {children, selectedItemStyle} = this.props;
-      this._keyIndex = 0;
+      this.keyIndex = 0;
       let styles = {};
 
       if (!selectedItemStyle) {
@@ -110,7 +125,7 @@ export const SelectableContainerEnhance = (Component) => {
         };
       }
 
-      let newChildren = React.Children.map(children, (child) => this._extendChild(child, styles, selectedItemStyle));
+      let newChildren = React.Children.map(children, (child) => this.extendChild(child, styles, selectedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>
