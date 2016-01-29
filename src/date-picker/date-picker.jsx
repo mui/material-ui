@@ -42,6 +42,11 @@ const DatePicker = React.createClass({
     disableYearSelection: React.PropTypes.bool,
 
     /**
+     * Disables the DatePicker.
+     */
+    disabled: React.PropTypes.bool,
+
+    /**
      * Used to change the first day of week. It drastically varies from
      * Saturday to Monday (could even be Friday) between different locales.
      * The allowed range is 0 (Sunday) to 6 (Saturday).
@@ -165,6 +170,7 @@ const DatePicker = React.createClass({
       disableYearSelection: false,
       style: {},
       firstDayOfWeek: 0,
+      disabled: false,
     };
   },
 
@@ -248,9 +254,10 @@ const DatePicker = React.createClass({
   _handleInputTouchTap: function _handleInputTouchTap(event) {
     if (this.props.onTouchTap) this.props.onTouchTap(event);
 
-    setTimeout(() => {
-      this.openDialog();
-    }, 0);
+    if (!this.props.disabled)
+      setTimeout(() => {
+        this.openDialog();
+      }, 0);
   },
 
   _handleWindowKeyUp() {
