@@ -20,7 +20,8 @@ const descriptions = {
   iconButton: 'This example uses an [IconButton](/#/components/icon-button) on the left, has a clickable `title` ' +
   'through the `onTouchTap` property, and a [FlatButton](/#/components/flat-button) on the right.',
   iconMenu: 'This example uses an [IconMenu](/#/components/icon-menu) for `iconElementRight`.',
-  iconMultiple: 'This example uses an array of [FlatButton](/#/components/flat-button) and [IconButton](/#/components/icon-button) for `iconElementRight`.',
+  iconMultiple: 'This example uses an array of [FlatButton](/#/components/flat-button) and ' +
+  '[IconButton](/#/components/icon-button) for `iconElementRight`.',
 };
 
 const AppBarPage = () => (

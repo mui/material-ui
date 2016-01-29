@@ -19,7 +19,7 @@ const AppBarExampleIconMultiple = () => (
           style={{verticalAlign: 'middle'}}
         >
           {'person_add'}
-        </IconButton>
+        </IconButton>,
       ]
     }
   />
