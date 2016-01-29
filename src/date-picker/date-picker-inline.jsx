@@ -19,9 +19,8 @@ const styles = {
   },
 };
 
-const DatePickerInline = React.createClass({
-
-  propTypes: {
+class DatePickerInline extends React.Component {
+  static propTypes = {
     actions: React.PropTypes.node,
     children: React.PropTypes.node,
     open: React.PropTypes.bool,
@@ -30,13 +29,11 @@ const DatePickerInline = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      open: false,
-    };
-  },
+  static defaultProps = {
+    open: false,
+  };
 
   render() {
     const {
@@ -63,8 +60,7 @@ const DatePickerInline = React.createClass({
         </div>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default DatePickerInline;

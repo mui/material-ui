@@ -5,8 +5,7 @@ import CodeExample from '../../CodeExample';
 const {Typography} = Styles;
 
 
-const InlineStyles = React.createClass({
-
+class InlineStyles extends React.Component {
   getStyles() {
     return {
       headline: {
@@ -28,7 +27,7 @@ const InlineStyles = React.createClass({
         color: Typography.textDarkBlack,
       },
     };
-  },
+  }
 
   render() {
     let codeOverrideStyles =
@@ -125,8 +124,7 @@ const InlineStyles = React.createClass({
         </p>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default InlineStyles;
