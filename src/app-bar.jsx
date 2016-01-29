@@ -223,7 +223,7 @@ const AppBar = React.createClass({
       case 'IconMenu':
       case 'IconButton':
         return React.cloneElement(element, {
-          iconStyle: this.mergeStyles(styles.iconButton.iconStyle),
+          iconStyle: this.mergeStyles(styles.iconButton.iconStyle, element.props.iconStyle),
         });
 
       case 'FlatButton':
