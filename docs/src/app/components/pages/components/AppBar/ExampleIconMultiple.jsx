@@ -3,7 +3,7 @@ import AppBar from 'material-ui/lib/app-bar';
 import FlatButton from 'material-ui/lib/flat-button';
 import IconButton from 'material-ui/lib/icon-button';
 
-const AppBarExampleIcon = () => (
+const AppBarExampleIconMultiple = () => (
   <AppBar
     title="Title"
     iconElementRight={
@@ -25,4 +25,4 @@ const AppBarExampleIcon = () => (
   />
 );
 
-export default AppBarExampleIcon;
+export default AppBarExampleIconMultiple;
