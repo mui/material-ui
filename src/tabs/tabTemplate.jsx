@@ -1,10 +1,10 @@
 import React from 'react';
 
-const TabTemplate = React.createClass({
-  propTypes: {
+class TabTemplate extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     selected: React.PropTypes.bool,
-  },
+  };
 
   render() {
     const styles = {
@@ -25,7 +25,7 @@ const TabTemplate = React.createClass({
         {this.props.children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default TabTemplate;

@@ -2,10 +2,8 @@ import React from 'react';
 import {mergeStyles} from '../utils/styles';
 import List from './list';
 
-
-const NestedList = React.createClass({
-
-  propTypes: {
+class NestedList extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     nestedLevel: React.PropTypes.number,
     open: React.PropTypes.bool,
@@ -14,14 +12,12 @@ const NestedList = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      nestedLevel: 1,
-      open: false,
-    };
-  },
+  static defaultProps = {
+    nestedLevel: 1,
+    open: false,
+  };
 
   render() {
 
@@ -51,8 +47,7 @@ const NestedList = React.createClass({
         }
       </List>
     );
-  },
-
-});
+  }
+}
 
 export default NestedList;
