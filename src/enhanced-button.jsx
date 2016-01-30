@@ -292,6 +292,7 @@ const EnhancedButton = React.createClass({
           css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
        */
       transform: disableTouchRipple && disableFocusRipple ? null : 'translate3d(0, 0, 0)',
+      verticalAlign: other.hasOwnProperty('href') ? 'middle' : null,
     }, style);
 
     if (disabled && linkButton) {
