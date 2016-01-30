@@ -27,6 +27,6 @@
 ##### Breaking Changes
 
 * Remove usage of JSON to generate children across the components.
-* Remove the old menu folder.
+* Remove the old menu folder. (3108)
 * Remove old component file naming.
 * Remove deprecated properties. (#3108)
