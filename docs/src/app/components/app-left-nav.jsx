@@ -184,6 +184,7 @@ const AppLeftNav = React.createClass({
               <ListItem primaryText="Community" value="/discover-more/community" />,
               <ListItem primaryText="Contributing" value="/discover-more/contributing" />,
               <ListItem primaryText="Showcase" value="/discover-more/showcase" />,
+              <ListItem primaryText="Related projects" value="/discover-more/related-projects" />,
             ]}
           />
         </SelectableList>
