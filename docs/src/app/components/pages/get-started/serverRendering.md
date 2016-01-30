@@ -1,13 +1,13 @@
 ## Server Rendering
 
-When using Material UI with server rendering, we must use the same environment for the server and the client.
+When using Material-UI with server rendering, we must use the same environment for the server and the client.
 This has two technical implications.
 
 ### Autoprefixer
 
-First, Material UI has to use the same user agent for the auto prefixer.
+First, Material-UI has to use the same user agent for the auto prefixer.
 On the client side, the default value is `navigator.userAgent`.
-But on the server side, the `navigator` is `undefined`. You need to provide it to Material UI.
+But on the server side, the `navigator` is `undefined`. You need to provide it to Material-UI.
 
 The `userAgent` can take one of the following values:
 - a regular user agent like

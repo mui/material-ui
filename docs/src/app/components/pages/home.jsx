@@ -80,7 +80,7 @@ const HomePage = React.createClass({
       <FullWidthSection style={styles.root}>
         <img style={styles.svgLogo} src="images/material-ui-logo.svg" />
         <div style={styles.tagline}>
-          <h1 style={styles.h1}>material ui</h1>
+          <h1 style={styles.h1}>Material-UI</h1>
           <h2 style={styles.h2}>
             A Set of React Components <span style={styles.nowrap}>
             that Implement</span> <span style={styles.nowrap}>

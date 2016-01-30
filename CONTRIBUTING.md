@@ -1,6 +1,6 @@
 ## Contributing
 
-If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material UI community. Here are a few guidelines that will help you along the way.
+If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
 
 ### Asking Questions
 
@@ -13,7 +13,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 Next, create a new issue that briefly explains the problem, and provides a bit of background as to the circumstances that triggered it, and steps to reproduce it.
 
 For code issues please include:
-* Material UI version
+* Material-UI version
 * React version
 * Browser version
 * A code example or link to a repo, gist or running site.
@@ -42,7 +42,7 @@ As with issues, please begin the title with [ComponentName].
 
 Please create a new branch from an up to date master on your fork.
 
-1. Fork the Material UI repository on Github
+1. Fork the Material-UI repository on Github
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
 3. Create a branch `git checkout -b my-topic-branch`
 4. Make your changes, lint, then push to to github with `git push --set-upstream origin my-topic-branch`.
@@ -59,7 +59,7 @@ npm update
 
 ### Testing
 
-The documentation site is built with Material UI, and contains examples of all the components. To get started:
+The documentation site is built with Material-UI, and contains examples of all the components. To get started:
 ```js
 npm install
 cd docs
@@ -72,13 +72,13 @@ If you find you need to use `console.log()` or `debugger`, you will need to temp
 
 ### Coding style
 
-Please follow the coding style of the current code base. Material UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `npm run lint`.
+Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `npm run lint`.
 
 You can also run linting on a subset of the codebase with `gulp eslint:src`, `gulp eslint:docs` or `gulp eslint:test`. Finally, when you submit a pull request, they are run again by Travis CI, but hopefully by then your code is already clean!
 
 ### Roadmap
 
-To get a sense of where Material UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) and the list of [Material Design components](https://github.com/callemall/material-ui/issues/2863).
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) and the list of [Material Design components](https://github.com/callemall/material-ui/issues/2863).
 
 
 ### License
