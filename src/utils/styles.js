@@ -1,17 +1,4 @@
-import autoPrefix from '../styles/auto-prefix';
-import warning from 'warning';
-
 export const mergeStyles = (...args) => Object.assign({}, ...args);
-
-/**
- * `mergeAndPrefix` is used to merge styles and autoprefix them. It has has been deprecated
- *  and should no longer be used.
- */
-export function mergeAndPrefix(...args) {
-  warning(false, 'Use of mergeAndPrefix() has been deprecated. ' +
-    'Please use mergeStyles() for merging styles, and then prepareStyles() for prefixing and ensuring direction.');
-  return autoPrefix.all(mergeStyles(...args));
-}
 
 /**
  * `prepareStyles` is used to merge multiple styles, make sure they are flipped
@@ -35,6 +22,5 @@ export function prepareStyles(muiTheme, style = {}, ...styles) {
 
 export default {
   mergeStyles,
-  mergeAndPrefix,
   prepareStyles,
 };

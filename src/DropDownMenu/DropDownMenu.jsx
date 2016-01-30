@@ -2,14 +2,11 @@ import React from 'react';
 import Transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../menus/menu';
-import MenuItem from '../menus/menu-item';
 import ClearFix from '../clearfix';
 import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 import {mergeStyles, prepareStyles} from '../utils/styles';
-import warning from 'warning';
-import deprecated from '../utils/deprecatedPropType';
 
 const DropDownMenu = React.createClass({
 
@@ -41,23 +38,9 @@ const DropDownMenu = React.createClass({
     disabled: React.PropTypes.bool,
 
     /**
-     * `DropDownMenu` will use this member to display
-     * the name of the item.
-     */
-    displayMember: deprecated(React.PropTypes.string,
-      'Instead, use composability.'),
-
-    /**
      * Overrides the styles of icon element.
      */
     iconStyle: React.PropTypes.object,
-
-    /**
-     * `DropDownMenu` will use this member to display
-     * the name of the item on the label.
-     */
-    labelMember: deprecated(React.PropTypes.string,
-      'Instead, use composability.'),
 
     /**
      * Overrides the styles of label when the `DropDownMenu` is inactive.
@@ -68,12 +51,6 @@ const DropDownMenu = React.createClass({
      * The maximum height of the `Menu` when it is displayed.
      */
     maxHeight: React.PropTypes.number,
-
-    /**
-     * JSON data representing all menu items in the dropdown.
-     */
-    menuItems: deprecated(React.PropTypes.array,
-      'Instead, use composability.'),
 
     /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
@@ -91,12 +68,6 @@ const DropDownMenu = React.createClass({
     openImmediately: React.PropTypes.bool,
 
     /**
-     * Index of the item selected.
-     */
-    selectedIndex: deprecated(React.PropTypes.number,
-      'Use value instead to control the component.'),
-
-    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
@@ -110,18 +81,6 @@ const DropDownMenu = React.createClass({
      * The value that is currently selected.
      */
     value: React.PropTypes.any,
-
-    /**
-     * Two-way binding link.
-     */
-    valueLink: deprecated(React.PropTypes.object,
-      'It\'s deprecated by React too.'),
-
-    /**
-     * `DropDownMenu` will use this member as the value representing an item.
-     */
-    valueMember: deprecated(React.PropTypes.string,
-      'Instead, use composability.'),
   },
 
   contextTypes: {
@@ -145,7 +104,6 @@ const DropDownMenu = React.createClass({
   getInitialState() {
     return {
       open: this.props.openImmediately,
-      selectedIndex: this._isControlled() ? null : (this.props.selectedIndex || 0),
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -158,18 +116,14 @@ const DropDownMenu = React.createClass({
 
   componentDidMount() {
     if (this.props.autoWidth) this._setWidth();
-    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props.selectedIndex);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    if (this.props.autoWidth) this._setWidth();
-    if (nextProps.hasOwnProperty('value') || nextProps.hasOwnProperty('valueLink')) {
-      return;
-    } else if (nextProps.hasOwnProperty('selectedIndex')) {
-      this._setSelectedIndex(nextProps.selectedIndex);
+    if (this.props.autoWidth) {
+      this._setWidth();
     }
   },
 
@@ -235,10 +189,6 @@ const DropDownMenu = React.createClass({
    */
   getInputNode() {
     const root = this.refs.root;
-    const item = this.props.menuItems && this.props.menuItems[this.state.selectedIndex];
-    if (item) {
-      root.value = item[this.props.displayMember || 'text'];
-    }
 
     root.focus = () => {
       if (!this.props.disabled) {
@@ -260,11 +210,6 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  _setSelectedIndex(index) {
-    warning(index >= 0, 'Cannot set selectedIndex to a negative index.');
-    this.setState({selectedIndex: (index >= 0) ? index : 0});
-  },
-
   _onControlTouchTap(event) {
     event.preventDefault();
     if (!this.props.disabled) {
@@ -276,30 +221,9 @@ const DropDownMenu = React.createClass({
   },
 
   _onMenuItemTouchTap(key, payload, e) {
-    const {
-      onChange,
-      menuItems,
-      value,
-      valueLink,
-      valueMember,
-    } = this.props;
-
-    if (menuItems && (this.state.selectedIndex !== key || e.target.value !== value)) {
-      const selectedItem = menuItems[key];
-      if (selectedItem) {
-        e.target.value = selectedItem[valueMember || 'payload'];
-      }
-      this._onMenuRequestClose();
-    }
-
-    if (valueLink) {
-      valueLink.requestChange(e.target.value);
-    } else if (onChange) {
-      onChange(e, key, payload);
-    }
+    this.props.onChange(e, key, payload);
 
     this.setState({
-      selectedIndex: key,
       open: false,
     });
   },
@@ -311,27 +235,18 @@ const DropDownMenu = React.createClass({
     });
   },
 
-  _isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
-  },
-
   render() {
     const {
       autoWidth,
       children,
       className,
-      displayMember,
       iconStyle,
-      labelMember,
       labelStyle,
       maxHeight,
-      menuItems,
       menuStyle,
       style,
       underlineStyle,
-      valueLink,
-      valueMember = 'payload',
+      value,
       ...other,
     } = this.props;
 
@@ -343,57 +258,19 @@ const DropDownMenu = React.createClass({
 
     const styles = this.getStyles();
 
-    let value;
-    let selectedIndex = this._isControlled() ? null : this.state.selectedIndex;
-
-    if (menuItems && typeof selectedIndex === 'number') {
-      warning(menuItems[selectedIndex],
-        `SelectedIndex of ${selectedIndex} does not exist in menuItems.`);
-    }
-
-    if (valueMember && this._isControlled()) {
-      value = this.props.hasOwnProperty('value') ? this.props.value : valueLink.value;
-      if (menuItems && value !== null && value !== undefined) {
-        for (let i = 0; i < menuItems.length; i++) {
-          if (menuItems[i][valueMember] === value) {
-            selectedIndex = i;
-          }
-        }
-      }
-    }
-
     let displayValue = '';
-    if (menuItems) {
-      const selectedItem = menuItems[selectedIndex];
-      if (selectedItem) {
-        displayValue = selectedItem[labelMember || 'text'] || selectedItem[displayMember || 'text'];
+    React.Children.forEach(children, child => {
+      if (value === child.props.value) {
+        // This will need to be improved (in case primaryText is a node)
+        displayValue = child.props.label || child.props.primaryText;
       }
-    } else {
-      React.Children.forEach(children, child => {
-        if (value === child.props.value) {
-          // This will need to be improved (in case primaryText is a node)
-          displayValue = child.props.label || child.props.primaryText;
-        }
-      });
-    }
+    });
 
-    let index = 0;
-    const menuItemElements = menuItems
-      ? menuItems.map((item, idx) => (
-        <MenuItem
-          key={idx}
-          primaryText={item[displayMember || 'text']}
-          value={item[valueMember]}
-          onTouchTap={this._onMenuItemTouchTap.bind(this, idx, item)}
-        />
-      ))
-      : React.Children.map(children, child => {
-        const clone = React.cloneElement(child, {
-          onTouchTap: this._onMenuItemTouchTap.bind(this, index, child.props.value),
-        }, child.props.children);
-        index += 1;
-        return clone;
+    const menuItemElements = React.Children.map(children, (child, index) => {
+      return React.cloneElement(child, {
+        onTouchTap: this._onMenuItemTouchTap.bind(this, index, child.props.value),
       });
+    });
 
     let popoverStyle;
     if (anchorEl && !autoWidth) {

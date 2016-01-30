@@ -142,16 +142,6 @@ const ToolbarGroup = React.createClass({
     return styles;
   },
 
-  _handleMouseEnterDropDownMenu(e) {
-    e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
-    e.target.style.color = this.getStyles().icon.hover.color;
-  },
-
-  _handleMouseLeaveDropDownMenu(e) {
-    e.target.style.zIndex = 'auto';
-    e.target.style.color = this.getStyles().icon.root.color;
-  },
-
   _handleMouseEnterFontIcon(e) {
     e.target.style.zIndex = this.getStyles().icon.hover.zIndex;
     e.target.style.color = this.getStyles().icon.hover.color;
@@ -184,13 +174,6 @@ const ToolbarGroup = React.createClass({
             style: this.mergeStyles(styles.dropDownMenu.root, currentChild.props.style),
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline,
-          });
-        case 'DropDownIcon' :
-          return React.cloneElement(currentChild, {
-            style: this.mergeStyles({float: 'left'}, currentChild.props.style),
-            iconStyle: styles.icon.root,
-            onMouseEnter: this._handleMouseEnterDropDownMenu,
-            onMouseLeave: this._handleMouseLeaveDropDownMenu,
           });
         case 'RaisedButton' :
         case 'FlatButton' :
