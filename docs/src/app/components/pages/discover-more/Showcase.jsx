@@ -40,6 +40,12 @@ const appList = [
     img: 'images/showcase/cloudcraft.png',
     link: 'https://cloudcraft.co/',
   },
+  {
+    title: 'IMR Starter Kit',
+    author: 'Code Foundries and contributors',
+    img: 'images/showcase/codefoundries.png',
+    link: 'http://isomorphic-material-relay.herokuapp.com/',
+  },
 ];
 
 const Showcase = () => (
