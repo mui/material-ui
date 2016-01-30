@@ -467,25 +467,30 @@ const Tabs = React.createClass({
       >
         <div
           ref={Constants.TAB_WRAPPER_REF_NAME}
-          style={this.prepareStyles(styles.tabWrapper, tabWrapperStyle)}>
+          style={this.prepareStyles(styles.tabWrapper, tabWrapperStyle)}
+        >
           <TabPaginatorButton display={this.state.shouldPaginate}
             isLeftPaginatorButton={true}
             style={tabPaginatorButtonStyle}
             iconStyle={tabPaginatorButtonIconStyle}
             disabled={this.state.disableLeftPaginatorButton}
-            onTouchTap={this._handleLeftTabPaginatorTap}/>
+            onTouchTap={this._handleLeftTabPaginatorTap}
+          />
           <TabPaginatorButton display={this.state.shouldPaginate}
             isLeftPaginatorButton={false}
             style={tabPaginatorButtonStyle}
             iconStyle={tabPaginatorButtonIconStyle}
             disabled={this.state.disableRightPaginatorButton}
-            onTouchTap={this._handleRightTabPaginatorTap}/>
+            onTouchTap={this._handleRightTabPaginatorTap}
+          />
           <div
             ref={Constants.TAB_SCROLL_WRAPPER_REF_NAME}
-            style={styles.tabScrollWrapper}>
+            style={styles.tabScrollWrapper}
+          >
             <div
               ref={Constants.TAB_CONTAINER_REF_NAME}
-              style={this.prepareStyles(styles.tabItemContainer, tabItemContainerStyle)}>
+              style={this.prepareStyles(styles.tabItemContainer, tabItemContainerStyle)}
+            >
               {tabs}
             </div>
             <div style={{width: inkBarContainerWidth}}>

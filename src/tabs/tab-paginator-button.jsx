@@ -130,7 +130,8 @@ const TabPaginatorButton = React.createClass({
         disabled={disabled}
         iconClassName="material-icons"
         iconStyle={this.mergeStyles(iconStyle, styles.iconStyle)}
-        style={this.mergeStyles(styles.buttonStyle, style)}>
+        style={this.mergeStyles(styles.buttonStyle, style)}
+      >
         {isLeftPaginatorButton ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}
       </IconButton>
     );
