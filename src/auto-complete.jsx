@@ -293,6 +293,8 @@ const AutoComplete = React.createClass({
       menuProps,
       listStyle,
       targetOrigin,
+      onFocus,
+      onBlur,
       ...other,
     } = this.props;
 
@@ -429,17 +431,21 @@ const AutoComplete = React.createClass({
               let searchText = e.target.value;
               this._updateRequests(searchText);
             }}
-            onBlur={() => {
+            onBlur={(e) => {
               if (this.focusOnInput && open)
                 this.refs.searchTextField.focus();
+              else if (onBlur)
+                onBlur(e);
             }}
-            onFocus={() => {
+            onFocus={(e) => {
               if (!open && (this.props.triggerUpdateOnFocus
                 || this.props.updateWhenFocused //this line will be removed in the future
                 || this.requestsList > 0)) {
                 this._updateRequests(this.state.searchText);
               }
               this.focusOnInput = true;
+              if (onFocus)
+                onFocus(e);
             }}
 
             {...textFieldProps}
