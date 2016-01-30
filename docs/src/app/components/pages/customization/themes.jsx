@@ -1,6 +1,6 @@
 import React from 'react';
 import mui from 'material-ui';
-import CodeBlock from '../../CodeExample/CodeBlock';
+import MarkdownElement from '../../MarkdownElement';
 import ComponentDoc from '../../component-doc';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
@@ -373,6 +373,7 @@ const ThemesPage = React.createClass({
   render() {
 
     let lightRawTheme =
+      '```js\n' +
       'import Colors from \'material-ui/lib/styles/colors\';\n' +
       'import ColorManipulator from \'material-ui/lib/utils/color-manipulator\';\n' +
       'import Spacing from \'material-ui/lib/styles/spacing\';\n' +
@@ -395,9 +396,11 @@ const ThemesPage = React.createClass({
       '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
       '    pickerHeaderColor: Colors.cyan500,\n' +
       '  }\n' +
-      '};\n';
+      '};\n' +
+      '```\n';
 
     let reactContextExampleCode =
+      '```js\n' +
       'import React from \'react\';\n' +
       'import AppBar from \'material-ui\/lib\/app-bar\';\n' +
       'import RaisedButton from \'material-ui\/lib\/raised-button\';\n\n' +
@@ -429,9 +432,11 @@ const ThemesPage = React.createClass({
       '    );\n' +
       '  },\n' +
       '});\n\n' +
-      'export default MySampleAppComponent;\n';
+      'export default MySampleAppComponent;\n' +
+      '```\n';
 
     let decoratorExampleCode =
+      '```js\n' +
       'import React from \'react\';\n' +
       'import AppBar from \'material-ui\/lib\/app-bar\';\n' +
       'import RaisedButton from \'material-ui\/lib\/raised-button\';\n\n' +
@@ -459,9 +464,11 @@ const ThemesPage = React.createClass({
       '  }\n' +
       '}\n\n' +
 
-      'export default MySampleAppComponent;\n';
+      'export default MySampleAppComponent;\n' +
+      '```\n';
 
     let receiveThemeInContextCode =
+      '```js\n' +
       'const SpecificPageInApp = React.createClass({\n\n' +
 
       '...\n\n' +
@@ -478,9 +485,11 @@ const ThemesPage = React.createClass({
       '  };\n' +
       '},\n\n' +
 
-      '...\n';
+      '...\n' +
+      '```\n';
 
     let overrideAppBarTextColorCode =
+      '```js\n' +
       '//update theme here\n' +
       'componentWillMount () {\n' +
       '  let newMuiTheme = this.state.muiTheme;\n' +
@@ -496,7 +505,8 @@ const ThemesPage = React.createClass({
       '  return {\n' +
       '    muiTheme: this.state.muiTheme,\n' +
       '  };\n' +
-      '},\n';
+      '},\n' +
+      '```\n';
 
     let info = [
       {
@@ -600,9 +610,7 @@ const ThemesPage = React.createClass({
           using an ES7-style decorator. To start off, define your own raw theme in a JS file like so:
         </p>
 
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{lightRawTheme}</CodeBlock>
-        </Paper>
+        <MarkdownElement text={lightRawTheme} />
 
         <h3 style={styles.title}>1. Using React Lifecycle Methods with Context</h3>
 
@@ -610,11 +618,11 @@ const ThemesPage = React.createClass({
           Once you have defined your raw theme in a JS file, you can use React lifecycle methods
           and the context feature to apply your custom theme as follows:
         </p>
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{reactContextExampleCode}</CodeBlock>
-        </Paper>
+
+        <MarkdownElement text={reactContextExampleCode} />
 
         <h3 style={styles.title}>2. Using ES7-style Decorator</h3>
+
         <p>
           Alternatively, we have provided an ES7-style theme decorator that you can use to apply your
           custom theme.
@@ -622,9 +630,9 @@ const ThemesPage = React.createClass({
           to declare your app component. Moreover, React may not be able to automatically bind event handlers
           to your component&#39;s <i>this</i>. Arrow functions allow you to overcome this limitation.
         </p>
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{decoratorExampleCode}</CodeBlock>
-        </Paper>
+
+        <MarkdownElement text={decoratorExampleCode} />
+
         <p>
           It is worth pointing out that underneath the covers,
           the decorator is also using React lifecycle methods
@@ -645,9 +653,7 @@ const ThemesPage = React.createClass({
           from its parent/ancestors. However, in that page, the app bar text color should be different.
         </p>
 
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{receiveThemeInContextCode}</CodeBlock>
-        </Paper>
+        <MarkdownElement text={receiveThemeInContextCode} />
 
         <p>
           We recommend that you use state for intermediary storage of the theme, and always access the theme
@@ -664,9 +670,7 @@ const ThemesPage = React.createClass({
           This can be accomplished as follows:
         </p>
 
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{overrideAppBarTextColorCode}</CodeBlock>
-        </Paper>
+        <MarkdownElement text={overrideAppBarTextColorCode} />
 
         <p>
           Check out the
