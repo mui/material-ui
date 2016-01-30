@@ -85,6 +85,16 @@ const AutoComplete = React.createClass({
     menuStyle: React.PropTypes.object,
 
     /**
+     * Callback function that is fired when the textfield loses focus.
+     */
+    onBlur: React.PropTypes.func,
+
+    /**
+     * Callback function that is fired when the textfield gains focus.
+     */
+    onFocus: React.PropTypes.func,
+
+    /**
      * Gets called when list item is clicked or pressed enter.
      */
     onNewRequest: React.PropTypes.func,
