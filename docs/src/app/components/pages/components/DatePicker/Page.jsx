@@ -17,7 +17,8 @@ import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import datePickerReadmeText from './README';
 
 const descriptions = {
-  simple: 'The Date Picker defaults to a portrait dialog. The `mode` property can be set to `landscape`.',
+  simple: 'The Date Picker defaults to a portrait dialog. The `mode` property can be set to `landscape`. You can ' +
+  'also disable the Dialog passing `true` to the `disabled` property.',
   inline: 'Inline Date Pickers are displayed below the input, rather than as a modal dialog. ',
   ranged: 'This example allows you to set a date range, and to toggle `autoOk`, and `disableYearSelection`.',
   controlled: '`DatePicker` can be implemented as a controlled input, where `value` is handled by state in the ' +
