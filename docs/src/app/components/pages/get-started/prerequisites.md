@@ -1,7 +1,7 @@
 ## Prerequisites
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
-before diving into Material UI.
+before diving into Material-UI.
 Material-UI is a set of React components,
 so understanding how React fits into web development is important.
 
@@ -78,13 +78,13 @@ could use these scripts in their own projects.
 
 [Node Package Manager](https://www.npmjs.com/), better known as “npm,” does exactly that.
 npm is a command line tool that, among other things, can be used to incorporate external JavaScript into one's own project.
-Material UI, for instance, is available as a package through npm.
-This means that you can include Material UI in your project by simply running
+Material-UI, for instance, is available as a package through npm.
+This means that you can include Material-UI in your project by simply running
 `npm install material-ui` from your project’s directory,
-and then using the components of Material UI that you need.
+and then using the components of Material-UI that you need.
 
 That's it for a quick introduction!
 If you feel like you need more of Node, we recommend that you consult
-some quick tutorials online before jumping into Material UI.
+some quick tutorials online before jumping into Material-UI.
 This [blog post](http://openmymind.net/2012/2/3/Node-Require-and-Exports/) and
 [video](https://www.youtube.com/watch?v=pU9Q6oiQNd0) are good starting points.

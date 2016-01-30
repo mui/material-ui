@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 /**
- * Material UI Icon Builder
+ * Material-UI Icon Builder
  * ========================
  *
  * Usage:

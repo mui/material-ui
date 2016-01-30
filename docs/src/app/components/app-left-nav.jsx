@@ -80,7 +80,7 @@ const AppLeftNav = React.createClass({
         onRequestChange={onRequestChangeLeftNav}
       >
         <div style={this.prepareStyles(styles.logo)} onTouchTap={this.handleTouchTapHeader}>
-          material ui
+          Material-UI
         </div>
         <SelectableList
           valueLink={{value: location.pathname, requestChange: onRequestChangeList}}

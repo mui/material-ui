@@ -13,7 +13,7 @@ export default {
     }
 
     if (userAgent === undefined && !hasWarnedAboutUserAgent) {
-      warning(false, `Material UI: userAgent should be supplied in the muiTheme context
+      warning(false, `Material-UI: userAgent should be supplied in the muiTheme context
         for server-side rendering.`);
 
       hasWarnedAboutUserAgent = true;
@@ -33,10 +33,10 @@ export default {
   },
 
   getPrefixer() {
-    warning(false, `Material UI: getPrefixer() is no longer used. Do not use it.`);
+    warning(false, `Material-UI: getPrefixer() is no longer used. Do not use it.`);
 
     if (typeof navigator === 'undefined') {
-      warning(false, `Material UI expects the global navigator.userAgent to be defined
+      warning(false, `Material-UI expects the global navigator.userAgent to be defined
         for server-side rendering. Set this property when receiving the request headers.`);
 
       return null;
@@ -60,7 +60,7 @@ export default {
       return {};
     }
 
-    warning(false, `Material UI: all() is no longer used, it will be removed. Do not use it`);
+    warning(false, `Material-UI: all() is no longer used, it will be removed. Do not use it`);
 
     const prefixer = this.getPrefixer();
 
@@ -77,7 +77,7 @@ export default {
     if (muiTheme) {
       style = muiTheme.prefix(style);
     } else {
-      warning(false, `Material UI: you need to provide the muiTheme to the autoPrefix.set()`);
+      warning(false, `Material-UI: you need to provide the muiTheme to the autoPrefix.set()`);
 
       const prefixer = this.getPrefixer();
 
@@ -90,7 +90,7 @@ export default {
   },
 
   getPrefix(key) {
-    warning(false, `Material UI: getPrefix() is no longer used, it will be removed. Do not use it`);
+    warning(false, `Material-UI: getPrefix() is no longer used, it will be removed. Do not use it`);
 
     let style = {};
     style[key] = true;

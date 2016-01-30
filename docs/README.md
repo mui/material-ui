@@ -1,6 +1,6 @@
-# [Material UI Docs](http://callemall.github.io/material-ui/)
+# [Material-UI Docs](http://callemall.github.io/material-ui/)
 
-This is the documentation website and application of Material UI.
+This is the documentation website and application of Material-UI.
 
 ## Requirements
 
