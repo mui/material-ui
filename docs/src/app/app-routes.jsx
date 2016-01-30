@@ -59,6 +59,7 @@ import ToolbarPage from './components/pages/components/Toolbar/Page';
 import Community from './components/pages/discover-more/Community';
 import Contributing from './components/pages/discover-more/Contributing';
 import Showcase from './components/pages/discover-more/Showcase';
+import RelatedProjects from './components/pages/discover-more/RelatedProjects';
 
 /**
  * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
@@ -131,6 +132,7 @@ const AppRoutes = (
       <Route path="community" component={Community} />
       <Route path="contributing" component={Contributing} />
       <Route path="showcase" component={Showcase} />
+      <Route path="related-projects" component={RelatedProjects} />
     </Route>
   </Route>
 );
