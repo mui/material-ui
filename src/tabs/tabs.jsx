@@ -289,7 +289,7 @@ const Tabs = React.createClass({
   },
 
   handleWindowWidthChange() {
-    this.replaceState(this.getNewState());
+    this.setState(this.getNewState());
   },
 
   getNewState() {

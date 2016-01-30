@@ -96,7 +96,6 @@ const TabPaginatorButton = React.createClass({
     let themeVariables = this.state.muiTheme.tabs;
     const styles = {
       buttonStyle: {
-        display: display ? '' : 'none',
         position: 'absolute',
         top: 0,
         zIndex: 1,
@@ -124,7 +123,7 @@ const TabPaginatorButton = React.createClass({
       styles.buttonStyle.right = 0;
     }
 
-    return (
+    let paginatorButton = display ? (
       <IconButton {...other}
         disableTouchRipple={this.props.disableTouchRipple}
         disabled={disabled}
@@ -134,7 +133,9 @@ const TabPaginatorButton = React.createClass({
       >
         {isLeftPaginatorButton ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}
       </IconButton>
-    );
+    ) : null;
+
+    return paginatorButton;
   },
 
 });
