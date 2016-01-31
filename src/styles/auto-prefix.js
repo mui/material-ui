@@ -20,15 +20,19 @@ export default {
     }
 
     if (userAgent === false) { // Disabled autoprefixer
-      return (style) => style;
+      return {
+        prefix: (style) => style,
+      };
     } else if (userAgent === 'all' || userAgent === undefined) { // Prefix for all user agent
-      return InlineStylePrefixer.prefixAll;
+      return {
+        prefix: InlineStylePrefixer.prefixAll,
+      };
     } else {
       const prefixer = new InlineStylePrefixer({
         userAgent: userAgent,
       });
 
-      return (style) => prefixer.prefix(style);
+      return prefixer;
     }
   },
 
@@ -71,22 +75,8 @@ export default {
     }
   },
 
-  set(style, key, value, muiTheme) {
+  set(style, key, value) {
     style[key] = value;
-
-    if (muiTheme) {
-      style = muiTheme.prefix(style);
-    } else {
-      warning(false, `Material-UI: you need to provide the muiTheme to the autoPrefix.set()`);
-
-      const prefixer = this.getPrefixer();
-
-      if (prefixer) {
-        style = prefixer.prefix(style);
-      } else {
-        style = InlineStylePrefixer.prefixAll(style);
-      }
-    }
   },
 
   getPrefix(key) {
