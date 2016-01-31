@@ -1,5 +1,4 @@
 import InlineStylePrefixer from 'inline-style-prefixer';
-import update from 'react-addons-update';
 import warning from 'warning';
 
 const prefixers = {};
