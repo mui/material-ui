@@ -1,4 +1,5 @@
 import InlineStylePrefixer from 'inline-style-prefixer';
+import update from 'react-addons-update';
 import warning from 'warning';
 
 const prefixers = {};
@@ -28,7 +29,7 @@ export default {
         userAgent: userAgent,
       });
 
-      return prefixer.prefix;
+      return prefixer;
     }
   },
 
@@ -72,21 +73,25 @@ export default {
   },
 
   set(style, key, value, muiTheme) {
-    style[key] = value;
+    let newStyle;
 
     if (muiTheme) {
-      style = muiTheme.prefix(style);
+      newStyle = muiTheme.prefixer.prefix({[key]: value});
     } else {
       warning(false, `Material-UI: you need to provide the muiTheme to the autoPrefix.set()`);
 
       const prefixer = this.getPrefixer();
 
       if (prefixer) {
-        style = prefixer.prefix(style);
+        newStyle = prefixer.prefix(style);
       } else {
-        style = InlineStylePrefixer.prefixAll(style);
+        newStyle = InlineStylePrefixer.prefixAll(style);
       }
     }
+
+    Object.keys(newStyle).forEach(function(newKey) {
+      style[newKey] = newStyle[newKey];
+    });
   },
 
   getPrefix(key) {

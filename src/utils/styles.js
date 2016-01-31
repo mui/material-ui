@@ -134,7 +134,7 @@ export function prepareStyles(muiTheme, style = {}, ...styles) {
   }
 
   const flipped = ensureDirection(muiTheme, style);
-  return muiTheme.prefix(flipped);
+  return muiTheme.prefixer.prefix(flipped);
 }
 
 export default {
