@@ -116,7 +116,7 @@ const Tab = React.createClass({
 
     const textColor = selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor;
 
-    const styles = this.prepareStyles({
+    const styles = this.mergeStyles({
       display: 'table-cell',
       cursor: 'pointer',
       textAlign: 'center',
