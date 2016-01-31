@@ -164,8 +164,7 @@ const RaisedButton = React.createClass({
   getDefaultProps: function() {
     return {
       disabled: false,
-      // labelPosition should be after but we keep it like for now (prevent breaking changes)
-      labelPosition: 'before',
+      labelPosition: 'after',
       fullWidth: false,
       primary: false,
       secondary: false,

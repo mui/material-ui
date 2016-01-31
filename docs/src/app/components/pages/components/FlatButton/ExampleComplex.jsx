@@ -23,8 +23,8 @@ const FlatButtonExampleComplex = () => (
     </FlatButton>
 
     <FlatButton
-      label="Label after"
-      labelPosition="after"
+      label="Label before"
+      labelPosition="before"
       primary={true}
       style={styles.button}
       icon={<ActionAndroid />}

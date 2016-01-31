@@ -159,8 +159,7 @@ const FlatButton = React.createClass({
     return {
       disabled: false,
       labelStyle: {},
-      // labelPosition Should be after but we keep it like for now (prevent breaking changes)
-      labelPosition: 'before',
+      labelPosition: 'after',
       onKeyboardFocus: () => {},
       onMouseEnter: () => {},
       onMouseLeave: () => {},
@@ -296,7 +295,7 @@ const FlatButton = React.createClass({
     }
 
     const labelElement = label ? (
-      <FlatButtonLabel label={label} style={mergeStyles(labelStyle, labelStyleIcon)} />
+      <FlatButtonLabel label={label} style={mergeStyles(labelStyleIcon, labelStyle)} />
     ) : undefined;
 
     // Place label before or after children.

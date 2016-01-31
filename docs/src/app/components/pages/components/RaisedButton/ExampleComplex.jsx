@@ -28,8 +28,8 @@ const RaisedButtonExampleComplex = () => (
       <input type="file" style={styles.exampleImageInput} />
     </RaisedButton>
     <RaisedButton
-      label="Label after"
-      labelPosition="after"
+      label="Label before"
+      labelPosition="before"
       primary={true}
       icon={<ActionAndroid />}
       style={styles.button}
