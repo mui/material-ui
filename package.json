@@ -31,6 +31,7 @@
   "homepage": "http://material-ui.com/",
   "dependencies": {
     "inline-style-prefixer": "^0.6.6",
+    "lodash.flowright": "^3.2.1",
     "lodash.merge": "^3.3.2",
     "lodash.throttle": "~3.0.4",
     "react-addons-create-fragment": "^0.14.0",

@@ -1,5 +1,5 @@
 import React from 'react';
-import {mergeStyles, mergeAndPrefix, prepareStyles as prepare} from '../utils/styles';
+import {mergeStyles, mergeAndPrefix} from '../utils/styles';
 
 /**
  * This mixin isn't necessary and will be removed soon. DO NOT USE!
@@ -22,8 +22,11 @@ export default {
   mergeAndPrefix,
 
   prepareStyles(...args) {
-    return prepare((this.state && this.state.muiTheme) ||
-      this.context.muiTheme ||
-      (this.props && this.props.muiTheme), ...args);
+    const {
+      prepareStyles = (style) => (style),
+    } = (this.state && this.state.muiTheme) || (this.context && this.context.muiTheme) ||
+        (this.props && this.props.muiTheme) || {};
+
+    return prepareStyles(mergeStyles({}, ...args));
   },
 };

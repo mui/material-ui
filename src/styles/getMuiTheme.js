@@ -4,6 +4,8 @@ import ColorManipulator from '../utils/color-manipulator';
 import autoPrefix from './auto-prefix';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
+import {autoprefixer, callOnce, rtl} from './transformers';
+import compose from 'lodash.flowright';
 
 /**
  * Get the MUI theme corresponding to a base theme.
@@ -240,7 +242,9 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     },
   }, muiTheme);
 
+  const transformers = [autoprefixer, rtl, callOnce].map(t => t(muiTheme)).filter(t => t);
   muiTheme.prefix = autoPrefix.getTransform(muiTheme.userAgent);
+  muiTheme.prepareStyles = compose(...transformers);
 
   return muiTheme;
 }
