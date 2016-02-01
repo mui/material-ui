@@ -6,17 +6,27 @@ import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
 import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
+import IconButton from 'material-ui/lib/icon-button';
 
 const ListExampleNested = () => (
   <MobileTearSheet>
     <List subheader="Nested List Items">
-      <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
-      <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />} />
+      <ListItem
+        primaryText="Sent mail"
+        leftIcon={<ContentSend />}
+        rightIconButton={<IconButton iconClassName="material-icons">delete</IconButton>}
+      />
+      <ListItem
+        primaryText="Drafts"
+        leftIcon={<ContentDrafts />}
+        rightIconButton={<IconButton iconClassName="material-icons">delete</IconButton>}
+      />
       <ListItem
         primaryText="Inbox"
         leftIcon={<ContentInbox />}
         initiallyOpen={true}
-        primaryTogglesNestedList={true}
+        rightIconButton={<IconButton iconClassName="material-icons">delete</IconButton>}
+        primaryTogglesNestedList={false}
         nestedItems={[
           <ListItem
             key={1}

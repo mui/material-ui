@@ -540,6 +540,13 @@ const ListItem = React.createClass({
         WebkitLineClamp: threeLine ? 2 : null,
         WebkitBoxOrient: threeLine ? 'vertical' : null,
       },
+
+      rightIcons: {
+        display: 'flex',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+      },
     };
 
     let contentChildren = [children];
@@ -586,33 +593,49 @@ const ListItem = React.createClass({
 
     //RightIconButtonElement
     const hasNestListItems = nestedItems.length;
-    const hasRightElement = rightAvatar || rightIcon || rightIconButton || rightToggle;
-    const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator && !hasRightElement;
+    const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator;
 
-    if (rightIconButton || needsNestedIndicator) {
-      let rightIconButtonElement = rightIconButton;
-      let rightIconButtonHandlers = {
-        onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
-        onMouseEnter: this._handleRightIconButtonMouseEnter,
-        onMouseLeave: this._handleRightIconButtonMouseLeave,
-        onTouchTap: this._handleRightIconButtonTouchTap,
-        onMouseDown: this._handleRightIconButtonMouseUp,
-        onMouseUp: this._handleRightIconButtonMouseUp,
-      };
+    const rightIcons = [];
+    let rightIconButtonHandlers = {
+      onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
+      onMouseEnter: this._handleRightIconButtonMouseEnter,
+      onMouseLeave: this._handleRightIconButtonMouseLeave,
+      onTouchTap: this._handleRightIconButtonTouchTap,
+      onMouseDown: this._handleRightIconButtonMouseUp,
+      onMouseUp: this._handleRightIconButtonMouseUp,
+    };
 
-      // Create a nested list indicator icon if we don't have an icon on the right
-      if (needsNestedIndicator) {
-        rightIconButtonElement = this.state.open ?
-          <IconButton><OpenIcon /></IconButton> :
-          <IconButton><CloseIcon /></IconButton>;
-        rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
-      }
+    if (needsNestedIndicator) {
+      let nestedIndicator = this.state.open ?
+        <IconButton><OpenIcon /></IconButton> :
+        <IconButton><CloseIcon /></IconButton>;
+      rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
+      rightIcons.push(
+        React.cloneElement(
+          nestedIndicator,
+          {
+            key: rightIcons.length, ...rightIconButtonHandlers,
+          }
+        )
+      );
+    }
 
+    if (rightIconButton) {
+      delete rightIconButtonHandlers.onTouchTap;
+      let rightIconButtonElement = React.cloneElement(
+        rightIconButton,
+        {
+          key: rightIcons.length, ...rightIconButtonHandlers,
+        }
+      );
+      rightIcons.push(rightIconButtonElement);
+    }
+
+    if (rightIcons.length > 0) {
       this._pushElement(
         contentChildren,
-        rightIconButtonElement,
-        this.mergeStyles(styles.rightIconButton),
-        rightIconButtonHandlers
+        <div>{rightIcons}</div>,
+        styles.rightIcons
       );
     }
 
