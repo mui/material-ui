@@ -29,7 +29,7 @@ const RaisedButton = React.createClass({
      * If a label is specified, the text within the label prop will
      * be displayed. Otherwise, the component will expect children
      * which will then be displayed (in our example,
-     * we are nesting an <input type="file" />and a span
+     * we are nesting an `<input type="file" />` and a `span`
      * that acts as our label to be displayed.) This only
      * applies to flat and raised buttons.
      */
