@@ -103,6 +103,7 @@ const AutoComplete = React.createClass({
       errorStyle,
       floatingLabelText,
       hintText,
+      errorText,
       fullWidth,
       menuStyle,
       menuProps,
@@ -137,6 +138,7 @@ const AutoComplete = React.createClass({
       style: this.mergeAndPrefix(styles.input, style),
       floatingLabelText: floatingLabelText,
       hintText: (!hintText && !floatingLabelText) ? '' : hintText,
+      errorText: errorText,
       fullWidth: true,
       multiLine: false,
       errorStyle: this.mergeAndPrefix(styles.error, errorStyle),
@@ -170,8 +172,7 @@ const AutoComplete = React.createClass({
 
     this.requestsList = requestsList;
 
-    let menu = open && (this.state.searchText !== '' || showAllItems)
-               && requestsList.length > 0 ? (
+    let menu = open && requestsList.length > 0 ? (
       <Menu
         {...menuProps}
         ref="menu"
@@ -240,9 +241,10 @@ const AutoComplete = React.createClass({
               let searchText = e.target.value;
               this._updateRequests(searchText);
             }}
-            onBlur={() => {
+            onBlur={(e) => {
               if (this.focusOnInput && open)
                 this.refs.searchTextField.focus();
+              if ( this.props.onBlur ) this.props.onBlur(e);
             }}
             onFocus={() => {
               if (!open && ( showAllItems ||
