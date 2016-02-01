@@ -13,6 +13,8 @@ import tabsExampleIconCode from '!raw!./ExampleIcon';
 import TabsExampleIcon from './ExampleIcon';
 import tabsExampleIconTextCode from '!raw!./ExampleIconText';
 import TabsExampleIconText from './ExampleIconText';
+import tabsExampleScrollableCode from '!raw!./ExampleScrollable';
+import TabsExampleScrollable from './ExampleScrollable';
 import tabsCode from '!raw!material-ui/lib/tabs/tabs';
 import tabCode from '!raw!material-ui/lib/tabs/tab';
 
@@ -25,6 +27,7 @@ const descriptions = {
   'and allowing tabs to be swiped on touch devices.',
   icon: 'An example of tabs with icon.',
   iconText: 'An example of tabs with icon and text.',
+  scrollable: 'An example of tabs with scrollable tabs.',
 };
 
 const TabsPage = () => (
@@ -64,6 +67,13 @@ const TabsPage = () => (
       code={tabsExampleIconTextCode}
     >
       <TabsExampleIconText />
+    </CodeExample>
+    <CodeExample
+      title="Scrollable Tabs example"
+      description={descriptions.scrollable}
+      code={tabsExampleScrollableCode}
+    >
+      <TabsExampleScrollable />
     </CodeExample>
     <PropTypeDescription code={tabsCode} header="### Tabs Properties" />
     <PropTypeDescription code={tabCode} header="### Tab Properties" />
