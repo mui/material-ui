@@ -13,7 +13,6 @@ import zIndex from './zIndex';
  * theme will be deeply merged with the second argument.
  */
 export default function getMuiTheme(baseTheme, muiTheme) {
-  injectTapEventPlugin();
   baseTheme = merge({}, lightBaseTheme, baseTheme);
   const {
     palette,
@@ -91,6 +90,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     inkBar: {
       backgroundColor: palette.accent1Color,
     },
+    injectTapEventPlugin: injectTapEventPlugin,
     leftNav: {
       width: spacing.desktopKeylineIncrement * 4,
       color: palette.canvasColor,
@@ -243,6 +243,10 @@ export default function getMuiTheme(baseTheme, muiTheme) {
   }, muiTheme);
 
   muiTheme.prefix = autoPrefix.getTransform(muiTheme.userAgent);
+
+  if (muiTheme.injectTapEventPlugin && typeof muiTheme.injectTapEventPlugin === 'function') {
+    muiTheme.injectTapEventPlugin();
+  }
 
   return muiTheme;
 }
