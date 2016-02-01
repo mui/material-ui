@@ -25,8 +25,13 @@ const FlatButton = React.createClass({
     backgroundColor: React.PropTypes.string,
 
     /**
-     * Elements passed into the button. For example, the font
-     * icon passed into the GitHub button.
+     * This is what will be displayed inside the button.
+     * If a label is specified, the text within the label prop will
+     * be displayed. Otherwise, the component will expect children
+     * which will then be displayed. (In our example,
+     * we are nesting an `<input type="file" />` and a `span`
+     * that acts as our label to be displayed.) This only
+     * applies to flat and raised buttons.
      */
     children: React.PropTypes.node,
 
