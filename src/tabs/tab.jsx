@@ -1,6 +1,7 @@
 import React from 'react';
 import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+import EnhancedButton from '../enhanced-button';
 
 const Tab = React.createClass({
 
@@ -110,20 +111,13 @@ const Tab = React.createClass({
     const textColor = selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor;
 
     const styles = this.mergeStyles({
-      display: 'table-cell',
-      cursor: 'pointer',
-      textAlign: 'center',
-      verticalAlign: 'middle',
-      paddingTop: (icon && !label) ? 4 : 0,
+      padding: '0px 12px',
       height: (label && icon) ? 72 : 48,
       color: textColor,
-      outline: 'none',
-      fontSize: 14,
       fontWeight: 500,
-      whiteSpace: 'initial',
-      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-      boxSizing: 'border-box',
+      fontSize: 14,
       width: width,
+      textTransform: 'uppercase',
     }, style);
 
     let iconElement;
@@ -131,7 +125,7 @@ const Tab = React.createClass({
       const params = {
         style: {
           fontSize: 24,
-          marginBottom: (label) ? 4 : 0,
+          marginBottom: (label) ? 5 : 0,
           display: label ? 'block' : 'inline-block',
           color: textColor,
         },
@@ -143,15 +137,22 @@ const Tab = React.createClass({
       iconElement = React.cloneElement(icon, params);
     }
 
+    const rippleColor = styles.color;
+    const rippleOpacity = 0.3;
+
     return (
-      <div
+      <EnhancedButton
         {...other}
-        style={this.prepareStyles(styles)}
+        style={styles}
+        focusRippleColor={rippleColor}
+        touchRippleColor={rippleColor}
+        focusRippleOpacity={rippleOpacity}
+        touchRippleOpacity={rippleOpacity}
         onTouchTap={this._handleTouchTap}
       >
         {iconElement}
         {label}
-      </div>
+      </EnhancedButton>
     );
   },
 
