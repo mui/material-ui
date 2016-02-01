@@ -287,6 +287,13 @@ const Slider = React.createClass({
         top: -this.getTheme().handleSize,
         left: -this.getTheme().handleSize,
       },
+      knobArea: {
+        position: 'absolute',
+        top: '-8px',
+        left: '-8px',
+        bottom: '-8px',
+        right: '-8px',
+      },
     };
     styles.filled = this.mergeStyles(styles.filledAndRemaining, {
       left: 0,
@@ -442,13 +449,15 @@ const Slider = React.createClass({
   },
 
   _onMouseUp(e) {
-    if (!this.props.disabled) this.setState({active: false});
-    if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - this._getTrackLeft();
-      this._dragX(e, pos);
-    }
+    this._jumpToPosition(e, e.clientX);
+  },
 
-    this._pos = undefined;
+  _onTouchStart(e) {
+    if (!this.props.disabled) this._pos = e.changedTouches[0].clientX;
+  },
+
+  _onTouchEnd(e) {
+    this._jumpToPosition(e, e.changedTouches[0].clientX);
   },
 
   _onDragStart(e) {
@@ -486,6 +495,16 @@ const Slider = React.createClass({
 
   _percentToValue(percent) {
     return percent * (this.props.max - this.props.min) + this.props.min;
+  },
+
+  _jumpToPosition(e, clientX) {
+    if (!this.props.disabled) this.setState({active: false});
+    if (!this.state.dragging && Math.abs(this._pos - clientX) < 5) {
+      let pos = clientX - this._getTrackLeft();
+      this._dragX(e, pos);
+    }
+
+    this._pos = undefined;
   },
 
   render() {
@@ -559,11 +578,15 @@ const Slider = React.createClass({
           onMouseEnter={this._onMouseEnter}
           onMouseLeave={this._onMouseLeave}
           onMouseUp={this._onMouseUp}
+          onTouchStart={this._onTouchStart}
+          onTouchEnd={this._onTouchEnd}
         >
           <div ref="track" style={this.prepareStyles(styles.track)}>
             <div style={this.prepareStyles(styles.filled)}></div>
             <div style={this.prepareStyles(remainingStyles)}></div>
             <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+              <div style={styles.knobArea}>
+              </div>
               {focusRipple}
             </div>
           </div>
