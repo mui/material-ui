@@ -240,7 +240,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     },
   }, muiTheme);
 
-  muiTheme.prefix = autoPrefix.getTransform(muiTheme.userAgent);
+  muiTheme.prefixer = autoPrefix.getTransform(muiTheme.userAgent);
 
   return muiTheme;
 }
