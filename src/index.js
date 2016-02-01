@@ -62,6 +62,7 @@ import TableRowColumn from './table/table-row-column';
 import Toggle from './toggle';
 import ThemeWrapper from './theme-wrapper';
 import TimePicker from './time-picker';
+import TimePickerDialog from './time-picker/time-picker-dialog';
 import TextField from './TextField';
 import Toolbar from './toolbar/toolbar';
 import ToolbarGroup from './toolbar/toolbar-group';
@@ -134,6 +135,7 @@ export {TableRowColumn};
 export {Toggle};
 export {ThemeWrapper};
 export {TimePicker};
+export {TimePickerDialog};
 export {TextField};
 export {Toolbar};
 export {ToolbarGroup};
@@ -216,6 +218,7 @@ export default {
   Toggle,
   ThemeWrapper,
   TimePicker,
+  TimePickerDialog,
   TextField,
   Toolbar,
   ToolbarGroup,
