@@ -3,38 +3,7 @@ import warning from 'warning';
 
 const prefixers = {};
 
-let hasWarnedAboutUserAgent = false;
-
 export default {
-
-  getTransform(userAgent) {
-    if (userAgent === undefined && typeof navigator !== 'undefined') {
-      userAgent = navigator.userAgent;
-    }
-
-    if (userAgent === undefined && !hasWarnedAboutUserAgent) {
-      warning(false, `Material-UI: userAgent should be supplied in the muiTheme context
-        for server-side rendering.`);
-
-      hasWarnedAboutUserAgent = true;
-    }
-
-    if (userAgent === false) { // Disabled autoprefixer
-      return {
-        prefix: (style) => style,
-      };
-    } else if (userAgent === 'all' || userAgent === undefined) { // Prefix for all user agent
-      return {
-        prefix: InlineStylePrefixer.prefixAll,
-      };
-    } else {
-      const prefixer = new InlineStylePrefixer({
-        userAgent: userAgent,
-      });
-
-      return prefixer;
-    }
-  },
 
   getPrefixer() {
     warning(false, `Material-UI: getPrefixer() is no longer used. Do not use it.`);
