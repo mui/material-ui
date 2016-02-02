@@ -62,6 +62,8 @@ import Contributing from './components/pages/discover-more/Contributing';
 import Showcase from './components/pages/discover-more/Showcase';
 import RelatedProjects from './components/pages/discover-more/RelatedProjects';
 
+import StepperPage from './components/pages/components/Stepper/Page';
+
 /**
  * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
  *
@@ -121,6 +123,7 @@ const AppRoutes = (
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />
       <Route path="snackbar" component={SnackbarPage} />
+      <Route path="stepper" component={StepperPage} />
       <Route path="subheader" component={SubheaderPage} />
       <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />

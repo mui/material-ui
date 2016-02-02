@@ -237,6 +237,7 @@ const AppLeftNav = React.createClass({
                 ]}
               />,
               <ListItem primaryText="Snackbar" value="/components/snackbar" />,
+              <ListItem primaryText="Stepper" value="/components/stepper" />,
               <ListItem primaryText="Subheader" value="/components/subheader" />,
               <ListItem primaryText="Table" value="/components/table" />,
               <ListItem primaryText="Tabs" value="/components/tabs" />,

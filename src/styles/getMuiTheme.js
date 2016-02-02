@@ -7,8 +7,8 @@ import compose from 'lodash.flowright';
 import Typography from '../styles/typography';
 import {
 red500,
-grey400, grey600, grey700,
-transparent, lightWhite, white, darkWhite, lightBlack,
+grey400, grey500, grey600, grey700,
+transparent, lightWhite, white, darkWhite, lightBlack, black,
 } from './colors';
 
 /**
@@ -221,6 +221,20 @@ export default function getMuiTheme(muiTheme, ...more) {
     subheader: {
       color: ColorManipulator.fade(palette.textColor, 0.54),
       fontWeight: Typography.fontWeightMedium,
+    },
+    stepper: {
+      activeAvatarColor: palette.primary1Color,
+      hoveredAvatarColor: grey700,
+      inactiveAvatarColor: grey500,
+
+      inactiveTextColor: ColorManipulator.fade(black, 0.26),
+      activeTextColor: ColorManipulator.fade(black, 0.87),
+      hoveredTextColor: grey600,
+
+      hoveredHeaderColor: ColorManipulator.fade(black, 0.06),
+
+      connectorLineColor: grey400,
+      avatarSize: 24,
     },
     table: {
       backgroundColor: palette.canvasColor,
