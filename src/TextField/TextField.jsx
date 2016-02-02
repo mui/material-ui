@@ -43,19 +43,9 @@ const TextField = React.createClass({
     disabled: React.PropTypes.bool,
 
     /**
-     * The style object to use to override error styles.
-     */
-    errorStyle: React.PropTypes.object,
-
-    /**
      * The error content to display.
      */
     errorText: React.PropTypes.node,
-
-    /**
-     * The style object to use to override floating label styles.
-     */
-    floatingLabelStyle: React.PropTypes.object,
 
     /**
      * The content to use for the floating label element.
@@ -66,11 +56,6 @@ const TextField = React.createClass({
      * If true, the field receives the property width 100%.
      */
     fullWidth: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the TextField's hint text element.
-     */
-    hintStyle: React.PropTypes.object,
 
     /**
      * The hint content to display.
@@ -141,26 +126,9 @@ const TextField = React.createClass({
     type: React.PropTypes.string,
 
     /**
-     * Override the inline-styles of the
-     * TextField's underline element when disabled.
-     */
-    underlineDisabledStyle: React.PropTypes.object,
-
-    /**
-     * Override the inline-styles of the TextField's
-     * underline element when focussed.
-     */
-    underlineFocusStyle: React.PropTypes.object,
-
-    /**
      * If true, shows the underline for the text field.
      */
     underlineShow: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the TextField's underline element.
-     */
-    underlineStyle: React.PropTypes.object,
 
     /**
      * The value of the text field.
@@ -429,12 +397,10 @@ const TextField = React.createClass({
     let {
       className,
       disabled,
-      errorStyle,
       errorText,
       floatingLabelText,
       fullWidth,
       hintText,
-      hintStyle,
       id,
       multiLine,
       onBlur,
@@ -442,14 +408,14 @@ const TextField = React.createClass({
       onFocus,
       style,
       type,
-      underlineDisabledStyle,
-      underlineFocusStyle,
       underlineShow,
-      underlineStyle,
       rows,
       rowsMax,
       ...other,
     } = this.props;
+
+    let {errorStyle, floatingLabelStyle, hintStyle, underlineStyle,
+      underlineDisabledStyle, underlineFocusStyle} = style || {};
 
     let styles = this.getStyles();
 
@@ -462,7 +428,7 @@ const TextField = React.createClass({
     let floatingLabelTextElement = floatingLabelText ? (
       <TextFieldLabel
         muiTheme={this.state.muiTheme}
-        style={this.mergeStyles(styles.floatingLabel, this.props.floatingLabelStyle)}
+        style={this.mergeStyles(styles.floatingLabel, floatingLabelStyle)}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused}
         disabled={disabled}
