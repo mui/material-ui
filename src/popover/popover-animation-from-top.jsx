@@ -23,7 +23,7 @@ function getStyles(props, state) {
       opacity: open ? 1 : 0,
       transform: open ? 'scaleY(1)' : 'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      position: 'fixed',
+      position: 'absolute',
       zIndex: zIndex.popover,
       transition: Transitions.easeOut('450ms', ['transform', 'opacity']),
       maxHeight: '100%',

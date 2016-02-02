@@ -243,8 +243,8 @@ const Popover = React.createClass({
     const a = {
       top: rect.top,
       left: rect.left,
-      width: el.offsetWidth,
-      height: el.offsetHeight,
+      width: rect.width,
+      height: rect.height,
     };
 
     a.right = rect.right || a.left + a.width;
