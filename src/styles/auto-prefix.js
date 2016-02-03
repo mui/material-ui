@@ -28,7 +28,7 @@ export default {
         userAgent: userAgent,
       });
 
-      return prefixer.prefix;
+      return (style) => prefixer.prefix(style);
     }
   },
 
