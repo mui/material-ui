@@ -1,8 +1,8 @@
 {
   "name": "@tcne/ui-kit",
-  "author": "Call-em-all Engineering Team & TCNE Web Team 1",
-  "version": "0.14.7",
-  "description": "Material Design UI components built with React",
+  "author": "TCNE Web Team 1",
+  "version": "0.14.72",
+  "description": "Djuret Design Components built with React",
   "main": "./lib",
   "scripts": {
     "test": "npm run test-base -- --single-run",
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/ThomasCookNE/tcne-ui-kit/issues"
   },
-  "homepage": "http://material-ui.com/",
+  "homepage": "http://uikit.dev.int/",
   "dependencies": {
     "inline-style-prefixer": "^0.5.2",
     "lodash.throttle": "~3.0.4",

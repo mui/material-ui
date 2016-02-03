@@ -2,10 +2,15 @@ import React, {Component, PropTypes} from 'react'; // eslint-disable-line no-unu
 
 class SimpleSlidein extends Component {
   render() {
-    const {slideinState, hideSlidein, header, content} = this.props;
+    const {slideinState, hideSlidein, header, content, left} = this.props;
+
+    let slideinPos = "right";
+    if (left) {
+      slideinPos = "left"
+    }
 
     return (
-      <section className={'simple-popup slidein-right ' + slideinState}>
+      <section className={'simple-popup slidein-' + slideinPos + ' ' + slideinState}>
         <div className="take-over-wrapper">
           <div className="content-wrapper">
           	<button className="button-close black" onClick={hideSlidein}></button>
@@ -23,7 +28,8 @@ SimpleSlidein.propTypes = {
   header: PropTypes.string,
   content: PropTypes.object.isRequired,
   slideinState: PropTypes.string.isRequired,
-  hideSlidein: PropTypes.func.isRequired
+  hideSlidein: PropTypes.func.isRequired,
+  left: PropTypes.bool
 };
 
 SimpleSlidein.contextTypes = {

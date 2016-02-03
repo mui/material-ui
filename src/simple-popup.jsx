@@ -6,13 +6,11 @@ class SimplePopup extends Component {
 
     return (
       <div className={'simple-popup ' + popupState}>
-        <div className="take-over-wrapper">
-          <div className="content-wrapper">
-            <div className="button-close black" onClick={hidePopup}></div>
-            <div className="popup-header">{header}</div>
-            <div className="content-placeholder">
-              {content}
-            </div>
+        <div className="content-wrapper">
+          <div className="button-close black" onClick={hidePopup}></div>
+          <div className="popup-header">{header}</div>
+          <div className="content-placeholder">
+            {content}
           </div>
         </div>
     </div>
