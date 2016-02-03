@@ -45,6 +45,10 @@
     "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.0"
   },
+  "files": [
+    "lib",
+    "src"
+  ],
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.21",
