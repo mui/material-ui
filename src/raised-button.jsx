@@ -344,6 +344,7 @@ const RaisedButton = React.createClass({
   render() {
     let {
       children,
+      className,
       disabled,
       icon,
       label,
@@ -408,6 +409,7 @@ const RaisedButton = React.createClass({
 
     return (
       <Paper
+        className={this.props.className}
         style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
       >
