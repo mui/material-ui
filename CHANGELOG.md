@@ -1,7 +1,7 @@
 ## HEAD
 
 ## 0.14.4
-###### _Feb 03, 2016_
+###### _Feb 02, 2016_
 
 ##### General
 - [CRITICAL] Fixed a regression that completely disabled the auto-prefixer (#3142)
