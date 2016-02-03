@@ -100,6 +100,9 @@ const GridList = React.createClass({
     const mergedRootStyles = this.mergeStyles(styles.root, style);
 
     const wrappedChildren = React.Children.map(children, (currentChild) => {
+      if (React.isValidElement(currentChild) && currentChild.type.displayName === 'Subheader') {
+        return currentChild;
+      }
       const childCols = currentChild.props.cols || 1;
       const childRows = currentChild.props.rows || 1;
       const itemStyle = this.mergeStyles(styles.item, {
@@ -111,7 +114,9 @@ const GridList = React.createClass({
     });
 
     return (
-      <div style={this.prepareStyles(mergedRootStyles)} {...other}>{wrappedChildren}</div>
+      <div style={this.prepareStyles(mergedRootStyles)} {...other}>
+        {wrappedChildren}
+      </div>
     );
   },
 });

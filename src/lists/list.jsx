@@ -2,9 +2,10 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from '../utils/prop-types';
 import StylePropable from '../mixins/style-propable';
-import Typography from '../styles/typography';
 import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
+import Subheader from '../Subheader';
+import deprecated from '../utils/deprecatedPropType';
 
 const List = React.createClass({
 
@@ -18,7 +19,8 @@ const List = React.createClass({
     /**
      * If true, the subheader will be indented by 72px.
      */
-    insetSubheader: React.PropTypes.bool,
+    insetSubheader: deprecated(React.PropTypes.bool,
+      'Refer to the `subheader` property.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -28,12 +30,14 @@ const List = React.createClass({
     /**
      * The subheader string that will be displayed at the top of the list.
      */
-    subheader: React.PropTypes.node,
+    subheader: deprecated(React.PropTypes.node,
+      'Instead, nest the `Subheader` component directly inside the `List`.'),
 
     /**
      * The style object to override subheader styles.
      */
-    subheaderStyle: React.PropTypes.object,
+    subheaderStyle: deprecated(React.PropTypes.object,
+      'Refer to the `subheader` property.'),
 
     /**
      * The zDepth prop passed to the Paper element inside list.
@@ -57,7 +61,6 @@ const List = React.createClass({
 
   getDefaultProps() {
     return {
-      insetSubheader: false,
       zDepth: 0,
     };
   },
@@ -84,7 +87,7 @@ const List = React.createClass({
   render() {
     const {
       children,
-      insetSubheader,
+      insetSubheader = false,
       style,
       subheader,
       subheaderStyle,
@@ -92,27 +95,24 @@ const List = React.createClass({
       ...other,
     } = this.props;
 
+    let hasSubheader = false;
+
+    if (subheader) {
+      hasSubheader = true;
+    } else {
+      const firstChild = React.Children.toArray(children)[0];
+      if (React.isValidElement(firstChild) && firstChild.type === Subheader) {
+        hasSubheader = true;
+      }
+    }
+
     const styles = {
       root: {
         padding: 0,
         paddingBottom: 8,
-        paddingTop: subheader ? 0 : 8,
-      },
-
-      subheader: {
-        color: Typography.textLightBlack,
-        fontSize: 14,
-        fontWeight: Typography.fontWeightMedium,
-        lineHeight: '48px',
-        paddingLeft: insetSubheader ? 72 : 16,
+        paddingTop: hasSubheader ? 0 : 8,
       },
     };
-
-    let subheaderElement;
-    if (subheader) {
-      const mergedSubheaderStyles = this.mergeStyles(styles.subheader, subheaderStyle);
-      subheaderElement = <div style={this.prepareStyles(mergedSubheaderStyles)}>{subheader}</div>;
-    }
 
     return (
       <Paper
@@ -120,7 +120,7 @@ const List = React.createClass({
         style={this.mergeStyles(styles.root, style)}
         zDepth={zDepth}
       >
-        {subheaderElement}
+        {subheader && <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader>}
         {children}
       </Paper>
     );

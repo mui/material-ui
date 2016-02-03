@@ -3,6 +3,7 @@ import LeftNav from 'material-ui/lib/left-nav';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
+import Subheader from 'material-ui/lib/Subheader';
 import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
 import {
   Colors,
@@ -170,6 +171,7 @@ const AppLeftNav = React.createClass({
                 ]}
               />,
               <ListItem primaryText="Snackbar" value="/components/snackbar" />,
+              <ListItem primaryText="Subheader" value="/components/subheader" />,
               <ListItem primaryText="Table" value="/components/table" />,
               <ListItem primaryText="Tabs" value="/components/tabs" />,
               <ListItem primaryText="Text Field" value="/components/text-field" />,
@@ -190,9 +192,9 @@ const AppLeftNav = React.createClass({
         </SelectableList>
         <Divider />
         <SelectableList
-          subheader="Resources"
           valueLink={{value: '', requestChange: this.handleRequestChangeLink}}
         >
+          <Subheader>Resources</Subheader>
           <ListItem primaryText="GitHub" value="https://github.com/callemall/material-ui" />
           <ListItem primaryText="React" value="http://facebook.github.io/react" />
           <ListItem

@@ -64,6 +64,8 @@ function generateDescription(required, description, type) {
   // must be eliminated to prevent markdown mayhem.
   const jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
 
+  if (parsed.tags.some(tag => tag.title === 'ignore')) return null;
+
   let signature = '';
 
   if (type.name === 'func' && parsed.tags.length > 0) {
@@ -106,6 +108,10 @@ const PropTypeDescription = React.createClass({
     for (let key in componentInfo.props) {
       const prop = componentInfo.props[key];
 
+      const description = generateDescription(prop.required, prop.description, prop.type);
+
+      if (description === null) continue;
+
       let defaultValue = '';
 
       if (prop.defaultValue) {
@@ -122,8 +128,6 @@ const PropTypeDescription = React.createClass({
           key = `~~${key}~~`;
         }
       }
-
-      const description = generateDescription(prop.required, prop.description, prop.type);
 
       text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }

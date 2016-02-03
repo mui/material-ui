@@ -3,6 +3,7 @@ import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 import IconButton from 'material-ui/lib/icon-button';
+import Subheader from 'material-ui/lib/Subheader';
 
 const styles = {
   root: {
@@ -68,6 +69,7 @@ const GridListExampleSimple = () => (
       cellHeight={200}
       style={styles.gridList}
     >
+      <Subheader>December</Subheader>
       {tilesData.map(tile => (
         <GridTile
           key={tile.img}

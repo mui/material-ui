@@ -49,6 +49,7 @@ import SelectField from './components/pages/components/SelectField/Page';
 import SliderPage from './components/pages/components/Slider/Page';
 import SnackbarPage from './components/pages/components/Snackbar/Page';
 import SvgIconPage from './components/pages/components/SvgIcon/Page';
+import SubheaderPage from './components/pages/components/Subheader/Page';
 import TablePage from './components/pages/components/Table/Page';
 import TabsPage from './components/pages/components/Tabs/Page';
 import TextFieldPage from './components/pages/components/TextField/Page';
@@ -120,6 +121,7 @@ const AppRoutes = (
       <Route path="svg-icon" component={SvgIconPage} />
       <Route path="slider" component={SliderPage} />
       <Route path="snackbar" component={SnackbarPage} />
+      <Route path="subheader" component={SubheaderPage} />
       <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />
       <Route path="text-field" component={TextFieldPage} />
