@@ -22,7 +22,7 @@ For visual or layout problems, images or animated gifs can help explain your iss
 
 For feature requests please include a link to the relevant section of Material Design spec, or a screenshot.
 
-## Issue Guidelines
+#### Issue Guidelines
 
 Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
 
@@ -38,7 +38,7 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-### Getting started
+#### Getting started
 
 Please create a new branch from an up to date master on your fork.
 
@@ -57,7 +57,7 @@ git checkout -b my-topic-branch
 npm update
 ```
 
-### Testing
+#### Testing
 
 The documentation site is built with Material-UI, and contains examples of all the components. To get started:
 ```js
@@ -70,7 +70,9 @@ You can now access the documentation site [locally](http://localhost:3000).
 
 If you find you need to use `console.log()` or `debugger`, you will need to temporarily disable linting. Simply comment out the [`preLoaders` section](https://github.com/callemall/material-ui/blob/master/docs/webpack-dev-server.config.js#L62) of `docs/webpack-dev-server.config.js`
 
-### Coding style
+Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `npm run test`.
+
+#### Coding style
 
 Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `npm run lint`.
 
