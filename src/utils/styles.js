@@ -1,21 +1,7 @@
 import autoPrefix from '../styles/auto-prefix';
-import update from 'react-addons-update';
 import warning from 'warning';
 
-function mergeSingle(objA, objB) {
-  if (!objA) return objB;
-  if (!objB) return objA;
-  return update(objA, {$merge: objB});
-}
-
-export function mergeStyles(base, ...args) {
-  for (let i = 0; i < args.length; i++) {
-    if (args[i]) {
-      base = mergeSingle(base, args[i]);
-    }
-  }
-  return base;
-}
+export const mergeStyles = (...args) => Object.assign({}, ...args);
 
 /**
  * `mergeAndPrefix` is used to merge styles and autoprefix them. It has has been deprecated
