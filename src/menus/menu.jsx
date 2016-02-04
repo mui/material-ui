@@ -482,7 +482,7 @@ const Menu = React.createClass({
         bottom: !openDown ? 0 : null,
         left: !openLeft ? 0 : null,
         right: openLeft ? 0 : null,
-        transform: 'scaleX(0)',
+        transform: animated ? 'scaleX(0)' : null,
         transformOrigin: openLeft ? 'right' : 'left',
       },
 
@@ -506,7 +506,7 @@ const Menu = React.createClass({
 
       paper: {
         transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-        transform: 'scaleY(0)',
+        transform: animated ? 'scaleY(0)' : null,
         transformOrigin: openDown ? 'top' : 'bottom',
         opacity: 0,
         maxHeight: maxHeight,
