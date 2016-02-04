@@ -5,8 +5,6 @@ import DateTime from '../utils/date-time';
 import DatePickerDialog from './date-picker-dialog';
 import TextField from '../text-field';
 import getMuiTheme from '../styles/getMuiTheme';
-import deprecated from '../utils/deprecatedPropType';
-import warning from 'warning';
 
 const DatePicker = React.createClass({
 
@@ -118,12 +116,6 @@ const DatePicker = React.createClass({
     shouldDisableDate: React.PropTypes.func,
 
     /**
-     *  Enables the year selection in the date picker.
-     */
-    showYearSelector: deprecated(React.PropTypes.bool,
-          'Instead, use disableYearSelection.'),
-
-    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
@@ -209,15 +201,6 @@ const DatePicker = React.createClass({
 
   getDate() {
     return this.state.date;
-  },
-
-  setDate(date) {
-    warning(false, `setDate() method is deprecated. Use the defaultDate property instead.
-      Or use the DatePicker as a controlled component with the value property.`);
-
-    this.setState({
-      date: date,
-    });
   },
 
   /**

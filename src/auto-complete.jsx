@@ -8,7 +8,6 @@ import MenuItem from './menus/menu-item';
 import Divider from './divider';
 import Popover from './popover/popover';
 import PropTypes from './utils/prop-types';
-import deprecated from './utils/deprecatedPropType';
 import getMuiTheme from './styles/getMuiTheme';
 
 const AutoComplete = React.createClass({
@@ -103,8 +102,6 @@ const AutoComplete = React.createClass({
      * Text being input to auto complete.
      */
     searchText: React.PropTypes.string,
-    showAllItems: deprecated(React.PropTypes.bool,
-      'showAllItems is deprecated, use noFilter instead'),
 
     /**
      * Override the inline-styles of the root element.
@@ -125,8 +122,6 @@ const AutoComplete = React.createClass({
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: React.PropTypes.bool,
-    updateWhenFocused: deprecated(React.PropTypes.bool,
-      'updateWhenFocused has been renamed to triggerUpdateOnFocus'),
   },
 
   contextTypes: {
@@ -332,12 +327,6 @@ const AutoComplete = React.createClass({
     let requestsList = [];
 
     this.props.dataSource.map((item) => {
-      //showAllItems is deprecated, will be removed in the future
-      if (this.props.showAllItems) {
-        requestsList.push(item);
-        return;
-      }
-
       switch (typeof item) {
         case 'string':
           if (this.props.filter(this.state.searchText, item, item)) {
@@ -435,7 +424,6 @@ const AutoComplete = React.createClass({
             }}
             onFocus={() => {
               if (!open && (this.props.triggerUpdateOnFocus
-                || this.props.updateWhenFocused //this line will be removed in the future
                 || this.requestsList > 0)) {
                 this._updateRequests(this.state.searchText);
               }

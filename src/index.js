@@ -18,7 +18,6 @@ import DatePicker from './date-picker/date-picker';
 import DatePickerDialog from './date-picker/date-picker-dialog';
 import Dialog from './dialog';
 import Divider from './divider';
-import DropDownIcon from './drop-down-icon';
 import DropDownMenu from './drop-down-menu';
 import EnhancedButton from './enhanced-button';
 import FlatButton from './flat-button';
@@ -31,7 +30,6 @@ import IconMenu from './menus/icon-menu';
 import LeftNav from './left-nav';
 import LinearProgress from './linear-progress';
 import List from './lists/list';
-import ListDivider from './lists/list-divider';
 import ListItem from './lists/list-item';
 import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
@@ -90,7 +88,6 @@ export {DatePicker};
 export {DatePickerDialog};
 export {Dialog};
 export {Divider};
-export {DropDownIcon};
 export {DropDownMenu};
 export {EnhancedButton};
 export {FlatButton};
@@ -103,7 +100,6 @@ export {IconMenu};
 export {LeftNav};
 export {LinearProgress};
 export {List};
-export {ListDivider};
 export {ListItem};
 export {Menu};
 export {MenuItem};
@@ -173,7 +169,6 @@ export default {
   DatePickerDialog,
   Dialog,
   Divider,
-  DropDownIcon,
   DropDownMenu,
   EnhancedButton,
   FlatButton,
@@ -186,7 +181,6 @@ export default {
   LeftNav,
   LinearProgress,
   List,
-  ListDivider,
   ListItem,
   Menu,
   MenuItem,

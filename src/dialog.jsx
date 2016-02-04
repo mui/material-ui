@@ -4,13 +4,10 @@ import WindowListenable from './mixins/window-listenable';
 import KeyCode from './utils/key-code';
 import Transitions from './styles/transitions';
 import StylePropable from './mixins/style-propable';
-import FlatButton from './flat-button';
 import Overlay from './overlay';
 import RenderToLayer from './render-to-layer';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
-import warning from 'warning';
-import deprecated from './utils/deprecatedPropType';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
@@ -100,7 +97,6 @@ const TransitionItem = React.createClass({
 const DialogInline = React.createClass({
 
   propTypes: {
-    actionFocus: React.PropTypes.string,
     actions: React.PropTypes.node,
     actionsContainerClassName: React.PropTypes.string,
     actionsContainerStyle: React.PropTypes.object,
@@ -122,7 +118,6 @@ const DialogInline = React.createClass({
     title: React.PropTypes.node,
     titleClassName: React.PropTypes.string,
     titleStyle: React.PropTypes.object,
-    width: React.PropTypes.any,
   },
 
   contextTypes: {
@@ -170,7 +165,6 @@ const DialogInline = React.createClass({
     const {
       autoScrollBodyContent,
       open,
-      width,
     } = this.props;
 
     const muiTheme = this.state.muiTheme;
@@ -197,7 +191,7 @@ const DialogInline = React.createClass({
         WebkitTapHighlightColor: 'rgba(0,0,0,0)',
         transition: Transitions.easeOut(),
         position: 'relative',
-        width: width || '75%',
+        width: '75%',
         maxWidth: spacing.desktopKeylineIncrement * 12,
         margin: '0 auto',
         zIndex: muiTheme.zIndex.dialog,
@@ -232,82 +226,10 @@ const DialogInline = React.createClass({
     };
   },
 
-
-  _getAction(actionJSON) {
-    warning(false, `using actionsJSON is deprecated on Dialog, please provide an array of
- buttons, or any other components instead. For more information please refer to documentations.`);
-    const props = {
-      secondary: true,
-      onClick: actionJSON.onClick,
-      onTouchTap: () => {
-        if (actionJSON.onTouchTap) {
-          actionJSON.onTouchTap.call(undefined);
-        }
-        if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
-          this._requestClose(true);
-        }
-      },
-      label: actionJSON.text,
-      style: {
-        marginRight: 8,
-      },
-    };
-
-    if (actionJSON.ref) {
-      props.ref = actionJSON.ref;
-      props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
-    }
-    if (actionJSON.id) {
-      props.id = actionJSON.id;
-    }
-
-    return (
-      <FlatButton {...props} />
-    );
-  },
-
-  _getActionObjects(actions) {
-    const actionObjects = [];
-
-    // ------- Replace this selction with:
-    //
-    // React.Children.forEach(actions, action => {
-    //   if (React.isValidElement(action)) {
-    //     actionObjects.push(action);
-    //   }
-    // });
-    //
-    // Also the return element will not need a call to React.Children.toArray
-    //
-    // for the 0.15.0 release
-
-    if (actions) {
-
-      if (React.isValidElement(actions)) {
-        actionObjects.push(actions);
-      } else {
-        actions.forEach(action => {
-          if (action) {
-            if (!React.isValidElement(action)) {
-              action = this._getAction(action);
-            }
-            actionObjects.push(action);
-          }
-        });
-      }
-    }
-
-    // ------- End of section
-
-    return actionObjects;
-  },
-
   _getActionsContainer(actions, styles, className) {
-    const actionObjects = this._getActionObjects(actions);
-
-    return actionObjects.length > 0 && (
+    return React.Children.count(actions) > 0 && (
       <div className={className} style={this.prepareStyles(styles)}>
-        {React.Children.toArray(actionObjects)}
+        {React.Children.toArray(actions)}
       </div>
     );
   },
@@ -355,8 +277,9 @@ const DialogInline = React.createClass({
 
       if (title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
 
-      const hasActions = this._getActionObjects(actions).length > 0;
-      if (hasActions) maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+      if (React.Children.count(actions)) {
+        maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+      }
 
       dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
     }
@@ -469,12 +392,6 @@ const Dialog = React.createClass({
 
   propTypes: {
     /**
-     * The `ref` of the action to focus on when the `Dialog` is displayed.
-     */
-    actionFocus: deprecated(React.PropTypes.string,
-      'Instead, use a custom `actions` property.'),
-
-    /**
      * This prop can be either a JSON object containing the actions to render (This is **DEPRECATED**),
      * a react elements, or an array of react elements.
      */
@@ -583,12 +500,6 @@ const Dialog = React.createClass({
      * Overrides the inline-styles of the title's root container element.
      */
     titleStyle: React.PropTypes.object,
-
-    /**
-     * Changes the width of the `Dialog`.
-     */
-    width: deprecated(React.PropTypes.any,
-      'Use the contentStyle.'),
   },
 
   getDefaultProps() {

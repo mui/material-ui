@@ -1,5 +1,7 @@
 ## HEAD
 
+- Remove the deprecated API of `0.14.x`. (#3108)
+
 ## 0.14.4
 ###### _Feb 02, 2016_
 

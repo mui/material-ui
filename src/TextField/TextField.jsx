@@ -10,7 +10,6 @@ import ContextPure from '../mixins/context-pure';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
-import warning from 'warning';
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -351,40 +350,12 @@ const TextField = React.createClass({
     if (this.isMounted()) this._getInputNode().blur();
   },
 
-  clearValue() {
-    this.setValue('');
-  },
-
   focus() {
     if (this.isMounted()) this._getInputNode().focus();
   },
 
   getValue() {
     return this.isMounted() ? this._getInputNode().value : undefined;
-  },
-
-  setErrorText(newErrorText) {
-    warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
-
-    if (this.isMounted()) {
-      this.setState({errorText: newErrorText});
-    }
-  },
-
-  setValue(newValue) {
-    warning(false,
-      `setValue() method is deprecated. Use the defaultValue property instead.
-      Or use the TextField as a controlled component with the value property.`);
-
-    if (this.isMounted()) {
-      if (this.props.multiLine) {
-        this.refs.input.setValue(newValue);
-      } else {
-        this._getInputNode().value = newValue;
-      }
-
-      this.setState({hasValue: isValid(newValue)});
-    }
   },
 
   _getInputNode() {

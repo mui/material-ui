@@ -6,8 +6,6 @@ import FlatButton from './flat-button';
 import getMuiTheme from './styles/getMuiTheme';
 import ContextPure from './mixins/context-pure';
 import StyleResizable from './mixins/style-resizable';
-import warning from 'warning';
-import deprecated from './utils/deprecatedPropType';
 
 const Snackbar = React.createClass({
 
@@ -48,12 +46,6 @@ const Snackbar = React.createClass({
     onActionTouchTap: React.PropTypes.func,
 
     /**
-     * Fired when the `Snackbar` is dismissed.
-     */
-    onDismiss: deprecated(React.PropTypes.func,
-      'Instead, use the open property to control the component.'),
-
-    /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
      * `autoHideDuration` timer expires.
      *
@@ -68,21 +60,9 @@ const Snackbar = React.createClass({
     onRequestClose: React.PropTypes.func.isRequired,
 
     /**
-     * Fired when the `Snackbar` is shown.
-     */
-    onShow: deprecated(React.PropTypes.func,
-      'Instead, use the open property to control the component.'),
-
-    /**
      * Controls whether the `Snackbar` is opened or not.
      */
     open: React.PropTypes.bool.isRequired,
-
-    /**
-     * If true, the `Snackbar` will open once mounted.
-     */
-    openOnMount: deprecated(React.PropTypes.bool,
-      'Instead, use the open property to control the component.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -127,14 +107,8 @@ const Snackbar = React.createClass({
   },
 
   getInitialState() {
-    let open = this.props.open;
-
-    if (open === null) {
-      open = this.props.openOnMount;
-    }
-
     return {
-      open: open,
+      open: this.props.open,
       message: this.props.message,
       action: this.props.action,
       muiTheme: this.context.muiTheme || getMuiTheme(),
@@ -287,32 +261,6 @@ const Snackbar = React.createClass({
     };
 
     return styles;
-  },
-
-  show() {
-    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
-
-    this.setState({
-      open: true,
-    });
-
-    if (this.props.onShow) {
-      this.props.onShow();
-    }
-  },
-
-  _onDismiss() {
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
-  },
-
-  dismiss() {
-    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
-
-    this.setState({
-      open: false,
-    }, this._onDismiss);
   },
 
   _setAutoHideTimer() {
