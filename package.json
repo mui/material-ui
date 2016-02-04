@@ -1,7 +1,7 @@
 {
   "name": "@tcne/ui-kit",
   "author": "TCNE Web Team 1",
-  "version": "0.14.72",
+  "version": "0.14.73",
   "description": "Djuret Design Components built with React",
   "main": "./lib",
   "scripts": {
