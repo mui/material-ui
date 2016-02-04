@@ -8,7 +8,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 - [ ] Remove deprecated usage of JSON to generate children across the components.
 - [ ] [[#3108](https://github.com/callemall/material-ui/pull/3108)] Remove deprecated components, methods & props.
-- [ ] [[#2957](https://github.com/callemall/material-ui/issues/2957) Standardize callback signatures.
+- [ ] [[#2957](https://github.com/callemall/material-ui/issues/2957)] Standardize callback signatures.
 - [ ] [[#2980](https://github.com/callemall/material-ui/issues/2980)] [[#1839](https://github.com/callemall/material-ui/issues/1839)] Standardise Datepicker for ISO8601.
 
 #### Deprecations
