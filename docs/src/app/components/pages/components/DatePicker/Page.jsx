@@ -12,6 +12,8 @@ import DatePickerExampleToggle from './ExampleToggle';
 import datePickerExampleToggleCode from '!raw!./ExampleToggle';
 import DatePickerExampleControlled from './ExampleControlled';
 import datePickerExampleControlledCode from '!raw!./ExampleControlled';
+import DatePickerExampleDisableDates from './ExampleDisableDates';
+import datePickerExampleDisableDatesCode from '!raw!./ExampleDisableDates';
 import DatePickerExampleInternational from './ExampleInternational';
 import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import datePickerReadmeText from './README';
@@ -23,6 +25,7 @@ const descriptions = {
   ranged: 'This example allows you to set a date range, and to toggle `autoOk`, and `disableYearSelection`.',
   controlled: '`DatePicker` can be implemented as a controlled input, where `value` is handled by state in the ' +
   'parent component.',
+  disabledDates: '`DatePicker` can disable specific dates based on the return value of a callback.',
   localised: 'Date Picker can be localised using the `locale` property, in this case in French. ' +
   'Note that the buttons must be localised using the `wordings` property, and we set the `firstDayOfWeek` to Monday.',
 };
@@ -35,35 +38,42 @@ const DatePickerPage = () => (
       description={descriptions.simple}
       code={datePickerExampleSimpleCode}
     >
-      <DatePickerExampleSimple/>
+      <DatePickerExampleSimple />
     </CodeExample>
     <CodeExample
       title="Inline examples"
       description={descriptions.inline}
       code={datePickerExampleInlineCode}
     >
-      <DatePickerExampleInline/>
+      <DatePickerExampleInline />
     </CodeExample>
     <CodeExample
       title="Ranged example"
       description={descriptions.ranged}
       code={datePickerExampleToggleCode}
     >
-      <DatePickerExampleToggle/>
+      <DatePickerExampleToggle />
     </CodeExample>
     <CodeExample
       title="Controlled example"
       description={descriptions.controlled}
       code={datePickerExampleControlledCode}
     >
-      <DatePickerExampleControlled/>
+      <DatePickerExampleControlled />
+    </CodeExample>
+    <CodeExample
+      title="Disabled dates example"
+      description={descriptions.disabledDates}
+      code={datePickerExampleDisableDatesCode}
+    >
+      <DatePickerExampleDisableDates />
     </CodeExample>
     <CodeExample
       title="Localised example"
       description={descriptions.localised}
       code={datePickerExampleInternationalCode}
     >
-      <DatePickerExampleInternational/>
+      <DatePickerExampleInternational />
     </CodeExample>
     <PropTypeDescription code={datePickerCode} />
   </div>
