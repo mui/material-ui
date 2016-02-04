@@ -84,7 +84,13 @@ const DropDownMenu = React.createClass({
      * Fired when a menu item is clicked that is not the one currently selected.
      */
     onChange: React.PropTypes.func,
-
+    /**
+     * This is a callback that fires when the popover
+     * thinks it should close. (e.g. clickAway or offScreen)
+     *
+     * @param {string} reason Determines what triggered this request.
+     */
+    onRequestClose: React.PropTypes.func,
     /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
@@ -100,6 +106,11 @@ const DropDownMenu = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+    * Used for keyboard navigation
+    */
+    tabIndex: React.PropTypes.number,
 
     /**
      * Overrides the inline-styles of the underline.
@@ -139,6 +150,7 @@ const DropDownMenu = React.createClass({
       disabled: false,
       openImmediately: false,
       maxHeight: 500,
+      tabIndex: 0,
     };
   },
 
@@ -240,14 +252,14 @@ const DropDownMenu = React.createClass({
       root.value = item[this.props.displayMember || 'text'];
     }
 
-    root.focus = () => {
-      if (!this.props.disabled) {
-        this.setState({
-          open: !this.state.open,
-          anchorEl: this.refs.root,
-        });
-      }
-    };
+    // root.focus = () => {
+    //   if (!this.props.disabled) {
+    //     this.setState({
+    //       open: !this.state.open,
+    //       anchorEl: this.refs.root,
+    //     });
+    //   }
+    // };
 
     return root;
   },
@@ -275,6 +287,21 @@ const DropDownMenu = React.createClass({
     }
   },
 
+  _onKeyDown(event) {
+    switch (event.keyCode) {
+      case 13:
+      case 32:
+      case 40:
+        event.preventDefault();
+        if (!this.props.disabled) {
+          this.setState({
+            open: !this.state.open,
+            anchorEl: this.refs.root,
+          });
+        }
+    }
+  },
+
   _onMenuItemTouchTap(key, payload, e) {
     const {
       onChange,
@@ -289,7 +316,6 @@ const DropDownMenu = React.createClass({
       if (selectedItem) {
         e.target.value = selectedItem[valueMember || 'payload'];
       }
-      this._onMenuRequestClose();
     }
 
     if (valueLink) {
@@ -298,6 +324,7 @@ const DropDownMenu = React.createClass({
       onChange(e, key, payload);
     }
 
+    this._onMenuRequestClose();
     this.setState({
       selectedIndex: key,
       open: false,
@@ -305,6 +332,8 @@ const DropDownMenu = React.createClass({
   },
 
   _onMenuRequestClose() {
+    if (this.props.onRequestClose)
+      this.props.onRequestClose('menuClosed');
     this.setState({
       open: false,
       anchorEl: null,
@@ -321,6 +350,7 @@ const DropDownMenu = React.createClass({
       autoWidth,
       children,
       className,
+      disabled,
       displayMember,
       iconStyle,
       labelMember,
@@ -400,12 +430,16 @@ const DropDownMenu = React.createClass({
       popoverStyle = {width: anchorEl.clientWidth};
     }
 
+    let tabIndex = disabled ? -1 : this.props.tabIndex;
+
     return (
       <div
         {...other}
         ref="root"
         className={className}
         style={prepareStyles(muiTheme, mergeStyles(styles.root, open && styles.rootWhenOpen, style))}
+        onKeyDown={this._onKeyDown}
+        tabIndex={tabIndex}
       >
         <ClearFix style={mergeStyles(styles.control)} onTouchTap={this._onControlTouchTap}>
           <div style={prepareStyles(muiTheme, mergeStyles(styles.label, open && styles.labelWhenOpen, labelStyle))}>
