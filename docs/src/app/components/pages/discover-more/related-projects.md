@@ -4,6 +4,7 @@
 
 - [formsy-material-ui](https://github.com/mbrookes/formsy-material-ui)
 A Formsy compatibility wrapper for Material-UI form components.
+- [material-ui-country-flags](https://github.com/codefoundries/material-ui-country-flags) Material-UI icons displaying country flags.
 
 ### Complementary Projects
 
