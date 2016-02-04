@@ -1,6 +1,5 @@
 import React from 'react';
 import muiThemeable from './../muiThemeable';
-import {mergeStyles, prepareStyles} from './../utils/styles';
 import Typography from '../styles/typography';
 
 const propTypes = {
@@ -39,6 +38,10 @@ let Subheader = (props) => {
     ...other,
   } = props;
 
+  const {
+    prepareStyles,
+  } = muiTheme;
+
   const styles = {
     root: {
       boxSizing: 'border-box',
@@ -52,7 +55,7 @@ let Subheader = (props) => {
   };
 
   return (
-    <div {...other} style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}>
+    <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
       {children}
     </div>
   );
