@@ -144,6 +144,7 @@ const TableHeader = React.createClass({
   },
 
   _createBaseHeaderRow() {
+    let children = [];
     let numChildren = React.Children.count(this.props.children);
     let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     let props = {
@@ -151,7 +152,10 @@ const TableHeader = React.createClass({
       rowNumber: numChildren,
     };
 
-    let children = [this._getSelectAllCheckboxColumn(props)];
+    if (this.props.adjustForCheckbox) {
+      children.push(this._getSelectAllCheckboxColumn(props));
+    }
+
     React.Children.forEach(child.props.children, (child) => {
       children.push(child);
     });
