@@ -1,5 +1,4 @@
 import React from 'react';
-import {mergeStyles} from '../utils/styles';
 import List from './list';
 
 class NestedList extends React.Component {
@@ -35,7 +34,7 @@ class NestedList extends React.Component {
     };
 
     return (
-      <List style={mergeStyles(styles.root, style)}>
+      <List style={Object.assign({}, styles.root, style)}>
         {
           React.Children.map(children, (child) => {
             return React.isValidElement(child) ? (

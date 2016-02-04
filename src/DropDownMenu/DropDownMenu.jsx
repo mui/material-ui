@@ -6,7 +6,6 @@ import ClearFix from '../clearfix';
 import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
-import {mergeStyles, prepareStyles} from '../utils/styles';
 
 const DropDownMenu = React.createClass({
 
@@ -256,6 +255,10 @@ const DropDownMenu = React.createClass({
       muiTheme,
     } = this.state;
 
+    const {
+      prepareStyles,
+    } = muiTheme;
+
     const styles = this.getStyles();
 
     let displayValue = '';
@@ -282,14 +285,16 @@ const DropDownMenu = React.createClass({
         {...other}
         ref="root"
         className={className}
-        style={prepareStyles(muiTheme, mergeStyles(styles.root, open && styles.rootWhenOpen, style))}
+        style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
-        <ClearFix style={mergeStyles(styles.control)} onTouchTap={this._onControlTouchTap}>
-          <div style={prepareStyles(muiTheme, mergeStyles(styles.label, open && styles.labelWhenOpen, labelStyle))}>
+        <ClearFix style={styles.control} onTouchTap={this._onControlTouchTap}>
+          <div
+            style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
+          >
             {displayValue}
           </div>
-          <DropDownArrow style={mergeStyles(styles.icon, iconStyle)}/>
-          <div style={prepareStyles(muiTheme, mergeStyles(styles.underline, underlineStyle))}/>
+          <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)}/>
+          <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))}/>
         </ClearFix>
         <Popover
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
