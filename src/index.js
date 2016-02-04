@@ -78,4 +78,6 @@ export default {
   ToolbarTitle: require('./toolbar/toolbar-title'),
   Tooltip: require('./tooltip'),
   Utils: require('./utils/'),
+  LinkButton: require('./link-button'),
+  Message: require('./message'),
 };
