@@ -85,11 +85,10 @@ const DatePicker = React.createClass({
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
 
     /**
-     * Callback function that is fired when the date value changes. Since there
-     * is no particular event associated with the change the first argument
-     * will always be null and the second argument will be the new Date instance.
+     * Callback function that is fired when the date value changes.The first argument
+     * will be the selected Date instance.
      */
-    onChange: React.PropTypes.func,
+    onChangeDate: React.PropTypes.func,
 
     /**
      * Fired when the datepicker dialog is dismissed.
@@ -121,7 +120,7 @@ const DatePicker = React.createClass({
      *  Enables the year selection in the date picker.
      */
     showYearSelector: deprecated(React.PropTypes.bool,
-          'Instead, use disableYearSelection.'),
+      'Instead, use disableYearSelection.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -242,8 +241,12 @@ const DatePicker = React.createClass({
         date: date,
       });
     }
-    if (this.props.onChange) this.props.onChange(null, date);
+    if (this.props.onChangeDate) this.props.onChangeDate(date);
     if (this.props.valueLink) this.props.valueLink.requestChange(date);
+  },
+
+  _handleInputChange(e, value) {
+    if (this.props.onChangeDate) this.props.onChangeDate(value);
   },
 
   _handleInputFocus(e) {
@@ -279,27 +282,28 @@ const DatePicker = React.createClass({
 
   render() {
     let {
-      container,
-      DateTimeFormat,
-      locale,
-      wordings,
-      autoOk,
-      defaultDate,
-      formatDate,
-      maxDate,
-      minDate,
-      mode,
-      onDismiss,
-      onFocus,
-      onShow,
-      onTouchTap,
-      disableYearSelection,
-      style,
-      textFieldStyle,
-      valueLink,
-      firstDayOfWeek,
-      ...other,
-    } = this.props;
+          container,
+          DateTimeFormat,
+          locale,
+          wordings,
+          autoOk,
+          defaultDate,
+          formatDate,
+          maxDate,
+          minDate,
+          mode,
+          onDismiss,
+          onFocus,
+          onShow,
+          onTouchTap,
+          disableYearSelection,
+          style,
+          textFieldStyle,
+          valueLink,
+          firstDayOfWeek,
+          onChangeDate,
+          ...other,
+          } = this.props;
 
     return (
       <div style={this.prepareStyles(style)}>
@@ -310,6 +314,7 @@ const DatePicker = React.createClass({
           value={this.state.date ? formatDate(this.state.date) : undefined}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap}
+          onChange={this._handleInputChange}
         />
         <DatePickerDialog
           container={container}
