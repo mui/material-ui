@@ -5,7 +5,6 @@ import ClickAwayable from './mixins/click-awayable';
 import FlatButton from './flat-button';
 import getMuiTheme from './styles/getMuiTheme';
 import ContextPure from './mixins/context-pure';
-import StyleResizable from './mixins/style-resizable';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';
 
@@ -101,7 +100,6 @@ const Snackbar = React.createClass({
 
   mixins: [
     StylePropable,
-    StyleResizable,
     ClickAwayable,
     ContextPure,
   ],
@@ -235,7 +233,7 @@ const Snackbar = React.createClass({
       actionColor,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const isSmall = this.state.deviceSize === this.constructor.Sizes.SMALL;
+    const isSmall = window.innerWidth < 768;
 
     const styles = {
       root: {
