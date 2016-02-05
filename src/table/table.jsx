@@ -230,16 +230,16 @@ const Table = React.createClass({
     return base;
   },
 
-  _onCellClick(rowNumber, columnNumber) {
-    if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber);
+  _onCellClick(rowNumber, columnNumber, event) {
+    if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber, event);
   },
 
-  _onCellHover(rowNumber, columnNumber) {
-    if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber);
+  _onCellHover(rowNumber, columnNumber, event) {
+    if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber, event);
   },
 
-  _onCellHoverExit(rowNumber, columnNumber) {
-    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, columnNumber);
+  _onCellHoverExit(rowNumber, columnNumber, event) {
+    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, columnNumber, event);
   },
 
   _onRowHover(rowNumber) {

@@ -381,26 +381,26 @@ const TableBody = React.createClass({
     return rows.sort();
   },
 
-  _onCellClick(e, rowNumber, columnNumber) {
-    e.stopPropagation();
-    if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber));
+  _onCellClick(event, rowNumber, columnNumber) {
+    event.stopPropagation();
+    if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber), event);
   },
 
-  _onCellHover(e, rowNumber, columnNumber) {
-    if (this.props.onCellHover) this.props.onCellHover(rowNumber, this._getColumnId(columnNumber));
-    this._onRowHover(e, rowNumber);
+  _onCellHover(event, rowNumber, columnNumber) {
+    if (this.props.onCellHover) this.props.onCellHover(rowNumber, this._getColumnId(columnNumber), event);
+    this._onRowHover(event, rowNumber);
   },
 
-  _onCellHoverExit(e, rowNumber, columnNumber) {
-    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, this._getColumnId(columnNumber));
-    this._onRowHoverExit(e, rowNumber);
+  _onCellHoverExit(event, rowNumber, columnNumber) {
+    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, this._getColumnId(columnNumber), event);
+    this._onRowHoverExit(event, rowNumber);
   },
 
-  _onRowHover(e, rowNumber) {
+  _onRowHover(event, rowNumber) {
     if (this.props.onRowHover) this.props.onRowHover(rowNumber);
   },
 
-  _onRowHoverExit(e, rowNumber) {
+  _onRowHoverExit(event, rowNumber) {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
   },
 
