@@ -69,6 +69,11 @@ const AutoComplete = React.createClass({
     listStyle: React.PropTypes.object,
 
     /**
+     * Limit the number of items shown in the dropdown
+     */
+    limitItems: React.PropTypes.number,
+
+    /**
      * Delay for closing time of the menu.
      */
     menuCloseDelay: React.PropTypes.number,
@@ -149,6 +154,7 @@ const AutoComplete = React.createClass({
       },
       animated: true,
       fullWidth: false,
+      limitItems:0,
       open: false,
       searchText: '',
       menuCloseDelay: 100,
@@ -342,6 +348,11 @@ const AutoComplete = React.createClass({
           break;
       }
     });
+
+    if( this.props.limitItems > 0 && requestsList.length > this.props.limitItems )
+    {
+      requestsList = requestsList.slice(0,this.props.limitItems);
+    }
 
     this.requestsList = requestsList;
 
