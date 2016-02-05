@@ -304,7 +304,7 @@ const TextField = React.createClass({
         height: '100%',
         border: 'none',
         outline: 'none',
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0,0,0,0)',
         color: props.disabled ? disabledTextColor : textColor,
         font: 'inherit',
       },
