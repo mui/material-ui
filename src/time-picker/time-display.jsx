@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const TimeDisplay = React.createClass({
@@ -18,12 +17,9 @@ const TimeDisplay = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -46,12 +42,12 @@ const TimeDisplay = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let direction;
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     if (nextProps.selectedTime !== this.props.selectedTime) {
-      direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
+      const direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
 
       this.setState({
         transitionDirection: direction,
@@ -80,14 +76,19 @@ const TimeDisplay = React.createClass({
   },
 
   render() {
-    let {
+    const {
       selectedTime,
       mode,
       affix,
       ...other,
     } = this.props;
 
-    let styles = {
+    const {
+      prepareStyles,
+      timePicker,
+    } = this.state.muiTheme;
+
+    const styles = {
       root: {
         position: 'relative',
         width: 280,
@@ -98,7 +99,7 @@ const TimeDisplay = React.createClass({
         padding: '14px 0',
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
-        backgroundColor: this.getTheme().headerColor,
+        backgroundColor: timePicker.headerColor,
         color: 'white',
       },
 
@@ -139,21 +140,22 @@ const TimeDisplay = React.createClass({
       },
     };
 
-    let [hour, min] = this.sanitizeTime();
+    const [hour, min] = this.sanitizeTime();
 
     let buttons = [];
     if (this.props.format === 'ampm') {
       buttons = [
         <div
           key="pm"
-          style={this.prepareStyles(styles.clickable, affix === 'pm' ? {} : styles.inactive)}
+          style={prepareStyles(Object.assign({}, styles.clickable, affix === 'pm' ? {} : styles.inactive))}
           onTouchTap={() => this.props.onSelectAffix('pm')}
         >
           {"PM"}
         </div>,
         <div
           key="am"
-          style={this.prepareStyles(styles.affixTop, styles.clickable, affix === 'am' ? {} : styles.inactive)}
+          style={prepareStyles(Object.assign({},
+            styles.affixTop, styles.clickable, affix === 'am' ? {} : styles.inactive))}
           onTouchTap={() => this.props.onSelectAffix('am')}
         >
           {"AM"}
@@ -162,26 +164,27 @@ const TimeDisplay = React.createClass({
     }
 
     return (
-      <div {...other} style={this.prepareStyles(styles.root)}>
-        <div style={this.prepareStyles(styles.box)}>
-          <div style={this.prepareStyles(styles.text)}>
-            <div style={this.prepareStyles(styles.affix)} />
-            <div style={this.prepareStyles(styles.time)}>
+      <div {...other} style={prepareStyles(styles.root)}>
+        <div style={prepareStyles(styles.box)}>
+          <div style={prepareStyles(styles.text)}>
+            <div style={prepareStyles(Object.assign({}, styles.affix))} />
+            <div style={prepareStyles(styles.time)}>
               <span
-                style={this.prepareStyles(styles.clickable, mode === 'hour' ? {} : styles.inactive)}
+                style={prepareStyles(Object.assign({}, styles.clickable, mode === 'hour' ? {} : styles.inactive))}
                 onTouchTap={this.props.onSelectHour}
               >
                 {hour}
               </span>
               <span>:</span>
               <span
-                style={this.prepareStyles(styles.clickable, mode === 'minute' ? {} : styles.inactive)}
+                style={prepareStyles(Object.assign({},
+                  styles.clickable, mode === 'minute' ? {} : styles.inactive))}
                 onTouchTap={this.props.onSelectMin}
               >
                 {min}
               </span>
             </div>
-            <div style={this.prepareStyles(styles.affix)}>
+            <div style={prepareStyles(Object.assign({}, styles.affix))}>
               {buttons}
             </div>
           </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const ClockNumber = React.createClass({
@@ -15,12 +14,9 @@ const ClockNumber = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -42,11 +38,10 @@ const ClockNumber = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   getTheme() {
@@ -54,6 +49,11 @@ const ClockNumber = React.createClass({
   },
 
   render() {
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     let pos = this.props.value;
     let inner = false;
 
@@ -64,7 +64,7 @@ const ClockNumber = React.createClass({
       pos = pos / 5;
     }
 
-    let positions = [
+    const positions = [
       [0, 5],
       [54.5, 16.6],
       [94.4, 59.5],
@@ -79,7 +79,7 @@ const ClockNumber = React.createClass({
       [-54.5, 19.6],
     ];
 
-    let innerPositions = [
+    const innerPositions = [
       [0, 40],
       [36.9, 49.9],
       [64, 77],
@@ -94,7 +94,7 @@ const ClockNumber = React.createClass({
       [-37, 50],
     ];
 
-    let styles = {
+    const styles = {
       root: {
         display: 'inline-block',
         position: 'absolute',
@@ -126,12 +126,12 @@ const ClockNumber = React.createClass({
       transformPos = innerPositions[pos];
     }
 
-    let [x, y] = transformPos;
+    const [x, y] = transformPos;
 
     styles.root.transform = 'translate(' + x + 'px, ' + y + 'px)';
 
     return (
-      <span style={this.prepareStyles(styles.root)}>{this.props.value}</span>
+      <span style={prepareStyles(styles.root)}>{this.props.value}</span>
     );
   },
 });
