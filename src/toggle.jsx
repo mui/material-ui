@@ -93,6 +93,11 @@ const Toggle = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
+     * Overrides the inline-styles of the input element.
+     */
+    inputStyle: React.PropTypes.object,
+
+    /**
      * Where the label will be placed next to the toggle.
      */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),

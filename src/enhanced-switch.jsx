@@ -27,6 +27,7 @@ const EnhancedSwitch = React.createClass({
     disabled: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
     id: React.PropTypes.string,
+    inputStyle: React.PropTypes.object,
     inputType: React.PropTypes.string.isRequired,
     label: React.PropTypes.node,
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
@@ -361,7 +362,7 @@ const EnhancedSwitch = React.createClass({
     const inputProps = {
       ref: 'checkbox',
       type: this.props.inputType,
-      style: this.prepareStyles(styles.input),
+      style: this.prepareStyles(styles.input, this.props.inputStyle),
       name: this.props.name,
       value: this.props.value,
       defaultChecked: this.props.defaultSwitched,
