@@ -1,11 +1,11 @@
-let Events = require('./events');
+import Events from './events';
 
 
-module.exports = {
+export default {
 
   _testSupportedProps(props) {
-    let i,
-      el = document.createElement('div');
+    let i;
+    const el = document.createElement('div');
 
     for (i in props) {
       if (props.hasOwnProperty(i) && el.style[i] !== undefined) {
@@ -17,10 +17,10 @@ module.exports = {
   //Returns the correct event name to use
   transitionEndEventName() {
     return this._testSupportedProps({
-      'transition':'transitionend',
-      'OTransition':'otransitionend',
-      'MozTransition':'transitionend',
-      'WebkitTransition':'webkitTransitionEnd',
+      'transition': 'transitionend',
+      'OTransition': 'otransitionend',
+      'MozTransition': 'transitionend',
+      'WebkitTransition': 'webkitTransitionEnd',
     });
   },
 

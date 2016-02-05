@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const CommunicationCallReceived = React.createClass({
 
@@ -16,4 +16,4 @@ const CommunicationCallReceived = React.createClass({
 
 });
 
-module.exports = CommunicationCallReceived;
+export default CommunicationCallReceived;

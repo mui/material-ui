@@ -1,8 +1,11 @@
-function myDestRewriter(pathObj, innerPath, options) {
-  var path = require('path');
-  var fileName = pathObj.base;
+'use strict';
 
-  var rewrittenInnerPath = innerPath.replace('/svg/production', '');
+const path = require('path');
+
+function myDestRewriter(pathObj, innerPath) {
+  let fileName = pathObj.base;
+
+  const rewrittenInnerPath = innerPath.replace('/svg/production', '');
 
   fileName = fileName.replace('_24px.svg', '.jsx');
   fileName = fileName.slice(3);
@@ -15,4 +18,4 @@ function myDestRewriter(pathObj, innerPath, options) {
   return path.join(rewrittenInnerPath, fileName);
 }
 
-module.exports = myDestRewriter; 
+module.exports = myDestRewriter;

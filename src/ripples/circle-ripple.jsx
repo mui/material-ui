@@ -1,19 +1,33 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const StylePropable = require('../mixins/style-propable');
-const AutoPrefix = require('../styles/auto-prefix');
-const Transitions = require('../styles/transitions');
-const Colors = require('../styles/colors');
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import StylePropable from '../mixins/style-propable';
+import autoPrefix from '../styles/auto-prefix';
+import Transitions from '../styles/transitions';
+import Colors from '../styles/colors';
 
 const CircleRipple = React.createClass({
 
-  mixins: [PureRenderMixin, StylePropable],
-
   propTypes: {
     color: React.PropTypes.string,
+
+    /**
+     * The material-ui theme applied to this component.
+     */
+    muiTheme: React.PropTypes.object.isRequired,
+
     opacity: React.PropTypes.number,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
   },
+
+  mixins: [
+    PureRenderMixin,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -39,11 +53,30 @@ const CircleRipple = React.createClass({
   },
 
   componentWillLeave(callback) {
-    let style = React.findDOMNode(this).style;
+    let style = ReactDOM.findDOMNode(this).style;
     style.opacity = 0;
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 2000);
+    }, 2000);
+  },
+
+  _animate() {
+    let style = ReactDOM.findDOMNode(this).style;
+    const transitionValue = (
+      Transitions.easeOut('2s', 'opacity') + ',' +
+      Transitions.easeOut('1s', 'transform')
+    );
+    autoPrefix.set(style, 'transition', transitionValue, this.props.muiTheme);
+    autoPrefix.set(style, 'transform', 'scale(1)', this.props.muiTheme);
+  },
+
+  _initializeAnimation(callback) {
+    let style = ReactDOM.findDOMNode(this).style;
+    style.opacity = this.props.opacity;
+    autoPrefix.set(style, 'transform', 'scale(0)', this.props.muiTheme);
+    setTimeout(() => {
+      if (this.isMounted()) callback();
+    }, 0);
   },
 
   render() {
@@ -54,7 +87,7 @@ const CircleRipple = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedStyles = this.mergeAndPrefix({
+    const mergedStyles = this.mergeStyles({
       position: 'absolute',
       top: 0,
       left: 0,
@@ -65,29 +98,9 @@ const CircleRipple = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={mergedStyles} />
+      <div {...other} style={this.prepareStyles(mergedStyles)} />
     );
   },
-
-  _animate() {
-    let style = React.findDOMNode(this).style;
-    const transitionValue = (
-      Transitions.easeOut('2s', 'opacity') + ',' +
-      Transitions.easeOut('1s', 'transform')
-    );
-    AutoPrefix.set(style, 'transition', transitionValue);
-    AutoPrefix.set(style, 'transform', 'scale(1)');
-  },
-
-  _initializeAnimation(callback) {
-    let style = React.findDOMNode(this).style;
-    style.opacity = this.props.opacity;
-    AutoPrefix.set(style, 'transform', 'scale(0)');
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }.bind(this), 0);
-  },
-
 });
 
-module.exports = CircleRipple;
+export default CircleRipple;

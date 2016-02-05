@@ -1,7 +1,0 @@
-// Ready status
-<RefreshIndicator percentage={30} size={40} left={10} top={5} status="ready" />
-<RefreshIndicator percentage={60} size={40} left={10} top={5} status="ready" />
-<RefreshIndicator percentage={80} size={40} left={10} top={5} status="ready" />
-<RefreshIndicator percentage={100} size={40} left={10} top={5} status="ready" />
-// Loading status
-<RefreshIndicator size={40} left={80} top={5} status="loading" />

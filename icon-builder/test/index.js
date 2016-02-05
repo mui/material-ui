@@ -126,7 +126,7 @@ describe('--svg-dir, --innerPath, --fileSuffix', function() {
   it('script outputs to directory', function(done) {
     builder.main(options, function() {
       assert.ok(fs.lstatSync(tempPath).isDirectory());
-      assert.ok(fs.lstatSync(path.join(tempPath, "delapouite")).isDirectory()); 
+      assert.ok(fs.lstatSync(path.join(tempPath, "delapouite")).isDirectory());
       jsxExampleOutputPath = path.join(tempPath, 'delapouite', 'dice', 'svg', '000000', 'transparent', 'dice-six-faces-four.jsx');
       assert.ok(fs.existsSync(jsxExampleOutputPath));
       data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
@@ -222,7 +222,7 @@ describe('Template rendering', function() {
       exampleFilePath = path.join(MUI_ICONS_ROOT, 'jsx/action/accessibility.jsx');
 
       assert.ok(fs.lstatSync(tempPath).isDirectory());
-      assert.ok(fs.lstatSync(path.join(tempPath, "action")).isDirectory()); 
+      assert.ok(fs.lstatSync(path.join(tempPath, "action")).isDirectory());
 
       expected = fs.readFileSync(exampleFilePath, {encoding: 'utf8'});
       result = fs.readFileSync(resultFilePath, {encoding: 'utf8'});

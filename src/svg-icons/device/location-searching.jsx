@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const DeviceLocationSearching = React.createClass({
 
@@ -16,4 +16,4 @@ const DeviceLocationSearching = React.createClass({
 
 });
 
-module.exports = DeviceLocationSearching;
+export default DeviceLocationSearching;

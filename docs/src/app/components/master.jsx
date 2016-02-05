@@ -1,260 +1,229 @@
-let React = require('react');
-let Router = require('react-router');
-let AppLeftNav = require('./app-left-nav');
-let FullWidthSection = require('./full-width-section');
-let { AppBar,
-      AppCanvas,
-      FontIcon,
-      IconButton,
-      EnhancedButton,
-      Menu,
-      Mixins,
-      RaisedButton,
-      Styles,
-      Tab,
-      Tabs,
-      Paper} = require('material-ui');
+import React from 'react';
+import AppBar from 'material-ui/lib/app-bar';
+import IconButton from 'material-ui/lib/icon-button';
+import {Spacing} from 'material-ui/lib/styles';
+import {
+  StylePropable,
+  StyleResizable,
+} from 'material-ui/lib/mixins';
 
-let RouteHandler = Router.RouteHandler;
-let { Colors, Spacing, Typography } = Styles;
-let ThemeManager = new Styles.ThemeManager();
+import {
+  Colors,
+  getMuiTheme,
+} from 'material-ui/lib/styles';
 
+import AppLeftNav from './app-left-nav';
+import FullWidthSection from './full-width-section';
 
-class Master extends React.Component {
+const githubButton = (
+  <IconButton
+    iconClassName="muidocs-icon-custom-github"
+    href="https://github.com/callemall/material-ui"
+    linkButton={true}
+  />
+);
 
-  constructor() {
-    super();
-  }
+const Master = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.node,
+    history: React.PropTypes.object,
+    location: React.PropTypes.object,
+  },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    StyleResizable,
+  ],
+
+  getInitialState() {
+    return {
+      muiTheme: getMuiTheme(),
+      leftNavOpen: false,
+    };
+  },
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
-  }
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentWillMount() {
+    this.setState({
+      muiTheme: this.state.muiTheme,
+    });
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
+  },
 
   getStyles() {
-    let darkWhite = Colors.darkWhite;
-    return {
+    const darkWhite = Colors.darkWhite;
+
+    const styles = {
+      appBar: {
+        position: 'fixed',
+        // Needed to overlap the examples
+        zIndex: this.state.muiTheme.zIndex.appBar + 1,
+        top: 0,
+      },
+      root: {
+        paddingTop: Spacing.desktopKeylineIncrement,
+        minHeight: 400,
+      },
+      content: {
+        margin: Spacing.desktopGutter,
+      },
+      contentWhenMedium: {
+        margin: `${Spacing.desktopGutter * 2}px ${Spacing.desktopGutter * 3}px`,
+      },
       footer: {
         backgroundColor: Colors.grey900,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       a: {
-        color: darkWhite
+        color: darkWhite,
       },
       p: {
         margin: '0 auto',
         padding: 0,
         color: Colors.lightWhite,
-        maxWidth: 335
+        maxWidth: 335,
       },
-      github: {
-        position: 'fixed',
-        right: Spacing.desktopGutter/2,
-        top: 8,
-        zIndex: 5,
-        color: 'white'
-      },
-       iconButton: {
-        color: darkWhite
+      iconButton: {
+        color: darkWhite,
       },
     };
-  }
 
-  componentWillMount(){
-    ThemeManager.setComponentThemes({
-      inkBar: {
-        backgroundColor: Colors.yellow200,
-      },
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
+        this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+      styles.content = this.mergeStyles(styles.content, styles.contentWhenMedium);
+    }
+
+    return styles;
+  },
+
+  handleTouchTapLeftIconButton() {
+    this.setState({
+      leftNavOpen: !this.state.leftNavOpen,
     });
-    this.setState({tabIndex: this._getSelectedIndex()});
-    let setTabsState = function() {
-      this.setState({renderTabs: !(document.body.clientWidth <= 647)});
-    }.bind(this);
-    setTabsState();
-    window.onresize = setTabsState;
-  }
+  },
 
-  componentWillReceiveProps() {
-    this.setState({tabIndex: this._getSelectedIndex()});
-  }
+  handleChangeRequestLeftNav(open) {
+    this.setState({
+      leftNavOpen: open,
+    });
+  },
+
+  handleRequestChangeList(event, value) {
+    this.props.history.push(value);
+    this.setState({
+      leftNavOpen: false,
+    });
+  },
+
+  handleChangeMuiTheme(muiTheme) {
+    this.setState({
+      muiTheme: muiTheme,
+    });
+  },
 
   render() {
-    let styles = this.getStyles();
-    let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
+    const {
+      history,
+      location,
+      children,
+    } = this.props;
 
-    let githubButton = (
-      <IconButton
-        iconStyle={styles.iconButton}
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true}
-        style={styles.github} />
-    );
+    let {
+      leftNavOpen,
+    } = this.state;
 
-    let githubButton2 = (
-      <IconButton
-        iconStyle={styles.iconButton}
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true}/>
-    );
+    const styles = this.getStyles();
+    const title =
+      history.isActive('/get-started') ? 'Get Started' :
+      history.isActive('/customization') ? 'Customization' :
+      history.isActive('/components') ? 'Components' :
+      history.isActive('/discover-more') ? 'Discover More' : '';
 
-    return (
-      <AppCanvas>
-        {githubButton}
-        {this.state.renderTabs ? this._getTabs(): this._getAppBar()}
+    let docked = false;
+    let showMenuIconButton = true;
 
-        <RouteHandler />
-        <AppLeftNav ref="leftNav" />
-        <FullWidthSection style={styles.footer}>
-          <p style={styles.p}>
-            Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and our
-            awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
-          </p>
-          {githubButton2}
-        </FullWidthSection>
-      </AppCanvas>
-    );
-  }
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && title !== '') {
+      docked = true;
+      leftNavOpen = true;
+      showMenuIconButton = false;
 
- _getTabs() {
-    let styles = {
-      root: {
-        backgroundColor: Colors.cyan500,
-        position: 'fixed',
-        height: 64,
-        top: 0,
-        right: 0,
-        zIndex: 4,
-        width: '100%',
-      },
-      container: {
-        position: 'absolute',
-        right: (Spacing.desktopGutter/2) + 48,
-        bottom: 0,
-      },
-      span: {
-        color: Colors.white,
-        fontWeight: Typography.fontWeightLight,
-        left: 45,
-        top: 22,
-        position: 'absolute',
-        fontSize: 26,
-      },
-      svgLogoContainer: {
-        position: 'fixed',
-        width: 300,
-        left: Spacing.desktopGutter,
-      },
-      svgLogo: {
-        width: 65,
-        backgroundColor: Colors.cyan500,
-        position: 'absolute',
-        top: 20,
-      },
-      tabs: {
-        width: 425,
-        bottom:0,
-      },
-      tab: {
-        height: 64
-      }
-
-    };
-
-    let materialIcon= this.state.tabIndex !== '0' ? (
-      <EnhancedButton
-        style={styles.svgLogoContainer}
-        linkButton={true}
-        href="/#/home">
-        <img style={styles.svgLogo} src="images/material-ui-logo.svg"/>
-        <span style={styles.span}>material ui</span>
-      </EnhancedButton>) : null;
-
-    return(
-      <div>
-        <Paper
-          zDepth={0}
-          rounded={false}
-          style={styles.root}>
-          {materialIcon}
-          <div style={styles.container}>
-            <Tabs
-              style={styles.tabs}
-              value={this.state.tabIndex}
-              onChange={this._handleTabChange.bind(this)}>
-              <Tab
-                value="1"
-                label="GETTING STARTED"
-                style={styles.tab}
-                route="get-started" />
-              <Tab
-                value="2"
-                label="CUSTOMIZATION"
-                style={styles.tab}
-                route="customization"/>
-              <Tab
-                value="3"
-                label="COMPONENTS"
-                style={styles.tab}
-                route="components"/>
-            </Tabs>
-          </div>
-        </Paper>
-      </div>
-    );
-  }
-
-  _getSelectedIndex() {
-    return this.context.router.isActive('get-started') ? '1' :
-      this.context.router.isActive('customization') ? '2' :
-      this.context.router.isActive('components') ? '3' : '0';
-  }
-
-  _handleTabChange(value, e, tab) {
-    this.context.router.transitionTo(tab.props.route);
-    this.setState({tabIndex: this._getSelectedIndex()});
-  }
-
-  _getAppBar() {
-    let title =
-      this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('customization') ? 'Customization' :
-      this.context.router.isActive('components') ? 'Components' : '';
-
-    let githubButton = (
-      <IconButton
-        iconClassName="muidocs-icon-custom-github"
-        href="https://github.com/callemall/material-ui"
-        linkButton={true}/>
-    );
+      styles.leftNav = {
+        zIndex: styles.appBar.zIndex - 1,
+      };
+      styles.root.paddingLeft = 256;
+      styles.footer.paddingLeft = 256;
+    }
 
     return (
       <div>
         <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap.bind(this)}
+          onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
           zDepth={0}
           iconElementRight={githubButton}
-          style={{position: 'absolute', top: 0}}/>
-      </div>);
-  }
+          style={styles.appBar}
+          showMenuIconButton={showMenuIconButton}
+        />
+        {title !== '' ?
+          <div style={this.prepareStyles(styles.root)}>
+            <div style={this.prepareStyles(styles.content)}>
+              {React.cloneElement(children, {
+                onChangeMuiTheme: this.handleChangeMuiTheme,
+              })}
+            </div>
+          </div>
+          :
+          children
+        }
+        <AppLeftNav
+          style={styles.leftNav}
+          history={history}
+          location={location}
+          docked={docked}
+          onRequestChangeLeftNav={this.handleChangeRequestLeftNav}
+          onRequestChangeList={this.handleRequestChangeList}
+          open={leftNavOpen}
+        />
+        <FullWidthSection style={styles.footer}>
+          <p style={this.prepareStyles(styles.p)}>
+            {'Hand crafted with love by the engineers at '}
+            <a style={styles.a} href="http://call-em-all.com">
+              Call-Em-All
+            </a>
+            {' and our awesome '}
+            <a
+              style={this.prepareStyles(styles.a)}
+              href="https://github.com/callemall/material-ui/graphs/contributors"
+            >
+              contributors
+            </a>.
+          </p>
+          <IconButton
+            iconStyle={styles.iconButton}
+            iconClassName="muidocs-icon-custom-github"
+            href="https://github.com/callemall/material-ui"
+            linkButton={true}
+          />
+        </FullWidthSection>
+      </div>
+    );
+  },
+});
 
-  _onLeftIconButtonTouchTap() {
-    this.refs.leftNav.toggle();
-  }
-}
-
-Master.contextTypes = {
-  router: React.PropTypes.func
-};
-
-Master.childContextTypes = {
-  muiTheme: React.PropTypes.object
-};
-
-module.exports = Master;
+export default Master;

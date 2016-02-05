@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const DeviceSignalCellular1Bar = React.createClass({
 
@@ -9,11 +9,11 @@ const DeviceSignalCellular1Bar = React.createClass({
   render() {
     return (
       <SvgIcon {...this.props}>
-        <path fill-opacity=".3" d="M2 22h20V2z"/><path d="M12 12L2 22h10z"/>
+        <path fillOpacity=".3" d="M2 22h20V2z"/><path d="M12 12L2 22h10z"/>
       </SvgIcon>
     );
   }
 
 });
 
-module.exports = DeviceSignalCellular1Bar;
+export default DeviceSignalCellular1Bar;

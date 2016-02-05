@@ -1,8 +1,9 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let ClockNumber = require("./clock-number");
-let ClockPointer = require("./clock-pointer");
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from '../mixins/style-propable';
+import ClockNumber from './clock-number';
+import ClockPointer from './clock-pointer';
+import getMuiTheme from '../styles/getMuiTheme';
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
@@ -20,27 +21,24 @@ function getTouchEventOffsetValues(e) {
   return offset;
 }
 
-
-let ClockHours = React.createClass({
-
-  mixins: [StylePropable],
+const ClockHours = React.createClass({
 
   propTypes: {
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialHours: React.PropTypes.number,
     onChange: React.PropTypes.func,
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
   },
 
-  center: {x: 0, y: 0},
-  basePoint: {x: 0, y: 0},
-
-  isMousePressed(e) {
-    if (typeof e.buttons === "undefined") {
-      return e.nativeEvent.which;
-    }
-
-    return e.buttons;
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -50,8 +48,20 @@ let ClockHours = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
   componentDidMount() {
-    let clockElement = React.findDOMNode(this.refs.mask);
+    let clockElement = ReactDOM.findDOMNode(this.refs.mask);
 
     this.center = {
       x: clockElement.offsetWidth / 2,
@@ -62,6 +72,24 @@ let ClockHours = React.createClass({
       x: this.center.x,
       y: 0,
     };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
+  center: {x: 0, y: 0},
+  basePoint: {x: 0, y: 0},
+
+  isMousePressed(e) {
+    if (typeof e.buttons === 'undefined') {
+      return e.nativeEvent.which;
+    }
+
+    return e.buttons;
   },
 
   handleUp(e) {
@@ -117,13 +145,12 @@ let ClockHours = React.createClass({
     let distance = Math.sqrt(delta);
 
     value = value || 12;
-    if (this.props.format === "24hr"){
-      if (distance < 90){
+    if (this.props.format === '24hr') {
+      if (distance < 90) {
         value += 12;
         value %= 24;
       }
-    }
-    else {
+    } else {
       value %= 12;
     }
 
@@ -133,7 +160,7 @@ let ClockHours = React.createClass({
   _getSelected() {
     let hour = this.props.initialHours;
 
-    if (this.props.format === "ampm"){
+    if (this.props.format === 'ampm') {
       hour %= 12;
       hour = hour || 12;
     }
@@ -143,37 +170,44 @@ let ClockHours = React.createClass({
 
   _getHourNumbers() {
     let style = {
-      pointerEvents: "none",
+      pointerEvents: 'none',
     };
     let hourSize = this.props.format === 'ampm' ? 12 : 24;
 
     let hours = [];
-    for(let i = 1; i <= hourSize; i++){
+    for (let i = 1; i <= hourSize; i++) {
       hours.push(i % 24);
     }
 
     return hours.map((hour) => {
-      let isSelected = this._getSelected() === hour;
-      return <ClockNumber key={hour} style={style} isSelected={isSelected} type="hour"
-        value={hour} />;
+      const isSelected = this._getSelected() === hour;
+      return (
+        <ClockNumber
+          key={hour}
+          style={style}
+          isSelected={isSelected}
+          type="hour"
+          value={hour}
+        />
+      );
     });
   },
 
   render() {
     let styles = {
       root: {
-        height: "100%",
-        width: "100%",
-        borderRadius: "100%",
-        position: "relative",
-        pointerEvents: "none",
-        boxSizing: "border-box",
+        height: '100%',
+        width: '100%',
+        borderRadius: '100%',
+        position: 'relative',
+        pointerEvents: 'none',
+        boxSizing: 'border-box',
       },
 
       hitMask: {
-        height: "100%",
-        width: "100%",
-        pointerEvents: "auto",
+        height: '100%',
+        width: '100%',
+        pointerEvents: 'auto',
       },
     };
 
@@ -181,14 +215,16 @@ let ClockHours = React.createClass({
     let numbers = this._getHourNumbers();
 
     return (
-      <div ref="clock" style={this.mergeAndPrefix(styles.root)} >
+      <div ref="clock" style={this.prepareStyles(styles.root)} >
         <ClockPointer hasSelected={true} value={hours} type="hour" />
         {numbers}
-        <div ref="mask" style={this.mergeAndPrefix(styles.hitMask)} onTouchMove={this.handleTouchMove}
-          onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}/>
+        <div
+          ref="mask" style={this.prepareStyles(styles.hitMask)} onTouchMove={this.handleTouchMove}
+          onTouchEnd={this.handleTouchEnd} onMouseUp={this.handleUp} onMouseMove={this.handleMove}
+        />
       </div>
     );
   },
 });
 
-module.exports = ClockHours;
+export default ClockHours;

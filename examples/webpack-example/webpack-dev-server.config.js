@@ -18,7 +18,7 @@ var config = {
   },
   //Server Configuration options
   devServer:{
-    contentBase: '',  //Relative directory for base of server
+    contentBase: 'src/www',  //Relative directory for base of server
     devtool: 'eval',
     hot: true,        //Live-reload
     inline: true,
@@ -54,7 +54,7 @@ var config = {
       {
         //React-hot loader and
         test: /\.(js|jsx)$/,  //All .js and .jsx files
-        loaders: ['react-hot','babel-loader?stage=0'], //react-hot is like browser sync and babel loads jsx and es6-7
+        loaders: ['react-hot', 'babel'], //react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath]
       }
     ]

@@ -8,9 +8,9 @@ module.exports = function(grunt) {
       test: {
         options: {
           reporter: 'spec',
-          clearRequireCache: true
+          clearRequireCache: true,
         },
-        src: ['test/*.js']
+        src: ['test/*.js'],
       },
     },
 
@@ -20,14 +20,14 @@ module.exports = function(grunt) {
           spawn: false,
         },
         files: ['build.js', 'test/*.js'],
-        tasks: ['default']
-      }
-    }
+        tasks: ['default'],
+      },
+    },
   });
 
   // On watch events, if the changed file is a test file then configure mochaTest to only
   // run the tests from that file. Otherwise run all the tests
-  var defaultTestSrc = grunt.config('mochaTest.test.src');
+  const defaultTestSrc = grunt.config('mochaTest.test.src');
   grunt.event.on('watch', function(action, filepath) {
     grunt.config('mochaTest.test.src', defaultTestSrc);
     if (filepath.match('test/')) {

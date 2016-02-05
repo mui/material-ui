@@ -1,31 +1,132 @@
-let React = require('react');
-let Checkbox = require('../checkbox');
-let TableRowColumn = require('./table-row-column');
-let ClickAwayable = require('../mixins/click-awayable');
-let StylePropable = require('../mixins/style-propable');
+import React from 'react';
+import Checkbox from '../checkbox';
+import TableRowColumn from './table-row-column';
+import ClickAwayable from '../mixins/click-awayable';
+import StylePropable from '../mixins/style-propable';
+import getMuiTheme from '../styles/getMuiTheme';
 
-
-let TableBody = React.createClass({
-
-  mixins: [ClickAwayable, StylePropable],
+const TableBody = React.createClass({
 
   propTypes: {
+    /**
+     * Set to true to indicate that all rows should be selected.
+     */
     allRowsSelected: React.PropTypes.bool,
+
+    /**
+     * Children passed to table body.
+     */
+    children: React.PropTypes.node,
+
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
+     * Controls whether or not to deselect all selected
+     * rows after clicking outside the table.
+     */
     deselectOnClickaway: React.PropTypes.bool,
+
+    /**
+     * Controls the display of the row checkbox. The default value is true.
+     */
     displayRowCheckbox: React.PropTypes.bool,
+
+    /**
+     * If true, multiple table rows can be selected.
+     * CTRL/CMD+Click and SHIFT+Click are valid actions.
+     * The default value is false.
+     */
     multiSelectable: React.PropTypes.bool,
+
+    /**
+     * Callback function for when a cell is clicked.
+     */
     onCellClick: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is hovered. rowNumber
+     * is the row number of the hovered row and columnId
+     * is the column number or the column key of the cell.
+     */
     onCellHover: React.PropTypes.func,
+
+    /**
+     * Called when a table cell is no longer hovered.
+     * rowNumber is the row number of the row and columnId
+     * is the column number or the column key of the cell.
+     */
     onCellHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when a table row is hovered.
+     * rowNumber is the row number of the hovered row.
+     */
     onRowHover: React.PropTypes.func,
+
+    /**
+     * Called when a table row is no longer
+     * hovered. rowNumber is the row number of the row
+     * that is no longer hovered.
+     */
     onRowHoverExit: React.PropTypes.func,
+
+    /**
+     * Called when a row is selected. selectedRows is an
+     * array of all row selections. IF all rows have been selected,
+     * the string "all" will be returned instead to indicate that
+     * all rows have been selected.
+     */
     onRowSelection: React.PropTypes.func,
+
+    /**
+     * Controls whether or not the rows are pre-scanned to determine
+     * initial state. If your table has a large number of rows and
+     * you are experiencing a delay in rendering, turn off this property.
+     */
     preScanRows: React.PropTypes.bool,
+
+    /**
+     * If true, table rows can be selected. If multiple
+     * row selection is desired, enable multiSelectable.
+     * The default value is true.
+     */
     selectable: React.PropTypes.bool,
+
+    /**
+     * If true, table rows will be highlighted when
+     * the cursor is hovering over the row. The default
+     * value is false.
+     */
     showRowHover: React.PropTypes.bool,
+
+    /**
+     * If true, every other table row starting
+     * with the first row will be striped. The default value is false.
+     */
     stripedRows: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
     style: React.PropTypes.object,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    ClickAwayable,
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -35,22 +136,35 @@ let TableBody = React.createClass({
       multiSelectable: false,
       preScanRows: true,
       selectable: true,
+      style: {},
     };
   },
 
   getInitialState() {
     return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       selectedRows: this._calculatePreselectedRows(this.props),
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     let newState = {};
 
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      let lastSelectedRow = this.state.selectedRows.length ? this.state.selectedRows[this.state.selectedRows.length - 1] : undefined;
-
-      newState.selectedRows = [lastSelectedRow];
+      newState.selectedRows = this.state.selectedRows.length > 0
+        ? [this.state.selectedRows[this.state.selectedRows.length - 1]]
+        : [];
     } else {
       newState.selectedRows = this._calculatePreselectedRows(nextProps);
     }
@@ -60,26 +174,9 @@ let TableBody = React.createClass({
 
   componentClickAway() {
     if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
-      this.setState({ selectedRows: [] });
+      this.setState({selectedRows: []});
+      if (this.props.onRowSelection) this.props.onRowSelection([]);
     }
-  },
-
-  render() {
-    let {
-      className,
-      style,
-      ...other,
-    } = this.props;
-    let classes = 'mui-table-body';
-    if (className) classes += ' ' + className;
-
-    let rows = this._createRows();
-
-    return (
-      <tbody className={classes} style={style}>
-        {rows}
-      </tbody>
-    );
   },
 
   _createRows() {
@@ -123,25 +220,28 @@ let TableBody = React.createClass({
     if (!this.props.displayRowCheckbox) return null;
 
     let key = rowProps.rowNumber + '-cb';
-    let checkbox =
+    const checkbox = (
       <Checkbox
         ref="rowSelectCB"
         name={key}
         value="selected"
         disabled={!this.props.selectable}
-        checked={rowProps.selected} />;
+        checked={rowProps.selected}
+      />
+    );
 
     return (
       <TableRowColumn
         key={key}
         columnNumber={0}
-        style={{width: 24}}>
+        style={{width: 24}}
+      >
         {checkbox}
       </TableRowColumn>
     );
   },
 
-  _calculatePreselectedRows (props) {
+  _calculatePreselectedRows(props) {
     // Determine what rows are 'pre-selected'.
     let preSelectedRows = [];
 
@@ -171,8 +271,7 @@ let TableBody = React.createClass({
 
       if (typeof selection === 'object') {
         if (this._isValueInRange(rowNumber, selection)) return true;
-      }
-      else {
+      } else {
         if (selection === rowNumber) return true;
       }
     }
@@ -209,12 +308,10 @@ let TableBody = React.createClass({
 
       if (typeof lastSelection === 'object') {
         lastSelection.end = rowNumber;
-      }
-      else {
+      } else {
         selectedRows.splice(lastIndex, 1, {start: lastSelection, end: rowNumber});
       }
-    }
-    else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
+    } else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
       let idx = selectedRows.indexOf(rowNumber);
       if (idx < 0) {
         let foundRange = false;
@@ -230,21 +327,18 @@ let TableBody = React.createClass({
         }
 
         if (!foundRange) selectedRows.push(rowNumber);
-      }
-      else {
+      } else {
         selectedRows.splice(idx, 1);
       }
-    }
-    else {
+    } else {
       if (selectedRows.length === 1 && selectedRows[0] === rowNumber) {
         selectedRows = [];
-      }
-      else {
+      } else {
         selectedRows = [rowNumber];
       }
     }
 
-    this.setState({ selectedRows: selectedRows });
+    this.setState({selectedRows: selectedRows});
     if (this.props.onRowSelection) this.props.onRowSelection(this._flattenRanges(selectedRows));
   },
 
@@ -279,8 +373,7 @@ let TableBody = React.createClass({
       if (typeof selection === 'object') {
         let values = this._genRangeOfValues(selection.end, selection.start - selection.end);
         rows.push(selection.end, ...values);
-      }
-      else {
+      } else {
         rows.push(selection);
       }
     }
@@ -318,6 +411,21 @@ let TableBody = React.createClass({
     return columnId;
   },
 
+  render() {
+    let {
+      className,
+      style,
+      ...other,
+    } = this.props;
+    let rows = this._createRows();
+
+    return (
+      <tbody className={className} style={this.prepareStyles(style)}>
+        {rows}
+      </tbody>
+    );
+  },
+
 });
 
-module.exports = TableBody;
+export default TableBody;

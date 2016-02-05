@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const MapsLocalAtm = React.createClass({
 
@@ -16,4 +16,4 @@ const MapsLocalAtm = React.createClass({
 
 });
 
-module.exports = MapsLocalAtm;
+export default MapsLocalAtm;

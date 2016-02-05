@@ -1,11 +1,10 @@
-let React = require('react');
-let mui = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
-let ComponentDoc = require('../../component-doc');
-let ComponentInfo = require('../../component-info');
-let ComponentExample = require('../../code-example/code-example');
+import React from 'react';
+import mui from 'material-ui';
+import MarkdownElement from '../../MarkdownElement';
+import ComponentDoc from '../../component-doc';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
-let {
+const {
   Checkbox,
   ClearFix,
   DatePicker,
@@ -26,72 +25,73 @@ let {
   Tabs,
   Tab,
   TextField,
-  Toggle
+  Toggle,
 } = mui;
-let { StylePropable, StyleResizable } = Mixins;
-let { Typography } = Styles;
-let ThemeManager = new Styles.ThemeManager();
 
+const {StylePropable, StyleResizable} = Mixins;
+const {Typography} = Styles;
+const DarkRawTheme = Styles.darkBaseTheme;
 
-let ThemesPage = React.createClass({
+const ThemesPage = React.createClass({
+
+  propTypes: {
+    onChangeMuiTheme: React.PropTypes.func,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
   mixins: [StylePropable, StyleResizable],
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
-  },
-
   getInitialState() {
     return {
-      isThemeDark: false
+      valueTabs: this.context.muiTheme.name || 'light',
+      dialogOpen: false,
+      snackbarOpen: false,
+      leftNavOpen: false,
     };
   },
 
-
   getStyles() {
-    let canvasColor = ThemeManager.getCurrentTheme().palette.canvasColor;
+    let canvasColor = this.context.muiTheme.rawTheme.palette.canvasColor;
+    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       group: {
         float: 'left',
         width: '100%',
         marginTop: '16px',
         padding: '0 50px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
       },
       groupSlider: {
         marginTop: '0px',
-        width: '100%'
+        width: '100%',
       },
       container: {
         marginBottom: '16px',
         minHeight: '24px',
-        textAlign: 'left'
+        textAlign: 'left',
       },
       containerCentered: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       paper: {
         height: '100px',
         width: '100px',
         margin: '0 auto',
-        marginBottom: '64px'
+        marginBottom: '64px',
       },
       textfield: {
-        width: '100%'
+        width: '100%',
       },
       slider: {
         marginTop: '0px',
-        marginBottom: '0px'
+        marginBottom: '0px',
       },
       codeExample: {
         backgroundColor: canvasColor,
-        marginBottom: '32px'
+        marginBottom: '32px',
       },
       title: {
         fontSize: '20px',
@@ -100,8 +100,34 @@ let ThemesPage = React.createClass({
         marginBottom: '13px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack
-      }
+        color: Typography.textDarkBlack,
+      },
+      liveExamplePaper: {
+        backgroundColor: canvasColor,
+        marginBottom: 32,
+        overflow: 'hidden',
+      },
+      liveExampleBlock: {
+        borderRadius: '0 0 2px 0',
+        padding: this.context.muiTheme.rawTheme.spacing.desktopGutter,
+        margin: 0,
+      },
+      headline: {
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack,
+      },
+      bottomBorderWrapper: {
+        borderBottom: 'solid 1px ' + borderColor,
+        paddingBottom: '10px',
+      },
+      inlineCode: {
+        backgroundColor: '#F8F8F8',
+      },
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
@@ -114,603 +140,565 @@ let ThemesPage = React.createClass({
     return styles;
   },
 
+  getComponentGroup() {
+    const styles = this.getStyles();
+
+    return (
+      <ClearFix>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
+          </div>
+          <div style={styles.containerCentered}>
+            <RaisedButton label="Secondary" secondary={true} />
+          </div>
+          <div style={styles.containerCentered}>
+            <RaisedButton label="Primary" primary={true}/>
+          </div>
+          <div style={styles.containerCentered}>
+            <RaisedButton label="Default"/>
+          </div>
+        </div>
+        <div style={styles.group}>
+          <div style={styles.container}>
+            <Checkbox
+              name="checkboxName1"
+              value="checkboxValue1"
+              label="checkbox"
+            />
+            <Checkbox
+              name="checkboxName2"
+              value="checkboxValue2"
+              label="disabled checkbox"
+              disabled={true}
+            />
+          </div>
+          <div style={styles.container}>
+            <RadioButtonGroup
+              name="shipSpeed"
+              defaultSelected="usd"
+            >
+              <RadioButton
+                value="usd"
+                label="USD"
+              />
+              <RadioButton
+                value="euro"
+                label="Euro"
+                defaultChecked={true}
+              />
+              <RadioButton
+                value="mxn"
+                label="MXN"
+                disabled={true}
+              />
+            </RadioButtonGroup>
+          </div>
+          <div style={styles.container}>
+            <Toggle
+              name="toggleName1"
+              value="toggleValue1"
+              label="toggle"
+            />
+            <Toggle
+              name="toggleName2"
+              value="toggleValue2"
+              label="disabled toggle"
+              defaultToggled={true}
+              disabled={true}
+            />
+          </div>
+        </div>
+        <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
+          <div style={styles.container}>
+            <TextField
+              style={styles.textfield}
+              hintText="TextField"
+            />
+          </div>
+          <div style={styles.container}>
+            <DatePicker
+              hintText="Landscape Dialog"
+              mode="landscape"
+              style={{width: '100%'}}
+            />
+          </div>
+          <div style={styles.container}>
+            <DropDownMenu value={3} style={{width: '100%'}}>
+              <MenuItem value={1} primaryText={'Never'}/>
+              <MenuItem value={2} primaryText={'Every Night'}/>
+              <MenuItem value={3} primaryText={'Weeknights'}/>
+              <MenuItem value={4} primaryText={'Weekends'}/>
+              <MenuItem value={5} primaryText={'Weekly'}/>
+            </DropDownMenu>
+          </div>
+        </div>
+        <div style={styles.groupSlider}>
+          <Slider style={styles.slider} name="slider2" defaultValue={0.5} />
+        </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
+            <Dialog
+              open={this.state.dialogOpen}
+              title="Dialog With Standard Actions"
+              actions={[
+                <FlatButton
+                  label="Cancel"
+                  keyboardFocus={true}
+                  onTouchTap={this.handleRequestCloseDialog}
+                  secondary={true}
+                />,
+                <FlatButton
+                  label="Submit"
+                  onTouchTap={this.handleRequestCloseDialog}
+                  primary={true}
+                />,
+              ]}
+              onRequestClose={this.handleRequestCloseDialog}
+            >
+              The actions in this window are created from the json that&#39;s passed in.
+            </Dialog>
+          </div>
+        </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FlatButton
+              onTouchTap={this.handleTouchTapLeftNav}
+              label="View LeftNav"
+            />
+            <LeftNav
+              open={this.state.leftNavOpen} docked={false}
+              onRequestChange={this.handleRequestChangeLeftNav}
+            >
+              <MenuItem index={0}>Menu Item</MenuItem>
+              <MenuItem index={1}>Menu Item 2</MenuItem>
+            </LeftNav>
+          </div>
+        </div>
+        <div style={styles.group}>
+          <div style={styles.containerCentered}>
+            <FlatButton
+              onTouchTap={this.handleTouchTapSnackbar}
+              label="View Snackbar"
+            />
+            <Snackbar
+              open={this.state.snackbarOpen}
+              onRequestClose={this.handleRequestCloseSnackbar}
+              message="This is a snackbar"
+              action="Got It!"
+              onActionTouchTap={this.handleRequestCloseSnackbar}
+            />
+          </div>
+        </div>
+      </ClearFix>
+    );
+  },
+
+  handleChangeTabs(valueTabs) {
+    let newMuiTheme = null;
+
+    if (valueTabs === 'light') {
+      newMuiTheme = getMuiTheme();
+    } else {
+      newMuiTheme = getMuiTheme(DarkRawTheme);
+    }
+
+    newMuiTheme.name = valueTabs;
+
+    this.setState({
+      valueTabs: valueTabs,
+    });
+
+    this.props.onChangeMuiTheme(newMuiTheme);
+  },
+
+  getThemeExamples() {
+    return (
+      <div>
+        <Tabs
+          value={this.state.valueTabs}
+          onChange={this.handleChangeTabs}
+        >
+          <Tab
+            label="Light Theme (Default)"
+            value="light"
+          />
+          <Tab
+            label="Dark Theme"
+            value="dark"
+          />
+        </Tabs>
+        {this.getComponentGroup()}
+      </div>
+    );
+  },
+
+  handleTouchTapLeftNav() {
+    this.setState({
+      leftNavOpen: true,
+    });
+  },
+
+  handleRequestChangeLeftNav(open) {
+    this.setState({
+      leftNavOpen: open,
+    });
+  },
+
+  handleTouchTapDialog() {
+    this.setState({
+      dialogOpen: true,
+    });
+  },
+
+  handleRequestCloseDialog() {
+    this.setState({
+      dialogOpen: false,
+    });
+  },
+
+  handleTouchTapSnackbar() {
+    this.setState({
+      snackbarOpen: true,
+    });
+  },
+
+  handleRequestCloseSnackbar() {
+    this.setState({
+      snackbarOpen: false,
+    });
+  },
+
   render() {
 
-    let usageCodeES6 =
-          'let React = require(\'react\');\n' +
-          'let mui = require(\'mui\');\n' +
-          'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-          'class OuterMostParentComponent extends React.Component {\n' +
-          '  // Important!\n' +
-          '  getChildContext() { \n' +
-          '    return {\n' +
-          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-          '    };\n' +
-          '  }\n' +
-          '};\n\n' +
-          '// Important!\n' +
-          'OuterMostParentComponent.childContextTypes = {\n' +
-          '  muiTheme: React.PropTypes.object\n' +
-          '};\n\n' +
-          'module.exports = OuterMostParentComponent;';
+    let lightRawTheme =
+      '```js\n' +
+      'import Colors from \'material-ui/lib/styles/colors\';\n' +
+      'import ColorManipulator from \'material-ui/lib/utils/color-manipulator\';\n' +
+      'import Spacing from \'material-ui/lib/styles/spacing\';\n' +
+      'import zIndex from \'material-ui/lib/styles/zIndex\';\n\n' +
+      'export default {\n' +
+      '  spacing: Spacing,\n' +
+      '  zIndex: zIndex,\n' +
+      '  fontFamily: \'Roboto, sans-serif\',\n' +
+      '  palette: {\n' +
+      '    primary1Color: Colors.cyan500,\n' +
+      '    primary2Color: Colors.cyan700,\n' +
+      '    primary3Color: Colors.lightBlack,\n' +
+      '    accent1Color: Colors.pinkA200,\n' +
+      '    accent2Color: Colors.grey100,\n' +
+      '    accent3Color: Colors.grey500,\n' +
+      '    textColor: Colors.darkBlack,\n' +
+      '    alternateTextColor: Colors.white,\n' +
+      '    canvasColor: Colors.white,\n' +
+      '    borderColor: Colors.grey300,\n' +
+      '    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),\n' +
+      '    pickerHeaderColor: Colors.cyan500,\n' +
+      '  }\n' +
+      '};\n' +
+      '```\n';
 
-    let usageCodeES5 =
-          'let React = require(\'react\');\n' +
-          'let mui = require(\'mui\');\n' +
-          'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-          'let OuterMostParentComponent = React.createClass ({\n' +
-          '  // Important!\n' +
-          '  childContextTypes: {\n' +
-          '    muiTheme: React.PropTypes.object\n' +
-          '  },\n\n' +
-          '  // Important!\n' +
-          '  getChildContext() { \n' +
-          '    return {\n' +
-          '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-          '    };\n' +
-          '  }\n' +
-          '});\n\n' +
-          'module.exports = OuterMostParentComponent;';
+    let reactContextExampleCode =
+      '```js\n' +
+      'import React from \'react\';\n' +
+      'import AppBar from \'material-ui\/lib\/app-bar\';\n' +
+      'import RaisedButton from \'material-ui\/lib\/raised-button\';\n\n' +
 
-    let customComponentCode =
-          'CustomReactComponent.contextTypes = {\n' +
-          '  muiTheme: React.PropTypes.object\n' +
-          '}';
+      'import ThemeManager from \'material-ui\/lib\/styles\/theme-manager\';\n' +
+      'import MyRawTheme from \'path\/to\/your\/raw\/theme\/file\';\n\n' +
 
-    let desc = 'ThemeManager allows you to manipulate the current theme of your website. Themes are ' +
-               'Javascript objects made up of two getter functions: getPalette() and ' +
-               'getComponentThemes(palette). ThemeManager is composed of two objects: palette and ' +
-               'component. Each contain a collection of variables used by Material-UI components. ' +
-               'Themes give you further customization across your entire website or for specific ' +
-               'pages.';
+      'const MySampleAppComponent = React.createClass({\n\n' +
+
+      '  //the key passed through context must be called \"muiTheme\"\n' +
+      '  childContextTypes : {\n' +
+      '    muiTheme: React.PropTypes.object,\n' +
+      '  },\n\n' +
+
+      '  getChildContext() {\n' +
+      '    return {\n' +
+      '      muiTheme: ThemeManager.getMuiTheme(MyRawTheme),\n' +
+      '    };\n' +
+      '  },\n\n' +
+
+      '  //the app bar and button will receive our theme through\n' +
+      '  //context and style accordingly\n' +
+      '  render () {\n' +
+      '    return (\n' +
+      '      <div>\n' +
+      '        <AppBar title=\"My AppBar\" \/>\n' +
+      '        <RaisedButton label=\"My Button\" primary={true} \/>\n' +
+      '      </div>\n' +
+      '    );\n' +
+      '  },\n' +
+      '});\n\n' +
+      'export default MySampleAppComponent;\n' +
+      '```\n';
+
+    let decoratorExampleCode =
+      '```js\n' +
+      'import React from \'react\';\n' +
+      'import AppBar from \'material-ui\/lib\/app-bar\';\n' +
+      'import RaisedButton from \'material-ui\/lib\/raised-button\';\n\n' +
+
+      'import MyRawTheme from \'path\/to\/your\/raw\/theme\/file\';\n' +
+      'import ThemeManager from \'material-ui\/lib\/styles\/theme-manager\';\n' +
+      'import ThemeDecorator from \'material-ui\/lib\/styles\/theme-decorator\';\n\n' +
+
+      '@ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))\n' +
+      'class MySampleAppComponent extends React.Component {\n\n' +
+
+      '  render() {\n' +
+      '    return (\n' +
+      '      <div>\n' +
+      '        <AppBar title=\"My AppBar\" \/>\n' +
+      '        <RaisedButton label=\"My Button\" primary={true}\n' +
+      '           onClick={this.handleClick} \/>\n' +
+      '      </div>\n' +
+      '    );\n' +
+      '  }\n\n' +
+
+      '  //arrow function automatically binds lexical \"this\"\n' +
+      '  handleClick = () => {\n' +
+      '    //do something in response to button click\n' +
+      '  }\n' +
+      '}\n\n' +
+
+      'export default MySampleAppComponent;\n' +
+      '```\n';
+
+    let receiveThemeInContextCode =
+      '```js\n' +
+      'const SpecificPageInApp = React.createClass({\n\n' +
+
+      '...\n\n' +
+
+      '//contextTypes declares the keys that this component expects\n' +
+      '//to receive through context, and their corresponding value types\n' +
+      'contextTypes: {\n' +
+      '  muiTheme: React.PropTypes.object,\n' +
+      '},\n\n' +
+
+      'getInitialState () {\n' +
+      '  return {\n' +
+      '    muiTheme: this.context.muiTheme,\n' +
+      '  };\n' +
+      '},\n\n' +
+
+      '...\n' +
+      '```\n';
+
+    let overrideAppBarTextColorCode =
+      '```js\n' +
+      '//update theme here\n' +
+      'componentWillMount () {\n' +
+      '  let newMuiTheme = this.state.muiTheme;\n' +
+      '  newMuiTheme.appBar.textColor = Colors.deepPurpleA700;\n\n' +
+
+      '  this.setState({\n' +
+      '    muiTheme: newMuiTheme,\n' +
+      '  });\n' +
+      '},\n\n' +
+
+      '//pass down updated theme to children\n' +
+      'getChildContext () {\n' +
+      '  return {\n' +
+      '    muiTheme: this.state.muiTheme,\n' +
+      '  };\n' +
+      '},\n' +
+      '```\n';
 
     let info = [
       {
-        name: 'ThemeManager Props',
+        name: 'ThemeManager functions',
         infoArray: [
           {
-            name: 'spacing',
-            type: 'object',
-            desc: 'The spacing object is a set of variables used by all ' +
-            'Material-UI components. It should not be modified directly.'
+            name: 'getMuiTheme(rawTheme)',
+            header: 'returns: calculated muiTheme object',
+            desc: `Accepts one argument which is a reference to a raw theme object,
+              and returns the calculated mui theme object`,
           },
           {
-            name: 'palette',
-            type: 'object',
-            desc: 'The palette object is a set of color variables used by all ' +
-                  'Material-UI components. It should not be modified directly.'
+            name: 'modifyRawThemeSpacing(muiTheme, newSpacing)',
+            header: 'returns: new muiTheme object with modified spacing',
+            desc: 'Accepts two arguments: the current mui theme object and the new spacing to be applied. ' +
+                  'This function creates a new raw theme by overriding the spacing of the existing raw theme, ' +
+                  'and returns a new mui theme object calculated from the new raw theme',
           },
           {
-            name: 'component',
-            type: 'object',
-            desc: 'The component object is a collection of nested objects for ' +
-                  'each Material-UI component that use theme variables. Inside ' +
-                  'each nested object is a set of variables utilized only by ' +
-                  'a specific component. It should not be modified directly.'
+            name: 'modifyRawThemePalette(muiTheme, newPaletteKeys)',
+            header: 'returns: new muiTheme object with modified palette',
+            desc: 'Accepts two arguments: the current mui theme object and the new palette keys to be applied. ' +
+                  'This function creates a new raw theme object by overriding the palette keys in the existing raw ' +
+                  'theme object, and returns a new mui theme object calculated from the new raw theme',
           },
           {
-            name: 'types',
-            type: 'object',
-            desc: 'Contains the following predefined themes:\n' +
-                  '  - LIGHT (Default)\n' +
-                  '  - DARK'
-          }
-        ]
+            name: 'modifyRawThemeFontFamily(muiTheme, newFontFamily)',
+            header: 'returns: new muiTheme object with modified font Family',
+            desc: 'Accepts two arguments: the current mui theme object and the new font family to be applied. ' +
+                  'This function creates a new raw theme by overriding the font family of the existing raw theme, ' +
+                  'and returns a new mui theme object calculated from the new raw theme',
+          },
+        ],
       },
-      {
-        name: 'ThemeManager Methods',
-        infoArray: [
-          {
-            name: 'getCurrentTheme',
-            header: 'ThemeManager.getCurrentTheme()',
-            desc: 'Returns the current theme being used by the context.'
-          },
-          {
-            name: 'setTheme',
-            header: 'ThemeManager.setTheme(newTheme)',
-            desc: 'Sets the properties of the current theme with those defined ' +
-                  'from the overrides object argument. Overriding properties of ' +
-                  'ThemeManager.palette (your primary and accent colors) will signal ' +
-                  'all component to update their theme variables in order to ' +
-                  'use the new changes. Thus, overrides to component properties ' +
-                  'made before '
-          },
-          {
-            name: 'setSpacing',
-            header: 'ThemeManager.setSpacing(newSpacing)',
-            desc: 'Updates the spacing object of the current theme to use the ' +
-            'properties defined in newSpacing.'
-          },
-          {
-            name: 'setPalette',
-            header: 'ThemeManager.setPalette(newPalette)',
-            desc: 'Updates the palette object of the current theme to use the ' +
-                  'properties defined in newPalette. Calling this method also ' +
-                  'calls the getCurrentThemes function of the currentTheme, ' +
-                  'which updates their values to use the new palette.'
-          },
-          {
-            name: 'setComponentThemes',
-            header: 'ThemeManager.setComponentThemes(overrides)',
-            desc: 'Updates the component object of the current theme to use the ' +
-                  'properties defined in overrides.'
-          }
-        ]
-      }
     ];
-
-    let code =
-      '// Toggles between light and dark themes\n' +
-      '// This function is passed as the \'onChange\' prop for Tabs\n' +
-      'onTabChange(tabIndex, tab) {\n' +
-      '  if (this.state.isThemeDark) {\n' +
-      '    ThemeManager.setTheme(ThemeManager.types.LIGHT);\n' +
-      '  } else {\n' +
-      '    ThemeManager.setTheme(ThemeManager.types.DARK);\n' +
-      '  }\n' +
-      '  this.setState({isThemeDark: !this.state.isThemeDark});\n' +
-      '}';
 
     let styles = this.getStyles();
 
     return (
       <div>
 
-        <ComponentDoc
-          name="Themes"
-          code={code}
-          desc={desc}
-          componentInfo={info}>
-          <ComponentExample code={code}>
-            {this.getThemeExamples()}
-          </ComponentExample>
-        </ComponentDoc>
+        <h2 style={styles.headline}>Themes</h2>
 
-
-        <h3 style={styles.title}>Usage</h3>
-        <p>
-          Material-UI&#39;s <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
-          ThemeManager component</a> uses React&#39;s <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
-          context</a> feature to manage Theme objects. Contexts in React propogates values down from one
-          component down to all of its children and grandchildren. Insert the following code in your
-          outermost component, so that all Material-UI components used through-out the site have
-          access to the theme.
-        </p>
-        <Paper style={styles.codeExample}>
-          <Tabs>
-            <Tab label="ES6">
-              <CodeBlock>{usageCodeES6}</CodeBlock>
-            </Tab>
-            <Tab label="ES5">
-              <CodeBlock>{usageCodeES5}</CodeBlock>
-            </Tab>
-          </Tabs>
-        </Paper>
-        <p>
-          <b>Important:</b> The code above is <u>required</u> when using Material-UI. Without it,
-          Material-UI components will not have access to the default theme and will not render as
-          a result. Keep in mind that the user is responsible for updating CSS classes to be in
-          sync with theme properties, because Material-UI components only use inline-styles.
-        </p>
-
-
-        <h3 style={styles.title}>Overriding Theme Variables</h3>
-
-        <p>
-          If you would like to make changes to the Theme for a specific pages, include the code
-          below in said page. All components defined on this page along with there children will
-          use your Theme overrides. The toggle buttons in the <a href="#/components/menus">Menus
-          page</a> is an example of this. Notice how these changes do not bleed over on to sibling
-          pages such as the <a href="#/components/switches">Switches page</a>.
-        </p>
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{this.getOverrideExamplePage()}</CodeBlock>
+        <Paper style={styles.liveExamplePaper}>
+          <ClearFix style={styles.liveExampleBlock}>{this.getThemeExamples()}</ClearFix>
         </Paper>
 
+        <div style={styles.bottomBorderWrapper}>
+          <p>
+            We changed how themes work in v0.12.0 (check out
+            <a href="https://github.com/callemall/material-ui/releases/tag/v0.12.0">release log</a> for more details).
+            There are now two kinds of themes in Material-UI: <b>raw theme</b> and <b>mui theme</b>.
+            The raw theme is a plain JS object containing three keys: spacing, palette and fontFamily.
+            The mui theme, on the other hand, is a much bigger object. It contains a key for every material-ui
+            component, and the value corresponding to that key describes the styling of that particular component
+            under the current raw theme. In this sense, the mui theme is <i>produced</i> from the raw theme.
+            The raw theme acts as a basis for styling components, whereas the mui theme contains specific values
+            (that are calculated based on the raw theme) for styling each component.
+          </p>
 
-        <h3 style={styles.title}>Giving Custom React Components Access to Theme</h3>
+          <p>
+            We ship two raw themes with Material-UI: light and dark. They are located under
+            <code style={styles.inlineCode}>
+            &#47;lib&#47;styles&#47;raw-themes&#47;
+            </code>
+            in the Material-UI root directory. Custom themes may be
+            defined similarly.
+            The ThemeManager module calculates the mui theme and acts as an interface to modify the theme.
+            Before we discuss how to apply custom themes to an application, let&#39;s
+            look at the functions provided by ThemeManager.
+          </p>
+        </div>
+
+        <div style={styles.bottomBorderWrapper}>
+          <ComponentDoc
+            name=""
+            componentInfo={info}
+          />
+        </div>
+
+        <h2 style={styles.headline}>Custom Themes</h2>
         <p>
-          If you would only like to create a React component with access to Theme, include the code
-          below at the end of your component&#39;s class definition. This is valid because the usage
-          code mentioned earlier had been inserted in the outer most component. <a href='https://github.com/callemall/material-ui/blob/master/docs/src/app/components/code-example/code-example.jsx'>
-          CodeExample</a> is an example of a custom component using ThemeManager.
+          All Material-UI components use the light theme by default so you can start including them in your project
+          without having to worry about theming.
+          However, it is quite straightforward to style components to your liking.
         </p>
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{customComponentCode}</CodeBlock>
-        </Paper>
 
-
-        <h3 style={styles.title}>Custom Themes</h3>
         <p>
-          To see an example containing all theme variables, checkout our <a href="https://github.com/callemall/material-ui/blob/master/src/styles/themes/light-theme.js">
-          light-theme</a>. The code-block below defines the structure needed to have a valid custom
-          theme. Note that if a property is not defined in the custom theme, the default will be
-          what is defined in our light theme.
+          Internally, Material-UI components use React&#39;s
+          <a href="https://facebook.github.io/react/blog/2014/03/28/the-road-to-1.0.html#context">
+          context</a> feature to implement theming. Context is a way to pass down values through the component
+          hierarchy without having to use props at every level.
+          In fact, context is very convenient for concepts like theming,
+          which are usually implemented in a hierarchical manner.
         </p>
-        <Paper style={styles.codeExample}>
-          <CodeBlock>{this.getThemeStructure()}</CodeBlock>
-        </Paper>
+
+        <p>
+          There are two recommended ways to apply custom themes:
+          using React lifecycle methods with the context feature,
+          <b>or</b>,
+          using an ES7-style decorator. To start off, define your own raw theme in a JS file like so:
+        </p>
+
+        <MarkdownElement text={lightRawTheme} />
+
+        <h3 style={styles.title}>1. Using React Lifecycle Methods with Context</h3>
+
+        <p>
+          Once you have defined your raw theme in a JS file, you can use React lifecycle methods
+          and the context feature to apply your custom theme as follows:
+        </p>
+
+        <MarkdownElement text={reactContextExampleCode} />
+
+        <h3 style={styles.title}>2. Using ES7-style Decorator</h3>
+
+        <p>
+          Alternatively, we have provided an ES7-style theme decorator that you can use to apply your
+          custom theme.
+          Keep in mind that in order to use the decorator, you must use the ES6-style <i>class</i> syntax
+          to declare your app component. Moreover, React may not be able to automatically bind event handlers
+          to your component&#39;s <i>this</i>. Arrow functions allow you to overcome this limitation.
+        </p>
+
+        <MarkdownElement text={decoratorExampleCode} />
+
+        <p>
+          It is worth pointing out that underneath the covers,
+          the decorator is also using React lifecycle methods
+          with the context feature.
+        </p>
+
+        <h2 style={styles.headline}>Overriding Theme Variables</h2>
+
+        <p>
+          Once you have obtained the calculated mui theme in your app component, you can easily
+          override specific attributes for particular components.
+          These overrides can be performed at any level
+          in the hierarchy and will only apply from that point downward.
+        </p>
+
+        <p>
+          For instance, let&#39;s say that a specific page (component) in your app expects to receive the theme
+          from its parent/ancestors. However, in that page, the app bar text color should be different.
+        </p>
+
+        <MarkdownElement text={receiveThemeInContextCode} />
+
+        <p>
+          We recommend that you use state for intermediary storage of the theme, and always access the theme
+          using <code style={styles.inlineCode}>this.state</code>. Then, to modify the theme,
+          use <code style={styles.inlineCode}>this.setState()</code> in an appropriate React lifecycle method.
+          This is good practice because
+          React componenets re-render every time the state of the component is updated.
+        </p>
+
+        <p>
+          Coming back to our example, let&#39;s say that inside
+          <code style={styles.inlineCode}>SpecificPageInApp</code> and
+          all of its children, the text color of the app bar should be deep purple.
+          This can be accomplished as follows:
+        </p>
+
+        <MarkdownElement text={overrideAppBarTextColorCode} />
+
+        <p>
+          Check out the
+          <a href="https://github.com/callemall/material-ui/blob/master/src/styles/theme-manager.js">
+            <code style={styles.inlineCode}>theme-manager.js</code>
+          </a> file for a complete list of
+          component-specific theme values that may be overridden.
+        </p>
+
+        <p>
+          The mui theme object also contains a key called <code style={styles.inlineCode}>static</code> that is set to
+          <code style={styles.inlineCode}>true</code> by
+          default. This allows for some optimization when rendering Material-UI components. Change this to
+          <code style={styles.inlineCode}>false</code> if
+          the <code style={styles.inlineCode}>muiTheme</code> object in your app can change during runtime.
+        </p>
+
+        <p>
+          <b>Never</b> directly modify the raw theme (spacing / palette / fontFamily) of an mui theme object.
+          Doing so will result in styling inconsistencies across your components.
+          Always use the modifiers provided in the
+          ThemeManager module.
+        </p>
 
       </div>
     );
   },
 
-  getThemeStructure() {
-    let text =
-      'let CustomTheme = {\n' +
-      '  getPalette() {\n' +
-      '    return {\n' +
-      '      primary1Color: String,\n' +
-      '      primary2Color: String,\n' +
-      '      primary3Color: String,\n' +
-      '      accent1Color: String,\n' +
-      '      accent2Color: String,\n' +
-      '      accent3Color: String,\n' +
-      '      textColor: String,\n' +
-      '      canvasColor: String,\n' +
-      '      borderColor: String,\n' +
-      '      disabledColor: String\n' +
-      '    };\n' +
-      '  },\n' +
-      '  getComponentThemes(palette) {\n' +
-      '    return {\n' +
-      '      appBar: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        height: Number\n' +
-      '      },\n' +
-      '      button: {\n' +
-      '        height: Number,\n' +
-      '        minWidth: Number,\n' +
-      '        iconButtonSize: Number\n' +
-      '      },\n' +
-      '      checkbox: {\n' +
-      '        boxColor: String,\n' +
-      '        checkedColor: String,\n' +
-      '        requiredColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        labelColor: String,\n' +
-      '        labelDisabledColor: String\n' +
-      '      },\n' +
-      '      datePicker: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        calendarTextColor: String,\n' +
-      '        selectColor: String,\n' +
-      '        selectTextColor: String,\n' +
-      '      },\n' +
-      '      dropDownMenu: {\n' +
-      '        accentColor: String,\n' +
-      '      },\n' +
-      '      flatButton: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        primaryTextColor: String,\n' +
-      '        secondaryTextColor: String,\n' +
-      '        disabledColor: String\n' +
-      '      },\n' +
-      '      floatingActionButton: {\n' +
-      '        buttonSize: Number,\n' +
-      '        miniSize: Number,\n' +
-      '        color: String,\n' +
-      '        iconColor: String,\n' +
-      '        secondaryColor: String,\n' +
-      '        secondaryIconColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        disabledTextColor: String\n' +
-      '      },\n' +
-      '      leftNav: {\n' +
-      '        width: Number,\n' +
-      '        color: String,\n' +
-      '      },\n' +
-      '      menu: {\n' +
-      '        backgroundColor: String,\n' +
-      '        containerBackgroundColor: String,\n' +
-      '      },\n' +
-      '      menuItem: {\n' +
-      '        dataHeight: Number,\n' +
-      '        height: Number,\n' +
-      '        hoverColor: String,\n' +
-      '        padding: Number,\n' +
-      '        selectedTextColor: String,\n' +
-      '      },\n' +
-      '      menuSubheader: {\n' +
-      '        padding: Number,\n' +
-      '        borderColor: String,\n' +
-      '        textColor: String,\n' +
-      '      },\n' +
-      '      paper: {\n' +
-      '        backgroundColor: String,\n' +
-      '      },\n' +
-      '      radioButton: {\n' +
-      '        borderColor: String,\n' +
-      '        backgroundColor: String,\n' +
-      '        checkedColor: String,\n' +
-      '        requiredColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        size: Number,\n' +
-      '        labelColor: String,\n' +
-      '        labelDisabledColor: String\n' +
-      '      },\n' +
-      '      raisedButton: {\n' +
-      '        color: String,\n' +
-      '        textColor: String,\n' +
-      '        primaryColor: String,\n' +
-      '        primaryTextColor: String,\n' +
-      '        secondaryColor: String,\n' +
-      '        secondaryTextColor: String,\n' +
-      '        disabledColor: String,\n' +
-      '        disabledTextColor: String\n'
-      '      },\n' +
-      '      slider: {\n' +
-      '        trackSize: Number,\n' +
-      '        trackColor: String,\n' +
-      '        trackColorSelected: String,\n' +
-      '        handleSize: Number,\n' +
-      '        handleSizeActive: Number,\n' +
-      '        handleSizeDisabled: Number,\n' +
-      '        handleColorZero: String,\n' +
-      '        handleFillColor: String,\n' +
-      '        selectionColor: String,\n' +
-      '        rippleColor: String,\n' +
-      '      },\n' +
-      '      snackbar: {\n' +
-      '        textColor: String,\n' +
-      '        backgroundColor: String,\n' +
-      '        actionColor: String,\n' +
-      '      },\n' +
-      '      toggle: {\n' +
-      '        thumbOnColor: String,\n' +
-      '        thumbOffColor: String,\n' +
-      '        thumbDisabledColor: String,\n' +
-      '        thumbRequiredColor: String,\n' +
-      '        trackOnColor: String,\n' +
-      '        trackOffColor: String,\n' +
-      '        trackDisabledColor: String,\n' +
-      '        trackRequiredColor: String,\n' +
-      '        labelColor: String,\n' +
-      '        labelDisabledColor: String\n' +
-      '      },\n' +
-      '      toolbar: {\n' +
-      '        backgroundColor: String,\n' +
-      '        height: Number,\n' +
-      '        titleFontSize: Number,\n' +
-      '        iconColor: String,\n' +
-      '        separatorColor: String,\n' +
-      '        menuHoverColor: String,\n' +
-      '        menuHoverColor: String,\n' +
-      '      }\n' +
-      '    };\n' +
-      '  }\n' +
-      '}\n\n' +
-      'module.exports = CustomTheme;';
-      return text;
-  },
-
-  getComponentGroup() {
-    //Standard Actions
-    let standardActions = [
-      { text: 'Cancel' },
-      { text: 'Submit', onTouchTap: this._onDialogSubmit }
-    ];
-
-    let menuItemsNav = [
-      { route: 'get-started', text: 'Get Started' },
-      { route: 'customization', text: 'Customization' },
-      { route: 'component', text: 'Component' },
-      { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-      {
-         type: MenuItem.Types.LINK,
-         payload: 'https://github.com/callemall/material-ui',
-         text: 'GitHub'
-      },
-      {
-         text: 'Disabled',
-         disabled: true
-      },
-      {
-         type: MenuItem.Types.LINK,
-         payload: 'https://www.google.com',
-         text: 'Disabled Link',
-         disabled: true
-      }
-    ];
-
-    let styles = this.getStyles();
-
-    let menuItems = [
-       { payload: '1', text: 'Never' },
-       { payload: '2', text: 'Every Night' },
-       { payload: '3', text: 'Weeknights' },
-       { payload: '4', text: 'Weekends' },
-       { payload: '5', text: 'Weekly' }
-    ];
-
-    return (
-      <ClearFix>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
-            </div>
-            <div style={styles.containerCentered}>
-              <RaisedButton label="Secondary" secondary={true} />
-            </div>
-            <div style={styles.containerCentered}>
-              <RaisedButton label="Primary"  primary={true}/>
-            </div>
-            <div style={styles.containerCentered}>
-              <RaisedButton label="Default"/>
-            </div>
-          </div>
-
-          <div style={styles.group}>
-            <div style={styles.container}>
-              <Checkbox
-                name="checkboxName1"
-                value="checkboxValue1"
-                label="checkbox" />
-              <Checkbox
-                name="checkboxName2"
-                value="checkboxValue2"
-                label="disabled checkbox"
-                disabled={true} />
-            </div>
-            <div style={styles.container}>
-              <RadioButtonGroup
-                name="shipSpeed"
-                defaultSelected="usd">
-                  <RadioButton
-                    value="usd"
-                    label="USD" />
-                  <RadioButton
-                    value="euro"
-                    label="Euro"
-                    defaultChecked={true} />
-                 <RadioButton
-                    value="mxn"
-                    label="MXN"
-                    disabled={true}/>
-              </RadioButtonGroup>
-            </div>
-            <div style={styles.container}>
-              <Toggle
-                name="toggleName1"
-                value="toggleValue1"
-                label="toggle" />
-              <Toggle
-                name="toggleName2"
-                value="toggleValue2"
-                label="disabled toggle"
-                defaultToggled={true}
-                disabled={true} />
-            </div>
-          </div>
-
-          <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
-            <div style={styles.container}>
-              <TextField
-                style={styles.textfield}
-                hintText="TextField"/>
-            </div>
-            <div style={styles.container}>
-              <DatePicker
-                hintText="Landscape Dialog"
-                mode="landscape"
-                style={{width: '100%'}}/>
-            </div>
-            <div style={styles.container}>
-              <DropDownMenu menuItems={menuItems} style={{width: '100%'}}/>
-           </div>
-          </div>
-
-          <div style={styles.groupSlider}>
-            <Slider style={styles.slider} name="slider2" defaultValue={0.5} />
-          </div>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
-              <Dialog ref="dialog" title="Dialog With Standard Actions" actions={standardActions}>
-                The actions in this window are created from the json that&#39;s passed in.
-              </Dialog>
-            </div>
-          </div>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FlatButton
-                  onTouchTap={this.handleClickNav}
-                  label="View LeftNav" />
-              <LeftNav ref="leftNav" docked={false} menuItems={menuItemsNav} />
-            </div>
-          </div>
-
-          <div style={styles.group}>
-            <div style={styles.containerCentered}>
-              <FlatButton
-                onTouchTap={this.handleClickSnackbar}
-                label="View Snackbar" />
-              <Snackbar
-                ref="snackbar"
-                message="This is a snackbar"
-                action="Got It!"
-                onActionTouchTap={this.handleAction}/>
-            </div>
-          </div>
-      </ClearFix>
-    );
-  },
-
-  getThemeExamples() {
-    return (
-      <Tabs onChange={this.onTabChange}>
-        <Tab label='Light Theme (Default)'>
-          {this.getComponentGroup()}
-        </Tab>
-        <Tab label='Dark Theme'>
-          {this.getComponentGroup()}
-        </Tab>
-      </Tabs>
-    );
-  },
-
-  getOverrideExamplePage() {
-    return (
-      'let React = require(\'react\');\n' +
-      'let mui = require(\'mui\');\n' +
-      'let ThemeManager = new mui.Styles.ThemeManager();\n\n' +
-      'class MenusPage extends React.Component {\n\n' +
-      '  getChildContext() { \n' +
-      '    return {\n' +
-      '      muiTheme: ThemeManager.getCurrentTheme()\n' +
-      '    }\n' +
-      '  }\n\n' +
-      '  componentWillMount() {\n' +
-      '    ThemeManager.setComponentThemes({\n' +
-      '      toggle: {\n' +
-      '        thumbOnColor: String,\n' +
-      '        trackOnColor: String,\n' +
-      '      }\n' +
-      '    });\n' +
-      '  }\n' +
-      '}\n\n' +
-      'MenusPage.childContextTypes = {\n' +
-      '  muiTheme: React.PropTypes.object\n' +
-      '};'
-    );
-  },
-
-
-  // Toggles between light and dark themes
-  onTabChange(tabIndex, tab) {
-    if (this.state.isThemeDark) {
-      ThemeManager.setTheme(ThemeManager.types.LIGHT);
-    } else {
-      ThemeManager.setTheme(ThemeManager.types.DARK);
-    }
-    this.setState({isThemeDark: !this.state.isThemeDark});
-  },
-
-  handleAction(e) {
-    this.refs.snackbar.dismiss();
-  },
-
-  handleClickNav(e) {
-    this.refs.leftNav.toggle();
-  },
-
-  handleClickSnackbar(e) {
-    this.refs.snackbar.show();
-  },
-
-  handleTouchTapDialog(e) {
-    this.refs.dialog.show();
-  },
-
-  _onDialogSubmit() {
-    console.log('Submitting');
-  }
 });
 
-module.exports = ThemesPage;
+export default ThemesPage;
