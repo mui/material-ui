@@ -108,6 +108,12 @@ const IconMenu = React.createClass({
      * horizontal: [left, center, right].
      */
     targetOrigin: PropTypes.origin,
+
+    /**
+     * Sets the delay in milliseconds before closing the
+     * menu when an item is clicked.
+     */
+    touchTapCloseDelay: React.PropTypes.number,
   },
 
   contextTypes: {
@@ -142,6 +148,7 @@ const IconMenu = React.createClass({
         vertical: 'top',
         horizontal: 'left',
       },
+      touchTapCloseDelay: 200,
     };
   },
 
@@ -170,6 +177,14 @@ const IconMenu = React.createClass({
       this.setState({open: nextProps.open});
     }
   },
+
+  componentWillUnmount() {
+    if (this.timerCloseId) {
+      clearTimeout(this.timerCloseId);
+    }
+  },
+
+  timerCloseId: undefined,
 
   isOpen() {
     return this.state.open;
@@ -214,6 +229,11 @@ const IconMenu = React.createClass({
   },
 
   _handleItemTouchTap(event, child) {
+    const isKeyboard = Events.isKeyboard(event);
+    this.timerCloseId = setTimeout(() => {
+      this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
+    }, this.props.touchTapCloseDelay);
+
     this.props.onItemTouchTap(event, child);
   },
 
