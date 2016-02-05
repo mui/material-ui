@@ -21,6 +21,9 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 ```
 
+`react-tap-event-plugin` provides `onTouchTap()` to all React Components.  
+It's a mobile-friendly `onClick()` alternative for components in Material-UI, especially useful for the buttons.
+
 ### Roboto Font
 
 Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
