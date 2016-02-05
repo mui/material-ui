@@ -1,4 +1,4 @@
-let Events = require('../utils/events');
+import Events from '../utils/events';
 
 const Sizes = {
   SMALL: 1,
@@ -6,8 +6,7 @@ const Sizes = {
   LARGE: 3,
 };
 
-
-module.exports = {
+export default {
 
   statics: {
     Sizes: Sizes,
@@ -33,10 +32,15 @@ module.exports = {
   },
 
   _updateDeviceSize() {
-    let width = window.innerWidth;
-    if (width >= 992) this.setState({deviceSize: Sizes.LARGE});
-    else if (width >= 768) this.setState({deviceSize: Sizes.MEDIUM});
-    else this.setState({deviceSize: Sizes.SMALL}); // width >= 375
+    const width = window.innerWidth;
+
+    if (width >= 992) {
+      this.setState({deviceSize: Sizes.LARGE});
+    } else if (width >= 768) {
+      this.setState({deviceSize: Sizes.MEDIUM});
+    } else { // width < 768
+      this.setState({deviceSize: Sizes.SMALL});
+    }
   },
 
   _bindResize() {

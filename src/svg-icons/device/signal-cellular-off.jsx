@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const DeviceSignalCellularOff = React.createClass({
 
@@ -16,4 +16,4 @@ const DeviceSignalCellularOff = React.createClass({
 
 });
 
-module.exports = DeviceSignalCellularOff;
+export default DeviceSignalCellularOff;

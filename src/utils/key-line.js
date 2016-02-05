@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 
   Desktop: {
     GUTTER: 24,

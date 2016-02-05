@@ -1,9 +1,0 @@
-//The 12hr format
-<TimePicker
-  format="ampm"
-  hintText="12hr Format" />
-
-//The 24hr format
-<TimePicker
-  format="24hr"
-  hintText="24hr Format" />

@@ -1,21 +1,22 @@
-const React = require('react');
-const ImmutabilityHelper = require('../utils/immutability-helper');
-const List = require('./list');
+import React from 'react';
+import List from './list';
 
-
-const NestedList = React.createClass({
-
-  propTypes: {
+class NestedList extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.node,
     nestedLevel: React.PropTypes.number,
     open: React.PropTypes.bool,
-  },
 
-  getDefaultProps() {
-    return {
-      nestedLevel: 1,
-      open: false,
-    };
-  },
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  };
+
+  static defaultProps = {
+    nestedLevel: 1,
+    open: false,
+  };
 
   render() {
 
@@ -33,7 +34,7 @@ const NestedList = React.createClass({
     };
 
     return (
-      <List style={ImmutabilityHelper.merge(styles.root, style)}>
+      <List style={Object.assign({}, styles.root, style)}>
         {
           React.Children.map(children, (child) => {
             return React.isValidElement(child) ? (
@@ -45,8 +46,7 @@ const NestedList = React.createClass({
         }
       </List>
     );
-  },
+  }
+}
 
-});
-
-module.exports = NestedList;
+export default NestedList;

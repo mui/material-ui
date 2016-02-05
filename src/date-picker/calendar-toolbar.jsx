@@ -1,45 +1,76 @@
-let React = require('react');
-let DateTime = require('../utils/date-time');
-let IconButton = require('../icon-button');
-let Toolbar = require('../toolbar/toolbar');
-let ToolbarGroup = require('../toolbar/toolbar-group');
-let NavigationChevronLeft = require('../svg-icons/navigation/chevron-left');
-let NavigationChevronLeftDouble = require('../svg-icons/navigation-chevron-left-double');
-let NavigationChevronRight = require('../svg-icons/navigation/chevron-right');
-let NavigationChevronRightDouble = require('../svg-icons/navigation-chevron-right-double');
-let SlideInTransitionGroup = require('../transition-groups/slide-in');
+import React from 'react';
+import IconButton from '../icon-button';
+import Toolbar from '../toolbar/toolbar';
+import ToolbarGroup from '../toolbar/toolbar-group';
+import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
+import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
+import SlideInTransitionGroup from '../transition-groups/slide-in';
+import getMuiTheme from '../styles/getMuiTheme';
 
+const styles = {
+  root: {
+    position: 'relative',
+    padding: 0,
+    backgroundColor: 'inherit',
+  },
+  title: {
+    position: 'absolute',
+    top: 17,
+    lineHeight: '14px',
+    fontSize: 14,
+    height: 14,
+    width: '100%',
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+};
 
-let CalendarToolbar = React.createClass({
+const CalendarToolbar = React.createClass({
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
     displayDate: React.PropTypes.object.isRequired,
-    onMonthChange: React.PropTypes.func,
-    onYearChange: React.PropTypes.func,
-    prevYear: React.PropTypes.bool,
-    nextYear: React.PropTypes.bool,
-    prevMonth: React.PropTypes.bool,
+    locale: React.PropTypes.string.isRequired,
     nextMonth: React.PropTypes.bool,
-    hideYearChangeButtons: React.PropTypes.bool,
+    onMonthChange: React.PropTypes.func,
+    prevMonth: React.PropTypes.bool,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   getDefaultProps() {
     return {
-      prevYear: true,
-      nextYear: true,
-      prevMonth: true,
       nextMonth: true,
-      hideYearChangeButtons: false,
+      prevMonth: true,
     };
   },
 
   getInitialState() {
     return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       transitionDirection: 'up',
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     let direction;
 
     if (nextProps.displayDate !== this.props.displayDate) {
@@ -50,105 +81,6 @@ let CalendarToolbar = React.createClass({
     }
   },
 
-  _styles() {
-    return {
-      root: {
-        position: 'relative',
-        padding: 0,
-        backgroundColor: 'inherit',
-      },
-
-      title: {
-        position: 'absolute',
-        top: '17px',
-        lineHeight: '14px',
-        fontSize: '14px',
-        height: '14px',
-        width: '100%',
-        fontWeight: '500',
-        textAlign: 'center',
-      },
-    };
-  },
-
-  render() {
-    let month = DateTime.getFullMonth(this.props.displayDate);
-    let year = this.props.displayDate.getFullYear();
-    let prevYearChangeButton = this._getPrevYearChangeButton();
-    let nextYearChangeButton = this._getNextYearChangeButton();
-    let styles = this._styles();
-
-    return (
-      <Toolbar className="mui-date-picker-calendar-toolbar" style={styles.root} noGutter={true}>
-        <SlideInTransitionGroup
-          style={styles.title}
-          direction={this.state.transitionDirection}>
-          <div key={month + '_' + year}>{month} {year}</div>
-        </SlideInTransitionGroup>
-
-        <ToolbarGroup key={0} float="left">
-          {prevYearChangeButton}
-
-          <IconButton
-            style={styles.button}
-            disabled={!this.props.prevMonth}
-            onTouchTap={this._prevMonthTouchTap}>
-              <NavigationChevronLeft />
-          </IconButton>
-        </ToolbarGroup>
-
-        <ToolbarGroup key={1} float="right">
-          <IconButton
-            style={styles.button}
-            disabled={!this.props.nextMonth}
-            onTouchTap={this._nextMonthTouchTap}>
-              <NavigationChevronRight />
-          </IconButton>
-
-          {nextYearChangeButton}
-        </ToolbarGroup>
-      </Toolbar>
-    );
-  },
-
-  _getPrevYearChangeButton() {
-    let style = {
-      display: this.props.hideYearChangeButtons ? 'none' : '',
-    };
-
-    return (
-      <IconButton
-        style={style}
-        disabled={!this.props.prevYear}
-        onTouchTap={this._prevYearTouchTap}>
-          <NavigationChevronLeftDouble />
-      </IconButton>
-    );
-  },
-
-  _getNextYearChangeButton() {
-    let style = {
-      display: this.props.hideYearChangeButtons ? 'none' : '',
-    };
-
-    return (
-      <IconButton
-        style={style}
-        disabled={!this.props.nextYear}
-        onTouchTap={this._nextYearTouchTap}>
-          <NavigationChevronRightDouble />
-      </IconButton>
-    );
-  },
-
-  _prevYearTouchTap() {
-    if (this.props.onYearChange && this.props.prevYear) this.props.onYearChange(-1);
-  },
-
-  _nextYearTouchTap() {
-    if (this.props.onYearChange && this.props.nextYear) this.props.onYearChange(1);
-  },
-
   _prevMonthTouchTap() {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
   },
@@ -157,6 +89,51 @@ let CalendarToolbar = React.createClass({
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   },
 
+  render() {
+    const {
+      DateTimeFormat,
+      locale,
+      displayDate,
+    } = this.props;
+
+    const dateTimeFormatted = new DateTimeFormat(locale, {
+      month: 'long',
+      year: 'numeric',
+    }).format(displayDate);
+
+    const nextButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
+    const prevButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+
+    return (
+      <Toolbar style={styles.root} noGutter={true}>
+        <SlideInTransitionGroup
+          style={styles.title}
+          direction={this.state.transitionDirection}
+        >
+          <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
+        </SlideInTransitionGroup>
+        <ToolbarGroup key={0} float="left">
+          <IconButton
+            style={styles.button}
+            disabled={!this.props.prevMonth}
+            onTouchTap={this._prevMonthTouchTap}
+          >
+            {nextButtonIcon}
+          </IconButton>
+        </ToolbarGroup>
+        <ToolbarGroup key={1} float="right">
+          <IconButton
+            style={styles.button}
+            disabled={!this.props.nextMonth}
+            onTouchTap={this._nextMonthTouchTap}
+          >
+            {prevButtonIcon}
+          </IconButton>
+        </ToolbarGroup>
+      </Toolbar>
+    );
+  },
+
 });
 
-module.exports = CalendarToolbar;
+export default CalendarToolbar;

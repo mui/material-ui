@@ -1,39 +1,88 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import getMuiTheme from '../styles/getMuiTheme';
 
+const ToolbarSeparator = React.createClass({
 
-let ToolbarSeparator = React.createClass({
+  propTypes: {
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
 
-  mixins: [StylePropable],
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.toolbar;
+    return this.state.muiTheme.toolbar;
   },
 
   getSpacing() {
-    return this.context.muiTheme.spacing;
+    return this.state.muiTheme.rawTheme.spacing;
+  },
+
+  getStyles() {
+    return {
+      root: {
+        backgroundColor: this.getTheme().separatorColor,
+        display: 'inline-block',
+        height: this.getSpacing().desktopGutterMore,
+        marginLeft: this.getSpacing().desktopGutter,
+        position: 'relative',
+        top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
+        width: 1,
+      },
+    };
   },
 
   render() {
-    let styles = this.mergeAndPrefix({
-      backgroundColor: this.getTheme().separatorColor,
-      display: 'inline-block',
-      height: this.getSpacing().desktopGutterMore,
-      marginLeft: this.getSpacing().desktopGutter,
-      position: 'relative',
-      top: ((this.getTheme().height - this.getSpacing().desktopGutterMore) / 2),
-      width: 1,
-    }, this.props.style);
+
+    const {
+      className,
+      style,
+      ...other,
+    } = this.props;
+
+    const styles = this.getStyles();
 
     return (
-      <span className={this.props.className} style={styles}/>
+      <span {...other} className={className} style={this.prepareStyles(styles.root, style)}/>
     );
   },
 
 });
 
-module.exports = ToolbarSeparator;
+export default ToolbarSeparator;

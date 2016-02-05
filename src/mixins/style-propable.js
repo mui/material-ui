@@ -1,27 +1,32 @@
-const React = require('react');
-const ImmutabilityHelper = require('../utils/immutability-helper');
-const Styles = require('../utils/styles');
-
-// This mixin isn't necessary and will be removed in v0.11
+import React from 'react';
+import {mergeStyles, mergeAndPrefix} from '../utils/styles';
 
 /**
- *	@params:
- *	styles = Current styles.
- *  props = New style properties that will override the current style.
+ * This mixin isn't necessary and will be removed soon. DO NOT USE!
+ *
+ * All internal components that use this mixin should be switched to the
+ * `styleUtils` that this mixin now wraps. Notice the method signature of
+ * the `prepareStyles()` function of this mixin is different than the method
+ * signature of the `prepareStyles()` function in `styleUtils`.
+ *
+ * See `../utils/styles.js` for more details.
  */
-module.exports = {
+export default {
 
   propTypes: {
     style: React.PropTypes.object,
   },
 
-  //Moved this function to ImmutabilityHelper.merge
-  mergeStyles() {
-    return ImmutabilityHelper.merge.apply(this, arguments);
-  },
+  mergeStyles,
 
-  //Moved this function to /utils/styles.js
-  mergeAndPrefix() {
-    return Styles.mergeAndPrefix.apply(this, arguments);
+  mergeAndPrefix,
+
+  prepareStyles(...args) {
+    const {
+      prepareStyles = (style) => (style),
+    } = (this.state && this.state.muiTheme) || (this.context && this.context.muiTheme) ||
+        (this.props && this.props.muiTheme) || {};
+
+    return prepareStyles(mergeStyles({}, ...args));
   },
 };

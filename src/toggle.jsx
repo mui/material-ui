@@ -1,24 +1,98 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let Paper = require('./paper');
-let EnhancedSwitch = require('./enhanced-switch');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import Paper from './paper';
+import EnhancedSwitch from './enhanced-switch';
+import getMuiTheme from './styles/getMuiTheme';
 
+const Toggle = React.createClass({
 
-let Toggle = React.createClass({
+  propTypes: {
+    /**
+     * Determines whether the Toggle is initially turned on.
+     */
+    defaultToggled: React.PropTypes.bool,
 
-  mixins: [StylePropable],
+    /**
+     * Will disable the toggle if true.
+     */
+    disabled: React.PropTypes.bool,
+
+    /**
+     * Overrides the inline-styles of the Toggle element.
+     */
+    elementStyle: React.PropTypes.object,
+
+    /**
+     * Overrides the inline-styles of the Icon element.
+     */
+    iconStyle: React.PropTypes.object,
+
+    /**
+     * Where the label will be placed next to the toggle.
+     */
+    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Overrides the inline-styles of the Toggle element label.
+     */
+    labelStyle: React.PropTypes.object,
+
+    /**
+     * Callback function that is fired when the toggle switch is toggled.
+     */
+    onToggle: React.PropTypes.func,
+
+    /**
+     * Override style of ripple.
+     */
+    rippleStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+
+    /**
+     * Override style for thumb.
+     */
+    thumbStyle: React.PropTypes.object,
+
+    /**
+     * Toggled if set to true.
+     */
+    toggled: React.PropTypes.bool,
+
+    /**
+     * Override style for track.
+     */
+    trackStyle: React.PropTypes.object,
+
+    /**
+     * ValueLink prop for when using controlled toggle.
+     */
+    valueLink: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  propTypes: {
-    elementStyle: React.PropTypes.object,
-    labelStyle: React.PropTypes.object,
-    onToggle: React.PropTypes.func,
-    toggled: React.PropTypes.bool,
-    defaultToggled: React.PropTypes.bool,
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
+    return {
+      defaultToggled: false,
+      disabled: false,
+      labelPosition: 'left',
+    };
   },
 
   getInitialState() {
@@ -28,11 +102,25 @@ let Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.toggle;
+    return this.state.muiTheme.toggle;
   },
 
   getStyles() {
@@ -47,11 +135,11 @@ let Toggle = React.createClass({
         width: toggleTrackWidth,
       },
       track: {
-          transition: Transitions.easeOut(),
-          width: '100%',
-          height: 14,
-          borderRadius: 30,
-          backgroundColor: this.getTheme().trackOffColor,
+        transition: Transitions.easeOut(),
+        width: '100%',
+        height: 14,
+        borderRadius: 30,
+        backgroundColor: this.getTheme().trackOffColor,
       },
       thumb: {
         transition: Transitions.easeOut(),
@@ -79,89 +167,11 @@ let Toggle = React.createClass({
       },
       label: {
         color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
+        width: 'calc(100% - ' + (toggleTrackWidth + 10) + 'px)',
       },
     };
 
     return styles;
-  },
-
-  render() {
-    let {
-      onToggle,
-      ...other,
-    } = this.props;
-
-    let styles = this.getStyles();
-
-    let trackStyles = this.mergeAndPrefix(
-      styles.track,
-      this.props.trackStyle,
-      this.state.switched && styles.trackWhenSwitched,
-      this.props.disabled && styles.trackWhenDisabled
-    );
-
-    let thumbStyles = this.mergeAndPrefix(
-      styles.thumb,
-      this.props.thumbStyle,
-      this.state.switched && styles.thumbWhenSwitched,
-      this.props.disabled && styles.thumbWhenDisabled
-    );
-
-    if (this.state.switched) {
-      thumbStyles.marginLeft = '-' + thumbStyles.width;
-    }
-
-    let toggleElementStyles = this.mergeAndPrefix(styles.toggleElement, this.props.elementStyle);
-
-    let toggleElement = (
-      <div style={toggleElementStyles}>
-        <div style={trackStyles} />
-        <Paper style={thumbStyles} circle={true} zDepth={1} />
-      </div>
-    );
-
-    let customRippleStyle = this.mergeAndPrefix({
-      top: -10,
-      left: -10,
-    }, this.props.rippleStyle);
-
-    let rippleColor = this.state.switched ?
-      this.getTheme().thumbOnColor : this.context.muiTheme.component.textColor;
-
-    let iconStyle = this.mergeAndPrefix(
-      styles.icon,
-      this.props.iconStyle
-    );
-
-    let labelStyle = this.mergeAndPrefix(
-      styles.label,
-      this.props.labelStyle
-    );
-
-    let enhancedSwitchProps = {
-      ref: "enhancedSwitch",
-      inputType: "checkbox",
-      switchElement: toggleElement,
-      rippleStyle: customRippleStyle,
-      rippleColor: rippleColor,
-      iconStyle: iconStyle,
-      trackStyle: trackStyles,
-      thumbStyle: thumbStyles,
-      labelStyle: labelStyle,
-      switched: this.state.switched,
-      onSwitch: this._handleToggle,
-      onParentShouldUpdate: this._handleStateChange,
-      defaultSwitched: this.props.defaultToggled,
-      labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left",
-    };
-
-    if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
-
-    return (
-      <EnhancedSwitch
-        {...other}
-        {...enhancedSwitchProps}/>
-    );
   },
 
   isToggled() {
@@ -180,6 +190,86 @@ let Toggle = React.createClass({
     this.setState({switched: newSwitched});
   },
 
+  render() {
+    let {
+      onToggle,
+      ...other,
+    } = this.props;
+
+    let styles = this.getStyles();
+
+    let trackStyles = this.mergeStyles(
+      styles.track,
+      this.props.trackStyle,
+      this.state.switched && styles.trackWhenSwitched,
+      this.props.disabled && styles.trackWhenDisabled
+    );
+
+    let thumbStyles = this.mergeStyles(
+      styles.thumb,
+      this.props.thumbStyle,
+      this.state.switched && styles.thumbWhenSwitched,
+      this.props.disabled && styles.thumbWhenDisabled
+    );
+
+    if (this.state.switched) {
+      thumbStyles.marginLeft = '-' + thumbStyles.width;
+    }
+
+    let toggleElementStyles = this.mergeStyles(styles.toggleElement, this.props.elementStyle);
+
+    let toggleElement = (
+      <div style={this.prepareStyles(toggleElementStyles)}>
+        <div style={this.prepareStyles(trackStyles)} />
+        <Paper style={thumbStyles} circle={true} zDepth={1} />
+      </div>
+    );
+
+    let customRippleStyle = this.mergeStyles({
+      top: -10,
+      left: -10,
+    }, this.props.rippleStyle);
+
+    let rippleColor = this.state.switched ?
+      this.getTheme().thumbOnColor : this.state.muiTheme.textColor;
+
+    let iconStyle = this.mergeStyles(
+      styles.icon,
+      this.props.iconStyle
+    );
+
+    let labelStyle = this.mergeStyles(
+      styles.label,
+      this.props.labelStyle
+    );
+
+    let enhancedSwitchProps = {
+      ref: 'enhancedSwitch',
+      inputType: 'checkbox',
+      switchElement: toggleElement,
+      rippleStyle: customRippleStyle,
+      rippleColor: rippleColor,
+      iconStyle: iconStyle,
+      trackStyle: trackStyles,
+      thumbStyle: thumbStyles,
+      labelStyle: labelStyle,
+      switched: this.state.switched,
+      onSwitch: this._handleToggle,
+      onParentShouldUpdate: this._handleStateChange,
+      defaultSwitched: this.props.defaultToggled,
+      labelPosition: this.props.labelPosition,
+    };
+
+    if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
+
+    return (
+      <EnhancedSwitch
+        {...other}
+        {...enhancedSwitchProps}
+      />
+    );
+  },
+
 });
 
-module.exports = Toggle;
+export default Toggle;

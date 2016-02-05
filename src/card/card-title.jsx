@@ -1,28 +1,67 @@
-let React = require('react');
-let Styles = require('../styles');
-let StylePropable = require('../mixins/style-propable');
+import React from 'react';
+import Styles from '../styles';
+import StylePropable from '../mixins/style-propable';
+import getMuiTheme from '../styles/getMuiTheme';
 
-
-let CardTitle = React.createClass({
-
-  mixins:[StylePropable],
+const CardTitle = React.createClass({
 
   propTypes: {
-    title: React.PropTypes.string,
-    titleColor: React.PropTypes.string,
-    titleStyle: React.PropTypes.object,
-    subtitle: React.PropTypes.string,
-    subtitleColor: React.PropTypes.string,
-    subtitleStyle: React.PropTypes.object,
+    actAsExpander: React.PropTypes.bool,
+    children: React.PropTypes.node,
     expandable: React.PropTypes.bool,
     showExpandableButton: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+    subtitle: React.PropTypes.node,
+    subtitleColor: React.PropTypes.string,
+    subtitleStyle: React.PropTypes.object,
+    title: React.PropTypes.node,
+    titleColor: React.PropTypes.string,
+    titleStyle: React.PropTypes.object,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
       titleColor: Styles.Colors.darkBlack,
       subtitleColor: Styles.Colors.lightBlack,
     };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({
+      muiTheme: newMuiTheme,
+    });
   },
 
   getStyles() {
@@ -46,19 +85,23 @@ let CardTitle = React.createClass({
   },
 
   render() {
-    let styles = this.getStyles();
-    let rootStyle = this.mergeAndPrefix(styles.root, this.props.style);
-    let titleStyle = this.mergeAndPrefix(styles.title, this.props.titleStyle);
-    let subtitleStyle = this.mergeAndPrefix(styles.subtitle, this.props.subtitleStyle);
+    const styles = this.getStyles();
+    const rootStyle = this.mergeStyles(styles.root, this.props.style);
+    const titleStyle = this.mergeStyles(styles.title, this.props.titleStyle);
+    const subtitleStyle = this.mergeStyles(styles.subtitle, this.props.subtitleStyle);
 
     return (
-      <div {...this.props} style={rootStyle}>
-        <span style={titleStyle}>{this.props.title}</span>
-        <span style={subtitleStyle}>{this.props.subtitle}</span>
+      <div {...this.props} style={this.prepareStyles(rootStyle)}>
+        <span style={this.prepareStyles(titleStyle)}>
+          {this.props.title}
+        </span>
+        <span style={this.prepareStyles(subtitleStyle)}>
+          {this.props.subtitle}
+        </span>
         {this.props.children}
       </div>
     );
   },
 });
 
-module.exports = CardTitle;
+export default CardTitle;

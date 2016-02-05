@@ -1,25 +1,25 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import getMuiTheme from '../styles/getMuiTheme';
 
+const ClockPointer = React.createClass({
 
-let ClockPointer = React.createClass({
-
-  mixins: [StylePropable],
+  propTypes: {
+    hasSelected: React.PropTypes.bool,
+    type: React.PropTypes.oneOf(['hour', 'minute']),
+    value: React.PropTypes.number,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  propTypes: {
-    value: React.PropTypes.number,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
-  getInitialState() {
-     return {
-        inner: this.isInner(this.props.value),
-    };
-  },
+  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -29,21 +29,36 @@ let ClockPointer = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  getInitialState() {
+    return {
+      inner: this.isInner(this.props.value),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       inner: this.isInner(nextProps.value),
+      muiTheme: newMuiTheme,
     });
   },
 
   isInner(value) {
-    if (this.props.type !== "hour" ) {
+    if (this.props.type !== 'hour' ) {
       return false;
     }
     return value < 1 || value > 12 ;
   },
 
   getAngle() {
-    if (this.props.type === "hour") {
+    if (this.props.type === 'hour') {
       return this.calcAngle(this.props.value, 12);
     }
 
@@ -57,7 +72,7 @@ let ClockPointer = React.createClass({
   },
 
   getTheme() {
-    return this.context.muiTheme.component.timePicker;
+    return this.state.muiTheme.timePicker;
   },
 
   render() {
@@ -69,42 +84,42 @@ let ClockPointer = React.createClass({
 
     let styles = {
       root: {
-        height: "30%",
+        height: '30%',
         background: this.getTheme().accentColor,
         width: 2,
         left: 'calc(50% - 1px)',
-        position: "absolute",
-        bottom: "50%",
-        transformOrigin: "bottom",
-        pointerEvents: "none",
-        transform: "rotateZ(" + angle + "deg)",
+        position: 'absolute',
+        bottom: '50%',
+        transformOrigin: 'bottom',
+        pointerEvents: 'none',
+        transform: 'rotateZ(' + angle + 'deg)',
       },
       mark: {
         background: this.getTheme().selectTextColor,
-        border: "4px solid " + this.getTheme().accentColor,
+        border: '4px solid ' + this.getTheme().accentColor,
         width: 7,
         height: 7,
-        position: "absolute",
+        position: 'absolute',
         top: -5,
         left: -6,
-        borderRadius: "100%",
+        borderRadius: '100%',
       },
     };
 
     if (!this.state.inner) {
-      styles.root.height = "40%";
+      styles.root.height = '40%';
     }
 
     if (this.props.hasSelected) {
-      styles.mark.display = "none";
+      styles.mark.display = 'none';
     }
 
     return (
-        <div style={this.mergeAndPrefix(styles.root)} >
-          <div style={styles.mark} />
-        </div>
+      <div style={this.prepareStyles(styles.root)} >
+        <div style={this.prepareStyles(styles.mark)} />
+      </div>
     );
   },
 });
 
-module.exports = ClockPointer;
+export default ClockPointer;

@@ -1,21 +1,23 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let Colors = require('../styles/colors');
-let DateTime = require('../utils/date-time');
-let YearButton = require('./year-button');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from '../mixins/style-propable';
+import Colors from '../styles/colors';
+import DateTime from '../utils/date-time';
+import YearButton from './year-button';
 
-
-let CalendarYear = React.createClass({
-
-  mixins: [StylePropable],
+const CalendarYear = React.createClass({
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
+    maxDate: React.PropTypes.object,
+    minDate: React.PropTypes.object,
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
   },
+
+  mixins: [
+    StylePropable,
+  ],
 
   componentDidMount() {
     this._scrollToSelectedYear();
@@ -23,26 +25,6 @@ let CalendarYear = React.createClass({
 
   componentDidUpdate() {
     this._scrollToSelectedYear();
-  },
-
-  render() {
-    let years = this._getYears();
-    let styles = {
-      position: 'relative',
-      height: 'inherit',
-      lineHeight: '36px',
-      textAlign: 'center',
-      padding: '8px 14px 0 14px',
-      backgroundColor: Colors.white,
-      overflowX: 'hidden',
-      overflowY: 'scroll',
-    };
-
-    return (
-      <div style={styles}>
-        {years}
-      </div>
-    );
   },
 
   _getYears() {
@@ -66,7 +48,8 @@ let CalendarYear = React.createClass({
           year={year}
           onTouchTap={this._handleYearTouchTap}
           selected={selected}
-          {...selectedProps} />
+          {...selectedProps}
+        />
       );
 
       years.push(yearButton);
@@ -78,8 +61,8 @@ let CalendarYear = React.createClass({
   _scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
 
-    let container = this.getDOMNode();
-    let yearButtonNode = this.refs.selectedYearButton.getDOMNode();
+    let container = ReactDOM.findDOMNode(this);
+    let yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
 
     let containerHeight = container.clientHeight;
     let yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
@@ -92,6 +75,26 @@ let CalendarYear = React.createClass({
     if (this.props.onYearTouchTap) this.props.onYearTouchTap(e, year);
   },
 
+  render() {
+    let years = this._getYears();
+    let styles = {
+      position: 'relative',
+      height: 'inherit',
+      lineHeight: '36px',
+      textAlign: 'center',
+      padding: '8px 14px 0 14px',
+      backgroundColor: Colors.white,
+      overflowX: 'hidden',
+      overflowY: 'scroll',
+    };
+
+    return (
+      <div style={styles}>
+        {years}
+      </div>
+    );
+  },
+
 });
 
-module.exports = CalendarYear;
+export default CalendarYear;

@@ -1,21 +1,32 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let EnhancedButton = require('../enhanced-button');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import EnhancedButton from '../enhanced-button';
+import getMuiTheme from '../styles/getMuiTheme';
 
+const YearButton = React.createClass({
 
-let YearButton = React.createClass({
-
-  mixins: [StylePropable],
+  propTypes: {
+    /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+    onTouchTap: React.PropTypes.func,
+    selected: React.PropTypes.bool,
+    year: React.PropTypes.number,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  propTypes: {
-    year: React.PropTypes.number,
-    onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
@@ -26,11 +37,37 @@ let YearButton = React.createClass({
   getInitialState() {
     return {
       hover: false,
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   getTheme() {
-    return this.context.muiTheme.component.datePicker;
+    return this.state.muiTheme.datePicker;
+  },
+
+  _handleMouseEnter() {
+    this.setState({hover: true});
+  },
+
+  _handleMouseLeave() {
+    this.setState({hover: false});
+  },
+
+  _handleTouchTap(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
   },
 
   render() {
@@ -57,7 +94,7 @@ let YearButton = React.createClass({
       label: {
         position: 'relative',
         top: -1,
-        color: this.context.muiTheme.palette.textColor,
+        color: this.state.muiTheme.rawTheme.palette.textColor,
       },
 
       buttonState: {
@@ -88,31 +125,21 @@ let YearButton = React.createClass({
     }
 
     return (
-      <EnhancedButton {...other}
+      <EnhancedButton
+        {...other}
         style={styles.root}
         disableFocusRipple={true}
         disableTouchRipple={true}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
-        onTouchTap={this._handleTouchTap}>
-        <div style={styles.buttonState} />
-        <span style={styles.label}>{year}</span>
+        onTouchTap={this._handleTouchTap}
+      >
+        <div style={this.prepareStyles(styles.buttonState)} />
+        <span style={this.prepareStyles(styles.label)}>{year}</span>
       </EnhancedButton>
     );
   },
 
-  _handleMouseEnter() {
-    this.setState({hover: true});
-  },
-
-  _handleMouseLeave() {
-    this.setState({hover: false});
-  },
-
-  _handleTouchTap(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
-  },
-
 });
 
-module.exports = YearButton;
+export default YearButton;

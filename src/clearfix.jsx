@@ -1,35 +1,38 @@
-let React = require('react');
-let BeforeAfterWrapper = require('./before-after-wrapper');
+import React from 'react';
+import BeforeAfterWrapper from './before-after-wrapper';
 
-
-let ClearFix = React.createClass({
-
-  render() {
-    let {
-      style,
-      ...other,
-    } = this.props;
-
-    let before = function() {
-      return {
-        content: "' '",
-        display: 'table',
-      };
-    };
-
-    let after = before();
-    after.clear = 'both';
-
-    return (
-      <BeforeAfterWrapper
-        {...other}
-        beforeStyle={before()}
-        afterStyle={after}
-        style={this.props.style}>
-          {this.props.children}
-      </BeforeAfterWrapper>
-    );
+const styles = {
+  before: {
+    content: "' '",
+    display: 'table',
   },
-});
+  after: {
+    content: "' '",
+    clear: 'both',
+    display: 'table',
+  },
+};
 
-module.exports = ClearFix;
+const ClearFix = ({style, children, ...other}) => (
+  <BeforeAfterWrapper
+    {...other}
+    beforeStyle={styles.before}
+    afterStyle={styles.after}
+    style={style}
+  >
+    {children}
+  </BeforeAfterWrapper>
+);
+
+ClearFix.displayName = 'ClearFix';
+
+ClearFix.propTypes = {
+  children: React.PropTypes.node,
+
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: React.PropTypes.object,
+};
+
+export default ClearFix;

@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const ImagePhotoCamera = React.createClass({
 
@@ -16,4 +16,4 @@ const ImagePhotoCamera = React.createClass({
 
 });
 
-module.exports = ImagePhotoCamera;
+export default ImagePhotoCamera;

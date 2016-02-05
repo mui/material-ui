@@ -28,5 +28,5 @@ You can build your own SVG icons as well as collections like [game-icons](http:/
 * `--file-suffix` - Filter only files ending with a suffix
 
 If you experience any issues building icons or would like a feature added,
-[file and issue](https://github.com/callemall/material-ui/issues) and let us
+[file an issue](https://github.com/callemall/material-ui/issues) and let us
 know.

@@ -1,6 +1,6 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const SvgIcon = require('../../svg-icon');
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import SvgIcon from '../../svg-icon';
 
 const EditorWrapText = React.createClass({
 
@@ -16,4 +16,4 @@ const EditorWrapText = React.createClass({
 
 });
 
-module.exports = EditorWrapText;
+export default EditorWrapText;

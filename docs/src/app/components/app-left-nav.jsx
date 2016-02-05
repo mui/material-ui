@@ -1,89 +1,210 @@
-let React = require('react');
-let Router = require('react-router');
-let { MenuItem, LeftNav, Styles } = require('material-ui');
-let { Colors, Spacing, Typography } = Styles;
+import React from 'react';
+import LeftNav from 'material-ui/lib/left-nav';
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import Divider from 'material-ui/lib/divider';
+import Subheader from 'material-ui/lib/Subheader';
+import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
+import {
+  Colors,
+  Spacing,
+  Typography,
+} from 'material-ui/lib/styles';
+import {StylePropable} from 'material-ui/lib/mixins';
 
-let menuItems = [
-    { route: 'get-started', text: 'Get Started' },
-    { route: 'customization', text: 'Customization' },
-    { route: 'components', text: 'Components' },
-    { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-    { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-    { type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
-    { type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
-  ];
+const SelectableList = SelectableContainerEnhance(List);
 
+const AppLeftNav = React.createClass({
 
-class AppLeftNav extends React.Component {
+  propTypes: {
+    docked: React.PropTypes.bool.isRequired,
+    history: React.PropTypes.object.isRequired,
+    location: React.PropTypes.object.isRequired,
+    onRequestChangeLeftNav: React.PropTypes.func.isRequired,
+    onRequestChangeList: React.PropTypes.func.isRequired,
+    open: React.PropTypes.bool.isRequired,
+    style: React.PropTypes.object,
+  },
 
-  constructor() {
-    super();
-    this.toggle = this.toggle.bind(this);
-    this._getSelectedIndex = this._getSelectedIndex.bind(this);
-    this._onLeftNavChange = this._onLeftNavChange.bind(this);
-    this._onHeaderClick = this._onHeaderClick.bind(this);
-  }
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+    router: React.PropTypes.func,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
+  handleRequestChangeLink(event, value) {
+    window.location = value;
+  },
+
+  handleTouchTapHeader() {
+    this.props.history.push('/');
+    this.setState({
+      leftNavOpen: false,
+    });
+  },
 
   getStyles() {
     return {
-      cursor: 'pointer',
-      //.mui-font-style-headline
-      fontSize: '24px',
-      color: Typography.textFullWhite,
-      lineHeight: Spacing.desktopKeylineIncrement + 'px',
-      fontWeight: Typography.fontWeightLight,
-      backgroundColor: Colors.cyan500,
-      paddingLeft: Spacing.desktopGutter,
-      paddingTop: '0px',
-      marginBottom: '8px'
+      logo: {
+        cursor: 'pointer',
+        fontSize: 24,
+        color: Typography.textFullWhite,
+        lineHeight: Spacing.desktopKeylineIncrement + 'px',
+        fontWeight: Typography.fontWeightLight,
+        backgroundColor: Colors.cyan500,
+        paddingLeft: Spacing.desktopGutter,
+        marginBottom: 8,
+      },
     };
-  }
+  },
 
   render() {
-    let header = (
-      <div style={this.getStyles()} onTouchTap={this._onHeaderClick}>
-        material ui
-      </div>
-    );
+    const {
+      location,
+      docked,
+      onRequestChangeLeftNav,
+      onRequestChangeList,
+      open,
+      style,
+    } = this.props;
+
+    const styles = this.getStyles();
 
     return (
       <LeftNav
-        ref="leftNav"
-        docked={false}
-        isInitiallyOpen={false}
-        header={header}
-        menuItems={menuItems}
-        selectedIndex={this._getSelectedIndex()}
-        onChange={this._onLeftNavChange} />
+        style={style}
+        docked={docked}
+        open={open}
+        onRequestChange={onRequestChangeLeftNav}
+      >
+        <div style={this.prepareStyles(styles.logo)} onTouchTap={this.handleTouchTapHeader}>
+          Material-UI
+        </div>
+        <SelectableList
+          valueLink={{value: location.pathname, requestChange: onRequestChangeList}}
+        >
+          <ListItem
+            primaryText="Get Started"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem primaryText="Prerequisites" value="/get-started/prerequisites" />,
+              <ListItem primaryText="Installation" value="/get-started/installation" />,
+              <ListItem primaryText="Usage" value="/get-started/usage" />,
+              <ListItem primaryText="Server Rendering" value="/get-started/server-rendering" />,
+              <ListItem primaryText="Examples" value="/get-started/examples" />,
+            ]}
+          />
+          <ListItem
+            primaryText="Customization"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem primaryText="Themes" value="/customization/themes" />,
+              <ListItem primaryText="Inline Styles" value="/customization/inline-styles" />,
+              <ListItem primaryText="Colors" value="/customization/colors" />,
+            ]}
+          />
+          <ListItem
+            primaryText="Components"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem primaryText="App Bar" value="/components/app-bar" />,
+              <ListItem primaryText="Auto Complete" value="/components/auto-complete" />,
+              <ListItem primaryText="Avatar" value="/components/avatar" />,
+              <ListItem primaryText="Badge" value="/components/badge" />,
+              <ListItem
+                primaryText="Buttons"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem primaryText="Flat Button" value="/components/flat-button" />,
+                  <ListItem primaryText="Raised Button" value="/components/raised-button" />,
+                  <ListItem primaryText="Floating Action Button" value="/components/floating-action-button" />,
+                  <ListItem primaryText="Icon Button" value="/components/icon-button" />,
+                ]}
+              />,
+              <ListItem primaryText="Card" value="/components/card" />,
+              <ListItem primaryText="Date Picker" value="/components/date-picker" />,
+              <ListItem primaryText="Dialog" value="/components/dialog" />,
+              <ListItem primaryText="Divider" value="/components/divider" />,
+              <ListItem primaryText="Grid List" value="/components/grid-list" />,
+              <ListItem
+                primaryText="Icons"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem primaryText="Font Icon" value="/components/font-icon" />,
+                  <ListItem primaryText="SVG Icon" value="/components/svg-icon" />,
+                ]}
+              />,
+              <ListItem primaryText="Left Nav" value="/components/left-nav" />,
+              <ListItem primaryText="List" value="/components/list" />,
+              <ListItem
+                primaryText="Menus"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem primaryText="Menu" value="/components/menu" />,
+                  <ListItem primaryText="Icon Menu" value="/components/icon-menu" />,
+                  <ListItem primaryText="Drop Down Menu" value="/components/dropdown-menu" />,
+                ]}
+              />,
+              <ListItem primaryText="Paper" value="/components/paper" />,
+              <ListItem primaryText="Popover" value="/components/popover" />,
+              <ListItem
+                primaryText="Progress"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem primaryText="Circular Progress" value="/components/circular-progress" />,
+                  <ListItem primaryText="Linear Progress" value="/components/linear-progress" />,
+                  <ListItem primaryText="Refresh Indicator" value="/components/refresh-indicator" />,
+                ]}
+              />,
+              <ListItem primaryText="Select Field" value="/components/select-field" />,
+              <ListItem primaryText="Slider" value="/components/slider" />,
+              <ListItem
+                primaryText="Switches"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem primaryText="Checkbox" value="/components/checkbox" />,
+                  <ListItem primaryText="Radio Button" value="/components/radio-button" />,
+                  <ListItem primaryText="Toggle" value="/components/toggle" />,
+                ]}
+              />,
+              <ListItem primaryText="Snackbar" value="/components/snackbar" />,
+              <ListItem primaryText="Subheader" value="/components/subheader" />,
+              <ListItem primaryText="Table" value="/components/table" />,
+              <ListItem primaryText="Tabs" value="/components/tabs" />,
+              <ListItem primaryText="Text Field" value="/components/text-field" />,
+              <ListItem primaryText="Time Picker" value="/components/time-picker" />,
+              <ListItem primaryText="Toolbar" value="/components/toolbar" />,
+            ]}
+          />
+          <ListItem
+            primaryText="Discover More"
+            primaryTogglesNestedList={true}
+            nestedItems={[
+              <ListItem primaryText="Community" value="/discover-more/community" />,
+              <ListItem primaryText="Contributing" value="/discover-more/contributing" />,
+              <ListItem primaryText="Showcase" value="/discover-more/showcase" />,
+              <ListItem primaryText="Related projects" value="/discover-more/related-projects" />,
+            ]}
+          />
+        </SelectableList>
+        <Divider />
+        <SelectableList
+          valueLink={{value: '', requestChange: this.handleRequestChangeLink}}
+        >
+          <Subheader>Resources</Subheader>
+          <ListItem primaryText="GitHub" value="https://github.com/callemall/material-ui" />
+          <ListItem primaryText="React" value="http://facebook.github.io/react" />
+          <ListItem
+            primaryText="Material Design"
+            value="https://www.google.com/design/spec/material-design/introduction.html"
+          />
+        </SelectableList>
+      </LeftNav>
     );
-  }
+  },
+});
 
-  toggle() {
-    this.refs.leftNav.toggle();
-  }
-
-  _getSelectedIndex() {
-    let currentItem;
-
-    for (let i = menuItems.length - 1; i >= 0; i--) {
-      currentItem = menuItems[i];
-      if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
-    }
-  }
-
-  _onLeftNavChange(e, key, payload) {
-    this.context.router.transitionTo(payload.route);
-  }
-
-  _onHeaderClick() {
-    this.context.router.transitionTo('root');
-    this.refs.leftNav.close();
-  }
-
-}
-
-AppLeftNav.contextTypes = {
-  router: React.PropTypes.func
-};
-
-module.exports = AppLeftNav;
+export default AppLeftNav;

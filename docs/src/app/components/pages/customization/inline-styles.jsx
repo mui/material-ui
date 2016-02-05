@@ -1,34 +1,32 @@
-let React = require('react');
-let { Checkbox, Styles } = require('material-ui');
-let CodeBlock = require('../../code-example/code-block');
-let CodeExample = require('../../code-example/code-example');
+import React from 'react';
+import {Checkbox, Styles} from 'material-ui';
+import CodeExample from '../../CodeExample';
 
-let { Typography } = Styles;
+const {Typography} = Styles;
 
 
 class InlineStyles extends React.Component {
-
   getStyles() {
     return {
       headline: {
-        fontSize: '24px',
+        fontSize: 24,
         lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px',
+        paddingTop: 16,
+        marginBottom: 12,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       title: {
-        fontSize: '20px',
+        fontSize: 20,
         lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
+        paddingTop: 19,
+        marginBottom: 13,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack
-      }
-    }
+        color: Typography.textDarkBlack,
+      },
+    };
   }
 
   render() {
@@ -61,7 +59,7 @@ class InlineStyles extends React.Component {
       '  background-color: #FF9800;\n' +
       '}';
 
-      let styles = this.getStyles();
+    let styles = this.getStyles();
 
     return (
       <div>
@@ -69,7 +67,8 @@ class InlineStyles extends React.Component {
         <p>
           All Material-UI components have their styles defined inline. You
           can read our <a href="https://github.com/callemall/material-ui/issues/30">
-          discussion thread</a> regarding this change as well as <a href="https://speakerdeck.com/vjeux/react-css-in-js">
+          discussion thread</a> regarding this change as well as
+          <a href="https://speakerdeck.com/vjeux/react-css-in-js">
           this presentation</a> discussing CSS in JS.
         </p>
 
@@ -82,16 +81,18 @@ class InlineStyles extends React.Component {
             label="Checked the mail"
             style={{
               width: '50%',
-              margin: '0 auto'
+              margin: '0 auto',
             }}
             iconStyle={{
-              fill: '#FF4081'
-            }}/>
+              fill: '#FF4081',
+            }}
+          />
         </CodeExample>
         <p>
           If you would like to override a style property that has been defined
           inline, define your override via the style prop as demonstrated in
-          the example above. The style prop is an object that applies its
+          the example above. These overrides take precedence over the theme (if any) that is used
+          to render the component. The style prop is an object that applies its
           properties to the <b>root/outermost element</b> of the component. Some
           components provide additional style properties for greater styling
           control. If you need to override the inline styles of an element
@@ -109,8 +110,9 @@ class InlineStyles extends React.Component {
             label="Currently a UTD student"
             className="muidocs-checkbox-example"
             iconStyle={{
-              fill: '#FF9800'
-            }}/>
+              fill: '#FF9800',
+            }}
+          />
         </CodeExample>
         <p>
           If you would like to add additional styling via CSS, pass in the
@@ -120,12 +122,9 @@ class InlineStyles extends React.Component {
           in a CSS class. Take a look at a component&#39;s <code>getStyles
           </code> function to see what properties are defined inline.
         </p>
-
-
       </div>
     );
   }
-
 }
 
-module.exports = InlineStyles;
+export default InlineStyles;

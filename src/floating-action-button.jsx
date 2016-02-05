@@ -1,73 +1,169 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let ColorManipulator = require('./utils/color-manipulator');
-let EnhancedButton = require('./enhanced-button');
-let FontIcon = require('./font-icon');
-let Paper = require('./paper');
-let Children = require('./utils/children');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import Colors from './styles/colors';
+import ColorManipulator from './utils/color-manipulator';
+import EnhancedButton from './enhanced-button';
+import FontIcon from './font-icon';
+import Paper from './paper';
+import Children from './utils/children';
+import getMuiTheme from './styles/getMuiTheme';
+import warning from 'warning';
 
+const FloatingActionButton = React.createClass({
 
-let getZDepth = function(disabled) {
-  let zDepth = disabled ? 0 : 2;
-  return {
-    zDepth: zDepth,
-    initialZDepth: zDepth,
-  };
-};
+  propTypes: {
+    /**
+     * This value will override the default background color for the button.
+     * However it will not override the default disabled background color.
+     * This has to be set separately using the disabledColor attribute.
+     */
+    backgroundColor: React.PropTypes.string,
 
+    /**
+     * This is what displayed inside the floating action button; for example, a SVG Icon.
+     */
+    children: React.PropTypes.node,
 
-let FloatingActionButton = React.createClass({
+    /**
+     * Disables the button if set to true.
+     */
+    disabled: React.PropTypes.bool,
 
-  mixins: [StylePropable],
+    /**
+     * This value will override the default background color for the button when it is disabled.
+     */
+    disabledColor: React.PropTypes.string,
+
+    /**
+     * URL to link to when button clicked if `linkButton` is set to true.
+     */
+    href: React.PropTypes.string,
+
+    /**
+     * The icon within the FloatingActionButton is a FontIcon component.
+     * This property is the classname of the icon to be displayed inside the button.
+     * An alternative to adding an iconClassName would be to manually insert a
+     * FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.
+     */
+    iconClassName: React.PropTypes.string,
+
+    /**
+     * This is the equivalent to iconClassName except that it is used for
+     * overriding the inline-styles of the FontIcon component.
+     */
+    iconStyle: React.PropTypes.object,
+
+    /**
+     * Enables use of `href` property to provide a URL to link to if set to true.
+     */
+    linkButton: React.PropTypes.bool,
+
+    /**
+     * If true, the button will be a small floating action button.
+     */
+    mini: React.PropTypes.bool,
+
+    /**
+     * Called when mouse down event occurs on the button.
+     */
+    onMouseDown: React.PropTypes.func,
+
+    /**
+     * Called when mouse enter event occurs on the button.
+     */
+    onMouseEnter: React.PropTypes.func,
+
+    /**
+     * Called when mouse leave event occurs on the button.
+     */
+    onMouseLeave: React.PropTypes.func,
+
+    /**
+     * Called when mouse up event occurs on the button.
+     */
+    onMouseUp: React.PropTypes.func,
+
+    /**
+     * Called when touch end event occurs on the button.
+     */
+    onTouchEnd: React.PropTypes.func,
+
+    /**
+     * Called when touch start event occurs on the button.
+     */
+    onTouchStart: React.PropTypes.func,
+
+    /**
+     * If true, the button will use the secondary button colors.
+     */
+    secondary: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  propTypes: {
-    backgroundColor: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    disabledColor: React.PropTypes.string,
-    iconClassName: React.PropTypes.string,
-    iconStyle: React.PropTypes.object,
-    mini: React.PropTypes.bool,
-    onMouseDown: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    secondary: React.PropTypes.bool,
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
+
+  getDefaultProps() {
+    return {
+      disabled: false,
+      disabledColor: Colors.grey300,
+      mini: false,
+      secondary: false,
+    };
   },
 
   getInitialState() {
-    let zDepth = this.props.disabled ? 0 : 2;
+    const zDepth = this.props.disabled ? 0 : 2;
+
     return {
       hovered: false,
       initialZDepth: zDepth,
       touch: false,
       zDepth: zDepth,
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  componentWillMount() {
-    this.setState(getZDepth(this.props.disabled));
-  },
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.disabled !== this.props.disabled) {
-      this.setState(getZDepth(newProps.disabled));
-    }
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      if (this.props.iconClassName && this.props.children) {
-        let warning = 'You have set both an iconClassName and a child icon. ' +
-          'It is recommended you use only one method when adding ' +
-          'icons to FloatingActionButtons.';
-        console.warn(warning);
-      }
+    warning(!this.props.iconClassName || !this.props.children,
+      'You have set both an iconClassName and a child icon. ' +
+      'It is recommended you use only one method when adding ' +
+      'icons to FloatingActionButtons.');
+  },
+
+  componentWillReceiveProps(newProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
+    if (newProps.disabled !== this.props.disabled) {
+      const zDepth = newProps.disabled ? 0 : 2;
+
+      this.setState({
+        zDepth: zDepth,
+        initialZDepth: zDepth,
+      });
     }
   },
 
@@ -80,17 +176,17 @@ let FloatingActionButton = React.createClass({
 
 
   getTheme() {
-    return this.context.muiTheme.component.floatingActionButton;
+    return this.state.muiTheme.floatingActionButton;
   },
 
   _getIconColor() {
     return this.props.disabled ? this.getTheme().disabledTextColor :
-      this.props.secondary ? this.getTheme().secondaryIconColor :
-      this.getTheme().iconColor;
+      (this.props.secondary ? this.getTheme().secondaryIconColor :
+      this.getTheme().iconColor);
   },
 
   getStyles() {
-    let themeVariables = this.context.muiTheme.component.floatingActionButton;
+    let themeVariables = this.state.muiTheme.floatingActionButton;
 
     let styles = {
       root: {
@@ -108,10 +204,6 @@ let FloatingActionButton = React.createClass({
         borderRadius: '50%',
         textAlign: 'center',
         verticalAlign: 'bottom',
-        //This is need so that ripples do not bleed
-        //past border radius.
-        //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-        transform: 'translate3d(0, 0, 0)',
       },
       containerWhenMini: {
         height: themeVariables.miniSize,
@@ -138,91 +230,21 @@ let FloatingActionButton = React.createClass({
     return styles;
   },
 
-  render() {
-    let {
-      disabled,
-      mini,
-      secondary,
-      iconStyle,
-      iconClassName,
-      ...other } = this.props;
-
-    let styles = this.getStyles();
-
-    let iconElement;
-    if (iconClassName) {
-      iconElement =
-        <FontIcon
-          className={iconClassName}
-          style={this.mergeAndPrefix(
-            styles.icon,
-            mini && styles.iconWhenMini,
-            iconStyle)}/>;
-    }
-
-    let children = Children.extend(this.props.children, {
-      style: this.mergeAndPrefix(
-        styles.icon,
-        mini && styles.iconWhenMini,
-        iconStyle),
-    });
-
-    let buttonEventHandlers = disabled ? null : {
-      onMouseDown: this._handleMouseDown,
-      onMouseUp: this._handleMouseUp,
-      onMouseLeave: this._handleMouseLeave,
-      onMouseEnter: this._handleMouseEnter,
-      onTouchStart: this._handleTouchStart,
-      onTouchEnd: this._handleTouchEnd,
-      onKeyboardFocus: this._handleKeyboardFocus,
-    };
-
-    return (
-      <Paper
-        style={this.mergeAndPrefix(styles.root, this.props.style)}
-        zDepth={this.state.zDepth}
-        circle={true}>
-
-        <EnhancedButton
-          {...other}
-          {...buttonEventHandlers}
-          ref="container"
-          disabled={disabled}
-          style={this.mergeAndPrefix(
-            styles.container,
-            this.props.mini && styles.containerWhenMini
-          )}
-          focusRippleColor={styles.icon.color}
-          touchRippleColor={styles.icon.color}>
-            <div
-              ref="overlay"
-              style={this.mergeAndPrefix(
-                styles.overlay,
-                (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-              )}>
-                {iconElement}
-                {children}
-            </div>
-        </EnhancedButton>
-      </Paper>
-    );
-  },
-
   _handleMouseDown(e) {
     //only listen to left clicks
     if (e.button === 0) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
+      this.setState({zDepth: this.state.initialZDepth + 1});
     }
     if (this.props.onMouseDown) this.props.onMouseDown(e);
   },
 
   _handleMouseUp(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(e);
   },
 
   _handleMouseLeave(e) {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({ zDepth: this.state.initialZDepth, hovered: false });
+    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(e);
   },
 
@@ -242,21 +264,95 @@ let FloatingActionButton = React.createClass({
   },
 
   _handleTouchEnd(e) {
-    this.setState({ zDepth: this.state.initialZDepth });
+    this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(e);
   },
 
   _handleKeyboardFocus(e, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
-      this.setState({ zDepth: this.state.initialZDepth + 1 });
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = ColorManipulator.fade(this.getStyles().icon.color, 0.4);
-    }
-    else if (!this.state.hovered) {
-      this.setState({ zDepth: this.state.initialZDepth });
-      React.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      this.setState({zDepth: this.state.initialZDepth + 1});
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
+        ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+    } else if (!this.state.hovered) {
+      this.setState({zDepth: this.state.initialZDepth});
+      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
     }
   },
 
+  render() {
+    let {
+      disabled,
+      mini,
+      secondary,
+      iconStyle,
+      iconClassName,
+      ...other} = this.props;
+
+    let styles = this.getStyles();
+
+    let iconElement;
+    if (iconClassName) {
+      iconElement = (
+        <FontIcon
+          className={iconClassName}
+          style={this.mergeStyles(
+            styles.icon,
+            mini && styles.iconWhenMini,
+            iconStyle)}
+        />
+      );
+    }
+
+    let children = Children.extend(this.props.children, {
+      style: this.mergeStyles(
+        styles.icon,
+        mini && styles.iconWhenMini,
+        iconStyle),
+    });
+
+    let buttonEventHandlers = disabled ? null : {
+      onMouseDown: this._handleMouseDown,
+      onMouseUp: this._handleMouseUp,
+      onMouseLeave: this._handleMouseLeave,
+      onMouseEnter: this._handleMouseEnter,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd,
+      onKeyboardFocus: this._handleKeyboardFocus,
+    };
+
+    return (
+      <Paper
+        style={this.mergeStyles(styles.root, this.props.style)}
+        zDepth={this.state.zDepth}
+        circle={true}
+      >
+        <EnhancedButton
+          {...other}
+          {...buttonEventHandlers}
+          ref="container"
+          disabled={disabled}
+          style={this.mergeStyles(
+            styles.container,
+            this.props.mini && styles.containerWhenMini,
+            iconStyle
+          )}
+          focusRippleColor={styles.icon.color}
+          touchRippleColor={styles.icon.color}
+        >
+          <div
+            ref="overlay"
+            style={this.prepareStyles(
+              styles.overlay,
+              (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
+            )}
+          >
+            {iconElement}
+            {children}
+          </div>
+        </EnhancedButton>
+      </Paper>
+    );
+  },
 });
 
-module.exports = FloatingActionButton;
+export default FloatingActionButton;

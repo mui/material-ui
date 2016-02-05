@@ -1,94 +1,92 @@
-let React = require('react');
-let { Mixins, Styles } = require('material-ui');
+import React from 'react';
+import {Mixins, Styles} from 'material-ui';
 
-let { StyleResizable, StylePropable } = Mixins;
-let { Typography, Spacing, Colors } = Styles;
+const {StyleResizable, StylePropable} = Mixins;
+const {Typography, Spacing} = Styles;
 
+const ComponentInfo = React.createClass({
 
-let ComponentInfo = React.createClass({
+  propTypes: {
+    infoArray: React.PropTypes.array.isRequired,
+    name: React.PropTypes.string.isRequired,
+    style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
   mixins: [StyleResizable, StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    infoArray: React.PropTypes.array.isRequired
-  },
-
   getStyles() {
     let desktopGutter = Spacing.desktopGutter;
-    let borderColor = this.context.muiTheme.palette.borderColor;
+    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     let styles = {
       root: {
-        //.mui-font-style-subhead-1
-        fontSize: '15px',
+        fontSize: 15,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
         lineHeight: '24px',
-        paddingTop: '3px',
-        marginBottom: '13px',
+        paddingTop: 3,
+        marginBottom: 13,
         color: Typography.textDarkBlack,
-        width: '100%'
+        width: '100%',
       },
       table: {
         borderCollapse: 'collapse',
-        borderSpacing: '0'
+        borderSpacing: '0',
       },
       td: {
         padding: '16px 0',
-        verticalAlign: 'top'
+        verticalAlign: 'top',
       },
       name: {
         position: 'absolute',
-        fontWeight: Typography.fontWeightMedium
+        fontWeight: Typography.fontWeightMedium,
       },
       type: {
         color: Typography.textLightBlack,
-        paddingRight: desktopGutter + 'px'
+        paddingRight: desktopGutter,
       },
       header: {
-        paddingTop: '0'
+        paddingTop: '0',
       },
       desc: {
         width: '100%',
-        paddingTop: '48px',
-        borderBottom: 'solid 1px ' + borderColor
+        paddingTop: 48,
+        borderBottom: 'solid 1px ' + borderColor,
       },
       p: {
-        margin: '0'
+        margin: '0',
       },
       h3: {
-        //mui-font-style-title
-        fontSize: '20px',
+        fontSize: 20,
         lineHeight: '28px',
-        paddingTop: '19px',
-        marginBottom: '13px',
+        paddingTop: 19,
+        marginBottom: 13,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       nameWhenMedium: {
         position: 'inherit',
-        paddingRight: desktopGutter + 'px'
+        paddingRight: desktopGutter,
       },
-      descWhenMedium :{
-        paddingTop: '16px'
+      descWhenMedium: {
+        paddingTop: 16,
       },
       tdWhenLarge: {
-        padding: '32px 0'
+        padding: '32px 0',
       },
       nameWhenLarge: {
-        minWidth: '128px'
+        minWidth: 128,
       },
-      descWhenLarge :{
-        paddingTop: '32px'
+      descWhenLarge: {
+        paddingTop: 32,
       },
       descWhenLastChild: {
-        borderBottom: 'none'
-      }
+        borderBottom: 'none',
+      },
     };
 
     styles.header = this.mergeStyles(styles.root, styles.header);
@@ -108,7 +106,7 @@ let ComponentInfo = React.createClass({
     styles.desc = this.mergeStyles(styles.td, styles.desc);
     styles.header = this.mergeStyles(styles.p, styles.header);
 
-    Object.keys(styles).forEach(function (currentKey) {
+    Object.keys(styles).forEach(function(currentKey) {
       styles[currentKey].boxSizing = 'border-box';
     });
 
@@ -116,40 +114,40 @@ let ComponentInfo = React.createClass({
   },
 
   render() {
-    let propElements = [],
-      typesSpan;
+    let propElements = [];
+    let typesSpan;
 
     let styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {
 
-      if (info.type) typesSpan = <span style={styles.type}>{info.type}</span>;
+      if (info.type) typesSpan = <span style={this.prepareStyles(styles.type)}>{info.type}</span>;
 
-      if (i == this.props.infoArray.length - 1) {
+      if (i === this.props.infoArray.length - 1) {
         styles.desc = this.mergeStyles(styles.desc, styles.descWhenLastChild);
       }
 
       propElements.push(
         <tr key={i}>
-          <td style={styles.name}>{info.name}</td>
-          <td style={styles.desc}>
-            <p style={styles.header}>{typesSpan}{info.header}</p>
-            <p style={styles.p}>{info.desc}</p>
+          <td style={this.prepareStyles(styles.name)}>{info.name}</td>
+          <td style={this.prepareStyles(styles.desc)}>
+            <p style={this.prepareStyles(styles.header)}>{typesSpan}{info.header}</p>
+            <p style={this.prepareStyles(styles.p)}>{info.desc}</p>
           </td>
         </tr>
       );
     }, this);
 
     return (
-      <div style={this.mergeAndPrefix(styles.root, this.props.style)}>
-        <h3 style={styles.h3}>{this.props.name}</h3>
-        <table style={styles.table}>
+      <div style={this.prepareStyles(styles.root, this.props.style)}>
+        <h3 style={this.prepareStyles(styles.h3)}>{this.props.name}</h3>
+        <table style={this.prepareStyles(styles.table)}>
           <tbody>
             {propElements}
           </tbody>
         </table>
       </div>
     );
-  }
+  },
 });
 
-module.exports = ComponentInfo;
+export default ComponentInfo;

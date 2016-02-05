@@ -1,4 +1,4 @@
-let Colors = require('./colors');
+import Colors from './colors';
 
 
 class Typography {
@@ -22,4 +22,4 @@ class Typography {
   }
 }
 
-module.exports = new Typography();
+export default new Typography();

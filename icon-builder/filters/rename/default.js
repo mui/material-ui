@@ -1,3 +1,7 @@
+'use strict';
+
+const path = require('path');
+
 /*
  * Return path to write file to inside outputDir.
  *
@@ -14,10 +18,9 @@
  * @return {string} output file dest relative to outputDir
  */
 function defaultDestRewriter(pathObj, innerPath, options) {
-  var path = require('path');
-  var fileName = pathObj.base;
+  let fileName = pathObj.base;
   if (options.fileSuffix) {
-    fileName.replace(options.fileSuffix, ".svg");
+    fileName.replace(options.fileSuffix, '.svg');
   } else {
     fileName = fileName.replace('.svg', '.jsx');
   }
@@ -26,4 +29,4 @@ function defaultDestRewriter(pathObj, innerPath, options) {
 }
 
 
-module.exports = defaultDestRewriter; 
+module.exports = defaultDestRewriter;

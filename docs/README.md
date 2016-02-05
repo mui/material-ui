@@ -1,32 +1,47 @@
-# [Material-UI](http://callemall.github.io/material-ui/)
+# [Material-UI Docs](http://callemall.github.io/material-ui/)
 
-This is the documentation site for [Material-UI](http://callemall.github.io/material-ui/).
+This is the documentation website and application of Material-UI.
+
+## Requirements
+
+- [Node](https://nodejs.org) 4.0 or newer
+- [React Native](http://facebook.github.io/react-native/docs/getting-started.html) for development
+- [Xcode](https://developer.apple.com/xcode/) for iOS development (optional)
+- [Android SDK](https://developer.android.com/sdk/) for Android development (optional)
 
 ## Installation
 After cloning the repository, install dependencies:
-```
+```sh
 cd <project folder>/material-ui
 npm install
 cd <project folder>/material-ui/docs
 npm install
 ```
 
-Now you can run your local server:
+## Running
+
+Once dependencies are installed, start the application with:
+
+### Browser
+
+```sh
+npm run browser:development
 ```
-npm start
+
+Open `http://localhost:3000` to view the documentation site.
+
+### iOS
+
+```sh
+npm run native:development
 ```
-Open http://localhost:3000 to view the documentation site.
-#Description of [Webpack](http://webpack.github.io/docs/)
-Webpack is a module bundler that we are using to run our documentation site. This is a quick overview of how the configuration file works.
-##Webpack Configuration:
-###Entry:
-Webpack creates entry points for the application to know where it starts.
-###Resolve:
-Webpack uses this configuration options to determine how it will deal with requiring files. For example, when the extension is omitted in a require, Webpack will look at the extensions option and try applying one of those.
-###Output:
-This is where the bundled project will go to and any other files necessary for it to run.
-###Plugins:
-These are plugins Webpack uses for more functionality. The HTML Webpack Plugin, for example, will add the index.html to your build folder.
-###Modules:
-Modules and other things that are required will usually need to be loaded and interpreted by Webpack when bundling, and this is where Webpack looks for the different loaders.
-*Loading .js files in es6 and es7 will require a loader like babel-loader to interpret the files into es5.
+
+Open `ios/iosApp.xcodeproj` in Xcode, build and run the project.
+
+### Android
+
+```sh
+npm run native:development
+npm run android:setup-port
+react-native run-android
+```

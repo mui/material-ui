@@ -1,6 +1,10 @@
+import DatePicker from './date-picker';
+import DatePickerDialog from './date-picker-dialog';
 
+export {DatePicker};
+export {DatePickerDialog};
 
-module.exports = {
-      DatePicker: require('./date-picker'),
-      DatePickerDialog: require('./date-picker-dialog'),
+export default {
+  DatePicker,
+  DatePickerDialog,
 };

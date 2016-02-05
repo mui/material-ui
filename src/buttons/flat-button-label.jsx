@@ -1,27 +1,58 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const Styles = require('../utils/styles');
-
+import React from 'react';
+import ContextPure from '../mixins/context-pure';
+import StylePropable from '../mixins/style-propable';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const FlatButtonLabel = React.createClass({
 
-  mixins: [PureRenderMixin],
+  propTypes: {
+    label: React.PropTypes.node,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  propTypes: {
-    label: React.PropTypes.node,
-    style: React.PropTypes.object,
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
-  getContextProps() {
-    const theme = this.context.muiTheme;
+  mixins: [
+    ContextPure,
+    StylePropable,
+  ],
 
+  statics: {
+    getRelevantContextKeys(muiTheme) {
+      return {
+        spacingDesktopGutterLess: muiTheme.rawTheme.spacing.desktopGutterLess,
+      };
+    },
+  },
+
+  getInitialState() {
     return {
-      spacingDesktopGutterLess: theme.spacing.desktopGutterLess,
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
   },
 
   render: function() {
@@ -30,18 +61,19 @@ const FlatButtonLabel = React.createClass({
       style,
     } = this.props;
 
-    const contextProps = this.getContextProps();
+    const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    const mergedRootStyles = Styles.mergeAndPrefix({
+    const mergedRootStyles = this.mergeStyles({
       position: 'relative',
-      padding: '0 ' + contextProps.spacingDesktopGutterLess + 'px',
+      paddingLeft: contextKeys.spacingDesktopGutterLess,
+      paddingRight: contextKeys.spacingDesktopGutterLess,
     }, style);
 
     return (
-      <span style={mergedRootStyles}>{label}</span>
+      <span style={this.prepareStyles(mergedRootStyles)}>{label}</span>
     );
   },
 
 });
 
-module.exports = FlatButtonLabel;
+export default FlatButtonLabel;

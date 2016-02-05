@@ -1,5 +1,10 @@
-module.exports = {
-  List: require('./list'),
-  ListDivider: require('./list-divider'),
-  ListItem: require('./list-item'),
+import List from './list';
+import ListItem from './list-item';
+
+export {List};
+export {ListItem};
+
+export default {
+  List,
+  ListItem,
 };

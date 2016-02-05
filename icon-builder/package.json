@@ -27,7 +27,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "babel": "^5.6.1",
+    "babel-cli": "^6.4.5",
     "chai": "^3.0.0",
     "glob": "^5.0.14",
     "grunt": "^0.4.5",
@@ -36,7 +36,7 @@
     "grunt-mocha-test": "^0.12.7",
     "load-grunt-tasks": "^3.2.0",
     "lodash": "^3.10.0",
-    "material-design-icons": "^2.0.0",
+    "material-design-icons": "^2.1.0",
     "mkdirp": "^0.5.1",
     "mocha": "^2.2.5",
     "mustache": "^2.1.2",

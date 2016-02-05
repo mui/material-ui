@@ -1,18 +1,31 @@
-let React = require('react/addons');
-let StylePropable = require('../mixins/style-propable');
-let AutoPrefix = require('../styles/auto-prefix');
-let Transitions = require('../styles/transitions');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import autoPrefix from '../styles/auto-prefix';
+import Transitions from '../styles/transitions';
+import getMuiTheme from '../styles/getMuiTheme';
 
-
-let SlideInChild = React.createClass({
-
-  mixins: [StylePropable],
+const SlideInChild = React.createClass({
 
   propTypes: {
+    children: React.PropTypes.node,
+    direction: React.PropTypes.string,
     enterDelay: React.PropTypes.number,
     //This callback is needed bacause
     //the direction could change when leaving the dom
     getLeaveDirection: React.PropTypes.func.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   getDefaultProps: function() {
@@ -21,45 +34,62 @@ let SlideInChild = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   componentWillEnter(callback) {
-    let style = React.findDOMNode(this).style;
-    let x = this.props.direction === 'left' ? '100%' :
+    const style = ReactDOM.findDOMNode(this).style;
+    const x = this.props.direction === 'left' ? '100%' :
       this.props.direction === 'right' ? '-100%' : '0';
-    let y = this.props.direction === 'up' ? '100%' :
+    const y = this.props.direction === 'up' ? '100%' :
       this.props.direction === 'down' ? '-100%' : '0';
 
     style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)');
+    autoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)', this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), this.props.enterDelay);
+    }, this.props.enterDelay);
   },
 
   componentDidEnter() {
-    let style = React.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '1';
-    AutoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
+    autoPrefix.set(style, 'transform', 'translate3d(0,0,0)', this.state.muiTheme);
   },
 
   componentWillLeave(callback) {
-    let style = React.findDOMNode(this).style;
-    let direction = this.props.getLeaveDirection();
-    let x = direction === 'left' ? '-100%' :
+    const style = ReactDOM.findDOMNode(this).style;
+    const direction = this.props.getLeaveDirection();
+    const x = direction === 'left' ? '-100%' :
       direction === 'right' ? '100%' : '0';
-    let y = direction === 'up' ? '-100%' :
+    const y = direction === 'up' ? '-100%' :
       direction === 'down' ? '100%' : '0';
 
     style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)');
+    autoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)', this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();
-    }.bind(this), 450);
+    }, 450);
   },
 
   render() {
-    let {
+    const {
       children,
       enterDelay,
       getLeaveDirection,
@@ -67,7 +97,11 @@ let SlideInChild = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.mergeAndPrefix({
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const mergedRootStyles = Object.assign({}, {
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -77,7 +111,7 @@ let SlideInChild = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={mergedRootStyles}>
+      <div {...other} style={prepareStyles(mergedRootStyles)}>
         {children}
       </div>
     );
@@ -85,4 +119,4 @@ let SlideInChild = React.createClass({
 
 });
 
-module.exports = SlideInChild;
+export default SlideInChild;

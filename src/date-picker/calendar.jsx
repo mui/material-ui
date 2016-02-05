@@ -1,61 +1,81 @@
-let React = require('react');
-let StylePropable = require('../mixins/style-propable');
-let WindowListenable = require('../mixins/window-listenable');
-let DateTime = require('../utils/date-time');
-let KeyCode = require('../utils/key-code');
-let Transitions = require('../styles/transitions');
-let CalendarMonth = require('./calendar-month');
-let CalendarYear = require('./calendar-year');
-let CalendarToolbar = require('./calendar-toolbar');
-let DateDisplay = require('./date-display');
-let SlideInTransitionGroup = require('../transition-groups/slide-in');
-let ClearFix = require('../clearfix');
+import React from 'react';
+import StylePropable from '../mixins/style-propable';
+import WindowListenable from '../mixins/window-listenable';
+import DateTime from '../utils/date-time';
+import KeyCode from '../utils/key-code';
+import Transitions from '../styles/transitions';
+import CalendarMonth from './calendar-month';
+import CalendarYear from './calendar-year';
+import CalendarToolbar from './calendar-toolbar';
+import DateDisplay from './date-display';
+import SlideInTransitionGroup from '../transition-groups/slide-in';
+import ClearFix from '../clearfix';
+import getMuiTheme from '../styles/getMuiTheme';
 
+const daysArray = [...Array(7)];
 
-let Calendar = React.createClass({
-
-  mixins: [StylePropable, WindowListenable],
+const Calendar = React.createClass({
 
   propTypes: {
+    DateTimeFormat: React.PropTypes.func.isRequired,
+    disableYearSelection: React.PropTypes.bool,
+    firstDayOfWeek: React.PropTypes.number,
     initialDate: React.PropTypes.object,
-    isActive: React.PropTypes.bool,
-    minDate: React.PropTypes.object,
+    locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
-    shouldDisableDate: React.PropTypes.func,
-    hideToolbarYearChange: React.PropTypes.bool,
-    shouldShowMonthDayPickerFirst: React.PropTypes.bool,
-    shouldShowYearPickerFirst: React.PropTypes.bool,
-    showYearSelector: React.PropTypes.bool,
+    minDate: React.PropTypes.object,
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     onDayTouchTap: React.PropTypes.func,
+    open: React.PropTypes.bool,
+    shouldDisableDate: React.PropTypes.func,
   },
 
-  windowListeners: {
-    'keydown': '_handleWindowKeyDown',
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+    WindowListenable,
+  ],
 
   getDefaultProps() {
     return {
+      disableYearSelection: false,
       initialDate: new Date(),
       minDate: DateTime.addYears(new Date(), -100),
       maxDate: DateTime.addYears(new Date(), 100),
-      hideToolbarYearChange: false,
-      shouldShowMonthDayPickerFirst: true,
-      shouldShowYearPickerFirst: false,
-      showYearSelector: false,
     };
   },
 
   getInitialState() {
     return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
+      displayMonthDay: true,
       selectedDate: this.props.initialDate,
       transitionDirection: 'left',
-      displayMonthDay: this.props.shouldShowMonthDayPickerFirst || this.props.shouldShowYearPickerFirst || true,
       transitionEnter: true,
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+
     if (nextProps.initialDate !== this.props.initialDate) {
       let d = nextProps.initialDate || new Date();
       this.setState({
@@ -63,138 +83,25 @@ let Calendar = React.createClass({
         selectedDate: d,
       });
     }
-
-    if (nextProps.shouldShowMonthDayPickerFirst) {
-      this.setState({displayMonthDay: nextProps.shouldShowMonthDayPickerFirst});
-    }
   },
 
-  render() {
-    let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
-    let weekCount = DateTime.getWeekArray(this.state.displayDate).length;
-    let toolbarInteractions = this._getToolbarInteractions();
-    let hideYearChangeButtons = this.props.hideToolbarYearChange || !this.props.showYearSelector;
-    let isMultiYearRange = yearCount > 2; // Want a year range greater than 1. Ex. [2014,2016] has a count of 3
-    let isLandscape = this.props.mode === 'landscape';
-    let styles = {
-      root: {
-        fontSize: 12,
-      },
-      calendarContainer: {
-        width: isLandscape ? 280 : '100%',
-        height: weekCount === 5 ? 268 :
-          weekCount === 6 ? 308 : 228,
-        float: isLandscape ? 'right' : 'none',
-        transition: Transitions.easeOut('150ms', 'height'),
-        overflow: 'hidden',
-      },
-      yearContainer: {
-        width: 280,
-        overflow: 'hidden',
-        height: yearCount < 6 ? yearCount * 56 + 10 :
-          weekCount === 5 ? 268 :
-          weekCount === 6 ? 308 : 228,
-        float: isLandscape ? 'right' : 'none',
-      },
-      dateDisplay: {
-        width: isLandscape ? 280 : '100%',
-        height: '100%',
-        float: isLandscape ? 'left' : 'none',
-      },
-      weekTitle: {
-        padding: '0 14px',
-        lineHeight: '12px',
-        opacity: '0.5',
-        height: 12,
-        fontWeight: '500',
-        margin: 0,
-      },
-      weekTitleDay: {
-        listStyle: 'none',
-        float: 'left',
-        width: 32,
-        textAlign: 'center',
-        margin: '0 2px',
-      },
-    };
-
-    if (this.state.displayMonthDay || !this.props.showYearSelector) {
-      styles.yearContainer.display = 'none';
-    }
-    else {
-      styles.calendarContainer.display = 'none';
-    }
-
-    return (
-      <ClearFix style={this.mergeAndPrefix(styles.root)}>
-
-        <DateDisplay
-          style={styles.dateDisplay}
-          selectedDate={this.state.selectedDate}
-          handleMonthDayClick={this._handleMonthDayClick}
-          handleYearClick={this._handleYearClick}
-          yearSelectionAvailable={this.props.showYearSelector && isMultiYearRange}
-          monthDaySelected={this.state.displayMonthDay}
-          mode={this.props.mode}
-          weekCount={weekCount} />
-
-        <div style={styles.calendarContainer}>
-          <CalendarToolbar
-            displayDate={this.state.displayDate}
-            onMonthChange={this._handleMonthChange}
-            onYearChange={this._handleYearChange}
-            prevMonth={toolbarInteractions.prevMonth}
-            nextMonth={toolbarInteractions.nextMonth}
-            prevYear={toolbarInteractions.prevYear}
-            nextYear={toolbarInteractions.nextYear}
-            hideYearChangeButtons={hideYearChangeButtons} />
-
-          <ClearFix
-            elementType="ul"
-            style={styles.weekTitle}>
-            <li style={styles.weekTitleDay}>S</li>
-            <li style={styles.weekTitleDay}>M</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>W</li>
-            <li style={styles.weekTitleDay}>T</li>
-            <li style={styles.weekTitleDay}>F</li>
-            <li style={styles.weekTitleDay}>S</li>
-          </ClearFix>
-
-          <SlideInTransitionGroup
-            direction={this.state.transitionDirection}>
-            <CalendarMonth
-              key={this.state.displayDate.toDateString()}
-              ref="calendar"
-              displayDate={this.state.displayDate}
-              onDayTouchTap={this._handleDayTouchTap}
-              selectedDate={this.state.selectedDate}
-              minDate={this.props.minDate}
-              maxDate={this.props.maxDate}
-              shouldDisableDate={this.props.shouldDisableDate} />
-          </SlideInTransitionGroup>
-        </div>
-
-        <div style={styles.yearContainer}>
-          {this._yearSelector()}
-        </div>
-
-      </ClearFix>
-    );
+  windowListeners: {
+    keydown: '_handleWindowKeyDown',
   },
 
   _yearSelector() {
-    if (this.props.showYearSelector) {
-      return (
-        <CalendarYear
-          key={'years'}
-          displayDate={this.state.displayDate}
-          onYearTouchTap={this._handleYearTouchTap}
-          selectedDate={this.state.selectedDate}
-          minDate={this.props.minDate}
-          maxDate={this.props.maxDate} />
-      );
-    }
+    if (this.props.disableYearSelection) return;
+
+    return (
+      <CalendarYear
+        key={'years'}
+        displayDate={this.state.displayDate}
+        onYearTouchTap={this._handleYearTouchTap}
+        selectedDate={this.state.selectedDate}
+        minDate={this.props.minDate}
+        maxDate={this.props.maxDate}
+      />
+    );
   },
 
   getSelectedDate() {
@@ -202,6 +109,10 @@ let Calendar = React.createClass({
   },
 
   isSelectedDateDisabled() {
+    if (!this.state.displayMonthDay) {
+      return false;
+    }
+
     return this.refs.calendar.isSelectedDateDisabled();
   },
 
@@ -234,16 +145,14 @@ let Calendar = React.createClass({
     let adjustedDate = date;
     if (DateTime.isBeforeDate(date, this.props.minDate)) {
       adjustedDate = this.props.minDate;
-    }
-    else if (DateTime.isAfterDate(date, this.props.maxDate)) {
+    } else if (DateTime.isAfterDate(date, this.props.maxDate)) {
       adjustedDate = this.props.maxDate;
     }
 
     let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
-    }
-    else {
+    } else {
       this.setState({
         selectedDate: adjustedDate,
       });
@@ -256,11 +165,10 @@ let Calendar = React.createClass({
   },
 
   _handleMonthChange(months) {
-    this._addSelectedMonths(months);
-  },
-
-  _handleYearChange(years) {
-    this._addSelectedYears(years);
+    this.setState({
+      transitionDirection: months >= 0 ? 'left' : 'right',
+      displayDate: DateTime.addMonths(this.state.displayDate, months),
+    });
   },
 
   _handleYearTouchTap(e, year) {
@@ -271,33 +179,33 @@ let Calendar = React.createClass({
 
   _getToolbarInteractions() {
     return {
-      prevMonth: DateTime.monthDiff(this.state.selectedDate, this.props.minDate) > 0,
-      nextMonth: DateTime.monthDiff(this.state.selectedDate, this.props.maxDate) < 0,
-      prevYear: DateTime.yearDiff(this.state.selectedDate, this.props.minDate) > 0,
-      nextYear: DateTime.yearDiff(this.state.selectedDate, this.props.maxDate) < 0,
+      prevMonth: DateTime.monthDiff(this.state.displayDate, this.props.minDate) > 0,
+      nextMonth: DateTime.monthDiff(this.state.displayDate, this.props.maxDate) < 0,
     };
   },
 
   _handleMonthDayClick() {
-    this.setState({displayMonthDay: true});
+    this.setState({
+      displayMonthDay: true,
+    });
   },
 
   _handleYearClick() {
-    this.setState({displayMonthDay: false});
+    this.setState({
+      displayMonthDay: false,
+    });
   },
 
   _handleWindowKeyDown(e) {
-    if (this.props.isActive) {
+    if (this.props.open) {
 
       switch (e.keyCode) {
         case KeyCode.UP:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(-1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(-1);
-          }
-          else {
+          } else {
             this._addSelectedDays(-7);
           }
           break;
@@ -305,11 +213,9 @@ let Calendar = React.createClass({
         case KeyCode.DOWN:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(1);
-          }
-          else {
+          } else {
             this._addSelectedDays(7);
           }
           break;
@@ -317,11 +223,9 @@ let Calendar = React.createClass({
         case KeyCode.RIGHT:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(1);
-          }
-          else {
+          } else {
             this._addSelectedDays(1);
           }
           break;
@@ -329,11 +233,9 @@ let Calendar = React.createClass({
         case KeyCode.LEFT:
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(-1);
-          }
-          else if (e.shiftKey) {
+          } else if (e.shiftKey) {
             this._addSelectedMonths(-1);
-          }
-          else {
+          } else {
             this._addSelectedDays(-1);
           }
           break;
@@ -341,6 +243,121 @@ let Calendar = React.createClass({
     }
   },
 
+  render() {
+    let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
+    let weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
+    let toolbarInteractions = this._getToolbarInteractions();
+    let isLandscape = this.props.mode === 'landscape';
+    let styles = {
+      root: {
+        fontSize: 12,
+      },
+      calendarContainer: {
+        width: isLandscape ? 320 : '100%',
+        height: weekCount === 5 ? 284 :
+          weekCount === 6 ? 324 : 244,
+        float: isLandscape ? 'right' : 'none',
+        transition: Transitions.easeOut('150ms', 'height'),
+        overflow: 'hidden',
+      },
+      yearContainer: {
+        width: 280,
+        overflow: 'hidden',
+        height: yearCount < 6 ? yearCount * 56 + 10 :
+          weekCount === 5 ? 284 :
+          weekCount === 6 ? 324 : 244,
+        float: isLandscape ? 'right' : 'none',
+      },
+      dateDisplay: {
+        width: isLandscape ? 120 : '',
+        height: isLandscape ?
+          weekCount === 5 ? 238 :
+          weekCount === 6 ? 278 :
+          198 : 'auto',
+        float: isLandscape ? 'left' : 'none',
+      },
+      weekTitle: {
+        padding: '0 14px',
+        lineHeight: '12px',
+        opacity: '0.5',
+        height: 12,
+        fontWeight: '500',
+        margin: 0,
+      },
+      weekTitleDay: {
+        listStyle: 'none',
+        float: 'left',
+        width: 37,
+        textAlign: 'center',
+        margin: '0 2px',
+      },
+    };
+
+    const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
+    const {
+      DateTimeFormat,
+      locale,
+      firstDayOfWeek,
+    } = this.props;
+
+    return (
+      <ClearFix style={this.mergeStyles(styles.root)}>
+        <DateDisplay
+          DateTimeFormat={DateTimeFormat}
+          locale={locale}
+          disableYearSelection={this.props.disableYearSelection}
+          style={styles.dateDisplay}
+          selectedDate={this.state.selectedDate}
+          handleMonthDayClick={this._handleMonthDayClick}
+          handleYearClick={this._handleYearClick}
+          monthDaySelected={this.state.displayMonthDay}
+          mode={this.props.mode}
+          weekCount={weekCount}
+        />
+        {this.state.displayMonthDay &&
+          <div style={this.prepareStyles(styles.calendarContainer)}>
+            <CalendarToolbar
+              DateTimeFormat={DateTimeFormat}
+              locale={locale}
+              displayDate={this.state.displayDate}
+              onMonthChange={this._handleMonthChange}
+              prevMonth={toolbarInteractions.prevMonth}
+              nextMonth={toolbarInteractions.nextMonth}
+            />
+            <ClearFix
+              elementType="ul"
+              style={styles.weekTitle}
+            >
+              {daysArray.map((e, i) => (
+                <li key={i} style={weekTitleDayStyle}>
+                  {DateTime.localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
+                </li>
+              ))}
+            </ClearFix>
+            <SlideInTransitionGroup direction={this.state.transitionDirection}>
+              <CalendarMonth
+                key={this.state.displayDate.toDateString()}
+                ref="calendar"
+                displayDate={this.state.displayDate}
+                onDayTouchTap={this._handleDayTouchTap}
+                selectedDate={this.state.selectedDate}
+                minDate={this.props.minDate}
+                maxDate={this.props.maxDate}
+                shouldDisableDate={this.props.shouldDisableDate}
+                firstDayOfWeek={this.props.firstDayOfWeek}
+              />
+            </SlideInTransitionGroup>
+          </div>
+        }
+        {!this.state.displayMonthDay &&
+          <div style={this.prepareStyles(styles.yearContainer)}>
+            {this._yearSelector()}
+          </div>
+        }
+      </ClearFix>
+    );
+  },
+
 });
 
-module.exports = Calendar;
+export default Calendar;

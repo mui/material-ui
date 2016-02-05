@@ -1,58 +1,69 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
-let Transitions = require('./styles/transitions');
-let Colors = require('./styles/colors');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StylePropable from './mixins/style-propable';
+import Transitions from './styles/transitions';
+import Colors from './styles/colors';
 
-
-let Overlay = React.createClass({
-
-  _originalBodyOverflow: '',
-
-  mixins: [StylePropable],
+const Overlay = React.createClass({
 
   propTypes: {
     autoLockScrolling: React.PropTypes.bool,
-    show: React.PropTypes.bool,
+    show: React.PropTypes.bool.isRequired,
+
+    /**
+     * Override the inline-styles of the root element.
+     */
+    style: React.PropTypes.object,
     transitionEnabled: React.PropTypes.bool,
   },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [
+    StylePropable,
+  ],
 
   getDefaultProps() {
     return {
       autoLockScrolling: true,
       transitionEnabled: true,
+      style: {},
     };
   },
 
   componentDidMount() {
-    this._originalBodyOverflow = document.getElementsByTagName('body')[0].style.oveflow;
+    if (this.props.show) {
+      this._applyAutoLockScrolling(this.props);
+    }
   },
 
-  componentDidUpdate() {
-    if (this.props.autoLockScrolling) {
-      if (this.props.show) {
-        this._preventScrolling();
-      } else {
-        this._allowScrolling();
-      }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.show !== nextProps.show) {
+      this._applyAutoLockScrolling(nextProps);
     }
   },
 
   componentWillUnmount() {
-    this._allowScrolling();
+    if (this.props.show === true) {
+      this._allowScrolling();
+    }
   },
 
+  _originalBodyOverflow: '',
+
   setOpacity(opacity) {
-    let overlay = React.findDOMNode(this);
+    let overlay = ReactDOM.findDOMNode(this);
     overlay.style.opacity = opacity;
   },
 
   getStyles() {
-    let styles = {
+    return {
       root: {
         position: 'fixed',
         height: '100%',
         width: '100%',
-        zIndex: 9,
         top: 0,
         left: '-100%',
         opacity: 0,
@@ -77,41 +88,44 @@ let Overlay = React.createClass({
           Transitions.easeOut('400ms', 'opacity'),
       },
     };
-    return styles;
+  },
+
+  _applyAutoLockScrolling(props) {
+    if (props.autoLockScrolling) {
+      if (props.show) {
+        this._preventScrolling();
+      } else {
+        this._allowScrolling();
+      }
+    }
+  },
+
+  _preventScrolling() {
+    const body = document.getElementsByTagName('body')[0];
+    this._originalBodyOverflow = body.style.overflow;
+
+    body.style.overflow = 'hidden';
+  },
+
+  _allowScrolling() {
+    const body = document.getElementsByTagName('body')[0];
+    body.style.overflow = this._originalBodyOverflow || '';
   },
 
   render() {
-    let {
+    const {
       show,
       style,
       ...other,
     } = this.props;
 
-    let styles = this.mergeAndPrefix(this.getStyles().root, this.props.style, this.props.show && this.getStyles().rootWhenShown);
+    const styles = this.mergeStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
 
     return (
-      <div {...other} style={styles} />
+      <div {...other} style={this.prepareStyles(styles)} />
     );
-  },
-
-  preventScrolling() {
-    if (!this.props.autoLockScrolling) this._preventScrolling();
-  },
-
-  allowScrolling() {
-    if (!this.props.autoLockScrolling) this._allowScrolling();
-  },
-
-  _preventScrolling() {
-    let body = document.getElementsByTagName('body')[0];
-    body.style.overflow = 'hidden';
-  },
-
-  _allowScrolling() {
-    let body = document.getElementsByTagName('body')[0];
-    body.style.overflow = this._originalBodyOverflow || '';
   },
 
 });
 
-module.exports = Overlay;
+export default Overlay;

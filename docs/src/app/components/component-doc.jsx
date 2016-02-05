@@ -1,29 +1,29 @@
-let React = require('react');
-let { ClearFix, Mixins, Styles } = require('material-ui');
-let CodeExample = require('./code-example/code-example');
-let ComponentInfo = require('./component-info');
-let Typography = Styles.Typography;
-let { Classable, StylePropable } = Mixins;
+import React from 'react';
+import {ClearFix, Mixins, Styles} from 'material-ui';
+import ComponentInfo from './component-info';
+const Typography = Styles.Typography;
+const {StylePropable} = Mixins;
 
-let ComponentDoc = React.createClass({
+const ComponentDoc = React.createClass({
+
+  propTypes: {
+    children: React.PropTypes.node,
+    componentInfo: React.PropTypes.array.isRequired,
+    desc: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element,
+    ]),
+    name: React.PropTypes.string.isRequired,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
 
   mixins: [StylePropable],
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  propTypes: {
-    desc: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.element
-    ]),
-    name: React.PropTypes.string.isRequired,
-    componentInfo: React.PropTypes.array.isRequired
-  },
-
   getStyles() {
-    let borderColor = this.context.muiTheme.palette.borderColor;
+    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     return {
       desc: {
         borderBottom: 'solid 1px ' + borderColor,
@@ -34,21 +34,21 @@ let ComponentDoc = React.createClass({
         fontSize: '15px',
         letterSpacing: '0',
         lineHeight: '24px',
-        color: Typography.textDarkBlack
+        color: Typography.textDarkBlack,
       },
       ol: {
         fontSize: '13px',
-        paddingLeft: '48px'
+        paddingLeft: '48px',
       },
       componentInfo: {
         borderTop: 'solid 1px ' + borderColor,
         paddingTop: '24px',
-        marginTop: '24px'
+        marginTop: '24px',
       },
       componentInfoWhenFirstChild: {
         borderTop: 'none',
         marginTop: '0',
-        paddingTop: '0'
+        paddingTop: '0',
       },
       headline: {
         //headline
@@ -58,8 +58,8 @@ let ComponentDoc = React.createClass({
         marginBottom: '12px',
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack
-      }
+        color: Typography.textDarkBlack,
+      },
     };
   },
 
@@ -74,23 +74,24 @@ let ComponentDoc = React.createClass({
           key={i}
           name={info.name}
           style={infoStyle}
-          infoArray={info.infoArray} />
+          infoArray={info.infoArray}
+        />
       );
     }, this);
 
     let desc = null;
 
     if (this.props.desc) {
-      if ((typeof this.props.desc) == "string") {
-        desc = <p style={styles.desc}>{this.props.desc}</p>
+      if ((typeof this.props.desc) === 'string') {
+        desc = <p style={this.prepareStyles(styles.desc)}>{this.props.desc}</p>;
       } else {
-        desc = <div style={styles.desc}>{this.props.desc}</div>
+        desc = <div style={this.prepareStyles(styles.desc)}>{this.props.desc}</div>;
       }
     }
 
     let header;
     if (this.props.name.length > 0) {
-      header = <h2 style={styles.headline}>{this.props.name}</h2>
+      header = <h2 style={this.prepareStyles(styles.headline)}>{this.props.name}</h2>;
     }
 
     return (
@@ -106,8 +107,8 @@ let ComponentDoc = React.createClass({
 
       </ClearFix>
     );
-  }
+  },
 
 });
 
-module.exports = ComponentDoc;
+export default ComponentDoc;

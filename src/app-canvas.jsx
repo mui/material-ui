@@ -1,19 +1,47 @@
-let React = require('react');
-let StylePropable = require('./mixins/style-propable');
+import React from 'react';
+import StylePropable from './mixins/style-propable';
+import getMuiTheme from './styles/getMuiTheme';
 
-let AppCanvas = React.createClass({
+const AppCanvas = React.createClass({
 
-  mixins: [StylePropable],
+  propTypes: {
+    children: React.PropTypes.node,
+  },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  mixins: [StylePropable],
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+  //to update theme inside state whenever a new theme is passed down
+  //from the parent / owner using context
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    this.setState({muiTheme: newMuiTheme});
+  },
+
   render() {
     let styles = {
       height: '100%',
-      backgroundColor: this.context.muiTheme.palette.canvasColor,
-      WebkitFontSmoothing: 'antialiased',
+      backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
+      direction: 'ltr',
     };
 
     let newChildren = React.Children.map(this.props.children, (currentChild) => {
@@ -24,9 +52,9 @@ let AppCanvas = React.createClass({
       switch (currentChild.type.displayName) {
         case 'AppBar' :
           return React.cloneElement(currentChild, {
-            style: this.mergeStyles({
+            style: this.mergeStyles(currentChild.props.style, {
               position: 'fixed',
-            }, currentChild.props.style),
+            }),
           });
         default:
           return currentChild;
@@ -34,7 +62,7 @@ let AppCanvas = React.createClass({
     }, this);
 
     return (
-      <div style={styles}>
+      <div style={this.prepareStyles(styles)}>
         {newChildren}
       </div>
     );
@@ -42,4 +70,4 @@ let AppCanvas = React.createClass({
 
 });
 
-module.exports = AppCanvas;
+export default AppCanvas;
