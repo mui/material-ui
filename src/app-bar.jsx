@@ -23,12 +23,13 @@ const AppBar = React.createClass({
 
     /**
      * The classname of the icon on the left of the app bar.
-     * If you are using a stylesheet for your icons, enter the class name for the icon to be used here.
+     * If you are using a stylesheet for your icons, enter the class name for
+     * the icon to be used here.
      */
     iconClassNameLeft: React.PropTypes.string,
 
     /**
-     * Similiar to the iconClassNameLeft prop except that
+     * Similar to the iconClassNameLeft prop except that
      * it applies to the icon displayed on the right of the app bar.
      */
     iconClassNameRight: React.PropTypes.string,
@@ -40,12 +41,18 @@ const AppBar = React.createClass({
     iconElementLeft: React.PropTypes.element,
 
     /**
-     * Similiar to the iconElementLeft prop except that this element is displayed on the right of the app bar.
+     * Similar to the iconElementLeft prop except that this element is
+     * displayed on the right of the app bar. It could be either a single
+     * supported element or an array of supported elements.
      */
-    iconElementRight: React.PropTypes.element,
+    iconElementRight: React.PropTypes.oneOfType([
+      React.PropTypes.element,
+      React.PropTypes.array,
+    ]),
 
     /**
-     * Override the inline-styles of the element displayed on the right side of the app bar.
+     * Override the inline-styles of the element displayed on the right side of
+     * the app bar.
      */
     iconStyleRight: React.PropTypes.object,
 
@@ -211,6 +218,21 @@ const AppBar = React.createClass({
     }
   },
 
+  _setIconElementRightStyle(element, styles) {
+    switch (element.type.displayName) {
+      case 'IconMenu':
+      case 'IconButton':
+        return React.cloneElement(element, {
+          iconStyle: this.mergeStyles(styles.iconButton.iconStyle, element.props.iconStyle),
+        });
+
+      case 'FlatButton':
+        return React.cloneElement(element, {
+          style: this.mergeStyles(styles.flatButton, element.props.style),
+        });
+    }
+  },
+
   render() {
     let {
       title,
@@ -286,19 +308,13 @@ const AppBar = React.createClass({
     }
 
     if (iconElementRight) {
-      switch (iconElementRight.type.displayName) {
-        case 'IconMenu':
-        case 'IconButton':
-          iconElementRight = React.cloneElement(iconElementRight, {
-            iconStyle: this.mergeStyles(styles.iconButton.iconStyle, iconElementRight.props.iconStyle),
-          });
-          break;
-
-        case 'FlatButton':
-          iconElementRight = React.cloneElement(iconElementRight, {
-            style: this.mergeStyles(styles.flatButton, iconElementRight.props.style),
-          });
-          break;
+      if (iconElementRight instanceof Array) {
+        let tempHandleIconElementRight = this._setIconElementRightStyle;
+        iconElementRight = iconElementRight.map(function(element) {
+          return tempHandleIconElementRight(element, styles);
+        });
+      } else {
+        iconElementRight = this._setIconElementRightStyle(iconElementRight, styles);
       }
 
       menuElementRight = (
