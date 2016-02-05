@@ -1,9 +1,73 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import Paper from './paper';
 import EnhancedSwitch from './enhanced-switch';
 import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    disabled,
+  } = props;
+
+  const {
+    baseTheme,
+    toggle,
+  } = state.muiTheme;
+
+  const toggleSize = 20;
+  const toggleTrackWidth = 36;
+  const styles = {
+    icon: {
+      width: 36,
+      padding: '4px 0px 6px 2px',
+    },
+    rippleStyle: {
+      top: -10,
+      left: -10,
+      color: state.switched ? toggle.thumbOnColor : baseTheme.palette.textColor,
+    },
+    toggleElement: {
+      width: toggleTrackWidth,
+    },
+    track: {
+      transition: Transitions.easeOut(),
+      width: '100%',
+      height: 14,
+      borderRadius: 30,
+      backgroundColor: toggle.trackOffColor,
+    },
+    thumb: {
+      transition: Transitions.easeOut(),
+      position: 'absolute',
+      top: 1,
+      left: 0,
+      width: toggleSize,
+      height: toggleSize,
+      lineHeight: '24px',
+      borderRadius: '50%',
+      backgroundColor: toggle.thumbOffColor,
+    },
+    trackWhenSwitched: {
+      backgroundColor: toggle.trackOnColor,
+    },
+    thumbWhenSwitched: {
+      backgroundColor: toggle.thumbOnColor,
+      left: '100%',
+    },
+    trackWhenDisabled: {
+      backgroundColor: toggle.trackDisabledColor,
+    },
+    thumbWhenDisabled: {
+      backgroundColor: toggle.thumbDisabledColor,
+    },
+    label: {
+      color: disabled ? toggle.labelDisabledColor : toggle.labelColor,
+      width: 'calc(100% - ' + (toggleTrackWidth + 10) + 'px)',
+    },
+  };
+
+  return styles;
+}
 
 const Toggle = React.createClass({
 
@@ -78,14 +142,9 @@ const Toggle = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -112,66 +171,10 @@ const Toggle = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.toggle;
-  },
-
-  getStyles() {
-    let toggleSize = 20;
-    let toggleTrackWidth = 36;
-    let styles = {
-      icon: {
-        width: 36,
-        padding: '4px 0px 6px 2px',
-      },
-      toggleElement: {
-        width: toggleTrackWidth,
-      },
-      track: {
-        transition: Transitions.easeOut(),
-        width: '100%',
-        height: 14,
-        borderRadius: 30,
-        backgroundColor: this.getTheme().trackOffColor,
-      },
-      thumb: {
-        transition: Transitions.easeOut(),
-        position: 'absolute',
-        top: 1,
-        left: 0,
-        width: toggleSize,
-        height: toggleSize,
-        lineHeight: '24px',
-        borderRadius: '50%',
-        backgroundColor: this.getTheme().thumbOffColor,
-      },
-      trackWhenSwitched: {
-        backgroundColor: this.getTheme().trackOnColor,
-      },
-      thumbWhenSwitched: {
-        backgroundColor: this.getTheme().thumbOnColor,
-        left: '100%',
-      },
-      trackWhenDisabled: {
-        backgroundColor: this.getTheme().trackDisabledColor,
-      },
-      thumbWhenDisabled: {
-        backgroundColor: this.getTheme().thumbDisabledColor,
-      },
-      label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
-        width: 'calc(100% - ' + (toggleTrackWidth + 10) + 'px)',
-      },
-    };
-
-    return styles;
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   isToggled() {
@@ -191,21 +194,25 @@ const Toggle = React.createClass({
   },
 
   render() {
-    let {
+    const {
       onToggle,
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    let trackStyles = this.mergeStyles(
+    const styles = getStyles(this.props, this.state);
+
+    const trackStyles = Object.assign({},
       styles.track,
       this.props.trackStyle,
       this.state.switched && styles.trackWhenSwitched,
       this.props.disabled && styles.trackWhenDisabled
     );
 
-    let thumbStyles = this.mergeStyles(
+    const thumbStyles = Object.assign({},
       styles.thumb,
       this.props.thumbStyle,
       this.state.switched && styles.thumbWhenSwitched,
@@ -216,39 +223,39 @@ const Toggle = React.createClass({
       thumbStyles.marginLeft = '-' + thumbStyles.width;
     }
 
-    let toggleElementStyles = this.mergeStyles(styles.toggleElement, this.props.elementStyle);
+    const toggleElementStyles = Object.assign({},
+      styles.toggleElement,
+      this.props.elementStyle
+    );
 
-    let toggleElement = (
-      <div style={this.prepareStyles(toggleElementStyles)}>
-        <div style={this.prepareStyles(trackStyles)} />
+    const toggleElement = (
+      <div style={prepareStyles(Object.assign({}, toggleElementStyles))}>
+        <div style={prepareStyles(Object.assign({}, trackStyles))} />
         <Paper style={thumbStyles} circle={true} zDepth={1} />
       </div>
     );
 
-    let customRippleStyle = this.mergeStyles({
-      top: -10,
-      left: -10,
-    }, this.props.rippleStyle);
+    const rippleStyle = Object.assign({},
+      styles.ripple,
+      this.props.rippleStyle
+    );
 
-    let rippleColor = this.state.switched ?
-      this.getTheme().thumbOnColor : this.state.muiTheme.textColor;
-
-    let iconStyle = this.mergeStyles(
+    const iconStyle = Object.assign({},
       styles.icon,
       this.props.iconStyle
     );
 
-    let labelStyle = this.mergeStyles(
+    const labelStyle = Object.assign({},
       styles.label,
       this.props.labelStyle
     );
 
-    let enhancedSwitchProps = {
+    const enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'checkbox',
       switchElement: toggleElement,
-      rippleStyle: customRippleStyle,
-      rippleColor: rippleColor,
+      rippleStyle: rippleStyle,
+      rippleColor: rippleStyle.color,
       iconStyle: iconStyle,
       trackStyle: trackStyles,
       thumbStyle: thumbStyles,
