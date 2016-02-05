@@ -107,6 +107,11 @@ const AutoComplete = React.createClass({
       'showAllItems is deprecated, use noFilter instead'),
 
     /**
+     * Function used to sort the items.
+     */
+    sort: React.PropTypes.func,
+
+    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
@@ -243,19 +248,9 @@ const AutoComplete = React.createClass({
 
     let dataSource = this.props.dataSource;
 
-    let chosenRequest;
-    let index;
-    let searchText;
-    if (typeof dataSource[0] === 'string') {
-      chosenRequest = this.requestsList[parseInt(child.key, 10)];
-      index = dataSource.indexOf(chosenRequest);
-      searchText = dataSource[index];
-    } else {
-      chosenRequest = child.key;
-      index = dataSource.indexOf(
-          dataSource.filter((item) => chosenRequest === item.text)[0]);
-      searchText = chosenRequest;
-    }
+    let index = parseInt(child.key, 10);
+    let chosenRequest = dataSource[index];
+    let searchText = chosenRequest.text;
 
     this.setState({searchText: searchText});
 
@@ -289,10 +284,12 @@ const AutoComplete = React.createClass({
       floatingLabelText,
       hintText,
       fullWidth,
+      disableFocusRipple,
       menuStyle,
       menuProps,
       listStyle,
       targetOrigin,
+      sort,
       ...other,
     } = this.props;
 
@@ -331,32 +328,75 @@ const AutoComplete = React.createClass({
 
     let requestsList = [];
 
-    this.props.dataSource.map((item) => {
+    this.props.dataSource.map((item,index) => {
       //showAllItems is deprecated, will be removed in the future
       if (this.props.showAllItems) {
-        requestsList.push(item);
+        requestsList.push(typeof item === 'string' ? {
+          text: item,
+          value: (
+            <MenuItem
+              innerDivStyle={{overflow: 'hidden'}}
+              value={item}
+              primaryText={item}
+              disableFocusRipple={disableFocusRipple}
+            />),
+        } : {...item, index});
         return;
       }
 
       switch (typeof item) {
         case 'string':
           if (this.props.filter(this.state.searchText, item, item)) {
-            requestsList.push(item);
+            requestsList.push({
+              text: item,
+              value: (
+                <MenuItem
+                  innerDivStyle={{overflow: 'hidden'}}
+                  value={item}
+                  primaryText={item}
+                  disableFocusRipple={disableFocusRipple}
+                  key={index}
+                />),
+            });
           }
           break;
         case 'object':
           if (typeof item.text === 'string') {
             if (this.props.filter(this.state.searchText, item.text, item)) {
-              requestsList.push(item);
+              if(item.value.type === MenuItem || item.value.type === Divider) {
+                requestsList.push({
+                  text: item.text,
+                  value: React.cloneElement(item.value, {
+                    key: index,
+                    disableFocusRipple: this.props.disableFocusRipple,
+                  }),            
+                });
+              }
+              else {
+                requestsList.push({
+                  text: item.text,
+                  value: (
+                    <MenuItem
+                      innerDivStyle={{overflow: 'hidden'}}
+                      primaryText={item.value}
+                      disableFocusRipple={disableFocusRipple}
+                      key={index}
+                    />),
+                });
+              }
             }
           }
           break;
       }
     });
 
+    if (sort) {
+      requestsList.sort(sort);
+    }
+
     this.requestsList = requestsList;
 
-    let menu = open && requestsList.length > 0 ? (
+    let menu = open && this.requestsList.length > 0 ? (
       <Menu
         {...menuProps}
         ref="menu"
@@ -368,35 +408,7 @@ const AutoComplete = React.createClass({
         listStyle={this.mergeStyles(styles.list, listStyle)}
         style={mergedMenuStyles}
       >
-        {
-          requestsList.map((request, index) => {
-            switch (typeof request) {
-              case 'string':
-                return (
-                  <MenuItem
-                    disableFocusRipple={this.props.disableFocusRipple}
-                    innerDivStyle={{overflow: 'hidden'}}
-                    key={index}
-                    value={request}
-                    primaryText={request}
-                  />
-                );
-              case 'object':
-                if (typeof request.text === 'string') {
-                  return React.cloneElement(request.value, {
-                    key: request.text,
-                    disableFocusRipple: this.props.disableFocusRipple,
-                  });
-                }
-                return React.cloneElement(request, {
-                  key: index,
-                  disableFocusRipple: this.props.disableFocusRipple,
-                });
-              default:
-                return null;
-            }
-          })
-        }
+        {requestsList.map((i)=>i.value)}
       </Menu>
     ) : null;
 
