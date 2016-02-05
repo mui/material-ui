@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import getMuiTheme from './styles/getMuiTheme';
 
 const AppCanvas = React.createClass({
@@ -12,12 +11,9 @@ const AppCanvas = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getInitialState() {
     return {
@@ -30,17 +26,23 @@ const AppCanvas = React.createClass({
       muiTheme: this.state.muiTheme,
     };
   },
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
+
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
-    let styles = {
+
+    const {
+      baseTheme,
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = {
       height: '100%',
-      backgroundColor: this.state.muiTheme.rawTheme.palette.canvasColor,
+      backgroundColor: baseTheme.palette.canvasColor,
       direction: 'ltr',
     };
 
@@ -62,7 +64,7 @@ const AppCanvas = React.createClass({
     }, this);
 
     return (
-      <div style={this.prepareStyles(styles)}>
+      <div style={prepareStyles(styles)}>
         {newChildren}
       </div>
     );
