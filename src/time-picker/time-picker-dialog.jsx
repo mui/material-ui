@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 import KeyCode from '../utils/key-code';
 import Clock from './clock';
@@ -22,12 +21,11 @@ const TimePickerDialog = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [StylePropable, WindowListenable],
+  mixins: [WindowListenable],
 
   getInitialState() {
     return {
@@ -42,11 +40,10 @@ const TimePickerDialog = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   windowListeners: {
@@ -89,7 +86,7 @@ const TimePickerDialog = React.createClass({
   },
 
   render() {
-    let {
+    const {
       initialTime,
       onAccept,
       format,
@@ -97,7 +94,7 @@ const TimePickerDialog = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = {
+    const styles = {
       root: {
         fontSize: 14,
         color: this.getTheme().clockColor,
@@ -110,7 +107,7 @@ const TimePickerDialog = React.createClass({
       },
     };
 
-    let actions = [
+    const actions = [
       <FlatButton
         key={0}
         label="Cancel"
@@ -131,7 +128,7 @@ const TimePickerDialog = React.createClass({
       <Dialog
         {...other}
         ref="dialogWindow"
-        style={this.mergeStyles(styles.root)}
+        style={styles.root}
         bodyStyle={styles.body}
         actions={actions}
         contentStyle={styles.dialogContent}

@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import TimeDisplay from './time-display';
 import ClockHours from './clock-hours';
 import ClockMinutes from './clock-minutes';
@@ -20,8 +19,6 @@ const Clock = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [StylePropable],
-
   getDefaultProps() {
     return {
       initialTime: new Date(),
@@ -37,9 +34,8 @@ const Clock = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
       selectedTime: nextProps.initialTime,
     });
   },
@@ -55,7 +51,7 @@ const Clock = React.createClass({
   _setAffix(affix) {
     if (affix === this._getAffix()) return;
 
-    let hours = this.state.selectedTime.getHours();
+    const hours = this.state.selectedTime.getHours();
 
     if (affix === 'am') {
       this.handleChangeHours(hours - 12, affix);
@@ -68,7 +64,7 @@ const Clock = React.createClass({
   _getAffix() {
     if (this.props.format !== 'ampm') return '';
 
-    let hours = this.state.selectedTime.getHours();
+    const hours = this.state.selectedTime.getHours();
     if (hours < 12) {
       return 'am';
     }
@@ -77,7 +73,7 @@ const Clock = React.createClass({
   },
 
   handleChangeHours(hours, finished) {
-    let time = new Date(this.state.selectedTime);
+    const time = new Date(this.state.selectedTime);
     let affix;
 
     if ( typeof finished === 'string' ) {
@@ -111,7 +107,7 @@ const Clock = React.createClass({
   },
 
   handleChangeMinutes(minutes) {
-    let time = new Date(this.state.selectedTime);
+    const time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
       selectedTime: time,
@@ -132,7 +128,11 @@ const Clock = React.createClass({
   render() {
     let clock = null;
 
-    let styles = {
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = {
       root: {},
 
       container: {
@@ -169,7 +169,7 @@ const Clock = React.createClass({
     }
 
     return (
-      <div style={this.prepareStyles(styles.root)}>
+      <div style={prepareStyles(styles.root)}>
         <TimeDisplay
           selectedTime={this.state.selectedTime}
           mode={this.state.mode}
@@ -179,8 +179,8 @@ const Clock = React.createClass({
           onSelectHour={this._setMode.bind(this, 'hour')}
           onSelectMin={this._setMode.bind(this, 'minute')}
         />
-        <div style={this.prepareStyles(styles.container)} >
-          <div style={this.prepareStyles(styles.circle)} />
+        <div style={prepareStyles(styles.container)} >
+          <div style={prepareStyles(styles.circle)} />
           {clock}
         </div>
       </div>
