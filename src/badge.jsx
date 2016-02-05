@@ -1,9 +1,61 @@
 import React from 'react';
 import Typography from './styles/typography';
 import getMuiTheme from './styles/getMuiTheme';
-import StylePropable from './mixins/style-propable';
 
-// Badge
+function getStyles(props, state) {
+  const {
+    primary,
+    secondary,
+  } = props;
+
+  const {
+    badge,
+  } = state.muiTheme;
+
+  let badgeBackgroundColor;
+  let badgeTextColor;
+
+  if (primary) {
+    badgeBackgroundColor = badge.primaryColor;
+    badgeTextColor = badge.primaryTextColor;
+  } else if (secondary) {
+    badgeBackgroundColor = badge.secondaryColor;
+    badgeTextColor = badge.secondaryTextColor;
+  } else {
+    badgeBackgroundColor = badge.color;
+    badgeTextColor = badge.textColor;
+  }
+
+  const radius = 12;
+  const radius2x = Math.floor(2 * radius);
+
+  return {
+    root: {
+      position: 'relative',
+      display: 'inline-block',
+      padding: [radius2x + 'px', radius2x + 'px', radius + 'px', radius + 'px'].join(' '),
+    },
+    badge: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      alignContent: 'center',
+      alignItems: 'center',
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      fontWeight: Typography.fontWeightMedium,
+      fontSize: radius,
+      width: radius2x,
+      height: radius2x,
+      borderRadius: '50%',
+      backgroundColor: badgeBackgroundColor,
+      color: badgeTextColor,
+    },
+  };
+}
+
 const Badge = React.createClass({
   propTypes: {
     /**
@@ -41,80 +93,40 @@ const Badge = React.createClass({
      */
     style: React.PropTypes.object,
   },
+
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
-  //for passing default theme context to children
+
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-  mixins: [StylePropable],
+
   getDefaultProps() {
     return {
       primary: false,
       secondary: false,
     };
   },
+
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
+
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
   },
+
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
-  getStyles() {
-    const theme = this.state.muiTheme.badge;
 
-    const badgeBackgroundColor = this.props.primary
-      ? theme.primaryColor
-      : this.props.secondary
-        ? theme.secondaryColor
-        : theme.color;
-
-    const badgeTextColor = this.props.primary
-      ? theme.primaryTextColor
-      : this.props.secondary
-        ? theme.secondaryTextColor
-        : theme.textColor;
-
-    const radius = 12;
-    const radius2x = Math.floor(2 * radius);
-
-    return {
-      root: {
-        position: 'relative',
-        display: 'inline-block',
-        padding: [radius2x + 'px', radius2x + 'px', radius + 'px', radius + 'px'].join(' '),
-      },
-      badge: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        fontWeight: Typography.fontWeightMedium,
-        fontSize: radius,
-        width: radius2x,
-        height: radius2x,
-        borderRadius: '50%',
-        backgroundColor: badgeBackgroundColor,
-        color: badgeTextColor,
-      },
-    };
-  },
   render() {
     const {
       style,
@@ -124,12 +136,16 @@ const Badge = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <div {...other} style={this.prepareStyles(styles.root, style)}>
+      <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
         {children}
-        <span style={this.prepareStyles(styles.badge, badgeStyle)}>
+        <span style={prepareStyles(Object.assign({}, styles.badge, badgeStyle))}>
           {badgeContent}
         </span>
       </div>
