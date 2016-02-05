@@ -38,7 +38,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 - [ ] Documentation versioning.
 - [ ] Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
 - [ ] [[#2635](https://github.com/callemall/material-ui/pull/2635)] Document the new theme calculation, and it's usage.
-- [ ] [[#3096](https://github.com/callemall/material-ui/pull/3096)] Annotate callback props with @param tags.
+- [ ] [[#3191](https://github.com/callemall/material-ui/issues/3191)] Improve component property documentation.
 
 ### Future
 
