@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import StylePropable from '../mixins/style-propable';
 import Dom from '../utils/dom';
 import CircleRipple from './circle-ripple';
 import update from 'react-addons-update';
@@ -38,7 +37,6 @@ const TouchRipple = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getInitialState() {
@@ -152,6 +150,9 @@ const TouchRipple = React.createClass({
   render() {
     const {
       children,
+      muiTheme: {
+        prepareStyles,
+      },
       style,
     } = this.props;
 
@@ -162,7 +163,7 @@ const TouchRipple = React.createClass({
 
     let rippleGroup;
     if (hasRipples) {
-      const mergedStyles = this.mergeStyles({
+      const mergedStyles = Object.assign({
         height: '100%',
         width: '100%',
         position: 'absolute',
@@ -172,7 +173,7 @@ const TouchRipple = React.createClass({
       }, style);
 
       rippleGroup = (
-        <ReactTransitionGroup style={this.prepareStyles(mergedStyles)}>
+        <ReactTransitionGroup style={prepareStyles(mergedStyles)}>
           {ripples}
         </ReactTransitionGroup>
       );
