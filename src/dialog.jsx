@@ -59,7 +59,7 @@ const TransitionItem = React.createClass({
     this.setState({
       style: {
         opacity: 1,
-        transform: 'translate3d(0, ' + spacing.desktopKeylineIncrement + 'px, 0)',
+        transform: `translate3d(0, ${spacing.desktopKeylineIncrement}px, 0)`,
       },
     });
 
@@ -266,7 +266,7 @@ const DialogInline = React.createClass({
     //Vertically center the dialog window, but make sure it doesn't
     //transition to that position.
     if (repositionOnUpdate || !container.style.paddingTop) {
-      container.style.paddingTop = paddingTop + 'px';
+      container.style.paddingTop = `${paddingTop}px`;
     }
 
     // Force a height if the dialog is taller than clientHeight
@@ -281,7 +281,7 @@ const DialogInline = React.createClass({
         maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
       }
 
-      dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
+      dialogContent.style.maxHeight = `${maxDialogContentHeight}px`;
     }
   },
 

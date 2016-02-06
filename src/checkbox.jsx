@@ -136,8 +136,9 @@ const Checkbox = React.createClass({
         opacity: 0,
         transform: 'scale(0)',
         transitionOrigin: '50% 50%',
-        transition: Transitions.easeOut('450ms', 'opacity', '0ms') + ', ' +
-                      Transitions.easeOut('0ms', 'transform', '450ms'),
+        transition: `${Transitions.easeOut('450ms', 'opacity', '0ms')}, ${
+            Transitions.easeOut('0ms', 'transform', '450ms')
+          }`,
         fill: this.getTheme().checkedColor,
       },
       box: {
@@ -149,8 +150,9 @@ const Checkbox = React.createClass({
       checkWhenSwitched: {
         opacity: 1,
         transform: 'scale(1)',
-        transition: Transitions.easeOut('0ms', 'opacity', '0ms') + ', ' +
-                    Transitions.easeOut('800ms', 'transform', '0ms'),
+        transition: `${Transitions.easeOut('0ms', 'opacity', '0ms')}, ${
+            Transitions.easeOut('800ms', 'transform', '0ms')
+          }`,
       },
       boxWhenSwitched: {
         transition: Transitions.easeOut('100ms', null, '0ms'),

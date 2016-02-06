@@ -114,7 +114,7 @@ const Avatar = React.createClass({
         styles.root = this.mergeStyles(styles.root, {
           height: size - 2,
           width: size - 2,
-          border: 'solid 1px ' + borderColor,
+          border: `solid 1px ${borderColor}`,
         });
       }
 
@@ -130,7 +130,7 @@ const Avatar = React.createClass({
       styles.root = this.mergeStyles(styles.root, {
         backgroundColor: backgroundColor,
         textAlign: 'center',
-        lineHeight: size + 'px',
+        lineHeight: `${size}px`,
         fontSize: size / 2 + 4,
         color: color,
       });

@@ -218,13 +218,13 @@ const FloatingActionButton = React.createClass({
       },
       icon: {
         height: themeVariables.buttonSize,
-        lineHeight: themeVariables.buttonSize + 'px',
+        lineHeight: `${themeVariables.buttonSize}px`,
         fill: themeVariables.iconColor,
         color: this._getIconColor(),
       },
       iconWhenMini: {
         height: themeVariables.miniSize,
-        lineHeight: themeVariables.miniSize + 'px',
+        lineHeight: `${themeVariables.miniSize}px`,
       },
     };
     return styles;

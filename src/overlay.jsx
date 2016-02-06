@@ -76,16 +76,18 @@ const Overlay = React.createClass({
 
         transition:
           this.props.transitionEnabled &&
-          Transitions.easeOut('0ms', 'left', '400ms') + ',' +
-          Transitions.easeOut('400ms', 'opacity'),
+          `${Transitions.easeOut('0ms', 'left', '400ms')},${
+            Transitions.easeOut('400ms', 'opacity')
+          }`,
       },
       rootWhenShown: {
         left: '0',
         opacity: 1,
         transition:
           this.props.transitionEnabled &&
-          Transitions.easeOut('0ms', 'left') + ',' +
-          Transitions.easeOut('400ms', 'opacity'),
+          `${Transitions.easeOut('0ms', 'left')},${
+            Transitions.easeOut('400ms', 'opacity')
+          }`,
       },
     };
   },

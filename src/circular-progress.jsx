@@ -170,7 +170,7 @@ const CircularProgress = React.createClass({
     let styles = {
       root: {
         position: 'relative',
-        margin: margin + 'px',
+        margin: margin,
         display: 'inline-block',
         width: size,
         height: size,
@@ -184,7 +184,7 @@ const CircularProgress = React.createClass({
       svg: {
         height: size,
         position: 'relative',
-        transform: 'scale(' + zoom + ')',
+        transform: `scale(${zoom})`,
         width: size,
       },
       path: {
@@ -201,7 +201,7 @@ const CircularProgress = React.createClass({
     if (this.props.mode === 'determinate') {
       let relVal = this._getRelativeValue();
       styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
-      styles.path.strokeDasharray = Math.round(relVal * 1.25) + ',200';
+      styles.path.strokeDasharray = `${Math.round(relVal * 1.25)},200`;
     }
 
     return styles;

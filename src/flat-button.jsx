@@ -10,8 +10,7 @@ import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
-    return new Error('Required prop label or children was not ' +
-      'specified in ' + componentName + '.');
+    return new Error(`Required prop label or children was not specified in ${componentName}.`);
   }
 }
 
@@ -269,7 +268,7 @@ const FlatButton = React.createClass({
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
-      lineHeight: buttonHeight + 'px',
+      lineHeight: `${buttonHeight}px`,
       minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,

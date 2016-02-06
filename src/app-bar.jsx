@@ -40,7 +40,7 @@ function getStyles(props, state) {
       fontSize: 24,
       fontWeight: Typography.fontWeightNormal,
       color: appBar.textColor,
-      lineHeight: appBar.height + 'px',
+      lineHeight: `${appBar.height}px`,
     },
     mainElement: {
       boxFlex: 1,
