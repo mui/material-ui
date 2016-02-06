@@ -24,11 +24,6 @@ const TabPaginatorButton = React.createClass({
     disabled: React.PropTypes.bool.isRequired,
 
     /**
-     * Should button be displayed
-     */
-    display: React.PropTypes.bool.isRequired,
-
-    /**
      * Override the inline-styles of the icon element.
      */
     iconStyle: React.PropTypes.object,
@@ -85,7 +80,6 @@ const TabPaginatorButton = React.createClass({
     const {
       disabled,
       isLeftPaginatorButton,
-      display,
       style,
       iconStyle,
       ...other,
@@ -123,7 +117,7 @@ const TabPaginatorButton = React.createClass({
       styles.buttonStyle.right = 0;
     }
 
-    let paginatorButton = display ? (
+    return (
       <IconButton {...other}
         disableTouchRipple={this.props.disableTouchRipple}
         disabled={disabled}
@@ -133,9 +127,7 @@ const TabPaginatorButton = React.createClass({
       >
         {isLeftPaginatorButton ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}
       </IconButton>
-    ) : null;
-
-    return paginatorButton;
+    );
   },
 
 });

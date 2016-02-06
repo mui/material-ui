@@ -4,7 +4,6 @@ import TabTemplate from './tabTemplate';
 import InkBar from '../ink-bar';
 import TabPaginatorButton from './tab-paginator-button';
 import StylePropable from '../mixins/style-propable';
-import StyleResizable from '../mixins/style-resizable';
 import getMuiTheme from '../styles/getMuiTheme';
 import Events from '../utils/events';
 import warning from 'warning';
@@ -41,6 +40,12 @@ const Tabs = React.createClass({
     contentContainerStyle: React.PropTypes.object,
 
     /**
+     * Tab container fills the width of the window. Tabs will have equal width
+     * as long as the container width is less than the window width.
+     */
+    fillWidth: React.PropTypes.bool,
+
+    /**
      * Specify initial visible tab index.
      * Initial selected index is set by default to 0.
      * If initialSelectedIndex is set but larger than the total amount of specified tabs,
@@ -57,11 +62,6 @@ const Tabs = React.createClass({
      * Called when the selected value change.
      */
     onChange: React.PropTypes.func,
-
-    /**
-     * Stretch tab container to occupy the whole width
-     */
-    stretchTabContainer: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
@@ -109,13 +109,12 @@ const Tabs = React.createClass({
 
   mixins: [
     StylePropable,
-    StyleResizable,
   ],
 
   getDefaultProps() {
     return {
       initialSelectedIndex: 0,
-      stretchTabContainer: true,
+      fillWidth: true,
       onChange: () => {},
     };
   },
@@ -320,7 +319,6 @@ const Tabs = React.createClass({
     newState.muiTheme = this.state.muiTheme;
     newState.selectedIndex = this.state.selectedIndex;
     newState.previousIndex = this.state.previousIndex;
-    newState.deviceSize = this.getDeviceSize();
     newState.disableLeftPaginatorButton = this._disableLeftPaginatorButton();
     newState.disableRightPaginatorButton = this._disableRightPaginatorButton();
     return newState;
@@ -371,14 +369,13 @@ const Tabs = React.createClass({
       tabPaginatorButtonIconStyle,
       tabItemContainerStyle,
       tabTemplate,
-      stretchTabContainer,
+      fillWidth,
       ...other,
     } = this.props;
 
 
-    // stretch tabs if stretchTabContainer is true and if device screen size is large
-    let shouldStretch = stretchTabContainer && this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)
-      && !this.state.shouldPaginate;
+    // divide tab container width equally amongst tabs if fillWidth is true
+    let equalTabWidth = fillWidth && !this.state.shouldPaginate;
 
     let themeVariables = this.state.muiTheme.tabs;
     let styles = {
@@ -400,7 +397,7 @@ const Tabs = React.createClass({
         backgroundColor: themeVariables.backgroundColor,
         whiteSpace: 'nowrap',
         display: 'table',
-        width: shouldStretch ? '100%' : 0,
+        width: equalTabWidth ? '100%' : 0,
       },
     };
 
@@ -408,7 +405,7 @@ const Tabs = React.createClass({
     let width = 0;
     let left = 0;
     let right = 0;
-    if (shouldStretch) {
+    if (equalTabWidth) {
       width = this.state.tabWrapperWidth / this.getTabCount();
       left = width * this.state.selectedIndex;
       right = this.state.tabWrapperWidth - width - left;
@@ -443,7 +440,7 @@ const Tabs = React.createClass({
         ref: Constants.TAB_ITEM_REF_NAME_PREFIX + index,
         selected: this._getSelected(tab, index),
         tabIndex: index,
-        width: shouldStretch ? width : 0,
+        width: equalTabWidth ? width : 0,
         onTouchTap: this._handleTabTouchTap,
       });
     });
@@ -460,6 +457,23 @@ const Tabs = React.createClass({
     const inkBarContainerWidth = tabItemContainerStyle ?
       tabItemContainerStyle.width : '100%';
 
+    const paginatorButtons = this.state.shouldPaginate ? [
+      <TabPaginatorButton key={1}
+        isLeftPaginatorButton={true}
+        style={tabPaginatorButtonStyle}
+        iconStyle={tabPaginatorButtonIconStyle}
+        disabled={this.state.disableLeftPaginatorButton}
+        onTouchTap={this._handleLeftTabPaginatorTap}
+      />,
+      <TabPaginatorButton key={2}
+        isLeftPaginatorButton={false}
+        style={tabPaginatorButtonStyle}
+        iconStyle={tabPaginatorButtonIconStyle}
+        disabled={this.state.disableRightPaginatorButton}
+        onTouchTap={this._handleRightTabPaginatorTap}
+      />,
+    ] : null;
+
     return (
       <div
         {...other}
@@ -469,20 +483,7 @@ const Tabs = React.createClass({
           ref={Constants.TAB_WRAPPER_REF_NAME}
           style={this.prepareStyles(styles.tabWrapper, tabWrapperStyle)}
         >
-          <TabPaginatorButton display={this.state.shouldPaginate}
-            isLeftPaginatorButton={true}
-            style={tabPaginatorButtonStyle}
-            iconStyle={tabPaginatorButtonIconStyle}
-            disabled={this.state.disableLeftPaginatorButton}
-            onTouchTap={this._handleLeftTabPaginatorTap}
-          />
-          <TabPaginatorButton display={this.state.shouldPaginate}
-            isLeftPaginatorButton={false}
-            style={tabPaginatorButtonStyle}
-            iconStyle={tabPaginatorButtonIconStyle}
-            disabled={this.state.disableRightPaginatorButton}
-            onTouchTap={this._handleRightTabPaginatorTap}
-          />
+          {paginatorButtons}
           <div
             ref={Constants.TAB_SCROLL_WRAPPER_REF_NAME}
             style={styles.tabScrollWrapper}
