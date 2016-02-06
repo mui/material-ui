@@ -41,8 +41,6 @@ const CardHeader = React.createClass({
 
   getDefaultProps() {
     return {
-      titleColor: Styles.Colors.darkBlack,
-      subtitleColor: Styles.Colors.lightBlack,
       avatar: null,
     };
   },
@@ -67,6 +65,8 @@ const CardHeader = React.createClass({
   },
 
   getStyles() {
+    const theme = this.state.muiTheme.card;
+
     return {
       root: {
         height: 72,
@@ -83,12 +83,12 @@ const CardHeader = React.createClass({
         marginRight: 16,
       },
       title: {
-        color: this.props.titleColor,
+        color: this.props.titleColor || theme.titleColor,
         display: 'block',
         fontSize: 15,
       },
       subtitle: {
-        color: this.props.subtitleColor,
+        color: this.props.subtitleColor || theme.subtitleColor,
         display: 'block',
         fontSize: 14,
       },

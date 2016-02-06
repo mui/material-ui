@@ -1,5 +1,4 @@
 import React from 'react';
-import Colors from '../styles/colors';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -28,7 +27,7 @@ function getStyles(props, state) {
     dropDownMenu: {
       root: {
         float: 'left',
-        color: Colors.lightBlack, // removes hover color change, we want to keep it
+        color: toolbar.color, // removes hover color change, we want to keep it
         display: 'inline-block',
         marginRight: baseTheme.spacing.desktopGutter,
       },
@@ -54,7 +53,7 @@ function getStyles(props, state) {
         paddingLeft: baseTheme.spacing.desktopGutter,
       },
       hover: {
-        color: Colors.darkBlack,
+        color: toolbar.hoverColor,
       },
     },
     span: {

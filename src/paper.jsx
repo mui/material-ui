@@ -93,13 +93,17 @@ const Paper = React.createClass({
       ...other,
     } = this.props;
 
+    const theme = this.state.muiTheme.paper;
+    const rawTheme = this.state.muiTheme.rawTheme;
+
     const styles = {
-      backgroundColor: this.state.muiTheme.paper.backgroundColor,
+      color: theme.color,
+      backgroundColor: theme.backgroundColor,
       transition: transitionEnabled && Transitions.easeOut(),
       boxSizing: 'border-box',
-      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+      fontFamily: rawTheme.fontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-      boxShadow: this.state.muiTheme.paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
+      boxShadow: theme.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
       borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
     };
 

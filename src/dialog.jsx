@@ -209,9 +209,6 @@ const DialogInline = React.createClass({
         width: '100%',
         textAlign: 'right',
       },
-      paper: {
-        background: rawTheme.palette.canvasColor,
-      },
       overlay: {
         zIndex: muiTheme.zIndex.dialogOverlay,
       },
@@ -360,7 +357,6 @@ const DialogInline = React.createClass({
               style={styles.content}
             >
               <Paper
-                style={styles.paper}
                 zDepth={4}
               >
                 {titleElement}

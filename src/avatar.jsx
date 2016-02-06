@@ -1,6 +1,5 @@
 import React from 'react';
 import StylePropable from './mixins/style-propable';
-import Colors from './styles/colors';
 import getMuiTheme from './styles/getMuiTheme';
 
 const Avatar = React.createClass({
@@ -60,8 +59,6 @@ const Avatar = React.createClass({
 
   getDefaultProps() {
     return {
-      backgroundColor: Colors.grey400,
-      color: Colors.white,
       size: 40,
     };
   },
@@ -86,6 +83,8 @@ const Avatar = React.createClass({
   },
 
   render() {
+    const theme = this.state.muiTheme.avatar;
+
     let {
       backgroundColor,
       color,
@@ -108,7 +107,7 @@ const Avatar = React.createClass({
     };
 
     if (src) {
-      const borderColor = this.state.muiTheme.avatar.borderColor;
+      const borderColor = theme.borderColor;
 
       if (borderColor) {
         styles.root = this.mergeStyles(styles.root, {
@@ -128,11 +127,11 @@ const Avatar = React.createClass({
       );
     } else {
       styles.root = this.mergeStyles(styles.root, {
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor || theme.backgroundColor,
         textAlign: 'center',
         lineHeight: size + 'px',
         fontSize: size / 2 + 4,
-        color: color,
+        color: color || theme.color,
       });
 
       const styleIcon = {
@@ -140,7 +139,7 @@ const Avatar = React.createClass({
       };
 
       const iconElement = icon ? React.cloneElement(icon, {
-        color: color,
+        color: color || theme.color,
         style: this.mergeStyles(styleIcon, icon.props.style),
       }) : null;
 
