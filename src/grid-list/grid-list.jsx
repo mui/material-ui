@@ -1,6 +1,19 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props) {
+  return {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      margin: -props.padding / 2,
+    },
+    item: {
+      boxSizing: 'border-box',
+      padding: props.padding / 2,
+    },
+  };
+}
 
 const GridList = React.createClass({
 
@@ -35,14 +48,9 @@ const GridList = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -64,25 +72,10 @@ const GridList = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getStyles() {
-    return {
-      root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: -this.props.padding / 2,
-      },
-      item: {
-        boxSizing: 'border-box',
-        padding: this.props.padding / 2,
-      },
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
@@ -95,9 +88,13 @@ const GridList = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    const mergedRootStyles = this.mergeStyles(styles.root, style);
+    const styles = getStyles(this.props, this.state);
+
+    const mergedRootStyles = Object.assign(styles.root, style);
 
     const wrappedChildren = React.Children.map(children, (currentChild) => {
       if (React.isValidElement(currentChild) && currentChild.type.displayName === 'Subheader') {
@@ -105,16 +102,16 @@ const GridList = React.createClass({
       }
       const childCols = currentChild.props.cols || 1;
       const childRows = currentChild.props.rows || 1;
-      const itemStyle = this.mergeStyles(styles.item, {
+      const itemStyle = Object.assign({}, styles.item, {
         width: (100 / cols * childCols) + '%',
         height: cellHeight * childRows + padding,
       });
 
-      return <div style={this.prepareStyles(itemStyle)}>{currentChild}</div>;
+      return <div style={prepareStyles(itemStyle)}>{currentChild}</div>;
     });
 
     return (
-      <div style={this.prepareStyles(mergedRootStyles)} {...other}>
+      <div style={prepareStyles(mergedRootStyles)} {...other}>
         {wrappedChildren}
       </div>
     );
