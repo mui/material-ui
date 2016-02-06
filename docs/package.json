@@ -29,7 +29,7 @@
     "css-loader": "^0.23.0",
     "doctrine": "^1.1.0",
     "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.13.0",
+    "eslint-plugin-react": "^3.16.1",
     "esutils": "^1.1.6",
     "highlight.js": "^9.0.0",
     "history": "1.13.x",
