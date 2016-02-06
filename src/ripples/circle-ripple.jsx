@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import StylePropable from '../mixins/style-propable';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import Colors from '../styles/colors';
@@ -26,7 +25,6 @@ const CircleRipple = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -82,12 +80,15 @@ const CircleRipple = React.createClass({
   render() {
     const {
       color,
+      muiTheme: {
+        prepareStyles,
+      },
       opacity,
       style,
       ...other,
     } = this.props;
 
-    const mergedStyles = this.mergeStyles({
+    const mergedStyles = Object.assign({
       position: 'absolute',
       top: 0,
       left: 0,
@@ -98,7 +99,7 @@ const CircleRipple = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={this.prepareStyles(mergedStyles)} />
+      <div {...other} style={prepareStyles(mergedStyles)} />
     );
   },
 });

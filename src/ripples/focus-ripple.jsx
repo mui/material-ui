@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import StylePropable from '../mixins/style-propable';
 import autoPrefix from '../styles/auto-prefix';
 import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
@@ -31,7 +30,6 @@ const FocusRipple = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -60,6 +58,9 @@ const FocusRipple = React.createClass({
     const {
       color,
       innerStyle,
+      muiTheme: {
+        prepareStyles,
+      },
       opacity,
     } = props;
 
@@ -73,7 +74,7 @@ const FocusRipple = React.createClass({
       transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
     }, innerStyle);
 
-    return <div ref="innerCircle" style={this.prepareStyles(innerStyles)} />;
+    return <div ref="innerCircle" style={prepareStyles(Object.assign({}, innerStyles))} />;
   },
 
   _pulsate() {
@@ -116,7 +117,7 @@ const FocusRipple = React.createClass({
       style,
     } = this.props;
 
-    const mergedRootStyles = this.mergeStyles({
+    const mergedRootStyles = Object.assign({
       height: '100%',
       width: '100%',
       position: 'absolute',
