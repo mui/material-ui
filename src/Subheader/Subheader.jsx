@@ -40,12 +40,13 @@ let Subheader = (props) => {
 
   const {
     prepareStyles,
+    subheader,
   } = muiTheme;
 
   const styles = {
     root: {
       boxSizing: 'border-box',
-      color: Typography.textLightBlack,
+      color: subheader.color,
       fontSize: 14,
       fontWeight: Typography.fontWeightMedium,
       lineHeight: '48px',

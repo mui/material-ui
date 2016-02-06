@@ -19,6 +19,7 @@ function getStyles(props, state) {
 
   return {
     root: {
+      color: paper.color,
       backgroundColor: paper.backgroundColor,
       transition: transitionEnabled && Transitions.easeOut(),
       boxSizing: 'border-box',

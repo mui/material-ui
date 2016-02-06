@@ -3,7 +3,9 @@ import Avatar from '../avatar';
 import getMuiTheme from '../styles/getMuiTheme';
 import typography from '../styles/typography';
 
-function getStyles(props) {
+function getStyles(props, state) {
+  const {card} = state.muiTheme;
+
   return {
     root: {
       height: 72,
@@ -20,12 +22,12 @@ function getStyles(props) {
       marginRight: 16,
     },
     title: {
-      color: props.titleColor,
+      color: props.titleColor || card.titleColor,
       display: 'block',
       fontSize: 15,
     },
     subtitle: {
-      color: props.subtitleColor,
+      color: props.subtitleColor || card.subtitleColor,
       display: 'block',
       fontSize: 14,
     },
@@ -64,8 +66,6 @@ const CardHeader = React.createClass({
 
   getDefaultProps() {
     return {
-      titleColor: typography.textDarkBlack,
-      subtitleColor: typography.textLightBlack,
       avatar: null,
     };
   },

@@ -1,6 +1,5 @@
 import React from 'react';
 import Transitions from './styles/transitions';
-import Colors from './styles/colors';
 import ColorManipulator from './utils/color-manipulator';
 import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
@@ -177,7 +176,6 @@ const FloatingActionButton = React.createClass({
   getDefaultProps() {
     return {
       disabled: false,
-      disabledColor: Colors.grey300,
       mini: false,
       secondary: false,
     };
