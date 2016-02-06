@@ -1,7 +1,62 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    baseTheme,
+    gridTile,
+  } = state.muiTheme;
+
+  const actionPos = props.actionIcon && props.actionPosition;
+
+  let styles = {
+    root: {
+      position: 'relative',
+      display: 'block',
+      height: '100%',
+      overflow: 'hidden',
+    },
+    titleBar: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      [props.titlePosition]: 0,
+      height: props.subtitle ? 68 : 48,
+      background: props.titleBackground,
+      display: 'flex',
+      alignItems: 'center',
+    },
+    titleWrap: {
+      flexGrow: 1,
+      marginLeft: actionPos !== 'left' ? baseTheme.spacing.desktopGutterLess : 0,
+      marginRight: actionPos === 'left' ? baseTheme.spacing.desktopGutterLess : 0,
+      color: gridTile.textColor,
+      overflow: 'hidden',
+    },
+    title: {
+      fontSize: '16px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+    },
+    subtitle: {
+      fontSize: '12px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+    },
+    actionIcon: {
+      order: actionPos === 'left' ? -1 : 1,
+    },
+    childImg: {
+      height: '100%',
+      transform: 'translateX(-50%)',
+      position: 'relative',
+      left: '50%',
+    },
+  };
+  return styles;
+}
 
 const GridTile = React.createClass({
 
@@ -77,14 +132,9 @@ const GridTile = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -113,74 +163,18 @@ const GridTile = React.createClass({
     this._ensureImageCover();
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
-  getStyles() {
-    const spacing = this.state.muiTheme.rawTheme.spacing;
-    const themeVariables = this.state.muiTheme.gridTile;
-    const actionPos = this.props.actionIcon ? this.props.actionPosition : null;
-    const gutterLess = spacing.desktopGutterLess;
-
-    let styles = {
-      root: {
-        position: 'relative',
-        display: 'block',
-        height: '100%',
-        overflow: 'hidden',
-      },
-      titleBar: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        [this.props.titlePosition]: 0,
-        height: this.props.subtitle ? 68 : 48,
-        background: this.props.titleBackground,
-        display: 'flex',
-        alignItems: 'center',
-      },
-      titleWrap: {
-        flexGrow: 1,
-        marginLeft: actionPos !== 'left' ? gutterLess : 0,
-        marginRight: actionPos === 'left' ? gutterLess : 0,
-        color: themeVariables.textColor,
-        overflow: 'hidden',
-      },
-      title: {
-        fontSize: '16px',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-      },
-      subtitle: {
-        fontSize: '12px',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-      },
-      actionIcon: {
-        order: actionPos === 'left' ? -1 : 1,
-      },
-      childImg: {
-        height: '100%',
-        transform: 'translateX(-50%)',
-        position: 'relative',
-        left: '50%',
-      },
-    };
-    return styles;
-  },
-
-  componeneDidUpdate() {
+  componentDidUpdate() {
     this._ensureImageCover();
   },
 
   _ensureImageCover() {
-    let imgEl = ReactDOM.findDOMNode(this.refs.img);
+    let imgEl = this.refs.img;
 
     if (imgEl) {
       let fit = () => {
@@ -215,25 +209,29 @@ const GridTile = React.createClass({
       children,
       rootClass,
       ...other,
-      } = this.props;
+    } = this.props;
 
-    const styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    const mergedRootStyles = this.mergeStyles(styles.root, style);
+    const styles = getStyles(this.props, this.state);
+
+    const mergedRootStyles = Object.assign(styles.root, style);
 
     let titleBar = null;
 
     if (title) {
       titleBar = (
-        <div style={this.prepareStyles(styles.titleBar)}>
-          <div style={this.prepareStyles(styles.titleWrap)}>
-            <div style={this.prepareStyles(styles.title)}>{title}</div>
+        <div style={prepareStyles(styles.titleBar)}>
+          <div style={prepareStyles(styles.titleWrap)}>
+            <div style={prepareStyles(styles.title)}>{title}</div>
             {
-              subtitle ? (<div style={this.prepareStyles(styles.subtitle)}>{subtitle}</div>) : null
+              subtitle ? (<div style={prepareStyles(styles.subtitle)}>{subtitle}</div>) : null
             }
           </div>
           {
-            actionIcon ? (<div style={this.prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null
+            actionIcon ? (<div style={prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null
           }
         </div>
       );
@@ -248,7 +246,7 @@ const GridTile = React.createClass({
         if (child.type === 'img') {
           return React.cloneElement(child, {
             ref: 'img',
-            style: this.prepareStyles(styles.childImg, child.props.style),
+            style: prepareStyles(Object.assign({}, styles.childImg, child.props.style)),
           });
         } else {
           return child;
@@ -258,7 +256,7 @@ const GridTile = React.createClass({
 
     const RootTag = rootClass;
     return (
-      <RootTag style={this.prepareStyles(mergedRootStyles)} {...other}>
+      <RootTag style={prepareStyles(mergedRootStyles)} {...other}>
         {newChildren}
         {titleBar}
       </RootTag>
