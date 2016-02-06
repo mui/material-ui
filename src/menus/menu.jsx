@@ -217,7 +217,7 @@ const Menu = React.createClass({
 
   _getFilteredChildren(children) {
     const filteredChildren = [];
-    React.Children.forEach(children, child => {
+    React.Children.forEach(children, (child) => {
       if (child) {
         filteredChildren.push(child);
       }
@@ -299,7 +299,7 @@ const Menu = React.createClass({
 
     //Count all the children that will fit inside the
     //max menu height
-    filteredChildren.forEach(child => {
+    filteredChildren.forEach((child) => {
       if (currentHeight < maxHeight) {
         let childIsADivider = child.type && child.type.displayName === 'Divider';
 
@@ -313,7 +313,7 @@ const Menu = React.createClass({
 
   _getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
-    filteredChildren.forEach(child => {
+    filteredChildren.forEach((child) => {
       let childIsADivider = child.type && child.type.displayName === 'Divider';
       let childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
@@ -325,7 +325,7 @@ const Menu = React.createClass({
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
-    filteredChildren.forEach(child => {
+    filteredChildren.forEach((child) => {
       let childIsADivider = child.type && child.type.displayName === 'Divider';
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
@@ -529,7 +529,7 @@ const Menu = React.createClass({
     let cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
 
     let menuItemIndex = 0;
-    let newChildren = React.Children.map(filteredChildren, child => {
+    let newChildren = React.Children.map(filteredChildren, (child) => {
       let childIsADivider = child.type && child.type.displayName === 'Divider';
       let childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};

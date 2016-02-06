@@ -93,7 +93,7 @@ export default {
       dayArray.push(new Date(d.getFullYear(), d.getMonth(), i));
     }
 
-    const addWeek = week => {
+    const addWeek = (week) => {
       const emptyDays = 7 - week.length;
       for (let i = 0; i < emptyDays; ++i) {
         week[weekArray.length ? 'push' : 'unshift'](null);
@@ -101,7 +101,7 @@ export default {
       weekArray.push(week);
     };
 
-    dayArray.forEach(day => {
+    dayArray.forEach((day) => {
       if (week.length > 0 && day.getDay() === firstDayOfWeek) {
         addWeek(week);
         week = [];
