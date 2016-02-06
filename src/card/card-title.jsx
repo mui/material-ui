@@ -1,5 +1,4 @@
 import React from 'react';
-import Styles from '../styles';
 import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -36,13 +35,6 @@ const CardTitle = React.createClass({
     StylePropable,
   ],
 
-  getDefaultProps() {
-    return {
-      titleColor: Styles.Colors.darkBlack,
-      subtitleColor: Styles.Colors.lightBlack,
-    };
-  },
-
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme || getMuiTheme(),
@@ -65,6 +57,8 @@ const CardTitle = React.createClass({
   },
 
   getStyles() {
+    const theme = this.state.muiTheme.card;
+
     return {
       root: {
         padding: 16,
@@ -72,13 +66,13 @@ const CardTitle = React.createClass({
       },
       title: {
         fontSize: 24,
-        color: this.props.titleColor,
+        color: this.props.titleColor || theme.titleColor,
         display: 'block',
         lineHeight: '36px',
       },
       subtitle: {
         fontSize: 14,
-        color: this.props.subtitleColor,
+        color: this.props.subtitleColor || theme.subtitleColor,
         display: 'block',
       },
     };

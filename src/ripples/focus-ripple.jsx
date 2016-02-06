@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StylePropable from '../mixins/style-propable';
 import autoPrefix from '../styles/auto-prefix';
-import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
 import ScaleInTransitionGroup from '../transition-groups/scale-in';
 
@@ -34,12 +33,6 @@ const FocusRipple = React.createClass({
     StylePropable,
   ],
 
-  getDefaultProps() {
-    return {
-      color: Colors.darkBlack,
-    };
-  },
-
   componentDidMount() {
     if (this.props.show) {
       this._setRippleSize();
@@ -57,6 +50,8 @@ const FocusRipple = React.createClass({
   },
 
   _getRippleElement(props) {
+    const theme = this.props.muiTheme.ripple;
+
     const {
       color,
       innerStyle,
@@ -69,7 +64,7 @@ const FocusRipple = React.createClass({
       width: '100%',
       borderRadius: '50%',
       opacity: opacity ? opacity : 0.16,
-      backgroundColor: color,
+      backgroundColor: color || theme.color,
       transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
     }, innerStyle);
 

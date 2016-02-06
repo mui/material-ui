@@ -59,6 +59,8 @@ const TouchRipple = React.createClass({
   },
 
   start(e, isRippleTouchGenerated) {
+    const theme = this.props.muiTheme.ripple;
+
     if (this._ignoreNextMouseDown && !isRippleTouchGenerated) {
       this._ignoreNextMouseDown = false;
       return;
@@ -72,7 +74,7 @@ const TouchRipple = React.createClass({
         key={this.state.nextKey}
         muiTheme={this.props.muiTheme}
         style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
-        color={this.props.color}
+        color={this.props.color || theme.color}
         opacity={this.props.opacity}
         touchGenerated={isRippleTouchGenerated}
       />
