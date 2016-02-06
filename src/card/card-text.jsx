@@ -1,6 +1,19 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    cardText,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      padding: 16,
+      fontSize: 14,
+      color: props.color || cardText.textColor,
+    },
+  };
+}
 
 const CardText = React.createClass({
 
@@ -20,14 +33,9 @@ const CardText = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getInitialState() {
     return {
@@ -41,30 +49,22 @@ const CardText = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getStyles() {
-    const themeVariables = this.state.muiTheme.cardText;
-    return {
-      root: {
-        padding: 16,
-        fontSize: '14px',
-        color: this.props.color ? this.props.color : themeVariables.textColor,
-      },
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
-    let styles = this.getStyles();
-    let rootStyle = this.mergeStyles(styles.root, this.props.style);
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+    const rootStyle = Object.assign(styles.root, this.props.style);
 
     return (
-      <div {...this.props} style={this.prepareStyles(rootStyle)}>
+      <div {...this.props} style={prepareStyles(rootStyle)}>
         {this.props.children}
       </div>
     );

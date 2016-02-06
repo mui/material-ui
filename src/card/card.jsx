@@ -1,6 +1,5 @@
 import React from 'react';
 import Paper from '../paper';
-import StylePropable from '../mixins/style-propable';
 import CardExpandable from './card-expandable';
 
 const Card = React.createClass({
@@ -45,10 +44,6 @@ const Card = React.createClass({
     style: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
       expandable: false,
@@ -86,7 +81,7 @@ const Card = React.createClass({
       if (currentChild.props.actAsExpander === true) {
         doClone = true;
         newProps.onTouchTap = this._onExpandable;
-        newProps.style = this.mergeStyles({cursor: 'pointer'}, currentChild.props.style);
+        newProps.style = Object.assign({cursor: 'pointer'}, currentChild.props.style);
       }
       if (currentChild.props.showExpandableButton === true) {
         doClone = true;
@@ -107,7 +102,7 @@ const Card = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedStyles = this.mergeStyles({
+    const mergedStyles = Object.assign({
       overflow: 'hidden',
       zIndex: 1,
     }, style);
