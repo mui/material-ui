@@ -1,9 +1,49 @@
 import Transitions from '../styles/transitions';
 import React from 'react';
 import PropTypes from '../utils/prop-types';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../paper';
+
+function getStyles(props, state) {
+  const {
+    targetOrigin,
+  } = props;
+
+  const {
+    open,
+    muiTheme: {
+      zIndex,
+    },
+  } = state;
+
+  const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+
+  return {
+    root: {
+      opacity: open ? 1 : 0,
+      transform: open ? 'scale(1, 1)' : 'scale(0, 0)',
+      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
+      position: 'fixed',
+      zIndex: zIndex.popover,
+      transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
+      maxHeight: '100%',
+    },
+    horizontal: {
+      maxHeight: '100%',
+      overflowY: 'auto',
+      transform: open ? 'scaleX(1)' : 'scaleX(0)',
+      opacity: open ? 1 : 0,
+      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
+      transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
+    },
+    vertical: {
+      opacity: open ? 1 : 0,
+      transform: open ? 'scaleY(1)' : 'scaleY(0)',
+      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
+      transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
+    },
+  };
+}
 
 const PopoverDefaultAnimation = React.createClass({
 
@@ -28,14 +68,9 @@ const PopoverDefaultAnimation = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -62,84 +97,33 @@ const PopoverDefaultAnimation = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-
     this.setState({
       open: nextProps.open,
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
-
-  getStyles() {
-    let {targetOrigin} = this.props;
-    let horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
-
-    return {
-      base: {
-        opacity: 0,
-        transform: 'scale(0, 0)',
-        transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-        position: 'fixed',
-        zIndex: this.state.muiTheme.zIndex.popover,
-        transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
-        maxHeight: '100%',
-
-      },
-      horizontal: {
-        maxHeight: '100%',
-        overflowY: 'auto',
-        transform: 'scaleX(0)',
-        opacity: 0,
-        transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-        transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
-      },
-      vertical: {
-        opacity: 0,
-        transform: 'scaleY(0)',
-        transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-        transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
-      },
-    };
-  },
-
-  getOpenStyles() {
-    return {
-      base: {
-        opacity: 1,
-        transform: 'scale(1, 1)',
-      },
-      horizontal: {
-        opacity: 1,
-        transform: 'scaleX(1)',
-      },
-      vertical: {
-        opacity: 1,
-        transform: 'scaleY(1)',
-      },
-    };
-  },
-
   render() {
-    let {
+    const {
       className,
       style,
       zDepth,
     } = this.props;
 
-    let styles = this.getStyles();
-    let openStyles = {};
-    if (this.state.open)
-      openStyles = this.getOpenStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     return (
       <Paper
-        style={this.mergeStyles(styles.base, style, openStyles.base)}
+        style={Object.assign(styles.root, style)}
         zDepth={zDepth}
         className={className}
       >
-        <div style={this.prepareStyles(styles.horizontal, openStyles.horizontal)}>
-          <div style={this.prepareStyles(styles.vertical, openStyles.vertical)}>
+        <div style={prepareStyles(styles.horizontal)}>
+          <div style={prepareStyles(styles.vertical)}>
             {this.props.children}
           </div>
         </div>
