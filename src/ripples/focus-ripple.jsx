@@ -64,7 +64,7 @@ const FocusRipple = React.createClass({
       opacity,
     } = props;
 
-    const innerStyles = this.mergeStyles({
+    const innerStyles = Object.assign({
       position: 'absolute',
       height: '100%',
       width: '100%',
