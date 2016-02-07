@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from 'material-ui/lib/avatar';
+import Avatar from 'material-ui/lib/Avatar/Avatar';
 import FileFolder from 'material-ui/lib/svg-icons/file/folder';
 import styles from 'material-ui/lib/styles';
 import FontIcon from 'material-ui/lib/font-icon';
