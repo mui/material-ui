@@ -55,7 +55,7 @@ const Menu = React.createClass({
     maxHeight: React.PropTypes.number,
 
     /**
-     * If true, the value can an array and allow the menu to be a multi-select.
+     * If true, the value can be an array and allow the menu to be a multi-select.
      */
     multiple: React.PropTypes.bool,
 
