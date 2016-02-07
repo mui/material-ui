@@ -11,8 +11,7 @@ import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
-    return new Error('Required prop label or children was not ' +
-      'specified in ' + componentName + '.');
+    return new Error(`Required prop label or children was not specified in ${componentName}.`);
   }
 }
 
@@ -267,7 +266,7 @@ const RaisedButton = React.createClass({
         paddingLeft: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
         paddingRight: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
         lineHeight: (this.props.style && this.props.style.height) ?
-         this.props.style.height : this.getThemeButton().height + 'px',
+         this.props.style.height : `${this.getThemeButton().height}px`,
         color: this._getLabelColor(),
       },
       overlay: {

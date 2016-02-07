@@ -33,7 +33,7 @@ function getStyles(props, state) {
     root: {
       position: 'relative',
       display: 'inline-block',
-      padding: [radius2x + 'px', radius2x + 'px', radius + 'px', radius + 'px'].join(' '),
+      padding: `${radius2x}px ${radius2x}px ${radius}px ${radius}px`,
     },
     badge: {
       display: 'flex',

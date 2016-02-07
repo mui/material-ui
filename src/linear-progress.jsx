@@ -117,13 +117,13 @@ const LinearProgress = React.createClass({
     const left = this.state.muiTheme.isRtl ? 'right' : 'left';
 
     if (step === 0) {
-      barElement.style[left] = stepValues[0][0] + '%';
-      barElement.style[right] = stepValues[0][1] + '%';
+      barElement.style[left] = `${stepValues[0][0]}%`;
+      barElement.style[right] = `${stepValues[0][1]}%`;
     } else if (step === 1) {
       barElement.style.transitionDuration = '840ms';
     } else if (step === 2) {
-      barElement.style[left] = stepValues[1][0] + '%';
-      barElement.style[right] = stepValues[1][1] + '%';
+      barElement.style[left] = `${stepValues[1][0]}%`;
+      barElement.style[right] = `${stepValues[1][1]}%`;
     } else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
@@ -174,7 +174,7 @@ const LinearProgress = React.createClass({
     } else {
       styles.bar.backgroundColor = this.props.color || this.getTheme().primary1Color;
       styles.bar.transition = Transitions.create('width', '.3s', null, 'linear');
-      styles.bar.width = this._getRelativeValue() + '%';
+      styles.bar.width = `${this._getRelativeValue()}%`;
     }
 
     return styles;

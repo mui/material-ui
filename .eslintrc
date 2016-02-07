@@ -50,6 +50,7 @@ rules:
   one-var: [2, never]
   prefer-arrow-callback: 0 # Wishlist, one day
   prefer-const: 0 # Wishlist, one day
+  prefer-template: 0 # Wishlist, one day
   quotes: [2, single, avoid-escape]
   semi: [2, always]
   space-after-keywords: [2, always]
