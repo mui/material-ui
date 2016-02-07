@@ -10,6 +10,7 @@ import PropTypes from '../utils/prop-types';
 import List from '../lists/list';
 import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
+import deprecated from '../utils/deprecatedPropType';
 
 const Menu = React.createClass({
 
@@ -19,7 +20,7 @@ const Menu = React.createClass({
      * gets added to the DOM. In order for transitions to
      * work, wrap the menu inside a ReactTransitionGroup.
      */
-    animated: React.PropTypes.bool,
+    animated: deprecated(React.PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
 
     /**
      * If true, the width will automatically be
@@ -140,7 +141,6 @@ const Menu = React.createClass({
 
   getDefaultProps() {
     return {
-      animated: false,
       autoWidth: true,
       desktop: false,
       initiallyKeyboardFocused: false,

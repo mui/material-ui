@@ -2,12 +2,8 @@ import React from 'react';
 import Popover from 'material-ui/lib/popover/popover';
 import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
 import RaisedButton from 'material-ui/lib/raised-button';
-
-const styles = {
-  popover: {
-    padding: 20,
-  },
-};
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 export default class PopoverExampleAnimation extends React.Component {
 
@@ -47,9 +43,12 @@ export default class PopoverExampleAnimation extends React.Component {
           onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationFromTop}
         >
-          <div style={styles.popover}>
-            <RaisedButton primary={true} label="Here is a button"/>
-          </div>
+          <Menu zDepth={0}>
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Help &amp; feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Sign out" />
+          </Menu>
         </Popover>
       </div>
     );
