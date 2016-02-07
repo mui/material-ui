@@ -61,9 +61,11 @@ const CardActions = React.createClass({
     let styles = this.getStyles();
 
     let children = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, {
-        style: this.mergeStyles({marginRight: 8}, child.props.style),
-      });
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          style: this.mergeStyles({marginRight: 8}, child.props.style),
+        });
+      }
     });
 
     return (
