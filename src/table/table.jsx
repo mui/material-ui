@@ -1,7 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    baseTheme,
+    table,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      backgroundColor: table.backgroundColor,
+      padding: '0 ' + baseTheme.spacing.desktopGutter + 'px',
+      width: '100%',
+      borderCollapse: 'collapse',
+      borderSpacing: 0,
+      tableLayout: 'fixed',
+      fontFamily: baseTheme.fontFamily,
+    },
+    bodyTable: {
+      height: (props.fixedHeader || props.fixedFooter) ? props.height : 'auto',
+      overflowX: 'hidden',
+      overflowY: 'auto',
+    },
+    tableWrapper: {
+      height: (props.fixedHeader || props.fixedFooter) ? 'auto' : props.height,
+      overflow: 'auto',
+    },
+  };
+}
 
 const Table = React.createClass({
 
@@ -123,12 +149,9 @@ const Table = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -154,45 +177,15 @@ const Table = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.table;
-  },
-
-  getStyles() {
-    let styles = {
-      root: {
-        backgroundColor: this.getTheme().backgroundColor,
-        padding: '0 ' + this.state.muiTheme.rawTheme.spacing.desktopGutter + 'px',
-        width: '100%',
-        borderCollapse: 'collapse',
-        borderSpacing: 0,
-        tableLayout: 'fixed',
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-      },
-      bodyTable: {
-        height: (this.props.fixedHeader || this.props.fixedFooter) ? this.props.height : 'auto',
-        overflowX: 'hidden',
-        overflowY: 'auto',
-      },
-      tableWrapper: {
-        height: (this.props.fixedHeader || this.props.fixedFooter) ? 'auto' : this.props.height,
-        overflow: 'auto',
-      },
-    };
-
-    return styles;
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   isScrollbarVisible() {
-    const tableDivHeight = ReactDOM.findDOMNode(this.refs.tableDiv).clientHeight;
-    const tableBodyHeight = ReactDOM.findDOMNode(this.refs.tableBody).clientHeight;
+    const tableDivHeight = this.refs.tableDiv.clientHeight;
+    const tableBodyHeight = this.refs.tableBody.clientHeight;
 
     return tableBodyHeight > tableDivHeight;
   },
@@ -221,7 +214,7 @@ const Table = React.createClass({
         onRowHoverExit: this._onRowHoverExit,
         onRowSelection: this._onRowSelection,
         selectable: this.props.selectable,
-        style: this.mergeStyles({height: this.props.height}, base.props.style),
+        style: Object.assign({height: this.props.height}, base.props.style),
       }
     );
   },
@@ -280,7 +273,12 @@ const Table = React.createClass({
       footerStyle,
       ...other,
     } = this.props;
-    let styles = this.getStyles();
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     let tHead;
     let tFoot;
@@ -302,7 +300,7 @@ const Table = React.createClass({
     // If we could not find a table-header and a table-body, do not attempt to display anything.
     if (!tBody && !tHead) return null;
 
-    let mergedTableStyle = this.mergeStyles(styles.root, style);
+    let mergedTableStyle = Object.assign(styles.root, style);
     let headerTable;
     let footerTable;
     let inlineHeader;
@@ -310,7 +308,7 @@ const Table = React.createClass({
 
     if (fixedHeader) {
       headerTable = (
-        <div style={this.prepareStyles(headerStyle)}>
+        <div style={prepareStyles(Object.assign({}, headerStyle))}>
           <table className={className} style={mergedTableStyle}>
             {tHead}
           </table>
@@ -323,8 +321,8 @@ const Table = React.createClass({
     if (tFoot !== undefined) {
       if (fixedFooter) {
         footerTable = (
-          <div style={this.prepareStyles(footerStyle)}>
-            <table className={className} style={this.prepareStyles(mergedTableStyle)}>
+          <div style={prepareStyles(Object.assign({}, footerStyle))}>
+            <table className={className} style={prepareStyles(mergedTableStyle)}>
               {tFoot}
             </table>
           </div>
@@ -335,9 +333,9 @@ const Table = React.createClass({
     }
 
     return (
-      <div style={this.prepareStyles(styles.tableWrapper, wrapperStyle)}>
+      <div style={prepareStyles(Object.assign(styles.tableWrapper, wrapperStyle))}>
         {headerTable}
-        <div style={this.prepareStyles(styles.bodyTable, bodyStyle)} ref="tableDiv">
+        <div style={prepareStyles(Object.assign(styles.bodyTable, bodyStyle))} ref="tableDiv">
           <table className={className} style={mergedTableStyle} ref="tableBody">
             {inlineHeader}
             {inlineFooter}
