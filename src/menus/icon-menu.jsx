@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StylePropable from '../mixins/style-propable';
 import Events from '../utils/events';
 import PropTypes from '../utils/prop-types';
 import Menu from '../menus/menu';
@@ -120,14 +119,9 @@ const IconMenu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -167,11 +161,10 @@ const IconMenu = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     if (nextProps.open === true || nextProps.open === false) {
       this.setState({open: nextProps.open});
@@ -260,6 +253,10 @@ const IconMenu = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     const {open, anchorEl} = this.state;
 
     let styles = {
@@ -273,12 +270,12 @@ const IconMenu = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.mergeStyles(styles.root, style);
-    let mergedMenuStyles = this.mergeStyles(styles.menu, menuStyle);
+    let mergedRootStyles = Object.assign(styles.root, style);
+    let mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
     let iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
-      iconStyle: this.mergeStyles(iconStyle, iconButtonElement.props.iconStyle),
+      iconStyle: Object.assign(iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (e) => {
         this.open(Events.isKeyboard(e) ? 'keyboard' : 'iconTap', e);
         if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(e);
@@ -308,7 +305,7 @@ const IconMenu = React.createClass({
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
         onTouchTap={onTouchTap}
-        style={this.prepareStyles(mergedRootStyles)}
+        style={prepareStyles(mergedRootStyles)}
       >
         {iconButton}
         <Popover
