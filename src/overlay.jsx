@@ -1,8 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
+import getMuiTheme from './styles/getMuiTheme';
 import Transitions from './styles/transitions';
 import Colors from './styles/colors';
+
+function getStyles(props) {
+  const style = {
+    root: {
+      position: 'fixed',
+      height: '100%',
+      width: '100%',
+      top: 0,
+      left: '-100%',
+      opacity: 0,
+      backgroundColor: Colors.lightBlack,
+      WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+
+      // Two ways to promote overlay to its own render layer
+      willChange: 'opacity',
+      transform: 'translateZ(0)',
+
+      transition:
+        props.transitionEnabled &&
+        Transitions.easeOut('0ms', 'left', '400ms') + ',' +
+        Transitions.easeOut('400ms', 'opacity'),
+    },
+  };
+
+  if (props.show) {
+    Object.assign(style.root, {
+      left: 0,
+      opacity: 1,
+      transition: `${Transitions.easeOut('0ms', 'left')}, ${
+        Transitions.easeOut('400ms', 'opacity')}`,
+    });
+  }
+
+  return style;
+}
 
 const Overlay = React.createClass({
 
@@ -21,15 +55,17 @@ const Overlay = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
       autoLockScrolling: true,
       transitionEnabled: true,
       style: {},
+    };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -39,10 +75,15 @@ const Overlay = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
+
     if (this.props.show !== nextProps.show) {
       this._applyAutoLockScrolling(nextProps);
     }
+
   },
 
   componentWillUnmount() {
@@ -54,42 +95,7 @@ const Overlay = React.createClass({
   _originalBodyOverflow: '',
 
   setOpacity(opacity) {
-    let overlay = ReactDOM.findDOMNode(this);
-    overlay.style.opacity = opacity;
-  },
-
-  getStyles() {
-    return {
-      root: {
-        position: 'fixed',
-        height: '100%',
-        width: '100%',
-        top: 0,
-        left: '-100%',
-        opacity: 0,
-        backgroundColor: Colors.lightBlack,
-        WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-
-        // Two ways to promote overlay to its own render layer
-        willChange: 'opacity',
-        transform: 'translateZ(0)',
-
-        transition:
-          this.props.transitionEnabled &&
-          `${Transitions.easeOut('0ms', 'left', '400ms')},${
-            Transitions.easeOut('400ms', 'opacity')
-          }`,
-      },
-      rootWhenShown: {
-        left: '0',
-        opacity: 1,
-        transition:
-          this.props.transitionEnabled &&
-          `${Transitions.easeOut('0ms', 'left')},${
-            Transitions.easeOut('400ms', 'opacity')
-          }`,
-      },
-    };
+    this.refs.overlay.style.opacity = opacity;
   },
 
   _applyAutoLockScrolling(props) {
@@ -121,10 +127,14 @@ const Overlay = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.mergeStyles(this.getStyles().root, style, show && this.getStyles().rootWhenShown);
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <div {...other} style={this.prepareStyles(styles)} />
+      <div {...other} ref="overlay" style={prepareStyles(Object.assign(styles.root, style))} />
     );
   },
 
