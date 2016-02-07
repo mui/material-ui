@@ -74,6 +74,11 @@ const AutoComplete = React.createClass({
     menuCloseDelay: React.PropTypes.number,
 
     /**
+     * Limit the number of items shown in the menu
+     */
+    menuItemsLimit: React.PropTypes.number,
+
+    /**
      * Props to be passed to menu.
      */
     menuProps: React.PropTypes.object,
@@ -152,6 +157,7 @@ const AutoComplete = React.createClass({
       open: false,
       searchText: '',
       menuCloseDelay: 100,
+      menuItemsLimit: 20,
       disableFocusRipple: true,
       onUpdateInput: () => {},
       onNewRequest: () => {},
@@ -342,6 +348,10 @@ const AutoComplete = React.createClass({
           break;
       }
     });
+
+    if (this.props.menuItemsLimit > 0 && requestsList.length > this.props.menuItemsLimit) {
+      requestsList = requestsList.slice(0, this.props.menuItemsLimit);
+    }
 
     this.requestsList = requestsList;
 
