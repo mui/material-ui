@@ -12,6 +12,7 @@ rules:
   # Errors
   array-bracket-spacing: [2, never]
   arrow-spacing: 2
+  arrow-parens: 2
   block-spacing: [2, always]
   brace-style: 2
   comma-dangle: [2, always-multiline]

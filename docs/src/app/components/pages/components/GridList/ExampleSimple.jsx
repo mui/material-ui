@@ -70,7 +70,7 @@ const GridListExampleSimple = () => (
       style={styles.gridList}
     >
       <Subheader>December</Subheader>
-      {tilesData.map(tile => (
+      {tilesData.map((tile) => (
         <GridTile
           key={tile.img}
           title={tile.title}

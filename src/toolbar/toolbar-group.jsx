@@ -160,7 +160,7 @@ const ToolbarGroup = React.createClass({
 
     const styles = getStyles(this.props, this.state);
 
-    const newChildren = React.Children.map(children, currentChild => {
+    const newChildren = React.Children.map(children, (currentChild) => {
       if (!currentChild) {
         return null;
       }

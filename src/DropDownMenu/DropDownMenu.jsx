@@ -262,7 +262,7 @@ const DropDownMenu = React.createClass({
     const styles = this.getStyles();
 
     let displayValue = '';
-    React.Children.forEach(children, child => {
+    React.Children.forEach(children, (child) => {
       if (value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
