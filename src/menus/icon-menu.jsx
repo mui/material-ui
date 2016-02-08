@@ -11,7 +11,7 @@ const IconMenu = React.createClass({
   propTypes: {
     /**
      * This is the point on the icon where the menu
-     * targetOrigin will stick to.
+     * targetOrigin will attach.
      * Options:
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right].
@@ -42,6 +42,11 @@ const IconMenu = React.createClass({
      * The style object to use to override underlying menu style.
      */
     menuStyle: React.PropTypes.object,
+
+    /**
+     * If true, the value can an be array and allow the menu to be a multi-select.
+     */
+    multiple: React.PropTypes.bool,
 
     /**
      * Fired when a menu item is touchTapped.
@@ -125,6 +130,11 @@ const IconMenu = React.createClass({
 
   getDefaultProps() {
     return {
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'left',
+      },
+      multiple: false,
       open: null,
       onItemTouchTap: () => {},
       onKeyboardFocus: () => {},
@@ -134,10 +144,6 @@ const IconMenu = React.createClass({
       onMouseUp: () => {},
       onTouchTap: () => {},
       onRequestChange: () => {},
-      anchorOrigin: {
-        vertical: 'top',
-        horizontal: 'left',
-      },
       targetOrigin: {
         vertical: 'top',
         horizontal: 'left',
