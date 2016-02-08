@@ -401,7 +401,7 @@ const Menu = React.createClass({
     let childValue = child.props.value;
 
     return (multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
-      (!multiple && menuValue && menuValue === childValue);
+      (!multiple && menuValue === childValue);
   },
 
   _setFocusIndex(newIndex, isKeyboardFocused) {
