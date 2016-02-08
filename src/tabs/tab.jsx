@@ -1,7 +1,24 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 import EnhancedButton from '../enhanced-button';
+
+function getStyles(props, state) {
+  const {
+    tabs,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      padding: '0px 12px',
+      height: (props.label && props.icon) ? 72 : 48,
+      color: props.selected ? tabs.selectedTextColor : tabs.textColor,
+      fontWeight: 500,
+      fontSize: 14,
+      width: props.width,
+      textTransform: 'uppercase',
+    },
+  };
+}
 
 const Tab = React.createClass({
 
@@ -61,14 +78,9 @@ const Tab = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getInitialState() {
     return {
@@ -82,11 +94,10 @@ const Tab = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _handleTouchTap(event) {
@@ -108,17 +119,7 @@ const Tab = React.createClass({
       ...other,
     } = this.props;
 
-    const textColor = selected ? this.state.muiTheme.tabs.selectedTextColor : this.state.muiTheme.tabs.textColor;
-
-    const styles = this.mergeStyles({
-      padding: '0px 12px',
-      height: (label && icon) ? 72 : 48,
-      color: textColor,
-      fontWeight: 500,
-      fontSize: 14,
-      width: width,
-      textTransform: 'uppercase',
-    }, style);
+    const styles = getStyles(this.props, this.state);
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {
@@ -127,12 +128,12 @@ const Tab = React.createClass({
           fontSize: 24,
           marginBottom: (label) ? 5 : 0,
           display: label ? 'block' : 'inline-block',
-          color: textColor,
+          color: styles.root.color,
         },
       };
       // If it's svg icon set color via props
       if (icon.type.displayName !== 'FontIcon') {
-        params.color = textColor;
+        params.color = styles.root.color;
       }
       iconElement = React.cloneElement(icon, params);
     }
@@ -143,7 +144,7 @@ const Tab = React.createClass({
     return (
       <EnhancedButton
         {...other}
-        style={styles}
+        style={styles.root}
         focusRippleColor={rippleColor}
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}

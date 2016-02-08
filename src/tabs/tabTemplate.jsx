@@ -8,16 +8,14 @@ class TabTemplate extends React.Component {
 
   render() {
     const styles = {
-      height: 0,
-      overflow: 'hidden',
       width: '100%',
       position: 'relative',
       textAlign: 'initial',
     };
 
-    if (this.props.selected) {
-      delete styles.height;
-      delete styles.overflow;
+    if (!this.props.selected) {
+      styles.height = 0;
+      styles.overflow = 'hidden';
     }
 
     return (
