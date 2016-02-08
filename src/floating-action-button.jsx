@@ -27,6 +27,11 @@ const FloatingActionButton = React.createClass({
     children: React.PropTypes.node,
 
     /**
+     * The css class name of the root element.
+     */
+    className: React.PropTypes.string,
+
+    /**
      * Disables the button if set to true.
      */
     disabled: React.PropTypes.bool,
@@ -281,6 +286,7 @@ const FloatingActionButton = React.createClass({
 
   render() {
     let {
+      className,
       disabled,
       mini,
       secondary,
@@ -322,6 +328,7 @@ const FloatingActionButton = React.createClass({
 
     return (
       <Paper
+        className={className}
         style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
         circle={true}

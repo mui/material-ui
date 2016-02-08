@@ -1,6 +1,9 @@
 ## HEAD
 
+##### Breaking Changes
 - Remove the deprecated API of `0.14.x`. (#3108)
+- [FloatingActionButton] Fix:className now set to root element(#2310)
+- [RaisedButton] Fix:className now set to root element(#3122)
 
 ## 0.14.4
 ###### _Feb 02, 2016_
