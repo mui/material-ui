@@ -2,9 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TabTemplate from './tabTemplate';
 import InkBar from '../ink-bar';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
+
+function getStyles(props, state) {
+  const {
+    tabs,
+  } = state.muiTheme;
+
+  return {
+    tabItemContainer: {
+      margin: 0,
+      padding: 0,
+      width: '100%',
+      backgroundColor: tabs.backgroundColor,
+      whiteSpace: 'nowrap',
+    },
+  };
+}
+
 
 const Tabs = React.createClass({
 
@@ -76,10 +92,6 @@ const Tabs = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
       initialSelectedIndex: 0,
@@ -109,13 +121,15 @@ const Tabs = React.createClass({
 
   componentWillReceiveProps(newProps, nextContext) {
     const valueLink = this.getValueLink(newProps);
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newState = {
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    };
 
     if (valueLink.value !== undefined) {
-      this.setState({selectedIndex: this._getSelectedIndex(newProps)});
+      newState.selectedIndex = this._getSelectedIndex(newProps);
     }
 
-    this.setState({muiTheme: newMuiTheme});
+    this.setState(newState);
   },
 
   getEvenWidth() {
@@ -186,16 +200,11 @@ const Tabs = React.createClass({
       ...other,
     } = this.props;
 
-    let themeVariables = this.state.muiTheme.tabs;
-    let styles = {
-      tabItemContainer: {
-        margin: 0,
-        padding: 0,
-        width: '100%',
-        backgroundColor: themeVariables.backgroundColor,
-        whiteSpace: 'nowrap',
-      },
-    };
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     let valueLink = this.getValueLink(this.props);
     let tabValue = valueLink.value;
@@ -242,16 +251,16 @@ const Tabs = React.createClass({
     return (
       <div
         {...other}
-        style={this.prepareStyles(style)}
+        style={prepareStyles(Object.assign({}, style))}
       >
-        <div style={this.prepareStyles(styles.tabItemContainer, tabItemContainerStyle)}>
+        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
          {inkBar}
         </div>
         <div
-          style={this.prepareStyles(contentContainerStyle)}
+          style={prepareStyles(Object.assign({}, contentContainerStyle))}
           className={contentContainerClassName}
         >
           {tabContent}
