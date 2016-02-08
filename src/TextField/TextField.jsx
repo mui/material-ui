@@ -83,6 +83,8 @@ const TextField = React.createClass({
 
     /**
      * Override the inline-styles of the TextField's input element.
+     * When multiLine is false: define the style of the input element.
+     * When multiLine is true: define the style of the container of the textarea.
      */
     inputStyle: React.PropTypes.object,
 
@@ -132,6 +134,13 @@ const TextField = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the TextField's textarea element.
+     * The TextField use either a textarea or an input,
+     * this property has effects only when multiLine is true.
+     */
+    textareaStyle: React.PropTypes.object,
 
     /**
      * Specifies the type of input to display
@@ -407,6 +416,7 @@ const TextField = React.createClass({
       hintText,
       hintStyle,
       id,
+      inputStyle,
       multiLine,
       onBlur,
       onChange,
@@ -419,6 +429,7 @@ const TextField = React.createClass({
       underlineStyle,
       rows,
       rowsMax,
+      textareaStyle,
       ...other,
     } = this.props;
 
@@ -454,7 +465,9 @@ const TextField = React.createClass({
       disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown,
     };
-    const inputStyle = this.mergeStyles(styles.input, this.props.inputStyle);
+
+    const inputStyleMerged = this.mergeStyles(styles.input, inputStyle);
+    const textareaStyleMerged = this.mergeStyles(styles.textarea, textareaStyle);
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
@@ -465,24 +478,24 @@ const TextField = React.createClass({
         {
           ...inputProps,
           ...this.props.children.props,
-          style: this.mergeStyles(inputStyle, this.props.children.props.style),
+          style: this.mergeStyles(inputStyleMerged, this.props.children.props.style),
         });
     } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
           {...other}
           {...inputProps}
-          style={inputStyle}
+          style={inputStyleMerged}
           rows={rows}
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
-          textareaStyle={styles.textarea}
+          textareaStyle={textareaStyleMerged}
         />
       ) : (
         <input
           {...other}
           {...inputProps}
-          style={this.prepareStyles(inputStyle)}
+          style={this.prepareStyles(inputStyleMerged)}
           type={type}
         />
       );
