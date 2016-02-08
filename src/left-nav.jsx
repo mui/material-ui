@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import KeyCode from './utils/key-code';
-import StylePropable from './mixins/style-propable';
 import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import WindowListenable from './mixins/window-listenable';
@@ -89,13 +88,11 @@ const LeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     WindowListenable,
   ],
 
@@ -133,11 +130,8 @@ const LeftNav = React.createClass({
     this._enableSwipeHandling();
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    const newState = {muiTheme: newMuiTheme};
+    const newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
 
     // If docked is changed, change the open state for when uncontrolled.
     if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
@@ -383,7 +377,7 @@ const LeftNav = React.createClass({
           ref="overlay"
           show={this._shouldShow()}
           className={overlayClassName}
-          style={this.mergeStyles(styles.overlay, overlayStyle)}
+          style={Object.assign(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}
           onTouchTap={this._onOverlayTouchTap}
         />
@@ -399,7 +393,7 @@ const LeftNav = React.createClass({
           rounded={false}
           transitionEnabled={!this.state.swiping}
           className={className}
-          style={this.mergeStyles(styles.root, openRight && styles.rootWhenOpenRight, style)}
+          style={Object.assign(styles.root, openRight && styles.rootWhenOpenRight, style)}
         >
           {children}
         </Paper>
