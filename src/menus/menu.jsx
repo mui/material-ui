@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
-import StylePropable from '../mixins/style-propable';
 import ClickAwayable from '../mixins/click-awayable';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
@@ -128,13 +127,11 @@ const Menu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     ClickAwayable,
   ],
 
@@ -182,12 +179,11 @@ const Menu = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     const filteredChildren = this._getFilteredChildren(nextProps.children);
     let selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     this.setState({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -249,13 +245,10 @@ const Menu = React.createClass({
     let selectedChildrenStyles = {};
 
     if (selected) {
-      selectedChildrenStyles = this.mergeStyles(styles.selectedMenuItem, selectedMenuItemStyle);
+      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, selectedMenuItemStyle);
     }
 
-    let mergedChildrenStyles = this.mergeStyles(
-      child.props.style || {},
-      selectedChildrenStyles
-    );
+    const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
 
     let isFocused = childIndex === this.state.focusIndex;
     let focusState = 'none';
@@ -466,6 +459,10 @@ const Menu = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     let openDown = openDirection.split('-')[0] === 'bottom';
     let openLeft = openDirection.split('-')[1] === 'left';
 
@@ -518,8 +515,8 @@ const Menu = React.createClass({
       },
     };
 
-    let mergedRootStyles = this.mergeStyles(styles.root, style);
-    let mergedListStyles = this.mergeStyles(styles.list, listStyle);
+    let mergedRootStyles = Object.assign(styles.root, style);
+    let mergedListStyles = Object.assign(styles.list, listStyle);
 
     const filteredChildren = this._getFilteredChildren(children);
 
@@ -547,7 +544,7 @@ const Menu = React.createClass({
           transitionDelay = cumulativeDelay;
         }
 
-        childrenContainerStyles = this.mergeStyles(styles.menuItemContainer, {
+        childrenContainerStyles = Object.assign({}, styles.menuItemContainer, {
           transitionDelay: transitionDelay + 'ms',
         });
       }
@@ -559,7 +556,7 @@ const Menu = React.createClass({
       if (!childIsADivider && !childIsDisabled) menuItemIndex++;
 
       return animated ? (
-        <div style={this.prepareStyles(childrenContainerStyles)}>{clonedChild}</div>
+        <div style={prepareStyles(childrenContainerStyles)}>{clonedChild}</div>
       ) : clonedChild;
 
     });
@@ -567,7 +564,7 @@ const Menu = React.createClass({
     return (
       <div
         onKeyDown={this._handleKeyDown}
-        style={this.prepareStyles(mergedRootStyles)}
+        style={prepareStyles(mergedRootStyles)}
       >
         <Paper
           ref="scrollContainer"
