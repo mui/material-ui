@@ -224,7 +224,7 @@ const Slider = React.createClass({
         transition: Transitions.easeOut(null, 'margin'),
       },
       handle: {
-        boxSizing: 'border-box',
+        boxSizing: 'content-box',
         position: 'absolute',
         cursor: 'pointer',
         pointerEvents: 'inherit',
@@ -234,8 +234,9 @@ const Slider = React.createClass({
         margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
         width: this.getTheme().handleSize,
         height: this.getTheme().handleSize,
+        padding: this.getTheme().handleSize,
         backgroundColor: this.getTheme().selectionColor,
-        backgroundClip: 'padding-box',
+        backgroundClip: 'content-box',
         border: '0px solid transparent',
         borderRadius: '50%',
         transform: 'translate(-50%, -50%)',
@@ -253,20 +254,11 @@ const Slider = React.createClass({
         width: this.getTheme().handleSizeDisabled,
         height: this.getTheme().handleSizeDisabled,
         border: 'none',
+        padding: 0,
       },
       handleWhenPercentZero: {
-        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
-        backgroundColor: this.getTheme().handleFillColor,
+        backgroundColor: this.getTheme().handleColorZero,
         boxShadow: 'none',
-      },
-      handleWhenPercentZeroAndDisabled: {
-        cursor: 'not-allowed',
-        width: this.getTheme().handleSizeDisabled,
-        height: this.getTheme().handleSizeDisabled,
-      },
-      handleWhenPercentZeroAndFocused: {
-        border: this.getTheme().trackSize + 'px solid ' +
-          this.getTheme().trackColorSelected,
       },
       handleWhenActive: {
         width: this.getTheme().handleSizeActive,
@@ -276,10 +268,8 @@ const Slider = React.createClass({
         height: this.getTheme().handleSize,
         width: this.getTheme().handleSize,
         overflow: 'visible',
-      },
-      rippleWhenPercentZero: {
-        top: -this.getTheme().trackSize,
-        left: -this.getTheme().trackSize,
+        top: this.getTheme().handleSize,
+        left: this.getTheme().handleSize,
       },
       rippleInner: {
         height: '300%',
@@ -495,16 +485,8 @@ const Slider = React.createClass({
 
     let styles = this.getStyles();
     const sliderStyles = this.mergeStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.mergeStyles(
-      styles.handle,
-      styles.handleWhenPercentZero,
-      this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      (this.state.hovered || this.state.focused) && !this.props.disabled
-        && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.mergeStyles(
-      styles.handle,
+    const handleStyles = this.mergeStyles(styles.handle,
+      percent === 0 && styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
       this.props.disabled && styles.handleWhenDisabled,
@@ -512,15 +494,12 @@ const Slider = React.createClass({
         left: (percent * 100) + '%',
       }
     );
-    let rippleStyle = this.mergeStyles(
-      styles.ripple,
-      percent === 0 && styles.rippleWhenPercentZero
-    );
     let remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
     }
 
+    let rippleStyle = styles.ripple;
     let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
     let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
     let focusRipple;
