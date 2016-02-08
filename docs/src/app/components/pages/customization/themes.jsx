@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import mui from 'material-ui';
 import MarkdownElement from '../../MarkdownElement';
 import ComponentDoc from '../../component-doc';
@@ -547,6 +549,7 @@ const ThemesPage = React.createClass({
 
     return (
       <div>
+        <Title render={(previousTitle) => `Themes - ${previousTitle}`} />
 
         <h2 style={styles.headline}>Themes</h2>
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -15,6 +17,7 @@ const description = 'The second button is selected by default using the `default
 
 const RadioButtonPage = () => (
   <div>
+    <Title render={(previousTitle) => `Radio Button - ${previousTitle}`} />
     <MarkdownElement text={radioButtonReadmeText} />
     <CodeExample
       title="Examples"

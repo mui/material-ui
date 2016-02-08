@@ -1,9 +1,14 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import MarkdownElement from '../../MarkdownElement';
 import contributingText from '../../../../../../CONTRIBUTING.md';
 
 const Contributing = () => (
-  <MarkdownElement text={contributingText} />
+  <div>
+    <Title render={(previousTitle) => `Contributing - ${previousTitle}`} />
+    <MarkdownElement text={contributingText} />
+  </div>
 );
 
 export default Contributing;

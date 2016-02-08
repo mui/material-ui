@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import {Checkbox, Styles} from 'material-ui';
 import CodeExample from '../../CodeExample';
 
@@ -63,6 +65,7 @@ class InlineStyles extends React.Component {
 
     return (
       <div>
+        <Title render={(previousTitle) => `Inline Styles - ${previousTitle}`} />
         <h2 style={styles.headline}>Inline Styles</h2>
         <p>
           All Material-UI components have their styles defined inline. You

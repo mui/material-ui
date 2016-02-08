@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -20,6 +22,7 @@ const descriptions = {
 
 const FontIconPage = () => (
   <div>
+    <Title render={(previousTitle) => `Font Icon - ${previousTitle}`} />
     <MarkdownElement text={iconReadmeText} />
     <CodeExample
       title="Custom icon font"
