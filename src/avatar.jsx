@@ -1,7 +1,47 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Colors from './styles/colors';
 import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    backgroundColor,
+    color,
+    size,
+    src,
+  } = props;
+
+  const {
+    avatar,
+  } = state.muiTheme;
+
+  const styles = {
+    root: {
+      color,
+      backgroundColor,
+      userSelect: 'none',
+      display: 'inline-block',
+      textAlign: 'center',
+      lineHeight: `${size}px`,
+      fontSize: size / 2 + 4,
+      borderRadius: '50%',
+      height: size,
+      width: size,
+    },
+    icon: {
+      margin: 8,
+    },
+  };
+
+  if (src && avatar.borderColor) {
+    Object.assign(styles.root, {
+      border: `solid 1px ${avatar.borderColor}`,
+      height: size - 2,
+      width: size - 2,
+    });
+  }
+
+  return styles;
+}
 
 const Avatar = React.createClass({
 
@@ -51,12 +91,9 @@ const Avatar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -78,11 +115,10 @@ const Avatar = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
@@ -97,60 +133,32 @@ const Avatar = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = {
-      root: {
-        height: size,
-        width: size,
-        userSelect: 'none',
-        borderRadius: '50%',
-        display: 'inline-block',
-      },
-    };
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     if (src) {
-      const borderColor = this.state.muiTheme.avatar.borderColor;
-
-      if (borderColor) {
-        styles.root = this.mergeStyles(styles.root, {
-          height: size - 2,
-          width: size - 2,
-          border: `solid 1px ${borderColor}`,
-        });
-      }
-
       return (
         <img
           {...other}
           src={src}
-          style={this.prepareStyles(styles.root, style)}
+          style={prepareStyles(Object.assign(styles.root, style))}
           className={className}
         />
       );
     } else {
-      styles.root = this.mergeStyles(styles.root, {
-        backgroundColor: backgroundColor,
-        textAlign: 'center',
-        lineHeight: `${size}px`,
-        fontSize: size / 2 + 4,
-        color: color,
-      });
-
-      const styleIcon = {
-        margin: 8,
-      };
-
-      const iconElement = icon ? React.cloneElement(icon, {
-        color: color,
-        style: this.mergeStyles(styleIcon, icon.props.style),
-      }) : null;
-
       return (
         <div
           {...other}
-          style={this.prepareStyles(styles.root, style)}
+          style={prepareStyles(Object.assign(styles.root, style))}
           className={className}
         >
-          {iconElement}
+          {icon && React.cloneElement(icon, {
+            color: color,
+            style: Object.assign(styles.icon, icon.props.style),
+          })}
           {this.props.children}
         </div>
       );
