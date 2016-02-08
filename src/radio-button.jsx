@@ -1,10 +1,57 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import EnhancedSwitch from './enhanced-switch';
 import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from './svg-icons/toggle/radio-button-checked';
 import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    radioButton,
+  } = state.muiTheme;
+
+  return {
+    icon: {
+      height: radioButton.size,
+      width: radioButton.size,
+    },
+    target: {
+      transition: Transitions.easeOut(),
+      position: 'absolute',
+      opacity: 1,
+      transform: 'scale(1)',
+      fill: radioButton.borderColor,
+    },
+    fill: {
+      position: 'absolute',
+      opacity: 1,
+      transform: 'scale(0)',
+      transformOrigin: '50% 50%',
+      transition: Transitions.easeOut(),
+      fill: radioButton.checkedColor,
+    },
+    targetWhenChecked: {
+      opacity: 0,
+      transform: 'scale(0)',
+    },
+    fillWhenChecked: {
+      opacity: 1,
+      transform: 'scale(1)',
+    },
+    targetWhenDisabled: {
+      fill: radioButton.disabledColor,
+    },
+    fillWhenDisabled: {
+      fill: radioButton.disabledColor,
+    },
+    label: {
+      color: props.disabled ? radioButton.labelDisabledColor : radioButton.labelColor,
+    },
+    ripple: {
+      color: props.checked ? radioButton.checkedColor : radioButton.borderColor,
+    },
+  };
+}
 
 const RadioButton = React.createClass({
 
@@ -61,12 +108,9 @@ const RadioButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -88,58 +132,14 @@ const RadioButton = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   getTheme() {
     return this.state.muiTheme.radioButton;
-  },
-
-  getStyles() {
-    let styles = {
-      icon: {
-        height: this.getTheme().size,
-        width: this.getTheme().size,
-      },
-      target: {
-        transition: Transitions.easeOut(),
-        position: 'absolute',
-        opacity: 1,
-        transform: 'scale(1)',
-        fill: this.getTheme().borderColor,
-      },
-      fill: {
-        position: 'absolute',
-        opacity: 1,
-        transform: 'scale(0)',
-        transformOrigin: '50% 50%',
-        transition: Transitions.easeOut(),
-        fill: this.getTheme().checkedColor,
-      },
-      targetWhenChecked: {
-        opacity: 0,
-        transform: 'scale(0)',
-      },
-      fillWhenChecked: {
-        opacity: 1,
-        transform: 'scale(1)',
-      },
-      targetWhenDisabled: {
-        fill: this.getTheme().disabledColor,
-      },
-      fillWhenDisabled: {
-        fill: this.getTheme().disabledColor,
-      },
-      label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
-      },
-    };
-
-    return styles;
   },
 
   // Only called when selected, not when unselected.
@@ -170,15 +170,16 @@ const RadioButton = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
+    const styles = getStyles(this.props, this.state);
+
     let onStyles =
-      this.mergeStyles(
+      Object.assign(
         styles.target,
         this.props.checked && styles.targetWhenChecked,
         this.props.iconStyle,
         this.props.disabled && styles.targetWhenDisabled);
     let offStyles =
-      this.mergeStyles(
+      Object.assign(
         styles.fill,
         this.props.checked && styles.fillWhenChecked,
         this.props.iconStyle,
@@ -191,14 +192,12 @@ const RadioButton = React.createClass({
       </div>
     );
 
-    let rippleColor = this.props.checked ? this.getTheme().checkedColor : this.getTheme().borderColor;
-
-    let iconStyle = this.mergeStyles(
+    const iconStyle = Object.assign(
       styles.icon,
       this.props.iconStyle
     );
 
-    let labelStyle = this.mergeStyles(
+    const labelStyle = Object.assign(
       styles.label,
       this.props.labelStyle
     );
@@ -208,7 +207,7 @@ const RadioButton = React.createClass({
       inputType: 'radio',
       switched: this.props.checked,
       switchElement: radioButtonElement,
-      rippleColor: rippleColor,
+      rippleColor: styles.ripple.color,
       iconStyle: iconStyle,
       labelStyle: labelStyle,
       onSwitch: this._handleCheck,
