@@ -301,10 +301,9 @@ const Popover = React.createClass({
       targetPosition = this.applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition);
     }
 
-
-    targetEl.style.top = Math.max(0, targetPosition.top) + 'px';
-    targetEl.style.left = Math.max(0, targetPosition.left) + 'px';
-    targetEl.style.maxHeight = window.innerHeight + 'px';
+    targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
+    targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
+    targetEl.style.maxHeight = `${window.innerHeight}px`;
   },
 
   autoCloseWhenOffScreen(anchorPosition) {

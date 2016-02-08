@@ -103,7 +103,7 @@ const GridList = React.createClass({
       const childCols = currentChild.props.cols || 1;
       const childRows = currentChild.props.rows || 1;
       const itemStyle = Object.assign({}, styles.item, {
-        width: (100 / cols * childCols) + '%',
+        width: `${(100 / cols * childCols)}%`,
         height: cellHeight * childRows + padding,
       });
 

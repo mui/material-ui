@@ -232,15 +232,15 @@ const Tabs = React.createClass({
         key: index,
         selected: this._getSelected(tab, index),
         tabIndex: index,
-        width: width + '%',
+        width: `${width}%`,
         onTouchTap: this._handleTabTouchTap,
       });
     });
 
     const inkBar = this.state.selectedIndex !== -1 ? (
       <InkBar
-        left={width * this.state.selectedIndex + '%'}
-        width={width + '%'}
+        left={`${width * this.state.selectedIndex}%`}
+        width={`${width}%`}
         style={inkBarStyle}
       />
     ) : null;

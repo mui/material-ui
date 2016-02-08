@@ -65,8 +65,8 @@ const TimeDisplay = React.createClass({
     }
 
     hour = hour.toString();
-    if (hour.length < 2 ) hour = '0' + hour;
-    if (min.length < 2 ) min = '0' + min;
+    if (hour.length < 2 ) hour = `0${hour}`;
+    if (min.length < 2 ) min = `0${min}`;
 
     return [hour, min];
   },

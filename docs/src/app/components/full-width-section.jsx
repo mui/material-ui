@@ -1,7 +1,7 @@
 import React from 'react';
 import {ClearFix, Mixins, Styles} from 'material-ui';
 let {StylePropable, StyleResizable} = Mixins;
-let DesktopGutter = Styles.Spacing.desktopGutter;
+const desktopGutter = Styles.Spacing.desktopGutter;
 
 const FullWidthSection = React.createClass({
 
@@ -28,20 +28,20 @@ const FullWidthSection = React.createClass({
   getStyles() {
     return {
       root: {
-        padding: DesktopGutter + 'px',
+        padding: desktopGutter,
         boxSizing: 'border-box',
       },
       content: {
-        maxWidth: '1200px',
+        maxWidth: 1200,
         margin: '0 auto',
       },
       rootWhenSmall: {
-        paddingTop: DesktopGutter * 2,
-        paddingBottom: DesktopGutter * 2,
+        paddingTop: desktopGutter * 2,
+        paddingBottom: desktopGutter * 2,
       },
       rootWhenLarge: {
-        paddingTop: DesktopGutter * 3,
-        paddingBottom: DesktopGutter * 3,
+        paddingTop: desktopGutter * 3,
+        paddingBottom: desktopGutter * 3,
       },
     };
   },

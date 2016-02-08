@@ -113,7 +113,7 @@ const TableHeader = React.createClass({
       if (!React.isValidElement(child)) continue;
 
       let props = {
-        key: 'sh' + index,
+        key: `sh${index}`,
         rowNumber: index,
       };
       superHeaders.push(this._createSuperHeaderRow(child, props));
@@ -138,7 +138,7 @@ const TableHeader = React.createClass({
     let numChildren = React.Children.count(this.props.children);
     let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     let props = {
-      key: 'h' + numChildren,
+      key: `h${numChildren}`,
       rowNumber: numChildren,
     };
 
@@ -157,7 +157,7 @@ const TableHeader = React.createClass({
   _getCheckboxPlaceholder(props) {
     if (!this.props.adjustForCheckbox) return null;
 
-    const key = 'hpcb' + props.rowNumber;
+    const key = `hpcb${props.rowNumber}`;
     return <TableHeaderColumn key={key} style={{width: 24}} />;
   },
 
@@ -175,7 +175,7 @@ const TableHeader = React.createClass({
       />
     );
 
-    const key = 'hpcb' + props.rowNumber;
+    const key = `hpcb${props.rowNumber}`;
     return (
       <TableHeaderColumn key={key} style={{width: 24}}>
         {checkbox}

@@ -235,7 +235,7 @@ const RefreshIndicator = React.createClass({
     const theme = this._getTheme();
     return {
       style: {
-        strokeDasharray: arcLen + ', ' + (perimeter - arcLen),
+        strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
         strokeDashoffset: dashOffset,
         stroke: (isLoading || this.props.percentage === 100) ?
           (this.props.loadingColor || theme.loadingStrokeColor) :
@@ -260,8 +260,8 @@ const RefreshIndicator = React.createClass({
     const triangleCx = circle.originX + circle.radiu;
     const triangleCy = circle.originY;
     const dx = (circle.strokeWidth * 7 / 4) * p1;
-    const trianglePath = (triangleCx - dx) + ',' + triangleCy + ' ' + (triangleCx + dx) + ',' +
-      triangleCy + ' ' + triangleCx + ',' + (triangleCy + dx);
+    const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
+      triangleCy} ${triangleCx},${(triangleCy + dx)}`;
 
     const [, endDeg] = this._getArcDeg();
 
@@ -299,11 +299,11 @@ const RefreshIndicator = React.createClass({
       strokeDashoffset = 0;
       transitionDuration = '0ms';
     } else if (currStep === 1) {
-      strokeDasharray = arcLen + ', 200';
+      strokeDasharray = `${arcLen}, 200`;
       strokeDashoffset = -15;
       transitionDuration = '750ms';
     } else {
-      strokeDasharray = arcLen + ',200';
+      strokeDasharray = `${arcLen}, 200`;
       strokeDashoffset = -(perimeter - 1);
       transitionDuration = '850ms';
     }

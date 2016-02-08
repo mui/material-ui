@@ -20,9 +20,8 @@ function getStyles(props) {
       transform: 'translateZ(0)',
 
       transition:
-        props.transitionEnabled &&
-        Transitions.easeOut('0ms', 'left', '400ms') + ',' +
-        Transitions.easeOut('400ms', 'opacity'),
+        props.transitionEnabled && `${Transitions.easeOut('0ms', 'left', '400ms')}, ${
+          Transitions.easeOut('400ms', 'opacity')}`,
     },
   };
 

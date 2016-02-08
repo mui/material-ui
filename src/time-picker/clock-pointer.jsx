@@ -40,11 +40,11 @@ function getStyles(props, state) {
       bottom: '50%',
       transformOrigin: 'bottom',
       pointerEvents: 'none',
-      transform: 'rotateZ(' + angle + 'deg)',
+      transform: `rotateZ(${angle}deg)`,
     },
     mark: {
       background: timePicker.selectTextColor,
-      border: '4px solid ' + timePicker.accentColor,
+      border: `4px solid ${timePicker.accentColor}`,
       display: hasSelected && 'none',
       width: 7,
       height: 7,

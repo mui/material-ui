@@ -60,10 +60,8 @@ const CircleRipple = React.createClass({
 
   _animate() {
     let style = ReactDOM.findDOMNode(this).style;
-    const transitionValue = (
-      Transitions.easeOut('2s', 'opacity') + ',' +
-      Transitions.easeOut('1s', 'transform')
-    );
+    const transitionValue = `${Transitions.easeOut('2s', 'opacity')}, ${
+      Transitions.easeOut('1s', 'transform')}`;
     autoPrefix.set(style, 'transition', transitionValue, this.props.muiTheme);
     autoPrefix.set(style, 'transform', 'scale(1)', this.props.muiTheme);
   },

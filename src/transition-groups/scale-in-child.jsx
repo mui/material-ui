@@ -76,7 +76,7 @@ const ScaleInChild = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'scale(' + this.props.minScale + ')', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`, this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();
@@ -87,7 +87,7 @@ const ScaleInChild = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
-    autoPrefix.set(style, 'transform', 'scale(' + this.props.maxScale + ')', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`, this.state.muiTheme);
   },
 
   _initializeAnimation(callback) {

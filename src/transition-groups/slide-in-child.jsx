@@ -59,7 +59,7 @@ const SlideInChild = React.createClass({
       this.props.direction === 'down' ? '-100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();
@@ -81,7 +81,7 @@ const SlideInChild = React.createClass({
       direction === 'down' ? '100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
 
     setTimeout(() => {
       if (this.isMounted()) callback();

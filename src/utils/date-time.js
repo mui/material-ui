@@ -8,22 +8,16 @@ const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
 function DateTimeFormat(locale, options) {
-  warning(locale === 'en-US',
-    'Wrong usage of DateTimeFormat. The ' + locale + ' locale is not supported.');
+  warning(locale === 'en-US', `Wrong usage of DateTimeFormat.
+    The ${locale} locale is not supported.`);
 
   this.format = function(date) {
     let output;
 
-    if (options.month === 'short' &&
-      options.weekday === 'short' &&
-      options.day === '2-digit') {
-
-      output = dayList[date.getDay()] + ', ';
-      output += monthList[date.getMonth()] + ' ';
-      output += date.getDate();
+    if (options.month === 'short' && options.weekday === 'short' && options.day === '2-digit') {
+      output = `${dayList[date.getDay()]}, ${monthList[date.getMonth()]} ${date.getDate()}`;
     } else if (options.month === 'long' && options.year === 'numeric') {
-      output = monthLongList[date.getMonth()];
-      output += ' ' + date.getFullYear();
+      output = `${monthLongList[date.getMonth()]} ${date.getFullYear()}`;
     } else if (options.weekday === 'narrow') {
       output = dayAbbreviation[date.getDay()];
     } else {
@@ -126,7 +120,7 @@ export default {
     const m = date.getMonth() + 1;
     const d = date.getDate();
     const y = date.getFullYear();
-    return m + '/' + d + '/' + y;
+    return `${m}/${d}/${y}`;
   },
 
   isEqualDate(d1, d2) {

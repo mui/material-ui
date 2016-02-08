@@ -134,10 +134,10 @@ const TouchRipple = React.createClass({
     const left = pointerX - rippleRadius;
     const top = pointerY - rippleRadius;
 
-    style.height = rippleSize + 'px';
-    style.width = rippleSize + 'px';
-    style.top = top + 'px';
-    style.left = left + 'px';
+    style.height = `${rippleSize}px`;
+    style.width = `${rippleSize}px`;
+    style.top = `${top}px`;
+    style.left = `${left}px`;
 
     return style;
   },

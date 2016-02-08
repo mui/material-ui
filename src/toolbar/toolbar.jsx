@@ -18,7 +18,7 @@ function getStyles(props, state) {
       backgroundColor: toolbar.backgroundColor,
       height: toolbar.height,
       width: '100%',
-      padding: noGutter ? 0 : '0px ' + baseTheme.spacing.desktopGutter + 'px',
+      padding: noGutter ? 0 : `0px ${baseTheme.spacing.desktopGutter}px`,
     },
   };
 }

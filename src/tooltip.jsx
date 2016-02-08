@@ -33,10 +33,9 @@ function getStyles(props, state) {
       right: horizontalPosition === 'left' ? 12 : null,
       left: horizontalPosition === 'center' ?
         (state.offsetWidth - 48) / 2 * -1 : null,
-      transition:
-        Transitions.easeOut('0ms', 'top', '450ms') + ',' +
-        Transitions.easeOut('450ms', 'transform', '0ms') + ',' +
-        Transitions.easeOut('450ms', 'opacity', '0ms'),
+      transition: `${Transitions.easeOut('0ms', 'top', '450ms')}, ${
+        Transitions.easeOut('450ms', 'transform', '0ms')}, ${
+        Transitions.easeOut('450ms', 'opacity', '0ms')}`,
     },
     label: {
       position: 'relative',
@@ -50,20 +49,18 @@ function getStyles(props, state) {
       transform: 'translate(-50%, -50%)',
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      transition:
-        Transitions.easeOut('0ms', 'width', '450ms') + ',' +
-        Transitions.easeOut('0ms', 'height', '450ms') + ',' +
-        Transitions.easeOut('450ms', 'backgroundColor', '0ms'),
+      transition: `${Transitions.easeOut('0ms', 'width', '450ms')}, ${
+        Transitions.easeOut('0ms', 'height', '450ms')}, ${
+        Transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
     },
     rootWhenShown: {
       top: verticalPosition === 'top' ?
         touchOffsetTop : 36,
       opacity: 0.9,
-      transform: 'translate3d(0px, ' + offset + 'px, 0px)',
-      transition:
-        Transitions.easeOut('0ms', 'top', '0ms') + ',' +
-        Transitions.easeOut('450ms', 'transform', '0ms') + ',' +
-        Transitions.easeOut('450ms', 'opacity', '0ms'),
+      transform: `translate3d(0px, ${offset}px, 0px)`,
+      transition: `${Transitions.easeOut('0ms', 'top', '0ms')}, ${
+        Transitions.easeOut('450ms', 'transform', '0ms')}, ${
+        Transitions.easeOut('450ms', 'opacity', '0ms')}`,
     },
     rootWhenTouched: {
       fontSize: '14px',
@@ -72,10 +69,9 @@ function getStyles(props, state) {
     },
     rippleWhenShown: {
       backgroundColor: Colors.grey700,
-      transition:
-        Transitions.easeOut('450ms', 'width', '0ms') + ',' +
-        Transitions.easeOut('450ms', 'height', '0ms') + ',' +
-        Transitions.easeOut('450ms', 'backgroundColor', '0ms'),
+      transition: `${Transitions.easeOut('450ms', 'width', '0ms')}, ${
+        Transitions.easeOut('450ms', 'height', '0ms')}, ${
+        Transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
     },
   };
 
@@ -148,8 +144,8 @@ const Tooltip = React.createClass({
     let rippleDiameter = Math.ceil((Math.sqrt(Math.pow(tooltipHeight, 2) +
                                     Math.pow(tooltipWidth, 2) ) * 2));
     if (this.props.show) {
-      ripple.style.height = rippleDiameter + 'px';
-      ripple.style.width = rippleDiameter + 'px';
+      ripple.style.height = `${rippleDiameter}px`;
+      ripple.style.width = `${rippleDiameter}px`;
     } else {
       ripple.style.width = '0px';
       ripple.style.height = '0px';

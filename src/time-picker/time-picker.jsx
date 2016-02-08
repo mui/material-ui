@@ -117,7 +117,7 @@ const TimePicker = React.createClass({
       const additional = isAM ? ' am' : ' pm';
       hours = (hours || 12).toString();
 
-      if (mins.length < 2 ) mins = '0' + mins;
+      if (mins.length < 2 ) mins = `0${mins}`;
 
       if (this.props.pedantic) {
         // Treat midday/midnight specially http://www.nist.gov/pml/div688/times.cfm
@@ -126,15 +126,15 @@ const TimePicker = React.createClass({
         }
       }
 
-      return hours + (mins === '00' ? '' : ':' + mins) + additional;
+      return hours + (mins === '00' ? '' : `:${mins}`) + additional;
     }
 
     hours = hours.toString();
 
-    if (hours.length < 2) hours = '0' + hours;
-    if (mins.length < 2) mins = '0' + mins;
+    if (hours.length < 2) hours = `0${hours}`;
+    if (mins.length < 2) mins = `0${mins}`;
 
-    return hours + ':' + mins;
+    return `${hours}:${mins}`;
   },
 
   getTime() {
