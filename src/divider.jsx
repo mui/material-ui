@@ -1,4 +1,7 @@
 import React from 'react';
+import pure from 'recompose/pure';
+import compose from 'recompose/compose';
+import memoizeStyles from './utils/memoizeStyles';
 import muiThemeable from './muiThemeable';
 
 const propTypes = {
@@ -13,12 +16,6 @@ const propTypes = {
   inset: React.PropTypes.bool,
 
   /**
-   * The material-ui theme applied to this component.
-   * @ignore
-   */
-  muiTheme: React.PropTypes.object.isRequired,
-
-  /**
    * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
@@ -28,38 +25,42 @@ const defaultProps = {
   inset: false,
 };
 
-let Divider = (props) => {
-  const {
-    inset,
-    muiTheme,
-    style,
-    ...other,
-  } = props;
-
-  const {
-    prepareStyles,
-  } = muiTheme;
-
-  const styles = {
-    root: {
+const styles = {
+  style: [
+    (props) => props.inset,
+    (props) => props.style,
+    (props) => props.muiTheme,
+    (inset, style, muiTheme) => muiTheme.prepareStyles(Object.assign({
       margin: 0,
       marginTop: -1,
       marginLeft: inset ? 72 : 0,
       height: 1,
       border: 'none',
-      backgroundColor: muiTheme.rawTheme.palette.borderColor,
-    },
-  };
+      backgroundColor: muiTheme.baseTheme.palette.borderColor,
+    }, style)),
+  ],
+};
+
+let Divider = (props) => {
+  const {
+    className,
+    style,
+    ...other,
+  } = props;
 
   return (
-    <hr {...other} style={prepareStyles(Object.assign({}, styles.root, style))} />
+    <hr {...other} className={className} style={style} />
   );
 };
 
+Divider = compose(
+  muiThemeable(),
+  pure(),
+  memoizeStyles(styles),
+)(Divider);
+
+Divider.displayName = 'Divider';
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-
-Divider = muiThemeable()(Divider);
-Divider.displayName = 'Divider';
 
 export default Divider;
