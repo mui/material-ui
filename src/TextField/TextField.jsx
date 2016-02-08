@@ -231,7 +231,7 @@ const TextField = React.createClass({
     };
   },
 
-  componentDidMount() {
+  componentWillMount() {
     this._uniqueId = UniqueId.generate();
   },
 
@@ -424,7 +424,7 @@ const TextField = React.createClass({
 
     let styles = this.getStyles();
 
-    let inputId = id || this._uniqueId;
+    const inputId = id || this._uniqueId;
 
     let errorTextElement = this.state.errorText ? (
       <div style={this.prepareStyles(styles.error)}>{this.state.errorText}</div>
@@ -437,7 +437,6 @@ const TextField = React.createClass({
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused}
         disabled={disabled}
-        onTouchTap={this.focus}
       >
         {floatingLabelText}
       </TextFieldLabel>
