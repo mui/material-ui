@@ -1,10 +1,60 @@
 import React from 'react';
 import EnhancedSwitch from './enhanced-switch';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from './svg-icons/toggle/check-box';
 import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    checkbox,
+  } = state.muiTheme;
+
+  const checkboxSize = 24;
+
+  return {
+    icon: {
+      height: checkboxSize,
+      width: checkboxSize,
+    },
+    check: {
+      position: 'absolute',
+      opacity: 0,
+      transform: 'scale(0)',
+      transitionOrigin: '50% 50%',
+      transition: `${Transitions.easeOut('450ms', 'opacity', '0ms')}, ${
+          Transitions.easeOut('0ms', 'transform', '450ms')
+        }`,
+      fill: checkbox.checkedColor,
+    },
+    box: {
+      position: 'absolute',
+      opacity: 1,
+      fill: checkbox.boxColor,
+      transition: Transitions.easeOut('2s', null, '200ms'),
+    },
+    checkWhenSwitched: {
+      opacity: 1,
+      transform: 'scale(1)',
+      transition: `${Transitions.easeOut('0ms', 'opacity', '0ms')}, ${
+          Transitions.easeOut('800ms', 'transform', '0ms')
+        }`,
+    },
+    boxWhenSwitched: {
+      transition: Transitions.easeOut('100ms', null, '0ms'),
+      fill: checkbox.checkedColor,
+    },
+    checkWhenDisabled: {
+      fill: checkbox.disabledColor,
+    },
+    boxWhenDisabled: {
+      fill: checkbox.disabledColor,
+    },
+    label: {
+      color: props.disabled ? checkbox.labelDisabledColor : checkbox.labelColor,
+    },
+  };
+}
 
 const Checkbox = React.createClass({
 
@@ -76,12 +126,9 @@ const Checkbox = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -108,68 +155,13 @@ const Checkbox = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
       switched: this.props.checked !== nextProps.checked
         ? nextProps.checked
         : this.state.switched,
     });
-  },
-
-  getTheme() {
-    return this.state.muiTheme.checkbox;
-  },
-
-  getStyles() {
-    let checkboxSize = 24;
-    let styles = {
-      icon: {
-        height: checkboxSize,
-        width: checkboxSize,
-      },
-      check: {
-        position: 'absolute',
-        opacity: 0,
-        transform: 'scale(0)',
-        transitionOrigin: '50% 50%',
-        transition: `${Transitions.easeOut('450ms', 'opacity', '0ms')}, ${
-            Transitions.easeOut('0ms', 'transform', '450ms')
-          }`,
-        fill: this.getTheme().checkedColor,
-      },
-      box: {
-        position: 'absolute',
-        opacity: 1,
-        fill: this.getTheme().boxColor,
-        transition: Transitions.easeOut('2s', null, '200ms'),
-      },
-      checkWhenSwitched: {
-        opacity: 1,
-        transform: 'scale(1)',
-        transition: `${Transitions.easeOut('0ms', 'opacity', '0ms')}, ${
-            Transitions.easeOut('800ms', 'transform', '0ms')
-          }`,
-      },
-      boxWhenSwitched: {
-        transition: Transitions.easeOut('100ms', null, '0ms'),
-        fill: this.getTheme().checkedColor,
-      },
-      checkWhenDisabled: {
-        fill: this.getTheme().disabledColor,
-      },
-      boxWhenDisabled: {
-        fill: this.getTheme().disabledColor,
-      },
-      label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
-      },
-    };
-
-    return styles;
   },
 
   isChecked() {
@@ -196,28 +188,28 @@ const Checkbox = React.createClass({
       unCheckedIcon,
       ...other,
     } = this.props;
-    let styles = this.getStyles();
+    const styles = getStyles(this.props, this.state);
     let boxStyles =
-      this.mergeStyles(
+      Object.assign(
         styles.box,
         this.state.switched && styles.boxWhenSwitched,
         iconStyle,
         this.props.disabled && styles.boxWhenDisabled);
     let checkStyles =
-      this.mergeStyles(
+      Object.assign(
         styles.check,
         this.state.switched && styles.checkWhenSwitched,
         iconStyle,
         this.props.disabled && styles.checkWhenDisabled);
 
     let checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
-      style: this.mergeStyles(checkStyles, checkedIcon.props.style),
+      style: Object.assign(checkStyles, checkedIcon.props.style),
     }) : React.createElement(CheckboxChecked, {
       style: checkStyles,
     });
 
     let unCheckedElement = unCheckedIcon ? React.cloneElement(unCheckedIcon, {
-      style: this.mergeStyles(boxStyles, unCheckedIcon.props.style),
+      style: Object.assign(boxStyles, unCheckedIcon.props.style),
     }) : React.createElement(CheckboxOutline, {
       style: boxStyles,
     });
@@ -230,9 +222,9 @@ const Checkbox = React.createClass({
     );
 
     let rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
-    let mergedIconStyle = this.mergeStyles(styles.icon, iconStyle);
+    let mergedIconStyle = Object.assign(styles.icon, iconStyle);
 
-    let labelStyle = this.mergeStyles(
+    let labelStyle = Object.assign(
       styles.label,
       this.props.labelStyle
     );
