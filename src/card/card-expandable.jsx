@@ -2,9 +2,20 @@ import React from 'react';
 import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../icon-button';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 import ContextPure from '../mixins/context-pure';
+
+function getStyles() {
+  return {
+    root: {
+      top: 0,
+      bottom: 0,
+      right: 4,
+      margin: 'auto',
+      position: 'absolute',
+    },
+  };
+}
 
 const CardExpandable = React.createClass({
 
@@ -22,22 +33,15 @@ const CardExpandable = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     ContextPure,
   ],
 
   statics: {
-    getRelevantContextKeys(muiTheme) {
-      return {
-        isRtl: muiTheme.isRtl,
-      };
-    },
     getChildrenClasses() {
       return [
         IconButton,
@@ -57,54 +61,23 @@ const CardExpandable = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getStyles() {
-    const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
-
-    const directionStyle = contextKeys.isRtl ? {
-      left: 4,
-    } : {
-      right: 4,
-    };
-
-    return {
-      root: this.mergeStyles({
-        top: 0,
-        bottom: 0,
-        margin: 'auto',
-        position: 'absolute',
-      }, directionStyle),
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
-    let styles = this.getStyles();
+    const styles = getStyles(this.props, this.state);
 
-    let expandable;
-    if (this.props.expanded === true)
-      expandable = <OpenIcon/>;
-    else
-      expandable = <CloseIcon/>;
-
-    let mergedStyles = this.mergeStyles(styles.root, this.props.style);
-
-    let expandableBtn = (
+    return (
       <IconButton
-        style={mergedStyles}
+        style={Object.assign(styles.root, this.props.style)}
         onTouchTap={this.props.onExpanding}
       >
-        {expandable}
+        {this.props.expanded ? <OpenIcon/> : <CloseIcon/>}
       </IconButton>
     );
-
-
-    return expandableBtn;
   },
 });
 
