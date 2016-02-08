@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
@@ -10,6 +9,16 @@ import IconButton from 'material-ui/lib/icon-button';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+  divider: {
+    height: 30,
+  },
+};
 
 const iconButtonElement = (
   <IconButton
@@ -31,7 +40,7 @@ const rightIconMenu = (
 
 const ListExampleMessages = () => (
   <div>
-    <MobileTearSheet>
+    <div style={styles.root}>
       <List>
         <Subheader>Today</Subheader>
         <ListItem
@@ -96,8 +105,9 @@ const ListExampleMessages = () => (
           secondaryTextLines={2}
         />
       </List>
-    </MobileTearSheet>
-    <MobileTearSheet>
+    </div>
+    <div style={styles.divider} />
+    <div style={styles.root}>
       <List>
         <Subheader>Today</Subheader>
         <ListItem
@@ -165,7 +175,7 @@ const ListExampleMessages = () => (
           secondaryTextLines={2}
         />
       </List>
-    </MobileTearSheet>
+    </div>
   </div>
 );
 

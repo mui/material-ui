@@ -1,11 +1,17 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
 import Subheader from 'material-ui/lib/Subheader';
 import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
 let SelectableList = SelectableContainerEnhance(List);
+
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
 
 function wrapState(ComposedComponent) {
   const StateWrapper = React.createClass({
@@ -33,7 +39,7 @@ function wrapState(ComposedComponent) {
 SelectableList = wrapState(SelectableList);
 
 const ListExampleSelectable = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <SelectableList value={3}>
       <Subheader>Selectable Contacts</Subheader>
       <ListItem
@@ -64,7 +70,7 @@ const ListExampleSelectable = () => (
         leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
       />
     </SelectableList>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExampleSelectable;

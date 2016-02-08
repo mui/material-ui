@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
@@ -8,8 +7,15 @@ import CommunicationChatBubble from 'material-ui/lib/svg-icons/communication/cha
 import Colors from 'material-ui/lib/styles/colors';
 import CommunicationEmail from 'material-ui/lib/svg-icons/communication/email';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
+
 const ListExamplePhone = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <List>
       <ListItem
         leftIcon={<CommunicationCall color={Colors.indigo500} />}
@@ -37,7 +43,7 @@ const ListExamplePhone = () => (
         secondaryText="Work"
       />
     </List>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExamplePhone;
