@@ -2,7 +2,6 @@ import React from 'react';
 import Checkbox from '../checkbox';
 import TableRowColumn from './table-row-column';
 import ClickAwayable from '../mixins/click-awayable';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const TableBody = React.createClass({
@@ -118,14 +117,12 @@ const TableBody = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
     ClickAwayable,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -153,13 +150,10 @@ const TableBody = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
-    let newState = {};
+    const newState = {
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    };
 
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
       newState.selectedRows = this.state.selectedRows.length > 0
@@ -417,10 +411,15 @@ const TableBody = React.createClass({
       style,
       ...other,
     } = this.props;
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     let rows = this._createRows();
 
     return (
-      <tbody className={className} style={this.prepareStyles(style)}>
+      <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
         {rows}
       </tbody>
     );

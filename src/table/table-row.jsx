@@ -1,6 +1,31 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    tableRow,
+  } = state.muiTheme;
+
+  let cellBgColor = 'inherit';
+  if (props.hovered || state.hovered) {
+    cellBgColor = tableRow.hoverColor;
+  } else if (props.selected) {
+    cellBgColor = tableRow.selectedColor;
+  } else if (props.striped) {
+    cellBgColor = tableRow.stripeColor;
+  }
+
+  return {
+    root: {
+      borderBottom: props.displayBorder && `1px solid ${tableRow.borderColor}`,
+      color: tableRow.textColor,
+      height: tableRow.height,
+    },
+    cell: {
+      backgroundColor: cellBgColor,
+    },
+  };
+}
 
 const TableRow = React.createClass({
 
@@ -106,14 +131,9 @@ const TableRow = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -139,74 +159,10 @@ const TableRow = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.tableRow;
-  },
-
-  getStyles() {
-    let theme = this.getTheme();
-    let cellBgColor = 'inherit';
-    if (this.props.hovered || this.state.hovered) {
-      cellBgColor = theme.hoverColor;
-    } else if (this.props.selected) {
-      cellBgColor = theme.selectedColor;
-    } else if (this.props.striped) {
-      cellBgColor = theme.stripeColor;
-    }
-
-    let styles = {
-      root: {
-        borderBottom: '1px solid ' + theme.borderColor,
-        color: theme.textColor,
-        height: theme.height,
-      },
-      cell: {
-        backgroundColor: cellBgColor,
-      },
-    };
-
-    if (!this.props.displayBorder) {
-      styles.root.borderBottom = '';
-    }
-
-    return styles;
-  },
-
-  _createColumns() {
-    let columnNumber = 1;
-    return React.Children.map(this.props.children, (child) => {
-      if (React.isValidElement(child)) {
-        return this._createColumn(child, columnNumber++);
-      }
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
-  },
-
-  _createColumn(child, columnNumber) {
-    let key = this.props.rowNumber + '-' + columnNumber;
-    let styles = this.getStyles();
-    const handlers = {
-      onClick: this._onCellClick,
-      onHover: this._onCellHover,
-      onHoverExit: this._onCellHoverExit,
-    };
-
-    return React.cloneElement(
-      child,
-      {
-        columnNumber: columnNumber,
-        hoverable: this.props.hoverable,
-        key: child.props.key || key,
-        style: this.mergeStyles(styles.cell, child.props.style),
-        ...handlers,
-      }
-    );
   },
 
   _onRowClick(e) {
@@ -261,12 +217,31 @@ const TableRow = React.createClass({
       style,
       ...other,
     } = this.props;
-    let rowColumns = this._createColumns();
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+
+    const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          columnNumber: columnNumber,
+          hoverable: this.props.hoverable,
+          key: child.props.key || `${this.props.rowNumber}-${columnNumber}`,
+          onClick: this._onCellClick,
+          onHover: this._onCellHover,
+          onHoverExit: this._onCellHoverExit,
+          style: Object.assign({}, styles.cell, child.props.style),
+        });
+      }
+    });
 
     return (
       <tr
         className={className}
-        style={this.prepareStyles(this.getStyles().root, style)}
+        style={prepareStyles(Object.assign(styles.root, style))}
         {...other}
       >
         {rowColumns}
