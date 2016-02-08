@@ -3,7 +3,7 @@ import Title from 'react-title-component';
 
 import mui from 'material-ui';
 import MarkdownElement from '../../MarkdownElement';
-import ComponentDoc from '../../component-doc';
+import ComponentDoc from '../../ComponentDoc';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
 const {

@@ -8,8 +8,8 @@ import {StylePropable, StyleResizable} from 'material-ui/lib/mixins';
 
 import {Colors, getMuiTheme} from 'material-ui/lib/styles';
 
-import AppLeftNav from './app-left-nav';
-import FullWidthSection from './full-width-section';
+import AppLeftNav from './AppLeftNav';
+import FullWidthSection from './FullWidthSection';
 
 const githubButton = (
   <IconButton

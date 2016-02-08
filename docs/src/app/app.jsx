@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router} from 'react-router';
-import AppRoutes from './app-routes.jsx';
+import AppRoutes from './AppRoutes.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import createHistory from 'history/lib/createHashHistory';
 
