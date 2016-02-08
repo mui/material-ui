@@ -408,7 +408,7 @@ const RaisedButton = React.createClass({
 
     return (
       <Paper
-        className={this.props.className}
+        className={className}
         style={this.mergeStyles(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
       >
