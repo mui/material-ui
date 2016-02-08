@@ -147,7 +147,7 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
+    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, style, {
       height: this.state.height,
     });
 
