@@ -62,7 +62,7 @@ function getStyles(props, state) {
     },
     label: {
       color: disabled ? toggle.labelDisabledColor : toggle.labelColor,
-      width: 'calc(100% - ' + (toggleTrackWidth + 10) + 'px)',
+      width: `calc(100% - ${(toggleTrackWidth + 10)}px)`,
     },
   };
 
@@ -225,7 +225,7 @@ const Toggle = React.createClass({
     );
 
     if (this.state.switched) {
-      thumbStyles.marginLeft = '-' + thumbStyles.width;
+      thumbStyles.marginLeft = `-${thumbStyles.width}`;
     }
 
     const toggleElementStyles = Object.assign({},

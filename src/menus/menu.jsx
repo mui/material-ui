@@ -437,8 +437,8 @@ const Menu = React.createClass({
 
     if (newWidth < minWidth) newWidth = minWidth;
 
-    el.style.width = newWidth + 'px';
-    listEl.style.width = newWidth + 'px';
+    el.style.width = `${newWidth}px`;
+    listEl.style.width = `${newWidth}px`;
   },
 
   render() {
@@ -547,7 +547,7 @@ const Menu = React.createClass({
         }
 
         childrenContainerStyles = Object.assign({}, styles.menuItemContainer, {
-          transitionDelay: transitionDelay + 'ms',
+          transitionDelay: `${transitionDelay}ms`,
         });
       }
 

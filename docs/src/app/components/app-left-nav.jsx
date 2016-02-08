@@ -52,7 +52,7 @@ const AppLeftNav = React.createClass({
         cursor: 'pointer',
         fontSize: 24,
         color: Typography.textFullWhite,
-        lineHeight: Spacing.desktopKeylineIncrement + 'px',
+        lineHeight: `${Spacing.desktopKeylineIncrement}px`,
         fontWeight: Typography.fontWeightLight,
         backgroundColor: Colors.cyan500,
         paddingLeft: Spacing.desktopGutter,

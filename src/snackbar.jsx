@@ -220,10 +220,9 @@ const Snackbar = React.createClass({
         bottom: 0,
         zIndex: this.state.muiTheme.zIndex.snackbar,
         visibility: 'hidden',
-        transform: 'translate3d(0, ' + desktopSubheaderHeight + 'px, 0)',
-        transition:
-          Transitions.easeOut('400ms', 'transform') + ',' +
-          Transitions.easeOut('400ms', 'visibility'),
+        transform: `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
+        transition: `${Transitions.easeOut('400ms', 'transform')}, ${
+          Transitions.easeOut('400ms', 'visibility')}`,
       },
       rootWhenOpen: {
         visibility: 'visible',
@@ -231,9 +230,9 @@ const Snackbar = React.createClass({
       },
       body: {
         backgroundColor: backgroundColor,
-        padding: '0 ' + desktopGutter + 'px',
+        padding: `0 ${desktopGutter}px`,
         height: desktopSubheaderHeight,
-        lineHeight: desktopSubheaderHeight + 'px',
+        lineHeight: `${desktopSubheaderHeight}px`,
         borderRadius: isSmall ? 0 : 2,
         maxWidth: isSmall ? 'inherit' : 568,
         minWidth: isSmall ? 'inherit' : 288,

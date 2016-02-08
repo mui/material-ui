@@ -54,7 +54,7 @@ const ComponentInfo = React.createClass({
       desc: {
         width: '100%',
         paddingTop: 48,
-        borderBottom: 'solid 1px ' + borderColor,
+        borderBottom: `1px solid ${borderColor}`,
       },
       p: {
         margin: '0',

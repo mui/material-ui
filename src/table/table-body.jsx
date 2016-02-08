@@ -213,7 +213,7 @@ const TableBody = React.createClass({
   _createRowCheckboxColumn(rowProps) {
     if (!this.props.displayRowCheckbox) return null;
 
-    let key = rowProps.rowNumber + '-cb';
+    let key = `${rowProps.rowNumber}-cb`;
     const checkbox = (
       <Checkbox
         ref="rowSelectCB"

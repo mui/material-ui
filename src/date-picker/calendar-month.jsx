@@ -48,7 +48,7 @@ const CalendarMonth = React.createClass({
 
       return (
         <DayButton
-          key={'db' + i + j}
+          key={`db${(i + j)}`}
           date={day}
           onTouchTap={this._handleDayTouchTap}
           selected={selected}

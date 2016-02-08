@@ -71,7 +71,7 @@ const FocusRipple = React.createClass({
       borderRadius: '50%',
       opacity: opacity ? opacity : 0.16,
       backgroundColor: color,
-      transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
+      transition: Transitions.easeOut(`${pulsateDuration}ms`, 'transform', null, Transitions.easeInOutFunction),
     }, innerStyle);
 
     return <div ref="innerCircle" style={prepareStyles(Object.assign({}, innerStyles))} />;
@@ -107,8 +107,8 @@ const FocusRipple = React.createClass({
     if (el.style.top.indexOf('px', el.style.top.length - 2) !== -1) {
       oldTop = parseInt(el.style.top);
     }
-    el.style.height = size + 'px';
-    el.style.top = (height / 2) - (size / 2 ) + oldTop + 'px';
+    el.style.height = `${size}px`;
+    el.style.top = `${(height / 2) - (size / 2 ) + oldTop}px`;
   },
 
   render() {

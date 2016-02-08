@@ -42,7 +42,7 @@ function getStyles(props, state) {
     },
     button: {
       float: 'left',
-      margin: marginVertical + 'px ' + marginHorizontal + 'px',
+      margin: `${marginVertical}px ${marginHorizontal}px`,
       position: 'relative',
     },
     icon: {
@@ -50,7 +50,7 @@ function getStyles(props, state) {
         float: 'left',
         cursor: 'pointer',
         color: toolbar.iconColor,
-        lineHeight: toolbar.height + 'px',
+        lineHeight: `${toolbar.height}px`,
         paddingLeft: baseTheme.spacing.desktopGutter,
       },
       hover: {
@@ -60,7 +60,7 @@ function getStyles(props, state) {
     span: {
       float: 'left',
       color: toolbar.iconColor,
-      lineHeight: toolbar.height + 'px',
+      lineHeight: `${toolbar.height}px`,
     },
   };
 

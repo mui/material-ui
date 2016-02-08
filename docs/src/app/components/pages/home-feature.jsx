@@ -38,7 +38,7 @@ let HomeFeature = React.createClass({
       root: {
         transition: Transitions.easeOut(),
         maxWidth: '300px',
-        margin: '0 auto ' + desktopGutter + 'px auto',
+        margin: `0 auto ${desktopGutter}px auto`,
       },
       rootWhenMedium: {
         float: 'left',
@@ -62,7 +62,7 @@ let HomeFeature = React.createClass({
         textAlign: 'center',
         margin: 0,
         padding: 0,
-        lineHeight: desktopKeylineIncrement + 'px',
+        lineHeight: `${desktopKeylineIncrement}px`,
       },
       rootWhenLastChild: {
         marginBottom: 0,

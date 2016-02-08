@@ -17,7 +17,7 @@ export default {
       el.addEventListener(type, callback);
     } else {
       // IE8+ Support
-      el.attachEvent('on' + type, () => {
+      el.attachEvent(`on${type}`, () => {
         callback.call(el);
       });
     }
@@ -28,7 +28,7 @@ export default {
       el.removeEventListener(type, callback);
     } else {
       // IE8+ Support
-      el.detachEvent('on' + type, callback);
+      el.detachEvent(`on${type}`, callback);
     }
   },
 

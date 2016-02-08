@@ -122,7 +122,7 @@ const ThemesPage = React.createClass({
         color: Typography.textDarkBlack,
       },
       bottomBorderWrapper: {
-        borderBottom: 'solid 1px ' + borderColor,
+        borderBottom: `1px solid ${borderColor}`,
         paddingBottom: '10px',
       },
       inlineCode: {
