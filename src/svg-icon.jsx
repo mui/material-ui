@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -53,14 +52,9 @@ const SvgIcon = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -83,11 +77,10 @@ const SvgIcon = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _handleMouseLeave(e) {
@@ -112,21 +105,24 @@ const SvgIcon = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      baseTheme,
+      prepareStyles,
+    } = this.state.muiTheme;
+
     const offColor = color ? color :
       style && style.fill ? style.fill :
-      this.state.muiTheme.rawTheme.palette.textColor;
+      baseTheme.palette.textColor;
     const onColor = hoverColor ? hoverColor : offColor;
 
-    const mergedStyles = this.mergeStyles({
+    const mergedStyles = Object.assign({
       display: 'inline-block',
+      fill: this.state.hovered ? onColor : offColor,
       height: 24,
       width: 24,
       userSelect: 'none',
       transition: Transitions.easeOut(),
-    }, style, {
-      // Make sure our fill color overrides fill provided in props.style
-      fill: this.state.hovered ? onColor : offColor,
-    });
+    }, style);
 
     const events = hoverColor ? {
       onMouseEnter: this._handleMouseEnter,
@@ -137,7 +133,7 @@ const SvgIcon = React.createClass({
       <svg
         {...other}
         {...events}
-        style={this.prepareStyles(mergedStyles)}
+        style={prepareStyles(mergedStyles)}
         viewBox={viewBox}
       >
         {children}
