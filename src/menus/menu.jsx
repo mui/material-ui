@@ -389,12 +389,14 @@ const Menu = React.createClass({
   },
 
   _isChildSelected(child, props) {
-    let multiple = props.multiple;
-    let menuValue = this.getValueLink(props).value;
-    let childValue = child.props.value;
+    const menuValue = this.getValueLink(props).value;
+    const childValue = child.props.value;
 
-    return (multiple && menuValue.length && menuValue.indexOf(childValue) !== -1) ||
-      (!multiple && menuValue === childValue);
+    if (props.multiple) {
+      return menuValue.length && menuValue.indexOf(childValue) !== -1;
+    } else {
+      return child.props.hasOwnProperty('value') && menuValue === childValue;
+    }
   },
 
   _setFocusIndex(newIndex, isKeyboardFocused) {
