@@ -42,15 +42,16 @@ const colors = [
 const AutoCompleteExampleFilters = () => (
   <div>
     <AutoComplete
-      floatingLabelText="Type t, fuzzy search"
-      filter={AutoComplete.fuzzyFilter}
-      dataSource={fruit}
-    />
-    <br/>
-    <AutoComplete
       floatingLabelText="Type r, case insensitive"
       filter={AutoComplete.caseInsensitiveFilter}
       dataSource={colors}
+    />
+    <br/>
+    <AutoComplete
+      floatingLabelText="Type c, fuzzy search"
+      filter={AutoComplete.fuzzyFilter}
+      dataSource={fruit}
+      maxSearchResults={5}
     />
   </div>
 );
