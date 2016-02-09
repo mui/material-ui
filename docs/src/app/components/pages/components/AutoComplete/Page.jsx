@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -22,6 +24,7 @@ const descriptions = {
 
 const AutoCompletesPage = () => (
   <div>
+    <Title render={(previousTitle) => `Auto Complete - ${previousTitle}`} />
     <MarkdownElement text={autoCompleteReadmeText} />
     <CodeExample
       code={autoCompleteExampleSimpleCode}

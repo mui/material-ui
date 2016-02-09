@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -19,6 +21,7 @@ const descriptions = {
 
 const FlatButtonPage = () => (
   <div>
+    <Title render={(previousTitle) => `Flat Button - ${previousTitle}`} />
     <MarkdownElement text={flatButtonReadmeText} />
     <CodeExample
       title="Simple examples"

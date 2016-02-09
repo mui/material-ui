@@ -1,16 +1,12 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import {Spacing} from 'material-ui/lib/styles';
-import {
-  StylePropable,
-  StyleResizable,
-} from 'material-ui/lib/mixins';
+import {StylePropable, StyleResizable} from 'material-ui/lib/mixins';
 
-import {
-  Colors,
-  getMuiTheme,
-} from 'material-ui/lib/styles';
+import {Colors, getMuiTheme} from 'material-ui/lib/styles';
 
 import AppLeftNav from './app-left-nav';
 import FullWidthSection from './full-width-section';
@@ -172,6 +168,7 @@ const Master = React.createClass({
 
     return (
       <div>
+        <Title render="Material-UI" />
         <AppBar
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}

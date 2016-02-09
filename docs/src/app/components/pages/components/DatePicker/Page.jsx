@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -32,6 +34,7 @@ const descriptions = {
 
 const DatePickerPage = () => (
   <div>
+    <Title render={(previousTitle) => `Date Picker - ${previousTitle}`} />
     <MarkdownElement text={datePickerReadmeText} />
     <CodeExample
       title="Simple examples"

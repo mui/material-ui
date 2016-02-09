@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -21,6 +23,7 @@ const description = 'An example Toolbar demonstrating the use of the available s
 
 const ToolbarPage = () => (
   <div>
+    <Title render={(previousTitle) => `Toolbar - ${previousTitle}`} />
     <MarkdownElement text={toolbarReadmeText} />
     <CodeExample description={description} code={toolbarExampleSimpleCode}>
       <ToolbarExampleSimple />
