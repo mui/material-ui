@@ -253,16 +253,13 @@ const TextField = React.createClass({
       nextProps = nextProps.children.props;
     }
 
-    let hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
-    let hasValueProp = nextProps.hasOwnProperty('value');
-    let hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
+    const hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
+    const hasValueProp = nextProps.hasOwnProperty('value');
 
     if (hasValueLinkProp) {
       newState.hasValue = isValid(nextProps.valueLink.value);
     } else if (hasValueProp) {
       newState.hasValue = isValid(nextProps.value);
-    } else if (hasNewDefaultValue) {
-      newState.hasValue = isValid(nextProps.defaultValue);
     }
 
     if (newState) this.setState(newState);
