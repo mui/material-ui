@@ -19,6 +19,9 @@ class Message extends Component {
 			if (type === 'stop') {
 				return 'message-box stop';
 			}
+			if (type === 'ica') {
+				return 'message-box ica';
+			}
 			return 'message-box';
 		}
 
