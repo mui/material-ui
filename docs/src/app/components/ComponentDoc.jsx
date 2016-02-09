@@ -1,6 +1,6 @@
 import React from 'react';
 import {ClearFix, Mixins, Styles} from 'material-ui';
-import ComponentInfo from './component-info';
+import ComponentInfo from './ComponentInfo';
 const Typography = Styles.Typography;
 const {StylePropable} = Mixins;
 

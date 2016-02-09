@@ -1,7 +1,7 @@
 import React from 'react';
 import {History} from 'react-router';
-import HomeFeature from './home-feature';
-import FullWidthSection from '../full-width-section';
+import HomeFeature from './HomeFeature';
+import FullWidthSection from '../FullWidthSection';
 
 import RaisedButton from 'material-ui/lib/raised-button';
 import {StylePropable, StyleResizable} from 'material-ui/lib/mixins';
