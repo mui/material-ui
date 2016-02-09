@@ -116,6 +116,8 @@ const IconMenu = React.createClass({
     /**
      * Sets the delay in milliseconds before closing the
      * menu when an item is clicked.
+     * If set to 0 then the auto close functionality
+     * will be disabled.
      */
     touchTapCloseDelay: React.PropTypes.number,
   },
@@ -160,7 +162,6 @@ const IconMenu = React.createClass({
       open: false,
     };
   },
-
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
@@ -228,10 +229,13 @@ const IconMenu = React.createClass({
   },
 
   _handleItemTouchTap(event, child) {
-    const isKeyboard = Events.isKeyboard(event);
-    this.timerCloseId = setTimeout(() => {
-      this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
-    }, this.props.touchTapCloseDelay);
+
+    if (this.props.touchTapCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
+      const isKeyboard = Events.isKeyboard(event);
+      this.timerCloseId = setTimeout(() => {
+        this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
+      }, this.props.touchTapCloseDelay);
+    }
 
     this.props.onItemTouchTap(event, child);
   },
