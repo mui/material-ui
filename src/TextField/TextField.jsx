@@ -299,6 +299,7 @@ const TextField = React.createClass({
       },
       floatingLabel: {
         color: hintColor,
+        pointerEvents: 'none',
       },
       input: {
         tapHighlightColor: 'rgba(0,0,0,0)',
