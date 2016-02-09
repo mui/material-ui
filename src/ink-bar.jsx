@@ -1,7 +1,26 @@
 import React from 'react';
 import Transitions from './styles/transitions';
-import StylePropable from './mixins/style-propable';
 import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    inkBar,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      left: props.left,
+      width: props.width,
+      bottom: 0,
+      display: 'block',
+      backgroundColor: props.color || inkBar.backgroundColor,
+      height: 2,
+      marginTop: -2,
+      position: 'relative',
+      transition: Transitions.easeOut('1s', 'left'),
+    },
+  };
+}
 
 const InkBar = React.createClass({
 
@@ -20,14 +39,9 @@ const InkBar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getInitialState() {
     return {
@@ -41,37 +55,25 @@ const InkBar = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
-    let {
-      color,
-      left,
-      width,
+    const {
       style,
-      ...other,
     } = this.props;
 
-    let colorStyle = color ? {backgroundColor: color} : undefined;
-    let styles = this.mergeStyles({
-      left: left,
-      width: width,
-      bottom: 0,
-      display: 'block',
-      backgroundColor: this.state.muiTheme.inkBar.backgroundColor,
-      height: 2,
-      marginTop: -2,
-      position: 'relative',
-      transition: Transitions.easeOut('1s', 'left'),
-    }, this.props.style, colorStyle);
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <div style={this.prepareStyles(styles)} />
+      <div style={prepareStyles(Object.assign(styles.root, style))} />
     );
   },
 
