@@ -10,7 +10,6 @@ import ContextPure from '../mixins/context-pure';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
-import warning from 'warning';
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -84,6 +83,8 @@ const TextField = React.createClass({
 
     /**
      * Override the inline-styles of the TextField's input element.
+     * When multiLine is false: define the style of the input element.
+     * When multiLine is true: define the style of the container of the textarea.
      */
     inputStyle: React.PropTypes.object,
 
@@ -133,6 +134,13 @@ const TextField = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the TextField's textarea element.
+     * The TextField use either a textarea or an input,
+     * this property has effects only when multiLine is true.
+     */
+    textareaStyle: React.PropTypes.object,
 
     /**
      * Specifies the type of input to display
@@ -351,40 +359,12 @@ const TextField = React.createClass({
     if (this.isMounted()) this._getInputNode().blur();
   },
 
-  clearValue() {
-    this.setValue('');
-  },
-
   focus() {
     if (this.isMounted()) this._getInputNode().focus();
   },
 
   getValue() {
     return this.isMounted() ? this._getInputNode().value : undefined;
-  },
-
-  setErrorText(newErrorText) {
-    warning(false, 'setErrorText() method is deprecated. Use the errorText property instead.');
-
-    if (this.isMounted()) {
-      this.setState({errorText: newErrorText});
-    }
-  },
-
-  setValue(newValue) {
-    warning(false,
-      `setValue() method is deprecated. Use the defaultValue property instead.
-      Or use the TextField as a controlled component with the value property.`);
-
-    if (this.isMounted()) {
-      if (this.props.multiLine) {
-        this.refs.input.setValue(newValue);
-      } else {
-        this._getInputNode().value = newValue;
-      }
-
-      this.setState({hasValue: isValid(newValue)});
-    }
   },
 
   _getInputNode() {
@@ -417,7 +397,7 @@ const TextField = React.createClass({
   _handleTextAreaHeightChange(e, height) {
     let newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
-    ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
+    ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
   },
 
   _isControlled() {
@@ -436,6 +416,7 @@ const TextField = React.createClass({
       hintText,
       hintStyle,
       id,
+      inputStyle,
       multiLine,
       onBlur,
       onChange,
@@ -448,6 +429,7 @@ const TextField = React.createClass({
       underlineStyle,
       rows,
       rowsMax,
+      textareaStyle,
       ...other,
     } = this.props;
 
@@ -483,7 +465,9 @@ const TextField = React.createClass({
       disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown,
     };
-    const inputStyle = this.mergeStyles(styles.input, this.props.inputStyle);
+
+    const inputStyleMerged = this.mergeStyles(styles.input, inputStyle);
+    const textareaStyleMerged = this.mergeStyles(styles.textarea, textareaStyle);
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
@@ -494,24 +478,24 @@ const TextField = React.createClass({
         {
           ...inputProps,
           ...this.props.children.props,
-          style: this.mergeStyles(inputStyle, this.props.children.props.style),
+          style: this.mergeStyles(inputStyleMerged, this.props.children.props.style),
         });
     } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
           {...other}
           {...inputProps}
-          style={inputStyle}
+          style={inputStyleMerged}
           rows={rows}
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
-          textareaStyle={styles.textarea}
+          textareaStyle={textareaStyleMerged}
         />
       ) : (
         <input
           {...other}
           {...inputProps}
-          style={this.prepareStyles(inputStyle)}
+          style={this.prepareStyles(inputStyleMerged)}
           type={type}
         />
       );

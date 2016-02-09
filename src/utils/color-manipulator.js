@@ -39,15 +39,15 @@ export default {
    *                   with the original color object, such as an alpha value.
    */
   _convertColorToString(color, additonalValue) {
-    let str = color.type + '(' +
-              parseInt(color.values[0]) + ',' +
-              parseInt(color.values[1]) + ',' +
-              parseInt(color.values[2]);
+    let str = `${color.type}(${
+      parseInt(color.values[0])}, ${
+      parseInt(color.values[1])}, ${
+      parseInt(color.values[2])}`;
 
     if (additonalValue !== undefined) {
-      str += ',' + additonalValue + ')';
+      str += `, ${additonalValue})`;
     } else if (color.values.length === 4) {
-      str += ',' + color.values[3] + ')';
+      str += `, ${color.values[3]})`;
     } else {
       str += ')';
     }
@@ -71,9 +71,7 @@ export default {
       b:	parseInt(color.substr(5, 2), 16),
     };
 
-    return 'rgb(' + values.r + ',' +
-                    values.g + ',' +
-                    values.b + ')';
+    return `rgb(${values.r}, ${values.g}, ${values.b})`;
   },
 
   // Returns the type and values of a color of any given type.

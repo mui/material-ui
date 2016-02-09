@@ -18,7 +18,9 @@
     "native:development": "node_modules/react-native/packager/packager.sh --reset-cache",
     "android:setup-port": "adb reverse tcp:8081 tcp:8081"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-title-component": "^1.0.1"
+  },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
     "babel-plugin-transform-react-constant-elements": "^6.3.13",

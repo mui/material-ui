@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -23,6 +25,7 @@ const descriptions = {
 
 const DropDownMenuPage = () => (
   <div>
+    <Title render={(previousTitle) => `Drop Down Menu - ${previousTitle}`} />
     <MarkdownElement text={dropDownMenuReadmeText} />
     <CodeExample
       title="Simple example"

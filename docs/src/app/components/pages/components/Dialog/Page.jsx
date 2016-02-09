@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -16,7 +18,7 @@ import dialogCode from '!raw!material-ui/lib/dialog';
 
 const descriptions = {
   simple: 'Dialog with action buttons. The actions are passed in as an array of React objects, ' +
-  'in this example [FlatButtons](http://localhost:3000/#/components/flat-button). \n\n' +
+  'in this example [FlatButtons](/#/components/flat-button). \n\n' +
   'You can also close this dialog by clicking outside the dialog, or with the \'Esc\' key.',
   modal: 'A modal dialog can only be closed by selecting one of the actions.',
   styled: 'The dialog width has been set to occupy the full width of browser through the `contentStyle` property.',
@@ -25,6 +27,7 @@ const descriptions = {
 
 const DialogPage = () => (
   <div>
+    <Title render={(previousTitle) => `Dialog - ${previousTitle}`} />
     <MarkdownElement text={dialogReadmeText} />
     <CodeExample
       title="Simple dialog"

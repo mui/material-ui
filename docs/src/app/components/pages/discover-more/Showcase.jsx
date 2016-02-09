@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 
@@ -44,6 +46,7 @@ const appList = [
 
 const Showcase = () => (
   <div>
+    <Title render={(previousTitle) => `Showcase - ${previousTitle}`} />
     <MarkdownElement text={showcaseText} />
     <GridList
       cols={3}

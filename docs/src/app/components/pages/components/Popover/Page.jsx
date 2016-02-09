@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -13,15 +15,17 @@ import PopoverExampleConfigurable from './ExampleConfigurable';
 import popoverExampleConfigurableCode from '!raw!./ExampleConfigurable';
 
 const descriptions = {
-  simple: 'A simple example showing a Popover. It can be also closed by clicking away from the Popover.',
+  simple: 'A simple example showing a Popover containing a [Menu](http://localhost:3000/#/components/menu). ' +
+  'It can be also closed by clicking away from the Popover.',
   animation: 'The default animation style is to animate around the origin. ' +
   'An alternative animation can be applied using the `animation` property. ' +
-  'Currently one alternative animation is available, which animates vertically.',
+  'Currently one alternative animation is available, `popover-animation-from-top`, which animates vertically.',
   configurable: 'Use the radio buttons to adjust the `anchorOrigin` and `targetOrigin` positions.',
 };
 
 const PopoverPage = () => (
   <div>
+    <Title render={(previousTitle) => `Popover - ${previousTitle}`} />
     <MarkdownElement text={popoverReadmeText} />
     <CodeExample
       title="Simple example"

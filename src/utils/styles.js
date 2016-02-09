@@ -1,31 +1,4 @@
-import autoPrefix from '../styles/auto-prefix';
-import update from 'react-addons-update';
-import warning from 'warning';
-
-function mergeSingle(objA, objB) {
-  if (!objA) return objB;
-  if (!objB) return objA;
-  return update(objA, {$merge: objB});
-}
-
-export function mergeStyles(base, ...args) {
-  for (let i = 0; i < args.length; i++) {
-    if (args[i]) {
-      base = mergeSingle(base, args[i]);
-    }
-  }
-  return base;
-}
-
-/**
- * `mergeAndPrefix` is used to merge styles and autoprefix them. It has has been deprecated
- *  and should no longer be used.
- */
-export function mergeAndPrefix(...args) {
-  warning(false, 'Use of mergeAndPrefix() has been deprecated. ' +
-    'Please use mergeStyles() for merging styles, and then prepareStyles() for prefixing and ensuring direction.');
-  return autoPrefix.all(mergeStyles(...args));
-}
+export const mergeStyles = (...args) => Object.assign({}, ...args);
 
 /**
  * `prepareStyles` is used to merge multiple styles, make sure they are flipped
@@ -49,6 +22,5 @@ export function prepareStyles(muiTheme, style = {}, ...styles) {
 
 export default {
   mergeStyles,
-  mergeAndPrefix,
   prepareStyles,
 };

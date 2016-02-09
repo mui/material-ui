@@ -1,6 +1,5 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
-import {mergeStyles, prepareStyles} from '../utils/styles';
 
 const propTypes = {
   /**
@@ -79,10 +78,14 @@ const TextFieldLabel = (props) => {
     },
   };
 
+  const {
+    prepareStyles,
+  } = muiTheme;
+
   return (
     <label
       className={className}
-      style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}
+      style={prepareStyles(Object.assign({}, styles.root, style))}
       htmlFor={htmlFor}
       onTouchTap={onTouchTap}
     >

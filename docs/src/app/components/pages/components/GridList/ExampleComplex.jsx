@@ -71,7 +71,7 @@ const GridListExampleComplex = () => (
       padding={1}
       style={styles.gridList}
     >
-      {tilesData.map(tile => (
+      {tilesData.map((tile) => (
         <GridTile
           key={tile.img}
           title={tile.title}

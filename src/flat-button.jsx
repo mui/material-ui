@@ -3,7 +3,6 @@ import ContextPure from './mixins/context-pure';
 import Transitions from './styles/transitions';
 import Children from './utils/children';
 import ColorManipulator from './utils/color-manipulator';
-import {mergeStyles} from './utils/styles';
 import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import FlatButtonLabel from './buttons/flat-button-label';
@@ -11,8 +10,7 @@ import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label) {
-    return new Error('Required prop label or children was not ' +
-      'specified in ' + componentName + '.');
+    return new Error(`Required prop label or children was not specified in ${componentName}.`);
   }
 }
 
@@ -258,7 +256,7 @@ const FlatButton = React.createClass({
     const buttonBackgroundColor = backgroundColor || buttonColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
-    const mergedRootStyles = mergeStyles({
+    const mergedRootStyles = Object.assign({}, {
       color: defaultTextColor,
       transition: Transitions.easeOut(),
       fontSize: Typography.fontStyleButtonFontSize,
@@ -270,7 +268,7 @@ const FlatButton = React.createClass({
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
-      lineHeight: buttonHeight + 'px',
+      lineHeight: `${buttonHeight}px`,
       minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,
@@ -297,7 +295,7 @@ const FlatButton = React.createClass({
     }
 
     const labelElement = label ? (
-      <FlatButtonLabel label={label} style={mergeStyles(labelStyleIcon, labelStyle)} />
+      <FlatButtonLabel label={label} style={Object.assign({}, labelStyleIcon, labelStyle)} />
     ) : undefined;
 
     // Place label before or after children.

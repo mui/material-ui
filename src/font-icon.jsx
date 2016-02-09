@@ -1,7 +1,32 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    color,
+    hoverColor,
+  } = props;
+
+  const {
+    baseTheme,
+  } = state.muiTheme;
+
+  const offColor = color || baseTheme.palette.textColor;
+  const onColor = hoverColor || offColor;
+
+  return {
+    root: {
+      color: state.hovered ? onColor : offColor,
+      position: 'relative',
+      fontSize: baseTheme.spacing.iconSize,
+      display: 'inline-block',
+      userSelect: 'none',
+      transition: Transitions.easeOut(),
+    },
+  };
+}
+
 
 const FontIcon = React.createClass({
 
@@ -37,14 +62,9 @@ const FontIcon = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -66,11 +86,10 @@ const FontIcon = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _handleMouseLeave(e) {
@@ -93,36 +112,24 @@ const FontIcon = React.createClass({
 
   render() {
     let {
-      color,
-      hoverColor,
       onMouseLeave,
       onMouseEnter,
       style,
       ...other,
     } = this.props;
 
-    let spacing = this.state.muiTheme.rawTheme.spacing;
-    let offColor = color ? color :
-      style && style.color ? style.color :
-      this.state.muiTheme.rawTheme.palette.textColor;
-    let onColor = hoverColor ? hoverColor : offColor;
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    let mergedStyles = this.mergeStyles({
-      position: 'relative',
-      fontSize: spacing.iconSize,
-      display: 'inline-block',
-      userSelect: 'none',
-      transition: Transitions.easeOut(),
-    }, style, {
-      color: this.state.hovered ? onColor : offColor,
-    });
+    const styles = getStyles(this.props, this.state);
 
     return (
       <span
         {...other}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
-        style={this.prepareStyles(mergedStyles)}
+        style={prepareStyles(Object.assign(styles.root, style))}
       />
     );
   },

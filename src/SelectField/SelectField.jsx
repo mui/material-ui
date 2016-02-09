@@ -4,7 +4,6 @@ import TextField from '../text-field';
 import DropDownMenu from '../DropDownMenu';
 import getMuiTheme from '../styles/getMuiTheme';
 import ContextPure from '../mixins/context-pure';
-import deprecated from '../utils/deprecatedPropType';
 
 const SelectField = React.createClass({
 
@@ -70,22 +69,9 @@ const SelectField = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
-     * `SelectField` will use text as default value,
-     * with this property you can choose another name.
-     */
-    labelMember: deprecated(React.PropTypes.string,
-      'to promote composability.'),
-
-    /**
      * Overrides the styles of label when the `SelectField` is inactive.
      */
     labelStyle: React.PropTypes.object,
-
-    /**
-     * JSON data representing all menu items in the dropdown.
-     */
-    menuItems: deprecated(React.PropTypes.array,
-      'to promote composability.'),
 
     /**
      * Callback function that is fired when the `SelectField` loses focus.
@@ -106,12 +92,6 @@ const SelectField = React.createClass({
      * The style object to use to override the `DropDownMenu`.
      */
     selectFieldRoot: React.PropTypes.object, // Must be changed!
-
-    /**
-     * Index of the item selected.
-     */
-    selectedIndex: deprecated(React.PropTypes.number,
-      'with menuItems.'),
 
     /**
      * Override the inline-styles of the root element.

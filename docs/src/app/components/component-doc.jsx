@@ -26,24 +26,23 @@ const ComponentDoc = React.createClass({
     let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     return {
       desc: {
-        borderBottom: 'solid 1px ' + borderColor,
-        paddingTop: '8px',
-        paddingBottom: '40px',
-        marginBottom: '24px',
-        //mui-font-style-subhead-1
-        fontSize: '15px',
+        borderBottom: `solid 1px ${borderColor}`,
+        paddingTop: 8,
+        paddingBottom: 40,
+        marginBottom: 24,
+        fontSize: 15,
         letterSpacing: '0',
         lineHeight: '24px',
         color: Typography.textDarkBlack,
       },
       ol: {
-        fontSize: '13px',
-        paddingLeft: '48px',
+        fontSize: 13,
+        paddingLeft: 48,
       },
       componentInfo: {
-        borderTop: 'solid 1px ' + borderColor,
-        paddingTop: '24px',
-        marginTop: '24px',
+        borderTop: `solid 1px ${borderColor}`,
+        paddingTop: 24,
+        marginTop: 24,
       },
       componentInfoWhenFirstChild: {
         borderTop: 'none',
@@ -52,10 +51,10 @@ const ComponentDoc = React.createClass({
       },
       headline: {
         //headline
-        fontSize: '24px',
+        fontSize: 24,
         lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px',
+        paddingTop: 16,
+        marginBottom: 12,
         letterSpacing: '0',
         fontWeight: Typography.fontWeightNormal,
         color: Typography.textDarkBlack,

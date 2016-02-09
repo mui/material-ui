@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import StylePropable from '../mixins/style-propable';
 import autoPrefix from '../styles/auto-prefix';
 import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
@@ -31,7 +30,6 @@ const FocusRipple = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -60,20 +58,23 @@ const FocusRipple = React.createClass({
     const {
       color,
       innerStyle,
+      muiTheme: {
+        prepareStyles,
+      },
       opacity,
     } = props;
 
-    const innerStyles = this.mergeStyles({
+    const innerStyles = Object.assign({
       position: 'absolute',
       height: '100%',
       width: '100%',
       borderRadius: '50%',
       opacity: opacity ? opacity : 0.16,
       backgroundColor: color,
-      transition: Transitions.easeOut(pulsateDuration + 'ms', 'transform', null, Transitions.easeInOutFunction),
+      transition: Transitions.easeOut(`${pulsateDuration}ms`, 'transform', null, Transitions.easeInOutFunction),
     }, innerStyle);
 
-    return <div ref="innerCircle" style={this.prepareStyles(innerStyles)} />;
+    return <div ref="innerCircle" style={prepareStyles(Object.assign({}, innerStyles))} />;
   },
 
   _pulsate() {
@@ -106,8 +107,8 @@ const FocusRipple = React.createClass({
     if (el.style.top.indexOf('px', el.style.top.length - 2) !== -1) {
       oldTop = parseInt(el.style.top);
     }
-    el.style.height = size + 'px';
-    el.style.top = (height / 2) - (size / 2 ) + oldTop + 'px';
+    el.style.height = `${size}px`;
+    el.style.top = `${(height / 2) - (size / 2 ) + oldTop}px`;
   },
 
   render() {
@@ -116,7 +117,7 @@ const FocusRipple = React.createClass({
       style,
     } = this.props;
 
-    const mergedRootStyles = this.mergeStyles({
+    const mergedRootStyles = Object.assign({
       height: '100%',
       width: '100%',
       position: 'absolute',

@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -19,6 +21,7 @@ const descriptions = {
 
 const GridListPage = () => (
   <div>
+    <Title render={(previousTitle) => `Grid List - ${previousTitle}`} />
     <MarkdownElement text={gridListReadmeText} />
     <CodeExample
       title="Simple example"

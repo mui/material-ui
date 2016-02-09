@@ -27,9 +27,6 @@ export default {
     delay = delay || '0ms';
     easeFunction = easeFunction || 'linear';
 
-    return property + ' ' +
-      duration + ' ' +
-      easeFunction + ' ' +
-      delay;
+    return `${property} ${duration} ${easeFunction} ${delay}`;
   },
 };

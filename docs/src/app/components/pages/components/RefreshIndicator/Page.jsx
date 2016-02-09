@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -20,6 +22,7 @@ const descriptions = {
 
 const RefreshIndicatorPage = () => (
   <div>
+    <Title render={(previousTitle) => `Refresh Indicator - ${previousTitle}`} />
     <MarkdownElement text={refreshIndicatorReadmeText} />
     <CodeExample
       title="Ready"

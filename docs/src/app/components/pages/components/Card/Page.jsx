@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -26,6 +28,7 @@ const descriptions = {
 
 const CardPage = () => (
   <div>
+    <Title render={(previousTitle) => `Card - ${previousTitle}`} />
     <MarkdownElement text={cardReadmeText} />
     <CodeExample
       title="Card components example"

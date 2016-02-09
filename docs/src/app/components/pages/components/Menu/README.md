@@ -3,4 +3,6 @@
 take an action by selecting from a list revealed upon opening a temporary,
 new sheet of material.
 
+A `Menu` is typically used in a [Popover](/#/components/popover).
+
 ### Examples

@@ -25,7 +25,7 @@ export default class LeftNavUndockedExample extends React.Component {
           docked={false}
           width={200}
           open={this.state.open}
-          onRequestChange={open => this.setState({open})}
+          onRequestChange={(open) => this.setState({open})}
         >
           <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
           <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>

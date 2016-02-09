@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -25,6 +27,7 @@ const descriptions = {
 };
 const TextFieldsPage = () => (
   <div>
+    <Title render={(previousTitle) => `Text Field - ${previousTitle}`} />
     <MarkdownElement text={textFieldReadmeText} />
     <CodeExample
       title="Simple examples"

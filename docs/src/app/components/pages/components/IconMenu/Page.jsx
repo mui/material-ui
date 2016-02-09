@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -21,6 +23,7 @@ const descriptions = {
 
 const IconMenusPage = () => (
   <div>
+    <Title render={(previousTitle) => `Icon Menu - ${previousTitle}`} />
     <MarkdownElement text={iconMenuReadmeText} />
     <CodeExample
       title="Icon Menu positioning"

@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -25,6 +27,7 @@ const descriptions = {
 const SnackbarPage = () => {
   return (
     <div>
+      <Title render={(previousTitle) => `Snackbar - ${previousTitle}`} />
       <MarkdownElement text={SnackbarReadmeText} />
       <CodeExample
         title="Simple example"

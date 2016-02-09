@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -14,6 +16,7 @@ const description = 'The second example is selected by default using the `defaul
 
 const TogglePage = () => (
   <div>
+    <Title render={(previousTitle) => `Toggle - ${previousTitle}`} />
     <MarkdownElement text={toggleReadmeText} />
     <CodeExample
       title="Examples"

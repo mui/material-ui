@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -18,6 +20,7 @@ const descriptions = {
 
 const TimePickersPage = () => (
   <div>
+    <Title render={(previousTitle) => `Time Picker - ${previousTitle}`} />
     <MarkdownElement text={timePickerReadmeText} />
     <CodeExample
       title="Simple examples"

@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import {
   ClearFix,
   Mixins,
@@ -135,6 +137,7 @@ const ColorsPage = React.createClass({
 
     return (
       <div>
+        <Title render={(previousTitle) => `Colors - ${previousTitle}`} />
         <h2 style={this.getStyles().headline}>UI Color Palette</h2>
         <p>
           We&#39;ve created javascript variables for every color used in

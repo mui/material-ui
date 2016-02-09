@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import WindowListenable from '../mixins/window-listenable';
 import RenderToLayer from '../render-to-layer';
-import StylePropable from '../mixins/style-propable';
 import PropTypes from '../utils/prop-types';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
@@ -104,13 +103,11 @@ const Popover = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     WindowListenable,
   ],
 
@@ -304,10 +301,9 @@ const Popover = React.createClass({
       targetPosition = this.applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition);
     }
 
-
-    targetEl.style.top = Math.max(0, targetPosition.top) + 'px';
-    targetEl.style.left = Math.max(0, targetPosition.left) + 'px';
-    targetEl.style.maxHeight = window.innerHeight + 'px';
+    targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
+    targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
+    targetEl.style.maxHeight = `${window.innerHeight}px`;
   },
 
   autoCloseWhenOffScreen(anchorPosition) {

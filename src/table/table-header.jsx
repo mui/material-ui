@@ -1,8 +1,19 @@
 import React from 'react';
 import Checkbox from '../checkbox';
-import StylePropable from '../mixins/style-propable';
 import TableHeaderColumn from './table-header-column';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    tableHeader,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      borderBottom: `1px solid ${tableHeader.borderColor}`,
+    },
+  };
+}
 
 const TableHeader = React.createClass({
 
@@ -60,14 +71,9 @@ const TableHeader = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -90,25 +96,10 @@ const TableHeader = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.tableHeader;
-  },
-
-  getStyles() {
-    let styles = {
-      root: {
-        borderBottom: '1px solid ' + this.getTheme().borderColor,
-      },
-    };
-
-    return styles;
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _createSuperHeaderRows() {
@@ -122,7 +113,7 @@ const TableHeader = React.createClass({
       if (!React.isValidElement(child)) continue;
 
       let props = {
-        key: 'sh' + index,
+        key: `sh${index}`,
         rowNumber: index,
       };
       superHeaders.push(this._createSuperHeaderRow(child, props));
@@ -147,7 +138,7 @@ const TableHeader = React.createClass({
     let numChildren = React.Children.count(this.props.children);
     let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     let props = {
-      key: 'h' + numChildren,
+      key: `h${numChildren}`,
       rowNumber: numChildren,
     };
 
@@ -166,7 +157,7 @@ const TableHeader = React.createClass({
   _getCheckboxPlaceholder(props) {
     if (!this.props.adjustForCheckbox) return null;
 
-    const key = 'hpcb' + props.rowNumber;
+    const key = `hpcb${props.rowNumber}`;
     return <TableHeaderColumn key={key} style={{width: 24}} />;
   },
 
@@ -184,7 +175,7 @@ const TableHeader = React.createClass({
       />
     );
 
-    const key = 'hpcb' + props.rowNumber;
+    const key = `hpcb${props.rowNumber}`;
     return (
       <TableHeaderColumn key={key} style={{width: 24}}>
         {checkbox}
@@ -202,11 +193,18 @@ const TableHeader = React.createClass({
       style,
       ...other,
     } = this.props;
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+
     let superHeaderRows = this._createSuperHeaderRows();
     let baseHeaderRow = this._createBaseHeaderRow();
 
     return (
-      <thead className={className} style={this.prepareStyles(this.getStyles().root, style)}>
+      <thead className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         {superHeaderRows}
         {baseHeaderRow}
       </thead>
