@@ -15,6 +15,7 @@ const FocusRipple = React.createClass({
     innerStyle: React.PropTypes.object,
 
     /**
+     * @ignore
      * The material-ui theme applied to this component.
      */
     muiTheme: React.PropTypes.object.isRequired,

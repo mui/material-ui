@@ -57,9 +57,10 @@ const RadioButton = React.createClass({
 
   propTypes: {
     /**
+     * @ignore
+     * checked if true
      * Used internally by `RadioButtonGroup`.
      */
-    /* Checked if true. */
     checked: React.PropTypes.bool,
 
     /**
@@ -78,9 +79,10 @@ const RadioButton = React.createClass({
     inputStyle: React.PropTypes.object,
 
     /**
+     * @ignore
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
+     * Where the label will be placed next to the radio button.
      */
-    /* Where the label will be placed next to the radio button. */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
 
     /**
