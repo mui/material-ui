@@ -23,6 +23,7 @@ const TouchRipple = React.createClass({
     color: React.PropTypes.string,
 
     /**
+     * @ignore
      * The material-ui theme applied to this component.
      */
     muiTheme: React.PropTypes.object.isRequired,
