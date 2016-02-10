@@ -42,6 +42,12 @@ const appList = [
     img: 'images/showcase/cloudcraft.png',
     link: 'https://cloudcraft.co/',
   },
+  {
+    title: 'It\'s quiz',
+    author: 'It\'s quiz',
+    img: 'images/showcase/itsquiz.png',
+    link: 'http://itsquiz.com/',
+  },
 ];
 
 const Showcase = () => (
