@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionInfo from 'material-ui/lib/svg-icons/action/info';
@@ -11,8 +10,15 @@ import ActionAssignment from 'material-ui/lib/svg-icons/action/assignment';
 import Colors from 'material-ui/lib/styles/colors';
 import EditorInsertChart from 'material-ui/lib/svg-icons/editor/insert-chart';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
+
 const ListExampleFolder = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <List>
       <Subheader inset={true}>Folders</Subheader>
       <ListItem
@@ -50,7 +56,7 @@ const ListExampleFolder = () => (
         secondaryText="Jan 10, 2014"
       />
     </List>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExampleFolder;

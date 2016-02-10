@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
@@ -7,9 +6,19 @@ import Subheader from 'material-ui/lib/Subheader';
 import Checkbox from 'material-ui/lib/checkbox';
 import Toggle from 'material-ui/lib/toggle';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+  divider: {
+    height: 30,
+  },
+};
+
 const ListExampleSettings = () => (
   <div>
-    <MobileTearSheet>
+    <div style={styles.root}>
       <List>
         <Subheader>General</Subheader>
         <ListItem
@@ -40,8 +49,9 @@ const ListExampleSettings = () => (
           secondaryText="Hangouts video call"
         />
       </List>
-    </MobileTearSheet>
-    <MobileTearSheet>
+    </div>
+    <div style={styles.divider} />
+    <div style={styles.root}>
       <List>
         <ListItem
           primaryText="When calls and notifications arrive"
@@ -62,7 +72,7 @@ const ListExampleSettings = () => (
         <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
         <ListItem primaryText="Video sounds" leftCheckbox={<Checkbox />} />
       </List>
-    </MobileTearSheet>
+    </div>
   </div>
 );
 

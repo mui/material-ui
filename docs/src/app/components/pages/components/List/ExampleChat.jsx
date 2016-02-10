@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import Avatar from 'material-ui/lib/avatar';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
@@ -7,8 +6,15 @@ import Divider from 'material-ui/lib/divider';
 import Subheader from 'material-ui/lib/Subheader';
 import CommunicationChatBubble from 'material-ui/lib/svg-icons/communication/chat-bubble';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
+
 const ListExampleChat = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <List>
       <Subheader>Recent chats</Subheader>
       <ListItem
@@ -49,7 +55,7 @@ const ListExampleChat = () => (
         leftAvatar={<Avatar src="images/jsa-128.jpg" />}
       />
     </List>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExampleChat;

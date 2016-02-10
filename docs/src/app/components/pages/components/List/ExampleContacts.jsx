@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
@@ -7,8 +6,15 @@ import Divider from 'material-ui/lib/divider';
 import Avatar from 'material-ui/lib/avatar';
 import Colors from 'material-ui/lib/styles/colors';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
+
 const ListExampleContacts = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <List>
       <ListItem
         primaryText="Chelsea Otakan"
@@ -61,7 +67,7 @@ const ListExampleContacts = () => (
         rightAvatar={<Avatar src="images/angelceballos-128.jpg" />}
       />
     </List>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExampleContacts;

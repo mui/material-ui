@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
@@ -9,8 +8,15 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
+
 const ListExampleSimple = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <List>
       <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
       <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
@@ -25,7 +31,7 @@ const ListExampleSimple = () => (
       <ListItem primaryText="Spam" rightIcon={<ActionInfo />} />
       <ListItem primaryText="Follow up" rightIcon={<ActionInfo />} />
     </List>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExampleSimple;

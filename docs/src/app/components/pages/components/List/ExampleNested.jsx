@@ -1,5 +1,4 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
@@ -8,8 +7,15 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Subheader from 'material-ui/lib/Subheader';
 
+const styles = {
+  root: {
+    border: 'solid 1px #d9d9d9',
+    width: 360,
+  },
+};
+
 const ListExampleNested = () => (
-  <MobileTearSheet>
+  <div style={styles.root}>
     <List>
       <Subheader>Nested List Items</Subheader>
       <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
@@ -37,7 +43,7 @@ const ListExampleNested = () => (
         ]}
       />
     </List>
-  </MobileTearSheet>
+  </div>
 );
 
 export default ListExampleNested;
