@@ -6,6 +6,9 @@ import getMuiTheme from './styles/getMuiTheme';
 const rowsHeight = 24;
 
 const styles = {
+  root: {
+    position: 'relative', //because the shadow has position: 'absolute'
+  },
   textarea: {
     width: '100%',
     resize: 'none',
@@ -147,6 +150,8 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
+    let rootStyles = this.mergeStyles(styles.root, style);
+
     const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
       height: this.state.height,
     });
@@ -158,11 +163,11 @@ const EnhancedTextarea = React.createClass({
     }
 
     if (this.props.disabled) {
-      style.cursor = 'default';
+      rootStyles = this.mergeStyles(rootStyles, {cursor: 'default'});
     }
 
     return (
-      <div style={this.prepareStyles(this.props.style)}>
+      <div style={this.prepareStyles(rootStyles)}>
         <textarea
           ref="shadow"
           style={this.prepareStyles(shadowStyles)}
