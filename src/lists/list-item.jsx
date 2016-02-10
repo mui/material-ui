@@ -662,7 +662,7 @@ const ListItem = React.createClass({
               ref="enhancedButton"
               style={Object.assign({}, styles.root, style)}
             >
-              <div style={this.state.muiTheme.prepareStyles(styles.innerDiv, innerDivStyle)}>
+              <div style={this.state.muiTheme.prepareStyles(Object.assign(styles.innerDiv, innerDivStyle))}>
                 {contentChildren}
               </div>
             </EnhancedButton>
