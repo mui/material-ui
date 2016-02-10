@@ -1,6 +1,5 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import StylePropable from './mixins/style-propable';
 import Colors from './styles/colors';
 import Children from './utils/children';
 import Events from './utils/events';
@@ -77,12 +76,11 @@ const EnhancedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [PureRenderMixin, StylePropable],
+  mixins: [PureRenderMixin],
 
   getDefaultProps() {
     return {
@@ -119,8 +117,9 @@ const EnhancedButton = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
       this.state.isKeyboardFocused) {
@@ -273,7 +272,11 @@ const EnhancedButton = React.createClass({
       ...other,
     } = this.props;
 
-    const mergedStyles = this.mergeStyles({
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const mergedStyles = Object.assign({
       border: 10,
       background: 'none',
       boxSizing: 'border-box',
@@ -308,7 +311,7 @@ const EnhancedButton = React.createClass({
 
     const buttonProps = {
       ...other,
-      style: this.prepareStyles(mergedStyles),
+      style: prepareStyles(mergedStyles),
       disabled: disabled,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
