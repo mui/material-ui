@@ -5,13 +5,14 @@
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
-    "test": "npm run test-base -- --single-run",
-    "test-watch": "npm run test-base -- --auto-watch",
-    "test-base": "./node_modules/.bin/karma start",
-    "prebuild": "rimraf lib",
-    "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "build": "babel ./src --out-dir ./lib",
-    "prepublish": "npm run build"
+    "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
+    "prebuild": "rimraf lib",
+    "prepublish": "npm run build",
+    "test": "babel-node ",
+    "test:browser": "npm run test:browser:base -- --single-run",
+    "test:browser:watch": "npm run test:browser:base -- --auto-watch",
+    "test:browser:base": "./node_modules/.bin/karma start test/karma.conf.js"
   },
   "keywords": [
     "react",
@@ -88,8 +89,8 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "react": "^0.14.0",
-    "react-addons-test-utils": "^0.14.3",
-    "react-dom": "^0.14.0",
+    "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
     "react-hot-loader": "^1.3.0",
     "react-tap-event-plugin": "^0.2.0",
     "recursive-readdir-sync": "^1.0.6",

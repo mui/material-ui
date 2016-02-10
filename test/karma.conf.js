@@ -1,14 +1,14 @@
 // Karma configuration
 module.exports = function(config) {
   config.set({
-    basePath: '',
+    basePath: '../',
     frameworks: ['browserify', 'mocha', 'chai-sinon'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
-      'test/**/*spec.js',
+      'test/browser/**/*spec.js',
     ],
     preprocessors: {
-      'test/**/*spec.js': ['browserify'],
+      'test/browser/**/*spec.js': ['browserify'],
     },
     browserify: {
       debug: true,
@@ -23,7 +23,7 @@ module.exports = function(config) {
     },
     reporters: ['mocha', 'coverage'],
     coverageReporter: {
-      dir: 'coverage',
+      dir: 'test/coverage/browser',
       subdir: function(browser) {
         return browser.toLowerCase().split(/[ /-]/)[0];
       },
