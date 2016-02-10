@@ -73,8 +73,17 @@ const EnhancedTextarea = React.createClass({
     };
   },
 
+  handleResize(e) {
+    this._syncHeightWithShadow(undefined, e);
+  },
+
   componentDidMount() {
     this._syncHeightWithShadow();
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
