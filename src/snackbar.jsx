@@ -1,11 +1,70 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import ClickAwayable from './mixins/click-awayable';
 import FlatButton from './flat-button';
 import getMuiTheme from './styles/getMuiTheme';
 import ContextPure from './mixins/context-pure';
 import StyleResizable from './mixins/style-resizable';
+
+function getStyles(props, state) {
+  const {
+    muiTheme: {
+      baseTheme,
+      snackbar,
+      zIndex,
+    },
+    open,
+  } = state;
+
+  const {
+    desktopGutter,
+    desktopSubheaderHeight,
+  } = baseTheme.spacing;
+
+  const isSmall = state.deviceSize === StyleResizable.statics.Sizes.SMALL;
+
+  const styles = {
+    root: {
+      position: 'fixed',
+      left: 0,
+      display: 'flex',
+      right: 0,
+      bottom: 0,
+      zIndex: zIndex.snackbar,
+      visibility: open ? 'visible' : 'hidden',
+      transform: open ? 'translate3d(0, 0, 0)' : `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
+      transition: `${Transitions.easeOut('400ms', 'transform')}, ${
+        Transitions.easeOut('400ms', 'visibility')}`,
+    },
+    body: {
+      backgroundColor: snackbar.backgroundColor,
+      padding: `0 ${desktopGutter}px`,
+      height: desktopSubheaderHeight,
+      lineHeight: `${desktopSubheaderHeight}px`,
+      borderRadius: isSmall ? 0 : 2,
+      maxWidth: isSmall ? 'inherit' : 568,
+      minWidth: isSmall ? 'inherit' : 288,
+      flexGrow: isSmall ? 1 : 0,
+      margin: 'auto',
+    },
+    content: {
+      fontSize: 14,
+      color: snackbar.textColor,
+      opacity: open ? 1 : 0,
+      transition: open ? Transitions.easeOut('500ms', 'opacity', '100ms') : Transitions.easeOut('400ms', 'opacity'),
+    },
+    action: {
+      color: snackbar.actionColor,
+      float: 'right',
+      marginTop: 6,
+      marginRight: -16,
+      marginLeft: desktopGutter,
+      backgroundColor: 'transparent',
+    },
+  };
+
+  return styles;
+}
 
 const Snackbar = React.createClass({
 
@@ -74,13 +133,11 @@ const Snackbar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     StyleResizable,
     ClickAwayable,
     ContextPure,
@@ -89,7 +146,7 @@ const Snackbar = React.createClass({
   statics: {
     getRelevantContextKeys(muiTheme) {
       const theme = muiTheme.snackbar;
-      const spacing = muiTheme.rawTheme.spacing;
+      const spacing = muiTheme.baseTheme.spacing;
 
       return {
         textColor: theme.textColor,
@@ -133,9 +190,8 @@ const Snackbar = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
 
     if (this.state.open && nextProps.open === this.props.open &&
@@ -200,68 +256,6 @@ const Snackbar = React.createClass({
     }
   },
 
-  getStyles() {
-    const {
-      textColor,
-      backgroundColor,
-      desktopGutter,
-      desktopSubheaderHeight,
-      actionColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
-
-    const isSmall = this.state.deviceSize === this.constructor.Sizes.SMALL;
-
-    const styles = {
-      root: {
-        position: 'fixed',
-        left: 0,
-        display: 'flex',
-        right: 0,
-        bottom: 0,
-        zIndex: this.state.muiTheme.zIndex.snackbar,
-        visibility: 'hidden',
-        transform: `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
-        transition: `${Transitions.easeOut('400ms', 'transform')}, ${
-          Transitions.easeOut('400ms', 'visibility')}`,
-      },
-      rootWhenOpen: {
-        visibility: 'visible',
-        transform: 'translate3d(0, 0, 0)',
-      },
-      body: {
-        backgroundColor: backgroundColor,
-        padding: `0 ${desktopGutter}px`,
-        height: desktopSubheaderHeight,
-        lineHeight: `${desktopSubheaderHeight}px`,
-        borderRadius: isSmall ? 0 : 2,
-        maxWidth: isSmall ? 'inherit' : 568,
-        minWidth: isSmall ? 'inherit' : 288,
-        flexGrow: isSmall ? 1 : 0,
-        margin: 'auto',
-      },
-      content: {
-        fontSize: 14,
-        color: textColor,
-        opacity: 0,
-        transition: Transitions.easeOut('400ms', 'opacity'),
-      },
-      contentWhenOpen: {
-        opacity: 1,
-        transition: Transitions.easeOut('500ms', 'opacity', '100ms'),
-      },
-      action: {
-        color: actionColor,
-        float: 'right',
-        marginTop: 6,
-        marginRight: -16,
-        marginLeft: desktopGutter,
-        backgroundColor: 'transparent',
-      },
-    };
-
-    return styles;
-  },
-
   _setAutoHideTimer() {
     const autoHideDuration = this.props.autoHideDuration;
 
@@ -285,37 +279,28 @@ const Snackbar = React.createClass({
       ...others,
     } = this.props;
 
-    const styles = this.getStyles();
-
     const {
-      open,
       action,
       message,
+      muiTheme: {
+        prepareStyles,
+      },
     } = this.state;
 
-    const rootStyles = open ?
-      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
-      this.mergeStyles(styles.root, style);
+    const styles = getStyles(this.props, this.state);
 
-    let actionButton;
-    if (action) {
-      actionButton = (
-        <FlatButton
-          style={styles.action}
-          label={action}
-          onTouchTap={onActionTouchTap}
-        />
-      );
-    }
-
-    const mergedBodyStyle = this.mergeStyles(styles.body, bodyStyle);
-
-    const contentStyle = open ? this.mergeStyles(styles.content, styles.contentWhenOpen) : styles.content;
+    const actionButton = action && (
+      <FlatButton
+        style={styles.action}
+        label={action}
+        onTouchTap={onActionTouchTap}
+      />
+    );
 
     return (
-      <div {...others} style={rootStyles}>
-        <div style={mergedBodyStyle}>
-          <div style={contentStyle}>
+      <div {...others} style={prepareStyles(Object.assign(styles.root, style))}>
+        <div style={prepareStyles(Object.assign(styles.body, bodyStyle))}>
+          <div style={prepareStyles(styles.content)}>
             <span>{message}</span>
             {actionButton}
           </div>
