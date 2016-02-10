@@ -71,9 +71,7 @@ const InkBar = React.createClass({
     }, this.props.style, colorStyle);
 
     return (
-      <div style={this.prepareStyles(styles)}>
-        &nbsp;
-      </div>
+      <div style={this.prepareStyles(styles)} />
     );
   },
 
