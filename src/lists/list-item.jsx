@@ -4,7 +4,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ColorManipulator from '../utils/color-manipulator';
 import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
-import Typography from '../styles/typography';
 import EnhancedButton from '../enhanced-button';
 import IconButton from '../icon-button';
 import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
@@ -432,6 +431,7 @@ const ListItem = React.createClass({
     const twoLine = secondaryText && secondaryTextLines === 1;
     const threeLine = secondaryText && secondaryTextLines > 1;
     const hasCheckbox = leftCheckbox || rightToggle;
+    const secondaryTextColor = this.state.muiTheme.listItem.secondaryTextColor;
 
     const styles = {
       root: {
@@ -526,7 +526,7 @@ const ListItem = React.createClass({
         height: threeLine ? 36 : 16,
         margin: 0,
         marginTop: 4,
-        color: Typography.textLightBlack,
+        color: secondaryTextColor,
 
         //needed for 2 and 3 line ellipsis
         overflow: 'hidden',
