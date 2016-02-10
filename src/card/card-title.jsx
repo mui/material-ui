@@ -1,8 +1,9 @@
 import React from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
-import typography from '../styles/typography';
 
-function getStyles(props) {
+function getStyles(props, state) {
+  const {card} = state.muiTheme;
+
   return {
     root: {
       padding: 16,
@@ -10,13 +11,13 @@ function getStyles(props) {
     },
     title: {
       fontSize: 24,
-      color: props.titleColor,
+      color: props.titleColor || card.titleColor,
       display: 'block',
       lineHeight: '36px',
     },
     subtitle: {
       fontSize: 14,
-      color: props.subtitleColor,
+      color: props.subtitleColor || card.subtitleColor,
       display: 'block',
     },
   };
@@ -48,13 +49,6 @@ const CardTitle = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      titleColor: typography.textDarkBlack,
-      subtitleColor: typography.textLightBlack,
-    };
   },
 
   getInitialState() {

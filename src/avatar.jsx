@@ -1,5 +1,4 @@
 import React from 'react';
-import Colors from './styles/colors';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -16,8 +15,8 @@ function getStyles(props, state) {
 
   const styles = {
     root: {
-      color,
-      backgroundColor,
+      color: color || avatar.color,
+      backgroundColor: backgroundColor || avatar.backgroundColor,
       userSelect: 'none',
       display: 'inline-block',
       textAlign: 'center',
@@ -28,6 +27,7 @@ function getStyles(props, state) {
       width: size,
     },
     icon: {
+      color: color || avatar.color,
       margin: 8,
     },
   };
@@ -97,8 +97,6 @@ const Avatar = React.createClass({
 
   getDefaultProps() {
     return {
-      backgroundColor: Colors.grey400,
-      color: Colors.white,
       size: 40,
     };
   },
@@ -123,10 +121,7 @@ const Avatar = React.createClass({
 
   render() {
     let {
-      backgroundColor,
-      color,
       icon,
-      size,
       src,
       style,
       className,
@@ -156,7 +151,7 @@ const Avatar = React.createClass({
           className={className}
         >
           {icon && React.cloneElement(icon, {
-            color: color,
+            color: styles.icon.color,
             style: Object.assign(styles.icon, icon.props.style),
           })}
           {this.props.children}

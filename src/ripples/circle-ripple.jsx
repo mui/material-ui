@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
-import Colors from '../styles/colors';
 
 const CircleRipple = React.createClass({
 
@@ -30,7 +29,6 @@ const CircleRipple = React.createClass({
 
   getDefaultProps() {
     return {
-      color: Colors.darkBlack,
       opacity: 0.16,
     };
   },

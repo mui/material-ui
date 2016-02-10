@@ -31,7 +31,11 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       height: spacing.desktopKeylineIncrement,
     },
     avatar: {
-      borderColor: 'rgba(0, 0, 0, 0.08)',
+      color: palette.canvasColor,
+      backgroundColor: ColorManipulator.luminance(palette.canvasColor) > 0.5 ?
+        ColorManipulator.darken(palette.canvasColor, 0.26) :
+        ColorManipulator.lighten(palette.canvasColor, 1.26, 1.0),
+      borderColor: ColorManipulator.fade(palette.textColor, 0.08),
     },
     badge: {
       color: palette.alternateTextColor,
@@ -45,6 +49,10 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       height: 36,
       minWidth: 88,
       iconButtonSize: spacing.iconSize * 2,
+    },
+    card: {
+      titleColor: ColorManipulator.fade(palette.textColor, 0.87),
+      subtitleColor: ColorManipulator.fade(palette.textColor, 0.54),
     },
     cardText: {
       textColor: palette.textColor,
@@ -83,6 +91,9 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       secondaryColor: palette.primary1Color,
       secondaryIconColor: palette.alternateTextColor,
       disabledTextColor: palette.disabledColor,
+      disabledColor: ColorManipulator.luminance(palette.canvasColor) > 0.5 ?
+        ColorManipulator.darken(palette.canvasColor, 0.12) :
+        ColorManipulator.lighten(palette.canvasColor, 1.12, 1.0),
     },
     gridTile: {
       textColor: Colors.white,
@@ -104,7 +115,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     menuItem: {
       dataHeight: 32,
       height: 48,
-      hoverColor: 'rgba(0, 0, 0, .035)',
+      hoverColor: ColorManipulator.fade(palette.textColor, 0.035),
       padding: spacing.desktopGutter,
       selectedTextColor: palette.accent1Color,
     },
@@ -114,6 +125,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       textColor: palette.primary1Color,
     },
     paper: {
+      color: palette.textColor,
       backgroundColor: palette.canvasColor,
       zDepthShadows: [
         [1, 6, 0.12, 1, 4, 0.12],
@@ -150,6 +162,9 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       strokeColor: palette.borderColor,
       loadingStrokeColor: palette.primary1Color,
     },
+    ripple: {
+      color: ColorManipulator.fade(palette.textColor, 0.87),
+    },
     slider: {
       trackSize: 2,
       trackColor: palette.primary3Color,
@@ -166,6 +181,9 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       textColor: palette.alternateTextColor,
       backgroundColor: palette.textColor,
       actionColor: palette.accent1Color,
+    },
+    subheader: {
+      color: ColorManipulator.fade(palette.textColor, 0.54),
     },
     table: {
       backgroundColor: palette.canvasColor,
@@ -217,12 +235,14 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       trackRequiredColor: ColorManipulator.fade(palette.primary1Color, 0.5),
     },
     toolbar: {
+      color: ColorManipulator.fade(palette.textColor, 0.54),
+      hoverColor: ColorManipulator.fade(palette.textColor, 0.87),
       backgroundColor: ColorManipulator.darken(palette.accent2Color, 0.05),
       height: 56,
       titleFontSize: 20,
-      iconColor: 'rgba(0, 0, 0, .40)',
-      separatorColor: 'rgba(0, 0, 0, .175)',
-      menuHoverColor: 'rgba(0, 0, 0, .10)',
+      iconColor: ColorManipulator.fade(palette.textColor, 0.4),
+      separatorColor: ColorManipulator.fade(palette.textColor, 0.175),
+      menuHoverColor: ColorManipulator.fade(palette.textColor, 0.1),
     },
     tabs: {
       backgroundColor: palette.primary1Color,

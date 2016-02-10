@@ -14,7 +14,7 @@ export default {
    *
    * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
    */
-  _luminance(color) {
+  luminance(color) {
     color = this._decomposeColor(color);
 
     if (color.type.indexOf('rgb') > -1) {
@@ -95,8 +95,8 @@ export default {
     return this._convertColorToString(color, amount);
   },
 
-  // Desaturates rgb and sets opacity to 0.15
-  lighten(color, amount) {
+  // Desaturates rgb and sets opacity (defaults to 0.15)
+  lighten(color, amount, opacity = '0.15') {
     color = this._decomposeColor(color);
 
     if (color.type.indexOf('hsl') > -1) {
@@ -111,7 +111,7 @@ export default {
 
     if (color.type.indexOf('a') <= -1) color.type += 'a';
 
-    return this._convertColorToString(color, '0.15');
+    return this._convertColorToString(color, opacity);
   },
 
   darken(color, amount) {
@@ -135,8 +135,8 @@ export default {
   //
   // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
   contrastRatio(background, foreground) {
-    let lumA = this._luminance(background);
-    let lumB = this._luminance(foreground);
+    let lumA = this.luminance(background);
+    let lumB = this.luminance(foreground);
 
     if (lumA >= lumB) {
       return ((lumA + 0.05) / (lumB + 0.05)).toFixed(2);

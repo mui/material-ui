@@ -143,9 +143,6 @@ function getStyles(props, state) {
       width: '100%',
       textAlign: 'right',
     },
-    paper: {
-      background: baseTheme.palette.canvasColor,
-    },
     overlay: {
       zIndex: zIndex.dialogOverlay,
     },
@@ -361,7 +358,6 @@ const DialogInline = React.createClass({
               style={styles.content}
             >
               <Paper
-                style={styles.paper}
                 zDepth={4}
               >
                 {titleElement}

@@ -42,6 +42,7 @@ const AppCanvas = React.createClass({
 
     const styles = {
       height: '100%',
+      color: baseTheme.palette.textColor,
       backgroundColor: baseTheme.palette.canvasColor,
       direction: 'ltr',
     };
