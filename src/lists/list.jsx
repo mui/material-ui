@@ -1,7 +1,6 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from '../utils/prop-types';
-import StylePropable from '../mixins/style-propable';
 import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
 import Subheader from '../Subheader';
@@ -49,14 +48,12 @@ const List = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -77,11 +74,10 @@ const List = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
@@ -117,7 +113,7 @@ const List = React.createClass({
     return (
       <Paper
         {...other}
-        style={this.mergeStyles(styles.root, style)}
+        style={Object.assign(styles.root, style)}
         zDepth={zDepth}
       >
         {subheader && <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader>}

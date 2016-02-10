@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ColorManipulator from '../utils/color-manipulator';
-import StylePropable from '../mixins/style-propable';
 import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
 import Typography from '../styles/typography';
@@ -178,14 +177,12 @@ const ListItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -225,11 +222,10 @@ const ListItem = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   applyFocusState(focusState) {
@@ -258,7 +254,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedDivStyles = this.mergeStyles(
+    const mergedDivStyles = Object.assign({},
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -268,7 +264,7 @@ const ListItem = React.createClass({
     return (
       <div
         {...additionalProps}
-        style={this.prepareStyles(mergedDivStyles)}
+        style={this.state.muiTheme.prepareStyles(mergedDivStyles)}
       >
         {contentChildren}
       </div>
@@ -281,7 +277,7 @@ const ListItem = React.createClass({
       style,
     } = this.props;
 
-    const mergedLabelStyles = this.mergeStyles(
+    const mergedLabelStyles = Object.assign({},
       styles.root,
       styles.innerDiv,
       innerDivStyle,
@@ -292,7 +288,7 @@ const ListItem = React.createClass({
     return (
       <label
         {...additionalProps}
-        style={this.prepareStyles(mergedLabelStyles)}
+        style={this.state.muiTheme.prepareStyles(mergedLabelStyles)}
       >
         {contentChildren}
       </label>
@@ -302,15 +298,15 @@ const ListItem = React.createClass({
   _createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
     const mergedStyles = isAnElement ?
-      this.mergeStyles(styles, data.props.style) : null;
+      Object.assign({}, styles, data.props.style) : null;
 
     return isAnElement ? (
       React.cloneElement(data, {
         key: key,
-        style: this.prepareStyles(mergedStyles),
+        style: this.state.muiTheme.prepareStyles(mergedStyles),
       })
     ) : (
-      <div key={key} style={this.prepareStyles(styles)}>
+      <div key={key} style={this.state.muiTheme.prepareStyles(styles)}>
         {data}
       </div>
     );
@@ -387,7 +383,7 @@ const ListItem = React.createClass({
 
   _pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
-      const styles = this.mergeStyles(baseStyles, element.props.style);
+      const styles = Object.assign({}, baseStyles, element.props.style);
       children.push(
         React.cloneElement(element, {
           key: children.length,
@@ -548,7 +544,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         leftIcon,
-        this.mergeStyles(styles.icons, styles.leftIcon)
+        Object.assign({}, styles.icons, styles.leftIcon)
       );
     }
 
@@ -556,7 +552,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         rightIcon,
-        this.mergeStyles(styles.icons, styles.rightIcon)
+        Object.assign({}, styles.icons, styles.rightIcon)
       );
     }
 
@@ -564,7 +560,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         leftAvatar,
-        this.mergeStyles(styles.avatars, styles.leftAvatar)
+        Object.assign({}, styles.avatars, styles.leftAvatar)
       );
     }
 
@@ -572,7 +568,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         rightAvatar,
-        this.mergeStyles(styles.avatars, styles.rightAvatar)
+        Object.assign({}, styles.avatars, styles.rightAvatar)
       );
     }
 
@@ -580,7 +576,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         leftCheckbox,
-        this.mergeStyles(styles.leftCheckbox)
+        Object.assign({}, styles.leftCheckbox)
       );
     }
 
@@ -611,7 +607,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         rightIconButtonElement,
-        this.mergeStyles(styles.rightIconButton),
+        Object.assign({}, styles.rightIconButton),
         rightIconButtonHandlers
       );
     }
@@ -620,7 +616,7 @@ const ListItem = React.createClass({
       this._pushElement(
         contentChildren,
         rightToggle,
-        this.mergeStyles(styles.rightToggle)
+        Object.assign({}, styles.rightToggle)
       );
     }
 
@@ -664,9 +660,9 @@ const ListItem = React.createClass({
               onTouchStart={this._handleTouchStart}
               onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
               ref="enhancedButton"
-              style={this.mergeStyles(styles.root, style)}
+              style={Object.assign({}, styles.root, style)}
             >
-              <div style={this.prepareStyles(styles.innerDiv, innerDivStyle)}>
+              <div style={this.state.muiTheme.prepareStyles(styles.innerDiv, innerDivStyle)}>
                 {contentChildren}
               </div>
             </EnhancedButton>
