@@ -5,24 +5,26 @@ const rowsHeight = 24;
 
 function getStyles(props, state) {
   return {
+    root: {
+      position: 'relative', //because the shadow has position: 'absolute'
+    },
     textarea: {
       height: state.height,
       width: '100%',
       resize: 'none',
       font: 'inherit',
       padding: 0,
+      cursor: props.disabled ? 'default' : 'initial',
     },
     shadow: {
-      width: '100%',
       resize: 'none',
       // Overflow also needed to here to remove the extra row
       // added to textareas in Firefox.
       overflow: 'hidden',
       // Visibility needed to hide the extra text area on ipads
       visibility: 'hidden',
-      font: 'inherit',
-      padding: 0,
       position: 'absolute',
+      height: 'initial',
     },
   };
 }
@@ -151,18 +153,16 @@ const EnhancedTextarea = React.createClass({
     } = this.state.muiTheme;
 
     const styles = getStyles(this.props, this.state);
+    const rootStyles = Object.assign({}, styles.root, style);
+    const textareaStyles = Object.assign({}, styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
     }
 
-    if (this.props.disabled) {
-      style.cursor = 'default';
-    }
-
     return (
-      <div style={prepareStyles(Object.assign({}, style))}>
+      <div style={prepareStyles(rootStyles)}>
         <textarea
           ref="shadow"
           style={prepareStyles(shadowStyles)}
@@ -177,7 +177,7 @@ const EnhancedTextarea = React.createClass({
           {...other}
           ref="input"
           rows={this.props.rows}
-          style={prepareStyles(Object.assign(styles.textarea, textareaStyle))}
+          style={prepareStyles(textareaStyles)}
           onChange={this._handleChange}
         />
       </div>
