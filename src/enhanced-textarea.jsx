@@ -23,6 +23,7 @@ const styles = {
     font: 'inherit',
     padding: 0,
     position: 'absolute',
+    border: 'none',
   },
 };
 
@@ -35,7 +36,7 @@ const EnhancedTextarea = React.createClass({
     onHeightChange: React.PropTypes.func,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
-
+    shadowStyle: React.PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
@@ -141,6 +142,7 @@ const EnhancedTextarea = React.createClass({
       onChange,
       onHeightChange,
       rows,
+      shadowStyle,
       style,
       textareaStyle,
       valueLink,
@@ -151,7 +153,7 @@ const EnhancedTextarea = React.createClass({
       height: this.state.height,
     });
 
-    const shadowStyles = styles.shadow;
+    const shadowStyles = this.mergeStyles(styles.shadow, shadowStyle);
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
