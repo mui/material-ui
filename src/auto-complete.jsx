@@ -70,6 +70,12 @@ const AutoComplete = React.createClass({
     listStyle: React.PropTypes.object,
 
     /**
+     * The max number of search results to be shown.
+     * By default it shows all the items which matches filter.
+     */
+    maxSearchResults: React.PropTypes.number,
+
+    /**
      * Delay for closing time of the menu.
      */
     menuCloseDelay: React.PropTypes.number,
@@ -320,6 +326,7 @@ const AutoComplete = React.createClass({
       targetOrigin,
       disableFocusRipple,
       triggerUpdateOnFocus,
+      maxSearchResults,
       ...other,
     } = this.props;
 
@@ -350,7 +357,7 @@ const AutoComplete = React.createClass({
 
     const requestsList = [];
 
-    this.props.dataSource.map((item) => {
+    this.props.dataSource.every((item) => {
       switch (typeof item) {
         case 'string':
           if (this.props.filter(searchText, item, item)) {
@@ -365,6 +372,7 @@ const AutoComplete = React.createClass({
           }
           break;
       }
+      return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults);
     });
 
     this.requestsList = requestsList;
