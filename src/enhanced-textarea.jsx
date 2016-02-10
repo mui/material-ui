@@ -1,30 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
 import getMuiTheme from './styles/getMuiTheme';
 
 const rowsHeight = 24;
 
-const styles = {
-  textarea: {
-    width: '100%',
-    resize: 'none',
-    font: 'inherit',
-    padding: 0,
-  },
-  shadow: {
-    width: '100%',
-    resize: 'none',
-    // Overflow also needed to here to remove the extra row
-    // added to textareas in Firefox.
-    overflow: 'hidden',
-    // Visibility needed to hide the extra text area on ipads
-    visibility: 'hidden',
-    font: 'inherit',
-    padding: 0,
-    position: 'absolute',
-  },
-};
+function getStyles(props, state) {
+  return {
+    textarea: {
+      height: state.height,
+      width: '100%',
+      resize: 'none',
+      font: 'inherit',
+      padding: 0,
+    },
+    shadow: {
+      width: '100%',
+      resize: 'none',
+      // Overflow also needed to here to remove the extra row
+      // added to textareas in Firefox.
+      overflow: 'hidden',
+      // Visibility needed to hide the extra text area on ipads
+      visibility: 'hidden',
+      font: 'inherit',
+      padding: 0,
+      position: 'absolute',
+    },
+  };
+}
 
 const EnhancedTextarea = React.createClass({
 
@@ -49,14 +50,9 @@ const EnhancedTextarea = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -85,12 +81,14 @@ const EnhancedTextarea = React.createClass({
     if (nextProps.value !== this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
-    let newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   getInputNode() {
-    return ReactDOM.findDOMNode(this.refs.input);
+    return this.refs.input;
   },
 
   setValue(value) {
@@ -99,7 +97,7 @@ const EnhancedTextarea = React.createClass({
   },
 
   _syncHeightWithShadow(newValue, e) {
-    let shadow = ReactDOM.findDOMNode(this.refs.shadow);
+    let shadow = this.refs.shadow;
 
     if (newValue !== undefined) {
       shadow.value = newValue;
@@ -147,11 +145,11 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    const textareaStyles = this.mergeStyles(styles.textarea, textareaStyle, {
-      height: this.state.height,
-    });
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    const shadowStyles = styles.shadow;
+    const styles = getStyles(this.props, this.state);
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
@@ -162,10 +160,10 @@ const EnhancedTextarea = React.createClass({
     }
 
     return (
-      <div style={this.prepareStyles(this.props.style)}>
+      <div style={prepareStyles(Object.assign({}, style))}>
         <textarea
           ref="shadow"
-          style={this.prepareStyles(shadowStyles)}
+          style={prepareStyles(styles.shadow)}
           tabIndex="-1"
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
@@ -177,7 +175,7 @@ const EnhancedTextarea = React.createClass({
           {...other}
           ref="input"
           rows={this.props.rows}
-          style={this.prepareStyles(textareaStyles)}
+          style={prepareStyles(Object.assign(styles.textarea, textareaStyle))}
           onChange={this._handleChange}
         />
       </div>
