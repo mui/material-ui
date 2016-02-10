@@ -1,5 +1,6 @@
 import React from 'react';
 import getMuiTheme from './styles/getMuiTheme';
+import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
 
@@ -89,6 +90,10 @@ const EnhancedTextarea = React.createClass({
     });
   },
 
+  handleResize(event) {
+    this._syncHeightWithShadow(undefined, event);
+  },
+
   getInputNode() {
     return this.refs.input;
   },
@@ -98,7 +103,7 @@ const EnhancedTextarea = React.createClass({
     this._syncHeightWithShadow(value);
   },
 
-  _syncHeightWithShadow(newValue, e) {
+  _syncHeightWithShadow(newValue, event) {
     let shadow = this.refs.shadow;
 
     if (newValue !== undefined) {
@@ -119,20 +124,20 @@ const EnhancedTextarea = React.createClass({
       });
 
       if (this.props.onHeightChange) {
-        this.props.onHeightChange(e, newHeight);
+        this.props.onHeightChange(event, newHeight);
       }
     }
   },
 
-  _handleChange(e) {
-    this._syncHeightWithShadow(e.target.value);
+  _handleChange(event) {
+    this._syncHeightWithShadow(event.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
-      this.props.valueLink.requestChange(e.target.value);
+      this.props.valueLink.requestChange(event.target.value);
     }
 
     if (this.props.onChange) {
-      this.props.onChange(e);
+      this.props.onChange(event);
     }
   },
 
@@ -163,6 +168,7 @@ const EnhancedTextarea = React.createClass({
 
     return (
       <div style={prepareStyles(rootStyles)}>
+        <EventListener elementName="window" onResize={this.handleResize} />
         <textarea
           ref="shadow"
           style={prepareStyles(shadowStyles)}

@@ -38,6 +38,7 @@
     "react-addons-pure-render-mixin": "^0.14.0",
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
+    "react-event-listener": "^0.1.1",
     "simple-assign": "^0.1.0",
     "warning": "^2.1.0"
   },
