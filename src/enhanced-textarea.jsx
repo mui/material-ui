@@ -36,7 +36,7 @@ const EnhancedTextarea = React.createClass({
     onHeightChange: React.PropTypes.func,
     rows: React.PropTypes.number,
     rowsMax: React.PropTypes.number,
-
+    shadowStyle: React.PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
@@ -139,6 +139,7 @@ const EnhancedTextarea = React.createClass({
       onChange,
       onHeightChange,
       rows,
+      shadowStyle,
       style,
       textareaStyle,
       valueLink,
@@ -150,6 +151,7 @@ const EnhancedTextarea = React.createClass({
     } = this.state.muiTheme;
 
     const styles = getStyles(this.props, this.state);
+    const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 
     if (this.props.hasOwnProperty('valueLink')) {
       other.value = this.props.valueLink.value;
@@ -163,7 +165,7 @@ const EnhancedTextarea = React.createClass({
       <div style={prepareStyles(Object.assign({}, style))}>
         <textarea
           ref="shadow"
-          style={prepareStyles(styles.shadow)}
+          style={prepareStyles(shadowStyles)}
           tabIndex="-1"
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
