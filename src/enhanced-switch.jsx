@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import KeyCode from './utils/key-code';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import UniqueId from './utils/unique-id';
 import WindowListenable from './mixins/window-listenable';
@@ -11,6 +10,67 @@ import TouchRipple from './ripples/touch-ripple';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
+
+function getStyles(props, state) {
+  const {
+    baseTheme,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      position: 'relative',
+      cursor: props.disabled ? 'default' : 'pointer',
+      overflow: 'visible',
+      display: 'table',
+      height: 'auto',
+      width: '100%',
+    },
+    input: {
+      position: 'absolute',
+      cursor: props.disabled ? 'default' : 'pointer',
+      pointerEvents: 'all',
+      opacity: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: 2,
+      left: 0,
+      boxSizing: 'border-box',
+      padding: 0,
+      margin: 0,
+    },
+    controls: {
+      width: '100%',
+      height: '100%',
+    },
+    label: {
+      float: 'left',
+      position: 'relative',
+      display: 'block',
+      width: 'calc(100% - 60px)',
+      lineHeight: '24px',
+      color: baseTheme.palette.textColor,
+      fontFamily: baseTheme.fontFamily,
+    },
+    wrap: {
+      transition: Transitions.easeOut(),
+      float: 'left',
+      position: 'relative',
+      display: 'block',
+      width: 60 - baseTheme.spacing.desktopGutterLess,
+      marginRight: (props.labelPosition === 'right') ?
+        baseTheme.spacing.desktopGutterLess : 0,
+      marginLeft: (props.labelPosition === 'left') ?
+        baseTheme.spacing.desktopGutterLess : 0,
+    },
+    ripple: {
+      color: props.rippleColor || baseTheme.palette.primary1Color,
+      height: '200%',
+      width: '200%',
+      top: -12,
+      left: -12,
+    },
+  };
+}
 
 const EnhancedSwitch = React.createClass({
 
@@ -61,14 +121,12 @@ const EnhancedSwitch = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
     WindowListenable,
-    StylePropable,
   ],
 
   getInitialState() {
@@ -103,8 +161,10 @@ const EnhancedSwitch = React.createClass({
     let hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultSwitched') &&
       (nextProps.defaultSwitched !== this.props.defaultSwitched));
-    let newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+
+    const newState = {
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    };
 
     if (hasCheckedProp) {
       newState.switched = nextProps.checked;
@@ -138,71 +198,6 @@ const EnhancedSwitch = React.createClass({
         .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
         .getPropertyValue('width'), 10)
     );
-  },
-
-  getTheme() {
-    return this.state.muiTheme.rawTheme.palette;
-  },
-
-  getStyles() {
-    let spacing = this.state.muiTheme.rawTheme.spacing;
-    let switchWidth = 60 - spacing.desktopGutterLess;
-    let labelWidth = 'calc(100% - 60px)';
-    let styles = {
-      root: {
-        position: 'relative',
-        cursor: this.props.disabled ? 'default' : 'pointer',
-        overflow: 'visible',
-        display: 'table',
-        height: 'auto',
-        width: '100%',
-      },
-      input: {
-        position: 'absolute',
-        cursor: this.props.disabled ? 'default' : 'pointer',
-        pointerEvents: 'all',
-        opacity: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 2,
-        left: 0,
-        boxSizing: 'border-box',
-        padding: 0,
-        margin: 0,
-      },
-      controls: {
-        width: '100%',
-        height: '100%',
-      },
-      label: {
-        float: 'left',
-        position: 'relative',
-        display: 'block',
-        width: labelWidth,
-        lineHeight: '24px',
-        color: this.getTheme().textColor,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-      },
-      wrap: {
-        transition: Transitions.easeOut(),
-        float: 'left',
-        position: 'relative',
-        display: 'block',
-        width: switchWidth,
-        marginRight: (this.props.labelPosition === 'right') ?
-          spacing.desktopGutterLess : 0,
-        marginLeft: (this.props.labelPosition === 'left') ?
-          spacing.desktopGutterLess : 0,
-      },
-      ripple: {
-        height: '200%',
-        width: '200%',
-        top: -12,
-        left: -12,
-      },
-    };
-
-    return styles;
   },
 
   isSwitched() {
@@ -339,11 +334,13 @@ const EnhancedSwitch = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
-    let wrapStyles = this.mergeStyles(styles.wrap, this.props.iconStyle);
-    let rippleStyle = this.mergeStyles(styles.ripple, this.props.rippleStyle);
-    let rippleColor = this.props.hasOwnProperty('rippleColor') ? this.props.rippleColor :
-                      this.getTheme().primary1Color;
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+    let wrapStyles = Object.assign(styles.wrap, this.props.iconStyle);
+    let rippleStyle = Object.assign(styles.ripple, this.props.rippleStyle);
 
     if (this.props.thumbStyle) {
       wrapStyles.marginLeft /= 2;
@@ -352,9 +349,9 @@ const EnhancedSwitch = React.createClass({
 
     let inputId = this.props.id || UniqueId.generate();
 
-    let labelStyle = this.mergeStyles(styles.label, this.props.labelStyle);
+    let labelStyle = Object.assign(styles.label, this.props.labelStyle);
     let labelElement = this.props.label ? (
-      <label style={this.prepareStyles(labelStyle)} htmlFor={inputId}>
+      <label style={prepareStyles(labelStyle)} htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -362,7 +359,7 @@ const EnhancedSwitch = React.createClass({
     const inputProps = {
       ref: 'checkbox',
       type: this.props.inputType,
-      style: this.prepareStyles(styles.input, this.props.inputStyle),
+      style: prepareStyles(Object.assign(styles.input, this.props.inputStyle)),
       name: this.props.name,
       value: this.props.value,
       defaultChecked: this.props.defaultSwitched,
@@ -396,7 +393,7 @@ const EnhancedSwitch = React.createClass({
         ref="touchRipple"
         key="touchRipple"
         style={rippleStyle}
-        color={rippleColor}
+        color={rippleStyle.color}
         muiTheme={this.state.muiTheme}
         centerRipple={true}
       />
@@ -406,7 +403,7 @@ const EnhancedSwitch = React.createClass({
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
-        color={rippleColor}
+        color={rippleStyle.color}
         muiTheme={this.state.muiTheme}
         show={this.state.isKeyboardFocused}
       />
@@ -420,13 +417,13 @@ const EnhancedSwitch = React.createClass({
     // If toggle component (indicated by whether the style includes thumb) manually lay out
     // elements in order to nest ripple elements
     let switchElement = !this.props.thumbStyle ? (
-      <div style={this.prepareStyles(wrapStyles)}>
+      <div style={prepareStyles(wrapStyles)}>
         {this.props.switchElement}
         {ripples}
       </div>
     ) : (
-      <div style={this.prepareStyles(wrapStyles)}>
-        <div style={this.prepareStyles(this.props.trackStyle)}/>
+      <div style={prepareStyles(wrapStyles)}>
+        <div style={prepareStyles(Object.assign({}, this.props.trackStyle))}/>
         <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
       </div>
     );
@@ -448,7 +445,7 @@ const EnhancedSwitch = React.createClass({
     );
 
     return (
-      <div ref="root" className={className} style={this.prepareStyles(styles.root, this.props.style)}>
+      <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, this.props.style))}>
         {inputElement}
         {elementsInOrder}
       </div>
