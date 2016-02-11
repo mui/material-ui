@@ -107,6 +107,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     },
     listItem: {
       nestedLevelDepth: 18,
+      secondaryTextColor: Colors.lightBlack,
     },
     menu: {
       backgroundColor: palette.canvasColor,
