@@ -61,7 +61,7 @@ const FlatButtonLabel = React.createClass({
 
   componentWillReceiveProps(nextProps, nextContext) {
     this.setState({
-      muiTheme: nextContext.muiTheme || nextContext.muiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
