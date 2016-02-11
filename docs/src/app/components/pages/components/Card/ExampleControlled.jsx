@@ -44,7 +44,7 @@ export default class CardExampleControlled extends React.Component {
           showExpandableButton={true}
         />
         <CardText>
-          This toggle control the expanded state of the component.
+          This toggle controls the expanded state of the component.
           <Toggle toggled={this.state.expanded} onToggle={this.handleToggle} />
         </CardText>
         <CardMedia
