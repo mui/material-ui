@@ -1,39 +1,16 @@
-//NOTE: all these tests depend on ThemeManager, DarkRawTheme, and Colors
+//NOTE: all these tests depend on DarkRawTheme, and Colors
 //Modifying any of the above files will break these tests!
 
 import AppBar from 'app-bar';
 import RaisedButton from 'raised-button';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import ThemeManager from 'styles/theme-manager';
 import MuiThemeProvider from 'MuiThemeProvider';
 import getMuiTheme from 'styles/getMuiTheme';
-import DarkRawTheme from 'styles/raw-themes/dark-raw-theme';
+import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
 import Colors from 'styles/colors';
 
 describe('Theming', () => {
-  describe('ThemeManager', () => {
-    it('should return new theme object when spacing modifier invoked', () => {
-      let currentMuiTheme = getMuiTheme(DarkRawTheme);
-      let modifiedMuiTheme = ThemeManager.modifyRawThemeSpacing(currentMuiTheme, currentMuiTheme.rawTheme.spacing);
-      expect(currentMuiTheme === modifiedMuiTheme).to.be.false;
-    });
-
-    it('should return new theme object when palette modifier invoked', () => {
-      let currentMuiTheme = getMuiTheme(DarkRawTheme);
-      let modifiedMuiTheme = ThemeManager.modifyRawThemePalette(currentMuiTheme, currentMuiTheme.rawTheme.palette);
-
-      expect(currentMuiTheme === modifiedMuiTheme).to.be.false;
-    });
-
-    it('should return new theme object when fontFamily modifier invoked', () => {
-      let currentMuiTheme = getMuiTheme(DarkRawTheme);
-      let modifiedMuiTheme = ThemeManager.modifyRawThemeFontFamily(currentMuiTheme,
-        currentMuiTheme.rawTheme.fontFamily);
-
-      expect(currentMuiTheme === modifiedMuiTheme).to.be.false;
-    });
-  });
 
   describe('When no theme is specified, AppBar', () => {
     it('should display with default light theme', () => {
@@ -131,7 +108,7 @@ const AppBarDarkUsingContext = React.createClass({
 
   getChildContext() {
     return {
-      muiTheme: getMuiTheme(DarkRawTheme),
+      muiTheme: getMuiTheme(darkBaseTheme),
     };
   },
 
@@ -147,7 +124,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
   },
 
   getInitialState() {
-    let newMuiTheme = getMuiTheme(DarkRawTheme);
+    let newMuiTheme = getMuiTheme(darkBaseTheme);
     newMuiTheme.appBar.textColor = Colors.deepPurpleA700;
 
     return {
@@ -166,23 +143,31 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
   },
 });
 
-const darkMuiTheme = getMuiTheme(DarkRawTheme);
-const AppBarDarkTheme = () => (
-  <MuiThemeProvider muiTheme={darkMuiTheme}>
-    <AppBar/>
-  </MuiThemeProvider>
-);
+const darkMuiTheme = getMuiTheme(darkBaseTheme);
+const AppBarDarkTheme = React.createClass({
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={darkMuiTheme}>
+        <AppBar/>
+      </MuiThemeProvider>
+    );
+  },
+});
 
-const darkMuiThemeWithOverride = getMuiTheme(DarkRawTheme, {
+const darkMuiThemeWithOverride = getMuiTheme(darkBaseTheme, {
   appBar: {
     textColor: Colors.deepPurpleA700,
   },
 });
-const AppBarDarkThemeOverride = () => (
-  <MuiThemeProvider muiTheme={darkMuiThemeWithOverride}>
-    <AppBar title="My AppBar" />
-  </MuiThemeProvider>
-);
+const AppBarDarkThemeOverride = React.createClass({
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={darkMuiThemeWithOverride}>
+        <AppBar title="My AppBar" />
+      </MuiThemeProvider>
+    );
+  },
+});
 
 //react component used to test whether or not theme updates down the hierarchy
 const ButtonToUpdateThemeWithAppBar = React.createClass({
@@ -193,7 +178,7 @@ const ButtonToUpdateThemeWithAppBar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: getMuiTheme(DarkRawTheme),
+      muiTheme: getMuiTheme(darkBaseTheme),
     };
   },
 
