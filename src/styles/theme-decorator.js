@@ -1,6 +1,9 @@
 import React from 'react';
+import warning from 'warning';
 
 export default (customTheme) => {
+
+  warning(false, 'ThemeDecorator is deprecated, please use MuiThemeProvider instead.');
 
   return function(Component) {
 

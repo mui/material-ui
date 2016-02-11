@@ -20,7 +20,7 @@ For instance, you can provide it like this:
 
 ```js
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import themeDecorator from 'material-ui/lib/styles/theme-decorator';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import colors from 'material-ui/lib/styles/colors';
 
 const muiTheme = getMuiTheme({
@@ -39,12 +39,14 @@ const muiTheme = getMuiTheme({
 class Main extends React.Component {
   render() {
     return (
-      <div>Hello world</div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div>Hello world</div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default themeDecorator(muiTheme)(Main)
+export default Main;
 ```
 
 ### process.env.NODE_ENV
