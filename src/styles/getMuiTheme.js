@@ -5,6 +5,7 @@ import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
 import {autoprefixer, callOnce, rtl} from './transformers';
 import compose from 'lodash.flowright';
+import Typography from '../styles/typography';
 
 /**
  * Get the MUI theme corresponding to a base theme.
@@ -29,6 +30,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       color: palette.primary1Color,
       textColor: palette.alternateTextColor,
       height: spacing.desktopKeylineIncrement,
+      titleFontWeight: Typography.fontWeightNormal,
     },
     avatar: {
       color: palette.canvasColor,
@@ -44,6 +46,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       primaryTextColor: palette.alternateTextColor,
       secondaryColor: palette.primary1Color,
       secondaryTextColor: palette.alternateTextColor,
+      fontWeight: Typography.fontWeightMedium,
     },
     button: {
       height: 36,
@@ -53,6 +56,13 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     card: {
       titleColor: ColorManipulator.fade(palette.textColor, 0.87),
       subtitleColor: ColorManipulator.fade(palette.textColor, 0.54),
+      fontWeight: Typography.fontWeightMedium,
+    },
+    cardMedia: {
+      color: Colors.darkWhite,
+      overlayContentBackground: Colors.lightBlack,
+      titleColor: Colors.darkWhite,
+      subtitleColor: Colors.lightWhite,
     },
     cardText: {
       textColor: palette.textColor,
@@ -82,6 +92,8 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       textColor: palette.textColor,
       primaryTextColor: palette.accent1Color,
       secondaryTextColor: palette.primary1Color,
+      fontSize: Typography.fontStyleButtonFontSize,
+      fontWeight: Typography.fontWeightMedium,
     },
     floatingActionButton: {
       buttonSize: 56,
@@ -158,6 +170,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       secondaryTextColor: palette.alternateTextColor,
       disabledColor: ColorManipulator.darken(palette.alternateTextColor, 0.1),
       disabledTextColor: ColorManipulator.fade(palette.textColor, 0.3),
+      fontWeight: Typography.fontWeightMedium,
     },
     refreshIndicator: {
       strokeColor: palette.borderColor,
@@ -185,6 +198,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     },
     subheader: {
       color: ColorManipulator.fade(palette.textColor, 0.54),
+      fontWeight: Typography.fontWeightMedium,
     },
     table: {
       backgroundColor: palette.canvasColor,

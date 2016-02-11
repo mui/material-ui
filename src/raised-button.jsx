@@ -2,7 +2,6 @@ import React from 'react';
 import Transitions from './styles/transitions';
 import ColorManipulator from './utils/color-manipulator';
 import Children from './utils/children';
-import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
@@ -71,7 +70,7 @@ function getStyles(props, state) {
       fontSize: '14px',
       letterSpacing: 0,
       textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: raisedButton.fontWeight,
       margin: 0,
       userSelect: 'none',
       paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,

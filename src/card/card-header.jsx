@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from '../avatar';
 import getMuiTheme from '../styles/getMuiTheme';
-import typography from '../styles/typography';
 
 function getStyles(props, state) {
   const {card} = state.muiTheme;
@@ -10,7 +9,7 @@ function getStyles(props, state) {
     root: {
       height: 72,
       padding: 16,
-      fontWeight: typography.fontWeightMedium,
+      fontWeight: card.fontWeight,
       boxSizing: 'border-box',
       position: 'relative',
     },

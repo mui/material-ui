@@ -1,5 +1,4 @@
 import React from 'react';
-import Typography from './styles/typography';
 import IconButton from './icon-button';
 import NavigationMenu from './svg-icons/navigation/menu';
 import getMuiTheme from './styles/getMuiTheme';
@@ -38,7 +37,7 @@ function getStyles(props, state) {
       paddingTop: 0,
       letterSpacing: 0,
       fontSize: 24,
-      fontWeight: Typography.fontWeightNormal,
+      fontWeight: appBar.titleFontWeight,
       color: appBar.textColor,
       lineHeight: `${appBar.height}px`,
     },

@@ -1,8 +1,10 @@
 import React from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
-import typography from '../styles/typography';
 
-function getStyles() {
+function getStyles(props, state) {
+  const {
+    cardMedia,
+ } = state.muiTheme;
   return {
     root: {
       position: 'relative',
@@ -24,7 +26,7 @@ function getStyles() {
       right: 0,
       left: 0,
       paddingTop: 8,
-      background: typography.textLightBlack,
+      background: cardMedia.overlayContentBackground,
     },
     media: {},
     mediaChild: {
@@ -91,6 +93,9 @@ const CardMedia = React.createClass({
     const overlayContainerStyle = Object.assign(styles.overlayContainer, this.props.overlayContainerStyle);
     const overlayContentStyle = Object.assign(styles.overlayContent, this.props.overlayContentStyle);
     const overlayStyle = Object.assign(styles.overlay, this.props.overlayStyle);
+    const titleColor = this.state.muiTheme.cardMedia.titleColor;
+    const subtitleColor = this.state.muiTheme.cardMedia.subtitleColor;
+    const color = this.state.muiTheme.cardMedia.color;
 
     let children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
@@ -101,12 +106,12 @@ const CardMedia = React.createClass({
     let overlayChildren = React.Children.map(this.props.overlay, (child) => {
       if (child.type.displayName === 'CardHeader' || child.type.displayName === 'CardTitle') {
         return React.cloneElement(child, {
-          titleColor: typography.textDarkWhite,
-          subtitleColor: typography.textLightWhite,
+          titleColor: titleColor,
+          subtitleColor: subtitleColor,
         });
       } else if (child.type.displayName === 'CardText') {
         return React.cloneElement(child, {
-          color: typography.textDarkWhite,
+          color: color,
         });
       } else {
         return child;

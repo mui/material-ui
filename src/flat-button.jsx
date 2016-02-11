@@ -3,7 +3,6 @@ import ContextPure from './mixins/context-pure';
 import Transitions from './styles/transitions';
 import Children from './utils/children';
 import ColorManipulator from './utils/color-manipulator';
-import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import FlatButtonLabel from './buttons/flat-button-label';
 import getMuiTheme from './styles/getMuiTheme';
@@ -255,14 +254,16 @@ const FlatButton = React.createClass({
     const buttonRippleColor = rippleColor || defaultRippleColor;
     const buttonBackgroundColor = backgroundColor || buttonColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+    const fontSize = this.state.muiTheme.flatButton.fontSize;
+    const fontWeight = this.state.muiTheme.flatButton.fontWeight;
 
     const mergedRootStyles = Object.assign({}, {
       color: defaultTextColor,
       transition: Transitions.easeOut(),
-      fontSize: Typography.fontStyleButtonFontSize,
+      fontSize: fontSize,
       letterSpacing: 0,
       textTransform: textTransform,
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: fontWeight,
       borderRadius: 2,
       userSelect: 'none',
       position: 'relative',

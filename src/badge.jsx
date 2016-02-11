@@ -1,5 +1,4 @@
 import React from 'react';
-import Typography from './styles/typography';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -45,7 +44,7 @@ function getStyles(props, state) {
       position: 'absolute',
       top: 0,
       right: 0,
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: badge.fontWeight,
       fontSize: radius,
       width: radius2x,
       height: radius2x,
