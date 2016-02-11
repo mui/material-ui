@@ -1,8 +1,52 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import Transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    datePicker,
+  } = state.muiTheme;
+
+  const styles = {
+    root: {
+      backgroundColor: datePicker.selectColor,
+      borderTopLeftRadius: 2,
+      borderTopRightRadius: 2,
+      color: datePicker.textColor,
+      height: 60,
+      padding: 20,
+    },
+    monthDay: {
+      display: 'inline-block',
+      fontSize: 36,
+      fontWeight: '400',
+      lineHeight: '36px',
+      height: props.mode === 'landscape' ? 76 : 38,
+      opacity: state.selectedYear ? 0.7 : 1.0,
+      transition: Transitions.easeOut(),
+      width: '100%',
+    },
+    monthDayTitle: {
+      cursor: !state.selectedYear ? 'default' : 'pointer',
+    },
+    year: {
+      margin: 0,
+      fontSize: 16,
+      fontWeight: '400',
+      lineHeight: '16px',
+      height: 16,
+      opacity: state.selectedYear ? 1.0 : 0.7,
+      transition: Transitions.easeOut(),
+      marginBottom: 10,
+    },
+    yearTitle: {
+      cursor: (state.selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
+    },
+  };
+
+  return styles;
+}
 
 const DateDisplay = React.createClass({
 
@@ -27,14 +71,9 @@ const DateDisplay = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -59,8 +98,9 @@ const DateDisplay = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     let direction;
 
@@ -74,62 +114,6 @@ const DateDisplay = React.createClass({
     if (nextProps.monthDaySelected !== undefined) {
       this.setState({selectedYear: !nextProps.monthDaySelected});
     }
-  },
-
-  getTheme() {
-    return this.state.muiTheme.datePicker;
-  },
-
-  getStyles() {
-    const theme = this.getTheme();
-    const isLandscape = this.props.mode === 'landscape';
-
-    const styles = {
-      root: {
-        backgroundColor: theme.selectColor,
-        borderTopLeftRadius: 2,
-        borderTopRightRadius: 2,
-        color: theme.textColor,
-        height: 60,
-        padding: 20,
-      },
-
-      monthDay: {
-        root: {
-          display: 'inline-block',
-          fontSize: 36,
-          fontWeight: '400',
-          lineHeight: '36px',
-          height: isLandscape ? 76 : 38,
-          opacity: this.state.selectedYear ? 0.7 : 1.0,
-          transition: Transitions.easeOut(),
-          width: '100%',
-        },
-
-        title: {
-          cursor: !this.state.selectedYear ? 'default' : 'pointer',
-        },
-      },
-
-      year: {
-        root: {
-          margin: 0,
-          fontSize: 16,
-          fontWeight: '400',
-          lineHeight: '16px',
-          height: 16,
-          opacity: this.state.selectedYear ? 1.0 : 0.7,
-          transition: Transitions.easeOut(),
-          marginBottom: 10,
-        },
-
-        title: {
-          cursor: (this.state.selectedYear && !this.props.disableYearSelection) ? 'pointer' : 'default',
-        },
-      },
-    };
-
-    return styles;
   },
 
   _handleMonthDayClick() {
@@ -158,8 +142,13 @@ const DateDisplay = React.createClass({
       style,
       ...other,
     } = this.props;
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     const year = this.props.selectedDate.getFullYear();
-    const styles = this.getStyles();
+    const styles = getStyles(this.props, this.state);
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',
@@ -168,22 +157,22 @@ const DateDisplay = React.createClass({
     }).format(this.props.selectedDate);
 
     return (
-      <div {...other} style={this.prepareStyles(styles.root, this.props.style)}>
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         <SlideInTransitionGroup
-          style={styles.year.root}
+          style={styles.year}
           direction={this.state.transitionDirection}
         >
-          <div key={year} style={styles.year.title} onTouchTap={this._handleYearClick}>
+          <div key={year} style={styles.yearTitle} onTouchTap={this._handleYearClick}>
             {year}
           </div>
         </SlideInTransitionGroup>
         <SlideInTransitionGroup
-          style={styles.monthDay.root}
+          style={styles.monthDay}
           direction={this.state.transitionDirection}
         >
           <div
             key={dateTimeFormatted}
-            style={styles.monthDay.title}
+            style={styles.monthDayTitle}
             onTouchTap={this._handleMonthDayClick}
           >
             {dateTimeFormatted}

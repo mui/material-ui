@@ -1,9 +1,65 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import Transition from '../styles/transitions';
 import DateTime from '../utils/date-time';
 import EnhancedButton from '../enhanced-button';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+
+  const {
+    date,
+    disabled,
+    selected,
+  } = props;
+
+  const {
+    hover,
+  } = state;
+
+  const {
+    baseTheme,
+    datePicker,
+  } = state.muiTheme;
+
+  let labelColor = baseTheme.palette.textColor;
+  let buttonStateOpacity = 0;
+  let buttonStateTransform = 'scale(0)';
+
+  if (hover || selected) {
+    labelColor = datePicker.selectTextColor;
+    buttonStateOpacity = selected ? 1 : 0.6;
+    buttonStateTransform = 'scale(1)';
+  } else if (DateTime.isEqualDate(date, new Date())) {
+    labelColor = datePicker.color;
+  }
+
+  return {
+    root: {
+      boxSizing: 'border-box',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      position: 'relative',
+      float: 'left',
+      width: 41,
+      padding: '4px 2px',
+      opacity: disabled && '0.6',
+    },
+    label: {
+      position: 'relative',
+      color: labelColor,
+    },
+    buttonState: {
+      position: 'absolute',
+      height: 36,
+      width: 36,
+      top: 2,
+      opacity: buttonStateOpacity,
+      borderRadius: '50%',
+      transform: buttonStateTransform,
+      transition: Transition.easeOut(),
+      backgroundColor: datePicker.selectColor,
+    },
+  };
+}
 
 const DayButton = React.createClass({
 
@@ -19,14 +75,9 @@ const DayButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -48,15 +99,10 @@ const DayButton = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.datePicker;
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _handleMouseEnter() {
@@ -85,51 +131,11 @@ const DayButton = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = {
-      root: {
-        boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        position: 'relative',
-        float: 'left',
-        width: 41,
-        padding: '4px 2px',
-      },
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-      label: {
-        position: 'relative',
-        color: this.state.muiTheme.rawTheme.palette.textColor,
-      },
-
-      buttonState: {
-        position: 'absolute',
-        height: 36,
-        width: 36,
-        top: 2,
-        opacity: 0,
-        borderRadius: '50%',
-        transform: 'scale(0)',
-        transition: Transition.easeOut(),
-        backgroundColor: this.getTheme().selectColor,
-      },
-    };
-
-    if (this.state.hover) {
-      styles.label.color = this.getTheme().selectTextColor;
-      styles.buttonState.opacity = '0.6';
-      styles.buttonState.transform = 'scale(1)';
-    }
-
-    if (this.props.selected) {
-      styles.label.color = this.getTheme().selectTextColor;
-      styles.buttonState.opacity = 1;
-      styles.buttonState.transform = 'scale(1)';
-    } else if (this.props.disabled) {
-      styles.root.opacity = '0.6';
-    }
-
-    if (DateTime.isEqualDate(this.props.date, new Date()) && !this.props.selected) {
-      styles.label.color = this.getTheme().color;
-    }
+    const styles = getStyles(this.props, this.state);
 
     return this.props.date ? (
       <EnhancedButton
@@ -144,11 +150,11 @@ const DayButton = React.createClass({
         onTouchTap={this._handleTouchTap}
         onKeyboardFocus={this._handleKeyboardFocus}
       >
-        <div style={this.prepareStyles(styles.buttonState)} />
-        <span style={this.prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
+        <div style={prepareStyles(styles.buttonState)} />
+        <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span style={this.prepareStyles(styles.root)} />
+      <span style={prepareStyles(styles.root)} />
     );
   },
 

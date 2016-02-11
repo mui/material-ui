@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 import DateTime from '../utils/date-time';
 import KeyCode from '../utils/key-code';
@@ -34,13 +33,11 @@ const Calendar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     WindowListenable,
   ],
 
@@ -70,11 +67,8 @@ const Calendar = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    const muiTheme = nextContext.muiTheme || this.state.muiTheme;
 
     if (nextProps.initialDate !== this.props.initialDate) {
       let d = nextProps.initialDate || new Date();
@@ -83,6 +77,8 @@ const Calendar = React.createClass({
         selectedDate: d,
       });
     }
+
+    this.setState({muiTheme});
   },
 
   windowListeners: {
@@ -244,6 +240,11 @@ const Calendar = React.createClass({
   },
 
   render() {
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
     let weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     let toolbarInteractions = this._getToolbarInteractions();
@@ -293,7 +294,7 @@ const Calendar = React.createClass({
       },
     };
 
-    const weekTitleDayStyle = this.prepareStyles(styles.weekTitleDay);
+    const weekTitleDayStyle = prepareStyles(styles.weekTitleDay);
     const {
       DateTimeFormat,
       locale,
@@ -301,7 +302,7 @@ const Calendar = React.createClass({
     } = this.props;
 
     return (
-      <ClearFix style={this.mergeStyles(styles.root)}>
+      <ClearFix style={styles.root}>
         <DateDisplay
           DateTimeFormat={DateTimeFormat}
           locale={locale}
@@ -315,7 +316,7 @@ const Calendar = React.createClass({
           weekCount={weekCount}
         />
         {this.state.displayMonthDay &&
-          <div style={this.prepareStyles(styles.calendarContainer)}>
+          <div style={prepareStyles(styles.calendarContainer)}>
             <CalendarToolbar
               DateTimeFormat={DateTimeFormat}
               locale={locale}
@@ -350,7 +351,7 @@ const Calendar = React.createClass({
           </div>
         }
         {!this.state.displayMonthDay &&
-          <div style={this.prepareStyles(styles.yearContainer)}>
+          <div style={prepareStyles(styles.yearContainer)}>
             {this._yearSelector()}
           </div>
         }
