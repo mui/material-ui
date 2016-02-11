@@ -10,6 +10,8 @@ import cardExampleWithAvatarCode from '!raw!./ExampleWithAvatar';
 import CardExampleWithAvatar from './ExampleWithAvatar';
 import cardExampleWithoutAvatarCode from '!raw!./ExampleWithoutAvatar';
 import CardExampleWithoutAvatar from './ExampleWithoutAvatar';
+import cardExampleControlledCode from '!raw!./ExampleControlled';
+import CardExampleControlled from './ExampleControlled';
 
 import cardCode from '!raw!material-ui/lib/card/card';
 import cardActionsCode from '!raw!material-ui/lib/card/card-actions';
@@ -20,10 +22,12 @@ import cardTitleCode from '!raw!material-ui/lib/card/card-title';
 
 
 const descriptions = {
-  avatar: 'A Card containing each of the card components: `CardHeader` (with avatar), `CardMedia` (with overlay), ' +
+  avatar: 'A `Card` containing each of the card components: `CardHeader` (with avatar), `CardMedia` (with overlay), ' +
   '`CardTitle`, `CardText` & `CardActions`.',
-  simple: 'An expandable Card with `CardHeader`, `CardText` and `CardActions`. ' +
+  simple: 'An expandable `Card` with `CardHeader`, `CardText` and `CardActions`. ' +
   'Use the icon to expand the card.',
+  controlled: 'A controlled expandable `Card`. Use the icon, the toggle or the ' +
+  'buttons to control the expanded state of the card.',
 };
 
 const CardPage = () => (
@@ -38,11 +42,18 @@ const CardPage = () => (
       <CardExampleWithAvatar />
     </CodeExample>
     <CodeExample
-      title="Expandable card"
+      title="Expandable example"
       description={descriptions.simple}
       code={cardExampleWithoutAvatarCode}
     >
       <CardExampleWithoutAvatar />
+    </CodeExample>
+    <CodeExample
+      title="Controlled example"
+      description={descriptions.controlled}
+      code={cardExampleControlledCode}
+    >
+      <CardExampleControlled />
     </CodeExample>
     <PropTypeDescription code={cardCode} header="### Card properties" />
     <PropTypeDescription code={cardActionsCode} header="### CardActions properties"/>
