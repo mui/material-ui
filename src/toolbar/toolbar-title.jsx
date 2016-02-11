@@ -14,6 +14,10 @@ function getStyles(props, state) {
       fontSize: toolbar.titleFontSize,
       display: 'inline-block',
       position: 'relative',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      width: (props.text.length > 40) ? '200' : 'inherit',
     },
   };
 }
