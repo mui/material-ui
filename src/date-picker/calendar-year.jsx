@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StylePropable from '../mixins/style-propable';
 import Colors from '../styles/colors';
 import DateTime from '../utils/date-time';
 import YearButton from './year-button';
@@ -14,10 +13,6 @@ const CalendarYear = React.createClass({
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   componentDidMount() {
     this._scrollToSelectedYear();

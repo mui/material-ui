@@ -1,6 +1,5 @@
 import React from 'react';
 import ContextPure from '../mixins/context-pure';
-import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 import KeyCode from '../utils/key-code';
 import Calendar from './calendar';
@@ -39,13 +38,11 @@ const DatePickerDialog = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     WindowListenable,
     ContextPure,
   ],
@@ -89,11 +86,10 @@ const DatePickerDialog = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   windowListeners: {

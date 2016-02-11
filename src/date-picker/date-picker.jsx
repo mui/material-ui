@@ -1,5 +1,4 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import WindowListenable from '../mixins/window-listenable';
 import DateTime from '../utils/date-time';
 import DatePickerDialog from './date-picker-dialog';
@@ -145,13 +144,11 @@ const DatePicker = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     WindowListenable,
   ],
 
@@ -181,9 +178,9 @@ const DatePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (nextContext.muiTheme) {
-      this.setState({muiTheme: nextContext.muiTheme});
-    }
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     if (this._isControlled()) {
       let newDate = this._getControlledDate(nextProps);
@@ -284,8 +281,12 @@ const DatePicker = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     return (
-      <div style={this.prepareStyles(style)}>
+      <div style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           style={textFieldStyle}
