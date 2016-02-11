@@ -1,6 +1,5 @@
 import React from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
-import StylePropable from '../mixins/style-propable';
 import ColorManipulator from '../utils/color-manipulator';
 
 export const SelectableContainerEnhance = (Component) => {
@@ -25,10 +24,6 @@ export const SelectableContainerEnhance = (Component) => {
       muiTheme: React.PropTypes.object,
     },
 
-    mixins: [
-      StylePropable,
-    ],
-
     getInitialState() {
       return {
         muiTheme: this.context.muiTheme || getMuiTheme(),
@@ -42,8 +37,9 @@ export const SelectableContainerEnhance = (Component) => {
     },
 
     componentWillReceiveProps(nextProps, nextContext) {
-      let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-      this.setState({muiTheme: newMuiTheme});
+      this.setState({
+        muiTheme: nextContext.muiTheme || this.state.muiTheme,
+      });
     },
 
     getValueLink: function(props) {
@@ -56,12 +52,12 @@ export const SelectableContainerEnhance = (Component) => {
     extendChild(child, styles, selectedItemStyle) {
       if (child && child.type && child.type.displayName === 'ListItem') {
         let selected = this.isChildSelected(child, this.props);
-        let selectedChildrenStyles = {};
+        let selectedChildrenStyles;
         if (selected) {
-          selectedChildrenStyles = this.mergeStyles(styles, selectedItemStyle);
+          selectedChildrenStyles = Object.assign({}, styles, selectedItemStyle);
         }
 
-        let mergedChildrenStyles = this.mergeStyles(child.props.style || {}, selectedChildrenStyles);
+        let mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
 
         this.keyIndex += 1;
 
