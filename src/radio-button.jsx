@@ -64,6 +64,11 @@ const RadioButton = React.createClass({
     checked: React.PropTypes.bool,
 
     /**
+     * The icon element to show when radio button is checked.
+     */
+    checkedIcon: React.PropTypes.element,
+
+    /**
      * Disabled if true.
      */
     disabled: React.PropTypes.bool,
@@ -99,6 +104,11 @@ const RadioButton = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * The icon element to show when radio button is unchecked.
+     */
+    uncheckedIcon: React.PropTypes.element,
 
     /**
      * The value of our radio button component.
@@ -167,60 +177,60 @@ const RadioButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
+      checkedIcon,
+      checked,
+      iconStyle,
+      labelStyle,
+      labelPosition,
       onCheck,
+      uncheckedIcon,
+      disabled,
       ...other,
     } = this.props;
 
     const styles = getStyles(this.props, this.state);
 
-    let onStyles =
-      Object.assign(
-        styles.target,
-        this.props.checked && styles.targetWhenChecked,
-        this.props.iconStyle,
-        this.props.disabled && styles.targetWhenDisabled);
-    let offStyles =
-      Object.assign(
-        styles.fill,
-        this.props.checked && styles.fillWhenChecked,
-        this.props.iconStyle,
-        this.props.disabled && styles.fillWhenDisabled);
-
-    let radioButtonElement = (
-      <div>
-        <RadioButtonOff style={onStyles} />
-        <RadioButtonOn style={offStyles} />
-      </div>
+    const uncheckedStyles = Object.assign(
+      styles.target,
+      checked && styles.targetWhenChecked,
+      iconStyle,
+      disabled && styles.targetWhenDisabled
     );
 
-    const iconStyle = Object.assign(
-      styles.icon,
-      this.props.iconStyle
+    const checkedStyles = Object.assign(
+      styles.fill,
+      checked && styles.fillWhenChecked,
+      iconStyle,
+      disabled && styles.fillWhenDisabled
     );
 
-    const labelStyle = Object.assign(
-      styles.label,
-      this.props.labelStyle
-    );
+    const uncheckedElement = React.isValidElement(uncheckedIcon)
+      ? React.cloneElement(uncheckedIcon, {style: Object.assign(uncheckedStyles, uncheckedIcon.props.style)})
+      : <RadioButtonOff style={uncheckedStyles}/>;
 
-    let enhancedSwitchProps = {
-      ref: 'enhancedSwitch',
-      inputType: 'radio',
-      switched: this.props.checked,
-      switchElement: radioButtonElement,
-      rippleColor: styles.ripple.color,
-      iconStyle: iconStyle,
-      labelStyle: labelStyle,
-      onSwitch: this._handleCheck,
-      onParentShouldUpdate: this._handleStateChange,
-      labelPosition: this.props.labelPosition,
-    };
+    const checkedElement = React.isValidElement(checkedIcon)
+      ? React.cloneElement(checkedIcon, {style: Object.assign(checkedStyles, checkedIcon.props.style)})
+      : <RadioButtonOn style={checkedStyles}/>;
+
+    const mergedIconStyle = Object.assign(styles.icon, iconStyle);
+    const mergedLabelStyle = Object.assign(styles.label, labelStyle);
 
     return (
       <EnhancedSwitch
         {...other}
-        {...enhancedSwitchProps}
+        ref="enhancedSwitch"
+        inputType="radio"
+        checked={checked}
+        switched={checked}
+        disabled={disabled}
+        rippleColor={styles.ripple.color}
+        iconStyle={mergedIconStyle}
+        labelStyle={mergedLabelStyle}
+        labelPosition={labelPosition}
+        onSwitch={this._handleCheck}
+        onParentShouldUpdate={this._handleStateChange}
+        switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />
     );
   },
