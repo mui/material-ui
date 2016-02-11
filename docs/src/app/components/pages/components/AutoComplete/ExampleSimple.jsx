@@ -24,7 +24,7 @@ export default class AutoCompleteExampleSimple extends React.Component {
   render() {
     return (
       <AutoComplete
-        hintText="Type c"
+        hintText="Type anything"
         dataSource={this.state.dataSource}
         onUpdateInput={this.handleUpdateInput}
       />

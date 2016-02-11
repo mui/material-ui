@@ -20,7 +20,7 @@ const descriptions = {
   'The second example uses an array of values as its `dataSource`, and updates onFocus ' +
   'Both examples have filtering disabled.',
   filters: 'Two examples of filtering. The first uses `caseInsensitiveFilter`, the second uses `fuzzyFilter`, ' +
-  'and has limits the number of results displayed using the `maxSearchResults` property.',
+  'and limits the number of results displayed using the `maxSearchResults` property.',
 };
 
 const AutoCompletesPage = () => (
