@@ -10,7 +10,6 @@ import {
   Spacing,
   Typography,
 } from 'material-ui/lib/styles';
-import {StylePropable} from 'material-ui/lib/mixins';
 
 const SelectableList = SelectableContainerEnhance(List);
 
@@ -30,10 +29,6 @@ const AppLeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
     router: React.PropTypes.func,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   handleRequestChangeLink(event, value) {
     window.location = value;
@@ -71,6 +66,10 @@ const AppLeftNav = React.createClass({
       style,
     } = this.props;
 
+    const {
+      prepareStyles,
+    } = this.context.muiTheme;
+
     const styles = this.getStyles();
 
     return (
@@ -80,7 +79,7 @@ const AppLeftNav = React.createClass({
         open={open}
         onRequestChange={onRequestChangeLeftNav}
       >
-        <div style={this.prepareStyles(styles.logo)} onTouchTap={this.handleTouchTapHeader}>
+        <div style={prepareStyles(styles.logo)} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
         </div>
         <SelectableList

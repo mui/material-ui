@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import {Paper, Mixins, Styles} from 'material-ui';
 
-let {StylePropable, StyleResizable} = Mixins;
+let {StyleResizable} = Mixins;
 let {Colors, Spacing, Transitions, Typography} = Styles;
 
 
@@ -16,7 +16,7 @@ let HomeFeature = React.createClass({
     route: React.PropTypes.string,
   },
 
-  mixins: [StylePropable, StyleResizable],
+  mixins: [StyleResizable],
 
   getDefaultProps() {
     return {
@@ -78,7 +78,7 @@ let HomeFeature = React.createClass({
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
         this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.root = this.mergeStyles(
+      styles.root = Object.assign(
         styles.root,
         styles.rootWhenMedium,
         this.props.firstChild && styles.rootWhenMediumAndFirstChild,
@@ -109,7 +109,7 @@ let HomeFeature = React.createClass({
         zDepth={this.state.zDepth}
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
-        style={this.mergeStyles(
+        style={Object.assign(
           styles.root,
           this.props.lastChild && styles.rootWhenLastChild)}
       >

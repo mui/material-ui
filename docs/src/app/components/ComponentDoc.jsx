@@ -1,8 +1,7 @@
 import React from 'react';
-import {ClearFix, Mixins, Styles} from 'material-ui';
+import {ClearFix, Styles} from 'material-ui';
 import ComponentInfo from './ComponentInfo';
 const Typography = Styles.Typography;
-const {StylePropable} = Mixins;
 
 const ComponentDoc = React.createClass({
 
@@ -19,8 +18,6 @@ const ComponentDoc = React.createClass({
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getStyles() {
     let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
@@ -63,11 +60,15 @@ const ComponentDoc = React.createClass({
   },
 
   render() {
+    const {
+      prepareStyles,
+    } = this.context.muiTheme;
+
     let styles = this.getStyles();
 
     let componentInfo = this.props.componentInfo.map(function(info, i) {
       let infoStyle = styles.componentInfo;
-      if (i === 0) infoStyle = this.mergeStyles(infoStyle, styles.componentInfoWhenFirstChild);
+      if (i === 0) infoStyle = Object.assign({}, infoStyle, styles.componentInfoWhenFirstChild);
       return (
         <ComponentInfo
           key={i}
@@ -82,15 +83,15 @@ const ComponentDoc = React.createClass({
 
     if (this.props.desc) {
       if ((typeof this.props.desc) === 'string') {
-        desc = <p style={this.prepareStyles(styles.desc)}>{this.props.desc}</p>;
+        desc = <p style={prepareStyles(Object.assign({}, styles.desc))}>{this.props.desc}</p>;
       } else {
-        desc = <div style={this.prepareStyles(styles.desc)}>{this.props.desc}</div>;
+        desc = <div style={prepareStyles(Object.assign({}, styles.desc))}>{this.props.desc}</div>;
       }
     }
 
     let header;
     if (this.props.name.length > 0) {
-      header = <h2 style={this.prepareStyles(styles.headline)}>{this.props.name}</h2>;
+      header = <h2 style={prepareStyles(Object.assign({}, styles.headline))}>{this.props.name}</h2>;
     }
 
     return (

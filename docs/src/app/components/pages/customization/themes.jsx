@@ -30,7 +30,7 @@ const {
   Toggle,
 } = mui;
 
-const {StylePropable, StyleResizable} = Mixins;
+const {StyleResizable} = Mixins;
 const {Typography} = Styles;
 const DarkRawTheme = Styles.darkBaseTheme;
 
@@ -44,7 +44,7 @@ const ThemesPage = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [StylePropable, StyleResizable],
+  mixins: [StyleResizable],
 
   getInitialState() {
     return {
@@ -136,8 +136,8 @@ const ThemesPage = React.createClass({
       styles.group.width = '33%';
     }
 
-    styles.containerCentered = this.mergeStyles(styles.container, styles.containerCentered);
-    styles.groupSlider = this.mergeStyles(styles.group, styles.groupSlider);
+    styles.containerCentered = Object.assign({}, styles.container, styles.containerCentered);
+    styles.groupSlider = Object.assign({}, styles.group, styles.groupSlider);
 
     return styles;
   },
@@ -211,7 +211,7 @@ const ThemesPage = React.createClass({
             />
           </div>
         </div>
-        <div style={this.mergeStyles(styles.group, {marginTop: 0})}>
+        <div style={Object.assign({}, styles.group, {marginTop: 0})}>
           <div style={styles.container}>
             <TextField
               style={styles.textfield}
