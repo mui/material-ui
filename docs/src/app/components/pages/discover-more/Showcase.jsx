@@ -25,12 +25,6 @@ const appList = [
   //   link: '',
   // },
   {
-    title: 'ArcChat.com',
-    author: 'Lukas Liesis',
-    img: 'images/showcase/arcchat.png',
-    link: 'http://ArcChat.com/',
-  },
-  {
     title: 'SplitMe',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
@@ -53,6 +47,12 @@ const appList = [
     author: 'It\'s quiz',
     img: 'images/showcase/itsquiz.png',
     link: 'http://itsquiz.com/',
+  },
+  {
+    title: 'ArcChat.com',
+    author: 'Lukas Liesis',
+    img: 'images/showcase/arcchat.png',
+    link: 'http://ArcChat.com/',
   },
 ];
 
