@@ -35,6 +35,12 @@ import getMuiTheme from './styles/getMuiTheme';
  *  and afterElement have a defined style position.
  */
 
+const styles = {
+  box: {
+    boxSizing: 'border-box',
+  },
+};
+
 const BeforeAfterWrapper = React.createClass({
 
   propTypes: {
@@ -86,7 +92,7 @@ const BeforeAfterWrapper = React.createClass({
   },
 
   render() {
-    let {
+    const {
       beforeStyle,
       afterStyle,
       beforeElementType,
@@ -102,26 +108,21 @@ const BeforeAfterWrapper = React.createClass({
     let beforeElement;
     let afterElement;
 
-    beforeStyle = {
-      boxSizing: 'border-box',
-    };
-
-    afterStyle = {
-      boxSizing: 'border-box',
-    };
-
-    if (this.props.beforeStyle) beforeElement =
-      React.createElement(this.props.beforeElementType,
+    if (beforeStyle) {
+      beforeElement = React.createElement(this.props.beforeElementType,
         {
-          style: prepareStyles(Object.assign(beforeStyle, this.props.beforeStyle)),
+          style: prepareStyles(Object.assign({}, styles.box, beforeStyle)),
           key: '::before',
         });
-    if (this.props.afterStyle) afterElement =
-      React.createElement(this.props.afterElementType,
+    }
+
+    if (afterStyle) {
+      afterElement = React.createElement(this.props.afterElementType,
         {
-          style: prepareStyles(Object.assign(afterStyle, this.props.afterStyle)),
+          style: prepareStyles(Object.assign({}, styles.box, afterStyle)),
           key: '::after',
         });
+    }
 
     let children = [beforeElement, this.props.children, afterElement];
 
