@@ -193,7 +193,7 @@ const Popover = React.createClass({
   },
 
   renderLayer() {
-    let {
+    const {
       animated,
       animation,
       children,
@@ -202,10 +202,11 @@ const Popover = React.createClass({
     } = this.props;
 
     let Animation = animation || PopoverDefaultAnimation;
+    let styleRoot = style;
 
     if (!Animation) {
       Animation = Paper;
-      style = {
+      styleRoot = {
         position: 'fixed',
       };
       if (!this.state.open) {
@@ -214,7 +215,7 @@ const Popover = React.createClass({
     }
 
     return (
-      <Animation {...other} style={style} open={this.state.open && !this.state.closing}>
+      <Animation {...other} style={styleRoot} open={this.state.open && !this.state.closing}>
         {children}
       </Animation>
     );

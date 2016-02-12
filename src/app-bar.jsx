@@ -208,7 +208,7 @@ const AppBar = React.createClass({
   },
 
   render() {
-    let {
+    const {
       title,
       titleStyle,
       iconStyleRight,
@@ -253,10 +253,12 @@ const AppBar = React.createClass({
     }
 
     if (showMenuIconButton) {
+      let iconElementLeftNode = iconElementLeft;
+
       if (iconElementLeft) {
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
-            iconElementLeft = React.cloneElement(iconElementLeft, {
+            iconElementLeftNode = React.cloneElement(iconElementLeft, {
               iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementLeft.props.iconStyle),
             });
             break;
@@ -264,7 +266,7 @@ const AppBar = React.createClass({
 
         menuElementLeft = (
           <div style={prepareStyles(Object.assign({}, styles.iconButtonStyle))}>
-            {iconElementLeft}
+            {iconElementLeftNode}
           </div>
         );
       } else {
@@ -288,16 +290,18 @@ const AppBar = React.createClass({
     }, iconStyleRight);
 
     if (iconElementRight) {
+      let iconElementRightNode = iconElementRight;
+
       switch (iconElementRight.type.displayName) {
         case 'IconMenu':
         case 'IconButton':
-          iconElementRight = React.cloneElement(iconElementRight, {
+          iconElementRightNode = React.cloneElement(iconElementRight, {
             iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementRight.props.iconStyle),
           });
           break;
 
         case 'FlatButton':
-          iconElementRight = React.cloneElement(iconElementRight, {
+          iconElementRightNode = React.cloneElement(iconElementRight, {
             style: Object.assign({}, styles.flatButton, iconElementRight.props.style),
           });
           break;
@@ -305,7 +309,7 @@ const AppBar = React.createClass({
 
       menuElementRight = (
         <div style={prepareStyles(iconRightStyle)}>
-          {iconElementRight}
+          {iconElementRightNode}
         </div>
       );
     } else if (iconClassNameRight) {
