@@ -1,5 +1,4 @@
 import React from 'react';
-import WindowListenable from '../mixins/window-listenable';
 import TimePickerDialog from './time-picker-dialog';
 import TextField from '../text-field';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -83,8 +82,6 @@ const TimePicker = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [WindowListenable],
-
   getDefaultProps() {
     return {
       defaultTime: null,
@@ -101,10 +98,6 @@ const TimePicker = React.createClass({
       dialogTime: new Date(),
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  windowListeners: {
-    'keyup': '_handleWindowKeyUp',
   },
 
   formatTime(date) {

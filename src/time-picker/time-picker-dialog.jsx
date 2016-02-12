@@ -1,5 +1,5 @@
 import React from 'react';
-import WindowListenable from '../mixins/window-listenable';
+import EventListener from 'react-event-listener';
 import KeyCode from '../utils/key-code';
 import Clock from './clock';
 import Dialog from '../dialog';
@@ -25,8 +25,6 @@ const TimePickerDialog = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [WindowListenable],
-
   getInitialState() {
     return {
       open: false,
@@ -44,10 +42,6 @@ const TimePickerDialog = React.createClass({
     this.setState({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
-  },
-
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
   },
 
   getTheme() {
@@ -136,6 +130,7 @@ const TimePickerDialog = React.createClass({
         open={this.state.open}
         onRequestClose={this.dismiss}
       >
+        <EventListener elementName="window" onKeyUp={this._handleWindowKeyUp} />
         <Clock
           ref="clock"
           format={format}
