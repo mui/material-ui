@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EventListener from 'react-event-listener';
 import KeyCode from './utils/key-code';
 import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
-import WindowListenable from './mixins/window-listenable';
 import Overlay from './overlay';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
@@ -92,10 +92,6 @@ const LeftNav = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    WindowListenable,
-  ],
-
   getDefaultProps() {
     return {
       disableSwipeToOpen: false,
@@ -148,10 +144,6 @@ const LeftNav = React.createClass({
 
   componentWillUnmount() {
     this._disableSwipeHandling();
-  },
-
-  windowListeners: {
-    keyup: '_onWindowKeyUp',
   },
 
   getStyles() {
@@ -386,6 +378,7 @@ const LeftNav = React.createClass({
 
     return (
       <div>
+        <EventListener elementName="window" onKeyUp={this._onWindowKeyUp} />
         {overlay}
         <Paper
           ref="clickAwayableElement"
