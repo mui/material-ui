@@ -131,8 +131,8 @@ const Popover = React.createClass({
   },
 
   getInitialState() {
-    this.setPlacementThrottled = throttle(this.setPlacement, 100);
-    this.setPlacementThrottledScrolled = throttle(this.setPlacement.bind(this, true), 100);
+    this.handleResize = throttle(this.setPlacement, 100);
+    this.handleScroll = throttle(this.setPlacement.bind(this, true), 100);
 
     return {
       open: this.props.open,
@@ -382,8 +382,8 @@ const Popover = React.createClass({
       <noscript>
         <EventListener
           elementName="window"
-          onScroll={this.setPlacementThrottledScrolled}
-          onResize={this.setPlacementThrottled}
+          onScroll={this.handleScroll}
+          onResize={this.handleResize}
         />
         <RenderToLayer
           ref="layer"

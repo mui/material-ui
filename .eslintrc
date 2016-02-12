@@ -44,6 +44,7 @@ rules:
   no-extra-semi: 2
   no-extra-boolean-cast: 2
   no-trailing-spaces: 2
+  no-unneeded-ternary: 2
   no-unreachable: 2
   no-var: 2
   object-curly-spacing: [2, never]
@@ -71,6 +72,7 @@ rules:
   react/jsx-closing-bracket-location: 2
   react/jsx-curly-spacing: 2
   react/jsx-equals-spacing: 2
+  react/jsx-handler-names: 0 # Wishlist, one day
   react/jsx-indent-props: [2, 2]
   react/jsx-max-props-per-line: [2, {maximum: 3}]
   react/jsx-no-duplicate-props: 2
@@ -85,6 +87,9 @@ rules:
   react/no-direct-mutation-state: 2
   react/no-multi-comp: 0 # Wishlist, one day
   react/no-unknown-property: 2
+  react/no-is-mounted: 0 # Wishlist, one day
+  react/prefer-arrow-callback: 0 # Wishlist, one day
+  react/prefer-es6-class: 0 # Wishlist, one day
   react/prop-types: 2
   react/react-in-jsx-scope: 2
   react/require-extension: 2

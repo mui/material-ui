@@ -81,11 +81,11 @@ const CalendarToolbar = React.createClass({
     }
   },
 
-  _prevMonthTouchTap() {
+  handleTouchTapPrevMonth() {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
   },
 
-  _nextMonthTouchTap() {
+  handleTouchTapNextMonth() {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   },
 
@@ -116,7 +116,7 @@ const CalendarToolbar = React.createClass({
           <IconButton
             style={styles.button}
             disabled={!this.props.prevMonth}
-            onTouchTap={this._prevMonthTouchTap}
+            onTouchTap={this.handleTouchTapPrevMonth}
           >
             {nextButtonIcon}
           </IconButton>
@@ -125,7 +125,7 @@ const CalendarToolbar = React.createClass({
           <IconButton
             style={styles.button}
             disabled={!this.props.nextMonth}
-            onTouchTap={this._nextMonthTouchTap}
+            onTouchTap={this.handleTouchTapNextMonth}
           >
             {prevButtonIcon}
           </IconButton>

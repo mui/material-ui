@@ -171,7 +171,7 @@ const TableHeader = React.createClass({
         value="selected"
         disabled={!this.props.enableSelectAll}
         checked={this.props.selectAllSelected}
-        onCheck={this._onSelectAll}
+        onCheck={this.handleCheckAll}
       />
     );
 
@@ -183,7 +183,7 @@ const TableHeader = React.createClass({
     );
   },
 
-  _onSelectAll(e, checked) {
+  handleCheckAll(e, checked) {
     if (this.props.onSelectAll) this.props.onSelectAll(checked);
   },
 

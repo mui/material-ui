@@ -515,7 +515,7 @@ const TextField = React.createClass({
           <TextFieldUnderline
             disabled={disabled}
             disabledStyle={underlineDisabledStyle}
-            error={this.state.errorText ? true : false}
+            error={!!this.state.errorText}
             errorStyle={errorStyle}
             focus={this.state.isFocused}
             focusStyle={underlineFocusStyle}

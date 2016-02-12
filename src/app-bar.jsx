@@ -201,7 +201,7 @@ const AppBar = React.createClass({
     }
   },
 
-  _onTitleTouchTap(event) {
+  handleTitleTouchTap(event) {
     if (this.props.onTitleTouchTap) {
       this.props.onTitleTouchTap(event);
     }
@@ -239,13 +239,13 @@ const AppBar = React.createClass({
       // If not, just use it as a node.
       titleElement = typeof title === 'string' || title instanceof String ?
         <h1
-          onTouchTap={this._onTitleTouchTap}
+          onTouchTap={this.handleTitleTouchTap}
           style={prepareStyles(Object.assign({}, styles.title, styles.mainElement, titleStyle))}
         >
           {title}
         </h1> :
         <div
-          onTouchTap={this._onTitleTouchTap}
+          onTouchTap={this.handleTitleTouchTap}
           style={prepareStyles(Object.assign({}, styles.title, styles.mainElement, titleStyle))}
         >
           {title}

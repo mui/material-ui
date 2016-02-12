@@ -414,25 +414,25 @@ const Slider = React.createClass({
     return parseFloat(alignValue.toFixed(5));
   },
 
-  _onFocus(e) {
+  handleFocus(e) {
     this.setState({focused: true});
     if (this.props.onFocus) this.props.onFocus(e);
   },
 
-  _onBlur(e) {
+  handleBlur(e) {
     this.setState({focused: false, active: false});
     if (this.props.onBlur) this.props.onBlur(e);
   },
 
-  _onMouseDown(e) {
+  handleMouseDown(e) {
     if (!this.props.disabled) this._pos = e.clientX;
   },
 
-  _onMouseEnter() {
+  handleMouseEnter() {
     this.setState({hovered: true});
   },
 
-  _onMouseLeave() {
+  handleMouseLeave() {
     this.setState({hovered: false});
   },
 
@@ -440,7 +440,7 @@ const Slider = React.createClass({
     return ReactDOM.findDOMNode(this.refs.track).getBoundingClientRect().left;
   },
 
-  _onMouseUp(e) {
+  handleMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
       let pos = e.clientX - this._getTrackLeft();
@@ -552,12 +552,12 @@ const Slider = React.createClass({
         <span>{this.props.error}</span>
         <div
           style={this.prepareStyles(sliderStyles)}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-          onMouseDown={this._onMouseDown}
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-          onMouseUp={this._onMouseUp}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          onMouseDown={this.handleMouseDown}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          onMouseUp={this.handleMouseUp}
         >
           <div ref="track" style={this.prepareStyles(styles.track)}>
             <div style={this.prepareStyles(styles.filled)}></div>
