@@ -56,9 +56,10 @@ let Divider = (props) => {
   );
 };
 
-Divider.displayName = 'Divider';
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-Divider = muiThemeable(Divider);
+
+Divider = muiThemeable()(Divider);
+Divider.displayName = 'Divider';
 
 export default Divider;
