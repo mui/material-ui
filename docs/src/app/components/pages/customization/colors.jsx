@@ -9,14 +9,13 @@ import {
 } from 'material-ui';
 
 const {ColorManipulator} = Utils;
-const {StyleResizable, StylePropable} = Mixins;
+const {StyleResizable} = Mixins;
 const {Colors, Typography} = Styles;
 
 const ColorsPage = React.createClass({
 
   mixins: [
     StyleResizable,
-    StylePropable,
   ],
 
   getStyles() {
@@ -55,11 +54,11 @@ const ColorsPage = React.createClass({
     };
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenLarge);
+      styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenLarge);
     } else if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
-      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenMedium);
+      styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenMedium);
     } else {
-      styles.colorGroup = this.mergeStyles(styles.colorGroup, styles.colorGroupWhenSmall);
+      styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenSmall);
     }
 
     return styles;

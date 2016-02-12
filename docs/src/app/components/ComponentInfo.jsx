@@ -1,7 +1,7 @@
 import React from 'react';
 import {Mixins, Styles} from 'material-ui';
 
-const {StyleResizable, StylePropable} = Mixins;
+const {StyleResizable} = Mixins;
 const {Typography, Spacing} = Styles;
 
 const ComponentInfo = React.createClass({
@@ -16,7 +16,7 @@ const ComponentInfo = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [StyleResizable, StylePropable],
+  mixins: [StyleResizable],
 
   getStyles() {
     let desktopGutter = Spacing.desktopGutter;
@@ -89,22 +89,22 @@ const ComponentInfo = React.createClass({
       },
     };
 
-    styles.header = this.mergeStyles(styles.root, styles.header);
+    styles.header = Object.assign(styles.root, styles.header);
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
-      styles.name = this.mergeStyles(styles.name, styles.nameWhenMedium);
-      styles.desc = this.mergeStyles(styles.desc, styles.descWhenMedium);
+      styles.name = Object.assign({}, styles.name, styles.nameWhenMedium);
+      styles.desc = Object.assign({}, styles.desc, styles.descWhenMedium);
     }
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.td = this.mergeStyles(styles.td, styles.tdWhenLarge);
-      styles.name = this.mergeStyles(styles.name, styles.nameWhenLarge);
-      styles.desc = this.mergeStyles(styles.desc, styles.descWhenLarge);
+      styles.td = Object.assign({}, styles.td, styles.tdWhenLarge);
+      styles.name = Object.assign({}, styles.name, styles.nameWhenLarge);
+      styles.desc = Object.assign({}, styles.desc, styles.descWhenLarge);
     }
 
-    styles.name = this.mergeStyles(styles.td, styles.name);
-    styles.desc = this.mergeStyles(styles.td, styles.desc);
-    styles.header = this.mergeStyles(styles.p, styles.header);
+    styles.name = Object.assign({}, styles.td, styles.name);
+    styles.desc = Object.assign({}, styles.td, styles.desc);
+    styles.header = Object.assign({}, styles.p, styles.header);
 
     Object.keys(styles).forEach(function(currentKey) {
       styles[currentKey].boxSizing = 'border-box';
@@ -114,33 +114,38 @@ const ComponentInfo = React.createClass({
   },
 
   render() {
+
+    const {
+      prepareStyles,
+    } = this.context.muiTheme;
+
     let propElements = [];
     let typesSpan;
 
     let styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {
 
-      if (info.type) typesSpan = <span style={this.prepareStyles(styles.type)}>{info.type}</span>;
+      if (info.type) typesSpan = <span style={prepareStyles(Object.assign({}, styles.type))}>{info.type}</span>;
 
       if (i === this.props.infoArray.length - 1) {
-        styles.desc = this.mergeStyles(styles.desc, styles.descWhenLastChild);
+        styles.desc = Object.assign({}, styles.desc, styles.descWhenLastChild);
       }
 
       propElements.push(
         <tr key={i}>
-          <td style={this.prepareStyles(styles.name)}>{info.name}</td>
-          <td style={this.prepareStyles(styles.desc)}>
-            <p style={this.prepareStyles(styles.header)}>{typesSpan}{info.header}</p>
-            <p style={this.prepareStyles(styles.p)}>{info.desc}</p>
+          <td style={prepareStyles(Object.assign({}, styles.name))}>{info.name}</td>
+          <td style={prepareStyles(Object.assign({}, styles.desc))}>
+            <p style={prepareStyles(Object.assign({}, styles.header))}>{typesSpan}{info.header}</p>
+            <p style={prepareStyles(Object.assign({}, styles.p))}>{info.desc}</p>
           </td>
         </tr>
       );
     }, this);
 
     return (
-      <div style={this.prepareStyles(styles.root, this.props.style)}>
-        <h3 style={this.prepareStyles(styles.h3)}>{this.props.name}</h3>
-        <table style={this.prepareStyles(styles.table)}>
+      <div style={prepareStyles(Object.assign({}, styles.root, this.props.style))}>
+        <h3 style={prepareStyles(styles.h3)}>{this.props.name}</h3>
+        <table style={prepareStyles(styles.table)}>
           <tbody>
             {propElements}
           </tbody>

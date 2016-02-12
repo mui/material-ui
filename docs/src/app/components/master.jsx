@@ -4,7 +4,7 @@ import Title from 'react-title-component';
 import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import {Spacing} from 'material-ui/lib/styles';
-import {StylePropable, StyleResizable} from 'material-ui/lib/mixins';
+import {StyleResizable} from 'material-ui/lib/mixins';
 
 import {Colors, getMuiTheme} from 'material-ui/lib/styles';
 
@@ -32,7 +32,6 @@ const Master = React.createClass({
   },
 
   mixins: [
-    StylePropable,
     StyleResizable,
   ],
 
@@ -102,7 +101,7 @@ const Master = React.createClass({
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
         this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.content = this.mergeStyles(styles.content, styles.contentWhenMedium);
+      styles.content = Object.assign(styles.content, styles.contentWhenMedium);
     }
 
     return styles;
@@ -144,6 +143,10 @@ const Master = React.createClass({
       leftNavOpen,
     } = this.state;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     const styles = this.getStyles();
     const title =
       history.isActive('/get-started') ? 'Get Started' :
@@ -178,8 +181,8 @@ const Master = React.createClass({
           showMenuIconButton={showMenuIconButton}
         />
         {title !== '' ?
-          <div style={this.prepareStyles(styles.root)}>
-            <div style={this.prepareStyles(styles.content)}>
+          <div style={prepareStyles(styles.root)}>
+            <div style={prepareStyles(styles.content)}>
               {React.cloneElement(children, {
                 onChangeMuiTheme: this.handleChangeMuiTheme,
               })}
@@ -198,14 +201,14 @@ const Master = React.createClass({
           open={leftNavOpen}
         />
         <FullWidthSection style={styles.footer}>
-          <p style={this.prepareStyles(styles.p)}>
+          <p style={prepareStyles(styles.p)}>
             {'Hand crafted with love by the engineers at '}
             <a style={styles.a} href="http://call-em-all.com">
               Call-Em-All
             </a>
             {' and our awesome '}
             <a
-              style={this.prepareStyles(styles.a)}
+              style={prepareStyles(styles.a)}
               href="https://github.com/callemall/material-ui/graphs/contributors"
             >
               contributors
