@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import WindowListenable from '../mixins/window-listenable';
+import EventListener from 'react-event-listener';
 import RenderToLayer from '../render-to-layer';
 import PropTypes from '../utils/prop-types';
 import Paper from '../paper';
@@ -107,10 +107,6 @@ const Popover = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    WindowListenable,
-  ],
-
   getDefaultProps() {
     return {
       anchorOrigin: {
@@ -185,11 +181,6 @@ const Popover = React.createClass({
 
   componentDidUpdate() {
     this.setPlacement();
-  },
-
-  windowListeners: {
-    resize: 'setPlacementThrottled',
-    scroll: 'setPlacementThrottledScrolled',
   },
 
   renderLayer() {
@@ -388,13 +379,20 @@ const Popover = React.createClass({
 
   render() {
     return (
-      <RenderToLayer
-        ref="layer"
-        open={this.state.open}
-        componentClickAway={this.componentClickAway}
-        useLayerForClickAway={this.props.useLayerForClickAway}
-        render={this.renderLayer}
-      />
+      <noscript>
+        <EventListener
+          elementName="window"
+          onScroll={this.setPlacementThrottledScrolled}
+          onResize={this.setPlacementThrottled}
+        />
+        <RenderToLayer
+          ref="layer"
+          open={this.state.open}
+          componentClickAway={this.componentClickAway}
+          useLayerForClickAway={this.props.useLayerForClickAway}
+          render={this.renderLayer}
+        />
+      </noscript>
     );
   },
 
