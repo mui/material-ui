@@ -1,6 +1,5 @@
 import React from 'react';
 import muiThemeable from './../muiThemeable';
-import Typography from '../styles/typography';
 
 const propTypes = {
   /**
@@ -48,7 +47,7 @@ let Subheader = (props) => {
       boxSizing: 'border-box',
       color: subheader.color,
       fontSize: 14,
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: subheader.fontWeight,
       lineHeight: '48px',
       paddingLeft: inset ? 72 : 16,
       width: '100%',
