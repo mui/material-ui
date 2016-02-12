@@ -19,7 +19,9 @@ const styles = {
 };
 
 const muiTheme = getMuiTheme({
-  accent1Color: Colors.deepOrange500,
+  palette: {
+    accent1Color: Colors.deepOrange500,
+  },
 });
 
 class Main extends React.Component {
