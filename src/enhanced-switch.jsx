@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EventListener from 'react-event-listener';
 import KeyCode from './utils/key-code';
 import Transitions from './styles/transitions';
 import UniqueId from './utils/unique-id';
-import WindowListenable from './mixins/window-listenable';
 import ClearFix from './clearfix';
 import FocusRipple from './ripples/focus-ripple';
 import TouchRipple from './ripples/touch-ripple';
@@ -125,10 +125,6 @@ const EnhancedSwitch = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    WindowListenable,
-  ],
-
   getInitialState() {
     return {
       isKeyboardFocused: false,
@@ -148,8 +144,6 @@ const EnhancedSwitch = React.createClass({
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
-
-    window.addEventListener('resize', this._handleResize);
 
     this._handleResize();
   },
@@ -181,15 +175,6 @@ const EnhancedSwitch = React.createClass({
     }
 
     this.setState(newState);
-  },
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._handleResize);
-  },
-
-  windowListeners: {
-    keydown: '_handleWindowKeydown',
-    keyup: '_handleWindowKeyup',
   },
 
   getEvenWidth() {
@@ -446,6 +431,12 @@ const EnhancedSwitch = React.createClass({
 
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, this.props.style))}>
+        <EventListener
+          elementName="window"
+          onKeyDown={this._handleWindowKeydown}
+          onKeyUp={this._handleWindowKeyup}
+          onResize={this._handleResize}
+        />
         {inputElement}
         {elementsInOrder}
       </div>
