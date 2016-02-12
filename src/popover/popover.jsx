@@ -148,7 +148,7 @@ const Popover = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
@@ -274,9 +274,9 @@ const Popover = React.createClass({
       return;
     }
 
-    let {targetOrigin, anchorOrigin} = this.props;
+    const {targetOrigin, anchorOrigin} = this.props;
 
-    let anchor = this.getAnchorPosition(anchorEl);
+    const anchor = this.getAnchorPosition(anchorEl);
     let target = this.getTargetPosition(targetEl);
 
     let targetPosition = {
@@ -315,15 +315,15 @@ const Popover = React.createClass({
   },
 
   getPositions(anchor, target) {
-    let a = {...anchor};
-    let t = {...target};
+    const a = {...anchor};
+    const t = {...target};
 
-    let positions = {
+    const positions = {
       x: ['left', 'right'].filter((p) => p !== t.horizontal),
       y: ['top', 'bottom'].filter((p) => p !== t.vertical),
     };
 
-    let overlap = {
+    const overlap = {
       x: this.getOverlapMode(a.horizontal, t.horizontal, 'middle'),
       y: this.getOverlapMode(a.vertical, t.vertical, 'center'),
     };
@@ -352,7 +352,7 @@ const Popover = React.createClass({
   },
 
   applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
-    let {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
+    const {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
 
     if (targetPosition.top < 0 || targetPosition.top + target.bottom > window.innerHeight) {
       let newTop = anchor[anchorPos.vertical] - target[positions.y[0]];

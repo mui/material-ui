@@ -103,16 +103,16 @@ const TableHeader = React.createClass({
   },
 
   _createSuperHeaderRows() {
-    let numChildren = React.Children.count(this.props.children);
+    const numChildren = React.Children.count(this.props.children);
     if (numChildren === 1) return undefined;
 
-    let superHeaders = [];
+    const superHeaders = [];
     for (let index = 0; index < numChildren - 1; index++) {
-      let child = this.props.children[index];
+      const child = this.props.children[index];
 
       if (!React.isValidElement(child)) continue;
 
-      let props = {
+      const props = {
         key: `sh${index}`,
         rowNumber: index,
       };
@@ -123,7 +123,7 @@ const TableHeader = React.createClass({
   },
 
   _createSuperHeaderRow(child, props) {
-    let children = [];
+    const children = [];
     if (this.props.adjustForCheckbox) {
       children.push(this._getCheckboxPlaceholder(props));
     }
@@ -135,14 +135,14 @@ const TableHeader = React.createClass({
   },
 
   _createBaseHeaderRow() {
-    let numChildren = React.Children.count(this.props.children);
-    let child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
-    let props = {
+    const numChildren = React.Children.count(this.props.children);
+    const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
+    const props = {
       key: `h${numChildren}`,
       rowNumber: numChildren,
     };
 
-    let children = [this._getSelectAllCheckboxColumn(props)];
+    const children = [this._getSelectAllCheckboxColumn(props)];
     React.Children.forEach(child.props.children, (child) => {
       children.push(child);
     });
@@ -188,7 +188,7 @@ const TableHeader = React.createClass({
   },
 
   render() {
-    let {
+    const {
       className,
       style,
       ...other,
@@ -200,8 +200,8 @@ const TableHeader = React.createClass({
 
     const styles = getStyles(this.props, this.state);
 
-    let superHeaderRows = this._createSuperHeaderRows();
-    let baseHeaderRow = this._createBaseHeaderRow();
+    const superHeaderRows = this._createSuperHeaderRows();
+    const baseHeaderRow = this._createBaseHeaderRow();
 
     return (
       <thead className={className} style={prepareStyles(Object.assign(styles.root, style))}>

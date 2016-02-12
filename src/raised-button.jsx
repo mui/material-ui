@@ -243,7 +243,7 @@ const RaisedButton = React.createClass({
   },
 
   getInitialState() {
-    let zDepth = this.props.disabled ? 0 : 1;
+    const zDepth = this.props.disabled ? 0 : 1;
     return {
       hovered: false,
       touched: false,
@@ -260,7 +260,7 @@ const RaisedButton = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let zDepth = nextProps.disabled ? 0 : 1;
+    const zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
       initialZDepth: zDepth,
@@ -309,7 +309,7 @@ const RaisedButton = React.createClass({
   _handleKeyboardFocus: (styles) => (e, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.state.initialZDepth + 1});
-      let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+      const amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       this.refs.overlay.style.backgroundColor =
         ColorManipulator.fade(Object.assign({}, styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
@@ -319,7 +319,7 @@ const RaisedButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
       children,
       className,
       disabled,

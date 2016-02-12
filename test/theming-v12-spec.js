@@ -14,9 +14,9 @@ describe('Theming', () => {
 
   describe('When no theme is specified, AppBar', () => {
     it('should display with default light theme', () => {
-      let renderedAppbar = TestUtils.renderIntoDocument(<AppBar />);
-      let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-      let firstDiv = appbarDivs[0];
+      const renderedAppbar = TestUtils.renderIntoDocument(<AppBar />);
+      const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
+      const firstDiv = appbarDivs[0];
 
       expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 188, 212)');
     });
@@ -28,21 +28,21 @@ describe('Theming', () => {
 
       it('should display with passed down dark theme', () => {
 
-        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingContext />);
-        let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-        let firstDiv = appbarDivs[0];
+        const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingContext />);
+        const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
+        const firstDiv = appbarDivs[0];
 
         expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
       });
 
       it('should display with passed down dark theme and overriden specific attribute', () => {
 
-        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingContextWithOverride />);
-        let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-        let firstDiv = appbarDivs[0];
+        const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingContextWithOverride />);
+        const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
+        const firstDiv = appbarDivs[0];
 
-        let appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'h1');
-        let firstH1 = appbarH1s[0];
+        const appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'h1');
+        const firstH1 = appbarH1s[0];
 
         expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
         expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
@@ -53,20 +53,20 @@ describe('Theming', () => {
     describe('using MuiThemeProvider, AppBar', () => {
 
       it('should display with passed down dark theme', () => {
-        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkTheme />);
-        let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-        let firstDiv = appbarDivs[0];
+        const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkTheme />);
+        const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
+        const firstDiv = appbarDivs[0];
 
         expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
       });
 
       it('should display with passed down dark theme and overriden specific attribute', () => {
-        let renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkThemeOverride />);
-        let appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-        let firstDiv = appbarDivs[0];
+        const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkThemeOverride />);
+        const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
+        const firstDiv = appbarDivs[0];
 
-        let appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'h1');
-        let firstH1 = appbarH1s[0];
+        const appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'h1');
+        const firstH1 = appbarH1s[0];
 
         expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
         expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
@@ -78,13 +78,13 @@ describe('Theming', () => {
   describe('When theme is updated through button click, AppBar', () => {
 
     it('should display with updated theme', () => {
-      let renderedComponent = TestUtils.renderIntoDocument(<ButtonToUpdateThemeWithAppBar />);
-      let componentDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'div');
-      let appbarDiv = componentDivs[1];
-      let buttonNode = (TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'button'))[1];
+      const renderedComponent = TestUtils.renderIntoDocument(<ButtonToUpdateThemeWithAppBar />);
+      const componentDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'div');
+      const appbarDiv = componentDivs[1];
+      const buttonNode = (TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'button'))[1];
 
-      let appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'h1');
-      let firstH1 = appbarH1s[0];
+      const appbarH1s = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'h1');
+      const firstH1 = appbarH1s[0];
 
       expect(appbarDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
       expect(firstH1.style.color).to.equal('rgb(48, 48, 48)');
@@ -124,7 +124,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
   },
 
   getInitialState() {
-    let newMuiTheme = getMuiTheme(darkBaseTheme);
+    const newMuiTheme = getMuiTheme(darkBaseTheme);
     newMuiTheme.appBar.textColor = Colors.deepPurpleA700;
 
     return {
@@ -189,7 +189,7 @@ const ButtonToUpdateThemeWithAppBar = React.createClass({
   },
 
   handleClick() {
-    let newMuiThemeWithOverride = getMuiTheme();
+    const newMuiThemeWithOverride = getMuiTheme();
     newMuiThemeWithOverride.appBar.textColor = Colors.deepPurpleA700;
 
     this.setState({

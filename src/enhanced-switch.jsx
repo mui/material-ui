@@ -140,7 +140,7 @@ const EnhancedSwitch = React.createClass({
   },
 
   componentDidMount() {
-    let inputNode = ReactDOM.findDOMNode(this.refs.checkbox);
+    const inputNode = ReactDOM.findDOMNode(this.refs.checkbox);
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
@@ -149,10 +149,10 @@ const EnhancedSwitch = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
-    let hasCheckedProp = nextProps.hasOwnProperty('checked');
-    let hasToggledProp = nextProps.hasOwnProperty('toggled');
-    let hasNewDefaultProp =
+    const hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
+    const hasCheckedProp = nextProps.hasOwnProperty('checked');
+    const hasToggledProp = nextProps.hasOwnProperty('toggled');
+    const hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultSwitched') &&
       (nextProps.defaultSwitched !== this.props.defaultSwitched));
 
@@ -213,7 +213,7 @@ const EnhancedSwitch = React.createClass({
       isKeyboardFocused: false,
     });
 
-    let isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
+    const isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
 
     if (!this.props.hasOwnProperty('checked')) {
       this.props.onParentShouldUpdate(isInputChecked);
@@ -300,7 +300,7 @@ const EnhancedSwitch = React.createClass({
   },
 
   render() {
-    let {
+    const {
       name,
       value,
       label,
@@ -324,18 +324,18 @@ const EnhancedSwitch = React.createClass({
     } = this.state.muiTheme;
 
     const styles = getStyles(this.props, this.state);
-    let wrapStyles = Object.assign(styles.wrap, this.props.iconStyle);
-    let rippleStyle = Object.assign(styles.ripple, this.props.rippleStyle);
+    const wrapStyles = Object.assign(styles.wrap, this.props.iconStyle);
+    const rippleStyle = Object.assign(styles.ripple, this.props.rippleStyle);
 
     if (this.props.thumbStyle) {
       wrapStyles.marginLeft /= 2;
       wrapStyles.marginRight /= 2;
     }
 
-    let inputId = this.props.id || UniqueId.generate();
+    const inputId = this.props.id || UniqueId.generate();
 
-    let labelStyle = Object.assign(styles.label, this.props.labelStyle);
-    let labelElement = this.props.label ? (
+    const labelStyle = Object.assign(styles.label, this.props.labelStyle);
+    const labelElement = this.props.label ? (
       <label style={prepareStyles(labelStyle)} htmlFor={inputId}>
         {this.props.label}
       </label>
@@ -352,7 +352,7 @@ const EnhancedSwitch = React.createClass({
       onFocus: this._handleFocus,
     };
 
-    let hideTouchRipple = this.props.disabled || disableTouchRipple;
+    const hideTouchRipple = this.props.disabled || disableTouchRipple;
 
     if (!hideTouchRipple) {
       inputProps.onMouseUp = this._handleMouseUp;
@@ -366,14 +366,14 @@ const EnhancedSwitch = React.createClass({
       inputProps.onChange = this._handleChange;
     }
 
-    let inputElement = (
+    const inputElement = (
       <input
         {...other}
         {...inputProps}
       />
     );
 
-    let touchRipple = (
+    const touchRipple = (
       <TouchRipple
         ref="touchRipple"
         key="touchRipple"
@@ -384,7 +384,7 @@ const EnhancedSwitch = React.createClass({
       />
     );
 
-    let focusRipple = (
+    const focusRipple = (
       <FocusRipple
         key="focusRipple"
         innerStyle={rippleStyle}
@@ -394,14 +394,14 @@ const EnhancedSwitch = React.createClass({
       />
     );
 
-    let ripples = [
+    const ripples = [
       hideTouchRipple ? null : touchRipple,
       this.props.disabled || disableFocusRipple ? null : focusRipple,
     ];
 
     // If toggle component (indicated by whether the style includes thumb) manually lay out
     // elements in order to nest ripple elements
-    let switchElement = !this.props.thumbStyle ? (
+    const switchElement = !this.props.thumbStyle ? (
       <div style={prepareStyles(wrapStyles)}>
         {this.props.switchElement}
         {ripples}
@@ -413,10 +413,10 @@ const EnhancedSwitch = React.createClass({
       </div>
     );
 
-    let labelPositionExist = this.props.labelPosition;
+    const labelPositionExist = this.props.labelPosition;
 
     // Position is left if not defined or invalid.
-    let elementsInOrder = (labelPositionExist &&
+    const elementsInOrder = (labelPositionExist &&
       (this.props.labelPosition.toUpperCase() === 'RIGHT')) ? (
       <ClearFix style={styles.controls}>
         {switchElement}

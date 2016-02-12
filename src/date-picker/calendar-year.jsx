@@ -23,21 +23,21 @@ const CalendarYear = React.createClass({
   },
 
   _getYears() {
-    let minYear = this.props.minDate.getFullYear();
-    let maxYear = this.props.maxDate.getFullYear();
+    const minYear = this.props.minDate.getFullYear();
+    const maxYear = this.props.maxDate.getFullYear();
 
-    let years = [];
-    let dateCheck = DateTime.clone(this.props.selectedDate);
+    const years = [];
+    const dateCheck = DateTime.clone(this.props.selectedDate);
     for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
       if (!DateTime.isBetweenDates(dateCheck, this.props.minDate, this.props.maxDate)) continue;
-      let selected = this.props.selectedDate.getFullYear() === year;
+      const selected = this.props.selectedDate.getFullYear() === year;
       let selectedProps = {};
       if (selected) {
         selectedProps = {ref: 'selectedYearButton'};
       }
 
-      let yearButton = (
+      const yearButton = (
         <YearButton
           key={`yb${year}`}
           year={year}
@@ -56,13 +56,13 @@ const CalendarYear = React.createClass({
   _scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
 
-    let container = ReactDOM.findDOMNode(this);
-    let yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
+    const container = ReactDOM.findDOMNode(this);
+    const yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
 
-    let containerHeight = container.clientHeight;
-    let yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
+    const containerHeight = container.clientHeight;
+    const yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
 
-    let scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
+    const scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
     container.scrollTop = scrollYOffset;
   },
 
@@ -71,8 +71,8 @@ const CalendarYear = React.createClass({
   },
 
   render() {
-    let years = this._getYears();
-    let styles = {
+    const years = this._getYears();
+    const styles = {
       position: 'relative',
       height: 'inherit',
       lineHeight: '36px',

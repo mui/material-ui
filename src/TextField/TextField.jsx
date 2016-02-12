@@ -223,7 +223,7 @@ const TextField = React.createClass({
   },
 
   getInitialState() {
-    let props = (this.props.children) ? this.props.children.props : this.props;
+    const props = (this.props.children) ? this.props.children.props : this.props;
 
     return {
       isFocused: false,
@@ -245,7 +245,7 @@ const TextField = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newState = {};
+    const newState = {};
     newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     newState.errorText = nextProps.errorText;
@@ -277,7 +277,7 @@ const TextField = React.createClass({
       errorColor,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    let styles = {
+    const styles = {
       root: {
         fontSize: 16,
         lineHeight: '24px',
@@ -404,7 +404,7 @@ const TextField = React.createClass({
   },
 
   render() {
-    let {
+    const {
       className,
       disabled,
       errorStyle,
@@ -431,15 +431,15 @@ const TextField = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
     const inputId = id || this._uniqueId;
 
-    let errorTextElement = this.state.errorText ? (
+    const errorTextElement = this.state.errorText ? (
       <div style={this.prepareStyles(styles.error)}>{this.state.errorText}</div>
     ) : null;
 
-    let floatingLabelTextElement = floatingLabelText ? (
+    const floatingLabelTextElement = floatingLabelText ? (
       <TextFieldLabel
         muiTheme={this.state.muiTheme}
         style={this.mergeStyles(styles.floatingLabel, this.props.floatingLabelStyle)}

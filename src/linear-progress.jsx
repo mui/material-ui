@@ -185,7 +185,7 @@ const LinearProgress = React.createClass({
   },
 
   render() {
-    let {
+    const {
       style,
       ...other,
     } = this.props;

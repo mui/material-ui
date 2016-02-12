@@ -2,11 +2,11 @@ import React from 'react';
 import {Link} from 'react-router';
 import {Paper, Mixins, Styles} from 'material-ui';
 
-let {StyleResizable} = Mixins;
-let {Colors, Spacing, Transitions, Typography} = Styles;
+const {StyleResizable} = Mixins;
+const {Colors, Spacing, Transitions, Typography} = Styles;
 
 
-let HomeFeature = React.createClass({
+const HomeFeature = React.createClass({
 
   propTypes: {
     firstChild: React.PropTypes.bool,
@@ -32,9 +32,9 @@ let HomeFeature = React.createClass({
   },
 
   getStyles() {
-    let desktopGutter = Spacing.desktopGutter;
-    let desktopKeylineIncrement = Spacing.desktopKeylineIncrement;
-    let styles = {
+    const desktopGutter = Spacing.desktopGutter;
+    const desktopKeylineIncrement = Spacing.desktopKeylineIncrement;
+    const styles = {
       root: {
         transition: Transitions.easeOut(),
         maxWidth: '300px',
@@ -102,7 +102,7 @@ let HomeFeature = React.createClass({
   },
 
   render() {
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
     return (
       <Paper

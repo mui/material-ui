@@ -183,7 +183,7 @@ const DatePicker = React.createClass({
     });
 
     if (this._isControlled()) {
-      let newDate = this._getControlledDate(nextProps);
+      const newDate = this._getControlledDate(nextProps);
       if (!DateTime.isEqualDate(this.state.date, newDate)) {
         this.setState({
           date: newDate,
@@ -258,7 +258,7 @@ const DatePicker = React.createClass({
   },
 
   render() {
-    let {
+    const {
       container,
       DateTimeFormat,
       locale,

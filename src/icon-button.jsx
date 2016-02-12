@@ -237,7 +237,7 @@ const IconButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
       disabled,
       iconClassName,
       tooltip,
@@ -248,9 +248,9 @@ const IconButton = React.createClass({
     let fonticon;
 
     const styles = getStyles(this.props, this.state);
-    let tooltipPosition = this.props.tooltipPosition.split('-');
+    const tooltipPosition = this.props.tooltipPosition.split('-');
 
-    let tooltipElement = tooltip ? (
+    const tooltipElement = tooltip ? (
       <Tooltip
         ref="tooltip"
         label={tooltip}
@@ -263,7 +263,7 @@ const IconButton = React.createClass({
     ) : null;
 
     if (iconClassName) {
-      let {
+      const {
         iconHoverColor,
         ...iconStyleFontIcon,
       } = iconStyle;
@@ -283,7 +283,7 @@ const IconButton = React.createClass({
       );
     }
 
-    let childrenStyle = disabled ? Object.assign({}, iconStyle, styles.disabled) : iconStyle;
+    const childrenStyle = disabled ? Object.assign({}, iconStyle, styles.disabled) : iconStyle;
 
     return (
       <EnhancedButton

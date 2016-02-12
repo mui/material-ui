@@ -60,7 +60,7 @@ const CardActions = React.createClass({
 
     const styles = getStyles(this.props, this.state);
 
-    let children = React.Children.map(this.props.children, (child) => {
+    const children = React.Children.map(this.props.children, (child) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
           style: Object.assign({}, styles.action, child.props.style),

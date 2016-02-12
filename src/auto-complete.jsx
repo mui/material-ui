@@ -471,7 +471,7 @@ const AutoComplete = React.createClass({
 });
 
 AutoComplete.levenshteinDistance = (searchText, key) => {
-  let current = [];
+  const current = [];
   let prev;
   let value;
 

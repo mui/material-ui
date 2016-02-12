@@ -124,9 +124,9 @@ const BeforeAfterWrapper = React.createClass({
         });
     }
 
-    let children = [beforeElement, this.props.children, afterElement];
+    const children = [beforeElement, this.props.children, afterElement];
 
-    let props = other;
+    const props = other;
     props.style = prepareStyles(Object.assign({}, this.props.style));
 
     return React.createElement(this.props.elementType, props, children);

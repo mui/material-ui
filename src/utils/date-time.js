@@ -60,7 +60,7 @@ export default {
   },
 
   getDaysInMonth(d) {
-    let resultDate = this.getFirstDayOfMonth(d);
+    const resultDate = this.getFirstDayOfMonth(d);
 
     resultDate.setMonth(resultDate.getMonth() + 1);
     resultDate.setDate(resultDate.getDate() - 1);
@@ -78,9 +78,9 @@ export default {
   },
 
   getWeekArray(d, firstDayOfWeek) {
-    let dayArray = [];
-    let daysInMonth = this.getDaysInMonth(d);
-    let weekArray = [];
+    const dayArray = [];
+    const daysInMonth = this.getDaysInMonth(d);
+    const weekArray = [];
     let week = [];
 
     for (let i = 1; i <= daysInMonth; i++) {

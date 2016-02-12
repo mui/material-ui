@@ -6,7 +6,7 @@ function getStyles(props, state) {
     tableRowColumn,
   } = state.muiTheme;
 
-  let styles = {
+  const styles = {
     root: {
       paddingLeft: tableRowColumn.spacing,
       paddingRight: tableRowColumn.spacing,
@@ -125,7 +125,7 @@ const TableRowColumn = React.createClass({
   },
 
   render() {
-    let {
+    const {
       children,
       className,
       columnNumber,
@@ -143,7 +143,7 @@ const TableRowColumn = React.createClass({
 
     const styles = getStyles(this.props, this.state);
 
-    let handlers = {
+    const handlers = {
       onClick: this._onClick,
       onMouseEnter: this._onMouseEnter,
       onMouseLeave: this._onMouseLeave,

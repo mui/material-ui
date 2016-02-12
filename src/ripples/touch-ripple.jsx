@@ -116,7 +116,7 @@ const TouchRipple = React.createClass({
   },
 
   _getRippleStyle(e) {
-    let style = {};
+    const style = {};
     const el = ReactDOM.findDOMNode(this);
     const elHeight = el.offsetHeight;
     const elWidth = el.offsetWidth;

@@ -334,7 +334,7 @@ const ListItem = React.createClass({
 
   _handleRightIconButtonKeyboardFocus(e, isKeyboardFocused) {
     const iconButton = this.props.rightIconButton;
-    let newState = {};
+    const newState = {};
 
     newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
     if (isKeyboardFocused) newState.isKeyboardFocused = false;
@@ -538,7 +538,7 @@ const ListItem = React.createClass({
       },
     };
 
-    let contentChildren = [children];
+    const contentChildren = [children];
 
     if (leftIcon) {
       this._pushElement(
@@ -587,7 +587,7 @@ const ListItem = React.createClass({
 
     if (rightIconButton || needsNestedIndicator) {
       let rightIconButtonElement = rightIconButton;
-      let rightIconButtonHandlers = {
+      const rightIconButtonHandlers = {
         onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
         onMouseEnter: this._handleRightIconButtonMouseEnter,
         onMouseLeave: this._handleRightIconButtonMouseLeave,

@@ -19,9 +19,9 @@ const ComponentInfo = React.createClass({
   mixins: [StyleResizable],
 
   getStyles() {
-    let desktopGutter = Spacing.desktopGutter;
-    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
-    let styles = {
+    const desktopGutter = Spacing.desktopGutter;
+    const borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
+    const styles = {
       root: {
         fontSize: 15,
         letterSpacing: '0',
@@ -119,10 +119,10 @@ const ComponentInfo = React.createClass({
       prepareStyles,
     } = this.context.muiTheme;
 
-    let propElements = [];
+    const propElements = [];
     let typesSpan;
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {
 
       if (info.type) typesSpan = <span style={prepareStyles(Object.assign({}, styles.type))}>{info.type}</span>;

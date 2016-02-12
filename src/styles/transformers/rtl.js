@@ -21,7 +21,7 @@ export default function rtl(muiTheme) {
         borderLeft: 'borderRight',
       };
 
-      let newStyle = {};
+      const newStyle = {};
 
       Object.keys(style).forEach(function(attribute) {
         let value = style[attribute];

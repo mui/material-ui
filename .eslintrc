@@ -49,7 +49,7 @@ rules:
   object-curly-spacing: [2, never]
   one-var: [2, never]
   prefer-arrow-callback: 0 # Wishlist, one day
-  prefer-const: 0 # Wishlist, one day
+  prefer-const: 2
   prefer-template: 2
   quotes: [2, single, avoid-escape]
   semi: [2, always]

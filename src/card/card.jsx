@@ -86,10 +86,10 @@ const Card = React.createClass({
   render() {
     let lastElement;
     const expanded = this.state.expanded;
-    let newChildren = React.Children.map(this.props.children, (currentChild) => {
+    const newChildren = React.Children.map(this.props.children, (currentChild) => {
       let doClone = false;
       let newChild = undefined;
-      let newProps = {};
+      const newProps = {};
       let element = currentChild;
       if (!currentChild || !currentChild.props) {
         return null;
@@ -113,9 +113,9 @@ const Card = React.createClass({
 
     // If the last element is text or a title we should add
     // 8px padding to the bottom of the card
-    let addBottomPadding = (lastElement && (lastElement.type.displayName === 'CardText' ||
+    const addBottomPadding = (lastElement && (lastElement.type.displayName === 'CardText' ||
       lastElement.type.displayName === 'CardTitle'));
-    let {
+    const {
       style,
       ...other,
     } = this.props;

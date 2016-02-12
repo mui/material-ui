@@ -201,7 +201,7 @@ const IconMenu = React.createClass({
     this.setState({open: false}, () => {
       //Set focus on the icon button when the menu close
       if (isKeyboard) {
-        let iconButton = this.refs[this.state.iconButtonRef];
+        const iconButton = this.refs[this.state.iconButtonRef];
         ReactDOM.findDOMNode(iconButton).focus();
         iconButton.setKeyboardFocus();
       }
@@ -241,7 +241,7 @@ const IconMenu = React.createClass({
   },
 
   render() {
-    let {
+    const {
       anchorOrigin,
       className,
       iconButtonElement,
@@ -265,7 +265,7 @@ const IconMenu = React.createClass({
 
     const {open, anchorEl} = this.state;
 
-    let styles = {
+    const styles = {
       root: {
         display: 'inline-block',
         position: 'relative',
@@ -276,10 +276,10 @@ const IconMenu = React.createClass({
       },
     };
 
-    let mergedRootStyles = Object.assign(styles.root, style);
-    let mergedMenuStyles = Object.assign(styles.menu, menuStyle);
+    const mergedRootStyles = Object.assign(styles.root, style);
+    const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
-    let iconButton = React.cloneElement(iconButtonElement, {
+    const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: this.props.onKeyboardFocus,
       iconStyle: Object.assign(iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (e) => {
@@ -289,7 +289,7 @@ const IconMenu = React.createClass({
       ref: this.state.iconButtonRef,
     });
 
-    let menu = (
+    const menu = (
       <Menu
         {...other}
         animateOpen={true}
