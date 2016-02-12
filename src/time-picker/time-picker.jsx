@@ -28,6 +28,7 @@ const TimePicker = React.createClass({
     onShow: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     pedantic: React.PropTypes.bool,
+    wordings: React.PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
@@ -102,6 +103,7 @@ const TimePicker = React.createClass({
       onDismiss,
       style,
       textFieldStyle,
+      wordings,
       ...other,
     } = this.props;
 
@@ -127,7 +129,8 @@ const TimePicker = React.createClass({
           onShow={onShow}
           onDismiss={onDismiss}
           format={format}
-          autoOk={autoOk} />
+          autoOk={autoOk}
+          wordings={wordings} />
       </div>
     );
   },
