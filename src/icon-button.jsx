@@ -17,6 +17,7 @@ function getStyles(props, state) {
     root: {
       position: 'relative',
       boxSizing: 'border-box',
+      overflow: 'visible',
       transition: Transitions.easeOut(),
       padding: baseTheme.spacing.iconSize / 2,
       width: baseTheme.spacing.iconSize * 2,
