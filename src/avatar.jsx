@@ -120,7 +120,7 @@ const Avatar = React.createClass({
   },
 
   render() {
-    let {
+    const {
       icon,
       src,
       style,

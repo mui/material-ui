@@ -110,7 +110,7 @@ const TableHeaderColumn = React.createClass({
   },
 
   render() {
-    let {
+    const {
       children,
       className,
       columnNumber,
@@ -126,16 +126,18 @@ const TableHeaderColumn = React.createClass({
     } = this.state.muiTheme;
 
     const styles = getStyles(this.props, this.state);
-    let handlers = {
+    const handlers = {
       onMouseEnter: this._onMouseEnter,
       onMouseLeave: this._onMouseLeave,
       onClick: this._onClick,
     };
 
-    if (this.props.tooltip !== undefined) {
-      tooltip = (
+    let tooltipNode;
+
+    if (tooltip !== undefined) {
+      tooltipNode = (
         <Tooltip
-          label={this.props.tooltip}
+          label={tooltip}
           show={this.state.hovered}
           style={Object.assign(styles.tooltip, tooltipStyle)}
         />
@@ -150,7 +152,7 @@ const TableHeaderColumn = React.createClass({
         {...handlers}
         {...other}
       >
-        {tooltip}
+        {tooltipNode}
         {children}
       </th>
     );

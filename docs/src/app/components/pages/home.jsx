@@ -15,7 +15,7 @@ const HomePage = React.createClass({
   ],
 
   _getHomePageHero() {
-    let styles = {
+    const styles = {
       root: {
         backgroundColor: Colors.cyan500,
         overflow: 'hidden',

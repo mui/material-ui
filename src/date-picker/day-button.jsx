@@ -124,7 +124,7 @@ const DayButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
       date,
       onTouchTap,
       selected,

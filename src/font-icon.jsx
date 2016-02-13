@@ -111,7 +111,7 @@ const FontIcon = React.createClass({
   },
 
   render() {
-    let {
+    const {
       onMouseLeave,
       onMouseEnter,
       style,

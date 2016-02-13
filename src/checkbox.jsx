@@ -189,7 +189,7 @@ const Checkbox = React.createClass({
   },
 
   render() {
-    let {
+    const {
       iconStyle,
       onCheck,
       checkedIcon,
@@ -198,47 +198,47 @@ const Checkbox = React.createClass({
       ...other,
     } = this.props;
     const styles = getStyles(this.props, this.state);
-    let boxStyles =
+    const boxStyles =
       Object.assign(
         styles.box,
         this.state.switched && styles.boxWhenSwitched,
         iconStyle,
         this.props.disabled && styles.boxWhenDisabled);
-    let checkStyles =
+    const checkStyles =
       Object.assign(
         styles.check,
         this.state.switched && styles.checkWhenSwitched,
         iconStyle,
         this.props.disabled && styles.checkWhenDisabled);
 
-    let checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
+    const checkedElement = checkedIcon ? React.cloneElement(checkedIcon, {
       style: Object.assign(checkStyles, checkedIcon.props.style),
     }) : React.createElement(CheckboxChecked, {
       style: checkStyles,
     });
 
-    let unCheckedElement = (unCheckedIcon || uncheckedIcon) ? React.cloneElement((unCheckedIcon || uncheckedIcon), {
+    const unCheckedElement = (unCheckedIcon || uncheckedIcon) ? React.cloneElement((unCheckedIcon || uncheckedIcon), {
       style: Object.assign(boxStyles, (unCheckedIcon || uncheckedIcon).props.style),
     }) : React.createElement(CheckboxOutline, {
       style: boxStyles,
     });
 
-    let checkboxElement = (
+    const checkboxElement = (
       <div>
         {unCheckedElement}
         {checkedElement}
       </div>
     );
 
-    let rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
-    let mergedIconStyle = Object.assign(styles.icon, iconStyle);
+    const rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
+    const mergedIconStyle = Object.assign(styles.icon, iconStyle);
 
-    let labelStyle = Object.assign(
+    const labelStyle = Object.assign(
       styles.label,
       this.props.labelStyle
     );
 
-    let enhancedSwitchProps = {
+    const enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'checkbox',
       switched: this.state.switched,

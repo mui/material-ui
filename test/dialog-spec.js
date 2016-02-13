@@ -5,7 +5,7 @@ import TestUtils from 'react-addons-test-utils';
 
 describe('Dialog', () => {
   it('appends a dialog to the document body', () => {
-    let testClass = 'test-dialog-class';
+    const testClass = 'test-dialog-class';
     TestUtils.renderIntoDocument(
       <Dialog
         open={true}
@@ -13,13 +13,13 @@ describe('Dialog', () => {
       />
     );
 
-    let dialogEl = document.getElementsByClassName(testClass)[0];
+    const dialogEl = document.getElementsByClassName(testClass)[0];
     expect(dialogEl).to.be.ok;
   });
 
   it('registers events on dialog actions', () => {
-    let clickSpy = spy();
-    let testClass = 'dialog-action';
+    const clickSpy = spy();
+    const testClass = 'dialog-action';
 
     TestUtils.renderIntoDocument(
       <Dialog
@@ -36,7 +36,7 @@ describe('Dialog', () => {
       />
     );
 
-    let actionEl = document.getElementsByClassName(testClass)[0];
+    const actionEl = document.getElementsByClassName(testClass)[0];
     expect(actionEl).to.be.ok;
 
     TestUtils.Simulate.click(actionEl);

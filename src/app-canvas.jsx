@@ -47,7 +47,7 @@ const AppCanvas = React.createClass({
       direction: 'ltr',
     };
 
-    let newChildren = React.Children.map(this.props.children, (currentChild) => {
+    const newChildren = React.Children.map(this.props.children, (currentChild) => {
       if (!currentChild) { // If undefined, skip it
         return null;
       }

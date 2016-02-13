@@ -55,9 +55,9 @@ const ThemesPage = React.createClass({
   },
 
   getStyles() {
-    let canvasColor = this.props.muiTheme.baseTheme.palette.canvasColor;
-    let borderColor = this.props.muiTheme.baseTheme.palette.borderColor;
-    let styles = {
+    const canvasColor = this.props.muiTheme.baseTheme.palette.canvasColor;
+    const borderColor = this.props.muiTheme.baseTheme.palette.borderColor;
+    const styles = {
       group: {
         float: 'left',
         width: '100%',
@@ -361,7 +361,7 @@ const ThemesPage = React.createClass({
 
   render() {
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
     return (
       <div>

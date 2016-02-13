@@ -93,7 +93,7 @@ const RadioButtonGroup = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
+    const newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
 
     if (nextProps.hasOwnProperty('valueSelected')) {
       newState.selected = nextProps.valueSelected;
@@ -142,8 +142,8 @@ const RadioButtonGroup = React.createClass({
       prepareStyles,
     } = this.state.muiTheme;
 
-    let options = React.Children.map(this.props.children, (option) => {
-      let {
+    const options = React.Children.map(this.props.children, (option) => {
+      const {
         name,
         value,
         label,

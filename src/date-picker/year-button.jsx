@@ -104,7 +104,7 @@ const YearButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
       className,
       year,
       onTouchTap,

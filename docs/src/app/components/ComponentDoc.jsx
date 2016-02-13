@@ -20,7 +20,7 @@ const ComponentDoc = React.createClass({
   },
 
   getStyles() {
-    let borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
+    const borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     return {
       desc: {
         borderBottom: `solid 1px ${borderColor}`,
@@ -64,9 +64,9 @@ const ComponentDoc = React.createClass({
       prepareStyles,
     } = this.context.muiTheme;
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
-    let componentInfo = this.props.componentInfo.map(function(info, i) {
+    const componentInfo = this.props.componentInfo.map(function(info, i) {
       let infoStyle = styles.componentInfo;
       if (i === 0) infoStyle = Object.assign({}, infoStyle, styles.componentInfoWhenFirstChild);
       return (

@@ -97,13 +97,13 @@ const CardMedia = React.createClass({
     const subtitleColor = this.state.muiTheme.cardMedia.subtitleColor;
     const color = this.state.muiTheme.cardMedia.color;
 
-    let children = React.Children.map(this.props.children, (child) => {
+    const children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {
         style: prepareStyles(Object.assign({}, styles.mediaChild, child.props.style)),
       });
     });
 
-    let overlayChildren = React.Children.map(this.props.overlay, (child) => {
+    const overlayChildren = React.Children.map(this.props.overlay, (child) => {
       if (child.type.displayName === 'CardHeader' || child.type.displayName === 'CardTitle') {
         return React.cloneElement(child, {
           titleColor: titleColor,

@@ -135,7 +135,7 @@ const DateDisplay = React.createClass({
   },
 
   render() {
-    let {
+    const {
       DateTimeFormat,
       locale,
       selectedDate,

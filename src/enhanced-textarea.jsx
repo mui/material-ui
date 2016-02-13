@@ -104,7 +104,7 @@ const EnhancedTextarea = React.createClass({
   },
 
   _syncHeightWithShadow(newValue, event) {
-    let shadow = this.refs.shadow;
+    const shadow = this.refs.shadow;
 
     if (newValue !== undefined) {
       shadow.value = newValue;
@@ -142,7 +142,7 @@ const EnhancedTextarea = React.createClass({
   },
 
   render() {
-    let {
+    const {
       onChange,
       onHeightChange,
       rows,

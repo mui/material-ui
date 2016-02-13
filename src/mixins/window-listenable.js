@@ -4,19 +4,19 @@ import Events from '../utils/events';
 export default {
 
   componentDidMount() {
-    let listeners = this.windowListeners;
+    const listeners = this.windowListeners;
 
-    for (let eventName in listeners) {
-      let callbackName = listeners[eventName];
+    for (const eventName in listeners) {
+      const callbackName = listeners[eventName];
       Events.on(window, eventName, this[callbackName]);
     }
   },
 
   componentWillUnmount() {
-    let listeners = this.windowListeners;
+    const listeners = this.windowListeners;
 
-    for (let eventName in listeners) {
-      let callbackName = listeners[eventName];
+    for (const eventName in listeners) {
+      const callbackName = listeners[eventName];
       Events.off(window, eventName, this[callbackName]);
     }
   },

@@ -13,12 +13,12 @@ import autoPrefix from './styles/auto-prefix';
   * @param   {String} componentName Name of the component whose property is being validated.
   * @returns {Object} Returns an Error if min >= max otherwise null.
   */
-let minMaxPropType = (props, propName, componentName) => {
-  let error = React.PropTypes.number(props, propName, componentName);
+const minMaxPropType = (props, propName, componentName) => {
+  const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
   if (props.min >= props.max) {
-    let errorMsg = (propName === 'min') ? 'min should be less than max' : 'max should be greater than min';
+    const errorMsg = (propName === 'min') ? 'min should be less than max' : 'max should be greater than min';
     return new Error(errorMsg);
   }
 };
@@ -30,11 +30,11 @@ let minMaxPropType = (props, propName, componentName) => {
   * @param   {String} componentName Name of the component whose property is being validated.
   * @returns {Object} Returns an Error if the value is not within the range otherwise null.
   */
-let valueInRangePropType = (props, propName, componentName) => {
-  let error = React.PropTypes.number(props, propName, componentName);
+const valueInRangePropType = (props, propName, componentName) => {
+  const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
-  let value = props[propName];
+  const value = props[propName];
   if (value < props.min || props.max < value) {
     return new Error(`${propName} should be within the range specified by min and max`);
   }
@@ -184,7 +184,7 @@ const Slider = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
     if (nextProps.value !== undefined && !this.state.dragging) {
@@ -197,10 +197,10 @@ const Slider = React.createClass({
   },
 
   getStyles() {
-    let fillGutter = this.getTheme().handleSize / 2;
-    let disabledGutter = this.getTheme().trackSize + this.getTheme().handleSizeDisabled / 2;
-    let calcDisabledSpacing = this.props.disabled ? ` -${disabledGutter}px` : '';
-    let styles = {
+    const fillGutter = this.getTheme().handleSize / 2;
+    const disabledGutter = this.getTheme().trackSize + this.getTheme().handleSizeDisabled / 2;
+    const calcDisabledSpacing = this.props.disabled ? ` -${disabledGutter}px` : '';
+    const styles = {
       root: {
         touchCallout: 'none',
         userSelect: 'none',
@@ -310,7 +310,7 @@ const Slider = React.createClass({
   // In the future, we should consider use <input type="range"> to avoid
   // similar issues.
   _toggleSelection(value) {
-    let body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
     autoPrefix.set(body.style, 'userSelect', value, this.state.muiTheme);
   },
 
@@ -396,9 +396,9 @@ const Slider = React.createClass({
   },
 
   setPercent(percent, callback) {
-    let value = this._alignValue(this._percentToValue(percent));
-    let {min, max} = this.props;
-    let alignedPercent = (value - min) / (max - min);
+    const value = this._alignValue(this._percentToValue(percent));
+    const {min, max} = this.props;
+    const alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
       this.setState({value: value, percent: alignedPercent}, callback);
     }
@@ -409,8 +409,8 @@ const Slider = React.createClass({
   },
 
   _alignValue(val) {
-    let {step, min} = this.props;
-    let alignValue = Math.round((val - min) / step) * step + min;
+    const {step, min} = this.props;
+    const alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
   },
 
@@ -443,7 +443,7 @@ const Slider = React.createClass({
   handleMouseUp(e) {
     if (!this.props.disabled) this.setState({active: false});
     if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - this._getTrackLeft();
+      const pos = e.clientX - this._getTrackLeft();
       this._dragX(e, pos);
     }
 
@@ -472,7 +472,7 @@ const Slider = React.createClass({
   },
 
   _dragX(e, pos) {
-    let max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
+    const max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this._updateWithChangeEvent(e, pos / max);
   },
@@ -488,11 +488,11 @@ const Slider = React.createClass({
   },
 
   render() {
-    let {...others} = this.props;
+    const {...others} = this.props;
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
     const sliderStyles = this.mergeStyles(styles.root, this.props.style);
     const handleStyles = percent === 0 ? this.mergeStyles(
       styles.handle,
@@ -511,17 +511,17 @@ const Slider = React.createClass({
         left: `${(percent * 100)}%`,
       }
     );
-    let rippleStyle = this.mergeStyles(
+    const rippleStyle = this.mergeStyles(
       styles.ripple,
       percent === 0 && styles.rippleWhenPercentZero
     );
-    let remainingStyles = styles.remaining;
+    const remainingStyles = styles.remaining;
     if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
       remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
     }
 
-    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
-    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
+    const rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
+    const rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
     let focusRipple;
     if (!this.props.disabled && !this.props.disableFocusRipple) {
       focusRipple = (

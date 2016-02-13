@@ -139,7 +139,7 @@ const DatePickerDialog = React.createClass({
   },
 
   render() {
-    let {
+    const {
       DateTimeFormat,
       locale,
       wordings,
@@ -155,7 +155,7 @@ const DatePickerDialog = React.createClass({
       calendarTextColor,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    let styles = {
+    const styles = {
       root: {
         fontSize: 14,
         color: calendarTextColor,
@@ -174,7 +174,7 @@ const DatePickerDialog = React.createClass({
       },
     };
 
-    let actions = [
+    const actions = [
       <FlatButton
         key={0}
         label={wordings.cancel}

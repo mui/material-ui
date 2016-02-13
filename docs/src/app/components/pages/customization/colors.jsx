@@ -19,7 +19,7 @@ const ColorsPage = React.createClass({
   ],
 
   getStyles() {
-    let styles = {
+    const styles = {
       name: {
         display: 'block',
         marginBottom: 60,
@@ -65,11 +65,11 @@ const ColorsPage = React.createClass({
   },
 
   _getColorGroup(color, showAltPalette) {
-    let mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
-    let altPalette = ['A100', 'A200', 'A400', 'A700'];
-    let cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
-    let colors = [];
-    let colorGroupStyle = this.getStyles().colorGroup;
+    const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+    const altPalette = ['A100', 'A200', 'A400', 'A700'];
+    const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+    const colors = [];
+    const colorGroupStyle = this.getStyles().colorGroup;
 
     mainPalette.forEach((mainValue) => {
       colors.push(this._getColorBlock(cssColor, mainValue));
@@ -90,16 +90,16 @@ const ColorsPage = React.createClass({
   },
 
   _getColorBlock(colorName, colorValue, colorTitle) {
-    let bgColorText = colorName + colorValue;
-    let bgColor = Colors[bgColorText];
+    const bgColorText = colorName + colorValue;
+    const bgColor = Colors[bgColorText];
     let fgColor = Colors.fullBlack;
-    let contrastRatio = ColorManipulator.contrastRatio(bgColor, fgColor);
+    const contrastRatio = ColorManipulator.contrastRatio(bgColor, fgColor);
     let blockTitle;
 
     if (contrastRatio < 7) fgColor = Colors.fullWhite;
     if (colorTitle) blockTitle = <span style={this.getStyles().name}>{colorTitle}</span>;
 
-    let styles = {
+    const styles = {
       backgroundColor: bgColor,
       color: fgColor,
       listStyle: 'none',
@@ -115,13 +115,13 @@ const ColorsPage = React.createClass({
   },
 
   render() {
-    let mainColors = [
+    const mainColors = [
       'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
       'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange',
     ];
-    let neutralColors = ['Brown', 'Blue Grey', 'Grey'];
-    let colorGroups = [];
-    let neutralGroups = [];
+    const neutralColors = ['Brown', 'Blue Grey', 'Grey'];
+    const colorGroups = [];
+    const neutralGroups = [];
 
     mainColors.forEach((color) => {
       colorGroups.push(this._getColorGroup(color, true));
@@ -131,8 +131,8 @@ const ColorsPage = React.createClass({
       neutralGroups.push(this._getColorGroup(color, false));
     }, this);
 
-    let googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
-    let githubLink = 'https://github.com/callemall/material-ui/blob/master/src/styles/colors.js';
+    const googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
+    const githubLink = 'https://github.com/callemall/material-ui/blob/master/src/styles/colors.js';
 
     return (
       <div>

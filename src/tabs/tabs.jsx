@@ -100,8 +100,8 @@ const Tabs = React.createClass({
   },
 
   getInitialState() {
-    let valueLink = this.getValueLink(this.props);
-    let initialIndex = this.props.initialSelectedIndex;
+    const valueLink = this.getValueLink(this.props);
+    const initialIndex = this.props.initialSelectedIndex;
 
     return {
       selectedIndex: valueLink.value !== undefined ?
@@ -153,7 +153,7 @@ const Tabs = React.createClass({
   },
 
   _getSelectedIndex(props) {
-    let valueLink = this.getValueLink(props);
+    const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
     React.Children.forEach(props.children, (tab, index) => {
@@ -166,8 +166,8 @@ const Tabs = React.createClass({
   },
 
   _handleTabTouchTap(value, e, tab) {
-    let valueLink = this.getValueLink(this.props);
-    let tabIndex = tab.props.tabIndex;
+    const valueLink = this.getValueLink(this.props);
+    const tabIndex = tab.props.tabIndex;
 
     if ((valueLink.value && valueLink.value !== value) ||
       this.state.selectedIndex !== tabIndex) {
@@ -182,13 +182,13 @@ const Tabs = React.createClass({
   },
 
   _getSelected(tab, index) {
-    let valueLink = this.getValueLink(this.props);
+    const valueLink = this.getValueLink(this.props);
     return valueLink.value ? valueLink.value === tab.props.value :
       this.state.selectedIndex === index;
   },
 
   render() {
-    let {
+    const {
       children,
       contentContainerClassName,
       contentContainerStyle,
@@ -206,13 +206,13 @@ const Tabs = React.createClass({
 
     const styles = getStyles(this.props, this.state);
 
-    let valueLink = this.getValueLink(this.props);
-    let tabValue = valueLink.value;
-    let tabContent = [];
+    const valueLink = this.getValueLink(this.props);
+    const tabValue = valueLink.value;
+    const tabContent = [];
 
     const width = 100 / this.getTabCount();
 
-    let tabs = React.Children.map(children, (tab, index) => {
+    const tabs = React.Children.map(children, (tab, index) => {
       warning(tab.type && tab.type.displayName === 'Tab',
         `Tabs only accepts Tab Components as children.
         Found ${tab.type.displayName || tab.type} as child number ${index + 1} of Tabs`);

@@ -1,8 +1,8 @@
 export default {
 
   once(el, type, callback) {
-    let typeArray = type ? type.split(' ') : [];
-    let recursiveFunction = (e) => {
+    const typeArray = type ? type.split(' ') : [];
+    const recursiveFunction = (e) => {
       e.target.removeEventListener(e.type, recursiveFunction);
       return callback(e);
     };
