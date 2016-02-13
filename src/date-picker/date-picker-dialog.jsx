@@ -110,7 +110,7 @@ const DatePickerDialog = React.createClass({
     });
   },
 
-  _onDayTouchTap() {
+  handleTouchTapDay() {
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
@@ -216,7 +216,7 @@ const DatePickerDialog = React.createClass({
           firstDayOfWeek={firstDayOfWeek}
           locale={locale}
           ref="calendar"
-          onDayTouchTap={this._onDayTouchTap}
+          onDayTouchTap={this.handleTouchTapDay}
           initialDate={this.props.initialDate}
           open={this.state.open}
           minDate={this.props.minDate}

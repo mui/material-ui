@@ -209,7 +209,7 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  _onControlTouchTap(event) {
+  handleTouchTapControl(event) {
     event.preventDefault();
     if (!this.props.disabled) {
       this.setState({
@@ -227,7 +227,7 @@ const DropDownMenu = React.createClass({
     });
   },
 
-  _onMenuRequestClose() {
+  handleRequestCloseMenu() {
     this.setState({
       open: false,
       anchorEl: null,
@@ -287,7 +287,7 @@ const DropDownMenu = React.createClass({
         className={className}
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
-        <ClearFix style={styles.control} onTouchTap={this._onControlTouchTap}>
+        <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>
           <div
             style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
           >
@@ -302,7 +302,7 @@ const DropDownMenu = React.createClass({
           style={popoverStyle}
           animation={PopoverAnimationFromTop}
           open={open}
-          onRequestClose={this._onMenuRequestClose}
+          onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu
             maxHeight={maxHeight}
