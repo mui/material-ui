@@ -9,10 +9,12 @@
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "prebuild": "rimraf lib",
     "prepublish": "npm run build",
-    "test": "babel-node ",
+    "test": "npm run test:unit && npm run test:browser",
     "test:browser": "npm run test:browser:base -- --single-run",
     "test:browser:watch": "npm run test:browser:base -- --auto-watch",
-    "test:browser:base": "./node_modules/.bin/karma start test/karma.conf.js"
+    "test:browser:base": "./node_modules/.bin/karma start test/karma.conf.js",
+    "test:unit": "NODE_ENV=production babel-node test/unit/index.js",
+    "test:unit:watch": "nodemon -w src -w test/unit --exec \"npm run test:unit\""
   },
   "keywords": [
     "react",
@@ -55,6 +57,7 @@
     "src"
   ],
   "devDependencies": {
+    "app-module-path": "^1.0.5",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.21",
     "babel-eslint": "^5.0.0-beta6",
@@ -73,9 +76,11 @@
     "babelify": "^7.2.0",
     "browserify-istanbul": "^0.2.1",
     "chai": "^3.2.0",
+    "enzyme": "^2.0.0",
     "eslint": "^2.2.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^4.0.0",
+    "glob": "^7.0.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^2.0.0",
     "gulp-if": "^2.0.0",
