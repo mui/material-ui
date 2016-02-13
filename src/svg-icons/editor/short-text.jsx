@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const EditorShortText = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M4 9h16v2H4zm0 4h10v2H4z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let EditorShortText = (props) => (
+  <SvgIcon {...props}>
+    <path d="M4 9h16v2H4zm0 4h10v2H4z"/>
+  </SvgIcon>
+);
+EditorShortText = pure(EditorShortText)
+EditorShortText.displayName = 'EditorShortText';
 
 export default EditorShortText;

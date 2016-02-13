@@ -1,5 +1,5 @@
 import React from 'react';
-import WindowListenable from '../mixins/window-listenable';
+import EventListener from 'react-event-listener';
 import DateTime from '../utils/date-time';
 import KeyCode from '../utils/key-code';
 import Transitions from '../styles/transitions';
@@ -36,10 +36,6 @@ const Calendar = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    WindowListenable,
-  ],
 
   getDefaultProps() {
     return {
@@ -79,10 +75,6 @@ const Calendar = React.createClass({
     }
 
     this.setState({muiTheme});
-  },
-
-  windowListeners: {
-    keydown: '_handleWindowKeyDown',
   },
 
   _yearSelector() {
@@ -303,6 +295,10 @@ const Calendar = React.createClass({
 
     return (
       <ClearFix style={styles.root}>
+        <EventListener
+          elementName="window"
+          onKeyDown={this._handleWindowKeyDown}
+        />
         <DateDisplay
           DateTimeFormat={DateTimeFormat}
           locale={locale}

@@ -1,4 +1,4 @@
-There are now two kinds of themes in Material-UI: **base theme** and **mui theme**.
+There are now two kinds of themes in Material-UI: **`baseTheme`** and **`muiTheme`**.
 The base theme is a plain JS object containing three keys: spacing, palette and fontFamily.
 The mui theme, on the other hand, is a much bigger object. It contains a key for every Material-UI
 component, and the value corresponding to that key describes the styling of that particular component
@@ -18,10 +18,16 @@ import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
 
+// This replaces the textColor value on the palette of
+// baseTheme and then calculates the theme based on it.
+// More on Colors: http://www.material-ui.com/#/customization/colors
 const muiTheme = getMuiTheme({palette: {textColor: Colors.cyan500}});
 
 class Main extends React.Component {
   render() {
+    // MuiThemeProvider takes the theme as a property and passed it down the hierarchy
+    // using React's context feature. If no muiTheme is on the context the default
+    // lazily calculated theme is used instead.
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <AppBar title="Hello World!"/>
@@ -99,20 +105,20 @@ export default Main;
 
 ## Using context
 
-The `MuiThemeProvider` and `muiThemeable` simply use context. If you prefer
-using context instead of these you can follow these pattern:
+The `MuiThemeProvider` component and `muiThemeable` decorator simply use context.
+If you prefer using context instead of these you can follow these pattern:
 
 Pass theme down the context:
 
 ```js
 import React from 'react';
-import darkBaseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
+import baseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
 
 class Main extends React.Component {
   getChildContext() {
-    return {muiTheme: getMuiTheme(darkBaseTheme)};
+    return {muiTheme: getMuiTheme(baseTheme)};
   }
 
   render () {
@@ -222,6 +228,6 @@ example demonstrates it's usage.
 ### `muiThemeable() => ThemeWrapper(Component) => WrappedComponent`
 
 This function creates a wrapper function that you can call providing a component.
-The resulting component from that latter call is a higher order component (HOC)
-that takes the theme from the context and passes it down as a prop to the wrapped
+The resulting component from calling `ThemeWrapper` is a higher order component (HOC)
+that retrieves the theme from the context and passes it down as a property to the wrapped
 component. The second example demonstrates it's usage.

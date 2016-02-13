@@ -1,6 +1,6 @@
 import React from 'react';
 import ContextPure from '../mixins/context-pure';
-import WindowListenable from '../mixins/window-listenable';
+import EventListener from 'react-event-listener';
 import KeyCode from '../utils/key-code';
 import Calendar from './calendar';
 import Dialog from '../dialog';
@@ -43,7 +43,6 @@ const DatePickerDialog = React.createClass({
   },
 
   mixins: [
-    WindowListenable,
     ContextPure,
   ],
 
@@ -90,10 +89,6 @@ const DatePickerDialog = React.createClass({
     this.setState({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
-  },
-
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
   },
 
   show() {
@@ -211,6 +206,10 @@ const DatePickerDialog = React.createClass({
         open={this.state.open}
         onRequestClose={this.dismiss}
       >
+        <EventListener
+          elementName="window"
+          onKeyUp={this._handleWindowKeyUp}
+        />
         <Calendar
           DateTimeFormat={DateTimeFormat}
           firstDayOfWeek={firstDayOfWeek}
