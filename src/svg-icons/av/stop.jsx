@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const AvStop = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M6 6h12v12H6z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let AvStop = (props) => (
+  <SvgIcon {...props}>
+    <path d="M6 6h12v12H6z"/>
+  </SvgIcon>
+);
+AvStop = pure(AvStop)
+AvStop.displayName = 'AvStop';
 
 export default AvStop;
