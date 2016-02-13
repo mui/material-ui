@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import getMuiTheme from './getMuiTheme';
 import warning from 'warning';
 

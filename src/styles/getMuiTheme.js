@@ -1,10 +1,10 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import Colors from './colors';
 import ColorManipulator from '../utils/color-manipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
 import {autoprefixer, callOnce, rtl} from './transformers';
-import compose from 'lodash.flowright';
+import compose from 'lodash/flowright';
 import Typography from '../styles/typography';
 
 /**
