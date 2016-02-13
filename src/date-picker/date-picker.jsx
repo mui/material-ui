@@ -1,5 +1,4 @@
 import React from 'react';
-import WindowListenable from '../mixins/window-listenable';
 import DateTime from '../utils/date-time';
 import DatePickerDialog from './date-picker-dialog';
 import TextField from '../text-field';
@@ -148,10 +147,6 @@ const DatePicker = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    WindowListenable,
-  ],
-
   getDefaultProps() {
     return {
       formatDate: DateTime.format,
@@ -190,10 +185,6 @@ const DatePicker = React.createClass({
         });
       }
     }
-  },
-
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
   },
 
   getDate() {
@@ -238,10 +229,6 @@ const DatePicker = React.createClass({
       setTimeout(() => {
         this.openDialog();
       }, 0);
-  },
-
-  _handleWindowKeyUp() {
-    //TO DO: open the dialog if input has focus
   },
 
   _isControlled() {
