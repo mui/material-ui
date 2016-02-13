@@ -48,6 +48,12 @@ const appList = [
     img: 'images/showcase/itsquiz.png',
     link: 'http://itsquiz.com/',
   },
+  {
+    title: 'ArcChat.com',
+    author: 'Lukas Liesis',
+    img: 'images/showcase/arcchat.png',
+    link: 'http://ArcChat.com/',
+  },
 ];
 
 const Showcase = () => (
