@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
 import getMuiTheme from './styles/getMuiTheme';
@@ -142,10 +140,6 @@ const Slider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
       disabled: false,
@@ -199,7 +193,7 @@ const Slider = React.createClass({
   getStyles() {
     const fillGutter = this.getTheme().handleSize / 2;
     const disabledGutter = this.getTheme().trackSize + this.getTheme().handleSizeDisabled / 2;
-    const calcDisabledSpacing = this.props.disabled ? ` -${disabledGutter}px` : '';
+    const calcDisabledSpacing = this.props.disabled ? ` - ${disabledGutter}px` : '';
     const styles = {
       root: {
         touchCallout: 'none',
@@ -287,7 +281,7 @@ const Slider = React.createClass({
         left: -this.getTheme().handleSize,
       },
     };
-    styles.filled = this.mergeStyles(styles.filledAndRemaining, {
+    styles.filled = Object.assign({}, styles.filledAndRemaining, {
       left: 0,
       backgroundColor: (this.props.disabled) ?
         this.getTheme().trackColor :
@@ -295,7 +289,7 @@ const Slider = React.createClass({
       marginRight: fillGutter,
       width: `calc(${(this.state.percent * 100)}%${calcDisabledSpacing})`,
     });
-    styles.remaining = this.mergeStyles(styles.filledAndRemaining, {
+    styles.remaining = Object.assign({}, styles.filledAndRemaining, {
       right: 0,
       backgroundColor: this.getTheme().trackColor,
       marginLeft: fillGutter,
@@ -437,7 +431,7 @@ const Slider = React.createClass({
   },
 
   _getTrackLeft() {
-    return ReactDOM.findDOMNode(this.refs.track).getBoundingClientRect().left;
+    return this.refs.track.getBoundingClientRect().left;
   },
 
   handleMouseUp(e) {
@@ -472,7 +466,7 @@ const Slider = React.createClass({
   },
 
   _dragX(e, pos) {
-    const max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
+    const max = this.refs.track.clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this._updateWithChangeEvent(e, pos / max);
   },
@@ -493,8 +487,9 @@ const Slider = React.createClass({
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     const styles = this.getStyles();
-    const sliderStyles = this.mergeStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.mergeStyles(
+    const sliderStyles = Object.assign({}, styles.root, this.props.style);
+    const handleStyles = percent === 0 ? Object.assign(
+      {},
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
@@ -502,7 +497,8 @@ const Slider = React.createClass({
       (this.state.hovered || this.state.focused) && !this.props.disabled
         && styles.handleWhenPercentZeroAndFocused,
       this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.mergeStyles(
+    ) : Object.assign(
+      {},
       styles.handle,
       this.state.active && styles.handleWhenActive,
       this.state.focused && {outline: 'none'},
@@ -511,7 +507,8 @@ const Slider = React.createClass({
         left: `${(percent * 100)}%`,
       }
     );
-    const rippleStyle = this.mergeStyles(
+    const rippleStyle = Object.assign(
+      {},
       styles.ripple,
       percent === 0 && styles.rippleWhenPercentZero
     );
@@ -528,7 +525,7 @@ const Slider = React.createClass({
         <FocusRipple
           ref="focusRipple"
           key="focusRipple"
-          style={this.mergeStyles(rippleStyle)}
+          style={rippleStyle}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
           muiTheme={this.state.muiTheme}
@@ -546,12 +543,16 @@ const Slider = React.createClass({
       };
     }
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     return (
-      <div {...others } style={this.prepareStyles(this.props.style)}>
+      <div {...others } style={prepareStyles(Object.assign({}, this.props.style))}>
         <span>{this.props.description}</span>
         <span>{this.props.error}</span>
         <div
-          style={this.prepareStyles(sliderStyles)}
+          style={prepareStyles(sliderStyles)}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onMouseDown={this.handleMouseDown}
@@ -559,10 +560,10 @@ const Slider = React.createClass({
           onMouseLeave={this.handleMouseLeave}
           onMouseUp={this.handleMouseUp}
         >
-          <div ref="track" style={this.prepareStyles(styles.track)}>
-            <div style={this.prepareStyles(styles.filled)}></div>
-            <div style={this.prepareStyles(remainingStyles)}></div>
-            <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+          <div ref="track" style={prepareStyles(styles.track)}>
+            <div style={prepareStyles(styles.filled)}></div>
+            <div style={prepareStyles(remainingStyles)}></div>
+            <div style={prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
               {focusRipple}
             </div>
           </div>
