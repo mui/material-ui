@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const EditorFormatAlignRight = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let EditorFormatAlignRight = (props) => (
+  <SvgIcon {...props}>
+    <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
+  </SvgIcon>
+);
+EditorFormatAlignRight = pure(EditorFormatAlignRight)
+EditorFormatAlignRight.displayName = 'EditorFormatAlignRight';
 
 export default EditorFormatAlignRight;
