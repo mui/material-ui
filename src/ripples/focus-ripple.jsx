@@ -75,7 +75,7 @@ const FocusRipple = React.createClass({
   _pulsate() {
     if (!this.isMounted()) return;
 
-    let innerCircle = ReactDOM.findDOMNode(this.refs.innerCircle);
+    const innerCircle = ReactDOM.findDOMNode(this.refs.innerCircle);
     if (!innerCircle) return;
 
     const startScale = 'scale(1)';
@@ -92,7 +92,7 @@ const FocusRipple = React.createClass({
   },
 
   _setRippleSize() {
-    let el = ReactDOM.findDOMNode(this.refs.innerCircle);
+    const el = ReactDOM.findDOMNode(this.refs.innerCircle);
     const height = el.offsetHeight;
     const width = el.offsetWidth;
     const size = Math.max(height, width);

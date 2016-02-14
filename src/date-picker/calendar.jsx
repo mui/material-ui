@@ -71,7 +71,7 @@ const Calendar = React.createClass({
     const muiTheme = nextContext.muiTheme || this.state.muiTheme;
 
     if (nextProps.initialDate !== this.props.initialDate) {
-      let d = nextProps.initialDate || new Date();
+      const d = nextProps.initialDate || new Date();
       this.setState({
         displayDate: DateTime.getFirstDayOfMonth(d),
         selectedDate: d,
@@ -125,8 +125,8 @@ const Calendar = React.createClass({
   },
 
   _setDisplayDate(d, newSelectedDate) {
-    let newDisplayDate = DateTime.getFirstDayOfMonth(d);
-    let direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
+    const newDisplayDate = DateTime.getFirstDayOfMonth(d);
+    const direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
 
     if (newDisplayDate !== this.state.displayDate) {
       this.setState({
@@ -145,7 +145,7 @@ const Calendar = React.createClass({
       adjustedDate = this.props.maxDate;
     }
 
-    let newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
+    const newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
     } else {
@@ -168,7 +168,7 @@ const Calendar = React.createClass({
   },
 
   _handleYearTouchTap(e, year) {
-    let date = DateTime.clone(this.state.selectedDate);
+    const date = DateTime.clone(this.state.selectedDate);
     date.setFullYear(year);
     this._setSelectedDate(date, e);
   },
@@ -245,11 +245,11 @@ const Calendar = React.createClass({
       prepareStyles,
     } = this.state.muiTheme;
 
-    let yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
-    let weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
-    let toolbarInteractions = this._getToolbarInteractions();
-    let isLandscape = this.props.mode === 'landscape';
-    let styles = {
+    const yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
+    const weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
+    const toolbarInteractions = this._getToolbarInteractions();
+    const isLandscape = this.props.mode === 'landscape';
+    const styles = {
       root: {
         fontSize: 12,
       },

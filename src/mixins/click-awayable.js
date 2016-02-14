@@ -16,7 +16,7 @@ export default {
 
   _checkClickAway(event) {
     if (this.isMounted()) {
-      let el = ReactDOM.findDOMNode(this);
+      const el = ReactDOM.findDOMNode(this);
 
       // Check if the target is inside the current component
       if (event.target !== el &&

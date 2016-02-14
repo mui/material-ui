@@ -51,13 +51,13 @@ export const SelectableContainerEnhance = (Component) => {
 
     extendChild(child, styles, selectedItemStyle) {
       if (child && child.type && child.type.displayName === 'ListItem') {
-        let selected = this.isChildSelected(child, this.props);
+        const selected = this.isChildSelected(child, this.props);
         let selectedChildrenStyles;
         if (selected) {
           selectedChildrenStyles = Object.assign({}, styles, selectedItemStyle);
         }
 
-        let mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
+        const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
 
         this.keyIndex += 1;
 
@@ -93,16 +93,16 @@ export const SelectableContainerEnhance = (Component) => {
     },
 
     isChildSelected(child, props) {
-      let itemValue = this.getValueLink(props).value;
-      let childValue = child.props.value;
+      const itemValue = this.getValueLink(props).value;
+      const childValue = child.props.value;
 
       return (itemValue === childValue);
     },
 
     handleItemTouchTap(e, item) {
-      let valueLink = this.getValueLink(this.props);
-      let itemValue = item.props.value;
-      let menuValue = valueLink.value;
+      const valueLink = this.getValueLink(this.props);
+      const itemValue = item.props.value;
+      const menuValue = valueLink.value;
       if ( itemValue !== menuValue) {
         valueLink.requestChange(e, itemValue);
       }
@@ -114,14 +114,14 @@ export const SelectableContainerEnhance = (Component) => {
       let styles = {};
 
       if (!selectedItemStyle) {
-        let textColor = this.state.muiTheme.rawTheme.palette.textColor;
-        let selectedColor = ColorManipulator.fade(textColor, 0.2);
+        const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+        const selectedColor = ColorManipulator.fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,
         };
       }
 
-      let newChildren = React.Children.map(children, (child) => this.extendChild(child, styles, selectedItemStyle));
+      const newChildren = React.Children.map(children, (child) => this.extendChild(child, styles, selectedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>

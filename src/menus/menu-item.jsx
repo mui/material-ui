@@ -252,8 +252,8 @@ const MenuItem = React.createClass({
       },
     };
 
-    let mergedRootStyles = Object.assign(styles.root, style);
-    let mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
+    const mergedRootStyles = Object.assign(styles.root, style);
+    const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
     //Left Icon
     let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;

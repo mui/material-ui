@@ -270,7 +270,7 @@ const FloatingActionButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
       className,
       disabled,
       mini,
@@ -298,14 +298,14 @@ const FloatingActionButton = React.createClass({
       );
     }
 
-    let children = Children.extend(this.props.children, {
+    const children = Children.extend(this.props.children, {
       style: Object.assign({},
         styles.icon,
         mini && styles.iconWhenMini,
         iconStyle),
     });
 
-    let buttonEventHandlers = disabled ? null : {
+    const buttonEventHandlers = disabled ? null : {
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
       onMouseLeave: this._handleMouseLeave,

@@ -18,7 +18,7 @@ export default {
     color = this._decomposeColor(color);
 
     if (color.type.indexOf('rgb') > -1) {
-      let rgb = color.values.map((val) => {
+      const rgb = color.values.map((val) => {
         val /= 255; // normalized
         return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
       });
@@ -65,7 +65,7 @@ export default {
       color = extendedColor;
     }
 
-    let values = {
+    const values = {
       r:	parseInt(color.substr(1, 2), 16),
       g:	parseInt(color.substr(3, 2), 16),
       b:	parseInt(color.substr(5, 2), 16),
@@ -80,9 +80,9 @@ export default {
       return this._decomposeColor(this._convertHexToRGB(color));
     }
 
-    let marker = color.indexOf('(');
-    let type = color.substring(0, marker);
-    let values = color.substring(marker + 1, color.length - 1).split(',');
+    const marker = color.indexOf('(');
+    const type = color.substring(0, marker);
+    const values = color.substring(marker + 1, color.length - 1).split(',');
 
     return {type: type, values: values};
   },
@@ -135,8 +135,8 @@ export default {
   //
   // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
   contrastRatio(background, foreground) {
-    let lumA = this.luminance(background);
-    let lumB = this.luminance(foreground);
+    const lumA = this.luminance(background);
+    const lumB = this.luminance(foreground);
 
     if (lumA >= lumB) {
       return ((lumA + 0.05) / (lumB + 0.05)).toFixed(2);
@@ -151,7 +151,7 @@ export default {
    * https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/contrast-ratio.js
    */
   contrastRatioLevel(background, foreground) {
-    let levels = {
+    const levels = {
       'fail': {
         range: [0, 3],
         color: 'hsl(0, 100%, 40%)',
@@ -170,10 +170,10 @@ export default {
       },
     };
 
-    let ratio = this.contrastRatio(background, foreground);
+    const ratio = this.contrastRatio(background, foreground);
 
-    for (let level in levels) {
-      let range = levels[level].range;
+    for (const level in levels) {
+      const range = levels[level].range;
       if (ratio >= range[0] && ratio <= range[1]) return level;
     }
   },

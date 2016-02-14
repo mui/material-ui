@@ -61,9 +61,10 @@ let Subheader = (props) => {
   );
 };
 
-Subheader.displayName = 'Subheader';
 Subheader.propTypes = propTypes;
 Subheader.defaultProps = defaultProps;
-Subheader = muiThemeable(Subheader);
+
+Subheader = muiThemeable()(Subheader);
+Subheader.displayName = 'Subheader';
 
 export default Subheader;

@@ -18,16 +18,16 @@ class CodeExample extends React.Component {
 
   render() {
 
-    let {
+    const {
       children,
       code,
       layoutSideBySide,
     } = this.props;
 
-    let palette = this.context.muiTheme.rawTheme.palette;
-    let canvasColor = palette.canvasColor;
+    const palette = this.context.muiTheme.rawTheme.palette;
+    const canvasColor = palette.canvasColor;
 
-    let styles = {
+    const styles = {
       root: {
         backgroundColor: canvasColor,
         marginBottom: 32,

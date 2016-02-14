@@ -30,7 +30,7 @@ function getStyles(props, state) {
 
   if (margin < 0) margin = 0;
 
-  let styles = {
+  const styles = {
     root: {
       position: 'relative',
       margin: margin,
@@ -202,7 +202,7 @@ const CircularProgress = React.createClass({
   },
 
   render() {
-    let {
+    const {
       style,
       innerStyle,
       size,

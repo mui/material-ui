@@ -50,7 +50,7 @@ const CircleRipple = React.createClass({
   },
 
   componentWillLeave(callback) {
-    let style = ReactDOM.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     style.opacity = 0;
     setTimeout(() => {
       if (this.isMounted()) callback();
@@ -58,7 +58,7 @@ const CircleRipple = React.createClass({
   },
 
   _animate() {
-    let style = ReactDOM.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     const transitionValue = `${Transitions.easeOut('2s', 'opacity')}, ${
       Transitions.easeOut('1s', 'transform')}`;
     autoPrefix.set(style, 'transition', transitionValue, this.props.muiTheme);
@@ -66,7 +66,7 @@ const CircleRipple = React.createClass({
   },
 
   _initializeAnimation(callback) {
-    let style = ReactDOM.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
     autoPrefix.set(style, 'transform', 'scale(0)', this.props.muiTheme);
     setTimeout(() => {

@@ -9,7 +9,7 @@ function getStyles(props, state) {
 
   const actionPos = props.actionIcon && props.actionPosition;
 
-  let styles = {
+  const styles = {
     root: {
       position: 'relative',
       display: 'block',
@@ -177,7 +177,7 @@ const GridTile = React.createClass({
     let imgEl = this.refs.img;
 
     if (imgEl) {
-      let fit = () => {
+      const fit = () => {
         if (imgEl.offsetWidth < imgEl.parentNode.offsetWidth) {
           imgEl.style.height = 'auto';
           imgEl.style.left = '0';

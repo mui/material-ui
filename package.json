@@ -32,8 +32,8 @@
   "dependencies": {
     "inline-style-prefixer": "^0.6.6",
     "lodash.flowright": "^3.2.1",
-    "lodash.merge": "^3.3.2",
-    "lodash.throttle": "~3.0.4",
+    "lodash.merge": "^4.1.0",
+    "lodash.throttle": "^4.0.0",
     "react-addons-create-fragment": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.0",
     "react-addons-transition-group": "^0.14.0",

@@ -110,7 +110,7 @@ const DatePickerDialog = React.createClass({
     });
   },
 
-  _onDayTouchTap() {
+  handleTouchTapDay() {
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
@@ -139,7 +139,7 @@ const DatePickerDialog = React.createClass({
   },
 
   render() {
-    let {
+    const {
       DateTimeFormat,
       locale,
       wordings,
@@ -155,7 +155,7 @@ const DatePickerDialog = React.createClass({
       calendarTextColor,
     } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
 
-    let styles = {
+    const styles = {
       root: {
         fontSize: 14,
         color: calendarTextColor,
@@ -174,7 +174,7 @@ const DatePickerDialog = React.createClass({
       },
     };
 
-    let actions = [
+    const actions = [
       <FlatButton
         key={0}
         label={wordings.cancel}
@@ -216,7 +216,7 @@ const DatePickerDialog = React.createClass({
           firstDayOfWeek={firstDayOfWeek}
           locale={locale}
           ref="calendar"
-          onDayTouchTap={this._onDayTouchTap}
+          onDayTouchTap={this.handleTouchTapDay}
           initialDate={this.props.initialDate}
           open={this.state.open}
           minDate={this.props.minDate}

@@ -200,7 +200,7 @@ const TableRow = React.createClass({
   },
 
   render() {
-    let {
+    const {
       className,
       displayBorder,
       hoverable,

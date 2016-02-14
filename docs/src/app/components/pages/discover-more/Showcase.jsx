@@ -49,6 +49,12 @@ const appList = [
     link: 'http://itsquiz.com/',
   },
   {
+    title: 'ArcChat.com',
+    author: 'Lukas Liesis',
+    img: 'images/showcase/arcchat.png',
+    link: 'http://ArcChat.com/',
+  },
+  {
     title: 'SmafTV - A toolset for TV apps',
     author: 'Infamous Labs',
     img: 'images/showcase/smaftv.png',

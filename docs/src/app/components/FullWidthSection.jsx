@@ -1,6 +1,6 @@
 import React from 'react';
 import {ClearFix, Mixins, Styles} from 'material-ui';
-let {StylePropable, StyleResizable} = Mixins;
+const {StyleResizable} = Mixins;
 const desktopGutter = Styles.Spacing.desktopGutter;
 
 const FullWidthSection = React.createClass({
@@ -14,7 +14,6 @@ const FullWidthSection = React.createClass({
   },
 
   mixins: [
-    StylePropable,
     StyleResizable,
   ],
 
@@ -47,7 +46,7 @@ const FullWidthSection = React.createClass({
   },
 
   render() {
-    let {
+    const {
       style,
       useContent,
       contentType,
@@ -55,14 +54,14 @@ const FullWidthSection = React.createClass({
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
     let content;
     if (useContent) {
       content =
         React.createElement(
           contentType,
-          {style: this.mergeStyles(styles.content, contentStyle)},
+          {style: Object.assign(styles.content, contentStyle)},
           this.props.children
         );
     } else {
@@ -72,7 +71,7 @@ const FullWidthSection = React.createClass({
     return (
       <ClearFix
         {...other}
-        style={this.mergeStyles(
+        style={Object.assign(
           styles.root,
           style,
           this.isDeviceSize(StyleResizable.statics.Sizes.SMALL) && styles.rootWhenSmall,

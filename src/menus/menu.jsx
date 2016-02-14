@@ -154,7 +154,7 @@ const Menu = React.createClass({
 
   getInitialState() {
     const filteredChildren = this._getFilteredChildren(this.props.children);
-    let selectedIndex = this._getSelectedIndex(this.props, filteredChildren);
+    const selectedIndex = this._getSelectedIndex(this.props, filteredChildren);
 
     return {
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
@@ -178,7 +178,7 @@ const Menu = React.createClass({
 
   componentWillReceiveProps(nextProps, nextContext) {
     const filteredChildren = this._getFilteredChildren(nextProps.children);
-    let selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
+    const selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
 
     this.setState({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
@@ -222,9 +222,9 @@ const Menu = React.createClass({
   },
 
   _animateOpen() {
-    let rootStyle = ReactDOM.findDOMNode(this).style;
-    let scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
-    let menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
+    const rootStyle = ReactDOM.findDOMNode(this).style;
+    const scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
+    const menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
 
     autoPrefix.set(rootStyle, 'transform', 'scaleX(1)', this.state.muiTheme);
     autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)', this.state.muiTheme);
@@ -236,12 +236,12 @@ const Menu = React.createClass({
   },
 
   _cloneMenuItem(child, childIndex, styles) {
-    let {
+    const {
       desktop,
       selectedMenuItemStyle,
     } = this.props;
 
-    let selected = this._isChildSelected(child, this.props);
+    const selected = this._isChildSelected(child, this.props);
     let selectedChildrenStyles = {};
 
     if (selected) {
@@ -250,7 +250,7 @@ const Menu = React.createClass({
 
     const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
 
-    let isFocused = childIndex === this.state.focusIndex;
+    const isFocused = childIndex === this.state.focusIndex;
     let focusState = 'none';
     if (isFocused) {
       focusState = this.state.isKeyboardFocused ?
@@ -279,13 +279,13 @@ const Menu = React.createClass({
   },
 
   _getCascadeChildrenCount(filteredChildren) {
-    let {
+    const {
       desktop,
       maxHeight,
     } = this.props;
     let count = 1;
     let currentHeight = desktop ? 16 : 8;
-    let menuItemHeight = desktop ? 32 : 48;
+    const menuItemHeight = desktop ? 32 : 48;
 
     //MaxHeight isn't set - cascade all of the children
     if (!maxHeight) return filteredChildren.length;
@@ -294,7 +294,7 @@ const Menu = React.createClass({
     //max menu height
     filteredChildren.forEach((child) => {
       if (currentHeight < maxHeight) {
-        let childIsADivider = child.type && child.type.displayName === 'Divider';
+        const childIsADivider = child.type && child.type.displayName === 'Divider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -307,8 +307,8 @@ const Menu = React.createClass({
   _getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach((child) => {
-      let childIsADivider = child.type && child.type.displayName === 'Divider';
-      let childIsDisabled = child.props.disabled;
+      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
     return menuItemCount;
@@ -319,7 +319,7 @@ const Menu = React.createClass({
     let menuItemIndex = 0;
 
     filteredChildren.forEach((child) => {
-      let childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.displayName === 'Divider';
 
       if (this._isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
@@ -355,18 +355,18 @@ const Menu = React.createClass({
   },
 
   _handleMenuItemTouchTap(e, item) {
-    let children = this.props.children;
-    let multiple = this.props.multiple;
-    let valueLink = this.getValueLink(this.props);
-    let menuValue = valueLink.value;
-    let itemValue = item.props.value;
-    let focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
+    const children = this.props.children;
+    const multiple = this.props.multiple;
+    const valueLink = this.getValueLink(this.props);
+    const menuValue = valueLink.value;
+    const itemValue = item.props.value;
+    const focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
 
     this._setFocusIndex(focusIndex, false);
 
     if (multiple) {
-      let index = menuValue.indexOf(itemValue);
-      let newMenuValue = index === -1 ?
+      const index = menuValue.indexOf(itemValue);
+      const newMenuValue = index === -1 ?
         update(menuValue, {$push: [itemValue]}) :
         update(menuValue, {$splice: [[index, 1]]});
 
@@ -380,7 +380,7 @@ const Menu = React.createClass({
 
   _incrementKeyboardFocusIndex(filteredChildren) {
     let index = this.state.focusIndex;
-    let maxIndex = this._getMenuItemCount(filteredChildren) - 1;
+    const maxIndex = this._getMenuItemCount(filteredChildren) - 1;
 
     index++;
     if (index > maxIndex) index = maxIndex;
@@ -407,12 +407,12 @@ const Menu = React.createClass({
   },
 
   _setScollPosition() {
-    let desktop = this.props.desktop;
-    let focusedMenuItem = this.refs.focusedMenuItem;
-    let menuItemHeight = desktop ? 32 : 48;
+    const desktop = this.props.desktop;
+    const focusedMenuItem = this.refs.focusedMenuItem;
+    const menuItemHeight = desktop ? 32 : 48;
 
     if (focusedMenuItem) {
-      let selectedOffSet = ReactDOM.findDOMNode(focusedMenuItem).offsetTop;
+      const selectedOffSet = ReactDOM.findDOMNode(focusedMenuItem).offsetTop;
 
       //Make the focused item be the 2nd item in the list the
       //user sees
@@ -424,11 +424,11 @@ const Menu = React.createClass({
   },
 
   _setWidth() {
-    let el = ReactDOM.findDOMNode(this);
-    let listEl = ReactDOM.findDOMNode(this.refs.list);
-    let elWidth = el.offsetWidth;
-    let keyWidth = this.state.keyWidth;
-    let minWidth = keyWidth * 1.5;
+    const el = ReactDOM.findDOMNode(this);
+    const listEl = ReactDOM.findDOMNode(this.refs.list);
+    const elWidth = el.offsetWidth;
+    const keyWidth = this.state.keyWidth;
+    const minWidth = keyWidth * 1.5;
     let keyIncrements = elWidth / keyWidth;
     let newWidth;
 
@@ -442,7 +442,7 @@ const Menu = React.createClass({
   },
 
   render() {
-    let {
+    const {
       animated,
       autoWidth,
       children,
@@ -465,13 +465,13 @@ const Menu = React.createClass({
       prepareStyles,
     } = this.state.muiTheme;
 
-    let openDown = openDirection.split('-')[0] === 'bottom';
-    let openLeft = openDirection.split('-')[1] === 'left';
+    const openDown = openDirection.split('-')[0] === 'bottom';
+    const openLeft = openDirection.split('-')[1] === 'left';
 
     const muiTheme = this.state.muiTheme;
     const rawTheme = muiTheme.rawTheme;
 
-    let styles = {
+    const styles = {
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
@@ -517,24 +517,24 @@ const Menu = React.createClass({
       },
     };
 
-    let mergedRootStyles = Object.assign(styles.root, style);
-    let mergedListStyles = Object.assign(styles.list, listStyle);
+    const mergedRootStyles = Object.assign(styles.root, style);
+    const mergedListStyles = Object.assign(styles.list, listStyle);
 
     const filteredChildren = this._getFilteredChildren(children);
 
     //Cascade children opacity
     let cumulativeDelay = openDown ? 175 : 325;
-    let cascadeChildrenCount = this._getCascadeChildrenCount(filteredChildren);
-    let cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
+    const cascadeChildrenCount = this._getCascadeChildrenCount(filteredChildren);
+    const cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
 
     let menuItemIndex = 0;
-    let newChildren = React.Children.map(filteredChildren, (child) => {
-      let childIsADivider = child.type && child.type.displayName === 'Divider';
-      let childIsDisabled = child.props.disabled;
+    const newChildren = React.Children.map(filteredChildren, (child) => {
+      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 
       if (animated) {
-        let focusIndex = this.state.focusIndex;
+        const focusIndex = this.state.focusIndex;
         let transitionDelay = 0;
 
         //Only cascade the visible menu items
@@ -551,7 +551,7 @@ const Menu = React.createClass({
         });
       }
 
-      let clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
+      const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this._cloneMenuItem(child, menuItemIndex, styles);
 

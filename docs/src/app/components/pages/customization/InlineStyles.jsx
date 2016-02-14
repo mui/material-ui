@@ -32,7 +32,7 @@ class InlineStyles extends React.Component {
   }
 
   render() {
-    let codeOverrideStyles =
+    const codeOverrideStyles =
       '<Checkbox\n' +
       '  id="checkboxId1"\n' +
       '  name="checkboxName1"\n' +
@@ -45,7 +45,7 @@ class InlineStyles extends React.Component {
       '  iconStyle={{\n' +
       '    fill: \'#FF4081\'\n' +
       '  }}/>';
-    let codeMixStyles =
+    const codeMixStyles =
       '<Checkbox\n' +
       '  id="checkboxId1"\n' +
       '  name="checkboxName1"\n' +
@@ -61,7 +61,7 @@ class InlineStyles extends React.Component {
       '  background-color: #FF9800;\n' +
       '}';
 
-    let styles = this.getStyles();
+    const styles = this.getStyles();
 
     return (
       <div>

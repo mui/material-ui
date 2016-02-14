@@ -15,7 +15,7 @@ let tabPressed = false;
 function injectStyle() {
   if (!styleInjected) {
     // Remove inner padding and border in Firefox 4+.
-    let style = document.createElement('style');
+    const style = document.createElement('style');
     style.innerHTML = `
       button::-moz-focus-inner,
       input::-moz-focus-inner {
@@ -284,7 +284,6 @@ const EnhancedButton = React.createClass({
       font: 'inherit',
       fontFamily: this.state.muiTheme.rawTheme.fontFamily,
       tapHighlightColor: Colors.transparent,
-      appearance: linkButton ? null : 'button',
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
       outline: 'none',

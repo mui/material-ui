@@ -194,7 +194,7 @@ const LeftNav = React.createClass({
     return this;
   },
 
-  _onOverlayTouchTap(event) {
+  handleTouchTapOverlay(event) {
     event.preventDefault();
     this._close('clickaway');
   },
@@ -371,7 +371,7 @@ const LeftNav = React.createClass({
           className={overlayClassName}
           style={Object.assign(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}
-          onTouchTap={this._onOverlayTouchTap}
+          onTouchTap={this.handleTouchTapOverlay}
         />
       );
     }

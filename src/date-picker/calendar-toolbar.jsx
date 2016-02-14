@@ -68,7 +68,7 @@ const CalendarToolbar = React.createClass({
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
     let direction;
@@ -81,11 +81,11 @@ const CalendarToolbar = React.createClass({
     }
   },
 
-  _prevMonthTouchTap() {
+  handleTouchTapPrevMonth() {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
   },
 
-  _nextMonthTouchTap() {
+  handleTouchTapNextMonth() {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
   },
 
@@ -116,7 +116,7 @@ const CalendarToolbar = React.createClass({
           <IconButton
             style={styles.button}
             disabled={!this.props.prevMonth}
-            onTouchTap={this._prevMonthTouchTap}
+            onTouchTap={this.handleTouchTapPrevMonth}
           >
             {nextButtonIcon}
           </IconButton>
@@ -125,7 +125,7 @@ const CalendarToolbar = React.createClass({
           <IconButton
             style={styles.button}
             disabled={!this.props.nextMonth}
-            onTouchTap={this._nextMonthTouchTap}
+            onTouchTap={this.handleTouchTapNextMonth}
           >
             {prevButtonIcon}
           </IconButton>

@@ -47,6 +47,11 @@ const DropDownMenu = React.createClass({
     labelStyle: React.PropTypes.object,
 
     /**
+     * The style object to use to override underlying list style.
+     */
+    listStyle: React.PropTypes.object,
+
+    /**
      * The maximum height of the `Menu` when it is displayed.
      */
     maxHeight: React.PropTypes.number,
@@ -209,7 +214,7 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  _onControlTouchTap(event) {
+  handleTouchTapControl(event) {
     event.preventDefault();
     if (!this.props.disabled) {
       this.setState({
@@ -227,7 +232,7 @@ const DropDownMenu = React.createClass({
     });
   },
 
-  _onMenuRequestClose() {
+  handleRequestCloseMenu() {
     this.setState({
       open: false,
       anchorEl: null,
@@ -241,6 +246,7 @@ const DropDownMenu = React.createClass({
       className,
       iconStyle,
       labelStyle,
+      listStyle,
       maxHeight,
       menuStyle,
       style,
@@ -287,7 +293,7 @@ const DropDownMenu = React.createClass({
         className={className}
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
-        <ClearFix style={styles.control} onTouchTap={this._onControlTouchTap}>
+        <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>
           <div
             style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
           >
@@ -302,13 +308,14 @@ const DropDownMenu = React.createClass({
           style={popoverStyle}
           animation={PopoverAnimationFromTop}
           open={open}
-          onRequestClose={this._onMenuRequestClose}
+          onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu
             maxHeight={maxHeight}
             desktop={true}
             value={value}
             style={menuStyle}
+            listStyle={listStyle}
           >
             {menuItemElements}
           </Menu>

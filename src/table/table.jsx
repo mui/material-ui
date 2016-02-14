@@ -261,7 +261,7 @@ const Table = React.createClass({
   },
 
   render() {
-    let {
+    const {
       children,
       className,
       fixedFooter,
@@ -287,7 +287,7 @@ const Table = React.createClass({
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
 
-      let displayName = child.type.displayName;
+      const displayName = child.type.displayName;
       if (displayName === 'TableBody') {
         tBody = this._createTableBody(child);
       } else if (displayName === 'TableHeader') {
@@ -300,7 +300,7 @@ const Table = React.createClass({
     // If we could not find a table-header and a table-body, do not attempt to display anything.
     if (!tBody && !tHead) return null;
 
-    let mergedTableStyle = Object.assign(styles.root, style);
+    const mergedTableStyle = Object.assign(styles.root, style);
     let headerTable;
     let footerTable;
     let inlineHeader;
