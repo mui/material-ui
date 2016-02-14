@@ -401,6 +401,10 @@ const Slider = React.createClass({
     }
   },
 
+  clearValue() {
+    this.setValue(this.props.min);
+  },
+
   _alignValue(val) {
     const {step, min} = this.props;
     const alignValue = Math.round((val - min) / step) * step + min;
