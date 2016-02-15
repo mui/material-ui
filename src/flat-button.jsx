@@ -1,5 +1,4 @@
 import React from 'react';
-import ContextPure from './mixins/context-pure';
 import Transitions from './styles/transitions';
 import Children from './utils/children';
 import ColorManipulator from './utils/color-manipulator';
@@ -122,39 +121,8 @@ const FlatButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    ContextPure,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const buttonTheme = muiTheme.button;
-      const flatButtonTheme = muiTheme.flatButton;
-
-      return {
-        buttonColor: flatButtonTheme.color,
-        buttonFilterColor: flatButtonTheme.buttonFilterColor,
-        buttonHeight: buttonTheme.height,
-        buttonMinWidth: buttonTheme.minWidth,
-        disabledTextColor: flatButtonTheme.disabledTextColor,
-        primaryTextColor: flatButtonTheme.primaryTextColor,
-        secondaryTextColor: flatButtonTheme.secondaryTextColor,
-        textColor: flatButtonTheme.textColor,
-        textTransform: flatButtonTheme.textTransform ? flatButtonTheme.textTransform :
-                      (buttonTheme.textTransform ? buttonTheme.textTransform : 'uppercase'),
-      };
-    },
-    getChildrenClasses() {
-      return [
-        EnhancedButton,
-        FlatButtonLabel,
-      ];
-    },
   },
 
   getDefaultProps() {
@@ -186,11 +154,10 @@ const FlatButton = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _handleKeyboardFocus(e, isKeyboardFocused) {
@@ -232,17 +199,23 @@ const FlatButton = React.createClass({
     } = this.props;
 
     const {
-      buttonColor,
-      buttonHeight,
-      buttonMinWidth,
-      disabledTextColor,
-      buttonFilterColor,
-      primaryTextColor,
-      secondaryTextColor,
-      textColor,
-      textTransform,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
-
+      button: {
+        height: buttonHeight,
+        minWidth: buttonMinWidth,
+        textTransform: buttonTextTransform,
+      },
+      flatButton: {
+        buttonFilterColor,
+        color: buttonColor,
+        disabledTextColor,
+        fontSize,
+        fontWeight,
+        primaryTextColor,
+        secondaryTextColor,
+        textColor,
+        textTransform = buttonTextTransform || 'uppercase',
+      },
+    } = this.state.muiTheme;
     const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
       secondary ? secondaryTextColor :
@@ -254,8 +227,6 @@ const FlatButton = React.createClass({
     const buttonRippleColor = rippleColor || defaultRippleColor;
     const buttonBackgroundColor = backgroundColor || buttonColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
-    const fontSize = this.state.muiTheme.flatButton.fontSize;
-    const fontWeight = this.state.muiTheme.flatButton.fontWeight;
 
     const mergedRootStyles = Object.assign({}, {
       color: defaultTextColor,

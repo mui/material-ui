@@ -6,7 +6,6 @@ import Transitions from '../styles/transitions';
 import UniqueId from '../utils/unique-id';
 import EnhancedTextarea from '../enhanced-textarea';
 import getMuiTheme from '../styles/getMuiTheme';
-import ContextPure from '../mixins/context-pure';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
@@ -186,30 +185,8 @@ const TextField = React.createClass({
   },
 
   mixins: [
-    ContextPure,
     StylePropable,
   ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const textFieldTheme = muiTheme.textField;
-
-      return {
-        floatingLabelColor: textFieldTheme.floatingLabelColor,
-        focusColor: textFieldTheme.focusColor,
-        textColor: textFieldTheme.textColor,
-        disabledTextColor: textFieldTheme.disabledTextColor,
-        backgroundColor: textFieldTheme.backgroundColor,
-        hintColor: textFieldTheme.hintColor,
-        errorColor: textFieldTheme.errorColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        EnhancedTextarea,
-      ];
-    },
-  },
 
   getDefaultProps() {
     return {
@@ -268,14 +245,16 @@ const TextField = React.createClass({
   getStyles() {
     const props = this.props;
     const {
-      floatingLabelColor,
-      focusColor,
-      textColor,
-      disabledTextColor,
-      backgroundColor,
-      hintColor,
-      errorColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+      textField: {
+        floatingLabelColor,
+        focusColor,
+        textColor,
+        disabledTextColor,
+        backgroundColor,
+        hintColor,
+        errorColor,
+      },
+    } = this.state.muiTheme;
 
     const styles = {
       root: {

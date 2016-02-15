@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from '../text-field';
 import DropDownMenu from '../DropDownMenu';
 import getMuiTheme from '../styles/getMuiTheme';
-import ContextPure from '../mixins/context-pure';
 
 function getStyles(props) {
   return {
@@ -140,19 +139,6 @@ const SelectField = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    ContextPure,
-  ],
-
-  statics: {
-    getChildrenClasses() {
-      return [
-        TextField,
-        DropDownMenu,
-      ];
-    },
   },
 
   getDefaultProps() {
