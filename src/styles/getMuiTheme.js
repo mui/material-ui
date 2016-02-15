@@ -13,19 +13,26 @@ import Typography from '../styles/typography';
  * by providing a second argument. The calculated
  * theme will be deeply merged with the second argument.
  */
-export default function getMuiTheme(baseTheme, muiTheme) {
-  baseTheme = merge({}, lightBaseTheme, baseTheme);
-  const {
-    palette,
-    spacing,
-  } = baseTheme;
-
+export default function getMuiTheme(muiTheme, ...more) {
   muiTheme = merge({
+    zIndex,
     isRtl: false,
     userAgent: undefined,
-    zIndex,
-    baseTheme,
-    rawTheme: baseTheme, // To provide backward compatibility.
+  }, lightBaseTheme, muiTheme, ...more);
+
+  const {
+    spacing,
+    fontFamily,
+    palette,
+  } = muiTheme;
+
+  const baseTheme = {
+    spacing,
+    fontFamily,
+    palette,
+  };
+
+  muiTheme = merge({
     appBar: {
       color: palette.primary1Color,
       textColor: palette.alternateTextColor,
@@ -274,7 +281,10 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       backgroundColor: 'transparent',
       borderColor: palette.borderColor,
     },
-  }, muiTheme);
+  }, muiTheme, {
+    baseTheme, // To provide backward compatibility.
+    rawTheme: baseTheme, // To provide backward compatibility.
+  });
 
   const transformers = [autoprefixer, rtl, callOnce].map((t) => t(muiTheme))
     .filter((t) => t);

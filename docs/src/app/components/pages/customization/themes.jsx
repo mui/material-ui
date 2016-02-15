@@ -8,6 +8,15 @@ import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 
 import themesText from './themes.md';
 
+const markdownText = `
+## Themes
+
+### Examples
+
+You can use the tabs to change the theme. The changes will be applied to the whole
+documentation.
+`;
+
 const {
   Checkbox,
   ClearFix,
@@ -103,15 +112,6 @@ const ThemesPage = React.createClass({
         backgroundColor: canvasColor,
         marginBottom: 32,
         overflow: 'hidden',
-      },
-      headline: {
-        fontSize: '24px',
-        lineHeight: '32px',
-        paddingTop: '16px',
-        marginBottom: '12px',
-        letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack,
       },
       bottomBorderWrapper: {
         borderBottom: `1px solid ${borderColor}`,
@@ -360,19 +360,15 @@ const ThemesPage = React.createClass({
   },
 
   render() {
-
     const styles = this.getStyles();
 
     return (
       <div>
         <Title render={(previousTitle) => `Themes - ${previousTitle}`} />
-
-        <h2 style={styles.headline}>Themes</h2>
-
+        <MarkdownElement text={markdownText} />
         <Paper style={styles.liveExamplePaper}>
           <ClearFix style={styles.liveExampleBlock}>{this.getThemeExamples()}</ClearFix>
         </Paper>
-
         <div style={styles.bottomBorderWrapper}>
           <MarkdownElement text={themesText} />
         </div>
