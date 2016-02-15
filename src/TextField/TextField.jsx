@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ColorManipulator from '../utils/color-manipulator';
-import StylePropable from '../mixins/style-propable';
 import Transitions from '../styles/transitions';
 import UniqueId from '../utils/unique-id';
 import EnhancedTextarea from '../enhanced-textarea';
@@ -9,6 +8,97 @@ import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
+
+const getStyles = (props, state) => {
+  const {
+    baseTheme,
+    textField: {
+      floatingLabelColor,
+      focusColor,
+      textColor,
+      disabledTextColor,
+      backgroundColor,
+      hintColor,
+      errorColor,
+    },
+  } = state.muiTheme;
+
+  const styles = {
+    root: {
+      fontSize: 16,
+      lineHeight: '24px',
+      width: props.fullWidth ? '100%' : 256,
+      height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
+      display: 'inline-block',
+      position: 'relative',
+      backgroundColor: backgroundColor,
+      fontFamily: baseTheme.fontFamily,
+      transition: Transitions.easeOut('200ms', 'height'),
+    },
+    error: {
+      position: 'relative',
+      bottom: 2,
+      fontSize: 12,
+      lineHeight: '12px',
+      color: errorColor,
+      transition: Transitions.easeOut(),
+    },
+    floatingLabel: {
+      color: hintColor,
+      pointerEvents: 'none',
+    },
+    input: {
+      tapHighlightColor: 'rgba(0,0,0,0)',
+      padding: 0,
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+      border: 'none',
+      outline: 'none',
+      backgroundColor: 'rgba(0,0,0,0)',
+      color: props.disabled ? disabledTextColor : textColor,
+      font: 'inherit',
+    },
+    textarea: {},
+  };
+
+  Object.assign(styles.error, props.errorStyle);
+
+  Object.assign(styles.textarea, styles.input, {
+    marginTop: props.floatingLabelText ? 36 : 12,
+    marginBottom: props.floatingLabelText ? -36 : -12,
+    boxSizing: 'border-box',
+    font: 'inherit',
+  });
+
+  if (state.isFocused) {
+    styles.floatingLabel.color = focusColor;
+  }
+
+  if (state.hasValue) {
+    styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
+  }
+
+  if (props.floatingLabelText) {
+    styles.input.boxSizing = 'border-box';
+
+    if (!props.multiLine) {
+      styles.input.marginTop = 14;
+    }
+
+    if (state.errorText) {
+      styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
+    }
+  }
+
+  if (state.errorText) {
+    if (state.isFocused) {
+      styles.floatingLabel.color = styles.error.color;
+    }
+  }
+
+  return styles;
+};
 
 /**
  * Check if a value is valid to be displayed inside an input.
@@ -179,14 +269,9 @@ const TextField = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -222,10 +307,11 @@ const TextField = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {};
-    newState.muiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newState = {
+      errorText: nextProps.errorText,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    };
 
-    newState.errorText = nextProps.errorText;
     if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }
@@ -240,96 +326,6 @@ const TextField = React.createClass({
     }
 
     if (newState) this.setState(newState);
-  },
-
-  getStyles() {
-    const props = this.props;
-    const {
-      textField: {
-        floatingLabelColor,
-        focusColor,
-        textColor,
-        disabledTextColor,
-        backgroundColor,
-        hintColor,
-        errorColor,
-      },
-    } = this.state.muiTheme;
-
-    const styles = {
-      root: {
-        fontSize: 16,
-        lineHeight: '24px',
-        width: props.fullWidth ? '100%' : 256,
-        height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
-        display: 'inline-block',
-        position: 'relative',
-        backgroundColor: backgroundColor,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-        transition: Transitions.easeOut('200ms', 'height'),
-      },
-      error: {
-        position: 'relative',
-        bottom: 2,
-        fontSize: 12,
-        lineHeight: '12px',
-        color: errorColor,
-        transition: Transitions.easeOut(),
-      },
-      floatingLabel: {
-        color: hintColor,
-        pointerEvents: 'none',
-      },
-      input: {
-        tapHighlightColor: 'rgba(0,0,0,0)',
-        padding: 0,
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        border: 'none',
-        outline: 'none',
-        backgroundColor: 'rgba(0,0,0,0)',
-        color: props.disabled ? disabledTextColor : textColor,
-        font: 'inherit',
-      },
-    };
-
-    styles.error = this.mergeStyles(styles.error, props.errorStyle);
-
-    styles.textarea = this.mergeStyles(styles.input, {
-      marginTop: props.floatingLabelText ? 36 : 12,
-      marginBottom: props.floatingLabelText ? -36 : -12,
-      boxSizing: 'border-box',
-      font: 'inherit',
-    });
-
-    if (this.state.isFocused) {
-      styles.floatingLabel.color = focusColor;
-    }
-
-    if (this.state.hasValue) {
-      styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-    }
-
-    if (props.floatingLabelText) {
-      styles.input.boxSizing = 'border-box';
-
-      if (!props.multiLine) {
-        styles.input.marginTop = 14;
-      }
-
-      if (this.state.errorText) {
-        styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
-      }
-    }
-
-    if (this.state.errorText) {
-      if (this.state.isFocused) {
-        styles.floatingLabel.color = styles.error.color;
-      }
-    }
-
-    return styles;
   },
 
   blur() {
@@ -410,30 +406,32 @@ const TextField = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     const inputId = id || this._uniqueId;
 
-    const errorTextElement = this.state.errorText ? (
-      <div style={this.prepareStyles(styles.error)}>{this.state.errorText}</div>
-    ) : null;
+    const errorTextElement = this.state.errorText && (
+      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
+    );
 
-    const floatingLabelTextElement = floatingLabelText ? (
+    const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.state.muiTheme}
-        style={this.mergeStyles(styles.floatingLabel, this.props.floatingLabelStyle)}
+        style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused}
         disabled={disabled}
       >
         {floatingLabelText}
       </TextFieldLabel>
-    ) : null;
+    );
 
-    let inputProps;
-    let inputElement;
 
-    inputProps = {
+    const inputProps = {
       id: inputId,
       ref: 'input',
       onBlur: this._handleInputBlur,
@@ -442,19 +440,19 @@ const TextField = React.createClass({
       onKeyDown: this._handleInputKeyDown,
     };
 
-    const inputStyleMerged = this.mergeStyles(styles.input, inputStyle);
-    const textareaStyleMerged = this.mergeStyles(styles.textarea, textareaStyle);
+    const inputStyleMerged = Object.assign(styles.input, inputStyle);
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
     }
 
+    let inputElement;
     if (this.props.children) {
       inputElement = React.cloneElement(this.props.children,
         {
           ...inputProps,
           ...this.props.children.props,
-          style: this.mergeStyles(inputStyleMerged, this.props.children.props.style),
+          style: Object.assign(inputStyleMerged, this.props.children.props.style),
         });
     } else {
       inputElement = multiLine ? (
@@ -465,20 +463,20 @@ const TextField = React.createClass({
           rows={rows}
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
-          textareaStyle={textareaStyleMerged}
+          textareaStyle={Object.assign(styles.textarea, textareaStyle)}
         />
       ) : (
         <input
           {...other}
           {...inputProps}
-          style={this.prepareStyles(inputStyleMerged)}
+          style={prepareStyles(inputStyleMerged)}
           type={type}
         />
       );
     }
 
     return (
-      <div className={className} style={this.prepareStyles(styles.root, this.props.style)}>
+      <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint
