@@ -4,4 +4,4 @@ import {
 
 import App from './app.native';
 
-AppRegistry.registerComponent('App', () => App);
+AppRegistry.registerComponent('MaterialUIDocs', () => App);

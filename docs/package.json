@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-docs",
+  "name": "MaterialUIDocs",
   "version": "0.14.4",
   "description": "Documentation site for material-ui",
   "repository": {
@@ -16,7 +16,8 @@
     "browser:build": "NODE_ENV=docs-production webpack --config webpack-production.config.js --progress --colors --profile",
     "browser:prd": "NODE_ENV=docs-production webpack-dev-server --config webpack-production.config.js --progress --colors --profile",
     "native:development": "node_modules/react-native/packager/packager.sh --reset-cache",
-    "android:setup-port": "adb reverse tcp:8081 tcp:8081"
+    "android:setup-port": "adb reverse tcp:8081 tcp:8081",
+    "native:start": "rnws start -r -c webpack.native.config.js"
   },
   "dependencies": {
     "react-title-component": "^1.0.1"
@@ -47,7 +48,8 @@
     "react-dom": "^0.14.0",
     "react-hot-loader": "^1.2.8",
     "react-motion": "^0.3.1",
-    "react-native": "^0.17.0",
+    "react-native": "^0.19.0",
+    "react-native-webpack-server": "^0.8.4",
     "react-router": "1.0.2",
     "react-swipeable-views": "^0.3.0",
     "recast": "^0.10.39",
