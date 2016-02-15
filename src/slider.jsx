@@ -76,7 +76,7 @@ const getStyles = (props, state) => {
       cursor: 'pointer',
       pointerEvents: 'inherit',
       top: 0,
-      left: '0%',
+      left: state.percent === 0 ? '0%' : `${(state.percent * 100)}%`,
       zIndex: 1,
       margin: `${(slider.trackSize / 2)}px 0 0 0`,
       width: slider.handleSize,
@@ -485,28 +485,42 @@ const Slider = React.createClass({
   },
 
   render() {
-    const {...others} = this.props;
+    const {
+      description,
+      disabled,
+      disableFocusRipple,
+      error,
+      max,
+      min,
+      name,
+      required,
+      step,
+      style,
+      ...others,
+    } = this.props;
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     const styles = getStyles(this.props, this.state);
-    const sliderStyles = Object.assign({}, styles.root, this.props.style);
+    const sliderStyles = Object.assign({}, styles.root, style);
     const handleStyles = percent === 0 ? Object.assign(
       {},
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
-      (this.state.hovered || this.state.focused) && !this.props.disabled
+      (this.state.hovered || this.state.focused) && !disabled
         && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
+      disabled && styles.handleWhenPercentZeroAndDisabled
     ) : Object.assign(
       {},
       styles.handle,
       this.state.active && styles.handleWhenActive,
-      this.props.disabled && styles.handleWhenDisabled,
-      {
-        left: `${(percent * 100)}%`,
-      }
+      disabled && styles.handleWhenDisabled,
     );
     const rippleStyle = Object.assign(
       {},
@@ -516,7 +530,7 @@ const Slider = React.createClass({
     const rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
 
     let focusRipple;
-    if (!this.props.disabled && !this.props.disableFocusRipple) {
+    if (!disabled && !disableFocusRipple) {
       focusRipple = (
         <FocusRipple
           ref="focusRipple"
@@ -530,22 +544,18 @@ const Slider = React.createClass({
       );
     }
 
-    let handleDragProps = {};
-    if (!this.props.disabled) {
+    let handleDragProps;
+    if (!disabled) {
       handleDragProps = {
         onTouchStart: this._onHandleTouchStart,
         onMouseDown: this._onHandleMouseDown,
       };
     }
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
     return (
-      <div {...others} style={prepareStyles(Object.assign({}, this.props.style))}>
-        <span>{this.props.description}</span>
-        <span>{this.props.error}</span>
+      <div {...others} style={prepareStyles(Object.assign({}, style))}>
+        <span>{description}</span>
+        <span>{error}</span>
         <div
           style={prepareStyles(sliderStyles)}
           onFocus={this.handleFocus}
@@ -564,12 +574,12 @@ const Slider = React.createClass({
           </div>
         </div>
         <input ref="input" type="hidden"
-          name={this.props.name}
+          name={name}
           value={this.state.value}
-          required={this.props.required}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
+          required={required}
+          min={min}
+          max={max}
+          step={step}
         />
       </div>
     );
