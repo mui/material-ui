@@ -17,7 +17,6 @@ const AppLeftNav = React.createClass({
 
   propTypes: {
     docked: React.PropTypes.bool.isRequired,
-    history: React.PropTypes.object.isRequired,
     location: React.PropTypes.object.isRequired,
     onRequestChangeLeftNav: React.PropTypes.func.isRequired,
     onRequestChangeList: React.PropTypes.func.isRequired,
@@ -26,8 +25,8 @@ const AppLeftNav = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-    router: React.PropTypes.func,
+    muiTheme: React.PropTypes.object.isRequired,
+    router: React.PropTypes.object.isRequired,
   },
 
   handleRequestChangeLink(event, value) {
@@ -35,10 +34,8 @@ const AppLeftNav = React.createClass({
   },
 
   handleTouchTapHeader() {
-    this.props.history.push('/');
-    this.setState({
-      leftNavOpen: false,
-    });
+    this.context.router.push('/');
+    this.props.onRequestChangeLeftNav(false);
   },
 
   getStyles() {
