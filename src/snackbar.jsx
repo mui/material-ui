@@ -3,7 +3,6 @@ import Transitions from './styles/transitions';
 import ClickAwayable from './mixins/click-awayable';
 import FlatButton from './flat-button';
 import getMuiTheme from './styles/getMuiTheme';
-import ContextPure from './mixins/context-pure';
 import StyleResizable from './mixins/style-resizable';
 
 function getStyles(props, state) {
@@ -140,28 +139,7 @@ const Snackbar = React.createClass({
   mixins: [
     StyleResizable,
     ClickAwayable,
-    ContextPure,
   ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const theme = muiTheme.snackbar;
-      const spacing = muiTheme.baseTheme.spacing;
-
-      return {
-        textColor: theme.textColor,
-        backgroundColor: theme.backgroundColor,
-        desktopGutter: spacing.desktopGutter,
-        desktopSubheaderHeight: spacing.desktopSubheaderHeight,
-        actionColor: theme.actionColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        FlatButton,
-      ];
-    },
-  },
 
   getInitialState() {
     return {

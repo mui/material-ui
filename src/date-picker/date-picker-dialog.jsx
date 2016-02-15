@@ -1,5 +1,4 @@
 import React from 'react';
-import ContextPure from '../mixins/context-pure';
 import EventListener from 'react-event-listener';
 import KeyCode from '../utils/key-code';
 import Calendar from './calendar';
@@ -40,24 +39,6 @@ const DatePickerDialog = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    ContextPure,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      return {
-        calendarTextColor: muiTheme.datePicker.calendarTextColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        Calendar,
-        Dialog,
-      ];
-    },
   },
 
   getDefaultProps: function() {
@@ -148,7 +129,7 @@ const DatePickerDialog = React.createClass({
 
     const {
       calendarTextColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.state.muiTheme.datePicker;
 
     const styles = {
       root: {

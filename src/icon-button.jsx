@@ -1,5 +1,4 @@
 import React from 'react';
-import ContextPure from './mixins/context-pure';
 import Transitions from './styles/transitions';
 import PropTypes from './utils/prop-types';
 import EnhancedButton from './enhanced-button';
@@ -132,34 +131,8 @@ const IconButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    ContextPure,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const spacing = muiTheme.rawTheme.spacing;
-      const palette = muiTheme.rawTheme.palette;
-
-      return {
-        iconSize: spacing.iconSize,
-        textColor: palette.textColor,
-        disabledColor: palette.disabledColor,
-      };
-    },
-
-    getChildrenClasses() {
-      return [
-        EnhancedButton,
-        FontIcon,
-        Tooltip,
-      ];
-    },
   },
 
   getDefaultProps() {
