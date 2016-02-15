@@ -129,7 +129,7 @@ const FlatButton = React.createClass({
     return {
       disabled: false,
       labelStyle: {},
-      labelPosition: 'after',
+      labelPosition: 'before',
       onKeyboardFocus: () => {},
       onMouseEnter: () => {},
       onMouseLeave: () => {},
