@@ -1,6 +1,5 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Colors from './styles/colors';
 import Children from './utils/children';
 import Events from './utils/events';
 import KeyCode from './utils/key-code';
@@ -274,6 +273,7 @@ const EnhancedButton = React.createClass({
 
     const {
       prepareStyles,
+      enhancedButton,
     } = this.state.muiTheme;
 
     const mergedStyles = Object.assign({
@@ -283,7 +283,7 @@ const EnhancedButton = React.createClass({
       display: 'inline-block',
       font: 'inherit',
       fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-      tapHighlightColor: Colors.transparent,
+      tapHighlightColor: enhancedButton.tapHighlightColor,
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
       outline: 'none',

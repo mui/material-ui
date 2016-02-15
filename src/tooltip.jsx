@@ -1,6 +1,5 @@
 import React from 'react';
 import Transitions from './styles/transitions';
-import Colors from './styles/colors';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -14,6 +13,7 @@ function getStyles(props, state) {
   const {
     baseTheme,
     zIndex,
+    tooltip,
   } = state.muiTheme;
 
   const styles = {
@@ -24,7 +24,7 @@ function getStyles(props, state) {
       lineHeight: '22px',
       padding: '0 8px',
       zIndex: zIndex.tooltip,
-      color: Colors.white,
+      color: tooltip.color,
       overflow: 'hidden',
       top: -10000,
       borderRadius: 2,
@@ -68,7 +68,7 @@ function getStyles(props, state) {
       padding: '0 16px',
     },
     rippleWhenShown: {
-      backgroundColor: Colors.grey700,
+      backgroundColor: tooltip.rippleBackgroundColor,
       transition: `${Transitions.easeOut('450ms', 'width', '0ms')}, ${
         Transitions.easeOut('450ms', 'height', '0ms')}, ${
         Transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ColorManipulator from '../utils/color-manipulator';
-import Colors from '../styles/colors';
 import Transitions from '../styles/transitions';
 import EnhancedButton from '../enhanced-button';
 import IconButton from '../icon-button';
@@ -424,6 +423,10 @@ const ListItem = React.createClass({
       ...other,
     } = this.props;
 
+    const{
+      listItem,
+    } = this.state.muiTheme;
+
     const textColor = this.state.muiTheme.rawTheme.palette.textColor;
     const hoverColor = ColorManipulator.fade(textColor, 0.1);
     const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
@@ -431,7 +434,6 @@ const ListItem = React.createClass({
     const twoLine = secondaryText && secondaryTextLines === 1;
     const threeLine = secondaryText && secondaryTextLines > 1;
     const hasCheckbox = leftCheckbox || rightToggle;
-    const secondaryTextColor = this.state.muiTheme.listItem.secondaryTextColor;
 
     const styles = {
       root: {
@@ -466,14 +468,14 @@ const ListItem = React.createClass({
       },
 
       leftIcon: {
-        color: Colors.grey600,
-        fill: Colors.grey600,
+        color: listItem.leftIconColor,
+        fill: listItem.leftIconColor,
         left: 4,
       },
 
       rightIcon: {
-        color: Colors.grey400,
-        fill: Colors.grey400,
+        color: listItem.rightIconColor,
+        fill: listItem.rightIconColor,
         right: 4,
       },
 
@@ -526,7 +528,7 @@ const ListItem = React.createClass({
         height: threeLine ? 36 : 16,
         margin: 0,
         marginTop: 4,
-        color: secondaryTextColor,
+        color: listItem.secondaryTextColor,
 
         //needed for 2 and 3 line ellipsis
         overflow: 'hidden',

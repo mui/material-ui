@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Colors from '../styles/colors';
 import Popover from '../popover/popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../lists/list-item';
@@ -212,6 +211,7 @@ const MenuItem = React.createClass({
 
     const {
       prepareStyles,
+      menuItem,
     } = this.state.muiTheme;
 
     const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
@@ -248,7 +248,7 @@ const MenuItem = React.createClass({
         margin: 0,
         right: 24,
         top: 4,
-        fill: Colors.grey600,
+        fill: menuItem.rightIconDesktopFill,
       },
     };
 

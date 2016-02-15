@@ -31,6 +31,7 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       textColor: palette.alternateTextColor,
       height: spacing.desktopKeylineIncrement,
       titleFontWeight: Typography.fontWeightNormal,
+      padding: spacing.desktopGutter,
     },
     avatar: {
       color: palette.canvasColor,
@@ -81,9 +82,13 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       calendarTextColor: palette.textColor,
       selectColor: palette.primary2Color,
       selectTextColor: palette.alternateTextColor,
+      calendarYearBackgroundColor: Colors.white,
     },
     dropDownMenu: {
       accentColor: palette.borderColor,
+    },
+    enhancedButton: {
+      tapHighlightColor: Colors.transparent,
     },
     flatButton: {
       color: Colors.transparent,
@@ -120,6 +125,8 @@ export default function getMuiTheme(baseTheme, muiTheme) {
     listItem: {
       nestedLevelDepth: 18,
       secondaryTextColor: Colors.lightBlack,
+      leftIconColor: Colors.grey600,
+      rightIconColor: Colors.grey400,
     },
     menu: {
       backgroundColor: palette.canvasColor,
@@ -131,11 +138,15 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       hoverColor: ColorManipulator.fade(palette.textColor, 0.035),
       padding: spacing.desktopGutter,
       selectedTextColor: palette.accent1Color,
+      rightIconDesktopFill: Colors.grey600,
     },
     menuSubheader: {
       padding: spacing.desktopGutter,
       borderColor: palette.borderColor,
       textColor: palette.primary1Color,
+    },
+    overlay: {
+      backgroundColor: Colors.lightBlack,
     },
     paper: {
       color: palette.textColor,
@@ -258,6 +269,10 @@ export default function getMuiTheme(baseTheme, muiTheme) {
       iconColor: ColorManipulator.fade(palette.textColor, 0.4),
       separatorColor: ColorManipulator.fade(palette.textColor, 0.175),
       menuHoverColor: ColorManipulator.fade(palette.textColor, 0.1),
+    },
+    tooltip: {
+      color: Colors.white,
+      rippleBackgroundColor: Colors.grey700,
     },
     tabs: {
       backgroundColor: palette.primary1Color,
