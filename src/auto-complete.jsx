@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
 import KeyCode from './utils/key-code';
 import TextField from './text-field';
 import Menu from './menus/menu';
@@ -10,6 +9,39 @@ import Popover from './popover/popover';
 import PropTypes from './utils/prop-types';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
+
+function getStyles(props, state) {
+  const {
+    anchorEl,
+  } = state;
+
+  const {
+    fullWidth,
+  } = props;
+
+  const styles = {
+    root: {
+      display: 'inline-block',
+      position: 'relative',
+      width: fullWidth ? '100%' : 256,
+    },
+    menu: {
+      width: '100%',
+    },
+    list: {
+      display: 'block',
+      width: fullWidth ? '100%' : 256,
+    },
+  };
+
+  if (anchorEl && fullWidth) {
+    styles.popover = {
+      width: anchorEl.clientWidth,
+    };
+  }
+
+  return styles;
+}
 
 const AutoComplete = React.createClass({
 
@@ -133,10 +165,6 @@ const AutoComplete = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -336,24 +364,11 @@ const AutoComplete = React.createClass({
       searchText,
     } = this.state;
 
-    const styles = {
-      root: {
-        display: 'inline-block',
-        position: 'relative',
-        width: this.props.fullWidth ? '100%' : 256,
-      },
-      input: {
-      },
-      error: {
-      },
-      menu: {
-        width: '100%',
-      },
-      list: {
-        display: 'block',
-        width: this.props.fullWidth ? '100%' : 256,
-      },
-    };
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     const requestsList = [];
 
@@ -377,83 +392,27 @@ const AutoComplete = React.createClass({
 
     this.requestsList = requestsList;
 
-    const menu = open && requestsList.length > 0 ? (
-      <Menu
-        {...menuProps}
-        ref="menu"
-        key="dropDownMenu"
-        autoWidth={false}
-        onEscKeyDown={this.close}
-        initiallyKeyboardFocused={false}
-        onItemTouchTap={this.handleItemTouchTap}
-        listStyle={this.mergeStyles(styles.list, listStyle)}
-        style={this.mergeStyles(styles.menu, menuStyle)}
-      >
-        {
-          requestsList.map((request, index) => {
-            switch (typeof request) {
-              case 'string':
-                return (
-                  <MenuItem
-                    disableFocusRipple={disableFocusRipple}
-                    innerDivStyle={{overflow: 'hidden'}}
-                    key={index}
-                    value={request}
-                    primaryText={request}
-                  />
-                );
-              case 'object':
-                if (typeof request.text === 'string') {
-                  return React.cloneElement(request.value, {
-                    key: request.text,
-                    disableFocusRipple: disableFocusRipple,
-                  });
-                }
-                return React.cloneElement(request, {
-                  key: index,
-                  disableFocusRipple: disableFocusRipple,
-                });
-              default:
-                return null;
-            }
-          })
-        }
-      </Menu>
-    ) : null;
-
-    let popoverStyle;
-    if (anchorEl && fullWidth) {
-      popoverStyle = {width: anchorEl.clientWidth};
-    }
-
     return (
       <div
-        style={this.prepareStyles(this.mergeStyles(styles.root, style))}
+        style={prepareStyles(Object.assign(styles.root, style))}
         onKeyDown={this.handleKeyDown}
       >
-        <div
-          style={{
-            width: '100%',
-          }}
-        >
-          <TextField
-            {...other}
-            ref="searchTextField"
-            value={searchText}
-            onEnterKeyDown={this.handleEnterKeyDown}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onFocus={this.handleFocus}
-            style={styles.input}
-            floatingLabelText={floatingLabelText}
-            hintText={(!hintText && !floatingLabelText) ? '' : hintText}
-            fullWidth={true}
-            multiLine={false}
-            errorStyle={this.mergeStyles(styles.error, errorStyle)}
-          />
-        </div>
+        <TextField
+          {...other}
+          ref="searchTextField"
+          value={searchText}
+          onEnterKeyDown={this.handleEnterKeyDown}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
+          floatingLabelText={floatingLabelText}
+          hintText={(!hintText && !floatingLabelText) ? '' : hintText}
+          fullWidth={true}
+          multiLine={false}
+          errorStyle={errorStyle}
+        />
         <Popover
-          style={popoverStyle}
+          style={styles.popover}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
           open={open}
@@ -462,7 +421,47 @@ const AutoComplete = React.createClass({
           onRequestClose={this.close}
           animated={animated}
         >
-          {menu}
+          <Menu
+            {...menuProps}
+            ref="menu"
+            key="dropDownMenu"
+            autoWidth={false}
+            onEscKeyDown={this.close}
+            initiallyKeyboardFocused={false}
+            onItemTouchTap={this.handleItemTouchTap}
+            listStyle={Object.assign(styles.list, listStyle)}
+            style={Object.assign(styles.menu, menuStyle)}
+          >
+            {
+              requestsList.map((request, index) => {
+                switch (typeof request) {
+                  case 'string':
+                    return (
+                      <MenuItem
+                        disableFocusRipple={disableFocusRipple}
+                        innerDivStyle={{overflow: 'hidden'}}
+                        key={index}
+                        value={request}
+                        primaryText={request}
+                      />
+                    );
+                  case 'object':
+                    if (typeof request.text === 'string') {
+                      return React.cloneElement(request.value, {
+                        key: request.text,
+                        disableFocusRipple: disableFocusRipple,
+                      });
+                    }
+                    return React.cloneElement(request, {
+                      key: index,
+                      disableFocusRipple: disableFocusRipple,
+                    });
+                  default:
+                    return null;
+                }
+              })
+            }
+          </Menu>
         </Popover>
       </div>
     );
