@@ -17,6 +17,7 @@ const Calendar = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
+    activeDays: React.PropTypes.array,
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
     initialDate: React.PropTypes.object,
@@ -39,6 +40,7 @@ const Calendar = React.createClass({
 
   getDefaultProps() {
     return {
+      activeDays: [],
       disableYearSelection: false,
       initialDate: new Date(),
       minDate: DateTime.addYears(new Date(), -100),
@@ -333,6 +335,7 @@ const Calendar = React.createClass({
             </ClearFix>
             <SlideInTransitionGroup direction={this.state.transitionDirection}>
               <CalendarMonth
+                activeDays={this.props.activeDays}
                 key={this.state.displayDate.toDateString()}
                 ref="calendar"
                 displayDate={this.state.displayDate}

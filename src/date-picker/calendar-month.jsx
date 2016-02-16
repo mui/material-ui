@@ -6,6 +6,7 @@ import ClearFix from '../clearfix';
 const CalendarMonth = React.createClass({
 
   propTypes: {
+    activeDays: React.PropTypes.array,
     autoOk: React.PropTypes.bool,
     displayDate: React.PropTypes.object.isRequired,
     firstDayOfWeek: React.PropTypes.number,
@@ -32,8 +33,18 @@ const CalendarMonth = React.createClass({
     }, this);
   },
 
+  _isInActiveDays(day) {
+    for (const activeDay of this.props.activeDays) {
+      if (DateTime.isEqualDate(activeDay, day)) {
+        return true;
+      }
+    }
+    return false;
+  },
+
   _getDayElements(week, i) {
     return week.map((day, j) => {
+      const isActiveDay = this._isInActiveDays(day);
       const isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
       const disabled = this._shouldDisableDate(day);
       const selected = !disabled && isSameDate;
@@ -48,6 +59,7 @@ const CalendarMonth = React.createClass({
 
       return (
         <DayButton
+          active={isActiveDay}
           key={`db${(i + j)}`}
           date={day}
           onTouchTap={this._handleDayTouchTap}

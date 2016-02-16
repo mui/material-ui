@@ -12,6 +12,7 @@ const DatePickerDialog = React.createClass({
 
   propTypes: {
     DateTimeFormat: React.PropTypes.func,
+    activeDays: React.PropTypes.array,
     autoOk: React.PropTypes.bool,
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
@@ -193,6 +194,7 @@ const DatePickerDialog = React.createClass({
         />
         <Calendar
           DateTimeFormat={DateTimeFormat}
+          activeDays={this.props.activeDays ? this.props.activeDays : []}
           firstDayOfWeek={firstDayOfWeek}
           locale={locale}
           ref="calendar"

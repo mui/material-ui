@@ -20,6 +20,7 @@ export default class DatePickerExampleControlled extends React.Component {
   render() {
     return (
       <DatePicker
+        activeDays={[new Date()]}
         hintText="Controlled Date Input"
         value={this.state.controlledDate}
         onChange={this._handleChange}
