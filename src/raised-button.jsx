@@ -27,6 +27,7 @@ function getStyles(props, state) {
     icon,
     labelPosition,
     primary,
+    rippleStyle,
     secondary,
     style,
   } = props;
@@ -86,8 +87,8 @@ function getStyles(props, state) {
     overlayWhenHovered: {
     },
     ripple: {
-      color: labelColor,
-      opacity: !(primary || secondary) ? 0.1 : 0.16,
+      color: rippleStyle.color || labelColor,
+      opacity: !(primary || secondary) ? rippleStyle.opacity : 0.16,
     },
   };
 }
@@ -213,6 +214,11 @@ const RaisedButton = React.createClass({
     primary: React.PropTypes.bool,
 
     /**
+     * Override the inline-styles of the ripple element.
+     */
+    rippleStyle: React.PropTypes.object,
+
+    /**
      * If true, colors button according to secondaryTextColor from the theme.
      * The primary prop has precendent if set to true.
      */
@@ -238,6 +244,9 @@ const RaisedButton = React.createClass({
       labelPosition: 'after',
       fullWidth: false,
       primary: false,
+      rippleStyle: {
+        opacity: 0.1,
+      },
       secondary: false,
     };
   },
