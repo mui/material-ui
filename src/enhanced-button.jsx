@@ -129,6 +129,10 @@ const EnhancedButton = React.createClass({
     }
   },
 
+  componentWillUnmount() {
+    clearTimeout(this._focusTimeout);
+  },
+
   isKeyboardFocused() {
     return this.state.isKeyboardFocused;
   },

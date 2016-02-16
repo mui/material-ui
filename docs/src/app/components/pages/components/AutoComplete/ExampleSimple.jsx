@@ -23,11 +23,20 @@ export default class AutoCompleteExampleSimple extends React.Component {
 
   render() {
     return (
-      <AutoComplete
-        hintText="Type anything"
-        dataSource={this.state.dataSource}
-        onUpdateInput={this.handleUpdateInput}
-      />
+      <div>
+        <AutoComplete
+          hintText="Type anything"
+          dataSource={this.state.dataSource}
+          onUpdateInput={this.handleUpdateInput}
+        />
+        <AutoComplete
+          hintText="Type anything"
+          dataSource={this.state.dataSource}
+          onUpdateInput={this.handleUpdateInput}
+          floatingLabelText="Full width"
+          fullWidth={true}
+        />
+      </div>
     );
   }
 }

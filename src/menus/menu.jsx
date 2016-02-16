@@ -39,6 +39,11 @@ const Menu = React.createClass({
     desktop: React.PropTypes.bool,
 
     /**
+     * Disable the auto focus feature.
+     */
+    disableAutoFocus: React.PropTypes.bool,
+
+    /**
      * True if this item should be focused by the keyboard initially.
      */
     initiallyKeyboardFocused: React.PropTypes.bool,
@@ -140,6 +145,7 @@ const Menu = React.createClass({
     return {
       autoWidth: true,
       desktop: false,
+      disableAutoFocus: false,
       initiallyKeyboardFocused: false,
       maxHeight: null,
       multiple: false,
@@ -157,7 +163,7 @@ const Menu = React.createClass({
     const selectedIndex = this._getSelectedIndex(this.props, filteredChildren);
 
     return {
-      focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
+      focusIndex: this.props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
       muiTheme: this.context.muiTheme || getMuiTheme(),
@@ -181,7 +187,7 @@ const Menu = React.createClass({
     const selectedIndex = this._getSelectedIndex(nextProps, filteredChildren);
 
     this.setState({
-      focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
+      focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
@@ -191,9 +197,11 @@ const Menu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentClickAway(e) {
-    if (e.defaultPrevented)
+  componentClickAway(event) {
+    if (event.defaultPrevented) {
       return;
+    }
+
     this._setFocusIndex(-1, false);
   },
 
@@ -462,13 +470,17 @@ const Menu = React.createClass({
     } = this.props;
 
     const {
+      focusIndex,
+      muiTheme,
+    } = this.state;
+
+    const {
       prepareStyles,
-    } = this.state.muiTheme;
+    } = muiTheme;
 
     const openDown = openDirection.split('-')[0] === 'bottom';
     const openLeft = openDirection.split('-')[1] === 'left';
 
-    const muiTheme = this.state.muiTheme;
     const rawTheme = muiTheme.rawTheme;
 
     const styles = {
@@ -534,7 +546,6 @@ const Menu = React.createClass({
       let childrenContainerStyles = {};
 
       if (animated) {
-        const focusIndex = this.state.focusIndex;
         let transitionDelay = 0;
 
         //Only cascade the visible menu items
