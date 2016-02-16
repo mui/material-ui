@@ -9,7 +9,6 @@ import warning from 'warning';
 function getStyles(props, state) {
   const {
     appBar,
-    baseTheme,
     button: {
       iconButtonSize,
     },
@@ -26,8 +25,8 @@ function getStyles(props, state) {
       display: 'flex',
       minHeight: appBar.height,
       backgroundColor: appBar.color,
-      paddingLeft: baseTheme.spacing.desktopGutter,
-      paddingRight: baseTheme.spacing.desktopGutter,
+      paddingLeft: appBar.padding,
+      paddingRight: appBar.padding,
     },
     title: {
       whiteSpace: 'nowrap',

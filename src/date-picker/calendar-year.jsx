@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Colors from '../styles/colors';
 import DateTime from '../utils/date-time';
 import YearButton from './year-button';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const CalendarYear = React.createClass({
 
@@ -12,6 +12,26 @@ const CalendarYear = React.createClass({
     minDate: React.PropTypes.object,
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme || getMuiTheme(),
+    };
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
   },
 
   componentDidMount() {
@@ -72,13 +92,14 @@ const CalendarYear = React.createClass({
 
   render() {
     const years = this._getYears();
+    const backgroundColor = this.state.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
       position: 'relative',
       height: 'inherit',
       lineHeight: '36px',
       textAlign: 'center',
       padding: '8px 14px 0 14px',
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       overflowX: 'hidden',
       overflowY: 'scroll',
     };
