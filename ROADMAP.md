@@ -31,11 +31,11 @@ The roadmap is a living document, and it is likely that priorities will change, 
 - [ ] [[1321](https://github.com/callemall/material-ui/pull/1321#issuecomment-174108805)] Composable AppBar component.
 - [ ] [[#2493](https://github.com/callemall/material-ui/pull/2493)] New Stepper component.
 - [ ] [[#3132](https://github.com/callemall/material-ui/pull/3132)] Scrollable Tabs.
-- [X] [[#3033](https://github.com/callemall/material-ui/pull/3132)] New Subheader component.
+- [x] [[#3033](https://github.com/callemall/material-ui/pull/3132)] New Subheader component.
 
 #### Documentation
 
-- [ ] Documentation versioning.
+- [x] [#1986](https://github.com/callemall/material-ui/issues/1986)]Documentation versioning.
 - [ ] Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
 - [x] [[#2635](https://github.com/callemall/material-ui/pull/2635)] Document the new theme calculation, and it's usage.
 - [ ] [[#3191](https://github.com/callemall/material-ui/issues/3191)] Improve component property documentation.
