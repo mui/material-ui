@@ -400,6 +400,7 @@ const AutoComplete = React.createClass({
         <TextField
           {...other}
           ref="searchTextField"
+          autoComplete="off"
           value={searchText}
           onEnterKeyDown={this.handleEnterKeyDown}
           onChange={this.handleChange}
