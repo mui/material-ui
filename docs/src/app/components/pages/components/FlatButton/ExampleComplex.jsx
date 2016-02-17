@@ -13,6 +13,7 @@ const styles = {
     left: 0,
     width: '100%',
     opacity: 0,
+    zIndex: 1,
   },
 };
 
