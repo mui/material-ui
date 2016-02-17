@@ -35,7 +35,7 @@ const AutoCompleteExampleNoFilter = () => (
     <AutoComplete
       floatingLabelText="showAllItems"
       filter={AutoComplete.noFilter}
-      triggerUpdateOnFocus={true}
+      openOnFocus={true}
       dataSource={dataSource2}
     />
   </div>

@@ -226,11 +226,13 @@ const ListItem = React.createClass({
     });
   },
 
+  // This method is needed by the `MenuItem` component.
   applyFocusState(focusState) {
     const button = this.refs.enhancedButton;
-    const buttonEl = ReactDOM.findDOMNode(button);
 
     if (button) {
+      const buttonEl = ReactDOM.findDOMNode(button);
+
       switch (focusState) {
         case 'none':
           buttonEl.blur();
