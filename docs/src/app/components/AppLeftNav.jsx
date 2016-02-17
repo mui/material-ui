@@ -10,6 +10,7 @@ import {
   Spacing,
   Typography,
 } from 'material-ui/lib/styles';
+import zIndex from 'material-ui/lib/styles/zIndex';
 
 const SelectableList = SelectableContainerEnhance(List);
 
@@ -78,6 +79,7 @@ const AppLeftNav = React.createClass({
         docked={docked}
         open={open}
         onRequestChange={onRequestChangeLeftNav}
+        containerStyle={{zIndex: zIndex.leftNav - 100}}
       >
         <div style={prepareStyles(styles.logo)} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
