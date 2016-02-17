@@ -9,7 +9,7 @@ import Dialog from 'material-ui/lib/dialog';
 import Colors from 'material-ui/lib/styles/colors';
 import FlatButton from 'material-ui/lib/flat-button';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/lib/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 
 const styles = {
   container: {
