@@ -11,6 +11,7 @@ function getStyles(props, state) {
       position: 'relative',
       paddingLeft: baseTheme.spacing.desktopGutterLess,
       paddingRight: baseTheme.spacing.desktopGutterLess,
+      verticalAlign: 'middle',
     },
   };
 }
