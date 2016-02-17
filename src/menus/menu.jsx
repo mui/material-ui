@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
-import ClickAwayable from '../mixins/click-awayable';
+import ClickAwayListener from '../ClickAwayListener';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import KeyCode from '../utils/key-code';
@@ -131,10 +131,6 @@ const Menu = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    ClickAwayable,
-  ],
 
   getDefaultProps() {
     return {
@@ -564,24 +560,23 @@ const Menu = React.createClass({
     });
 
     return (
-      <div
-        onKeyDown={this._handleKeyDown}
-        style={prepareStyles(mergedRootStyles)}
-      >
-        <Paper
-          ref="scrollContainer"
-          style={styles.paper}
-          zDepth={zDepth}
-        >
-          <List
-            {...other}
-            ref="list"
-            style={mergedListStyles}
+      <ClickAwayListener onClickAway={this.componentClickAway}>
+        <div onKeyDown={this._handleKeyDown} style={prepareStyles(mergedRootStyles)}>
+          <Paper
+            ref="scrollContainer"
+            style={styles.paper}
+            zDepth={zDepth}
           >
-            {newChildren}
-          </List>
-        </Paper>
-      </div>
+            <List
+              {...other}
+              ref="list"
+              style={mergedListStyles}
+            >
+              {newChildren}
+            </List>
+          </Paper>
+        </div>
+      </ClickAwayListener>
     );
   },
 
