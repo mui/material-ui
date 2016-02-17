@@ -1,16 +1,18 @@
 import React from 'react';
-import {mergeStyles, mergeAndPrefix} from '../utils/styles';
+import warning from 'warning';
 
-/**
- * This mixin isn't necessary and will be removed soon. DO NOT USE!
- *
- * All internal components that use this mixin should be switched to the
- * `styleUtils` that this mixin now wraps. Notice the method signature of
- * the `prepareStyles()` function of this mixin is different than the method
- * signature of the `prepareStyles()` function in `styleUtils`.
- *
- * See `../utils/styles.js` for more details.
- */
+let hasWarned;
+const warn = () => {
+  warning(hasWarned, 'The \'material-ui/lib/mixins/style-propable.js\' mixin has been deprecated.' +
+    ' Please do not use this mixin as it will be removed in an upcoming release.');
+  hasWarned = true;
+};
+
+export const mergeStyles = (...args) => {
+  warn();
+  return Object.assign({}, ...args);
+};
+
 export default {
 
   propTypes: {
@@ -19,14 +21,17 @@ export default {
 
   mergeStyles,
 
-  mergeAndPrefix,
-
   prepareStyles(...args) {
+    warn();
     const {
       prepareStyles = (style) => (style),
     } = (this.state && this.state.muiTheme) || (this.context && this.context.muiTheme) ||
         (this.props && this.props.muiTheme) || {};
 
-    return prepareStyles(mergeStyles({}, ...args));
+    return prepareStyles(mergeStyles(...args));
+  },
+
+  componentWillMount() {
+    warn();
   },
 };
