@@ -55,7 +55,7 @@ function getStyles(props, state) {
     },
     flatButton: {
       color: appBar.textColor,
-      marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
+      marginTop: (iconButtonSize - flatButtonSize) / 2 + 1,
     },
   };
 
