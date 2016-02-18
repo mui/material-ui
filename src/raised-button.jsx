@@ -66,6 +66,7 @@ function getStyles(props, state) {
     },
     label: {
       position: 'relative',
+      verticalAlign: 'middle',
       opacity: 1,
       fontSize: '14px',
       letterSpacing: 0,
