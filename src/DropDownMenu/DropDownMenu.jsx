@@ -107,7 +107,7 @@ const DropDownMenu = React.createClass({
 
   getInitialState() {
     return {
-      open: this.props.openImmediately,
+      open: false,
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -120,6 +120,12 @@ const DropDownMenu = React.createClass({
 
   componentDidMount() {
     if (this.props.autoWidth) this._setWidth();
+    if (this.props.openImmediately) {
+      /*eslint-disable react/no-did-mount-set-state */
+      // Temorary fix to make openImmediately work with popover.
+      setTimeout(() => this.setState({open: true, anchorEl: this.refs.root}));
+      /*eslint-enable react/no-did-mount-set-state */
+    }
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
