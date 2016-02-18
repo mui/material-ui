@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import keycode from 'keycode';
 import ColorManipulator from '../utils/color-manipulator';
 import Transitions from '../styles/transitions';
 import UniqueId from '../utils/unique-id';
+import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from '../enhanced-textarea';
 import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
@@ -196,7 +198,8 @@ const TextField = React.createClass({
     /**
      * The function to call when the user presses the Enter key.
      */
-    onEnterKeyDown: React.PropTypes.func,
+    onEnterKeyDown: deprecated(React.PropTypes.func,
+      'Use onKeyDown and check for keycode instead.'),
 
     /**
      * Callback function that is fired when the textfield gains focus.
@@ -363,7 +366,7 @@ const TextField = React.createClass({
   },
 
   _handleInputKeyDown(e) {
-    if (e.keyCode === 13 && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
+    if (keycode(e) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
     if (this.props.onKeyDown) this.props.onKeyDown(e);
   },
 

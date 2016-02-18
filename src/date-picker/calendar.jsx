@@ -1,7 +1,7 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 import DateTime from '../utils/date-time';
-import KeyCode from '../utils/key-code';
+import keycode from 'keycode';
 import Transitions from '../styles/transitions';
 import CalendarMonth from './calendar-month';
 import CalendarYear from './calendar-year';
@@ -187,8 +187,8 @@ const Calendar = React.createClass({
   _handleWindowKeyDown(e) {
     if (this.props.open) {
 
-      switch (e.keyCode) {
-        case KeyCode.UP:
+      switch (keycode(e)) {
+        case 'up':
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(-1);
           } else if (e.shiftKey) {
@@ -198,7 +198,7 @@ const Calendar = React.createClass({
           }
           break;
 
-        case KeyCode.DOWN:
+        case 'down':
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(1);
           } else if (e.shiftKey) {
@@ -208,7 +208,7 @@ const Calendar = React.createClass({
           }
           break;
 
-        case KeyCode.RIGHT:
+        case 'right':
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(1);
           } else if (e.shiftKey) {
@@ -218,7 +218,7 @@ const Calendar = React.createClass({
           }
           break;
 
-        case KeyCode.LEFT:
+        case 'left':
           if (e.altKey && e.shiftKey) {
             this._addSelectedYears(-1);
           } else if (e.shiftKey) {

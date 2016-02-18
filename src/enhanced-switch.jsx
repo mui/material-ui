@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
-import KeyCode from './utils/key-code';
+import keycode from 'keycode';
 import Transitions from './styles/transitions';
 import UniqueId from './utils/unique-id';
 import ClearFix from './clearfix';
@@ -226,16 +226,16 @@ const EnhancedSwitch = React.createClass({
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
   _handleWindowKeydown(e) {
-    if (e.keyCode === KeyCode.TAB) {
+    if (keycode(e) === 'tab') {
       this._tabPressed = true;
     }
-    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (keycode(e) === 'space' && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
   },
 
   _handleWindowKeyup(e) {
-    if (e.keyCode === KeyCode.SPACE && this.state.isKeyboardFocused) {
+    if (keycode(e) === 'space' && this.state.isKeyboardFocused) {
       this._handleChange(e);
     }
   },

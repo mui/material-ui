@@ -1,6 +1,6 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-import KeyCode from '../utils/key-code';
+import keycode from 'keycode';
 import Calendar from './calendar';
 import Dialog from '../dialog';
 import DatePickerInline from './date-picker-inline';
@@ -106,8 +106,8 @@ const DatePickerDialog = React.createClass({
 
   _handleWindowKeyUp(e) {
     if (this.state.open) {
-      switch (e.keyCode) {
-        case KeyCode.ENTER:
+      switch (keycode(e)) {
+        case 'enter':
           this._handleOKTouchTap();
           break;
       }
