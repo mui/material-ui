@@ -23,8 +23,11 @@ const Master = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
-    history: React.PropTypes.object,
     location: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
   },
 
   childContextTypes: {
@@ -120,7 +123,7 @@ const Master = React.createClass({
   },
 
   handleRequestChangeList(event, value) {
-    this.props.history.push(value);
+    this.context.router.push(value);
     this.setState({
       leftNavOpen: false,
     });
@@ -134,7 +137,6 @@ const Master = React.createClass({
 
   render() {
     const {
-      history,
       location,
       children,
     } = this.props;
@@ -147,12 +149,13 @@ const Master = React.createClass({
       prepareStyles,
     } = this.state.muiTheme;
 
+    const router = this.context.router;
     const styles = this.getStyles();
     const title =
-      history.isActive('/get-started') ? 'Get Started' :
-      history.isActive('/customization') ? 'Customization' :
-      history.isActive('/components') ? 'Components' :
-      history.isActive('/discover-more') ? 'Discover More' : '';
+      router.isActive('/get-started') ? 'Get Started' :
+      router.isActive('/customization') ? 'Customization' :
+      router.isActive('/components') ? 'Components' :
+      router.isActive('/discover-more') ? 'Discover More' : '';
 
     let docked = false;
     let showMenuIconButton = true;
@@ -193,7 +196,6 @@ const Master = React.createClass({
         }
         <AppLeftNav
           style={styles.leftNav}
-          history={history}
           location={location}
           docked={docked}
           onRequestChangeLeftNav={this.handleChangeRequestLeftNav}

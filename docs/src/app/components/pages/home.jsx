@@ -1,5 +1,4 @@
 import React from 'react';
-import {History} from 'react-router';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 
@@ -9,9 +8,12 @@ import {Colors, Spacing, Typography, lightBaseTheme} from 'material-ui/lib/style
 
 const HomePage = React.createClass({
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
+  },
+
   mixins: [
     StyleResizable,
-    History,
   ],
 
   _getHomePageHero() {
@@ -88,7 +90,7 @@ const HomePage = React.createClass({
           <RaisedButton
             className="demo-button"
             label="Demo"
-            onTouchTap={this._onDemoClick}
+            onTouchTap={this.handleTouchTapDemo}
             linkButton={true}
             style={styles.demoStyle}
             labelStyle={styles.label}
@@ -196,8 +198,8 @@ const HomePage = React.createClass({
     );
   },
 
-  _onDemoClick() {
-    this.history.pushState(null, '/components');
+  handleTouchTapDemo() {
+    this.context.router.push('/components');
   },
 
   render() {
