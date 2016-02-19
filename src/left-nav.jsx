@@ -174,6 +174,7 @@ const LeftNav = React.createClass({
         transition: !this.state.swiping && Transitions.easeOut(null, 'transform', null),
         backgroundColor: theme.color,
         overflow: 'auto',
+        WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
       },
       overlay: {
         zIndex: muiTheme.zIndex.leftNavOverlay,
