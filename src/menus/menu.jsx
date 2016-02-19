@@ -4,7 +4,7 @@ import update from 'react-addons-update';
 import ClickAwayable from '../mixins/click-awayable';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
-import KeyCode from '../utils/key-code';
+import keycode from 'keycode';
 import PropTypes from '../utils/prop-types';
 import List from '../lists/list';
 import Paper from '../paper';
@@ -338,15 +338,15 @@ const Menu = React.createClass({
 
   _handleKeyDown(e) {
     const filteredChildren = this._getFilteredChildren(this.props.children);
-    switch (e.keyCode) {
-      case KeyCode.DOWN:
+    switch (keycode(e)) {
+      case 'down':
         e.preventDefault();
         this._incrementKeyboardFocusIndex(filteredChildren);
         break;
-      case KeyCode.ESC:
+      case 'esc':
         this.props.onEscKeyDown(e);
         break;
-      case KeyCode.TAB:
+      case 'tab':
         e.preventDefault();
         if (e.shiftKey) {
           this._decrementKeyboardFocusIndex();
@@ -354,7 +354,7 @@ const Menu = React.createClass({
           this._incrementKeyboardFocusIndex(filteredChildren);
         }
         break;
-      case KeyCode.UP:
+      case 'up':
         e.preventDefault();
         this._decrementKeyboardFocusIndex();
         break;

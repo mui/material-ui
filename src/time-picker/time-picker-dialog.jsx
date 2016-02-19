@@ -1,6 +1,6 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-import KeyCode from '../utils/key-code';
+import keycode from 'keycode';
 import Clock from './clock';
 import Dialog from '../dialog';
 import FlatButton from '../flat-button';
@@ -71,8 +71,8 @@ const TimePickerDialog = React.createClass({
 
   _handleWindowKeyUp(event) {
     if (this.state.open) {
-      switch (event.keyCode) {
-        case KeyCode.ENTER:
+      switch (keycode(event)) {
+        case 'enter':
           this._handleOKTouchTap();
           break;
       }

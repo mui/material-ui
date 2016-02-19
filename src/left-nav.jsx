@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
-import KeyCode from './utils/key-code';
+import keycode from 'keycode';
 import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import Overlay from './overlay';
@@ -210,7 +210,7 @@ const LeftNav = React.createClass({
   },
 
   _onWindowKeyUp(e) {
-    if (e.keyCode === KeyCode.ESC &&
+    if (keycode(e) === 'esc' &&
         !this.props.docked &&
         this.state.open) {
       this._close('escape');

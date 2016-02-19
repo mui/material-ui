@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import KeyCode from './utils/key-code';
+import keycode from 'keycode';
 import TextField from './text-field';
 import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
@@ -298,8 +298,8 @@ const AutoComplete = React.createClass({
   },
 
   handleKeyDown(event) {
-    switch (event.keyCode) {
-      case KeyCode.ENTER:
+    switch (keycode(event)) {
+      case 'enter':
         this.close();
         const searchText = this.state.searchText;
         if (searchText !== '') {
@@ -307,11 +307,11 @@ const AutoComplete = React.createClass({
         }
         break;
 
-      case KeyCode.ESC:
+      case 'esc':
         this.close();
         break;
 
-      case KeyCode.DOWN:
+      case 'down':
         event.preventDefault();
         this.setState({
           open: true,
