@@ -1,17 +1,24 @@
-import Colors from './colors';
-
+import {
+fullBlack,
+darkBlack,
+lightBlack,
+minBlack,
+fullWhite,
+darkWhite,
+lightWhite,
+} from './colors';
 
 class Typography {
 
   constructor() {
     // text colors
-    this.textFullBlack = Colors.fullBlack;
-    this.textDarkBlack = Colors.darkBlack;
-    this.textLightBlack = Colors.lightBlack;
-    this.textMinBlack = Colors.minBlack;
-    this.textFullWhite = Colors.fullWhite;
-    this.textDarkWhite = Colors.darkWhite;
-    this.textLightWhite = Colors.lightWhite;
+    this.textFullBlack = fullBlack;
+    this.textDarkBlack = darkBlack;
+    this.textLightBlack = lightBlack;
+    this.textMinBlack = minBlack;
+    this.textFullWhite = fullWhite;
+    this.textDarkWhite = darkWhite;
+    this.textLightWhite = lightWhite;
 
     // font weight
     this.fontWeightLight = 300;

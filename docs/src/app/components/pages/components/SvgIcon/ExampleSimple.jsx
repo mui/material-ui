@@ -1,7 +1,6 @@
 import React from 'react';
-import Colors from 'material-ui/lib/styles/colors';
+import {blue500, red500, greenA200} from 'material-ui/lib/styles/colors';
 import SvgIcon from 'material-ui/lib/svg-icon';
-
 
 const iconStyles = {
   marginRight: 24,
@@ -16,8 +15,8 @@ const HomeIcon = (props) => (
 const SvgIconExampleSimple = () => (
   <div>
     <HomeIcon style={iconStyles} />
-    <HomeIcon style={iconStyles} color={Colors.blue500} />
-    <HomeIcon style={iconStyles} color={Colors.red500} hoverColor={Colors.greenA200} />
+    <HomeIcon style={iconStyles} color={blue500} />
+    <HomeIcon style={iconStyles} color={red500} hoverColor={greenA200} />
   </div>
 );
 

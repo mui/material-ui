@@ -6,11 +6,11 @@ import Divider from 'material-ui/lib/divider';
 import Subheader from 'material-ui/lib/Subheader';
 import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
 import {
-  Colors,
   Spacing,
   Typography,
 } from 'material-ui/lib/styles';
 import zIndex from 'material-ui/lib/styles/zIndex';
+import {cyan500} from 'material-ui/lib/styles/colors';
 
 const SelectableList = SelectableContainerEnhance(List);
 
@@ -47,7 +47,7 @@ const AppLeftNav = React.createClass({
         color: Typography.textFullWhite,
         lineHeight: `${Spacing.desktopKeylineIncrement}px`,
         fontWeight: Typography.fontWeightLight,
-        backgroundColor: Colors.cyan500,
+        backgroundColor: cyan500,
         paddingLeft: Spacing.desktopGutter,
         marginBottom: 8,
       },

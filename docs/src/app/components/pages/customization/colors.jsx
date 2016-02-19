@@ -10,7 +10,8 @@ import {
 
 const {ColorManipulator} = Utils;
 const {StyleResizable} = Mixins;
-const {Colors, Typography} = Styles;
+const {Typography} = Styles;
+import* as Colors from 'material-ui/lib/styles/colors';
 
 const ColorsPage = React.createClass({
 
@@ -23,6 +24,13 @@ const ColorsPage = React.createClass({
       name: {
         display: 'block',
         marginBottom: 60,
+      },
+      colorContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+      },
+      colorValue: {
+        fontSize: 12,
       },
       hex: {
         float: 'right',
@@ -64,32 +72,32 @@ const ColorsPage = React.createClass({
     return styles;
   },
 
-  _getColorGroup(color, showAltPalette) {
+  _getColorGroup(styles, color, showAltPalette) {
     const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
     const altPalette = ['A100', 'A200', 'A400', 'A700'];
     const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
     const colors = [];
-    const colorGroupStyle = this.getStyles().colorGroup;
+    const colorGroupStyle = styles.colorGroup;
 
     mainPalette.forEach((mainValue) => {
-      colors.push(this._getColorBlock(cssColor, mainValue));
+      colors.push(this._getColorBlock(styles, cssColor, mainValue));
     }, this);
 
     if (showAltPalette) {
       altPalette.forEach((altValue) => {
-        colors.push(this._getColorBlock(cssColor, altValue));
+        colors.push(this._getColorBlock(styles, cssColor, altValue));
       }, this);
     }
 
     return (
       <ul style={colorGroupStyle}>
-        {this._getColorBlock(cssColor, 500, color)}
-        {colors}
+        {React.Children.toArray(this._getColorBlock(styles, cssColor, 500, color))}
+        {React.Children.toArray(colors)}
       </ul>
     );
   },
 
-  _getColorBlock(colorName, colorValue, colorTitle) {
+  _getColorBlock(styles, colorName, colorValue, colorTitle) {
     const bgColorText = colorName + colorValue;
     const bgColor = Colors[bgColorText];
     let fgColor = Colors.fullBlack;
@@ -97,9 +105,13 @@ const ColorsPage = React.createClass({
     let blockTitle;
 
     if (contrastRatio < 7) fgColor = Colors.fullWhite;
-    if (colorTitle) blockTitle = <span style={this.getStyles().name}>{colorTitle}</span>;
+    if (colorTitle) blockTitle = (
+      <span style={styles.name}>
+        {colorTitle}
+      </span>
+    );
 
-    const styles = {
+    const rowStyle = {
       backgroundColor: bgColor,
       color: fgColor,
       listStyle: 'none',
@@ -107,14 +119,25 @@ const ColorsPage = React.createClass({
     };
 
     return (
-      <li style={styles}>
+      <li style={rowStyle}>
         {blockTitle}
-        {bgColorText}
+        {this._getColorName(styles, bgColorText, bgColor)}
       </li>
     );
   },
 
+  _getColorName(styles, text, colorValue) {
+    return (
+      <div style={styles.colorContainer}>
+        <span>{text}</span>
+        <span style={styles.colorValue}>{colorValue.toUpperCase()}</span>
+      </div>
+    );
+  },
+
   render() {
+    const styles = this.getStyles();
+
     const mainColors = [
       'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
       'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange', 'Deep Orange',
@@ -124,11 +147,11 @@ const ColorsPage = React.createClass({
     const neutralGroups = [];
 
     mainColors.forEach((color) => {
-      colorGroups.push(this._getColorGroup(color, true));
+      colorGroups.push(this._getColorGroup(styles, color, true));
     }, this);
 
     neutralColors.forEach((color) => {
-      neutralGroups.push(this._getColorGroup(color, false));
+      neutralGroups.push(this._getColorGroup(styles, color, false));
     }, this);
 
     const googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';
@@ -137,7 +160,7 @@ const ColorsPage = React.createClass({
     return (
       <div>
         <Title render={(previousTitle) => `Colors - ${previousTitle}`} />
-        <h2 style={this.getStyles().headline}>UI Color Palette</h2>
+        <h2 style={styles.headline}>UI Color Palette</h2>
         <p>
           We&#39;ve created javascript variables for every color used in
           the <a href={googleLink}>UI Color Palette</a>. They are stored
@@ -145,10 +168,10 @@ const ColorsPage = React.createClass({
         </p>
 
         <ClearFix>
-          {colorGroups}
+          {React.Children.toArray(colorGroups)}
 
           <div>
-            {neutralGroups}
+            {React.Children.toArray(neutralGroups)}
           </div>
         </ClearFix>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import FontIcon from 'material-ui/lib/font-icon';
-import Colors from 'material-ui/lib/styles/colors';
+import {blue500, red500, greenA200} from 'material-ui/lib/styles/colors';
 
 const iconStyles = {
   marginRight: 24,
@@ -16,14 +16,14 @@ const FontIconExampleSimple = () => (
     <FontIcon
       className="muidocs-icon-action-home"
       style={iconStyles}
-      color={Colors.blue500}
+      color={blue500}
     />
 
     <FontIcon
       className="muidocs-icon-action-home"
       style={iconStyles}
-      color={Colors.red500}
-      hoverColor={Colors.greenA200}
+      color={red500}
+      hoverColor={greenA200}
     />
   </div>
 );
