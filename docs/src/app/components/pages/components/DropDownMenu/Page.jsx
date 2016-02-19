@@ -8,6 +8,8 @@ import MarkdownElement from '../../../MarkdownElement';
 import dropDownMenuReadmeText from './README';
 import DropDownMenuSimpleExample from './ExampleSimple';
 import dropDownMenuSimpleExampleCode from '!raw!./ExampleSimple';
+import DropDownMenuOpenImmediateExample from './ExampleOpenImmediate';
+import dropDownMenuOpenImmediateExampleCode from '!raw!./ExampleOpenImmediate';
 import DropDownMenuLongMenuExample from './ExampleLongMenu';
 import dropDownMenuLongMenuExampleCode from '!raw!./ExampleLongMenu';
 import DropDownMenuLabeledExample from './ExampleLabeled';
@@ -17,6 +19,7 @@ import dropDownMenuCode from '!raw!material-ui/lib/DropDownMenu/DropDownMenu';
 const descriptions = {
   simple: '`DropDownMenu` is implemented as a controlled component, with the current selection set through the ' +
   '`value` property.',
+  openImmediate: 'With `openImmediately` property set, the menu will open on mount.',
   long: 'With the `maxHeight` property set, the menu will be scrollable if the number of items causes the height ' +
   'to exceed this limit.',
   label: 'With a `label` applied to each `MenuItem`, `DropDownMenu` displays a complementary description ' +
@@ -33,6 +36,13 @@ const DropDownMenuPage = () => (
       code={dropDownMenuSimpleExampleCode}
     >
       <DropDownMenuSimpleExample />
+    </CodeExample>
+    <CodeExample
+      title="Open Immediate example"
+      description={descriptions.openImmediate}
+      code={dropDownMenuOpenImmediateExampleCode}
+    >
+      <DropDownMenuOpenImmediateExample />
     </CodeExample>
     <CodeExample
       title="Long example"
