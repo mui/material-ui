@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '../checkbox';
 import TableRowColumn from './table-row-column';
-import ClickAwayable from '../mixins/click-awayable';
+import ClickAwayListener from '../ClickAwayListener';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const TableBody = React.createClass({
@@ -120,10 +120,6 @@ const TableBody = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    ClickAwayable,
-  ],
 
   getDefaultProps() {
     return {
@@ -419,9 +415,11 @@ const TableBody = React.createClass({
     const rows = this._createRows();
 
     return (
-      <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
-        {rows}
-      </tbody>
+      <ClickAwayListener onClickAway={this.componentClickAway}>
+        <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
+          {rows}
+        </tbody>
+      </ClickAwayListener>
     );
   },
 
