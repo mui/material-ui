@@ -12,7 +12,7 @@ describe('DropDownMenu', () => {
     ThemedDropdownMenu = injectTheme(DropDownMenu);
   });
 
-  it(`displays the text field of menuItems prop at index x when value prop is x`, () => {
+  it('displays the text field of menuItems prop at index x when value prop is x', () => {
     const render = TestUtils.renderIntoDocument(
       <ThemedDropdownMenu value={1}>
         <MenuItem value={1} primaryText="Never" />

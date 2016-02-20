@@ -11,7 +11,7 @@ import {
 const {ColorManipulator} = Utils;
 const {StyleResizable} = Mixins;
 const {Typography} = Styles;
-import* as Colors from 'material-ui/lib/styles/colors';
+import * as Colors from 'material-ui/lib/styles/colors';
 
 const ColorsPage = React.createClass({
 
@@ -105,11 +105,13 @@ const ColorsPage = React.createClass({
     let blockTitle;
 
     if (contrastRatio < 7) fgColor = Colors.fullWhite;
-    if (colorTitle) blockTitle = (
-      <span style={styles.name}>
-        {colorTitle}
-      </span>
-    );
+    if (colorTitle) {
+      blockTitle = (
+        <span style={styles.name}>
+          {colorTitle}
+        </span>
+      );
+    }
 
     const rowStyle = {
       backgroundColor: bgColor,

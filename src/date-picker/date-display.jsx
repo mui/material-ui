@@ -102,10 +102,8 @@ const DateDisplay = React.createClass({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
 
-    let direction;
-
     if (nextProps.selectedDate !== this.props.selectedDate) {
-      direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
+      const direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
       this.setState({
         transitionDirection: direction,
       });

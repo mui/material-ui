@@ -71,10 +71,8 @@ const CalendarToolbar = React.createClass({
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
-    let direction;
-
     if (nextProps.displayDate !== this.props.displayDate) {
-      direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
+      const direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
       this.setState({
         transitionDirection: direction,
       });

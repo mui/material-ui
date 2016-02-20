@@ -80,12 +80,8 @@ const FocusRipple = React.createClass({
 
     const startScale = 'scale(1)';
     const endScale = 'scale(0.85)';
-    let currentScale = innerCircle.style.transform;
-    let nextScale;
-
-    currentScale = currentScale || startScale;
-    nextScale = currentScale === startScale ?
-      endScale : startScale;
+    const currentScale = innerCircle.style.transform || startScale;
+    const nextScale = currentScale === startScale ? endScale : startScale;
 
     autoPrefix.set(innerCircle.style, 'transform', nextScale, this.props.muiTheme);
     this._timeout = setTimeout(this._pulsate, pulsateDuration);

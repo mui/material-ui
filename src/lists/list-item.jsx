@@ -425,7 +425,7 @@ const ListItem = React.createClass({
       ...other,
     } = this.props;
 
-    const{
+    const {
       listItem,
     } = this.state.muiTheme;
 
