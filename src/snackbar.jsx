@@ -92,6 +92,17 @@ const Snackbar = React.createClass({
     className: React.PropTypes.string,
 
     /**
+     * Callback used to test the equality of the current message against the next message. This is useful for when
+     * the message is a node type that requires more involved equality testing, such as an element, and the
+     * snackbar may be re-rendered while it's open, though the properties haven't changed. If it returns true,
+     * the messages will be considered equal by the snackbar component.
+     *
+     * @param {node} currentMessage - The current message
+     * @param {node} nextMessage - The next message
+     */
+    customMessageEqualityTester: React.PropTypes.func,
+
+    /**
      * The message to be displayed.
      */
     message: React.PropTypes.node.isRequired,
@@ -167,8 +178,16 @@ const Snackbar = React.createClass({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
 
+    const messageDidChange = (() => {
+      if (this.props.customMessageEqualityTester) {
+        return !this.props.customMessageEqualityTester(this.props.message, nextProps.message);
+      } else {
+        return this.props.message !== nextProps.message;
+      }
+    })();
+
     if (this.state.open && nextProps.open === this.props.open &&
-        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
+        (messageDidChange || nextProps.action !== this.props.action)) {
       this.setState({
         open: false,
       });
