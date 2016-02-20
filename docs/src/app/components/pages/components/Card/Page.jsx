@@ -56,11 +56,11 @@ const CardPage = () => (
       <CardExampleControlled />
     </CodeExample>
     <PropTypeDescription code={cardCode} header="### Card properties" />
-    <PropTypeDescription code={cardActionsCode} header="### CardActions properties"/>
-    <PropTypeDescription code={cardHeaderCode} header="### CardHeader properties"/>
-    <PropTypeDescription code={cardMediaCode} header="### CardMedia properties"/>
-    <PropTypeDescription code={cardTextCode} header="### CardText properties"/>
-    <PropTypeDescription code={cardTitleCode} header="### CardTitle properties"/>
+    <PropTypeDescription code={cardActionsCode} header="### CardActions properties" />
+    <PropTypeDescription code={cardHeaderCode} header="### CardHeader properties" />
+    <PropTypeDescription code={cardMediaCode} header="### CardMedia properties" />
+    <PropTypeDescription code={cardTextCode} header="### CardText properties" />
+    <PropTypeDescription code={cardTitleCode} header="### CardTitle properties" />
   </div>
 );
 

@@ -62,7 +62,7 @@ const CardExpandable = React.createClass({
         style={Object.assign(styles.root, this.props.style)}
         onTouchTap={this.props.onExpanding}
       >
-        {this.props.expanded ? <OpenIcon/> : <CloseIcon/>}
+        {this.props.expanded ? <OpenIcon /> : <CloseIcon />}
       </IconButton>
     );
   },

@@ -53,7 +53,7 @@ export default class CardExampleControlled extends React.Component {
         >
           <img src="http://lorempixel.com/600/337/nature/" />
         </CardMedia>
-        <CardTitle title="Card title" subtitle="Card subtitle" expandable={true}/>
+        <CardTitle title="Card title" subtitle="Card subtitle" expandable={true} />
         <CardText expandable={true}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.

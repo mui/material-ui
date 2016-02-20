@@ -39,7 +39,7 @@ const RefreshIndicatorPage = () => (
     >
       <RefreshIndicatorExampleLoading />
     </CodeExample>
-    <PropTypeDescription code={refreshIndicatorCode}/>
+    <PropTypeDescription code={refreshIndicatorCode} />
   </div>
 );
 

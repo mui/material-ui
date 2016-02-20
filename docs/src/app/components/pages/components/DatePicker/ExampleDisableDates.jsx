@@ -11,8 +11,8 @@ function disableRandomDates() {
 
 const DatePickerExampleDisableDates = () => (
   <div>
-    <DatePicker hintText="Weekends Disabled" shouldDisableDate={disableWeekends}/>
-    <DatePicker hintText="Random Dates Disabled" shouldDisableDate={disableRandomDates}/>
+    <DatePicker hintText="Weekends Disabled" shouldDisableDate={disableWeekends} />
+    <DatePicker hintText="Random Dates Disabled" shouldDisableDate={disableRandomDates} />
   </div>
 );
 

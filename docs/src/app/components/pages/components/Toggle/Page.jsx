@@ -25,7 +25,7 @@ const TogglePage = () => (
     >
       <ToggleExampleSimple />
     </CodeExample>
-    <PropTypeDescription code={toggleCode}/>
+    <PropTypeDescription code={toggleCode} />
   </div>
 );
 

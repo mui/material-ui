@@ -5,22 +5,22 @@ import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
 const IconButtonExampleTouch = () => (
   <div>
     <IconButton tooltip="bottom-right" touch={true} tooltipPosition="bottom-right">
-      <ActionGrade/>
+      <ActionGrade />
     </IconButton>
     <IconButton tooltip="bottom-center" touch={true} tooltipPosition="bottom-center">
-      <ActionGrade/>
+      <ActionGrade />
     </IconButton>
     <IconButton tooltip="bottom-left" touch={true} tooltipPosition="bottom-left">
-      <ActionGrade/>
+      <ActionGrade />
     </IconButton>
     <IconButton tooltip="top-right" touch={true} tooltipPosition="top-right">
-      <ActionGrade/>
+      <ActionGrade />
     </IconButton>
     <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center">
-      <ActionGrade/>
+      <ActionGrade />
     </IconButton>
     <IconButton tooltip="top-left" touch={true} tooltipPosition="top-left">
-      <ActionGrade/>
+      <ActionGrade />
     </IconButton>
   </div>
 );

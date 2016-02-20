@@ -39,7 +39,7 @@ const BadgePage = () => (
     >
       <BadgeExampleContent />
     </CodeExample>
-    <PropTypeDescription code={badgeCode}/>
+    <PropTypeDescription code={badgeCode} />
   </div>
 );
 

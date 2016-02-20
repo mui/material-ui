@@ -36,7 +36,7 @@ const CircleProgressPage = () => (
     >
       <CircleProgressExampleDeterminate />
     </CodeExample>
-    <PropTypeDescription code={circleProgressCode}/>
+    <PropTypeDescription code={circleProgressCode} />
   </div>
 );
 

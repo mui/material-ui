@@ -31,7 +31,7 @@ const AutoCompleteExampleNoFilter = () => (
       hintText="text-value data"
       filter={AutoComplete.noFilter}
       dataSource={dataSource1}
-    /><br/>
+    /><br />
     <AutoComplete
       floatingLabelText="showAllItems"
       filter={AutoComplete.noFilter}

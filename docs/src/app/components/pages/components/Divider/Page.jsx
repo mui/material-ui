@@ -48,7 +48,7 @@ const DividerPage = () => {
       >
         <DividerExampleMenu />
       </CodeExample>
-      <PropTypeDescription code={dividerCode}/>
+      <PropTypeDescription code={dividerCode} />
     </div>
   );
 };

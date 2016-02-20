@@ -77,7 +77,7 @@ export default class PopoverExampleConfigurable extends React.Component {
         <h3 style={styles.h3}>Current Settings</h3>
         <pre>
           anchorOrigin: {JSON.stringify(this.state.anchorOrigin)}
-          <br/>
+          <br />
           targetOrigin: {JSON.stringify(this.state.targetOrigin)}
         </pre>
         <h3 style={styles.h3}>Position Options</h3>

@@ -45,7 +45,7 @@ const SubheaderPage = () => (
     >
       <GridListExampleSimple />
     </CodeExample>
-    <PropTypeDescription code={subheaderCode}/>
+    <PropTypeDescription code={subheaderCode} />
   </div>
 );
 

@@ -106,7 +106,7 @@ const ListExampleMessages = () => (
           primaryText="Brendan Lim"
           secondaryText={
             <p>
-              <span style={{color: darkBlack}}>Brunch this weekend?</span><br/>
+              <span style={{color: darkBlack}}>Brunch this weekend?</span><br />
               I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?
             </p>
           }
@@ -119,7 +119,7 @@ const ListExampleMessages = () => (
           primaryText="me, Scott, Jennifer"
           secondaryText={
             <p>
-              <span style={{color: darkBlack}}>Summer BBQ</span><br/>
+              <span style={{color: darkBlack}}>Summer BBQ</span><br />
               Wish I could come, but I&apos;m out of town this weekend.
             </p>
           }
@@ -132,7 +132,7 @@ const ListExampleMessages = () => (
           primaryText="Grace Ng"
           secondaryText={
             <p>
-              <span style={{color: darkBlack}}>Oui oui</span><br/>
+              <span style={{color: darkBlack}}>Oui oui</span><br />
               Do you have any Paris recs? Have you ever been?
             </p>
           }
@@ -145,7 +145,7 @@ const ListExampleMessages = () => (
           primaryText="Kerem Suer"
           secondaryText={
             <p>
-              <span style={{color: darkBlack}}>Birthday gift</span><br/>
+              <span style={{color: darkBlack}}>Birthday gift</span><br />
               Do you have any ideas what we can get Heidi for her birthday? How about a pony?
             </p>
           }
@@ -158,7 +158,7 @@ const ListExampleMessages = () => (
           primaryText="Raquel Parrado"
           secondaryText={
             <p>
-              <span style={{color: darkBlack}}>Recipe to try</span><br/>
+              <span style={{color: darkBlack}}>Recipe to try</span><br />
               We should eat this: grated squash. Corn and tomatillo tacos.
             </p>
           }

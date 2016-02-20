@@ -118,8 +118,8 @@ const TextFieldUnderline = (props) => {
 
   return (
     <div>
-      <hr style={prepareStyles(underline)}/>
-      <hr style={prepareStyles(focusedUnderline)}/>
+      <hr style={prepareStyles(underline)} />
+      <hr style={prepareStyles(focusedUnderline)} />
     </div>
   );
 };

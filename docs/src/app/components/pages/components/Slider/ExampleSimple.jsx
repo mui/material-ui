@@ -3,9 +3,9 @@ import Slider from 'material-ui/lib/slider';
 
 const SliderExampleSimple = () => (
   <div>
-    <Slider/>
-    <Slider defaultValue={0.5}/>
-    <Slider defaultValue={1}/>
+    <Slider />
+    <Slider defaultValue={0.5} />
+    <Slider defaultValue={1} />
   </div>
 );
 

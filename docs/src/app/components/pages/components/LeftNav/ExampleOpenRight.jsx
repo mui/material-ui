@@ -20,7 +20,7 @@ export default class LeftNavOpenRightExample extends React.Component {
           onTouchTap={this.handleToggle}
         />
         <LeftNav width={200} openRight={true} open={this.state.open} >
-          <AppBar title="AppBar"/>
+          <AppBar title="AppBar" />
         </LeftNav>
       </div>
     );

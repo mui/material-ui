@@ -45,7 +45,7 @@ const SliderPage = () => (
     >
       <SliderExampleStep />
     </CodeExample>
-    <PropTypeDescription code={sliderCode}/>
+    <PropTypeDescription code={sliderCode} />
   </div>
 );
 

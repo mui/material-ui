@@ -11,7 +11,7 @@ const iconStyles = {
 
 const SvgIconExampleIcons = () => (
   <div>
-    <ActionHome style={iconStyles}/>
+    <ActionHome style={iconStyles} />
     <ActionFlightTakeoff style={iconStyles} color={red500} />
     <FileCloudDownload style={iconStyles} color={yellow500} />
     <HardwareVideogameAsset style={iconStyles} color={blue500} />

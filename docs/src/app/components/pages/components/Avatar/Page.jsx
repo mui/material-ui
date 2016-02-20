@@ -24,7 +24,7 @@ const AvatarsPage = () => (
     >
       <AvatarExampleSimple />
     </CodeExample>
-    <PropTypeDescription code={avatarCode}/>
+    <PropTypeDescription code={avatarCode} />
   </div>
 );
 

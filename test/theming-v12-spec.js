@@ -148,7 +148,7 @@ const AppBarDarkTheme = React.createClass({
   render() {
     return (
       <MuiThemeProvider muiTheme={darkMuiTheme}>
-        <AppBar/>
+        <AppBar />
       </MuiThemeProvider>
     );
   },
