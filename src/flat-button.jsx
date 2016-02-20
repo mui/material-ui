@@ -160,25 +160,25 @@ const FlatButton = React.createClass({
     });
   },
 
-  _handleKeyboardFocus(e, isKeyboardFocused) {
+  _handleKeyboardFocus(event, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
-    this.props.onKeyboardFocus(e, isKeyboardFocused);
+    this.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
-    this.props.onMouseEnter(e);
+    this.props.onMouseEnter(event);
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     this.setState({hovered: false});
-    this.props.onMouseLeave(e);
+    this.props.onMouseLeave(event);
   },
 
-  _handleTouchStart(e) {
+  _handleTouchStart(event) {
     this.setState({touch: true});
-    this.props.onTouchStart(e);
+    this.props.onTouchStart(event);
   },
 
   render() {

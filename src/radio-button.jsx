@@ -155,8 +155,8 @@ const RadioButton = React.createClass({
   },
 
   // Only called when selected, not when unselected.
-  _handleCheck(e) {
-    if (this.props.onCheck) this.props.onCheck(e, this.props.value);
+  _handleCheck(event) {
+    if (this.props.onCheck) this.props.onCheck(event, this.props.value);
   },
 
   _handleStateChange() {

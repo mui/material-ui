@@ -217,9 +217,9 @@ const DatePicker = React.createClass({
     if (this.props.valueLink) this.props.valueLink.requestChange(date);
   },
 
-  _handleInputFocus(e) {
-    e.target.blur();
-    if (this.props.onFocus) this.props.onFocus(e);
+  _handleInputFocus(event) {
+    event.target.blur();
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
   _handleInputTouchTap: function _handleInputTouchTap(event) {

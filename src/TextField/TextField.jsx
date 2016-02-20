@@ -348,29 +348,29 @@ const TextField = React.createClass({
       this.refs.input.getInputNode() : ReactDOM.findDOMNode(this.refs.input);
   },
 
-  _handleInputBlur(e) {
+  _handleInputBlur(event) {
     this.setState({isFocused: false});
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur) this.props.onBlur(event);
   },
 
-  _handleInputChange(e) {
-    this.setState({hasValue: isValid(e.target.value)});
-    if (this.props.onChange) this.props.onChange(e);
+  _handleInputChange(event) {
+    this.setState({hasValue: isValid(event.target.value)});
+    if (this.props.onChange) this.props.onChange(event);
   },
 
-  _handleInputFocus(e) {
+  _handleInputFocus(event) {
     if (this.props.disabled)
       return;
     this.setState({isFocused: true});
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleInputKeyDown(e) {
-    if (keycode(e) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
-    if (this.props.onKeyDown) this.props.onKeyDown(e);
+  _handleInputKeyDown(event) {
+    if (keycode(event) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(event);
+    if (this.props.onKeyDown) this.props.onKeyDown(event);
   },
 
-  _handleTextAreaHeightChange(e, height) {
+  _handleTextAreaHeightChange(event, height) {
     let newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
     ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;

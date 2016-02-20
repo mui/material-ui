@@ -7,13 +7,13 @@ function rad2deg(rad) {
   return rad * 57.29577951308232;
 }
 
-function getTouchEventOffsetValues(e) {
-  const el = e.target;
+function getTouchEventOffsetValues(event) {
+  const el = event.target;
   const boundingRect = el.getBoundingClientRect();
 
   const offset = {
-    offsetX: e.clientX - boundingRect.left,
-    offsetY: e.clientY - boundingRect.top,
+    offsetX: event.clientX - boundingRect.left,
+    offsetY: event.clientY - boundingRect.top,
   };
 
   return offset;
@@ -75,38 +75,38 @@ const ClockMinutes = React.createClass({
   center: {x: 0, y: 0},
   basePoint: {x: 0, y: 0},
 
-  isMousePressed(e) {
-    if (typeof e.buttons === 'undefined') {
-      return e.nativeEvent.which;
+  isMousePressed(event) {
+    if (typeof event.buttons === 'undefined') {
+      return event.nativeEvent.which;
     }
-    return e.buttons;
+    return event.buttons;
   },
 
-  handleUp(e) {
-    e.preventDefault();
-    this.setClock(e.nativeEvent, true);
+  handleUp(event) {
+    event.preventDefault();
+    this.setClock(event.nativeEvent, true);
   },
 
-  handleMove(e) {
-    e.preventDefault();
-    if (this.isMousePressed(e) !== 1 ) return;
-    this.setClock(e.nativeEvent, false);
+  handleMove(event) {
+    event.preventDefault();
+    if (this.isMousePressed(event) !== 1 ) return;
+    this.setClock(event.nativeEvent, false);
   },
 
-  handleTouch(e) {
-    e.preventDefault();
-    this.setClock(e.changedTouches[0], false);
+  handleTouch(event) {
+    event.preventDefault();
+    this.setClock(event.changedTouches[0], false);
   },
 
-  setClock(e, finish) {
-    if (typeof e.offsetX === 'undefined') {
-      const offset = getTouchEventOffsetValues(e);
+  setClock(event, finish) {
+    if (typeof event.offsetX === 'undefined') {
+      const offset = getTouchEventOffsetValues(event);
 
-      e.offsetX = offset.offsetX;
-      e.offsetY = offset.offsetY;
+      event.offsetX = offset.offsetX;
+      event.offsetY = offset.offsetY;
     }
 
-    const minutes = this.getMinutes(e.offsetX, e.offsetY);
+    const minutes = this.getMinutes(event.offsetX, event.offsetY);
 
     this.props.onChange(minutes, finish);
   },

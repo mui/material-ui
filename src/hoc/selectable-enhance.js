@@ -62,10 +62,10 @@ export const SelectableContainerEnhance = (Component) => {
         this.keyIndex += 1;
 
         return React.cloneElement(child, {
-          onTouchTap: (e) => {
-            this.handleItemTouchTap(e, child);
+          onTouchTap: (event) => {
+            this.handleItemTouchTap(event, child);
             if (child.props.onTouchTap) {
-              child.props.onTouchTap(e);
+              child.props.onTouchTap(event);
             }
           },
           key: this.keyIndex,
@@ -99,12 +99,12 @@ export const SelectableContainerEnhance = (Component) => {
       return (itemValue === childValue);
     },
 
-    handleItemTouchTap(e, item) {
+    handleItemTouchTap(event, item) {
       const valueLink = this.getValueLink(this.props);
       const itemValue = item.props.value;
       const menuValue = valueLink.value;
       if ( itemValue !== menuValue) {
-        valueLink.requestChange(e, itemValue);
+        valueLink.requestChange(event, itemValue);
       }
     },
 

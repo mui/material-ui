@@ -99,8 +99,8 @@ const YearButton = React.createClass({
     this.setState({hover: false});
   },
 
-  _handleTouchTap(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.year);
+  _handleTouchTap(event) {
+    if (this.props.onTouchTap) this.props.onTouchTap(event, this.props.year);
   },
 
   render() {

@@ -106,21 +106,21 @@ const TableRowColumn = React.createClass({
     });
   },
 
-  _onClick(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
+  _onClick(event) {
+    if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
   },
 
-  _onMouseEnter(e) {
+  _onMouseEnter(event) {
     if (this.props.hoverable) {
       this.setState({hovered: true});
-      if (this.props.onHover) this.props.onHover(e, this.props.columnNumber);
+      if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
     }
   },
 
-  _onMouseLeave(e) {
+  _onMouseLeave(event) {
     if (this.props.hoverable) {
       this.setState({hovered: false});
-      if (this.props.onHoverExit) this.props.onHoverExit(e, this.props.columnNumber);
+      if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
     }
   },
 

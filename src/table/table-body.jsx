@@ -279,20 +279,20 @@ const TableBody = React.createClass({
     return false;
   },
 
-  _onRowClick(e, rowNumber) {
-    e.stopPropagation();
+  _onRowClick(event, rowNumber) {
+    event.stopPropagation();
 
     if (this.props.selectable) {
       // Prevent text selection while selecting rows.
       window.getSelection().removeAllRanges();
-      this._processRowSelection(e, rowNumber);
+      this._processRowSelection(event, rowNumber);
     }
   },
 
-  _processRowSelection(e, rowNumber) {
+  _processRowSelection(event, rowNumber) {
     let selectedRows = this.state.selectedRows;
 
-    if (e.shiftKey && this.props.multiSelectable && selectedRows.length) {
+    if (event.shiftKey && this.props.multiSelectable && selectedRows.length) {
       const lastIndex = selectedRows.length - 1;
       const lastSelection = selectedRows[lastIndex];
 
@@ -301,7 +301,7 @@ const TableBody = React.createClass({
       } else {
         selectedRows.splice(lastIndex, 1, {start: lastSelection, end: rowNumber});
       }
-    } else if (((e.ctrlKey && !e.metaKey) || (e.metaKey && !e.ctrlKey)) && this.props.multiSelectable) {
+    } else if (((event.ctrlKey && !event.metaKey) || (event.metaKey && !event.ctrlKey)) && this.props.multiSelectable) {
       const idx = selectedRows.indexOf(rowNumber);
       if (idx < 0) {
         let foundRange = false;

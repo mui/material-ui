@@ -183,7 +183,7 @@ const TableHeader = React.createClass({
     );
   },
 
-  handleCheckAll(e, checked) {
+  handleCheckAll(event, checked) {
     if (this.props.onSelectAll) this.props.onSelectAll(checked);
   },
 

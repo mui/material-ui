@@ -264,9 +264,9 @@ const Menu = React.createClass({
     return React.cloneElement(child, {
       desktop: desktop,
       focusState: focusState,
-      onTouchTap: (e) => {
-        this._handleMenuItemTouchTap(e, child);
-        if (child.props.onTouchTap) child.props.onTouchTap(e);
+      onTouchTap: (event) => {
+        this._handleMenuItemTouchTap(event, child);
+        if (child.props.onTouchTap) child.props.onTouchTap(event);
       },
       ref: isFocused ? 'focusedMenuItem' : null,
       style: mergedChildrenStyles,
@@ -332,33 +332,33 @@ const Menu = React.createClass({
     return selectedIndex;
   },
 
-  _handleKeyDown(e) {
+  _handleKeyDown(event) {
     const filteredChildren = this._getFilteredChildren(this.props.children);
-    switch (keycode(e)) {
+    switch (keycode(event)) {
       case 'down':
-        e.preventDefault();
+        event.preventDefault();
         this._incrementKeyboardFocusIndex(filteredChildren);
         break;
       case 'esc':
-        this.props.onEscKeyDown(e);
+        this.props.onEscKeyDown(event);
         break;
       case 'tab':
-        e.preventDefault();
-        if (e.shiftKey) {
+        event.preventDefault();
+        if (event.shiftKey) {
           this._decrementKeyboardFocusIndex();
         } else {
           this._incrementKeyboardFocusIndex(filteredChildren);
         }
         break;
       case 'up':
-        e.preventDefault();
+        event.preventDefault();
         this._decrementKeyboardFocusIndex();
         break;
     }
-    this.props.onKeyDown(e);
+    this.props.onKeyDown(event);
   },
 
-  _handleMenuItemTouchTap(e, item) {
+  _handleMenuItemTouchTap(event, item) {
     const children = this.props.children;
     const multiple = this.props.multiple;
     const valueLink = this.getValueLink(this.props);
@@ -374,12 +374,12 @@ const Menu = React.createClass({
         update(menuValue, {$push: [itemValue]}) :
         update(menuValue, {$splice: [[index, 1]]});
 
-      valueLink.requestChange(e, newMenuValue);
+      valueLink.requestChange(event, newMenuValue);
     } else if (!multiple && itemValue !== menuValue) {
-      valueLink.requestChange(e, itemValue);
+      valueLink.requestChange(event, itemValue);
     }
 
-    this.props.onItemTouchTap(e, item);
+    this.props.onItemTouchTap(event, item);
   },
 
   _incrementKeyboardFocusIndex(filteredChildren) {

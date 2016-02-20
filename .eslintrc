@@ -26,6 +26,7 @@ rules:
   eqeqeq: [2, smart]
   eol-last: 2
   indent: [2, 2, {SwitchCase: 1}]
+  id-blacklist: [2, e]
   jsx-quotes: [2, prefer-double]
   keyword-spacing: 2
   key-spacing: 2
