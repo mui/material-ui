@@ -6,16 +6,18 @@
   "main": "./lib",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
+    "coverage": "npm run test",
+    "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary html lcov json",
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "prebuild": "rimraf lib",
     "prepublish": "npm run build",
-    "test": "npm run test:unit:coverage && npm run test:browser",
+    "test": "npm run test:unit:coverage && npm run test:browser && npm run coverage:combine",
     "test:browser": "npm run test:browser:base -- --single-run",
     "test:browser:watch": "npm run test:browser:base -- --auto-watch",
-    "test:browser:base": "./node_modules/.bin/karma start test/karma.conf.js",
+    "test:browser:base": "karma start test/karma.conf.js",
     "test:unit": "NODE_ENV=production babel-node test/unit/index.js",
     "test:unit:watch": "nodemon -w src -w test/unit --exec \"npm run test:unit\"",
-    "test:unit:coverage": "babel-node node_modules/.bin/isparta cover --include '**/*.js' --include '**/*.jsx' --report lcov --report text --report html --dir test/coverage/unit test/unit/index.js"
+    "test:unit:coverage": "NODE_ENV=production babel-node node_modules/.bin/isparta cover --include '**/*.js' --include '**/*.jsx' --report lcovonly --report html --dir test/coverage/unit test/unit/index.js"
   },
   "keywords": [
     "react",
@@ -103,8 +105,8 @@
     "react-tap-event-plugin": "^0.2.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.4.3",
-    "sinon": "^2.0.0-pre",
-    "sinon-chai": "github:sjmulder/sinon-chai#14bf6673c7eb4bb080c3dcc2d0746d91970c640f",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "webpack": "^1.12.9"
   }
 }

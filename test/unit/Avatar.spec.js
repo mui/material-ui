@@ -1,7 +1,7 @@
 import React from 'react';
-import {Avatar} from 'src';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
+import Avatar from 'src/avatar';
 
 describe('<Avatar />', () => {
 

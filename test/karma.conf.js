@@ -1,4 +1,3 @@
-const path = require('path');
 
 // Karma configuration
 module.exports = function(config) {
@@ -54,8 +53,14 @@ module.exports = function(config) {
             },
           },
         ],
+        noParse: [
+          /node_modules\/sinon\//,
+        ],
       },
       resolve: {
+        alias: {
+          sinon: 'sinon/pkg/sinon.js',
+        },
         extensions: ['', '.js', '.jsx'],
         modulesDirectories: [
           'node_modules',
@@ -73,10 +78,11 @@ module.exports = function(config) {
       },
       includeAllSources: true,
       reporters: [
-        {type: 'lcovonly', subdir: '.', file: 'lcov.info'},
-        {type: 'text', subdir: '.', file: 'text.txt'},
-        {type: 'text-summary', subdir: '.'},
-        {type: 'html', subdir: 'html'},
+        {type: 'lcovonly', file: 'lcov.info'},
+        {type: 'text', file: 'text.txt'},
+        {type: 'json', file: 'coverage.json'},
+        {type: 'text-summary'},
+        {type: 'html'},
       ],
     },
   });
