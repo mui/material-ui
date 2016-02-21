@@ -31,7 +31,7 @@ const descriptions = {
   localised: '`DatePicker` can be localised using the `locale` property. The first example is localised in French. ' +
   'Note that the buttons must be separately localised using the `cancelLabel` and `okLabel` properties. \n\n' +
   'The `firstDayOfWeek` property defaults to `1`, (Monday), so may also need to be set for the target locale. ' +
-  'The second example shows sets `firstDayOfWeek` to `0`, (Sunday), and `locale` to `en-US` which matches the ' +
+  'The second example shows `firstDayOfWeek` set to `0`, (Sunday), and `locale` to `en-US` which matches the ' +
   'bahavior of the Date Picker prior to 0.15.0.\n\n' +
   'The final example displays the resulting date in a custom format using the `formatDate` property.',
 };
