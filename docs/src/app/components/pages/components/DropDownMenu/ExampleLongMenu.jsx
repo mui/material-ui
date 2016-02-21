@@ -14,7 +14,7 @@ export default class DropDownMenuLongMenuExample extends React.Component {
     this.state = {value: 10};
   }
 
-  handleChange = (e, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({value});
 
   render() {
     return (

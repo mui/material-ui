@@ -165,37 +165,39 @@ const TableRow = React.createClass({
     });
   },
 
-  _onRowClick(e) {
-    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
+  _onRowClick(event) {
+    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(event, this.props.rowNumber);
   },
 
-  _onRowHover(e) {
-    if (this.props.onRowHover) this.props.onRowHover(e, this.props.rowNumber);
+  _onRowHover(event) {
+    if (this.props.onRowHover) this.props.onRowHover(event, this.props.rowNumber);
   },
 
-  _onRowHoverExit(e) {
-    if (this.props.onRowHoverExit) this.props.onRowHoverExit(e, this.props.rowNumber);
+  _onRowHoverExit(event) {
+    if (this.props.onRowHoverExit) this.props.onRowHoverExit(event, this.props.rowNumber);
   },
 
-  _onCellClick(e, columnIndex) {
-    if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
-    e.ctrlKey = true;
-    this._onRowClick(e);
+  _onCellClick(event, columnIndex) {
+    if (this.props.selectable && this.props.onCellClick) {
+      this.props.onCellClick(event, this.props.rowNumber, columnIndex);
+    }
+    event.ctrlKey = true;
+    this._onRowClick(event);
   },
 
-  _onCellHover(e, columnIndex) {
+  _onCellHover(event, columnIndex) {
     if (this.props.hoverable) {
       this.setState({hovered: true});
-      if (this.props.onCellHover) this.props.onCellHover(e, this.props.rowNumber, columnIndex);
-      this._onRowHover(e);
+      if (this.props.onCellHover) this.props.onCellHover(event, this.props.rowNumber, columnIndex);
+      this._onRowHover(event);
     }
   },
 
-  _onCellHoverExit(e, columnIndex) {
+  _onCellHoverExit(event, columnIndex) {
     if (this.props.hoverable) {
       this.setState({hovered: false});
-      if (this.props.onCellHoverExit) this.props.onCellHoverExit(e, this.props.rowNumber, columnIndex);
-      this._onRowHoverExit(e);
+      if (this.props.onCellHoverExit) this.props.onCellHoverExit(event, this.props.rowNumber, columnIndex);
+      this._onRowHoverExit(event);
     }
   },
 

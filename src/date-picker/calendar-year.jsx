@@ -86,8 +86,8 @@ const CalendarYear = React.createClass({
     container.scrollTop = scrollYOffset;
   },
 
-  _handleYearTouchTap(e, year) {
-    if (this.props.onYearTouchTap) this.props.onYearTouchTap(e, year);
+  _handleYearTouchTap(event, year) {
+    if (this.props.onYearTouchTap) this.props.onYearTouchTap(event, year);
   },
 
   render() {

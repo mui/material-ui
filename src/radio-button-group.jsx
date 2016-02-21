@@ -116,12 +116,12 @@ const RadioButtonGroup = React.createClass({
     }
   },
 
-  handleChange(e, newSelection) {
+  handleChange(event, newSelection) {
     this._updateRadioButtons(newSelection);
 
     // Successful update
     if (this.state.numberCheckedRadioButtons === 0) {
-      if (this.props.onChange) this.props.onChange(e, newSelection);
+      if (this.props.onChange) this.props.onChange(event, newSelection);
     }
   },
 

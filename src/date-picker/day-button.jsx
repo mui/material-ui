@@ -113,13 +113,13 @@ const DayButton = React.createClass({
     if (!this.props.disabled) this.setState({hover: false});
   },
 
-  _handleTouchTap(e) {
-    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(e, this.props.date);
+  _handleTouchTap(event) {
+    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(event, this.props.date);
   },
 
-  _handleKeyboardFocus(e, keyboardFocused) {
+  _handleKeyboardFocus(event, keyboardFocused) {
     if (!this.props.disabled && this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(e, keyboardFocused, this.props.date);
+      this.props.onKeyboardFocus(event, keyboardFocused, this.props.date);
     }
   },
 

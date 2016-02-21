@@ -180,8 +180,8 @@ const Checkbox = React.createClass({
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   },
 
-  _handleCheck(e, isInputChecked) {
-    if (this.props.onCheck) this.props.onCheck(e, isInputChecked);
+  _handleCheck(event, isInputChecked) {
+    if (this.props.onCheck) this.props.onCheck(event, isInputChecked);
   },
 
   _handleStateChange(newSwitched) {

@@ -312,28 +312,28 @@ const ListItem = React.createClass({
     );
   },
 
-  _handleKeyboardFocus(e, isKeyboardFocused) {
+  _handleKeyboardFocus(event, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
-    this.props.onKeyboardFocus(e, isKeyboardFocused);
+    this.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     if (!this.state.touch) this.setState({hovered: true});
-    this.props.onMouseEnter(e);
+    this.props.onMouseEnter(event);
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     this.setState({hovered: false});
-    this.props.onMouseLeave(e);
+    this.props.onMouseLeave(event);
   },
 
-  _handleNestedListToggle(e) {
-    e.stopPropagation();
+  _handleNestedListToggle(event) {
+    event.stopPropagation();
     this.setState({open: !this.state.open});
     this.props.onNestedListToggle(this);
   },
 
-  _handleRightIconButtonKeyboardFocus(e, isKeyboardFocused) {
+  _handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
     const iconButton = this.props.rightIconButton;
     const newState = {};
 
@@ -341,44 +341,44 @@ const ListItem = React.createClass({
     if (isKeyboardFocused) newState.isKeyboardFocused = false;
     this.setState(newState);
 
-    if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(e, isKeyboardFocused);
+    if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleRightIconButtonMouseDown(e) {
+  _handleRightIconButtonMouseDown(event) {
     const iconButton = this.props.rightIconButton;
-    e.stopPropagation();
-    if (iconButton && iconButton.props.onMouseDown) iconButton.props.onMouseDown(e);
+    event.stopPropagation();
+    if (iconButton && iconButton.props.onMouseDown) iconButton.props.onMouseDown(event);
   },
 
-  _handleRightIconButtonMouseLeave(e) {
+  _handleRightIconButtonMouseLeave(event) {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
-    if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(e);
+    if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(event);
   },
 
-  _handleRightIconButtonMouseEnter(e) {
+  _handleRightIconButtonMouseEnter(event) {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
-    if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(e);
+    if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(event);
   },
 
-  _handleRightIconButtonMouseUp(e) {
+  _handleRightIconButtonMouseUp(event) {
     const iconButton = this.props.rightIconButton;
-    e.stopPropagation();
-    if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(e);
+    event.stopPropagation();
+    if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(event);
   },
 
-  _handleRightIconButtonTouchTap(e) {
+  _handleRightIconButtonTouchTap(event) {
     const iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
-    e.stopPropagation();
-    if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(e);
+    event.stopPropagation();
+    if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(event);
   },
 
-  _handleTouchStart(e) {
+  _handleTouchStart(event) {
     this.setState({touch: true});
-    this.props.onTouchStart(e);
+    this.props.onTouchStart(event);
   },
 
   _pushElement(children, element, baseStyles, additionalProps) {

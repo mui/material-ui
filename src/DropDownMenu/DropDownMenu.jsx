@@ -230,8 +230,8 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  _onMenuItemTouchTap(key, payload, e) {
-    this.props.onChange(e, key, payload);
+  _onMenuItemTouchTap(key, payload, event) {
+    this.props.onChange(event, key, payload);
 
     this.setState({
       open: false,

@@ -311,58 +311,58 @@ const Slider = React.createClass({
     autoPrefix.set(body.style, 'userSelect', value, this.state.muiTheme);
   },
 
-  _onHandleTouchStart(e) {
+  _onHandleTouchStart(event) {
     if (document) {
       document.addEventListener('touchmove', this._dragTouchHandler, false);
       document.addEventListener('touchup', this._dragTouchEndHandler, false);
       document.addEventListener('touchend', this._dragTouchEndHandler, false);
       document.addEventListener('touchcancel', this._dragTouchEndHandler, false);
     }
-    this._onDragStart(e);
+    this._onDragStart(event);
   },
 
-  _onHandleMouseDown(e) {
+  _onHandleMouseDown(event) {
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
       this._toggleSelection('none');
     }
-    this._onDragStart(e);
+    this._onDragStart(event);
   },
 
-  _dragHandler(e) {
+  _dragHandler(event) {
     if (this._dragRunning) {
       return;
     }
     this._dragRunning = true;
     requestAnimationFrame(() => {
-      this._onDragUpdate(e, e.clientX - this._getTrackLeft());
+      this._onDragUpdate(event, event.clientX - this._getTrackLeft());
       this._dragRunning = false;
     });
   },
 
-  _dragTouchHandler(e) {
+  _dragTouchHandler(event) {
     if (this._dragRunning) {
       return;
     }
     this._dragRunning = true;
     requestAnimationFrame(() => {
-      this._onDragUpdate(e, e.touches[0].clientX - this._getTrackLeft());
+      this._onDragUpdate(event, event.touches[0].clientX - this._getTrackLeft());
       this._dragRunning = false;
     });
   },
 
-  _dragEndHandler(e) {
+  _dragEndHandler(event) {
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
       this._toggleSelection('');
     }
 
-    this._onDragStop(e);
+    this._onDragStop(event);
   },
 
-  _dragTouchEndHandler(e) {
+  _dragTouchEndHandler(event) {
     if (document) {
       document.removeEventListener('touchmove', this._dragTouchHandler, false);
       document.removeEventListener('touchup', this._dragTouchEndHandler, false);
@@ -370,7 +370,7 @@ const Slider = React.createClass({
       document.removeEventListener('touchcancel', this._dragTouchEndHandler, false);
     }
 
-    this._onDragStop(e);
+    this._onDragStop(event);
   },
 
   getValue() {
@@ -411,18 +411,18 @@ const Slider = React.createClass({
     return parseFloat(alignValue.toFixed(5));
   },
 
-  handleFocus(e) {
+  handleFocus(event) {
     this.setState({focused: true});
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  handleBlur(e) {
+  handleBlur(event) {
     this.setState({focused: false, active: false});
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur) this.props.onBlur(event);
   },
 
-  handleMouseDown(e) {
-    if (!this.props.disabled) this._pos = e.clientX;
+  handleMouseDown(event) {
+    if (!this.props.disabled) this._pos = event.clientX;
   },
 
   handleMouseEnter() {
@@ -437,46 +437,46 @@ const Slider = React.createClass({
     return this.refs.track.getBoundingClientRect().left;
   },
 
-  handleMouseUp(e) {
+  handleMouseUp(event) {
     if (!this.props.disabled) this.setState({active: false});
-    if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      const pos = e.clientX - this._getTrackLeft();
-      this._dragX(e, pos);
+    if (!this.state.dragging && Math.abs(this._pos - event.clientX) < 5) {
+      const pos = event.clientX - this._getTrackLeft();
+      this._dragX(event, pos);
     }
 
     this._pos = undefined;
   },
 
-  _onDragStart(e) {
+  _onDragStart(event) {
     this.setState({
       dragging: true,
       active: true,
     });
-    if (this.props.onDragStart) this.props.onDragStart(e);
+    if (this.props.onDragStart) this.props.onDragStart(event);
   },
 
-  _onDragStop(e) {
+  _onDragStop(event) {
     this.setState({
       dragging: false,
       active: false,
     });
-    if (this.props.onDragStop) this.props.onDragStop(e);
+    if (this.props.onDragStop) this.props.onDragStop(event);
   },
 
-  _onDragUpdate(e, pos) {
+  _onDragUpdate(event, pos) {
     if (!this.state.dragging) return;
-    if (!this.props.disabled) this._dragX(e, pos);
+    if (!this.props.disabled) this._dragX(event, pos);
   },
 
-  _dragX(e, pos) {
+  _dragX(event, pos) {
     const max = this.refs.track.clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    this._updateWithChangeEvent(e, pos / max);
+    this._updateWithChangeEvent(event, pos / max);
   },
 
-  _updateWithChangeEvent(e, percent) {
+  _updateWithChangeEvent(event, percent) {
     this.setPercent(percent, () => {
-      if (this.props.onChange) this.props.onChange(e, this.state.value);
+      if (this.props.onChange) this.props.onChange(event, this.state.value);
     });
   },
 

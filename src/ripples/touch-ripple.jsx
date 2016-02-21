@@ -57,7 +57,7 @@ const TouchRipple = React.createClass({
     };
   },
 
-  start(e, isRippleTouchGenerated) {
+  start(event, isRippleTouchGenerated) {
     const theme = this.props.muiTheme.ripple;
 
     if (this._ignoreNextMouseDown && !isRippleTouchGenerated) {
@@ -72,7 +72,7 @@ const TouchRipple = React.createClass({
       <CircleRipple
         key={this.state.nextKey}
         muiTheme={this.props.muiTheme}
-        style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
+        style={!this.props.centerRipple ? this._getRippleStyle(event) : {}}
         color={this.props.color || theme.color}
         opacity={this.props.opacity}
         touchGenerated={isRippleTouchGenerated}
@@ -94,9 +94,9 @@ const TouchRipple = React.createClass({
     });
   },
 
-  _handleMouseDown(e) {
+  _handleMouseDown(event) {
     //only listen to left clicks
-    if (e.button === 0) this.start(e, false);
+    if (event.button === 0) this.start(event, false);
   },
 
   _handleMouseUp() {
@@ -107,23 +107,23 @@ const TouchRipple = React.createClass({
     this.end();
   },
 
-  _handleTouchStart(e) {
-    this.start(e, true);
+  _handleTouchStart(event) {
+    this.start(event, true);
   },
 
   _handleTouchEnd() {
     this.end();
   },
 
-  _getRippleStyle(e) {
+  _getRippleStyle(event) {
     const style = {};
     const el = ReactDOM.findDOMNode(this);
     const elHeight = el.offsetHeight;
     const elWidth = el.offsetWidth;
     const offset = Dom.offset(el);
-    const isTouchEvent = e.touches && e.touches.length;
-    const pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
-    const pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
+    const isTouchEvent = event.touches && event.touches.length;
+    const pageX = isTouchEvent ? event.touches[0].pageX : event.pageX;
+    const pageY = isTouchEvent ? event.touches[0].pageY : event.pageY;
     const pointerX = pageX - offset.left;
     const pointerY = pageY - offset.top;
     const topLeftDiag = this._calcDiag(pointerX, pointerY);

@@ -58,8 +58,8 @@ const CalendarMonth = React.createClass({
     }, this);
   },
 
-  _handleDayTouchTap(e, date) {
-    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
+  _handleDayTouchTap(event, date) {
+    if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
   },
 
   _shouldDisableDate(day) {

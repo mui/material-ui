@@ -104,9 +104,9 @@ const DatePickerDialog = React.createClass({
     this.dismiss();
   },
 
-  _handleWindowKeyUp(e) {
+  _handleWindowKeyUp(event) {
     if (this.state.open) {
-      switch (keycode(e)) {
+      switch (keycode(event)) {
         case 'enter':
           this._handleOKTouchTap();
           break;

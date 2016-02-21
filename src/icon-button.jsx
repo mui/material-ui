@@ -177,36 +177,36 @@ const IconButton = React.createClass({
     if (this.props.tooltip) this.setState({tooltipShown: false});
   },
 
-  _handleBlur(e) {
+  _handleBlur(event) {
     this._hideTooltip();
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur) this.props.onBlur(event);
   },
 
-  _handleFocus(e) {
+  _handleFocus(event) {
     this._showTooltip();
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     if (!this.refs.button.isKeyboardFocused()) this._hideTooltip();
-    if (this.props.onMouseLeave) this.props.onMouseLeave(e);
+    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     this._showTooltip();
-    if (this.props.onMouseEnter) this.props.onMouseEnter(e);
+    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
   },
 
-  _handleKeyboardFocus(e, keyboardFocused) {
+  _handleKeyboardFocus(event, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this._showTooltip();
-      if (this.props.onFocus) this.props.onFocus(e);
+      if (this.props.onFocus) this.props.onFocus(event);
     } else if (!this.state.hovered) {
       this._hideTooltip();
-      if (this.props.onBlur) this.props.onBlur(e);
+      if (this.props.onBlur) this.props.onBlur(event);
     }
 
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(e, keyboardFocused);
+    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(event, keyboardFocused);
   },
 
   render() {

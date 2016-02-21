@@ -160,17 +160,17 @@ const TimePicker = React.createClass({
     if (this.props.onChange) this.props.onChange(null, t);
   },
 
-  _handleInputFocus(e) {
-    e.target.blur();
-    if (this.props.onFocus) this.props.onFocus(e);
+  _handleInputFocus(event) {
+    event.target.blur();
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleInputTouchTap(e) {
-    e.preventDefault();
+  _handleInputTouchTap(event) {
+    event.preventDefault();
 
     this.openDialog();
 
-    if (this.props.onTouchTap) this.props.onTouchTap(e);
+    if (this.props.onTouchTap) this.props.onTouchTap(event);
   },
 
   _isControlled() {

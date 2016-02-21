@@ -135,14 +135,14 @@ const ToolbarGroup = React.createClass({
     });
   },
 
-  _handleMouseEnterFontIcon: (style) => (e) => {
-    e.target.style.zIndex = style.hover.zIndex;
-    e.target.style.color = style.hover.color;
+  _handleMouseEnterFontIcon: (style) => (event) => {
+    event.target.style.zIndex = style.hover.zIndex;
+    event.target.style.color = style.hover.color;
   },
 
-  _handleMouseLeaveFontIcon: (style) => (e) => {
-    e.target.style.zIndex = 'auto';
-    e.target.style.color = style.root.color;
+  _handleMouseLeaveFontIcon: (style) => (event) => {
+    event.target.style.zIndex = 'auto';
+    event.target.style.color = style.root.color;
   },
 
   render() {

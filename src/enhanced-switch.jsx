@@ -207,7 +207,7 @@ const EnhancedSwitch = React.createClass({
     return this.state.isKeyboardFocused;
   },
 
-  _handleChange(e) {
+  _handleChange(event) {
     this._tabPressed = false;
     this.setState({
       isKeyboardFocused: false,
@@ -219,24 +219,24 @@ const EnhancedSwitch = React.createClass({
       this.props.onParentShouldUpdate(isInputChecked);
     }
     if (this.props.onSwitch) {
-      this.props.onSwitch(e, isInputChecked);
+      this.props.onSwitch(event, isInputChecked);
     }
   },
 
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
-  _handleWindowKeydown(e) {
-    if (keycode(e) === 'tab') {
+  _handleWindowKeydown(event) {
+    if (keycode(event) === 'tab') {
       this._tabPressed = true;
     }
-    if (keycode(e) === 'space' && this.state.isKeyboardFocused) {
-      this._handleChange(e);
+    if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
+      this._handleChange(event);
     }
   },
 
-  _handleWindowKeyup(e) {
-    if (keycode(e) === 'space' && this.state.isKeyboardFocused) {
-      this._handleChange(e);
+  _handleWindowKeyup(event) {
+    if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
+      this._handleChange(event);
     }
   },
 
@@ -245,10 +245,10 @@ const EnhancedSwitch = React.createClass({
    * events, the checkbox input takes control of pointer events and calls
    * ripple animations manually.
    */
-  _handleMouseDown(e) {
+  _handleMouseDown(event) {
     //only listen to left clicks
-    if (e.button === 0) {
-      this.refs.touchRipple.start(e);
+    if (event.button === 0) {
+      this.refs.touchRipple.start(event);
     }
   },
 
@@ -260,25 +260,25 @@ const EnhancedSwitch = React.createClass({
     this.refs.touchRipple.end();
   },
 
-  _handleTouchStart(e) {
-    this.refs.touchRipple.start(e);
+  _handleTouchStart(event) {
+    this.refs.touchRipple.start(event);
   },
 
   _handleTouchEnd() {
     this.refs.touchRipple.end();
   },
 
-  _handleBlur(e) {
+  _handleBlur(event) {
     this.setState({
       isKeyboardFocused: false,
     });
 
     if (this.props.onBlur) {
-      this.props.onBlur(e);
+      this.props.onBlur(event);
     }
   },
 
-  _handleFocus(e) {
+  _handleFocus(event) {
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
@@ -291,7 +291,7 @@ const EnhancedSwitch = React.createClass({
     }, 150);
 
     if (this.props.onFocus) {
-      this.props.onFocus(e);
+      this.props.onFocus(event);
     }
   },
 

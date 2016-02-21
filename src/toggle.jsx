@@ -190,8 +190,8 @@ const Toggle = React.createClass({
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
   },
 
-  _handleToggle(e, isInputChecked) {
-    if (this.props.onToggle) this.props.onToggle(e, isInputChecked);
+  _handleToggle(event, isInputChecked) {
+    if (this.props.onToggle) this.props.onToggle(event, isInputChecked);
   },
 
   _handleStateChange(newSwitched) {

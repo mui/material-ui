@@ -165,13 +165,13 @@ const Tabs = React.createClass({
     return selectedIndex;
   },
 
-  _handleTabTouchTap(value, e, tab) {
+  _handleTabTouchTap(value, event, tab) {
     const valueLink = this.getValueLink(this.props);
     const tabIndex = tab.props.tabIndex;
 
     if ((valueLink.value && valueLink.value !== value) ||
       this.state.selectedIndex !== tabIndex) {
-      valueLink.requestChange(value, e, tab);
+      valueLink.requestChange(value, event, tab);
     }
 
     this.setState({selectedIndex: tabIndex});

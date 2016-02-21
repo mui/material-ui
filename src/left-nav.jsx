@@ -210,8 +210,8 @@ const LeftNav = React.createClass({
     this._close('clickaway');
   },
 
-  _onWindowKeyUp(e) {
-    if (keycode(e) === 'esc' &&
+  _onWindowKeyUp(event) {
+    if (keycode(event) === 'esc' &&
         !this.props.docked &&
         this.state.open) {
       this._close('escape');
@@ -245,12 +245,12 @@ const LeftNav = React.createClass({
     }
   },
 
-  _onBodyTouchStart(e) {
+  _onBodyTouchStart(event) {
 
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
-    const touchStartX = e.touches[0].pageX;
-    const touchStartY = e.touches[0].pageY;
+    const touchStartX = event.touches[0].pageX;
+    const touchStartY = event.touches[0].pageY;
 
     // Open only if swiping from far left (or right) while closed
     if (swipeAreaWidth !== null && !this.state.open) {
@@ -298,12 +298,12 @@ const LeftNav = React.createClass({
            );
   },
 
-  _onBodyTouchMove(e) {
-    const currentX = e.touches[0].pageX;
-    const currentY = e.touches[0].pageY;
+  _onBodyTouchMove(event) {
+    const currentX = event.touches[0].pageX;
+    const currentY = event.touches[0].pageY;
 
     if (this.state.swiping) {
-      e.preventDefault();
+      event.preventDefault();
       this._setPosition(this._getTranslateX(currentX));
     } else if (this._maybeSwiping) {
       const dXAbs = Math.abs(currentX - this._touchStartX);
@@ -325,9 +325,9 @@ const LeftNav = React.createClass({
     }
   },
 
-  _onBodyTouchEnd(e) {
+  _onBodyTouchEnd(event) {
     if (this.state.swiping) {
-      const currentX = e.changedTouches[0].pageX;
+      const currentX = event.changedTouches[0].pageX;
       const translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
 
       this._maybeSwiping = false;

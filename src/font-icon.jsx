@@ -92,21 +92,21 @@ const FontIcon = React.createClass({
     });
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined)
       this.setState({hovered: false});
     if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
+      this.props.onMouseLeave(event);
     }
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined)
       this.setState({hovered: true});
     if (this.props.onMouseEnter) {
-      this.props.onMouseEnter(e);
+      this.props.onMouseEnter(event);
     }
   },
 
