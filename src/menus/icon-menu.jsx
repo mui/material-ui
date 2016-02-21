@@ -120,6 +120,12 @@ const IconMenu = React.createClass({
      * will be disabled.
      */
     touchTapCloseDelay: React.PropTypes.number,
+
+    /**
+     * If true, the popover will render on top of an invisible
+     * layer, which will prevent clicks to the underlying elements.
+     */
+    useLayerForClickAway: React.PropTypes.bool,
   },
 
   contextTypes: {
@@ -151,6 +157,7 @@ const IconMenu = React.createClass({
         horizontal: 'left',
       },
       touchTapCloseDelay: 200,
+      useLayerForClickAway: false,
     };
   },
 
@@ -260,6 +267,7 @@ const IconMenu = React.createClass({
       menuStyle,
       style,
       targetOrigin,
+      useLayerForClickAway,
       ...other,
     } = this.props;
 
@@ -324,7 +332,7 @@ const IconMenu = React.createClass({
           open={open}
           anchorEl={anchorEl}
           childContextTypes={this.constructor.childContextTypes}
-          useLayerForClickAway={false}
+          useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.close}
           context={this.context}
         >
