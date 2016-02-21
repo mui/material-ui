@@ -28,8 +28,12 @@ const descriptions = {
   controlled: '`DatePicker` can be implemented as a controlled input, where `value` is handled by state in the ' +
   'parent component.',
   disabledDates: '`DatePicker` can disable specific dates based on the return value of a callback.',
-  localised: 'Date Picker can be localised using the `locale` property, in this case in French. ' +
-  'Note that the buttons must be localised using the `wordings` property, and we set the `firstDayOfWeek` to Monday.',
+  localised: '`DatePicker` can be localised using the `locale` property. The first example is localised in French. ' +
+  'Note that the buttons must be separately localised using the `cancelLabel` and `okLabel` properties. \n\n' +
+  'The `firstDayOfWeek` property defaults to `1`, (Monday), so may also need to be set for the target locale. ' +
+  'The second example shows sets `firstDayOfWeek` to `0`, (Sunday), and `locale` to `en-US` which matches the ' +
+  'bahavior of the Date Picker prior to 0.15.0.\n\n' +
+  'The final example displays the resulting date in a custom format using the `formatDate` property.',
 };
 
 const DatePickerPage = () => (

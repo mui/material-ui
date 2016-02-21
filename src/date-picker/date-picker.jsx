@@ -8,8 +8,10 @@ const DatePicker = React.createClass({
 
   propTypes: {
     /**
-     * Constructor for time formatting.
-     * Follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
+     * Constructor for date formatting for the specified `locale`.
+     * The constructor must follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
+     * `Intl.DateTimeFormat` is supported by most modern browsers, see http://caniuse.com/#search=intl,
+     * otherwise https://github.com/andyearnshaw/Intl.js is a good polyfill.
      */
     DateTimeFormat: React.PropTypes.func,
 
@@ -43,23 +45,24 @@ const DatePicker = React.createClass({
     disabled: React.PropTypes.bool,
 
     /**
-     * Used to change the first day of week. It drastically varies from
-     * Saturday to Monday (could even be Friday) between different locales.
+     * Used to change the first day of week. It varies from
+     * Saturday to Monday between different locales.
      * The allowed range is 0 (Sunday) to 6 (Saturday).
+     * The default is `1`, Monday, as per ISO 8601.
      */
     firstDayOfWeek: React.PropTypes.number,
 
     /**
-     * This function is called to format the date to display in the input box.
-     * By default, date objects are formatted to MM/DD/YYYY.
+     * This function is called to format the date displayed in the input box, and should return a string.
+     * By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.
+     *
+     * @param {object} date `Date` object to be formatted.
      */
     formatDate: React.PropTypes.func,
 
     /**
-     * Locale used for formatting date. If you are not using the default value, you
-     * have to provide a DateTimeFormat that supports it. You can use Intl.DateTimeFormat
-     * if it's supported by your environment.
-     * https://github.com/andyearnshaw/Intl.js is a good polyfill.
+     * Locale used for formatting the dialog date strings. If you are not using the default value, you
+     * have to provide a `DateTimeFormat` that supports it.
      */
     locale: React.PropTypes.string,
 
@@ -88,17 +91,17 @@ const DatePicker = React.createClass({
     onChange: React.PropTypes.func,
 
     /**
-     * Fired when the datepicker dialog is dismissed.
+     * Fired when the Date Picker dialog is dismissed.
      */
     onDismiss: React.PropTypes.func,
 
     /**
-     * Callback function that is fired when the datepicker field gains focus.
+     * Fired when the Date Picker field gains focus.
      */
     onFocus: React.PropTypes.func,
 
     /**
-     * Fired when the datepicker dialog is shown.
+     * Fired when the Date Picker dialog is shown.
      */
     onShow: React.PropTypes.func,
 
@@ -109,7 +112,7 @@ const DatePicker = React.createClass({
 
     /**
      * Called during render time of a given day. If this method returns
-     * false the day is disabled otherwise it is displayed normally.
+     * false the day is disabled, otherwise it is displayed normally.
      */
     shouldDisableDate: React.PropTypes.func,
 
@@ -149,11 +152,10 @@ const DatePicker = React.createClass({
 
   getDefaultProps() {
     return {
-      formatDate: DateTime.format,
       autoOk: false,
       disableYearSelection: false,
       style: {},
-      firstDayOfWeek: 0,
+      firstDayOfWeek: 1,
       disabled: false,
     };
   },
@@ -244,6 +246,18 @@ const DatePicker = React.createClass({
     }
   },
 
+  _formatDate(date) {
+    if (this.props.locale && this.props.DateTimeFormat) {
+      return new this.props.DateTimeFormat(this.props.locale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      }).format(date);
+    } else {
+      return DateTime.format(date);
+    }
+  },
+
   render() {
     const {
       container,
@@ -252,7 +266,6 @@ const DatePicker = React.createClass({
       wordings,
       autoOk,
       defaultDate,
-      formatDate,
       maxDate,
       minDate,
       mode,
@@ -268,9 +281,8 @@ const DatePicker = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const formatDate = this.props.formatDate || this._formatDate;
+    const {prepareStyles} = this.state.muiTheme;
 
     return (
       <div style={prepareStyles(Object.assign({}, style))}>
