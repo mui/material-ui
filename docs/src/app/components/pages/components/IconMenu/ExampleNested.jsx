@@ -12,7 +12,7 @@ import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 const IconMenuExampleNested = () => (
   <div>
     <IconMenu
-      iconButtonElement={<IconButton><MoreVertIcon/></IconButton>}
+      iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
       anchorOrigin={{horizontal: 'left', vertical: 'top'}}
       targetOrigin={{horizontal: 'left', vertical: 'top'}}
     >

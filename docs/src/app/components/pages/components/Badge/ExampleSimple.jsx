@@ -17,7 +17,7 @@ const BadgeExampleSimple = () => (
       badgeStyle={{top: 12, right: 12}}
     >
       <IconButton tooltip="Notifications">
-        <NotificationsIcon/>
+        <NotificationsIcon />
       </IconButton>
     </Badge>
   </div>

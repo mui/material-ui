@@ -104,7 +104,7 @@ const CardHeader = React.createClass({
         style: Object.assign(styles.avatar, avatar.props.style),
       });
     } else if (avatar !== null) {
-      avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;
+      avatar = <Avatar src={this.props.avatar} style={styles.avatar} />;
     }
 
     return (

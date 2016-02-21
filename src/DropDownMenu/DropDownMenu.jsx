@@ -305,8 +305,8 @@ const DropDownMenu = React.createClass({
           >
             {displayValue}
           </div>
-          <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)}/>
-          <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))}/>
+          <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)} />
+          <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
         </ClearFix>
         <Popover
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}

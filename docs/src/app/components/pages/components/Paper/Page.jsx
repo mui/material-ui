@@ -45,7 +45,7 @@ const PaperPage = () => (
     >
       <PaperExampleCircle />
     </CodeExample>
-    <PropTypeDescription code={paperCode}/>
+    <PropTypeDescription code={paperCode} />
   </div>
 );
 

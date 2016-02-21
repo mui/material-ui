@@ -29,8 +29,8 @@ const RadioButtonExampleSimple = () => (
       <RadioButton
         value="ludicrous"
         label="Custom icon"
-        checkedIcon={<ActionFavorite/>}
-        uncheckedIcon={<ActionFavoriteBorder/>}
+        checkedIcon={<ActionFavorite />}
+        uncheckedIcon={<ActionFavoriteBorder />}
         style={styles.radioButton}
       />
     </RadioButtonGroup>

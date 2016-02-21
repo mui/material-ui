@@ -46,7 +46,7 @@ const AutoCompleteExampleFilters = () => (
       filter={AutoComplete.caseInsensitiveFilter}
       dataSource={colors}
     />
-    <br/>
+    <br />
     <AutoComplete
       floatingLabelText="Type 'peah', fuzzy search"
       filter={AutoComplete.fuzzyFilter}

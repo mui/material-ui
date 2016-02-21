@@ -36,7 +36,7 @@ const LinearProgressPage = () => (
     >
       <LinearProgressExampleDeterminate />
     </CodeExample>
-    <PropTypeDescription code={linearProgressCode}/>
+    <PropTypeDescription code={linearProgressCode} />
   </div>
 );
 

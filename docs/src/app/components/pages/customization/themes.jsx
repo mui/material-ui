@@ -136,16 +136,16 @@ const ThemesPage = React.createClass({
       <ClearFix>
         <div style={styles.group}>
           <div style={styles.containerCentered}>
-            <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true}/>
+            <FloatingActionButton iconClassName="muidocs-icon-action-grade" disabled={true} />
           </div>
           <div style={styles.containerCentered}>
             <RaisedButton label="Secondary" secondary={true} />
           </div>
           <div style={styles.containerCentered}>
-            <RaisedButton label="Primary" primary={true}/>
+            <RaisedButton label="Primary" primary={true} />
           </div>
           <div style={styles.containerCentered}>
-            <RaisedButton label="Default"/>
+            <RaisedButton label="Default" />
           </div>
         </div>
         <div style={styles.group}>
@@ -214,11 +214,11 @@ const ThemesPage = React.createClass({
           </div>
           <div style={styles.container}>
             <DropDownMenu value={3} style={{width: '100%'}}>
-              <MenuItem value={1} primaryText={'Never'}/>
-              <MenuItem value={2} primaryText={'Every Night'}/>
-              <MenuItem value={3} primaryText={'Weeknights'}/>
-              <MenuItem value={4} primaryText={'Weekends'}/>
-              <MenuItem value={5} primaryText={'Weekly'}/>
+              <MenuItem value={1} primaryText={'Never'} />
+              <MenuItem value={2} primaryText={'Every Night'} />
+              <MenuItem value={3} primaryText={'Weeknights'} />
+              <MenuItem value={4} primaryText={'Weekends'} />
+              <MenuItem value={5} primaryText={'Weekly'} />
             </DropDownMenu>
           </div>
         </div>

@@ -37,8 +37,8 @@ const GridListPage = () => (
     >
       <GridListExampleComplex />
     </CodeExample>
-    <PropTypeDescription header="### GridList Properties" code={gridListCode}/>
-    <PropTypeDescription header="### GridTile Properties" code={gridTileCode}/>
+    <PropTypeDescription header="### GridList Properties" code={gridListCode} />
+    <PropTypeDescription header="### GridTile Properties" code={gridTileCode} />
   </div>
 );
 

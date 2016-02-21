@@ -16,16 +16,16 @@ const TextFieldExampleCustomize = () => (
     <TextField
       hintText="Styled Hint Text"
       hintStyle={styles.errorStyle}
-    /><br/>
+    /><br />
     <TextField
       hintText="Custom error color"
       errorText="This field is required."
       errorStyle={styles.errorStyle}
-    /><br/>
+    /><br />
     <TextField
       hintText="Custom Underline Color"
       underlineStyle={styles.underlineStyle}
-    /><br/>
+    /><br />
     <TextField
       hintText="Custom Underline Focus Color"
       underlineFocusStyle={styles.underlineStyle}

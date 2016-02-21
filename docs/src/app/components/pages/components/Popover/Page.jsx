@@ -32,23 +32,23 @@ const PopoverPage = () => (
       description={descriptions.simple}
       code={popoverExampleSimpleCode}
     >
-      <PopoverExampleSimple/>
+      <PopoverExampleSimple />
     </CodeExample>
     <CodeExample
       title="Animation"
       description={descriptions.animation}
       code={popoverExampleAnimationCode}
     >
-      <PopoverExampleAnimation/>
+      <PopoverExampleAnimation />
     </CodeExample>
     <CodeExample
       title="Anchor playground"
       description={descriptions.configurable}
       code={popoverExampleConfigurableCode}
     >
-      <PopoverExampleConfigurable/>
+      <PopoverExampleConfigurable />
     </CodeExample>
-    <PropTypeDescription code={popoverCode}/>
+    <PropTypeDescription code={popoverCode} />
   </div>
 );
 export default PopoverPage;

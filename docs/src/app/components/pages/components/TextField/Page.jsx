@@ -64,7 +64,7 @@ const TextFieldsPage = () => (
     >
       <TextFieldExampleControlled />
     </CodeExample>
-    <PropTypeDescription code={textFieldCode}/>
+    <PropTypeDescription code={textFieldCode} />
   </div>
 );
 

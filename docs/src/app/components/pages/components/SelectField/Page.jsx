@@ -70,7 +70,7 @@ const SelectFieldPage = () => (
     >
       <SelectFieldExampleError />
     </CodeExample>
-    <PropTypeDescription code={selectFieldCode}/>
+    <PropTypeDescription code={selectFieldCode} />
   </div>
 );
 

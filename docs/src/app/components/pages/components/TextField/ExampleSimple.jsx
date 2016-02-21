@@ -5,29 +5,29 @@ const TextFieldExampleSimple = () => (
   <div>
     <TextField
       hintText="Hint Text"
-    /><br/>
-    <br/>
+    /><br />
+    <br />
     <TextField
       hintText="The hint text can be as long as you want, it will wrap."
-    /><br/>
+    /><br />
     <TextField
       defaultValue="Default Value"
-    /><br/>
+    /><br />
     <TextField
       hintText="Hint Text"
       floatingLabelText="Floating Label Text"
-    /><br/>
+    /><br />
     <TextField
       hintText="Password Field"
       floatingLabelText="Password"
       type="password"
-    /><br/>
+    /><br />
     <TextField
       hintText="MultiLine with rows: 2 and rowsMax: 4"
       multiLine={true}
       rows={2}
       rowsMax={4}
-    /><br/>
+    /><br />
     <TextField
       hintText="Message Field"
       floatingLabelText="MultiLine and FloatingLabel"

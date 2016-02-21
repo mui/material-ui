@@ -74,7 +74,7 @@ const ToolbarSeparator = React.createClass({
     const styles = getStyles(this.props, this.state);
 
     return (
-      <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}/>
+      <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))} />
     );
   },
 

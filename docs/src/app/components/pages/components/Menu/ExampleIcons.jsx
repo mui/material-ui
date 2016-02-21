@@ -39,7 +39,7 @@ const MenuExampleIcons = () => (
     <Menu style={style.menu} desktop={false}>
       <MenuItem primaryText="Clear Config" />
       <MenuItem primaryText="New Config" rightIcon={<PersonAdd />} />
-      <MenuItem primaryText="Project" rightIcon={<FontIcon className="material-icons">settings</FontIcon>}/>
+      <MenuItem primaryText="Project" rightIcon={<FontIcon className="material-icons">settings</FontIcon>} />
       <MenuItem
         primaryText="Workspace"
         rightIcon={
