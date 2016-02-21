@@ -37,7 +37,6 @@
     "json-loader": "^0.5.4",
     "marked": "^0.3.5",
     "raw-loader": "^0.5.1",
-    "react-addons-perf": "^0.14.0",
     "react-docgen": "^2.4.0",
     "react-hot-loader": "^1.2.8",
     "react-motion": "^0.4.2",

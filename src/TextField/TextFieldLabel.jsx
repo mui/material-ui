@@ -1,5 +1,7 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
+import {shouldUpdate} from 'recompose';
+import {withShallow} from '../utils/recompose';
 
 const propTypes = {
   /**
@@ -44,18 +46,13 @@ const propTypes = {
   style: React.PropTypes.object,
 };
 
-const defaultProps = {
-  disabled: false,
-  shrink: false,
-};
-
 const TextFieldLabel = (props) => {
   const {
     muiTheme,
     className,
     children,
-    disabled,
-    shrink,
+    disabled = false,
+    shrink = false,
     htmlFor,
     style,
     onTouchTap,
@@ -95,6 +92,5 @@ const TextFieldLabel = (props) => {
 };
 
 TextFieldLabel.propTypes = propTypes;
-TextFieldLabel.defaultProps = defaultProps;
 
-export default TextFieldLabel;
+export default shouldUpdate(withShallow('style'))(TextFieldLabel);
