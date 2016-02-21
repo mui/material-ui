@@ -172,19 +172,19 @@ const TimePicker = React.createClass({
     this.refs.dialogWindow.show();
   },
 
-  _handleDialogAccept(t) {
+  handleAcceptDialog(time) {
     this.setState({
-      time: t,
+      time: time,
     });
-    if (this.props.onChange) this.props.onChange(null, t);
+    if (this.props.onChange) this.props.onChange(null, time);
   },
 
-  _handleInputFocus(event) {
+  handleFocusInput(event) {
     event.target.blur();
     if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleInputTouchTap(event) {
+  handleTouchTapInput(event) {
     event.preventDefault();
 
     if (!this.props.disabled) this.openDialog();
@@ -234,13 +234,13 @@ const TimePicker = React.createClass({
           style={textFieldStyle}
           ref="input"
           value={time === emptyTime ? null : DateTime.formatTime(time, format, pedantic)}
-          onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap}
+          onFocus={this.handleFocusInput}
+          onTouchTap={this.handleTouchTapInput}
         />
         <TimePickerDialog
           ref="dialogWindow"
           initialTime={this.state.dialogTime}
-          onAccept={this._handleDialogAccept}
+          onAccept={this.handleAcceptDialog}
           onShow={onShow}
           onDismiss={onDismiss}
           format={format}

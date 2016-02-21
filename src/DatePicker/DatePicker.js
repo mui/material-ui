@@ -243,7 +243,7 @@ const DatePicker = React.createClass({
     this.openDialog();
   },
 
-  _handleDialogAccept(date) {
+  handleAccept(date) {
     if (!this._isControlled()) {
       this.setState({
         date: date,
@@ -253,12 +253,12 @@ const DatePicker = React.createClass({
     if (this.props.valueLink) this.props.valueLink.requestChange(date);
   },
 
-  _handleInputFocus(event) {
+  handleFocus(event) {
     event.target.blur();
     if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleInputTouchTap: function _handleInputTouchTap(event) {
+  handleTouchTap(event) {
     if (this.props.onTouchTap) this.props.onTouchTap(event);
 
     if (!this.props.disabled)
@@ -314,6 +314,7 @@ const DatePicker = React.createClass({
       textFieldStyle,
       valueLink,
       wordings,
+      shouldDisableDate,
       ...other,
     } = this.props;
 
@@ -327,8 +328,8 @@ const DatePicker = React.createClass({
           style={textFieldStyle}
           ref="input"
           value={this.state.date ? formatDate(this.state.date) : undefined}
-          onFocus={this._handleInputFocus}
-          onTouchTap={this._handleInputTouchTap}
+          onFocus={this.handleFocus}
+          onTouchTap={this.handleTouchTap}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
@@ -343,11 +344,11 @@ const DatePicker = React.createClass({
           minDate={minDate}
           mode={mode}
           okLabel={okLabel}
-          onAccept={this._handleDialogAccept}
+          onAccept={this.handleAccept}
           onShow={onShow}
           onDismiss={onDismiss}
           ref="dialogWindow"
-          shouldDisableDate={this.props.shouldDisableDate}
+          shouldDisableDate={shouldDisableDate}
           wordings={wordings}
         />
       </div>

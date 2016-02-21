@@ -249,7 +249,7 @@ const IconMenu = React.createClass({
     event.preventDefault();
   },
 
-  _handleItemTouchTap(event, child) {
+  handleItemTouchTap(event, child) {
     if (this.props.touchTapCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
       const isKeyboard = Events.isKeyboard(event);
       this.timerCloseId = setTimeout(() => {
@@ -260,7 +260,11 @@ const IconMenu = React.createClass({
     this.props.onItemTouchTap(event, child);
   },
 
-  _handleMenuEscKeyDown(event) {
+  handleRequestClose(reason) {
+    this.close(reason);
+  },
+
+  handleEscKeyDownMenu(event) {
     this.close('escape', event);
   },
 
@@ -319,8 +323,8 @@ const IconMenu = React.createClass({
         {...other}
         animateOpen={true}
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
-        onEscKeyDown={this._handleMenuEscKeyDown}
-        onItemTouchTap={this._handleItemTouchTap}
+        onEscKeyDown={this.handleEscKeyDownMenu}
+        onItemTouchTap={this.handleItemTouchTap}
         style={mergedMenuStyles}
       >
         {this.props.children}
@@ -346,7 +350,7 @@ const IconMenu = React.createClass({
           anchorEl={anchorEl}
           childContextTypes={this.constructor.childContextTypes}
           useLayerForClickAway={useLayerForClickAway}
-          onRequestClose={this.close}
+          onRequestClose={this.handleRequestClose}
           context={this.context}
         >
           {menu}

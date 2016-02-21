@@ -60,7 +60,7 @@ const CalendarYear = React.createClass({
         <YearButton
           key={`yb${year}`}
           year={year}
-          onTouchTap={this._handleYearTouchTap}
+          onTouchTap={this.handleTouchTap}
           selected={selected}
           {...selectedProps}
         />
@@ -85,7 +85,7 @@ const CalendarYear = React.createClass({
     container.scrollTop = scrollYOffset;
   },
 
-  _handleYearTouchTap(event, year) {
+  handleTouchTap(event, year) {
     if (this.props.onYearTouchTap) this.props.onYearTouchTap(event, year);
   },
 

@@ -14,7 +14,7 @@ const HorizontalStepper = React.createClass({
     };
   },
 
-  selectStep(currentStep) {
+  handleStepHeaderTouch(currentStep) {
     const {
       lastActiveStep,
       activeStep,
@@ -47,7 +47,7 @@ const HorizontalStepper = React.createClass({
     return <span>{step.props.orderStepLabel}</span>;
   },
 
-  continue() {
+  handleTouchTap() {
     const {
       activeStep,
       lastActiveStep,
@@ -73,7 +73,7 @@ const HorizontalStepper = React.createClass({
         <Stepper
           horizontal={true}
           activeStep={this.state.activeStep}
-          onStepHeaderTouch={this.selectStep}
+          onStepHeaderTouch={this.handleStepHeaderTouch}
           updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
@@ -85,7 +85,7 @@ const HorizontalStepper = React.createClass({
                 key={0}
                 label="Continue"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
               />,
               <FlatButton key={1} label="Cancel" />,
             ]}
@@ -102,7 +102,7 @@ const HorizontalStepper = React.createClass({
                 key={0}
                 label="Continue"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
               />,
               <FlatButton key={1} label="Cancel" />,
             ]}
@@ -120,7 +120,7 @@ const HorizontalStepper = React.createClass({
                 key={0}
                 label="Finish"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
               />,
               <FlatButton key={1} label="Cancel" />,
             ]}

@@ -129,7 +129,7 @@ const EnhancedTextarea = React.createClass({
     }
   },
 
-  _handleChange(event) {
+  handleChange(event) {
     this._syncHeightWithShadow(event.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
@@ -184,7 +184,7 @@ const EnhancedTextarea = React.createClass({
           ref="input"
           rows={this.props.rows}
           style={prepareStyles(textareaStyles)}
-          onChange={this._handleChange}
+          onChange={this.handleChange}
         />
       </div>
     );
