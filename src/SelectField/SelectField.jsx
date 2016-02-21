@@ -20,8 +20,14 @@ function getStyles(props) {
 }
 
 const SelectField = React.createClass({
+  displayName: 'SelectField',
 
   propTypes: {
+    /**
+     * opens DropDownMenu and triggers focus of TextField
+     */
+    autoFocus: React.propTypes.bool,
+
     /**
      * The width will automatically be set according to the
      * items inside the menu. To control this width in css
@@ -169,6 +175,7 @@ const SelectField = React.createClass({
 
   render() {
     const {
+      autoFocus,
       autoWidth,
       children,
       style,
@@ -197,6 +204,7 @@ const SelectField = React.createClass({
 
     return (
       <TextField
+        autoFocus={autoFocus}
         style={style}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
@@ -216,6 +224,7 @@ const SelectField = React.createClass({
           style={selectFieldRoot}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
+          immediatelyOpen={autoFocus}
           underlineStyle={styles.hideDropDownUnderline}
           autoWidth={autoWidth}
           value={value}
