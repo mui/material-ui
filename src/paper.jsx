@@ -24,7 +24,7 @@ function getStyles(props, state) {
       transition: transitionEnabled && Transitions.easeOut(),
       boxSizing: 'border-box',
       fontFamily: baseTheme.fontFamily,
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       boxShadow: paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
       borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
     },

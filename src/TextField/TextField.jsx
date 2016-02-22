@@ -50,7 +50,7 @@ const getStyles = (props, state) => {
       pointerEvents: 'none',
     },
     input: {
-      tapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 0,
       position: 'relative',
       width: '100%',

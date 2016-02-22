@@ -20,7 +20,7 @@ function getStyles(props, state) {
   return {
     root: {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       position: 'relative',
       display: 'block',
       margin: '0 auto',

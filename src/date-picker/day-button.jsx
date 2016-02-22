@@ -36,7 +36,7 @@ function getStyles(props, state) {
   return {
     root: {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       position: 'relative',
       float: 'left',
       width: 41,
