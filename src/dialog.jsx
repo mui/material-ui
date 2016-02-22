@@ -110,7 +110,7 @@ function getStyles(props, state) {
     root: {
       position: 'fixed',
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       zIndex: zIndex.dialog,
       top: 0,
       left: open ? 0 : -10000,
@@ -122,7 +122,7 @@ function getStyles(props, state) {
     },
     content: {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       transition: Transitions.easeOut(),
       position: 'relative',
       width: '75%',
@@ -137,7 +137,7 @@ function getStyles(props, state) {
     },
     actionsContainer: {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 8,
       marginBottom: 8,
       width: '100%',

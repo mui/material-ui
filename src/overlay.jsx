@@ -14,7 +14,7 @@ function getStyles(props, state) {
       left: '-100%',
       opacity: 0,
       backgroundColor: overlay.backgroundColor,
-      WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+      WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)', // Remove mobile color flashing (deprecated)
 
       // Two ways to promote overlay to its own render layer
       willChange: 'opacity',
