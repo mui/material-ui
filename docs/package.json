@@ -19,7 +19,8 @@
     "android:setup-port": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
-    "react-title-component": "^1.0.1"
+    "react-title-component": "^1.0.1",
+    "simple-assign": "^0.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0",

@@ -8,6 +8,7 @@
   "env": {
     "docs-production": {
       "plugins": [
+        ["transform-replace-object-assign", "simple-assign"],
         "transform-react-remove-prop-types",
         "transform-react-constant-elements",
         "transform-react-inline-elements"
