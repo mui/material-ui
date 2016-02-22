@@ -9,7 +9,7 @@ const DatePicker = React.createClass({
   propTypes: {
     /**
      * Constructor for time formatting.
-     * Follow this specificaction: ECMAScript Internationalization API 1.0 (ECMA-402).
+     * Follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
      */
     DateTimeFormat: React.PropTypes.func,
 
