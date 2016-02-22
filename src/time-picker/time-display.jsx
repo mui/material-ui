@@ -131,14 +131,6 @@ const TimeDisplay = React.createClass({
         left: 0,
       },
 
-      hour: {
-        cursor: this.props.mode === 'minute' ? 'pointer' : 'default',
-      },
-
-      minute: {
-        cursor: this.props.mode === 'hour' ? 'pointer' : 'default',
-      },
-
       clickable: {
         cursor: 'pointer',
       },
