@@ -22,7 +22,7 @@ function getStyles(props) {
 const SelectField = React.createClass({
   propTypes: {
     /**
-     * opens DropDownMenu and triggers focus of TextField
+     * opens DropDownMenu and triggers focus SelectField
      */
     autoFocus: React.propTypes.bool,
 
