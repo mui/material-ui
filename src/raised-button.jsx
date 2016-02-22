@@ -214,6 +214,11 @@ const RaisedButton = React.createClass({
     primary: React.PropTypes.bool,
 
     /**
+     * Override the inline style of ripple element.
+     */
+    rippleStyle: React.PropTypes.object,
+
+    /**
      * If true, colors button according to secondaryTextColor from the theme.
      * The primary prop has precendent if set to true.
      */
@@ -329,6 +334,7 @@ const RaisedButton = React.createClass({
       labelPosition,
       labelStyle,
       primary,
+      rippleStyle,
       secondary,
       ...other,
     } = this.props;
@@ -338,6 +344,7 @@ const RaisedButton = React.createClass({
     } = this.state.muiTheme;
 
     const styles = getStyles(this.props, this.state);
+    const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
     const buttonEventHandlers = disabled && {
       onMouseDown: this._handleMouseDown,
@@ -391,10 +398,10 @@ const RaisedButton = React.createClass({
           ref="container"
           disabled={disabled}
           style={styles.container}
-          focusRippleColor={styles.ripple.color}
-          touchRippleColor={styles.ripple.color}
-          focusRippleOpacity={styles.ripple.opacity}
-          touchRippleOpacity={styles.ripple.opacity}
+          focusRippleColor={mergedRippleStyles.color}
+          touchRippleColor={mergedRippleStyles.color}
+          focusRippleOpacity={mergedRippleStyles.opacity}
+          touchRippleOpacity={mergedRippleStyles.opacity}
         >
           <div
             ref="overlay"
