@@ -331,6 +331,7 @@ const IconMenu = React.createClass({
           targetOrigin={targetOrigin}
           open={open}
           anchorEl={anchorEl}
+          animated={false}
           childContextTypes={this.constructor.childContextTypes}
           useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.close}
