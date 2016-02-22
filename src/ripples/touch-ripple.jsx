@@ -12,12 +12,14 @@ function push(array, obj) {
 }
 
 function shift(array) {
+  //Remove the first element in the array using React immutability helpers
   return update(array, {$splice: [[0, 1]]});
 }
 
 const TouchRipple = React.createClass({
 
   propTypes: {
+    abortOnScroll: React.PropTypes.bool,
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,
@@ -39,6 +41,12 @@ const TouchRipple = React.createClass({
   mixins: [
     PureRenderMixin,
   ],
+
+  getDefaultProps() {
+    return {
+      abortOnScroll: true,
+    };
+  },
 
   getInitialState() {
     //Touch start produces a mouse down event for compat reasons. To avoid
@@ -92,6 +100,9 @@ const TouchRipple = React.createClass({
     this.setState({
       ripples: shift(currentRipples),
     });
+    if (this.props.abortOnScroll) {
+      this._stopListeningForScrollAbort();
+    }
   },
 
   _handleMouseDown(event) {
@@ -108,11 +119,60 @@ const TouchRipple = React.createClass({
   },
 
   _handleTouchStart(event) {
+    //If the user is swiping (not just tapping), save the position so we can
+    //abort ripples if the user appears to be scrolling
+    if (this.props.abortOnScroll && event.touches) {
+      this._startListeningForScrollAbort(event);
+      this._startTime = Date.now();
+    }
     this.start(event, true);
   },
 
   _handleTouchEnd() {
     this.end();
+  },
+
+  //Check if the user seems to be scrolling and abort the animation if so
+  _handleTouchMove(event) {
+    //Stop trying to abort if we're already 300ms into the animation
+    const timeSinceStart = Math.abs(Date.now() - this._startTime);
+    if (timeSinceStart > 300) {
+      this._stopListeningForScrollAbort();
+      return;
+    }
+
+    //If the user is scrolling...
+    const deltaY = Math.abs(event.touches[0].clientY - this._firstTouchY);
+    const deltaX = Math.abs(event.touches[0].clientX - this._firstTouchX);
+    //Call it a scroll after an arbitrary 6px (feels reasonable in testing)
+    if (deltaY > 6 || deltaX > 6) {
+      let currentRipples = this.state.ripples;
+      const ripple = currentRipples[0];
+      //This clone will replace the ripple in ReactTransitionGroup with a
+      //version that will disappear immediately when removed from the DOM
+      const abortedRipple = React.cloneElement(ripple, {aborted: true});
+      //Remove the old ripple and replace it with the new updated one
+      currentRipples = shift(currentRipples);
+      currentRipples = push(currentRipples, abortedRipple);
+      this.setState({ripples: currentRipples}, () => {
+        //Call end after we've set the ripple to abort otherwise the setState
+        //in end() merges with this and the ripple abort fails
+        this.end();
+      });
+    }
+  },
+
+  _startListeningForScrollAbort(event) {
+    this._firstTouchY = event.touches[0].clientY;
+    this._firstTouchX = event.touches[0].clientX;
+    //Note that when scolling Chrome throttles this event to every 200ms
+    //Also note we don't listen for scroll events directly as there's no general
+    //way to cover cases like scrolling within containers on the page
+    document.body.addEventListener('touchmove', this._handleTouchMove);
+  },
+
+  _stopListeningForScrollAbort() {
+    document.body.removeEventListener('touchmove', this._handleTouchMove);
   },
 
   _getRippleStyle(event) {
