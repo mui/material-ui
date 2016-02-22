@@ -49,7 +49,7 @@ function getStyles(props, state) {
       fill: checkbox.disabledColor,
     },
     boxWhenDisabled: {
-      fill: checkbox.disabledColor,
+      fill: props.checked ? 'transparent' : checkbox.disabledColor,
     },
     label: {
       color: props.disabled ? checkbox.labelDisabledColor : checkbox.labelColor,
