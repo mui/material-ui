@@ -93,6 +93,10 @@ const Snackbar = React.createClass({
 
     /**
      * The message to be displayed.
+     *
+     * (Note: If the message is an element or array, and the `Snackbar` may re-render while it is still open,
+     * ensure that the same object remains as the `message` property if you want to avoid the `Snackbar` hiding and
+     * showing again)
      */
     message: React.PropTypes.node.isRequired,
 
