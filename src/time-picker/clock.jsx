@@ -133,10 +133,7 @@ const Clock = React.createClass({
     } = this.state.muiTheme;
 
     const styles = {
-      root: {
-        userSelect: 'none',
-        cursor: 'default',
-      },
+      root: {},
 
       container: {
         height: 280,
