@@ -77,6 +77,11 @@ const RenderToLayer = React.createClass({
       return;
     }
 
+    let now = new Date();
+    if ( Math.abs( now.getTime() - this._openTime ) < 200 ) {
+      return;
+    }
+
     const el = this._layer;
     if (event.target !== el && (event.target === window)
         || (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
@@ -112,12 +117,15 @@ const RenderToLayer = React.createClass({
           this._layer.style.left = 0;
           this._layer.style.right = 0;
           this._layer.style.zIndex = this.state.muiTheme.zIndex.layer;
+
+          this._openTime = (new Date()).getTime();
         } else {
           setTimeout(() => {
             window.addEventListener('touchstart', this.onClickAway);
             window.addEventListener('click', this.onClickAway);
           }, 0);
         }
+
       }
 
       // By calling this method in componentDidMount() and
