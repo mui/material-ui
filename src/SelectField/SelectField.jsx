@@ -24,7 +24,7 @@ const SelectField = React.createClass({
     /**
      * opens DropDownMenu and triggers focus SelectField
      */
-    autoFocus: React.propTypes.bool,
+    autoFocus: React.PropTypes.bool,
 
     /**
      * The width will automatically be set according to the
