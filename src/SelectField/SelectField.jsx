@@ -20,8 +20,6 @@ function getStyles(props) {
 }
 
 const SelectField = React.createClass({
-  displayName: 'SelectField',
-
   propTypes: {
     /**
      * opens DropDownMenu and triggers focus of TextField
@@ -204,7 +202,6 @@ const SelectField = React.createClass({
 
     return (
       <TextField
-        autoFocus={autoFocus}
         style={style}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
@@ -224,7 +221,7 @@ const SelectField = React.createClass({
           style={selectFieldRoot}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
-          immediatelyOpen={autoFocus}
+          openImmediately={autoFocus}
           underlineStyle={styles.hideDropDownUnderline}
           autoWidth={autoWidth}
           value={value}
