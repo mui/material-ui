@@ -1,21 +1,136 @@
 ## HEAD
 
+## 0.15.0-alpha.1
+###### _Feb 27, 2016_
+
+This release includes huge improvements to the implementation
+of components and utility modules. The most important improvement
+is the removal of mixins from the library, thanks to the
+[great efforts](https://github.com/callemall/material-ui/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aclosed+author%3Anewoga+style-propable)
+of @newoga :+1:
+
+There are also improvements to the unit testing infrastructure. We own this
+great improvement to @nathanmarks, thanks a lot :+1:.
+
+Please note that `raw-themes` are deprecated with no warning! they will be removed
+from the code with the 0.16.0 release.
+
 ##### Breaking Changes
-- Remove the deprecated API of `0.14.x`. (#3108)
-- [FloatingActionButton] Fix:className now set to root element(#2310)
-- [RaisedButton] Fix:className now set to root element(#3122)
-- [LeftNav] Fix:className and `style` now set to root element(#3322)
+- [Cleanup] Remove the deprecated API of `0.14.x`. (#3108)
+- [Styles] Removed all `getStyles` functions from the components (#3351)
+- [Core] Remove the `window-listenable` mixin (#3334)
+- [Core] Remove `context-pure` mixin (#3331)
+- [Core] Remove `click-awayable` mixin (#3360)
+- [Core] Utilize keycode library and remove `key-code` util (#3371)
+- [FloatingActionButton] `className` is now set on the root element (#2310)
+- [RaisedButton] `className` is now set on the root element (#3122)
+- [LeftNav] `className` and `style` are now set on the root element (#3322)
 - [Colors] Removed default export in favor of singular exports (#2825) <br>
 **Note** This can be temporarily worked around by changing <br>
 `import Colors from 'material-ui/lib/styles/colors';` <br> to <br>
 `import * as Colors from 'material-ui/lib/styles/colors';`.
 - [DatePicker] Standardize for ISO8601. (#3417)
 
+##### New Component
+- [Subheader](#3033) (Thanks to @pradel)
+
+##### General
+- [Tests] Updates to test setup and additional testing option for unit tests (#3405)
+- [Tests] Add support for codecov (#3421)
+- [Tests] Badge unit tests (#3427) (Thanks to @pradel)
+- [Tests] AppBar unit tests (#3487) (Thanks to @pradel)
+- [Tests] GridList unit tests (#3488) (Thanks to @pradel)
+- [Tests] SvgIcon unit tests (#3489) (Thanks to @pradel)
+- [Tests] FontIcon unit tests (#3490) (Thanks to @pradel)
+- [Theme] Apply overall themeing improvements (#3267, #3316, #3340, #3399)
+- [Style] Fix the prefixer tool regression (#3136)
+- [Style] Make some unthemeable elements themeable (#3269) (Thanks to @pdf)
+- [Style] Fix tap highlight color (#3429)
+- [Core] Replace merge implementation in utils/styles with Object.assign (#3124)
+- [Core] Remove dependency on utils/styles from components (#3169)
+- [Core] Remove style-propable mixin from components (#2852)
+- [Core] Remove `window-listenable` mixin from components (#3305) (Thanks to @newoga)
+- [Core] Typography moved inside muitheme (#3301)
+- [Core] Update lodash version to 4.1.0 (#3324)
+- [Core] Migrate color to muiTheme (#3314)
+- [Core] Remove usage of `isMounted()` (#3437)
+- [Docs] Add page title (#3246)
+- [Docs] DatePicker - Add disabled dates example (#3167)
+- [Docs] Upgrade dependencies (#3343)
+- [Docs] Enable GPU rasterization (#3451)
+- [Docs] Add versions to docs site (#3383)
+- [eslint] Upgrade to v2 (#3390)
+- Added the following eslint rules:
+  1. Enforce `arrow-parens` (#3207)
+  1. Enforce `prefer-template` (#3208, #3242)
+  1. Enforce `no-unneeded-ternary` (#3320)
+  1. Enforce `prefer-const` (#3315)
+  1. Enforce `jsx-space-before-closing` (#3397)
+  1. Enforce `id-blacklist` and blacklist `e` (#3398)
+  1. Enforce `padded-blocks: never` (#3493)
+
+##### Component Fixes / Enhancements
+- [AutoComplete] Added `maxSearchResults` property (#3262)
+- [AutoComplete] Apply the style property only on the root component (#3243)
+- [AutoComplete] Apply various improvement (#3214) (Thanks to @oliviertassinari)
+- [Autocomplete] Disable browser default autocomplete popup (#3253)
+- [AutoComplete] Fix the focus / blur issue (#3356) (Thanks to @oliviertassinari)
+- [Card] Removed hidden overflow (#3447)
+- [Card] Support for controlled expansion (#3258) (Thanks to @cgestes)
+- [CardActions] Allow to accept false as child (#3215)
+- [Checkbox] Disabled style error fix (#3432)
+- [DatePicker] Default to ISO-8601 DateTimeFormat & `firstDayOfWeek` (#3417)
+- [Dialog] Fix overflow (#3460)
+- [DropDownMenu] Expose Menu listStyle property (#3294)
+- [DropDownMenu] Fix `openImmediately` regression (#3384)
+- [DropDownMenu] Safari select-field fix (#3175)
+- [EnhancedButton] Fix enhanced buttons containing a link instead of a button (#3303)
+- [EnhancedSwitch] Added inputStyle prop to enhanced switch (#1693)
+- [EnhancedTextArea] Provide various style fixes (#3277)
+- [FlatBotton] Fix alignment between text and icons (#3380)
+- [FloatingActionButton] Expose Paper zDepth (#3387)
+- [IconButton] Fixed tooltip for disabled component (#3458)
+- [IconButton] Fixed tooltip ripple size for IE (#3016)
+- [IconMenu] Document `multiple` property of Menu (#3223)
+- [IconMenu] Enable `useLayerForClickAway` (#3400)
+- [IconMenu] Support MenuItem nested menuItems (#3265)
+- [InkBar] remove `&nbsp;` (#3283)
+- [LeftNav] Add iOS momentum scroll (#2946)
+- [List] Fix issue with styling on list related components (#3278)
+- [ListItem] Fix hardcoded `secondaryTextColor` (#3288)
+- [Menu] Fix `_isChildSelected` child not recognising first child (#3165)
+- [Menu] Fix a regression that would apply the select style to all the MenuItems (#3244)
+- [Menu] Safari select-field fix (#3175)
+- [Popover] Handle the touch event on touch enabled devices (#3389)
+- [RadioButton] Allow customising icons (#3285)
+- [RaisedButton] Customizable ripple effect style (#3368)
+- [RaisedButton] Fix alignment between text and icons (#3366)
+- [Slider] Remove style-propable mixin and react-dom (#3332) (Thanks to @felipethome)
+- [SvgIcon] Fix behavior for `onMouseEnter` and `onMouseLeave` (#3481)
+- [SvgIcon] Use stateless functional component instead of `React.createClass` (#3326)
+- [Table] Send event object after click, hover, hoverOut on cell (#3002)
+- [TextField] Add textareaStyle property (#3238)
+- [TextField] Fix defaultValue behavior (#3239)
+- [TextField] Fix wrong label id (#3240)
+- [TextField] Fixed a bug where clicking on floating label and typing simultaneuosly loses keypress (#3055)
+- [TextField] Fixed ie9-ie10 click focus problem (#3193)
+- [TimePicker] Update time state on new defaultTime prop (#3095)
+- [Toggle] Fixes styling issue (#3299)
+- [ToolbarTitle] Fix overflow (#3250)
+- [TouchRipple] Abort on scroll (#3407)
+
+##### Deprecations
+- [Menu] Deprecated built in `animated` (#3216)
+- [Core] Deprecated `style-propable` mixin and `utils/styles` (#3351)
+- [Core] Deprecated `ThemeDecorator` in favor of `MuiThemeProvider` (#3267)
+- [Core] Deprecated `theme-manager` and `raw-themes` (#3267)
+
 ## 0.14.4
 ###### _Feb 02, 2016_
 
 ##### General
 - [CRITICAL] Fixed a regression that completely disabled the auto-prefixer (#3142)
+- [Core] Implements prepareStyles as composition of functions in muiTheme (#2986) (Thanks to @newoga)
 - [Docs] Contributing guide (#3075)
 - [Docs] Added a `Related Projects` section (#3102)
 - [Examples] General updates (#3078)
@@ -28,6 +143,8 @@
 - [List] Auto-expand SelectableList (#3039)
 - [DatePicker] Added `disabled` property (#3060)
 - [Buttons] Fixed the vertical alignment issue (#3100)
+- [RaisedButton] Fix the default value of `labelPosition` (#3115)
+- [FlatButton] Fix the default value of `labelPosition` (#3115)
 
 ## 0.14.3
 ###### _Jan 26, 2016_
