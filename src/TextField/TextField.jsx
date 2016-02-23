@@ -332,20 +332,20 @@ const TextField = React.createClass({
   },
 
   blur() {
-    if (this.isMounted()) this._getInputNode().blur();
+    if (this.input) this._getInputNode().blur();
   },
 
   focus() {
-    if (this.isMounted()) this._getInputNode().focus();
+    if (this.input) this._getInputNode().focus();
   },
 
   getValue() {
-    return this.isMounted() ? this._getInputNode().value : undefined;
+    return this.input ? this._getInputNode().value : undefined;
   },
 
   _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
-      this.refs.input.getInputNode() : ReactDOM.findDOMNode(this.refs.input);
+      this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
   },
 
   _handleInputBlur(event) {
@@ -436,7 +436,7 @@ const TextField = React.createClass({
 
     const inputProps = {
       id: inputId,
-      ref: 'input',
+      ref: (elem) => this.input = elem,
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
