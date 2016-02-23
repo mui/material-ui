@@ -121,7 +121,6 @@ const Card = React.createClass({
     } = this.props;
 
     const mergedStyles = Object.assign({
-      overflow: 'hidden',
       zIndex: 1,
     }, style);
 
