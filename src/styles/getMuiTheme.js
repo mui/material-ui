@@ -225,6 +225,10 @@ export default function getMuiTheme(muiTheme, ...more) {
     table: {
       backgroundColor: palette.canvasColor,
     },
+    tableFooter: {
+      borderColor: palette.borderColor,
+      textColor: palette.accent3Color,
+    },
     tableHeader: {
       borderColor: palette.borderColor,
     },
@@ -232,10 +236,6 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.accent3Color,
       height: 56,
       spacing: 24,
-    },
-    tableFooter: {
-      borderColor: palette.borderColor,
-      textColor: palette.accent3Color,
     },
     tableRow: {
       hoverColor: palette.accent2Color,
@@ -248,6 +248,21 @@ export default function getMuiTheme(muiTheme, ...more) {
     tableRowColumn: {
       height: 48,
       spacing: 24,
+    },
+    tabs: {
+      backgroundColor: palette.primary1Color,
+      textColor: ColorManipulator.fade(palette.alternateTextColor, 0.7),
+      selectedTextColor: palette.alternateTextColor,
+    },
+    textField: {
+      textColor: palette.textColor,
+      hintColor: palette.disabledColor,
+      floatingLabelColor: palette.textColor,
+      disabledTextColor: palette.disabledColor,
+      errorColor: red500,
+      focusColor: palette.primary1Color,
+      backgroundColor: 'transparent',
+      borderColor: palette.borderColor,
     },
     timePicker: {
       color: palette.alternateTextColor,
@@ -284,21 +299,6 @@ export default function getMuiTheme(muiTheme, ...more) {
     tooltip: {
       color: white,
       rippleBackgroundColor: grey700,
-    },
-    tabs: {
-      backgroundColor: palette.primary1Color,
-      textColor: ColorManipulator.fade(palette.alternateTextColor, 0.7),
-      selectedTextColor: palette.alternateTextColor,
-    },
-    textField: {
-      textColor: palette.textColor,
-      hintColor: palette.disabledColor,
-      floatingLabelColor: palette.textColor,
-      disabledTextColor: palette.disabledColor,
-      errorColor: red500,
-      focusColor: palette.primary1Color,
-      backgroundColor: 'transparent',
-      borderColor: palette.borderColor,
     },
   }, muiTheme, {
     baseTheme, // To provide backward compatibility.
