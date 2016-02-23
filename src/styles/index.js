@@ -1,5 +1,5 @@
 import AutoPrefix from './auto-prefix';
-import Colors from './colors';
+import * as Colors from './colors';
 import Spacing from './spacing';
 import ThemeManager from './theme-manager';
 import Transitions from './transitions';
