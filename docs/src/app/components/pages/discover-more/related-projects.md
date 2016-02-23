@@ -11,3 +11,5 @@ A Formsy compatibility wrapper for Material-UI form components.
 A React component for swipeable views. Play well with the `Tabs` component.
 - [isomorphic-material-relay-starter-kit](https://github.com/codefoundries/isomorphic-material-relay-starter-kit)
 Starter kit for isomorphic applications using React/Relay and Material-UI.
+- [material-ui-rails](https://github.com/towonzhou/material-ui-rails)
+Material-UI for Rails.
