@@ -138,8 +138,7 @@ const Calendar = React.createClass({
       let adjustedDate = date;
       if (DateTime.isBeforeDate(date, this.props.minDate)) {
         adjustedDate = this.props.minDate;
-      }
-      else if (DateTime.isAfterDate(date, this.props.maxDate)) {
+      } else if (DateTime.isAfterDate(date, this.props.maxDate)) {
         adjustedDate = this.props.maxDate;
       }
 

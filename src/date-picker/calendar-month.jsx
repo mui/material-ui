@@ -43,7 +43,7 @@ const CalendarMonth = React.createClass({
   _getDayElements(week, i) {
     return week.map((day, j) => {
       const isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
-      const disabled = this._shouldDisableDate(day);
+      const disabled = this.isDateDisabled(day);
       const selected = !disabled && isSameDate;
 
       if (isSameDate) {
@@ -64,14 +64,6 @@ const CalendarMonth = React.createClass({
 
   _handleDayTouchTap(event, date) {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
-  },
-
-  _shouldDisableDate(day) {
-    if (day === null) return false;
-    let disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
-    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
-
-    return disabled;
   },
 
   render() {
