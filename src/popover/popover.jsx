@@ -27,12 +27,6 @@ const Popover = React.createClass({
     anchorOrigin: PropTypes.origin,
 
     /**
-     * If true, the popover will apply transitions when
-     * added it gets added to the DOM.
-     */
-    animated: React.PropTypes.bool,
-
-    /**
      * Override the default animation component used.
      */
     animation: React.PropTypes.func,
@@ -113,7 +107,6 @@ const Popover = React.createClass({
         vertical: 'bottom',
         horizontal: 'left',
       },
-      animated: true,
       autoCloseWhenOffScreen: true,
       canAutoPosition: true,
       onRequestClose: () => {},
@@ -159,22 +152,10 @@ const Popover = React.createClass({
           muiTheme: newMuiTheme,
         });
       } else {
-        if (nextProps.animated) {
-          this.setState({closing: true});
-          this._timeout = setTimeout(() => {
-            if (this.isMounted()) {
-              this.setState({
-                open: false,
-                muiTheme: newMuiTheme,
-              });
-            }
-          }, 500);
-        } else {
-          this.setState({
-            open: false,
-            muiTheme: newMuiTheme,
-          });
-        }
+        this.setState({
+          open: false,
+          muiTheme: newMuiTheme,
+        });
       }
     }
   },
@@ -185,7 +166,6 @@ const Popover = React.createClass({
 
   renderLayer() {
     const {
-      animated,
       animation,
       children,
       style,
