@@ -105,16 +105,22 @@ const AppBar = React.createClass({
 
     /**
      * Callback function for when the left icon is selected via a touch tap.
+     *
+     * @param {object} event TouchTap event targeting the left `IconButton`.
      */
     onLeftIconButtonTouchTap: React.PropTypes.func,
 
     /**
      * Callback function for when the right icon is selected via a touch tap.
+     *
+     * @param {object} event TouchTap event targeting the right `IconButton`.
      */
     onRightIconButtonTouchTap: React.PropTypes.func,
 
     /**
      * Callback function for when the title text is selected via a touch tap.
+     *
+     * @param {object} event TouchTap event targeting the `title` node.
      */
     onTitleTouchTap: React.PropTypes.func,
 
