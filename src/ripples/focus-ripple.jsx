@@ -48,6 +48,10 @@ const FocusRipple = React.createClass({
     }
   },
 
+  componentWillUnmount() {
+    clearTimeout(this._timeout);
+  },
+
   _getRippleElement(props) {
     const {
       color,
@@ -73,8 +77,6 @@ const FocusRipple = React.createClass({
   },
 
   _pulsate() {
-    if (!this.isMounted()) return;
-
     const innerCircle = ReactDOM.findDOMNode(this.refs.innerCircle);
     if (!innerCircle) return;
 
