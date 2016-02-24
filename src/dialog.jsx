@@ -44,6 +44,11 @@ const TransitionItem = React.createClass({
     });
   },
 
+  componentWillUnmount() {
+    clearTimeout(this.enterTimeout);
+    clearTimeout(this.leaveTimeout);
+  },
+
   componentWillEnter(callback) {
     this.componentWillAppear(callback);
   },
@@ -58,7 +63,7 @@ const TransitionItem = React.createClass({
       },
     });
 
-    setTimeout(callback, 450); // matches transition duration
+    this.enterTimeout = setTimeout(callback, 450); // matches transition duration
   },
 
   componentWillLeave(callback) {
@@ -69,9 +74,7 @@ const TransitionItem = React.createClass({
       },
     });
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 450); // matches transition duration
+    this.leaveTimeout = setTimeout(callback, 450); // matches transition duration
   },
 
   render() {

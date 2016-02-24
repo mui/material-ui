@@ -161,13 +161,11 @@ const Popover = React.createClass({
       } else {
         if (nextProps.animated) {
           this.setState({closing: true});
-          this._timeout = setTimeout(() => {
-            if (this.isMounted()) {
-              this.setState({
-                open: false,
-                muiTheme: newMuiTheme,
-              });
-            }
+          this.timeout = setTimeout(() => {
+            this.setState({
+              open: false,
+              muiTheme: newMuiTheme,
+            });
           }, 500);
         } else {
           this.setState({
@@ -181,6 +179,10 @@ const Popover = React.createClass({
 
   componentDidUpdate() {
     this.setPlacement();
+  },
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   },
 
   renderLayer() {

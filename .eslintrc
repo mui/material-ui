@@ -87,7 +87,7 @@ rules:
   react/no-direct-mutation-state: 2
   react/no-multi-comp: 0 # Wishlist, one day
   react/no-unknown-property: 2
-  react/no-is-mounted: 0 # Wishlist, one day
+  react/no-is-mounted: 2
   react/prefer-arrow-callback: 0 # Wishlist, one day
   react/prefer-es6-class: 0 # Wishlist, one day
   react/prop-types: 2

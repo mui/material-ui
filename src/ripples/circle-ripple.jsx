@@ -35,6 +35,11 @@ const CircleRipple = React.createClass({
     };
   },
 
+  componentWillUnmount() {
+    clearTimeout(this.enterTimer);
+    clearTimeout(this.leaveTimer);
+  },
+
   componentWillAppear(callback) {
     this._initializeAnimation(callback);
   },
@@ -56,9 +61,7 @@ const CircleRipple = React.createClass({
     style.opacity = 0;
     //If the animation is aborted, remove from the DOM immediately
     const removeAfter = this.props.aborted ? 0 : 2000;
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, removeAfter);
+    this.enterTimer = setTimeout(callback, removeAfter);
   },
 
   _animate() {
@@ -73,9 +76,7 @@ const CircleRipple = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
     autoPrefix.set(style, 'transform', 'scale(0)', this.props.muiTheme);
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 0);
+    this.leaveTimer = setTimeout(callback, 0);
   },
 
   render() {
