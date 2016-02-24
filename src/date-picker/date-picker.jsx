@@ -14,6 +14,11 @@ const DatePicker = React.createClass({
     DateTimeFormat: React.PropTypes.func,
 
     /**
+     * Array of date objects which should render as active. Active days have small dot underneath.
+     */
+    activeDays: React.PropTypes.array,
+
+    /**
      * If true, automatically accept and close the picker on select a date.
      */
     autoOk: React.PropTypes.bool,
@@ -283,6 +288,7 @@ const DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap}
         />
         <DatePickerDialog
+          activeDays={this.props.activeDays ? this.props.activeDays : []}
           container={container}
           ref="dialogWindow"
           DateTimeFormat={DateTimeFormat}

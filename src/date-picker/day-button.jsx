@@ -34,6 +34,17 @@ function getStyles(props, state) {
   }
 
   return {
+    active: {
+      width: '3px',
+      height: '3px',
+      backgroundColor: labelColor,
+      zIndex: 10,
+      content: ' ',
+      position: 'absolute',
+      left: '19px',
+      borderRadius: '50%',
+      bottom: '9px',
+    },
     root: {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
@@ -64,6 +75,7 @@ function getStyles(props, state) {
 const DayButton = React.createClass({
 
   propTypes: {
+    active: React.PropTypes.bool,
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
     onKeyboardFocus: React.PropTypes.func,
@@ -81,6 +93,7 @@ const DayButton = React.createClass({
 
   getDefaultProps() {
     return {
+      active: false,
       selected: false,
       disabled: false,
     };
@@ -152,6 +165,7 @@ const DayButton = React.createClass({
       >
         <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
+        {this.props.active ? <div style={prepareStyles(styles.active)}></div> : null}
       </EnhancedButton>
     ) : (
       <span style={prepareStyles(styles.root)} />
