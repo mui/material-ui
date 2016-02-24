@@ -23,6 +23,13 @@ const TableBody = React.createClass({
     className: React.PropTypes.string,
 
     /**
+     * If true, table rows will be selected or not after clicking
+     * the row. If this is false but selectable is true, table
+     * rows will be selected only by clicking the checkbox.
+     */
+    clickAsSelect: React.PropTypes.bool,
+
+    /**
      * Controls whether or not to deselect all selected
      * rows after clicking outside the table.
      */
@@ -129,6 +136,7 @@ const TableBody = React.createClass({
       multiSelectable: false,
       preScanRows: true,
       selectable: true,
+      clickAsSelect: true,
       style: {},
     };
   },
@@ -217,6 +225,7 @@ const TableBody = React.createClass({
         value="selected"
         disabled={!this.props.selectable}
         checked={rowProps.selected}
+        onCheck={this._processCheckboxEvent(rowProps)}
       />
     );
 
@@ -231,6 +240,14 @@ const TableBody = React.createClass({
     );
   },
 
+  _processCheckboxEvent(rowProps) {
+    return (event) => {
+      if (this.props.clickAsSelect) return null; // will fire onRowClick event
+      event.stopPropagation();
+      event.ctrlKey = true;
+      this._processRowSelection(event, rowProps.rowNumber);
+    };
+  },
   _calculatePreselectedRows(props) {
     // Determine what rows are 'pre-selected'.
     const preSelectedRows = [];
@@ -282,7 +299,7 @@ const TableBody = React.createClass({
   _onRowClick(event, rowNumber) {
     event.stopPropagation();
 
-    if (this.props.selectable) {
+    if (this.props.clickAsSelect) {
       // Prevent text selection while selecting rows.
       window.getSelection().removeAllRanges();
       this._processRowSelection(event, rowNumber);
