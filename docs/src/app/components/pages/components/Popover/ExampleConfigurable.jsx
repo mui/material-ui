@@ -37,6 +37,8 @@ export default class PopoverExampleConfigurable extends React.Component {
   }
 
   handleTouchTap = (event) => {
+    // This prevents ghost click.
+    event.preventDefault();
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
