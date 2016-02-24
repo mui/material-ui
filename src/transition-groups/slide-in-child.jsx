@@ -51,6 +51,11 @@ const SlideInChild = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
+  componentWillUnmount() {
+    clearTimeout(this.enterTimer);
+    clearTimeout(this.leaveTimer);
+  },
+
   componentWillEnter(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     const x = this.props.direction === 'left' ? '100%' :
@@ -61,9 +66,7 @@ const SlideInChild = React.createClass({
     style.opacity = '0';
     autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, this.props.enterDelay);
+    this.enterTimer = setTimeout(callback, this.props.enterDelay);
   },
 
   componentDidEnter() {
@@ -83,9 +86,7 @@ const SlideInChild = React.createClass({
     style.opacity = '0';
     autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 450);
+    this.leaveTimer = setTimeout(callback, 450);
   },
 
   render() {
