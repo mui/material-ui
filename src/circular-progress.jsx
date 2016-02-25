@@ -15,6 +15,11 @@ const CircularProgress = React.createClass({
     color: React.PropTypes.string,
 
     /**
+     * Specify a delay (in ms) before showing, only works in indeterminate mode.
+     */
+    delay: React.PropTypes.number,
+
+    /**
      * Style for inner wrapper div.
      */
     innerStyle: React.PropTypes.object,
@@ -64,6 +69,7 @@ const CircularProgress = React.createClass({
 
   getDefaultProps() {
     return {
+      delay: 0,
       mode: 'indeterminate',
       value: 0,
       min: 0,
@@ -75,6 +81,7 @@ const CircularProgress = React.createClass({
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      visible: this.props.delay === 0 || this.props.mode === 'determinate',
     };
   },
 
@@ -82,6 +89,14 @@ const CircularProgress = React.createClass({
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentWillMount() {
+    if (this.props.delay > 0 && this.props.mode === 'indeterminate') {
+      this.delayTimer = setTimeout(() => {
+        this.setState({visible: true});
+      }, this.props.delay);
+    }
   },
 
   componentDidMount() {
@@ -102,6 +117,7 @@ const CircularProgress = React.createClass({
   componentWillUnmount() {
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
+    clearTimeout(this.delayTimer);
   },
 
   _getRelativeValue() {
@@ -117,6 +133,7 @@ const CircularProgress = React.createClass({
 
   scalePathTimer: undefined,
   rotateWrapperTimer: undefined,
+  delayTimer: undefined,
 
   _scalePath(path, step) {
     if (this.props.mode !== 'indeterminate') return;
@@ -175,6 +192,7 @@ const CircularProgress = React.createClass({
         display: 'inline-block',
         width: size,
         height: size,
+        visibility: this.state.visible ? 'visible' : 'hidden',
       },
       wrapper: {
         width: size,

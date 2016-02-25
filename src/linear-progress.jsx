@@ -14,6 +14,11 @@ const LinearProgress = React.createClass({
     color: React.PropTypes.string,
 
     /**
+     * Specify a delay (in ms) before showing, only works in indeterminate mode.
+     */
+    delay: React.PropTypes.number,
+
+    /**
      * The max value of progress, only works in determinate mode.
      */
     max: React.PropTypes.number,
@@ -55,6 +60,7 @@ const LinearProgress = React.createClass({
 
   getDefaultProps() {
     return {
+      delay: 0,
       mode: 'indeterminate',
       value: 0,
       min: 0,
@@ -65,6 +71,7 @@ const LinearProgress = React.createClass({
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      visible: this.props.delay === 0 || this.props.mode === 'determinate',
     };
   },
 
@@ -72,6 +79,14 @@ const LinearProgress = React.createClass({
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentWillMount() {
+    if (this.props.delay > 0 && this.props.mode === 'indeterminate') {
+      this.timers.delayTimer = setTimeout(() => {
+        this.setState({visible: true});
+      }, this.props.delay);
+    }
   },
 
   componentDidMount() {
@@ -101,11 +116,13 @@ const LinearProgress = React.createClass({
   componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
+    clearTimeout(this.timers.delayTimer);
   },
 
   timers: {
     bar1: undefined,
     bar2: undefined,
+    delayTimer: undefined,
   },
 
   _barUpdate(id, step, barElement, stepValues) {
@@ -146,6 +163,7 @@ const LinearProgress = React.createClass({
         borderRadius: 2,
         margin: 0,
         overflow: 'hidden',
+        visibility: this.state.visible ? 'visible' : 'hidden',
       },
       bar: {
         height: '100%',

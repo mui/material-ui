@@ -9,11 +9,15 @@ import LinearProgressExampleSimple from './ExampleSimple';
 import linearProgressExampleSimpleCode from '!raw!./ExampleSimple';
 import LinearProgressExampleDeterminate from './ExampleDeterminate';
 import linearProgressExampleDeterminateCode from '!raw!./ExampleDeterminate';
+import LinearProgressExampleDelayed from './ExampleDelayed';
+import linearProgressExampleDelayedCode from '!raw!./ExampleDelayed';
 
 const descriptions = {
   indeterminate: 'By default, the indicator animates continuously.',
   determinate: 'In `determinate` mode, the indicator adjusts to show the percentage complete, ' +
   'as a ratio of `value`: `max-min`.',
+  delayed: 'You can also have the indicator wait a specified time before ' +
+           'displaying, to avoid showing it for very brief operations.',
 };
 
 const LinearProgressPage = () => (
@@ -32,6 +36,13 @@ const LinearProgressPage = () => (
       code={linearProgressExampleDeterminateCode}
     >
       <LinearProgressExampleDeterminate />
+    </CodeExample>
+    <CodeExample
+      title="Delayed progress"
+      description={descriptions.delayed}
+      code={linearProgressExampleDelayedCode}
+    >
+      <LinearProgressExampleDelayed />
     </CodeExample>
     <PropTypeDescription code={linearProgressCode}/>
   </div>
