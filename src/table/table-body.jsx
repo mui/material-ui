@@ -307,6 +307,7 @@ const TableBody = React.createClass({
   },
 
   _processRowSelection(event, rowNumber) {
+    if (!this.props.selectable) return null;
     let selectedRows = this.state.selectedRows;
 
     if (event.shiftKey && this.props.multiSelectable && selectedRows.length) {
