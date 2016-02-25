@@ -17,7 +17,6 @@ function getStyles(props, state) {
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
-      width: (props.text.length > 40) ? '200' : 'inherit',
     },
   };
 }
