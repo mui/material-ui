@@ -58,7 +58,7 @@ describe('<SvgIcon />', () => {
       'should have called onMouseEnter callback function');
   });
 
-  it('renders children and not call onMouseEnter callback when hoverColor is not set', () => {
+  it('renders children and call onMouseEnter callback even when hoverColor is not set', () => {
     const onMouseEnter = sinon.spy();
     const wrapper = shallow(
       <SvgIcon onMouseEnter={onMouseEnter}>{path}</SvgIcon>
@@ -66,7 +66,7 @@ describe('<SvgIcon />', () => {
 
     assert.ok(wrapper.contains(path), 'should contain the children');
     wrapper.simulate('mouseEnter');
-    assert.equal(onMouseEnter.calledOnce, false,
+    assert.equal(onMouseEnter.calledOnce, true,
       'should have called onMouseEnter callback function');
   });
 
@@ -82,7 +82,7 @@ describe('<SvgIcon />', () => {
       'should have called onMouseLeave callback function');
   });
 
-  it('renders children and not call onMouseLeave callback when hoverColor is not set', () => {
+  it('renders children and call onMouseLeave callback even when hoverColor is not set', () => {
     const onMouseLeave = sinon.spy();
     const wrapper = shallow(
       <SvgIcon onMouseLeave={onMouseLeave}>{path}</SvgIcon>
@@ -90,7 +90,7 @@ describe('<SvgIcon />', () => {
 
     assert.ok(wrapper.contains(path), 'should contain the children');
     wrapper.simulate('mouseLeave');
-    assert.equal(onMouseLeave.calledOnce, false,
+    assert.equal(onMouseLeave.calledOnce, true,
       'should have called onMouseLeave callback function');
   });
 
