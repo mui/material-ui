@@ -50,7 +50,6 @@ const CalendarYear = React.createClass({
     const dateCheck = DateTime.clone(this.props.selectedDate);
     for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
-      if (!DateTime.isBetweenDates(dateCheck, this.props.minDate, this.props.maxDate)) continue;
       const selected = this.props.selectedDate.getFullYear() === year;
       let selectedProps = {};
       if (selected) {
