@@ -4,6 +4,7 @@ build
 coverage
 .DS_Store
 docs
+.idea
 
 # Exclude compiled files
 lib
