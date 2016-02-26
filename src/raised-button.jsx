@@ -7,8 +7,8 @@ import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label) {
-    return new Error(`Required prop label or children was not specified in ${componentName}.`);
+  if (!props.children && !props.label && !props.icon) {
+    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
   }
 }
 
@@ -25,7 +25,9 @@ function getStyles(props, state) {
     disabledLabelColor,
     fullWidth,
     icon,
+    label,
     labelPosition,
+    linkButton,
     primary,
     secondary,
     style,
@@ -78,6 +80,14 @@ function getStyles(props, state) {
       paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
       lineHeight: style && style.height || `${button.height}px`,
       color: labelColor,
+    },
+    icon: {
+      lineHeight: style && style.height || `${button.height}px`,
+      verticalAlign: 'middle',
+      marginLeft: label && labelPosition !== 'before' ? 12 : 0,
+      marginRight: label && labelPosition === 'before' ? 12 : 0,
+      display: label || !linkButton ? 'inline-block' : 'block',
+      textAlign: label || !linkButton ? '' : 'center',
     },
     overlay: {
       backgroundColor: state.hovered && !disabled && ColorManipulator.fade(labelColor, amount),
@@ -364,11 +374,7 @@ const RaisedButton = React.createClass({
 
     const iconCloned = icon && React.cloneElement(icon, {
       color: styles.label.color,
-      style: {
-        verticalAlign: 'middle',
-        marginLeft: labelPosition === 'before' ? 0 : 12,
-        marginRight: labelPosition === 'before' ? 12 : 0,
-      },
+      style: styles.icon,
     });
 
     // Place label before or after children.
