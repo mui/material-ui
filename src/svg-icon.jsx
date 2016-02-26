@@ -124,15 +124,11 @@ const SvgIcon = React.createClass({
       transition: Transitions.easeOut(),
     }, style);
 
-    const events = hoverColor ? {
-      onMouseEnter: this._handleMouseEnter,
-      onMouseLeave: this._handleMouseLeave,
-    } : {};
-
     return (
       <svg
         {...other}
-        {...events}
+        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this._handleMouseLeave}
         style={prepareStyles(mergedStyles)}
         viewBox={viewBox}
       >
