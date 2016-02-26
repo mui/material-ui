@@ -5,7 +5,6 @@ import getMuiTheme from 'src/styles/getMuiTheme';
 import Badge from 'src/badge';
 
 describe('<Badge />', () => {
-
   const badgeTheme = getMuiTheme().badge;
   const testChildren = <div className="unique">Hello World</div>;
 
@@ -84,5 +83,4 @@ describe('<Badge />', () => {
     assert.equal(wrapper.node.props.style.backgroundColor, style.backgroundColor,
     'should overwrite badge backgroundColor');
   });
-
 });

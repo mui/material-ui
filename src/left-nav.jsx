@@ -246,7 +246,6 @@ const LeftNav = React.createClass({
   },
 
   _onBodyTouchStart(event) {
-
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
     const touchStartX = event.touches[0].pageX;

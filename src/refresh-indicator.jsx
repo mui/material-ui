@@ -128,7 +128,6 @@ const RefreshIndicator = React.createClass({
   rotateWrapperSecondTimer: undefined,
 
   _renderChildren() {
-
     const {
       prepareStyles,
     } = this.state.muiTheme;

@@ -83,7 +83,6 @@ const Overlay = React.createClass({
     if (this.props.show !== nextProps.show) {
       this._applyAutoLockScrolling(nextProps);
     }
-
   },
 
   componentWillUnmount() {

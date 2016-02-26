@@ -567,7 +567,6 @@ const Menu = React.createClass({
       return animated ? (
         <div style={prepareStyles(childrenContainerStyles)}>{clonedChild}</div>
       ) : clonedChild;
-
     });
 
     return (

@@ -5,7 +5,6 @@ import {assert} from 'chai';
 import FontIcon from 'src/font-icon';
 
 describe('<FontIcon />', () => {
-
   it('renders className', () => {
     const wrapper = shallow(
       <FontIcon
@@ -89,5 +88,4 @@ describe('<FontIcon />', () => {
     assert.equal(wrapper.get(0).props.style.backgroundColor, style.backgroundColor,
       'should have backgroundColor to red');
   });
-
 });

@@ -12,7 +12,6 @@ if (argv && argv.length > 0) {
 const mocha = new Mocha(opts);
 
 Glob(`${__dirname}/**/*.spec.js`, {}, (err, files) => {
-
   files.forEach((file) => mocha.addFile(file));
 
   mocha.run((failures) => {

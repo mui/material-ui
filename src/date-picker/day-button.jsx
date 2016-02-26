@@ -5,7 +5,6 @@ import EnhancedButton from '../enhanced-button';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
-
   const {
     date,
     disabled,

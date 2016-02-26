@@ -332,7 +332,6 @@ const EnhancedButton = React.createClass({
     return React.isValidElement(containerElement) ?
       React.cloneElement(containerElement, buttonProps, buttonChildren) :
       React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
-
   },
 
 });

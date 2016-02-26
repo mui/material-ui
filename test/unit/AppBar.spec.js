@@ -8,7 +8,6 @@ import Paper from 'src/paper';
 import NavigationClose from 'src/svg-icons/navigation/close';
 
 describe('<AppBar />', () => {
-
   it('renders children by default', () => {
     const testChildren = <div className="unique">Hello World</div>;
     const wrapper = shallow(
@@ -170,5 +169,4 @@ describe('<AppBar />', () => {
 
     assert.equal(wrapper.find(Paper).get(0).props.zDepth, 2, 'should have zDepth to 2');
   });
-
 });

@@ -17,7 +17,6 @@ class CodeExample extends React.Component {
   };
 
   render() {
-
     const {
       children,
       code,

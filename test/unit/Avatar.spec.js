@@ -4,7 +4,6 @@ import {assert} from 'chai';
 import Avatar from 'src/avatar';
 
 describe('<Avatar />', () => {
-
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children by default', () => {
@@ -38,5 +37,4 @@ describe('<Avatar />', () => {
     wrapper.setProps({src: 'meow.jpg'});
     assert.ok(wrapper.is({src: 'meow.jpg'}), 'should have changed the src');
   });
-
 });

@@ -11,7 +11,6 @@ import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
 import {deepPurpleA700} from 'styles/colors';
 
 describe('Theming', () => {
-
   describe('When no theme is specified, AppBar', () => {
     it('should display with default light theme', () => {
       const renderedAppbar = TestUtils.renderIntoDocument(<AppBar />);
@@ -23,11 +22,8 @@ describe('Theming', () => {
   });
 
   describe('When the dark theme is specified', () => {
-
     describe('using context / react lifecycle methods, AppBar', () => {
-
       it('should display with passed down dark theme', () => {
-
         const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingContext />);
         const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
         const firstDiv = appbarDivs[0];
@@ -36,7 +32,6 @@ describe('Theming', () => {
       });
 
       it('should display with passed down dark theme and overriden specific attribute', () => {
-
         const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkUsingContextWithOverride />);
         const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
         const firstDiv = appbarDivs[0];
@@ -47,11 +42,9 @@ describe('Theming', () => {
         expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
         expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
       });
-
     });
 
     describe('using MuiThemeProvider, AppBar', () => {
-
       it('should display with passed down dark theme', () => {
         const renderedAppbar = TestUtils.renderIntoDocument(<AppBarDarkTheme />);
         const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
@@ -71,12 +64,10 @@ describe('Theming', () => {
         expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
         expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
       });
-
     });
   });
 
   describe('When theme is updated through button click, AppBar', () => {
-
     it('should display with updated theme', () => {
       const renderedComponent = TestUtils.renderIntoDocument(<ButtonToUpdateThemeWithAppBar />);
       const componentDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'div');
