@@ -114,7 +114,6 @@ const ComponentInfo = React.createClass({
   },
 
   render() {
-
     const {
       prepareStyles,
     } = this.context.muiTheme;
@@ -124,7 +123,6 @@ const ComponentInfo = React.createClass({
 
     const styles = this.getStyles();
     this.props.infoArray.forEach(function(info, i) {
-
       if (info.type) typesSpan = <span style={prepareStyles(Object.assign({}, styles.type))}>{info.type}</span>;
 
       if (i === this.props.infoArray.length - 1) {

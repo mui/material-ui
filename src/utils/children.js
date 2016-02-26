@@ -25,10 +25,8 @@ export default {
   },
 
   extend(children, extendedProps, extendedChildren) {
-
     return React.isValidElement(children) ?
       React.Children.map(children, (child) => {
-
         const newProps = typeof (extendedProps) === 'function' ?
           extendedProps(child) : extendedProps;
 

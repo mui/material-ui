@@ -49,7 +49,6 @@ const ClockNumber = React.createClass({
   },
 
   render() {
-
     const {
       prepareStyles,
     } = this.state.muiTheme;

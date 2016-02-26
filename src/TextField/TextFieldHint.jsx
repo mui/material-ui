@@ -29,7 +29,6 @@ const defaultProps = {
 };
 
 const TextFieldHint = (props) => {
-
   const {
     muiTheme,
     show,

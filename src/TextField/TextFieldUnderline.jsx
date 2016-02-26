@@ -55,7 +55,6 @@ const defaultProps = {
 };
 
 const TextFieldUnderline = (props) => {
-
   const {
     disabled,
     disabledStyle,

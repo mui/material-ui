@@ -19,7 +19,6 @@ class NestedList extends React.Component {
   };
 
   render() {
-
     const {
       children,
       open,

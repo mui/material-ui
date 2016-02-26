@@ -5,7 +5,6 @@ import GridList from 'src/grid-list/grid-list';
 import GridTile from 'src/grid-list/grid-tile';
 
 describe('<GridList />', () => {
-
   const tilesData = [
     {
       img: 'images/grid-list/00-52-29-429_640.jpg',
@@ -117,5 +116,4 @@ describe('<GridList />', () => {
     assert.equal(wrapper.find(GridTile).length, 2, 'should contain the children');
     assert.equal(wrapper.prop('style').backgroundColor, style.backgroundColor, 'should have a red backgroundColor');
   });
-
 });

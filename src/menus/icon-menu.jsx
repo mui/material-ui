@@ -236,7 +236,6 @@ const IconMenu = React.createClass({
   },
 
   _handleItemTouchTap(event, child) {
-
     if (this.props.touchTapCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
       const isKeyboard = Events.isKeyboard(event);
       this.timerCloseId = setTimeout(() => {

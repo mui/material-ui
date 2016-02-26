@@ -186,7 +186,6 @@ const Calendar = React.createClass({
 
   _handleWindowKeyDown(event) {
     if (this.props.open) {
-
       switch (keycode(event)) {
         case 'up':
           if (event.altKey && event.shiftKey) {
@@ -232,7 +231,6 @@ const Calendar = React.createClass({
   },
 
   render() {
-
     const {
       prepareStyles,
     } = this.state.muiTheme;

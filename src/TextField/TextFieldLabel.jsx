@@ -50,7 +50,6 @@ const defaultProps = {
 };
 
 const TextFieldLabel = (props) => {
-
   const {
     muiTheme,
     className,

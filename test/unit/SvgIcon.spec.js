@@ -5,7 +5,6 @@ import {assert} from 'chai';
 import SvgIcon from 'src/svg-icon';
 
 describe('<SvgIcon />', () => {
-
   const path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
 
   it('renders children by default', () => {
@@ -105,5 +104,4 @@ describe('<SvgIcon />', () => {
     assert.equal(wrapper.get(0).props.style.backgroundColor, style.backgroundColor,
       'should have backgroundColor to red');
   });
-
 });

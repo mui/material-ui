@@ -271,7 +271,6 @@ const DialogInline = React.createClass({
   },
 
   _requestClose(buttonClicked) {
-
     if (!buttonClicked && this.props.modal) {
       return;
     }

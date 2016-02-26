@@ -34,7 +34,6 @@ const AppCanvas = React.createClass({
   },
 
   render() {
-
     const {
       baseTheme,
       prepareStyles,
