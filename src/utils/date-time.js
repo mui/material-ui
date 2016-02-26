@@ -134,11 +134,9 @@ export default {
     return weekdayFormatter.format(this.addDays(firstDayDate, day + firstDayOfWeek));
   },
 
+  // Convert date to ISO8601 (YYYY-MM-DD) date string, accounting for current timezone
   format(date) {
-    const m = date.getMonth() + 1;
-    const d = date.getDate();
-    const y = date.getFullYear();
-    return `${m}/${d}/${y}`;
+    return (new Date(`${date.toDateString()} 12:00:00 +0000`)).toISOString().substring(0, 10);
   },
 
   /**

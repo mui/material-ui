@@ -6,9 +6,10 @@
 - [RaisedButton] Fix:className now set to root element(#3122)
 - [LeftNav] Fix:className and `style` now set to root element(#3322)
 - [Colors] Removed default export in favor of singular exports (#2825) <br>
-**Note** This can be temoporary worked around by changing <br>
+**Note** This can be temporarily worked around by changing <br>
 `import Colors from 'material-ui/lib/styles/colors';` <br> to <br>
 `import * as Colors from 'material-ui/lib/styles/colors';`.
+- [DatePicker] Standardize for ISO8601. (#3417)
 
 ## 0.14.4
 ###### _Feb 02, 2016_
