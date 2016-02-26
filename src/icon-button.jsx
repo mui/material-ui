@@ -100,6 +100,11 @@ const IconButton = React.createClass({
     onMouseLeave: React.PropTypes.func,
 
     /**
+     * Callback function for when mouse goes out of element it works with disabled element.
+     */
+    onMouseOut: React.PropTypes.func,
+
+    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
@@ -192,6 +197,11 @@ const IconButton = React.createClass({
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   },
 
+  _handleMouseOut(event) {
+    if (this.props.disabled) this._hideTooltip();
+    if (this.props.onMouseOut) this.props.onMouseOut(event);
+  },
+
   _handleMouseEnter(event) {
     this._showTooltip();
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
@@ -269,6 +279,7 @@ const IconButton = React.createClass({
         onFocus={this._handleFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
+        onMouseOut={this._handleMouseOut}
         onKeyboardFocus={this._handleKeyboardFocus}
       >
         {tooltipElement}

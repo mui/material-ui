@@ -6,6 +6,7 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import popoverReadmeText from './README';
+import popoverNoteText from './NOTE';
 import popoverCode from '!raw!material-ui/lib/popover/popover';
 import PopoverExampleSimple from './ExampleSimple';
 import popoverExampleSimpleCode from '!raw!./ExampleSimple';
@@ -48,6 +49,7 @@ const PopoverPage = () => (
     >
       <PopoverExampleConfigurable />
     </CodeExample>
+    <MarkdownElement text={popoverNoteText} />
     <PropTypeDescription code={popoverCode} />
   </div>
 );

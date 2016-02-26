@@ -34,21 +34,25 @@ const FocusRipple = React.createClass({
 
   componentDidMount() {
     if (this.props.show) {
-      this._setRippleSize();
-      this._pulsate();
+      this.setRippleSize();
+      this.pulsate();
     }
   },
 
   componentDidUpdate() {
     if (this.props.show) {
-      this._setRippleSize();
-      this._pulsate();
+      this.setRippleSize();
+      this.pulsate();
     } else {
-      if (this._timeout) clearTimeout(this._timeout);
+      if (this.timeout) clearTimeout(this.timeout);
     }
   },
 
-  _getRippleElement(props) {
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  },
+
+  getRippleElement(props) {
     const {
       color,
       innerStyle,
@@ -72,9 +76,7 @@ const FocusRipple = React.createClass({
     return <div ref="innerCircle" style={prepareStyles(Object.assign({}, innerStyles))} />;
   },
 
-  _pulsate() {
-    if (!this.isMounted()) return;
-
+  pulsate() {
     const innerCircle = ReactDOM.findDOMNode(this.refs.innerCircle);
     if (!innerCircle) return;
 
@@ -84,10 +86,10 @@ const FocusRipple = React.createClass({
     const nextScale = currentScale === startScale ? endScale : startScale;
 
     autoPrefix.set(innerCircle.style, 'transform', nextScale, this.props.muiTheme);
-    this._timeout = setTimeout(this._pulsate, pulsateDuration);
+    this.timeout = setTimeout(this.pulsate, pulsateDuration);
   },
 
-  _setRippleSize() {
+  setRippleSize() {
     const el = ReactDOM.findDOMNode(this.refs.innerCircle);
     const height = el.offsetHeight;
     const width = el.offsetWidth;
@@ -116,7 +118,7 @@ const FocusRipple = React.createClass({
       left: 0,
     }, style);
 
-    const ripple = show ? this._getRippleElement(this.props) : null;
+    const ripple = show ? this.getRippleElement(this.props) : null;
 
     return (
       <ScaleInTransitionGroup

@@ -37,7 +37,7 @@ export default class ToolbarExamplesSimple extends React.Component {
           </DropDownMenu>
         </ToolbarGroup>
         <ToolbarGroup float="right">
-          <ToolbarTitle text="Options" />
+          <ToolbarTitle text="Options" style={{width: 90}} />
           <FontIcon className="muidocs-icon-custom-sort" />
           <IconMenu
             iconButtonElement={
