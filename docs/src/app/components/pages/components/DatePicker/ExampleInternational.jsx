@@ -21,8 +21,9 @@ const DatePickerExampleInternational = () => (
     <DatePicker
       hintText="fr locale"
       DateTimeFormat={DateTimeFormat}
+      okLabel="OK"
+      cancelLabel="Annuler"
       locale="fr"
-      wordings={{ok: 'OK', cancel: 'Annuler'}}
     />
     <DatePicker
       hintText="en-US locale"

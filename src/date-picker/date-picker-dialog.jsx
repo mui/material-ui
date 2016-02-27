@@ -13,6 +13,7 @@ const DatePickerDialog = React.createClass({
   propTypes: {
     DateTimeFormat: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
+    cancelLabel: React.PropTypes.string,
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
@@ -21,6 +22,7 @@ const DatePickerDialog = React.createClass({
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    okLabel: React.PropTypes.string,
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
@@ -46,10 +48,8 @@ const DatePickerDialog = React.createClass({
       DateTimeFormat: DateTime.DateTimeFormat,
       container: 'dialog',
       locale: 'en-US',
-      wordings: {
-        ok: 'OK',
-        cancel: 'Cancel',
-      },
+      okLabel: 'OK',
+      cancelLabel: 'Cancel',
     };
   },
 
@@ -117,13 +117,15 @@ const DatePickerDialog = React.createClass({
   render() {
     const {
       DateTimeFormat,
-      locale,
-      wordings,
+      cancelLabel,
+      container,
       initialDate,
+      firstDayOfWeek,
+      locale,
+      okLabel,
       onAccept,
       style,
-      container,
-      firstDayOfWeek,
+      wordings,
       ...other,
     } = this.props;
 
@@ -153,7 +155,7 @@ const DatePickerDialog = React.createClass({
     const actions = [
       <FlatButton
         key={0}
-        label={wordings.cancel}
+        label={wordings ? wordings.cancel : cancelLabel}
         secondary={true}
         style={styles.actions}
         onTouchTap={this._handleCancelTouchTap}
@@ -164,7 +166,7 @@ const DatePickerDialog = React.createClass({
       actions.push(
         <FlatButton
           key={1}
-          label={wordings.ok}
+          label={wordings ? wordings.ok : okLabel}
           secondary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
