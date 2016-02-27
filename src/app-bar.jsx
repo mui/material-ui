@@ -23,7 +23,6 @@ function getStyles(props, state) {
       zIndex: zIndex.appBar,
       width: '100%',
       display: 'flex',
-      minHeight: appBar.height,
       backgroundColor: appBar.color,
       paddingLeft: appBar.padding,
       paddingRight: appBar.padding,
@@ -38,6 +37,7 @@ function getStyles(props, state) {
       fontSize: 24,
       fontWeight: appBar.titleFontWeight,
       color: appBar.textColor,
+      height: appBar.height,
       lineHeight: `${appBar.height}px`,
     },
     mainElement: {
@@ -237,25 +237,15 @@ const AppBar = React.createClass({
 
     let menuElementLeft;
     let menuElementRight;
-    let titleElement;
 
-    if (title) {
-      // If the title is a string, wrap in an h1 tag.
-      // If not, just use it as a node.
-      titleElement = typeof title === 'string' || title instanceof String ?
-        <h1
-          onTouchTap={this.handleTitleTouchTap}
-          style={prepareStyles(Object.assign({}, styles.title, styles.mainElement, titleStyle))}
-        >
-          {title}
-        </h1> :
-        <div
-          onTouchTap={this.handleTitleTouchTap}
-          style={prepareStyles(Object.assign({}, styles.title, styles.mainElement, titleStyle))}
-        >
-          {title}
-        </div>;
-    }
+    // If the title is a string, wrap in an h1 tag.
+    // If not, wrap in a div tag.
+    const titleComponent = typeof title === 'string' || title instanceof String ? 'h1' : 'div';
+
+    const titleElement = React.createElement(titleComponent, {
+      onTouchTap: this.handleTitleTouchTap,
+      style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
+    }, title);
 
     if (showMenuIconButton) {
       let iconElementLeftNode = iconElementLeft;
