@@ -40,7 +40,7 @@ const AppLeftNav = React.createClass({
 
   componentDidMount: function() {
     const self = this;
-    const url = 'versions.json';
+    const url = '/versions.json';
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
@@ -69,7 +69,11 @@ const AppLeftNav = React.createClass({
   },
 
   handleVersionChange: function(event, index, value) {
-    window.location = value;
+    if (value === this.firstNonPreReleaseVersion()) {
+      window.location = '/';
+    } else {
+      window.location = `/${value}`;
+    }
   },
 
   handleRequestChangeLink(event, value) {
@@ -112,7 +116,7 @@ const AppLeftNav = React.createClass({
     if (window.location.pathname === '/') {
       currentVersion = this.firstNonPreReleaseVersion();
     } else {
-      currentVersion = window.location.pathname;
+      currentVersion = window.location.pathname.replace(/\//g, '');
     }
 
     return (
