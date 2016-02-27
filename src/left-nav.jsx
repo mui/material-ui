@@ -7,6 +7,7 @@ import Transitions from './styles/transitions';
 import Overlay from './overlay';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
+import PropTypes from './utils/prop-types';
 
 let openNavEventHandler = null;
 
@@ -89,9 +90,9 @@ const LeftNav = React.createClass({
     swipeAreaWidth: React.PropTypes.number,
 
     /**
-     * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
+     * The width of the `LeftNav`. Defaults to using the values from theme.
      */
-    width: React.PropTypes.number,
+    width: PropTypes.stringOrNumber,
   },
 
   contextTypes: {
