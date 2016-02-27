@@ -7,15 +7,17 @@ function getStyles(props, state) {
 
   return {
     root: {
-      height: 72,
       padding: 16,
       fontWeight: card.fontWeight,
       boxSizing: 'border-box',
       position: 'relative',
+      whiteSpace: 'nowrap',
     },
     text: {
       display: 'inline-block',
       verticalAlign: 'top',
+      whiteSpace: 'normal',
+      paddingRight: '90px',
     },
     avatar: {
       marginRight: 16,
