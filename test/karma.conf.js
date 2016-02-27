@@ -52,6 +52,10 @@ module.exports = function(config) {
               cacheDirectory: true,
             },
           },
+          {
+            test: /\.json$/,
+            loader: 'json',
+          },
         ],
         noParse: [
           /node_modules\/sinon\//,
@@ -61,11 +65,17 @@ module.exports = function(config) {
         alias: {
           sinon: 'sinon/pkg/sinon.js',
         },
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['', '.js', '.jsx', '.json'],
         modulesDirectories: [
           'node_modules',
           'src',
         ],
+      },
+      externals: {
+        'jsdom': 'window',
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': 'window',
+        'text-encoding': 'window',
       },
     },
     webpackServer: {

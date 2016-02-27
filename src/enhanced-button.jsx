@@ -55,6 +55,7 @@ const EnhancedButton = React.createClass({
     keyboardFocused: React.PropTypes.bool,
     linkButton: React.PropTypes.bool,
     onBlur: React.PropTypes.func,
+    onClick: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
     onKeyUp: React.PropTypes.func,
@@ -85,6 +86,7 @@ const EnhancedButton = React.createClass({
     return {
       containerElement: 'button',
       onBlur: () => {},
+      onClick: () => {},
       onFocus: () => {},
       onKeyboardFocus: () => {},
       onKeyDown: () => {},
@@ -241,6 +243,13 @@ const EnhancedButton = React.createClass({
     }
   },
 
+  _handleClick(event) {
+    if (!this.props.disabled) {
+      tabPressed = false;
+      this.props.onClick(event);
+    }
+  },
+
   _handleTouchTap(event) {
     this._cancelFocusTimeout();
     if (!this.props.disabled) {
@@ -265,6 +274,7 @@ const EnhancedButton = React.createClass({
       touchRippleColor,
       touchRippleOpacity,
       onBlur,
+      onClick,
       onFocus,
       onKeyUp,
       onKeyDown,
@@ -317,6 +327,7 @@ const EnhancedButton = React.createClass({
       style: prepareStyles(mergedStyles),
       disabled: disabled,
       onBlur: this._handleBlur,
+      onClick: this._handleClick,
       onFocus: this._handleFocus,
       onTouchTap: this._handleTouchTap,
       onKeyUp: this._handleKeyUp,
