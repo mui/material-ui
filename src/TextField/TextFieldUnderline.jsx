@@ -1,5 +1,6 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
+import {pure} from 'recompose';
 
 const propTypes = {
   /**
@@ -126,4 +127,4 @@ const TextFieldUnderline = (props) => {
 TextFieldUnderline.propTypes = propTypes;
 TextFieldUnderline.defaultProps = defaultProps;
 
-export default TextFieldUnderline;
+export default pure(TextFieldUnderline);
