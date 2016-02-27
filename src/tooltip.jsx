@@ -153,7 +153,7 @@ const Tooltip = React.createClass({
   },
 
   _setTooltipPosition() {
-    this.setState({offsetWidth: this.refs.tooltip.offsetWidth});
+    this.setState({offsetWidth: this.refs.tooltip && this.refs.tooltip.offsetWidth});
   },
 
   render() {
