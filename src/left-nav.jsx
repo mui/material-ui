@@ -7,6 +7,7 @@ import Transitions from './styles/transitions';
 import Overlay from './overlay';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
+import PropTypes from './utils/prop-types';
 
 let openNavEventHandler = null;
 
@@ -92,6 +93,12 @@ const LeftNav = React.createClass({
      * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
      */
     width: React.PropTypes.number,
+
+    /**
+     * This number represents the zDepth of the menu.
+     */
+    zDepth: PropTypes.zDepth,
+
   },
 
   contextTypes: {
@@ -110,6 +117,7 @@ const LeftNav = React.createClass({
       openRight: false,
       swipeAreaWidth: 30,
       width: null,
+      zDepth: 2,
     };
   },
 
@@ -371,6 +379,7 @@ const LeftNav = React.createClass({
       overlayClassName,
       overlayStyle,
       style,
+      zDepth,
     } = this.props;
 
     const styles = this.getStyles();
@@ -398,7 +407,7 @@ const LeftNav = React.createClass({
         {overlay}
         <Paper
           ref="clickAwayableElement"
-          zDepth={2}
+          zDepth={zDepth}
           rounded={false}
           transitionEnabled={!this.state.swiping}
           className={containerClassName}
