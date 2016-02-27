@@ -35,6 +35,11 @@ const DatePicker = React.createClass({
     defaultDate: React.PropTypes.object,
 
     /**
+     * The date from which the picker will start.
+     */
+    startDate:  React.PropTypes.object,
+
+    /**
      * Disables the year selection in the date picker.
      */
     disableYearSelection: React.PropTypes.bool,
@@ -163,7 +168,7 @@ const DatePicker = React.createClass({
   getInitialState() {
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
-      dialogDate: new Date(),
+      startDate: this.props.startDate || new Date(),
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -198,7 +203,7 @@ const DatePicker = React.createClass({
    */
   openDialog() {
     this.setState({
-      dialogDate: this.getDate(),
+      startDate: this.getDate() || this.state.startDate,
     }, this.refs.dialogWindow.show);
   },
 
@@ -301,7 +306,7 @@ const DatePicker = React.createClass({
           locale={locale}
           wordings={wordings}
           mode={mode}
-          initialDate={this.state.dialogDate}
+          initialDate={this.state.startDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
           onDismiss={onDismiss}
