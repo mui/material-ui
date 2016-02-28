@@ -58,6 +58,11 @@ const Tab = React.createClass({
     selected: React.PropTypes.bool,
 
     /**
+    * This property is overriden by the Tabs component
+    */
+    selectedTextColor: React.PropTypes.string,
+
+    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
@@ -116,10 +121,13 @@ const Tab = React.createClass({
       value,
       width,
       icon,
+      selectedTextColor,
       ...other,
     } = this.props;
 
     const styles = getStyles(this.props, this.state);
+
+    if (selected && selectedTextColor) styles.color = selectedTextColor;
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {

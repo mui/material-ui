@@ -64,6 +64,11 @@ const Tabs = React.createClass({
     onChange: React.PropTypes.func,
 
     /**
+     * Let customize the color of the text in the selected tab
+     */
+    selectedTextColor: React.PropTypes.string,
+
+    /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
@@ -194,6 +199,7 @@ const Tabs = React.createClass({
       contentContainerStyle,
       initialSelectedIndex,
       inkBarStyle,
+      selectedTextColor,
       style,
       tabItemContainerStyle,
       tabTemplate,
@@ -231,6 +237,7 @@ const Tabs = React.createClass({
       return React.cloneElement(tab, {
         key: index,
         selected: this._getSelected(tab, index),
+        selectedTextColor: selectedTextColor,
         tabIndex: index,
         width: `${width}%`,
         onTouchTap: this._handleTabTouchTap,
