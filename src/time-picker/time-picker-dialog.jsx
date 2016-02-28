@@ -10,8 +10,10 @@ const TimePickerDialog = React.createClass({
 
   propTypes: {
     autoOk: React.PropTypes.bool,
+    cancelLabel: React.PropTypes.string,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialTime: React.PropTypes.object,
+    okLabel: React.PropTypes.string,
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
@@ -23,6 +25,13 @@ const TimePickerDialog = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  getDefaultProps() {
+    return {
+      okLabel: 'OK',
+      cancelLabel: 'Cancel',
+    };
   },
 
   getInitialState() {
@@ -85,6 +94,8 @@ const TimePickerDialog = React.createClass({
       onAccept,
       format,
       autoOk,
+      okLabel,
+      cancelLabel,
       ...other,
     } = this.props;
 
@@ -104,13 +115,13 @@ const TimePickerDialog = React.createClass({
     const actions = [
       <FlatButton
         key={0}
-        label="Cancel"
+        label={cancelLabel}
         secondary={true}
         onTouchTap={this.dismiss}
       />,
       <FlatButton
         key={1}
-        label="OK"
+        label={okLabel}
         secondary={true}
         onTouchTap={this._handleOKTouchTap}
       />,
