@@ -45,6 +45,9 @@ function getStyles(props, state) {
   } else if (secondary) {
     backgroundColor = raisedButton.secondaryColor;
     labelColor = raisedButton.secondaryTextColor;
+  } else if (props.backgroundColor) {
+    backgroundColor = props.backgroundColor;
+    labelColor = props.labelColor || raisedButton.secondaryTextColor;
   }
 
   return {
