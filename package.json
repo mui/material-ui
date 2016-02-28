@@ -11,7 +11,7 @@
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "prebuild": "rimraf lib",
     "prepublish": "npm run build",
-    "test": "npm run test:unit:coverage && npm run test:browser && npm run coverage:combine",
+    "test": "npm run test:unit && npm run test:browser && npm run test:unit:coverage && npm run coverage:combine",
     "test:browser": "npm run test:browser:base -- --single-run",
     "test:browser:watch": "npm run test:browser:base -- --auto-watch",
     "test:browser:base": "karma start test/karma.conf.js",
