@@ -14,12 +14,13 @@ If you think you have found a _new_ issue that hasn't already been reported, ple
 -->
 
 Problem Description
-===================
+-------------------
 <!-- Please include steps to reproduce the problem, code sample, screenshots as appropriate. -->
 
 Versions
-========
+--------
 <!-- Versions affected. (Please test with Material-UI HEAD.) -->
+
 - Material-UI: 
 - React: 
 - Browser: 
