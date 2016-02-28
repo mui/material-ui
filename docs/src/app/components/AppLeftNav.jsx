@@ -70,9 +70,18 @@ const AppLeftNav = React.createClass({
 
   handleVersionChange: function(event, index, value) {
     if (value === this.firstNonPreReleaseVersion()) {
-      window.location = '/';
+      window.location = 'http://www.material-ui.com/';
     } else {
-      window.location = `/${value}`;
+      window.location = `http://www.material-ui.com/${value}`;
+    }
+  },
+
+  currentVersion: function() {
+    if (window.location.hostname === 'localhost') return this.state.muiVersions[0];
+    if (window.location.pathname === '/') {
+      return this.firstNonPreReleaseVersion();
+    } else {
+      return window.location.pathname.replace(/\//g, '');
     }
   },
 
@@ -112,13 +121,6 @@ const AppLeftNav = React.createClass({
       style,
     } = this.props;
 
-    let currentVersion;
-    if (window.location.pathname === '/') {
-      currentVersion = this.firstNonPreReleaseVersion();
-    } else {
-      currentVersion = window.location.pathname.replace(/\//g, '');
-    }
-
     return (
       <LeftNav
         style={style}
@@ -133,7 +135,7 @@ const AppLeftNav = React.createClass({
 
         <span style={this.styles.version}>Version:</span>
         <DropDownMenu
-          value={currentVersion}
+          value={this.currentVersion()}
           onChange={this.handleVersionChange}
           maxHeight={300}
           style={{width: 181}}
