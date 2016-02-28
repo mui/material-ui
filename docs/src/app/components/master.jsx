@@ -189,8 +189,7 @@ const Master = React.createClass({
                 onChangeMuiTheme: this.handleChangeMuiTheme,
               })}
             </div>
-          </div>
-          :
+          </div> :
           children
         }
         <AppLeftNav

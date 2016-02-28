@@ -301,11 +301,10 @@ const Popover = React.createClass({
   },
 
   autoCloseWhenOffScreen(anchorPosition) {
-    if (anchorPosition.top < 0
-        || anchorPosition.top > window.innerHeight
-        || anchorPosition.left < 0
-        || anchorPosition.left > window.innerWith
-        ) {
+    if (anchorPosition.top < 0 ||
+      anchorPosition.top > window.innerHeight ||
+      anchorPosition.left < 0 ||
+      anchorPosition.left > window.innerWith) {
       this.requestClose('offScreen');
     }
   },

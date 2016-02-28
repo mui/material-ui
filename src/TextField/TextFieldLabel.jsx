@@ -69,9 +69,9 @@ const TextFieldLabel = (props) => {
       transition: Transitions.easeOut(),
       zIndex: 1, // Needed to display label above Chrome's autocomplete field background
       cursor: disabled ? 'default' : 'text',
-      transform: shrink
-        ? 'perspective(1px) scale(0.75) translate3d(0, -28px, 0)'
-        : 'scale(1) translate3d(0, 0, 0)',
+      transform: shrink ?
+        'perspective(1px) scale(0.75) translate3d(0, -28px, 0)' :
+        'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
       pointerEvents: shrink ? 'none' : 'auto',
       userSelect: 'none',

@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-
 import {getMuiTheme} from '../styles';
 import Paper from '../paper';
 
@@ -119,8 +118,8 @@ const Stepper = React.createClass({
     const containerWrapperNode = this.refs.containerWrapper;
     const controlButtonsGroupNode = this.refs.controlButtonsGroup;
 
-    if (containerWrapperNode.style.height === '0px'
-      && nextProps.activeStepIndex > -1) {
+    if (containerWrapperNode.style.height === '0px' &&
+      nextProps.activeStepIndex > -1) {
       containerWrapperNode.style.height = `${(childrenWrapperNode.offsetHeight +
         controlButtonsGroupNode.offsetHeight + 40)}px`;
       childrenWrapperNode.style.transition = 'none';

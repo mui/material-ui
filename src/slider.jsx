@@ -146,8 +146,8 @@ const getStyles = (props, state) => {
   });
   styles.remaining = Object.assign({}, styles.filledAndRemaining, {
     right: 0,
-    backgroundColor: (state.hovered || state.focused)
-      && !props.disabled ? slider.trackColorSelected : slider.trackColor,
+    backgroundColor: (state.hovered || state.focused) &&
+      !props.disabled ? slider.trackColorSelected : slider.trackColor,
     marginLeft: fillGutter,
     width: `calc(${((1 - state.percent) * 100)}%${calcDisabledSpacing})`,
   });
@@ -588,8 +588,8 @@ const Slider = React.createClass({
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
-      (this.state.hovered || this.state.focused) && !disabled
-        && styles.handleWhenPercentZeroAndFocused,
+      (this.state.hovered || this.state.focused) && !disabled &&
+        styles.handleWhenPercentZeroAndFocused,
       disabled && styles.handleWhenPercentZeroAndDisabled
     ) : Object.assign(
       {},

@@ -23,9 +23,9 @@ import horizontalStepCode from '!raw!material-ui/lib/Stepper/HorizontalStep';
 
 const descriptions = {
   verticalLinearStepper: 'As for the vertical linear stepper, it requires steps be completed in specific order',
-  verticalLinearStepperWithOptionalStep: 'Set the `optional` property to `true` for optional steps.'
-   + 'Pass a custom label view through `stepLabel` property to show'
-   + ' the difference between optional step and normal step.',
+  verticalLinearStepperWithOptionalStep: 'Set the `optional` property to `true` for optional steps.' +
+    'Pass a custom label view through `stepLabel` property to show' +
+    ' the difference between optional step and normal step.',
   verticalNonLinearStepper: 'As for the vertical non linear stepper, steps can be completed in any order.',
   horizontalLinearStepper: 'As for the horizontal linear stepper, it is the same with vertical linear stepper.',
 };
