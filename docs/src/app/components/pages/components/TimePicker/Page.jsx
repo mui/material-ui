@@ -18,7 +18,7 @@ const descriptions = {
   simple: 'Time Picker supports 12 hour and 24 hour formats. In 12 hour format the AM and PM indicators toggle the ' +
   'selected time period.',
   controlled: '`TimePicker` can be used as a controlled component.',
-  localised: 'The buttons can be localised using the `wordings` property.',
+  localised: 'The buttons can be localised using the `cancelLabel` and `okLabel` properties.',
 };
 
 const TimePickersPage = () => (
