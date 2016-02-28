@@ -7,8 +7,8 @@ import FlatButtonLabel from './buttons/flat-button-label';
 import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label) {
-    return new Error(`Required prop label or children was not specified in ${componentName}.`);
+  if (!props.children && !props.label && !props.icon) {
+    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
   }
 }
 
@@ -253,9 +253,10 @@ const FlatButton = React.createClass({
       iconCloned = React.cloneElement(icon, {
         color: mergedRootStyles.color,
         style: {
+          lineHeight: `${buttonHeight}px`,
           verticalAlign: 'middle',
-          marginLeft: labelPosition === 'before' ? 0 : 12,
-          marginRight: labelPosition === 'before' ? 12 : 0,
+          marginLeft: label && labelPosition !== 'before' ? 12 : 0,
+          marginRight: label && labelPosition === 'before' ? 12 : 0,
         },
       });
 
