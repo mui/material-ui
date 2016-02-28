@@ -1,8 +1,8 @@
 import React from 'react';
+import keycode from 'keycode';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
 import getMuiTheme from './styles/getMuiTheme';
-import autoPrefix from './styles/auto-prefix';
 
 /**
   * Verifies min/max range.
@@ -303,14 +303,6 @@ const Slider = React.createClass({
   },
 
 
-  // Needed to prevent text selection when dragging the slider handler.
-  // In the future, we should consider use <input type="range"> to avoid
-  // similar issues.
-  _toggleSelection(value) {
-    const body = document.getElementsByTagName('body')[0];
-    autoPrefix.set(body.style, 'userSelect', value, this.state.muiTheme);
-  },
-
   _onHandleTouchStart(event) {
     if (document) {
       document.addEventListener('touchmove', this._dragTouchHandler, false);
@@ -319,15 +311,87 @@ const Slider = React.createClass({
       document.addEventListener('touchcancel', this._dragTouchEndHandler, false);
     }
     this._onDragStart(event);
+
+    // Cancel scroll and context menu
+    event.preventDefault();
   },
 
   _onHandleMouseDown(event) {
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
-      this._toggleSelection('none');
+
+      // Cancel text selection
+      event.preventDefault();
+
+      // Set focus manually since we called preventDefault()
+      this.refs.handle.focus();
     }
     this._onDragStart(event);
+  },
+
+  _onHandleKeyDown(event) {
+    const {min, max, step} = this.props;
+    let action;
+
+    switch (keycode(event)) {
+      case 'page down':
+      case 'left':
+      case 'down':
+        action = 'decrease';
+        break;
+      case 'page up':
+      case 'right':
+      case 'up':
+        action = 'increase';
+        break;
+      case 'home':
+        action = 'home';
+        break;
+      case 'end':
+        action = 'end';
+        break;
+    }
+
+    if (action) {
+      let newValue;
+      let newPercent;
+
+      // Cancel scroll
+      event.preventDefault();
+
+      // When pressing home or end the handle should be taken to the
+      // beginning or end of the track respectively
+      switch (action) {
+        case 'decrease':
+          newValue = Math.max(min, this.state.value - step);
+          newPercent = (newValue - min) / (max - min);
+          break;
+        case 'increase':
+          newValue = Math.min(max, this.state.value + step);
+          newPercent = (newValue - min) / (max - min);
+          break;
+        case 'home':
+          newValue = min;
+          newPercent = 0;
+          break;
+        case 'end':
+          newValue = max;
+          newPercent = 1;
+          break;
+      }
+
+      // We need to use toFixed() because of float point errors.
+      // For example, 0.01 + 0.06 = 0.06999999999999999
+      if (this.state.value !== newValue) {
+        this.setState({
+          percent: newPercent,
+          value: parseFloat(newValue.toFixed(5)),
+        }, () => {
+          if (this.props.onChange) this.props.onChange(event, this.state.value);
+        });
+      }
+    }
   },
 
   _dragHandler(event) {
@@ -356,7 +420,6 @@ const Slider = React.createClass({
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
-      this._toggleSelection('');
     }
 
     this._onDragStop(event);
@@ -411,6 +474,17 @@ const Slider = React.createClass({
     return parseFloat(alignValue.toFixed(5));
   },
 
+  handleTouchStart(event) {
+    if (!this.props.disabled && !this.state.dragging) {
+      const pos = event.touches[0].clientX - this._getTrackLeft();
+      this._dragX(event, pos);
+
+      // Since the touch event fired for the track and handle is child of
+      // track, we need to manually propagate the event to the handle.
+      this._onHandleTouchStart(event);
+    }
+  },
+
   handleFocus(event) {
     this.setState({focused: true});
     if (this.props.onFocus) this.props.onFocus(event);
@@ -422,7 +496,18 @@ const Slider = React.createClass({
   },
 
   handleMouseDown(event) {
-    if (!this.props.disabled) this._pos = event.clientX;
+    if (!this.props.disabled && !this.state.dragging) {
+      const pos = event.clientX - this._getTrackLeft();
+      this._dragX(event, pos);
+
+      // Since the click event fired for the track and handle is child of
+      // track, we need to manually propagate the event to the handle.
+      this._onHandleMouseDown(event);
+    }
+  },
+
+  handleMouseUp() {
+    if (!this.props.disabled) this.setState({active: false});
   },
 
   handleMouseEnter() {
@@ -435,16 +520,6 @@ const Slider = React.createClass({
 
   _getTrackLeft() {
     return this.refs.track.getBoundingClientRect().left;
-  },
-
-  handleMouseUp(event) {
-    if (!this.props.disabled) this.setState({active: false});
-    if (!this.state.dragging && Math.abs(this._pos - event.clientX) < 5) {
-      const pos = event.clientX - this._getTrackLeft();
-      this._dragX(event, pos);
-    }
-
-    this._pos = undefined;
   },
 
   _onDragStart(event) {
@@ -549,6 +624,7 @@ const Slider = React.createClass({
       handleDragProps = {
         onTouchStart: this._onHandleTouchStart,
         onMouseDown: this._onHandleMouseDown,
+        onKeyDown: this._onHandleKeyDown,
       };
     }
 
@@ -564,11 +640,17 @@ const Slider = React.createClass({
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           onMouseUp={this.handleMouseUp}
+          onTouchStart={this.handleTouchStart}
         >
           <div ref="track" style={prepareStyles(styles.track)}>
             <div style={prepareStyles(styles.filled)}></div>
             <div style={prepareStyles(styles.remaining)}></div>
-            <div style={prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+            <div
+              ref="handle"
+              style={prepareStyles(handleStyles)}
+              tabIndex={0}
+              {...handleDragProps}
+            >
               {focusRipple}
             </div>
           </div>
