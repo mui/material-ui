@@ -95,6 +95,7 @@ from the code with the 0.16.0 release.
 - [IconMenu] Enable `useLayerForClickAway` (#3400)
 - [IconMenu] Support MenuItem nested menuItems (#3265)
 - [InkBar] remove `&nbsp;` (#3283)
+- [LeftNav] Add a configurable zDepth (#3495)
 - [LeftNav] Add iOS momentum scroll (#2946)
 - [List] Fix issue with styling on list related components (#3278)
 - [ListItem] Fix hardcoded `secondaryTextColor` (#3288)
