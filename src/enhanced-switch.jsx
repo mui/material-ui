@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Transitions from './styles/transitions';
-import UniqueId from './utils/unique-id';
 import ClearFix from './clearfix';
 import FocusRipple from './ripples/focus-ripple';
 import TouchRipple from './ripples/touch-ripple';
@@ -137,6 +136,20 @@ const EnhancedSwitch = React.createClass({
     return {
       muiTheme: this.state.muiTheme,
     };
+  },
+
+  componentWillMount() {
+    const {
+      name,
+      label,
+      id,
+    } = this.props;
+
+    warning(name || label || id, `We don't have enough information to build a
+      robust unique id for the EnhancedSwitch component. Please provide an id or a name.`);
+
+    const uniqueId = `${name}-${label}-${Math.floor(Math.random() * 0xFFFF)}`;
+    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
   },
 
   componentDidMount() {
@@ -332,7 +345,7 @@ const EnhancedSwitch = React.createClass({
       wrapStyles.marginRight /= 2;
     }
 
-    const inputId = this.props.id || UniqueId.generate();
+    const inputId = this.props.id || this.uniqueId;
 
     const labelStyle = Object.assign(styles.label, this.props.labelStyle);
     const labelElement = this.props.label ? (

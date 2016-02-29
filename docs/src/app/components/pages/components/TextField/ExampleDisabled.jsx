@@ -9,6 +9,7 @@ const TextFieldExampleDisabled = () => (
     /><br />
     <TextField
       disabled={true}
+      id="text-field-disabled"
       defaultValue="Disabled Value"
     /><br />
     <TextField

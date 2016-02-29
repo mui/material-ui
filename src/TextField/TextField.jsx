@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import ColorManipulator from '../utils/color-manipulator';
 import Transitions from '../styles/transitions';
-import UniqueId from '../utils/unique-id';
 import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from '../enhanced-textarea';
 import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
+import warning from 'warning';
 
 const getStyles = (props, state) => {
   const {
@@ -186,6 +186,11 @@ const TextField = React.createClass({
     multiLine: React.PropTypes.bool,
 
     /**
+     * Name applied to the input.
+     */
+    name: React.PropTypes.string,
+
+    /**
      * Callback function that is fired when the textfield loses focus.
      */
     onBlur: React.PropTypes.func,
@@ -306,7 +311,18 @@ const TextField = React.createClass({
   },
 
   componentWillMount() {
-    this._uniqueId = UniqueId.generate();
+    const {
+      name,
+      hintText,
+      floatingLabelText,
+      id,
+    } = this.props;
+
+    warning(name || hintText || floatingLabelText || id, `We don't have enough information
+      to build a robust unique id for the TextField component. Please provide an id or a name.`);
+
+    const uniqueId = `${hintText}-${floatingLabelText}-${Math.floor(Math.random() * 0xFFFF)}`;
+    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -415,7 +431,7 @@ const TextField = React.createClass({
 
     const styles = getStyles(this.props, this.state);
 
-    const inputId = id || this._uniqueId;
+    const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
       <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>

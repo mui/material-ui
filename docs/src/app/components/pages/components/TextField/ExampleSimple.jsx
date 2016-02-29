@@ -11,6 +11,7 @@ const TextFieldExampleSimple = () => (
       hintText="The hint text can be as long as you want, it will wrap."
     /><br />
     <TextField
+      id="text-field-default"
       defaultValue="Default Value"
     /><br />
     <TextField
