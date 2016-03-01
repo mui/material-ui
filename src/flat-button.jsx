@@ -191,6 +191,7 @@ const FlatButton = React.createClass({
       label,
       labelStyle,
       labelPosition,
+      linkButton,
       primary,
       rippleColor,
       secondary,
@@ -257,6 +258,7 @@ const FlatButton = React.createClass({
           verticalAlign: 'middle',
           marginLeft: label && labelPosition !== 'before' ? 12 : 0,
           marginRight: label && labelPosition === 'before' ? 12 : 0,
+          display: label || !linkButton ? 'inline-block' : 'block',
         },
       });
 
