@@ -65,14 +65,30 @@ function generateDescription(required, description, type) {
   const jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
 
   if (parsed.tags.some((tag) => tag.title === 'ignore')) return null;
-
   let signature = '';
 
   if (type.name === 'func' && parsed.tags.length > 0) {
+    // Split up the parsed objects into arguments and the returns parsed object. If there's no
+    // returns parsed object (i.e., one with title being 'returns'), make one of type 'void'.
+    const parsedLength = parsed.tags.length;
+    let parsedArgs = [];
+    let parsedReturns;
+
+    if (parsed.tags[parsedLength - 1].title === 'returns') {
+      parsedArgs = parsed.tags.slice(0, parsedLength - 1);
+      parsedReturns = parsed.tags[parsedLength - 1];
+    } else {
+      parsedArgs = parsed.tags;
+      parsedReturns = {type: {name: 'void'}};
+    }
+
     signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsed.tags.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
-    signature += ') => void`<br>';
-    signature += parsed.tags.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
+    signature += parsedArgs.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
+    signature += `) => ${parsedReturns.type.name}` + '`<br>';
+    signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
+    if (parsedReturns.description) {
+      signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
+    }
   }
 
   return `${deprecated} ${jsDocText}${signature}`;
