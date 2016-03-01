@@ -17,8 +17,9 @@ function getStyles(props, state) {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       backgroundColor: toolbar.backgroundColor,
       height: toolbar.height,
-      width: '100%',
       padding: noGutter ? 0 : `0px ${baseTheme.spacing.desktopGutter}px`,
+      display: 'flex',
+      justifyContent: 'space-between',
     },
   };
 }
