@@ -374,6 +374,14 @@ const AutoComplete = React.createClass({
     }
   },
 
+  blur() {
+    this.refs.searchTextField.blur();
+  },
+
+  focus() {
+    this.refs.searchTextField.focus();
+  },
+
   render() {
     const {
       anchorOrigin,
