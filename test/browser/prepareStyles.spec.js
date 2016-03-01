@@ -1,6 +1,7 @@
 import getMuiTheme from 'styles/getMuiTheme';
 
 const MSIE9_USER_AGENT = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)';
+const MSIE10_USER_AGENT = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)';
 
 describe('prepareStyles', () => {
   describe('prefixer', () => {
@@ -17,7 +18,6 @@ describe('prepareStyles', () => {
         transform: 'rotate(90)',
         muiPrepared: true,
         WebkitTransform: 'rotate(90)',
-        MozTransform: 'rotate(90)',
         msTransform: 'rotate(90)',
       });
     });
@@ -48,6 +48,21 @@ describe('prepareStyles', () => {
 
       expect(stylePrepared).to.deep.equal({
         transform: 'rotate(90)',
+        muiPrepared: true,
+      });
+    });
+
+    it('should not delete ‘display’ property on IE10', () => {
+      const muiTheme = getMuiTheme({}, {
+        userAgent: MSIE10_USER_AGENT,
+      });
+
+      const stylePrepared = muiTheme.prepareStyles({
+        display: 'inline-block',
+      });
+
+      expect(stylePrepared).to.deep.equal({
+        display: 'inline-block',
         muiPrepared: true,
       });
     });
