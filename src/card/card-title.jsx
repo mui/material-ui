@@ -79,13 +79,19 @@ const CardTitle = React.createClass({
     const titleStyle = Object.assign({}, styles.title, this.props.titleStyle);
     const subtitleStyle = Object.assign({}, styles.subtitle, this.props.subtitleStyle);
 
+    const {
+      title,
+      subtitle,
+      ...other,
+    } = this.props;
+
     return (
-      <div {...this.props} style={prepareStyles(rootStyle)}>
+      <div {...other} style={prepareStyles(rootStyle)}>
         <span style={prepareStyles(titleStyle)}>
-          {this.props.title}
+          {title}
         </span>
         <span style={prepareStyles(subtitleStyle)}>
-          {this.props.subtitle}
+          {subtitle}
         </span>
         {this.props.children}
       </div>
