@@ -33,7 +33,9 @@ const Card = React.createClass({
     initiallyExpanded: React.PropTypes.bool,
 
     /**
-     * Fired when the expandable state changes.
+     * Callback function fired when the `expandable` state of the card has changed.
+     *
+     * @param {boolean} newExpandedState Represents the new `expanded` state of the card.
      */
     onExpandChange: React.PropTypes.func,
 
@@ -75,7 +77,7 @@ const Card = React.createClass({
   _onExpandable(event) {
     event.preventDefault();
     const newExpandedState = !this.state.expanded;
-    //no automatic state update when the composant is controlled
+    //no automatic state update when the component is controlled
     if (this.props.expanded === null) {
       this.setState({expanded: newExpandedState});
     }
