@@ -109,12 +109,18 @@ const CardHeader = React.createClass({
       avatar = <Avatar src={this.props.avatar} style={styles.avatar} />;
     }
 
+    const {
+      title,
+      subtitle,
+      ...other,
+    } = this.props;
+
     return (
-      <div {...this.props} style={prepareStyles(rootStyle)}>
+      <div {...other} style={prepareStyles(rootStyle)}>
         {avatar}
         <div style={prepareStyles(textStyle)}>
-          <span style={prepareStyles(titleStyle)}>{this.props.title}</span>
-          <span style={prepareStyles(subtitleStyle)}>{this.props.subtitle}</span>
+          <span style={prepareStyles(titleStyle)}>{title}</span>
+          <span style={prepareStyles(subtitleStyle)}>{subtitle}</span>
         </div>
         {this.props.children}
       </div>
