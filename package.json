@@ -89,6 +89,7 @@
     "isparta": "^4.0.0",
     "isparta-loader": "^2.0.0",
     "istanbul": "^0.4.2",
+    "json-loader": "^0.5.4",
     "karma": "^0.13.3",
     "karma-chai-sinon": "^0.1.5",
     "karma-coverage": "^0.5.3",
