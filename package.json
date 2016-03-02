@@ -98,6 +98,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
+    "nodemon": "^1.9.1",
     "phantomjs": "^1.9.17",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.7",
