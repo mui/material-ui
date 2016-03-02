@@ -2,7 +2,6 @@ import React from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Transitions from './styles/transitions';
-import ClearFix from './clearfix';
 import FocusRipple from './ripples/focus-ripple';
 import TouchRipple from './ripples/touch-ripple';
 import Paper from './paper';
@@ -37,6 +36,7 @@ function getStyles(props, state) {
       margin: 0,
     },
     controls: {
+      display: 'flex',
       width: '100%',
       height: '100%',
     },
@@ -287,6 +287,7 @@ const EnhancedSwitch = React.createClass({
       name,
       value,
       label,
+      labelPosition,
       onSwitch,
       defaultSwitched,
       onBlur,
@@ -394,20 +395,16 @@ const EnhancedSwitch = React.createClass({
       </div>
     );
 
-    const labelPositionExist = this.props.labelPosition;
-
-    // Position is left if not defined or invalid.
-    const elementsInOrder = (labelPositionExist &&
-      (this.props.labelPosition.toUpperCase() === 'RIGHT')) ? (
-      <ClearFix style={styles.controls}>
+    const elementsInOrder = labelPosition === 'right' ? (
+      <div style={styles.controls}>
         {switchElement}
         {labelElement}
-      </ClearFix>
+      </div>
     ) : (
-      <ClearFix style={styles.controls}>
+      <div style={styles.controls}>
         {labelElement}
         {switchElement}
-      </ClearFix>
+      </div>
     );
 
     return (
