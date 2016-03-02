@@ -294,6 +294,7 @@ const FlatButton = React.createClass({
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
+        linkButton={linkButton}
         onKeyboardFocus={this._handleKeyboardFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}
