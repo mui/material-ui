@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Transitions from './styles/transitions';
@@ -127,7 +126,6 @@ const EnhancedSwitch = React.createClass({
   getInitialState() {
     return {
       isKeyboardFocused: false,
-      parentWidth: 100,
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -139,12 +137,10 @@ const EnhancedSwitch = React.createClass({
   },
 
   componentDidMount() {
-    const inputNode = ReactDOM.findDOMNode(this.refs.checkbox);
+    const inputNode = this.refs.checkbox;
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
-
-    this._handleResize();
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -176,30 +172,22 @@ const EnhancedSwitch = React.createClass({
     this.setState(newState);
   },
 
-  getEvenWidth() {
-    return (
-      parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
-        .getPropertyValue('width'), 10)
-    );
-  },
-
   isSwitched() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).checked;
+    return this.refs.checkbox.checked;
   },
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
-      ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
+      this.refs.checkbox.checked = newSwitchedValue;
     } else {
       warning(false, 'Cannot call set method while checked is defined as a property.');
     }
   },
 
   getValue() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).value;
+    return this.refs.checkbox.value;
   },
 
   isKeyboardFocused() {
@@ -212,7 +200,7 @@ const EnhancedSwitch = React.createClass({
       isKeyboardFocused: false,
     });
 
-    const isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
+    const isInputChecked = this.refs.checkbox.checked;
 
     if (!this.props.hasOwnProperty('checked')) {
       this.props.onParentShouldUpdate(isInputChecked);
@@ -292,10 +280,6 @@ const EnhancedSwitch = React.createClass({
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-  },
-
-  _handleResize() {
-    this.setState({parentWidth: this.getEvenWidth()});
   },
 
   render() {
@@ -432,7 +416,6 @@ const EnhancedSwitch = React.createClass({
           elementName="window"
           onKeyDown={this._handleWindowKeydown}
           onKeyUp={this._handleWindowKeyup}
-          onResize={this._handleResize}
         />
         {inputElement}
         {elementsInOrder}
