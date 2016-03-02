@@ -142,7 +142,6 @@ const EnhancedSwitch = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
@@ -157,8 +156,6 @@ const EnhancedSwitch = React.createClass({
       newState.switched = nextProps.checked;
     } else if (hasToggledProp) {
       newState.switched = nextProps.toggled;
-    } else if (hasCheckedLinkProp) {
-      newState.switched = nextProps.checkedLink.value;
     } else if (hasNewDefaultProp) {
       newState.switched = nextProps.defaultSwitched;
     }
@@ -298,7 +295,6 @@ const EnhancedSwitch = React.createClass({
       disabled,
       disableTouchRipple,
       disableFocusRipple,
-      checkedLink,
       className,
       rippleStyle,
       style,
@@ -368,7 +364,7 @@ const EnhancedSwitch = React.createClass({
         disabled={disabled}
         onBlur={this._handleBlur}
         onFocus={this._handleFocus}
-        onChange={!checkedLink && this._handleChange}
+        onChange={this._handleChange}
         onMouseUp={showTouchRipple && this._handleMouseUp}
         onMouseDown={showTouchRipple && this._handleMouseDown}
         onMouseLeave={showTouchRipple && this._handleMouseLeave}
