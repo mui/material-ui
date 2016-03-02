@@ -1,3 +1,15 @@
+const argv = process.argv.slice(2);
+const opts = {
+  coverage: true,
+  grep: undefined,
+};
+
+argv.forEach((arg) => {
+  if (/^--grep=/.test(arg)) {
+    opts.grep = arg.replace('--grep=', '').trim();
+    opts.coverage = false; // disable if grepping
+  }
+});
 
 // Karma configuration
 module.exports = function(config) {
@@ -5,6 +17,11 @@ module.exports = function(config) {
     autoWatch: false,
     basePath: '../',
     browsers: ['PhantomJS'],
+    client: {
+      mocha: {
+        grep: opts.grep,
+      },
+    },
     colors: true,
     frameworks: ['mocha', 'chai-sinon'],
     files: [
@@ -22,27 +39,26 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-sourcemap-loader',
       'karma-webpack',
-      'karma-coverage',
       'karma-mocha-reporter',
-    ],
+    ].concat(opts.coverage ? ['karma-coverage'] : []),
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
     port: 9876,
     preprocessors: {
       'test/tests.webpack.js': ['webpack', 'sourcemap'],
     },
-    reporters: ['mocha', 'coverage'],
+    reporters: ['mocha'].concat(opts.coverage ? ['coverage'] : []),
     singleRun: false,
     webpack: {
       devtool: 'cheap-module-source-map',
       module: {
-        preLoaders: [
+        preLoaders: opts.coverage ? [
           {
             test: /\.(js|jsx)$/,
             loader: 'isparta',
             exclude: /(node_modules|test|svg-icons)/,
           },
-        ],
+        ] : [],
         loaders: [
           {
             test: /\.(js|jsx)$/,
@@ -71,7 +87,7 @@ module.exports = function(config) {
     webpackServer: {
       noInfo: true,
     },
-    coverageReporter: {
+    coverageReporter: opts.coverage ? {
       dir: 'test/coverage/browser',
       subdir: function(browser) {
         return browser.toLowerCase().split(/[ /-]/)[0];
@@ -84,6 +100,6 @@ module.exports = function(config) {
         {type: 'text-summary'},
         {type: 'html'},
       ],
-    },
+    } : {},
   });
 };
