@@ -321,7 +321,8 @@ const TextField = React.createClass({
     warning(name || hintText || floatingLabelText || id, `We don't have enough information
       to build a robust unique id for the TextField component. Please provide an id or a name.`);
 
-    const uniqueId = `${hintText}-${floatingLabelText}-${Math.floor(Math.random() * 0xFFFF)}`;
+    const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
+      Math.floor(Math.random() * 0xFFFF)}`;
     this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
   },
 
