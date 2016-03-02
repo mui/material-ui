@@ -6,39 +6,39 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 #### Breaking Changes
 
-- [x] Remove deprecated usage of JSON to generate children across the components.
-- [x] [[#3108](https://github.com/callemall/material-ui/pull/3108)] Remove deprecated components, methods & props.
-- [ ] [[#2957](https://github.com/callemall/material-ui/issues/2957)] Standardize callback signatures.
-- [x] [[#2980](https://github.com/callemall/material-ui/issues/2980)] [[#1839](https://github.com/callemall/material-ui/issues/1839)] Standardise Datepicker for ISO8601.
+- Remove deprecated usage of JSON to generate children across the components.
+- [[#3108](https://github.com/callemall/material-ui/pull/3108)] Remove deprecated components, methods & props.
+- [[#2957](https://github.com/callemall/material-ui/issues/2957)] Standardize callback signatures.
+- [[#2980](https://github.com/callemall/material-ui/issues/2980)] [[#1839](https://github.com/callemall/material-ui/issues/1839)] Standardise Datepicker for ISO8601.
 
 #### Deprecations
 
-- [ ] [[#2880](https://github.com/callemall/material-ui/issues/2880)] Deprecate valueLink.
-- [ ] [[#1793](https://github.com/callemall/material-ui/issues/1793)][[#2679](https://github.com/callemall/material-ui/issues/2679)] PascalCase component names and reorganise directory structure. Deprecate old names.
-- [ ] [[#2697](https://github.com/callemall/material-ui/issues/2697)] Rename LeftNav and deprecate old name.
+- [[#2880](https://github.com/callemall/material-ui/issues/2880)] Deprecate valueLink.
+- [[#1793](https://github.com/callemall/material-ui/issues/1793)][[#2679](https://github.com/callemall/material-ui/issues/2679)] PascalCase component names and reorganise directory structure. Deprecate old names.
+- [[#2697](https://github.com/callemall/material-ui/issues/2697)] Rename LeftNav and deprecate old name.
 
 #### Core
 
-- [ ] [[#2903](https://github.com/callemall/material-ui/issues/2903)] Enforce eslint rules.
-- [ ] [[#2493](https://github.com/callemall/material-ui/pull/2493)] Use higher order components across the library to abstract themes passed down from context.
-- [ ] [[#2852](https://github.com/callemall/material-ui/issues/2852)] Remove style-propable mixin from components.
-- [ ] [[#2627](https://github.com/callemall/material-ui/issues/2627)] Improve overall theme handling.
-- [ ] [[#2573](https://github.com/callemall/material-ui/issues/2573)] Remove the usage of isMounted().
-- [ ] [[#2555](https://github.com/callemall/material-ui/issues/2555)] [TextField] General improvements.
+- [[#2903](https://github.com/callemall/material-ui/issues/2903)] Enforce eslint rules.
+- [[#2493](https://github.com/callemall/material-ui/pull/2493)] Use higher order components across the library to abstract themes passed down from context.
+- [[#2852](https://github.com/callemall/material-ui/issues/2852)] Remove style-propable mixin from components.
+- [[#2627](https://github.com/callemall/material-ui/issues/2627)] Improve overall theme handling.
+- [[#2573](https://github.com/callemall/material-ui/issues/2573)] Remove the usage of isMounted().
+- [[#2555](https://github.com/callemall/material-ui/issues/2555)] [TextField] General improvements.
 
 #### Major features
 
-- [ ] [[1321](https://github.com/callemall/material-ui/pull/1321#issuecomment-174108805)] Composable AppBar component.
-- [ ] [[#2493](https://github.com/callemall/material-ui/pull/2493)] New Stepper component.
-- [ ] [[#3132](https://github.com/callemall/material-ui/pull/3132)] Scrollable Tabs.
-- [x] [[#3033](https://github.com/callemall/material-ui/pull/3132)] New Subheader component.
+- [[1321](https://github.com/callemall/material-ui/pull/1321#issuecomment-174108805)] Composable AppBar component.
+- [[#3132](https://github.com/callemall/material-ui/pull/3132)] New Stepper component.
+- [[#2861](https://github.com/callemall/material-ui/pull/2861)] Scrollable Tabs.
+- [[#2979](https://github.com/callemall/material-ui/pull/2979)] New Subheader component.
 
 #### Documentation
 
-- [x] [#1986](https://github.com/callemall/material-ui/issues/1986)]Documentation versioning.
-- [ ] Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
-- [x] [[#2635](https://github.com/callemall/material-ui/pull/2635)] Document the new theme calculation, and it's usage.
-- [ ] [[#3191](https://github.com/callemall/material-ui/issues/3191)] Improve component property documentation.
+- [#1986](https://github.com/callemall/material-ui/issues/1986)]Documentation versioning.
+- Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
+- [[#2635](https://github.com/callemall/material-ui/pull/2635)] Document the new theme calculation, and it's usage.
+- [[#3191](https://github.com/callemall/material-ui/issues/3191)] Improve component property documentation.
 
 ### Future
 
