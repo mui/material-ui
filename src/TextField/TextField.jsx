@@ -10,6 +10,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
+import TextCharCount from './TextCharCount';
 
 const getStyles = (props, state) => {
   const {
@@ -81,6 +82,10 @@ const getStyles = (props, state) => {
     styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
   }
 
+  if (state.charCountError) {
+    styles.floatingLabel.color = errorColor;
+  }
+
   if (props.floatingLabelText) {
     styles.input.boxSizing = 'border-box';
 
@@ -115,6 +120,16 @@ function isValid(value) {
 const TextField = React.createClass({
 
   propTypes: {
+    /**
+     * Maximum number of character in the Textfield
+     */
+    charCountMax: React.PropTypes.number,
+
+    /**
+     * The style object to use to override character count style.
+     */
+    charCountStyle: React.PropTypes.bool,
+
     children: React.PropTypes.node,
 
     /**
@@ -212,6 +227,10 @@ const TextField = React.createClass({
     onKeyDown: React.PropTypes.func,
 
     /**
+     * Callback function fired when key is up.
+     */
+
+    /**
      * Number of rows to display when multiLine option is set to true.
      */
     rows: React.PropTypes.number,
@@ -296,6 +315,8 @@ const TextField = React.createClass({
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
       muiTheme: this.context.muiTheme || getMuiTheme(),
+      currentCharCount: (this.props.defaultValue) ? this.props.defaultValue.length : 0,
+      charCountError: false,
     };
   },
 
@@ -370,6 +391,12 @@ const TextField = React.createClass({
     if (this.props.onKeyDown) this.props.onKeyDown(event);
   },
 
+  _handleInputKeyUp() {
+    this.setState({currentCharCount: this.getValue().length});
+    if (this.props.charCountMax >= this.getValue().length) this.setState({charCountError: false});
+    if (this.props.charCountMax < this.getValue().length) this.setState({charCountError: true});
+  },
+
   _handleTextAreaHeightChange(event, height) {
     let newHeight = height + 24;
     if (this.props.floatingLabelText) newHeight += 24;
@@ -384,6 +411,8 @@ const TextField = React.createClass({
   render() {
     const {
       className,
+      charCountStyle,
+      charCountMax,
       disabled,
       errorStyle,
       errorText,
@@ -441,6 +470,7 @@ const TextField = React.createClass({
       onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
       onKeyDown: this._handleInputKeyDown,
+      onKeyUp: this._handleInputKeyUp,
     };
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
@@ -467,6 +497,7 @@ const TextField = React.createClass({
           rowsMax={rowsMax}
           onHeightChange={this._handleTextAreaHeightChange}
           textareaStyle={Object.assign(styles.textarea, textareaStyle)}
+          onKeyUp={this._handleInputKeyUp}
         />
       ) : (
         <input
@@ -474,6 +505,7 @@ const TextField = React.createClass({
           {...inputProps}
           style={prepareStyles(inputStyleMerged)}
           type={type}
+          onKeyUp={this._handleInputKeyUp}
         />
       );
     }
@@ -495,12 +527,23 @@ const TextField = React.createClass({
           <TextFieldUnderline
             disabled={disabled}
             disabledStyle={underlineDisabledStyle}
-            error={!!this.state.errorText}
+            error={!!this.state.errorText || this.state.charCountError}
             errorStyle={errorStyle}
             focus={this.state.isFocused}
             focusStyle={underlineFocusStyle}
             muiTheme={this.state.muiTheme}
             style={underlineStyle}
+          /> :
+          null
+        }
+        {(charCountMax && this.state.isFocused) ?
+          <TextCharCount
+            muiTheme={this.state.muiTheme}
+            style={charCountStyle}
+            maxChar={charCountMax}
+            currentChar={this.state.currentCharCount}
+            countError={this.state.charCountError}
+            errorStyle={errorStyle}
           /> :
           null
         }
