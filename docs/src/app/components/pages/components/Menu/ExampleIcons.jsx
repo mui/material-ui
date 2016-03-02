@@ -1,4 +1,5 @@
 import React from 'react';
+import Paper from 'material-ui/lib/paper';
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import Divider from 'material-ui/lib/divider';
@@ -11,12 +12,10 @@ import PersonAdd from 'material-ui/lib/svg-icons/social/person-add';
 import RemoveRedEye from 'material-ui/lib/svg-icons/image/remove-red-eye';
 
 const style = {
-  menu: {
-    marginRight: 32,
-    marginBottom: 32,
+  paper: {
+    display: 'inline-block',
     float: 'left',
-    position: 'relative',
-    zIndex: 0,
+    margin: '16px 32px 16px 0',
   },
   rightIcon: {
     textAlign: 'center',
@@ -26,29 +25,33 @@ const style = {
 
 const MenuExampleIcons = () => (
   <div>
-    <Menu style={style.menu}>
-      <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
-      <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
-      <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
-      <Divider />
-      <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
-      <MenuItem primaryText="Download" leftIcon={<Download />} />
-      <Divider />
-      <MenuItem primaryText="Remove" leftIcon={<Delete />} />
-    </Menu>
-    <Menu style={style.menu} desktop={false}>
-      <MenuItem primaryText="Clear Config" />
-      <MenuItem primaryText="New Config" rightIcon={<PersonAdd />} />
-      <MenuItem primaryText="Project" rightIcon={<FontIcon className="material-icons">settings</FontIcon>} />
-      <MenuItem
-        primaryText="Workspace"
-        rightIcon={
-          <FontIcon className="material-icons" style={{color: '#559'}}>settings</FontIcon>
-        }
-      />
-      <MenuItem primaryText="Paragraph" rightIcon={<b style={style.rightIcon}>¶</b>} />
-      <MenuItem primaryText="Section" rightIcon={<b style={style.rightIcon}>§</b>} />
-    </Menu>
+    <Paper style={style.paper}>
+      <Menu>
+        <MenuItem primaryText="Preview" leftIcon={<RemoveRedEye />} />
+        <MenuItem primaryText="Share" leftIcon={<PersonAdd />} />
+        <MenuItem primaryText="Get links" leftIcon={<ContentLink />} />
+        <Divider />
+        <MenuItem primaryText="Make a copy" leftIcon={<ContentCopy />} />
+        <MenuItem primaryText="Download" leftIcon={<Download />} />
+        <Divider />
+        <MenuItem primaryText="Remove" leftIcon={<Delete />} />
+      </Menu>
+    </Paper>
+    <Paper style={style.paper}>
+      <Menu>
+        <MenuItem primaryText="Clear Config" />
+        <MenuItem primaryText="New Config" rightIcon={<PersonAdd />} />
+        <MenuItem primaryText="Project" rightIcon={<FontIcon className="material-icons">settings</FontIcon>} />
+        <MenuItem
+          primaryText="Workspace"
+          rightIcon={
+            <FontIcon className="material-icons" style={{color: '#559'}}>settings</FontIcon>
+          }
+        />
+        <MenuItem primaryText="Paragraph" rightIcon={<b style={style.rightIcon}>¶</b>} />
+        <MenuItem primaryText="Section" rightIcon={<b style={style.rightIcon}>§</b>} />
+      </Menu>
+    </Paper>
   </div>
 );
 

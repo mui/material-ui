@@ -1,29 +1,31 @@
 import React from 'react';
+import Paper from 'material-ui/lib/paper';
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
 const style = {
-  marginRight: 32,
-  marginBottom: 32,
-  float: 'left',
-  position: 'relative',
-  zIndex: 0,
+  display: 'inline-block',
+  margin: '16px 32px 16px 0',
 };
 
 const MenuExampleSimple = () => (
   <div>
-    <Menu style={style}>
-      <MenuItem primaryText="Maps" />
-      <MenuItem primaryText="Books" />
-      <MenuItem primaryText="Flights" />
-      <MenuItem primaryText="Apps" />
-    </Menu>
-    <Menu style={style}>
-      <MenuItem primaryText="Refresh" />
-      <MenuItem primaryText="Help &amp; feedback" />
-      <MenuItem primaryText="Settings" />
-      <MenuItem primaryText="Sign out" />
-    </Menu>
+    <Paper style={style}>
+      <Menu>
+        <MenuItem primaryText="Maps" />
+        <MenuItem primaryText="Books" />
+        <MenuItem primaryText="Flights" />
+        <MenuItem primaryText="Apps" />
+      </Menu>
+    </Paper>
+    <Paper style={style}>
+      <Menu>
+        <MenuItem primaryText="Refresh" />
+        <MenuItem primaryText="Help &amp; feedback" />
+        <MenuItem primaryText="Settings" />
+        <MenuItem primaryText="Sign out" />
+      </Menu>
+    </Paper>
   </div>
 );
 

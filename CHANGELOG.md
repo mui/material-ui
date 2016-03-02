@@ -2,6 +2,7 @@
 
 ##### Breaking Changes
 - [Styles] RaisedButton, FlatButton, and FloatingActionButton now properly use primary/secondary colors
+- [Menu] Remove Paper (#3559)
 
 ## 0.15.0-alpha.1
 ###### _Feb 27, 2016_
