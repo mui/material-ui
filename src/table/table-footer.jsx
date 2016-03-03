@@ -22,6 +22,7 @@ const TableFooter = React.createClass({
 
   propTypes: {
     /**
+     * @ignore
      * Controls whether or not header rows should be adjusted
      * for a checkbox column. If the select all checkbox is true,
      * this property will not influence the number of columns.

@@ -49,6 +49,7 @@ const TableHeaderColumn = React.createClass({
     key: React.PropTypes.string,
 
     /**
+     * @ignore
      * Callback function for click event.
      */
     onClick: React.PropTypes.func,

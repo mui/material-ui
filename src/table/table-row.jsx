@@ -60,6 +60,7 @@ const TableRow = React.createClass({
     hovered: React.PropTypes.bool,
 
     /**
+     * @ignore
      * Called when a row cell is clicked.
      * rowNumber is the row number and columnId is
      * the column number or the column key.
@@ -67,6 +68,7 @@ const TableRow = React.createClass({
     onCellClick: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table cell is hovered.
      * rowNumber is the row number of the hovered row
      * and columnId is the column number or the column key of the cell.
@@ -74,6 +76,7 @@ const TableRow = React.createClass({
     onCellHover: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table cell is no longer hovered.
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
@@ -81,17 +84,20 @@ const TableRow = React.createClass({
     onCellHoverExit: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when row is clicked.
      */
     onRowClick: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
     onRowHover: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table row is no longer hovered.
      * rowNumber is the row number of the row that is no longer hovered.
      */

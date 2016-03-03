@@ -52,11 +52,13 @@ const TableHeader = React.createClass({
     enableSelectAll: React.PropTypes.bool,
 
     /**
+     * @ignore
      * Callback when select all has been checked.
      */
     onSelectAll: React.PropTypes.func,
 
     /**
+     * @ignore
      * True when select all has been checked.
      */
     selectAllSelected: React.PropTypes.bool,

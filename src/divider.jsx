@@ -13,8 +13,8 @@ const propTypes = {
   inset: React.PropTypes.bool,
 
   /**
-   * The material-ui theme applied to this component.
    * @ignore
+   * The material-ui theme applied to this component.
    */
   muiTheme: React.PropTypes.object.isRequired,
 
