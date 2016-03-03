@@ -114,7 +114,7 @@ const TimePicker = React.createClass({
 
   getInitialState() {
     return {
-      time: this._isControlled() ? this._getControlledTime() : this.props.defaultTime,
+      time: this._getControlledTime(),
       dialogTime: new Date(),
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
@@ -125,7 +125,7 @@ const TimePicker = React.createClass({
     if (nextContext.muiTheme) {
       newState.muiTheme = nextContext.muiTheme;
     }
-    newState.time = this._getControlledTime(nextProps);
+    newState.time = this._getControlledTime(nextProps) || this.state.time;
     this.setState(newState);
   },
 
@@ -186,14 +186,10 @@ const TimePicker = React.createClass({
     if (this.props.onTouchTap) this.props.onTouchTap(event);
   },
 
-  _isControlled() {
-    return this.props.value !== null;
-  },
-
   _getControlledTime(props = this.props) {
     let result = null;
-    if (DateTime.isDateObject(props.value)) {
-      result = props.value;
+    if (DateTime.isDateObject(props.defaultTime)) {
+      result = props.defaultTime;
     }
     return result;
   },
