@@ -72,6 +72,11 @@ const DropDownMenu = React.createClass({
     onChange: React.PropTypes.func,
 
     /**
+     * Fired when the dropdown is closed
+     */
+    onRequestClose: React.PropTypes.func,
+
+    /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: React.PropTypes.bool,
@@ -80,7 +85,10 @@ const DropDownMenu = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-
+    /**
+     * Used for keyboard navigation
+     */
+    tabIndex: React.PropTypes.number,
     /**
      * Overrides the inline-styles of the underline.
      */
@@ -107,6 +115,7 @@ const DropDownMenu = React.createClass({
       disabled: false,
       openImmediately: false,
       maxHeight: 500,
+      tabIndex: 0,
     };
   },
 
@@ -203,20 +212,8 @@ const DropDownMenu = React.createClass({
    * need it in order to work. That will be addressed later.
    */
   getInputNode() {
-    const root = this.refs.root;
-
-    root.focus = () => {
-      if (!this.props.disabled) {
-        this.setState({
-          open: !this.state.open,
-          anchorEl: this.refs.root,
-        });
-      }
-    };
-
-    return root;
+    return this.refs.root;
   },
-
 
   _setWidth() {
     const el = this.refs.root;
@@ -235,19 +232,38 @@ const DropDownMenu = React.createClass({
     }
   },
 
+  handleKeyDown(event) {
+    switch (event.keyCode) {
+      case 13:
+      case 32:
+      case 40:
+        event.preventDefault();
+        if (!this.props.disabled) {
+          this.setState({
+            open: !this.state.open,
+            anchorEl: this.refs.root,
+          });
+        }
+    }
+  },
+
   _onMenuItemTouchTap(key, payload, event) {
     this.props.onChange(event, key, payload);
 
     this.setState({
       open: false,
-    });
+    }, this.handleRequestCloseMenu);
   },
 
   handleRequestCloseMenu() {
+    const {onRequestClose} = this.props;
+    const onRequestCloseCallback = (!onRequestClose ? null :
+     () => onRequestClose('menuClosed'));
+
     this.setState({
       open: false,
       anchorEl: null,
-    });
+    }, onRequestCloseCallback);
   },
 
   render() {
@@ -255,6 +271,7 @@ const DropDownMenu = React.createClass({
       autoWidth,
       children,
       className,
+      disabled,
       iconStyle,
       labelStyle,
       listStyle,
@@ -277,6 +294,7 @@ const DropDownMenu = React.createClass({
     } = muiTheme;
 
     const styles = this.getStyles();
+    const tabIndex = disabled ? -1 : this.props.tabIndex;
 
     let displayValue = '';
     React.Children.forEach(children, (child) => {
@@ -286,11 +304,11 @@ const DropDownMenu = React.createClass({
       }
     });
 
-    const menuItemElements = React.Children.map(children, (child, index) => {
+    const menuItemElements = (open ? React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
         onTouchTap: this._onMenuItemTouchTap.bind(this, index, child.props.value),
       });
-    });
+    }) : null);
 
     let popoverStyle;
     if (anchorEl && !autoWidth) {
@@ -302,6 +320,9 @@ const DropDownMenu = React.createClass({
         {...other}
         ref="root"
         className={className}
+        disabled={disabled}
+        onKeyDown={this.handleKeyDown}
+        tabIndex={tabIndex}
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
         <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>

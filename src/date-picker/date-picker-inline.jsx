@@ -29,7 +29,7 @@ class DatePickerInline extends React.Component {
 
   state = {
     anchorEl: null,
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open) {

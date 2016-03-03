@@ -167,6 +167,11 @@ const SelectField = React.createClass({
     });
   },
 
+  handleRequestClose() {
+    const el = this.refs.field._getInputNode();
+    el.focus();
+  },
+
   render() {
     const {
       autoWidth,
@@ -198,6 +203,7 @@ const SelectField = React.createClass({
     return (
       <TextField
         style={style}
+        ref="field"
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
         hintStyle={hintStyle}
@@ -219,6 +225,7 @@ const SelectField = React.createClass({
           underlineStyle={styles.hideDropDownUnderline}
           autoWidth={autoWidth}
           value={value}
+          onRequestClose={this.handleRequestClose}
           onChange={onChange}
           {...other}
         >
