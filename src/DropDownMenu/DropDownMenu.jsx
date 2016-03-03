@@ -7,6 +7,11 @@ import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 
+const anchorOrigin = {
+  vertical: 'top',
+  horizontal: 'left',
+};
+
 const DropDownMenu = React.createClass({
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly
@@ -309,7 +314,7 @@ const DropDownMenu = React.createClass({
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
         </ClearFix>
         <Popover
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={anchorOrigin}
           anchorEl={anchorEl}
           style={popoverStyle}
           animation={PopoverAnimationFromTop}
