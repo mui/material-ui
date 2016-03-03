@@ -75,7 +75,7 @@ const CardTitle = React.createClass({
         fontSize: 24,
         color: this.props.titleColor,
         display: 'block',
-        lineHeight: '36px',
+        lineHeight: '1em',
       },
       subtitle: {
         fontSize: 14,
