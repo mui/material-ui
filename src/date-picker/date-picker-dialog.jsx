@@ -156,7 +156,7 @@ const DatePickerDialog = React.createClass({
       <FlatButton
         key={0}
         label={wordings ? wordings.cancel : cancelLabel}
-        secondary={true}
+        primary={true}
         style={styles.actions}
         onTouchTap={this._handleCancelTouchTap}
       />,
@@ -167,7 +167,7 @@ const DatePickerDialog = React.createClass({
         <FlatButton
           key={1}
           label={wordings ? wordings.ok : okLabel}
-          secondary={true}
+          primary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
           onTouchTap={this._handleOKTouchTap}

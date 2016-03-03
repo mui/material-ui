@@ -23,12 +23,12 @@ export default class DialogExampleSimple extends React.Component {
     const actions = [
       <FlatButton
         label="Cancel"
-        secondary={true}
+        primary={true}
         onTouchTap={this.handleClose}
       />,
       <FlatButton
         label="Submit"
-        primary={true}
+        secondary={true}
         keyboardFocused={true}
         onTouchTap={this.handleClose}
       />,

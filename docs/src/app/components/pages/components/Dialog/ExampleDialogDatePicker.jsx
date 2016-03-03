@@ -24,7 +24,7 @@ export default class DialogExampleDialogDatePicker extends React.Component {
     const actions = [
       <FlatButton
         label="Ok"
-        primary={true}
+        secondary={true}
         keyboardFocused={true}
         onTouchTap={this.handleClose}
       />,
