@@ -183,10 +183,11 @@ const TableBody = React.createClass({
 
     return React.Children.map(this.props.children, (child) => {
       if (React.isValidElement(child)) {
+        const {selected} = child.props;
         const props = {
           displayRowCheckbox: this.props.displayRowCheckbox,
           hoverable: this.props.showRowHover,
-          selected: this._isRowSelected(rowNumber),
+          selected: selected !== undefined ? selected : this._isRowSelected(rowNumber),
           striped: this.props.stripedRows && (rowNumber % 2 === 0),
           rowNumber: rowNumber++,
         };
@@ -212,7 +213,6 @@ const TableBody = React.createClass({
     const key = `${rowProps.rowNumber}-cb`;
     const checkbox = (
       <Checkbox
-        ref="rowSelectCB"
         name={key}
         value="selected"
         disabled={!this.props.selectable}
