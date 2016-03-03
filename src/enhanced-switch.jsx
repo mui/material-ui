@@ -138,20 +138,6 @@ const EnhancedSwitch = React.createClass({
     };
   },
 
-  componentWillMount() {
-    const {
-      name,
-      label,
-      id,
-    } = this.props;
-
-    warning(name || label || id, `We don't have enough information to build a
-      robust unique id for the EnhancedSwitch component. Please provide an id or a name.`);
-
-    const uniqueId = `${name}-${label}-${Math.floor(Math.random() * 0xFFFF)}`;
-    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
-  },
-
   componentDidMount() {
     const inputNode = ReactDOM.findDOMNode(this.refs.checkbox);
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
@@ -345,11 +331,9 @@ const EnhancedSwitch = React.createClass({
       wrapStyles.marginRight /= 2;
     }
 
-    const inputId = this.props.id || this.uniqueId;
-
     const labelStyle = Object.assign(styles.label, this.props.labelStyle);
     const labelElement = this.props.label ? (
-      <label style={prepareStyles(labelStyle)} htmlFor={inputId}>
+      <label style={prepareStyles(labelStyle)}>
         {this.props.label}
       </label>
     ) : null;
