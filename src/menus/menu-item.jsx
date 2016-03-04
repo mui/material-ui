@@ -232,10 +232,16 @@ const MenuItem = React.createClass({
         paddingRight: sidePadding,
         paddingBottom: 0,
         paddingTop: 0,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignContent: 'space-between',
       },
 
       secondaryText: {
-        float: 'right',
+        order: 2,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
       },
 
       leftIconDesktop: {
