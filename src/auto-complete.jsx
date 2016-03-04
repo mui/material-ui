@@ -81,7 +81,11 @@ const AutoComplete = React.createClass({
     errorText: React.PropTypes.string,
 
     /**
-     * Function used to filter the auto complete.
+     * Callback function used to filter the auto complete.
+     *
+     * @param {string} searchText The text to search for within `dataSource`.
+     * @param {string} key `dataSource` element, or `text` property on that element if it's not a string.
+     * @returns {boolean} `true` indicates the auto complete list will include `key` when the input is `searchText`.
      */
     filter: React.PropTypes.func,
 
@@ -128,21 +132,33 @@ const AutoComplete = React.createClass({
 
     /**
      * Callback function that is fired when the `TextField` loses focus.
+     *
+     * @param {object} event `blur` event targeting the `TextField`.
      */
     onBlur: React.PropTypes.func,
 
     /**
      * Callback function that is fired when the `TextField` gains focus.
+     *
+     * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: React.PropTypes.func,
 
     /**
-     * Gets called when list item is clicked or pressed enter.
+     * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
+     *
+     * @param {string} chosenRequest Either the `TextField` input value, if enter is pressed in the `TextField`,
+     * or the text value of the corresponding list item that was selected.
+     * @param {number} index The index in `dataSource` of the list item selected, or `-1` if enter is pressed in the
+     * `TextField`.
      */
     onNewRequest: React.PropTypes.func,
 
     /**
-     * Gets called each time the user updates the text field.
+     * Callback function that is fired when the user updates the `TextField`.
+     *
+     * @param {string} searchText The auto-complete's `searchText` value.
+     * @param {array} dataSource The auto-complete's `dataSource` array.
      */
     onUpdateInput: React.PropTypes.func,
 
