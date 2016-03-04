@@ -1,12 +1,15 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
   const {
     datePicker,
-  } = state.muiTheme;
+  } = props.muiTheme;
+
+  const {
+    selectedYear,
+  } = state;
 
   const styles = {
     root: {
@@ -23,12 +26,12 @@ function getStyles(props, state) {
       fontWeight: '400',
       lineHeight: '36px',
       height: props.mode === 'landscape' ? 76 : 38,
-      opacity: state.selectedYear ? 0.7 : 1.0,
+      opacity: selectedYear ? 0.7 : 1,
       transition: Transitions.easeOut(),
       width: '100%',
     },
     monthDayTitle: {
-      cursor: !state.selectedYear ? 'default' : 'pointer',
+      cursor: !selectedYear ? 'default' : 'pointer',
     },
     year: {
       margin: 0,
@@ -36,12 +39,12 @@ function getStyles(props, state) {
       fontWeight: '400',
       lineHeight: '16px',
       height: 16,
-      opacity: state.selectedYear ? 1.0 : 0.7,
+      opacity: selectedYear ? 1 : 0.7,
       transition: Transitions.easeOut(),
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: (state.selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
+      cursor: (!selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
     },
   };
 
@@ -56,8 +59,18 @@ const DateDisplay = React.createClass({
     handleMonthDayClick: React.PropTypes.func,
     handleYearClick: React.PropTypes.func,
     locale: React.PropTypes.string.isRequired,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    mode: React.PropTypes.oneOf([
+      'portrait',
+      'landscape',
+    ]),
     monthDaySelected: React.PropTypes.bool,
+
+    /**
+     * @ignore
+     * The material-ui theme applied to this component.
+     */
+    muiTheme: React.PropTypes.object.isRequired,
+
     selectedDate: React.PropTypes.object.isRequired,
 
     /**
@@ -65,14 +78,6 @@ const DateDisplay = React.createClass({
      */
     style: React.PropTypes.object,
     weekCount: React.PropTypes.number,
-  },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -87,21 +92,10 @@ const DateDisplay = React.createClass({
     return {
       selectedYear: !this.props.monthDaySelected,
       transitionDirection: 'up',
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDate !== this.props.selectedDate) {
       const direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
       this.setState({
@@ -110,7 +104,9 @@ const DateDisplay = React.createClass({
     }
 
     if (nextProps.monthDaySelected !== undefined) {
-      this.setState({selectedYear: !nextProps.monthDaySelected});
+      this.setState({
+        selectedYear: !nextProps.monthDaySelected,
+      });
     }
   },
 
@@ -138,21 +134,20 @@ const DateDisplay = React.createClass({
       locale,
       selectedDate,
       style,
+      muiTheme: {
+        prepareStyles,
+      },
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const year = this.props.selectedDate.getFullYear();
+    const year = selectedDate.getFullYear();
     const styles = getStyles(this.props, this.state);
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
-    }).format(this.props.selectedDate);
+    }).format(selectedDate);
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
