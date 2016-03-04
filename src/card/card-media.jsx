@@ -41,13 +41,44 @@ function getStyles(props, state) {
 const CardMedia = React.createClass({
 
   propTypes: {
+    /**
+     * If true, a click on this card component expands the card.
+     */
     actAsExpander: React.PropTypes.bool,
+
+    /**
+     * Can be used to render elements inside the Card Media.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * If true, this card component is expandable.
+     */
     expandable: React.PropTypes.bool,
+
+    /**
+     * Override the inline-styles of the Card Media.
+     */
     mediaStyle: React.PropTypes.object,
+
+    /**
+     * Can be used to render overlay element in Card Media.
+     */
     overlay: React.PropTypes.node,
+
+    /**
+     * Override the inline-styles of the overlay container.
+     */
     overlayContainerStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the overlay content.
+     */
     overlayContentStyle: React.PropTypes.object,
+
+    /**
+     * Override the inline-styles of the overlay element.
+     */
     overlayStyle: React.PropTypes.object,
 
     /**

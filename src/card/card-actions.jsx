@@ -16,9 +16,24 @@ function getStyles() {
 const CardActions = React.createClass({
 
   propTypes: {
+    /**
+     * If true, a click on this card component expands the card.
+     */
     actAsExpander: React.PropTypes.bool,
+
+    /**
+     * Can be used to render elements inside the Card Action.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * If true, this card component is expandable.
+     */
     expandable: React.PropTypes.bool,
+
+    /**
+     * If true, this card component will include a button to expand the card.
+     */
     showExpandableButton: React.PropTypes.bool,
 
     /**

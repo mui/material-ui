@@ -26,20 +26,59 @@ function getStyles(props, state) {
 const CardTitle = React.createClass({
 
   propTypes: {
+    /**
+     * If true, a click on this card component expands the card.
+     */
     actAsExpander: React.PropTypes.bool,
+
+    /**
+     * Can be used to render elements inside the Card Title.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * If true, this card component is expandable.
+     */
     expandable: React.PropTypes.bool,
+
+    /**
+     * If true, this card component will include a button to expand the card.
+     */
     showExpandableButton: React.PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Can be used to render a subtitle in the Card Title.
+     */
     subtitle: React.PropTypes.node,
+
+    /**
+     * Override the subtitle color.
+     */
     subtitleColor: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the subtitle.
+     */
     subtitleStyle: React.PropTypes.object,
+
+    /**
+     * Can be used to render a title in the Card Title.
+     */
     title: React.PropTypes.node,
+
+    /**
+     * Override the title color.
+     */
     titleColor: React.PropTypes.string,
+
+    /**
+     * Override the inline-styles of the title.
+     */
     titleStyle: React.PropTypes.object,
   },
 
