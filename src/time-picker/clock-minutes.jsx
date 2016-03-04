@@ -180,7 +180,7 @@ const ClockMinutes = React.createClass({
     const minutes = this._getMinuteNumbers();
 
     return (
-      <div ref="clock" style={prepareStyles(styles.root)} >
+      <div ref="clock" style={prepareStyles(styles.root)}>
         <ClockPointer value={minutes.selected} type="minute" />
         {minutes.numbers}
         <div ref="mask" style={prepareStyles(styles.hitMask)} hasSelected={minutes.hasSelected}

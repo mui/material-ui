@@ -41,7 +41,7 @@ function getStyles(props, state) {
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: (state.selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
+      cursor: (!state.selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
     },
   };
 
