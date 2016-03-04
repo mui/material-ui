@@ -68,8 +68,15 @@ function generateDescription(required, description, type) {
   let signature = '';
 
   if (type.name === 'func' && parsed.tags.length > 0) {
-    // Split up the parsed objects into arguments and the returns parsed object. If there's no
-    // returns parsed object (i.e., one with title being 'returns'), make one of type 'void'.
+    // Remove new lines from tag descriptions to avoid markdown errors.
+    parsed.tags.forEach((tag) => {
+      if (tag.description) {
+        tag.description = tag.description.replace(/\n/g, ' ');
+      }
+    });
+
+    // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
+    // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
     const parsedLength = parsed.tags.length;
     let parsedArgs = [];
     let parsedReturns;
