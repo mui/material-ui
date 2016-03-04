@@ -25,6 +25,7 @@ import FloatingActionButton from './floating-action-button';
 import FontIcon from './font-icon';
 import GridList from './grid-list/grid-list';
 import GridTile from './grid-list/grid-tile';
+import HorizontalStep from './Stepper/HorizontalStep';
 import IconButton from './icon-button';
 import IconMenu from './menus/icon-menu';
 import LeftNav from './left-nav';
@@ -47,6 +48,7 @@ import SelectableContainerEnhance from './hoc/selectable-enhance';
 import Slider from './slider';
 import Subheader from './Subheader';
 import SvgIcon from './svg-icon';
+import Stepper from './Stepper/Stepper';
 import Styles from './styles';
 import Snackbar from './snackbar';
 import Tab from './tabs/tab';
@@ -67,6 +69,7 @@ import ToolbarSeparator from './toolbar/toolbar-separator';
 import ToolbarTitle from './toolbar/toolbar-title';
 import Tooltip from './tooltip';
 import Utils from './utils';
+import VerticalStep from './Stepper/VerticalStep';
 
 export {AppBar};
 export {AppCanvas};
@@ -95,6 +98,7 @@ export {FloatingActionButton};
 export {FontIcon};
 export {GridList};
 export {GridTile};
+export {HorizontalStep};
 export {IconButton};
 export {IconMenu};
 export {LeftNav};
@@ -117,6 +121,7 @@ export {SelectableContainerEnhance};
 export {Slider};
 export {Subheader};
 export {SvgIcon};
+export {Stepper};
 export {Styles};
 export {Snackbar};
 export {Tab};
@@ -137,6 +142,7 @@ export {ToolbarSeparator};
 export {ToolbarTitle};
 export {Tooltip};
 export {Utils};
+export {VerticalStep};
 
 import NavigationMenu from './svg-icons/navigation/menu';
 import NavigationChevronLeft from './svg-icons/navigation/chevron-left';
@@ -176,6 +182,7 @@ export default {
   FontIcon,
   GridList,
   GridTile,
+  HorizontalStep,
   IconButton,
   IconMenu,
   LeftNav,
@@ -197,6 +204,7 @@ export default {
   SelectableContainerEnhance,
   Slider,
   SvgIcon,
+  Stepper,
   Styles,
   Snackbar,
   Tab,
@@ -217,4 +225,5 @@ export default {
   ToolbarTitle,
   Tooltip,
   Utils,
+  VerticalStep,
 };
