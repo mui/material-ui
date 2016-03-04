@@ -90,12 +90,6 @@ const TimeDisplay = React.createClass({
 
     const styles = {
       root: {
-        position: 'relative',
-        width: 280,
-        height: '100%',
-      },
-
-      box: {
         padding: '14px 0',
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
@@ -165,28 +159,26 @@ const TimeDisplay = React.createClass({
 
     return (
       <div {...other} style={prepareStyles(styles.root)}>
-        <div style={prepareStyles(styles.box)}>
-          <div style={prepareStyles(styles.text)}>
-            <div style={prepareStyles(Object.assign({}, styles.affix))} />
-            <div style={prepareStyles(styles.time)}>
-              <span
-                style={prepareStyles(Object.assign({}, styles.clickable, mode === 'hour' ? {} : styles.inactive))}
-                onTouchTap={this.props.onSelectHour}
-              >
-                {hour}
-              </span>
-              <span>:</span>
-              <span
-                style={prepareStyles(Object.assign({},
-                  styles.clickable, mode === 'minute' ? {} : styles.inactive))}
-                onTouchTap={this.props.onSelectMin}
-              >
-                {min}
-              </span>
-            </div>
-            <div style={prepareStyles(Object.assign({}, styles.affix))}>
-              {buttons}
-            </div>
+        <div style={prepareStyles(styles.text)}>
+          <div style={prepareStyles(Object.assign({}, styles.affix))} />
+          <div style={prepareStyles(styles.time)}>
+            <span
+              style={prepareStyles(Object.assign({}, styles.clickable, mode === 'hour' ? {} : styles.inactive))}
+              onTouchTap={this.props.onSelectHour}
+            >
+              {hour}
+            </span>
+            <span>:</span>
+            <span
+              style={prepareStyles(Object.assign({},
+                styles.clickable, mode === 'minute' ? {} : styles.inactive))}
+              onTouchTap={this.props.onSelectMin}
+            >
+              {min}
+            </span>
+          </div>
+          <div style={prepareStyles(Object.assign({}, styles.affix))}>
+            {buttons}
           </div>
         </div>
       </div>
