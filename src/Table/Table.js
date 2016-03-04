@@ -245,6 +245,12 @@ class Table extends Component {
       const {muiName} = child.type;
       if (muiName === 'TableBody') {
         tBody = this.createTableBody(child);
+        let singleTBody = this.createTableBody(child);
+        if(tBody) {
+          tBody.push(singleTBody);
+        } else {
+          tBody = [singleTBody];
+        }
       } else if (muiName === 'TableHeader') {
         tHead = this.createTableHeader(child);
       } else if (muiName === 'TableFooter') {
