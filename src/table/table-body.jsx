@@ -136,7 +136,7 @@ const TableBody = React.createClass({
       multiSelectable: false,
       preScanRows: true,
       selectable: true,
-      clickAsSelect: true,
+      clickAsSelect: false,
       style: {},
     };
   },
@@ -225,7 +225,7 @@ const TableBody = React.createClass({
         value="selected"
         disabled={!this.props.selectable}
         checked={rowProps.selected}
-        onCheck={this._processCheckboxEvent(rowProps)}
+        onClick={this._processCheckboxEvent(rowProps)}
       />
     );
 
@@ -300,8 +300,6 @@ const TableBody = React.createClass({
     event.stopPropagation();
 
     if (this.props.clickAsSelect) {
-      // Prevent text selection while selecting rows.
-      window.getSelection().removeAllRanges();
       this._processRowSelection(event, rowNumber);
     }
   },
