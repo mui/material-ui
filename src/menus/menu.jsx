@@ -7,7 +7,6 @@ import Transitions from '../styles/transitions';
 import keycode from 'keycode';
 import PropTypes from '../utils/prop-types';
 import List from '../lists/list';
-import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 
@@ -491,6 +490,9 @@ const Menu = React.createClass({
         right: openLeft ? 0 : null,
         transform: animated ? 'scaleX(0)' : null,
         transformOrigin: openLeft ? 'right' : 'left',
+        opacity: 0,
+        maxHeight: maxHeight,
+        overflowY: maxHeight ? 'auto' : null,
       },
 
       divider: {
@@ -509,15 +511,6 @@ const Menu = React.createClass({
       menuItemContainer: {
         transition: animated ? Transitions.easeOut(null, 'opacity') : null,
         opacity: 0,
-      },
-
-      paper: {
-        transition: animated ? Transitions.easeOut('500ms', ['transform', 'opacity']) : null,
-        transform: animated ? 'scaleY(0)' : null,
-        transformOrigin: openDown ? 'top' : 'bottom',
-        opacity: 0,
-        maxHeight: maxHeight,
-        overflowY: maxHeight ? 'auto' : null,
       },
 
       selectedMenuItem: {
@@ -571,20 +564,14 @@ const Menu = React.createClass({
 
     return (
       <ClickAwayListener onClickAway={this.componentClickAway}>
-        <div onKeyDown={this._handleKeyDown} style={prepareStyles(mergedRootStyles)}>
-          <Paper
-            ref="scrollContainer"
-            style={styles.paper}
-            zDepth={zDepth}
+        <div onKeyDown={this._handleKeyDown} style={prepareStyles(mergedRootStyles)} ref="scrollContainer">
+          <List
+            {...other}
+            ref="list"
+            style={mergedListStyles}
           >
-            <List
-              {...other}
-              ref="list"
-              style={mergedListStyles}
-            >
-              {newChildren}
-            </List>
-          </Paper>
+            {newChildren}
+          </List>
         </div>
       </ClickAwayListener>
     );
