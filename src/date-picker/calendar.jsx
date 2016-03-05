@@ -307,6 +307,7 @@ const Calendar = React.createClass({
           handleYearClick={this._handleYearClick}
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
+          muiTheme={this.state.muiTheme}
           weekCount={weekCount}
         />
         {this.state.displayMonthDay &&
