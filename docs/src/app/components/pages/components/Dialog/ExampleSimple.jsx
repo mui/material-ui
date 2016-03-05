@@ -28,7 +28,7 @@ export default class DialogExampleSimple extends React.Component {
       />,
       <FlatButton
         label="Submit"
-        secondary={true}
+        primary={true}
         keyboardFocused={true}
         onTouchTap={this.handleClose}
       />,
