@@ -4,8 +4,8 @@ import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
 
 const optionsStyle = {
-  width: 300,
-  margin: '0 auto',
+  maxWidth: 255,
+  marginRight: 'auto',
 };
 
 export default class DatePickerExampleToggle extends React.Component {
