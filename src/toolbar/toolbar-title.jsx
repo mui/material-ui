@@ -12,7 +12,6 @@ function getStyles(props, state) {
       paddingRight: baseTheme.spacing.desktopGutterLess,
       lineHeight: `${toolbar.height}px`,
       fontSize: toolbar.titleFontSize,
-      display: 'inline-block',
       position: 'relative',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',

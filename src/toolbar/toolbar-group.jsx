@@ -4,7 +4,6 @@ import getMuiTheme from '../styles/getMuiTheme';
 function getStyles(props, state) {
   const {
     firstChild,
-    float,
     lastChild,
   } = props;
 
@@ -19,17 +18,18 @@ function getStyles(props, state) {
 
   const styles = {
     root: {
-      float,
       position: 'relative',
       marginLeft: firstChild ? -marginHorizontal : undefined,
       marginRight: lastChild ? -marginHorizontal : undefined,
+      display: 'flex',
+      justifyContent: 'space-between',
     },
     dropDownMenu: {
       root: {
-        float: 'left',
         color: toolbar.color, // removes hover color change, we want to keep it
-        display: 'inline-block',
         marginRight: baseTheme.spacing.desktopGutter,
+        flex: 1,
+        whiteSpace: 'nowrap',
       },
       controlBg: {
         backgroundColor: toolbar.menuHoverColor,
@@ -40,13 +40,11 @@ function getStyles(props, state) {
       },
     },
     button: {
-      float: 'left',
       margin: `${marginVertical}px ${marginHorizontal}px`,
       position: 'relative',
     },
     icon: {
       root: {
-        float: 'left',
         cursor: 'pointer',
         color: toolbar.iconColor,
         lineHeight: `${toolbar.height}px`,
@@ -57,7 +55,6 @@ function getStyles(props, state) {
       },
     },
     span: {
-      float: 'left',
       color: toolbar.iconColor,
       lineHeight: `${toolbar.height}px`,
     },
@@ -112,7 +109,6 @@ const ToolbarGroup = React.createClass({
   getDefaultProps() {
     return {
       firstChild: false,
-      float: 'left',
       lastChild: false,
     };
   },

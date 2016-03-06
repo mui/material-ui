@@ -25,7 +25,7 @@ export default class ToolbarExamplesSimple extends React.Component {
   render() {
     return (
       <Toolbar>
-        <ToolbarGroup firstChild={true} float="left">
+        <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange}>
             <MenuItem value={1} primaryText="All Broadcasts" />
             <MenuItem value={2} primaryText="All Voice" />
@@ -36,9 +36,11 @@ export default class ToolbarExamplesSimple extends React.Component {
             <MenuItem value={7} primaryText="Active Text" />
           </DropDownMenu>
         </ToolbarGroup>
-        <ToolbarGroup float="right">
-          <ToolbarTitle text="Options" style={{width: 90}} />
+        <ToolbarGroup>
+          <ToolbarTitle text="Options" />
           <FontIcon className="muidocs-icon-custom-sort" />
+          <ToolbarSeparator />
+          <RaisedButton label="Create Broadcast" primary={true} />
           <IconMenu
             iconButtonElement={
               <IconButton touch={true}>
@@ -49,8 +51,6 @@ export default class ToolbarExamplesSimple extends React.Component {
             <MenuItem primaryText="Download" />
             <MenuItem primaryText="More Info" />
           </IconMenu>
-          <ToolbarSeparator />
-          <RaisedButton label="Create Broadcast" primary={true} />
         </ToolbarGroup>
       </Toolbar>
     );
