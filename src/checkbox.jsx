@@ -103,6 +103,9 @@ const Checkbox = React.createClass({
 
     /**
      * Callback function that is fired when the checkbox is checked.
+     *
+     * @param {object} event `change` event targeting the underlying checkbox `input`.
+     * @param {boolean} isInputChecked The `checked` value of the underlying checkbox `input`.
      */
     onCheck: React.PropTypes.func,
 
