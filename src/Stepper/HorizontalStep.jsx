@@ -1,9 +1,6 @@
 import React from 'react';
-
 import TouchRipple from '../ripples/touch-ripple';
-
 import Avatar from '../avatar';
-
 import {getMuiTheme} from '../styles';
 
 const HorizontalStep = React.createClass({
@@ -111,11 +108,11 @@ const HorizontalStep = React.createClass({
 
     const customAvatarBackgroundColor = this.context.updateAvatarBackgroundColor(this);
     const avatarBackgroundColor = customAvatarBackgroundColor ||
-    ((isActive || isCompleted)
-      ? theme.activeAvatarColor
-      : isStepHeaderHovered
-      ? theme.hoveredAvatarColor
-      : theme.inactiveAvatarColor);
+    ((isActive || isCompleted) ?
+      theme.activeAvatarColor :
+      isStepHeaderHovered ?
+      theme.hoveredAvatarColor :
+      theme.inactiveAvatarColor);
 
     const stepHeaderWrapper = Object.assign({
       width: headerWidth,

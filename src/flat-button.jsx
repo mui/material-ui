@@ -279,8 +279,7 @@ const FlatButton = React.createClass({
         labelElement,
         iconCloned,
         children,
-      }
-      :
+      } :
       {
         children,
         iconCloned,

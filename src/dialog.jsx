@@ -119,9 +119,9 @@ function getStyles(props, state) {
       left: open ? 0 : -10000,
       width: '100%',
       height: '100%',
-      transition: open
-        ? Transitions.easeOut('0ms', 'left', '0ms')
-        : Transitions.easeOut('0ms', 'left', '450ms'),
+      transition: open ?
+        Transitions.easeOut('0ms', 'left', '0ms') :
+        Transitions.easeOut('0ms', 'left', '450ms'),
     },
     content: {
       boxSizing: 'border-box',
@@ -335,9 +335,9 @@ const DialogInline = React.createClass({
       </div>
     );
 
-    const titleElement = typeof title === 'string'
-        ? <h3 className={titleClassName} style={prepareStyles(styles.title)}>{title}</h3>
-        : title;
+    const titleElement = typeof title === 'string' ?
+      <h3 className={titleClassName} style={prepareStyles(styles.title)}>{title}</h3> :
+      title;
 
     return (
       <div className={className} style={prepareStyles(styles.root)}>

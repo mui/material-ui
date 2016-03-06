@@ -390,8 +390,7 @@ const RaisedButton = React.createClass({
         labelElement,
         iconCloned,
         children,
-      }
-      :
+      } :
       {
         children,
         iconCloned,

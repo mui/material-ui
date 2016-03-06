@@ -201,11 +201,11 @@ const Step = React.createClass({
     const customAvatarBackgroundColor = this.context.updateAvatarBackgroundColor(this);
 
     const avatarBackgroundColor = customAvatarBackgroundColor ||
-     ((isActive || isCompleted)
-      ? theme.activeAvatarColor
-      : isStepHeaderHovered
-      ? theme.hoveredAvatarColor
-      : theme.inactiveAvatarColor);
+     ((isActive || isCompleted) ?
+      theme.activeAvatarColor :
+      isStepHeaderHovered ?
+      theme.hoveredAvatarColor :
+      theme.inactiveAvatarColor);
 
     const stepHeaderWrapper = Object.assign({
       cursor: 'pointer',

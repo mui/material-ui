@@ -36,6 +36,7 @@ rules:
   no-unused-vars: 2
   no-shadow: 0 # Wishlist, one day
   no-spaced-func: 2
+  no-multiple-empty-lines: 2
   no-multi-spaces: 2
   no-undef: 2
   no-empty-pattern: 2
@@ -51,6 +52,7 @@ rules:
   no-var: 2
   object-curly-spacing: [2, never]
   one-var: [2, never]
+  operator-linebreak: [2, "after"]
   padded-blocks: [2, never]
   prefer-arrow-callback: 0 # Wishlist, one day
   prefer-const: 2

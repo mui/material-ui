@@ -169,9 +169,9 @@ const Checkbox = React.createClass({
   componentWillReceiveProps(nextProps, nextContext) {
     this.setState({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
-      switched: this.props.checked !== nextProps.checked
-        ? nextProps.checked
-        : this.state.switched,
+      switched: this.props.checked !== nextProps.checked ?
+        nextProps.checked :
+        this.state.switched,
     });
   },
 
