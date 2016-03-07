@@ -170,7 +170,7 @@ const SelectField = React.createClass({
 
   componentDidMount() {
     if (this.props.open) {
-      /* eslint-disable */
+      /* eslint react/no-did-mount-set-state: 0 */
       /* because we're using ref for popover anchorEl  */
       this.setState({open: true});
     }
