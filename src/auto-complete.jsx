@@ -521,6 +521,7 @@ const AutoComplete = React.createClass({
         />
         <Popover
           style={styles.popover}
+          canAutoPosition={false}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
           open={open}
