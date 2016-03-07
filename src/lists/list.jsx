@@ -1,10 +1,10 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from '../utils/prop-types';
-import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
 import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
+import warning from 'warning';
 
 const List = React.createClass({
 
@@ -39,7 +39,9 @@ const List = React.createClass({
       'Refer to the `subheader` property.'),
 
     /**
-     * The zDepth prop passed to the Paper element inside list.
+     * @ignore
+     * ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
+     * or another component that provides zDepth.
      */
     zDepth: PropTypes.zDepth,
   },
@@ -55,12 +57,6 @@ const List = React.createClass({
   mixins: [
     PureRenderMixin,
   ],
-
-  getDefaultProps() {
-    return {
-      zDepth: 0,
-    };
-  },
 
   getInitialState() {
     return {
@@ -91,6 +87,9 @@ const List = React.createClass({
       ...other,
     } = this.props;
 
+    warning((typeof zDepth === 'undefined'), 'List no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
+        'or another component that provides zDepth.');
+
     let hasSubheader = false;
 
     if (subheader) {
@@ -111,14 +110,13 @@ const List = React.createClass({
     };
 
     return (
-      <Paper
+      <div
         {...other}
         style={Object.assign(styles.root, style)}
-        zDepth={zDepth}
       >
         {subheader && <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader>}
         {children}
-      </Paper>
+      </div>
     );
   },
 });

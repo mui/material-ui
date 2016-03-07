@@ -15,6 +15,7 @@ import MUI from 'material-ui' // no changes here 😀
 
 - [Styles] RaisedButton, FlatButton, and FloatingActionButton now properly use primary/secondary colors
 - [Menu] Remove Paper (#3559)
+- [List] Remove Paper (#3612)
 
 ## 0.15.0-alpha.1
 ###### _Feb 27, 2016_
