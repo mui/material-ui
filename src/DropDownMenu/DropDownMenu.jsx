@@ -67,7 +67,11 @@ const DropDownMenu = React.createClass({
     menuStyle: React.PropTypes.object,
 
     /**
-     * Fired when a menu item is clicked that is not the one currently selected.
+     * Callback function fired when a menu item is clicked, other than the one currently selected.
+     *
+     * @param {object} event TouchTap event targeting the menu item that was clicked.
+     * @param {number} key The index of the clicked menu item in the `children` collection.
+     * @param {any} payload The `value` prop of the clicked menu item.
      */
     onChange: React.PropTypes.func,
 
