@@ -144,7 +144,7 @@ const Tab = React.createClass({
     return (
       <EnhancedButton
         {...other}
-        style={styles.root}
+        style={Object.assign(styles.root, style)}
         focusRippleColor={rippleColor}
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
