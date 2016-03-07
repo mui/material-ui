@@ -99,6 +99,42 @@ class RadioButtonGroup extends React.Component {
     }
   }
 
+
+  _radioButtonMapFunc(option) {
+    if (option.props.children === undefined) {
+      const {
+        name, // eslint-disable-line no-unused-vars
+        value, // eslint-disable-line no-unused-vars
+        label, // eslint-disable-line no-unused-vars
+        onCheck, // eslint-disable-line no-unused-vars
+        ...other,
+      } = option.props;
+      if (option.type.displayName === 'RadioButton') {
+        return (
+          <RadioButton
+            {...other}
+            ref={option.props.value}
+            name={this.props.name}
+            key={option.props.value}
+            value={option.props.value}
+            label={option.props.label}
+            labelPosition={this.props.labelPosition}
+            onCheck={this.handleChange}
+            checked={option.props.value === this.state.selected}
+          />
+        );
+      }
+    }
+
+    return {
+      ...option,
+      props: {
+        ...option.props,
+        children: React.Children.map(option.props.children, this._radioButtonMapFunc, this),
+      },
+    };
+  },
+
   handleChange = (event, newSelection) => {
     this.updateRadioButtons(newSelection);
 
@@ -124,27 +160,7 @@ class RadioButtonGroup extends React.Component {
     const {prepareStyles} = this.context.muiTheme;
 
     const options = React.Children.map(this.props.children, (option) => {
-      const {
-        name, // eslint-disable-line no-unused-vars
-        value, // eslint-disable-line no-unused-vars
-        label, // eslint-disable-line no-unused-vars
-        onCheck, // eslint-disable-line no-unused-vars
-        ...other,
-      } = option.props;
-
-      return (
-        <RadioButton
-          {...other}
-          ref={option.props.value}
-          name={this.props.name}
-          key={option.props.value}
-          value={option.props.value}
-          label={option.props.label}
-          labelPosition={this.props.labelPosition}
-          onCheck={this.handleChange}
-          checked={option.props.value === this.state.selected}
-        />
-      );
+      return this._radioButtonMapFunc(option);
     }, this);
 
     return (
