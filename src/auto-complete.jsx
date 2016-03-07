@@ -520,6 +520,7 @@ const AutoComplete = React.createClass({
           errorStyle={errorStyle}
         />
         <Popover
+          canAutoPosition={false}
           style={styles.popover}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
