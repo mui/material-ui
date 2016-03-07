@@ -203,7 +203,7 @@ const Master = React.createClass({
         <FullWidthSection style={styles.footer}>
           <p style={prepareStyles(styles.p)}>
             {'Hand crafted with love by the engineers at '}
-            <a style={styles.a} href="http://call-em-all.com">
+            <a style={styles.a} href="http://www.call-em-all.com/Careers">
               Call-Em-All
             </a>
             {' and our awesome '}
