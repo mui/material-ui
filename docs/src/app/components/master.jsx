@@ -94,7 +94,7 @@ const Master = React.createClass({
         margin: '0 auto',
         padding: 0,
         color: lightWhite,
-        maxWidth: 335,
+        maxWidth: 356,
       },
       iconButton: {
         color: darkWhite,
