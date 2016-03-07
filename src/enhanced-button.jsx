@@ -229,6 +229,7 @@ const EnhancedButton = React.createClass({
   },
 
   _handleFocus(event) {
+    if (event) event.persist();
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
