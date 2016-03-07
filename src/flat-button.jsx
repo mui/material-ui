@@ -1,19 +1,14 @@
 import React from 'react';
-import ContextPure from './mixins/context-pure';
 import Transitions from './styles/transitions';
 import Children from './utils/children';
 import ColorManipulator from './utils/color-manipulator';
-import {mergeStyles} from './utils/styles';
-import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import FlatButtonLabel from './buttons/flat-button-label';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label) {
-    return new Error('Required prop label or children was not ' +
-      'specified in ' + componentName + '.');
+  if (!props.children && !props.label && !props.icon) {
+    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
   }
 }
 
@@ -26,8 +21,13 @@ const FlatButton = React.createClass({
     backgroundColor: React.PropTypes.string,
 
     /**
-     * Elements passed into the button. For example, the font
-     * icon passed into the GitHub button.
+     * This is what will be displayed inside the button.
+     * If a label is specified, the text within the label prop will
+     * be displayed. Otherwise, the component will expect children
+     * which will then be displayed. (In our example,
+     * we are nesting an `<input type="file" />` and a `span`
+     * that acts as our label to be displayed.) This only
+     * applies to flat and raised buttons.
      */
     children: React.PropTypes.node,
 
@@ -40,6 +40,11 @@ const FlatButton = React.createClass({
      * Color of button when mouse hovers over.
      */
     hoverColor: React.PropTypes.string,
+
+    /**
+     * URL to link to when button clicked if `linkButton` is set to true.
+     */
+    href: React.PropTypes.string,
 
     /**
      * Use this property to display an icon.
@@ -63,6 +68,11 @@ const FlatButton = React.createClass({
      * Override the inline-styles of the button's label element.
      */
     labelStyle: React.PropTypes.object,
+
+    /**
+     * Enables use of `href` property to provide a URL to link to if set to true.
+     */
+    linkButton: React.PropTypes.bool,
 
     /**
      * Called when element is focused by the keyboard.
@@ -111,47 +121,15 @@ const FlatButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    ContextPure,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const buttonTheme = muiTheme.button;
-      const flatButtonTheme = muiTheme.flatButton;
-
-      return {
-        buttonColor: flatButtonTheme.color,
-        buttonFilterColor: flatButtonTheme.buttonFilterColor,
-        buttonHeight: buttonTheme.height,
-        buttonMinWidth: buttonTheme.minWidth,
-        disabledTextColor: flatButtonTheme.disabledTextColor,
-        primaryTextColor: flatButtonTheme.primaryTextColor,
-        secondaryTextColor: flatButtonTheme.secondaryTextColor,
-        textColor: flatButtonTheme.textColor,
-        textTransform: flatButtonTheme.textTransform ? flatButtonTheme.textTransform :
-                      (buttonTheme.textTransform ? buttonTheme.textTransform : 'uppercase'),
-      };
-    },
-    getChildrenClasses() {
-      return [
-        EnhancedButton,
-        FlatButtonLabel,
-      ];
-    },
   },
 
   getDefaultProps() {
     return {
       disabled: false,
       labelStyle: {},
-      // labelPosition Should be after but we keep it like for now (prevent breaking changes)
-      labelPosition: 'before',
+      labelPosition: 'after',
       onKeyboardFocus: () => {},
       onMouseEnter: () => {},
       onMouseLeave: () => {},
@@ -166,7 +144,7 @@ const FlatButton = React.createClass({
       hovered: false,
       isKeyboardFocused: false,
       touch: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -176,32 +154,31 @@ const FlatButton = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
-  _handleKeyboardFocus(e, isKeyboardFocused) {
+  _handleKeyboardFocus(event, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
-    this.props.onKeyboardFocus(e, isKeyboardFocused);
+    this.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
-    this.props.onMouseEnter(e);
+    this.props.onMouseEnter(event);
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     this.setState({hovered: false});
-    this.props.onMouseLeave(e);
+    this.props.onMouseLeave(event);
   },
 
-  _handleTouchStart(e) {
+  _handleTouchStart(event) {
     this.setState({touch: true});
-    this.props.onTouchStart(e);
+    this.props.onTouchStart(event);
   },
 
   render() {
@@ -214,6 +191,7 @@ const FlatButton = React.createClass({
       label,
       labelStyle,
       labelPosition,
+      linkButton,
       primary,
       rippleColor,
       secondary,
@@ -222,17 +200,23 @@ const FlatButton = React.createClass({
     } = this.props;
 
     const {
-      buttonColor,
-      buttonHeight,
-      buttonMinWidth,
-      disabledTextColor,
-      buttonFilterColor,
-      primaryTextColor,
-      secondaryTextColor,
-      textColor,
-      textTransform,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
-
+      button: {
+        height: buttonHeight,
+        minWidth: buttonMinWidth,
+        textTransform: buttonTextTransform,
+      },
+      flatButton: {
+        buttonFilterColor,
+        color: buttonColor,
+        disabledTextColor,
+        fontSize,
+        fontWeight,
+        primaryTextColor,
+        secondaryTextColor,
+        textColor,
+        textTransform = buttonTextTransform || 'uppercase',
+      },
+    } = this.state.muiTheme;
     const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
       secondary ? secondaryTextColor :
@@ -245,48 +229,48 @@ const FlatButton = React.createClass({
     const buttonBackgroundColor = backgroundColor || buttonColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
-    const mergedRootStyles = mergeStyles({
+    const mergedRootStyles = Object.assign({}, {
       color: defaultTextColor,
       transition: Transitions.easeOut(),
-      fontSize: Typography.fontStyleButtonFontSize,
+      fontSize: fontSize,
       letterSpacing: 0,
       textTransform: textTransform,
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: fontWeight,
       borderRadius: 2,
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
-      lineHeight: buttonHeight + 'px',
+      lineHeight: `${buttonHeight}px`,
       minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,
-      //This is need so that ripples do not bleed past border radius.
-      //See: http://stackoverflow.com/questions/17298739
-      transform: 'translate3d(0, 0, 0)',
     }, style);
 
     let iconCloned;
+    const labelStyleIcon = {};
 
     if (icon) {
       iconCloned = React.cloneElement(icon, {
         color: mergedRootStyles.color,
         style: {
+          lineHeight: `${buttonHeight}px`,
           verticalAlign: 'middle',
-          marginLeft: labelPosition === 'before' ? 0 : 12,
-          marginRight: labelPosition === 'before' ? 12 : 0,
+          marginLeft: label && labelPosition !== 'before' ? 12 : 0,
+          marginRight: label && labelPosition === 'before' ? 12 : 0,
+          display: label || !linkButton ? 'inline-block' : 'block',
         },
       });
 
       if (labelPosition === 'before') {
-        labelStyle.paddingRight = 8;
+        labelStyleIcon.paddingRight = 8;
       } else {
-        labelStyle.paddingLeft = 8;
+        labelStyleIcon.paddingLeft = 8;
       }
     }
 
     const labelElement = label ? (
-      <FlatButtonLabel label={label} style={labelStyle} />
+      <FlatButtonLabel label={label} style={Object.assign({}, labelStyleIcon, labelStyle)} />
     ) : undefined;
 
     // Place label before or after children.
@@ -295,8 +279,7 @@ const FlatButton = React.createClass({
         labelElement,
         iconCloned,
         children,
-      }
-      :
+      } :
       {
         children,
         iconCloned,
@@ -310,6 +293,7 @@ const FlatButton = React.createClass({
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
+        linkButton={linkButton}
         onKeyboardFocus={this._handleKeyboardFocus}
         onMouseLeave={this._handleMouseLeave}
         onMouseEnter={this._handleMouseEnter}

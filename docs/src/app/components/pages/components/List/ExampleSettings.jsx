@@ -3,13 +3,15 @@ import MobileTearSheet from '../../../MobileTearSheet';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Divider from 'material-ui/lib/divider';
+import Subheader from 'material-ui/lib/Subheader';
 import Checkbox from 'material-ui/lib/checkbox';
 import Toggle from 'material-ui/lib/toggle';
 
 const ListExampleSettings = () => (
   <div>
     <MobileTearSheet>
-      <List subheader="General">
+      <List>
+        <Subheader>General</Subheader>
         <ListItem
           primaryText="Profile photo"
           secondaryText="Change your Google+ profile photo"
@@ -20,7 +22,8 @@ const ListExampleSettings = () => (
         />
       </List>
       <Divider />
-      <List subheader="Hangout notifications">
+      <List>
+        <Subheader>Hangout Notifications</Subheader>
         <ListItem
           leftCheckbox={<Checkbox />}
           primaryText="Notifications"
@@ -46,13 +49,15 @@ const ListExampleSettings = () => (
         />
       </List>
       <Divider />
-      <List subheader="Priority interruptions">
+      <List>
+        <Subheader>Priority Interruptions</Subheader>
         <ListItem primaryText="Events and reminders" rightToggle={<Toggle />} />
         <ListItem primaryText="Calls" rightToggle={<Toggle />} />
         <ListItem primaryText="Messages" rightToggle={<Toggle />} />
       </List>
       <Divider />
-      <List subheader="Hangout notifications">
+      <List>
+        <Subheader>Hangout Notifications</Subheader>
         <ListItem primaryText="Notifications" leftCheckbox={<Checkbox />} />
         <ListItem primaryText="Sounds" leftCheckbox={<Checkbox />} />
         <ListItem primaryText="Video sounds" leftCheckbox={<Checkbox />} />

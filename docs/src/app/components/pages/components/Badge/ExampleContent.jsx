@@ -7,7 +7,7 @@ import FolderIcon from 'material-ui/lib/svg-icons/file/folder-open';
 const BadgeExampleContent = () => (
   <div>
     <Badge
-      badgeContent={<IconButton tooltip="Backup"><UploadIcon/></IconButton>}
+      badgeContent={<IconButton tooltip="Backup"><UploadIcon /></IconButton>}
     >
       <FolderIcon />
     </Badge>

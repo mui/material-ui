@@ -20,9 +20,9 @@ const TabsExampleSimple = () => (
   <Tabs>
     <Tab label="Item One" >
       <div>
-        <h2 style={styles.headline}>Tab One Template Example</h2>
+        <h2 style={styles.headline}>Tab One</h2>
         <p>
-          This is an example of a tab template!
+          This is an example tab.
         </p>
         <p>
           You can put any sort of HTML or react component in here. It even keeps the component state!
@@ -32,9 +32,9 @@ const TabsExampleSimple = () => (
     </Tab>
     <Tab label="Item Two" >
       <div>
-        <h2 style={styles.headline}>Tab Two Template Example</h2>
+        <h2 style={styles.headline}>Tab Two</h2>
         <p>
-          This is another example of a tab template!
+          This is another example tab.
         </p>
       </div>
     </Tab>
@@ -42,7 +42,14 @@ const TabsExampleSimple = () => (
       label="onActive"
       route="/home"
       onActive={handleActive}
-    />
+    >
+      <div>
+        <h2 style={styles.headline}>Tab Three</h2>
+        <p>
+          This is a third example tab.
+        </p>
+      </div>
+    </Tab>
   </Tabs>
 );
 

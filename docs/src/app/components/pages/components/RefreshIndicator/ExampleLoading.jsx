@@ -21,7 +21,7 @@ const RefreshIndicatorExampleLoading = () => (
       style={style.refresh}
     />
     <RefreshIndicator
-      size={40}
+      size={50}
       left={70}
       top={0}
       loadingColor={"#FF9800"}

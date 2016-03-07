@@ -1,8 +1,6 @@
 import React from 'react';
-import ThemeManager from '../styles/theme-manager';
-import StylePropable from '../mixins/style-propable';
+import getMuiTheme from '../styles/getMuiTheme';
 import ColorManipulator from '../utils/color-manipulator';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
 
 export const SelectableContainerEnhance = (Component) => {
   const composed = React.createClass({
@@ -26,13 +24,9 @@ export const SelectableContainerEnhance = (Component) => {
       muiTheme: React.PropTypes.object,
     },
 
-    mixins: [
-      StylePropable,
-    ],
-
     getInitialState() {
       return {
-        muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+        muiTheme: this.context.muiTheme || getMuiTheme(),
       };
     },
 
@@ -43,8 +37,9 @@ export const SelectableContainerEnhance = (Component) => {
     },
 
     componentWillReceiveProps(nextProps, nextContext) {
-      let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-      this.setState({muiTheme: newMuiTheme});
+      this.setState({
+        muiTheme: nextContext.muiTheme || this.state.muiTheme,
+      });
     },
 
     getValueLink: function(props) {
@@ -54,64 +49,79 @@ export const SelectableContainerEnhance = (Component) => {
       };
     },
 
-    _extendChild(child, styles, selectedItemStyle) {
+    extendChild(child, styles, selectedItemStyle) {
       if (child && child.type && child.type.displayName === 'ListItem') {
-        let selected = this._isChildSelected(child, this.props);
-        let selectedChildrenStyles = {};
+        const selected = this.isChildSelected(child, this.props);
+        let selectedChildrenStyles;
         if (selected) {
-          selectedChildrenStyles = this.mergeStyles(styles, selectedItemStyle);
+          selectedChildrenStyles = Object.assign({}, styles, selectedItemStyle);
         }
 
-        let mergedChildrenStyles = this.mergeStyles(child.props.style || {}, selectedChildrenStyles);
+        const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
 
-        this._keyIndex += 1;
+        this.keyIndex += 1;
 
         return React.cloneElement(child, {
-          onTouchTap: (e) => {
-            this._handleItemTouchTap(e, child);
+          onTouchTap: (event) => {
+            this.handleItemTouchTap(event, child);
             if (child.props.onTouchTap) {
-              child.props.onTouchTap(e);
+              child.props.onTouchTap(event);
             }
           },
-          key: this._keyIndex,
+          key: this.keyIndex,
           style: mergedChildrenStyles,
-          nestedItems: child.props.nestedItems.map((child) => this._extendChild(child, styles, selectedItemStyle)),
+          nestedItems: child.props.nestedItems.map((child) => this.extendChild(child, styles, selectedItemStyle)),
+          initiallyOpen: this.isInitiallyOpen(child),
         });
       } else {
         return child;
       }
     },
 
-    _isChildSelected(child, props) {
-      let itemValue = this.getValueLink(props).value;
-      let childValue = child.props.value;
-
-      return (itemValue && itemValue === childValue);
+    isInitiallyOpen(child) {
+      if (child.props.initiallyOpen) {
+        return child.props.initiallyOpen;
+      }
+      return this.hasSelectedDescendant(false, child);
     },
 
-    _handleItemTouchTap(e, item) {
-      let valueLink = this.getValueLink(this.props);
-      let itemValue = item.props.value;
-      let menuValue = valueLink.value;
+    hasSelectedDescendant(previousValue, child) {
+      if (React.isValidElement(child) && child.props.nestedItems && child.props.nestedItems.length > 0) {
+        return child.props.nestedItems.reduce(this.hasSelectedDescendant, previousValue);
+      }
+      return previousValue || this.isChildSelected(child, this.props);
+    },
+
+    isChildSelected(child, props) {
+      const itemValue = this.getValueLink(props).value;
+      const childValue = child.props.value;
+
+      return (itemValue === childValue);
+    },
+
+    handleItemTouchTap(event, item) {
+      const valueLink = this.getValueLink(this.props);
+      const itemValue = item.props.value;
+      const menuValue = valueLink.value;
       if ( itemValue !== menuValue) {
-        valueLink.requestChange(e, itemValue);
+        valueLink.requestChange(event, itemValue);
       }
     },
 
     render() {
       const {children, selectedItemStyle} = this.props;
-      this._keyIndex = 0;
+      this.keyIndex = 0;
       let styles = {};
 
       if (!selectedItemStyle) {
-        let textColor = this.state.muiTheme.rawTheme.palette.textColor;
-        let selectedColor = ColorManipulator.fade(textColor, 0.2);
+        const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+        const selectedColor = ColorManipulator.fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,
         };
       }
 
-      let newChildren = React.Children.map(children, (child) => this._extendChild(child, styles, selectedItemStyle));
+      const newChildren = React.Children.map(children, (child) => this.extendChild(child, styles, selectedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>

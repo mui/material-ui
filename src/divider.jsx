@@ -1,17 +1,22 @@
 import React from 'react';
 import muiThemeable from './muiThemeable';
-import {mergeStyles, prepareStyles} from './utils/styles';
 
 const propTypes = {
   /**
-   * CSS class that will be added to the divider's root element
+   * The css class name of the root element.
    */
   className: React.PropTypes.string,
 
   /**
-   * If true, the divider will be indented 72px
+   * If true, the `Divider` will be indented `72px`.
    */
   inset: React.PropTypes.bool,
+
+  /**
+   * The material-ui theme applied to this component.
+   * @ignore
+   */
+  muiTheme: React.PropTypes.object.isRequired,
 
   /**
    * Override the inline-styles of the root element.
@@ -23,7 +28,18 @@ const defaultProps = {
   inset: false,
 };
 
-let Divider = ({inset, muiTheme, style, ...other}) => {
+let Divider = (props) => {
+  const {
+    inset,
+    muiTheme,
+    style,
+    ...other,
+  } = props;
+
+  const {
+    prepareStyles,
+  } = muiTheme;
+
   const styles = {
     root: {
       margin: 0,
@@ -36,13 +52,14 @@ let Divider = ({inset, muiTheme, style, ...other}) => {
   };
 
   return (
-    <hr {...other} style={prepareStyles(muiTheme, mergeStyles(styles.root, style))} />
+    <hr {...other} style={prepareStyles(Object.assign({}, styles.root, style))} />
   );
 };
 
-Divider.displayName = 'Divider';
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-Divider = muiThemeable(Divider);
+
+Divider = muiThemeable()(Divider);
+Divider.displayName = 'Divider';
 
 export default Divider;

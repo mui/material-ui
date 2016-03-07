@@ -1,9 +1,39 @@
 import React from 'react';
-import Styles from '../styles';
 import Avatar from '../avatar';
-import StylePropable from '../mixins/style-propable';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {card} = state.muiTheme;
+
+  return {
+    root: {
+      padding: 16,
+      fontWeight: card.fontWeight,
+      boxSizing: 'border-box',
+      position: 'relative',
+      whiteSpace: 'nowrap',
+    },
+    text: {
+      display: 'inline-block',
+      verticalAlign: 'top',
+      whiteSpace: 'normal',
+      paddingRight: '90px',
+    },
+    avatar: {
+      marginRight: 16,
+    },
+    title: {
+      color: props.titleColor || card.titleColor,
+      display: 'block',
+      fontSize: 15,
+    },
+    subtitle: {
+      color: props.subtitleColor || card.subtitleColor,
+      display: 'block',
+      fontSize: 14,
+    },
+  };
+}
 
 const CardHeader = React.createClass({
 
@@ -31,26 +61,19 @@ const CardHeader = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
-      titleColor: Styles.Colors.darkBlack,
-      subtitleColor: Styles.Colors.lightBlack,
       avatar: null,
     };
   },
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -60,63 +83,44 @@ const CardHeader = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getStyles() {
-    return {
-      root: {
-        height: 72,
-        padding: 16,
-        fontWeight: Styles.Typography.fontWeightMedium,
-        boxSizing: 'border-box',
-        position: 'relative',
-      },
-      text: {
-        display: 'inline-block',
-        verticalAlign: 'top',
-      },
-      avatar: {
-        marginRight: 16,
-      },
-      title: {
-        color: this.props.titleColor,
-        display: 'block',
-        fontSize: 15,
-      },
-      subtitle: {
-        color: this.props.subtitleColor,
-        display: 'block',
-        fontSize: 14,
-      },
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
-    let styles = this.getStyles();
-    let rootStyle = this.mergeStyles(styles.root, this.props.style);
-    let textStyle = this.mergeStyles(styles.text, this.props.textStyle);
-    let titleStyle = this.mergeStyles(styles.title, this.props.titleStyle);
-    let subtitleStyle = this.mergeStyles(styles.subtitle, this.props.subtitleStyle);
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+    const rootStyle = Object.assign(styles.root, this.props.style);
+    const textStyle = Object.assign(styles.text, this.props.textStyle);
+    const titleStyle = Object.assign(styles.title, this.props.titleStyle);
+    const subtitleStyle = Object.assign(styles.subtitle, this.props.subtitleStyle);
 
     let avatar = this.props.avatar;
     if (React.isValidElement(this.props.avatar)) {
-      let avatarMergedStyle = this.mergeStyles(styles.avatar, avatar.props.style);
-      avatar = React.cloneElement(avatar, {style: avatarMergedStyle});
+      avatar = React.cloneElement(avatar, {
+        style: Object.assign(styles.avatar, avatar.props.style),
+      });
     } else if (avatar !== null) {
-      avatar = <Avatar src={this.props.avatar} style={styles.avatar}/>;
+      avatar = <Avatar src={this.props.avatar} style={styles.avatar} />;
     }
 
+    const {
+      title,
+      subtitle,
+      ...other,
+    } = this.props;
+
     return (
-      <div {...this.props} style={this.prepareStyles(rootStyle)}>
+      <div {...other} style={prepareStyles(rootStyle)}>
         {avatar}
-        <div style={this.prepareStyles(textStyle)}>
-          <span style={this.prepareStyles(titleStyle)}>{this.props.title}</span>
-          <span style={this.prepareStyles(subtitleStyle)}>{this.props.subtitle}</span>
+        <div style={prepareStyles(textStyle)}>
+          <span style={prepareStyles(titleStyle)}>{title}</span>
+          <span style={prepareStyles(subtitleStyle)}>{subtitle}</span>
         </div>
         {this.props.children}
       </div>

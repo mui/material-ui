@@ -1,7 +1,28 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    noGutter,
+  } = props;
+
+  const {
+    baseTheme,
+    toolbar,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      boxSizing: 'border-box',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      backgroundColor: toolbar.backgroundColor,
+      height: toolbar.height,
+      padding: noGutter ? 0 : `0px ${baseTheme.spacing.desktopGutter}px`,
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+  };
+}
 
 const Toolbar = React.createClass({
 
@@ -30,12 +51,10 @@ const Toolbar = React.createClass({
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
-  //for passing default theme context to children
+
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -45,7 +64,7 @@ const Toolbar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -55,32 +74,10 @@ const Toolbar = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.toolbar;
-  },
-
-  getSpacing() {
-    return this.state.muiTheme.rawTheme.spacing;
-  },
-
-  getStyles() {
-    return {
-      root: {
-        boxSizing: 'border-box',
-        WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-        backgroundColor: this.getTheme().backgroundColor,
-        height: this.getTheme().height,
-        width: '100%',
-        padding: this.props.noGutter ? 0 : '0px ' + this.getSpacing().desktopGutter + 'px',
-      },
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
@@ -91,15 +88,18 @@ const Toolbar = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <div {...other} className={className} style={this.prepareStyles(styles.root, style)}>
+      <div {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
         {children}
       </div>
     );
   },
-
 });
 
 export default Toolbar;

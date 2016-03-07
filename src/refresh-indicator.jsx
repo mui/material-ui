@@ -1,19 +1,35 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
-import AutoPrefix from './styles/auto-prefix';
+import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import Paper from './paper';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const VIEWBOX_SIZE = 32;
+
+function getStyles(props) {
+  const padding = props.size * 0.1; // same implementation of `this._getPaddingSize()`
+  return {
+    root: {
+      position: 'absolute',
+      zIndex: 2,
+      width: props.size,
+      height: props.size,
+      padding: padding,
+      top: -10000,
+      left: -10000,
+      transform: `translate3d(${10000 + props.left}px, ${10000 + props.top}px, 0)`,
+      opacity: props.status === 'hide' ? 0 : 1,
+      transition: props.status === 'hide' ? Transitions.create('all', '.3s', 'ease-out') : 'none',
+    },
+  };
+}
+
 const RefreshIndicator = React.createClass({
 
   propTypes: {
     /**
      * Override the theme's color of the indicator while it's status is
-     * "ready" or it's percentage is less than 100.
+     * "ready" and it's percentage is less than 100.
      */
     color: React.PropTypes.string,
 
@@ -24,7 +40,7 @@ const RefreshIndicator = React.createClass({
 
     /**
      * Override the theme's color of the indicator while
-     * it's status is "loading" or it's percentage is 100.
+     * it's status is "loading" or when it's percentage is 100.
      */
     loadingColor: React.PropTypes.string,
 
@@ -53,7 +69,7 @@ const RefreshIndicator = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * The absolute right position of the indicator in pixels.
+     * The absolute top position of the indicator in pixels.
      */
     top: React.PropTypes.number.isRequired,
   },
@@ -62,14 +78,9 @@ const RefreshIndicator = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -81,7 +92,7 @@ const RefreshIndicator = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -95,16 +106,15 @@ const RefreshIndicator = React.createClass({
     this.componentDidUpdate();
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   componentDidUpdate() {
-    this._scalePath(ReactDOM.findDOMNode(this.refs.path), 0);
-    this._rotateWrapper(ReactDOM.findDOMNode(this.refs.wrapper));
+    this._scalePath(this.refs.path, 0);
+    this._rotateWrapper(this.refs.wrapper);
   },
 
   componentWillUnmount() {
@@ -118,12 +128,16 @@ const RefreshIndicator = React.createClass({
   rotateWrapperSecondTimer: undefined,
 
   _renderChildren() {
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     const paperSize = this._getPaperSize();
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
       const circleStyle = this._getCircleStyle(paperSize);
       childrenCmp = (
-        <div ref="wrapper" style={this.prepareStyles({
+        <div ref="wrapper" style={prepareStyles({
           transition: Transitions.create('transform', '20s', null, 'linear'),
           width: '100%',
           height: '100%',
@@ -136,9 +150,9 @@ const RefreshIndicator = React.createClass({
             viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
           >
             <circle ref="path"
-              style={this.prepareStyles(circleStyle.style, {
+              style={prepareStyles(Object.assign(circleStyle.style, {
                 transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
-              })}
+              }))}
               {...circleStyle.attr}
             />
           </svg>
@@ -155,12 +169,12 @@ const RefreshIndicator = React.createClass({
           viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         >
           <circle
-            style={this.prepareStyles(circleStyle.style)}
+            style={prepareStyles(circleStyle.style)}
             {...circleStyle.attr}
           >
           </circle>
           <polygon
-            style={this.prepareStyles(polygonStyle.style)}
+            style={prepareStyles(polygonStyle.style)}
             {...polygonStyle.attr}
           />
         </svg>
@@ -207,22 +221,6 @@ const RefreshIndicator = React.createClass({
     return p1;
   },
 
-  _getRootStyle() {
-    const padding = this._getPaddingSize();
-    return {
-      position: 'absolute',
-      zIndex: 2,
-      width: this.props.size,
-      height: this.props.size,
-      padding: padding,
-      top: -10000,
-      left: -10000,
-      transform: `translate3d(${10000 + this.props.left}px, ${10000 + this.props.top}px, 0)`,
-      opacity: this.props.status === 'hide' ? 0 : 1,
-      transition: this.props.status === 'hide' ? Transitions.create('all', '.3s', 'ease-out') : 'none',
-    };
-  },
-
   _getCircleStyle() {
     const isLoading = this.props.status === 'loading';
     const p1 = isLoading ? 1 : this._getFactor();
@@ -236,7 +234,7 @@ const RefreshIndicator = React.createClass({
     const theme = this._getTheme();
     return {
       style: {
-        strokeDasharray: arcLen + ', ' + (perimeter - arcLen),
+        strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
         strokeDashoffset: dashOffset,
         stroke: (isLoading || this.props.percentage === 100) ?
           (this.props.loadingColor || theme.loadingStrokeColor) :
@@ -261,8 +259,8 @@ const RefreshIndicator = React.createClass({
     const triangleCx = circle.originX + circle.radiu;
     const triangleCy = circle.originY;
     const dx = (circle.strokeWidth * 7 / 4) * p1;
-    const trianglePath = (triangleCx - dx) + ',' + triangleCy + ' ' + (triangleCx + dx) + ',' +
-      triangleCy + ' ' + triangleCx + ',' + (triangleCy + dx);
+    const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
+      triangleCy} ${triangleCx},${(triangleCy + dx)}`;
 
     const [, endDeg] = this._getArcDeg();
 
@@ -300,18 +298,18 @@ const RefreshIndicator = React.createClass({
       strokeDashoffset = 0;
       transitionDuration = '0ms';
     } else if (currStep === 1) {
-      strokeDasharray = arcLen + ', 200';
+      strokeDasharray = `${arcLen}, 200`;
       strokeDashoffset = -15;
       transitionDuration = '750ms';
     } else {
-      strokeDasharray = arcLen + ',200';
+      strokeDasharray = `${arcLen}, 200`;
       strokeDashoffset = -(perimeter - 1);
       transitionDuration = '850ms';
     }
 
-    AutoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
-    AutoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
-    AutoPrefix.set(path.style, 'transitionDuration', transitionDuration);
+    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray, this.state.muiTheme);
+    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset, this.state.muiTheme);
+    autoPrefix.set(path.style, 'transitionDuration', transitionDuration, this.state.muiTheme);
 
     this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
@@ -319,29 +317,30 @@ const RefreshIndicator = React.createClass({
   _rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
 
-    AutoPrefix.set(wrapper.style, 'transform', null);
-    AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
+    autoPrefix.set(wrapper.style, 'transform', null, this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
 
     this.rotateWrapperSecondTimer = setTimeout(() => {
-      AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
   },
 
-  prefixed(key) {
-    return AutoPrefix.single(key);
-  },
-
   render() {
-    const rootStyle = this._getRootStyle();
+    const {
+      style,
+    } = this.props;
+
+    const styles = getStyles(this.props, this.state);
+
     return (
       <Paper
         circle={true}
-        style={this.mergeStyles(rootStyle, this.props.style)}
+        style={Object.assign(styles.root, style)}
         ref="indicatorCt"
       >
         {this._renderChildren()}

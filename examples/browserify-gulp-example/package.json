@@ -1,6 +1,6 @@
 {
   "name": "material-ui-example-browserify",
-  "version": "0.14.2",
+  "version": "0.15.0-alpha.1",
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "browser-sync": "^2.11.0",
-    "browserify": "^12.0.1",
+    "browserify": "^13.0.0",
     "gulp": "^3.8.10",
     "gulp-notify": "^2.1.0",
     "gulp-util": "^3.0.1",
@@ -26,7 +26,7 @@
     "watchify": "^3.6.1"
   },
   "dependencies": {
-    "material-ui": "^0.14.2",
+    "material-ui": "^0.15.0-alpha.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-tap-event-plugin": "^0.2.1"

@@ -23,31 +23,25 @@ const RaisedButtonExampleComplex = () => (
   <div>
     <RaisedButton
       label="Choose an Image"
-      primary={true}
+      labelPosition="before"
       style={styles.button}
     >
       <input type="file" style={styles.exampleImageInput} />
     </RaisedButton>
     <RaisedButton
-      label="Label after"
-      labelPosition="after"
-      secondary={true}
+      label="Label before"
+      labelPosition="before"
+      primary={true}
       icon={<ActionAndroid />}
       style={styles.button}
     />
-    <RaisedButton
-      label="Disabled"
-      disabled={true}
-      style={styles.button}
-    />
-    <br />
     <RaisedButton
       label="Github Link"
       linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}
-      icon={<FontIcon className="muidocs-icon-custom-github"/>}
+      icon={<FontIcon className="muidocs-icon-custom-github" />}
     />
   </div>
 );

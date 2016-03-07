@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StylePropable from '../mixins/style-propable';
-import AutoPrefix from '../styles/auto-prefix';
+import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
-
+import getMuiTheme from '../styles/getMuiTheme';
 
 const SlideInChild = React.createClass({
 
@@ -27,12 +24,9 @@ const SlideInChild = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps: function() {
     return {
@@ -42,7 +36,7 @@ const SlideInChild = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -52,52 +46,51 @@ const SlideInChild = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
+  componentWillUnmount() {
+    clearTimeout(this.enterTimer);
+    clearTimeout(this.leaveTimer);
+  },
+
   componentWillEnter(callback) {
-    let style = ReactDOM.findDOMNode(this).style;
-    let x = this.props.direction === 'left' ? '100%' :
+    const style = ReactDOM.findDOMNode(this).style;
+    const x = this.props.direction === 'left' ? '100%' :
       this.props.direction === 'right' ? '-100%' : '0';
-    let y = this.props.direction === 'up' ? '100%' :
+    const y = this.props.direction === 'up' ? '100%' :
       this.props.direction === 'down' ? '-100%' : '0';
 
     style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)');
+    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, this.props.enterDelay);
+    this.enterTimer = setTimeout(callback, this.props.enterDelay);
   },
 
   componentDidEnter() {
-    let style = ReactDOM.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '1';
-    AutoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
+    autoPrefix.set(style, 'transform', 'translate3d(0,0,0)', this.state.muiTheme);
   },
 
   componentWillLeave(callback) {
-    let style = ReactDOM.findDOMNode(this).style;
-    let direction = this.props.getLeaveDirection();
-    let x = direction === 'left' ? '-100%' :
+    const style = ReactDOM.findDOMNode(this).style;
+    const direction = this.props.getLeaveDirection();
+    const x = direction === 'left' ? '-100%' :
       direction === 'right' ? '100%' : '0';
-    let y = direction === 'up' ? '-100%' :
+    const y = direction === 'up' ? '-100%' :
       direction === 'down' ? '100%' : '0';
 
     style.opacity = '0';
-    AutoPrefix.set(style, 'transform', 'translate3d(' + x + ',' + y + ',0)');
+    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 450);
+    this.leaveTimer = setTimeout(callback, 450);
   },
 
   render() {
-    let {
+    const {
       children,
       enterDelay,
       getLeaveDirection,
@@ -105,7 +98,11 @@ const SlideInChild = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.mergeStyles({
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const mergedRootStyles = Object.assign({}, {
       position: 'absolute',
       height: '100%',
       width: '100%',
@@ -115,7 +112,7 @@ const SlideInChild = React.createClass({
     }, style);
 
     return (
-      <div {...other} style={this.prepareStyles(mergedRootStyles)}>
+      <div {...other} style={prepareStyles(mergedRootStyles)}>
         {children}
       </div>
     );

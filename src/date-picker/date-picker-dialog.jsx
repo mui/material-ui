@@ -1,14 +1,11 @@
 import React from 'react';
-import ContextPure from '../mixins/context-pure';
-import StylePropable from '../mixins/style-propable';
-import WindowListenable from '../mixins/window-listenable';
-import KeyCode from '../utils/key-code';
+import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 import Calendar from './calendar';
 import Dialog from '../dialog';
 import DatePickerInline from './date-picker-inline';
 import FlatButton from '../flat-button';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import DateTime from '../utils/date-time';
 
 const DatePickerDialog = React.createClass({
@@ -16,13 +13,16 @@ const DatePickerDialog = React.createClass({
   propTypes: {
     DateTimeFormat: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
+    cancelLabel: React.PropTypes.string,
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
+    firstDayOfWeek: React.PropTypes.number,
     initialDate: React.PropTypes.object,
     locale: React.PropTypes.string,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
+    okLabel: React.PropTypes.string,
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
@@ -39,29 +39,8 @@ const DatePickerDialog = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    StylePropable,
-    WindowListenable,
-    ContextPure,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      return {
-        calendarTextColor: muiTheme.datePicker.calendarTextColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        Calendar,
-        Dialog,
-      ];
-    },
   },
 
   getDefaultProps: function() {
@@ -69,17 +48,15 @@ const DatePickerDialog = React.createClass({
       DateTimeFormat: DateTime.DateTimeFormat,
       container: 'dialog',
       locale: 'en-US',
-      wordings: {
-        ok: 'OK',
-        cancel: 'Cancel',
-      },
+      okLabel: 'OK',
+      cancelLabel: 'Cancel',
     };
   },
 
   getInitialState() {
     return {
       open: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -89,15 +66,10 @@ const DatePickerDialog = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   show() {
@@ -114,7 +86,7 @@ const DatePickerDialog = React.createClass({
     });
   },
 
-  _onDayTouchTap() {
+  handleTouchTapDay() {
     if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap, 300);
     }
@@ -132,10 +104,10 @@ const DatePickerDialog = React.createClass({
     this.dismiss();
   },
 
-  _handleWindowKeyUp(e) {
+  _handleWindowKeyUp(event) {
     if (this.state.open) {
-      switch (e.keyCode) {
-        case KeyCode.ENTER:
+      switch (keycode(event)) {
+        case 'enter':
           this._handleOKTouchTap();
           break;
       }
@@ -143,22 +115,25 @@ const DatePickerDialog = React.createClass({
   },
 
   render() {
-    let {
+    const {
       DateTimeFormat,
-      locale,
-      wordings,
+      cancelLabel,
+      container,
       initialDate,
+      firstDayOfWeek,
+      locale,
+      okLabel,
       onAccept,
       style,
-      container,
+      wordings,
       ...other,
     } = this.props;
 
     const {
       calendarTextColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    } = this.state.muiTheme.datePicker;
 
-    let styles = {
+    const styles = {
       root: {
         fontSize: 14,
         color: calendarTextColor,
@@ -177,11 +152,11 @@ const DatePickerDialog = React.createClass({
       },
     };
 
-    let actions = [
+    const actions = [
       <FlatButton
         key={0}
-        label={wordings.cancel}
-        secondary={true}
+        label={wordings ? wordings.cancel : cancelLabel}
+        primary={true}
         style={styles.actions}
         onTouchTap={this._handleCancelTouchTap}
       />,
@@ -191,8 +166,8 @@ const DatePickerDialog = React.createClass({
       actions.push(
         <FlatButton
           key={1}
-          label={wordings.ok}
-          secondary={true}
+          label={wordings ? wordings.ok : okLabel}
+          primary={true}
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           style={styles.actions}
           onTouchTap={this._handleOKTouchTap}
@@ -214,11 +189,16 @@ const DatePickerDialog = React.createClass({
         open={this.state.open}
         onRequestClose={this.dismiss}
       >
+        <EventListener
+          elementName="window"
+          onKeyUp={this._handleWindowKeyUp}
+        />
         <Calendar
           DateTimeFormat={DateTimeFormat}
+          firstDayOfWeek={firstDayOfWeek}
           locale={locale}
           ref="calendar"
-          onDayTouchTap={this._onDayTouchTap}
+          onDayTouchTap={this.handleTouchTapDay}
           initialDate={this.props.initialDate}
           open={this.state.open}
           minDate={this.props.minDate}

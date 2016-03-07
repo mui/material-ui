@@ -3,7 +3,7 @@ import Toggle from 'material-ui/lib/toggle';
 
 const styles = {
   block: {
-    maxWidth: 350,
+    maxWidth: 250,
   },
   toggle: {
     marginBottom: 16,

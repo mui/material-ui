@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import WindowListenable from '../mixins/window-listenable';
+import EventListener from 'react-event-listener';
 import RenderToLayer from '../render-to-layer';
-import StylePropable from '../mixins/style-propable';
 import PropTypes from '../utils/prop-types';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 import PopoverDefaultAnimation from './popover-default-animation';
 
 const Popover = React.createClass({
@@ -105,15 +103,9 @@ const Popover = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-    WindowListenable,
-  ],
 
   getDefaultProps() {
     return {
@@ -139,13 +131,13 @@ const Popover = React.createClass({
   },
 
   getInitialState() {
-    this.setPlacementThrottled = throttle(this.setPlacement, 100);
-    this.setPlacementThrottledScrolled = throttle(this.setPlacement.bind(this, true), 100);
+    this.handleResize = throttle(this.setPlacement, 100);
+    this.handleScroll = throttle(this.setPlacement.bind(this, true), 100);
 
     return {
       open: this.props.open,
       closing: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -156,7 +148,7 @@ const Popover = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
 
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
@@ -169,13 +161,11 @@ const Popover = React.createClass({
       } else {
         if (nextProps.animated) {
           this.setState({closing: true});
-          this._timeout = setTimeout(() => {
-            if (this.isMounted()) {
-              this.setState({
-                open: false,
-                muiTheme: newMuiTheme,
-              });
-            }
+          this.timeout = setTimeout(() => {
+            this.setState({
+              open: false,
+              muiTheme: newMuiTheme,
+            });
           }, 500);
         } else {
           this.setState({
@@ -191,13 +181,12 @@ const Popover = React.createClass({
     this.setPlacement();
   },
 
-  windowListeners: {
-    resize: 'setPlacementThrottled',
-    scroll: 'setPlacementThrottledScrolled',
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   },
 
   renderLayer() {
-    let {
+    const {
       animated,
       animation,
       children,
@@ -206,10 +195,11 @@ const Popover = React.createClass({
     } = this.props;
 
     let Animation = animation || PopoverDefaultAnimation;
+    let styleRoot = style;
 
     if (!Animation) {
       Animation = Paper;
-      style = {
+      styleRoot = {
         position: 'fixed',
       };
       if (!this.state.open) {
@@ -218,7 +208,7 @@ const Popover = React.createClass({
     }
 
     return (
-      <Animation {...other} style={style} open={this.state.open && !this.state.closing}>
+      <Animation {...other} style={styleRoot} open={this.state.open && !this.state.closing}>
         {children}
       </Animation>
     );
@@ -286,9 +276,9 @@ const Popover = React.createClass({
       return;
     }
 
-    let {targetOrigin, anchorOrigin} = this.props;
+    const {targetOrigin, anchorOrigin} = this.props;
 
-    let anchor = this.getAnchorPosition(anchorEl);
+    const anchor = this.getAnchorPosition(anchorEl);
     let target = this.getTargetPosition(targetEl);
 
     let targetPosition = {
@@ -305,18 +295,16 @@ const Popover = React.createClass({
       targetPosition = this.applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition);
     }
 
-
-    targetEl.style.top = Math.max(0, targetPosition.top) + 'px';
-    targetEl.style.left = Math.max(0, targetPosition.left) + 'px';
-    targetEl.style.maxHeight = window.innerHeight + 'px';
+    targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
+    targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
+    targetEl.style.maxHeight = `${window.innerHeight}px`;
   },
 
   autoCloseWhenOffScreen(anchorPosition) {
-    if (anchorPosition.top < 0
-        || anchorPosition.top > window.innerHeight
-        || anchorPosition.left < 0
-        || anchorPosition.left > window.innerWith
-        ) {
+    if (anchorPosition.top < 0 ||
+      anchorPosition.top > window.innerHeight ||
+      anchorPosition.left < 0 ||
+      anchorPosition.left > window.innerWith) {
       this.requestClose('offScreen');
     }
   },
@@ -328,15 +316,15 @@ const Popover = React.createClass({
   },
 
   getPositions(anchor, target) {
-    let a = {...anchor};
-    let t = {...target};
+    const a = {...anchor};
+    const t = {...target};
 
-    let positions = {
+    const positions = {
       x: ['left', 'right'].filter((p) => p !== t.horizontal),
       y: ['top', 'bottom'].filter((p) => p !== t.vertical),
     };
 
-    let overlap = {
+    const overlap = {
       x: this.getOverlapMode(a.horizontal, t.horizontal, 'middle'),
       y: this.getOverlapMode(a.vertical, t.vertical, 'center'),
     };
@@ -365,7 +353,7 @@ const Popover = React.createClass({
   },
 
   applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
-    let {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
+    const {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
 
     if (targetPosition.top < 0 || targetPosition.top + target.bottom > window.innerHeight) {
       let newTop = anchor[anchorPos.vertical] - target[positions.y[0]];
@@ -392,13 +380,20 @@ const Popover = React.createClass({
 
   render() {
     return (
-      <RenderToLayer
-        ref="layer"
-        open={this.state.open}
-        componentClickAway={this.componentClickAway}
-        useLayerForClickAway={this.props.useLayerForClickAway}
-        render={this.renderLayer}
-      />
+      <noscript>
+        <EventListener
+          elementName="window"
+          onScroll={this.handleScroll}
+          onResize={this.handleResize}
+        />
+        <RenderToLayer
+          ref="layer"
+          open={this.state.open}
+          componentClickAway={this.componentClickAway}
+          useLayerForClickAway={this.props.useLayerForClickAway}
+          render={this.renderLayer}
+        />
+      </noscript>
     );
   },
 

@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
+import keycode from 'keycode';
 import Transitions from './styles/transitions';
 import FocusRipple from './ripples/focus-ripple';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 /**
   * Verifies min/max range.
@@ -13,12 +11,12 @@ import ThemeManager from './styles/theme-manager';
   * @param   {String} componentName Name of the component whose property is being validated.
   * @returns {Object} Returns an Error if min >= max otherwise null.
   */
-let minMaxPropType = (props, propName, componentName) => {
-  let error = React.PropTypes.number(props, propName, componentName);
+const minMaxPropType = (props, propName, componentName) => {
+  const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
   if (props.min >= props.max) {
-    let errorMsg = (propName === 'min') ? 'min should be less than max' : 'max should be greater than min';
+    const errorMsg = (propName === 'min') ? 'min should be less than max' : 'max should be greater than min';
     return new Error(errorMsg);
   }
 };
@@ -30,16 +28,132 @@ let minMaxPropType = (props, propName, componentName) => {
   * @param   {String} componentName Name of the component whose property is being validated.
   * @returns {Object} Returns an Error if the value is not within the range otherwise null.
   */
-let valueInRangePropType = (props, propName, componentName) => {
-  let error = React.PropTypes.number(props, propName, componentName);
+const valueInRangePropType = (props, propName, componentName) => {
+  const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
-  let value = props[propName];
+  const value = props[propName];
   if (value < props.min || props.max < value) {
-    return new Error(propName + ' should be within the range specified by min and max');
+    return new Error(`${propName} should be within the range specified by min and max`);
   }
 };
 
+const getStyles = (props, state) => {
+  const {
+    slider,
+  } = state.muiTheme;
+
+  const fillGutter = slider.handleSize / 2;
+  const disabledGutter = slider.trackSize + slider.handleSizeDisabled / 2;
+  const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
+
+  const styles = {
+    root: {
+      touchCallout: 'none',
+      userSelect: 'none',
+      cursor: 'default',
+      height: slider.handleSizeActive,
+      position: 'relative',
+      marginTop: 24,
+      marginBottom: 48,
+    },
+    track: {
+      position: 'absolute',
+      top: (slider.handleSizeActive - slider.trackSize) / 2,
+      left: 0,
+      width: '100%',
+      height: slider.trackSize,
+    },
+    filledAndRemaining: {
+      position: 'absolute',
+      top: 0,
+      height: '100%',
+      transition: Transitions.easeOut(null, 'margin'),
+    },
+    handle: {
+      boxSizing: 'border-box',
+      position: 'absolute',
+      cursor: 'pointer',
+      pointerEvents: 'inherit',
+      top: 0,
+      left: state.percent === 0 ? '0%' : `${(state.percent * 100)}%`,
+      zIndex: 1,
+      margin: `${(slider.trackSize / 2)}px 0 0 0`,
+      width: slider.handleSize,
+      height: slider.handleSize,
+      backgroundColor: slider.selectionColor,
+      backgroundClip: 'padding-box',
+      border: '0px solid transparent',
+      borderRadius: '50%',
+      transform: 'translate(-50%, -50%)',
+      transition:
+        `${Transitions.easeOut('450ms', 'background')}, ${
+        Transitions.easeOut('450ms', 'border-color')}, ${
+        Transitions.easeOut('450ms', 'width')}, ${
+        Transitions.easeOut('450ms', 'height')}`,
+      overflow: 'visible',
+      outline: 'none',
+    },
+    handleWhenDisabled: {
+      boxSizing: 'content-box',
+      cursor: 'not-allowed',
+      backgroundColor: slider.trackColor,
+      width: slider.handleSizeDisabled,
+      height: slider.handleSizeDisabled,
+      border: 'none',
+    },
+    handleWhenPercentZero: {
+      border: `${slider.trackSize}px solid ${slider.handleColorZero}`,
+      backgroundColor: slider.handleFillColor,
+      boxShadow: 'none',
+    },
+    handleWhenPercentZeroAndDisabled: {
+      cursor: 'not-allowed',
+      width: slider.handleSizeDisabled,
+      height: slider.handleSizeDisabled,
+    },
+    handleWhenPercentZeroAndFocused: {
+      border: `${slider.trackSize}px solid ${slider.trackColorSelected}`,
+    },
+    handleWhenActive: {
+      width: slider.handleSizeActive,
+      height: slider.handleSizeActive,
+    },
+    ripple: {
+      height: slider.handleSize,
+      width: slider.handleSize,
+      overflow: 'visible',
+    },
+    rippleWhenPercentZero: {
+      top: -slider.trackSize,
+      left: -slider.trackSize,
+    },
+    rippleInner: {
+      height: '300%',
+      width: '300%',
+      top: -slider.handleSize,
+      left: -slider.handleSize,
+    },
+    rippleColor: {
+      fill: state.percent === 0 ? slider.handleColorZero : slider.rippleColor,
+    },
+  };
+  styles.filled = Object.assign({}, styles.filledAndRemaining, {
+    left: 0,
+    backgroundColor: (props.disabled) ? slider.trackColor : slider.selectionColor,
+    marginRight: fillGutter,
+    width: `calc(${(state.percent * 100)}%${calcDisabledSpacing})`,
+  });
+  styles.remaining = Object.assign({}, styles.filledAndRemaining, {
+    right: 0,
+    backgroundColor: (state.hovered || state.focused) &&
+      !props.disabled ? slider.trackColorSelected : slider.trackColor,
+    marginLeft: fillGutter,
+    width: `calc(${((1 - state.percent) * 100)}%${calcDisabledSpacing})`,
+  });
+
+  return styles;
+};
 
 const Slider = React.createClass({
 
@@ -142,10 +256,6 @@ const Slider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
       disabled: false,
@@ -173,7 +283,7 @@ const Slider = React.createClass({
       hovered: false,
       percent: percent,
       value: value,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -184,7 +294,7 @@ const Slider = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
 
     if (nextProps.value !== undefined && !this.state.dragging) {
@@ -192,185 +302,130 @@ const Slider = React.createClass({
     }
   },
 
-  getTheme() {
-    return this.state.muiTheme.slider;
-  },
 
-  getStyles() {
-    let fillGutter = this.getTheme().handleSize / 2;
-    let disabledGutter = this.getTheme().trackSize + this.getTheme().handleSizeDisabled / 2;
-    let calcDisabledSpacing = this.props.disabled ? ' - ' + disabledGutter + 'px' : '';
-    let styles = {
-      root: {
-        touchCallout: 'none',
-        userSelect: 'none',
-        cursor: 'default',
-        height: this.getTheme().handleSizeActive,
-        position: 'relative',
-        marginTop: 24,
-        marginBottom: 48,
-      },
-      track: {
-        position: 'absolute',
-        top: (this.getTheme().handleSizeActive - this.getTheme().trackSize) / 2,
-        left: 0,
-        width: '100%',
-        height: this.getTheme().trackSize,
-      },
-      filledAndRemaining: {
-        position: 'absolute',
-        top: 0,
-        height: '100%',
-        transition: Transitions.easeOut(null, 'margin'),
-      },
-      handle: {
-        boxSizing: 'border-box',
-        position: 'absolute',
-        cursor: 'pointer',
-        pointerEvents: 'inherit',
-        top: 0,
-        left: '0%',
-        zIndex: 1,
-        margin: (this.getTheme().trackSize / 2) + 'px 0 0 0',
-        width: this.getTheme().handleSize,
-        height: this.getTheme().handleSize,
-        backgroundColor: this.getTheme().selectionColor,
-        backgroundClip: 'padding-box',
-        border: '0px solid transparent',
-        borderRadius: '50%',
-        transform: 'translate(-50%, -50%)',
-        transition:
-          Transitions.easeOut('450ms', 'background') + ',' +
-          Transitions.easeOut('450ms', 'border-color') + ',' +
-          Transitions.easeOut('450ms', 'width') + ',' +
-          Transitions.easeOut('450ms', 'height'),
-        overflow: 'visible',
-      },
-      handleWhenDisabled: {
-        boxSizing: 'content-box',
-        cursor: 'not-allowed',
-        backgroundColor: this.getTheme().trackColor,
-        width: this.getTheme().handleSizeDisabled,
-        height: this.getTheme().handleSizeDisabled,
-        border: 'none',
-      },
-      handleWhenPercentZero: {
-        border: this.getTheme().trackSize + 'px solid ' + this.getTheme().handleColorZero,
-        backgroundColor: this.getTheme().handleFillColor,
-        boxShadow: 'none',
-      },
-      handleWhenPercentZeroAndDisabled: {
-        cursor: 'not-allowed',
-        width: this.getTheme().handleSizeDisabled,
-        height: this.getTheme().handleSizeDisabled,
-      },
-      handleWhenPercentZeroAndFocused: {
-        border: this.getTheme().trackSize + 'px solid ' +
-          this.getTheme().trackColorSelected,
-      },
-      handleWhenActive: {
-        width: this.getTheme().handleSizeActive,
-        height: this.getTheme().handleSizeActive,
-      },
-      ripple: {
-        height: this.getTheme().handleSize,
-        width: this.getTheme().handleSize,
-        overflow: 'visible',
-      },
-      rippleWhenPercentZero: {
-        top: -this.getTheme().trackSize,
-        left: -this.getTheme().trackSize,
-      },
-      rippleInner: {
-        height: '300%',
-        width: '300%',
-        top: -this.getTheme().handleSize,
-        left: -this.getTheme().handleSize,
-      },
-    };
-    styles.filled = this.mergeStyles(styles.filledAndRemaining, {
-      left: 0,
-      backgroundColor: (this.props.disabled) ?
-        this.getTheme().trackColor :
-        this.getTheme().selectionColor,
-      marginRight: fillGutter,
-      width: 'calc(' + (this.state.percent * 100) + '%' + calcDisabledSpacing + ')',
-    });
-    styles.remaining = this.mergeStyles(styles.filledAndRemaining, {
-      right: 0,
-      backgroundColor: this.getTheme().trackColor,
-      marginLeft: fillGutter,
-      width: 'calc(' + ((1 - this.state.percent) * 100) + '%' + calcDisabledSpacing + ')',
-    });
-
-    return styles;
-  },
-
-
-  // Needed to prevent text selection when dragging the slider handler.
-  // In the future, we should consider use <input type="range"> to avoid
-  // similar issues.
-  _toggleSelection(value) {
-    let body = document.getElementsByTagName('body')[0];
-    body.style['user-select'] = value;
-    body.style['-webkit-user-select'] = value;
-    body.style['-moz-user-select'] = value;
-    body.style['-ms-user-select'] = value;
-    body.style['-o-user-select'] = value;
-  },
-
-  _onHandleTouchStart(e) {
+  _onHandleTouchStart(event) {
     if (document) {
       document.addEventListener('touchmove', this._dragTouchHandler, false);
       document.addEventListener('touchup', this._dragTouchEndHandler, false);
       document.addEventListener('touchend', this._dragTouchEndHandler, false);
       document.addEventListener('touchcancel', this._dragTouchEndHandler, false);
     }
-    this._onDragStart(e);
+    this._onDragStart(event);
+
+    // Cancel scroll and context menu
+    event.preventDefault();
   },
 
-  _onHandleMouseDown(e) {
+  _onHandleMouseDown(event) {
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
-      this._toggleSelection('none');
+
+      // Cancel text selection
+      event.preventDefault();
+
+      // Set focus manually since we called preventDefault()
+      this.refs.handle.focus();
     }
-    this._onDragStart(e);
+    this._onDragStart(event);
   },
 
-  _dragHandler(e) {
+  _onHandleKeyDown(event) {
+    const {min, max, step} = this.props;
+    let action;
+
+    switch (keycode(event)) {
+      case 'page down':
+      case 'left':
+      case 'down':
+        action = 'decrease';
+        break;
+      case 'page up':
+      case 'right':
+      case 'up':
+        action = 'increase';
+        break;
+      case 'home':
+        action = 'home';
+        break;
+      case 'end':
+        action = 'end';
+        break;
+    }
+
+    if (action) {
+      let newValue;
+      let newPercent;
+
+      // Cancel scroll
+      event.preventDefault();
+
+      // When pressing home or end the handle should be taken to the
+      // beginning or end of the track respectively
+      switch (action) {
+        case 'decrease':
+          newValue = Math.max(min, this.state.value - step);
+          newPercent = (newValue - min) / (max - min);
+          break;
+        case 'increase':
+          newValue = Math.min(max, this.state.value + step);
+          newPercent = (newValue - min) / (max - min);
+          break;
+        case 'home':
+          newValue = min;
+          newPercent = 0;
+          break;
+        case 'end':
+          newValue = max;
+          newPercent = 1;
+          break;
+      }
+
+      // We need to use toFixed() because of float point errors.
+      // For example, 0.01 + 0.06 = 0.06999999999999999
+      if (this.state.value !== newValue) {
+        this.setState({
+          percent: newPercent,
+          value: parseFloat(newValue.toFixed(5)),
+        }, () => {
+          if (this.props.onChange) this.props.onChange(event, this.state.value);
+        });
+      }
+    }
+  },
+
+  _dragHandler(event) {
     if (this._dragRunning) {
       return;
     }
     this._dragRunning = true;
     requestAnimationFrame(() => {
-      this._onDragUpdate(e, e.clientX - this._getTrackLeft());
+      this._onDragUpdate(event, event.clientX - this._getTrackLeft());
       this._dragRunning = false;
     });
   },
 
-  _dragTouchHandler(e) {
+  _dragTouchHandler(event) {
     if (this._dragRunning) {
       return;
     }
     this._dragRunning = true;
     requestAnimationFrame(() => {
-      this._onDragUpdate(e, e.touches[0].clientX - this._getTrackLeft());
+      this._onDragUpdate(event, event.touches[0].clientX - this._getTrackLeft());
       this._dragRunning = false;
     });
   },
 
-  _dragEndHandler(e) {
+  _dragEndHandler(event) {
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
-      this._toggleSelection('');
     }
 
-    this._onDragStop(e);
+    this._onDragStop(event);
   },
 
-  _dragTouchEndHandler(e) {
+  _dragTouchEndHandler(event) {
     if (document) {
       document.removeEventListener('touchmove', this._dragTouchHandler, false);
       document.removeEventListener('touchup', this._dragTouchEndHandler, false);
@@ -378,7 +433,7 @@ const Slider = React.createClass({
       document.removeEventListener('touchcancel', this._dragTouchEndHandler, false);
     }
 
-    this._onDragStop(e);
+    this._onDragStop(event);
   },
 
   getValue() {
@@ -401,9 +456,9 @@ const Slider = React.createClass({
   },
 
   setPercent(percent, callback) {
-    let value = this._alignValue(this._percentToValue(percent));
-    let {min, max} = this.props;
-    let alignedPercent = (value - min) / (max - min);
+    const value = this._alignValue(this._percentToValue(percent));
+    const {min, max} = this.props;
+    const alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
       this.setState({value: value, percent: alignedPercent}, callback);
     }
@@ -414,77 +469,89 @@ const Slider = React.createClass({
   },
 
   _alignValue(val) {
-    let {step, min} = this.props;
-    let alignValue = Math.round((val - min) / step) * step + min;
+    const {step, min} = this.props;
+    const alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
   },
 
-  _onFocus(e) {
+  handleTouchStart(event) {
+    if (!this.props.disabled && !this.state.dragging) {
+      const pos = event.touches[0].clientX - this._getTrackLeft();
+      this._dragX(event, pos);
+
+      // Since the touch event fired for the track and handle is child of
+      // track, we need to manually propagate the event to the handle.
+      this._onHandleTouchStart(event);
+    }
+  },
+
+  handleFocus(event) {
     this.setState({focused: true});
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _onBlur(e) {
+  handleBlur(event) {
     this.setState({focused: false, active: false});
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur) this.props.onBlur(event);
   },
 
-  _onMouseDown(e) {
-    if (!this.props.disabled) this._pos = e.clientX;
+  handleMouseDown(event) {
+    if (!this.props.disabled && !this.state.dragging) {
+      const pos = event.clientX - this._getTrackLeft();
+      this._dragX(event, pos);
+
+      // Since the click event fired for the track and handle is child of
+      // track, we need to manually propagate the event to the handle.
+      this._onHandleMouseDown(event);
+    }
   },
 
-  _onMouseEnter() {
+  handleMouseUp() {
+    if (!this.props.disabled) this.setState({active: false});
+  },
+
+  handleMouseEnter() {
     this.setState({hovered: true});
   },
 
-  _onMouseLeave() {
+  handleMouseLeave() {
     this.setState({hovered: false});
   },
 
   _getTrackLeft() {
-    return ReactDOM.findDOMNode(this.refs.track).getBoundingClientRect().left;
+    return this.refs.track.getBoundingClientRect().left;
   },
 
-  _onMouseUp(e) {
-    if (!this.props.disabled) this.setState({active: false});
-    if (!this.state.dragging && Math.abs(this._pos - e.clientX) < 5) {
-      let pos = e.clientX - this._getTrackLeft();
-      this._dragX(e, pos);
-    }
-
-    this._pos = undefined;
-  },
-
-  _onDragStart(e) {
+  _onDragStart(event) {
     this.setState({
       dragging: true,
       active: true,
     });
-    if (this.props.onDragStart) this.props.onDragStart(e);
+    if (this.props.onDragStart) this.props.onDragStart(event);
   },
 
-  _onDragStop(e) {
+  _onDragStop(event) {
     this.setState({
       dragging: false,
       active: false,
     });
-    if (this.props.onDragStop) this.props.onDragStop(e);
+    if (this.props.onDragStop) this.props.onDragStop(event);
   },
 
-  _onDragUpdate(e, pos) {
+  _onDragUpdate(event, pos) {
     if (!this.state.dragging) return;
-    if (!this.props.disabled) this._dragX(e, pos);
+    if (!this.props.disabled) this._dragX(event, pos);
   },
 
-  _dragX(e, pos) {
-    let max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
+  _dragX(event, pos) {
+    const max = this.refs.track.clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    this._updateWithChangeEvent(e, pos / max);
+    this._updateWithChangeEvent(event, pos / max);
   },
 
-  _updateWithChangeEvent(e, percent) {
+  _updateWithChangeEvent(event, percent) {
     this.setPercent(percent, () => {
-      if (this.props.onChange) this.props.onChange(e, this.state.value);
+      if (this.props.onChange) this.props.onChange(event, this.state.value);
     });
   },
 
@@ -493,91 +560,108 @@ const Slider = React.createClass({
   },
 
   render() {
-    let {...others} = this.props;
+    const {
+      description,
+      disabled,
+      disableFocusRipple,
+      error,
+      max,
+      min,
+      name,
+      required,
+      step,
+      style,
+      ...others,
+    } = this.props;
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
-    let styles = this.getStyles();
-    const sliderStyles = this.mergeStyles(styles.root, this.props.style);
-    const handleStyles = percent === 0 ? this.mergeStyles(
+    const styles = getStyles(this.props, this.state);
+    const sliderStyles = Object.assign({}, styles.root, style);
+    const handleStyles = percent === 0 ? Object.assign(
+      {},
       styles.handle,
       styles.handleWhenPercentZero,
       this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      (this.state.hovered || this.state.focused) && !this.props.disabled
-        && styles.handleWhenPercentZeroAndFocused,
-      this.props.disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : this.mergeStyles(
+      (this.state.hovered || this.state.focused) && !disabled &&
+        styles.handleWhenPercentZeroAndFocused,
+      disabled && styles.handleWhenPercentZeroAndDisabled
+    ) : Object.assign(
+      {},
       styles.handle,
       this.state.active && styles.handleWhenActive,
-      this.state.focused && {outline: 'none'},
-      this.props.disabled && styles.handleWhenDisabled,
-      {
-        left: (percent * 100) + '%',
-      }
+      disabled && styles.handleWhenDisabled,
     );
-    let rippleStyle = this.mergeStyles(
+    const rippleStyle = Object.assign(
+      {},
       styles.ripple,
       percent === 0 && styles.rippleWhenPercentZero
     );
-    let remainingStyles = styles.remaining;
-    if ((this.state.hovered || this.state.focused) && !this.props.disabled) {
-      remainingStyles.backgroundColor = this.getTheme().trackColorSelected;
-    }
+    const rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
 
-    let rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
-    let rippleColor = this.state.percent === 0 ? this.getTheme().handleColorZero : this.getTheme().rippleColor;
     let focusRipple;
-    if (!this.props.disabled && !this.props.disableFocusRipple) {
+    if (!disabled && !disableFocusRipple) {
       focusRipple = (
         <FocusRipple
           ref="focusRipple"
           key="focusRipple"
-          style={this.mergeStyles(rippleStyle)}
+          style={rippleStyle}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
-          color={rippleColor}
+          muiTheme={this.state.muiTheme}
+          color={styles.rippleColor.fill}
         />
       );
     }
 
-    let handleDragProps = {};
-
-    if (!this.props.disabled) {
+    let handleDragProps;
+    if (!disabled) {
       handleDragProps = {
         onTouchStart: this._onHandleTouchStart,
         onMouseDown: this._onHandleMouseDown,
+        onKeyDown: this._onHandleKeyDown,
       };
     }
 
     return (
-      <div {...others } style={this.prepareStyles(this.props.style)}>
-        <span>{this.props.description}</span>
-        <span>{this.props.error}</span>
+      <div {...others} style={prepareStyles(Object.assign({}, style))}>
+        <span>{description}</span>
+        <span>{error}</span>
         <div
-          style={this.prepareStyles(sliderStyles)}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-          onMouseDown={this._onMouseDown}
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-          onMouseUp={this._onMouseUp}
+          style={prepareStyles(sliderStyles)}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          onMouseDown={this.handleMouseDown}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          onMouseUp={this.handleMouseUp}
+          onTouchStart={this.handleTouchStart}
         >
-          <div ref="track" style={this.prepareStyles(styles.track)}>
-            <div style={this.prepareStyles(styles.filled)}></div>
-            <div style={this.prepareStyles(remainingStyles)}></div>
-            <div style={this.prepareStyles(handleStyles)} tabIndex={0} {...handleDragProps}>
+          <div ref="track" style={prepareStyles(styles.track)}>
+            <div style={prepareStyles(styles.filled)}></div>
+            <div style={prepareStyles(styles.remaining)}></div>
+            <div
+              ref="handle"
+              style={prepareStyles(handleStyles)}
+              tabIndex={0}
+              {...handleDragProps}
+            >
               {focusRipple}
             </div>
           </div>
         </div>
         <input ref="input" type="hidden"
-          name={this.props.name}
+          name={name}
           value={this.state.value}
-          required={this.props.required}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
+          required={required}
+          min={min}
+          max={max}
+          step={step}
         />
       </div>
     );

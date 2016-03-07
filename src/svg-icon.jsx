@@ -1,8 +1,6 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
 
 const SvgIcon = React.createClass({
 
@@ -42,7 +40,7 @@ const SvgIcon = React.createClass({
     /**
      * Allows you to redifine what the coordinates
      * without units mean inside an svg element. For example,
-     * if the SVG element is 500(width) by 200(height), and you
+     * if the SVG element is 500 (width) by 200 (height), and you
      * pass viewBox="0 0 50 20", this means that the coordinates inside
      * the svg will go from the top left corner (0,0) to bottom right (50,20)
      * and each unit will be worth 10px.
@@ -54,14 +52,9 @@ const SvgIcon = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -74,7 +67,7 @@ const SvgIcon = React.createClass({
   getInitialState() {
     return {
       hovered: false,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -84,21 +77,20 @@ const SvgIcon = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     this.setState({hovered: false});
-    this.props.onMouseLeave(e);
+    this.props.onMouseLeave(event);
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     this.setState({hovered: true});
-    this.props.onMouseEnter(e);
+    this.props.onMouseEnter(event);
   },
 
   render() {
@@ -113,32 +105,31 @@ const SvgIcon = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      baseTheme,
+      prepareStyles,
+    } = this.state.muiTheme;
+
     const offColor = color ? color :
       style && style.fill ? style.fill :
-      this.state.muiTheme.rawTheme.palette.textColor;
+      baseTheme.palette.textColor;
     const onColor = hoverColor ? hoverColor : offColor;
 
-    const mergedStyles = this.mergeStyles({
+    const mergedStyles = Object.assign({
       display: 'inline-block',
+      fill: this.state.hovered ? onColor : offColor,
       height: 24,
       width: 24,
       userSelect: 'none',
       transition: Transitions.easeOut(),
-    }, style, {
-      // Make sure our fill color overrides fill provided in props.style
-      fill: this.state.hovered ? onColor : offColor,
-    });
-
-    const events = hoverColor ? {
-      onMouseEnter: this._handleMouseEnter,
-      onMouseLeave: this._handleMouseLeave,
-    } : {};
+    }, style);
 
     return (
       <svg
         {...other}
-        {...events}
-        style={this.prepareStyles(mergedStyles)}
+        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this._handleMouseLeave}
+        style={prepareStyles(mergedStyles)}
         viewBox={viewBox}
       >
         {children}

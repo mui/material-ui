@@ -1,12 +1,11 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
-import WindowListenable from '../mixins/window-listenable';
+import warning from 'warning';
+import DateTime from '../utils/date-time.js';
 import TimePickerDialog from './time-picker-dialog';
 import TextField from '../text-field';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 
-let emptyTime = new Date();
+const emptyTime = new Date();
 emptyTime.setHours(0);
 emptyTime.setMinutes(0);
 emptyTime.setSeconds(0);
@@ -20,6 +19,11 @@ const TimePicker = React.createClass({
      */
     autoOk: React.PropTypes.bool,
 
+   /**
+    * Override the label of the 'Cancel' button.
+    */
+    cancelLabel: React.PropTypes.string,
+
     /**
      * This is the initial time value of the component.
      */
@@ -30,6 +34,11 @@ const TimePicker = React.createClass({
      * ampm (12hr) format or 24hr format.
      */
     format: React.PropTypes.oneOf(['ampm', '24hr']),
+
+    /**
+     * Override the label of the 'OK' button.
+     */
+    okLabel: React.PropTypes.string,
 
     /**
      * Callback function that is fired when the time
@@ -79,13 +88,17 @@ const TimePicker = React.createClass({
      * Override the inline-styles of TimePicker's TextField element.
      */
     textFieldStyle: React.PropTypes.object,
+
+    /**
+     * Sets the time for the Time Picker programmatically.
+     */
+    value: React.PropTypes.object,
+
   },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable, WindowListenable],
 
   getDefaultProps() {
     return {
@@ -94,56 +107,48 @@ const TimePicker = React.createClass({
       pedantic: false,
       autoOk: false,
       style: {},
+      okLabel: 'OK',
+      cancelLabel: 'Cancel',
     };
   },
 
   getInitialState() {
     return {
-      time: this.props.defaultTime || emptyTime,
+      time: this._isControlled() ? this._getControlledTime() : this.props.defaultTime,
       dialogTime: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  windowListeners: {
-    'keyup': '_handleWindowKeyUp',
-  },
-
-  formatTime(date) {
-    let hours = date.getHours();
-    let mins = date.getMinutes().toString();
-
-    if (this.props.format === 'ampm') {
-      let isAM = hours < 12;
-      hours = hours % 12;
-      let additional = isAM ? ' am' : ' pm';
-      hours = (hours || 12).toString();
-
-      if (mins.length < 2 ) mins = '0' + mins;
-
-      if (this.props.pedantic) {
-        // Treat midday/midnight specially http://www.nist.gov/pml/div688/times.cfm
-        if (hours === '12' && mins === '00') {
-          return additional === ' pm' ? '12 noon' : '12 midnight';
-        }
-      }
-
-      return hours + (mins === '00' ? '' : ':' + mins) + additional;
+  componentWillReceiveProps(nextProps, nextContext) {
+    const newState = this.state;
+    if (nextContext.muiTheme) {
+      newState.muiTheme = nextContext.muiTheme;
     }
-
-    hours = hours.toString();
-
-    if (hours.length < 2) hours = '0' + hours;
-    if (mins.length < 2) mins = '0' + mins;
-
-    return hours + ':' + mins;
+    newState.time = this._getControlledTime(nextProps);
+    this.setState(newState);
   },
 
+
+  /**
+   * Deprecated.
+   * returns timepicker value.
+   **/
   getTime() {
+    warning(false, `getTime() method is deprecated. Use the defaultTime property
+    instead. Or use the TimePicker as a controlled component with the value
+    property.`);
     return this.state.time;
   },
 
+  /**
+   * Deprecated
+   * sets timepicker value.
+   **/
   setTime(time) {
+    warning(false, `setTime() method is deprecated. Use the defaultTime property
+    instead. Or use the TimePicker as a controlled component with the value
+    property.`);
     this.setState({time: time ? time : emptyTime});
   },
 
@@ -156,52 +161,73 @@ const TimePicker = React.createClass({
 
   openDialog() {
     this.setState({
-      dialogTime: this.getTime(),
+      dialogTime: this.state.time,
     });
-
     this.refs.dialogWindow.show();
   },
 
   _handleDialogAccept(t) {
-    this.setTime(t);
+    this.setState({
+      time: t,
+    });
     if (this.props.onChange) this.props.onChange(null, t);
   },
 
-  _handleInputFocus(e) {
-    e.target.blur();
-    if (this.props.onFocus) this.props.onFocus(e);
+  _handleInputFocus(event) {
+    event.target.blur();
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleInputTouchTap(e) {
-    e.preventDefault();
+  _handleInputTouchTap(event) {
+    event.preventDefault();
 
     this.openDialog();
 
-    if (this.props.onTouchTap) this.props.onTouchTap(e);
+    if (this.props.onTouchTap) this.props.onTouchTap(event);
+  },
+
+  _isControlled() {
+    return this.props.value !== null;
+  },
+
+  _getControlledTime(props = this.props) {
+    let result = null;
+    if (DateTime.isDateObject(props.value)) {
+      result = props.value;
+    }
+    return result;
   },
 
   render() {
     const {
       autoOk,
+      cancelLabel,
       format,
+      okLabel,
       onFocus,
       onTouchTap,
       onShow,
       onDismiss,
+      pedantic,
       style,
       textFieldStyle,
       ...other,
     } = this.props;
 
-    const {time} = this.state;
+    const {
+      muiTheme: {
+        prepareStyles,
+      },
+      time,
+    } = this.state;
 
     return (
-      <div style={this.prepareStyles(style)}>
+      <div style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           style={textFieldStyle}
           ref="input"
-          value={time === emptyTime ? null : this.formatTime(time)}
+          value={time === emptyTime ? null : DateTime.formatTime(time, format, pedantic)}
           onFocus={this._handleInputFocus}
           onTouchTap={this._handleInputTouchTap}
         />
@@ -212,6 +238,8 @@ const TimePicker = React.createClass({
           onShow={onShow}
           onDismiss={onDismiss}
           format={format}
+          okLabel={okLabel}
+          cancelLabel={cancelLabel}
           autoOk={autoOk}
         />
       </div>

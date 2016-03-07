@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -15,12 +17,14 @@ import appBarCode from '!raw!material-ui/lib/app-bar';
 const descriptions = {
   icon: 'A simple example of `AppBar` with an icon on the right. ' +
   'By default, the left icon is a navigation-menu.',
-  iconButton: '`IconButton` left, clickable title, and `FlatButton` right.',
-  iconMenu: '`IconMenu` on the right.',
+  iconButton: 'This example uses an [IconButton](/#/components/icon-button) on the left, has a clickable `title` ' +
+  'through the `onTouchTap` property, and a [FlatButton](/#/components/flat-button) on the right.',
+  iconMenu: 'This example uses an [IconMenu](/#/components/icon-menu) for `iconElementRight`.',
 };
 
 const AppBarPage = () => (
   <div>
+    <Title render={(previousTitle) => `App Bar - ${previousTitle}`} />
     <MarkdownElement text={appBarReadmeText} />
     <CodeExample
       code={appBarExampleIconCode}

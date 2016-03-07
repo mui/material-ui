@@ -1,8 +1,20 @@
 import React from 'react';
-import ContextPure from '../mixins/context-pure';
-import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    baseTheme,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      position: 'relative',
+      paddingLeft: baseTheme.spacing.desktopGutterLess,
+      paddingRight: baseTheme.spacing.desktopGutterLess,
+      verticalAlign: 'middle',
+    },
+  };
+}
 
 const FlatButtonLabel = React.createClass({
 
@@ -19,27 +31,13 @@ const FlatButtonLabel = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    ContextPure,
-    StylePropable,
-  ],
-
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      return {
-        spacingDesktopGutterLess: muiTheme.rawTheme.spacing.desktopGutterLess,
-      };
-    },
-  },
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -49,11 +47,10 @@ const FlatButtonLabel = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render: function() {
@@ -62,18 +59,16 @@ const FlatButtonLabel = React.createClass({
       style,
     } = this.props;
 
-    const contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    const mergedRootStyles = this.mergeStyles({
-      position: 'relative',
-      padding: '0 ' + contextKeys.spacingDesktopGutterLess + 'px',
-    }, style);
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <span style={this.prepareStyles(mergedRootStyles)}>{label}</span>
+      <span style={prepareStyles(Object.assign(styles.root, style))}>{label}</span>
     );
   },
-
 });
 
 export default FlatButtonLabel;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Main from './components/main'; // Our custom react component
+import Main from './Main'; // Our custom react component
 
 //Needed for onTouchTap
 //Can go away when react 1.0 release

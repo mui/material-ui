@@ -32,9 +32,9 @@ export default class CircularProgressExampleDeterminate extends React.Component 
   render() {
     return (
       <div>
-        <CircularProgress mode="determinate" value={this.state.completed}/>
-        <CircularProgress mode="determinate" value={this.state.completed} size={1.5}/>
-        <CircularProgress mode="determinate" value={this.state.completed} size={2}/>
+        <CircularProgress mode="determinate" value={this.state.completed} />
+        <CircularProgress mode="determinate" value={this.state.completed} size={1.5} />
+        <CircularProgress mode="determinate" value={this.state.completed} size={2} />
       </div>
     );
   }

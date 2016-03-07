@@ -4,12 +4,12 @@ import createFragment from 'react-addons-create-fragment';
 export default {
 
   create(fragments) {
-    let newFragments = {};
+    const newFragments = {};
     let validChildrenCount = 0;
     let firstKey;
 
     //Only create non-empty key fragments
-    for (let key in fragments) {
+    for (const key in fragments) {
       const currentChild = fragments[key];
 
       if (currentChild) {
@@ -25,10 +25,8 @@ export default {
   },
 
   extend(children, extendedProps, extendedChildren) {
-
     return React.isValidElement(children) ?
       React.Children.map(children, (child) => {
-
         const newProps = typeof (extendedProps) === 'function' ?
           extendedProps(child) : extendedProps;
 

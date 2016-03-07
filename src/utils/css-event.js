@@ -34,7 +34,7 @@ export default {
   },
 
   onTransitionEnd(el, callback) {
-    let transitionEnd = this.transitionEndEventName();
+    const transitionEnd = this.transitionEndEventName();
 
     Events.once(el, transitionEnd, () => {
       return callback();
@@ -42,7 +42,7 @@ export default {
   },
 
   onAnimationEnd(el, callback) {
-    let animationEnd = this.animationEndEventName();
+    const animationEnd = this.animationEndEventName();
 
     Events.once(el, animationEnd, () => {
       return callback();

@@ -1,5 +1,6 @@
 import React from 'react';
-import Paper from '../paper';
+import Popover from '../popover/popover';
+import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 
 const styles = {
   actions: {
@@ -7,64 +8,67 @@ const styles = {
     paddingBottom: 12,
     textAlign: 'right',
   },
-  container: {
-    zIndex: 3,
-    width: '100%',
-    position: 'relative',
-    display: 'block',
-  },
-  subContainer: {
-    position: 'absolute',
-    height: 'auto',
-  },
 };
 
-const DatePickerInline = React.createClass({
-
-  propTypes: {
+class DatePickerInline extends React.Component {
+  static propTypes = {
     actions: React.PropTypes.node,
     children: React.PropTypes.node,
-    open: React.PropTypes.bool,
+    onRequestClose: React.PropTypes.func.isRequired,
+    open: React.PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      open: false,
-    };
-  },
+  static defaultProps = {
+    open: false,
+  };
+
+  state = {
+    anchorEl: null,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open) {
+      this.setState({
+        anchorEl: this.refs.root,
+      });
+    }
+  }
 
   render() {
     const {
       actions,
       children,
-      open,
       style,
+      onRequestClose,
+      open,
       ...other,
     } = this.props;
 
-    if (!open) {
-      return <span />;
-    }
+    const {
+      anchorEl,
+    } = this.state;
 
     return (
-      <div style={styles.container}>
-        <div style={styles.subContainer}>
-          <Paper {...other}>
-            {children}
-            <div style={styles.actions}>
-              {actions}
-            </div>
-          </Paper>
-        </div>
+      <div {...other} ref="root" style={style}>
+        <Popover
+          onRequestClose={onRequestClose}
+          open={open}
+          anchorEl={anchorEl}
+          animation={PopoverAnimationFromTop}
+        >
+          {children}
+          <div style={styles.actions}>
+            {actions}
+          </div>
+        </Popover>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default DatePickerInline;

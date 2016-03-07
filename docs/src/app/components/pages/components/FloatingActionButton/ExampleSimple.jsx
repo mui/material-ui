@@ -16,33 +16,19 @@ const FloatingActionButtonExampleSimple = () => (
       <ContentAdd />
     </FloatingActionButton>
 
-    <FloatingActionButton
-      secondary={true}
-      style={style}
-    >
+    <FloatingActionButton secondary={true} style={style}>
       <ContentAdd />
     </FloatingActionButton>
 
-    <FloatingActionButton
-      mini={true}
-      secondary={true}
-      style={style}
-    >
+    <FloatingActionButton mini={true} secondary={true} style={style}>
       <ContentAdd />
     </FloatingActionButton>
 
-    <FloatingActionButton
-      disabled={true}
-      style={style}
-    >
+    <FloatingActionButton disabled={true} style={style}>
       <ContentAdd />
     </FloatingActionButton>
 
-    <FloatingActionButton
-      mini={true}
-      disabled={true}
-      style={style}
-    >
+    <FloatingActionButton mini={true} disabled={true} style={style}>
       <ContentAdd />
     </FloatingActionButton>
   </div>

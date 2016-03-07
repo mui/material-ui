@@ -27,7 +27,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "babel": "^5.6.1",
+    "babel-cli": "^6.4.5",
     "chai": "^3.0.0",
     "glob": "^5.0.14",
     "grunt": "^0.4.5",

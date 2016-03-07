@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import StylePropable from '../mixins/style-propable';
 import SlideInChild from './slide-in-child';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const SlideIn = React.createClass({
 
@@ -23,12 +21,9 @@ const SlideIn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -39,7 +34,7 @@ const SlideIn = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -49,10 +44,8 @@ const SlideIn = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({muiTheme: newMuiTheme});
   },
 
@@ -61,7 +54,7 @@ const SlideIn = React.createClass({
   },
 
   render() {
-    let {
+    const {
       enterDelay,
       children,
       childStyle,
@@ -70,13 +63,17 @@ const SlideIn = React.createClass({
       ...other,
     } = this.props;
 
-    let mergedRootStyles = this.mergeStyles({
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const mergedRootStyles = Object.assign({}, {
       position: 'relative',
       overflow: 'hidden',
       height: '100%',
     }, style);
 
-    let newChildren = React.Children.map(children, (child) => {
+    const newChildren = React.Children.map(children, (child) => {
       return (
         <SlideInChild
           key={child.key}
@@ -93,7 +90,7 @@ const SlideIn = React.createClass({
     return (
       <ReactTransitionGroup
         {...other}
-        style={this.prepareStyles(mergedRootStyles)}
+        style={prepareStyles(mergedRootStyles)}
         component="div"
       >
         {newChildren}

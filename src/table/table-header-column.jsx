@@ -1,8 +1,31 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import Tooltip from '../tooltip';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    tableHeaderColumn,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      fontWeight: 'normal',
+      fontSize: 12,
+      paddingLeft: tableHeaderColumn.spacing,
+      paddingRight: tableHeaderColumn.spacing,
+      height: tableHeaderColumn.height,
+      textAlign: 'left',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      color: tableHeaderColumn.textColor,
+      position: 'relative',
+    },
+    tooltip: {
+      boxSizing: 'border-box',
+      marginTop: tableHeaderColumn.height / 2,
+    },
+  };
+}
 
 const TableHeaderColumn = React.createClass({
 
@@ -51,16 +74,13 @@ const TableHeaderColumn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [StylePropable],
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
       hovered: false,
     };
   },
@@ -71,39 +91,10 @@ const TableHeaderColumn = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.tableHeaderColumn;
-  },
-
-  getStyles() {
-    let theme = this.getTheme();
-    let styles = {
-      root: {
-        fontWeight: 'normal',
-        fontSize: 12,
-        paddingLeft: theme.spacing,
-        paddingRight: theme.spacing,
-        height: theme.height,
-        textAlign: 'left',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-        color: this.getTheme().textColor,
-        position: 'relative',
-      },
-      tooltip: {
-        boxSizing: 'border-box',
-        marginTop: theme.height / 2,
-      },
-    };
-
-    return styles;
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _onMouseEnter() {
@@ -114,18 +105,13 @@ const TableHeaderColumn = React.createClass({
     if (this.props.tooltip !== undefined) this.setState({hovered: false});
   },
 
-  _onClick(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.columnNumber);
+  _onClick(event) {
+    if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
   },
 
   render() {
-    let styles = this.getStyles();
-    let handlers = {
-      onMouseEnter: this._onMouseEnter,
-      onMouseLeave: this._onMouseLeave,
-      onClick: this._onClick,
-    };
-    let {
+    const {
+      children,
       className,
       columnNumber,
       onClick,
@@ -134,12 +120,26 @@ const TableHeaderColumn = React.createClass({
       tooltipStyle,
       ...other,
     } = this.props;
-    if (this.props.tooltip !== undefined) {
-      tooltip = (
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+    const handlers = {
+      onMouseEnter: this._onMouseEnter,
+      onMouseLeave: this._onMouseLeave,
+      onClick: this._onClick,
+    };
+
+    let tooltipNode;
+
+    if (tooltip !== undefined) {
+      tooltipNode = (
         <Tooltip
-          label={this.props.tooltip}
+          label={tooltip}
           show={this.state.hovered}
-          style={this.mergeStyles(styles.tooltip, tooltipStyle)}
+          style={Object.assign(styles.tooltip, tooltipStyle)}
         />
       );
     }
@@ -148,12 +148,12 @@ const TableHeaderColumn = React.createClass({
       <th
         key={this.props.key}
         className={className}
-        style={this.prepareStyles(styles.root, style)}
+        style={prepareStyles(Object.assign(styles.root, style))}
         {...handlers}
         {...other}
       >
-        {tooltip}
-        {this.props.children}
+        {tooltipNode}
+        {children}
       </th>
     );
   },

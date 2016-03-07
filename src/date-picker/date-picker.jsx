@@ -1,20 +1,18 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
-import WindowListenable from '../mixins/window-listenable';
 import DateTime from '../utils/date-time';
 import DatePickerDialog from './date-picker-dialog';
 import TextField from '../text-field';
-import ThemeManager from '../styles/theme-manager';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
-import warning from 'warning';
 
 const DatePicker = React.createClass({
 
   propTypes: {
     /**
-     * Constructor for time formatting.
-     * Follow this specificaction: ECMAScript Internationalization API 1.0 (ECMA-402).
+     * Constructor for date formatting for the specified `locale`.
+     * The constructor must follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
+     * `Intl.DateTimeFormat` is supported by most modern browsers, see http://caniuse.com/#search=intl,
+     * otherwise https://github.com/andyearnshaw/Intl.js is a good polyfill.
      */
     DateTimeFormat: React.PropTypes.func,
 
@@ -22,6 +20,12 @@ const DatePicker = React.createClass({
      * If true, automatically accept and close the picker on select a date.
      */
     autoOk: React.PropTypes.bool,
+
+
+    /**
+     * Override the default text of the 'Cancel' button.
+     */
+    cancelLabel: React.PropTypes.string,
 
     /**
      * Used to control how the DatePicker will be displayed when a user tries to set a date.
@@ -43,16 +47,29 @@ const DatePicker = React.createClass({
     disableYearSelection: React.PropTypes.bool,
 
     /**
-     * This function is called to format the date to display in the input box.
-     * By default, date objects are formatted to MM/DD/YYYY.
+     * Disables the DatePicker.
+     */
+    disabled: React.PropTypes.bool,
+
+    /**
+     * Used to change the first day of week. It varies from
+     * Saturday to Monday between different locales.
+     * The allowed range is 0 (Sunday) to 6 (Saturday).
+     * The default is `1`, Monday, as per ISO 8601.
+     */
+    firstDayOfWeek: React.PropTypes.number,
+
+    /**
+     * This function is called to format the date displayed in the input box, and should return a string.
+     * By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.
+     *
+     * @param {object} date `Date` object to be formatted.
      */
     formatDate: React.PropTypes.func,
 
     /**
-     * Locale used for formatting date. If you are not using the default value, you
-     * have to provide a DateTimeFormat that supports it. You can use Intl.DateTimeFormat
-     * if it's supported by your environment.
-     * https://github.com/andyearnshaw/Intl.js is a good polyfill.
+     * Locale used for formatting the dialog date strings. If you are not using the default value, you
+     * have to provide a `DateTimeFormat` that supports it.
      */
     locale: React.PropTypes.string,
 
@@ -74,6 +91,11 @@ const DatePicker = React.createClass({
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
 
     /**
+     * Override the default text of the 'OK' button.
+     */
+    okLabel: React.PropTypes.string,
+
+    /**
      * Callback function that is fired when the date value changes. Since there
      * is no particular event associated with the change the first argument
      * will always be null and the second argument will be the new Date instance.
@@ -81,17 +103,17 @@ const DatePicker = React.createClass({
     onChange: React.PropTypes.func,
 
     /**
-     * Fired when the datepicker dialog is dismissed.
+     * Fired when the Date Picker dialog is dismissed.
      */
     onDismiss: React.PropTypes.func,
 
     /**
-     * Callback function that is fired when the datepicker field gains focus.
+     * Fired when the Date Picker field gains focus.
      */
     onFocus: React.PropTypes.func,
 
     /**
-     * Fired when the datepicker dialog is shown.
+     * Fired when the Date Picker dialog is shown.
      */
     onShow: React.PropTypes.func,
 
@@ -102,15 +124,9 @@ const DatePicker = React.createClass({
 
     /**
      * Called during render time of a given day. If this method returns
-     * false the day is disabled otherwise it is displayed normally.
+     * false the day is disabled, otherwise it is displayed normally.
      */
     shouldDisableDate: React.PropTypes.func,
-
-    /**
-     *  Enables the year selection in the date picker.
-     */
-    showYearSelector: deprecated(React.PropTypes.bool,
-          'Instead, use disableYearSelection.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -135,28 +151,26 @@ const DatePicker = React.createClass({
     /**
      * Wordings used inside the button of the dialog.
      */
-    wordings: React.PropTypes.object,
+    wordings: deprecated(React.PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
   },
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-    WindowListenable,
-  ],
-
   getDefaultProps() {
     return {
-      formatDate: DateTime.format,
       autoOk: false,
+      cancelLabel: 'Cancel',
+      container: 'dialog',
+      disabled: false,
       disableYearSelection: false,
+      firstDayOfWeek: 1,
+      okLabel: 'OK',
       style: {},
     };
   },
@@ -165,7 +179,7 @@ const DatePicker = React.createClass({
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
       dialogDate: new Date(),
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -176,12 +190,12 @@ const DatePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (nextContext.muiTheme) {
-      this.setState({muiTheme: nextContext.muiTheme});
-    }
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     if (this._isControlled()) {
-      let newDate = this._getControlledDate(nextProps);
+      const newDate = this._getControlledDate(nextProps);
       if (!DateTime.isEqualDate(this.state.date, newDate)) {
         this.setState({
           date: newDate,
@@ -190,21 +204,8 @@ const DatePicker = React.createClass({
     }
   },
 
-  windowListeners: {
-    keyup: '_handleWindowKeyUp',
-  },
-
   getDate() {
     return this.state.date;
-  },
-
-  setDate(date) {
-    warning(false, `setDate() method is deprecated. Use the defaultDate property instead.
-      Or use the DatePicker as a controlled component with the value property.`);
-
-    this.setState({
-      date: date,
-    });
   },
 
   /**
@@ -233,21 +234,18 @@ const DatePicker = React.createClass({
     if (this.props.valueLink) this.props.valueLink.requestChange(date);
   },
 
-  _handleInputFocus(e) {
-    e.target.blur();
-    if (this.props.onFocus) this.props.onFocus(e);
+  _handleInputFocus(event) {
+    event.target.blur();
+    if (this.props.onFocus) this.props.onFocus(event);
   },
 
   _handleInputTouchTap: function _handleInputTouchTap(event) {
     if (this.props.onTouchTap) this.props.onTouchTap(event);
 
-    setTimeout(() => {
-      this.openDialog();
-    }, 0);
-  },
-
-  _handleWindowKeyUp() {
-    //TO DO: open the dialog if input has focus
+    if (!this.props.disabled)
+      setTimeout(() => {
+        this.openDialog();
+      }, 0);
   },
 
   _isControlled() {
@@ -263,31 +261,48 @@ const DatePicker = React.createClass({
     }
   },
 
+  _formatDate(date) {
+    if (this.props.locale && this.props.DateTimeFormat) {
+      return new this.props.DateTimeFormat(this.props.locale, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      }).format(date);
+    } else {
+      return DateTime.format(date);
+    }
+  },
+
   render() {
-    let {
-      container,
+    const {
       DateTimeFormat,
-      locale,
-      wordings,
       autoOk,
+      cancelLabel,
+      container,
       defaultDate,
-      formatDate,
+      disableYearSelection,
+      firstDayOfWeek,
+      locale,
       maxDate,
       minDate,
       mode,
+      okLabel,
       onDismiss,
       onFocus,
       onShow,
       onTouchTap,
-      disableYearSelection,
       style,
       textFieldStyle,
       valueLink,
+      wordings,
       ...other,
     } = this.props;
 
+    const formatDate = this.props.formatDate || this._formatDate;
+    const {prepareStyles} = this.state.muiTheme;
+
     return (
-      <div style={this.prepareStyles(style)}>
+      <div style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           style={textFieldStyle}
@@ -297,21 +312,24 @@ const DatePicker = React.createClass({
           onTouchTap={this._handleInputTouchTap}
         />
         <DatePickerDialog
-          container={container}
-          ref="dialogWindow"
           DateTimeFormat={DateTimeFormat}
-          locale={locale}
-          wordings={wordings}
-          mode={mode}
+          autoOk={autoOk}
+          cancelLabel={cancelLabel}
+          container={container}
+          disableYearSelection={disableYearSelection}
+          firstDayOfWeek={firstDayOfWeek}
           initialDate={this.state.dialogDate}
+          locale={locale}
+          maxDate={maxDate}
+          minDate={minDate}
+          mode={mode}
+          okLabel={okLabel}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
           onDismiss={onDismiss}
-          minDate={minDate}
-          maxDate={maxDate}
-          autoOk={autoOk}
-          disableYearSelection={disableYearSelection}
+          ref="dialogWindow"
           shouldDisableDate={this.props.shouldDisableDate}
+          wordings={wordings}
         />
       </div>
     );

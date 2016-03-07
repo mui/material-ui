@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const EditorVerticalAlignTop = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let EditorVerticalAlignTop = (props) => (
+  <SvgIcon {...props}>
+    <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
+  </SvgIcon>
+);
+EditorVerticalAlignTop = pure(EditorVerticalAlignTop)
+EditorVerticalAlignTop.displayName = 'EditorVerticalAlignTop';
 
 export default EditorVerticalAlignTop;

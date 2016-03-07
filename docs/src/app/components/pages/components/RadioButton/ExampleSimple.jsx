@@ -1,8 +1,13 @@
 import React from 'react';
 import RadioButton from 'material-ui/lib/radio-button';
 import RadioButtonGroup from 'material-ui/lib/radio-button-group';
+import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
 
 const styles = {
+  block: {
+    maxWidth: 250,
+  },
   radioButton: {
     marginBottom: 16,
   },
@@ -23,8 +28,30 @@ const RadioButtonExampleSimple = () => (
       />
       <RadioButton
         value="ludicrous"
-        label="Disabled"
+        label="Custom icon"
+        checkedIcon={<ActionFavorite />}
+        uncheckedIcon={<ActionFavoriteBorder />}
+        style={styles.radioButton}
+      />
+    </RadioButtonGroup>
+    <RadioButtonGroup name="shipName" defaultSelected="community">
+      <RadioButton
+        value="enterprise"
+        label="Disabled unchecked"
         disabled={true}
+        style={styles.radioButton}
+      />
+      <RadioButton
+        value="community"
+        label="Disabled checked"
+        disabled={true}
+        style={styles.radioButton}
+      />
+    </RadioButtonGroup>
+    <RadioButtonGroup name="notRight" labelPosition="left" style={styles.block}>
+      <RadioButton
+        value="reverse"
+        label="Label on the left"
         style={styles.radioButton}
       />
     </RadioButtonGroup>

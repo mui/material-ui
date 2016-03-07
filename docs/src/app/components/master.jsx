@@ -1,19 +1,16 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import {Spacing} from 'material-ui/lib/styles';
-import {
-  StylePropable,
-  StyleResizable,
-} from 'material-ui/lib/mixins';
+import {StyleResizable} from 'material-ui/lib/mixins';
 
-import {
-  Colors,
-  getMuiTheme,
-} from 'material-ui/lib/styles';
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import {darkWhite, lightWhite, grey900} from 'material-ui/lib/styles/colors';
 
-import AppLeftNav from './app-left-nav';
-import FullWidthSection from './full-width-section';
+import AppLeftNav from './AppLeftNav';
+import FullWidthSection from './FullWidthSection';
 
 const githubButton = (
   <IconButton
@@ -27,8 +24,11 @@ const Master = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
-    history: React.PropTypes.object,
     location: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired,
   },
 
   childContextTypes: {
@@ -36,7 +36,6 @@ const Master = React.createClass({
   },
 
   mixins: [
-    StylePropable,
     StyleResizable,
   ],
 
@@ -67,8 +66,6 @@ const Master = React.createClass({
   },
 
   getStyles() {
-    const darkWhite = Colors.darkWhite;
-
     const styles = {
       appBar: {
         position: 'fixed',
@@ -87,7 +84,7 @@ const Master = React.createClass({
         margin: `${Spacing.desktopGutter * 2}px ${Spacing.desktopGutter * 3}px`,
       },
       footer: {
-        backgroundColor: Colors.grey900,
+        backgroundColor: grey900,
         textAlign: 'center',
       },
       a: {
@@ -96,7 +93,7 @@ const Master = React.createClass({
       p: {
         margin: '0 auto',
         padding: 0,
-        color: Colors.lightWhite,
+        color: lightWhite,
         maxWidth: 335,
       },
       iconButton: {
@@ -106,7 +103,7 @@ const Master = React.createClass({
 
     if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
         this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
-      styles.content = this.mergeStyles(styles.content, styles.contentWhenMedium);
+      styles.content = Object.assign(styles.content, styles.contentWhenMedium);
     }
 
     return styles;
@@ -125,7 +122,7 @@ const Master = React.createClass({
   },
 
   handleRequestChangeList(event, value) {
-    this.props.history.push(value);
+    this.context.router.push(value);
     this.setState({
       leftNavOpen: false,
     });
@@ -139,7 +136,6 @@ const Master = React.createClass({
 
   render() {
     const {
-      history,
       location,
       children,
     } = this.props;
@@ -148,12 +144,17 @@ const Master = React.createClass({
       leftNavOpen,
     } = this.state;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const router = this.context.router;
     const styles = this.getStyles();
     const title =
-      history.isActive('/get-started') ? 'Get Started' :
-      history.isActive('/customization') ? 'Customization' :
-      history.isActive('/components') ? 'Components' :
-      history.isActive('/discover-more') ? 'Discover More' : '';
+      router.isActive('/get-started') ? 'Get Started' :
+      router.isActive('/customization') ? 'Customization' :
+      router.isActive('/components') ? 'Components' :
+      router.isActive('/discover-more') ? 'Discover More' : '';
 
     let docked = false;
     let showMenuIconButton = true;
@@ -172,6 +173,7 @@ const Master = React.createClass({
 
     return (
       <div>
+        <Title render="Material-UI" />
         <AppBar
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
@@ -181,19 +183,17 @@ const Master = React.createClass({
           showMenuIconButton={showMenuIconButton}
         />
         {title !== '' ?
-          <div style={this.prepareStyles(styles.root)}>
-            <div style={this.prepareStyles(styles.content)}>
+          <div style={prepareStyles(styles.root)}>
+            <div style={prepareStyles(styles.content)}>
               {React.cloneElement(children, {
                 onChangeMuiTheme: this.handleChangeMuiTheme,
               })}
             </div>
-          </div>
-          :
+          </div> :
           children
         }
         <AppLeftNav
           style={styles.leftNav}
-          history={history}
           location={location}
           docked={docked}
           onRequestChangeLeftNav={this.handleChangeRequestLeftNav}
@@ -201,14 +201,14 @@ const Master = React.createClass({
           open={leftNavOpen}
         />
         <FullWidthSection style={styles.footer}>
-          <p style={this.prepareStyles(styles.p)}>
+          <p style={prepareStyles(styles.p)}>
             {'Hand crafted with love by the engineers at '}
             <a style={styles.a} href="http://call-em-all.com">
               Call-Em-All
             </a>
             {' and our awesome '}
             <a
-              style={this.prepareStyles(styles.a)}
+              style={prepareStyles(styles.a)}
               href="https://github.com/callemall/material-ui/graphs/contributors"
             >
               contributors

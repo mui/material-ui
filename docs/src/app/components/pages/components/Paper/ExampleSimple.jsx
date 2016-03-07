@@ -11,11 +11,11 @@ const style = {
 
 const PaperExampleSimple = () => (
   <div>
-    <Paper style={style} zDepth={1}/>
-    <Paper style={style} zDepth={2}/>
-    <Paper style={style} zDepth={3}/>
-    <Paper style={style} zDepth={4}/>
-    <Paper style={style} zDepth={5}/>
+    <Paper style={style} zDepth={1} />
+    <Paper style={style} zDepth={2} />
+    <Paper style={style} zDepth={3} />
+    <Paper style={style} zDepth={4} />
+    <Paper style={style} zDepth={5} />
   </div>
 );
 

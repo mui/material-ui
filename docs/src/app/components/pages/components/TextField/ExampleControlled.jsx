@@ -21,6 +21,7 @@ export default class TextFieldExampleControlled extends React.Component {
     return (
       <div>
         <TextField
+          id="text-field-controlled"
           value={this.state.value}
           onChange={this.handleChange}
         />

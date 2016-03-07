@@ -1,20 +1,75 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
-import ClickAwayable from './mixins/click-awayable';
+import ClickAwayListener from './ClickAwayListener';
 import FlatButton from './flat-button';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
-import ContextPure from './mixins/context-pure';
+import getMuiTheme from './styles/getMuiTheme';
 import StyleResizable from './mixins/style-resizable';
-import warning from 'warning';
-import deprecated from './utils/deprecatedPropType';
+
+function getStyles(props, state) {
+  const {
+    muiTheme: {
+      baseTheme,
+      snackbar,
+      zIndex,
+    },
+    open,
+  } = state;
+
+  const {
+    desktopGutter,
+    desktopSubheaderHeight,
+  } = baseTheme.spacing;
+
+  const isSmall = state.deviceSize === StyleResizable.statics.Sizes.SMALL;
+
+  const styles = {
+    root: {
+      position: 'fixed',
+      left: 0,
+      display: 'flex',
+      right: 0,
+      bottom: 0,
+      zIndex: zIndex.snackbar,
+      visibility: open ? 'visible' : 'hidden',
+      transform: open ? 'translate3d(0, 0, 0)' : `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
+      transition: `${Transitions.easeOut('400ms', 'transform')}, ${
+        Transitions.easeOut('400ms', 'visibility')}`,
+    },
+    body: {
+      backgroundColor: snackbar.backgroundColor,
+      padding: `0 ${desktopGutter}px`,
+      height: desktopSubheaderHeight,
+      lineHeight: `${desktopSubheaderHeight}px`,
+      borderRadius: isSmall ? 0 : 2,
+      maxWidth: isSmall ? 'inherit' : 568,
+      minWidth: isSmall ? 'inherit' : 288,
+      flexGrow: isSmall ? 1 : 0,
+      margin: 'auto',
+    },
+    content: {
+      fontSize: 14,
+      color: snackbar.textColor,
+      opacity: open ? 1 : 0,
+      transition: open ? Transitions.easeOut('500ms', 'opacity', '100ms') : Transitions.easeOut('400ms', 'opacity'),
+    },
+    action: {
+      color: snackbar.actionColor,
+      float: 'right',
+      marginTop: 6,
+      marginRight: -16,
+      marginLeft: desktopGutter,
+      backgroundColor: 'transparent',
+    },
+  };
+
+  return styles;
+}
 
 const Snackbar = React.createClass({
 
   propTypes: {
     /**
-     * The name of the action on the snackbar.
+     * The label for the action on the snackbar.
      */
     action: React.PropTypes.string,
 
@@ -38,6 +93,10 @@ const Snackbar = React.createClass({
 
     /**
      * The message to be displayed.
+     *
+     * (Note: If the message is an element or array, and the `Snackbar` may re-render while it is still open,
+     * ensure that the same object remains as the `message` property if you want to avoid the `Snackbar` hiding and
+     * showing again)
      */
     message: React.PropTypes.node.isRequired,
 
@@ -47,12 +106,6 @@ const Snackbar = React.createClass({
      * @param {object} event Action button event.
      */
     onActionTouchTap: React.PropTypes.func,
-
-    /**
-     * Fired when the `Snackbar` is dismissed.
-     */
-    onDismiss: deprecated(React.PropTypes.func,
-      'Instead, use the open property to control the component.'),
 
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
@@ -69,21 +122,9 @@ const Snackbar = React.createClass({
     onRequestClose: React.PropTypes.func.isRequired,
 
     /**
-     * Fired when the `Snackbar` is shown.
-     */
-    onShow: deprecated(React.PropTypes.func,
-      'Instead, use the open property to control the component.'),
-
-    /**
      * Controls whether the `Snackbar` is opened or not.
      */
     open: React.PropTypes.bool.isRequired,
-
-    /**
-     * If true, the `Snackbar` will open once mounted.
-     */
-    openOnMount: deprecated(React.PropTypes.bool,
-      'Instead, use the open property to control the component.'),
 
     /**
      * Override the inline-styles of the root element.
@@ -95,50 +136,20 @@ const Snackbar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
-    StylePropable,
     StyleResizable,
-    ClickAwayable,
-    ContextPure,
   ],
 
-  statics: {
-    getRelevantContextKeys(muiTheme) {
-      const theme = muiTheme.snackbar;
-      const spacing = muiTheme.rawTheme.spacing;
-
-      return {
-        textColor: theme.textColor,
-        backgroundColor: theme.backgroundColor,
-        desktopGutter: spacing.desktopGutter,
-        desktopSubheaderHeight: spacing.desktopSubheaderHeight,
-        actionColor: theme.actionColor,
-      };
-    },
-    getChildrenClasses() {
-      return [
-        FlatButton,
-      ];
-    },
-  },
-
   getInitialState() {
-    let open = this.props.open;
-
-    if (open === null) {
-      open = this.props.openOnMount;
-    }
-
     return {
-      open: open,
+      open: this.props.open,
       message: this.props.message,
       action: this.props.action,
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -150,19 +161,14 @@ const Snackbar = React.createClass({
 
   componentDidMount() {
     if (this.state.open) {
-      this._setAutoHideTimer();
-
-      //Only Bind clickaway after transition finishes
-      this.timerTransitionId = setTimeout(() => {
-        this._bindClickAway();
-      }, 400);
+      this.setAutoHideTimer();
+      this.setTransitionTimer();
     }
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
 
     if (this.state.open && nextProps.open === this.props.open &&
@@ -193,15 +199,10 @@ const Snackbar = React.createClass({
   componentDidUpdate(prevProps, prevState) {
     if (prevState.open !== this.state.open) {
       if (this.state.open) {
-        this._setAutoHideTimer();
-
-        //Only Bind clickaway after transition finishes
-        this.timerTransitionId = setTimeout(() => {
-          this._bindClickAway();
-        }, 400);
+        this.setAutoHideTimer();
+        this.setTransitionTimer();
       } else {
         clearTimeout(this.timerAutoHideId);
-        this._unbindClickAway();
       }
     }
   },
@@ -210,7 +211,6 @@ const Snackbar = React.createClass({
     clearTimeout(this.timerAutoHideId);
     clearTimeout(this.timerTransitionId);
     clearTimeout(this.timerOneAtTheTimeId);
-    this._unbindClickAway();
   },
 
   manuallyBindClickAway: true,
@@ -220,6 +220,8 @@ const Snackbar = React.createClass({
   timerOneAtTheTimeId: undefined,
 
   componentClickAway() {
+    if (this.timerTransitionId) return; // If transitioning, don't close snackbar
+
     if (this.props.open !== null && this.props.onRequestClose) {
       this.props.onRequestClose('clickaway');
     } else {
@@ -227,96 +229,8 @@ const Snackbar = React.createClass({
     }
   },
 
-  getStyles() {
-    const {
-      textColor,
-      backgroundColor,
-      desktopGutter,
-      desktopSubheaderHeight,
-      actionColor,
-    } = this.constructor.getRelevantContextKeys(this.state.muiTheme);
-
-    const isSmall = this.state.deviceSize === this.constructor.Sizes.SMALL;
-
-    const styles = {
-      root: {
-        position: 'fixed',
-        left: 0,
-        display: 'flex',
-        right: 0,
-        bottom: 0,
-        zIndex: this.state.muiTheme.zIndex.snackbar,
-        visibility: 'hidden',
-        transform: 'translate3d(0, ' + desktopSubheaderHeight + 'px, 0)',
-        transition:
-          Transitions.easeOut('400ms', 'transform') + ',' +
-          Transitions.easeOut('400ms', 'visibility'),
-      },
-      rootWhenOpen: {
-        visibility: 'visible',
-        transform: 'translate3d(0, 0, 0)',
-      },
-      body: {
-        backgroundColor: backgroundColor,
-        padding: '0 ' + desktopGutter + 'px',
-        height: desktopSubheaderHeight,
-        lineHeight: desktopSubheaderHeight + 'px',
-        borderRadius: isSmall ? 0 : 2,
-        maxWidth: isSmall ? 'inherit' : 568,
-        minWidth: isSmall ? 'inherit' : 288,
-        flexGrow: isSmall ? 1 : 0,
-        margin: 'auto',
-      },
-      content: {
-        fontSize: 14,
-        color: textColor,
-        opacity: 0,
-        transition: Transitions.easeOut('400ms', 'opacity'),
-      },
-      contentWhenOpen: {
-        opacity: 1,
-        transition: Transitions.easeOut('500ms', 'opacity', '100ms'),
-      },
-      action: {
-        color: actionColor,
-        float: 'right',
-        marginTop: 6,
-        marginRight: -16,
-        marginLeft: desktopGutter,
-        backgroundColor: 'transparent',
-      },
-    };
-
-    return styles;
-  },
-
-  show() {
-    warning(false, 'show has been deprecated in favor of explicitly setting the open property.');
-
-    this.setState({
-      open: true,
-    });
-
-    if (this.props.onShow) {
-      this.props.onShow();
-    }
-  },
-
-  _onDismiss() {
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
-  },
-
-  dismiss() {
-    warning(false, 'dismiss has been deprecated in favor of explicitly setting the open property.');
-
-    this.setState({
-      open: false,
-    }, this._onDismiss);
-  },
-
-  _setAutoHideTimer() {
+  // Timer that controls delay before snackbar auto hides
+  setAutoHideTimer() {
     const autoHideDuration = this.props.autoHideDuration;
 
     if (autoHideDuration > 0) {
@@ -331,6 +245,13 @@ const Snackbar = React.createClass({
     }
   },
 
+  // Timer that controls delay before click-away events are captured (based on when animation completes)
+  setTransitionTimer() {
+    this.timerTransitionId = setTimeout(() => {
+      this.timerTransitionId = undefined;
+    }, 400);
+  },
+
   render() {
     const {
       onActionTouchTap,
@@ -339,42 +260,36 @@ const Snackbar = React.createClass({
       ...others,
     } = this.props;
 
-    const styles = this.getStyles();
-
     const {
-      open,
       action,
       message,
+      muiTheme: {
+        prepareStyles,
+      },
+      open,
     } = this.state;
 
-    const rootStyles = open ?
-      this.mergeStyles(styles.root, styles.rootWhenOpen, style) :
-      this.mergeStyles(styles.root, style);
+    const styles = getStyles(this.props, this.state);
 
-    let actionButton;
-    if (action) {
-      actionButton = (
-        <FlatButton
-          style={styles.action}
-          label={action}
-          onTouchTap={onActionTouchTap}
-        />
-      );
-    }
-
-    const mergedBodyStyle = this.mergeStyles(styles.body, bodyStyle);
-
-    const contentStyle = open ? this.mergeStyles(styles.content, styles.contentWhenOpen) : styles.content;
+    const actionButton = action && (
+      <FlatButton
+        style={styles.action}
+        label={action}
+        onTouchTap={onActionTouchTap}
+      />
+    );
 
     return (
-      <div {...others} style={rootStyles}>
-        <div style={mergedBodyStyle}>
-          <div style={contentStyle}>
-            <span>{message}</span>
-            {actionButton}
+      <ClickAwayListener onClickAway={open && this.componentClickAway}>
+        <div {...others} style={prepareStyles(Object.assign(styles.root, style))}>
+          <div style={prepareStyles(Object.assign(styles.body, bodyStyle))}>
+            <div style={prepareStyles(styles.content)}>
+              <span>{message}</span>
+              {actionButton}
+            </div>
           </div>
         </div>
-      </div>
+      </ClickAwayListener>
     );
   },
 

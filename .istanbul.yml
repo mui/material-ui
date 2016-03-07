@@ -1,0 +1,8 @@
+instrumentation:
+  root: src
+  excludes:
+    - "**/svg-icons/**"
+  extensions:
+    - .jsx
+    - .js
+

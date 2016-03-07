@@ -1,15 +1,46 @@
 import React from 'react';
 import DatePicker from 'material-ui/lib/date-picker/date-picker';
+import areIntlLocalesSupported from 'intl-locales-supported';
+
+let DateTimeFormat;
+
+/**
+ * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
+ */
+if (areIntlLocalesSupported(['fr', 'en-US'])) {
+  DateTimeFormat = global.Intl.DateTimeFormat;
+} else {
+  const IntlPolyfill = require('intl');
+  DateTimeFormat = IntlPolyfill.DateTimeFormat;
+  require('intl/locale-data/jsonp/fr');
+  require('intl/locale-data/jsonp/en-US');
+}
 
 const DatePickerExampleInternational = () => (
-  <DatePicker
-    hintText="fr version"
-    DateTimeFormat={Intl.DateTimeFormat}
-    // Intl is supported by most modern browsers, see http://caniuse.com/#search=intl
-    // for browsers that don't support it use this polyfill https://github.com/andyearnshaw/Intl.js
-    wordings={{ok: 'OK', cancel: 'Annuler'}}
-    locale="fr"
-  />
+  <div>
+    <DatePicker
+      hintText="fr locale"
+      DateTimeFormat={DateTimeFormat}
+      okLabel="OK"
+      cancelLabel="Annuler"
+      locale="fr"
+    />
+    <DatePicker
+      hintText="en-US locale"
+      DateTimeFormat={DateTimeFormat}
+      locale="en-US"
+      firstDayOfWeek={0}
+    />
+    <DatePicker
+      hintText="Custom date format"
+      firstDayOfWeek={0}
+      formatDate={new DateTimeFormat('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      }).format}
+    />
+  </div>
 );
 
 export default DatePickerExampleInternational;

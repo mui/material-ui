@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -17,26 +19,57 @@ import menuExampleSecondaryCode from '!raw!./ExampleSecondary';
 import MenuExampleNested from './ExampleNested';
 import menuExampleNestedCode from '!raw!./ExampleNested';
 
+const descriptions = {
+  simple: 'Two simple examples. The menu widths adjusts to accommodate the content in keyline increments.',
+  disabled: 'The `disabled` property disables a `MenuItem`. ' +
+  '`Menu` supports a more compact vertical spacing using the `desktop` property. ' +
+  'The [Divider](/#/components/divider) can be used to separate `MenuItems`.',
+  icons: '`MenuItem` supports icons through the `leftIcon` and `rightIcon` properties.',
+  secondary: '`MenuItem` supports a `secondaryText` property.',
+  nested: 'Cascading menus can be configured using the `menuItems` property of the `MenuItem` component.',
+};
+
 const MenuPage = () => (
   <div>
+    <Title render={(previousTitle) => `Menu - ${previousTitle}`} />
     <MarkdownElement text={menuReadmeText} />
-    <CodeExample code={menuExampleSimpleCode}>
+    <CodeExample
+      title="Simple examples"
+      description={descriptions.simple}
+      code={menuExampleSimpleCode}
+    >
       <MenuExampleSimple />
     </CodeExample>
-    <CodeExample code={menuExampleDisableCode}>
+    <CodeExample
+      title="Disabled items"
+      description={descriptions.disabled}
+      code={menuExampleDisableCode}
+    >
       <MenuExampleDisable />
     </CodeExample>
-    <CodeExample code={menuExampleIconsCode}>
+    <CodeExample
+      title="Icons"
+      description={descriptions.icons}
+      code={menuExampleIconsCode}
+    >
       <MenuExampleIcons />
     </CodeExample>
-    <CodeExample code={menuExampleSecondaryCode}>
+    <CodeExample
+      title="Secondary text"
+      description={descriptions.secondary}
+      code={menuExampleSecondaryCode}
+    >
       <MenuExampleSecondary />
     </CodeExample>
-    <CodeExample code={menuExampleNestedCode}>
+    <CodeExample
+      title="Nested menus"
+      description={descriptions.nested}
+      code={menuExampleNestedCode}
+    >
       <MenuExampleNested />
     </CodeExample>
-    <PropTypeDescription code={menuCode} header = "### Menu Properties"/>
-    <PropTypeDescription code={menuItemCode} header="### MenuItem Properties"/>
+    <PropTypeDescription header="### Menu Properties" code={menuCode} />
+    <PropTypeDescription header="### MenuItem Properties" code={menuItemCode} />
   </div>
 );
 

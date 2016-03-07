@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 /**
- * Material UI Icon Builder
+ * Material-UI Icon Builder
  * ========================
  *
  * Usage:
@@ -159,6 +159,7 @@ function getJsxString(svgPath, destPath, options) {
   paths = paths.replace(/xlink:href="#a"/g, '');
   paths = paths.replace(/xlink:href="#c"/g, '');
   paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
+  paths = paths.replace(/\s?fill=".*?"/g, '');
 
   // Node acts wierd if we put this directly into string concatenation
 

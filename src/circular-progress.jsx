@@ -1,10 +1,73 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
-import AutoPrefix from './styles/auto-prefix';
+import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
+
+function getRelativeValue(value, min, max) {
+  const clampedValue = Math.min(Math.max(min, value), max);
+  const rangeValue = max - min;
+  const relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+  return relValue * 100;
+}
+
+function getStyles(props, state) {
+  const {
+    max,
+    min,
+    size,
+    value,
+  } = props;
+
+  const {
+    baseTheme: {
+      palette,
+    },
+  } = state.muiTheme;
+
+  const zoom = size * 1.4 ;
+  const baseSize = 50;
+  let margin = Math.round( ((50 * zoom) - 50) / 2 );
+
+  if (margin < 0) margin = 0;
+
+  const styles = {
+    root: {
+      position: 'relative',
+      margin: margin,
+      display: 'inline-block',
+      width: baseSize,
+      height: baseSize,
+    },
+    wrapper: {
+      width: baseSize,
+      height: baseSize,
+      display: 'inline-block',
+      transition: Transitions.create('transform', '20s', null, 'linear'),
+      transitionTimingFunction: 'linear',
+    },
+    svg: {
+      height: baseSize,
+      position: 'relative',
+      transform: `scale(${zoom})`,
+      width: baseSize,
+    },
+    path: {
+      strokeDasharray: '89,200',
+      strokeDashoffset: 0,
+      stroke: props.color || palette.primary1Color,
+      strokeLinecap: 'round',
+      transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
+    },
+  };
+
+  if (props.mode === 'determinate') {
+    const relVal = getRelativeValue(value, min, max);
+    styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
+    styles.path.strokeDasharray = `${Math.round(relVal * 1.25)},200`;
+  }
+
+  return styles;
+}
 
 const CircularProgress = React.createClass({
 
@@ -55,12 +118,9 @@ const CircularProgress = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -74,7 +134,7 @@ const CircularProgress = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -85,34 +145,19 @@ const CircularProgress = React.createClass({
   },
 
   componentDidMount() {
-    let wrapper = ReactDOM.findDOMNode(this.refs.wrapper);
-    let path = ReactDOM.findDOMNode(this.refs.path);
-
-    this._scalePath(path);
-    this._rotateWrapper(wrapper);
+    this._scalePath(this.refs.path);
+    this._rotateWrapper(this.refs.wrapper);
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   componentWillUnmount() {
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
-  },
-
-  _getRelativeValue() {
-    let value = this.props.value;
-    let min = this.props.min;
-    let max = this.props.max;
-
-    let clampedValue = Math.min(Math.max(min, value), max);
-    let rangeValue = max - min;
-    let relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
-    return relValue * 100;
   },
 
   scalePathTimer: undefined,
@@ -144,87 +189,38 @@ const CircularProgress = React.createClass({
   _rotateWrapper(wrapper) {
     if (this.props.mode !== 'indeterminate') return;
 
-    AutoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    AutoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
 
     setTimeout(() => {
-      AutoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      AutoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      AutoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
   },
 
-  getTheme() {
-    return this.state.muiTheme.rawTheme.palette;
-  },
-
-  getStyles(zoom) {
-    zoom *= 1.4;
-    let size = '50px';
-
-    let margin = Math.round( ((50 * zoom) - 50) / 2 );
-
-    if (margin < 0) margin = 0;
-
-    let styles = {
-      root: {
-        position: 'relative',
-        margin: margin + 'px',
-        display: 'inline-block',
-        width: size,
-        height: size,
-      },
-      wrapper: {
-        width: size,
-        height: size,
-        display: 'inline-block',
-        transition: Transitions.create('transform', '20s', null, 'linear'),
-      },
-      svg: {
-        height: size,
-        position: 'relative',
-        transform: 'scale(' + zoom + ')',
-        width: size,
-      },
-      path: {
-        strokeDasharray: '89,200',
-        strokeDashoffset: 0,
-        stroke: this.props.color || this.getTheme().primary1Color,
-        strokeLinecap: 'round',
-        transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
-      },
-    };
-
-    AutoPrefix.set(styles.wrapper, 'transitionTimingFunction', 'linear');
-
-    if (this.props.mode === 'determinate') {
-      let relVal = this._getRelativeValue();
-      styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
-      styles.path.strokeDasharray = Math.round(relVal * 1.25) + ',200';
-    }
-
-    return styles;
-  },
-
   render() {
-    let {
+    const {
       style,
       innerStyle,
       size,
       ...other,
     } = this.props;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    let styles = this.getStyles(size || 1);
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <div {...other} style={this.prepareStyles(styles.root, style)} >
-        <div ref="wrapper" style={this.prepareStyles(styles.wrapper, innerStyle)} >
-          <svg style={this.prepareStyles(styles.svg)} >
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))} >
+        <div ref="wrapper" style={prepareStyles(Object.assign(styles.wrapper, innerStyle))} >
+          <svg style={prepareStyles(styles.svg)} >
             <circle
-              ref="path" style={this.prepareStyles(styles.path)} cx="25"
+              ref="path" style={prepareStyles(styles.path)} cx="25"
               cy="25" r="20" fill="none"
               strokeWidth="2.5" strokeMiterlimit="10"
             />

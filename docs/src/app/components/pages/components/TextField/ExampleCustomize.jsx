@@ -1,13 +1,13 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
-import Colors from 'material-ui/lib/styles/colors';
+import {orange500} from 'material-ui/lib/styles/colors';
 
 const styles = {
   errorStyle: {
-    color: Colors.orange500,
+    color: orange500,
   },
   underlineStyle: {
-    borderColor: Colors.orange500,
+    borderColor: orange500,
   },
 };
 
@@ -16,16 +16,16 @@ const TextFieldExampleCustomize = () => (
     <TextField
       hintText="Styled Hint Text"
       hintStyle={styles.errorStyle}
-    /><br/>
+    /><br />
     <TextField
       hintText="Custom error color"
       errorText="This field is required."
       errorStyle={styles.errorStyle}
-    /><br/>
+    /><br />
     <TextField
       hintText="Custom Underline Color"
       underlineStyle={styles.underlineStyle}
-    /><br/>
+    /><br />
     <TextField
       hintText="Custom Underline Focus Color"
       underlineFocusStyle={styles.underlineStyle}

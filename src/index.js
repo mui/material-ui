@@ -18,7 +18,6 @@ import DatePicker from './date-picker/date-picker';
 import DatePickerDialog from './date-picker/date-picker-dialog';
 import Dialog from './dialog';
 import Divider from './divider';
-import DropDownIcon from './drop-down-icon';
 import DropDownMenu from './drop-down-menu';
 import EnhancedButton from './enhanced-button';
 import FlatButton from './flat-button';
@@ -26,12 +25,12 @@ import FloatingActionButton from './floating-action-button';
 import FontIcon from './font-icon';
 import GridList from './grid-list/grid-list';
 import GridTile from './grid-list/grid-tile';
+import HorizontalStep from './Stepper/HorizontalStep';
 import IconButton from './icon-button';
 import IconMenu from './menus/icon-menu';
 import LeftNav from './left-nav';
 import LinearProgress from './linear-progress';
 import List from './lists/list';
-import ListDivider from './lists/list-divider';
 import ListItem from './lists/list-item';
 import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
@@ -47,7 +46,9 @@ import Ripples from './ripples';
 import SelectField from './select-field';
 import SelectableContainerEnhance from './hoc/selectable-enhance';
 import Slider from './slider';
+import Subheader from './Subheader';
 import SvgIcon from './svg-icon';
+import Stepper from './Stepper/Stepper';
 import Styles from './styles';
 import Snackbar from './snackbar';
 import Tab from './tabs/tab';
@@ -60,7 +61,6 @@ import TableHeaderColumn from './table/table-header-column';
 import TableRow from './table/table-row';
 import TableRowColumn from './table/table-row-column';
 import Toggle from './toggle';
-import ThemeWrapper from './theme-wrapper';
 import TimePicker from './time-picker';
 import TextField from './TextField';
 import Toolbar from './toolbar/toolbar';
@@ -69,6 +69,7 @@ import ToolbarSeparator from './toolbar/toolbar-separator';
 import ToolbarTitle from './toolbar/toolbar-title';
 import Tooltip from './tooltip';
 import Utils from './utils';
+import VerticalStep from './Stepper/VerticalStep';
 
 export {AppBar};
 export {AppCanvas};
@@ -90,7 +91,6 @@ export {DatePicker};
 export {DatePickerDialog};
 export {Dialog};
 export {Divider};
-export {DropDownIcon};
 export {DropDownMenu};
 export {EnhancedButton};
 export {FlatButton};
@@ -98,12 +98,12 @@ export {FloatingActionButton};
 export {FontIcon};
 export {GridList};
 export {GridTile};
+export {HorizontalStep};
 export {IconButton};
 export {IconMenu};
 export {LeftNav};
 export {LinearProgress};
 export {List};
-export {ListDivider};
 export {ListItem};
 export {Menu};
 export {MenuItem};
@@ -119,7 +119,9 @@ export {Ripples};
 export {SelectField};
 export {SelectableContainerEnhance};
 export {Slider};
+export {Subheader};
 export {SvgIcon};
+export {Stepper};
 export {Styles};
 export {Snackbar};
 export {Tab};
@@ -132,7 +134,6 @@ export {TableHeaderColumn};
 export {TableRow};
 export {TableRowColumn};
 export {Toggle};
-export {ThemeWrapper};
 export {TimePicker};
 export {TextField};
 export {Toolbar};
@@ -141,6 +142,7 @@ export {ToolbarSeparator};
 export {ToolbarTitle};
 export {Tooltip};
 export {Utils};
+export {VerticalStep};
 
 import NavigationMenu from './svg-icons/navigation/menu';
 import NavigationChevronLeft from './svg-icons/navigation/chevron-left';
@@ -173,7 +175,6 @@ export default {
   DatePickerDialog,
   Dialog,
   Divider,
-  DropDownIcon,
   DropDownMenu,
   EnhancedButton,
   FlatButton,
@@ -181,12 +182,12 @@ export default {
   FontIcon,
   GridList,
   GridTile,
+  HorizontalStep,
   IconButton,
   IconMenu,
   LeftNav,
   LinearProgress,
   List,
-  ListDivider,
   ListItem,
   Menu,
   MenuItem,
@@ -203,6 +204,7 @@ export default {
   SelectableContainerEnhance,
   Slider,
   SvgIcon,
+  Stepper,
   Styles,
   Snackbar,
   Tab,
@@ -215,7 +217,6 @@ export default {
   TableRow,
   TableRowColumn,
   Toggle,
-  ThemeWrapper,
   TimePicker,
   TextField,
   Toolbar,
@@ -224,4 +225,5 @@ export default {
   ToolbarTitle,
   Tooltip,
   Utils,
+  VerticalStep,
 };

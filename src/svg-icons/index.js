@@ -662,8 +662,6 @@ import CommunicationStopScreenShare from './communication/stop-screen-share';
 export { CommunicationStopScreenShare };
 import CommunicationSwapCalls from './communication/swap-calls';
 export { CommunicationSwapCalls };
-import CommunicationTactMail from './communication/tact-mail';
-export { CommunicationTactMail };
 import CommunicationTextsms from './communication/textsms';
 export { CommunicationTextsms };
 import CommunicationVoicemail from './communication/voicemail';

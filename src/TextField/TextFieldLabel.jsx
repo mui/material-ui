@@ -1,9 +1,9 @@
 import React from 'react';
 import Transitions from '../styles/transitions';
-import {mergeStyles, prepareStyles} from '../utils/styles';
 
 const propTypes = {
   /**
+   * @ignore
    * The material-ui theme applied to this component.
    */
   muiTheme: React.PropTypes.object.isRequired,
@@ -50,7 +50,6 @@ const defaultProps = {
 };
 
 const TextFieldLabel = (props) => {
-
   const {
     muiTheme,
     className,
@@ -70,19 +69,23 @@ const TextFieldLabel = (props) => {
       transition: Transitions.easeOut(),
       zIndex: 1, // Needed to display label above Chrome's autocomplete field background
       cursor: disabled ? 'default' : 'text',
-      transform: shrink
-        ? 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)'
-        : 'scale(1) translate3d(0, 0, 0)',
+      transform: shrink ?
+        'perspective(1px) scale(0.75) translate3d(0, -28px, 0)' :
+        'scale(1) translate3d(0, 0, 0)',
       transformOrigin: 'left top',
       pointerEvents: shrink ? 'none' : 'auto',
       userSelect: 'none',
     },
   };
 
+  const {
+    prepareStyles,
+  } = muiTheme;
+
   return (
     <label
       className={className}
-      style={prepareStyles(muiTheme, mergeStyles(styles.root, style))}
+      style={prepareStyles(Object.assign({}, styles.root, style))}
       htmlFor={htmlFor}
       onTouchTap={onTouchTap}
     >

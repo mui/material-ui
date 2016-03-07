@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const ImageDehaze = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let ImageDehaze = (props) => (
+  <SvgIcon {...props}>
+    <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z"/>
+  </SvgIcon>
+);
+ImageDehaze = pure(ImageDehaze)
+ImageDehaze.displayName = 'ImageDehaze';
 
 export default ImageDehaze;

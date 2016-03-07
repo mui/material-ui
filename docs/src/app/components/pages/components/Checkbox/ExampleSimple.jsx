@@ -5,7 +5,7 @@ import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-bord
 
 const styles = {
   block: {
-    maxWidth: 350,
+    maxWidth: 250,
   },
   checkbox: {
     marginBottom: 16,
@@ -24,14 +24,20 @@ const CheckboxExampleSimple = () => (
       style={styles.checkbox}
     />
     <Checkbox
-      label="Disabled"
+      checkedIcon={<ActionFavorite />}
+      uncheckedIcon={<ActionFavoriteBorder />}
+      label="Custom icon"
+      style={styles.checkbox}
+    />
+    <Checkbox
+      label="Disabled unchecked"
       disabled={true}
       style={styles.checkbox}
     />
     <Checkbox
-      checkedIcon={<ActionFavorite />}
-      unCheckedIcon={<ActionFavoriteBorder />}
-      label="Custom icon"
+      label="Disabled checked"
+      checked={true}
+      disabled={true}
       style={styles.checkbox}
     />
     <Checkbox

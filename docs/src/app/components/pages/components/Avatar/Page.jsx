@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -13,6 +15,7 @@ const description = 'Examples of `Avatar` using an image, [Font Icon](/#/compone
 
 const AvatarsPage = () => (
   <div>
+    <Title render={(previousTitle) => `Avatar - ${previousTitle}`} />
     <MarkdownElement text={avatarReadmeText} />
     <CodeExample
       code={avatarExampleSimpleCode}
@@ -21,7 +24,7 @@ const AvatarsPage = () => (
     >
       <AvatarExampleSimple />
     </CodeExample>
-    <PropTypeDescription code={avatarCode}/>
+    <PropTypeDescription code={avatarCode} />
   </div>
 );
 

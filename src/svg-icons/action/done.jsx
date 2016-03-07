@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const ActionDone = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let ActionDone = (props) => (
+  <SvgIcon {...props}>
+    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+  </SvgIcon>
+);
+ActionDone = pure(ActionDone)
+ActionDone.displayName = 'ActionDone';
 
 export default ActionDone;

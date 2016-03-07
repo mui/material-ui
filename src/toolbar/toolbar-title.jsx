@@ -1,7 +1,24 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
-import DefaultRawTheme from '../styles/raw-themes/light-raw-theme';
-import ThemeManager from '../styles/theme-manager';
+import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    baseTheme,
+    toolbar,
+  } = state.muiTheme;
+
+  return {
+    root: {
+      paddingRight: baseTheme.spacing.desktopGutterLess,
+      lineHeight: `${toolbar.height}px`,
+      fontSize: toolbar.titleFontSize,
+      position: 'relative',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+    },
+  };
+}
 
 const ToolbarTitle = React.createClass({
 
@@ -26,16 +43,13 @@ const ToolbarTitle = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [StylePropable],
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -45,31 +59,10 @@ const ToolbarTitle = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.toolbar;
-  },
-
-  getSpacing() {
-    return this.state.muiTheme.rawTheme.spacing;
-  },
-
-  getStyles() {
-    return {
-      root: {
-        paddingRight: this.getSpacing().desktopGutterLess,
-        lineHeight: this.getTheme().height + 'px',
-        fontSize: this.getTheme().titleFontSize + 'px',
-        display: 'inline-block',
-        position: 'relative',
-      },
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
@@ -80,10 +73,14 @@ const ToolbarTitle = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
 
     return (
-      <span {...other} className={className} style={this.prepareStyles(styles.root, style)}>
+      <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
         {text}
       </span>
     );

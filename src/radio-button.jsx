@@ -1,19 +1,72 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import EnhancedSwitch from './enhanced-switch';
 import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from './svg-icons/toggle/radio-button-checked';
-import DefaultRawTheme from './styles/raw-themes/light-raw-theme';
-import ThemeManager from './styles/theme-manager';
+import getMuiTheme from './styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    radioButton,
+  } = state.muiTheme;
+
+  return {
+    icon: {
+      height: radioButton.size,
+      width: radioButton.size,
+    },
+    target: {
+      transition: Transitions.easeOut(),
+      position: 'absolute',
+      opacity: 1,
+      transform: 'scale(1)',
+      fill: radioButton.borderColor,
+    },
+    fill: {
+      position: 'absolute',
+      opacity: 1,
+      transform: 'scale(0)',
+      transformOrigin: '50% 50%',
+      transition: Transitions.easeOut(),
+      fill: radioButton.checkedColor,
+    },
+    targetWhenChecked: {
+      opacity: 0,
+      transform: 'scale(0)',
+    },
+    fillWhenChecked: {
+      opacity: 1,
+      transform: 'scale(1)',
+    },
+    targetWhenDisabled: {
+      fill: radioButton.disabledColor,
+    },
+    fillWhenDisabled: {
+      fill: radioButton.disabledColor,
+    },
+    label: {
+      color: props.disabled ? radioButton.labelDisabledColor : radioButton.labelColor,
+    },
+    ripple: {
+      color: props.checked ? radioButton.checkedColor : radioButton.borderColor,
+    },
+  };
+}
 
 const RadioButton = React.createClass({
 
   propTypes: {
     /**
-     * Checked if true.
+     * @ignore
+     * checked if true
+     * Used internally by `RadioButtonGroup`.
      */
     checked: React.PropTypes.bool,
+
+    /**
+     * The icon element to show when radio button is checked.
+     */
+    checkedIcon: React.PropTypes.element,
 
     /**
      * Disabled if true.
@@ -26,6 +79,13 @@ const RadioButton = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
+    * Overrides the inline-styles of the input element.
+    */
+    inputStyle: React.PropTypes.object,
+
+    /**
+     * @ignore
+     * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      * Where the label will be placed next to the radio button.
      */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
@@ -46,6 +106,11 @@ const RadioButton = React.createClass({
     style: React.PropTypes.object,
 
     /**
+     * The icon element to show when radio button is unchecked.
+     */
+    uncheckedIcon: React.PropTypes.element,
+
+    /**
      * The value of our radio button component.
      */
     value: React.PropTypes.string,
@@ -55,12 +120,9 @@ const RadioButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -72,7 +134,7 @@ const RadioButton = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
@@ -82,63 +144,19 @@ const RadioButton = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   getTheme() {
     return this.state.muiTheme.radioButton;
   },
 
-  getStyles() {
-    let styles = {
-      icon: {
-        height: this.getTheme().size,
-        width: this.getTheme().size,
-      },
-      target: {
-        transition: Transitions.easeOut(),
-        position: 'absolute',
-        opacity: 1,
-        transform: 'scale(1)',
-        fill: this.getTheme().borderColor,
-      },
-      fill: {
-        position: 'absolute',
-        opacity: 1,
-        transform: 'scale(0)',
-        transformOrigin: '50% 50%',
-        transition: Transitions.easeOut(),
-        fill: this.getTheme().checkedColor,
-      },
-      targetWhenChecked: {
-        opacity: 0,
-        transform: 'scale(0)',
-      },
-      fillWhenChecked: {
-        opacity: 1,
-        transform: 'scale(1)',
-      },
-      targetWhenDisabled: {
-        fill: this.getTheme().disabledColor,
-      },
-      fillWhenDisabled: {
-        fill: this.getTheme().disabledColor,
-      },
-      label: {
-        color: this.props.disabled ? this.getTheme().labelDisabledColor : this.getTheme().labelColor,
-      },
-    };
-
-    return styles;
-  },
-
   // Only called when selected, not when unselected.
-  _handleCheck(e) {
-    if (this.props.onCheck) this.props.onCheck(e, this.props.value);
+  _handleCheck(event) {
+    if (this.props.onCheck) this.props.onCheck(event, this.props.value);
   },
 
   _handleStateChange() {
@@ -159,61 +177,64 @@ const RadioButton = React.createClass({
   },
 
   render() {
-    let {
+    const {
+      checkedIcon,
+      checked,
+      iconStyle,
+      labelStyle,
+      labelPosition,
       onCheck,
+      uncheckedIcon,
+      disabled,
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
-    let onStyles =
-      this.mergeStyles(
-        styles.target,
-        this.props.checked && styles.targetWhenChecked,
-        this.props.iconStyle,
-        this.props.disabled && styles.targetWhenDisabled);
-    let offStyles =
-      this.mergeStyles(
-        styles.fill,
-        this.props.checked && styles.fillWhenChecked,
-        this.props.iconStyle,
-        this.props.disabled && styles.fillWhenDisabled);
+    const styles = getStyles(this.props, this.state);
 
-    let radioButtonElement = (
-      <div>
-        <RadioButtonOff style={onStyles} />
-        <RadioButtonOn style={offStyles} />
-      </div>
+    const uncheckedStyles = Object.assign(
+      styles.target,
+      checked && styles.targetWhenChecked,
+      iconStyle,
+      disabled && styles.targetWhenDisabled
     );
 
-    let rippleColor = this.props.checked ? this.getTheme().checkedColor : this.getTheme().borderColor;
-
-    let iconStyle = this.mergeStyles(
-      styles.icon,
-      this.props.iconStyle
+    const checkedStyles = Object.assign(
+      styles.fill,
+      checked && styles.fillWhenChecked,
+      iconStyle,
+      disabled && styles.fillWhenDisabled
     );
 
-    let labelStyle = this.mergeStyles(
-      styles.label,
-      this.props.labelStyle
-    );
+    const uncheckedElement = React.isValidElement(uncheckedIcon) ?
+      React.cloneElement(uncheckedIcon, {
+        style: Object.assign(uncheckedStyles, uncheckedIcon.props.style),
+      }) :
+      <RadioButtonOff style={uncheckedStyles} />;
 
-    let enhancedSwitchProps = {
-      ref: 'enhancedSwitch',
-      inputType: 'radio',
-      switched: this.props.checked,
-      switchElement: radioButtonElement,
-      rippleColor: rippleColor,
-      iconStyle: iconStyle,
-      labelStyle: labelStyle,
-      onSwitch: this._handleCheck,
-      onParentShouldUpdate: this._handleStateChange,
-      labelPosition: this.props.labelPosition,
-    };
+    const checkedElement = React.isValidElement(checkedIcon) ?
+      React.cloneElement(checkedIcon, {
+        style: Object.assign(checkedStyles, checkedIcon.props.style),
+      }) :
+      <RadioButtonOn style={checkedStyles} />;
+
+    const mergedIconStyle = Object.assign(styles.icon, iconStyle);
+    const mergedLabelStyle = Object.assign(styles.label, labelStyle);
 
     return (
       <EnhancedSwitch
         {...other}
-        {...enhancedSwitchProps}
+        ref="enhancedSwitch"
+        inputType="radio"
+        checked={checked}
+        switched={checked}
+        disabled={disabled}
+        rippleColor={styles.ripple.color}
+        iconStyle={mergedIconStyle}
+        labelStyle={mergedLabelStyle}
+        labelPosition={labelPosition}
+        onSwitch={this._handleCheck}
+        onParentShouldUpdate={this._handleStateChange}
+        switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />
     );
   },
