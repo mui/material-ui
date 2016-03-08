@@ -25,6 +25,7 @@ const MenuItem = React.createClass({
     children: React.PropTypes.node,
 
     /**
+     * @ignore
      * Indicates if the menu should render with compact desktop styles.
      */
     desktop: React.PropTypes.bool,

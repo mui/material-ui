@@ -30,44 +30,44 @@ const Step = React.createClass({
     controlButtonsGroupWrapperStyle: PropTypes.object,
 
     /**
-     * If true, the step is active.
      * @ignore
+     * If true, the step is active.
      */
     isActive: PropTypes.bool,
 
     /**
-     * If true, the step is completed.
      * @ignore
+     * If true, the step is completed.
      */
     isCompleted: PropTypes.bool,
 
     /**
-     * If true, the step is the last one.
      * @ignore
+     * If true, the step is the last one.
      */
     isLastStep: PropTypes.bool,
 
     /**
-     * If true, the header of step is hovered.
      * @ignore
+     * If true, the header of step is hovered.
      */
     isStepHeaderHovered: PropTypes.bool,
 
     /**
-     * Callback function that is fired when the header of step is hovered.
      * @ignore
+     * Callback function that is fired when the header of step is hovered.
      */
     onStepHeaderHover: PropTypes.func,
 
     /**
-     * Callback function that is fired when the header of step is touched.
      * @ignore
+     * Callback function that is fired when the header of step is touched.
      */
     onStepHeaderTouch: PropTypes.func,
 
     /**
-     * The index of the furthest optional step.
      * @ignore
+     * The index of the furthest optional step.
      */
     previousStepOptionalIndex: PropTypes.number,
 
@@ -87,8 +87,8 @@ const Step = React.createClass({
     stepHeaderWrapperStyle: PropTypes.object,
 
     /**
-     * The index of step in array of Steps.
      * @ignore
+     * The index of step in array of Steps.
      */
     stepIndex: PropTypes.number,
 

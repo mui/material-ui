@@ -7,50 +7,50 @@ const HorizontalStep = React.createClass({
   propTypes: {
 
     /**
-     * The width of step header, unit is % which passed from Stepper.
      * @ignore
+     * The width of step header, unit is % which passed from Stepper.
      */
     headerWidth: React.PropTypes.string,
 
     /**
-     * If true, the step is active.
      * @ignore
+     * If true, the step is active.
      */
     isActive: React.PropTypes.bool,
 
     /**
-     * If true, the step is completed.
      * @ignore
+     * If true, the step is completed.
      */
     isCompleted: React.PropTypes.bool,
 
     /**
-     * If true, the step is the first step.
      * @ignore
+     * If true, the step is the first step.
      */
     isFirstStep: React.PropTypes.bool,
 
     /**
-     * If true, the step is the last step.
      * @ignore
+     * If true, the step is the last step.
      */
     isLastStep: React.PropTypes.bool,
 
     /**
-     * If true, the step header is hovered.
      * @ignore
+     * If true, the step header is hovered.
      */
     isStepHeaderHovered: React.PropTypes.bool,
 
     /**
-     * Callback function will be called when step header is hovered.
      * @ignore
+     * Callback function will be called when step header is hovered.
      */
     onStepHeaderHover: React.PropTypes.func,
 
     /**
-     * Call back function will be called when step header is touched.
      * @ignore
+     * Call back function will be called when step header is touched.
      */
     onStepHeaderTouch: React.PropTypes.func,
 
@@ -60,8 +60,8 @@ const HorizontalStep = React.createClass({
     stepHeaderWrapperStyle: React.PropTypes.object,
 
     /**
-     * The index of step in array of Steps.
      * @ignore
+     * The index of step in array of Steps.
      */
     stepIndex: React.PropTypes.number,
 

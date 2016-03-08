@@ -47,11 +47,13 @@ const Tab = React.createClass({
     onActive: React.PropTypes.func,
 
     /**
+     * @ignore
      * This property is overriden by the Tabs component.
      */
     onTouchTap: React.PropTypes.func,
 
     /**
+     * @ignore
      * Defines if the current tab is selected or not.
      * The Tabs component is responsible for setting this property.
      */
@@ -69,6 +71,7 @@ const Tab = React.createClass({
     value: React.PropTypes.any,
 
     /**
+     * @ignore
      * This property is overriden by the Tabs component.
      */
     width: React.PropTypes.string,
