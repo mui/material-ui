@@ -168,7 +168,7 @@ const SelectField = React.createClass({
     };
   },
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.open) {
       /* eslint react/no-did-mount-set-state: 0 */
       /* because we're using ref for popover anchorEl  */
@@ -279,8 +279,6 @@ const SelectField = React.createClass({
         displayValue = child.props.label || child.props.primaryText;
       }
     });
-    /* eslint-disable */
-    console.log(open)
     const selecter = (
       <SelectFieldLabel
         disabled={disabled}
