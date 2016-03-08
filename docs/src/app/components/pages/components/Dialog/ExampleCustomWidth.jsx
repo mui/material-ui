@@ -33,7 +33,7 @@ export default class DialogExampleCustomWidth extends React.Component {
       />,
       <FlatButton
         label="Submit"
-        secondary={true}
+        primary={true}
         onTouchTap={this.handleClose}
       />,
     ];
