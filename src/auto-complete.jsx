@@ -11,22 +11,6 @@ import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';
 
-// Polyfill for String.prototype.includes
-if (!String.prototype.includes) {
-  String.prototype.includes = function(search, start) {
-    'use strict';
-    if (typeof start !== 'number') {
-      start = 0;
-    }
-
-    if (start + search.length > this.length) {
-      return false;
-    } else {
-      return this.indexOf(search, start) !== -1;
-    }
-  };
-}
-
 function getStyles(props, state) {
   const {
     anchorEl,
@@ -209,7 +193,7 @@ const AutoComplete = React.createClass({
       },
       animated: true,
       disableFocusRipple: true,
-      filter: (searchText, key) => searchText !== '' && key.includes(searchText),
+      filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
       fullWidth: false,
       open: false,
       openOnFocus: false,
@@ -560,11 +544,11 @@ AutoComplete.levenshteinDistance = (searchText, key) => {
 AutoComplete.noFilter = () => true;
 
 AutoComplete.defaultFilter = AutoComplete.caseSensitiveFilter = (searchText, key) => {
-  return searchText !== '' && key.includes(searchText);
+  return searchText !== '' && key.indexOf(searchText) !== -1;
 };
 
 AutoComplete.caseInsensitiveFilter = (searchText, key) => {
-  return key.toLowerCase().includes(searchText.toLowerCase());
+  return key.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;
 };
 
 AutoComplete.levenshteinDistanceFilter = (distanceLessThan) => {
