@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Transitions from './styles/transitions';
-import ClearFix from './clearfix';
 import FocusRipple from './ripples/focus-ripple';
 import TouchRipple from './ripples/touch-ripple';
 import Paper from './paper';
@@ -38,6 +36,7 @@ function getStyles(props, state) {
       margin: 0,
     },
     controls: {
+      display: 'flex',
       width: '100%',
       height: '100%',
     },
@@ -85,7 +84,6 @@ const EnhancedSwitch = React.createClass({
     disableTouchRipple: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     iconStyle: React.PropTypes.object,
-    id: React.PropTypes.string,
     inputStyle: React.PropTypes.object,
     inputType: React.PropTypes.string.isRequired,
     label: React.PropTypes.node,
@@ -101,7 +99,6 @@ const EnhancedSwitch = React.createClass({
     onSwitch: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-    required: React.PropTypes.bool,
     rippleColor: React.PropTypes.string,
     rippleStyle: React.PropTypes.object,
 
@@ -127,7 +124,6 @@ const EnhancedSwitch = React.createClass({
   getInitialState() {
     return {
       isKeyboardFocused: false,
-      parentWidth: 100,
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -139,16 +135,13 @@ const EnhancedSwitch = React.createClass({
   },
 
   componentDidMount() {
-    const inputNode = ReactDOM.findDOMNode(this.refs.checkbox);
+    const inputNode = this.refs.checkbox;
     if (!this.props.switched || inputNode.checked !== this.props.switched) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
-
-    this._handleResize();
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const hasCheckedLinkProp = nextProps.hasOwnProperty('checkedLink');
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
@@ -163,8 +156,6 @@ const EnhancedSwitch = React.createClass({
       newState.switched = nextProps.checked;
     } else if (hasToggledProp) {
       newState.switched = nextProps.toggled;
-    } else if (hasCheckedLinkProp) {
-      newState.switched = nextProps.checkedLink.value;
     } else if (hasNewDefaultProp) {
       newState.switched = nextProps.defaultSwitched;
     }
@@ -176,34 +167,22 @@ const EnhancedSwitch = React.createClass({
     this.setState(newState);
   },
 
-  getEvenWidth() {
-    return (
-      parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this.refs.root))
-        .getPropertyValue('width'), 10)
-    );
-  },
-
   isSwitched() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).checked;
+    return this.refs.checkbox.checked;
   },
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
       this.props.onParentShouldUpdate(newSwitchedValue);
-      ReactDOM.findDOMNode(this.refs.checkbox).checked = newSwitchedValue;
+      this.refs.checkbox.checked = newSwitchedValue;
     } else {
       warning(false, 'Cannot call set method while checked is defined as a property.');
     }
   },
 
   getValue() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).value;
-  },
-
-  isKeyboardFocused() {
-    return this.state.isKeyboardFocused;
+    return this.refs.checkbox.value;
   },
 
   _handleChange(event) {
@@ -212,7 +191,7 @@ const EnhancedSwitch = React.createClass({
       isKeyboardFocused: false,
     });
 
-    const isInputChecked = ReactDOM.findDOMNode(this.refs.checkbox).checked;
+    const isInputChecked = this.refs.checkbox.checked;
 
     if (!this.props.hasOwnProperty('checked')) {
       this.props.onParentShouldUpdate(isInputChecked);
@@ -294,15 +273,16 @@ const EnhancedSwitch = React.createClass({
     }
   },
 
-  _handleResize() {
-    this.setState({parentWidth: this.getEvenWidth()});
-  },
-
   render() {
     const {
       name,
       value,
+      iconStyle,
+      inputStyle,
+      inputType,
       label,
+      labelStyle,
+      labelPosition,
       onSwitch,
       defaultSwitched,
       onBlur,
@@ -312,9 +292,15 @@ const EnhancedSwitch = React.createClass({
       onMouseLeave,
       onTouchStart,
       onTouchEnd,
+      disabled,
       disableTouchRipple,
       disableFocusRipple,
       className,
+      rippleStyle,
+      style,
+      switchElement,
+      thumbStyle,
+      trackStyle,
       ...other,
     } = this.props;
 
@@ -323,59 +309,29 @@ const EnhancedSwitch = React.createClass({
     } = this.state.muiTheme;
 
     const styles = getStyles(this.props, this.state);
-    const wrapStyles = Object.assign(styles.wrap, this.props.iconStyle);
-    const rippleStyle = Object.assign(styles.ripple, this.props.rippleStyle);
+    const wrapStyles = Object.assign(styles.wrap, iconStyle);
+    const mergedRippleStyle = Object.assign(styles.ripple, rippleStyle);
 
-    if (this.props.thumbStyle) {
+    if (thumbStyle) {
       wrapStyles.marginLeft /= 2;
       wrapStyles.marginRight /= 2;
     }
 
-    const labelStyle = Object.assign(styles.label, this.props.labelStyle);
-    const labelElement = this.props.label ? (
-      <label style={prepareStyles(labelStyle)}>
-        {this.props.label}
+    const labelElement = label && (
+      <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+        {label}
       </label>
-    ) : null;
-
-    const inputProps = {
-      ref: 'checkbox',
-      type: this.props.inputType,
-      style: prepareStyles(Object.assign(styles.input, this.props.inputStyle)),
-      name: this.props.name,
-      value: this.props.value,
-      defaultChecked: this.props.defaultSwitched,
-      onBlur: this._handleBlur,
-      onFocus: this._handleFocus,
-    };
-
-    const hideTouchRipple = this.props.disabled || disableTouchRipple;
-
-    if (!hideTouchRipple) {
-      inputProps.onMouseUp = this._handleMouseUp;
-      inputProps.onMouseDown = this._handleMouseDown;
-      inputProps.onMouseLeave = this._handleMouseLeave;
-      inputProps.onTouchStart = this._handleTouchStart;
-      inputProps.onTouchEnd = this._handleTouchEnd;
-    }
-
-    if (!this.props.hasOwnProperty('checkedLink')) {
-      inputProps.onChange = this._handleChange;
-    }
-
-    const inputElement = (
-      <input
-        {...other}
-        {...inputProps}
-      />
     );
+
+    const showTouchRipple = !disabled && !disableTouchRipple;
+    const showFocusRipple = !disabled && !disableFocusRipple;
 
     const touchRipple = (
       <TouchRipple
         ref="touchRipple"
         key="touchRipple"
-        style={rippleStyle}
-        color={rippleStyle.color}
+        style={mergedRippleStyle}
+        color={mergedRippleStyle.color}
         muiTheme={this.state.muiTheme}
         centerRipple={true}
       />
@@ -384,55 +340,71 @@ const EnhancedSwitch = React.createClass({
     const focusRipple = (
       <FocusRipple
         key="focusRipple"
-        innerStyle={rippleStyle}
-        color={rippleStyle.color}
+        innerStyle={mergedRippleStyle}
+        color={mergedRippleStyle.color}
         muiTheme={this.state.muiTheme}
         show={this.state.isKeyboardFocused}
       />
     );
 
     const ripples = [
-      hideTouchRipple ? null : touchRipple,
-      this.props.disabled || disableFocusRipple ? null : focusRipple,
+      showTouchRipple ? touchRipple : null,
+      showFocusRipple ? focusRipple : null,
     ];
+
+    const inputElement = (
+      <input
+        {...other}
+        ref="checkbox"
+        type={inputType}
+        style={prepareStyles(Object.assign(styles.input, inputStyle))}
+        name={name}
+        value={value}
+        defaultChecked={defaultSwitched}
+        disabled={disabled}
+        onBlur={this._handleBlur}
+        onFocus={this._handleFocus}
+        onChange={this._handleChange}
+        onMouseUp={showTouchRipple && this._handleMouseUp}
+        onMouseDown={showTouchRipple && this._handleMouseDown}
+        onMouseLeave={showTouchRipple && this._handleMouseLeave}
+        onTouchStart={showTouchRipple && this._handleTouchStart}
+        onTouchEnd={showTouchRipple && this._handleTouchEnd}
+      />
+    );
 
     // If toggle component (indicated by whether the style includes thumb) manually lay out
     // elements in order to nest ripple elements
-    const switchElement = !this.props.thumbStyle ? (
+    const switchOrThumbElement = !thumbStyle ? (
       <div style={prepareStyles(wrapStyles)}>
-        {this.props.switchElement}
+        {switchElement}
         {ripples}
       </div>
     ) : (
       <div style={prepareStyles(wrapStyles)}>
-        <div style={prepareStyles(Object.assign({}, this.props.trackStyle))} />
-        <Paper style={this.props.thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
+        <div style={prepareStyles(Object.assign({}, trackStyle))} />
+        <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
       </div>
     );
 
-    const labelPositionExist = this.props.labelPosition;
-
-    // Position is left if not defined or invalid.
-    const elementsInOrder = (labelPositionExist &&
-      (this.props.labelPosition.toUpperCase() === 'RIGHT')) ? (
-      <ClearFix style={styles.controls}>
-        {switchElement}
+    const elementsInOrder = labelPosition === 'right' ? (
+      <div style={styles.controls}>
+        {switchOrThumbElement}
         {labelElement}
-      </ClearFix>
+      </div>
     ) : (
-      <ClearFix style={styles.controls}>
+      <div style={styles.controls}>
         {labelElement}
-        {switchElement}
-      </ClearFix>
+        {switchOrThumbElement}
+      </div>
     );
 
     return (
-      <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, this.props.style))}>
+      <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         <EventListener
           elementName="window"
           onKeyDown={this._handleWindowKeydown}
           onKeyUp={this._handleWindowKeyup}
-          onResize={this._handleResize}
         />
         {inputElement}
         {elementsInOrder}
