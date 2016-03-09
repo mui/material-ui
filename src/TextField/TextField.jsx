@@ -1,54 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
-import ColorManipulator from '../utils/color-manipulator';
-import Transitions from '../styles/transitions';
 import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from '../enhanced-textarea';
 import getMuiTheme from '../styles/getMuiTheme';
-import TextFieldHint from './TextFieldHint';
-import TextFieldLabel from './TextFieldLabel';
-import TextFieldUnderline from './TextFieldUnderline';
+import TextFieldDecorator from './TextFieldDecorator';
 import warning from 'warning';
 
 const getStyles = (props, state) => {
   const {
-    baseTheme,
     textField: {
-      floatingLabelColor,
-      focusColor,
       textColor,
       disabledTextColor,
-      backgroundColor,
-      hintColor,
-      errorColor,
     },
   } = state.muiTheme;
 
   const styles = {
-    root: {
-      fontSize: 16,
-      lineHeight: '24px',
-      width: props.fullWidth ? '100%' : 256,
-      height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
-      display: 'inline-block',
-      position: 'relative',
-      backgroundColor: backgroundColor,
-      fontFamily: baseTheme.fontFamily,
-      transition: Transitions.easeOut('200ms', 'height'),
-    },
-    error: {
-      position: 'relative',
-      bottom: 2,
-      fontSize: 12,
-      lineHeight: '12px',
-      color: errorColor,
-      transition: Transitions.easeOut(),
-    },
-    floatingLabel: {
-      color: hintColor,
-      pointerEvents: 'none',
-    },
     input: {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 0,
@@ -61,43 +28,16 @@ const getStyles = (props, state) => {
       color: props.disabled ? disabledTextColor : textColor,
       font: 'inherit',
     },
-    textarea: {},
+    textarea: {
+      marginTop: 12,
+      marginBottom: -20,
+    },
   };
 
-  Object.assign(styles.error, props.errorStyle);
-
   Object.assign(styles.textarea, styles.input, {
-    marginTop: props.floatingLabelText ? 36 : 12,
-    marginBottom: props.floatingLabelText ? -36 : -12,
     boxSizing: 'border-box',
     font: 'inherit',
   });
-
-  if (state.isFocused) {
-    styles.floatingLabel.color = focusColor;
-  }
-
-  if (state.hasValue) {
-    styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-  }
-
-  if (props.floatingLabelText) {
-    styles.input.boxSizing = 'border-box';
-
-    if (!props.multiLine) {
-      styles.input.marginTop = 14;
-    }
-
-    if (state.errorText) {
-      styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
-    }
-  }
-
-  if (state.errorText) {
-    if (state.isFocused) {
-      styles.floatingLabel.color = styles.error.color;
-    }
-  }
 
   return styles;
 };
@@ -318,7 +258,7 @@ const TextField = React.createClass({
       id,
     } = this.props;
 
-    warning(name || hintText || floatingLabelText || id, `We don't have enough information
+    warning(name || hintText || floatingLabelText || id, `We don''t have enough information
       to build a robust unique id for the TextField component. Please provide an id or a name.`);
 
     const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
@@ -388,9 +328,7 @@ const TextField = React.createClass({
   },
 
   _handleTextAreaHeightChange(event, height) {
-    let newHeight = height + 24;
-    if (this.props.floatingLabelText) newHeight += 24;
-    ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
+    this.setState({height});
   },
 
   _isControlled() {
@@ -400,31 +338,22 @@ const TextField = React.createClass({
 
   render() {
     const {
-      className,
-      disabled,
-      errorStyle,
-      errorText,
-      floatingLabelText,
-      fullWidth,
-      hintText,
-      hintStyle,
       id,
       inputStyle,
       multiLine,
-      onBlur,
-      onChange,
-      onFocus,
-      style,
       type,
-      underlineDisabledStyle,
-      underlineFocusStyle,
-      underlineShow,
-      underlineStyle,
       rows,
       rowsMax,
       textareaStyle,
       ...other,
     } = this.props;
+
+    const {
+      isFocused,
+      hasValue,
+      height,
+      muiTheme,
+    } = this.state;
 
     const {
       prepareStyles,
@@ -433,23 +362,6 @@ const TextField = React.createClass({
     const styles = getStyles(this.props, this.state);
 
     const inputId = id || this.uniqueId;
-
-    const errorTextElement = this.state.errorText && (
-      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
-    );
-
-    const floatingLabelTextElement = floatingLabelText && (
-      <TextFieldLabel
-        muiTheme={this.state.muiTheme}
-        style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
-        htmlFor={inputId}
-        shrink={this.state.hasValue || this.state.isFocused}
-        disabled={disabled}
-      >
-        {floatingLabelText}
-      </TextFieldLabel>
-    );
-
 
     const inputProps = {
       id: inputId,
@@ -461,6 +373,7 @@ const TextField = React.createClass({
     };
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
+    const computedHeight = height || (rows) * 24;   // multiLine stuff really
 
     if (!this.props.hasOwnProperty('valueLink')) {
       inputProps.onChange = this._handleInputChange;
@@ -496,33 +409,16 @@ const TextField = React.createClass({
     }
 
     return (
-      <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
-        {floatingLabelTextElement}
-        {hintText ?
-          <TextFieldHint
-            muiTheme={this.state.muiTheme}
-            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused))}
-            style={hintStyle}
-            text={hintText}
-          /> :
-          null
-        }
+      <TextFieldDecorator
+        {...this.props}
+        id={inputId}
+        isFocused={isFocused}
+        height={computedHeight}
+        hasValue={hasValue}
+        muiTheme={muiTheme}
+      >
         {inputElement}
-        {underlineShow ?
-          <TextFieldUnderline
-            disabled={disabled}
-            disabledStyle={underlineDisabledStyle}
-            error={!!this.state.errorText}
-            errorStyle={errorStyle}
-            focus={this.state.isFocused}
-            focusStyle={underlineFocusStyle}
-            muiTheme={this.state.muiTheme}
-            style={underlineStyle}
-          /> :
-          null
-        }
-        {errorTextElement}
-      </div>
+      </TextFieldDecorator>
     );
   },
 

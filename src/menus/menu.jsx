@@ -341,14 +341,6 @@ const Menu = React.createClass({
       case 'esc':
         this.props.onEscKeyDown(event);
         break;
-      case 'tab':
-        event.preventDefault();
-        if (event.shiftKey) {
-          this._decrementKeyboardFocusIndex();
-        } else {
-          this._incrementKeyboardFocusIndex(filteredChildren);
-        }
-        break;
       case 'up':
         event.preventDefault();
         this._decrementKeyboardFocusIndex();

@@ -1,23 +1,10 @@
 import React from 'react';
-import TextField from '../text-field';
-import DropDownMenu from '../DropDownMenu';
+import ReactDom from 'react-dom';
+import TextFieldDecorator from '../TextField/TextFieldDecorator';
+import SelectFieldMenu from './SelectFieldMenu';
+import SelectFieldLabel from './SelectFieldLabel';
 import getMuiTheme from '../styles/getMuiTheme';
-
-function getStyles(props) {
-  return {
-    label: {
-      paddingLeft: 0,
-      top: props.floatingLabelText ? 6 : -4,
-    },
-    icon: {
-      right: 0,
-      top: props.floatingLabelText ? 22 : 14,
-    },
-    hideDropDownUnderline: {
-      borderTop: 'none',
-    },
-  };
-}
+import keycode from 'keycode';
 
 const SelectField = React.createClass({
 
@@ -83,6 +70,11 @@ const SelectField = React.createClass({
     iconStyle: React.PropTypes.object,
 
     /**
+     * The id prop for the text field.
+     */
+    id: React.PropTypes.string,
+
+    /**
      * Overrides the styles of label when the `SelectField` is inactive.
      */
     labelStyle: React.PropTypes.object,
@@ -103,6 +95,15 @@ const SelectField = React.createClass({
     onFocus: React.PropTypes.func,
 
     /**
+     * Callback function that is fired when the `SelectField` is closed.
+     */
+    onRequestClose: React.PropTypes.func,
+
+    /**
+     * Property controlling whether the `SelectField` is open.  Use to open `DropDown` on mount.
+     */
+    open: React.PropTypes.bool,
+    /**
      * The style object to use to override the `DropDownMenu`.
      */
     selectFieldRoot: React.PropTypes.object, // Must be changed!
@@ -111,6 +112,8 @@ const SelectField = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    tabIndex: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the underline element when disabled.
@@ -146,12 +149,16 @@ const SelectField = React.createClass({
       autoWidth: false,
       disabled: false,
       fullWidth: false,
+      id: 'select',
+      open: false,
+      tabIndex: 0,
     };
   },
 
   getInitialState() {
     return {
       muiTheme: this.context.muiTheme || getMuiTheme(),
+      open: false,
     };
   },
 
@@ -161,70 +168,170 @@ const SelectField = React.createClass({
     };
   },
 
+  componentWillMount() {
+    if (this.props.open) {
+      /* eslint react/no-did-mount-set-state: 0 */
+      /* because we're using ref for popover anchorEl  */
+      this.setState({open: true});
+    }
+  },
+
   componentWillReceiveProps(nextProps, nextContext) {
     this.setState({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
+      open: nextProps.open,
     });
+  },
+
+  componentWillUnmount() {
+    this.label = null;
+  },
+
+  handleMenuRequestClose() {
+    this.setState({
+      open: false,
+      isFocused: true,
+    }, () => this.label.focus());
+    const {onRequestClose} = this.props;
+    return onRequestClose ? onRequestClose() : null;
+  },
+
+  handleTouchTap() {
+    if (this.props.disabled)
+      return;
+
+    this.setState({
+      open: true,
+      isFocused: false,
+    });
+  },
+
+  onFocus() {
+    if (this.props.disabled)
+      return;
+    this.setState({isFocused: true});
+    const {onFocus} = this.props;
+    return onFocus ? onFocus() : null;
+  },
+
+  onBlur() {
+    const {onBlur} = this.props;
+    this.setState({isFocused: false});
+    return onBlur ? onBlur() : null;
+  },
+
+  handleKeyDown(event) {
+    switch (keycode(event)) {
+      case 'enter':
+      case 'space':
+      case 'down':
+        event.preventDefault();
+        if (!this.props.disabled) {
+          this.setState({
+            open: !this.state.open,
+            anchorEl: this.refs.root,
+          });
+        }
+    }
   },
 
   render() {
     const {
       autoWidth,
       children,
-      style,
-      labelStyle,
+      disabled,
+      errorStyle,
+      errorText,
+      floatingLabelStyle,
+      floatingLabelText,
+      fullWidth,
+      hintStyle,
+      hintText,
       iconStyle,
+      id,
+      labelStyle,
+      onBlur,
+      onChange,
+      selectFieldRoot,
+      style,
+      tabIndex,
       underlineDisabledStyle,
       underlineFocusStyle,
       underlineStyle,
-      errorStyle,
-      selectFieldRoot,
-      disabled,
-      floatingLabelText,
-      floatingLabelStyle,
-      hintStyle,
-      hintText,
-      fullWidth,
-      errorText,
-      onFocus,
-      onBlur,
-      onChange,
       value,
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const {
+      isFocused,
+    } = this.state;
+
+    const {open, muiTheme} = this.state;
+    const errorStylePrepared = Object.assign({}, errorStyle, {position: 'absolute', bottom: -10});
+    const floatingLabelStylePrepared = Object.assign({}, floatingLabelStyle, {cursor: 'pointer'});
+                                                                           // ^^^^^^^^^^^^^^^^^
+                                                                           // current implementation
+                                                                           // doesn't do this, but should
+    let displayValue = '';
+    React.Children.forEach(children, (child) => {
+      if (value === child.props.value) {
+        // This will need to be improved (in case primaryText is a node)
+        displayValue = child.props.label || child.props.primaryText;
+      }
+    });
+    const selecter = (
+      <SelectFieldLabel
+        disabled={disabled}
+        muiTheme={muiTheme}
+        onBlur={this.onBlur}
+        onFocus={this.onFocus}
+        onKeyDown={this.handleKeyDown}
+        onTouchTap={this.handleTouchTap}
+        ref={(c) => this.label = ReactDom.findDOMNode(c)}
+        style={labelStyle}
+        value={displayValue}
+      />
+    );
+
+    const menu = (
+      <SelectFieldMenu
+        {...other}
+        anchorEl={this.label}
+        autoWidth={autoWidth}
+        floatingLabelText={floatingLabelText}
+        onChange={onChange}
+        onRequestClose={this.handleMenuRequestClose}
+        open={open}
+        value={value}
+      >
+        {children}
+      </SelectFieldMenu>
+    );
 
     return (
-      <TextField
-        style={style}
+      <TextFieldDecorator
+        disabled={disabled}
+        errorStyle={errorStylePrepared}
+        errorText={errorText}
+        floatingLabelStyle={floatingLabelStylePrepared}
         floatingLabelText={floatingLabelText}
-        floatingLabelStyle={floatingLabelStyle}
+        fullWidth={fullWidth}
+        hasValue={true}
+        height={24}
         hintStyle={hintStyle}
         hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
-        fullWidth={fullWidth}
-        errorText={errorText}
-        underlineStyle={underlineStyle}
-        errorStyle={errorStyle}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        id={id}
+        isFocused={isFocused}
+        muiTheme={muiTheme}
+        style={style}
+        tabIndex={tabIndex}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
+        underlineStyle={underlineStyle}
       >
-        <DropDownMenu
-          disabled={disabled}
-          style={selectFieldRoot}
-          labelStyle={Object.assign(styles.label, labelStyle)}
-          iconStyle={Object.assign(styles.icon, iconStyle)}
-          underlineStyle={styles.hideDropDownUnderline}
-          autoWidth={autoWidth}
-          value={value}
-          onChange={onChange}
-          {...other}
-        >
-          {children}
-        </DropDownMenu>
-      </TextField>
+        {selecter}
+        {menu}
+      </TextFieldDecorator>
     );
   },
 });

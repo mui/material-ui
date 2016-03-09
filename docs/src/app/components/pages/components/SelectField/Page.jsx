@@ -14,6 +14,8 @@ import SelectFieldExampleCustomLabel from './ExampleCustomLabel';
 import selectFieldExampleCustomLabelCode from '!raw!./ExampleCustomLabel';
 import SelectFieldExampleFloatingLabel from './ExampleFloatingLabel';
 import selectFieldExampleFloatingLabelCode from '!raw!./ExampleFloatingLabel';
+import SelectFieldExampleOpenOnMount from './ExampleOpenOnMount';
+import selectFieldExampleOpenOnMountCode from '!raw!./ExampleOpenOnMount';
 import SelectFieldExampleError from './ExampleError';
 import selectFieldExampleErrorCode from '!raw!./ExampleError';
 import selectFieldCode from '!raw!material-ui/lib/SelectField/SelectField';
@@ -69,6 +71,14 @@ const SelectFieldPage = () => (
       code={selectFieldExampleErrorCode}
     >
       <SelectFieldExampleError />
+    </CodeExample>
+
+    <CodeExample
+      title="Open on mount"
+      description={descriptions.errorText}
+      code={selectFieldExampleOpenOnMountCode}
+    >
+      <SelectFieldExampleOpenOnMount />
     </CodeExample>
     <PropTypeDescription code={selectFieldCode} />
   </div>
