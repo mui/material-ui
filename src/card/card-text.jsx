@@ -18,9 +18,24 @@ function getStyles(props, state) {
 const CardText = React.createClass({
 
   propTypes: {
+    /**
+     * If true, a click on this card component expands the card.
+     */
     actAsExpander: React.PropTypes.bool,
+
+    /**
+     * Can be used to render elements inside the Card Text.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * Override the CardText color.
+     */
     color: React.PropTypes.string,
+
+    /**
+     * If true, this card component is expandable.
+     */
     expandable: React.PropTypes.bool,
 
     /**
