@@ -1,6 +1,18 @@
 ## HEAD
 
 ##### Breaking Changes
+- [Core] if you used Material-UI from npm in CommonJS environment, you need to add `.default` to your requires:
+
+```diff
+- var MUI = require('material-ui')
++ var MUI = require('material-ui').default
+```
+
+If you used ES modules, you’re already all good:
+```js
+import MUI from 'material-ui' // no changes here 😀
+```
+
 - [Styles] RaisedButton, FlatButton, and FloatingActionButton now properly use primary/secondary colors
 - [Menu] Remove Paper (#3559)
 
