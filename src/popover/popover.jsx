@@ -380,7 +380,7 @@ const Popover = React.createClass({
 
   render() {
     return (
-      <noscript>
+      <div>
         <EventListener
           elementName="window"
           onScroll={this.handleScroll}
@@ -393,7 +393,7 @@ const Popover = React.createClass({
           useLayerForClickAway={this.props.useLayerForClickAway}
           render={this.renderLayer}
         />
-      </noscript>
+      </div>
     );
   },
 
