@@ -200,7 +200,7 @@ const Popover = React.createClass({
     if (!Animation) {
       Animation = Paper;
       styleRoot = {
-        position: 'fixed',
+        position: 'absolute',
       };
       if (!this.state.open) {
         return null;
