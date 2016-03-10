@@ -9,6 +9,7 @@ import PropTypes from '../utils/prop-types';
 import List from '../lists/list';
 import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
+import warning from 'warning';
 
 const Menu = React.createClass({
 
@@ -120,10 +121,9 @@ const Menu = React.createClass({
     width: PropTypes.stringOrNumber,
 
     /**
-     * Sets the width of the menu. If not specified,
-     * the menu width will be dictated by its children.
-     * The rendered width will always be a keyline increment
-     * (64px for desktop, 56px otherwise).
+     * @ignore
+     * Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
+     * or another component that provides zDepth.
      */
     zDepth: PropTypes.zDepth,
   },
@@ -149,7 +149,6 @@ const Menu = React.createClass({
       onItemTouchTap: () => {},
       onKeyDown: () => {},
       openDirection: 'bottom-left',
-      zDepth: 1,
     };
   },
 
@@ -463,6 +462,9 @@ const Menu = React.createClass({
       zDepth,
       ...other,
     } = this.props;
+
+    warning((typeof zDepth === 'undefined'), 'Menu no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
+      'or another component that provides `zDepth`.');
 
     const {
       focusIndex,
