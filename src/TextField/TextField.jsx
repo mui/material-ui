@@ -289,6 +289,7 @@ const TextField = React.createClass({
   getDefaultProps() {
     return {
       disabled: false,
+      floatingLabelFixed: false,
       multiLine: false,
       fullWidth: false,
       type: 'text',
