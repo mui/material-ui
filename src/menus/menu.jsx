@@ -120,10 +120,7 @@ const Menu = React.createClass({
     width: PropTypes.stringOrNumber,
 
     /**
-     * Sets the width of the menu. If not specified,
-     * the menu width will be dictated by its children.
-     * The rendered width will always be a keyline increment
-     * (64px for desktop, 56px otherwise).
+     * The zDepth prop passed to the Paper element inside list.
      */
     zDepth: PropTypes.zDepth,
   },
@@ -569,6 +566,7 @@ const Menu = React.createClass({
             {...other}
             ref="list"
             style={mergedListStyles}
+            zDepth={zDepth}
           >
             {newChildren}
           </List>
