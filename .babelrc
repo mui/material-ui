@@ -2,8 +2,7 @@
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
     ["transform-replace-object-assign", "simple-assign"],
-    "transform-dev-warning",
-    "add-module-exports"
+    "transform-dev-warning"
   ],
   "env": {
     "docs-production": {

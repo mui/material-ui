@@ -1,14 +1,14 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-const Divider = require('divider');
+const Divider = require('divider').default;
 const ActionAccessibility = require('svg-icons').ActionAccessibility;
 
 import ImportGetMuiTheme from 'styles/getMuiTheme';
-const RequireGetMuiTheme = require('styles/getMuiTheme');
+const RequireGetMuiTheme = require('styles/getMuiTheme').default;
 
 import ImportColorManipulator from 'utils/color-manipulator';
-const RequireColorManipulator = require('utils/color-manipulator');
+const RequireColorManipulator = require('utils/color-manipulator').default;
 
 describe('require() style import of ', () => {
   it('Divider component should not fail when rendering', () => {
