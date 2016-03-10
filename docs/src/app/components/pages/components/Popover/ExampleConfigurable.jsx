@@ -157,7 +157,7 @@ export default class PopoverExampleConfigurable extends React.Component {
           targetOrigin={this.state.targetOrigin}
           onRequestClose={this.handleRequestClose}
         >
-          <Menu zDepth={0}>
+          <Menu>
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Help &amp; feedback" />
             <MenuItem primaryText="Settings" />

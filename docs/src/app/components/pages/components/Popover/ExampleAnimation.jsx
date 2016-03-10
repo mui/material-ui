@@ -45,7 +45,7 @@ export default class PopoverExampleAnimation extends React.Component {
           onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationFromTop}
         >
-          <Menu zDepth={0}>
+          <Menu>
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Help &amp; feedback" />
             <MenuItem primaryText="Settings" />

@@ -307,7 +307,6 @@ const IconMenu = React.createClass({
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
         onEscKeyDown={this._handleMenuEscKeyDown}
         onItemTouchTap={this._handleItemTouchTap}
-        zDepth={0}
         style={mergedMenuStyles}
       >
         {this.props.children}

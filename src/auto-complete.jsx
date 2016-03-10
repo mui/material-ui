@@ -460,7 +460,6 @@ const AutoComplete = React.createClass({
         {...menuProps}
         ref="menu"
         autoWidth={false}
-        zDepth={0}
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.close}
         initiallyKeyboardFocused={false}
