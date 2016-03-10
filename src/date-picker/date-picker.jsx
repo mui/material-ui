@@ -178,7 +178,6 @@ const DatePicker = React.createClass({
   getInitialState() {
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
-      dialogDate: new Date(),
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -212,9 +211,20 @@ const DatePicker = React.createClass({
    * Open the date-picker dialog programmatically from a parent.
    */
   openDialog() {
-    this.setState({
-      dialogDate: this.getDate(),
-    }, this.refs.dialogWindow.show);
+    /**
+     * if the date is not selected then set it to new date
+     * (get the current system date while doing so)
+     * else set it to the currently selected date
+     */
+    if (this.state.date !== undefined) {
+      this.setState({
+        dialogDate: this.getDate(),
+      }, this.refs.dialogWindow.show);
+    } else {
+      this.setState({
+        dialogDate: new Date(),
+      }, this.refs.dialogWindow.show);
+    }
   },
 
   /**
