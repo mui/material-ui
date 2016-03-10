@@ -63,7 +63,8 @@ const DatePicker = React.createClass({
      * This function is called to format the date displayed in the input box, and should return a string.
      * By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.
      *
-     * @param {object} date `Date` object to be formatted.
+     * @param {object} date Date object to be formatted.
+     * @returns {any} The formatted date.
      */
     formatDate: React.PropTypes.func,
 
@@ -96,35 +97,43 @@ const DatePicker = React.createClass({
     okLabel: React.PropTypes.string,
 
     /**
-     * Callback function that is fired when the date value changes. Since there
-     * is no particular event associated with the change the first argument
-     * will always be null and the second argument will be the new Date instance.
+     * Callback function that is fired when the date value changes.
+     *
+     * @param {null} null Since there is no particular event associated with the change,
+     * the first argument will always be null.
+     * @param {object} date The new date.
      */
     onChange: React.PropTypes.func,
 
     /**
-     * Fired when the Date Picker dialog is dismissed.
+     * Callback function that is fired when the Date Picker's dialog is dismissed.
      */
     onDismiss: React.PropTypes.func,
 
     /**
-     * Fired when the Date Picker field gains focus.
+     * Callback function that is fired when the Date Picker's `TextField` gains focus.
+     *
+     * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: React.PropTypes.func,
 
     /**
-     * Fired when the Date Picker dialog is shown.
+     * Callback function that is fired when the Date Picker's dialog is shown.
      */
     onShow: React.PropTypes.func,
 
     /**
-     * Called when touch tap event occurs on text-field.
+     * Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.
+     *
+     * @param {object} event TouchTap event targeting the `TextField`.
      */
     onTouchTap: React.PropTypes.func,
 
     /**
-     * Called during render time of a given day. If this method returns
-     * false the day is disabled, otherwise it is displayed normally.
+     * Callback function used to determine if a day's entry should be disabled on the calendar.
+     *
+     * @param {object} day Date object of a day.
+     * @returns {boolean} Indicates whether the day should be disabled.
      */
     shouldDisableDate: React.PropTypes.func,
 
