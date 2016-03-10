@@ -387,20 +387,20 @@ const ListItem = React.createClass({
     const button = this.refs.enhancedButton;
     const buttonEl = ReactDOM.findDOMNode(button);
 
-    // if (button) {
-    //   switch (focusState) {
-    //     case 'none':
-    //       buttonEl.blur();
-    //       break;
-    //     case 'focused':
-    //       buttonEl.focus();
-    //       break;
-    //     case 'keyboard-focused':
-    //       button.setKeyboardFocus();
-    //       buttonEl.focus();
-    //       break;
-    //   }
-    // }
+    if (button) {
+      switch (focusState) {
+        case 'none':
+          buttonEl.blur();
+          break;
+        case 'focused':
+          buttonEl.focus();
+          break;
+        case 'keyboard-focused':
+          button.setKeyboardFocus();
+          buttonEl.focus();
+          break;
+      }
+    }
   },
 
   _createDisabledElement(styles, contentChildren) {
