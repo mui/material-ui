@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import AppBar from 'src/app-bar';
+import AppBar, {getStyles} from 'src/app-bar';
 import IconButton from 'src/icon-button';
 import Paper from 'src/paper';
 import NavigationClose from 'src/svg-icons/navigation/close';
@@ -168,5 +168,40 @@ describe('<AppBar />', () => {
     );
 
     assert.equal(wrapper.find(Paper).get(0).props.zDepth, 2, 'should have zDepth to 2');
+  });
+
+  it('menuElementLeft\'s style should be iconButtonStyle', () => {
+    const wrapper = shallow(
+      <AppBar />
+    );
+
+    const menuElementLeft = wrapper.find(IconButton).get(0);
+    const style = menuElementLeft.props.style;
+    const iconButtonStyle = getStyles(wrapper.props(), wrapper.state()).iconButtonStyle;
+    assert.deepEqual(style, iconButtonStyle, 'style should be iconButtonStyle');
+  });
+
+  it('if pass iconStyleLeft={marginTop}, change the marginTop only', () => {
+    const wrapper = shallow(
+      <AppBar iconStyleLeft={{marginTop: 99}} />
+    );
+
+    const menuElementLeft = wrapper.find(IconButton).get(0);
+    const style = menuElementLeft.props.style;
+    const iconButtonStyle = getStyles(wrapper.props(), wrapper.state()).iconButtonStyle;
+    const expectedStyle = Object.assign({}, iconButtonStyle, {marginTop: 99});
+    assert.deepEqual(style, expectedStyle, 'should be change style.marginTop only');
+  });
+
+  it('if pass iconElementLeft and iconStyleLeft={marginTop}, change the marginTop only', () => {
+    const wrapper = shallow(
+      <AppBar iconElementLeft={<span>foo</span>} iconStyleLeft={{marginTop: 99}} />
+    );
+
+    const menuElementLeft = wrapper.find('div').get(0);
+    const style = menuElementLeft.props.style;
+    const iconButtonStyle = getStyles(wrapper.props(), wrapper.state()).iconButtonStyle;
+    const expectedStyle = Object.assign({}, iconButtonStyle, {marginTop: 99});
+    assert.deepEqual(style, expectedStyle, 'should be change style.marginTop only');
   });
 });
