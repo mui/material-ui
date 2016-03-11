@@ -242,17 +242,11 @@ class Table extends Component {
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
 
-<<<<<<< c3c5ae8c6146885bf6687a84ccaf9faa28176eb9:src/Table/Table.js
       const {muiName} = child.type;
       if (muiName === 'TableBody') {
         tBody = this.createTableBody(child);
         let singleTBody = this.createTableBody(child);
-=======
-      const displayName = child.type.displayName;
-      if (displayName === 'TableBody') {
-        const singleTBody = this._createTableBody(child);
->>>>>>> fix linting:src/table/table.jsx
-        if(tBody) {
+        if (tBody) {
           tBody.push(singleTBody);
         } else {
           tBody = [singleTBody];
