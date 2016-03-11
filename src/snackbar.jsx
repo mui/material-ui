@@ -119,7 +119,7 @@ const Snackbar = React.createClass({
      *
      * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
      */
-    onRequestClose: React.PropTypes.func.isRequired,
+    onRequestClose: React.PropTypes.func,
 
     /**
      * Controls whether the `Snackbar` is opened or not.
