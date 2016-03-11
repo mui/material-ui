@@ -287,20 +287,10 @@ const AutoComplete = React.createClass({
 
   handleItemTouchTap(event, child) {
     const dataSource = this.props.dataSource;
-    let chosenRequest;
-    let index;
-    let searchText;
 
-    if (typeof dataSource[0] === 'string') {
-      chosenRequest = this.requestsList[parseInt(child.key, 10)];
-      index = dataSource.indexOf(chosenRequest);
-      searchText = dataSource[index];
-    } else {
-      chosenRequest = child.key;
-      index = dataSource.indexOf(
-        dataSource.filter((item) => chosenRequest === item.text)[0]);
-      searchText = chosenRequest;
-    }
+    const index = parseInt(child.key, 10);
+    const chosenRequest = dataSource[index];
+    const searchText = typeof chosenRequest === 'string' ? chosenRequest : chosenRequest.text;
 
     this.props.onNewRequest(chosenRequest, index);
 
@@ -433,18 +423,48 @@ const AutoComplete = React.createClass({
 
     const requestsList = [];
 
-    dataSource.every((item) => {
+    dataSource.every((item, index) => {
       switch (typeof item) {
         case 'string':
           if (this.props.filter(searchText, item, item)) {
-            requestsList.push(item);
+            requestsList.push({
+              text: item,
+              value: (
+                <MenuItem
+                  innerDivStyle={styles.innerDiv}
+                  value={item}
+                  primaryText={item}
+                  disableFocusRipple={disableFocusRipple}
+                  key={index}
+                />),
+            });
           }
           break;
 
         case 'object':
           if (item && typeof item.text === 'string') {
             if (this.props.filter(searchText, item.text, item)) {
-              requestsList.push(item);
+              if (item.value.type && (item.value.type.displayName === MenuItem.displayName ||
+                 item.value.type.displayName === Divider.displayName)) {
+                requestsList.push({
+                  text: item.text,
+                  value: React.cloneElement(item.value, {
+                    key: index,
+                    disableFocusRipple: this.props.disableFocusRipple,
+                  }),
+                });
+              } else {
+                requestsList.push({
+                  text: item.text,
+                  value: (
+                    <MenuItem
+                      innerDivStyle={styles.innerDiv}
+                      primaryText={item.value}
+                      disableFocusRipple={disableFocusRipple}
+                      key={index}
+                    />),
+                });
+              }
             }
           }
           break;
@@ -467,37 +487,7 @@ const AutoComplete = React.createClass({
         listStyle={Object.assign(styles.list, listStyle)}
         style={Object.assign(styles.menu, menuStyle)}
       >
-        {
-          requestsList.map((request, index) => {
-            switch (typeof request) {
-              case 'string':
-                return (
-                  <MenuItem
-                    disableFocusRipple={disableFocusRipple}
-                    innerDivStyle={styles.innerDiv}
-                    key={index}
-                    value={request}
-                    primaryText={request}
-                  />
-                );
-
-              case 'object':
-                if (typeof request.text === 'string') {
-                  return React.cloneElement(request.value, {
-                    key: request.text,
-                    disableFocusRipple: disableFocusRipple,
-                  });
-                }
-
-                return React.cloneElement(request, {
-                  disableFocusRipple: disableFocusRipple,
-                });
-
-              default:
-                return null;
-            }
-          })
-        }
+        {requestsList.map((i) => i.value)}
       </Menu>
     );
 
