@@ -290,7 +290,7 @@ const Table = React.createClass({
       const displayName = child.type.displayName;
       if (displayName === 'TableBody') {
         const singleTBody = this._createTableBody(child);
-        if(tBody) {
+        if (tBody) {
           tBody.push(singleTBody);
         } else {
           tBody = [singleTBody];
