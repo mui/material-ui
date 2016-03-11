@@ -216,7 +216,7 @@ const AutoComplete = React.createClass({
       onUpdateInput: () => {},
       onNewRequest: () => {},
       searchText: '',
-      menuCloseDelay: 200,
+      menuCloseDelay: 300,
       targetOrigin: {
         vertical: 'top',
         horizontal: 'left',
@@ -254,21 +254,23 @@ const AutoComplete = React.createClass({
 
   componentWillUnmount() {
     clearTimeout(this.timerTouchTapCloseId);
-    clearTimeout(this.timerBlurCloseId);
   },
 
-  componentClickAway() {
-    this.close();
-  },
-
-  timerTouchTapCloseId: undefined,
-  timerBlurCloseId: undefined,
+  timerTouchTapCloseId: null,
 
   close() {
     this.setState({
       open: false,
       anchorEl: null,
     });
+  },
+
+  handleRequestClose() {
+    // Only take into account the Popover clickAway when we are
+    // not focusing the TextField.
+    if (!this.state.focusTextField) {
+      this.close();
+    }
   },
 
   setValue(textValue) {
@@ -283,6 +285,11 @@ const AutoComplete = React.createClass({
     warning(false, 'getValue() is deprecated.');
 
     return this.state.searchText;
+  },
+
+  handleMouseDown(event) {
+    // Keep the TextField focused
+    event.preventDefault();
   },
 
   handleItemTouchTap(event, child) {
@@ -304,12 +311,12 @@ const AutoComplete = React.createClass({
 
     this.props.onNewRequest(chosenRequest, index);
 
-    clearTimeout(this.timerBlurCloseId);
     this.timerTouchTapCloseId = setTimeout(() => {
       this.setState({
         searchText: searchText,
       });
       this.close();
+      this.timerTouchTapCloseId = null;
     }, this.props.menuCloseDelay);
   },
 
@@ -360,12 +367,8 @@ const AutoComplete = React.createClass({
   },
 
   handleBlur(event) {
-    // Run asynchronously to wait for a potential handleItemTouchTap() call.
-    // The blur event occurs first on a click device and after on a touch device.
-    if (this.state.focusTextField) {
-      this.timerBlurCloseId = setTimeout(() => {
-        this.close();
-      }, 0);
+    if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
+      this.close();
     }
 
     if (this.props.onBlur) {
@@ -464,6 +467,7 @@ const AutoComplete = React.createClass({
         onEscKeyDown={this.close}
         initiallyKeyboardFocused={false}
         onItemTouchTap={this.handleItemTouchTap}
+        onMouseDown={this.handleMouseDown}
         listStyle={Object.assign(styles.list, listStyle)}
         style={Object.assign(styles.menu, menuStyle)}
       >
@@ -526,7 +530,7 @@ const AutoComplete = React.createClass({
           open={open}
           anchorEl={anchorEl}
           useLayerForClickAway={false}
-          onRequestClose={this.close}
+          onRequestClose={this.handleRequestClose}
           animated={animated}
         >
           {menu}
