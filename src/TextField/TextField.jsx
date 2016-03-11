@@ -306,6 +306,7 @@ const TextField = React.createClass({
       errorText: this.props.errorText,
       hasValue: isValid(props.value) || isValid(props.defaultValue) ||
         (props.valueLink && isValid(props.valueLink.value)),
+      isClean: true,
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
@@ -348,7 +349,8 @@ const TextField = React.createClass({
     if (hasValueLinkProp) {
       newState.hasValue = isValid(nextProps.valueLink.value);
     } else if (hasValueProp) {
-      newState.hasValue = isValid(nextProps.value);
+      newState.hasValue = isValid(nextProps.value) ||
+        (this.state.isClean && isValid(nextProps.defaultValue));
     }
 
     if (newState) this.setState(newState);
@@ -377,7 +379,7 @@ const TextField = React.createClass({
   },
 
   _handleInputChange(event) {
-    this.setState({hasValue: isValid(event.target.value)});
+    this.setState({hasValue: isValid(event.target.value), isClean: false});
     if (this.props.onChange) this.props.onChange(event);
   },
 
@@ -456,7 +458,6 @@ const TextField = React.createClass({
         {floatingLabelText}
       </TextFieldLabel>
     );
-
 
     const inputProps = {
       id: inputId,
