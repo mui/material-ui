@@ -388,8 +388,8 @@ const Dialog = React.createClass({
 
   propTypes: {
     /**
-     * This prop can be either a JSON object containing the actions to render (This is **DEPRECATED**),
-     * a react elements, or an array of react elements.
+     * Action buttons to display below the Dialog content (`children`).
+     * This property accepts either a React element, or an array of React elements.
      */
     actions: React.PropTypes.node,
 
