@@ -333,6 +333,27 @@ const TextField = React.createClass({
     this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
   },
 
+  componentDidMount() {
+    // check if there is an autofilled value (e.g. in Chrome):
+    const input = this._getInputNode();
+    this._autofillTimer = setTimeout(() => {
+      if (this.state.hasValue) return; // could have been switched to true during the timer
+      let hasValue;
+      try {
+        hasValue = input.matches(':autofill');
+      } catch (err) {
+        try {
+          hasValue = input.matches(':-webkit-autofill');
+        } catch (err) {
+          hasValue = false;
+        }
+      }
+      /*eslint-disable react/no-did-mount-set-state */
+      this.setState({hasValue});
+      /*eslint-enable react/no-did-mount-set-state */
+    }, 100); // 10 ms is sometimes too short, and above 100 can feel laggy...
+  },
+
   componentWillReceiveProps(nextProps, nextContext) {
     const newState = {
       errorText: nextProps.errorText,
@@ -354,6 +375,10 @@ const TextField = React.createClass({
     }
 
     if (newState) this.setState(newState);
+  },
+
+  componentWillUnmount() {
+    clearTimeout(this._autofillTimer);
   },
 
   blur() {
