@@ -365,7 +365,7 @@ const TextField = React.createClass({
   },
 
   select() {
-    if (this.isMounted()) this._getInputNode().select();
+    if (this.input) this._getInputNode().select();
   },
 
   getValue() {
