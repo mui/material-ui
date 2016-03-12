@@ -180,8 +180,11 @@ const IconMenu = React.createClass({
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
 
-    if (nextProps.open === true || nextProps.open === false) {
-      this.setState({open: nextProps.open});
+    if (nextProps.open != null) {
+      this.setState({
+        open: nextProps.open,
+        anchorEl: this.refs.iconMenuContainer,
+      });
     }
   },
 
@@ -315,6 +318,7 @@ const IconMenu = React.createClass({
 
     return (
       <div
+        ref="iconMenuContainer"
         className={className}
         onMouseDown={onMouseDown}
         onMouseLeave={onMouseLeave}
