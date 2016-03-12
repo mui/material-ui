@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -24,34 +26,35 @@ const descriptions = {
 
 const IconButtonPage = () => (
   <div>
+    <Title render={(previousTitle) => `Icon Button - ${previousTitle}`} />
     <MarkdownElement text={iconButtonReadmeText} />
     <CodeExample
       title="Simple example"
       description={descriptions.simple}
       code={iconButtonExampleSimpleCode}
     >
-      <IconButtonExampleSimple/>
+      <IconButtonExampleSimple />
     </CodeExample>
     <CodeExample
       title="Further examples"
       description={descriptions.other}
       code={iconButtonExampleComplexCode}
     >
-      <IconButtonExampleComplex/>
+      <IconButtonExampleComplex />
     </CodeExample>
     <CodeExample
       title="Tooltip examples"
       description={descriptions.tooltip}
       code={iconButtonExampleTooltipCode}
     >
-      <IconButtonExampleTooltip/>
+      <IconButtonExampleTooltip />
     </CodeExample>
     <CodeExample
       title="Touch example"
       description={descriptions.touch}
       code={iconButtonExampleTouchCode}
     >
-      <IconButtonExampleTouch/>
+      <IconButtonExampleTouch />
     </CodeExample>
     <PropTypeDescription code={iconButtonCode} />
   </div>

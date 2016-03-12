@@ -16,7 +16,7 @@ in the `./js` folder.
 
 ## Advanced usage and Custom builds
 
-`node build.sh --help` can be used to pull up options available for building.
+`node build.js --help` can be used to pull up options available for building.
 
 You can build your own SVG icons as well as collections like [game-icons](http://game-icons.net/) through environmental variables.
 

@@ -6,9 +6,7 @@ export default {
   easeOut(duration, property, delay, easeFunction) {
     easeFunction = easeFunction || this.easeOutFunction;
 
-    if (property &&
-      Object.prototype.toString.call(property) === '[object Array]' ) {
-
+    if (property && Object.prototype.toString.call(property) === '[object Array]') {
       let transitions = '';
       for (let i = 0; i < property.length; i++) {
         if (transitions) transitions += ',';
@@ -27,9 +25,6 @@ export default {
     delay = delay || '0ms';
     easeFunction = easeFunction || 'linear';
 
-    return property + ' ' +
-      duration + ' ' +
-      easeFunction + ' ' +
-      delay;
+    return `${property} ${duration} ${easeFunction} ${delay}`;
   },
 };

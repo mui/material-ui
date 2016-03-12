@@ -12,7 +12,7 @@ function wrapState(ComposedComponent) {
     getInitialState() {
       return {selectedIndex: 1};
     },
-    handleUpdateSelectedIndex(e, index) {
+    handleUpdateSelectedIndex(event, index) {
       this.setState({
         selectedIndex: index,
       });

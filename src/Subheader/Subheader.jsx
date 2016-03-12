@@ -1,6 +1,5 @@
 import React from 'react';
 import muiThemeable from './../muiThemeable';
-import Typography from '../styles/typography';
 
 const propTypes = {
   /**
@@ -14,8 +13,8 @@ const propTypes = {
   inset: React.PropTypes.bool,
 
   /**
-   * The material-ui theme applied to this component.
    * @ignore
+   * The material-ui theme applied to this component.
    */
   muiTheme: React.PropTypes.object.isRequired,
 
@@ -40,14 +39,15 @@ let Subheader = (props) => {
 
   const {
     prepareStyles,
+    subheader,
   } = muiTheme;
 
   const styles = {
     root: {
       boxSizing: 'border-box',
-      color: Typography.textLightBlack,
+      color: subheader.color,
       fontSize: 14,
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: subheader.fontWeight,
       lineHeight: '48px',
       paddingLeft: inset ? 72 : 16,
       width: '100%',
@@ -61,9 +61,10 @@ let Subheader = (props) => {
   );
 };
 
-Subheader.displayName = 'Subheader';
 Subheader.propTypes = propTypes;
 Subheader.defaultProps = defaultProps;
-Subheader = muiThemeable(Subheader);
+
+Subheader = muiThemeable()(Subheader);
+Subheader.displayName = 'Subheader';
 
 export default Subheader;

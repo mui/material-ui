@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router} from 'react-router';
-import AppRoutes from './app-routes.jsx';
+import {
+  Router,
+  useRouterHistory,
+} from 'react-router';
+import AppRoutes from './AppRoutes.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import createHistory from 'history/lib/createHashHistory';
+import {createHashHistory} from 'history';
 
 //Helpers for debugging
 window.React = React;
@@ -21,7 +24,7 @@ injectTapEventPlugin();
  */
 ReactDOM.render(
   <Router
-    history={createHistory({queryKey: false})}
+    history={useRouterHistory(createHashHistory)({queryKey: false})}
     onUpdate={() => window.scrollTo(0, 0)}
   >
     {AppRoutes}

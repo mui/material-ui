@@ -5,3 +5,4 @@ sudo: false
 script:
   - npm run lint
   - npm test
+  - ./node_modules/.bin/codecov

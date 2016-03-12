@@ -6,16 +6,17 @@ const TextFieldExampleDisabled = () => (
     <TextField
       disabled={true}
       hintText="Disabled Hint Text"
-    /><br/>
+    /><br />
     <TextField
       disabled={true}
+      id="text-field-disabled"
       defaultValue="Disabled Value"
-    /><br/>
+    /><br />
     <TextField
       disabled={true}
       hintText="Disabled Hint Text"
       floatingLabelText="Floating Label Text"
-    /><br/>
+    /><br />
     <TextField
       disabled={true}
       hintText="Disabled Hint Text"

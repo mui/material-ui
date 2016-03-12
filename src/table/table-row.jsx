@@ -1,6 +1,31 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, state) {
+  const {
+    tableRow,
+  } = state.muiTheme;
+
+  let cellBgColor = 'inherit';
+  if (props.hovered || state.hovered) {
+    cellBgColor = tableRow.hoverColor;
+  } else if (props.selected) {
+    cellBgColor = tableRow.selectedColor;
+  } else if (props.striped) {
+    cellBgColor = tableRow.stripeColor;
+  }
+
+  return {
+    root: {
+      borderBottom: props.displayBorder && `1px solid ${tableRow.borderColor}`,
+      color: tableRow.textColor,
+      height: tableRow.height,
+    },
+    cell: {
+      backgroundColor: cellBgColor,
+    },
+  };
+}
 
 const TableRow = React.createClass({
 
@@ -35,6 +60,7 @@ const TableRow = React.createClass({
     hovered: React.PropTypes.bool,
 
     /**
+     * @ignore
      * Called when a row cell is clicked.
      * rowNumber is the row number and columnId is
      * the column number or the column key.
@@ -42,6 +68,7 @@ const TableRow = React.createClass({
     onCellClick: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table cell is hovered.
      * rowNumber is the row number of the hovered row
      * and columnId is the column number or the column key of the cell.
@@ -49,6 +76,7 @@ const TableRow = React.createClass({
     onCellHover: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table cell is no longer hovered.
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
@@ -56,17 +84,20 @@ const TableRow = React.createClass({
     onCellHoverExit: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when row is clicked.
      */
     onRowClick: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
     onRowHover: React.PropTypes.func,
 
     /**
+     * @ignore
      * Called when a table row is no longer hovered.
      * rowNumber is the row number of the row that is no longer hovered.
      */
@@ -106,14 +137,9 @@ const TableRow = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -139,112 +165,50 @@ const TableRow = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getTheme() {
-    return this.state.muiTheme.tableRow;
-  },
-
-  getStyles() {
-    let theme = this.getTheme();
-    let cellBgColor = 'inherit';
-    if (this.props.hovered || this.state.hovered) {
-      cellBgColor = theme.hoverColor;
-    } else if (this.props.selected) {
-      cellBgColor = theme.selectedColor;
-    } else if (this.props.striped) {
-      cellBgColor = theme.stripeColor;
-    }
-
-    let styles = {
-      root: {
-        borderBottom: '1px solid ' + theme.borderColor,
-        color: theme.textColor,
-        height: theme.height,
-      },
-      cell: {
-        backgroundColor: cellBgColor,
-      },
-    };
-
-    if (!this.props.displayBorder) {
-      styles.root.borderBottom = '';
-    }
-
-    return styles;
-  },
-
-  _createColumns() {
-    let columnNumber = 1;
-    return React.Children.map(this.props.children, (child) => {
-      if (React.isValidElement(child)) {
-        return this._createColumn(child, columnNumber++);
-      }
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
-  _createColumn(child, columnNumber) {
-    let key = this.props.rowNumber + '-' + columnNumber;
-    let styles = this.getStyles();
-    const handlers = {
-      onClick: this._onCellClick,
-      onHover: this._onCellHover,
-      onHoverExit: this._onCellHoverExit,
-    };
-
-    return React.cloneElement(
-      child,
-      {
-        columnNumber: columnNumber,
-        hoverable: this.props.hoverable,
-        key: child.props.key || key,
-        style: this.mergeStyles(styles.cell, child.props.style),
-        ...handlers,
-      }
-    );
+  _onRowClick(event) {
+    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(event, this.props.rowNumber);
   },
 
-  _onRowClick(e) {
-    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(e, this.props.rowNumber);
+  _onRowHover(event) {
+    if (this.props.onRowHover) this.props.onRowHover(event, this.props.rowNumber);
   },
 
-  _onRowHover(e) {
-    if (this.props.onRowHover) this.props.onRowHover(e, this.props.rowNumber);
+  _onRowHoverExit(event) {
+    if (this.props.onRowHoverExit) this.props.onRowHoverExit(event, this.props.rowNumber);
   },
 
-  _onRowHoverExit(e) {
-    if (this.props.onRowHoverExit) this.props.onRowHoverExit(e, this.props.rowNumber);
+  _onCellClick(event, columnIndex) {
+    if (this.props.selectable && this.props.onCellClick) {
+      this.props.onCellClick(event, this.props.rowNumber, columnIndex);
+    }
+    event.ctrlKey = true;
+    this._onRowClick(event);
   },
 
-  _onCellClick(e, columnIndex) {
-    if (this.props.selectable && this.props.onCellClick) this.props.onCellClick(e, this.props.rowNumber, columnIndex);
-    e.ctrlKey = true;
-    this._onRowClick(e);
-  },
-
-  _onCellHover(e, columnIndex) {
+  _onCellHover(event, columnIndex) {
     if (this.props.hoverable) {
       this.setState({hovered: true});
-      if (this.props.onCellHover) this.props.onCellHover(e, this.props.rowNumber, columnIndex);
-      this._onRowHover(e);
+      if (this.props.onCellHover) this.props.onCellHover(event, this.props.rowNumber, columnIndex);
+      this._onRowHover(event);
     }
   },
 
-  _onCellHoverExit(e, columnIndex) {
+  _onCellHoverExit(event, columnIndex) {
     if (this.props.hoverable) {
       this.setState({hovered: false});
-      if (this.props.onCellHoverExit) this.props.onCellHoverExit(e, this.props.rowNumber, columnIndex);
-      this._onRowHoverExit(e);
+      if (this.props.onCellHoverExit) this.props.onCellHoverExit(event, this.props.rowNumber, columnIndex);
+      this._onRowHoverExit(event);
     }
   },
 
   render() {
-    let {
+    const {
       className,
       displayBorder,
       hoverable,
@@ -261,12 +225,31 @@ const TableRow = React.createClass({
       style,
       ...other,
     } = this.props;
-    let rowColumns = this._createColumns();
+
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+
+    const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {...{
+          columnNumber: columnNumber,
+          hoverable: this.props.hoverable,
+          key: child.props.key || `${this.props.rowNumber}-${columnNumber}`,
+          onClick: this._onCellClick,
+          onHover: this._onCellHover,
+          onHoverExit: this._onCellHoverExit,
+          style: Object.assign({}, styles.cell, child.props.style),
+        }, ...child.props});
+      }
+    });
 
     return (
       <tr
         className={className}
-        style={this.prepareStyles(this.getStyles().root, style)}
+        style={prepareStyles(Object.assign(styles.root, style))}
         {...other}
       >
         {rowColumns}

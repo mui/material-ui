@@ -33,6 +33,7 @@ const propTypes = {
   focusStyle: React.PropTypes.object,
 
   /**
+   * @ignore
    * The material-ui theme applied to this component.
    */
   muiTheme: React.PropTypes.object.isRequired,
@@ -54,7 +55,6 @@ const defaultProps = {
 };
 
 const TextFieldUnderline = (props) => {
-
   const {
     disabled,
     disabledStyle,
@@ -117,8 +117,8 @@ const TextFieldUnderline = (props) => {
 
   return (
     <div>
-      <hr style={prepareStyles(underline)}/>
-      <hr style={prepareStyles(focusedUnderline)}/>
+      <hr style={prepareStyles(underline)} />
+      <hr style={prepareStyles(focusedUnderline)} />
     </div>
   );
 };

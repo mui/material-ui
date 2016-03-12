@@ -1,13 +1,39 @@
 import React from 'react';
-import StylePropable from '../mixins/style-propable';
 import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles() {
+  return {
+    root: {
+      padding: 8,
+      position: 'relative',
+    },
+    action: {
+      marginRight: 8,
+    },
+  };
+}
 
 const CardActions = React.createClass({
 
   propTypes: {
+    /**
+     * If true, a click on this card component expands the card.
+     */
     actAsExpander: React.PropTypes.bool,
+
+    /**
+     * Can be used to render elements inside the Card Action.
+     */
     children: React.PropTypes.node,
+
+    /**
+     * If true, this card component is expandable.
+     */
     expandable: React.PropTypes.bool,
+
+    /**
+     * If true, this card component will include a button to expand the card.
+     */
     showExpandableButton: React.PropTypes.bool,
 
     /**
@@ -20,14 +46,9 @@ const CardActions = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getInitialState() {
     return {
@@ -41,33 +62,29 @@ const CardActions = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getStyles() {
-    return {
-      root: {
-        padding: 8,
-        position: 'relative',
-      },
-    };
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
-    let styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    let children = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, {
-        style: this.mergeStyles({marginRight: 8}, child.props.style),
-      });
+    const styles = getStyles(this.props, this.state);
+
+    const children = React.Children.map(this.props.children, (child) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          style: Object.assign({}, styles.action, child.props.style),
+        });
+      }
     });
 
     return (
-      <div {...this.props} style={this.prepareStyles(styles.root, this.props.style)}>
+      <div {...this.props} style={prepareStyles(Object.assign(styles.root, this.props.style))}>
         {children}
       </div>
     );

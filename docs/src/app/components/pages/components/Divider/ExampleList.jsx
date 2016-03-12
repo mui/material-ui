@@ -11,7 +11,7 @@ const DividerExampleList = () => (
       <ListItem insetChildren={true} primaryText="Janet Perkins Bennet" />
       <ListItem insetChildren={true} primaryText="Peter Carlsson" />
     </List>
-    <Divider inset={true}/>
+    <Divider inset={true} />
     <List>
       <ListItem insetChildren={true} primaryText="Aaron Bennet" />
       <ListItem insetChildren={true} primaryText="Abbey Christensen" />

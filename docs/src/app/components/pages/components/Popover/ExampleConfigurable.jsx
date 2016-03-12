@@ -1,13 +1,11 @@
 import React from 'react';
 import Popover from 'material-ui/lib/popover/popover';
-import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
 import RadioButton from 'material-ui/lib/radio-button';
 import RaisedButton from 'material-ui/lib/raised-button';
+import Menu from 'material-ui/lib/menus/menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 const styles = {
-  popover: {
-    padding: 20,
-  },
   h3: {
     marginTop: 20,
     fontWeight: 400,
@@ -39,6 +37,8 @@ export default class PopoverExampleConfigurable extends React.Component {
   }
 
   handleTouchTap = (event) => {
+    // This prevents ghost click.
+    event.preventDefault();
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
@@ -79,7 +79,7 @@ export default class PopoverExampleConfigurable extends React.Component {
         <h3 style={styles.h3}>Current Settings</h3>
         <pre>
           anchorOrigin: {JSON.stringify(this.state.anchorOrigin)}
-          <br/>
+          <br />
           targetOrigin: {JSON.stringify(this.state.targetOrigin)}
         </pre>
         <h3 style={styles.h3}>Position Options</h3>
@@ -156,11 +156,13 @@ export default class PopoverExampleConfigurable extends React.Component {
           anchorOrigin={this.state.anchorOrigin}
           targetOrigin={this.state.targetOrigin}
           onRequestClose={this.handleRequestClose}
-          animation={PopoverAnimationFromTop}
         >
-          <div style={styles.popover}>
-            <RaisedButton primary={true} label="Here is a button"/>
-          </div>
+          <Menu>
+            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Help &amp; feedback" />
+            <MenuItem primaryText="Settings" />
+            <MenuItem primaryText="Sign out" />
+          </Menu>
         </Popover>
       </div>
     );

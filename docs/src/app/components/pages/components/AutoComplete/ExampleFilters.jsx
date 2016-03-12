@@ -1,6 +1,17 @@
 import React from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete';
 
+const colors = [
+  'Red',
+  'Orange',
+  'Yellow',
+  'Green',
+  'Blue',
+  'Purple',
+  'Black',
+  'White',
+];
+
 const fruit = [
   'Apple', 'Apricot', 'Avocado',
   'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry',
@@ -28,29 +39,19 @@ const fruit = [
   'Watermelon',
 ];
 
-const colors = [
-  'Red',
-  'Orange',
-  'Yellow',
-  'Green',
-  'Blue',
-  'Purple',
-  'Black',
-  'White',
-];
-
 const AutoCompleteExampleFilters = () => (
   <div>
     <AutoComplete
-      floatingLabelText="Type t, fuzzy search"
-      filter={AutoComplete.fuzzyFilter}
-      dataSource={fruit}
-    />
-    <br/>
-    <AutoComplete
-      floatingLabelText="Type r, case insensitive"
+      floatingLabelText="Type 'r', case insensitive"
       filter={AutoComplete.caseInsensitiveFilter}
       dataSource={colors}
+    />
+    <br />
+    <AutoComplete
+      floatingLabelText="Type 'peah', fuzzy search"
+      filter={AutoComplete.fuzzyFilter}
+      dataSource={fruit}
+      maxSearchResults={5}
     />
   </div>
 );

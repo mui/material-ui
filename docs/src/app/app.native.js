@@ -28,7 +28,7 @@ class App extends Component {
 
   render() {
     const {instructions} = this.props;
-    let {platform} = this.state;
+    const {platform} = this.state;
 
     return (
       <View style={styles.container}>
@@ -46,7 +46,7 @@ class App extends Component {
   }
 }
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

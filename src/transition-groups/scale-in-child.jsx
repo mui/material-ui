@@ -56,6 +56,11 @@ const ScaleInChild = React.createClass({
     this.setState({muiTheme: newMuiTheme});
   },
 
+  componentWillUnmount() {
+    clearTimeout(this.enterTimer);
+    clearTimeout(this.leaveTimer);
+  },
+
   componentWillAppear(callback) {
     this._initializeAnimation(callback);
   },
@@ -76,18 +81,16 @@ const ScaleInChild = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'scale(' + this.props.minScale + ')', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`, this.state.muiTheme);
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, 450);
+    this.leaveTimer = setTimeout(callback, 450);
   },
 
   _animate() {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
-    autoPrefix.set(style, 'transform', 'scale(' + this.props.maxScale + ')', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`, this.state.muiTheme);
   },
 
   _initializeAnimation(callback) {
@@ -96,9 +99,7 @@ const ScaleInChild = React.createClass({
     style.opacity = '0';
     autoPrefix.set(style, 'transform', 'scale(0)', this.state.muiTheme);
 
-    setTimeout(() => {
-      if (this.isMounted()) callback();
-    }, this.props.enterDelay);
+    this.enterTimer = setTimeout(callback, this.props.enterDelay);
   },
 
   render() {

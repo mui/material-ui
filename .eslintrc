@@ -12,6 +12,7 @@ rules:
   # Errors
   array-bracket-spacing: [2, never]
   arrow-spacing: 2
+  arrow-parens: 2
   block-spacing: [2, always]
   brace-style: 2
   comma-dangle: [2, always-multiline]
@@ -25,7 +26,9 @@ rules:
   eqeqeq: [2, smart]
   eol-last: 2
   indent: [2, 2, {SwitchCase: 1}]
+  id-blacklist: [2, e]
   jsx-quotes: [2, prefer-double]
+  keyword-spacing: 2
   key-spacing: 2
   max-len: [2, 120, 4]
   new-cap: [0, {capIsNew: true, newIsCap: true}] # Wishlist, one day
@@ -33,6 +36,7 @@ rules:
   no-unused-vars: 2
   no-shadow: 0 # Wishlist, one day
   no-spaced-func: 2
+  no-multiple-empty-lines: 2
   no-multi-spaces: 2
   no-undef: 2
   no-empty-pattern: 2
@@ -43,38 +47,41 @@ rules:
   no-extra-semi: 2
   no-extra-boolean-cast: 2
   no-trailing-spaces: 2
+  no-unneeded-ternary: 2
   no-unreachable: 2
   no-var: 2
   object-curly-spacing: [2, never]
   one-var: [2, never]
+  operator-linebreak: [2, "after"]
+  padded-blocks: [2, never]
   prefer-arrow-callback: 0 # Wishlist, one day
-  prefer-const: 0 # Wishlist, one day
+  prefer-const: 2
+  prefer-template: 2
   quotes: [2, single, avoid-escape]
   semi: [2, always]
-  space-after-keywords: [2, always]
   space-before-blocks: [2, always]
   space-before-function-paren: [2, never]
-  space-before-keywords: [2, always]
   space-infix-ops: 2
-  space-return-throw-case: 2
   space-unary-ops: [2, { words: true, nonwords: false }]
   yoda: 2
 
   # Disabled
   strict: 0
+  no-case-declarations: 0
 
   # React
-  react/display-name: [2, {acceptTranspilerName: true}]
+  react/display-name: 2
   react/jsx-boolean-value: [2, always]
   react/jsx-closing-bracket-location: 2
   react/jsx-curly-spacing: 2
   react/jsx-equals-spacing: 2
+  react/jsx-handler-names: 0 # Wishlist, one day
   react/jsx-indent-props: [2, 2]
   react/jsx-max-props-per-line: [2, {maximum: 3}]
   react/jsx-no-duplicate-props: 2
   react/jsx-no-undef: 2
   react/jsx-pascal-case: 2
-  react/jsx-sort-prop-types: 2
+  react/jsx-space-before-closing: 2
   react/jsx-uses-react: 2
   react/jsx-uses-vars: 2
   react/no-danger: 2
@@ -83,11 +90,15 @@ rules:
   react/no-direct-mutation-state: 2
   react/no-multi-comp: 0 # Wishlist, one day
   react/no-unknown-property: 2
+  react/no-is-mounted: 2
+  react/prefer-arrow-callback: 0 # Wishlist, one day
+  react/prefer-es6-class: 0 # Wishlist, one day
   react/prop-types: 2
   react/react-in-jsx-scope: 2
   react/require-extension: 2
   react/self-closing-comp: 2
   react/sort-comp: 2
+  react/sort-prop-types: 2
   react/wrap-multilines: 2
   react/jsx-indent: [2, 2]
 

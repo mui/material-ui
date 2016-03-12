@@ -1,5 +1,4 @@
 import React from 'react';
-import {StylePropable} from 'material-ui/lib/mixins';
 
 const MobileTearSheet = React.createClass({
 
@@ -12,10 +11,6 @@ const MobileTearSheet = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  mixins: [
-    StylePropable,
-  ],
-
   getDefaultProps() {
     return {
       height: 500,
@@ -23,6 +18,10 @@ const MobileTearSheet = React.createClass({
   },
 
   render() {
+    const {
+      prepareStyles,
+    } = this.context.muiTheme;
+
     const styles = {
       root: {
         float: 'left',
@@ -45,11 +44,11 @@ const MobileTearSheet = React.createClass({
     };
 
     return (
-      <div style={this.prepareStyles(styles.root)}>
-        <div style={this.prepareStyles(styles.container)}>
+      <div style={prepareStyles(styles.root)}>
+        <div style={prepareStyles(styles.container)}>
           {this.props.children}
         </div>
-        <img style={this.prepareStyles(styles.bottomTear)} src="images/bottom-tear.svg" />
+        <img style={prepareStyles(styles.bottomTear)} src="images/bottom-tear.svg" />
       </div>
     );
   },

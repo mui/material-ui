@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import StylePropable from '../mixins/style-propable';
 import Dom from '../utils/dom';
 import CircleRipple from './circle-ripple';
 import update from 'react-addons-update';
@@ -13,17 +12,20 @@ function push(array, obj) {
 }
 
 function shift(array) {
+  //Remove the first element in the array using React immutability helpers
   return update(array, {$splice: [[0, 1]]});
 }
 
 const TouchRipple = React.createClass({
 
   propTypes: {
+    abortOnScroll: React.PropTypes.bool,
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,
 
     /**
+     * @ignore
      * The material-ui theme applied to this component.
      */
     muiTheme: React.PropTypes.object.isRequired,
@@ -38,8 +40,13 @@ const TouchRipple = React.createClass({
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
+
+  getDefaultProps() {
+    return {
+      abortOnScroll: true,
+    };
+  },
 
   getInitialState() {
     //Touch start produces a mouse down event for compat reasons. To avoid
@@ -58,7 +65,9 @@ const TouchRipple = React.createClass({
     };
   },
 
-  start(e, isRippleTouchGenerated) {
+  start(event, isRippleTouchGenerated) {
+    const theme = this.props.muiTheme.ripple;
+
     if (this._ignoreNextMouseDown && !isRippleTouchGenerated) {
       this._ignoreNextMouseDown = false;
       return;
@@ -71,8 +80,8 @@ const TouchRipple = React.createClass({
       <CircleRipple
         key={this.state.nextKey}
         muiTheme={this.props.muiTheme}
-        style={!this.props.centerRipple ? this._getRippleStyle(e) : {}}
-        color={this.props.color}
+        style={!this.props.centerRipple ? this._getRippleStyle(event) : {}}
+        color={this.props.color || theme.color}
         opacity={this.props.opacity}
         touchGenerated={isRippleTouchGenerated}
       />
@@ -91,11 +100,14 @@ const TouchRipple = React.createClass({
     this.setState({
       ripples: shift(currentRipples),
     });
+    if (this.props.abortOnScroll) {
+      this._stopListeningForScrollAbort();
+    }
   },
 
-  _handleMouseDown(e) {
+  _handleMouseDown(event) {
     //only listen to left clicks
-    if (e.button === 0) this.start(e, false);
+    if (event.button === 0) this.start(event, false);
   },
 
   _handleMouseUp() {
@@ -106,23 +118,73 @@ const TouchRipple = React.createClass({
     this.end();
   },
 
-  _handleTouchStart(e) {
-    this.start(e, true);
+  _handleTouchStart(event) {
+    event.stopPropagation();
+    //If the user is swiping (not just tapping), save the position so we can
+    //abort ripples if the user appears to be scrolling
+    if (this.props.abortOnScroll && event.touches) {
+      this._startListeningForScrollAbort(event);
+      this._startTime = Date.now();
+    }
+    this.start(event, true);
   },
 
   _handleTouchEnd() {
     this.end();
   },
 
-  _getRippleStyle(e) {
-    let style = {};
+  //Check if the user seems to be scrolling and abort the animation if so
+  _handleTouchMove(event) {
+    //Stop trying to abort if we're already 300ms into the animation
+    const timeSinceStart = Math.abs(Date.now() - this._startTime);
+    if (timeSinceStart > 300) {
+      this._stopListeningForScrollAbort();
+      return;
+    }
+
+    //If the user is scrolling...
+    const deltaY = Math.abs(event.touches[0].clientY - this._firstTouchY);
+    const deltaX = Math.abs(event.touches[0].clientX - this._firstTouchX);
+    //Call it a scroll after an arbitrary 6px (feels reasonable in testing)
+    if (deltaY > 6 || deltaX > 6) {
+      let currentRipples = this.state.ripples;
+      const ripple = currentRipples[0];
+      //This clone will replace the ripple in ReactTransitionGroup with a
+      //version that will disappear immediately when removed from the DOM
+      const abortedRipple = React.cloneElement(ripple, {aborted: true});
+      //Remove the old ripple and replace it with the new updated one
+      currentRipples = shift(currentRipples);
+      currentRipples = push(currentRipples, abortedRipple);
+      this.setState({ripples: currentRipples}, () => {
+        //Call end after we've set the ripple to abort otherwise the setState
+        //in end() merges with this and the ripple abort fails
+        this.end();
+      });
+    }
+  },
+
+  _startListeningForScrollAbort(event) {
+    this._firstTouchY = event.touches[0].clientY;
+    this._firstTouchX = event.touches[0].clientX;
+    //Note that when scolling Chrome throttles this event to every 200ms
+    //Also note we don't listen for scroll events directly as there's no general
+    //way to cover cases like scrolling within containers on the page
+    document.body.addEventListener('touchmove', this._handleTouchMove);
+  },
+
+  _stopListeningForScrollAbort() {
+    document.body.removeEventListener('touchmove', this._handleTouchMove);
+  },
+
+  _getRippleStyle(event) {
+    const style = {};
     const el = ReactDOM.findDOMNode(this);
     const elHeight = el.offsetHeight;
     const elWidth = el.offsetWidth;
     const offset = Dom.offset(el);
-    const isTouchEvent = e.touches && e.touches.length;
-    const pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
-    const pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
+    const isTouchEvent = event.touches && event.touches.length;
+    const pageX = isTouchEvent ? event.touches[0].pageX : event.pageX;
+    const pageY = isTouchEvent ? event.touches[0].pageY : event.pageY;
     const pointerX = pageX - offset.left;
     const pointerY = pageY - offset.top;
     const topLeftDiag = this._calcDiag(pointerX, pointerY);
@@ -136,10 +198,10 @@ const TouchRipple = React.createClass({
     const left = pointerX - rippleRadius;
     const top = pointerY - rippleRadius;
 
-    style.height = rippleSize + 'px';
-    style.width = rippleSize + 'px';
-    style.top = top + 'px';
-    style.left = left + 'px';
+    style.height = `${rippleSize}px`;
+    style.width = `${rippleSize}px`;
+    style.top = `${top}px`;
+    style.left = `${left}px`;
 
     return style;
   },
@@ -152,6 +214,9 @@ const TouchRipple = React.createClass({
   render() {
     const {
       children,
+      muiTheme: {
+        prepareStyles,
+      },
       style,
     } = this.props;
 
@@ -162,7 +227,7 @@ const TouchRipple = React.createClass({
 
     let rippleGroup;
     if (hasRipples) {
-      const mergedStyles = this.mergeStyles({
+      const mergedStyles = Object.assign({
         height: '100%',
         width: '100%',
         position: 'absolute',
@@ -172,7 +237,7 @@ const TouchRipple = React.createClass({
       }, style);
 
       rippleGroup = (
-        <ReactTransitionGroup style={this.prepareStyles(mergedStyles)}>
+        <ReactTransitionGroup style={prepareStyles(mergedStyles)}>
           {ripples}
         </ReactTransitionGroup>
       );

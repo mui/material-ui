@@ -4,8 +4,8 @@ import TextField from 'material-ui/lib/text-field';
 import Toggle from 'material-ui/lib/toggle';
 
 const optionsStyle = {
-  width: 300,
-  margin: '0 auto',
+  maxWidth: 255,
+  marginRight: 'auto',
 };
 
 export default class DatePickerExampleToggle extends React.Component {
@@ -13,8 +13,8 @@ export default class DatePickerExampleToggle extends React.Component {
   constructor(props) {
     super(props);
 
-    let minDate = new Date();
-    let maxDate = new Date();
+    const minDate = new Date();
+    const maxDate = new Date();
     minDate.setFullYear(minDate.getFullYear() - 1);
     minDate.setHours(0, 0, 0, 0);
     maxDate.setFullYear(maxDate.getFullYear() + 1);

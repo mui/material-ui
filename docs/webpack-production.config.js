@@ -18,15 +18,6 @@ const config = {
       'material-ui/lib': path.resolve(__dirname, '../src'),
       'material-ui': path.resolve(__dirname, '../src'),
     },
-    //Modules will be searched for in these directories
-    modulesDirectories: [
-      // We need /docs/node_modules to be resolved before /node_modules
-      path.resolve(__dirname, 'node_modules'),
-      'node_modules',
-      path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, 'src/app/components/raw-code'),
-      path.resolve(__dirname, 'src/app/components/markdown'),
-    ],
   },
   devtool: 'source-map',
   //Configuration for server

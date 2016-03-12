@@ -1,7 +1,6 @@
 import React from 'react';
 import MarkdownElement from '../MarkdownElement';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import StylePropable from 'material-ui/lib/mixins/style-propable';
 import Transitions from 'material-ui/lib/styles/transitions';
 import CodeBlockTitle from './CodeBlockTitle';
 
@@ -57,7 +56,7 @@ ${this.props.children}
     \`\`\``;
 
     const descriptionStyle = styles.description;
-    let codeStyle = StylePropable.mergeStyles(styles.markdown, styles.markdownRetracted);
+    let codeStyle = Object.assign({}, styles.markdown, styles.markdownRetracted);
     let tooltip = 'Show source';
 
     if (this.state.expand) {
@@ -68,7 +67,7 @@ ${this.props.children}
     return (
       <div style={styles.root}>
         <div onTouchTap={this.handleTouchTap} style={styles.codeBlockTitle}>
-          <CodeBlockTitle title={this.props.title} tooltip={tooltip}/>
+          <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
         </div>
         <MarkdownElement style={codeStyle} text={text} />
         <MarkdownElement style={descriptionStyle} text={this.props.description} />

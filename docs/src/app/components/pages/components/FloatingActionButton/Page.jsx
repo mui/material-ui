@@ -1,4 +1,6 @@
 import React from 'react';
+import Title from 'react-title-component';
+
 import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
@@ -15,6 +17,7 @@ const descriptions = {
 
 const FloatingActionButtonPage = () => (
   <div>
+    <Title render={(previousTitle) => `Floating Action Button - ${previousTitle}`} />
     <MarkdownElement text={floatingButtonReadmeText} />
     <CodeExample description={descriptions.simple} code={floatingButtonExampleSimpleCode}>
       <FloatingButtonExampleSimple />

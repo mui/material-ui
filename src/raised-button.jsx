@@ -1,19 +1,113 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StylePropable from './mixins/style-propable';
 import Transitions from './styles/transitions';
 import ColorManipulator from './utils/color-manipulator';
 import Children from './utils/children';
-import Typography from './styles/typography';
 import EnhancedButton from './enhanced-button';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label) {
-    return new Error('Required prop label or children was not ' +
-      'specified in ' + componentName + '.');
+  if (!props.children && !props.label && !props.icon) {
+    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
   }
+}
+
+function getStyles(props, state) {
+  const {
+    baseTheme,
+    button,
+    raisedButton,
+  } = state.muiTheme;
+
+  const {
+    disabled,
+    disabledBackgroundColor,
+    disabledLabelColor,
+    fullWidth,
+    icon,
+    label,
+    labelPosition,
+    linkButton,
+    primary,
+    secondary,
+    style,
+  } = props;
+
+  const amount = (primary || secondary) ? 0.4 : 0.08;
+
+  let backgroundColor = raisedButton.color;
+  let labelColor = raisedButton.textColor;
+
+  if (disabled) {
+    backgroundColor = disabledBackgroundColor || raisedButton.disabledColor;
+    labelColor = disabledLabelColor || raisedButton.disabledTextColor;
+  } else if (primary) {
+    backgroundColor = raisedButton.primaryColor;
+    labelColor = raisedButton.primaryTextColor;
+  } else if (secondary) {
+    backgroundColor = raisedButton.secondaryColor;
+    labelColor = raisedButton.secondaryTextColor;
+  } else {
+    if (props.backgroundColor) {
+      backgroundColor = props.backgroundColor;
+    }
+    if (props.labelColor) {
+      labelColor = props.labelColor;
+    }
+  }
+
+  return {
+    root: {
+      display: 'inline-block',
+      minWidth: fullWidth ? '100%' : button.minWidth,
+      height: button.height,
+      transition: Transitions.easeOut(),
+    },
+    container: {
+      position: 'relative',
+      height: '100%',
+      width: '100%',
+      padding: 0,
+      overflow: 'hidden',
+      borderRadius: 2,
+      transition: Transitions.easeOut(),
+      backgroundColor: backgroundColor,
+    },
+    label: {
+      position: 'relative',
+      verticalAlign: 'middle',
+      opacity: 1,
+      fontSize: '14px',
+      letterSpacing: 0,
+      textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
+      fontWeight: raisedButton.fontWeight,
+      margin: 0,
+      userSelect: 'none',
+      paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+      paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+      lineHeight: style && style.height || `${button.height}px`,
+      color: labelColor,
+    },
+    icon: {
+      lineHeight: style && style.height || `${button.height}px`,
+      verticalAlign: 'middle',
+      marginLeft: label && labelPosition !== 'before' ? 12 : 0,
+      marginRight: label && labelPosition === 'before' ? 12 : 0,
+      display: label || !linkButton ? 'inline-block' : 'block',
+      textAlign: label || !linkButton ? '' : 'center',
+    },
+    overlay: {
+      backgroundColor: state.hovered && !disabled && ColorManipulator.fade(labelColor, amount),
+      transition: Transitions.easeOut(),
+      top: 0,
+    },
+    overlayWhenHovered: {
+    },
+    ripple: {
+      color: labelColor,
+      opacity: !(primary || secondary) ? 0.1 : 0.16,
+    },
+  };
 }
 
 const RaisedButton = React.createClass({
@@ -137,6 +231,11 @@ const RaisedButton = React.createClass({
     primary: React.PropTypes.bool,
 
     /**
+     * Override the inline style of ripple element.
+     */
+    rippleStyle: React.PropTypes.object,
+
+    /**
      * If true, colors button according to secondaryTextColor from the theme.
      * The primary prop has precendent if set to true.
      */
@@ -152,14 +251,9 @@ const RaisedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps: function() {
     return {
@@ -172,7 +266,7 @@ const RaisedButton = React.createClass({
   },
 
   getInitialState() {
-    let zDepth = this.props.disabled ? 0 : 1;
+    const zDepth = this.props.disabled ? 0 : 1;
     return {
       hovered: false,
       touched: false,
@@ -189,160 +283,66 @@ const RaisedButton = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let zDepth = nextProps.disabled ? 0 : 1;
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+    const zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
       initialZDepth: zDepth,
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
-  _getBackgroundColor() {
-    let disabledColor = this.props.disabledBackgroundColor ? this.props.disabledBackgroundColor :
-      this.getTheme().disabledColor;
-
-    return this.props.disabled ? disabledColor :
-      this.props.backgroundColor ? this.props.backgroundColor :
-      this.props.primary ? this.getTheme().primaryColor :
-      this.props.secondary ? this.getTheme().secondaryColor :
-      this.getTheme().color;
-  },
-
-  _getLabelColor() {
-    let disabledColor = this.props.disabledLabelColor ? this.props.disabledLabelColor :
-      this.getTheme().disabledTextColor;
-
-    return this.props.disabled ? disabledColor :
-      this.props.labelColor ? this.props.labelColor :
-      this.props.primary ? this.getTheme().primaryTextColor :
-      this.props.secondary ? this.getTheme().secondaryTextColor :
-      this.getTheme().textColor;
-  },
-
-  getThemeButton() {
-    return this.state.muiTheme.button;
-  },
-
-  getTheme() {
-    return this.state.muiTheme.raisedButton;
-  },
-
-  getStyles() {
-    const {
-      icon,
-      labelPosition,
-      primary,
-      secondary,
-    } = this.props;
-
-    let amount = (primary || secondary) ? 0.4 : 0.08;
-    let styles = {
-      root: {
-        display: 'inline-block',
-        minWidth: this.props.fullWidth ? '100%' : this.getThemeButton().minWidth,
-        height: this.getThemeButton().height,
-        transition: Transitions.easeOut(),
-      },
-      container: {
-        position: 'relative',
-        height: '100%',
-        width: '100%',
-        padding: 0,
-        overflow: 'hidden',
-        borderRadius: 2,
-        transition: Transitions.easeOut(),
-        backgroundColor: this._getBackgroundColor(),
-      },
-      label: {
-        position: 'relative',
-        opacity: 1,
-        fontSize: '14px',
-        letterSpacing: 0,
-        textTransform: this.getTheme().textTransform ? this.getTheme().textTransform :
-                    (this.getThemeButton().textTransform ? this.getThemeButton().textTransform : 'uppercase'),
-        fontWeight: Typography.fontWeightMedium,
-        margin: 0,
-        userSelect: 'none',
-        paddingLeft: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
-        paddingRight: this.state.muiTheme.rawTheme.spacing.desktopGutterLess,
-        lineHeight: (this.props.style && this.props.style.height) ?
-         this.props.style.height : this.getThemeButton().height + 'px',
-        color: this._getLabelColor(),
-      },
-      overlay: {
-        transition: Transitions.easeOut(),
-        top: 0,
-      },
-      overlayWhenHovered: {
-        backgroundColor: ColorManipulator.fade(this._getLabelColor(), amount),
-      },
-    };
-
-    if (icon) {
-      if (labelPosition === 'before') {
-        styles.label.paddingRight = 8;
-      } else {
-        styles.label.paddingLeft = 8;
-      }
-    }
-
-    return styles;
-  },
-
-
-  _handleMouseDown(e) {
+  _handleMouseDown(event) {
     //only listen to left clicks
-    if (e.button === 0) {
+    if (event.button === 0) {
       this.setState({zDepth: this.state.initialZDepth + 1});
     }
-    if (this.props.onMouseDown) this.props.onMouseDown(e);
+    if (this.props.onMouseDown) this.props.onMouseDown(event);
   },
 
-  _handleMouseUp(e) {
+  _handleMouseUp(event) {
     this.setState({zDepth: this.state.initialZDepth});
-    if (this.props.onMouseUp) this.props.onMouseUp(e);
+    if (this.props.onMouseUp) this.props.onMouseUp(event);
   },
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave(event) {
     if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(e);
+    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   },
 
-  _handleMouseEnter(e) {
+  _handleMouseEnter(event) {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
-    if (this.props.onMouseEnter) this.props.onMouseEnter(e);
+    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
   },
 
-  _handleTouchStart(e) {
+  _handleTouchStart(event) {
     this.setState({
       touch: true,
       zDepth: this.state.initialZDepth + 1,
     });
-    if (this.props.onTouchStart) this.props.onTouchStart(e);
+    if (this.props.onTouchStart) this.props.onTouchStart(event);
   },
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd(event) {
     this.setState({zDepth: this.state.initialZDepth});
-    if (this.props.onTouchEnd) this.props.onTouchEnd(e);
+    if (this.props.onTouchEnd) this.props.onTouchEnd(event);
   },
 
-  _handleKeyboardFocus(e, keyboardFocused) {
+  _handleKeyboardFocus: (styles) => (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.state.initialZDepth + 1});
-      let amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor =
-        ColorManipulator.fade(this.prepareStyles(this.getStyles().label, this.props.labelStyle).color, amount);
+      const amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
+      this.refs.overlay.style.backgroundColor =
+        ColorManipulator.fade(Object.assign({}, styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
       this.setState({zDepth: this.state.initialZDepth});
-      ReactDOM.findDOMNode(this.refs.overlay).style.backgroundColor = 'transparent';
+      this.refs.overlay.style.backgroundColor = 'transparent';
     }
   },
 
   render() {
-    let {
+    const {
       children,
       className,
       disabled,
@@ -351,25 +351,19 @@ const RaisedButton = React.createClass({
       labelPosition,
       labelStyle,
       primary,
+      rippleStyle,
       secondary,
       ...other,
     } = this.props;
 
-    let styles = this.getStyles();
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
 
-    let labelElement;
-    if (label) {
-      labelElement = (
-        <span style={this.prepareStyles(styles.label, labelStyle)}>
-          {label}
-        </span>
-      );
-    }
+    const styles = getStyles(this.props, this.state);
+    const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
-    let rippleColor = styles.label.color;
-    let rippleOpacity = !(primary || secondary) ? 0.1 : 0.16;
-
-    let buttonEventHandlers = disabled ? null : {
+    const buttonEventHandlers = disabled && {
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
       onMouseLeave: this._handleMouseLeave,
@@ -379,18 +373,16 @@ const RaisedButton = React.createClass({
       onKeyboardFocus: this._handleKeyboardFocus,
     };
 
-    let iconCloned;
+    const labelElement = label && (
+      <span style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+        {label}
+      </span>
+    );
 
-    if (icon) {
-      iconCloned = React.cloneElement(icon, {
-        color: styles.label.color,
-        style: {
-          verticalAlign: 'middle',
-          marginLeft: labelPosition === 'before' ? 0 : 12,
-          marginRight: labelPosition === 'before' ? 12 : 0,
-        },
-      });
-    }
+    const iconCloned = icon && React.cloneElement(icon, {
+      color: styles.label.color,
+      style: styles.icon,
+    });
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
@@ -398,8 +390,7 @@ const RaisedButton = React.createClass({
         labelElement,
         iconCloned,
         children,
-      }
-      :
+      } :
       {
         children,
         iconCloned,
@@ -409,8 +400,8 @@ const RaisedButton = React.createClass({
 
     return (
       <Paper
-        className={this.props.className}
-        style={this.mergeStyles(styles.root, this.props.style)}
+        className={className}
+        style={Object.assign(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
       >
         <EnhancedButton
@@ -418,18 +409,15 @@ const RaisedButton = React.createClass({
           {...buttonEventHandlers}
           ref="container"
           disabled={disabled}
-          style={this.mergeStyles(styles.container)}
-          focusRippleColor={rippleColor}
-          touchRippleColor={rippleColor}
-          focusRippleOpacity={rippleOpacity}
-          touchRippleOpacity={rippleOpacity}
+          style={styles.container}
+          focusRippleColor={mergedRippleStyles.color}
+          touchRippleColor={mergedRippleStyles.color}
+          focusRippleOpacity={mergedRippleStyles.opacity}
+          touchRippleOpacity={mergedRippleStyles.opacity}
         >
           <div
             ref="overlay"
-            style={this.prepareStyles(
-              styles.overlay,
-              (this.state.hovered && !this.props.disabled) && styles.overlayWhenHovered
-            )}
+            style={prepareStyles(styles.overlay)}
           >
             {enhancedButtonChildren}
           </div>

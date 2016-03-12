@@ -1,6 +1,5 @@
 import React from 'react';
 import RadioButton from './radio-button';
-import StylePropable from './mixins/style-propable';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
 
@@ -59,14 +58,9 @@ const RadioButtonGroup = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -99,8 +93,7 @@ const RadioButtonGroup = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    let newState = {muiTheme: newMuiTheme};
+    const newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
 
     if (nextProps.hasOwnProperty('valueSelected')) {
       newState.selected = nextProps.valueSelected;
@@ -123,12 +116,12 @@ const RadioButtonGroup = React.createClass({
     }
   },
 
-  _onChange(e, newSelection) {
+  handleChange(event, newSelection) {
     this._updateRadioButtons(newSelection);
 
     // Successful update
     if (this.state.numberCheckedRadioButtons === 0) {
-      if (this.props.onChange) this.props.onChange(e, newSelection);
+      if (this.props.onChange) this.props.onChange(event, newSelection);
     }
   },
 
@@ -145,8 +138,12 @@ const RadioButtonGroup = React.createClass({
   },
 
   render() {
-    let options = React.Children.map(this.props.children, (option) => {
-      let {
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const options = React.Children.map(this.props.children, (option) => {
+      const {
         name,
         value,
         label,
@@ -163,7 +160,7 @@ const RadioButtonGroup = React.createClass({
           value={option.props.value}
           label={option.props.label}
           labelPosition={this.props.labelPosition}
-          onCheck={this._onChange}
+          onCheck={this.handleChange}
           checked={option.props.value === this.state.selected}
         />
       );
@@ -171,7 +168,7 @@ const RadioButtonGroup = React.createClass({
 
     return (
       <div
-        style={this.prepareStyles(this.props.style)}
+        style={prepareStyles(Object.assign({}, this.props.style))}
         className={this.props.className}
       >
         {options}

@@ -24,7 +24,7 @@ export default class SnackbarExampleTwice extends React.Component {
 
     this.timer = setTimeout(() => {
       this.setState({
-        message: 'Event ' + Math.round(Math.random() * 100) + ' added to your calendar',
+        message: `Event ${Math.round(Math.random() * 100)} added to your calendar`,
       });
     }, 1500);
   };

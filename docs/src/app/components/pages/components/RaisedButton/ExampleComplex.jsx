@@ -23,6 +23,7 @@ const RaisedButtonExampleComplex = () => (
   <div>
     <RaisedButton
       label="Choose an Image"
+      labelPosition="before"
       style={styles.button}
     >
       <input type="file" style={styles.exampleImageInput} />
@@ -40,7 +41,7 @@ const RaisedButtonExampleComplex = () => (
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}
-      icon={<FontIcon className="muidocs-icon-custom-github"/>}
+      icon={<FontIcon className="muidocs-icon-custom-github" />}
     />
   </div>
 );

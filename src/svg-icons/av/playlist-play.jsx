@@ -1,19 +1,13 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import pure from 'recompose/pure';
 import SvgIcon from '../../svg-icon';
 
-const AvPlaylistPlay = React.createClass({
-
-  mixins: [PureRenderMixin],
-
-  render() {
-    return (
-      <SvgIcon {...this.props}>
-        <path d="M19 9H2v2h17V9zm0-4H2v2h17V5zM2 15h13v-2H2v2zm15-2v6l5-3-5-3z"/>
-      </SvgIcon>
-    );
-  }
-
-});
+let AvPlaylistPlay = (props) => (
+  <SvgIcon {...props}>
+    <path d="M19 9H2v2h17V9zm0-4H2v2h17V5zM2 15h13v-2H2v2zm15-2v6l5-3-5-3z"/>
+  </SvgIcon>
+);
+AvPlaylistPlay = pure(AvPlaylistPlay)
+AvPlaylistPlay.displayName = 'AvPlaylistPlay';
 
 export default AvPlaylistPlay;

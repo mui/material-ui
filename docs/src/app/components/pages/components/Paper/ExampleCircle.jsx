@@ -11,11 +11,11 @@ const style = {
 
 const PaperExampleCircle = () => (
   <div>
-    <Paper style={style} zDepth={1} circle={true}/>
-    <Paper style={style} zDepth={2} circle={true}/>
-    <Paper style={style} zDepth={3} circle={true}/>
-    <Paper style={style} zDepth={4} circle={true}/>
-    <Paper style={style} zDepth={5} circle={true}/>
+    <Paper style={style} zDepth={1} circle={true} />
+    <Paper style={style} zDepth={2} circle={true} />
+    <Paper style={style} zDepth={3} circle={true} />
+    <Paper style={style} zDepth={4} circle={true} />
+    <Paper style={style} zDepth={5} circle={true} />
   </div>
 );
 

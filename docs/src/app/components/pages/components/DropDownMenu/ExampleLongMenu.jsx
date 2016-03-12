@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 
 const items = [];
 for (let i = 0; i < 100; i++ ) {
-  items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`}/>);
+  items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
 }
 
 export default class DropDownMenuLongMenuExample extends React.Component {
@@ -14,7 +14,7 @@ export default class DropDownMenuLongMenuExample extends React.Component {
     this.state = {value: 10};
   }
 
-  handleChange = (e, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({value});
 
   render() {
     return (

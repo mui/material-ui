@@ -11,19 +11,32 @@ export default class AutoCompleteExampleSimple extends React.Component {
     };
   }
 
-  handleUpdateInput = (t) => {
+  handleUpdateInput = (value) => {
     this.setState({
-      dataSource: [t, t + t, t + t + t],
+      dataSource: [
+        value,
+        value + value,
+        value + value + value,
+      ],
     });
   };
 
   render() {
     return (
-      <AutoComplete
-        hintText="Type c"
-        dataSource={this.state.dataSource}
-        onUpdateInput={this.handleUpdateInput}
-      />
+      <div>
+        <AutoComplete
+          hintText="Type anything"
+          dataSource={this.state.dataSource}
+          onUpdateInput={this.handleUpdateInput}
+        />
+        <AutoComplete
+          hintText="Type anything"
+          dataSource={this.state.dataSource}
+          onUpdateInput={this.handleUpdateInput}
+          floatingLabelText="Full width"
+          fullWidth={true}
+        />
+      </div>
     );
   }
 }

@@ -1,9 +1,35 @@
-import Transitions from '../styles/transitions';
 import React from 'react';
-import PropTypes from '../utils/prop-types';
-import StylePropable from '../mixins/style-propable';
-import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../paper';
+import Transitions from '../styles/transitions';
+import getMuiTheme from '../styles/getMuiTheme';
+import PropTypes from '../utils/prop-types';
+
+function getStyles(props, state) {
+  const {
+    targetOrigin,
+  } = props;
+
+  const {
+    open,
+    muiTheme: {
+      zIndex,
+    },
+  } = state;
+
+  const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+
+  return {
+    root: {
+      opacity: open ? 1 : 0,
+      transform: open ? 'scaleY(1)' : 'scaleY(0)',
+      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
+      position: 'fixed',
+      zIndex: zIndex.popover,
+      transition: Transitions.easeOut('450ms', ['transform', 'opacity']),
+      maxHeight: '100%',
+    },
+  };
+}
 
 const PopoverAnimationFromTop = React.createClass({
 
@@ -24,14 +50,9 @@ const PopoverAnimationFromTop = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    StylePropable,
-  ],
 
   getDefaultProps() {
     return {
@@ -58,56 +79,24 @@ const PopoverAnimationFromTop = React.createClass({
   },
 
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-
     this.setState({
       open: nextProps.open,
-      muiTheme: newMuiTheme,
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
-  getStyles() {
-    let {targetOrigin} = this.props;
-    let horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
-
-    return {
-      base: {
-        opacity: 0,
-        transform: 'scaleY(0)',
-        transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-        position: 'fixed',
-        zIndex: this.state.muiTheme.zIndex.popover,
-        transition: Transitions.easeOut('450ms', ['transform', 'opacity']),
-        maxHeight: '100%',
-      },
-
-    };
-  },
-
-  getOpenStyles() {
-    return {
-      base: {
-        opacity: 1,
-        transform: 'scaleY(1)',
-      },
-    };
-  },
-
   render() {
-    let {
+    const {
       className,
       style,
       zDepth,
     } = this.props;
 
-    let styles = this.getStyles();
-    let openStyles = {};
-    if (this.state.open)
-      openStyles = this.getOpenStyles();
+    const styles = getStyles(this.props, this.state);
 
     return (
       <Paper
-        style={this.mergeStyles(styles.base, style, openStyles.base)}
+        style={Object.assign(styles.root, style)}
         zDepth={zDepth}
         className={className}
       >

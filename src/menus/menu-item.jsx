@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import StylePropable from '../mixins/style-propable';
-import Colors from '../styles/colors';
 import Popover from '../popover/popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../lists/list-item';
@@ -27,6 +25,7 @@ const MenuItem = React.createClass({
     children: React.PropTypes.node,
 
     /**
+     * @ignore
      * Indicates if the menu should render with compact desktop styles.
      */
     desktop: React.PropTypes.bool,
@@ -97,14 +96,12 @@ const MenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
 
   getDefaultProps() {
@@ -134,11 +131,10 @@ const MenuItem = React.createClass({
     this._applyFocusState();
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
 
     if (this.state.open && nextProps.focusState === 'none') {
       this._onRequestClose();
@@ -214,6 +210,11 @@ const MenuItem = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      prepareStyles,
+      menuItem,
+    } = this.state.muiTheme;
+
     const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
     const textColor = this.state.muiTheme.rawTheme.palette.textColor;
     const leftIndent = desktop ? 64 : 72;
@@ -232,10 +233,16 @@ const MenuItem = React.createClass({
         paddingRight: sidePadding,
         paddingBottom: 0,
         paddingTop: 0,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignContent: 'space-between',
       },
 
       secondaryText: {
-        float: 'right',
+        order: 2,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
       },
 
       leftIconDesktop: {
@@ -248,17 +255,17 @@ const MenuItem = React.createClass({
         margin: 0,
         right: 24,
         top: 4,
-        fill: Colors.grey600,
+        fill: menuItem.rightIconDesktopFill,
       },
     };
 
-    let mergedRootStyles = this.mergeStyles(styles.root, style);
-    let mergedInnerDivStyles = this.mergeStyles(styles.innerDivStyle, innerDivStyle);
+    const mergedRootStyles = Object.assign(styles.root, style);
+    const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
     //Left Icon
     let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;
     if (leftIconElement && desktop) {
-      const mergedLeftIconStyles = this.mergeStyles(styles.leftIconDesktop, leftIconElement.props.style);
+      const mergedLeftIconStyles = Object.assign(styles.leftIconDesktop, leftIconElement.props.style);
       leftIconElement = React.cloneElement(leftIconElement, {style: mergedLeftIconStyles});
     }
 
@@ -266,7 +273,7 @@ const MenuItem = React.createClass({
     let rightIconElement;
     if (rightIcon) {
       const mergedRightIconStyles = desktop ?
-        this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : rightIcon.props.style;
+        Object.assign(styles.rightIconDesktop, rightIcon.props.style) : rightIcon.props.style;
       rightIconElement = React.cloneElement(rightIcon, {style: mergedRightIconStyles});
     }
 
@@ -275,11 +282,11 @@ const MenuItem = React.createClass({
     if (secondaryText) {
       const secondaryTextIsAnElement = React.isValidElement(secondaryText);
       const mergedSecondaryTextStyles = secondaryTextIsAnElement ?
-      this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
+      Object.assign(styles.secondaryText, secondaryText.props.style) : null;
 
       secondaryTextElement = secondaryTextIsAnElement ?
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
-        <div style={this.prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
+        <div style={prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
     }
     let childMenuPopover;
     if (menuItems) {

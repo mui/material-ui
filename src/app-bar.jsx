@@ -1,12 +1,66 @@
 import React from 'react';
-import StylePropable from './mixins/style-propable';
-import Typography from './styles/typography';
 import IconButton from './icon-button';
 import NavigationMenu from './svg-icons/navigation/menu';
 import getMuiTheme from './styles/getMuiTheme';
 import Paper from './paper';
 import PropTypes from './utils/prop-types';
 import warning from 'warning';
+
+function getStyles(props, state) {
+  const {
+    appBar,
+    button: {
+      iconButtonSize,
+    },
+    zIndex,
+  } = state.muiTheme;
+
+  const flatButtonSize = 36;
+
+  const styles = {
+    root: {
+      position: 'relative',
+      zIndex: zIndex.appBar,
+      width: '100%',
+      display: 'flex',
+      backgroundColor: appBar.color,
+      paddingLeft: appBar.padding,
+      paddingRight: appBar.padding,
+    },
+    title: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      margin: 0,
+      paddingTop: 0,
+      letterSpacing: 0,
+      fontSize: 24,
+      fontWeight: appBar.titleFontWeight,
+      color: appBar.textColor,
+      height: appBar.height,
+      lineHeight: `${appBar.height}px`,
+    },
+    mainElement: {
+      boxFlex: 1,
+      flex: '1',
+    },
+    iconButtonStyle: {
+      marginTop: (appBar.height - iconButtonSize) / 2,
+      marginRight: 8,
+      marginLeft: -16,
+    },
+    iconButtonIconStyle: {
+      fill: appBar.textColor,
+      color: appBar.textColor,
+    },
+    flatButton: {
+      color: appBar.textColor,
+      marginTop: (iconButtonSize - flatButtonSize) / 2 + 1,
+    },
+  };
+
+  return styles;
+}
 
 const AppBar = React.createClass({
 
@@ -51,16 +105,22 @@ const AppBar = React.createClass({
 
     /**
      * Callback function for when the left icon is selected via a touch tap.
+     *
+     * @param {object} event TouchTap event targeting the left `IconButton`.
      */
     onLeftIconButtonTouchTap: React.PropTypes.func,
 
     /**
      * Callback function for when the right icon is selected via a touch tap.
+     *
+     * @param {object} event TouchTap event targeting the right `IconButton`.
      */
     onRightIconButtonTouchTap: React.PropTypes.func,
 
     /**
      * Callback function for when the title text is selected via a touch tap.
+     *
+     * @param {object} event TouchTap event targeting the `title` node.
      */
     onTitleTouchTap: React.PropTypes.func,
 
@@ -96,12 +156,9 @@ const AppBar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [StylePropable],
 
   getDefaultProps() {
     return {
@@ -131,66 +188,10 @@ const AppBar = React.createClass({
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  getStyles() {
-    const muiTheme = this.state.muiTheme;
-    const rawTheme = muiTheme.rawTheme;
-
-    let themeVariables = muiTheme.appBar;
-    let iconButtonSize = muiTheme.button.iconButtonSize;
-    let flatButtonSize = 36;
-
-    let styles = {
-      root: {
-        position: 'relative',
-        zIndex: muiTheme.zIndex.appBar,
-        width: '100%',
-        display: 'flex',
-        minHeight: themeVariables.height,
-        backgroundColor: themeVariables.color,
-        paddingLeft: rawTheme.spacing.desktopGutter,
-        paddingRight: rawTheme.spacing.desktopGutter,
-      },
-      title: {
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        margin: 0,
-        paddingTop: 0,
-        letterSpacing: 0,
-        fontSize: 24,
-        fontWeight: Typography.fontWeightNormal,
-        color: themeVariables.textColor,
-        lineHeight: themeVariables.height + 'px',
-      },
-      mainElement: {
-        boxFlex: 1,
-        flex: '1',
-      },
-      iconButton: {
-        style: {
-          marginTop: (themeVariables.height - iconButtonSize) / 2,
-          marginRight: 8,
-          marginLeft: -16,
-        },
-        iconStyle: {
-          fill: themeVariables.textColor,
-          color: themeVariables.textColor,
-        },
-      },
-      flatButton: {
-        color: themeVariables.textColor,
-        marginTop: (iconButtonSize - flatButtonSize) / 2 + 2,
-      },
-    };
-
-    return styles;
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   _onLeftIconButtonTouchTap(event) {
@@ -205,14 +206,14 @@ const AppBar = React.createClass({
     }
   },
 
-  _onTitleTouchTap(event) {
+  handleTitleTouchTap(event) {
     if (this.props.onTitleTouchTap) {
       this.props.onTitleTouchTap(event);
     }
   },
 
   render() {
-    let {
+    const {
       title,
       titleStyle,
       iconStyleRight,
@@ -228,89 +229,89 @@ const AppBar = React.createClass({
       ...other,
     } = this.props;
 
+    const {
+      prepareStyles,
+    } = this.state.muiTheme;
+
+    const styles = getStyles(this.props, this.state);
+
     let menuElementLeft;
     let menuElementRight;
-    let styles = this.getStyles();
-    let iconRightStyle = this.mergeStyles(styles.iconButton.style, {
-      marginRight: -16,
-      marginLeft: 'auto',
-    }, iconStyleRight);
-    let titleElement;
 
-    if (title) {
-      // If the title is a string, wrap in an h1 tag.
-      // If not, just use it as a node.
-      titleElement = typeof title === 'string' || title instanceof String ?
-        <h1
-          onTouchTap={this._onTitleTouchTap}
-          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}
-        >
-          {title}
-        </h1> :
-        <div
-          onTouchTap={this._onTitleTouchTap}
-          style={this.prepareStyles(styles.title, styles.mainElement, titleStyle)}
-        >
-          {title}
-        </div>;
-    }
+    // If the title is a string, wrap in an h1 tag.
+    // If not, wrap in a div tag.
+    const titleComponent = typeof title === 'string' || title instanceof String ? 'h1' : 'div';
+
+    const titleElement = React.createElement(titleComponent, {
+      onTouchTap: this.handleTitleTouchTap,
+      style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
+    }, title);
 
     if (showMenuIconButton) {
+      let iconElementLeftNode = iconElementLeft;
+
       if (iconElementLeft) {
         switch (iconElementLeft.type.displayName) {
           case 'IconButton':
-            iconElementLeft = React.cloneElement(iconElementLeft, {
-              iconStyle: this.mergeStyles(styles.iconButton.iconStyle, iconElementLeft.props.iconStyle),
+            iconElementLeftNode = React.cloneElement(iconElementLeft, {
+              iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementLeft.props.iconStyle),
             });
             break;
         }
 
         menuElementLeft = (
-          <div style={this.prepareStyles(styles.iconButton.style)}>
-            {iconElementLeft}
+          <div style={prepareStyles(Object.assign({}, styles.iconButtonStyle))}>
+            {iconElementLeftNode}
           </div>
         );
       } else {
-        let child = iconClassNameLeft ? '' : <NavigationMenu style={this.mergeStyles(styles.iconButton.iconStyle)}/>;
+        const child = iconClassNameLeft ? '' : <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />;
         menuElementLeft = (
           <IconButton
-            style={this.mergeStyles(styles.iconButton.style)}
-            iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
+            style={styles.iconButtonStyle}
+            iconStyle={styles.iconButtonIconStyle}
             iconClassName={iconClassNameLeft}
             onTouchTap={this._onLeftIconButtonTouchTap}
           >
-              {child}
+            {child}
           </IconButton>
         );
       }
     }
 
+    const iconRightStyle = Object.assign({}, styles.iconButtonStyle, {
+      marginRight: -16,
+      marginLeft: 'auto',
+    }, iconStyleRight);
+
     if (iconElementRight) {
+      let iconElementRightNode = iconElementRight;
+
       switch (iconElementRight.type.displayName) {
         case 'IconMenu':
         case 'IconButton':
-          iconElementRight = React.cloneElement(iconElementRight, {
-            iconStyle: this.mergeStyles(styles.iconButton.iconStyle, iconElementRight.props.iconStyle),
+          iconElementRightNode = React.cloneElement(iconElementRight, {
+            iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementRight.props.iconStyle),
           });
           break;
 
         case 'FlatButton':
-          iconElementRight = React.cloneElement(iconElementRight, {
-            style: this.mergeStyles(styles.flatButton, iconElementRight.props.style),
+          iconElementRightNode = React.cloneElement(iconElementRight, {
+            style: Object.assign({}, styles.flatButton, iconElementRight.props.style),
           });
           break;
       }
 
       menuElementRight = (
-        <div style={this.prepareStyles(iconRightStyle)}>
-          {iconElementRight}
+        <div style={prepareStyles(iconRightStyle)}>
+          {iconElementRightNode}
         </div>
       );
     } else if (iconClassNameRight) {
       menuElementRight = (
         <IconButton
           style={iconRightStyle}
-          iconStyle={this.mergeStyles(styles.iconButton.iconStyle)}
+          iconStyle={styles.iconButtonIconStyle}
           iconClassName={iconClassNameRight}
           onTouchTap={this._onRightIconButtonTouchTap}
         />
@@ -322,7 +323,7 @@ const AppBar = React.createClass({
         {...other}
         rounded={false}
         className={className}
-        style={this.mergeStyles(styles.root, style)}
+        style={Object.assign({}, styles.root, style)}
         zDepth={zDepth}
       >
         {menuElementLeft}

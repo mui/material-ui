@@ -1,11 +1,10 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from '../utils/prop-types';
-import StylePropable from '../mixins/style-propable';
-import Paper from '../paper';
 import getMuiTheme from '../styles/getMuiTheme';
 import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
+import warning from 'warning';
 
 const List = React.createClass({
 
@@ -40,7 +39,9 @@ const List = React.createClass({
       'Refer to the `subheader` property.'),
 
     /**
-     * The zDepth prop passed to the Paper element inside list.
+     * @ignore
+     * ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
+     * or another component that provides zDepth.
      */
     zDepth: PropTypes.zDepth,
   },
@@ -49,21 +50,13 @@ const List = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
 
   mixins: [
     PureRenderMixin,
-    StylePropable,
   ],
-
-  getDefaultProps() {
-    return {
-      zDepth: 0,
-    };
-  },
 
   getInitialState() {
     return {
@@ -77,11 +70,10 @@ const List = React.createClass({
     };
   },
 
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
-    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
+    this.setState({
+      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+    });
   },
 
   render() {
@@ -94,6 +86,9 @@ const List = React.createClass({
       zDepth,
       ...other,
     } = this.props;
+
+    warning((typeof zDepth === 'undefined'), 'List no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
+        'or another component that provides zDepth.');
 
     let hasSubheader = false;
 
@@ -115,14 +110,13 @@ const List = React.createClass({
     };
 
     return (
-      <Paper
+      <div
         {...other}
-        style={this.mergeStyles(styles.root, style)}
-        zDepth={zDepth}
+        style={Object.assign(styles.root, style)}
       >
         {subheader && <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader>}
         {children}
-      </Paper>
+      </div>
     );
   },
 });

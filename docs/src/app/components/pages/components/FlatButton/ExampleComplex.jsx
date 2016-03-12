@@ -18,7 +18,7 @@ const styles = {
 
 const FlatButtonExampleComplex = () => (
   <div>
-    <FlatButton label="Choose an Image">
+    <FlatButton label="Choose an Image" labelPosition="before">
       <input type="file" style={styles.exampleImageInput} />
     </FlatButton>
 

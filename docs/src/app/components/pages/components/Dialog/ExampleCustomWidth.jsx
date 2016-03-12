@@ -28,7 +28,7 @@ export default class DialogExampleCustomWidth extends React.Component {
     const actions = [
       <FlatButton
         label="Cancel"
-        secondary={true}
+        primary={true}
         onTouchTap={this.handleClose}
       />,
       <FlatButton

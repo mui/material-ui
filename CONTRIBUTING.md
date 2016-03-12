@@ -64,7 +64,7 @@ The documentation site is built with Material-UI, and contains examples of all t
 npm install
 cd docs
 npm install
-npm run start
+npm start
 ```
 You can now access the documentation site [locally](http://localhost:3000).
 

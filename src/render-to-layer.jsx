@@ -75,8 +75,8 @@ const RenderToLayer = React.createClass({
     }
 
     const el = this._layer;
-    if (event.target !== el && (event.target === window)
-        || (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
+    if (event.target !== el && event.target === window ||
+      (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
       this.props.componentClickAway(event);
     }
   },
