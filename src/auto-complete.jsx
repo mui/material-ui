@@ -390,6 +390,12 @@ const AutoComplete = React.createClass({
     }
   },
 
+  handlePopoverRequestClose() {
+    if (this.refs.searchTextField && !this.refs.searchTextField.state.isFocused) {
+      this.close();
+    }
+  },
+
   blur() {
     this.refs.searchTextField.blur();
   },
@@ -526,7 +532,7 @@ const AutoComplete = React.createClass({
           open={open}
           anchorEl={anchorEl}
           useLayerForClickAway={false}
-          onRequestClose={this.close}
+          onRequestClose={this.handlePopoverRequestClose}
           animated={animated}
         >
           {menu}
