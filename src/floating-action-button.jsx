@@ -1,13 +1,13 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import ColorManipulator from './utils/color-manipulator';
-import EnhancedButton from './enhanced-button';
+import transitions from './styles/transitions';
+import ColorManipulator from './utils/colorManipulator';
+import EnhancedButton from './internal/EnhancedButton';
 import FontIcon from './font-icon';
 import Paper from './paper';
 import Children from './utils/children';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
-import PropTypes from './utils/prop-types';
+import PropTypes from './utils/propTypes';
 
 function getStyles(props, state) {
   const {
@@ -27,12 +27,12 @@ function getStyles(props, state) {
 
   return {
     root: {
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       display: 'inline-block',
     },
     container: {
       backgroundColor,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       position: 'relative',
       height: floatingActionButton.buttonSize,
       width: floatingActionButton.buttonSize,
@@ -47,7 +47,7 @@ function getStyles(props, state) {
       width: floatingActionButton.miniSize,
     },
     overlay: {
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       top: 0,
     },
     overlayWhenHovered: {

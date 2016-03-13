@@ -1,6 +1,6 @@
 import React from 'react';
-import Transitions from '../styles/transitions';
-import SlideInTransitionGroup from '../transition-groups/slide-in';
+import transitions from '../styles/transitions';
+import SlideInTransitionGroup from '../internal/SlideIn';
 
 function getStyles(props, state) {
   const {
@@ -27,7 +27,7 @@ function getStyles(props, state) {
       lineHeight: '36px',
       height: props.mode === 'landscape' ? 76 : 38,
       opacity: selectedYear ? 0.7 : 1,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       width: '100%',
     },
     monthDayTitle: {
@@ -40,7 +40,7 @@ function getStyles(props, state) {
       lineHeight: '16px',
       height: 16,
       opacity: selectedYear ? 1 : 0.7,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       marginBottom: 10,
     },
     yearTitle: {

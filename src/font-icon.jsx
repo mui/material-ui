@@ -1,5 +1,5 @@
 import React from 'react';
-import Transitions from './styles/transitions';
+import transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -22,7 +22,7 @@ function getStyles(props, state) {
       fontSize: baseTheme.spacing.iconSize,
       display: 'inline-block',
       userSelect: 'none',
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
     },
   };
 }

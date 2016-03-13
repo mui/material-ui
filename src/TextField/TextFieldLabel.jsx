@@ -1,5 +1,5 @@
 import React from 'react';
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 
 const propTypes = {
   /**
@@ -66,7 +66,7 @@ const TextFieldLabel = (props) => {
       position: 'absolute',
       lineHeight: '22px',
       top: 38,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       zIndex: 1, // Needed to display label above Chrome's autocomplete field background
       cursor: disabled ? 'default' : 'text',
       transform: shrink ?

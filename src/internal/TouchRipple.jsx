@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import Dom from '../utils/dom';
-import CircleRipple from './circle-ripple';
+import CircleRipple from './CircleRipple';
 import update from 'react-addons-update';
 
 function push(array, obj) {

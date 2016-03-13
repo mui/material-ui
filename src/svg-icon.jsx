@@ -1,5 +1,5 @@
 import React from 'react';
-import Transitions from './styles/transitions';
+import transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
 const SvgIcon = React.createClass({
@@ -121,7 +121,7 @@ const SvgIcon = React.createClass({
       height: 24,
       width: 24,
       userSelect: 'none',
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
     }, style);
 
     return (

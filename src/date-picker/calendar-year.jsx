@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DateTime from '../utils/date-time';
+import DateTime from '../utils/dateTime';
 import YearButton from './year-button';
 import getMuiTheme from '../styles/getMuiTheme';
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Children from './utils/children';
-import Events from './utils/events';
+import Children from '../utils/children';
+import Events from '../utils/events';
 import keycode from 'keycode';
-import FocusRipple from './ripples/focus-ripple';
-import TouchRipple from './ripples/touch-ripple';
-import getMuiTheme from './styles/getMuiTheme';
+import FocusRipple from './FocusRipple';
+import TouchRipple from './TouchRipple';
+import getMuiTheme from '../styles/getMuiTheme';
 
 let styleInjected = false;
 let listening = false;

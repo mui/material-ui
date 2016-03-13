@@ -1,7 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import PropTypes from './utils/prop-types';
-import Transitions from './styles/transitions';
+import propTypes from './utils/propTypes';
+import transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -21,7 +21,7 @@ function getStyles(props, state) {
     root: {
       color: paper.color,
       backgroundColor: paper.backgroundColor,
-      transition: transitionEnabled && Transitions.easeOut(),
+      transition: transitionEnabled && transitions.easeOut(),
       boxSizing: 'border-box',
       fontFamily: baseTheme.fontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
@@ -63,7 +63,7 @@ const Paper = React.createClass({
     /**
      * This number represents the zDepth of the paper shadow.
      */
-    zDepth: PropTypes.zDepth,
+    zDepth: propTypes.zDepth,
   },
 
   contextTypes: {
@@ -124,7 +124,6 @@ const Paper = React.createClass({
       </div>
     );
   },
-
 });
 
 export default Paper;

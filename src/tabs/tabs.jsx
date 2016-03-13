@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TabTemplate from './tabTemplate';
-import InkBar from '../ink-bar';
+import TabTemplate from './TabTemplate';
+import InkBar from './InkBar';
 import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 

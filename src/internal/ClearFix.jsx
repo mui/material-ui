@@ -1,5 +1,5 @@
 import React from 'react';
-import BeforeAfterWrapper from './before-after-wrapper';
+import BeforeAfterWrapper from './BeforeAfterWrapper';
 
 const styles = {
   before: {

@@ -1,13 +1,13 @@
 import update from 'react-addons-update';
 import merge from 'lodash.merge';
-import getMuiTheme from './getMuiTheme';
+import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
 export default
   {
     getMuiTheme(baseTheme, muiTheme) {
       warning(false, 'ThemeManager is deprecated. please import getMuiTheme' +
-        ' directly from "material-ui/lib/styles/getMuiTheme"');
+        ' directly from "material-ui/lib/getMuiTheme"');
       return getMuiTheme(baseTheme, muiTheme);
     },
     modifyRawThemeSpacing(muiTheme, spacing) {

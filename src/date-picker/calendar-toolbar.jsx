@@ -4,7 +4,7 @@ import Toolbar from '../toolbar/toolbar';
 import ToolbarGroup from '../toolbar/toolbar-group';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
-import SlideInTransitionGroup from '../transition-groups/slide-in';
+import SlideInTransitionGroup from '../internal/SlideIn';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const styles = {

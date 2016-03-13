@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
-import ClickAwayListener from '../ClickAwayListener';
-import autoPrefix from '../styles/auto-prefix';
-import Transitions from '../styles/transitions';
+import ClickAwayListener from '../internal/ClickAwayListener';
+import autoPrefix from '../utils/autoPrefix';
+import transitions from '../styles/transitions';
 import keycode from 'keycode';
-import PropTypes from '../utils/prop-types';
+import PropTypes from '../utils/propTypes';
 import List from '../lists/list';
 import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
@@ -484,7 +484,7 @@ const Menu = React.createClass({
       root: {
         //Nested div bacause the List scales x faster than
         //it scales y
-        transition: animated ? Transitions.easeOut('250ms', 'transform') : null,
+        transition: animated ? transitions.easeOut('250ms', 'transform') : null,
         zIndex: muiTheme.zIndex.menu,
         top: openDown ? 0 : null,
         bottom: !openDown ? 0 : null,
@@ -511,7 +511,7 @@ const Menu = React.createClass({
       },
 
       menuItemContainer: {
-        transition: animated ? Transitions.easeOut(null, 'opacity') : null,
+        transition: animated ? transitions.easeOut(null, 'opacity') : null,
         opacity: 0,
       },
 

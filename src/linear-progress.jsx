@@ -1,5 +1,5 @@
 import React from 'react';
-import Transitions from './styles/transitions';
+import transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getRelativeValue(value, min, max) {
@@ -47,7 +47,7 @@ function getStyles(props, state) {
       top: 0,
       left: 0,
       bottom: 0,
-      transition: Transitions.create('all', '840ms', null, 'cubic-bezier(0.650, 0.815, 0.735, 0.395)'),
+      transition: transitions.create('all', '840ms', null, 'cubic-bezier(0.650, 0.815, 0.735, 0.395)'),
     };
 
     styles.barFragment2 = {
@@ -56,11 +56,11 @@ function getStyles(props, state) {
       top: 0,
       left: 0,
       bottom: 0,
-      transition: Transitions.create('all', '840ms', null, 'cubic-bezier(0.165, 0.840, 0.440, 1.000)'),
+      transition: transitions.create('all', '840ms', null, 'cubic-bezier(0.165, 0.840, 0.440, 1.000)'),
     };
   } else {
     styles.bar.backgroundColor = props.color || palette.primary1Color;
-    styles.bar.transition = Transitions.create('width', '.3s', null, 'linear');
+    styles.bar.transition = transitions.create('width', '.3s', null, 'linear');
     styles.bar.width = `${getRelativeValue(value, min, max)}%`;
   }
 

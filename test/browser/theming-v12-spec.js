@@ -5,7 +5,7 @@ import AppBar from 'app-bar';
 import RaisedButton from 'raised-button';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import MuiThemeProvider from 'MuiThemeProvider';
+import MuiThemeProvider from 'styles/MuiThemeProvider';
 import getMuiTheme from 'styles/getMuiTheme';
 import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
 import {deepPurpleA700} from 'styles/colors';

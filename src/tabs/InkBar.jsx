@@ -1,6 +1,6 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import getMuiTheme from './styles/getMuiTheme';
+import transitions from '../styles/transitions';
+import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
   const {
@@ -17,7 +17,7 @@ function getStyles(props, state) {
       height: 2,
       marginTop: -2,
       position: 'relative',
-      transition: Transitions.easeOut('1s', 'left'),
+      transition: transitions.easeOut('1s', 'left'),
     },
   };
 }

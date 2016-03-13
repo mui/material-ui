@@ -1,9 +1,7 @@
 import AppBar from './app-bar';
-import AppCanvas from './app-canvas';
 import AutoComplete from './auto-complete';
 import Avatar from './avatar';
 import Badge from './badge';
-import BeforeAfterWrapper from './before-after-wrapper';
 import Card from './card/card';
 import CardActions from './card/card-actions';
 import CardExpandable from './card/card-expandable';
@@ -13,13 +11,10 @@ import CardText from './card/card-text';
 import CardTitle from './card/card-title';
 import Checkbox from './checkbox';
 import CircularProgress from './circular-progress';
-import ClearFix from './clearfix';
 import DatePicker from './date-picker/date-picker';
-import DatePickerDialog from './date-picker/date-picker-dialog';
 import Dialog from './dialog';
 import Divider from './divider';
 import DropDownMenu from './drop-down-menu';
-import EnhancedButton from './enhanced-button';
 import FlatButton from './flat-button';
 import FloatingActionButton from './floating-action-button';
 import FontIcon from './font-icon';
@@ -34,22 +29,18 @@ import List from './lists/list';
 import ListItem from './lists/list-item';
 import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
-import Mixins from './mixins';
-import Overlay from './overlay';
 import Paper from './paper';
 import Popover from './popover/popover';
 import RadioButton from './radio-button';
 import RadioButtonGroup from './radio-button-group';
 import RaisedButton from './raised-button';
 import RefreshIndicator from './refresh-indicator';
-import Ripples from './ripples';
 import SelectField from './select-field';
-import SelectableContainerEnhance from './hoc/selectable-enhance';
+import SelectableContainerEnhance from './lists/selectable-enhance';
 import Slider from './slider';
 import Subheader from './Subheader';
 import SvgIcon from './svg-icon';
 import Stepper from './Stepper/Stepper';
-import Styles from './styles';
 import Snackbar from './snackbar';
 import Tab from './tabs/tab';
 import Tabs from './tabs/tabs';
@@ -67,16 +58,12 @@ import Toolbar from './toolbar/toolbar';
 import ToolbarGroup from './toolbar/toolbar-group';
 import ToolbarSeparator from './toolbar/toolbar-separator';
 import ToolbarTitle from './toolbar/toolbar-title';
-import Tooltip from './tooltip';
-import Utils from './utils';
 import VerticalStep from './Stepper/VerticalStep';
 
 export {AppBar};
-export {AppCanvas};
 export {AutoComplete};
 export {Avatar};
 export {Badge};
-export {BeforeAfterWrapper};
 export {Card};
 export {CardActions};
 export {CardExpandable};
@@ -86,13 +73,10 @@ export {CardText};
 export {CardTitle};
 export {Checkbox};
 export {CircularProgress};
-export {ClearFix};
 export {DatePicker};
-export {DatePickerDialog};
 export {Dialog};
 export {Divider};
 export {DropDownMenu};
-export {EnhancedButton};
 export {FlatButton};
 export {FloatingActionButton};
 export {FontIcon};
@@ -107,22 +91,18 @@ export {List};
 export {ListItem};
 export {Menu};
 export {MenuItem};
-export {Mixins};
-export {Overlay};
 export {Paper};
 export {Popover};
 export {RadioButton};
 export {RadioButtonGroup};
 export {RaisedButton};
 export {RefreshIndicator};
-export {Ripples};
 export {SelectField};
 export {SelectableContainerEnhance};
 export {Slider};
 export {Subheader};
 export {SvgIcon};
 export {Stepper};
-export {Styles};
 export {Snackbar};
 export {Tab};
 export {Tabs};
@@ -140,27 +120,13 @@ export {Toolbar};
 export {ToolbarGroup};
 export {ToolbarSeparator};
 export {ToolbarTitle};
-export {Tooltip};
-export {Utils};
 export {VerticalStep};
-
-import NavigationMenu from './svg-icons/navigation/menu';
-import NavigationChevronLeft from './svg-icons/navigation/chevron-left';
-import NavigationChevronRight from './svg-icons/navigation/chevron-right';
-
-export const Icons = {
-  NavigationMenu,
-  NavigationChevronLeft,
-  NavigationChevronRight,
-};
 
 export default {
   AppBar,
-  AppCanvas,
   AutoComplete,
   Avatar,
   Badge,
-  BeforeAfterWrapper,
   Card,
   CardActions,
   CardExpandable,
@@ -170,13 +136,10 @@ export default {
   CardTitle,
   Checkbox,
   CircularProgress,
-  ClearFix,
   DatePicker,
-  DatePickerDialog,
   Dialog,
   Divider,
   DropDownMenu,
-  EnhancedButton,
   FlatButton,
   FloatingActionButton,
   FontIcon,
@@ -191,21 +154,17 @@ export default {
   ListItem,
   Menu,
   MenuItem,
-  Mixins,
-  Overlay,
   Paper,
   Popover,
   RadioButton,
   RadioButtonGroup,
   RaisedButton,
   RefreshIndicator,
-  Ripples,
   SelectField,
   SelectableContainerEnhance,
   Slider,
   SvgIcon,
   Stepper,
-  Styles,
   Snackbar,
   Tab,
   Tabs,
@@ -223,7 +182,5 @@ export default {
   ToolbarGroup,
   ToolbarSeparator,
   ToolbarTitle,
-  Tooltip,
-  Utils,
   VerticalStep,
 };

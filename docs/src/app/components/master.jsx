@@ -1,14 +1,11 @@
 import React from 'react';
 import Title from 'react-title-component';
-
 import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
-import {Spacing} from 'material-ui/lib/styles';
-import {StyleResizable} from 'material-ui/lib/mixins';
-
+import spacing from 'material-ui/lib/styles/spacing';
+import styleResizable from 'material-ui/lib/utils/styleResizable';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import {darkWhite, lightWhite, grey900} from 'material-ui/lib/styles/colors';
-
 import AppLeftNav from './AppLeftNav';
 import FullWidthSection from './FullWidthSection';
 
@@ -36,7 +33,7 @@ const Master = React.createClass({
   },
 
   mixins: [
-    StyleResizable,
+    styleResizable,
   ],
 
   getInitialState() {
@@ -74,14 +71,14 @@ const Master = React.createClass({
         top: 0,
       },
       root: {
-        paddingTop: Spacing.desktopKeylineIncrement,
+        paddingTop: spacing.desktopKeylineIncrement,
         minHeight: 400,
       },
       content: {
-        margin: Spacing.desktopGutter,
+        margin: spacing.desktopGutter,
       },
       contentWhenMedium: {
-        margin: `${Spacing.desktopGutter * 2}px ${Spacing.desktopGutter * 3}px`,
+        margin: `${spacing.desktopGutter * 2}px ${spacing.desktopGutter * 3}px`,
       },
       footer: {
         backgroundColor: grey900,
@@ -101,8 +98,8 @@ const Master = React.createClass({
       },
     };
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
+        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
       styles.content = Object.assign(styles.content, styles.contentWhenMedium);
     }
 
@@ -159,7 +156,7 @@ const Master = React.createClass({
     let docked = false;
     let showMenuIconButton = true;
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && title !== '') {
+    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && title !== '') {
       docked = true;
       leftNavOpen = true;
       showMenuIconButton = false;

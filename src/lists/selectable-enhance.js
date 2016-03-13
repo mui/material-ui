@@ -1,6 +1,6 @@
 import React from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
-import ColorManipulator from '../utils/color-manipulator';
+import ColorManipulator from '../utils/colorManipulator';
 
 export const SelectableContainerEnhance = (Component) => {
   const composed = React.createClass({

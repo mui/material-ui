@@ -1,6 +1,6 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import getMuiTheme from './styles/getMuiTheme';
+import transitions from '../styles/transitions';
+import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
   const verticalPosition = props.verticalPosition;
@@ -33,9 +33,9 @@ function getStyles(props, state) {
       right: horizontalPosition === 'left' ? 12 : null,
       left: horizontalPosition === 'center' ?
         (state.offsetWidth - 48) / 2 * -1 : null,
-      transition: `${Transitions.easeOut('0ms', 'top', '450ms')}, ${
-        Transitions.easeOut('450ms', 'transform', '0ms')}, ${
-        Transitions.easeOut('450ms', 'opacity', '0ms')}`,
+      transition: `${transitions.easeOut('0ms', 'top', '450ms')}, ${
+        transitions.easeOut('450ms', 'transform', '0ms')}, ${
+        transitions.easeOut('450ms', 'opacity', '0ms')}`,
     },
     label: {
       position: 'relative',
@@ -49,18 +49,18 @@ function getStyles(props, state) {
       transform: 'translate(-50%, -50%)',
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      transition: `${Transitions.easeOut('0ms', 'width', '450ms')}, ${
-        Transitions.easeOut('0ms', 'height', '450ms')}, ${
-        Transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
+      transition: `${transitions.easeOut('0ms', 'width', '450ms')}, ${
+        transitions.easeOut('0ms', 'height', '450ms')}, ${
+        transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
     },
     rootWhenShown: {
       top: verticalPosition === 'top' ?
         touchOffsetTop : 36,
       opacity: 0.9,
       transform: `translate3d(0px, ${offset}px, 0px)`,
-      transition: `${Transitions.easeOut('0ms', 'top', '0ms')}, ${
-        Transitions.easeOut('450ms', 'transform', '0ms')}, ${
-        Transitions.easeOut('450ms', 'opacity', '0ms')}`,
+      transition: `${transitions.easeOut('0ms', 'top', '0ms')}, ${
+        transitions.easeOut('450ms', 'transform', '0ms')}, ${
+        transitions.easeOut('450ms', 'opacity', '0ms')}`,
     },
     rootWhenTouched: {
       fontSize: '14px',
@@ -69,9 +69,9 @@ function getStyles(props, state) {
     },
     rippleWhenShown: {
       backgroundColor: tooltip.rippleBackgroundColor,
-      transition: `${Transitions.easeOut('450ms', 'width', '0ms')}, ${
-        Transitions.easeOut('450ms', 'height', '0ms')}, ${
-        Transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
+      transition: `${transitions.easeOut('450ms', 'width', '0ms')}, ${
+        transitions.easeOut('450ms', 'height', '0ms')}, ${
+        transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
     },
   };
 

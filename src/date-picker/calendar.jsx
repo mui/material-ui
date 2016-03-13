@@ -1,14 +1,14 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-import DateTime from '../utils/date-time';
+import DateTime from '../utils/dateTime';
 import keycode from 'keycode';
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 import CalendarMonth from './calendar-month';
 import CalendarYear from './calendar-year';
 import CalendarToolbar from './calendar-toolbar';
 import DateDisplay from './date-display';
-import SlideInTransitionGroup from '../transition-groups/slide-in';
-import ClearFix from '../clearfix';
+import SlideInTransitionGroup from '../internal/SlideIn';
+import ClearFix from '../internal/ClearFix';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const daysArray = [...Array(7)];
@@ -248,7 +248,7 @@ const Calendar = React.createClass({
         height: weekCount === 5 ? 284 :
           weekCount === 6 ? 324 : 244,
         float: isLandscape ? 'right' : 'none',
-        transition: Transitions.easeOut('150ms', 'height'),
+        transition: transitions.easeOut('150ms', 'height'),
         overflow: 'hidden',
       },
       yearContainer: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import getMuiTheme from './styles/getMuiTheme';
+import getMuiTheme from '../styles/getMuiTheme';
 
 /**
  *  BeforeAfterWrapper

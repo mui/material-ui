@@ -6,12 +6,8 @@ import Divider from 'material-ui/lib/divider';
 import Subheader from 'material-ui/lib/Subheader';
 import DropDownMenu from 'material-ui/lib/DropDownMenu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-import {
-  Spacing,
-  Typography,
-} from 'material-ui/lib/styles';
-import zIndex from 'material-ui/lib/styles/zIndex';
+import {SelectableContainerEnhance} from 'material-ui/lib/lists/selectable-enhance';
+import {spacing, typography, zIndex} from 'material-ui/lib/styles';
 import {cyan500} from 'material-ui/lib/styles/colors';
 
 const SelectableList = SelectableContainerEnhance(List);
@@ -98,15 +94,15 @@ const AppLeftNav = React.createClass({
     logo: {
       cursor: 'pointer',
       fontSize: 24,
-      color: Typography.textFullWhite,
-      lineHeight: `${Spacing.desktopKeylineIncrement}px`,
-      fontWeight: Typography.fontWeightLight,
+      color: typography.textFullWhite,
+      lineHeight: `${spacing.desktopKeylineIncrement}px`,
+      fontWeight: typography.fontWeightLight,
       backgroundColor: cyan500,
-      paddingLeft: Spacing.desktopGutter,
+      paddingLeft: spacing.desktopGutter,
       marginBottom: 8,
     },
     version: {
-      paddingLeft: Spacing.desktopGutterLess,
+      paddingLeft: spacing.desktopGutterLess,
       fontSize: 16,
     },
   },

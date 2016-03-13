@@ -1,8 +1,8 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import ColorManipulator from './utils/color-manipulator';
+import transitions from './styles/transitions';
+import ColorManipulator from './utils/colorManipulator';
 import Children from './utils/children';
-import EnhancedButton from './enhanced-button';
+import EnhancedButton from './internal/EnhancedButton';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -60,7 +60,7 @@ function getStyles(props, state) {
       display: 'inline-block',
       minWidth: fullWidth ? '100%' : button.minWidth,
       height: button.height,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
     },
     container: {
       position: 'relative',
@@ -69,7 +69,7 @@ function getStyles(props, state) {
       padding: 0,
       overflow: 'hidden',
       borderRadius: 2,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
       textAlign: 'center',
@@ -97,7 +97,7 @@ function getStyles(props, state) {
     },
     overlay: {
       backgroundColor: state.hovered && !disabled && ColorManipulator.fade(labelColor, amount),
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       top: 0,
     },
     overlayWhenHovered: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import warning from 'warning';
-import DateTime from '../utils/date-time.js';
+import DateTime from '../utils/dateTime.js';
 import TimePickerDialog from './time-picker-dialog';
 import TextField from '../text-field';
 import getMuiTheme from '../styles/getMuiTheme';

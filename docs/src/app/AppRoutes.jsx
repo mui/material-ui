@@ -6,8 +6,8 @@ import {
 } from 'react-router';
 
 // Here we define all our material-ui ReactComponents.
-import Master from './components/master';
-import Home from './components/pages/home';
+import Master from './components/Master';
+import Home from './components/pages/Home';
 
 import Prerequisites from './components/pages/get-started/Prerequisites';
 import Installation from './components/pages/get-started/Installation';
@@ -15,8 +15,8 @@ import Usage from './components/pages/get-started/Usage';
 import Examples from './components/pages/get-started/Examples';
 import ServerRendering from './components/pages/get-started/ServerRendering';
 
-import Colors from './components/pages/customization/colors';
-import Themes from './components/pages/customization/themes';
+import Colors from './components/pages/customization/Colors';
+import Themes from './components/pages/customization/Themes';
 import InlineStyles from './components/pages/customization/InlineStyles';
 
 import AppBarPage from './components/pages/components/AppBar/Page';

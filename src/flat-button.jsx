@@ -1,8 +1,8 @@
 import React from 'react';
-import Transitions from './styles/transitions';
+import transitions from './styles/transitions';
 import Children from './utils/children';
-import ColorManipulator from './utils/color-manipulator';
-import EnhancedButton from './enhanced-button';
+import ColorManipulator from './utils/colorManipulator';
+import EnhancedButton from './internal/EnhancedButton';
 import FlatButtonLabel from './buttons/flat-button-label';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -240,7 +240,7 @@ const FlatButton = React.createClass({
 
     const mergedRootStyles = Object.assign({}, {
       color: defaultTextColor,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       fontSize: fontSize,
       letterSpacing: 0,
       textTransform: textTransform,

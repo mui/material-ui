@@ -1,6 +1,6 @@
 import React from 'react';
-import EnhancedSwitch from './enhanced-switch';
-import Transitions from './styles/transitions';
+import EnhancedSwitch from './internal/EnhancedSwitch';
+import transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from './svg-icons/toggle/check-box';
 import getMuiTheme from './styles/getMuiTheme';
@@ -23,8 +23,8 @@ function getStyles(props, state) {
       opacity: 0,
       transform: 'scale(0)',
       transitionOrigin: '50% 50%',
-      transition: `${Transitions.easeOut('450ms', 'opacity', '0ms')}, ${
-          Transitions.easeOut('0ms', 'transform', '450ms')
+      transition: `${transitions.easeOut('450ms', 'opacity', '0ms')}, ${
+          transitions.easeOut('0ms', 'transform', '450ms')
         }`,
       fill: checkbox.checkedColor,
     },
@@ -32,17 +32,17 @@ function getStyles(props, state) {
       position: 'absolute',
       opacity: 1,
       fill: checkbox.boxColor,
-      transition: Transitions.easeOut('2s', null, '200ms'),
+      transition: transitions.easeOut('2s', null, '200ms'),
     },
     checkWhenSwitched: {
       opacity: 1,
       transform: 'scale(1)',
-      transition: `${Transitions.easeOut('0ms', 'opacity', '0ms')}, ${
-          Transitions.easeOut('800ms', 'transform', '0ms')
+      transition: `${transitions.easeOut('0ms', 'opacity', '0ms')}, ${
+          transitions.easeOut('800ms', 'transform', '0ms')
         }`,
     },
     boxWhenSwitched: {
-      transition: Transitions.easeOut('100ms', null, '0ms'),
+      transition: transitions.easeOut('100ms', null, '0ms'),
       fill: checkbox.checkedColor,
     },
     checkWhenDisabled: {

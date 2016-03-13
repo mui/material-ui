@@ -1,8 +1,8 @@
 import React from 'react';
 import Paper from '../paper';
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 import getMuiTheme from '../styles/getMuiTheme';
-import PropTypes from '../utils/prop-types';
+import PropTypes from '../utils/propTypes';
 
 function getStyles(props, state) {
   const {
@@ -25,7 +25,7 @@ function getStyles(props, state) {
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       position: 'fixed',
       zIndex: zIndex.popover,
-      transition: Transitions.easeOut('450ms', ['transform', 'opacity']),
+      transition: transitions.easeOut('450ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
   };

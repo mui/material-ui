@@ -1,6 +1,6 @@
 import React from 'react';
 import CodeBlock from './CodeBlock';
-import ClearFix from 'material-ui/lib/clearfix';
+import ClearFix from 'material-ui/lib/internal/ClearFix';
 import Paper from 'material-ui/lib/paper';
 
 class CodeExample extends React.Component {
