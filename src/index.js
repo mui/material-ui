@@ -19,7 +19,6 @@ import DatePickerDialog from './date-picker/date-picker-dialog';
 import Dialog from './dialog';
 import Divider from './divider';
 import DropDownMenu from './drop-down-menu';
-import EnhancedButton from './enhanced-button';
 import FlatButton from './flat-button';
 import FloatingActionButton from './floating-action-button';
 import FontIcon from './font-icon';
@@ -92,7 +91,6 @@ export {DatePickerDialog};
 export {Dialog};
 export {Divider};
 export {DropDownMenu};
-export {EnhancedButton};
 export {FlatButton};
 export {FloatingActionButton};
 export {FontIcon};
@@ -176,7 +174,6 @@ export default {
   Dialog,
   Divider,
   DropDownMenu,
-  EnhancedButton,
   FlatButton,
   FloatingActionButton,
   FontIcon,
