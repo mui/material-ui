@@ -108,10 +108,14 @@ rules:
   react/jsx-sort-props: 0
   react/no-set-state: 0
 
+  # Material-UI
+  material-ui/docgen-ignore-before-comment: 2
+
 parser: babel-eslint
 
 plugins:
   - react
+  - material-ui
 
 ecmaFeatures:
   jsx: true
