@@ -1,6 +1,6 @@
 import React from 'react';
 import Transitions from './styles/transitions';
-import EnhancedSwitch from './enhanced-switch';
+import EnhancedSwitch from './internal/EnhancedSwitch';
 import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from './svg-icons/toggle/radio-button-checked';
 import getMuiTheme from './styles/getMuiTheme';

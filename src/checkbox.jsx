@@ -1,5 +1,5 @@
 import React from 'react';
-import EnhancedSwitch from './enhanced-switch';
+import EnhancedSwitch from './internal/EnhancedSwitch';
 import Transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from './svg-icons/toggle/check-box';
