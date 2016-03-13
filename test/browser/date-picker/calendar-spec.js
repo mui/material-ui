@@ -7,7 +7,7 @@ import Calendar from 'date-picker/calendar';
 import CalendarToolbar from 'date-picker/calendar-toolbar';
 import IconButton from 'icon-button';
 import injectTheme from '../fixtures/inject-theme';
-import DateTime from 'utils/date-time';
+import DateTime from 'utils/dateTime';
 import TestUtils from 'react-addons-test-utils';
 
 describe('Calendar', () => {

@@ -25,7 +25,7 @@ Then, you can use `<MuiThemeProvider />` to provide it down the tree to componen
 import React from 'react';
 import {cyan500} from 'material-ui/lib/styles/colors';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/lib/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
 
 // This replaces the textColor value on the palette
@@ -75,7 +75,7 @@ But for the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/mast
 import React from 'react';
 import darkBaseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/lib/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
 
 const darkMuiTheme = getMuiTheme(darkBaseTheme);
@@ -131,7 +131,7 @@ Pass theme down the context:
 ```js
 import React from 'react';
 import baseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/lib/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
 
 class Main extends React.Component {
@@ -188,7 +188,7 @@ until another render is triggered for that component leaving your application
 in a moody state.
 
 To see what are the values you can override, use the
-[source](https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js).
+[source](https://github.com/callemall/material-ui/blob/master/src/getMuiTheme.js).
 The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js

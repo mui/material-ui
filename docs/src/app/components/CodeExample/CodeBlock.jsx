@@ -1,7 +1,7 @@
 import React from 'react';
 import MarkdownElement from '../MarkdownElement';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Transitions from 'material-ui/lib/styles/transitions';
+import transitions from 'material-ui/lib/styles/transitions';
 import CodeBlockTitle from './CodeBlockTitle';
 
 const styles = {
@@ -12,7 +12,7 @@ const styles = {
   markdown: {
     overflow: 'auto',
     maxHeight: 1400,
-    transition: Transitions.create('max-height', '800ms', '0ms', 'ease-in-out'),
+    transition: transitions.create('max-height', '800ms', '0ms', 'ease-in-out'),
     marginTop: 0,
     marginBottom: 0,
   },

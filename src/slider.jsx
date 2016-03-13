@@ -1,7 +1,7 @@
 import React from 'react';
 import keycode from 'keycode';
-import Transitions from './styles/transitions';
-import FocusRipple from './ripples/focus-ripple';
+import transitions from './styles/transitions';
+import FocusRipple from './internal/FocusRipple';
 import getMuiTheme from './styles/getMuiTheme';
 
 /**
@@ -68,7 +68,7 @@ const getStyles = (props, state) => {
       position: 'absolute',
       top: 0,
       height: '100%',
-      transition: Transitions.easeOut(null, 'margin'),
+      transition: transitions.easeOut(null, 'margin'),
     },
     handle: {
       boxSizing: 'border-box',
@@ -87,10 +87,10 @@ const getStyles = (props, state) => {
       borderRadius: '50%',
       transform: 'translate(-50%, -50%)',
       transition:
-        `${Transitions.easeOut('450ms', 'background')}, ${
-        Transitions.easeOut('450ms', 'border-color')}, ${
-        Transitions.easeOut('450ms', 'width')}, ${
-        Transitions.easeOut('450ms', 'height')}`,
+        `${transitions.easeOut('450ms', 'background')}, ${
+        transitions.easeOut('450ms', 'border-color')}, ${
+        transitions.easeOut('450ms', 'width')}, ${
+        transitions.easeOut('450ms', 'height')}`,
       overflow: 'visible',
       outline: 'none',
     },
@@ -595,7 +595,7 @@ const Slider = React.createClass({
       {},
       styles.handle,
       this.state.active && styles.handleWhenActive,
-      disabled && styles.handleWhenDisabled,
+      disabled && styles.handleWhenDisabled
     );
     const rippleStyle = Object.assign(
       {},

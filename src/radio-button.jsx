@@ -1,6 +1,6 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import EnhancedSwitch from './enhanced-switch';
+import transitions from './styles/transitions';
+import EnhancedSwitch from './internal/EnhancedSwitch';
 import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from './svg-icons/toggle/radio-button-checked';
 import getMuiTheme from './styles/getMuiTheme';
@@ -16,7 +16,7 @@ function getStyles(props, state) {
       width: radioButton.size,
     },
     target: {
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       position: 'absolute',
       opacity: 1,
       transform: 'scale(1)',
@@ -27,7 +27,7 @@ function getStyles(props, state) {
       opacity: 1,
       transform: 'scale(0)',
       transformOrigin: '50% 50%',
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       fill: radioButton.checkedColor,
     },
     targetWhenChecked: {

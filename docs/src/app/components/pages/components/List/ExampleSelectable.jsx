@@ -4,7 +4,7 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
 import Subheader from 'material-ui/lib/Subheader';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
+import {SelectableContainerEnhance} from 'material-ui/lib/lists/selectable-enhance';
 let SelectableList = SelectableContainerEnhance(List);
 
 function wrapState(ComposedComponent) {

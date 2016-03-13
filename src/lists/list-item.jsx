@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import ColorManipulator from '../utils/color-manipulator';
-import Transitions from '../styles/transitions';
-import EnhancedButton from '../enhanced-button';
+import ColorManipulator from '../utils/colorManipulator';
+import transitions from '../styles/transitions';
+import EnhancedButton from '../internal/EnhancedButton';
 import IconButton from '../icon-button';
 import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
 import CloseIcon from '../svg-icons/navigation/arrow-drop-down';
@@ -447,7 +447,7 @@ const ListItem = React.createClass({
         fontSize: 16,
         lineHeight: '16px',
         position: 'relative',
-        transition: Transitions.easeOut(),
+        transition: transitions.easeOut(),
       },
 
       //This inner div is needed so that ripples will span the entire container

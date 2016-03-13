@@ -2,7 +2,7 @@ import React from 'react';
 import {Mixins, Styles} from 'material-ui';
 
 const {StyleResizable} = Mixins;
-const {Typography, Spacing} = Styles;
+const {typography, spacing} = Styles;
 
 const ComponentInfo = React.createClass({
 
@@ -19,17 +19,17 @@ const ComponentInfo = React.createClass({
   mixins: [StyleResizable],
 
   getStyles() {
-    const desktopGutter = Spacing.desktopGutter;
+    const desktopGutter = spacing.desktopGutter;
     const borderColor = this.context.muiTheme.rawTheme.palette.borderColor;
     const styles = {
       root: {
         fontSize: 15,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
+        fontWeight: typography.fontWeightNormal,
         lineHeight: '24px',
         paddingTop: 3,
         marginBottom: 13,
-        color: Typography.textDarkBlack,
+        color: typography.textDarkBlack,
         width: '100%',
       },
       table: {
@@ -42,10 +42,10 @@ const ComponentInfo = React.createClass({
       },
       name: {
         position: 'absolute',
-        fontWeight: Typography.fontWeightMedium,
+        fontWeight: typography.fontWeightMedium,
       },
       type: {
-        color: Typography.textLightBlack,
+        color: typography.textLightBlack,
         paddingRight: desktopGutter,
       },
       header: {
@@ -65,8 +65,8 @@ const ComponentInfo = React.createClass({
         paddingTop: 19,
         marginBottom: 13,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightMedium,
+        color: typography.textDarkBlack,
       },
       nameWhenMedium: {
         position: 'inherit',

@@ -6,7 +6,7 @@ import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
 import Divider from './divider';
 import Popover from './popover/popover';
-import PropTypes from './utils/prop-types';
+import PropTypes from './utils/propTypes';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';

@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import autoPrefix from './styles/auto-prefix';
-import Transitions from './styles/transitions';
-import Overlay from './overlay';
+import autoPrefix from './utils/autoPrefix';
+import transitions from './styles/transitions';
+import Overlay from './internal/Overlay';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
-import PropTypes from './utils/prop-types';
+import PropTypes from './utils/propTypes';
 
 let openNavEventHandler = null;
 
@@ -179,7 +179,7 @@ const LeftNav = React.createClass({
         left: 0,
         top: 0,
         transform: `translate3d(${x}px, 0, 0)`,
-        transition: !this.state.swiping && Transitions.easeOut(null, 'transform', null),
+        transition: !this.state.swiping && transitions.easeOut(null, 'transform', null),
         backgroundColor: theme.color,
         overflow: 'auto',
         WebkitOverflowScrolling: 'touch', // iOS momentum scrolling

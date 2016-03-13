@@ -1,6 +1,6 @@
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 import React from 'react';
-import PropTypes from '../utils/prop-types';
+import PropTypes from '../utils/propTypes';
 import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../paper';
 
@@ -25,7 +25,7 @@ function getStyles(props, state) {
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       position: 'fixed',
       zIndex: zIndex.popover,
-      transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
+      transition: transitions.easeOut('250ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
     horizontal: {
@@ -34,13 +34,13 @@ function getStyles(props, state) {
       transform: open ? 'scaleX(1)' : 'scaleX(0)',
       opacity: open ? 1 : 0,
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      transition: Transitions.easeOut('250ms', ['transform', 'opacity']),
+      transition: transitions.easeOut('250ms', ['transform', 'opacity']),
     },
     vertical: {
       opacity: open ? 1 : 0,
       transform: open ? 'scaleY(1)' : 'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      transition: Transitions.easeOut('500ms', ['transform', 'opacity']),
+      transition: transitions.easeOut('500ms', ['transform', 'opacity']),
     },
   };
 }

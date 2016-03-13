@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import autoPrefix from '../styles/auto-prefix';
-import Transitions from '../styles/transitions';
-import ScaleInTransitionGroup from '../transition-groups/scale-in';
+import autoPrefix from '../utils/autoPrefix';
+import transitions from '../styles/transitions';
+import ScaleInTransitionGroup from './ScaleIn';
 
 const pulsateDuration = 750;
 
@@ -70,7 +70,7 @@ const FocusRipple = React.createClass({
       borderRadius: '50%',
       opacity: opacity ? opacity : 0.16,
       backgroundColor: color || ripple.color,
-      transition: Transitions.easeOut(`${pulsateDuration}ms`, 'transform', null, Transitions.easeInOutFunction),
+      transition: transitions.easeOut(`${pulsateDuration}ms`, 'transform', null, transitions.easeInOutFunction),
     }, innerStyle);
 
     return <div ref="innerCircle" style={prepareStyles(Object.assign({}, innerStyles))} />;

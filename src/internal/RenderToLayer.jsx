@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dom from './utils/dom';
-import getMuiTheme from './styles/getMuiTheme';
+import Dom from '../utils/dom';
+import getMuiTheme from '../styles/getMuiTheme';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 const RenderToLayer = React.createClass({

@@ -1,9 +1,9 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import ClickAwayListener from './ClickAwayListener';
+import transitions from './styles/transitions';
+import ClickAwayListener from './internal/ClickAwayListener';
 import FlatButton from './flat-button';
 import getMuiTheme from './styles/getMuiTheme';
-import StyleResizable from './mixins/style-resizable';
+import StyleResizable from './utils/styleResizable';
 
 function getStyles(props, state) {
   const {
@@ -32,8 +32,8 @@ function getStyles(props, state) {
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
       transform: open ? 'translate3d(0, 0, 0)' : `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
-      transition: `${Transitions.easeOut('400ms', 'transform')}, ${
-        Transitions.easeOut('400ms', 'visibility')}`,
+      transition: `${transitions.easeOut('400ms', 'transform')}, ${
+        transitions.easeOut('400ms', 'visibility')}`,
     },
     body: {
       backgroundColor: snackbar.backgroundColor,
@@ -50,7 +50,7 @@ function getStyles(props, state) {
       fontSize: 14,
       color: snackbar.textColor,
       opacity: open ? 1 : 0,
-      transition: open ? Transitions.easeOut('500ms', 'opacity', '100ms') : Transitions.easeOut('400ms', 'opacity'),
+      transition: open ? transitions.easeOut('500ms', 'opacity', '100ms') : transitions.easeOut('400ms', 'opacity'),
     },
     action: {
       color: snackbar.actionColor,

@@ -1,6 +1,6 @@
 import React from 'react';
-import getMuiTheme from './styles/getMuiTheme';
-import Transitions from './styles/transitions';
+import getMuiTheme from '../styles/getMuiTheme';
+import transitions from '../styles/transitions';
 
 function getStyles(props, state) {
   const {overlay} = state.muiTheme;
@@ -21,8 +21,8 @@ function getStyles(props, state) {
       transform: 'translateZ(0)',
 
       transition:
-        props.transitionEnabled && `${Transitions.easeOut('0ms', 'left', '400ms')}, ${
-          Transitions.easeOut('400ms', 'opacity')}`,
+        props.transitionEnabled && `${transitions.easeOut('0ms', 'left', '400ms')}, ${
+          transitions.easeOut('400ms', 'opacity')}`,
     },
   };
 
@@ -30,8 +30,8 @@ function getStyles(props, state) {
     Object.assign(style.root, {
       left: 0,
       opacity: 1,
-      transition: `${Transitions.easeOut('0ms', 'left')}, ${
-        Transitions.easeOut('400ms', 'opacity')}`,
+      transition: `${transitions.easeOut('0ms', 'left')}, ${
+        transitions.easeOut('400ms', 'opacity')}`,
     });
   }
 
