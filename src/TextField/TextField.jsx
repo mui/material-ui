@@ -4,10 +4,10 @@ import keycode from 'keycode';
 import ColorManipulator from '../utils/color-manipulator';
 import Transitions from '../styles/transitions';
 import deprecated from '../utils/deprecatedPropType';
-import EnhancedTextarea from '../enhanced-textarea';
 import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
+import TextFieldTextarea from './TextFieldTextarea';
 import TextFieldUnderline from './TextFieldUnderline';
 import warning from 'warning';
 
@@ -488,7 +488,7 @@ const TextField = React.createClass({
         });
     } else {
       inputElement = multiLine ? (
-        <EnhancedTextarea
+        <TextFieldTextarea
           {...other}
           {...inputProps}
           style={inputStyleMerged}
