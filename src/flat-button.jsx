@@ -75,22 +75,31 @@ const FlatButton = React.createClass({
     linkButton: React.PropTypes.bool,
 
     /**
-     * Called when element is focused by the keyboard.
+     * Callback function fired when the element is focused or blurred by the keyboard.
+     *
+     * @param {object} event `focus` or `blur` event targeting the element.
+     * @param {boolean} isKeyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: React.PropTypes.func,
 
     /**
-     * Called when the mouse enters the element.
+     * Callback function fired when the mouse enters the element.
+     *
+     * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: React.PropTypes.func,
 
     /**
-     * Called when the mouse leaves the element.
+     * Callback function fired when the mouse leaves the element.
+     *
+     * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: React.PropTypes.func,
 
     /**
-     * Called when a touch event is started inside the element.
+     * Callback function fired when the element is touched.
+     *
+     * @param {object} event `touchstart` event targeting the element.
      */
     onTouchStart: React.PropTypes.func,
 
