@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import EnhancedButton from 'src/enhanced-button';
+import EnhancedButton from 'src/internal/EnhancedButton';
 
 describe('<EnhancedButton />', () => {
   const testChildren = <div className="unique">Hello World</div>;

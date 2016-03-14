@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ColorManipulator from '../utils/color-manipulator';
 import Transitions from '../styles/transitions';
-import EnhancedButton from '../enhanced-button';
+import EnhancedButton from '../internal/EnhancedButton';
 import IconButton from '../icon-button';
 import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
 import CloseIcon from '../svg-icons/navigation/arrow-drop-down';

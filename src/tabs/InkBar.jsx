@@ -1,6 +1,6 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import getMuiTheme from './styles/getMuiTheme';
+import Transitions from '../styles/transitions';
+import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
   const {

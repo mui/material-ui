@@ -2,7 +2,7 @@ import React from 'react';
 import Transitions from './styles/transitions';
 import Children from './utils/children';
 import ColorManipulator from './utils/color-manipulator';
-import EnhancedButton from './enhanced-button';
+import EnhancedButton from './internal/EnhancedButton';
 import FlatButtonLabel from './buttons/flat-button-label';
 import getMuiTheme from './styles/getMuiTheme';
 
