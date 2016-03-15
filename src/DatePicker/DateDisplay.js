@@ -8,30 +8,35 @@ function getStyles(props, context, state) {
 
   const styles = {
     root: {
+      display: 'block',
       backgroundColor: datePicker.selectColor,
       borderTopLeftRadius: 2,
-      borderTopRightRadius: 2,
+      borderTopRightRadius: props.mode === 'portrait' ? 2 : 0,
+      borderBottomLeftRadius: props.mode === 'portrait' ? 0 : 2,
       color: datePicker.textColor,
-      height: 60,
+      height: '100%',
       padding: 20,
+      fontWeight: 900,
     },
     monthDay: {
-      display: 'inline-block',
+      display: 'block',
       fontSize: 36,
-      fontWeight: '400',
       lineHeight: '36px',
-      height: props.mode === 'landscape' ? 76 : 38,
+      height: props.mode === 'landscape' ? '100%' : 38,
       opacity: selectedYear ? 0.7 : 1,
       transition: transitions.easeOut(),
       width: '100%',
+      fontWeight: '500',
     },
     monthDayTitle: {
       cursor: !selectedYear ? 'default' : 'pointer',
+      width: '100%',
+      display: 'block',
     },
     year: {
       margin: 0,
       fontSize: 16,
-      fontWeight: '400',
+      fontWeight: '500',
       lineHeight: '16px',
       height: 16,
       opacity: selectedYear ? 1 : 0.7,
@@ -118,8 +123,8 @@ class DateDisplay extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const year = selectedDate.getFullYear();
     const styles = getStyles(this.props, this.context, this.state);
+    const year = selectedDate.getFullYear();
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',

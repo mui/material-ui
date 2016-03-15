@@ -19,12 +19,24 @@ class CalendarMonth extends Component {
     return this.selectedDateDisabled;
   }
 
+  handleTouchTapDay = (event, date) => {
+    if (this.props.onTouchTapDay) this.props.onTouchTapDay(event, date);
+  };
+
+  shouldDisableDate(day) {
+    if (day === null) return false;
+    let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
+    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
+
+    return disabled;
+  }
+
   getWeekElements() {
     const weekArray = getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
 
     return weekArray.map((week, i) => {
       return (
-        <ClearFix key={i}>
+        <ClearFix key={i} style={this.styles.week}>
           {this.getDayElements(week, i)}
         </ClearFix>
       );
@@ -38,18 +50,14 @@ class CalendarMonth extends Component {
       const selected = !disabled && isSameDate;
 
       if (isSameDate) {
-        if (disabled) {
-          this.selectedDateDisabled = true;
-        } else {
-          this.selectedDateDisabled = false;
-        }
+        this.selectedDateDisabled = disabled;
       }
 
       return (
         <DayButton
           key={`db${(i + j)}`}
           date={day}
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={this.handleTouchTapDay}
           selected={selected}
           disabled={disabled}
         />
@@ -57,27 +65,32 @@ class CalendarMonth extends Component {
     }, this);
   }
 
-  handleTouchTap = (event, date) => {
-    if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
+  styles = {
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      fontWeight: 400,
+      height: 228,
+      justifyContent: 'flex-start',
+      lineHeight: 2,
+      position: 'relative',
+      textAlign: 'center',
+      MozPaddingStart: 0,
+      // backgroundColor: 'cyan',
+    },
+    week: {
+      display: 'flex',
+      flexDirection: 'row',
+      height: 34,
+      justifyContent: 'space-around',
+      marginBottom: 2,
+      // backgroundColor: 'yellow',
+    },
   };
 
-  shouldDisableDate(day) {
-    if (day === null) return false;
-    let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
-    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
-
-    return disabled;
-  }
-
   render() {
-    const styles = {
-      lineHeight: '32px',
-      textAlign: 'center',
-      padding: '16px 14px 0 14px',
-    };
-
     return (
-      <div style={styles}>
+      <div style={this.styles.root}>
         {this.getWeekElements()}
       </div>
     );

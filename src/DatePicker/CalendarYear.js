@@ -42,7 +42,7 @@ class CalendarYear extends Component {
         <YearButton
           key={`yb${year}`}
           year={year}
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={this.handleTouchTapYear}
           selected={selected}
           {...selectedProps}
         />
@@ -67,8 +67,8 @@ class CalendarYear extends Component {
     container.scrollTop = scrollYOffset;
   }
 
-  handleTouchTap = (event, year) => {
-    if (this.props.onYearTouchTap) this.props.onYearTouchTap(event, year);
+  handleTouchTapYear = (event, year) => {
+    if (this.props.onTouchTapYear) this.props.onTouchTapYear(event, year);
   };
 
   render() {
@@ -77,9 +77,8 @@ class CalendarYear extends Component {
     const styles = {
       position: 'relative',
       height: 'inherit',
-      lineHeight: '36px',
+      lineHeight: '35px',
       textAlign: 'center',
-      padding: '8px 14px 0 14px',
       backgroundColor: backgroundColor,
       overflowX: 'hidden',
       overflowY: 'scroll',

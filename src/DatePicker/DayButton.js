@@ -3,19 +3,10 @@ import Transition from '../styles/transitions';
 import {isEqualDate} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 
-function getStyles(props, context) {
-  const {
-    date,
-    disabled,
-    selected,
-  } = props;
-
-  const {hover} = context;
-
-  const {
-    baseTheme,
-    datePicker,
-  } = context.muiTheme;
+function getStyles(props, context, state) {
+  const {date, disabled, selected} = props;
+  const {hover} = state;
+  const {baseTheme, datePicker} = context.muiTheme;
 
   let labelColor = baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
@@ -32,28 +23,29 @@ function getStyles(props, context) {
   return {
     root: {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      position: 'relative',
-      float: 'left',
-      width: 41,
-      padding: '4px 2px',
+      fontWeight: '400',
       opacity: disabled && '0.6',
-      lineHeight: 'inherit',
+      padding: '4px 0px',
+      position: 'relative',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      width: 42,
     },
     label: {
-      position: 'relative',
       color: labelColor,
+      fontWeight: '400',
+      position: 'relative',
     },
     buttonState: {
-      position: 'absolute',
-      height: 36,
-      width: 36,
-      top: 2,
-      opacity: buttonStateOpacity,
+      backgroundColor: datePicker.selectColor,
       borderRadius: '50%',
+      height: 34,
+      left: 4,
+      opacity: buttonStateOpacity,
+      position: 'absolute',
+      top: 0,
       transform: buttonStateTransform,
       transition: Transition.easeOut(),
-      backgroundColor: datePicker.selectColor,
+      width: 34,
     },
   };
 }
@@ -107,20 +99,20 @@ class DayButton extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
 
     return this.props.date ? (
       <EnhancedButton
         {...other}
-        style={styles.root}
-        hoverStyle={styles.hover}
         disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
+        hoverStyle={styles.hover}
+        onKeyboardFocus={this.handleKeyboardFocus}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         onTouchTap={this.handleTouchTap}
-        onKeyboardFocus={this.handleKeyboardFocus}
+        style={styles.root}
       >
         <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>

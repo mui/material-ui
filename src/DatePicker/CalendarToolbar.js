@@ -1,7 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import IconButton from '../IconButton';
-import Toolbar from '../Toolbar/Toolbar';
-import ToolbarGroup from '../Toolbar/ToolbarGroup';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
 import SlideInTransitionGroup from '../internal/SlideIn';
@@ -9,17 +7,25 @@ import SlideInTransitionGroup from '../internal/SlideIn';
 const styles = {
   root: {
     position: 'relative',
-    padding: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
     backgroundColor: 'inherit',
+    height: 48,
   },
   title: {
-    position: 'absolute',
-    top: 17,
-    lineHeight: '14px',
     fontSize: 14,
-    height: 14,
-    width: '100%',
     fontWeight: '500',
+    lineHeight: '20px',
+    position: 'relative',
+    textAlign: 'center',
+    paddingTop: 12,
+    width: '100%',
+  },
+  button: {
+    padding: 0,
+    paddingTop: 12,
+    margin: 0,
+    height: 'inherit',
     textAlign: 'center',
   },
 };
@@ -49,7 +55,7 @@ class CalendarToolbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
-      const direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
+      const direction = nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
       this.setState({
         transitionDirection: direction,
       });
@@ -65,11 +71,7 @@ class CalendarToolbar extends Component {
   };
 
   render() {
-    const {
-      DateTimeFormat,
-      locale,
-      displayDate,
-    } = this.props;
+    const {DateTimeFormat, locale, displayDate} = this.props;
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
@@ -80,32 +82,28 @@ class CalendarToolbar extends Component {
     const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
 
     return (
-      <Toolbar style={styles.root} noGutter={true}>
+      <div style={styles.root}>
+        <IconButton
+          style={styles.button}
+          disabled={!this.props.prevMonth}
+          onTouchTap={this.handleTouchTapPrevMonth}
+        >
+          {nextButtonIcon}
+        </IconButton>
         <SlideInTransitionGroup
           style={styles.title}
           direction={this.state.transitionDirection}
         >
           <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
-        <ToolbarGroup key={0} float="left">
-          <IconButton
-            style={styles.button}
-            disabled={!this.props.prevMonth}
-            onTouchTap={this.handleTouchTapPrevMonth}
-          >
-            {nextButtonIcon}
-          </IconButton>
-        </ToolbarGroup>
-        <ToolbarGroup key={1} float="right">
-          <IconButton
-            style={styles.button}
-            disabled={!this.props.nextMonth}
-            onTouchTap={this.handleTouchTapNextMonth}
-          >
-            {prevButtonIcon}
-          </IconButton>
-        </ToolbarGroup>
-      </Toolbar>
+        <IconButton
+          style={styles.button}
+          disabled={!this.props.nextMonth}
+          onTouchTap={this.handleTouchTapNextMonth}
+        >
+          {prevButtonIcon}
+        </IconButton>
+      </div>
     );
   }
 }

@@ -147,17 +147,20 @@ class DatePicker extends Component {
     style: {},
   };
 
+
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
-    date: undefined,
+    date: null,
+    dialogDate: null,
   };
 
   componentWillMount() {
     this.setState({
       date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
+      dialogDate: new Date(),
     });
   }
 
@@ -268,7 +271,7 @@ class DatePicker extends Component {
       okLabel,
       onDismiss,
       onFocus, // eslint-disable-line no-unused-vars
-      onShow, // eslint-disable-line no-unused-vars
+      onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       textFieldStyle,
