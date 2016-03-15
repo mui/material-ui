@@ -239,18 +239,18 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  _onMenuItemTouchTap(key, payload, event) {
-    this.props.onChange(event, key, payload);
-
-    this.setState({
-      open: false,
-    });
-  },
-
   handleRequestCloseMenu() {
     this.setState({
       open: false,
       anchorEl: null,
+    });
+  },
+
+  handleItemTouchTap(event, child, index) {
+    this.props.onChange(event, index, child.props.value);
+
+    this.setState({
+      open: false,
     });
   },
 
@@ -290,12 +290,6 @@ const DropDownMenu = React.createClass({
       }
     });
 
-    const menuItemElements = React.Children.map(children, (child, index) => {
-      return React.cloneElement(child, {
-        onTouchTap: this._onMenuItemTouchTap.bind(this, index, child.props.value),
-      });
-    });
-
     let popoverStyle;
     if (anchorEl && !autoWidth) {
       popoverStyle = {width: anchorEl.clientWidth};
@@ -331,8 +325,9 @@ const DropDownMenu = React.createClass({
             value={value}
             style={menuStyle}
             listStyle={listStyle}
+            onItemTouchTap={this.handleItemTouchTap}
           >
-            {menuItemElements}
+            {children}
           </Menu>
         </Popover>
       </div>
