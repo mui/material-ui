@@ -305,8 +305,7 @@ const TextField = React.createClass({
     return {
       isFocused: false,
       errorText: this.props.errorText,
-      hasValue: isValid(props.value) || isValid(props.defaultValue) ||
-        (props.valueLink && isValid(props.valueLink.value)),
+      hasValue: isValid(props.value) || isValid(props.defaultValue),
       isClean: true,
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
@@ -344,12 +343,7 @@ const TextField = React.createClass({
       nextProps = nextProps.children.props;
     }
 
-    const hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
-    const hasValueProp = nextProps.hasOwnProperty('value');
-
-    if (hasValueLinkProp) {
-      newState.hasValue = isValid(nextProps.valueLink.value);
-    } else if (hasValueProp) {
+    if (nextProps.hasOwnProperty('value')) {
       newState.hasValue = isValid(nextProps.value) ||
         (this.state.isClean && isValid(nextProps.defaultValue));
     }
@@ -393,7 +387,7 @@ const TextField = React.createClass({
 
   _handleInputChange(event) {
     this.setState({hasValue: isValid(event.target.value), isClean: false});
-    if (this.props.onChange) this.props.onChange(event);
+    if (this.props.onChange) this.props.onChange(event, event.target.value);
   },
 
   _handleInputFocus(event) {
@@ -415,8 +409,7 @@ const TextField = React.createClass({
   },
 
   _isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
+    return this.props.hasOwnProperty('value');
   },
 
   render() {
@@ -475,17 +468,14 @@ const TextField = React.createClass({
     const inputProps = {
       id: inputId,
       ref: (elem) => this.input = elem,
-      onBlur: this._handleInputBlur,
-      onFocus: this._handleInputFocus,
       disabled: this.props.disabled,
+      onBlur: this._handleInputBlur,
+      onChange: this._handleInputChange,
+      onFocus: this._handleInputFocus,
       onKeyDown: this._handleInputKeyDown,
     };
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
-
-    if (!this.props.hasOwnProperty('valueLink')) {
-      inputProps.onChange = this._handleInputChange;
-    }
 
     let inputElement;
     if (this.props.children) {

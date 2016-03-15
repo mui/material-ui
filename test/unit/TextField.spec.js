@@ -5,6 +5,20 @@ import TextField from 'src/TextField/TextField';
 import TextFieldLabel from 'src/TextField/TextFieldLabel';
 
 describe('<TextField />', () => {
+  it('passes event and value to the onChange callback', (done) => {
+    const wrapper = shallow(
+      <TextField
+        onChange={(event, value) => {
+          assert.strictEqual(event.target.value, 'woof');
+          assert.strictEqual(value, 'woof', 'should pass the value as the 2nd arg');
+          done();
+        }}
+      />
+    );
+
+    wrapper.find('input').simulate('change', {target: {value: 'woof'}});
+  });
+
   it('shrinks TextFieldLabel when defaultValue is set and value is null', () => {
     const wrapper = shallow(
       <TextField
