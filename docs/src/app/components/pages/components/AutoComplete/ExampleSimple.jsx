@@ -19,7 +19,7 @@ export default class AutoCompleteExampleSimple extends React.Component {
         value + value + value,
       ],
     });
-  };
+  }
 
   render() {
     return (
