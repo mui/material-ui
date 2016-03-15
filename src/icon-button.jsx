@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
-import PropTypes from './utils/prop-types';
+import MuiPropTypes from './utils/mui-prop-types';
 import EnhancedButton from './enhanced-button';
 import FontIcon from './font-icon';
 import Tooltip from './tooltip';
@@ -50,99 +50,99 @@ const IconButton = React.createClass({
     /**
      * Can be used to pass a font icon as the icon for the button.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Disables the ripple effect.
      */
-    disableTouchRipple: React.PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
 
     /**
      * Disables the icon button.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * If you are using a stylesheet for your
      * icons, enter the class name for the icon to be used here.
      */
-    iconClassName: React.PropTypes.string,
+    iconClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * Callback function for when the component loses focus.
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback function for when the component gains focus.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Callback function for when the component
      * receives keyboard focus.
      */
-    onKeyboardFocus: React.PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
 
     /**
      * Callback function for when mouse enters element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Callback function for when mouse leaves element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Callback function for when mouse goes out of element it works with disabled element.
      */
-    onMouseOut: React.PropTypes.func,
+    onMouseOut: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The tooltip text to show.
      */
-    tooltip: React.PropTypes.node,
+    tooltip: PropTypes.node,
 
     /**
      * Allows the tooltip to be viewed with different
      * alignments: "bottom-center", "top-center",
      * "bottom-right", "top-right", "bottom-left" and "top-left".
      */
-    tooltipPosition: PropTypes.cornersAndCenter,
+    tooltipPosition: MuiPropTypes.cornersAndCenter,
 
     /**
      * Styles prop passed down to the tooltip.
      */
-    tooltipStyles: React.PropTypes.object,
+    tooltipStyles: PropTypes.object,
 
     /**
      * Prop for tooltip to make it larger for mobile.
      */
-    touch: React.PropTypes.bool,
+    touch: PropTypes.bool,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

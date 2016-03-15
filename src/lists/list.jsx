@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import PropTypes from '../utils/prop-types';
+import MuiPropTypes from '../utils/mui-prop-types';
 import getMuiTheme from '../styles/getMuiTheme';
 import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
@@ -13,29 +13,29 @@ const List = React.createClass({
      * These are usually ListItems that are passed to
      * be part of the list.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * If true, the subheader will be indented by 72px.
      */
-    insetSubheader: deprecated(React.PropTypes.bool,
+    insetSubheader: deprecated(PropTypes.bool,
       'Refer to the `subheader` property.'),
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The subheader string that will be displayed at the top of the list.
      */
-    subheader: deprecated(React.PropTypes.node,
+    subheader: deprecated(PropTypes.node,
       'Instead, nest the `Subheader` component directly inside the `List`.'),
 
     /**
      * The style object to override subheader styles.
      */
-    subheaderStyle: deprecated(React.PropTypes.object,
+    subheaderStyle: deprecated(PropTypes.object,
       'Refer to the `subheader` property.'),
 
     /**
@@ -43,15 +43,15 @@ const List = React.createClass({
      * ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
      * or another component that provides zDepth.
      */
-    zDepth: PropTypes.zDepth,
+    zDepth: MuiPropTypes.zDepth,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [

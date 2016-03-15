@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function calcAngle(value, base) {
@@ -61,17 +61,17 @@ function getStyles(props, state) {
 const ClockPointer = React.createClass({
 
   propTypes: {
-    hasSelected: React.PropTypes.bool,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
-    value: React.PropTypes.number,
+    hasSelected: PropTypes.bool,
+    type: PropTypes.oneOf(['hour', 'minute']),
+    value: PropTypes.number,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

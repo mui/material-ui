@@ -1,21 +1,21 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const ClockNumber = React.createClass({
 
   propTypes: {
-    isSelected: React.PropTypes.bool,
-    onSelected: React.PropTypes.func,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
-    value: React.PropTypes.number,
+    isSelected: PropTypes.bool,
+    onSelected: PropTypes.func,
+    type: PropTypes.oneOf(['hour', 'minute']),
+    value: PropTypes.number,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

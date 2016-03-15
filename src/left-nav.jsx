@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
@@ -7,7 +7,7 @@ import Transitions from './styles/transitions';
 import Overlay from './overlay';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
-import PropTypes from './utils/prop-types';
+import MuiPropTypes from './utils/mui-prop-types';
 
 let openNavEventHandler = null;
 
@@ -17,33 +17,33 @@ const LeftNav = React.createClass({
     /**
      * The contents of the `LeftNav`
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * The css class name of the container element.
      */
-    containerClassName: React.PropTypes.string,
+    containerClassName: PropTypes.string,
 
     /**
      * Override the inline-styles of the container element.
      */
-    containerStyle: React.PropTypes.object,
+    containerStyle: PropTypes.object,
 
     /**
      * Indicates whether swiping sideways when the `LeftNav` is closed should open it.
      */
-    disableSwipeToOpen: React.PropTypes.bool,
+    disableSwipeToOpen: PropTypes.bool,
 
     /**
      * Indicates that the `LeftNav` should be docked. In this state, the overlay won't
      * show and clicking on a menu item will not close the `LeftNav`.
      */
-    docked: React.PropTypes.bool,
+    docked: PropTypes.bool,
 
     /**
      * Callback function that is fired when the open state of the `LeftNav` is
@@ -53,33 +53,33 @@ const LeftNav = React.createClass({
      * `'clickaway'` for overlay clicks, `'escape'` for pressing the
      * escape key and `'swipe'` for swiping. For opening the reason is always `'swipe'`.
      */
-    onRequestChange: React.PropTypes.func,
+    onRequestChange: PropTypes.func,
 
     /**
      * Indicates that the `LeftNav` should be opened, closed or uncontrolled.
      * Providing a boolean will turn the `LeftNav` into a controlled component.
      */
-    open: React.PropTypes.bool,
+    open: PropTypes.bool,
 
     /**
      * Positions the `LeftNav` to open from the right side.
      */
-    openRight: React.PropTypes.bool,
+    openRight: PropTypes.bool,
 
     /**
      * The `className` to add to the `Overlay` component that is rendered behind the `LeftNav`.
      */
-    overlayClassName: React.PropTypes.string,
+    overlayClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the `Overlay` component that is rendered behind the `LeftNav`.
      */
-    overlayStyle: React.PropTypes.object,
+    overlayStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The width of the left most (or right most) area in pixels where the `LeftNav` can be
@@ -87,26 +87,26 @@ const LeftNav = React.createClass({
      * (**CAUTION!** Setting this property to `null` might cause issues with sliders and
      * swipeable `Tabs`, use at your own risk).
      */
-    swipeAreaWidth: React.PropTypes.number,
+    swipeAreaWidth: PropTypes.number,
 
     /**
      * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
      */
-    width: React.PropTypes.number,
+    width: PropTypes.number,
 
     /**
      * This number represents the zDepth of the menu.
      */
-    zDepth: PropTypes.zDepth,
+    zDepth: MuiPropTypes.zDepth,
 
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

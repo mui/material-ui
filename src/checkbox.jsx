@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EnhancedSwitch from './enhanced-switch';
 import Transitions from './styles/transitions';
 import CheckboxOutline from './svg-icons/toggle/check-box-outline-blank';
@@ -63,43 +63,43 @@ const Checkbox = React.createClass({
     /**
      * Checkbox is checked if true.
      */
-    checked: React.PropTypes.bool,
+    checked: PropTypes.bool,
 
     /**
      * The SvgIcon to use for the checked state.
      * This is useful to create icon toggles.
      */
-    checkedIcon: React.PropTypes.element,
+    checkedIcon: PropTypes.element,
 
     /**
      * The default state of our checkbox component.
      */
-    defaultChecked: React.PropTypes.bool,
+    defaultChecked: PropTypes.bool,
 
     /**
      * Disabled if true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Overrides the inline-styles of the icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * Overrides the inline-styles of the input element.
      */
-    inputStyle: React.PropTypes.object,
+    inputStyle: PropTypes.object,
 
     /**
      * Where the label will be placed next to the checkbox.
      */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * Overrides the inline-styles of the Checkbox element label.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Callback function that is fired when the checkbox is checked.
@@ -107,38 +107,38 @@ const Checkbox = React.createClass({
      * @param {object} event `change` event targeting the underlying checkbox `input`.
      * @param {boolean} isInputChecked The `checked` value of the underlying checkbox `input`.
      */
-    onCheck: React.PropTypes.func,
+    onCheck: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.
      */
-    unCheckedIcon: deprecated(React.PropTypes.element,
+    unCheckedIcon: deprecated(PropTypes.element,
       'Use uncheckedIcon instead.'),
 
     /**
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.
      */
-    uncheckedIcon: React.PropTypes.element,
+    uncheckedIcon: PropTypes.element,
 
     /**
      * ValueLink for when using controlled checkbox.
      */
-    valueLink: React.PropTypes.object,
+    valueLink: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

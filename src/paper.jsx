@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import PropTypes from './utils/prop-types';
+import MuiPropTypes from './utils/mui-prop-types';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -37,41 +37,41 @@ const Paper = React.createClass({
     /**
      * Children passed into the paper element.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Set to true to generate a circlular paper container.
      */
-    circle: React.PropTypes.bool,
+    circle: PropTypes.bool,
 
     /**
      * By default, the paper container will have a border radius.
      * Set this to false to generate a container with sharp corners.
      */
-    rounded: React.PropTypes.bool,
+    rounded: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Set to false to disable CSS transitions for the paper element.
      */
-    transitionEnabled: React.PropTypes.bool,
+    transitionEnabled: PropTypes.bool,
 
     /**
      * This number represents the zDepth of the paper shadow.
      */
-    zDepth: PropTypes.zDepth,
+    zDepth: MuiPropTypes.zDepth,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [

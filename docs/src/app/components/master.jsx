@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Title from 'react-title-component';
 
 import AppBar from 'material-ui/lib/app-bar';
@@ -23,16 +23,16 @@ const githubButton = (
 const Master = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
-    location: React.PropTypes.object,
+    children: PropTypes.node,
+    location: PropTypes.object,
   },
 
   contextTypes: {
-    router: React.PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [

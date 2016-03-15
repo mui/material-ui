@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 
@@ -10,7 +10,7 @@ import {cyan500, grey200, darkWhite} from 'material-ui/lib/styles/colors';
 const HomePage = React.createClass({
 
   contextTypes: {
-    router: React.PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   },
 
   mixins: [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -35,39 +35,39 @@ const FontIcon = React.createClass({
      * This is the font color of the font icon. If not specified,
      * this component will default to muiTheme.palette.textColor.
      */
-    color: React.PropTypes.string,
+    color: PropTypes.string,
 
     /**
      * This is the icon color when the mouse hovers over the icon.
      */
-    hoverColor: React.PropTypes.string,
+    hoverColor: PropTypes.string,
 
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

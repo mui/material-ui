@@ -99,7 +99,7 @@ In case you wish to access the theme object yourself you can use the
 `muiThemeable` decorator:
 
 ```js
-import React from 'react';
+import React, {PropTypes} from 'react';
 import muiThemeable from 'material-ui/lib/muiThemeable';
 
 class DeepDownTheTree extends React.Component {
@@ -113,7 +113,7 @@ class DeepDownTheTree extends React.Component {
 }
 
 DeepDownTheTree.propTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 export default muiThemeable()(DeepDownTheTree);
@@ -129,7 +129,7 @@ If you prefer using context instead of these you can follow these pattern:
 Pass theme down the context:
 
 ```js
-import React from 'react';
+import React, {PropTypes} from 'react';
 import baseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import AppBar from 'material-ui/lib/app-bar';
@@ -145,7 +145,7 @@ class Main extends React.Component {
 }
 
 Main.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 export default Main;
@@ -154,7 +154,7 @@ export default Main;
 Get theme whenever you need to use it in your own components:
 
 ```js
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 class DeepDownTheTree extends React.Component {
   render () {
@@ -167,7 +167,7 @@ class DeepDownTheTree extends React.Component {
 }
 
 DeepDownTheTree.contextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 export default DeepDownTheTree;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import RenderToLayer from '../render-to-layer';
-import PropTypes from '../utils/prop-types';
+import MuiPropTypes from '../utils/mui-prop-types';
 import Paper from '../paper';
 import throttle from 'lodash.throttle';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -15,7 +15,7 @@ const Popover = React.createClass({
      * This is the DOM element that will be used to set the position of the
      * component.
      */
-    anchorEl: React.PropTypes.object,
+    anchorEl: PropTypes.object,
 
     /**
      * This is the point on the anchor where the popover
@@ -24,40 +24,40 @@ const Popover = React.createClass({
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right]
      */
-    anchorOrigin: PropTypes.origin,
+    anchorOrigin: MuiPropTypes.origin,
 
     /**
      * If true, the popover will apply transitions when
      * added it gets added to the DOM.
      */
-    animated: React.PropTypes.bool,
+    animated: PropTypes.bool,
 
     /**
      * Override the default animation component used.
      */
-    animation: React.PropTypes.func,
+    animation: PropTypes.func,
 
     /**
      * If true, the popover will hide when the anchor scrolls off the screen
      */
-    autoCloseWhenOffScreen: React.PropTypes.bool,
+    autoCloseWhenOffScreen: PropTypes.bool,
 
     /**
      * If true, the popover (potentially) ignores targetOrigin
      * and anchorOrigin to make itself fit on screen,
      * which is useful for mobile devices.
      */
-    canAutoPosition: React.PropTypes.bool,
+    canAutoPosition: PropTypes.bool,
 
     /**
      * Use this property to render your component inside the `Popover`.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * This is a callback that fires when the popover
@@ -65,17 +65,17 @@ const Popover = React.createClass({
      *
      * @param {string} reason Determines what triggered this request.
      */
-    onRequestClose: React.PropTypes.func,
+    onRequestClose: PropTypes.func,
 
     /**
      * Controls the visibility of the popover.
      */
-    open: React.PropTypes.bool,
+    open: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * This is the point on the popover which will stick to
@@ -84,27 +84,27 @@ const Popover = React.createClass({
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right]
      */
-    targetOrigin: PropTypes.origin,
+    targetOrigin: MuiPropTypes.origin,
 
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying
      * elements, and trigger an onRequestClose(clickAway) event.
      */
-    useLayerForClickAway: React.PropTypes.bool,
+    useLayerForClickAway: PropTypes.bool,
 
     /**
      * This number represents the zDepth of the paper shadow.
      */
-    zDepth: PropTypes.zDepth,
+    zDepth: MuiPropTypes.zDepth,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

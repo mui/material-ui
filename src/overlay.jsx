@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from './styles/getMuiTheme';
 import Transitions from './styles/transitions';
 
@@ -41,18 +41,18 @@ function getStyles(props, state) {
 const Overlay = React.createClass({
 
   propTypes: {
-    autoLockScrolling: React.PropTypes.bool,
-    show: React.PropTypes.bool.isRequired,
+    autoLockScrolling: PropTypes.bool,
+    show: PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    transitionEnabled: React.PropTypes.bool,
+    style: PropTypes.object,
+    transitionEnabled: PropTypes.bool,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -25,22 +25,22 @@ function getStyles(props, state) {
 const InkBar = React.createClass({
 
   propTypes: {
-    color: React.PropTypes.string,
-    left: React.PropTypes.string.isRequired,
+    color: PropTypes.string,
+    left: PropTypes.string.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    width: React.PropTypes.string.isRequired,
+    style: PropTypes.object,
+    width: PropTypes.string.isRequired,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

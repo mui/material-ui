@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ColorManipulator from '../utils/color-manipulator';
@@ -20,17 +20,17 @@ const ListItem = React.createClass({
      * Note that an indicator will not be created if a
      * rightIcon/Button has been specified.
      */
-    autoGenerateNestedIndicator: React.PropTypes.bool,
+    autoGenerateNestedIndicator: PropTypes.bool,
 
     /**
      * Children passed into the ListItem.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Does not allow the element to be focused by the keyboard.
      */
-    disableKeyboardFocus: React.PropTypes.bool,
+    disableKeyboardFocus: PropTypes.bool,
 
     /**
      * If true, the list-item will not be clickable
@@ -38,106 +38,106 @@ const ListItem = React.createClass({
      * This is automatically disabled if leftCheckbox
      * or rightToggle is set.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Controls whether or not the child ListItems are initially displayed.
      */
-    initiallyOpen: React.PropTypes.bool,
+    initiallyOpen: PropTypes.bool,
 
     /**
      * Style prop for the innder div element.
      */
-    innerDivStyle: React.PropTypes.object,
+    innerDivStyle: PropTypes.object,
 
     /**
      * If true, the children will be indented by 72px.
      * Only needed if there is no left avatar or left icon.
      */
-    insetChildren: React.PropTypes.bool,
+    insetChildren: PropTypes.bool,
 
     /**
      * This is the Avatar element to be displayed on the left side.
      */
-    leftAvatar: React.PropTypes.element,
+    leftAvatar: PropTypes.element,
 
     /**
      * This is the Checkbox element to be displayed on the left side.
      */
-    leftCheckbox: React.PropTypes.element,
+    leftCheckbox: PropTypes.element,
 
     /**
      * This is the SvgIcon or FontIcon to be displayed on the left side.
      */
-    leftIcon: React.PropTypes.element,
+    leftIcon: PropTypes.element,
 
     /**
      * An array of ListItems to nest underneath the current ListItem.
      */
-    nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
+    nestedItems: PropTypes.arrayOf(PropTypes.element),
 
     /**
      * Controls how deep a ListItem appears.
      * This property is automatically managed so modify at your own risk.
      */
-    nestedLevel: React.PropTypes.number,
+    nestedLevel: PropTypes.number,
 
     /**
      * Override the inline-styles of the nestedItems NestedList.
      */
-    nestedListStyle: React.PropTypes.object,
+    nestedListStyle: PropTypes.object,
 
     /**
      * Called when the ListItem has keyboard focus.
      */
-    onKeyboardFocus: React.PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
 
     /**
      * Called when the mouse is over the ListItem.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Called when the mouse is no longer over the ListItem.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Called when the ListItem toggles its nested ListItems.
      */
-    onNestedListToggle: React.PropTypes.func,
+    onNestedListToggle: PropTypes.func,
 
     /**
      * Called when touches start.
      */
-    onTouchStart: React.PropTypes.func,
+    onTouchStart: PropTypes.func,
 
     /**
      * Called when a touch tap event occures on the component.
      */
-    onTouchTap: React.PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * This is the block element that contains the primary text.
      * If a string is passed in, a div tag will be rendered.
      */
-    primaryText: React.PropTypes.node,
+    primaryText: PropTypes.node,
 
     /**
      * If provided, tapping on the primary text
      * of the item toggles the nested list.
      */
-    primaryTogglesNestedList: React.PropTypes.bool,
+    primaryTogglesNestedList: PropTypes.bool,
 
     /**
      * This is the avatar element to be displayed on the right side.
      */
-    rightAvatar: React.PropTypes.element,
+    rightAvatar: PropTypes.element,
 
     /**
      * This is the SvgIcon or FontIcon to be displayed on the right side.
      */
-    rightIcon: React.PropTypes.element,
+    rightIcon: PropTypes.element,
 
     /**
      * This is the IconButton to be displayed on the right side.
@@ -146,37 +146,37 @@ const ListItem = React.createClass({
      * ListItem ripple. The event will be stopped and prevented
      * from bubbling up to cause a ListItem click.
      */
-    rightIconButton: React.PropTypes.element,
+    rightIconButton: PropTypes.element,
 
     /**
      * This is the Toggle element to display on the right side.
      */
-    rightToggle: React.PropTypes.element,
+    rightToggle: PropTypes.element,
 
     /**
      * This is the block element that contains the secondary text.
      * If a string is passed in, a div tag will be rendered.
      */
-    secondaryText: React.PropTypes.node,
+    secondaryText: PropTypes.node,
 
     /**
      * Can be 1 or 2. This is the number of secondary
      * text lines before ellipsis will show.
      */
-    secondaryTextLines: React.PropTypes.oneOf([1, 2]),
+    secondaryTextLines: PropTypes.oneOf([1, 2]),
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [

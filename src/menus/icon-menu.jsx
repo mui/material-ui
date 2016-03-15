@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Events from '../utils/events';
-import PropTypes from '../utils/prop-types';
+import MuiPropTypes from '../utils/mui-prop-types';
 import Menu from '../menus/menu';
 import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../popover/popover';
@@ -16,67 +16,67 @@ const IconMenu = React.createClass({
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right].
      */
-    anchorOrigin: PropTypes.origin,
+    anchorOrigin: MuiPropTypes.origin,
 
     /**
      * Should be used to pass `MenuItem` components.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * This is the IconButton to render. This button will open the menu.
      */
-    iconButtonElement: React.PropTypes.element.isRequired,
+    iconButtonElement: PropTypes.element.isRequired,
 
     /**
      * The style object to use to override underlying icon style.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * The style object to use to override underlying menu style.
      */
-    menuStyle: React.PropTypes.object,
+    menuStyle: PropTypes.object,
 
     /**
      * If true, the value can an be array and allow the menu to be a multi-select.
      */
-    multiple: React.PropTypes.bool,
+    multiple: PropTypes.bool,
 
     /**
      * Fired when a menu item is touchTapped.
      */
-    onItemTouchTap: React.PropTypes.func,
+    onItemTouchTap: PropTypes.func,
 
     /**
      * Fired when keyobard focuses on element.
      */
-    onKeyboardFocus: React.PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
 
     /**
      * Fired when mouse is pressed on element.
      */
-    onMouseDown: React.PropTypes.func,
+    onMouseDown: PropTypes.func,
 
     /**
      * Fired when mouse enters the element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Fired when mouse leaves the element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Fired when mouse is lifted inside the element.
      */
-    onMouseUp: React.PropTypes.func,
+    onMouseUp: PropTypes.func,
 
     /**
      * Callback function that is fired when the open state
@@ -87,22 +87,22 @@ const IconMenu = React.createClass({
      * 'iconTap' for open action and 'enter', 'escape', 'itemTap',
      * 'clickAway' for close action.
      */
-    onRequestChange: React.PropTypes.func,
+    onRequestChange: PropTypes.func,
 
     /**
      * Fired when element is touch tapped.
      */
-    onTouchTap: React.PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * Controls whether the IconMenu is opened or not.
      */
-    open: React.PropTypes.bool,
+    open: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * This is the point on the menu which will stick to the menu
@@ -111,7 +111,7 @@ const IconMenu = React.createClass({
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right].
      */
-    targetOrigin: PropTypes.origin,
+    targetOrigin: MuiPropTypes.origin,
 
     /**
      * Sets the delay in milliseconds before closing the
@@ -119,21 +119,21 @@ const IconMenu = React.createClass({
      * If set to 0 then the auto close functionality
      * will be disabled.
      */
-    touchTapCloseDelay: React.PropTypes.number,
+    touchTapCloseDelay: PropTypes.number,
 
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying elements.
      */
-    useLayerForClickAway: React.PropTypes.bool,
+    useLayerForClickAway: PropTypes.bool,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

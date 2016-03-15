@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ClockNumber from './clock-number';
 import ClockPointer from './clock-pointer';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -21,16 +21,16 @@ function getTouchEventOffsetValues(event) {
 
 const ClockMinutes = React.createClass({
   propTypes: {
-    initialMinutes: React.PropTypes.number,
-    onChange: React.PropTypes.func,
+    initialMinutes: PropTypes.number,
+    onChange: PropTypes.func,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

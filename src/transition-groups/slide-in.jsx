@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './slide-in-child';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -6,23 +6,23 @@ import getMuiTheme from '../styles/getMuiTheme';
 const SlideIn = React.createClass({
 
   propTypes: {
-    childStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
-    enterDelay: React.PropTypes.number,
+    childStyle: PropTypes.object,
+    children: PropTypes.node,
+    direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    enterDelay: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import IconButton from 'material-ui/lib/icon-button';
 import CodeIcon from 'material-ui/lib/svg-icons/action/code';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
@@ -19,8 +19,8 @@ const CodeBlockTitle = (props) => (
 );
 
 CodeBlockTitle.propTypes = {
-  title: React.PropTypes.string,
-  tooltip: React.PropTypes.string,
+  title: PropTypes.string,
+  tooltip: PropTypes.string,
 };
 
 export default CodeBlockTitle;

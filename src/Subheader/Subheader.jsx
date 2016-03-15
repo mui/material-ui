@@ -1,27 +1,27 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import muiThemeable from './../muiThemeable';
 
 const propTypes = {
   /**
    * Node that will be placed inside the `Subheader`.
    */
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 
   /**
    * If true, the `Subheader` will be indented by `72px`.
    */
-  inset: React.PropTypes.bool,
+  inset: PropTypes.bool,
 
   /**
    * @ignore
    * The material-ui theme applied to this component.
    */
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 
   /**
    * Override the inline-styles of the root element.
    */
-  style: React.PropTypes.object,
+  style: PropTypes.object,
 };
 
 const defaultProps = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
 import ColorManipulator from '../utils/color-manipulator';
 
@@ -8,20 +8,20 @@ export const SelectableContainerEnhance = (Component) => {
     displayName: `Selectable${Component.displayName}`,
 
     propTypes: {
-      children: React.PropTypes.node,
-      selectedItemStyle: React.PropTypes.object,
-      valueLink: React.PropTypes.shape({
-        value: React.PropTypes.any,
-        requestChange: React.PropTypes.func,
+      children: PropTypes.node,
+      selectedItemStyle: PropTypes.object,
+      valueLink: PropTypes.shape({
+        value: PropTypes.any,
+        requestChange: PropTypes.func,
       }).isRequired,
     },
 
     contextTypes: {
-      muiTheme: React.PropTypes.object,
+      muiTheme: PropTypes.object,
     },
 
     childContextTypes: {
-      muiTheme: React.PropTypes.object,
+      muiTheme: PropTypes.object,
     },
 
     getInitialState() {

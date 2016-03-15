@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
 import EnhancedSwitch from './enhanced-switch';
 import RadioButtonOff from './svg-icons/toggle/radio-button-unchecked';
@@ -61,67 +61,67 @@ const RadioButton = React.createClass({
      * checked if true
      * Used internally by `RadioButtonGroup`.
      */
-    checked: React.PropTypes.bool,
+    checked: PropTypes.bool,
 
     /**
      * The icon element to show when radio button is checked.
      */
-    checkedIcon: React.PropTypes.element,
+    checkedIcon: PropTypes.element,
 
     /**
      * Disabled if true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Overrides the inline-styles of the icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
     * Overrides the inline-styles of the input element.
     */
-    inputStyle: React.PropTypes.object,
+    inputStyle: PropTypes.object,
 
     /**
      * @ignore
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      * Where the label will be placed next to the radio button.
      */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * Overrides the inline-styles of the RadioButton element label.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Callback function for checked event.
      */
-    onCheck: React.PropTypes.func,
+    onCheck: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The icon element to show when radio button is unchecked.
      */
-    uncheckedIcon: React.PropTypes.element,
+    uncheckedIcon: PropTypes.element,
 
     /**
      * The value of our radio button component.
      */
-    value: React.PropTypes.string,
+    value: PropTypes.string,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

@@ -105,7 +105,7 @@ const Step = React.createClass({
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
 

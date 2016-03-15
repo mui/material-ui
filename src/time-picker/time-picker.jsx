@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import warning from 'warning';
 import DateTime from '../utils/date-time.js';
 import TimePickerDialog from './time-picker-dialog';
@@ -17,28 +17,28 @@ const TimePicker = React.createClass({
     /**
      * If true, automatically accept and close the picker on set minutes.
      */
-    autoOk: React.PropTypes.bool,
+    autoOk: PropTypes.bool,
 
    /**
     * Override the label of the 'Cancel' button.
     */
-    cancelLabel: React.PropTypes.string,
+    cancelLabel: PropTypes.string,
 
     /**
      * This is the initial time value of the component.
      */
-    defaultTime: React.PropTypes.object,
+    defaultTime: PropTypes.object,
 
     /**
      * Tells the component to display the picker in
      * ampm (12hr) format or 24hr format.
      */
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
+    format: PropTypes.oneOf(['ampm', '24hr']),
 
     /**
      * Override the label of the 'OK' button.
      */
-    okLabel: React.PropTypes.string,
+    okLabel: PropTypes.string,
 
     /**
      * Callback function that is fired when the time
@@ -47,27 +47,27 @@ const TimePicker = React.createClass({
      * with the change the first argument will always be null
      * and the second argument will be the new Date instance.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Fired when the timepicker dialog is dismissed.
      */
-    onDismiss: React.PropTypes.func,
+    onDismiss: PropTypes.func,
 
     /**
      * Callback function that is fired when the timepicker field gains focus.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Fired when the timepicker dialog is shown.
      */
-    onShow: React.PropTypes.func,
+    onShow: PropTypes.func,
 
     /**
      * Callback for touch tap event.
      */
-    onTouchTap: React.PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * It's technically more correct to refer to
@@ -77,27 +77,27 @@ const TimePicker = React.createClass({
      * (for compatibility reasons) TimePicker uses
      * (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.
      */
-    pedantic: React.PropTypes.bool,
+    pedantic: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Override the inline-styles of TimePicker's TextField element.
      */
-    textFieldStyle: React.PropTypes.object,
+    textFieldStyle: PropTypes.object,
 
     /**
      * Sets the time for the Time Picker programmatically.
      */
-    value: React.PropTypes.object,
+    value: PropTypes.object,
 
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

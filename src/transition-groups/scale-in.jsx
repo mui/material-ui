@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import ScaleInChild from './scale-in-child';
@@ -7,24 +7,24 @@ import getMuiTheme from '../styles/getMuiTheme';
 const ScaleIn = React.createClass({
 
   propTypes: {
-    childStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    enterDelay: React.PropTypes.number,
-    maxScale: React.PropTypes.number,
-    minScale: React.PropTypes.number,
+    childStyle: PropTypes.object,
+    children: PropTypes.node,
+    enterDelay: PropTypes.number,
+    maxScale: PropTypes.number,
+    minScale: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -8,34 +8,34 @@ const SvgIcon = React.createClass({
     /**
      * Elements passed into the SVG Icon.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * This is the fill color of the svg icon.
      * If not specified, this component will default
      * to muiTheme.palette.textColor.
      */
-    color: React.PropTypes.string,
+    color: PropTypes.string,
 
     /**
      * This is the icon color when the mouse hovers over the icon.
      */
-    hoverColor: React.PropTypes.string,
+    hoverColor: PropTypes.string,
 
     /**
      * Function called when mouse enters this element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Function called when mouse leaves this element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Allows you to redifine what the coordinates
@@ -45,15 +45,15 @@ const SvgIcon = React.createClass({
      * the svg will go from the top left corner (0,0) to bottom right (50,20)
      * and each unit will be worth 10px.
      */
-    viewBox: React.PropTypes.string,
+    viewBox: PropTypes.string,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

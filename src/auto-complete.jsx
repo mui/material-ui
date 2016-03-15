@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import TextField from './text-field';
@@ -6,7 +6,7 @@ import Menu from './menus/menu';
 import MenuItem from './menus/menu-item';
 import Divider from './divider';
 import Popover from './popover/popover';
-import PropTypes from './utils/prop-types';
+import MuiPropTypes from './utils/mui-prop-types';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
 import deprecated from './utils/deprecatedPropType';
@@ -53,32 +53,32 @@ const AutoComplete = React.createClass({
     /**
      * Location of the anchor for the auto complete.
      */
-    anchorOrigin: PropTypes.origin,
+    anchorOrigin: MuiPropTypes.origin,
 
     /**
      * If true, the auto complete is animated as it is toggled.
      */
-    animated: React.PropTypes.bool,
+    animated: PropTypes.bool,
 
     /**
      * Array of strings or nodes used to populate the list.
      */
-    dataSource: React.PropTypes.array.isRequired,
+    dataSource: PropTypes.array.isRequired,
 
     /**
      * Disables focus ripple when true.
      */
-    disableFocusRipple: React.PropTypes.bool,
+    disableFocusRipple: PropTypes.bool,
 
     /**
      * Override style prop for error.
      */
-    errorStyle: React.PropTypes.object,
+    errorStyle: PropTypes.object,
 
     /**
      * The error content to display.
      */
-    errorText: React.PropTypes.string,
+    errorText: PropTypes.string,
 
     /**
      * Callback function used to filter the auto complete.
@@ -87,62 +87,62 @@ const AutoComplete = React.createClass({
      * @param {string} key `dataSource` element, or `text` property on that element if it's not a string.
      * @returns {boolean} `true` indicates the auto complete list will include `key` when the input is `searchText`.
      */
-    filter: React.PropTypes.func,
+    filter: PropTypes.func,
 
     /**
      * The content to use for adding floating label element.
      */
-    floatingLabelText: React.PropTypes.string,
+    floatingLabelText: PropTypes.string,
 
     /**
      * If true, the field receives the property `width: 100%`.
      */
-    fullWidth: React.PropTypes.bool,
+    fullWidth: PropTypes.bool,
 
     /**
      * The hint content to display.
      */
-    hintText: React.PropTypes.string,
+    hintText: PropTypes.string,
 
     /**
      * Override style for list.
      */
-    listStyle: React.PropTypes.object,
+    listStyle: PropTypes.object,
 
     /**
      * The max number of search results to be shown.
      * By default it shows all the items which matches filter.
      */
-    maxSearchResults: React.PropTypes.number,
+    maxSearchResults: PropTypes.number,
 
     /**
      * Delay for closing time of the menu.
      */
-    menuCloseDelay: React.PropTypes.number,
+    menuCloseDelay: PropTypes.number,
 
     /**
      * Props to be passed to menu.
      */
-    menuProps: React.PropTypes.object,
+    menuProps: PropTypes.object,
 
     /**
      * Override style for menu.
      */
-    menuStyle: React.PropTypes.object,
+    menuStyle: PropTypes.object,
 
     /**
      * Callback function that is fired when the `TextField` loses focus.
      *
      * @param {object} event `blur` event targeting the `TextField`.
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback function that is fired when the `TextField` gains focus.
      *
      * @param {object} event `focus` event targeting the `TextField`.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
@@ -152,7 +152,7 @@ const AutoComplete = React.createClass({
      * @param {number} index The index in `dataSource` of the list item selected, or `-1` if enter is pressed in the
      * `TextField`.
      */
-    onNewRequest: React.PropTypes.func,
+    onNewRequest: PropTypes.func,
 
     /**
      * Callback function that is fired when the user updates the `TextField`.
@@ -160,45 +160,45 @@ const AutoComplete = React.createClass({
      * @param {string} searchText The auto-complete's `searchText` value.
      * @param {array} dataSource The auto-complete's `dataSource` array.
      */
-    onUpdateInput: React.PropTypes.func,
+    onUpdateInput: PropTypes.func,
 
     /**
      * Auto complete menu is open if true.
      */
-    open: React.PropTypes.bool,
+    open: PropTypes.bool,
 
     /**
      * If true, the list item is showed when a focus event triggers.
      */
-    openOnFocus: React.PropTypes.bool,
+    openOnFocus: PropTypes.bool,
 
     /**
      * Text being input to auto complete.
      */
-    searchText: React.PropTypes.string,
+    searchText: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Origin for location of target.
      */
-    targetOrigin: PropTypes.origin,
+    targetOrigin: MuiPropTypes.origin,
 
     /**
      * If true, will update when focus event triggers.
      */
-    triggerUpdateOnFocus: deprecated(React.PropTypes.bool, 'Instead, use openOnFocus'),
+    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus'),
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

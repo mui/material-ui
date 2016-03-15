@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Children from './utils/children';
 import Events from './utils/events';
@@ -40,44 +40,44 @@ function listenForTabPresses() {
 const EnhancedButton = React.createClass({
 
   propTypes: {
-    centerRipple: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    containerElement: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
+    centerRipple: PropTypes.bool,
+    children: PropTypes.node,
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
     ]),
-    disableFocusRipple: React.PropTypes.bool,
-    disableKeyboardFocus: React.PropTypes.bool,
-    disableTouchRipple: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    focusRippleColor: React.PropTypes.string,
-    focusRippleOpacity: React.PropTypes.number,
-    keyboardFocused: React.PropTypes.bool,
-    linkButton: React.PropTypes.bool,
-    onBlur: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    onKeyUp: React.PropTypes.func,
-    onKeyboardFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
+    disableFocusRipple: PropTypes.bool,
+    disableKeyboardFocus: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
+    disabled: PropTypes.bool,
+    focusRippleColor: PropTypes.string,
+    focusRippleOpacity: PropTypes.number,
+    keyboardFocused: PropTypes.bool,
+    linkButton: PropTypes.bool,
+    onBlur: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    tabIndex: React.PropTypes.number,
-    touchRippleColor: React.PropTypes.string,
-    touchRippleOpacity: React.PropTypes.number,
-    type: React.PropTypes.string,
+    style: PropTypes.object,
+    tabIndex: PropTypes.number,
+    touchRippleColor: PropTypes.string,
+    touchRippleOpacity: PropTypes.number,
+    type: PropTypes.string,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [PureRenderMixin],

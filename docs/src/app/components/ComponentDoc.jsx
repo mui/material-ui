@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {ClearFix, Styles} from 'material-ui';
 import ComponentInfo from './ComponentInfo';
 const Typography = Styles.Typography;
@@ -6,17 +6,17 @@ const Typography = Styles.Typography;
 const ComponentDoc = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
-    componentInfo: React.PropTypes.array.isRequired,
-    desc: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
+    children: PropTypes.node,
+    componentInfo: PropTypes.array.isRequired,
+    desc: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
     ]),
-    name: React.PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getStyles() {

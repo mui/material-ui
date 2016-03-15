@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from './styles/getMuiTheme';
 
 const AppCanvas = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

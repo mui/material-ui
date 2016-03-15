@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -60,45 +60,45 @@ const Badge = React.createClass({
     /**
      * This is the content rendered within the badge.
      */
-    badgeContent: React.PropTypes.node.isRequired,
+    badgeContent: PropTypes.node.isRequired,
 
     /**
      * Override the inline-styles of the badge element.
      */
-    badgeStyle: React.PropTypes.object,
+    badgeStyle: PropTypes.object,
 
     /**
      * The badge will be added relativelty to this node.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * If true, the badge will use the primary badge colors.
      */
-    primary: React.PropTypes.bool,
+    primary: PropTypes.bool,
 
     /**
      * If true, the badge will use the secondary badge colors.
      */
-    secondary: React.PropTypes.bool,
+    secondary: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {
