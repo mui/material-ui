@@ -1,6 +1,6 @@
 {
   "name": "material-ui-example-webpack",
-  "version": "0.15.0-alpha.1",
+  "version": "0.15.0-alpha.2",
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "material-ui": "^0.15.0-alpha.1",
+    "material-ui": "^0.15.0-alpha.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-tap-event-plugin": "^0.2.1"

@@ -1,7 +1,11 @@
 ## HEAD
 
+## 0.15.0-alpha.2
+###### _Mar 15, 2016_
+
 ##### Breaking Changes
-- [Core] if you used Material-UI from npm in CommonJS environment, you need to add `.default` to your requires:
+- [Core] if you used Material-UI from npm in CommonJS environment,
+you need to add `.default` to your requires (#3648):
 
 ```diff
 - var MUI = require('material-ui')
@@ -13,9 +17,81 @@ If you used ES modules, you’re already all good:
 import MUI from 'material-ui' // no changes here 😀
 ```
 
-- [Styles] RaisedButton, FlatButton, and FloatingActionButton now properly use primary/secondary colors
+- [Core] Remove uniqueId utils (#3538)
+- [Styles] RaisedButton, FlatButton, and FloatingActionButton now properly use primary/secondary colors (#3513)
 - [Menu] Remove Paper (#3559)
 - [List] Remove Paper (#3612)
+
+##### New Component
+- [Stepper](#3132) ( Big Thanks to @namKolo )
+
+##### General
+- [Core] Remove gulp in favour of npm scripts for linting (#3626)
+- [Core] Update `package.json` to prevent building the `lib` after install (#3632)
+- [Docs] Hide internal properties of `MenuItem`, `Table` and `Tabs` in docs (#3589)
+- [Docs] Document `Card` subcomponent properties (#3621)
+- [Docs] Add return types (#3542)
+- [Docs] Add support for multi-line function (#3570)
+- [Docs] Document callback signatures ( Thanks to @theosherry )
+  - [AutoComplete](#3550)
+  - [Card](#3552)
+  - [Checkbox](#3607)
+  - [DatePicker](#3652)
+  - [DropDownMenu](#3615)
+  - [FlatButton](#3676)
+  - [FloatingActionButton](#3683)
+  - [FontIcon](#3693)
+- [Tests] Add mocha grep passthrough for browser tests (#3520)
+- [Tests] Add `EnhancedButton` unit test and tweak karma config (#3512)
+- [Tests] Add `FlatButton` unit test (#3541)
+- [Tests] Add `Divider` unit test (#3527)
+- [Tests] Add `Paper` unit tests (#3528)
+- [IconBuilder] Move to packages directory (#3680)
+- Added the following eslint rules:
+  1. Enforce `operator-linebreak` (#3516)
+  1. Enforce `no-multiple-empty-lines` (#3516)
+  1. Enforce `@ignore` before comment (#3611)
+
+##### Component Fixes / Enhancements
+- [AppBar] Fix the title height variation (#3509)
+- [AutoComplete] Fix browser compatibility (#3581)
+- [AutoComplete] Fix `openOnFocus` and item click (#3669)
+- [AutoComplete] Proxy focus and blur calls (#3551)
+- [AutoComplete] Set `canAutoPosition` to `false` for `Popover` (#3620)
+- [CardHeader] Handle wide titles, allow them to wrap (#3503)
+- [CardHeader] Remove `title` from injected node attributes (to avoid native tooltip) (#3534)
+- [DatePicker] Add a check to fetch current system date (#3656)
+- [DatePicker] Fix cursor pointer of the header (#3598)
+- [DatePicker] Fix selectYear range (#3496)
+- [DatePicker] Use popover for the inline mode (#3532)
+- [EnhancedButton] fix `onKeyboardFocus` being called with nullified event object (#3616)
+- [EnhancedSwitch] Remove the uniqueId as it unused (#3592)
+- [FlatButton] Fix icon alignment when no label provided (#3529)
+- [FlatButton] Fix icon styling when no label provided (#3502)
+- [IconButton] Expose `disableTouchRipple` (#3659)
+- [IconMenu] Add missing default iconStyle (#3514)
+- [IconMenu] Set container as `anchorEl` when using prop 'open' (#3666)
+- [ListItem] Add stopPropagation in touch ripple to avoid touch event bubbling (#3593)
+- [MenuItem] Add flex property (#3597)
+- [Popover] Avoid nested `<noscript/>` (#3647)
+- [RaisedButton] Account for `backgroundColor` prop which was previously ignored (#3515)
+- [RaisedButton] Fix styling issues (#3479)
+- [Slider] Add keyboard support (#3237)
+- [Snackbar] Make on request close optional (#3560)
+- [Tab] Fix `style` prop being ignored (#3608)
+- [TableBody] Don't ignore the possible `selected` prop passed to the `TableRow` (#3505)
+- [TableRow] Propagate events (#3492)
+- [TableRowColumn] Propagate events (#3492)
+- [TextField] Add `floatingLabelFixed` property (#3646)
+- [TextField] Add `shouldComponentUpdate` function (#3673)
+- [TextField] Add the ability to call select (#3287)
+- [TextField] Fix `defaultValue` overlays `floatingLabelText` on mount (#3450)
+- [TimePicker] Reinstate #3030 - Add support for custom button labels (#3148)
+- [TimePicker] Remove a useless div element (#3591)
+- [Toolbar] Fix existing design flaws by using flex (#3548)
+
+##### Deprecations
+- [DatePicker] Deprecate `wordings` with `cancelLabel` and `okLabel` (#3412)
 
 ## 0.15.0-alpha.1
 ###### _Feb 27, 2016_
