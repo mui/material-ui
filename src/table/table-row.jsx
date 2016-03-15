@@ -147,7 +147,6 @@ const TableRow = React.createClass({
       hoverable: false,
       hovered: false,
       selectable: true,
-      selected: false,
       striped: false,
     };
   },

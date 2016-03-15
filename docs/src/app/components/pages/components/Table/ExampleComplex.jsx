@@ -24,7 +24,6 @@ const tableData = [
   {
     name: 'John Smith',
     status: 'Employed',
-    selected: true,
   },
   {
     name: 'Randal White',
@@ -33,7 +32,6 @@ const tableData = [
   {
     name: 'Stephanie Sanders',
     status: 'Employed',
-    selected: true,
   },
   {
     name: 'Steve Brown',
@@ -91,7 +89,6 @@ export default class TableExampleComplex extends React.Component {
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
-          onRowSelection={this._onRowSelection}
         >
           <TableHeader
             displaySelectAll={this.state.showCheckboxes}
