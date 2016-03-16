@@ -18,31 +18,31 @@ const iconStyle = {
 const VerticalLinearStepper = React.createClass({
   getInitialState() {
     return {
-      activeStepIndex: -1,
-      lastActiveStepIndex: 0,
+      activeStep: -1,
+      lastActiveStep: 0,
       statusSteps: [],
     };
   },
 
-  selectStep(stepIndex, step) {
+  selectStep(currentStep, step) {
     const {
-      lastActiveStepIndex,
-      activeStepIndex,
+      lastActiveStep,
+      activeStep,
 
     } = this.state;
 
-    if (stepIndex > lastActiveStepIndex && lastActiveStepIndex < step.props.previousStepOptionalIndex) {
+    if (currentStep > lastActiveStep && lastActiveStep < step.props.previousStepOptionalIndex) {
       return;
     }
 
     this.setState({
-      activeStepIndex: stepIndex,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex),
+      activeStep: currentStep,
+      lastActiveStep: Math.max(lastActiveStep, activeStep),
     });
   },
 
-  updateCompletedSteps(stepIndex) {
-    return this.state.statusSteps[stepIndex];
+  updateCompletedSteps(currentStep) {
+    return this.state.statusSteps[currentStep];
   },
 
   createIcon(step) {
@@ -59,17 +59,17 @@ const VerticalLinearStepper = React.createClass({
 
   continue() {
     const {
-      activeStepIndex,
-      lastActiveStepIndex,
+      activeStep,
+      lastActiveStep,
       statusSteps,
     } = this.state;
 
-    statusSteps[activeStepIndex] = true;
+    statusSteps[activeStep] = true;
 
     this.setState({
-      activeStepIndex: activeStepIndex + 1,
+      activeStep: activeStep + 1,
       statusSteps: statusSteps,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex + 1),
+      lastActiveStep: Math.max(lastActiveStep, activeStep + 1),
     });
   },
 
@@ -85,9 +85,9 @@ const VerticalLinearStepper = React.createClass({
           Online check-in
         </div>
         <Stepper
-          activeStepIndex={this.state.activeStepIndex}
+          activeStep={this.state.activeStep}
           onStepHeaderTouch={this.selectStep}
-          updateCompletedStatusOfStep={this.updateCompletedSteps}
+          updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
           <Step

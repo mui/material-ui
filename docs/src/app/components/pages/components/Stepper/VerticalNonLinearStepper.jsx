@@ -11,19 +11,19 @@ import FlatButton from 'material-ui/lib/flat-button';
 const VerticalNonLinearStepper = React.createClass({
   getInitialState() {
     return {
-      activeStepIndex: -1,
+      activeStep: -1,
       statusSteps: [],
     };
   },
 
-  selectStep(stepIndex) {
+  selectStep(CurrentStep) {
     this.setState({
-      activeStepIndex: stepIndex,
+      activeStep: CurrentStep,
     });
   },
 
-  updateCompletedSteps(stepIndex) {
-    return this.state.statusSteps[stepIndex];
+  updateCompletedSteps(CurrentStep) {
+    return this.state.statusSteps[CurrentStep];
   },
 
   createIcon(step) {
@@ -40,14 +40,14 @@ const VerticalNonLinearStepper = React.createClass({
 
   continue() {
     const {
-      activeStepIndex,
+      activeStep,
       statusSteps,
     } = this.state;
 
-    statusSteps[activeStepIndex] = true;
+    statusSteps[activeStep] = true;
 
     this.setState({
-      activeStepIndex: activeStepIndex + 1,
+      activeStep: activeStep + 1,
       statusSteps: statusSteps,
     });
   },
@@ -64,9 +64,9 @@ const VerticalNonLinearStepper = React.createClass({
           Your interests
         </div>
         <Stepper
-          activeStepIndex={this.state.activeStepIndex}
+          activeStep={this.state.activeStep}
           onStepHeaderTouch={this.selectStep}
-          updateCompletedStatusOfStep={this.updateCompletedSteps}
+          updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
           <Step

@@ -11,41 +11,41 @@ import FlatButton from 'material-ui/lib/flat-button';
 const VerticalLinearStepper = React.createClass({
   getInitialState() {
     return {
-      activeStepIndex: -1,
-      lastActiveStepIndex: 0,
+      activeStep: -1,
+      lastActiveStep: 0,
     };
   },
 
-  selectStep(stepIndex) {
+  selectStep(currentStep) {
     const {
-      lastActiveStepIndex,
-      activeStepIndex,
+      lastActiveStep,
+      activeStep,
 
     } = this.state;
 
-    if (stepIndex > lastActiveStepIndex) {
+    if (currentStep > lastActiveStep) {
       return;
     }
 
     this.setState({
-      activeStepIndex: stepIndex,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex),
+      activeStep: currentStep,
+      lastActiveStep: Math.max(lastActiveStep, activeStep),
     });
   },
 
-  updateCompletedSteps(stepIndex) {
-    return stepIndex < this.state.lastActiveStepIndex;
+  updateCompletedSteps(currentStep) {
+    return currentStep < this.state.lastActiveStep;
   },
 
   continue() {
     const {
-      activeStepIndex,
-      lastActiveStepIndex,
+      activeStep,
+      lastActiveStep,
     } = this.state;
 
     this.setState({
-      activeStepIndex: activeStepIndex + 1,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex + 1),
+      activeStep: activeStep + 1,
+      lastActiveStep: Math.max(lastActiveStep, activeStep + 1),
     });
   },
 
@@ -73,9 +73,9 @@ const VerticalLinearStepper = React.createClass({
           Create an Ad Campaign
         </div>
         <Stepper
-          activeStepIndex={this.state.activeStepIndex}
+          activeStep={this.state.activeStep}
           onStepHeaderTouch={this.selectStep}
-          updateCompletedStatusOfStep={this.updateCompletedSteps}
+          updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
           <Step
