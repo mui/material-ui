@@ -234,7 +234,7 @@ const TableRow = React.createClass({
 
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, {...{
+        return React.cloneElement(child, {
           columnNumber: columnNumber,
           hoverable: this.props.hoverable,
           key: child.props.key || `${this.props.rowNumber}-${columnNumber}`,
@@ -242,7 +242,7 @@ const TableRow = React.createClass({
           onHover: this._onCellHover,
           onHoverExit: this._onCellHoverExit,
           style: Object.assign({}, styles.cell, child.props.style),
-        }, ...child.props});
+        });
       }
     });
 
