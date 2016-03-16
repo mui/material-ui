@@ -48,64 +48,74 @@ const IconButton = React.createClass({
 
   propTypes: {
     /**
-     * Can be used to pass a font icon as the icon for the button.
+     * Can be used to pass a `FontIcon` element as the icon for the button.
      */
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root element.
+     * The CSS class name of the root element.
      */
     className: React.PropTypes.string,
 
     /**
-     * Disables the ripple effect.
+     * If true, the element's ripple effect will be disabled.
      */
     disableTouchRipple: React.PropTypes.bool,
 
     /**
-     * Disables the icon button.
+     * If true, the element will be disabled.
      */
     disabled: React.PropTypes.bool,
 
     /**
-     * If you are using a stylesheet for your
-     * icons, enter the class name for the icon to be used here.
+     * The CSS class name of the icon. Used for setting the icon with a stylesheet.
      */
     iconClassName: React.PropTypes.string,
 
     /**
-     * Overrides the inline-styles of the icon element.
+     * Override the inline-styles of the icon element.
      */
     iconStyle: React.PropTypes.object,
 
     /**
-     * Callback function for when the component loses focus.
+     * Callback function fired when the element loses focus.
+     * @param {object} event `blur` event targeting the element.
      */
     onBlur: React.PropTypes.func,
 
     /**
-     * Callback function for when the component gains focus.
+     * Callback function fired when the element gains focus.
+     * @param {object} event `focus` event targeting the element.
      */
     onFocus: React.PropTypes.func,
 
     /**
-     * Callback function for when the component
-     * receives keyboard focus.
+     * Callback function fired when the element is focused or blurred by the keyboard.
+     *
+     * @param {object} event `focus` or `blur` event targeting the element.
+     * @param {boolean} keyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: React.PropTypes.func,
 
     /**
-     * Callback function for when mouse enters element.
+     * Callback function fired when the mouse enters the element.
+     *
+     * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: React.PropTypes.func,
 
     /**
-     * Callback function for when mouse leaves element.
+     * Callback function fired when the mouse leaves the element.
+     *
+     * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: React.PropTypes.func,
 
     /**
-     * Callback function for when mouse goes out of element it works with disabled element.
+     * Callback function fired when the mouse leaves the element. Unlike `onMouseLeave`,
+     * this callback will fire on disabled icon buttons.
+     *
+     * @param {object} event `mouseout` event targeting the element.
      */
     onMouseOut: React.PropTypes.func,
 
@@ -115,24 +125,25 @@ const IconButton = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * The tooltip text to show.
+     * The text to supply to the element's tooltip.
      */
     tooltip: React.PropTypes.node,
 
     /**
-     * Allows the tooltip to be viewed with different
-     * alignments: "bottom-center", "top-center",
-     * "bottom-right", "top-right", "bottom-left" and "top-left".
+     * The vertical and horizontal positions, respectively, of the element's tooltip.
+     * Possible values are: "bottom-center", "top-center", "bottom-right", "top-right",
+     * "bottom-left", and "top-left".
      */
     tooltipPosition: PropTypes.cornersAndCenter,
 
     /**
-     * Styles prop passed down to the tooltip.
+     * Override the inline-styles of the tooltip element.
      */
     tooltipStyles: React.PropTypes.object,
 
     /**
-     * Prop for tooltip to make it larger for mobile.
+     * If true, increase the tooltip element's size.  Useful for increasing tooltip
+     * readability on mobile devices.
      */
     touch: React.PropTypes.bool,
   },
