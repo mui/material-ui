@@ -68,8 +68,6 @@ npm start
 ```
 You can now access the documentation site [locally](http://localhost:3000).
 
-If you find you need to use `console.log()` or `debugger`, you will need to temporarily disable linting. Simply comment out the [`preLoaders` section](https://github.com/callemall/material-ui/blob/master/docs/webpack-dev-server.config.js#L62) of `docs/webpack-dev-server.config.js`
-
 Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `npm run test`.
 
 #### Coding style

@@ -79,7 +79,6 @@
     "codecov": "^1.0.1",
     "enzyme": "^2.0.0",
     "eslint": "~2.2.0",
-    "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^4.0.0",
     "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "glob": "^7.0.0",
