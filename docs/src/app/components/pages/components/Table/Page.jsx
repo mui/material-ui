@@ -15,11 +15,14 @@ import tableBodyCode from '!raw!material-ui/lib/table/table-body';
 import tableFooterCode from '!raw!material-ui/lib/table/table-footer';
 import TableExampleSimple from './ExampleSimple';
 import tableExampleSimpleCode from '!raw!./ExampleSimple';
+import TableExampleControlled from './ExampleControlled';
+import tableExampleControlled from '!raw!./ExampleControlled';
 import TableExampleComplex from './ExampleComplex';
 import tableExampleComplexCode from '!raw!./ExampleComplex';
 
 const descriptions = {
   simple: 'A simple table demonstrating the hierarchy of the `Table` component and its sub-components.',
+  controlled: 'An example of controlled behavior, with a default selected state of one of the rows.',
   complex: 'A more complex example, allowing the table height to be set, and key boolean properties to be toggled.',
 };
 
@@ -33,6 +36,13 @@ const TablePage = () => (
       code={tableExampleSimpleCode}
     >
       <TableExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Controlled example"
+      description={descriptions.controlled}
+      code={tableExampleControlled}
+    >
+      <TableExampleControlled />
     </CodeExample>
     <CodeExample
       title="Complex example"
