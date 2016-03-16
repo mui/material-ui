@@ -625,12 +625,12 @@ const ListItem = React.createClass({
     }
 
     if (primaryText) {
-      const secondaryTextElement = this._createTextElement(
+      const primaryTextElement = this._createTextElement(
         styles.primaryText,
         primaryText,
         'primaryText'
       );
-      contentChildren.push(secondaryTextElement);
+      contentChildren.push(primaryTextElement);
     }
 
     if (secondaryText) {
