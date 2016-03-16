@@ -25,6 +25,11 @@ const dataSource1 = [
 
 const dataSource2 = ['12345', '23456', '34567'];
 
+const dataSource3 = [
+  {text: 'Some Text', value: 'someFirstValue'},
+  {text: 'Some Text', value: 'someSecondValue'},
+];
+
 const AutoCompleteExampleNoFilter = () => (
   <div>
     <AutoComplete
@@ -37,6 +42,12 @@ const AutoCompleteExampleNoFilter = () => (
       filter={AutoComplete.noFilter}
       openOnFocus={true}
       dataSource={dataSource2}
+    /><br />
+    <AutoComplete
+      floatingLabelText="Same text, different values"
+      filter={AutoComplete.noFilter}
+      openOnFocus={true}
+      dataSource={dataSource3}
     />
   </div>
 );
