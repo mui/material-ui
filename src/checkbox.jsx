@@ -175,6 +175,10 @@ const Checkbox = React.createClass({
     });
   },
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.switched !== nextState.switched;
+  },
+
   isChecked() {
     return this.refs.enhancedSwitch.isSwitched();
   },

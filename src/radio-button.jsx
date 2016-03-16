@@ -150,6 +150,10 @@ const RadioButton = React.createClass({
     });
   },
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.switched !== nextState.switched;
+  },
+
   getTheme() {
     return this.state.muiTheme.radioButton;
   },

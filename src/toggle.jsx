@@ -182,6 +182,10 @@ const Toggle = React.createClass({
     });
   },
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.switched !== nextState.switched;
+  },
+
   isToggled() {
     return this.refs.enhancedSwitch.isSwitched();
   },
