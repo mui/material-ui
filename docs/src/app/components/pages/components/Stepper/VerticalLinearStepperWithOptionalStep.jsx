@@ -7,6 +7,13 @@ import Paper from 'material-ui/lib/paper';
 import FontIcon from 'material-ui/lib/font-icon';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
+import SeatIcon from 'material-ui/lib/svg-icons/action/event-seat';
+import PrintIcon from 'material-ui/lib/svg-icons/action/print';
+
+const iconStyle = {
+  width: 15,
+  height: 15,
+};
 
 const VerticalLinearStepper = React.createClass({
   getInitialState() {
@@ -42,7 +49,7 @@ const VerticalLinearStepper = React.createClass({
     if (step.props.isCompleted) {
       return (
         <FontIcon className="material-icons" style={{fontSize: 14}}>
-          done
+          flight_takeoff
         </FontIcon>
       );
     }
@@ -75,7 +82,7 @@ const VerticalLinearStepper = React.createClass({
           fontSize: 20,
         }}
         >
-          How to keep your 'css' for a long time
+          Online check-in
         </div>
         <Stepper
           activeStepIndex={this.state.activeStepIndex}
@@ -84,8 +91,12 @@ const VerticalLinearStepper = React.createClass({
           createIcon={this.createIcon}
         >
           <Step
-            orderStepLabel="1"
-            stepLabel="Take more time on your 'css'"
+            orderStepLabel={
+              <FontIcon className="material-icons" style={{fontSize: 15}}>
+                flight
+              </FontIcon>
+            }
+            stepLabel="Flight details"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Continue" primary={true}
                 onClick={this.continue}
@@ -94,23 +105,17 @@ const VerticalLinearStepper = React.createClass({
             ]}
           >
             <div>
-              After finding out your 'css', if you really love your 'css' and want
-              to keep 'css', you should spend more time and time on her/him.
-              All your time 24h in a day is not only for coding, but also for your lover.
-              Rememeber it.
-              <i>This step really need to be done first. If not, we can't continue the rest steps</i>
-              <br></br>
-              If you agree with me, let 's continue.
+              Please enter your booking reference, last name, and flight number.
             </div>
           </Step>
 
           <Step
-            orderStepLabel="2"
+            orderStepLabel={<SeatIcon style={iconStyle} />}
             isCompleted={false}
             optional={true}
             stepLabel={
               <div>
-                <div>Let's up-to-date</div>
+                <div>Seat selection</div>
                 <div style={{fontSize: 10, lineHeight: '5px'}}>optional</div>
               </div>
             }
@@ -125,17 +130,14 @@ const VerticalLinearStepper = React.createClass({
             ]}
           >
             <div>
-              In css world, let's up-to-date your knowledge to know which is no longer used
-              and which is useful
-              <br></br>
-              And it is the same with your 'css' in real world. But sometimes, the old things are better
-              So this step is optional
+              If you wish to change your assigned seat, please select an alternative seat,
+              or click Finish below to skip this step.
             </div>
           </Step>
 
           <Step
-            orderStepLabel="3"
-            stepLabel="Use suitable properties at the right situation"
+            orderStepLabel={<PrintIcon style={iconStyle} />}
+            stepLabel="Boarding pass"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Finish" primary={true}
                 onClick={this.continue}
@@ -144,11 +146,7 @@ const VerticalLinearStepper = React.createClass({
             ]}
           >
             <div>
-              In css, we can use 'absolute' or 'relative' or something else to describe
-              position of html tag depend on situation.
-              <br></br>
-              And it is the same with your 'css' in your real life. So be careful when talking with
-              her/him. Let's be good programmer =D
+              Please print your boarding pass.
             </div>
           </Step>
         </Stepper>

@@ -70,7 +70,7 @@ const HorizontalStepper = React.createClass({
           fontSize: 20,
         }}
         >
-          How to say goodbye to your 'css'
+          Material-UI User Group Registration
         </div>
         <Stepper
           horizontal={true}
@@ -81,7 +81,7 @@ const HorizontalStepper = React.createClass({
         >
           <Step
             orderStepLabel="1"
-            stepLabel="Spending all your time on coding"
+            stepLabel="User account"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Continue" primary={true}
                 onClick={this.continue}
@@ -90,12 +90,12 @@ const HorizontalStepper = React.createClass({
             ]}
           >
             <div style={{padding: 20}}>
-              Don't take your time on your 'css'. And then you will see what will happen.
+              Please create an account, or login with your account details.
             </div>
           </Step>
           <Step
             orderStepLabel="2"
-            stepLabel="Be poor 'programmer' with your 'css'"
+            stepLabel="Event registration"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Continue" primary={true}
                 onClick={this.continue}
@@ -104,14 +104,13 @@ const HorizontalStepper = React.createClass({
             ]}
           >
             <div style={{padding: 20}}>
-              You don't update your knowledge and you will be out of date. You no longer understand
-              your 'css'. Then you will see what will happen
+              Please sign up for the event you wish to attend.
             </div>
           </Step>
 
           <Step
             orderStepLabel="3"
-            stepLabel="Say goodbye"
+            stepLabel="Payment"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Finish" primary={true}
                 onClick={this.continue}
@@ -120,7 +119,7 @@ const HorizontalStepper = React.createClass({
             ]}
           >
             <div style={{padding: 20}}>
-              Good bye
+              Please provide your credit card details.
             </div>
           </Step>
         </Stepper>
