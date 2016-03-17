@@ -1,7 +1,7 @@
 ## HEAD
 
 ## 0.15.0-alpha.2
-###### _Mar 15, 2016_
+###### _Mar 18, 2016_
 
 ##### Breaking Changes
 - [Core] if you used Material-UI from npm in CommonJS environment,
@@ -21,6 +21,7 @@ import MUI from 'material-ui' // no changes here 😀
 - [Styles] RaisedButton, FlatButton, and FloatingActionButton now properly use primary/secondary colors (#3513)
 - [Menu] Remove Paper (#3559)
 - [List] Remove Paper (#3612)
+- [TextField] Remove `valueLink` (#3699)
 
 ##### New Component
 - [Stepper](#3132) ( Big Thanks to @namKolo )
@@ -41,11 +42,13 @@ import MUI from 'material-ui' // no changes here 😀
   - [FlatButton](#3676)
   - [FloatingActionButton](#3683)
   - [FontIcon](#3693)
+  - [IconButton](#3709)
 - [Tests] Add mocha grep passthrough for browser tests (#3520)
 - [Tests] Add `EnhancedButton` unit test and tweak karma config (#3512)
 - [Tests] Add `FlatButton` unit test (#3541)
 - [Tests] Add `Divider` unit test (#3527)
 - [Tests] Add `Paper` unit tests (#3528)
+- [Tests] Add `Slider` unit tests (#3688)
 - [IconBuilder] Move to packages directory (#3680)
 - Added the following eslint rules:
   1. Enforce `operator-linebreak` (#3516)
@@ -54,6 +57,7 @@ import MUI from 'material-ui' // no changes here 😀
 
 ##### Component Fixes / Enhancements
 - [AppBar] Fix the title height variation (#3509)
+- [AutoComplete] Add key support for `dataSource` (#3662)
 - [AutoComplete] Fix browser compatibility (#3581)
 - [AutoComplete] Fix `openOnFocus` and item click (#3669)
 - [AutoComplete] Proxy focus and blur calls (#3551)
@@ -68,6 +72,7 @@ import MUI from 'material-ui' // no changes here 😀
 - [EnhancedSwitch] Remove the uniqueId as it unused (#3592)
 - [FlatButton] Fix icon alignment when no label provided (#3529)
 - [FlatButton] Fix icon styling when no label provided (#3502)
+- [FlatButton] Fix the text align issue (#3727)
 - [IconButton] Expose `disableTouchRipple` (#3659)
 - [IconMenu] Add missing default iconStyle (#3514)
 - [IconMenu] Set container as `anchorEl` when using prop 'open' (#3666)
@@ -76,16 +81,16 @@ import MUI from 'material-ui' // no changes here 😀
 - [Popover] Avoid nested `<noscript/>` (#3647)
 - [RaisedButton] Account for `backgroundColor` prop which was previously ignored (#3515)
 - [RaisedButton] Fix styling issues (#3479)
+- [RaisedButton] Fix the text align issue (#3727)
 - [Slider] Add keyboard support (#3237)
 - [Snackbar] Make on request close optional (#3560)
 - [Tab] Fix `style` prop being ignored (#3608)
-- [TableBody] Don't ignore the possible `selected` prop passed to the `TableRow` (#3505)
-- [TableRow] Propagate events (#3492)
 - [TableRowColumn] Propagate events (#3492)
 - [TextField] Add `floatingLabelFixed` property (#3646)
 - [TextField] Add `shouldComponentUpdate` function (#3673)
 - [TextField] Add the ability to call select (#3287)
 - [TextField] Fix `defaultValue` overlays `floatingLabelText` on mount (#3450)
+- [TextField] Standardize onChange callback (#3699)
 - [TimePicker] Reinstate #3030 - Add support for custom button labels (#3148)
 - [TimePicker] Remove a useless div element (#3591)
 - [Toolbar] Fix existing design flaws by using flex (#3548)
