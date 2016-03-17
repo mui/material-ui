@@ -23,8 +23,8 @@ const RaisedButtonExampleIcon = () => (
       linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
-      style={style}
       icon={<FontIcon className="muidocs-icon-custom-github" />}
+      style={style}
     />
   </div>
 );
