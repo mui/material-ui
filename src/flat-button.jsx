@@ -254,6 +254,8 @@ const FlatButton = React.createClass({
       minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,
+      // That's the default value for a button but not a link
+      textAlign: 'center',
     }, style);
 
     let iconCloned;
@@ -267,7 +269,6 @@ const FlatButton = React.createClass({
           verticalAlign: 'middle',
           marginLeft: label && labelPosition !== 'before' ? 12 : 0,
           marginRight: label && labelPosition === 'before' ? 12 : 0,
-          display: label || !linkButton ? 'inline-block' : 'block',
         },
       });
 

@@ -27,7 +27,6 @@ function getStyles(props, state) {
     icon,
     label,
     labelPosition,
-    linkButton,
     primary,
     secondary,
     style,
@@ -72,6 +71,8 @@ function getStyles(props, state) {
       borderRadius: 2,
       transition: Transitions.easeOut(),
       backgroundColor: backgroundColor,
+      // That's the default value for a button but not a link
+      textAlign: 'center',
     },
     label: {
       position: 'relative',
@@ -93,8 +94,6 @@ function getStyles(props, state) {
       verticalAlign: 'middle',
       marginLeft: label && labelPosition !== 'before' ? 12 : 0,
       marginRight: label && labelPosition === 'before' ? 12 : 0,
-      display: label || !linkButton ? 'inline-block' : 'block',
-      textAlign: label || !linkButton ? '' : 'center',
     },
     overlay: {
       backgroundColor: state.hovered && !disabled && ColorManipulator.fade(labelColor, amount),
