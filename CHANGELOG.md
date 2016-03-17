@@ -8,13 +8,13 @@
 you need to add `.default` to your requires (#3648):
 
 ```diff
-- var MUI = require('material-ui')
-+ var MUI = require('material-ui').default
+- const MUI = require('material-ui');
++ const MUI = require('material-ui').default;
 ```
 
 If you used ES modules, you’re already all good:
 ```js
-import MUI from 'material-ui' // no changes here 😀
+import MUI from 'material-ui'; // no changes here :D
 ```
 
 - [Core] Remove uniqueId utils (#3538)
