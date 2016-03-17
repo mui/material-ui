@@ -61,7 +61,7 @@ const VerticalNonLinearStepper = React.createClass({
           fontSize: 20,
         }}
         >
-          How to get a lot of money
+          Your interests
         </div>
         <Stepper
           activeStepIndex={this.state.activeStepIndex}
@@ -71,7 +71,7 @@ const VerticalNonLinearStepper = React.createClass({
         >
           <Step
             orderStepLabel="1"
-            stepLabel="Get a good job"
+            stepLabel="Books"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Finish" primary={true}
                 onClick={this.continue}
@@ -80,12 +80,12 @@ const VerticalNonLinearStepper = React.createClass({
             ]}
           >
             <div>
-              Get a good job and it will bring for you many things.
+              Please list your favorite reads.
             </div>
           </Step>
           <Step
             orderStepLabel="2"
-            stepLabel="Sell your house"
+            stepLabel="Movies"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Finish" primary={true}
                 onClick={this.continue}
@@ -94,13 +94,13 @@ const VerticalNonLinearStepper = React.createClass({
             ]}
           >
             <div style={{height: 50}}>
-              Sell your house then you can earn money
+              Please list your favorite flicks.
             </div>
           </Step>
 
           <Step
             orderStepLabel="3"
-            stepLabel="Buy a ticket"
+            stepLabel="Music"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Finish" primary={true}
                 onClick={this.continue}
@@ -109,7 +109,7 @@ const VerticalNonLinearStepper = React.createClass({
             ]}
           >
             <div style={{height: 50}}>
-              Buy a ticket and wait for getting money
+              Please list your favorite tunes.
             </div>
           </Step>
         </Stepper>

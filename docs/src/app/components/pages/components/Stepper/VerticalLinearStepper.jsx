@@ -70,7 +70,7 @@ const VerticalLinearStepper = React.createClass({
           fontSize: 20,
         }}
         >
-          How to find the real "css" of your life
+          Create an Ad Campaign
         </div>
         <Stepper
           activeStepIndex={this.state.activeStepIndex}
@@ -80,7 +80,7 @@ const VerticalLinearStepper = React.createClass({
         >
           <Step
             orderStepLabel="1"
-            stepLabel="Stop coding"
+            stepLabel="Select campaign settings"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Continue" primary={true}
                 onClick={this.continue}
@@ -89,14 +89,12 @@ const VerticalLinearStepper = React.createClass({
             ]}
           >
             <div>
-              If you code everyday, you may just know css for web not for your life.
-              So stoping coding first.<br></br>
-              If you agree, let 's press Continue
+              Please select the type of campaign you wish to create.
             </div>
           </Step>
           <Step
             orderStepLabel="2"
-            stepLabel="Get away your computer"
+            stepLabel="Create ad group"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Continue" primary={true}
                 onClick={this.continue}
@@ -105,16 +103,14 @@ const VerticalLinearStepper = React.createClass({
             ]}
           >
             <div>
-              The important thing is getting away your computer. If you follow
-              the step 1, but you should still sit in front of the computer, you
-              can't find <i>destination css</i> for your life. <br></br>
-              So if you agree, let's press continue
+              Please create an ad group for this campaign.<br /><br />
+              Your campaign may contain multiple ad groups.
             </div>
           </Step>
 
           <Step
             orderStepLabel="3"
-            stepLabel="Finally, go out and start a new journey"
+            stepLabel="Create an ad"
             controlButtonsGroup={[
               <RaisedButton key={0} label="Finish" primary={true}
                 onClick={this.continue}
@@ -123,9 +119,7 @@ const VerticalLinearStepper = React.createClass({
             ]}
           >
             <div style={{height: 50}}>
-              Start your new journey in real life and find your real "css" for your
-              life. Hope you find out soon.
-              Press Finish if you find out.
+              Please create one or more adverts for this ad group.
             </div>
           </Step>
         </Stepper>
