@@ -7,27 +7,27 @@ import {getMuiTheme} from '../styles';
 
 const Step = React.createClass({
   propTypes: {
+    /**
+     * An array of nodes for handling moving or canceling steps.
+     */
+    actions: PropTypes.arrayOf(PropTypes.node),
+
+    /**
+     * Override the inline-style of the div which contains the actions.
+     */
+    actionsWrapperStyle: PropTypes.object,
+
     children: PropTypes.node,
 
     /**
-     * Override the inline-styles of div which contains all the children include control button groups.
+     * Override the inline-style of the div which contains all the children, including control button groups.
      */
     childrenWrapperStyle: PropTypes.object,
 
     /**
-     * Override the inline-styles of connector line.
+     * Override the inline-style of the connector line.
      */
     connectorLineStyle: PropTypes.object,
-
-    /**
-     * An array of node for handling moving or canceling steps.
-     */
-    controlButtonsGroup: PropTypes.arrayOf(PropTypes.node),
-
-    /**
-     * Override the inline-styles of div wrapper which contains control buttons group.
-     */
-    controlButtonsGroupWrapperStyle: PropTypes.object,
 
     /**
      * @ignore
@@ -55,13 +55,13 @@ const Step = React.createClass({
 
     /**
      * @ignore
-     * Callback function that is fired when the header of step is hovered.
+     * Callback function fired when the header of step is hovered.
      */
     onStepHeaderHover: PropTypes.func,
 
     /**
      * @ignore
-     * Callback function that is fired when the header of step is touched.
+     * Callback function fired when the header of step is touched.
      */
     onStepHeaderTouch: PropTypes.func,
 
@@ -72,17 +72,17 @@ const Step = React.createClass({
     previousStepOptionalIndex: PropTypes.number,
 
     /**
-     * Override the inline-styles of step container which contains connector line and children.
+     * Override the inline-style of step container, which contains connector line and children.
      */
     stepContainerStyle: PropTypes.object,
 
     /**
-     * Override the inline-styles of step header view (not include left avatar).
+     * Override the inline-style of step header (not including left avatar).
      */
     stepHeaderStyle: PropTypes.object,
 
     /**
-     * Override the inline-styles of step header wrapper (include left avatar).
+     * Override the inline-style of step header wrapper, including left avatar.
      */
     stepHeaderWrapperStyle: PropTypes.object,
 
@@ -93,7 +93,7 @@ const Step = React.createClass({
     stepIndex: PropTypes.number,
 
     /**
-     * Customize the step label view.
+     * Customize the step label.
      */
     stepLabel: PropTypes.node,
   },
@@ -192,7 +192,7 @@ const Step = React.createClass({
       stepHeaderWrapperStyle,
       connectorLineStyle,
       stepContainerStyle,
-      controlButtonsGroupWrapperStyle,
+      actionsWrapperStyle,
       childrenWrapperStyle,
     } = this.props;
 
@@ -262,9 +262,9 @@ const Step = React.createClass({
       marginTop: -8,
     });
 
-    const controlButtonsGroupWrapper = Object.assign({
+    const actionsWrapper = Object.assign({
       marginTop: 16,
-    }, controlButtonsGroupWrapperStyle);
+    }, actionsWrapperStyle);
 
     const childrenWrapper = Object.assign({
       paddingLeft: 24,
@@ -292,7 +292,7 @@ const Step = React.createClass({
       stepHeaderWrapper: stepHeaderWrapper,
       stepContainer: stepContainer,
       connectorLine: connectorLine,
-      controlButtonsGroupWrapper: controlButtonsGroupWrapper,
+      actionsWrapper: actionsWrapper,
       childrenWrapper: childrenWrapper,
       stepHeader: stepHeader,
     };
@@ -302,7 +302,7 @@ const Step = React.createClass({
     const {
       children,
       stepLabel,
-      controlButtonsGroup,
+      actions,
       isLastStep,
     } = this.props;
 
@@ -329,14 +329,14 @@ const Step = React.createClass({
           </TouchRipple>
         </div>
         <div style={styles.stepContainer} ref="containerWrapper">
-          {!isLastStep && <div style={styles.connectorLine} />}
+          {!isLastStep && <div style={styles.connectorLine}></div>}
           {<div style={styles.childrenWrapper} ref="childrenWrapper">
             <div>
               <div>
                   {children}
               </div>
-              <div style={styles.controlButtonsGroupWrapper}>
-                  {controlButtonsGroup}
+              <div style={styles.actionsWrapper}>
+                  {actions}
               </div>
             </div>
           </div>

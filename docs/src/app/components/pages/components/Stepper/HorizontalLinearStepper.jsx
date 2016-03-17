@@ -11,30 +11,30 @@ import FlatButton from 'material-ui/lib/flat-button';
 const HorizontalStepper = React.createClass({
   getInitialState() {
     return {
-      activeStepIndex: -1,
-      lastActiveStepIndex: 0,
+      activeStep: -1,
+      lastActiveStep: 0,
     };
   },
 
-  selectStep(stepIndex) {
+  selectStep(currentStep) {
     const {
-      lastActiveStepIndex,
-      activeStepIndex,
+      lastActiveStep,
+      activeStep,
 
     } = this.state;
 
-    if (stepIndex > lastActiveStepIndex) {
+    if (currentStep > lastActiveStep) {
       return;
     }
 
     this.setState({
-      activeStepIndex: stepIndex,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex),
+      activeStep: currentStep,
+      lastActiveStep: Math.max(lastActiveStep, activeStep),
     });
   },
 
-  updateCompletedSteps(stepIndex) {
-    return stepIndex < this.state.lastActiveStepIndex;
+  updateCompletedSteps(currentStep) {
+    return currentStep < this.state.lastActiveStep;
   },
 
   createIcon(step) {
@@ -51,13 +51,13 @@ const HorizontalStepper = React.createClass({
 
   continue() {
     const {
-      activeStepIndex,
-      lastActiveStepIndex,
+      activeStep,
+      lastActiveStep,
     } = this.state;
 
     this.setState({
-      activeStepIndex: activeStepIndex + 1,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex + 1),
+      activeStep: activeStep + 1,
+      lastActiveStep: Math.max(lastActiveStep, activeStep + 1),
     });
   },
 
@@ -74,16 +74,19 @@ const HorizontalStepper = React.createClass({
         </div>
         <Stepper
           horizontal={true}
-          activeStepIndex={this.state.activeStepIndex}
+          activeStep={this.state.activeStep}
           onStepHeaderTouch={this.selectStep}
-          updateCompletedStatusOfStep={this.updateCompletedSteps}
+          updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
           <Step
             orderStepLabel="1"
             stepLabel="User account"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
               />,
               <FlatButton key={1} label="Cancel" />,
@@ -96,8 +99,11 @@ const HorizontalStepper = React.createClass({
           <Step
             orderStepLabel="2"
             stepLabel="Event registration"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
               />,
               <FlatButton key={1} label="Cancel" />,
@@ -111,8 +117,11 @@ const HorizontalStepper = React.createClass({
           <Step
             orderStepLabel="3"
             stepLabel="Payment"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Finish" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Finish"
+                primary={true}
                 onClick={this.continue}
               />,
               <FlatButton key={1} label="Cancel" />,

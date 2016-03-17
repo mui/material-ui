@@ -4,72 +4,69 @@ import Paper from '../paper';
 
 const Stepper = React.createClass({
   propTypes: {
-
     /**
-     * The current active step index which passed by parent component.
+     * Set the active step.
      */
-    activeStepIndex: PropTypes.number,
+    activeStep: PropTypes.number,
 
     /**
-     * Children should be Step type.
+     * Should be two or more `HorizontalStep` or `VerticalStep`.
      */
     children: PropTypes.node,
 
-    /*
-     * Override inline-style of the content container.
+    /**
+     * Override the inline-style of the content container.
      */
     containerStyle: PropTypes.object,
 
     /**
-     * Function used to create suitable icon for step base on state of the step.
+     * Function used to set a suitable icon for the step, based on the current state of the step.
      *
-     * @param {node} Step component which is being updated .
-     * @returns {node} - which will be shown in the left avatar.
+     * @param {node} Step Component that is being updated.
+     * @returns {node} - Icon that will be shown for the step.
      */
     createIcon: PropTypes.func,
 
     /**
-     * If true, it will be horizontal stepper.
+     * If true, it will be horizontal stepper. Should match the step type used for `children`.
      */
     horizontal: PropTypes.bool,
 
     /**
-     * Callback function that is fired when the header of step is touched.
+     * Callback function fired when the step header is touched.
      *
      * @param {number} stepIndex - The index of step is being touched.
-     * @param {node} Step component which is being touched
+     * @param {node} Step component that is being touched.
      */
     onStepHeaderTouch: PropTypes.func,
 
     /**
-     * Overrie inline-style of the step header wrapper.
+     * Override the inline-style of the step header wrapper.
      */
     stepHeadersWrapperStyle: PropTypes.object,
 
     /**
-     * Override the inline-styles of the root element.
+     * Override the inline-style of the root element.
      */
     style: PropTypes.object,
 
     /**
-     * Callback function that is fired when re-render to update the background of left avatar.
-     If not passed, it will use default theme
+     * Callback function fired on re-render to set the background color of the icon.
+     * If not passed, it will use the default theme.
      *
-     * @param {node}  Step component which is being updated
-     * @returns {string} the background color of avatar
+     * @param {node}  Step Component which is being updated.
+     * @returns {string} The background color of the icon.
      */
     updateAvatarBackgroundColor: PropTypes.func,
 
     /**
-     * Callback function that is fired  when re-render to update complete status of Step.
+     * Callback function fired on re-render to update the completed status of the step.
      *
-     * @param {number} stepIndex - The step is being updated.
-     * @param {node} Step component which is being updated
+     * @param {number} stepIndex - The step that is being updated.
+     * @param {node} Step Component that is being updated.
      * @returns {boolean} `true` if the step is completed.
      */
-    updateCompletedStatusOfStep: PropTypes.func,
-
-
+    updateCompletedStatus: PropTypes.func,
   },
 
   contextTypes: {
@@ -84,7 +81,7 @@ const Stepper = React.createClass({
 
   getDefaultProps() {
     return {
-      activeStepIndex: -1,
+      activeStep: -1,
       onStepHeaderTouch: () => {},
       updateAvatarBackgroundColor: () => null,
       style: {},
@@ -116,14 +113,14 @@ const Stepper = React.createClass({
 
     const childrenWrapperNode = this.refs.childrenWrapper;
     const containerWrapperNode = this.refs.containerWrapper;
-    const controlButtonsGroupNode = this.refs.controlButtonsGroup;
+    const actionsNode = this.refs.actions;
 
     if (containerWrapperNode.style.height === '0px' &&
-      nextProps.activeStepIndex > -1) {
+      nextProps.activeStep > -1) {
       containerWrapperNode.style.height = `${(childrenWrapperNode.offsetHeight +
-        controlButtonsGroupNode.offsetHeight + 40)}px`;
+        actionsNode.offsetHeight + 40)}px`;
       childrenWrapperNode.style.transition = 'none';
-    } else if (nextProps.activeStepIndex > this.getTotalSteps() - 1) {
+    } else if (nextProps.activeStep > this.getTotalSteps() - 1) {
       containerWrapperNode.style.height = '0px';
     } else {
       childrenWrapperNode.style.transition = 'all 1s';
@@ -139,11 +136,11 @@ const Stepper = React.createClass({
       stepHeadersWrapperStyle,
       containerStyle,
       style,
-      activeStepIndex,
+      activeStep,
     } = this.props;
 
     const itemWidth = this.state.itemWidth;
-    const translateX = -activeStepIndex * itemWidth;
+    const translateX = -activeStep * itemWidth;
 
     const childrenWrapper = {
       transform: `translate3d(${translateX}px, 0px, 0px)`,
@@ -159,7 +156,7 @@ const Stepper = React.createClass({
     const wrapper = Object.assign({
       overflow: 'hidden',
     },
-      activeStepIndex > -1 && {
+      activeStep > -1 && {
         transition: 'all 0.5s',
       },
       style
@@ -200,32 +197,32 @@ const Stepper = React.createClass({
     const {
        children,
        onStepHeaderTouch,
-       activeStepIndex,
-       updateCompletedStatusOfStep,
+       activeStep,
+       updateCompletedStatus,
     } = this.props;
 
     const {
       hoveredHeaderStepIndex,
     } = this.state;
 
-    const setOfChildrens = [];
-    const setOfControlButtonsGroup = [];
+    const setOfChildren = [];
+    const setOfActions = [];
 
     const steps = React.Children.map(children, (step, index) => {
-      setOfChildrens.push(step.props.children);
-      setOfControlButtonsGroup.push(step.props.controlButtonsGroup);
+      setOfChildren.push(step.props.children);
+      setOfActions.push(step.props.actions);
 
       return React.cloneElement(step, {
         headerWidth: `${100 / this.getTotalSteps()}%`,
         key: index,
         stepIndex: index,
-        isActive: activeStepIndex === index,
+        isActive: activeStep === index,
         isStepHeaderHovered: hoveredHeaderStepIndex === index,
         onStepHeaderTouch: onStepHeaderTouch,
         onStepHeaderHover: this._handleHeaderStepHover,
         isLastStep: index === (this.getTotalSteps() - 1),
         isFirstStep: index === 0,
-        isCompleted: updateCompletedStatusOfStep(index, step),
+        isCompleted: updateCompletedStatus(index, step),
         previousStepOptionalIndex: this.findFurthestOptionalStep(index),
       });
     });
@@ -252,14 +249,14 @@ const Stepper = React.createClass({
         <div style={styles.container} ref="containerWrapper">
           <div style={styles.childrenWrapper} ref="childrenWrapper">
             <div style={{display: 'inline-flex'}}>
-              {setOfChildrens.map((children, index) =>
+              {setOfChildren.map((children, index) =>
                 <div style={{width: itemWidth}} key={index}>
                   {children}
                 </div>)}
             </div>
           </div>
-          <div style={{padding: 20, display: 'flex', justifyContent: 'flex-end'}} ref="controlButtonsGroup">
-            {setOfControlButtonsGroup[activeStepIndex]}
+          <div style={{padding: 20, display: 'flex', justifyContent: 'flex-end'}} ref="actions">
+            {setOfActions[activeStep]}
           </div>
         </div>
       </div>
@@ -271,8 +268,8 @@ const Stepper = React.createClass({
      style,
      children,
      onStepHeaderTouch,
-     activeStepIndex,
-     updateCompletedStatusOfStep,
+     activeStep,
+     updateCompletedStatus,
    } = this.props;
 
     const {
@@ -283,12 +280,12 @@ const Stepper = React.createClass({
       return React.cloneElement(step, {
         key: index,
         stepIndex: index,
-        isActive: activeStepIndex === index,
+        isActive: activeStep === index,
         isStepHeaderHovered: hoveredHeaderStepIndex === index,
         onStepHeaderTouch: onStepHeaderTouch,
         onStepHeaderHover: this._handleHeaderStepHover,
         isLastStep: index === (this.getTotalSteps() - 1),
-        isCompleted: updateCompletedStatusOfStep(index, step),
+        isCompleted: updateCompletedStatus(index, step),
         previousStepOptionalIndex: this.findFurthestOptionalStep(index),
       });
     });

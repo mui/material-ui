@@ -10,39 +10,57 @@ import FlatButton from 'material-ui/lib/flat-button';
 import SeatIcon from 'material-ui/lib/svg-icons/action/event-seat';
 import PrintIcon from 'material-ui/lib/svg-icons/action/print';
 
-const iconStyle = {
-  width: 15,
-  height: 15,
+const styles = {
+  icon: {
+    width: 15,
+    height: 15,
+  },
+  paper: {
+    width: 500,
+    margin: 'auto',
+  },
+  header: {
+    textAlign: 'center',
+    padding: 10,
+    fontSize: 20,
+  },
+  actionButton: {
+    marginRight: 8,
+  },
+  stepLabelSecondary: {
+    fontSize: 10,
+    lineHeight: '5px',
+  },
 };
 
 const VerticalLinearStepper = React.createClass({
   getInitialState() {
     return {
-      activeStepIndex: -1,
-      lastActiveStepIndex: 0,
+      activeStep: -1,
+      lastActiveStep: 0,
       statusSteps: [],
     };
   },
 
-  selectStep(stepIndex, step) {
+  selectStep(currentStep, step) {
     const {
-      lastActiveStepIndex,
-      activeStepIndex,
+      lastActiveStep,
+      activeStep,
 
     } = this.state;
 
-    if (stepIndex > lastActiveStepIndex && lastActiveStepIndex < step.props.previousStepOptionalIndex) {
+    if (currentStep > lastActiveStep && lastActiveStep < step.props.previousStepOptionalIndex) {
       return;
     }
 
     this.setState({
-      activeStepIndex: stepIndex,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex),
+      activeStep: currentStep,
+      lastActiveStep: Math.max(lastActiveStep, activeStep),
     });
   },
 
-  updateCompletedSteps(stepIndex) {
-    return this.state.statusSteps[stepIndex];
+  updateCompletedSteps(currentStep) {
+    return this.state.statusSteps[currentStep];
   },
 
   createIcon(step) {
@@ -59,35 +77,30 @@ const VerticalLinearStepper = React.createClass({
 
   continue() {
     const {
-      activeStepIndex,
-      lastActiveStepIndex,
+      activeStep,
+      lastActiveStep,
       statusSteps,
     } = this.state;
 
-    statusSteps[activeStepIndex] = true;
+    statusSteps[activeStep] = true;
 
     this.setState({
-      activeStepIndex: activeStepIndex + 1,
+      activeStep: activeStep + 1,
       statusSteps: statusSteps,
-      lastActiveStepIndex: Math.max(lastActiveStepIndex, activeStepIndex + 1),
+      lastActiveStep: Math.max(lastActiveStep, activeStep + 1),
     });
   },
 
   render() {
     return (
-      <Paper style={{width: 500, margin: 'auto'}}>
-        <div style={{
-          textAlign: 'center',
-          padding: 10,
-          fontSize: 20,
-        }}
-        >
+      <Paper style={styles.paper}>
+        <div style={styles.header}>
           Online check-in
         </div>
         <Stepper
-          activeStepIndex={this.state.activeStepIndex}
+          activeStep={this.state.activeStep}
           onStepHeaderTouch={this.selectStep}
-          updateCompletedStatusOfStep={this.updateCompletedSteps}
+          updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
           <Step
@@ -97,52 +110,73 @@ const VerticalLinearStepper = React.createClass({
               </FontIcon>
             }
             stepLabel="Flight details"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>
-              Please enter your booking reference, last name, and flight number.
+              Please enter your booking reference, and flight number.
             </div>
           </Step>
 
           <Step
-            orderStepLabel={<SeatIcon style={iconStyle} />}
+            orderStepLabel={<SeatIcon style={styles.icon} />}
             isCompleted={false}
             optional={true}
             stepLabel={
               <div>
                 <div>Seat selection</div>
-                <div style={{fontSize: 10, lineHeight: '5px'}}>optional</div>
+                <div style={styles.stepLabelSecondary}>optional</div>
               </div>
             }
             stepHeaderStyle={{
               alignItems: 'center',
             }}
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <FlatButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>
-              If you wish to change your assigned seat, please select an alternative seat,
-              or click Finish below to skip this step.
+              If you wish to change your assigned seat, please select
+              an alternative seat, or click Finish below to skip this step.
             </div>
           </Step>
 
           <Step
-            orderStepLabel={<PrintIcon style={iconStyle} />}
+            orderStepLabel={<PrintIcon style={styles.icon} />}
             stepLabel="Boarding pass"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Finish" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Finish"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>

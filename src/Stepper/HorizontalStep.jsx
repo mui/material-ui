@@ -55,7 +55,7 @@ const HorizontalStep = React.createClass({
     onStepHeaderTouch: React.PropTypes.func,
 
     /**
-     * Override inline style of step header wrapper.
+     * Override inline-style of step header wrapper.
      */
     stepHeaderWrapperStyle: React.PropTypes.object,
 
