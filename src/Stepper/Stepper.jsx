@@ -22,8 +22,8 @@ const Stepper = React.createClass({
     /**
      * Function used to set a suitable icon for the step, based on the current state of the step.
      *
-     * @param {node} Step Component which is being updated.
-     * @returns {node} - Icon which will be shown in the left avatar.
+     * @param {node} Step Component that is being updated.
+     * @returns {node} - Icon that will be shown for the step.
      */
     createIcon: PropTypes.func,
 
@@ -36,7 +36,7 @@ const Stepper = React.createClass({
      * Callback function fired when the step header is touched.
      *
      * @param {number} stepIndex - The index of step is being touched.
-     * @param {node} Step component which is being touched
+     * @param {node} Step component that is being touched.
      */
     onStepHeaderTouch: PropTypes.func,
 
@@ -51,11 +51,11 @@ const Stepper = React.createClass({
     style: PropTypes.object,
 
     /**
-     * Callback function fired on re-render to update the background of the left avatar.
+     * Callback function fired on re-render to set the background color of the icon.
      * If not passed, it will use the default theme.
      *
      * @param {node}  Step Component which is being updated.
-     * @returns {string} The background color of avatar.
+     * @returns {string} The background color of the icon.
      */
     updateAvatarBackgroundColor: PropTypes.func,
 
@@ -113,12 +113,12 @@ const Stepper = React.createClass({
 
     const childrenWrapperNode = this.refs.childrenWrapper;
     const containerWrapperNode = this.refs.containerWrapper;
-    const controlButtonsGroupNode = this.refs.controlButtonsGroup;
+    const actionsNode = this.refs.actions;
 
     if (containerWrapperNode.style.height === '0px' &&
       nextProps.activeStep > -1) {
       containerWrapperNode.style.height = `${(childrenWrapperNode.offsetHeight +
-        controlButtonsGroupNode.offsetHeight + 40)}px`;
+        actionsNode.offsetHeight + 40)}px`;
       childrenWrapperNode.style.transition = 'none';
     } else if (nextProps.activeStep > this.getTotalSteps() - 1) {
       containerWrapperNode.style.height = '0px';
@@ -205,12 +205,12 @@ const Stepper = React.createClass({
       hoveredHeaderStepIndex,
     } = this.state;
 
-    const setOfChildrens = [];
-    const setOfControlButtonsGroup = [];
+    const setOfChildren = [];
+    const setOfActions = [];
 
     const steps = React.Children.map(children, (step, index) => {
-      setOfChildrens.push(step.props.children);
-      setOfControlButtonsGroup.push(step.props.controlButtonsGroup);
+      setOfChildren.push(step.props.children);
+      setOfActions.push(step.props.actions);
 
       return React.cloneElement(step, {
         headerWidth: `${100 / this.getTotalSteps()}%`,
@@ -249,14 +249,14 @@ const Stepper = React.createClass({
         <div style={styles.container} ref="containerWrapper">
           <div style={styles.childrenWrapper} ref="childrenWrapper">
             <div style={{display: 'inline-flex'}}>
-              {setOfChildrens.map((children, index) =>
+              {setOfChildren.map((children, index) =>
                 <div style={{width: itemWidth}} key={index}>
                   {children}
                 </div>)}
             </div>
           </div>
-          <div style={{padding: 20, display: 'flex', justifyContent: 'flex-end'}} ref="controlButtonsGroup">
-            {setOfControlButtonsGroup[activeStep]}
+          <div style={{padding: 20, display: 'flex', justifyContent: 'flex-end'}} ref="actions">
+            {setOfActions[activeStep]}
           </div>
         </div>
       </div>

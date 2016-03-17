@@ -82,8 +82,11 @@ const HorizontalStepper = React.createClass({
           <Step
             orderStepLabel="1"
             stepLabel="User account"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
               />,
               <FlatButton key={1} label="Cancel" />,
@@ -96,8 +99,11 @@ const HorizontalStepper = React.createClass({
           <Step
             orderStepLabel="2"
             stepLabel="Event registration"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
               />,
               <FlatButton key={1} label="Cancel" />,
@@ -111,8 +117,11 @@ const HorizontalStepper = React.createClass({
           <Step
             orderStepLabel="3"
             stepLabel="Payment"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Finish" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Finish"
+                primary={true}
                 onClick={this.continue}
               />,
               <FlatButton key={1} label="Cancel" />,

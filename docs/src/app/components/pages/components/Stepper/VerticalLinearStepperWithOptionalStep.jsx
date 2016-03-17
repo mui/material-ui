@@ -10,9 +10,27 @@ import FlatButton from 'material-ui/lib/flat-button';
 import SeatIcon from 'material-ui/lib/svg-icons/action/event-seat';
 import PrintIcon from 'material-ui/lib/svg-icons/action/print';
 
-const iconStyle = {
-  width: 15,
-  height: 15,
+const styles = {
+  icon: {
+    width: 15,
+    height: 15,
+  },
+  paper: {
+    width: 500,
+    margin: 'auto',
+  },
+  header: {
+    textAlign: 'center',
+    padding: 10,
+    fontSize: 20,
+  },
+  actionButton: {
+    marginRight: 8,
+  },
+  stepLabelSecondary: {
+    fontSize: 10,
+    lineHeight: '5px',
+  },
 };
 
 const VerticalLinearStepper = React.createClass({
@@ -75,13 +93,8 @@ const VerticalLinearStepper = React.createClass({
 
   render() {
     return (
-      <Paper style={{width: 500, margin: 'auto'}}>
-        <div style={{
-          textAlign: 'center',
-          padding: 10,
-          fontSize: 20,
-        }}
-        >
+      <Paper style={styles.paper}>
+        <div style={styles.header}>
           Online check-in
         </div>
         <Stepper
@@ -97,52 +110,73 @@ const VerticalLinearStepper = React.createClass({
               </FontIcon>
             }
             stepLabel="Flight details"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>
-              Please enter your booking reference, last name, and flight number.
+              Please enter your booking reference, and flight number.
             </div>
           </Step>
 
           <Step
-            orderStepLabel={<SeatIcon style={iconStyle} />}
+            orderStepLabel={<SeatIcon style={styles.icon} />}
             isCompleted={false}
             optional={true}
             stepLabel={
               <div>
                 <div>Seat selection</div>
-                <div style={{fontSize: 10, lineHeight: '5px'}}>optional</div>
+                <div style={styles.stepLabelSecondary}>optional</div>
               </div>
             }
             stepHeaderStyle={{
               alignItems: 'center',
             }}
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <FlatButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>
-              If you wish to change your assigned seat, please select an alternative seat,
-              or click Finish below to skip this step.
+              If you wish to change your assigned seat, please select
+              an alternative seat, or click Finish below to skip this step.
             </div>
           </Step>
 
           <Step
-            orderStepLabel={<PrintIcon style={iconStyle} />}
+            orderStepLabel={<PrintIcon style={styles.icon} />}
             stepLabel="Boarding pass"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Finish" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Finish"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>

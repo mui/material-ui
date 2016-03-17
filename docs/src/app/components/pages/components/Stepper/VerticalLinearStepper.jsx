@@ -8,6 +8,21 @@ import FontIcon from 'material-ui/lib/font-icon';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
 
+const styles = {
+  paper: {
+    width: 500,
+    margin: 'auto',
+  },
+  header: {
+    textAlign: 'center',
+    padding: 10,
+    fontSize: 20,
+  },
+  actionButton: {
+    marginRight: 8,
+  },
+};
+
 const VerticalLinearStepper = React.createClass({
   getInitialState() {
     return {
@@ -63,13 +78,8 @@ const VerticalLinearStepper = React.createClass({
 
   render() {
     return (
-      <Paper style={{width: 500, margin: 'auto'}}>
-        <div style={{
-          textAlign: 'center',
-          padding: 10,
-          fontSize: 20,
-        }}
-        >
+      <Paper style={styles.paper}>
+        <div style={styles.header}>
           Create an Ad Campaign
         </div>
         <Stepper
@@ -81,11 +91,18 @@ const VerticalLinearStepper = React.createClass({
           <Step
             orderStepLabel="1"
             stepLabel="Select campaign settings"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>
@@ -95,11 +112,18 @@ const VerticalLinearStepper = React.createClass({
           <Step
             orderStepLabel="2"
             stepLabel="Create ad group"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Continue" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Continue"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div>
@@ -111,11 +135,18 @@ const VerticalLinearStepper = React.createClass({
           <Step
             orderStepLabel="3"
             stepLabel="Create an ad"
-            controlButtonsGroup={[
-              <RaisedButton key={0} label="Finish" primary={true}
+            actions={[
+              <RaisedButton
+                key={0}
+                label="Finish"
+                primary={true}
                 onClick={this.continue}
+                style={styles.actionButton}
               />,
-              <FlatButton key={1} label="Cancel" />,
+              <FlatButton
+                key={1}
+                label="Cancel"
+              />,
             ]}
           >
             <div style={{height: 50}}>

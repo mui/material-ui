@@ -7,6 +7,16 @@ import {getMuiTheme} from '../styles';
 
 const Step = React.createClass({
   propTypes: {
+    /**
+     * An array of nodes for handling moving or canceling steps.
+     */
+    actions: PropTypes.arrayOf(PropTypes.node),
+
+    /**
+     * Override the inline-style of the div which contains the actions.
+     */
+    actionsWrapperStyle: PropTypes.object,
+
     children: PropTypes.node,
 
     /**
@@ -18,16 +28,6 @@ const Step = React.createClass({
      * Override the inline-style of the connector line.
      */
     connectorLineStyle: PropTypes.object,
-
-    /**
-     * An array of nodes for handling moving or canceling steps.
-     */
-    controlButtonsGroup: PropTypes.arrayOf(PropTypes.node),
-
-    /**
-     * Override the inline-style of the div which contains the control buttons group.
-     */
-    controlButtonsGroupWrapperStyle: PropTypes.object,
 
     /**
      * @ignore
@@ -192,7 +192,7 @@ const Step = React.createClass({
       stepHeaderWrapperStyle,
       connectorLineStyle,
       stepContainerStyle,
-      controlButtonsGroupWrapperStyle,
+      actionsWrapperStyle,
       childrenWrapperStyle,
     } = this.props;
 
@@ -262,9 +262,9 @@ const Step = React.createClass({
       marginTop: -8,
     });
 
-    const controlButtonsGroupWrapper = Object.assign({
+    const actionsWrapper = Object.assign({
       marginTop: 16,
-    }, controlButtonsGroupWrapperStyle);
+    }, actionsWrapperStyle);
 
     const childrenWrapper = Object.assign({
       paddingLeft: 24,
@@ -292,7 +292,7 @@ const Step = React.createClass({
       stepHeaderWrapper: stepHeaderWrapper,
       stepContainer: stepContainer,
       connectorLine: connectorLine,
-      controlButtonsGroupWrapper: controlButtonsGroupWrapper,
+      actionsWrapper: actionsWrapper,
       childrenWrapper: childrenWrapper,
       stepHeader: stepHeader,
     };
@@ -302,7 +302,7 @@ const Step = React.createClass({
     const {
       children,
       stepLabel,
-      controlButtonsGroup,
+      actions,
       isLastStep,
     } = this.props;
 
@@ -335,8 +335,8 @@ const Step = React.createClass({
               <div>
                   {children}
               </div>
-              <div style={styles.controlButtonsGroupWrapper}>
-                  {controlButtonsGroup}
+              <div style={styles.actionsWrapper}>
+                  {actions}
               </div>
             </div>
           </div>
