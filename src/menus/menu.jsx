@@ -237,7 +237,7 @@ const Menu = React.createClass({
     }
   },
 
-  _cloneMenuItem(child, childIndex, styles) {
+  _cloneMenuItem(child, childIndex, styles, index) {
     const {
       desktop,
       selectedMenuItemStyle,
@@ -263,7 +263,7 @@ const Menu = React.createClass({
       desktop: desktop,
       focusState: focusState,
       onTouchTap: (event) => {
-        this._handleMenuItemTouchTap(event, child);
+        this._handleMenuItemTouchTap(event, child, index);
         if (child.props.onTouchTap) child.props.onTouchTap(event);
       },
       ref: isFocused ? 'focusedMenuItem' : null,
@@ -356,7 +356,7 @@ const Menu = React.createClass({
     this.props.onKeyDown(event);
   },
 
-  _handleMenuItemTouchTap(event, item) {
+  _handleMenuItemTouchTap(event, item, index) {
     const children = this.props.children;
     const multiple = this.props.multiple;
     const valueLink = this.getValueLink(this.props);
@@ -367,17 +367,17 @@ const Menu = React.createClass({
     this._setFocusIndex(focusIndex, false);
 
     if (multiple) {
-      const index = menuValue.indexOf(itemValue);
-      const newMenuValue = index === -1 ?
+      const itemIndex = menuValue.indexOf(itemValue);
+      const newMenuValue = itemIndex === -1 ?
         update(menuValue, {$push: [itemValue]}) :
-        update(menuValue, {$splice: [[index, 1]]});
+        update(menuValue, {$splice: [[itemIndex, 1]]});
 
       valueLink.requestChange(event, newMenuValue);
     } else if (!multiple && itemValue !== menuValue) {
       valueLink.requestChange(event, itemValue);
     }
 
-    this.props.onItemTouchTap(event, item);
+    this.props.onItemTouchTap(event, item, index);
   },
 
   _incrementKeyboardFocusIndex(filteredChildren) {
@@ -531,7 +531,7 @@ const Menu = React.createClass({
     const cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
 
     let menuItemIndex = 0;
-    const newChildren = React.Children.map(filteredChildren, (child) => {
+    const newChildren = React.Children.map(filteredChildren, (child, index) => {
       const childIsADivider = child.type && child.type.displayName === 'Divider';
       const childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
@@ -555,7 +555,7 @@ const Menu = React.createClass({
 
       const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
-        this._cloneMenuItem(child, menuItemIndex, styles);
+        this._cloneMenuItem(child, menuItemIndex, styles, index);
 
       if (!childIsADivider && !childIsDisabled) menuItemIndex++;
 
