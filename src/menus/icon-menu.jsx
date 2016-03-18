@@ -294,7 +294,7 @@ const IconMenu = React.createClass({
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
     const iconButton = React.cloneElement(iconButtonElement, {
-      onKeyboardFocus: this.props.onKeyboardFocus,
+      onKeyboardFocus: onKeyboardFocus,
       iconStyle: Object.assign({}, iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
