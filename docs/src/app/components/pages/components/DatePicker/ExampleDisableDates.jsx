@@ -5,8 +5,13 @@ function disableWeekends(date) {
   return date.getDay() === 0 || date.getDay() === 6;
 }
 
-function disableRandomDates() {
-  return Math.random() > 0.7;
+const disabledDates = [];
+for (let i = 0; i < 32; i++) {
+  disabledDates.push(Math.random() > 0.7);
+}
+
+function disableRandomDates(date) {
+  return disabledDates[date.getDate()];
 }
 
 const DatePickerExampleDisableDates = () => (
