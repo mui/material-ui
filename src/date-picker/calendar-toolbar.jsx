@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import IconButton from '../icon-button';
 import Toolbar from '../toolbar/toolbar';
 import ToolbarGroup from '../toolbar/toolbar-group';
@@ -28,21 +28,21 @@ const styles = {
 const CalendarToolbar = React.createClass({
 
   propTypes: {
-    DateTimeFormat: React.PropTypes.func.isRequired,
-    displayDate: React.PropTypes.object.isRequired,
-    locale: React.PropTypes.string.isRequired,
-    nextMonth: React.PropTypes.bool,
-    onMonthChange: React.PropTypes.func,
-    prevMonth: React.PropTypes.bool,
+    DateTimeFormat: PropTypes.func.isRequired,
+    displayDate: PropTypes.object.isRequired,
+    locale: PropTypes.string.isRequired,
+    nextMonth: PropTypes.bool,
+    onMonthChange: PropTypes.func,
+    prevMonth: PropTypes.bool,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

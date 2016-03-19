@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
 import ClickAwayListener from '../ClickAwayListener';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
 import keycode from 'keycode';
-import PropTypes from '../utils/prop-types';
+import MuiPropTypes from '../utils/mui-prop-types';
 import List from '../lists/list';
 import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
@@ -19,98 +19,98 @@ const Menu = React.createClass({
      * gets added to the DOM. In order for transitions to
      * work, wrap the menu inside a ReactTransitionGroup.
      */
-    animated: deprecated(React.PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
+    animated: deprecated(PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
 
     /**
      * If true, the width will automatically be
      * set according to the items inside the menu
      * using the proper keyline increment.
      */
-    autoWidth: React.PropTypes.bool,
+    autoWidth: PropTypes.bool,
 
     /**
      * Children for the Menu. Usually MenuItems.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Indicates if the menu should render with compact desktop styles.
      */
-    desktop: React.PropTypes.bool,
+    desktop: PropTypes.bool,
 
     /**
      * Disable the auto focus feature.
      */
-    disableAutoFocus: React.PropTypes.bool,
+    disableAutoFocus: PropTypes.bool,
 
     /**
      * True if this item should be focused by the keyboard initially.
      */
-    initiallyKeyboardFocused: React.PropTypes.bool,
+    initiallyKeyboardFocused: PropTypes.bool,
 
     /**
      * The style object to use to override underlying list style.
      */
-    listStyle: React.PropTypes.object,
+    listStyle: PropTypes.object,
 
     /**
      * The maxHeight of the menu in pixels. If
      * specified, the menu will scroll if larger than the maxHeight.
      */
-    maxHeight: React.PropTypes.number,
+    maxHeight: PropTypes.number,
 
     /**
      * If true, the value can be an array and allow the menu to be a multi-select.
      */
-    multiple: React.PropTypes.bool,
+    multiple: PropTypes.bool,
 
     /**
      * Fired when a menu item is touchTapped and the menu item
      * value is not equal to the current menu value.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Fired when an Esc key is keyed down.
      */
-    onEscKeyDown: React.PropTypes.func,
+    onEscKeyDown: PropTypes.func,
 
     /**
      * Fired when a menu item is touchTapped.
      */
-    onItemTouchTap: React.PropTypes.func,
+    onItemTouchTap: PropTypes.func,
 
     /**
      * Fired when a key is pressed.
      */
-    onKeyDown: React.PropTypes.func,
+    onKeyDown: PropTypes.func,
 
     /**
      * This is the placement of the menu relative to the IconButton.
      */
-    openDirection: PropTypes.corners,
+    openDirection: MuiPropTypes.corners,
 
     /**
      * Style for the selected Menu Item.
      */
-    selectedMenuItemStyle: React.PropTypes.object,
+    selectedMenuItemStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The value of the selected menu item. If passed in,
      * this will make the menu a controlled component.
      * This component also supports valueLink.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
 
     /**
      * ValueLink for this component when controlled.
      */
-    valueLink: React.PropTypes.object,
+    valueLink: PropTypes.object,
 
     /**
      * Sets the width of the menu. If not specified, the menu
@@ -118,22 +118,22 @@ const Menu = React.createClass({
      * width will always be a keyline increment
      * (64px for desktop, 56px otherwise).
      */
-    width: PropTypes.stringOrNumber,
+    width: MuiPropTypes.stringOrNumber,
 
     /**
      * @ignore
      * Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
      * or another component that provides zDepth.
      */
-    zDepth: PropTypes.zDepth,
+    zDepth: MuiPropTypes.zDepth,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

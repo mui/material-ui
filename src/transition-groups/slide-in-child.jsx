@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import autoPrefix from '../styles/auto-prefix';
 import Transitions from '../styles/transitions';
@@ -7,25 +7,25 @@ import getMuiTheme from '../styles/getMuiTheme';
 const SlideInChild = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
-    direction: React.PropTypes.string,
-    enterDelay: React.PropTypes.number,
+    children: PropTypes.node,
+    direction: PropTypes.string,
+    enterDelay: PropTypes.number,
     //This callback is needed bacause
     //the direction could change when leaving the dom
-    getLeaveDirection: React.PropTypes.func.isRequired,
+    getLeaveDirection: PropTypes.func.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps: function() {

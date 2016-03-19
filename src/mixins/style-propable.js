@@ -1,4 +1,4 @@
-import React from 'react';
+import {PropTypes} from 'react';
 import warning from 'warning';
 
 let hasWarned;
@@ -16,7 +16,7 @@ export const mergeStyles = (...args) => {
 export default {
 
   propTypes: {
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   mergeStyles,

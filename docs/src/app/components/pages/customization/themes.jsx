@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Title from 'react-title-component';
 
 import mui from 'material-ui';
@@ -48,8 +48,8 @@ const DarkRawTheme = Styles.darkBaseTheme;
 const ThemesPage = React.createClass({
 
   propTypes: {
-    muiTheme: React.PropTypes.object,
-    onChangeMuiTheme: React.PropTypes.func,
+    muiTheme: PropTypes.object,
+    onChangeMuiTheme: PropTypes.func,
   },
 
   mixins: [StyleResizable],

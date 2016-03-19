@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import autoPrefix from '../styles/auto-prefix';
@@ -7,21 +7,21 @@ import Transitions from '../styles/transitions';
 const CircleRipple = React.createClass({
 
   propTypes: {
-    aborted: React.PropTypes.bool,
-    color: React.PropTypes.string,
+    aborted: PropTypes.bool,
+    color: PropTypes.string,
 
     /**
      * @ignore
      * The material-ui theme applied to this component.
      */
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
 
-    opacity: React.PropTypes.number,
+    opacity: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   mixins: [

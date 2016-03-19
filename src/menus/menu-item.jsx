@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Popover from '../popover/popover';
@@ -17,28 +17,28 @@ const MenuItem = React.createClass({
     /**
      * If true, a left check mark will be rendered.
      */
-    checked: React.PropTypes.bool,
+    checked: PropTypes.bool,
 
     /**
      * Elements passed as children to inner ListItem.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * @ignore
      * Indicates if the menu should render with compact desktop styles.
      */
-    desktop: React.PropTypes.bool,
+    desktop: PropTypes.bool,
 
     /**
      * Disables a menu item.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Prop passed down to ListItem that tells it what kind of focus it has.
      */
-    focusState: React.PropTypes.oneOf([
+    focusState: PropTypes.oneOf([
       'none',
       'focused',
       'keyboard-focused',
@@ -47,57 +47,57 @@ const MenuItem = React.createClass({
     /**
      * Style overrides for the inner div.
      */
-    innerDivStyle: React.PropTypes.object,
+    innerDivStyle: PropTypes.object,
 
     /**
      * If true, the children will be indented.
      * Only needed when there is no leftIcon.
      */
-    insetChildren: React.PropTypes.bool,
+    insetChildren: PropTypes.bool,
 
     /**
      * This is the SvgIcon or FontIcon to be displayed on the left side.
      */
-    leftIcon: React.PropTypes.element,
+    leftIcon: PropTypes.element,
 
     /**
      * Nested MenuItems for this MenuItem. Used to make nested menus.
      */
-    menuItems: React.PropTypes.node,
+    menuItems: PropTypes.node,
 
     /**
      * Fired when the element is touchTapped.
      */
-    onTouchTap: React.PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * This is the SvgIcon or FontIcon to be displayed on the right side.
      */
-    rightIcon: React.PropTypes.element,
+    rightIcon: PropTypes.element,
 
     /**
      * This is the block element that contains the secondary text.
      * If a string is passed in, a div tag will be rendered.
      */
-    secondaryText: React.PropTypes.node,
+    secondaryText: PropTypes.node,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The value of the menu item.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [

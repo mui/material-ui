@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
 import ColorManipulator from './utils/color-manipulator';
 import Children from './utils/children';
@@ -115,7 +115,7 @@ const RaisedButton = React.createClass({
     /**
      * Override the background color. Always takes precedence unless the button is disabled.
      */
-    backgroundColor: React.PropTypes.string,
+    backgroundColor: PropTypes.string,
 
     /**
      * This is what will be displayed inside the button.
@@ -126,43 +126,43 @@ const RaisedButton = React.createClass({
      * that acts as our label to be displayed.) This only
      * applies to flat and raised buttons.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Disables the button if set to true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Override the background color if the button is disabled.
      */
-    disabledBackgroundColor: React.PropTypes.string,
+    disabledBackgroundColor: PropTypes.string,
 
     /**
      * Color of the label if disabled is true.
      */
-    disabledLabelColor: React.PropTypes.string,
+    disabledLabelColor: PropTypes.string,
 
     /**
      * If true, then the button will take up the full
      * width of its container.
      */
-    fullWidth: React.PropTypes.bool,
+    fullWidth: PropTypes.bool,
 
     /**
      * URL to link to when button clicked if `linkButton` is set to true.
      */
-    href: React.PropTypes.string,
+    href: PropTypes.string,
 
     /**
      * Use this property to display an icon.
      */
-    icon: React.PropTypes.node,
+    icon: PropTypes.node,
 
     /**
      * The label for the button.
@@ -172,12 +172,12 @@ const RaisedButton = React.createClass({
     /**
      * The color of the label for the button.
      */
-    labelColor: React.PropTypes.string,
+    labelColor: PropTypes.string,
 
     /**
      * Place label before or after the passed children.
      */
-    labelPosition: React.PropTypes.oneOf([
+    labelPosition: PropTypes.oneOf([
       'before',
       'after',
     ]),
@@ -185,73 +185,73 @@ const RaisedButton = React.createClass({
     /**
      * Override the inline-styles of the button's label element.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Enables use of `href` property to provide a URL to link to if set to true.
      */
-    linkButton: React.PropTypes.bool,
+    linkButton: PropTypes.bool,
 
     /**
      * Callback function for when the mouse is pressed down inside this element.
      */
-    onMouseDown: React.PropTypes.func,
+    onMouseDown: PropTypes.func,
 
     /**
      * Callback function for when the mouse enters this element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Callback function for when the mouse leaves this element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Callback function for when the mouse is realeased
      * above this element.
      */
-    onMouseUp: React.PropTypes.func,
+    onMouseUp: PropTypes.func,
 
     /**
      * Callback function for when a touchTap event ends.
      */
-    onTouchEnd: React.PropTypes.func,
+    onTouchEnd: PropTypes.func,
 
     /**
      * Callback function for when a touchTap event starts.
      */
-    onTouchStart: React.PropTypes.func,
+    onTouchStart: PropTypes.func,
 
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.
      */
-    primary: React.PropTypes.bool,
+    primary: PropTypes.bool,
 
     /**
      * Override the inline style of ripple element.
      */
-    rippleStyle: React.PropTypes.object,
+    rippleStyle: PropTypes.object,
 
     /**
      * If true, colors button according to secondaryTextColor from the theme.
      * The primary prop has precendent if set to true.
      */
-    secondary: React.PropTypes.bool,
+    secondary: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps: function() {

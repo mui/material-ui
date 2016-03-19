@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Paper from '../paper';
 import Transitions from '../styles/transitions';
 import getMuiTheme from '../styles/getMuiTheme';
-import PropTypes from '../utils/prop-types';
+import MuiPropTypes from '../utils/mui-prop-types';
 
 function getStyles(props, state) {
   const {
@@ -34,24 +34,24 @@ function getStyles(props, state) {
 const PopoverAnimationFromTop = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    open: React.PropTypes.bool.isRequired,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    open: PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    targetOrigin: PropTypes.origin,
-    zDepth: PropTypes.zDepth,
+    style: PropTypes.object,
+    targetOrigin: MuiPropTypes.origin,
+    zDepth: MuiPropTypes.zDepth,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from './styles/getMuiTheme';
 import EventListener from 'react-event-listener';
 
@@ -33,28 +33,28 @@ function getStyles(props, state) {
 const EnhancedTextarea = React.createClass({
 
   propTypes: {
-    defaultValue: React.PropTypes.any,
-    disabled: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    onHeightChange: React.PropTypes.func,
-    rows: React.PropTypes.number,
-    rowsMax: React.PropTypes.number,
-    shadowStyle: React.PropTypes.object,
+    defaultValue: PropTypes.any,
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func,
+    onHeightChange: PropTypes.func,
+    rows: PropTypes.number,
+    rowsMax: PropTypes.number,
+    shadowStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    textareaStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
-    valueLink: React.PropTypes.object,
+    style: PropTypes.object,
+    textareaStyle: PropTypes.object,
+    value: PropTypes.string,
+    valueLink: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

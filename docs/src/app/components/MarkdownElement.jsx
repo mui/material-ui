@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import marked from 'marked';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -14,8 +14,8 @@ const styles = {
 
 const MarkdownElement = React.createClass({
   propTypes: {
-    style: React.PropTypes.object,
-    text: React.PropTypes.string,
+    style: PropTypes.object,
+    text: PropTypes.string,
   },
   mixins: [
     PureRenderMixin,

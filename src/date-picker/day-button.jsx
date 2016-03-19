@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transition from '../styles/transitions';
 import DateTime from '../utils/date-time';
 import EnhancedButton from '../enhanced-button';
@@ -63,19 +63,19 @@ function getStyles(props, state) {
 const DayButton = React.createClass({
 
   propTypes: {
-    date: React.PropTypes.object,
-    disabled: React.PropTypes.bool,
-    onKeyboardFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
+    date: PropTypes.object,
+    disabled: PropTypes.bool,
+    onKeyboardFocus: PropTypes.func,
+    onTouchTap: PropTypes.func,
+    selected: PropTypes.bool,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

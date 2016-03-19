@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import CodeBlock from './CodeBlock';
 import ClearFix from 'material-ui/lib/clearfix';
 import Paper from 'material-ui/lib/paper';
 
 class CodeExample extends React.Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    code: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string,
-    layoutSideBySide: React.PropTypes.bool,
-    title: React.PropTypes.string,
+    children: PropTypes.node,
+    code: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    layoutSideBySide: PropTypes.bool,
+    title: PropTypes.string,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   };
 
   render() {

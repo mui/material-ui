@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import LeftNav from 'material-ui/lib/left-nav';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
@@ -19,17 +19,17 @@ const SelectableList = SelectableContainerEnhance(List);
 const AppLeftNav = React.createClass({
 
   propTypes: {
-    docked: React.PropTypes.bool.isRequired,
-    location: React.PropTypes.object.isRequired,
-    onRequestChangeLeftNav: React.PropTypes.func.isRequired,
-    onRequestChangeList: React.PropTypes.func.isRequired,
-    open: React.PropTypes.bool.isRequired,
-    style: React.PropTypes.object,
+    docked: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
+    onRequestChangeLeftNav: PropTypes.func.isRequired,
+    onRequestChangeList: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object.isRequired,
-    router: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   },
 
   getInitialState: () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../transition-groups/slide-in';
 
@@ -54,30 +54,30 @@ function getStyles(props, state) {
 const DateDisplay = React.createClass({
 
   propTypes: {
-    DateTimeFormat: React.PropTypes.func.isRequired,
-    disableYearSelection: React.PropTypes.bool,
-    handleMonthDayClick: React.PropTypes.func,
-    handleYearClick: React.PropTypes.func,
-    locale: React.PropTypes.string.isRequired,
-    mode: React.PropTypes.oneOf([
+    DateTimeFormat: PropTypes.func.isRequired,
+    disableYearSelection: PropTypes.bool,
+    handleMonthDayClick: PropTypes.func,
+    handleYearClick: PropTypes.func,
+    locale: PropTypes.string.isRequired,
+    mode: PropTypes.oneOf([
       'portrait',
       'landscape',
     ]),
-    monthDaySelected: React.PropTypes.bool,
+    monthDaySelected: PropTypes.bool,
 
     /**
      * @ignore
      * The material-ui theme applied to this component.
      */
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
 
-    selectedDate: React.PropTypes.object.isRequired,
+    selectedDate: PropTypes.object.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    weekCount: React.PropTypes.number,
+    style: PropTypes.object,
+    weekCount: PropTypes.number,
   },
 
   getDefaultProps() {

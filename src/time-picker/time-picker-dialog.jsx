@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Clock from './clock';
@@ -9,22 +9,22 @@ import getMuiTheme from '../styles/getMuiTheme';
 const TimePickerDialog = React.createClass({
 
   propTypes: {
-    autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.string,
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialTime: React.PropTypes.object,
-    okLabel: React.PropTypes.string,
-    onAccept: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
+    autoOk: PropTypes.bool,
+    cancelLabel: PropTypes.string,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: PropTypes.object,
+    okLabel: PropTypes.string,
+    onAccept: PropTypes.func,
+    onDismiss: PropTypes.func,
+    onShow: PropTypes.func,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

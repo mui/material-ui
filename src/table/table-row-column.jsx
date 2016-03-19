@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -29,61 +29,61 @@ function getStyles(props, state) {
 const TableRowColumn = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * @ignore
      * Number to identify the header row. This property
      * is automatically populated when used with TableHeader.
      */
-    columnNumber: React.PropTypes.number,
+    columnNumber: PropTypes.number,
 
     /**
      * @ignore
      * If true, this column responds to hover events.
      */
-    hoverable: React.PropTypes.bool,
+    hoverable: PropTypes.bool,
 
     /**
      * Key for this element.
      */
-    key: React.PropTypes.string,
+    key: PropTypes.string,
 
     /**
      * @ignore
      * Callback function for click event.
      */
-    onClick: React.PropTypes.func,
+    onClick: PropTypes.func,
 
     /**
      * @ignore
      * Callback function for hover event.
      */
-    onHover: React.PropTypes.func,
+    onHover: PropTypes.func,
 
     /**
      * @ignore
      * Callback function for hover exit event.
      */
-    onHoverExit: React.PropTypes.func,
+    onHoverExit: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

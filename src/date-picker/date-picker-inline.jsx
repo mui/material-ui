@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Popover from '../popover/popover';
 import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 
@@ -12,15 +12,15 @@ const styles = {
 
 class DatePickerInline extends React.Component {
   static propTypes = {
-    actions: React.PropTypes.node,
-    children: React.PropTypes.node,
-    onRequestClose: React.PropTypes.func.isRequired,
-    open: React.PropTypes.bool.isRequired,
+    actions: PropTypes.node,
+    children: PropTypes.node,
+    onRequestClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {

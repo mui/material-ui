@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles() {
@@ -19,35 +19,35 @@ const CardActions = React.createClass({
     /**
      * If true, a click on this card component expands the card.
      */
-    actAsExpander: React.PropTypes.bool,
+    actAsExpander: PropTypes.bool,
 
     /**
      * Can be used to render elements inside the Card Action.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * If true, this card component is expandable.
      */
-    expandable: React.PropTypes.bool,
+    expandable: PropTypes.bool,
 
     /**
      * If true, this card component will include a button to expand the card.
      */
-    showExpandableButton: React.PropTypes.bool,
+    showExpandableButton: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

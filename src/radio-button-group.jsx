@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import RadioButton from './radio-button';
 import getMuiTheme from './styles/getMuiTheme';
 import warning from 'warning';
@@ -9,12 +9,12 @@ const RadioButtonGroup = React.createClass({
     /**
      * Should be used to pass `RadioButton` components.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Sets the default radio button to be the one whose
@@ -22,44 +22,44 @@ const RadioButtonGroup = React.createClass({
      * This will override any individual radio button with
      * the defaultChecked or checked property stated.
      */
-    defaultSelected: React.PropTypes.string,
+    defaultSelected: PropTypes.string,
 
     /**
      * Where the label will be placed for all radio buttons.
      * This will override any labelPosition properties defined
      * for an individual radio button.
      */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * The name that will be applied to all radio buttons inside it.
      */
-    name: React.PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 
     /**
      * Callback function that is fired when a radio button has
      * been clicked. Returns the event and the value of the radio
      * button that has been selected.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The value of the currently selected radio button.
      */
-    valueSelected: React.PropTypes.string,
+    valueSelected: PropTypes.string,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

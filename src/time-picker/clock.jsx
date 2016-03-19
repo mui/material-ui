@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import TimeDisplay from './time-display';
 import ClockHours from './clock-hours';
 import ClockMinutes from './clock-minutes';
@@ -7,16 +7,16 @@ import getMuiTheme from '../styles/getMuiTheme';
 const Clock = React.createClass({
 
   propTypes: {
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialTime: React.PropTypes.object,
-    isActive: React.PropTypes.bool,
-    mode: React.PropTypes.oneOf(['hour', 'minute']),
-    onChangeHours: React.PropTypes.func,
-    onChangeMinutes: React.PropTypes.func,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: PropTypes.object,
+    isActive: PropTypes.bool,
+    mode: PropTypes.oneOf(['hour', 'minute']),
+    onChangeHours: PropTypes.func,
+    onChangeMinutes: PropTypes.func,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

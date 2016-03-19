@@ -3,7 +3,7 @@
 
 import AppBar from 'app-bar';
 import RaisedButton from 'raised-button';
-import React from 'react';
+import React, {PropTypes} from 'react';
 import TestUtils from 'react-addons-test-utils';
 import MuiThemeProvider from 'MuiThemeProvider';
 import getMuiTheme from 'styles/getMuiTheme';
@@ -94,7 +94,7 @@ describe('Theming', () => {
 const AppBarDarkUsingContext = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getChildContext() {
@@ -111,7 +111,7 @@ const AppBarDarkUsingContext = React.createClass({
 const AppBarDarkUsingContextWithOverride = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {
@@ -164,7 +164,7 @@ const AppBarDarkThemeOverride = React.createClass({
 const ButtonToUpdateThemeWithAppBar = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

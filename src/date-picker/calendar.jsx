@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import DateTime from '../utils/date-time';
 import keycode from 'keycode';
@@ -16,25 +16,25 @@ const daysArray = [...Array(7)];
 const Calendar = React.createClass({
 
   propTypes: {
-    DateTimeFormat: React.PropTypes.func.isRequired,
-    disableYearSelection: React.PropTypes.bool,
-    firstDayOfWeek: React.PropTypes.number,
-    initialDate: React.PropTypes.object,
-    locale: React.PropTypes.string.isRequired,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    onDayTouchTap: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    shouldDisableDate: React.PropTypes.func,
+    DateTimeFormat: PropTypes.func.isRequired,
+    disableYearSelection: PropTypes.bool,
+    firstDayOfWeek: PropTypes.number,
+    initialDate: PropTypes.object,
+    locale: PropTypes.string.isRequired,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    onDayTouchTap: PropTypes.func,
+    open: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

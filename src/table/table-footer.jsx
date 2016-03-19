@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import TableRowColumn from './table-row-column';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -30,29 +30,29 @@ const TableFooter = React.createClass({
      * the checkbox column does not create an offset that needs
      * to be accounted for manually.
      */
-    adjustForCheckbox: React.PropTypes.bool,
+    adjustForCheckbox: PropTypes.bool,
     /**
      * Children passed to table footer.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

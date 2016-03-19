@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props) {
@@ -21,35 +21,35 @@ const GridList = React.createClass({
     /**
      * Number of px for one cell height.
      */
-    cellHeight: React.PropTypes.number,
+    cellHeight: PropTypes.number,
 
     /**
      * Grid Tiles that will be in Grid List.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Number of columns.
      */
-    cols: React.PropTypes.number,
+    cols: PropTypes.number,
 
     /**
      * Number of px for the padding/spacing between items.
      */
-    padding: React.PropTypes.number,
+    padding: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

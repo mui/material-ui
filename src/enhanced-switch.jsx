@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Transitions from './styles/transitions';
@@ -73,52 +73,52 @@ function getStyles(props, state) {
 const EnhancedSwitch = React.createClass({
 
   propTypes: {
-    checked: React.PropTypes.bool,
+    checked: PropTypes.bool,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-    defaultSwitched: React.PropTypes.bool,
-    disableFocusRipple: React.PropTypes.bool,
-    disableTouchRipple: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    iconStyle: React.PropTypes.object,
-    inputStyle: React.PropTypes.object,
-    inputType: React.PropTypes.string.isRequired,
-    label: React.PropTypes.node,
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    labelStyle: React.PropTypes.object,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onMouseDown: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onParentShouldUpdate: React.PropTypes.func.isRequired,
-    onSwitch: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    rippleColor: React.PropTypes.string,
-    rippleStyle: React.PropTypes.object,
+    className: PropTypes.string,
+    defaultSwitched: PropTypes.bool,
+    disableFocusRipple: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
+    disabled: PropTypes.bool,
+    iconStyle: PropTypes.object,
+    inputStyle: PropTypes.object,
+    inputType: PropTypes.string.isRequired,
+    label: PropTypes.node,
+    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelStyle: PropTypes.object,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onMouseDown: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onMouseUp: PropTypes.func,
+    onParentShouldUpdate: PropTypes.func.isRequired,
+    onSwitch: PropTypes.func,
+    onTouchEnd: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    rippleColor: PropTypes.string,
+    rippleStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    switchElement: React.PropTypes.element.isRequired,
-    switched: React.PropTypes.bool.isRequired,
-    thumbStyle: React.PropTypes.object,
-    trackStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
+    style: PropTypes.object,
+    switchElement: PropTypes.element.isRequired,
+    switched: PropTypes.bool.isRequired,
+    thumbStyle: PropTypes.object,
+    trackStyle: PropTypes.object,
+    value: PropTypes.string,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import autoPrefix from './styles/auto-prefix';
 import Transitions from './styles/transitions';
 import Paper from './paper';
@@ -31,28 +31,28 @@ const RefreshIndicator = React.createClass({
      * Override the theme's color of the indicator while it's status is
      * "ready" and it's percentage is less than 100.
      */
-    color: React.PropTypes.string,
+    color: PropTypes.string,
 
     /**
      * The absolute left position of the indicator in pixels.
      */
-    left: React.PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired,
 
     /**
      * Override the theme's color of the indicator while
      * it's status is "loading" or when it's percentage is 100.
      */
-    loadingColor: React.PropTypes.string,
+    loadingColor: PropTypes.string,
 
     /**
      * The confirmation progress to fetch data. Max value is 100.
      */
-    percentage: React.PropTypes.number,
+    percentage: PropTypes.number,
 
     /**
      * Size in pixels.
      */
-    size: React.PropTypes.number,
+    size: PropTypes.number,
 
     /**
      * The display status of the indicator. If the status is
@@ -61,25 +61,25 @@ const RefreshIndicator = React.createClass({
      * the loading progress indicator. If the status is "hide",
      * the indicator will be hidden.
      */
-    status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
+    status: PropTypes.oneOf(['ready', 'loading', 'hide']),
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The absolute top position of the indicator in pixels.
      */
-    top: React.PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

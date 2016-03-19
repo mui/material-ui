@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Dom from './utils/dom';
 import getMuiTheme from './styles/getMuiTheme';
@@ -7,19 +7,19 @@ import getMuiTheme from './styles/getMuiTheme';
 const RenderToLayer = React.createClass({
 
   propTypes: {
-    componentClickAway: React.PropTypes.func,
-    open: React.PropTypes.bool.isRequired,
-    render: React.PropTypes.func.isRequired,
-    useLayerForClickAway: React.PropTypes.bool,
+    componentClickAway: PropTypes.func,
+    open: PropTypes.bool.isRequired,
+    render: PropTypes.func.isRequired,
+    useLayerForClickAway: PropTypes.bool,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

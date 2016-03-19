@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EnhancedButton from '../enhanced-button';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -52,18 +52,18 @@ const YearButton = React.createClass({
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-    onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
-    year: React.PropTypes.number,
+    className: PropTypes.string,
+    onTouchTap: PropTypes.func,
+    selected: PropTypes.bool,
+    year: PropTypes.number,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

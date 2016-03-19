@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Tooltip from '../tooltip';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -30,53 +30,53 @@ function getStyles(props, state) {
 const TableHeaderColumn = React.createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Number to identify the header row. This property
      * is automatically populated when used with TableHeader.
      */
-    columnNumber: React.PropTypes.number,
+    columnNumber: PropTypes.number,
 
     /**
      * Key prop for table header column.
      */
-    key: React.PropTypes.string,
+    key: PropTypes.string,
 
     /**
      * @ignore
      * Callback function for click event.
      */
-    onClick: React.PropTypes.func,
+    onClick: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The string to supply to the tooltip. If not
      * string is supplied no tooltip will be shown.
      */
-    tooltip: React.PropTypes.string,
+    tooltip: PropTypes.string,
 
     /**
      * Additional styling that can be applied to the tooltip.
      */
-    tooltipStyle: React.PropTypes.object,
+    tooltipStyle: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

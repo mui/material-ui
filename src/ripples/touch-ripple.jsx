@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
@@ -19,23 +19,23 @@ function shift(array) {
 const TouchRipple = React.createClass({
 
   propTypes: {
-    abortOnScroll: React.PropTypes.bool,
-    centerRipple: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    color: React.PropTypes.string,
+    abortOnScroll: PropTypes.bool,
+    centerRipple: PropTypes.bool,
+    children: PropTypes.node,
+    color: PropTypes.string,
 
     /**
      * @ignore
      * The material-ui theme applied to this component.
      */
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
 
-    opacity: React.PropTypes.number,
+    opacity: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   mixins: [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import DateTime from '../utils/date-time';
 import YearButton from './year-button';
@@ -7,19 +7,19 @@ import getMuiTheme from '../styles/getMuiTheme';
 const CalendarYear = React.createClass({
 
   propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onYearTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
+    displayDate: PropTypes.object.isRequired,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onYearTouchTap: PropTypes.func,
+    selectedDate: PropTypes.object.isRequired,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

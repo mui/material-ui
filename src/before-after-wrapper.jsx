@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import getMuiTheme from './styles/getMuiTheme';
 
 /**
@@ -44,25 +44,25 @@ const styles = {
 const BeforeAfterWrapper = React.createClass({
 
   propTypes: {
-    afterElementType: React.PropTypes.string,
-    afterStyle: React.PropTypes.object,
-    beforeElementType: React.PropTypes.string,
-    beforeStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    elementType: React.PropTypes.string,
+    afterElementType: PropTypes.string,
+    afterStyle: PropTypes.object,
+    beforeElementType: PropTypes.string,
+    beforeStyle: PropTypes.object,
+    children: PropTypes.node,
+    elementType: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import DateTime from '../utils/date-time';
 import DayButton from './day-button';
 import ClearFix from '../clearfix';
@@ -6,14 +6,14 @@ import ClearFix from '../clearfix';
 const CalendarMonth = React.createClass({
 
   propTypes: {
-    autoOk: React.PropTypes.bool,
-    displayDate: React.PropTypes.object.isRequired,
-    firstDayOfWeek: React.PropTypes.number,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onDayTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
-    shouldDisableDate: React.PropTypes.func,
+    autoOk: PropTypes.bool,
+    displayDate: PropTypes.object.isRequired,
+    firstDayOfWeek: PropTypes.number,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onDayTouchTap: PropTypes.func,
+    selectedDate: PropTypes.object.isRequired,
+    shouldDisableDate: PropTypes.func,
   },
 
   isSelectedDateDisabled() {

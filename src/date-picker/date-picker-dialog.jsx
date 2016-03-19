@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Calendar from './calendar';
@@ -11,36 +11,36 @@ import DateTime from '../utils/date-time';
 const DatePickerDialog = React.createClass({
 
   propTypes: {
-    DateTimeFormat: React.PropTypes.func,
-    autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.string,
-    container: React.PropTypes.oneOf(['dialog', 'inline']),
-    disableYearSelection: React.PropTypes.bool,
-    firstDayOfWeek: React.PropTypes.number,
-    initialDate: React.PropTypes.object,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    okLabel: React.PropTypes.string,
-    onAccept: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    shouldDisableDate: React.PropTypes.func,
+    DateTimeFormat: PropTypes.func,
+    autoOk: PropTypes.bool,
+    cancelLabel: PropTypes.string,
+    container: PropTypes.oneOf(['dialog', 'inline']),
+    disableYearSelection: PropTypes.bool,
+    firstDayOfWeek: PropTypes.number,
+    initialDate: PropTypes.object,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    okLabel: PropTypes.string,
+    onAccept: PropTypes.func,
+    onDismiss: PropTypes.func,
+    onShow: PropTypes.func,
+    shouldDisableDate: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    wordings: React.PropTypes.object,
+    style: PropTypes.object,
+    wordings: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps: function() {

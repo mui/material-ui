@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Checkbox from '../checkbox';
 import TableRowColumn from './table-row-column';
 import ClickAwayListener from '../ClickAwayListener';
@@ -11,28 +11,28 @@ const TableBody = React.createClass({
      * @ignore
      * Set to true to indicate that all rows should be selected.
      */
-    allRowsSelected: React.PropTypes.bool,
+    allRowsSelected: PropTypes.bool,
 
     /**
      * Children passed to table body.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Controls whether or not to deselect all selected
      * rows after clicking outside the table.
      */
-    deselectOnClickaway: React.PropTypes.bool,
+    deselectOnClickaway: PropTypes.bool,
 
     /**
      * Controls the display of the row checkbox. The default value is true.
      */
-    displayRowCheckbox: React.PropTypes.bool,
+    displayRowCheckbox: PropTypes.bool,
 
     /**
      * @ignore
@@ -40,13 +40,13 @@ const TableBody = React.createClass({
      * CTRL/CMD+Click and SHIFT+Click are valid actions.
      * The default value is false.
      */
-    multiSelectable: React.PropTypes.bool,
+    multiSelectable: PropTypes.bool,
 
     /**
      * @ignore
      * Callback function for when a cell is clicked.
      */
-    onCellClick: React.PropTypes.func,
+    onCellClick: PropTypes.func,
 
     /**
      * @ignore
@@ -54,7 +54,7 @@ const TableBody = React.createClass({
      * is the row number of the hovered row and columnId
      * is the column number or the column key of the cell.
      */
-    onCellHover: React.PropTypes.func,
+    onCellHover: PropTypes.func,
 
     /**
      * @ignore
@@ -62,14 +62,14 @@ const TableBody = React.createClass({
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
      */
-    onCellHoverExit: React.PropTypes.func,
+    onCellHoverExit: PropTypes.func,
 
     /**
      * @ignore
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
-    onRowHover: React.PropTypes.func,
+    onRowHover: PropTypes.func,
 
     /**
      * @ignore
@@ -77,7 +77,7 @@ const TableBody = React.createClass({
      * hovered. rowNumber is the row number of the row
      * that is no longer hovered.
      */
-    onRowHoverExit: React.PropTypes.func,
+    onRowHoverExit: PropTypes.func,
 
     /**
      * @ignore
@@ -86,14 +86,14 @@ const TableBody = React.createClass({
      * the string "all" will be returned instead to indicate that
      * all rows have been selected.
      */
-    onRowSelection: React.PropTypes.func,
+    onRowSelection: PropTypes.func,
 
     /**
      * Controls whether or not the rows are pre-scanned to determine
      * initial state. If your table has a large number of rows and
      * you are experiencing a delay in rendering, turn off this property.
      */
-    preScanRows: React.PropTypes.bool,
+    preScanRows: PropTypes.bool,
 
     /**
      * @ignore
@@ -101,33 +101,33 @@ const TableBody = React.createClass({
      * row selection is desired, enable multiSelectable.
      * The default value is true.
      */
-    selectable: React.PropTypes.bool,
+    selectable: PropTypes.bool,
 
     /**
      * If true, table rows will be highlighted when
      * the cursor is hovering over the row. The default
      * value is false.
      */
-    showRowHover: React.PropTypes.bool,
+    showRowHover: PropTypes.bool,
 
     /**
      * If true, every other table row starting
      * with the first row will be striped. The default value is false.
      */
-    stripedRows: React.PropTypes.bool,
+    stripedRows: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

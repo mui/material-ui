@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../menus/menu';
@@ -22,49 +22,49 @@ const DropDownMenu = React.createClass({
      * The width will automatically be set according to the items inside the menu.
      * To control this width in css instead, set this prop to false.
      */
-    autoWidth: React.PropTypes.bool,
+    autoWidth: PropTypes.bool,
 
     /**
      * The `MenuItem`s to populate the `Menu` with. If the `MenuItems` have the
      * prop `label` that value will be used to render the representation of that
      * item within the field.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Disables the menu.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Overrides the styles of icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * Overrides the styles of label when the `DropDownMenu` is inactive.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * The style object to use to override underlying list style.
      */
-    listStyle: React.PropTypes.object,
+    listStyle: PropTypes.object,
 
     /**
      * The maximum height of the `Menu` when it is displayed.
      */
-    maxHeight: React.PropTypes.number,
+    maxHeight: PropTypes.number,
 
     /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
      */
-    menuStyle: React.PropTypes.object,
+    menuStyle: PropTypes.object,
 
     /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
@@ -73,36 +73,36 @@ const DropDownMenu = React.createClass({
      * @param {number} key The index of the clicked menu item in the `children` collection.
      * @param {any} payload The `value` prop of the clicked menu item.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
-    openImmediately: React.PropTypes.bool,
+    openImmediately: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Overrides the inline-styles of the underline.
      */
-    underlineStyle: React.PropTypes.object,
+    underlineStyle: PropTypes.object,
 
     /**
      * The value that is currently selected.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   //for passing default theme context to children
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

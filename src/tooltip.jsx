@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -84,25 +84,25 @@ const Tooltip = React.createClass({
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
-    label: React.PropTypes.node.isRequired,
-    show: React.PropTypes.bool,
+    className: PropTypes.string,
+    horizontalPosition: PropTypes.oneOf(['left', 'right', 'center']),
+    label: PropTypes.node.isRequired,
+    show: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    touch: React.PropTypes.bool,
-    verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
+    style: PropTypes.object,
+    touch: PropTypes.bool,
+    verticalPosition: PropTypes.oneOf(['top', 'bottom']),
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {
