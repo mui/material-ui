@@ -507,6 +507,37 @@ const Dialog = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      open: this.props.open,
+      closing: false,
+    };
+  },
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    let newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+
+    if (nextProps.open !== this.state.open) {
+      if (nextProps.open) {
+        this.setState({
+          open: true,
+          closing: false,
+          muiTheme: newMuiTheme,
+        });
+      } else {
+        this.setState({closing: true});
+        this._timeout = setTimeout(() => {
+          if (this.isMounted()) {
+            this.setState({
+              open: false,
+              muiTheme: newMuiTheme,
+            });
+          }
+        }, 500);
+      }
+    }
+  },
+
   renderLayer() {
     return (
       <DialogInline {...this.props} />
@@ -515,7 +546,7 @@ const Dialog = React.createClass({
 
   render() {
     return (
-      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
+      <RenderToLayer render={this.renderLayer} open={this.state.open} useLayerForClickAway={false} />
     );
   },
 

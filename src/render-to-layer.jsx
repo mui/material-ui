@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dom from './utils/dom';
 import getMuiTheme from './styles/getMuiTheme';
+import WindowListenable from './mixins/window-listenable';
+import throttle from 'lodash.throttle';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 const RenderToLayer = React.createClass({
@@ -22,6 +24,10 @@ const RenderToLayer = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  mixins: [
+    WindowListenable,
+  ],
+
   getDefaultProps() {
     return {
       useLayerForClickAway: true,
@@ -29,6 +35,7 @@ const RenderToLayer = React.createClass({
   },
 
   getInitialState() {
+    this._renderLayerThrottled = throttle(this._renderLayer, 100);
     return {
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
@@ -59,6 +66,11 @@ const RenderToLayer = React.createClass({
 
   componentWillUnmount() {
     this._unrenderLayer();
+  },
+
+  windowListeners: {
+    resize: '_renderLayerThrottled',
+    scroll: '_renderLayerThrottled',
   },
 
   onClickAway(event) {
@@ -113,16 +125,12 @@ const RenderToLayer = React.createClass({
     if (open) {
       if (!this._layer) {
         this._layer = document.createElement('div');
+        this._layer.style.position = 'absolute';
         document.body.appendChild(this._layer);
 
         if (this.props.useLayerForClickAway) {
           this._layer.addEventListener('touchstart', this.onClickAway);
           this._layer.addEventListener('click', this.onClickAway);
-          this._layer.style.position = 'fixed';
-          this._layer.style.top = 0;
-          this._layer.style.bottom = 0;
-          this._layer.style.left = 0;
-          this._layer.style.right = 0;
           this._layer.style.zIndex = this.state.muiTheme.zIndex.layer;
         } else {
           setTimeout(() => {
@@ -131,7 +139,15 @@ const RenderToLayer = React.createClass({
           }, 0);
         }
       }
+      const {documentElement, body} = document;
+      const top = window.pageYOffset || documentElement.scrollTop || body.scrollTop || 0;
+      const left = window.pageXOffset || documentElement.scrollLeft || body.scrollLeft || 0;
 
+      this._layer.style.top = `${top}px`;
+      this._layer.style.height = `${body.clientHeight}px`;
+      this._layer.style.left = `${left}px`;
+      this._layer.style.width = `${body.clientWidth}px`;
+      
       // By calling this method in componentDidMount() and
       // componentDidUpdate(), you're effectively creating a "wormhole" that
       // funnels React's hierarchical updates through to a DOM node on an
