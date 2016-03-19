@@ -11,7 +11,7 @@ const IconMenu = React.createClass({
   propTypes: {
     /**
      * This is the point on the icon where the menu
-     * targetOrigin will attach.
+     * `targetOrigin` will attach.
      * Options:
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right].
@@ -24,22 +24,22 @@ const IconMenu = React.createClass({
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root element.
+     * The CSS class name of the root element.
      */
     className: React.PropTypes.string,
 
     /**
-     * This is the IconButton to render. This button will open the menu.
+     * This is the `IconButton` to render. This button will open the menu.
      */
     iconButtonElement: React.PropTypes.element.isRequired,
 
     /**
-     * The style object to use to override underlying icon style.
+     * Override the inline-styles of the underlying icon element.
      */
     iconStyle: React.PropTypes.object,
 
     /**
-     * The style object to use to override underlying menu style.
+     * Override the inline-styles of the menu element.
      */
     menuStyle: React.PropTypes.object,
 
@@ -49,53 +49,68 @@ const IconMenu = React.createClass({
     multiple: React.PropTypes.bool,
 
     /**
-     * Fired when a menu item is touchTapped.
+     * Callback function fired when a menu item is selected with a touch-tap.
+     *
+     * @param {object} event TouchTap event targeting the selected menu item element.
+     * @param {object} child The selected element.
      */
     onItemTouchTap: React.PropTypes.func,
 
     /**
-     * Fired when keyobard focuses on element.
+     * Callback function fired when the `IconButton` element is focused or blurred by the keyboard.
+     *
+     * @param {object} event `focus` or `blur` event targeting the `IconButton` element.
+     * @param {boolean} keyboardFocused If true, the `IconButton` element is focused.
      */
     onKeyboardFocus: React.PropTypes.func,
 
     /**
-     * Fired when mouse is pressed on element.
+     * Callback function fired when a mouse button is pressed down on the `IconButton` element.
+     *
+     * @param {object} event `mousedown` event targeting the `IconButton` element.
      */
     onMouseDown: React.PropTypes.func,
 
     /**
-     * Fired when mouse enters the element.
+     * Callback function fired when the mouse enters the `IconButton` element.
+     *
+     * @param {object} event `mouseenter` event targeting the `IconButton` element.
      */
     onMouseEnter: React.PropTypes.func,
 
     /**
-     * Fired when mouse leaves the element.
+     * Callback function fired when the mouse leaves the `IconButton` element.
+     *
+     * @param {object} event `mouseleave` event targeting the `IconButton` element.
      */
     onMouseLeave: React.PropTypes.func,
 
     /**
-     * Fired when mouse is lifted inside the element.
+     * Callback function fired when a mouse button is released on the `IconButton` element.
+     *
+     * @param {object} event `mouseup` event targeting the `IconButton` element.
      */
     onMouseUp: React.PropTypes.func,
 
     /**
-     * Callback function that is fired when the open state
-     * of the menu is requested to be changed. The provided
-     * open argument determines whether the menu is requested
-     * to be opened or closed. Also, the reason argument states
-     * why the menu got closed or opened. It can be 'keyboard',
-     * 'iconTap' for open action and 'enter', 'escape', 'itemTap',
-     * 'clickAway' for close action.
+     * Callback function fired when the `open` state of the menu is requested to be changed.
+     *
+     * @param {boolean} open If true, the menu was requested to be opened.
+     * @param {string} reason The reason for the open or close request. Possible values are
+     * 'keyboard' and 'iconTap' for open requests; 'enter', 'escape', 'itemTap', and 'clickAway'
+     * for close requests.
      */
     onRequestChange: React.PropTypes.func,
 
     /**
-     * Fired when element is touch tapped.
+     * Callback function fired when the `IconButton` element is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the `IconButton` element.
      */
     onTouchTap: React.PropTypes.func,
 
     /**
-     * Controls whether the IconMenu is opened or not.
+     * If true, the `IconMenu` is opened.
      */
     open: React.PropTypes.bool,
 
