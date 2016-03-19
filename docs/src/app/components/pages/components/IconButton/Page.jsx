@@ -11,6 +11,8 @@ import iconButtonExampleSimpleCode from '!raw!./ExampleSimple';
 import IconButtonExampleSimple from './ExampleSimple';
 import iconButtonExampleComplexCode from '!raw!./ExampleComplex';
 import IconButtonExampleComplex from './ExampleComplex';
+import iconButtonExampleSizeCode from '!raw!./ExampleSize';
+import IconButtonExampleSize from './ExampleSize';
 import iconButtonExampleTooltipCode from '!raw!./ExampleTooltip';
 import IconButtonExampleTooltip from './ExampleTooltip';
 import iconButtonExampleTouchCode from '!raw!./ExampleTouch';
@@ -20,6 +22,7 @@ const descriptions = {
   simple: 'An Icon Button using an icon specified with the `iconClassName` property, and a `disabled` example.',
   tooltip: 'Icon Buttons showing the available `tooltip` positions.',
   touch: 'The `touch` property adjusts the tooltip size for better visibility on mobile devices.',
+  size: 'Examples of Icon Button in different sizes.',
   other: 'An Icon Button using a nested [Font Icon](/#/components/font-icon), ' +
   'a nested [SVG Icon](/#/components/svg-icon) and an icon font ligature.',
 };
@@ -41,6 +44,13 @@ const IconButtonPage = () => (
       code={iconButtonExampleComplexCode}
     >
       <IconButtonExampleComplex />
+    </CodeExample>
+    <CodeExample
+      title="Size examples"
+      description={descriptions.size}
+      code={iconButtonExampleSizeCode}
+    >
+      <IconButtonExampleSize />
     </CodeExample>
     <CodeExample
       title="Tooltip examples"
