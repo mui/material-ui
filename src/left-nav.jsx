@@ -20,12 +20,12 @@ const LeftNav = React.createClass({
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root element.
+     * The CSS class name of the root element.
      */
     className: React.PropTypes.string,
 
     /**
-     * The css class name of the container element.
+     * The CSS class name of the container element.
      */
     containerClassName: React.PropTypes.string,
 
@@ -35,44 +35,44 @@ const LeftNav = React.createClass({
     containerStyle: React.PropTypes.object,
 
     /**
-     * Indicates whether swiping sideways when the `LeftNav` is closed should open it.
+     * If true, swiping sideways when the `LeftNav` is closed will not open it.
      */
     disableSwipeToOpen: React.PropTypes.bool,
 
     /**
-     * Indicates that the `LeftNav` should be docked. In this state, the overlay won't
-     * show and clicking on a menu item will not close the `LeftNav`.
+     * If true, the `LeftNav` will be docked. In this state, the overlay won't show and
+     * clicking on a menu item will not close the `LeftNav`.
      */
     docked: React.PropTypes.bool,
 
     /**
-     * Callback function that is fired when the open state of the `LeftNav` is
-     * requested to be changed. The provided open argument determines whether
-     * the `LeftNav` is requested to be opened or closed. Also, the reason
-     * argument states why the `LeftNav` got closed or opend. It can be either
-     * `'clickaway'` for overlay clicks, `'escape'` for pressing the
-     * escape key and `'swipe'` for swiping. For opening the reason is always `'swipe'`.
+     * Callback function fired when the `open` state of the `LeftNav` is requested to be changed.
+     *
+     * @param {boolean} open If true, the `LeftNav` was requested to be opened.
+     * @param {string} reason The reason for the open or close request. Possible values are
+     * 'swipe' for open requests; 'clickaway' (on overlay clicks),
+     * 'escape' (on escape key press), and 'swipe' for close requests.
      */
     onRequestChange: React.PropTypes.func,
 
     /**
-     * Indicates that the `LeftNav` should be opened, closed or uncontrolled.
-     * Providing a boolean will turn the `LeftNav` into a controlled component.
+     * If true, the `LeftNav` is opened.  Providing a value will turn the `LeftNav`
+     * into a controlled component.
      */
     open: React.PropTypes.bool,
 
     /**
-     * Positions the `LeftNav` to open from the right side.
+     * If true, the `LeftNav` is positioned to open from the right side.
      */
     openRight: React.PropTypes.bool,
 
     /**
-     * The `className` to add to the `Overlay` component that is rendered behind the `LeftNav`.
+     * The CSS class name to add to the `Overlay` component that is rendered behind the `LeftNav`.
      */
     overlayClassName: React.PropTypes.string,
 
     /**
-     * Overrides the inline-styles of the `Overlay` component that is rendered behind the `LeftNav`.
+     * Override the inline-styles of the `Overlay` component that is rendered behind the `LeftNav`.
      */
     overlayStyle: React.PropTypes.object,
 
@@ -85,7 +85,7 @@ const LeftNav = React.createClass({
      * The width of the left most (or right most) area in pixels where the `LeftNav` can be
      * swiped open from. Setting this to `null` spans that area to the entire page
      * (**CAUTION!** Setting this property to `null` might cause issues with sliders and
-     * swipeable `Tabs`, use at your own risk).
+     * swipeable `Tabs`: use at your own risk).
      */
     swipeAreaWidth: React.PropTypes.number,
 
