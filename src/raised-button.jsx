@@ -34,7 +34,7 @@ function getStyles(props, state) {
 
   const amount = (primary || secondary) ? 0.4 : 0.08;
 
-  let backgroundColor = raisedButton.color;
+  let backgroundColor = props.backgroundColor || raisedButton.color;
   let labelColor = raisedButton.textColor;
 
   if (disabled) {
