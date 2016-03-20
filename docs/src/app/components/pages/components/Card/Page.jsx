@@ -13,13 +13,12 @@ import CardExampleWithoutAvatar from './ExampleWithoutAvatar';
 import cardExampleControlledCode from '!raw!./ExampleControlled';
 import CardExampleControlled from './ExampleControlled';
 
-import cardCode from '!raw!material-ui/lib/card/card';
-import cardActionsCode from '!raw!material-ui/lib/card/card-actions';
-import cardHeaderCode from '!raw!material-ui/lib/card/card-header';
-import cardMediaCode from '!raw!material-ui/lib/card/card-media';
-import cardTextCode from '!raw!material-ui/lib/card/card-text';
-import cardTitleCode from '!raw!material-ui/lib/card/card-title';
-
+import cardCode from '!raw!material-ui/lib/Card/Card';
+import cardActionsCode from '!raw!material-ui/lib/Card/CardActions';
+import cardHeaderCode from '!raw!material-ui/lib/Card/CardHeader';
+import cardMediaCode from '!raw!material-ui/lib/Card/CardMedia';
+import cardTextCode from '!raw!material-ui/lib/Card/CardText';
+import cardTitleCode from '!raw!material-ui/lib/Card/CardTitle';
 
 const descriptions = {
   avatar: 'A `Card` containing each of the card components: `CardHeader` (with avatar), `CardMedia` (with overlay), ' +

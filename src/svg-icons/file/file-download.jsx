@@ -1,6 +1,6 @@
 import React from 'react';
 import pure from 'recompose/pure';
-import SvgIcon from '../../svg-icon';
+import SvgIcon from '../../SvgIcon';
 
 let FileFileDownload = (props) => (
   <SvgIcon {...props}>

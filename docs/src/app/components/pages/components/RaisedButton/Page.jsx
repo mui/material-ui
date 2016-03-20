@@ -5,7 +5,6 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import raisedButtonCode from '!raw!material-ui/lib/raised-button';
 import raisedButtonReadmeText from './README';
 import raisedButtonExampleSimpleCode from '!raw!./ExampleSimple';
 import RaisedButtonExampleSimple from './ExampleSimple';
@@ -13,6 +12,7 @@ import raisedButtonExampleComplexCode from '!raw!./ExampleComplex';
 import RaisedButtonExampleComplex from './ExampleComplex';
 import raisedButtonExampleIconCode from '!raw!./ExampleIcon';
 import RaisedButtonExampleIcon from './ExampleIcon';
+import raisedButtonCode from '!raw!material-ui/lib/RaisedButton/RaisedButton';
 
 const descriptions = {
   simple: '`RaisedButton` with default color, `primary`, `secondary` and and `disabled` props applied.',

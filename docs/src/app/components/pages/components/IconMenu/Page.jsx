@@ -6,7 +6,6 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import iconMenuReadmeText from './README';
-import iconMenuCode from '!raw!material-ui/lib/menus/icon-menu';
 import IconMenuExampleSimple from './ExampleSimple';
 import iconMenuExampleSimpleCode from '!raw!./ExampleSimple';
 import IconMenuExampleControlled from './ExampleControlled';
@@ -15,6 +14,7 @@ import IconMenuExampleScrollable from './ExampleScrollable';
 import iconMenuExampleScrollableCode from '!raw!./ExampleScrollable';
 import IconMenuExampleNested from './ExampleNested';
 import iconMenuExampleNestedCode from '!raw!./ExampleNested';
+import iconMenuCode from '!raw!material-ui/lib/IconMenu/IconMenu';
 
 const descriptions = {
   simple: 'Simple Icon Menus demonstrating some of the layouts possible using the `anchorOrigin` and `' +

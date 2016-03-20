@@ -1,6 +1,6 @@
 import React from 'react';
-import ListItem from 'lists/list-item';
-import Checkbox from 'checkbox';
+import ListItem from 'List/ListItem';
+import Checkbox from 'Checkbox';
 import injectTheme from '../fixtures/inject-theme';
 import TestUtils from 'react-addons-test-utils';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoComplete from 'material-ui/lib/auto-complete';
+import AutoComplete from 'material-ui/lib/AutoComplete';
 
 const colors = [
   'Red',

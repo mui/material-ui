@@ -1,9 +1,9 @@
 import React from 'react';
-import Avatar from 'material-ui/lib/avatar';
+import Avatar from 'material-ui/lib/Avatar';
 import FileFolder from 'material-ui/lib/svg-icons/file/folder';
-import FontIcon from 'material-ui/lib/font-icon';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import FontIcon from 'material-ui/lib/FontIcon';
+import List from 'material-ui/lib/List/List';
+import ListItem from 'material-ui/lib/List/ListItem';
 
 import {
 blue300,

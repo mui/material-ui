@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from 'react-title-component';
-import Checkbox from 'material-ui/checkbox';
+import Checkbox from 'material-ui/Checkbox';
 import CodeExample from '../../CodeExample';
 import typography from 'material-ui/styles/typography';
 

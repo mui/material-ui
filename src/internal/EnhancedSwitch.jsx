@@ -4,7 +4,7 @@ import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
-import Paper from './../paper';
+import Paper from './../Paper';
 import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 

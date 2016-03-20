@@ -8,13 +8,14 @@ import MarkdownElement from '../../../MarkdownElement';
 import toolbarReadmeText from './README';
 import toolbarExampleSimpleCode from '!raw!./ExampleSimple';
 import ToolbarExampleSimple from './ExampleSimple';
-import toolbarCode from '!raw!material-ui/toolbar/toolbar';
+
+import toolbarCode from '!raw!material-ui/Toolbar/Toolbar';
 import toolbarText from './Toolbar';
-import toolbarGroupCode from '!raw!material-ui/toolbar/toolbar-group';
+import toolbarGroupCode from '!raw!material-ui/Toolbar/ToolbarGroup';
 import toolbarGroupText from './ToolbarGroup';
-import toolbarSeparatorCode from '!raw!material-ui/toolbar/toolbar-separator';
+import toolbarSeparatorCode from '!raw!material-ui/Toolbar/ToolbarSeparator';
 import toolbarSeparatorText from './ToolbarSeparator';
-import toolbarTitleCode from '!raw!material-ui/toolbar/toolbar-title';
+import toolbarTitleCode from '!raw!material-ui/Toolbar/toolbarTitle';
 import toolbarTitleText from './ToolbarTitle';
 
 const description = 'An example Toolbar demonstrating the use of the available sub-components, and including a ' +

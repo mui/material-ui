@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgIcon from '../svg-icon';
+import SvgIcon from '../SvgIcon';
 
 let NavigationArrowDropRight = React.createClass({
 

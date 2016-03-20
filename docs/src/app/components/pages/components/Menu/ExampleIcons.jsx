@@ -1,15 +1,15 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Divider from 'material-ui/lib/divider';
-import FontIcon from 'material-ui/lib/font-icon';
-import ContentCopy from 'material-ui/lib/svg-icons/content/content-copy';
-import ContentLink from 'material-ui/lib/svg-icons/content/link';
-import Delete from 'material-ui/lib/svg-icons/action/delete';
-import Download from 'material-ui/lib/svg-icons/file/file-download';
-import PersonAdd from 'material-ui/lib/svg-icons/social/person-add';
+import Paper from 'material-ui/lib/Paper';
+import Menu from 'material-ui/lib/Menu';
+import MenuItem from 'material-ui/lib/MenuItem';
 import RemoveRedEye from 'material-ui/lib/svg-icons/image/remove-red-eye';
+import PersonAdd from 'material-ui/lib/svg-icons/social/person-add';
+import ContentLink from 'material-ui/lib/svg-icons/content/link';
+import Divider from 'material-ui/lib/Divider';
+import ContentCopy from 'material-ui/lib/svg-icons/content/content-copy';
+import Download from 'material-ui/lib/svg-icons/file/file-download';
+import Delete from 'material-ui/lib/svg-icons/action/delete';
+import FontIcon from 'material-ui/lib/FontIcon';
 
 const style = {
   paper: {

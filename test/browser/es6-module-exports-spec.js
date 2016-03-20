@@ -1,7 +1,7 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-const Divider = require('divider').default;
+const Divider = require('Divider').default;
 const ActionAccessibility = require('svg-icons').ActionAccessibility;
 
 import ImportGetMuiTheme from 'styles/getMuiTheme';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Dialog from 'dialog';
+import Dialog from 'Dialog';
 import {spy} from 'sinon';
 import TestUtils from 'react-addons-test-utils';
 

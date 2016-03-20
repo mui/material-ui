@@ -1,5 +1,5 @@
 import React from 'react';
-import FontIcon from 'material-ui/lib/font-icon';
+import FontIcon from 'material-ui/lib/FontIcon';
 import {red500, yellow500, blue500} from 'material-ui/lib/styles/colors';
 
 const iconStyles = {

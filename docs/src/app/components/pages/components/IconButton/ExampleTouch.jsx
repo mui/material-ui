@@ -1,5 +1,5 @@
 import React from 'react';
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/lib/IconButton';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
 
 const IconButtonExampleTouch = () => (

@@ -6,13 +6,13 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import paperReadmeText from './README';
-import paperCode from '!raw!material-ui/lib/paper';
 import PaperExampleSimple from './ExampleSimple';
 import paperExampleSimpleCode from '!raw!./ExampleSimple';
 import PaperExampleRounded from './ExampleRounded';
 import paperExampleRoundedCode from '!raw!./ExampleRounded';
 import PaperExampleCircle from './ExampleCircle';
 import paperExampleCircleCode from '!raw!./ExampleCircle';
+import paperCode from '!raw!material-ui/lib/Paper/Paper';
 
 const descriptions = {
   simple: 'Paper examples showing the range of `zDepth`.',

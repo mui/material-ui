@@ -1,5 +1,5 @@
 import React from 'react';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/lib/FlatButton';
 
 const FlatButtonExampleSimple = () => (
   <div>

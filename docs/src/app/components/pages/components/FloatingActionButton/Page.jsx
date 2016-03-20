@@ -5,11 +5,10 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import floatingButtonCode from '!raw!material-ui/lib/floating-action-button';
 import floatingButtonReadmeText from './README';
 import floatingButtonExampleSimpleCode from '!raw!./ExampleSimple';
 import FloatingButtonExampleSimple from './ExampleSimple';
-
+import floatingButtonCode from '!raw!material-ui/lib/FloatingActionButton/FloatingActionButton';
 
 const descriptions = {
   simple: 'Default size and `mini` FABs, in primary (default), `secondary` and `disabled` colors.',

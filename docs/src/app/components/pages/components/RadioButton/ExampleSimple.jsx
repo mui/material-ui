@@ -1,6 +1,5 @@
 import React from 'react';
-import RadioButton from 'material-ui/lib/radio-button';
-import RadioButtonGroup from 'material-ui/lib/radio-button-group';
+import {RadioButton, RadioButtonGroup} from 'material-ui/lib/RadioButton';
 import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
 

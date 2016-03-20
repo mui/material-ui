@@ -1,5 +1,5 @@
 import React from 'react';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import FloatingActionButton from 'material-ui/lib/FloatingActionButton';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 
 const style = {

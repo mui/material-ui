@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import keycode from 'keycode';
-import Slider from 'src/slider';
+import Slider from 'src/Slider';
 
 describe('<Slider />', () => {
   sinon.assert.expose(assert, {prefix: ''});

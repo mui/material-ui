@@ -1,8 +1,8 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
-import IconButton from 'material-ui/lib/icon-button';
+import AppBar from 'material-ui/lib/AppBar';
+import IconButton from 'material-ui/lib/IconButton';
 import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/lib/FlatButton';
 
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');

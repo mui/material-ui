@@ -1,7 +1,7 @@
 import React from 'react';
-import LeftNav from 'material-ui/lib/left-nav';
-import AppBar from 'material-ui/lib/app-bar';
-import RaisedButton from 'material-ui/lib/raised-button';
+import LeftNav from 'material-ui/lib/LeftNav';
+import AppBar from 'material-ui/lib/AppBar';
+import RaisedButton from 'material-ui/lib/RaisedButton';
 
 export default class LeftNavOpenRightExample extends React.Component {
 

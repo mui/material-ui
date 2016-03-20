@@ -1,6 +1,6 @@
 import React from 'react';
-import FontIcon from 'material-ui/lib/font-icon';
-import IconButton from 'material-ui/lib/icon-button';
+import FontIcon from 'material-ui/lib/FontIcon';
+import IconButton from 'material-ui/lib/IconButton';
 import ActionHome from 'material-ui/lib/svg-icons/action/home';
 
 const IconButtonExampleComplex = () => (

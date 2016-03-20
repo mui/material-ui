@@ -1,6 +1,6 @@
 import React from 'react';
-import Badge from 'material-ui/lib/badge';
-import IconButton from 'material-ui/lib/icon-button';
+import Badge from 'material-ui/lib/Badge';
+import IconButton from 'material-ui/lib/IconButton';
 import UploadIcon from 'material-ui/lib/svg-icons/file/cloud-upload';
 import FolderIcon from 'material-ui/lib/svg-icons/file/folder-open';
 

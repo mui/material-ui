@@ -5,7 +5,7 @@ import spacing from 'material-ui/styles/spacing';
 import transitions from 'material-ui/styles/transitions';
 import typography from 'material-ui/styles/typography';
 import {grey200} from 'material-ui/lib/styles/colors';
-import Paper from 'material-ui/paper';
+import Paper from 'material-ui/Paper';
 
 const HomeFeature = React.createClass({
 

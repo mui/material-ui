@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/lib/TextField';
 
 export default class TextFieldExampleControlled extends React.Component {
 

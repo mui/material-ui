@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'material-ui/lib/checkbox';
+import Checkbox from 'material-ui/lib/Checkbox';
 import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
 

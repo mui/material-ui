@@ -1,7 +1,7 @@
 import React from 'react';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Dialog from 'material-ui/lib/Dialog';
+import FlatButton from 'material-ui/lib/FlatButton';
+import RaisedButton from 'material-ui/lib/RaisedButton';
 
 const customContentStyle = {
   width: '100%',

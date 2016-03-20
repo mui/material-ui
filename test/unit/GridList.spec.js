@@ -1,8 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import GridList from 'src/grid-list/grid-list';
-import GridTile from 'src/grid-list/grid-tile';
+import {GridList, GridTile} from 'src/GridList';
 
 describe('<GridList />', () => {
   const tilesData = [

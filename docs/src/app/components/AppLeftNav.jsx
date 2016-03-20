@@ -1,16 +1,14 @@
 import React from 'react';
-import LeftNav from 'material-ui/lib/left-nav';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Divider from 'material-ui/lib/divider';
+import LeftNav from 'material-ui/lib/LeftNav';
+import {List, ListItem, MakeSelectable} from 'material-ui/lib/List';
+import Divider from 'material-ui/lib/Divider';
 import Subheader from 'material-ui/lib/Subheader';
 import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import {SelectableContainerEnhance} from 'material-ui/lib/lists/selectable-enhance';
+import MenuItem from 'material-ui/lib/MenuItem';
 import {spacing, typography, zIndex} from 'material-ui/lib/styles';
 import {cyan500} from 'material-ui/lib/styles/colors';
 
-const SelectableList = SelectableContainerEnhance(List);
+const SelectableList = MakeSelectable(List);
 
 const AppLeftNav = React.createClass({
 

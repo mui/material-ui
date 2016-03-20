@@ -1,6 +1,6 @@
 import React from 'react';
-import AutoComplete from 'material-ui/lib/auto-complete';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import AutoComplete from 'material-ui/lib/AutoComplete';
+import MenuItem from 'material-ui/lib/MenuItem';
 
 const dataSource1 = [
   {

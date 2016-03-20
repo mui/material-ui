@@ -1,6 +1,6 @@
 import React from 'react';
 import DropDownMenu from 'material-ui/lib/DropDownMenu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuItem from 'material-ui/lib/MenuItem';
 
 const items = [];
 for (let i = 0; i < 100; i++ ) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import Avatar from 'src/avatar';
+import Avatar from 'src/Avatar';
 
 describe('<Avatar />', () => {
   const testChildren = <div className="unique">Hello World</div>;

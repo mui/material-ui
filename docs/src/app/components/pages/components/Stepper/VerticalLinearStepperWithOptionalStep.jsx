@@ -1,12 +1,10 @@
 import React from 'react';
-
 import Stepper from 'material-ui/lib/Stepper/Stepper';
 import Step from 'material-ui/Stepper/VerticalStep';
-
-import Paper from 'material-ui/lib/paper';
-import FontIcon from 'material-ui/lib/font-icon';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import Paper from 'material-ui/lib/Paper';
+import FontIcon from 'material-ui/lib/FontIcon';
+import RaisedButton from 'material-ui/lib/RaisedButton';
+import FlatButton from 'material-ui/lib/FlatButton';
 import SeatIcon from 'material-ui/lib/svg-icons/action/event-seat';
 import PrintIcon from 'material-ui/lib/svg-icons/action/print';
 

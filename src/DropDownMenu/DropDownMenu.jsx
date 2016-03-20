@@ -1,11 +1,11 @@
 import React from 'react';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
-import Menu from '../menus/menu';
+import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import getMuiTheme from '../styles/getMuiTheme';
-import Popover from '../popover/popover';
-import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
+import Popover from '../Popover/Popover';
+import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 
 const anchorOrigin = {
   vertical: 'top',

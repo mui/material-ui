@@ -2,8 +2,8 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import getMuiTheme from 'src/styles/getMuiTheme';
-import FlatButton from 'src/flat-button';
-import FontIcon from 'src/font-icon';
+import FlatButton from 'src/FlatButton';
+import FontIcon from 'src/FontIcon';
 
 describe('<FlatButton />', () => {
   const flatButtonTheme = getMuiTheme().flatButton;

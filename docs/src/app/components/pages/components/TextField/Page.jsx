@@ -6,7 +6,6 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import textFieldReadmeText from './README';
-import textFieldCode from '!raw!material-ui/lib/TextField/TextField';
 import TextFieldExampleSimple from './ExampleSimple';
 import textFieldExampleSimpleCode from '!raw!./ExampleSimple';
 import TextFieldExampleCustomize from './ExampleCustomize';
@@ -17,6 +16,7 @@ import TextFieldExampleDisabled from './ExampleDisabled';
 import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
 import TextFieldExampleControlled from './ExampleControlled';
 import textFieldExampleControlledCode from '!raw!./ExampleControlled';
+import textFieldCode from '!raw!material-ui/lib/TextField/TextField';
 
 const descriptions = {
   simple: 'Examples demonstrating key Text Field features.',

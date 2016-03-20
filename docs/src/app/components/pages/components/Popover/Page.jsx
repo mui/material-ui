@@ -6,14 +6,14 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import popoverReadmeText from './README';
-import popoverNoteText from './NOTE';
-import popoverCode from '!raw!material-ui/lib/popover/popover';
 import PopoverExampleSimple from './ExampleSimple';
 import popoverExampleSimpleCode from '!raw!./ExampleSimple';
 import PopoverExampleAnimation from './ExampleAnimation';
 import popoverExampleAnimationCode from '!raw!./ExampleAnimation';
 import PopoverExampleConfigurable from './ExampleConfigurable';
 import popoverExampleConfigurableCode from '!raw!./ExampleConfigurable';
+import popoverNoteText from './NOTE';
+import popoverCode from '!raw!material-ui/lib/Popover/Popover';
 
 const descriptions = {
   simple: 'A simple example showing a Popover containing a [Menu](http://localhost:3000/#/components/menu). ' +

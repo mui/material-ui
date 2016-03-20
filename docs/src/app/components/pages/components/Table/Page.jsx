@@ -6,17 +6,18 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import tableReadmeText from './README';
-import tableCode from '!raw!material-ui/lib/table/table';
-import tableRowCode from '!raw!material-ui/lib/table/table-row';
-import tableRowColumnCode from '!raw!material-ui/lib/table/table-row-column';
-import tableHeaderCode from '!raw!material-ui/lib/table/table-header';
-import tableHeaderColumnCode from '!raw!material-ui/lib/table/table-header-column';
-import tableBodyCode from '!raw!material-ui/lib/table/table-body';
-import tableFooterCode from '!raw!material-ui/lib/table/table-footer';
 import TableExampleSimple from './ExampleSimple';
 import tableExampleSimpleCode from '!raw!./ExampleSimple';
 import TableExampleComplex from './ExampleComplex';
 import tableExampleComplexCode from '!raw!./ExampleComplex';
+
+import tableCode from '!raw!material-ui/lib/Table/Table';
+import tableRowCode from '!raw!material-ui/lib/Table/TableRow';
+import tableRowColumnCode from '!raw!material-ui/lib/Table/TableRowColumn';
+import tableHeaderCode from '!raw!material-ui/lib/Table/TableHeader';
+import tableHeaderColumnCode from '!raw!material-ui/lib/Table/TableHeaderColumn';
+import tableBodyCode from '!raw!material-ui/lib/Table/TableBody';
+import tableFooterCode from '!raw!material-ui/lib/Table/TableFooter';
 
 const descriptions = {
   simple: 'A simple table demonstrating the hierarchy of the `Table` component and its sub-components.',

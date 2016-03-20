@@ -8,7 +8,7 @@ import MarkdownElement from '../../../MarkdownElement';
 import avatarReadmeText from './README';
 import AvatarExampleSimple from './ExampleSimple';
 import avatarExampleSimpleCode from '!raw!./ExampleSimple';
-import avatarCode from '!raw!material-ui/lib/avatar';
+import avatarCode from '!raw!material-ui/lib/Avatar/Avatar';
 
 const description = 'Examples of `Avatar` using an image, [Font Icon](/#/components/font-icon), ' +
   '[SVG Icon](/#/components/svg-icon) and "Letter" (string), with and without custom colors.';

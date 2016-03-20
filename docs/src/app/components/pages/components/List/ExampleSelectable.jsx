@@ -1,11 +1,10 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Avatar from 'material-ui/lib/avatar';
+import {List, ListItem, MakeSelectable} from 'material-ui/lib/List';
+import Avatar from 'material-ui/lib/Avatar';
 import Subheader from 'material-ui/lib/Subheader';
-import {SelectableContainerEnhance} from 'material-ui/lib/lists/selectable-enhance';
-let SelectableList = SelectableContainerEnhance(List);
+
+let SelectableList = MakeSelectable(List);
 
 function wrapState(ComposedComponent) {
   const StateWrapper = React.createClass({

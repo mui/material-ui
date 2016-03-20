@@ -6,8 +6,4 @@ export {VerticalStep};
 export {HorizontalStep};
 export {Stepper};
 
-export default {
-  VerticalStep,
-  HorizontalStep,
-  Stepper,
-};
+export default Stepper;

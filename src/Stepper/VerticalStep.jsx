@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import TouchRipple from '../internal/TouchRipple';
-import Avatar from '../avatar';
+import Avatar from '../Avatar';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const Step = React.createClass({

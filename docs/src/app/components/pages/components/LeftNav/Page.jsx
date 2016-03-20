@@ -12,7 +12,7 @@ import LeftNavUndockedExample from './ExampleUndocked';
 import leftNavUndockedExampleCode from '!raw!./ExampleUndocked';
 import LeftNavOpenRightExample from './ExampleOpenRight';
 import leftNavOpenRightExampleCode from '!raw!./ExampleOpenRight';
-import leftNavCode from '!raw!material-ui/lib/left-nav';
+import leftNavCode from '!raw!material-ui/lib/LeftNav/LeftNav';
 
 const descriptions = {
   simple: 'A simple controlled `LeftNav`. The Left Nav is `docked` by default, ' +

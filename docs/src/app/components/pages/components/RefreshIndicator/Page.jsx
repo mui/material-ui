@@ -6,11 +6,11 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import refreshIndicatorReadmeText from './README';
-import refreshIndicatorCode from '!raw!material-ui/lib/refresh-indicator';
 import RefreshIndicatorExampleReady from './ExampleReady';
 import refreshIndicatorExampleReadyCode from '!raw!./ExampleReady';
 import RefreshIndicatorExampleLoading from './ExampleLoading';
 import refreshIndicatorExampleLoadingCode from '!raw!./ExampleLoading';
+import refreshIndicatorCode from '!raw!material-ui/lib/RefreshIndicator/RefreshIndicator';
 
 const descriptions = {
   ready: 'The `ready` status can be used in response to a pull-to-refresh action, with the `percentage` tracking ' +

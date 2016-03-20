@@ -1,8 +1,8 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/lib/RaisedButton';
 import {fullWhite} from 'material-ui/lib/styles/colors';
 import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
-import FontIcon from 'material-ui/lib/font-icon';
+import FontIcon from 'material-ui/lib/FontIcon';
 
 const style = {
   margin: 12,

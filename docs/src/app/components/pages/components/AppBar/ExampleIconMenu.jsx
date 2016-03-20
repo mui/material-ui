@@ -1,10 +1,10 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
-import IconButton from 'material-ui/lib/icon-button';
-import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
+import AppBar from 'material-ui/lib/AppBar';
+import IconButton from 'material-ui/lib/IconButton';
+import IconMenu from 'material-ui/lib/IconMenu';
+import MenuItem from 'material-ui/lib/MenuItem';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
 
 const AppBarExampleIconMenu = () => (
   <AppBar

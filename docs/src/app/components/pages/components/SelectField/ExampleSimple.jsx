@@ -1,6 +1,6 @@
 import React from 'react';
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import SelectField from 'material-ui/lib/SelectField';
+import MenuItem from 'material-ui/lib/MenuItem';
 
 export default class SelectFieldExampleSimple extends React.Component {
 

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
-import Paper from '../paper';
+import Paper from '../Paper';
 
 const Stepper = React.createClass({
   propTypes: {

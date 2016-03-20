@@ -6,9 +6,9 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import toggleReadmeText from './README';
-import toggleCode from '!raw!material-ui/lib/toggle';
 import ToggleExampleSimple from './ExampleSimple';
 import toggleExampleSimpleCode from '!raw!./ExampleSimple';
+import toggleCode from '!raw!material-ui/lib/Toggle/Toggle';
 
 const description = 'The second example is selected by default using the `defaultToggled` property. The third ' +
   'example is disabled using the `disabled` property. The final example uses the `labelPosition` property to ' +

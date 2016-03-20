@@ -1,7 +1,7 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import Paper from 'material-ui/lib/Paper';
+import Menu from 'material-ui/lib/Menu';
+import MenuItem from 'material-ui/lib/MenuItem';
 
 const style = {
   display: 'inline-block',

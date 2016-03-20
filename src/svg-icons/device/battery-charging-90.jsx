@@ -1,6 +1,6 @@
 import React from 'react';
 import pure from 'recompose/pure';
-import SvgIcon from '../../svg-icon';
+import SvgIcon from '../../SvgIcon';
 
 let DeviceBatteryCharging90 = (props) => (
   <SvgIcon {...props}>

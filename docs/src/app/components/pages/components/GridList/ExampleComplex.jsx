@@ -1,8 +1,7 @@
 import React from 'react';
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import {GridList, GridTile} from 'material-ui/lib/GridList';
+import IconButton from 'material-ui/lib/IconButton';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
-import IconButton from 'material-ui/lib/icon-button';
 
 const styles = {
   root: {

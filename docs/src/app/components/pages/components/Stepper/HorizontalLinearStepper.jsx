@@ -1,12 +1,10 @@
 import React from 'react';
-
-import Stepper from 'material-ui/lib/Stepper/Stepper';
+import Stepper from 'material-ui/lib/Stepper';
 import Step from 'material-ui/Stepper/HorizontalStep';
-
-import Paper from 'material-ui/lib/paper';
-import FontIcon from 'material-ui/lib/font-icon';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
+import Paper from 'material-ui/lib/Paper';
+import FontIcon from 'material-ui/lib/FontIcon';
+import RaisedButton from 'material-ui/lib/RaisedButton';
+import FlatButton from 'material-ui/lib/FlatButton';
 
 const HorizontalStepper = React.createClass({
   getInitialState() {

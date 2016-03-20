@@ -6,11 +6,11 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import linearProgressReadmeText from './README';
-import linearProgressCode from '!raw!material-ui/lib/linear-progress';
 import LinearProgressExampleSimple from './ExampleSimple';
 import linearProgressExampleSimpleCode from '!raw!./ExampleSimple';
 import LinearProgressExampleDeterminate from './ExampleDeterminate';
 import linearProgressExampleDeterminateCode from '!raw!./ExampleDeterminate';
+import linearProgressCode from '!raw!material-ui/lib/LinearProgress/LinearProgress';
 
 const descriptions = {
   indeterminate: 'By default, the indicator animates continuously.',

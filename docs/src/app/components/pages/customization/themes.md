@@ -26,7 +26,7 @@ import React from 'react';
 import {cyan500} from 'material-ui/lib/styles/colors';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import getMuiTheme from 'material-ui/lib/getMuiTheme';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/lib/AppBar';
 
 // This replaces the textColor value on the palette
 // and then update the keys for each component that depends on it.
@@ -76,7 +76,7 @@ import React from 'react';
 import darkBaseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import getMuiTheme from 'material-ui/lib/getMuiTheme';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/lib/AppBar';
 
 const darkMuiTheme = getMuiTheme(darkBaseTheme);
 
@@ -132,7 +132,7 @@ Pass theme down the context:
 import React from 'react';
 import baseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/lib/getMuiTheme';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from 'material-ui/lib/AppBar';
 
 class Main extends React.Component {
   getChildContext() {

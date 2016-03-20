@@ -1,8 +1,8 @@
 import React from 'react';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import DatePicker from 'material-ui/lib/date-picker/date-picker';
+import Dialog from 'material-ui/lib/Dialog';
+import FlatButton from 'material-ui/lib/FlatButton';
+import RaisedButton from 'material-ui/lib/RaisedButton';
+import DatePicker from 'material-ui/lib/DatePicker';
 
 export default class DialogExampleDialogDatePicker extends React.Component {
   constructor(props) {

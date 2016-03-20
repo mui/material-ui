@@ -182,8 +182,10 @@ const Tooltip = React.createClass({
           ref="ripple"
           style={prepareStyles(Object.assign(
             styles.ripple,
-            this.props.show && styles.rippleWhenShown))}
-        />
+            this.props.show && styles.rippleWhenShown
+          ))}
+        >
+        </div>
         <span style={prepareStyles(styles.label)}>
           {label}
         </span>
