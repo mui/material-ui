@@ -289,7 +289,12 @@ const Table = React.createClass({
 
       const displayName = child.type.displayName;
       if (displayName === 'TableBody') {
-        tBody = this._createTableBody(child);
+        const singleTBody = this._createTableBody(child);
+        if (tBody) {
+          tBody.push(singleTBody);
+        } else {
+          tBody = [singleTBody];
+        }
       } else if (displayName === 'TableHeader') {
         tHead = this._createTableHeader(child);
       } else if (displayName === 'TableFooter') {
