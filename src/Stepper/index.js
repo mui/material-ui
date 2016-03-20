@@ -1,5 +1,5 @@
+export Step from './Step';
+export StepButton from './StepButton';
+export StepContent from './StepContent';
+export StepLabel from './StepLabel';
 export Stepper from './Stepper';
-export VerticalStep from './VerticalStep';
-export HorizontalStep from './HorizontalStep';
-
-export default from './Stepper';

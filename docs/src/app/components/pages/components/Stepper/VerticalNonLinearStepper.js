@@ -1,150 +1,109 @@
 import React from 'react';
-import Stepper from 'material-ui/Stepper/Stepper';
-import Step from 'material-ui/Stepper/VerticalStep';
-import Paper from 'material-ui/Paper';
-import FontIcon from 'material-ui/FontIcon';
+import {
+  Step,
+  Stepper,
+  StepButton,
+  StepContent,
+} from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-const styles = {
-  paper: {
-    width: 500,
-    margin: 'auto',
-  },
-  header: {
-    textAlign: 'center',
-    padding: 10,
-    fontSize: 20,
-  },
-  actionButton: {
-    marginRight: 8,
-  },
-};
+/**
+ * A basic vertical non-linear implementation
+ */
+class VerticalNonLinear extends React.Component {
 
-const VerticalNonLinearStepper = React.createClass({
-  getInitialState() {
-    return {
-      activeStep: -1,
-      statusSteps: [],
-    };
-  },
+  state = {
+    stepIndex: 0,
+  };
 
-  handleStepHeaderTouch(CurrentStep) {
-    this.setState({
-      activeStep: CurrentStep,
-    });
-  },
-
-  updateCompletedSteps(CurrentStep) {
-    return this.state.statusSteps[CurrentStep];
-  },
-
-  createIcon(step) {
-    if (step.props.isCompleted) {
-      return (
-        <FontIcon className="material-icons" style={{fontSize: 14}}>
-          done
-        </FontIcon>
-      );
+  handleNext = () => {
+    const {stepIndex} = this.state;
+    if (stepIndex < 2) {
+      this.setState({stepIndex: stepIndex + 1});
     }
+  };
 
-    return <span>{step.props.orderStepLabel}</span>;
-  },
+  handlePrev = () => {
+    const {stepIndex} = this.state;
+    if (stepIndex > 0) {
+      this.setState({stepIndex: stepIndex - 1});
+    }
+  };
 
-  handleTouchTap() {
-    const {
-      activeStep,
-      statusSteps,
-    } = this.state;
-
-    statusSteps[activeStep] = true;
-
-    this.setState({
-      activeStep: activeStep + 1,
-      statusSteps: statusSteps,
-    });
-  },
+  renderStepActions(step) {
+    return (
+      <div style={{margin: '12px 0'}}>
+        <RaisedButton
+          label="Next"
+          disableTouchRipple={true}
+          disableFocusRipple={true}
+          primary={true}
+          onTouchTap={this.handleNext}
+          style={{marginRight: 12}}
+        />
+        {step > 0 && (
+          <FlatButton
+            label="Back"
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onTouchTap={this.handlePrev}
+          />
+        )}
+      </div>
+    );
+  }
 
   render() {
-    return (
-      <Paper style={styles.paper}>
-        <div style={styles.header}>
-          Your interests
-        </div>
-        <Stepper
-          activeStep={this.state.activeStep}
-          onStepHeaderTouch={this.handleStepHeaderTouch}
-          updateCompletedStatus={this.updateCompletedSteps}
-          createIcon={this.createIcon}
-        >
-          <Step
-            orderStepLabel="1"
-            stepLabel="Books"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Finish"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-                style={styles.actionButton}
-              />,
-              <FlatButton
-                key={1}
-                label="Cancel"
-              />,
-            ]}
-          >
-            <div>
-              Please list your favorite reads.
-            </div>
-          </Step>
-          <Step
-            orderStepLabel="2"
-            stepLabel="Movies"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Finish"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-                style={styles.actionButton}
-              />,
-              <FlatButton
-                key={1}
-                label="Cancel"
-              />,
-            ]}
-          >
-            <div style={{height: 50}}>
-              Please list your favorite flicks.
-            </div>
-          </Step>
+    const {stepIndex} = this.state;
 
-          <Step
-            orderStepLabel="3"
-            stepLabel="Music"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Finish"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-                style={styles.actionButton}
-              />,
-              <FlatButton
-                key={1}
-                label="Cancel"
-              />,
-            ]}
-          >
-            <div style={{height: 50}}>
-              Please list your favorite tunes.
-            </div>
+    return (
+      <div style={{width: 380, height: 400, margin: 'auto'}}>
+        <Stepper
+          activeStep={stepIndex}
+          linear={false}
+          orientation="vertical"
+        >
+          <Step>
+            <StepButton onClick={() => this.setState({stepIndex: 0})}>
+              Select campaign settings
+            </StepButton>
+            <StepContent>
+              <p>
+                For each ad campaign that you create, you can control how much
+                you're willing to spend on clicks and conversions, which networks
+                and geographical locations you want your ads to show on, and more.
+              </p>
+              {this.renderStepActions(0)}
+            </StepContent>
+          </Step>
+          <Step>
+            <StepButton onClick={() => this.setState({stepIndex: 1})}>
+              Create an ad group
+            </StepButton>
+            <StepContent>
+              <p>An ad group contains one or more ads which target a shared set of keywords.</p>
+              {this.renderStepActions(1)}
+            </StepContent>
+          </Step>
+          <Step>
+            <StepButton onClick={() => this.setState({stepIndex: 2})}>
+              Create an ad
+            </StepButton>
+            <StepContent>
+              <p>
+                Try out different ad text to see what brings in the most customers,
+                and learn how to enhance your ads using features like ad extensions.
+                If you run into any problems with your ads, find out how to tell if
+                they're running and how to resolve approval issues.
+              </p>
+              {this.renderStepActions(2)}
+            </StepContent>
           </Step>
         </Stepper>
-      </Paper>
+      </div>
     );
-  },
-});
+  }
+}
 
-export default VerticalNonLinearStepper;
+export default VerticalNonLinear;
