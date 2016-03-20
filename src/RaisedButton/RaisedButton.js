@@ -377,7 +377,7 @@ class RaisedButton extends Component {
     );
 
     const iconCloned = icon && React.cloneElement(icon, {
-      color: styles.label.color,
+      color: icon.props.color || styles.label.color,
       style: styles.icon,
     });
 
