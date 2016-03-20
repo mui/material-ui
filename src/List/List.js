@@ -10,7 +10,7 @@ const List = React.createClass({
 
   propTypes: {
     /**
-     * These are usually ListItems that are passed to
+     * These are usually `ListItem`s that are passed to
      * be part of the list.
      */
     children: React.PropTypes.node,
@@ -33,7 +33,7 @@ const List = React.createClass({
       'Instead, nest the `Subheader` component directly inside the `List`.'),
 
     /**
-     * The style object to override subheader styles.
+     * Override the inline-styles of the subheader element.
      */
     subheaderStyle: deprecated(React.PropTypes.object,
       'Refer to the `subheader` property.'),
