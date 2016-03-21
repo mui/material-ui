@@ -1,6 +1,6 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/lib/Tabs';
-import Slider from 'material-ui/lib/Slider';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import Slider from 'material-ui/Slider';
 
 const styles = {
   headline: {

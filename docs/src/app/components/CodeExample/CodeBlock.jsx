@@ -1,7 +1,7 @@
 import React from 'react';
 import MarkdownElement from '../MarkdownElement';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import transitions from 'material-ui/lib/styles/transitions';
+import transitions from 'material-ui/styles/transitions';
 import CodeBlockTitle from './CodeBlockTitle';
 
 const styles = {

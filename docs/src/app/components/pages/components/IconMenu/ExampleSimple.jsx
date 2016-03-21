@@ -1,8 +1,8 @@
 import React from 'react';
-import IconMenu from 'material-ui/lib/IconMenu';
-import MenuItem from 'material-ui/lib/MenuItem';
-import IconButton from 'material-ui/lib/IconButton/IconButton';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 const IconMenuExampleSimple = () => (
   <div>

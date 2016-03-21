@@ -1,6 +1,6 @@
 import React from 'react';
-import Divider from 'material-ui/lib/Divider';
-import {List, ListItem} from 'material-ui/lib/List';
+import Divider from 'material-ui/Divider';
+import {List, ListItem} from 'material-ui/List';
 import MobileTearSheet from '../../../MobileTearSheet';
 
 const DividerExampleList = () => (

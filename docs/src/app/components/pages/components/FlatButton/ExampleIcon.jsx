@@ -1,8 +1,8 @@
 import React from 'react';
-import FlatButton from 'material-ui/lib/FlatButton';
-import FontIcon from 'material-ui/lib/FontIcon';
-import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
-import {fullWhite} from 'material-ui/lib/styles/colors';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import {fullWhite} from 'material-ui/styles/colors';
 
 const style = {
   margin: 12,

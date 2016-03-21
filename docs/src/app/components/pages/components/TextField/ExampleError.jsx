@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from 'material-ui/lib/TextField';
+import TextField from 'material-ui/TextField';
 
 const TextFieldExampleError = () => (
   <div>

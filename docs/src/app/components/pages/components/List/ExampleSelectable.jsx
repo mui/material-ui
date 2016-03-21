@@ -1,8 +1,8 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem, MakeSelectable} from 'material-ui/lib/List';
-import Avatar from 'material-ui/lib/Avatar';
-import Subheader from 'material-ui/lib/Subheader';
+import {List, ListItem, MakeSelectable} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import Subheader from 'material-ui/Subheader';
 
 let SelectableList = MakeSelectable(List);
 

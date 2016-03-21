@@ -1,7 +1,7 @@
 import React from 'react';
-import FlatButton from 'material-ui/lib/FlatButton';
-import FontIcon from 'material-ui/lib/FontIcon';
-import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
 
 const styles = {
   exampleImageInput: {

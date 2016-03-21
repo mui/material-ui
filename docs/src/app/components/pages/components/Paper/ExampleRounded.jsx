@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from 'material-ui/lib/Paper';
+import Paper from 'material-ui/Paper';
 
 const style = {
   height: 100,

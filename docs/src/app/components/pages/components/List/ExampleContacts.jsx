@@ -1,10 +1,10 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem} from 'material-ui/lib/List';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import Divider from 'material-ui/lib/Divider';
-import Avatar from 'material-ui/lib/Avatar';
-import {pinkA200, transparent} from 'material-ui/lib/styles/colors';
+import {List, ListItem} from 'material-ui/List';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Divider from 'material-ui/Divider';
+import Avatar from 'material-ui/Avatar';
+import {pinkA200, transparent} from 'material-ui/styles/colors';
 
 const ListExampleContacts = () => (
   <MobileTearSheet>

@@ -1,10 +1,10 @@
 import React from 'react';
-import Stepper from 'material-ui/lib/Stepper/Stepper';
+import Stepper from 'material-ui/Stepper/Stepper';
 import Step from 'material-ui/Stepper/VerticalStep';
-import Paper from 'material-ui/lib/Paper';
-import FontIcon from 'material-ui/lib/FontIcon';
-import RaisedButton from 'material-ui/lib/RaisedButton';
-import FlatButton from 'material-ui/lib/FlatButton';
+import Paper from 'material-ui/Paper';
+import FontIcon from 'material-ui/FontIcon';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   paper: {

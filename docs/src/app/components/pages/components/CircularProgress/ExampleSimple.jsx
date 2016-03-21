@@ -1,5 +1,5 @@
 import React from 'react';
-import CircularProgress from 'material-ui/lib/CircularProgress';
+import CircularProgress from 'material-ui/CircularProgress';
 
 const CircularProgressExampleSimple = () => (
   <div>

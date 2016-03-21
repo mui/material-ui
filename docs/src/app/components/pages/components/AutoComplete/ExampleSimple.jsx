@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoComplete from 'material-ui/lib/AutoComplete';
+import AutoComplete from 'material-ui/AutoComplete';
 
 export default class AutoCompleteExampleSimple extends React.Component {
 

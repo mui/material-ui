@@ -1,8 +1,8 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/RaisedButton';
-import Popover from 'material-ui/lib/Popover';
-import Menu from 'material-ui/lib/Menu';
-import MenuItem from 'material-ui/lib/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 
 export default class PopoverExampleSimple extends React.Component {
 

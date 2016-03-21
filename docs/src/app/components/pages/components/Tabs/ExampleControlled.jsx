@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/lib/Tabs';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 const styles = {
   headline: {

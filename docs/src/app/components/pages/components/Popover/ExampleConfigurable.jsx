@@ -1,8 +1,8 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/RaisedButton';
-import RadioButton from 'material-ui/lib/RadioButton';
-import Popover from 'material-ui/lib/Popover/Popover';
-import {Menu, MenuItem} from 'material-ui/lib/Menu';
+import RaisedButton from 'material-ui/RaisedButton';
+import RadioButton from 'material-ui/RadioButton';
+import Popover from 'material-ui/Popover/Popover';
+import {Menu, MenuItem} from 'material-ui/Menu';
 
 const styles = {
   h3: {

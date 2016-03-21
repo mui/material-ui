@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'material-ui/lib/DatePicker';
+import DatePicker from 'material-ui/DatePicker';
 import areIntlLocalesSupported from 'intl-locales-supported';
 
 let DateTimeFormat;

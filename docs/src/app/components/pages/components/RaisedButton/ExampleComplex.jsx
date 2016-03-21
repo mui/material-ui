@@ -1,7 +1,7 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/RaisedButton';
-import ActionAndroid from 'material-ui/lib/svg-icons/action/android';
-import FontIcon from 'material-ui/lib/FontIcon';
+import RaisedButton from 'material-ui/RaisedButton';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import FontIcon from 'material-ui/FontIcon';
 
 const styles = {
   button: {

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
-import styleResizable from 'material-ui/lib/utils/styleResizable';
+import styleResizable from 'material-ui/utils/styleResizable';
 import spacing from 'material-ui/styles/spacing';
 import transitions from 'material-ui/styles/transitions';
 import typography from 'material-ui/styles/typography';
-import {grey200} from 'material-ui/lib/styles/colors';
+import {grey200} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 
 const HomeFeature = React.createClass({

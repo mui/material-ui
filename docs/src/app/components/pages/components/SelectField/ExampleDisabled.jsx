@@ -1,6 +1,6 @@
 import React from 'react';
-import SelectField from 'material-ui/lib/SelectField';
-import MenuItem from 'material-ui/lib/Menu/MenuItem';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/Menu/MenuItem';
 
 const SelectFieldExampleDisabled = () => (
   <SelectField value={1} disabled={true}>

@@ -1,10 +1,10 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import Avatar from 'material-ui/lib/Avatar';
-import {List, ListItem} from 'material-ui/lib/List';
-import Subheader from 'material-ui/lib/Subheader';
-import Divider from 'material-ui/lib/Divider';
-import CommunicationChatBubble from 'material-ui/lib/svg-icons/communication/chat-bubble';
+import Avatar from 'material-ui/Avatar';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 
 const ListExampleChat = () => (
   <MobileTearSheet>

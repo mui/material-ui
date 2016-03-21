@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'material-ui/lib/DatePicker';
+import DatePicker from 'material-ui/DatePicker';
 
 function disableWeekends(date) {
   return date.getDay() === 0 || date.getDay() === 6;

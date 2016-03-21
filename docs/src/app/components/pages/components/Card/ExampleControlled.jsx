@@ -1,7 +1,7 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/lib/Card';
-import FlatButton from 'material-ui/lib/FlatButton';
-import Toggle from 'material-ui/lib/Toggle';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import Toggle from 'material-ui/Toggle';
 
 export default class CardExampleControlled extends React.Component {
 

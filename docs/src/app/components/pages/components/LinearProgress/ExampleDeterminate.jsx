@@ -1,5 +1,5 @@
 import React from 'react';
-import LinearProgress from 'material-ui/lib/LinearProgress';
+import LinearProgress from 'material-ui/LinearProgress';
 
 export default class LinearProgressExampleDeterminate extends React.Component {
 

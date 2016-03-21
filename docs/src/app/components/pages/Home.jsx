@@ -1,12 +1,12 @@
 import React from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
-import RaisedButton from 'material-ui/lib/RaisedButton';
-import styleResizable from 'material-ui/lib/utils/styleResizable';
+import RaisedButton from 'material-ui/RaisedButton';
+import styleResizable from 'material-ui/utils/styleResizable';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import {cyan500, grey200, darkWhite} from 'material-ui/lib/styles/colors';
+import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
 
 const HomePage = React.createClass({
 

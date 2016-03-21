@@ -1,6 +1,6 @@
 import React from 'react';
-import {blue500, red500, greenA200} from 'material-ui/lib/styles/colors';
-import SvgIcon from 'material-ui/lib/SvgIcon';
+import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import SvgIcon from 'material-ui/SvgIcon';
 
 const iconStyles = {
   marginRight: 24,

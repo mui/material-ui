@@ -1,5 +1,5 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
   margin: 12,

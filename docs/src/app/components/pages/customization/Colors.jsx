@@ -2,9 +2,9 @@ import React from 'react';
 import Title from 'react-title-component';
 import styleResizable from 'material-ui/utils/styleResizable';
 import ClearFix from 'material-ui/internal/ClearFix';
-import colorManipulator from 'material-ui/lib/utils/colorManipulator';
+import colorManipulator from 'material-ui/utils/colorManipulator';
 import typography from 'material-ui/styles/typography';
-import * as colors from 'material-ui/lib/styles/colors';
+import * as colors from 'material-ui/styles/colors';
 
 const ColorsPage = React.createClass({
 

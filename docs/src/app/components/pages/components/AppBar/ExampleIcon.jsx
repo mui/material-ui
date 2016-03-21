@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/AppBar';
+import AppBar from 'material-ui/AppBar';
 
 const AppBarExampleIcon = () => (
   <AppBar

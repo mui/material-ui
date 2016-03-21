@@ -1,6 +1,6 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/lib/Tabs';
-import FontIcon from 'material-ui/lib/FontIcon';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import FontIcon from 'material-ui/FontIcon';
 
 const TabsExampleIconText = () => (
   <Tabs>

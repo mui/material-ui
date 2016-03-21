@@ -1,8 +1,8 @@
 import React from 'react';
-import Badge from 'material-ui/lib/Badge';
-import IconButton from 'material-ui/lib/IconButton';
-import UploadIcon from 'material-ui/lib/svg-icons/file/cloud-upload';
-import FolderIcon from 'material-ui/lib/svg-icons/file/folder-open';
+import Badge from 'material-ui/Badge';
+import IconButton from 'material-ui/IconButton';
+import UploadIcon from 'material-ui/svg-icons/file/cloud-upload';
+import FolderIcon from 'material-ui/svg-icons/file/folder-open';
 
 const BadgeExampleContent = () => (
   <div>

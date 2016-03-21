@@ -1,8 +1,8 @@
 import React from 'react';
-import Paper from 'material-ui/lib/Paper';
-import Menu from 'material-ui/lib/Menu';
-import MenuItem from 'material-ui/lib/MenuItem';
-import Divider from 'material-ui/lib/Divider';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
 
 const style = {
   display: 'inline-block',

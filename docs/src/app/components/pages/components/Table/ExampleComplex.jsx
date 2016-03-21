@@ -1,8 +1,8 @@
 import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
-  from 'material-ui/lib/Table';
-import TextField from 'material-ui/lib/TextField';
-import Toggle from 'material-ui/lib/Toggle';
+  from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
+import Toggle from 'material-ui/Toggle';
 
 const styles = {
   propContainerStyle: {

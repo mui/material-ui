@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'material-ui/lib/Slider';
+import Slider from 'material-ui/Slider';
 
 const SliderExampleStep = () => (
   <Slider step={0.10} value={.5} />

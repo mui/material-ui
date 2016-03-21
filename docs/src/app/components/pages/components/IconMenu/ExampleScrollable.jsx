@@ -1,7 +1,7 @@
 import React from 'react';
-import IconMenu from 'material-ui/lib/IconMenu';
-import MenuItem from 'material-ui/lib/MenuItem';
-import IconButton from 'material-ui/lib/IconButton/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton/IconButton';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
 
 const IconMenuExampleScrollable = () => (

@@ -1,11 +1,11 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem} from 'material-ui/lib/List';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
-import ContentSend from 'material-ui/lib/svg-icons/content/send';
-import Subheader from 'material-ui/lib/Subheader';
+import {List, ListItem} from 'material-ui/List';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import Subheader from 'material-ui/Subheader';
 
 const ListExampleNested = () => (
   <MobileTearSheet>

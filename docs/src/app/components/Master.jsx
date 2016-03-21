@@ -1,11 +1,11 @@
 import React from 'react';
 import Title from 'react-title-component';
-import AppBar from 'material-ui/lib/AppBar';
-import IconButton from 'material-ui/lib/IconButton';
-import spacing from 'material-ui/lib/styles/spacing';
-import styleResizable from 'material-ui/lib/utils/styleResizable';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import {darkWhite, lightWhite, grey900} from 'material-ui/lib/styles/colors';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import spacing from 'material-ui/styles/spacing';
+import styleResizable from 'material-ui/utils/styleResizable';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppLeftNav from './AppLeftNav';
 import FullWidthSection from './FullWidthSection';
 
