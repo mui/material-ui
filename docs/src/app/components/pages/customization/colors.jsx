@@ -1,22 +1,15 @@
 import React from 'react';
 import Title from 'react-title-component';
-
-import {
-  ClearFix,
-  Mixins,
-  Styles,
-  Utils,
-} from 'material-ui';
-
-const {ColorManipulator} = Utils;
-const {StyleResizable} = Mixins;
-const {Typography} = Styles;
-import * as Colors from 'material-ui/lib/styles/colors';
+import styleResizable from 'material-ui/utils/styleResizable';
+import ClearFix from 'material-ui/internal/ClearFix';
+import colorManipulator from 'material-ui/lib/utils/colorManipulator';
+import typography from 'material-ui/styles/typography';
+import * as colors from 'material-ui/lib/styles/colors';
 
 const ColorsPage = React.createClass({
 
   mixins: [
-    StyleResizable,
+    styleResizable,
   ],
 
   getStyles() {
@@ -47,8 +40,8 @@ const ColorsPage = React.createClass({
         paddingTop: 16,
         marginBottom: 12,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightNormal,
+        color: typography.textDarkBlack,
       },
       colorGroupWhenSmall: {
         width: '50%',
@@ -61,9 +54,9 @@ const ColorsPage = React.createClass({
       },
     };
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
       styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenLarge);
-    } else if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+    } else if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM)) {
       styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenMedium);
     } else {
       styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenSmall);
@@ -99,12 +92,12 @@ const ColorsPage = React.createClass({
 
   _getColorBlock(styles, colorName, colorValue, colorTitle) {
     const bgColorText = colorName + colorValue;
-    const bgColor = Colors[bgColorText];
-    let fgColor = Colors.fullBlack;
-    const contrastRatio = ColorManipulator.contrastRatio(bgColor, fgColor);
+    const bgColor = colors[bgColorText];
+    let fgColor = colors.fullBlack;
+    const contrastRatio = colorManipulator.contrastRatio(bgColor, fgColor);
     let blockTitle;
 
-    if (contrastRatio < 7) fgColor = Colors.fullWhite;
+    if (contrastRatio < 7) fgColor = colors.fullWhite;
     if (colorTitle) {
       blockTitle = (
         <span style={styles.name}>

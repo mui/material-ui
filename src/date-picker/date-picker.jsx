@@ -1,5 +1,5 @@
 import React from 'react';
-import DateTime from '../utils/date-time';
+import DateTime from '../utils/dateTime';
 import DatePickerDialog from './date-picker-dialog';
 import TextField from '../text-field';
 import getMuiTheme from '../styles/getMuiTheme';

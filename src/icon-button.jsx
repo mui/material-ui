@@ -1,9 +1,9 @@
 import React from 'react';
-import Transitions from './styles/transitions';
-import PropTypes from './utils/prop-types';
-import EnhancedButton from './enhanced-button';
+import transitions from './styles/transitions';
+import PropTypes from './utils/propTypes';
+import EnhancedButton from './internal/EnhancedButton';
 import FontIcon from './font-icon';
-import Tooltip from './tooltip';
+import Tooltip from './internal/Tooltip';
 import Children from './utils/children';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -17,7 +17,7 @@ function getStyles(props, state) {
       position: 'relative',
       boxSizing: 'border-box',
       overflow: 'visible',
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       padding: baseTheme.spacing.iconSize / 2,
       width: baseTheme.spacing.iconSize * 2,
       height: baseTheme.spacing.iconSize * 2,

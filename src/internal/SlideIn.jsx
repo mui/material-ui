@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import SlideInChild from './slide-in-child';
+import SlideInChild from './SlideInChild';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const SlideIn = React.createClass({

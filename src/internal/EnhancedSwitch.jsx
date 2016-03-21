@@ -1,11 +1,11 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import Transitions from './styles/transitions';
-import FocusRipple from './ripples/focus-ripple';
-import TouchRipple from './ripples/touch-ripple';
-import Paper from './paper';
-import getMuiTheme from './styles/getMuiTheme';
+import transitions from '../styles/transitions';
+import FocusRipple from './FocusRipple';
+import TouchRipple from './TouchRipple';
+import Paper from './../paper';
+import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
 function getStyles(props, state) {
@@ -50,7 +50,7 @@ function getStyles(props, state) {
       fontFamily: baseTheme.fontFamily,
     },
     wrap: {
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       float: 'left',
       position: 'relative',
       display: 'block',

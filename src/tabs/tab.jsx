@@ -1,6 +1,6 @@
 import React from 'react';
 import getMuiTheme from '../styles/getMuiTheme';
-import EnhancedButton from '../enhanced-button';
+import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, state) {
   const {

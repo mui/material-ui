@@ -1,12 +1,34 @@
 import React from 'react';
 import Title from 'react-title-component';
-
-import mui from 'material-ui';
 import MarkdownElement from '../../MarkdownElement';
-import muiThemeable from 'material-ui/lib/muiThemeable';
+import muiThemeable from 'material-ui/lib/styles/muiThemeable';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-
+import styleResizable from 'material-ui/utils/styleResizable';
+import typography from 'material-ui/styles/typography';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import themesText from './themes.md';
+import ClearFix from 'material-ui/internal/ClearFix';
+
+import {
+  Checkbox,
+  DatePicker,
+  Dialog,
+  DropDownMenu,
+  FlatButton,
+  FloatingActionButton,
+  LeftNav,
+  MenuItem,
+  Paper,
+  RadioButton,
+  RadioButtonGroup,
+  RaisedButton,
+  Snackbar,
+  Slider,
+  Tabs,
+  Tab,
+  TextField,
+  Toggle,
+} from 'material-ui';
 
 const markdownText = `
 ## Themes
@@ -17,34 +39,6 @@ You can use the tabs to change the theme. The changes will be applied to the who
 documentation.
 `;
 
-const {
-  Checkbox,
-  ClearFix,
-  DatePicker,
-  Dialog,
-  DropDownMenu,
-  FlatButton,
-  FloatingActionButton,
-  LeftNav,
-  MenuItem,
-  Mixins,
-  Paper,
-  RadioButton,
-  RadioButtonGroup,
-  RaisedButton,
-  Snackbar,
-  Slider,
-  Styles,
-  Tabs,
-  Tab,
-  TextField,
-  Toggle,
-} = mui;
-
-const {StyleResizable} = Mixins;
-const {Typography} = Styles;
-const DarkRawTheme = Styles.darkBaseTheme;
-
 const ThemesPage = React.createClass({
 
   propTypes: {
@@ -52,7 +46,7 @@ const ThemesPage = React.createClass({
     onChangeMuiTheme: React.PropTypes.func,
   },
 
-  mixins: [StyleResizable],
+  mixins: [styleResizable],
 
   getInitialState() {
     return {
@@ -105,8 +99,8 @@ const ThemesPage = React.createClass({
         paddingTop: '19px',
         marginBottom: '13px',
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightMedium,
+        color: typography.textDarkBlack,
       },
       liveExamplePaper: {
         backgroundColor: canvasColor,
@@ -119,7 +113,7 @@ const ThemesPage = React.createClass({
       },
     };
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM)) {
       styles.group.width = '33%';
     }
 
@@ -290,7 +284,7 @@ const ThemesPage = React.createClass({
     if (valueTabs === 'light') {
       newMuiTheme = getMuiTheme();
     } else {
-      newMuiTheme = getMuiTheme(DarkRawTheme);
+      newMuiTheme = getMuiTheme(darkBaseTheme);
     }
 
     newMuiTheme.name = valueTabs;

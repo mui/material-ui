@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '../checkbox';
 import TableRowColumn from './table-row-column';
-import ClickAwayListener from '../ClickAwayListener';
+import ClickAwayListener from '../internal/ClickAwayListener';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const TableBody = React.createClass({

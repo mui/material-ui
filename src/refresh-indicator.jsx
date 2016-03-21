@@ -1,6 +1,6 @@
 import React from 'react';
-import autoPrefix from './styles/auto-prefix';
-import Transitions from './styles/transitions';
+import autoPrefix from './utils/autoPrefix';
+import transitions from './styles/transitions';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -19,7 +19,7 @@ function getStyles(props) {
       left: -10000,
       transform: `translate3d(${10000 + props.left}px, ${10000 + props.top}px, 0)`,
       opacity: props.status === 'hide' ? 0 : 1,
-      transition: props.status === 'hide' ? Transitions.create('all', '.3s', 'ease-out') : 'none',
+      transition: props.status === 'hide' ? transitions.create('all', '.3s', 'ease-out') : 'none',
     },
   };
 }
@@ -138,7 +138,7 @@ const RefreshIndicator = React.createClass({
       const circleStyle = this._getCircleStyle(paperSize);
       childrenCmp = (
         <div ref="wrapper" style={prepareStyles({
-          transition: Transitions.create('transform', '20s', null, 'linear'),
+          transition: transitions.create('transform', '20s', null, 'linear'),
           width: '100%',
           height: '100%',
         })}
@@ -151,7 +151,7 @@ const RefreshIndicator = React.createClass({
           >
             <circle ref="path"
               style={prepareStyles(Object.assign(circleStyle.style, {
-                transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
+                transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
               }))}
               {...circleStyle.attr}
             />

@@ -1,10 +1,11 @@
 import React from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
-
 import RaisedButton from 'material-ui/lib/raised-button';
-import {StyleResizable} from 'material-ui/lib/mixins';
-import {Spacing, Typography, lightBaseTheme} from 'material-ui/lib/styles';
+import styleResizable from 'material-ui/lib/utils/styleResizable';
+import spacing from 'material-ui/styles/spacing';
+import typography from 'material-ui/styles/typography';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {cyan500, grey200, darkWhite} from 'material-ui/lib/styles/colors';
 
 const HomePage = React.createClass({
@@ -14,10 +15,10 @@ const HomePage = React.createClass({
   },
 
   mixins: [
-    StyleResizable,
+    styleResizable,
   ],
 
-  _getHomePageHero() {
+  homePageHero() {
     const styles = {
       root: {
         backgroundColor: cyan500,
@@ -44,7 +45,7 @@ const HomePage = React.createClass({
       },
       h1: {
         color: darkWhite,
-        fontWeight: Typography.fontWeightLight,
+        fontWeight: typography.fontWeightLight,
       },
       h2: {
         fontSize: 20,
@@ -72,7 +73,7 @@ const HomePage = React.createClass({
 
     styles.h2 = Object.assign({}, styles.h1, styles.h2);
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
       styles.tagline = Object.assign({}, styles.tagline, styles.taglineWhenLarge);
       styles.h1 = Object.assign({}, styles.h1, styles.h1WhenLarge);
       styles.h2 = Object.assign({}, styles.h2, styles.h2WhenLarge);
@@ -101,7 +102,7 @@ const HomePage = React.createClass({
     );
   },
 
-  _getHomePurpose() {
+  homePurpose() {
     const styles = {
       root: {
         backgroundColor: grey200,
@@ -110,13 +111,13 @@ const HomePage = React.createClass({
         maxWidth: 700,
         padding: 0,
         margin: '0 auto',
-        fontWeight: Typography.fontWeightLight,
+        fontWeight: typography.fontWeightLight,
         fontSize: 20,
         lineHeight: '28px',
         paddingTop: 19,
         marginBottom: 13,
         letterSpacing: 0,
-        color: Typography.textDarkBlack,
+        color: typography.textDarkBlack,
       },
     };
 
@@ -139,7 +140,7 @@ const HomePage = React.createClass({
     );
   },
 
-  _getHomeFeatures() {
+  homeFeatures() {
     const styles = {maxWidth: 906};
 
     return (
@@ -165,7 +166,7 @@ const HomePage = React.createClass({
     );
   },
 
-  _getHomeContribute() {
+  homeContribute() {
     const styles = {
       root: {
         backgroundColor: grey200,
@@ -174,7 +175,7 @@ const HomePage = React.createClass({
       h3: {
         margin: 0,
         padding: 0,
-        fontWeight: Typography.fontWeightLight,
+        fontWeight: typography.fontWeightLight,
         fontSize: 22,
       },
       button: {
@@ -205,15 +206,15 @@ const HomePage = React.createClass({
 
   render() {
     const style = {
-      paddingTop: Spacing.desktopKeylineIncrement,
+      paddingTop: spacing.desktopKeylineIncrement,
     };
 
     return (
       <div style={style}>
-        {this._getHomePageHero()}
-        {this._getHomePurpose()}
-        {this._getHomeFeatures()}
-        {this._getHomeContribute()}
+        {this.homePageHero()}
+        {this.homePurpose()}
+        {this.homeFeatures()}
+        {this.homeContribute()}
       </div>
     );
   },

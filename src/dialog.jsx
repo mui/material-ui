@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import Transitions from './styles/transitions';
-import Overlay from './overlay';
-import RenderToLayer from './render-to-layer';
+import transitions from './styles/transitions';
+import Overlay from './internal/Overlay';
+import RenderToLayer from './internal/RenderToLayer';
 import Paper from './paper';
 import getMuiTheme from './styles/getMuiTheme';
 
@@ -120,13 +120,13 @@ function getStyles(props, state) {
       width: '100%',
       height: '100%',
       transition: open ?
-        Transitions.easeOut('0ms', 'left', '0ms') :
-        Transitions.easeOut('0ms', 'left', '450ms'),
+        transitions.easeOut('0ms', 'left', '0ms') :
+        transitions.easeOut('0ms', 'left', '450ms'),
     },
     content: {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       position: 'relative',
       width: '75%',
       maxWidth: baseTheme.spacing.desktopKeylineIncrement * 12,

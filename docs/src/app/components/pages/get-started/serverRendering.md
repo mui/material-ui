@@ -19,7 +19,7 @@ We rely on the [muiTheme](/#/customization/themes) context to spread the user ag
 For instance, you can provide it like this:
 
 ```js
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/lib/getMuiTheme';
 import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
 import {green100, green500, green700} from 'material-ui/lib/styles/colors';
 

@@ -1,4 +1,4 @@
-import Events from '../utils/events';
+import Events from './events';
 
 const Sizes = {
   SMALL: 1,

@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import autoPrefix from '../styles/auto-prefix';
-import Transitions from '../styles/transitions';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import autoPrefix from '../utils/autoPrefix';
+import transitions from '../styles/transitions';
 import getMuiTheme from '../styles/getMuiTheme';
 
-const SlideInChild = React.createClass({
+const ScaleInChild = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node,
-    direction: React.PropTypes.string,
     enterDelay: React.PropTypes.number,
-    //This callback is needed bacause
-    //the direction could change when leaving the dom
-    getLeaveDirection: React.PropTypes.func.isRequired,
+    maxScale: React.PropTypes.number,
+    minScale: React.PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
@@ -28,9 +27,15 @@ const SlideInChild = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
+  mixins: [
+    PureRenderMixin,
+  ],
+
   getDefaultProps: function() {
     return {
       enterDelay: 0,
+      maxScale: 1,
+      minScale: 0,
     };
   },
 
@@ -56,44 +61,51 @@ const SlideInChild = React.createClass({
     clearTimeout(this.leaveTimer);
   },
 
+  componentWillAppear(callback) {
+    this._initializeAnimation(callback);
+  },
+
   componentWillEnter(callback) {
-    const style = ReactDOM.findDOMNode(this).style;
-    const x = this.props.direction === 'left' ? '100%' :
-      this.props.direction === 'right' ? '-100%' : '0';
-    const y = this.props.direction === 'up' ? '100%' :
-      this.props.direction === 'down' ? '-100%' : '0';
+    this._initializeAnimation(callback);
+  },
 
-    style.opacity = '0';
-    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
-
-    this.enterTimer = setTimeout(callback, this.props.enterDelay);
+  componentDidAppear() {
+    this._animate();
   },
 
   componentDidEnter() {
-    const style = ReactDOM.findDOMNode(this).style;
-    style.opacity = '1';
-    autoPrefix.set(style, 'transform', 'translate3d(0,0,0)', this.state.muiTheme);
+    this._animate();
   },
 
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
-    const direction = this.props.getLeaveDirection();
-    const x = direction === 'left' ? '-100%' :
-      direction === 'right' ? '100%' : '0';
-    const y = direction === 'up' ? '-100%' :
-      direction === 'down' ? '100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`, this.state.muiTheme);
 
     this.leaveTimer = setTimeout(callback, 450);
+  },
+
+  _animate() {
+    const style = ReactDOM.findDOMNode(this).style;
+
+    style.opacity = '1';
+    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`, this.state.muiTheme);
+  },
+
+  _initializeAnimation(callback) {
+    const style = ReactDOM.findDOMNode(this).style;
+
+    style.opacity = '0';
+    autoPrefix.set(style, 'transform', 'scale(0)', this.state.muiTheme);
+
+    this.enterTimer = setTimeout(callback, this.props.enterDelay);
   },
 
   render() {
     const {
       children,
       enterDelay,
-      getLeaveDirection,
       style,
       ...other,
     } = this.props;
@@ -108,7 +120,7 @@ const SlideInChild = React.createClass({
       width: '100%',
       top: 0,
       left: 0,
-      transition: Transitions.easeOut(null, ['transform', 'opacity']),
+      transition: transitions.easeOut(null, ['transform', 'opacity']),
     }, style);
 
     return (
@@ -117,7 +129,6 @@ const SlideInChild = React.createClass({
       </div>
     );
   },
-
 });
 
-export default SlideInChild;
+export default ScaleInChild;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Transitions from './styles/transitions';
+import transitions from './styles/transitions';
 import Paper from './paper';
-import EnhancedSwitch from './enhanced-switch';
+import EnhancedSwitch from './internal/EnhancedSwitch';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -30,14 +30,14 @@ function getStyles(props, state) {
       width: toggleTrackWidth,
     },
     track: {
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       width: '100%',
       height: 14,
       borderRadius: 30,
       backgroundColor: toggle.trackOffColor,
     },
     thumb: {
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       position: 'absolute',
       top: 1,
       left: 0,

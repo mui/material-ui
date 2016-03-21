@@ -1,11 +1,8 @@
 import React from 'react';
 import Title from 'react-title-component';
-
-import {Checkbox, Styles} from 'material-ui';
+import Checkbox from 'material-ui/checkbox';
 import CodeExample from '../../CodeExample';
-
-const {Typography} = Styles;
-
+import typography from 'material-ui/styles/typography';
 
 class InlineStyles extends React.Component {
   getStyles() {
@@ -16,8 +13,8 @@ class InlineStyles extends React.Component {
         paddingTop: 16,
         marginBottom: 12,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightNormal,
+        color: typography.textDarkBlack,
       },
       title: {
         fontSize: 20,
@@ -25,8 +22,8 @@ class InlineStyles extends React.Component {
         paddingTop: 19,
         marginBottom: 13,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightMedium,
+        color: typography.textDarkBlack,
       },
     };
   }

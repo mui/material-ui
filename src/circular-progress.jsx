@@ -1,6 +1,6 @@
 import React from 'react';
-import autoPrefix from './styles/auto-prefix';
-import Transitions from './styles/transitions';
+import autoPrefix from './utils/autoPrefix';
+import transitions from './styles/transitions';
 import getMuiTheme from './styles/getMuiTheme';
 
 function getRelativeValue(value, min, max) {
@@ -42,7 +42,7 @@ function getStyles(props, state) {
       width: baseSize,
       height: baseSize,
       display: 'inline-block',
-      transition: Transitions.create('transform', '20s', null, 'linear'),
+      transition: transitions.create('transform', '20s', null, 'linear'),
       transitionTimingFunction: 'linear',
     },
     svg: {
@@ -56,13 +56,13 @@ function getStyles(props, state) {
       strokeDashoffset: 0,
       stroke: props.color || palette.primary1Color,
       strokeLinecap: 'round',
-      transition: Transitions.create('all', '1.5s', null, 'ease-in-out'),
+      transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
     },
   };
 
   if (props.mode === 'determinate') {
     const relVal = getRelativeValue(value, min, max);
-    styles.path.transition = Transitions.create('all', '0.3s', null, 'linear');
+    styles.path.transition = transitions.create('all', '0.3s', null, 'linear');
     styles.path.strokeDasharray = `${Math.round(relVal * 1.25)},200`;
   }
 

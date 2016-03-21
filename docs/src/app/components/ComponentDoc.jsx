@@ -1,7 +1,7 @@
 import React from 'react';
-import {ClearFix, Styles} from 'material-ui';
+import {ClearFix} from 'material-ui';
 import ComponentInfo from './ComponentInfo';
-const Typography = Styles.Typography;
+import typography from 'styles/typography';
 
 const ComponentDoc = React.createClass({
 
@@ -30,7 +30,7 @@ const ComponentDoc = React.createClass({
         fontSize: 15,
         letterSpacing: '0',
         lineHeight: '24px',
-        color: Typography.textDarkBlack,
+        color: typography.textDarkBlack,
       },
       ol: {
         fontSize: 13,
@@ -53,8 +53,8 @@ const ComponentDoc = React.createClass({
         paddingTop: 16,
         marginBottom: 12,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightNormal,
+        color: typography.textDarkBlack,
       },
     };
   },
