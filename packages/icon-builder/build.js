@@ -19,8 +19,8 @@ const _ = require('lodash');
 const glob = require('glob');
 const mkdirp = require('mkdirp');
 
-const SVG_ICON_RELATIVE_REQUIRE = '../../svg-icon';
-const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/lib/svg-icon';
+const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
+const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/lib/SvgIcon';
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
 
@@ -130,7 +130,7 @@ function processFile(svgPath, destPath, options) {
 function pascalCase(destPath) {
   const splitregex = new RegExp('[' + path.sep + '-]+');
 
-  let parts = destPath.replace('.jsx', '').split(splitregex);
+  let parts = destPath.replace('.js', '').split(splitregex);
   parts = _.map(parts, function(part) {
     return part.charAt(0).toUpperCase() + part.substring(1);
   });
