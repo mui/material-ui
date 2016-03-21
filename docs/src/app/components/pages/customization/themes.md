@@ -24,8 +24,8 @@ Then, you can use `<MuiThemeProvider />` to provide it down the tree to componen
 ```js
 import React from 'react';
 import {cyan500} from 'material-ui/styles/colors';
-import MuiThemeProvider from 'material-ui/MuiThemeProvider';
-import getMuiTheme from 'material-ui/getMuiTheme';
+import MuiThemeProvider from 'material-ui/stylesMuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
 // This replaces the textColor value on the palette
@@ -74,8 +74,8 @@ But for the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/mast
 ```js
 import React from 'react';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/MuiThemeProvider';
-import getMuiTheme from 'material-ui/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
 const darkMuiTheme = getMuiTheme(darkBaseTheme);
@@ -100,7 +100,7 @@ In case you wish to access the theme object yourself you can use the
 
 ```js
 import React from 'react';
-import muiThemeable from 'material-ui/muiThemeable';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 class DeepDownTheTree extends React.Component {
   render() {
@@ -131,7 +131,7 @@ Pass theme down the context:
 ```js
 import React from 'react';
 import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
 class Main extends React.Component {

@@ -65,10 +65,10 @@ class InlineStyles extends React.Component {
         <Title render={(previousTitle) => `Inline Styles - ${previousTitle}`} />
         <h2 style={styles.headline}>Inline Styles</h2>
         <p>
-          All Material-UI components have their styles defined inline. You
-          can read our <a href="https://github.com/callemall/material-ui/issues/30">
-          discussion thread</a> regarding this change as well as
-          <a href="https://speakerdeck.com/vjeux/react-css-in-js">
+          All Material-UI components have their styles defined inline. You can read
+          the <a href="https://github.com/callemall/material-ui/issues/30">
+          discussion thread</a> regarding this decision as well
+          as <a href="https://speakerdeck.com/vjeux/react-css-in-js">
           this presentation</a> discussing CSS in JS.
         </p>
 
