@@ -300,12 +300,12 @@ const TextField = React.createClass({
   },
 
   getInitialState() {
-    const props = (this.props.children) ? this.props.children.props : this.props;
+    const propsLeaf = this.props.children ? this.props.children.props : this.props;
 
     return {
       isFocused: false,
       errorText: this.props.errorText,
-      hasValue: isValid(props.value) || isValid(props.defaultValue),
+      hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
       isClean: true,
       muiTheme: this.context.muiTheme || getMuiTheme(),
     };
