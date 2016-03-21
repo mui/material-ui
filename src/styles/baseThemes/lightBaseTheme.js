@@ -4,8 +4,8 @@ pinkA200,
 grey100, grey300, grey400, grey500,
 white, darkBlack, fullBlack,
 } from '../colors';
-import ColorManipulator from '../../utils/color-manipulator';
-import Spacing from '../spacing';
+import ColorManipulator from '../../utils/colorManipulator';
+import spacing from '../spacing';
 
 /*
  *  Light Theme is the default theme used in material-ui. It is guaranteed to
@@ -14,7 +14,7 @@ import Spacing from '../spacing';
  */
 
 export default {
-  spacing: Spacing,
+  spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: cyan500,

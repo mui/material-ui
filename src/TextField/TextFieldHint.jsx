@@ -1,5 +1,5 @@
 import React from 'react';
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 
 const propTypes = {
   /**
@@ -48,7 +48,7 @@ const TextFieldHint = (props) => {
       position: 'absolute',
       opacity: show ? 1 : 0,
       color: hintColor,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
       bottom: 12,
     },
   };

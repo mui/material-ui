@@ -5,14 +5,12 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import stepperReadmeText from './README';
-
 import VerticalLinearStepper from './VerticalLinearStepper';
 import VerticalNonLinearStepper from './VerticalNonLinearStepper';
 import VerticalLinearStepperWithOptionalStep from './VerticalLinearStepperWithOptionalStep';
 import VerticalLinearStepperCode from '!raw!./VerticalLinearStepper';
 import VerticalLinearStepperWithOptionalStepCode from '!raw!./VerticalLinearStepperWithOptionalStep';
 import VerticalNonLinearStepperCode from '!raw!./VerticalNonLinearStepper';
-
 import HorizontalLinearStepper from './HorizontalLinearStepper';
 import HorizontalLinearStepperCode from '!raw!./HorizontalLinearStepper';
 

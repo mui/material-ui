@@ -1,7 +1,6 @@
 import React from 'react';
-import Divider from 'material-ui/lib/divider';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import Divider from 'material-ui/Divider';
+import {Menu, MenuItem} from 'material-ui/Menu';
 
 const style = {
   // Without this, the menu overflows the CodeExample container.

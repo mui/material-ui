@@ -1,7 +1,7 @@
 import React from 'react';
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import RaisedButton from 'material-ui/lib/raised-button';
+import LeftNav from 'material-ui/LeftNav';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class LeftNavUndockedExample extends React.Component {
 

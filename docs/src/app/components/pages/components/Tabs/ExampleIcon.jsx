@@ -1,8 +1,7 @@
 import React from 'react';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
-import FontIcon from 'material-ui/lib/font-icon';
-import ActionFlightTakeoff from 'material-ui/lib/svg-icons/action/flight-takeoff';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import FontIcon from 'material-ui/FontIcon';
+import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 const TabsExampleIcon = () => (
   <Tabs>

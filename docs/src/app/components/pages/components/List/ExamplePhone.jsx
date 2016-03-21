@@ -1,12 +1,11 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Divider from 'material-ui/lib/divider';
-import CommunicationCall from 'material-ui/lib/svg-icons/communication/call';
-import CommunicationChatBubble from 'material-ui/lib/svg-icons/communication/chat-bubble';
-import {indigo500} from 'material-ui/lib/styles/colors';
-import CommunicationEmail from 'material-ui/lib/svg-icons/communication/email';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import CommunicationCall from 'material-ui/svg-icons/communication/call';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import {indigo500} from 'material-ui/styles/colors';
+import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 
 const ListExamplePhone = () => (
   <MobileTearSheet>

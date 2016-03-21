@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'material-ui/lib/slider';
+import Slider from 'material-ui/Slider';
 
 const SliderExampleDisabled = () => (
   <div>

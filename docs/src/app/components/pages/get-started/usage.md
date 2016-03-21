@@ -6,7 +6,7 @@ Once material-ui is included in your project, you can use the components this wa
 // Basic React component that renders a Material-UI
 // raised button with the text "Default"
 import React from 'react'
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const MyAwesomeReactComponent = () => (
   <RaisedButton label="Default" />
@@ -17,7 +17,7 @@ export default MyAwesomeReactComponent;
 
 Notice that in the above example, we used:
 ```js
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 ```
 
 instead of

@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'material-ui/lib/date-picker/date-picker';
+import DatePicker from 'material-ui/DatePicker';
 
 export default class DatePickerExampleControlled extends React.Component {
 

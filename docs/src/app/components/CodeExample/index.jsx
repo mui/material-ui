@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeBlock from './CodeBlock';
-import ClearFix from 'material-ui/lib/clearfix';
-import Paper from 'material-ui/lib/paper';
+import ClearFix from 'material-ui/internal/ClearFix';
+import Paper from 'material-ui/Paper';
 
 class CodeExample extends React.Component {
   static propTypes = {

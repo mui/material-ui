@@ -1,5 +1,5 @@
 import React from 'react';
-import Toggle from 'material-ui/lib/toggle';
+import Toggle from 'material-ui/Toggle';
 
 const styles = {
   block: {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Snackbar from 'material-ui/lib/snackbar';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Snackbar from 'material-ui/Snackbar';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class SnackbarExampleTwice extends React.Component {
 

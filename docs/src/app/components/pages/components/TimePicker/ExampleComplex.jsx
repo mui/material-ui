@@ -1,5 +1,5 @@
 import React from 'react';
-import TimePicker from 'material-ui/lib/time-picker/time-picker';
+import TimePicker from 'material-ui/TimePicker';
 
 export default class TimePickerExampleComplex extends React.Component {
 

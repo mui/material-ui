@@ -1,7 +1,7 @@
 import React from 'react';
-import Snackbar from 'material-ui/lib/snackbar';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import Snackbar from 'material-ui/Snackbar';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class SnackbarExampleSimple extends React.Component {
 

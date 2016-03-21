@@ -14,7 +14,7 @@ import DialogExampleCustomWidth from './ExampleCustomWidth';
 import dialogExampleCustomWidthCode from '!raw!./ExampleCustomWidth';
 import DialogExampleDialogDatePicker from './ExampleDialogDatePicker';
 import dialogExampleDialogDatePickerCode from '!raw!./ExampleDialogDatePicker';
-import dialogCode from '!raw!material-ui/lib/dialog';
+import dialogCode from '!raw!material-ui/lib/Dialog/Dialog';
 
 const descriptions = {
   simple: 'Dialog with action buttons. The actions are passed in as an array of React objects, ' +

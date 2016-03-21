@@ -1,13 +1,8 @@
 import React from 'react';
-import Table from 'material-ui/lib/table/table';
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
-import TableRow from 'material-ui/lib/table/table-row';
-import TableHeader from 'material-ui/lib/table/table-header';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
-import TableBody from 'material-ui/lib/table/table-body';
-import TableFooter from 'material-ui/lib/table/table-footer';
-import TextField from 'material-ui/lib/text-field';
-import Toggle from 'material-ui/lib/toggle';
+import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+  from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
+import Toggle from 'material-ui/Toggle';
 
 const styles = {
   propContainerStyle: {

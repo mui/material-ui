@@ -5,7 +5,7 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import datePickerCode from '!raw!material-ui/lib/date-picker/date-picker';
+import datePickerReadmeText from './README';
 import DatePickerExampleSimple from './ExampleSimple';
 import datePickerExampleSimpleCode from '!raw!./ExampleSimple';
 import DatePickerExampleInline from './ExampleInline';
@@ -18,7 +18,7 @@ import DatePickerExampleDisableDates from './ExampleDisableDates';
 import datePickerExampleDisableDatesCode from '!raw!./ExampleDisableDates';
 import DatePickerExampleInternational from './ExampleInternational';
 import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
-import datePickerReadmeText from './README';
+import datePickerCode from '!raw!material-ui/lib/DatePicker/DatePicker';
 
 const descriptions = {
   simple: 'The Date Picker defaults to a portrait dialog. The `mode` property can be set to `landscape`. You can ' +

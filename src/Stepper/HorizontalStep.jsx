@@ -1,7 +1,7 @@
 import React from 'react';
-import TouchRipple from '../ripples/touch-ripple';
-import Avatar from '../avatar';
-import {getMuiTheme} from '../styles';
+import TouchRipple from '../internal/TouchRipple';
+import Avatar from '../Avatar';
+import getMuiTheme from '../styles/getMuiTheme';
 
 const HorizontalStep = React.createClass({
   propTypes: {

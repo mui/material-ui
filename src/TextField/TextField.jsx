@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
-import shallowEqual from '../utils/shallow-equal';
-import ColorManipulator from '../utils/color-manipulator';
-import Transitions from '../styles/transitions';
+import shallowEqual from '../utils/shallowEqual';
+import ColorManipulator from '../utils/colorManipulator';
+import transitions from '../styles/transitions';
 import deprecated from '../utils/deprecatedPropType';
-import EnhancedTextarea from '../enhanced-textarea';
+import EnhancedTextarea from './EnhancedTextarea';
 import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
@@ -36,7 +36,7 @@ const getStyles = (props, state) => {
       position: 'relative',
       backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
-      transition: Transitions.easeOut('200ms', 'height'),
+      transition: transitions.easeOut('200ms', 'height'),
     },
     error: {
       position: 'relative',
@@ -44,7 +44,7 @@ const getStyles = (props, state) => {
       fontSize: 12,
       lineHeight: '12px',
       color: errorColor,
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
     },
     floatingLabel: {
       color: hintColor,

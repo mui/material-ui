@@ -1,11 +1,8 @@
 import React from 'react';
 import Title from 'react-title-component';
-
-import {Checkbox, Styles} from 'material-ui';
+import Checkbox from 'material-ui/Checkbox';
 import CodeExample from '../../CodeExample';
-
-const {Typography} = Styles;
-
+import typography from 'material-ui/styles/typography';
 
 class InlineStyles extends React.Component {
   getStyles() {
@@ -16,8 +13,8 @@ class InlineStyles extends React.Component {
         paddingTop: 16,
         marginBottom: 12,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightNormal,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightNormal,
+        color: typography.textDarkBlack,
       },
       title: {
         fontSize: 20,
@@ -25,8 +22,8 @@ class InlineStyles extends React.Component {
         paddingTop: 19,
         marginBottom: 13,
         letterSpacing: '0',
-        fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightMedium,
+        color: typography.textDarkBlack,
       },
     };
   }
@@ -68,10 +65,10 @@ class InlineStyles extends React.Component {
         <Title render={(previousTitle) => `Inline Styles - ${previousTitle}`} />
         <h2 style={styles.headline}>Inline Styles</h2>
         <p>
-          All Material-UI components have their styles defined inline. You
-          can read our <a href="https://github.com/callemall/material-ui/issues/30">
-          discussion thread</a> regarding this change as well as
-          <a href="https://speakerdeck.com/vjeux/react-css-in-js">
+          All Material-UI components have their styles defined inline. You can read
+          the <a href="https://github.com/callemall/material-ui/issues/30">
+          discussion thread</a> regarding this decision as well
+          as <a href="https://speakerdeck.com/vjeux/react-css-in-js">
           this presentation</a> discussing CSS in JS.
         </p>
 

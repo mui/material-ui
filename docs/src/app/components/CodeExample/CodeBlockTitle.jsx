@@ -1,9 +1,7 @@
 import React from 'react';
-import IconButton from 'material-ui/lib/icon-button';
-import CodeIcon from 'material-ui/lib/svg-icons/action/code';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import IconButton from 'material-ui/IconButton';
+import CodeIcon from 'material-ui/svg-icons/action/code';
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 
 const CodeBlockTitle = (props) => (
   <Toolbar>

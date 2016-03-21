@@ -6,13 +6,13 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import sliderReadmeText from './README';
-import sliderCode from '!raw!material-ui/lib/slider';
 import SliderExampleSimple from './ExampleSimple';
 import sliderExampleSimpleCode from '!raw!./ExampleSimple';
 import SliderExampleDisabled from './ExampleDisabled';
 import sliderExampleDisabledCode from '!raw!./ExampleDisabled';
 import SliderExampleStep from './ExampleStep';
 import sliderExampleStepCode from '!raw!./ExampleStep';
+import sliderCode from '!raw!material-ui/lib/Slider/Slider';
 
 const descriptions = {
   simple: 'The `defaultValue` property sets the initial position of the slider. The slider appearance changes when ' +

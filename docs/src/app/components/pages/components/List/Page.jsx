@@ -6,9 +6,6 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import listReadmeText from './README';
-import selectableHelpText from './SelectableHelp';
-import listCode from '!raw!material-ui/lib/lists/list';
-import listItemCode from '!raw!material-ui/lib/lists/list-item';
 import listExampleSimpleCode from '!raw!./ExampleSimple.jsx';
 import ListExampleSimple from './ExampleSimple.jsx';
 import listExampleChatCode from '!raw!./ExampleChat.jsx';
@@ -26,7 +23,10 @@ import ListExamplePhone from './ExamplePhone.jsx';
 import listExampleMessagesCode from '!raw!./ExampleMessages.jsx';
 import ListExampleMessages from './ExampleMessages.jsx';
 import listExampleSelectableCode from '!raw!./ExampleSelectable.jsx';
+import selectableHelpText from './SelectableHelp';
 import ListExampleSelectable from './ExampleSelectable.jsx';
+import listCode from '!raw!material-ui/lib/List/List';
+import listItemCode from '!raw!material-ui/lib/List/ListItem';
 
 const descriptions = {
   simple: 'A simple `List` with left and right [SVG icons](/#/components/svg-icon).',

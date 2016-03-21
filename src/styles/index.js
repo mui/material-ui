@@ -1,43 +1,44 @@
-import AutoPrefix from './auto-prefix';
-import * as Colors from './colors';
-import Spacing from './spacing';
-import ThemeManager from './theme-manager';
-import Transitions from './transitions';
-import Typography from './typography';
-import lightBaseTheme from './baseThemes/lightBaseTheme';
+import MuiThemeProvider from './MuiThemeProvider';
+import * as colors from './colors';
 import darkBaseTheme from './baseThemes/darkBaseTheme';
-import ThemeDecorator from './theme-decorator';
 import getMuiTheme from './getMuiTheme';
-import ZIndex from './zIndex';
+import lightBaseTheme from './baseThemes/lightBaseTheme';
+import muiThemeable from './muiThemeable';
+import spacing from './spacing';
+import themeManager from './themeManager';
+import transitions from './transitions';
+import typography from './typography';
+import zIndex from './zIndex';
 
-const LightRawTheme = lightBaseTheme;
 const DarkRawTheme = darkBaseTheme;
+const LightRawTheme = lightBaseTheme;
 
-export {AutoPrefix};
-export {Colors};
-export {Spacing};
-export {ThemeManager};
-export {Transitions};
-export {Typography};
-export {lightBaseTheme};
-export {LightRawTheme};
 export {DarkRawTheme};
-export {ThemeDecorator};
+export {LightRawTheme};
+export {MuiThemeProvider};
+export {colors};
+export {darkBaseTheme};
 export {getMuiTheme};
-export {ZIndex};
+export {lightBaseTheme};
+export {muiThemeable};
+export {spacing};
+export {themeManager};
+export {transitions};
+export {typography};
+export {zIndex};
 
 export default {
-  AutoPrefix,
-  Colors,
-  Spacing,
-  ThemeManager,
-  Transitions,
-  Typography,
-  lightBaseTheme,
-  LightRawTheme,
-  darkBaseTheme,
   DarkRawTheme,
-  ThemeDecorator,
+  LightRawTheme,
+  MuiThemeProvider,
+  colors,
+  darkBaseTheme,
   getMuiTheme,
-  ZIndex,
+  lightBaseTheme,
+  muiThemeable,
+  spacing,
+  themeManager,
+  transitions,
+  typography,
+  zIndex,
 };

@@ -6,8 +6,6 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import menuReadmeText from './README';
-import menuCode from '!raw!material-ui/lib/menus/menu';
-import menuItemCode from '!raw!material-ui/lib/menus/menu-item';
 import MenuExampleSimple from './ExampleSimple';
 import menuExampleSimpleCode from '!raw!./ExampleSimple';
 import MenuExampleDisable from './ExampleDisable';
@@ -18,6 +16,8 @@ import MenuExampleSecondary from './ExampleSecondary';
 import menuExampleSecondaryCode from '!raw!./ExampleSecondary';
 import MenuExampleNested from './ExampleNested';
 import menuExampleNestedCode from '!raw!./ExampleNested';
+import menuCode from '!raw!material-ui/lib/Menu/Menu';
+import menuItemCode from '!raw!material-ui/lib/MenuItem/MenuItem';
 
 const descriptions = {
   simple: 'Two simple examples. The menu widths adjusts to accommodate the content in keyline increments.',

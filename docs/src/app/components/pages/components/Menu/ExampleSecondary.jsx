@@ -1,9 +1,9 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Divider from 'material-ui/lib/divider';
-import ArrowDropRight from 'material-ui/lib/svg-icons/navigation-arrow-drop-right';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 const style = {
   display: 'inline-block',

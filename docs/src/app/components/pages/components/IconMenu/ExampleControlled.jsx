@@ -1,11 +1,11 @@
 import React from 'react';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import IconButton from 'material-ui/lib/icon-button';
-import RaisedButton from 'material-ui/lib/raised-button';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import ContentFilter from 'material-ui/lib/svg-icons/content/filter-list';
-import FileFileDownload from 'material-ui/lib/svg-icons/file/file-download';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import ContentFilter from 'material-ui/svg-icons/content/filter-list';
+import FileFileDownload from 'material-ui/svg-icons/file/file-download';
 
 export default class IconMenuExampleControlled extends React.Component {
   constructor(props) {

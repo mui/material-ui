@@ -1,9 +1,8 @@
 import React from 'react';
-import Popover from 'material-ui/lib/popover/popover';
-import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 
 export default class PopoverExampleAnimation extends React.Component {
 
@@ -43,7 +42,7 @@ export default class PopoverExampleAnimation extends React.Component {
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this.handleRequestClose}
-          animation={PopoverAnimationFromTop}
+          animation={PopoverAnimationVertical}
         >
           <Menu>
             <MenuItem primaryText="Refresh" />

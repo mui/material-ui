@@ -1,5 +1,5 @@
 import React from 'react';
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 
 const propTypes = {
   /**
@@ -100,7 +100,7 @@ const TextFieldUnderline = (props) => {
       borderBottom: 'solid 2px',
       borderColor: focusColor,
       transform: 'scaleX(0)',
-      transition: Transitions.easeOut(),
+      transition: transitions.easeOut(),
     },
     error: {
       borderColor: errorStyleColor ? errorStyleColor : errorColor,

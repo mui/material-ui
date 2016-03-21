@@ -1,6 +1,6 @@
 import React from 'react';
-import FontIcon from 'material-ui/lib/font-icon';
-import {red500, yellow500, blue500} from 'material-ui/lib/styles/colors';
+import FontIcon from 'material-ui/FontIcon';
+import {red500, yellow500, blue500} from 'material-ui/styles/colors';
 
 const iconStyles = {
   marginRight: 24,

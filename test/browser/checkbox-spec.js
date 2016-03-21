@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'checkbox';
+import Checkbox from 'Checkbox';
 import injectTheme from './fixtures/inject-theme';
 import TestUtils from 'react-addons-test-utils';
 

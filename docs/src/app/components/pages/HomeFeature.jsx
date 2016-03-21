@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {Paper, Mixins, Styles} from 'material-ui';
-import {grey200} from 'material-ui/lib/styles/colors';
-
-const {StyleResizable} = Mixins;
-const {Spacing, Transitions, Typography} = Styles;
+import styleResizable from 'material-ui/utils/styleResizable';
+import spacing from 'material-ui/styles/spacing';
+import transitions from 'material-ui/styles/transitions';
+import typography from 'material-ui/styles/typography';
+import {grey200} from 'material-ui/styles/colors';
+import Paper from 'material-ui/Paper';
 
 const HomeFeature = React.createClass({
 
@@ -16,7 +17,7 @@ const HomeFeature = React.createClass({
     route: React.PropTypes.string,
   },
 
-  mixins: [StyleResizable],
+  mixins: [styleResizable],
 
   getDefaultProps() {
     return {
@@ -32,11 +33,11 @@ const HomeFeature = React.createClass({
   },
 
   getStyles() {
-    const desktopGutter = Spacing.desktopGutter;
-    const desktopKeylineIncrement = Spacing.desktopKeylineIncrement;
+    const desktopGutter = spacing.desktopGutter;
+    const desktopKeylineIncrement = spacing.desktopKeylineIncrement;
     const styles = {
       root: {
-        transition: Transitions.easeOut(),
+        transition: transitions.easeOut(),
         maxWidth: '300px',
         margin: `0 auto ${desktopGutter}px auto`,
       },
@@ -56,8 +57,8 @@ const HomeFeature = React.createClass({
         paddingTop: 19,
         marginBottom: 13,
         letterSpacing: 0,
-        fontWeight: Typography.fontWeightMedium,
-        color: Typography.textDarkBlack,
+        fontWeight: typography.fontWeightMedium,
+        color: typography.textDarkBlack,
         backgroundColor: grey200,
         textAlign: 'center',
         margin: 0,
@@ -76,8 +77,8 @@ const HomeFeature = React.createClass({
       },
     };
 
-    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(StyleResizable.statics.Sizes.LARGE)) {
+    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
+        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
       styles.root = Object.assign(
         styles.root,
         styles.rootWhenMedium,

@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import gridListCode from '!raw!material-ui/lib/grid-list/grid-list';
-import gridTileCode from '!raw!material-ui/lib/grid-list/grid-tile';
 import gridListReadmeText from './README';
 import gridListExampleSimpleCode from '!raw!./ExampleSimple';
 import GridListExampleSimple from './ExampleSimple';
 import gridListExampleComplexCode from '!raw!./ExampleComplex';
 import GridListExampleComplex from './ExampleComplex';
+import gridListCode from '!raw!material-ui/lib/GridList/GridList';
+import gridTileCode from '!raw!material-ui/lib/GridList/GridTile';
 
 const descriptions = {
   simple: 'A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).',

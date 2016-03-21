@@ -1,9 +1,9 @@
 import React from 'react';
-import Avatar from 'material-ui/lib/avatar';
-import FileFolder from 'material-ui/lib/svg-icons/file/folder';
-import FontIcon from 'material-ui/lib/font-icon';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import Avatar from 'material-ui/Avatar';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import FontIcon from 'material-ui/FontIcon';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
 
 import {
 blue300,
@@ -12,7 +12,7 @@ orange200,
 deepOrange300,
 pink400,
 purple500,
-} from 'material-ui/lib/styles/colors';
+} from 'material-ui/styles/colors';
 
 const AvatarExampleSimple = () => (
   <List>

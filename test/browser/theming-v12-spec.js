@@ -1,11 +1,11 @@
 //NOTE: all these tests depend on DarkRawTheme, and Colors
 //Modifying any of the above files will break these tests!
 
-import AppBar from 'app-bar';
-import RaisedButton from 'raised-button';
+import AppBar from 'AppBar';
+import RaisedButton from 'RaisedButton';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import MuiThemeProvider from 'MuiThemeProvider';
+import MuiThemeProvider from 'styles/MuiThemeProvider';
 import getMuiTheme from 'styles/getMuiTheme';
 import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
 import {deepPurpleA700} from 'styles/colors';

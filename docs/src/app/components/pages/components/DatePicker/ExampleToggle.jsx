@@ -1,7 +1,7 @@
 import React from 'react';
-import DatePicker from 'material-ui/lib/date-picker/date-picker';
-import TextField from 'material-ui/lib/text-field';
-import Toggle from 'material-ui/lib/toggle';
+import DatePicker from 'material-ui/DatePicker';
+import TextField from 'material-ui/TextField';
+import Toggle from 'material-ui/Toggle';
 
 const optionsStyle = {
   maxWidth: 255,

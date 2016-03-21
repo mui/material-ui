@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import SvgIcon from 'src/svg-icon';
+import SvgIcon from 'src/SvgIcon';
 
 describe('<SvgIcon />', () => {
   const path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;

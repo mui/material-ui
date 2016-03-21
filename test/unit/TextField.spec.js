@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import TextField from 'src/TextField/TextField';
+import TextField from 'src/TextField';
 import TextFieldLabel from 'src/TextField/TextFieldLabel';
 
 describe('<TextField />', () => {

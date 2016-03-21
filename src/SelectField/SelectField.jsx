@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from '../text-field';
+import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
 import getMuiTheme from '../styles/getMuiTheme';
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Divider from 'material-ui/lib/divider';
-import Subheader from 'material-ui/lib/Subheader';
-import Checkbox from 'material-ui/lib/checkbox';
-import Toggle from 'material-ui/lib/toggle';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
+import Checkbox from 'material-ui/Checkbox';
+import Toggle from 'material-ui/Toggle';
 
 const ListExampleSettings = () => (
   <div>

@@ -1,11 +1,11 @@
 import React from 'react';
-import Transitions from '../styles/transitions';
+import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
-import Menu from '../menus/menu';
-import ClearFix from '../clearfix';
+import Menu from '../Menu/Menu';
+import ClearFix from '../internal/ClearFix';
 import getMuiTheme from '../styles/getMuiTheme';
-import Popover from '../popover/popover';
-import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
+import Popover from '../Popover/Popover';
+import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 
 const anchorOrigin = {
   vertical: 'top',
@@ -189,7 +189,7 @@ const DropDownMenu = React.createClass({
         fontFamily: this.state.muiTheme.rawTheme.fontFamily,
         outline: 'none',
         position: 'relative',
-        transition: Transitions.easeOut(),
+        transition: transitions.easeOut(),
       },
       underline: {
         borderTop: `solid 1px ${accentColor}`,
