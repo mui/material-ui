@@ -7,12 +7,12 @@ const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const config = {
   //Entry point to the project
   entry: [
-    path.join(__dirname, '/src/app/app.jsx'),
+    path.join(__dirname, '/src/app/app.js'),
   ],
   //Webpack config options on how to obtain modules
   resolve: {
     //When requiring, you don't need to add these extensions
-    extensions: ['', '.js', '.jsx', '.md', '.txt'],
+    extensions: ['', '.js', '.md', '.txt'],
     alias: {
       //material-ui requires will be searched in src folder, not in node_modules
       'material-ui/lib': path.resolve(__dirname, '../src'),
@@ -61,21 +61,10 @@ const config = {
     fs: 'fs', // To remove once https://github.com/benjamn/recast/pull/238 is released
   },
   module: {
-    //eslint loader
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
-        include: [path.resolve(__dirname, '../src')],
-        exclude: [
-          path.resolve(__dirname, '../src/svg-icons'),
-        ],
-      },
-    ],
     //Allow loading of non-es5 js files.
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
       },

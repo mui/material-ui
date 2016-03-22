@@ -4,7 +4,7 @@ import {
   Router,
   useRouterHistory,
 } from 'react-router';
-import AppRoutes from './AppRoutes.jsx';
+import AppRoutes from './AppRoutes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {createHashHistory} from 'history';
 
