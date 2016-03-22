@@ -1,7 +1,4 @@
-import Popover from './Popover';
-import PopoverAnimationVertical from './PopoverAnimationVertical';
+export Popover from './Popover';
+export PopoverAnimationVertical from './PopoverAnimationVertical';
 
-export {Popover};
-export {PopoverAnimationVertical};
-
-export default Popover;
+export default from './Popover';

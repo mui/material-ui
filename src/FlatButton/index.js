@@ -1,3 +1,1 @@
-import FlatButton from './FlatButton';
-
-export default FlatButton;
+export default from './FlatButton';

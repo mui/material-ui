@@ -1,9 +1,5 @@
-import List from './List';
-import ListItem from './ListItem';
-import MakeSelectable from './MakeSelectable';
+export List from './List';
+export ListItem from './ListItem';
+export MakeSelectable from './MakeSelectable';
 
-export {List};
-export {ListItem};
-export {MakeSelectable};
-
-export default List;
+export default from './List';

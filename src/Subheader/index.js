@@ -1,3 +1,1 @@
-import Subheader from './Subheader';
-
-export default Subheader;
+export default from './Subheader';

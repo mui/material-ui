@@ -1,7 +1,8 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import Snackbar from 'src/Snackbar';
+import Snackbar from './Snackbar';
 
 describe('<Snackbar />', () => {
   it('renders hidden by default', () => {

@@ -1,9 +1,5 @@
-import VerticalStep from './VerticalStep';
-import HorizontalStep from './HorizontalStep';
-import Stepper from './Stepper';
+export Stepper from './Stepper';
+export VerticalStep from './VerticalStep';
+export HorizontalStep from './HorizontalStep';
 
-export {VerticalStep};
-export {HorizontalStep};
-export {Stepper};
-
-export default Stepper;
+export default from './Stepper';

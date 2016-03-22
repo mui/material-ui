@@ -28,6 +28,7 @@
     "css-loader": "^0.23.0",
     "doctrine": "^1.1.0",
     "eslint": "~2.2.0",
+    "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^4.0.0",
     "highlight.js": "^9.0.0",
     "history": "^2.0.0",

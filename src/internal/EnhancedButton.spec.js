@@ -1,7 +1,8 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import EnhancedButton from 'src/internal/EnhancedButton';
+import EnhancedButton from './EnhancedButton';
 
 describe('<EnhancedButton />', () => {
   const testChildren = <div className="unique">Hello World</div>;

@@ -1,8 +1,9 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import Paper from 'src/Paper';
-import getMuiTheme from 'src/styles/getMuiTheme';
+import Paper from './Paper';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Paper />', () => {
   const testChildren = <div className="unique">Hello World</div>;

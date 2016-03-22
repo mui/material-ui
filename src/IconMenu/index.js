@@ -1,7 +1,4 @@
-import IconMenu from './IconMenu';
-import MenuItem from '../MenuItem/MenuItem';
+export IconMenu from './IconMenu';
+export MenuItem from '../MenuItem/MenuItem';
 
-export {IconMenu};
-export {MenuItem};
-
-export default IconMenu;
+export default from './IconMenu';

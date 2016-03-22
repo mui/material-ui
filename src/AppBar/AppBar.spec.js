@@ -1,11 +1,9 @@
+/* eslint-env mocha */
 import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import AppBar from 'src/AppBar';
-import IconButton from 'src/IconButton';
-import Paper from 'src/Paper';
-import NavigationClose from 'src/svg-icons/navigation/close';
+import AppBar from './AppBar';
 
 describe('<AppBar />', () => {
   it('renders children by default', () => {
@@ -31,7 +29,7 @@ describe('<AppBar />', () => {
       <AppBar iconClassNameLeft={iconClassName} />
     );
 
-    assert.equal(wrapper.find(IconButton).get(0).props.iconClassName, iconClassName,
+    assert.equal(wrapper.find('IconButton').get(0).props.iconClassName, iconClassName,
       'should contain iconClassNameLeft');
   });
 
@@ -41,7 +39,7 @@ describe('<AppBar />', () => {
       <AppBar iconClassNameRight={iconClassName} />
     );
 
-    assert.equal(wrapper.find(IconButton).get(1).props.iconClassName, iconClassName,
+    assert.equal(wrapper.find('IconButton').get(1).props.iconClassName, iconClassName,
       'should contain iconClassNameRight');
   });
 
@@ -52,26 +50,26 @@ describe('<AppBar />', () => {
       <AppBar iconClassNameLeft={iconClassNameLeft} iconClassNameRight={iconClassNameRight} />
     );
 
-    assert.equal(wrapper.find(IconButton).get(0).props.iconClassName, iconClassNameLeft,
+    assert.equal(wrapper.find('IconButton').get(0).props.iconClassName, iconClassNameLeft,
       'should contain iconClassNameLeft');
-    assert.equal(wrapper.find(IconButton).get(1).props.iconClassName, iconClassNameRight,
+    assert.equal(wrapper.find('IconButton').get(1).props.iconClassName, iconClassNameRight,
       'should contain iconClassNameRight');
   });
 
   it('renders iconElementLeft', () => {
     const wrapper = shallow(
-      <AppBar iconElementLeft={<IconButton><NavigationClose /></IconButton>} />
+      <AppBar iconElementLeft={<span className="icon" />} />
     );
 
-    assert.equal(wrapper.find(NavigationClose).length, 1, 'should contain iconElementLeft');
+    assert.equal(wrapper.find('.icon').length, 1, 'should contain iconElementLeft');
   });
 
   it('renders iconElementRight', () => {
     const wrapper = shallow(
-      <AppBar iconElementRight={<IconButton><NavigationClose /></IconButton>} />
+      <AppBar iconElementRight={<span className="icon" />} />
     );
 
-    assert.equal(wrapper.find(NavigationClose).length, 1, 'should contain iconElementRight');
+    assert.equal(wrapper.find('.icon').length, 1, 'should contain iconElementRight');
   });
 
   it('call onLeftIconButtonTouchTap callback', () => {
@@ -84,7 +82,7 @@ describe('<AppBar />', () => {
       />
     );
 
-    wrapper.find(IconButton).simulate('touchTap');
+    wrapper.find('IconButton').simulate('touchTap');
     assert.equal(onLeftIconButtonTouchTap.calledOnce, true,
       'should have called onLeftIconButtonTouchTap callback function');
   });
@@ -99,7 +97,7 @@ describe('<AppBar />', () => {
       />
     );
 
-    wrapper.find(IconButton).at(1).simulate('touchTap');
+    wrapper.find('IconButton').at(1).simulate('touchTap');
     assert.equal(onRightIconButtonTouchTap.calledOnce, true,
       'should have called onRightIconButtonTouchTap callback function');
   });
@@ -126,7 +124,7 @@ describe('<AppBar />', () => {
       />
     );
 
-    assert.equal(wrapper.find(IconButton).length, 0, 'should not have menu icon');
+    assert.equal(wrapper.find('IconButton').length, 0, 'should not have menu icon');
   });
 
   it('renders AppBar and overwrite styles', () => {
@@ -167,6 +165,6 @@ describe('<AppBar />', () => {
       <AppBar title="Title" zDepth={2} />
     );
 
-    assert.equal(wrapper.find(Paper).get(0).props.zDepth, 2, 'should have zDepth to 2');
+    assert.equal(wrapper.find('Paper').get(0).props.zDepth, 2, 'should have zDepth to 2');
   });
 });
