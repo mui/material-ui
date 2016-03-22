@@ -9,7 +9,7 @@
     "build:icon-index": "cd src/svg-icons/ && babel-node index-generator.js",
     "coverage": "npm run test",
     "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary html lcov json",
-    "lint": "eslint --ext .jsx,.js src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
+    "lint": "eslint --ext .js src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
     "prebuild": "rimraf lib",
     "prepublish": "in-publish && npm run build || not-in-publish",
     "test": "npm run test:unit && npm run test:browser && npm run test:unit:coverage && npm run coverage:combine",
@@ -18,7 +18,7 @@
     "test:browser:base": "karma start test/karma.conf.js",
     "test:unit": "NODE_ENV=production babel-node test/unit/index.js",
     "test:unit:watch": "nodemon -w src -w test/unit --exec \"npm run test:unit\"",
-    "test:unit:coverage": "NODE_ENV=production babel-node node_modules/.bin/isparta cover --include '**/*.js' --include '**/*.jsx' --report lcovonly --report html --dir test/coverage/unit test/unit/index.js"
+    "test:unit:coverage": "NODE_ENV=production babel-node node_modules/.bin/isparta cover --include '**/*.js' --report lcovonly --report html --dir test/coverage/unit test/unit/index.js"
   },
   "keywords": [
     "react",

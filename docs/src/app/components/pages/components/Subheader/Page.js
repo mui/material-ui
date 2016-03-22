@@ -6,10 +6,10 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import subheaderReadmeText from './README';
-import listExampleChatCode from '!raw!../List/ExampleChat.jsx';
-import ListExampleChat from '../List/ExampleChat.jsx';
-import listExampleFoldersCode from '!raw!../List/ExampleFolders.jsx';
-import ListExampleFolders from '../List/ExampleFolders.jsx';
+import listExampleChatCode from '!raw!../List/ExampleChat';
+import ListExampleChat from '../List/ExampleChat';
+import listExampleFoldersCode from '!raw!../List/ExampleFolders';
+import ListExampleFolders from '../List/ExampleFolders';
 import gridListExampleSimpleCode from '!raw!../GridList/ExampleSimple';
 import GridListExampleSimple from '../GridList/ExampleSimple';
 import subheaderCode from '!raw!material-ui/lib/Subheader/Subheader';
