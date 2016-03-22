@@ -132,6 +132,8 @@ const LinearProgress = React.createClass({
   },
 
   componentDidMount() {
+    this.timers = {};
+
     this.timers.bar1 = this._barUpdate('bar1', 0, this.refs.bar1, [
       [-35, 100],
       [100, -90],
@@ -154,11 +156,6 @@ const LinearProgress = React.createClass({
   componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
-  },
-
-  timers: {
-    bar1: undefined,
-    bar2: undefined,
   },
 
   _barUpdate(id, step, barElement, stepValues) {
