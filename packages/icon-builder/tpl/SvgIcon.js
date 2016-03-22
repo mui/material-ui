@@ -7,7 +7,7 @@ let {{className}} = (props) => (
     {{{paths}}}
   </SvgIcon>
 );
-{{className}} = pure({{className}})
+{{className}} = pure({{className}});
 {{className}}.displayName = '{{className}}';
 
 export default {{className}};

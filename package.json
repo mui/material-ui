@@ -6,6 +6,7 @@
   "main": "./lib",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
+    "build:icon-index": "cd src/svg-icons/ && babel-node index-generator.js",
     "coverage": "npm run test",
     "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary html lcov json",
     "lint": "eslint --ext .jsx,.js src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
