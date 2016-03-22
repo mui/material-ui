@@ -3,6 +3,4 @@ instrumentation:
   excludes:
     - "**/svg-icons/**"
   extensions:
-    - .jsx
     - .js
-
