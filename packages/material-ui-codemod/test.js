@@ -13,9 +13,11 @@ const mocha = new Mocha({
   grep: argv.grep ? argv.grep : undefined,
 });
 
-const paths = [
-  `src/**/*${argv.component ? argv.component : '*'}*.spec.js`,
-];
+const paths = [];
+
+if (!argv.component) {
+  paths.push('transforms/**/*.spec.js');
+}
 
 let pattern;
 
