@@ -129,8 +129,10 @@ const ClockNumber = React.createClass({
 
     styles.root.transform = `translate(${x}px, ${y}px)`;
 
+    const clockNumber = this.props.value === 0 ? '00' : this.props.value;
+
     return (
-      <span style={prepareStyles(styles.root)}>{this.props.value}</span>
+      <span style={prepareStyles(styles.root)}>{clockNumber}</span>
     );
   },
 });
