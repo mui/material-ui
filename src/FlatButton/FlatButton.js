@@ -1,6 +1,6 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import Children from '../utils/children';
+import {createChildFragment} from '../utils/childUtils';
 import ColorManipulator from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
@@ -295,7 +295,7 @@ const FlatButton = React.createClass({
         iconCloned,
         labelElement,
       };
-    const enhancedButtonChildren = Children.create(childrenFragment);
+    const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (
       <EnhancedButton

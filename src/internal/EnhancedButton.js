@@ -1,6 +1,6 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Children from '../utils/children';
+import {createChildFragment} from '../utils/childUtils';
 import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
@@ -197,7 +197,7 @@ const EnhancedButton = React.createClass({
       </TouchRipple>
     ) : undefined;
 
-    return Children.create({
+    return createChildFragment({
       focusRipple,
       touchRipple,
       children: touchRipple ? undefined : children,

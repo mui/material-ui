@@ -4,7 +4,7 @@ import ColorManipulator from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Paper from '../Paper';
-import Children from '../utils/children';
+import {extendChildren} from '../utils/childUtils';
 import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 import propTypes from '../utils/propTypes';
@@ -313,7 +313,7 @@ const FloatingActionButton = React.createClass({
       );
     }
 
-    const children = Children.extend(this.props.children, {
+    const children = extendChildren(this.props.children, {
       style: Object.assign({},
         styles.icon,
         mini && styles.iconWhenMini,
