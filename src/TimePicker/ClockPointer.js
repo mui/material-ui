@@ -11,7 +11,12 @@ function isInner(props) {
   if (props.type !== 'hour' ) {
     return false;
   }
-  return props.value < 1 || props.value > 12 ;
+  if (props.format === '24hr') {
+    return props.value < 13 && props.value > 0
+  }
+  else {
+    return props.value < 1 && props.value > 12 ;
+  }
 }
 
 function getStyles(props, state) {
@@ -61,6 +66,7 @@ function getStyles(props, state) {
 const ClockPointer = React.createClass({
 
   propTypes: {
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
     hasSelected: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     value: React.PropTypes.number,

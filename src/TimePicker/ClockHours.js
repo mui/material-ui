@@ -142,6 +142,9 @@ const ClockHours = React.createClass({
     value = value || 12;
     if (this.props.format === '24hr') {
       if (distance < 90) {
+        value %= 24;
+      }
+      else{
         value += 12;
         value %= 24;
       }
@@ -178,6 +181,7 @@ const ClockHours = React.createClass({
       const isSelected = this._getSelected() === hour;
       return (
         <ClockNumber
+          format={this.props.format}
           key={hour}
           style={style}
           isSelected={isSelected}
@@ -215,7 +219,7 @@ const ClockHours = React.createClass({
 
     return (
       <div ref="clock" style={prepareStyles(styles.root)} >
-        <ClockPointer hasSelected={true} value={hours} type="hour" />
+        <ClockPointer format={this.props.format} hasSelected={true} value={hours} type="hour" />
         {numbers}
         <div
           ref="mask" style={prepareStyles(styles.hitMask)} onTouchMove={this.handleTouchMove}
