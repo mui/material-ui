@@ -4,6 +4,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 const ClockNumber = React.createClass({
 
   propTypes: {
+    format: React.PropTypes.oneOf(['ampm', '24hr']),
     isSelected: React.PropTypes.bool,
     onSelected: React.PropTypes.func,
     type: React.PropTypes.oneOf(['hour', 'minute']),
@@ -57,7 +58,12 @@ const ClockNumber = React.createClass({
     let inner = false;
 
     if (this.props.type === 'hour') {
-      inner = pos < 1 || pos > 12;
+      if (this.props.format === '24hr') {
+       inner = pos < 13 && pos > 0;
+      }
+      else {
+        inner = pos < 1 && pos > 12;
+      }
       pos %= 12;
     } else {
       pos = pos / 5;
