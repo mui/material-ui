@@ -30,12 +30,14 @@ import Subheader from './Subheader';
 import SvgIcon from './SvgIcon';
 import {Stepper, HorizontalStep, VerticalStep} from './Stepper';
 import Snackbar from './Snackbar';
+import Styles from './styles';
 import {Tabs, Tab} from './Tabs';
 import {Table, TableBody, TableHeader, TableFooter, TableHeaderColumn, TableRow, TableRowColumn} from './Table';
 import Toggle from './Toggle';
 import TimePicker from './TimePicker';
 import TextField from './TextField';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from './Toolbar';
+import Utils  from './utils';
 
 export {AppBar};
 export {AutoComplete};
@@ -79,6 +81,7 @@ export {Slider};
 export {Subheader};
 export {SvgIcon};
 export {Stepper};
+export {Styles};
 export {Snackbar};
 export {Tab};
 export {Tabs};
@@ -96,66 +99,68 @@ export {Toolbar};
 export {ToolbarGroup};
 export {ToolbarSeparator};
 export {ToolbarTitle};
+export {Utils};
 export {VerticalStep};
 
 export default {
-  AppBar,
-  AutoComplete,
-  Avatar,
-  Badge,
-  Card,
-  CardActions,
-  CardHeader,
-  CardMedia,
-  CardText,
-  CardTitle,
-  Checkbox,
-  CircularProgress,
-  DatePicker,
-  Dialog,
-  Divider,
-  DropDownMenu,
-  FlatButton,
-  FloatingActionButton,
-  FontIcon,
-  GridList,
-  GridTile,
-  HorizontalStep,
-  IconButton,
-  IconMenu,
-  LeftNav,
-  LinearProgress,
-  List,
-  ListItem,
-  Menu,
-  MenuItem,
-  Paper,
-  Popover,
-  RadioButton,
-  RadioButtonGroup,
-  RaisedButton,
-  RefreshIndicator,
-  SelectField,
-  MakeSelectable,
-  Slider,
-  SvgIcon,
-  Stepper,
-  Snackbar,
-  Tab,
-  Tabs,
-  Table,
-  TableBody,
-  TableFooter,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-  Toggle,
-  TimePicker,
-  TextField,
-  Toolbar,
-  ToolbarGroup,
-  ToolbarSeparator,
-  ToolbarTitle,
-  VerticalStep,
+	AppBar,
+	AutoComplete,
+	Avatar,
+	Badge,
+	Card,
+	CardActions,
+	CardHeader,
+	CardMedia,
+	CardText,
+	CardTitle,
+	Checkbox,
+	CircularProgress,
+	DatePicker,
+	Dialog,
+	Divider,
+	DropDownMenu,
+	FlatButton,
+	FloatingActionButton,
+	FontIcon,
+	GridList,
+	GridTile,
+	HorizontalStep,
+	IconButton,
+	IconMenu,
+	LeftNav,
+	LinearProgress,
+	List,
+	ListItem,
+	Menu,
+	MenuItem,
+	Paper,
+	Popover,
+	RadioButton,
+	RadioButtonGroup,
+	RaisedButton,
+	RefreshIndicator,
+	SelectField,
+	MakeSelectable,
+	Slider,
+	SvgIcon,
+	Stepper,
+	Snackbar,
+	Tab,
+	Tabs,
+	Table,
+	TableBody,
+	TableFooter,
+	TableHeader,
+	TableHeaderColumn,
+	TableRow,
+	TableRowColumn,
+	Toggle,
+	TimePicker,
+	TextField,
+	Toolbar,
+	ToolbarGroup,
+	ToolbarSeparator,
+	ToolbarTitle,
+	Utils,
+	VerticalStep
 };

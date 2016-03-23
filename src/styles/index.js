@@ -28,17 +28,17 @@ export {typography};
 export {zIndex};
 
 export default {
-  DarkRawTheme,
-  LightRawTheme,
-  MuiThemeProvider,
-  colors,
-  darkBaseTheme,
-  getMuiTheme,
-  lightBaseTheme,
-  muiThemeable,
-  spacing,
-  themeManager,
-  transitions,
-  typography,
-  zIndex,
+	DarkRawTheme,
+	LightRawTheme,
+	MuiThemeProvider,
+	colors,
+	darkBaseTheme,
+	getMuiTheme,
+	lightBaseTheme,
+	muiThemeable,
+	spacing,
+	themeManager,
+	transitions,
+	typography,
+	zIndex
 };
