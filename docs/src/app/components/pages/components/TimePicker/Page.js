@@ -16,7 +16,7 @@ import timePickerCode from '!raw!material-ui/lib/TimePicker/TimePicker';
 
 const descriptions = {
   simple: 'Time Picker supports 12 hour and 24 hour formats. In 12 hour format the AM and PM indicators toggle the ' +
-  'selected time period.',
+  'selected time period. You can also disable the Dialog passing true to the disabled property.',
   controlled: '`TimePicker` can be used as a controlled component.',
   localised: 'The buttons can be localised using the `cancelLabel` and `okLabel` properties.',
 };
