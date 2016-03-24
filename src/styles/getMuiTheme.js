@@ -294,6 +294,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       thumbOffColor: palette.accent2Color,
       thumbDisabledColor: palette.borderColor,
       thumbRequiredColor: palette.primary1Color,
+      height: 20,
       trackOnColor: ColorManipulator.fade(palette.primary1Color, 0.5),
       trackOffColor: palette.primary3Color,
       trackDisabledColor: palette.primary3Color,

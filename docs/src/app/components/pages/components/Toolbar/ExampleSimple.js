@@ -6,6 +6,7 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
+import Toggle from 'material-ui/Toggle';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 
 export default class ToolbarExamplesSimple extends React.Component {
@@ -32,6 +33,7 @@ export default class ToolbarExamplesSimple extends React.Component {
             <MenuItem value={6} primaryText="Active Voice" />
             <MenuItem value={7} primaryText="Active Text" />
           </DropDownMenu>
+          <Toggle label="Advanced" />
         </ToolbarGroup>
         <ToolbarGroup>
           <ToolbarTitle text="Options" />
