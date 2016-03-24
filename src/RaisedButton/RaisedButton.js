@@ -100,8 +100,6 @@ function getStyles(props, state) {
       transition: transitions.easeOut(),
       top: 0,
     },
-    overlayWhenHovered: {
-    },
     ripple: {
       color: labelColor,
       opacity: !(primary || secondary) ? 0.1 : 0.16,
@@ -328,14 +326,20 @@ const RaisedButton = React.createClass({
     if (this.props.onTouchEnd) this.props.onTouchEnd(event);
   },
 
-  _handleKeyboardFocus: (styles) => (event, keyboardFocused) => {
+  handleKeyboardFocus(event, keyboardFocused) {
+    const styles = getStyles(this.props, this.state);
+
     if (keyboardFocused && !this.props.disabled) {
-      this.setState({zDepth: this.state.initialZDepth + 1});
+      this.setState({
+        zDepth: this.state.initialZDepth + 1,
+      });
       const amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
       this.refs.overlay.style.backgroundColor =
         ColorManipulator.fade(Object.assign({}, styles.label, this.props.labelStyle).color, amount);
     } else if (!this.state.hovered) {
-      this.setState({zDepth: this.state.initialZDepth});
+      this.setState({
+        zDepth: this.state.initialZDepth,
+      });
       this.refs.overlay.style.backgroundColor = 'transparent';
     }
   },
@@ -362,14 +366,14 @@ const RaisedButton = React.createClass({
     const styles = getStyles(this.props, this.state);
     const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
-    const buttonEventHandlers = disabled && {
+    const buttonEventHandlers = disabled ? {} : {
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
       onMouseLeave: this._handleMouseLeave,
       onMouseEnter: this._handleMouseEnter,
       onTouchStart: this._handleTouchStart,
       onTouchEnd: this._handleTouchEnd,
-      onKeyboardFocus: this._handleKeyboardFocus,
+      onKeyboardFocus: this.handleKeyboardFocus,
     };
 
     const labelElement = label && (

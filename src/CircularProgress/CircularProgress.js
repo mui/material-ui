@@ -160,9 +160,6 @@ const CircularProgress = React.createClass({
     clearTimeout(this.rotateWrapperTimer);
   },
 
-  scalePathTimer: undefined,
-  rotateWrapperTimer: undefined,
-
   _scalePath(path, step) {
     if (this.props.mode !== 'indeterminate') return;
 
