@@ -1,7 +1,7 @@
 {
   "name": "material-ui-express",
   "author": "KPL Express Team",
-  "version": "0.14.14",
+  "version": "0.14.15",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
