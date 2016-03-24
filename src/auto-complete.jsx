@@ -172,6 +172,7 @@ const AutoComplete = React.createClass({
 
   componentWillMount() {
     this.focusOnInput = false;
+    this.focusOnKeyDown = false;
     this.requestsList = [];
   },
 
@@ -200,6 +201,7 @@ const AutoComplete = React.createClass({
   },
 
   close() {
+    this.focusOnKeyDown = false;
     this.setState({
       open: false,
       anchorEl: null,
@@ -278,6 +280,7 @@ const AutoComplete = React.createClass({
         if (this.focusOnInput && this.state.open) {
           event.preventDefault();
           this.focusOnInput = false;
+          this.focusOnKeyDown = true;
           this.open();
         }
         break;
@@ -376,7 +379,7 @@ const AutoComplete = React.createClass({
         key="dropDownMenu"
         autoWidth={false}
         onEscKeyDown={this.close}
-        initiallyKeyboardFocused={false}
+        keyboardFocused={this.focusOnKeyDown}
         onItemTouchTap={this.handleItemTouchTap}
         listStyle={this.mergeStyles(styles.list, listStyle)}
         style={this.mergeStyles(styles.menu, menuStyle)}

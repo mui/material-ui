@@ -44,6 +44,11 @@ const Menu = React.createClass({
     initiallyKeyboardFocused: React.PropTypes.bool,
 
     /**
+     * True if this item should be focused by the keyboard.
+     */
+    keyboardFocused: React.PropTypes.bool,
+
+    /**
      * The style object to use to override underlying list style.
      */
     listStyle: React.PropTypes.object,
@@ -184,6 +189,7 @@ const Menu = React.createClass({
       focusIndex: selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
       muiTheme: nextContext.muiTheme || this.state.muiTheme,
+      isKeyboardFocused: nextProps.keyboardFocused || this.state.isKeyboardFocused,
     });
   },
 
