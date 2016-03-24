@@ -3,11 +3,11 @@ injectTapEventPlugin();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Calendar from 'date-picker/calendar';
-import CalendarToolbar from 'date-picker/calendar-toolbar';
-import IconButton from 'icon-button';
+import Calendar from 'DatePicker/Calendar';
+import CalendarToolbar from 'DatePicker/CalendarToolbar';
+import IconButton from 'IconButton';
 import injectTheme from '../fixtures/inject-theme';
-import DateTime from 'utils/date-time';
+import DateTime from 'utils/dateTime';
 import TestUtils from 'react-addons-test-utils';
 
 describe('Calendar', () => {

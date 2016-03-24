@@ -23,10 +23,10 @@ Then, you can use `<MuiThemeProvider />` to provide it down the tree to componen
 
 ```js
 import React from 'react';
-import {cyan500} from 'material-ui/lib/styles/colors';
-import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import AppBar from 'material-ui/lib/app-bar';
+import {cyan500} from 'material-ui/styles/colors';
+import MuiThemeProvider from 'material-ui/stylesMuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
 
 // This replaces the textColor value on the palette
 // and then update the keys for each component that depends on it.
@@ -73,10 +73,10 @@ But for the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/mast
 
 ```js
 import React from 'react';
-import darkBaseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import AppBar from 'material-ui/lib/app-bar';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
 
 const darkMuiTheme = getMuiTheme(darkBaseTheme);
 
@@ -100,7 +100,7 @@ In case you wish to access the theme object yourself you can use the
 
 ```js
 import React from 'react';
-import muiThemeable from 'material-ui/lib/muiThemeable';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 class DeepDownTheTree extends React.Component {
   render() {
@@ -130,9 +130,9 @@ Pass theme down the context:
 
 ```js
 import React from 'react';
-import baseTheme from 'material-ui/lib/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import AppBar from 'material-ui/lib/app-bar';
+import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
 
 class Main extends React.Component {
   getChildContext() {
@@ -188,7 +188,7 @@ until another render is triggered for that component leaving your application
 in a moody state.
 
 To see what are the values you can override, use the
-[source](https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js).
+[source](https://github.com/callemall/material-ui/blob/master/src/getMuiTheme.js).
 The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js
@@ -197,8 +197,8 @@ cyan500, cyan700,
 grey100, grey300, grey400, grey500,
 pinkA200,
 white, darkBlack, fullBlack,
-} from 'material-ui/lib/styles/colors';
-import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
+} from 'material-ui/styles/colors';
+import ColorManipulator from 'material-ui/utils/color-manipulator';
 
 const lightBaseTheme = {
   spacing: {

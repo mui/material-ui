@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import FontIcon from 'src/font-icon';
+import FontIcon from 'src/FontIcon';
 
 describe('<FontIcon />', () => {
   it('renders className', () => {

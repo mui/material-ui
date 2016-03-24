@@ -8,7 +8,7 @@ Basically three steps are needed:
 Wrapping the `List` component with the higher order component "SelectableEnhance"
 enables the clicked `ListItem` to be highlighted.
 ```javascript
-import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
+import { SelectableContainerEnhance } from 'material-ui/hoc/selectable-enhance';
 .
 .
 .

@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import getMuiTheme from 'src/styles/getMuiTheme';
-import Badge from 'src/badge';
+import Badge from 'src/Badge';
 
 describe('<Badge />', () => {
   const badgeTheme = getMuiTheme().badge;

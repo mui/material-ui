@@ -1,14 +1,15 @@
 import merge from 'lodash.merge';
-import ColorManipulator from '../utils/color-manipulator';
+import ColorManipulator from '../utils/colorManipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
-import {autoprefixer, callOnce, rtl} from './transformers';
+import autoprefixer from '../utils/autoprefixer';
+import callOnce from '../utils/callOnce';
+import rtl from '../utils/rtl';
 import compose from 'lodash.flowright';
-import Typography from '../styles/typography';
+import typography from './typography';
 import {
-red500,
-grey400, grey500, grey600, grey700,
-transparent, lightWhite, white, darkWhite, lightBlack, black,
+  red500, grey400, grey500, grey600, grey700,
+  transparent, lightWhite, white, darkWhite, lightBlack, black,
 } from './colors';
 
 /**
@@ -41,7 +42,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       color: palette.primary1Color,
       textColor: palette.alternateTextColor,
       height: spacing.desktopKeylineIncrement,
-      titleFontWeight: Typography.fontWeightNormal,
+      titleFontWeight: typography.fontWeightNormal,
       padding: spacing.desktopGutter,
     },
     avatar: {
@@ -58,7 +59,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       primaryTextColor: palette.alternateTextColor,
       secondaryColor: palette.primary1Color,
       secondaryTextColor: palette.alternateTextColor,
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: typography.fontWeightMedium,
     },
     button: {
       height: 36,
@@ -68,7 +69,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     card: {
       titleColor: ColorManipulator.fade(palette.textColor, 0.87),
       subtitleColor: ColorManipulator.fade(palette.textColor, 0.54),
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: typography.fontWeightMedium,
     },
     cardMedia: {
       color: darkWhite,
@@ -108,8 +109,8 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.textColor,
       primaryTextColor: palette.primary1Color,
       secondaryTextColor: palette.accent1Color,
-      fontSize: Typography.fontStyleButtonFontSize,
-      fontWeight: Typography.fontWeightMedium,
+      fontSize: typography.fontStyleButtonFontSize,
+      fontWeight: typography.fontWeightMedium,
     },
     floatingActionButton: {
       buttonSize: 56,
@@ -192,7 +193,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       secondaryTextColor: palette.alternateTextColor,
       disabledColor: ColorManipulator.darken(palette.alternateTextColor, 0.1),
       disabledTextColor: ColorManipulator.fade(palette.textColor, 0.3),
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: typography.fontWeightMedium,
     },
     refreshIndicator: {
       strokeColor: palette.borderColor,
@@ -220,7 +221,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     subheader: {
       color: ColorManipulator.fade(palette.textColor, 0.54),
-      fontWeight: Typography.fontWeightMedium,
+      fontWeight: typography.fontWeightMedium,
     },
     stepper: {
       activeAvatarColor: palette.primary1Color,

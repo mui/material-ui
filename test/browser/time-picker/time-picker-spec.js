@@ -1,7 +1,7 @@
 import React from 'react';
-import TextField from 'text-field';
-import TimePicker from 'time-picker/time-picker';
-import DateTime from 'utils/date-time';
+import TextField from 'TextField';
+import TimePicker from 'TimePicker';
+import DateTime from 'utils/dateTime';
 import TestUtils from 'react-addons-test-utils';
 
 describe('TimePicker', () => {

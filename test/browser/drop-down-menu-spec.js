@@ -2,8 +2,8 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import injectTheme from './fixtures/inject-theme';
 
-import DropDownMenu from 'drop-down-menu';
-import MenuItem from 'menus/menu-item';
+import DropDownMenu from 'DropDownMenu';
+import MenuItem from 'MenuItem';
 
 describe('DropDownMenu', () => {
   let ThemedDropdownMenu;

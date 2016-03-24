@@ -4,11 +4,11 @@ grey600,
 pinkA100, pinkA200, pinkA400,
 fullWhite,
 } from '../colors';
-import ColorManipulator from '../../utils/color-manipulator';
-import Spacing from '../spacing';
+import ColorManipulator from '../../utils/colorManipulator';
+import spacing from '../spacing';
 
 export default {
-  spacing: Spacing,
+  spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: cyan700,

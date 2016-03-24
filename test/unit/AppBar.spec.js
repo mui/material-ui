@@ -2,9 +2,9 @@ import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import AppBar from 'src/app-bar';
-import IconButton from 'src/icon-button';
-import Paper from 'src/paper';
+import AppBar from 'src/AppBar';
+import IconButton from 'src/IconButton';
+import Paper from 'src/Paper';
 import NavigationClose from 'src/svg-icons/navigation/close';
 
 describe('<AppBar />', () => {

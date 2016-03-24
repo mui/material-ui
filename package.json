@@ -1,14 +1,15 @@
 {
   "name": "material-ui",
   "author": "Call-em-all Engineering Team",
-  "version": "0.15.0-alpha.1",
+  "version": "0.15.0-alpha.2",
   "description": "Material Design UI components built with React",
   "main": "./lib",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
+    "build:icon-index": "cd src/svg-icons/ && babel-node index-generator.js",
     "coverage": "npm run test",
     "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary html lcov json",
-    "lint": "eslint --ext .jsx,.js src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
+    "lint": "eslint --ext .js src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
     "prebuild": "rimraf lib",
     "prepublish": "in-publish && npm run build || not-in-publish",
     "test": "npm run test:unit && npm run test:browser && npm run test:unit:coverage && npm run coverage:combine",
@@ -17,7 +18,7 @@
     "test:browser:base": "karma start test/karma.conf.js",
     "test:unit": "NODE_ENV=production babel-node test/unit/index.js",
     "test:unit:watch": "nodemon -w src -w test/unit --exec \"npm run test:unit\"",
-    "test:unit:coverage": "NODE_ENV=production babel-node node_modules/.bin/isparta cover --include '**/*.js' --include '**/*.jsx' --report lcovonly --report html --dir test/coverage/unit test/unit/index.js"
+    "test:unit:coverage": "NODE_ENV=production babel-node node_modules/.bin/isparta cover --include '**/*.js' --report lcovonly --report html --dir test/coverage/unit test/unit/index.js"
   },
   "keywords": [
     "react",
@@ -36,7 +37,7 @@
   },
   "homepage": "http://material-ui.com/",
   "dependencies": {
-    "inline-style-prefixer": "^1.0.1",
+    "inline-style-prefixer": "^1.0.2",
     "keycode": "^2.1.0",
     "lodash.flowright": "^3.2.1",
     "lodash.merge": "^4.1.0",
@@ -79,8 +80,8 @@
     "codecov": "^1.0.1",
     "enzyme": "^2.0.0",
     "eslint": "~2.2.0",
-    "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^4.0.0",
+    "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "glob": "^7.0.0",
     "in-publish": "^2.0.0",
     "isparta": "^4.0.0",

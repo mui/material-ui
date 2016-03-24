@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import Paper from 'src/paper';
+import Paper from 'src/Paper';
 import getMuiTheme from 'src/styles/getMuiTheme';
 
 describe('<Paper />', () => {
