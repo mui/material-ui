@@ -11,10 +11,12 @@ function getStyles(props, state) {
     baseTheme,
     button,
     toolbar,
+    toggle,
   } = state.muiTheme;
 
   const marginHorizontal = baseTheme.spacing.desktopGutter;
-  const marginVertical = (toolbar.height - button.height) / 2;
+  const marginVerticalButton = (toolbar.height - button.height) / 2;
+  const marginVerticalToggle = (toolbar.height - toggle.height) / 2;
 
   const styles = {
     root: {
@@ -40,8 +42,13 @@ function getStyles(props, state) {
       },
     },
     button: {
-      margin: `${marginVertical}px ${marginHorizontal}px`,
+      margin: `${marginVerticalButton}px ${marginHorizontal}px`,
       position: 'relative',
+    },
+    toggle: {
+      margin: `${marginVerticalToggle}px ${marginHorizontal}px`,
+      position: 'relative',
+      width: 'auto',
     },
     icon: {
       root: {
@@ -168,6 +175,10 @@ const ToolbarGroup = React.createClass({
             style: Object.assign({}, styles.dropDownMenu.root, currentChild.props.style),
             styleControlBg: styles.dropDownMenu.controlBg,
             styleUnderline: styles.dropDownMenu.underline,
+          });
+        case 'Toggle' :
+          return React.cloneElement(currentChild, {
+            style: Object.assign({}, styles.toggle, currentChild.props.style),
           });
         case 'RaisedButton' :
         case 'FlatButton' :

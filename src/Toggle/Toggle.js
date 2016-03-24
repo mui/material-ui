@@ -14,7 +14,7 @@ function getStyles(props, state) {
     toggle,
   } = state.muiTheme;
 
-  const toggleSize = 20;
+  const toggleSize = toggle.height;
   const toggleTrackWidth = 36;
   const styles = {
     icon: {
