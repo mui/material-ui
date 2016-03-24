@@ -85,15 +85,15 @@ const GridTile = React.createClass({
     cols: React.PropTypes.number,
 
     /**
-     * Either a string used as tag name for the tile root element, or a ReactComponent.
+     * Either a string used as tag name for the tile root element, or a ReactElement.
      * This is useful when you have, for example, a custom implementation of
-     * a navigation link (that knowsabout your routes) and you want to use it as primary tile action.
-     * In case you pass a ReactComponent, please make sure that it passes all props,
+     * a navigation link (that knows about your routes) and you want to use it as the primary tile action.
+     * In case you pass a ReactElement, please ensure that it passes all props,
      * accepts styles overrides and render it's children.
      */
-    rootClass: React.PropTypes.oneOfType([
+    containerElement: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.object,
+      React.PropTypes.element,
     ]),
 
     /**
@@ -143,7 +143,7 @@ const GridTile = React.createClass({
       actionPosition: 'right',
       cols: 1,
       rows: 1,
-      rootClass: 'div',
+      containerElement: 'div',
     };
   },
 
@@ -207,7 +207,7 @@ const GridTile = React.createClass({
       actionPosition,
       style,
       children,
-      rootClass,
+      containerElement,
       ...other,
     } = this.props;
 
@@ -223,28 +223,25 @@ const GridTile = React.createClass({
 
     if (title) {
       titleBar = (
-        <div style={prepareStyles(styles.titleBar)}>
+        <div key="titlebar" style={prepareStyles(styles.titleBar)}>
           <div style={prepareStyles(styles.titleWrap)}>
             <div style={prepareStyles(styles.title)}>{title}</div>
-            {
-              subtitle ? (<div style={prepareStyles(styles.subtitle)}>{subtitle}</div>) : null
-            }
+            {subtitle ? (<div style={prepareStyles(styles.subtitle)}>{subtitle}</div>) : null}
           </div>
-          {
-            actionIcon ? (<div style={prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null
-          }
+          {actionIcon ? (<div style={prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null}
         </div>
       );
     }
 
     let newChildren = children;
 
-    // if there is an image passed as children
-    // clone it an put our styles
+    // if there is a single image passed as children
+    // clone it and add our styles
     if (React.Children.count(children) === 1) {
       newChildren = React.Children.map(children, (child) => {
         if (child.type === 'img') {
           return React.cloneElement(child, {
+            key: 'img',
             ref: 'img',
             style: prepareStyles(Object.assign({}, styles.childImg, child.props.style)),
           });
@@ -254,13 +251,14 @@ const GridTile = React.createClass({
       });
     }
 
-    const RootTag = rootClass;
-    return (
-      <RootTag style={prepareStyles(mergedRootStyles)} {...other}>
-        {newChildren}
-        {titleBar}
-      </RootTag>
-    );
+    const containerProps = {
+      style: prepareStyles(mergedRootStyles),
+      ...other,
+    };
+
+    return React.isValidElement(containerElement) ?
+      React.cloneElement(containerElement, containerProps, [newChildren, titleBar]) :
+      React.createElement(containerElement, containerProps, [newChildren, titleBar]);
   },
 });
 
