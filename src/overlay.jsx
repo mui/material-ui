@@ -120,7 +120,8 @@ const Overlay = React.createClass({
 
   _allowScrolling() {
     const body = document.getElementsByTagName('body')[0];
-    body.style.overflow = this._originalBodyOverflow || '';
+    // body.style.overflow = this._originalBodyOverflow || '';
+    body.style.overflow = '';
   },
 
 });
