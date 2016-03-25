@@ -65,9 +65,11 @@ const DayButton = React.createClass({
   propTypes: {
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
+    labelStyle: React.PropTypes.object,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -125,8 +127,10 @@ const DayButton = React.createClass({
   render() {
     const {
       date,
+      labelStyle,
       onTouchTap,
       selected,
+      style,
       ...other,
     } = this.props;
 
@@ -139,7 +143,7 @@ const DayButton = React.createClass({
     return this.props.date ? (
       <EnhancedButton
         {...other}
-        style={styles.root}
+        style={Object.assign({}, styles.root, style)}
         hoverStyle={styles.hover}
         disabled={this.props.disabled}
         disableFocusRipple={true}
@@ -150,7 +154,7 @@ const DayButton = React.createClass({
         onKeyboardFocus={this._handleKeyboardFocus}
       >
         <div style={prepareStyles(styles.buttonState)} />
-        <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
+        <span style={prepareStyles(Object.assign({}, styles.label, labelStyle))}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
       <span style={prepareStyles(styles.root)} />

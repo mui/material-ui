@@ -26,7 +26,7 @@ const DatePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    shouldDisableDate: React.PropTypes.func,
+    getDayElement: React.PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
@@ -203,7 +203,7 @@ const DatePickerDialog = React.createClass({
           open={this.state.open}
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
-          shouldDisableDate={this.props.shouldDisableDate}
+          getDayElement={this.props.getDayElement}
           disableYearSelection={this.props.disableYearSelection}
           mode={this.props.mode}
         />
