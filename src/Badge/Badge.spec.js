@@ -1,8 +1,9 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import getMuiTheme from 'src/styles/getMuiTheme';
-import Badge from 'src/Badge';
+import getMuiTheme from '../styles/getMuiTheme';
+import Badge from './Badge';
 
 describe('<Badge />', () => {
   const badgeTheme = getMuiTheme().badge;

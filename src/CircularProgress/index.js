@@ -1,3 +1,1 @@
-import CircularProgress from './CircularProgress';
-
-export default CircularProgress;
+export default from './CircularProgress';

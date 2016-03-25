@@ -1,8 +1,9 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import TextField from 'src/TextField';
-import TextFieldLabel from 'src/TextField/TextFieldLabel';
+import TextField from './TextField';
+import TextFieldLabel from './TextFieldLabel';
 
 describe('<TextField />', () => {
   it('passes event and value to the onChange callback', (done) => {

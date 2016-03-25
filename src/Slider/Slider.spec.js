@@ -1,9 +1,10 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import sinon from 'sinon';
 import keycode from 'keycode';
-import Slider from 'src/Slider';
+import Slider from './Slider';
 
 describe('<Slider />', () => {
   sinon.assert.expose(assert, {prefix: ''});

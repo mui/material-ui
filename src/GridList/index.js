@@ -1,7 +1,4 @@
-import GridList from './GridList';
-import GridTile from './GridTile';
+export GridList from './GridList';
+export GridTile from './GridTile';
 
-export {GridList};
-export {GridTile};
-
-export default GridList;
+export default from './GridList';

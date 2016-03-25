@@ -1,7 +1,8 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import Divider from 'src/Divider';
+import Divider from './Divider';
 
 describe('<Divider />', () => {
   it('renders className', () => {

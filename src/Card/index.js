@@ -1,17 +1,9 @@
-import Card from './Card';
-import CardHeader from './CardHeader';
-import CardTitle from './CardTitle';
-import CardMedia from './CardMedia';
-import CardText from './CardText';
-import CardActions from './CardActions';
-import CardExpandable from './CardExpandable';
+export Card from './Card';
+export CardHeader from './CardHeader';
+export CardTitle from './CardTitle';
+export CardMedia from './CardMedia';
+export CardText from './CardText';
+export CardActions from './CardActions';
+export CardExpandable from './CardExpandable';
 
-export {Card};
-export {CardHeader};
-export {CardTitle};
-export {CardMedia};
-export {CardText};
-export {CardActions};
-export {CardExpandable};
-
-export default Card;
+export default from './Card';

@@ -1,8 +1,9 @@
+/* eslint-env mocha */
 import React from 'react';
 import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import FontIcon from 'src/FontIcon';
+import FontIcon from './FontIcon';
 
 describe('<FontIcon />', () => {
   it('renders className', () => {

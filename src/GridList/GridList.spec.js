@@ -1,7 +1,8 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import {GridList, GridTile} from 'src/GridList';
+import GridList from './GridList';
 
 describe('<GridList />', () => {
   const tilesData = [
@@ -22,18 +23,19 @@ describe('<GridList />', () => {
     const wrapper = shallow(
       <GridList cellHeight={cellHeight}>
         {tilesData.map((tile) => (
-          <GridTile
+          <span
             key={tile.img}
+            className="grid-tile"
             title={tile.title}
             subtitle={<span>by <b>{tile.author}</b></span>}
           >
             <img src={tile.img} />
-          </GridTile>
+          </span>
         ))}
       </GridList>
     );
 
-    assert.equal(wrapper.find(GridTile).length, 2, 'should contain the children');
+    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.equal(wrapper.children().at(0).prop('style').height, cellHeight + 4, 'should have height to 254');
   });
 
@@ -41,36 +43,38 @@ describe('<GridList />', () => {
     const wrapper = shallow(
       <GridList>
         {tilesData.map((tile) => (
-          <GridTile
+          <span
             key={tile.img}
+            className="grid-tile"
             title={tile.title}
             subtitle={<span>by <b>{tile.author}</b></span>}
           >
             <img src={tile.img} />
-          </GridTile>
+          </span>
         ))}
       </GridList>
     );
 
-    assert.equal(wrapper.find(GridTile).length, 2, 'should contain the children');
+    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
   });
 
   it('renders children and change cols', () => {
     const wrapper = shallow(
       <GridList cols={4}>
         {tilesData.map((tile) => (
-          <GridTile
+          <span
             key={tile.img}
+            className="grid-tile"
             title={tile.title}
             subtitle={<span>by <b>{tile.author}</b></span>}
           >
             <img src={tile.img} />
-          </GridTile>
+          </span>
         ))}
       </GridList>
     );
 
-    assert.equal(wrapper.find(GridTile).length, 2, 'should contain the children');
+    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.equal(wrapper.children().at(0).prop('style').width, '25%', 'should have 25% of width');
   });
 
@@ -79,18 +83,19 @@ describe('<GridList />', () => {
     const wrapper = shallow(
       <GridList padding={padding}>
         {tilesData.map((tile) => (
-          <GridTile
+          <span
             key={tile.img}
+            className="grid-tile"
             title={tile.title}
             subtitle={<span>by <b>{tile.author}</b></span>}
           >
             <img src={tile.img} />
-          </GridTile>
+          </span>
         ))}
       </GridList>
     );
 
-    assert.equal(wrapper.find(GridTile).length, 2, 'should contain the children');
+    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.equal(wrapper.children().at(0).prop('style').padding, padding / 2, 'should have 5 of padding');
   });
 
@@ -101,18 +106,19 @@ describe('<GridList />', () => {
     const wrapper = shallow(
       <GridList style={style}>
         {tilesData.map((tile) => (
-          <GridTile
+          <span
             key={tile.img}
+            className="grid-tile"
             title={tile.title}
             subtitle={<span>by <b>{tile.author}</b></span>}
           >
             <img src={tile.img} />
-          </GridTile>
+          </span>
         ))}
       </GridList>
     );
 
-    assert.equal(wrapper.find(GridTile).length, 2, 'should contain the children');
+    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.equal(wrapper.prop('style').backgroundColor, style.backgroundColor, 'should have a red backgroundColor');
   });
 });

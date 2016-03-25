@@ -50,7 +50,6 @@ rules:
   no-unneeded-ternary: 2
   no-unreachable: 2
   no-var: 2
-  object-curly-spacing: [2, never]
   one-var: [2, never]
   operator-linebreak: [2, "after"]
   padded-blocks: [2, never]
@@ -68,6 +67,9 @@ rules:
   # Disabled
   strict: 0
   no-case-declarations: 0
+
+  # Babel
+  babel/object-curly-spacing: [2, never]
 
   # React
   react/display-name: 2
@@ -113,10 +115,14 @@ rules:
 
 parser: babel-eslint
 
+parserOptions:
+  ecmaVersion: 7
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+    experimentalObjectRestSpread: true
+
 plugins:
+  - babel
   - react
   - material-ui
-
-ecmaFeatures:
-  jsx: true
-  modules: true

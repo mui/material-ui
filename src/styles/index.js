@@ -1,44 +1,13 @@
-import MuiThemeProvider from './MuiThemeProvider';
-import * as colors from './colors';
-import darkBaseTheme from './baseThemes/darkBaseTheme';
-import getMuiTheme from './getMuiTheme';
-import lightBaseTheme from './baseThemes/lightBaseTheme';
-import muiThemeable from './muiThemeable';
-import spacing from './spacing';
-import themeManager from './themeManager';
-import transitions from './transitions';
-import typography from './typography';
-import zIndex from './zIndex';
-
-const DarkRawTheme = darkBaseTheme;
-const LightRawTheme = lightBaseTheme;
-
-export {DarkRawTheme};
-export {LightRawTheme};
-export {MuiThemeProvider};
-export {colors};
-export {darkBaseTheme};
-export {getMuiTheme};
-export {lightBaseTheme};
-export {muiThemeable};
-export {spacing};
-export {themeManager};
-export {transitions};
-export {typography};
-export {zIndex};
-
-export default {
-  DarkRawTheme,
-  LightRawTheme,
-  MuiThemeProvider,
-  colors,
-  darkBaseTheme,
-  getMuiTheme,
-  lightBaseTheme,
-  muiThemeable,
-  spacing,
-  themeManager,
-  transitions,
-  typography,
-  zIndex,
-};
+export MuiThemeProvider from './MuiThemeProvider';
+export * as colors from './colors';
+export darkBaseTheme from './baseThemes/darkBaseTheme';
+export DarkRawTheme from './baseThemes/darkBaseTheme';
+export lightBaseTheme from './baseThemes/lightBaseTheme';
+export LightRawTheme from './baseThemes/lightBaseTheme';
+export getMuiTheme from './getMuiTheme';
+export muiThemeable from './muiThemeable';
+export spacing from './spacing';
+export themeManager from './themeManager';
+export transitions from './transitions';
+export typography from './typography';
+export zIndex from './zIndex';
