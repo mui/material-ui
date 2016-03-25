@@ -11,11 +11,11 @@ import propTypes from '../utils/propTypes';
 
 let openNavEventHandler = null;
 
-const LeftNav = React.createClass({
+const Drawer = React.createClass({
 
   propTypes: {
     /**
-     * The contents of the `LeftNav`
+     * The contents of the `Drawer`
      */
     children: React.PropTypes.node,
 
@@ -35,20 +35,20 @@ const LeftNav = React.createClass({
     containerStyle: React.PropTypes.object,
 
     /**
-     * If true, swiping sideways when the `LeftNav` is closed will not open it.
+     * If true, swiping sideways when the `Drawer` is closed will not open it.
      */
     disableSwipeToOpen: React.PropTypes.bool,
 
     /**
-     * If true, the `LeftNav` will be docked. In this state, the overlay won't show and
-     * clicking on a menu item will not close the `LeftNav`.
+     * If true, the `Drawer` will be docked. In this state, the overlay won't show and
+     * clicking on a menu item will not close the `Drawer`.
      */
     docked: React.PropTypes.bool,
 
     /**
-     * Callback function fired when the `open` state of the `LeftNav` is requested to be changed.
+     * Callback function fired when the `open` state of the `Drawer` is requested to be changed.
      *
-     * @param {boolean} open If true, the `LeftNav` was requested to be opened.
+     * @param {boolean} open If true, the `Drawer` was requested to be opened.
      * @param {string} reason The reason for the open or close request. Possible values are
      * 'swipe' for open requests; 'clickaway' (on overlay clicks),
      * 'escape' (on escape key press), and 'swipe' for close requests.
@@ -56,23 +56,23 @@ const LeftNav = React.createClass({
     onRequestChange: React.PropTypes.func,
 
     /**
-     * If true, the `LeftNav` is opened.  Providing a value will turn the `LeftNav`
+     * If true, the `Drawer` is opened.  Providing a value will turn the `Drawer`
      * into a controlled component.
      */
     open: React.PropTypes.bool,
 
     /**
-     * If true, the `LeftNav` is positioned to open from the right side.
+     * If true, the `Drawer` is positioned to open from the opposite side.
      */
-    openRight: React.PropTypes.bool,
+    openSecondary: React.PropTypes.bool,
 
     /**
-     * The CSS class name to add to the `Overlay` component that is rendered behind the `LeftNav`.
+     * The CSS class name to add to the `Overlay` component that is rendered behind the `Drawer`.
      */
     overlayClassName: React.PropTypes.string,
 
     /**
-     * Override the inline-styles of the `Overlay` component that is rendered behind the `LeftNav`.
+     * Override the inline-styles of the `Overlay` component that is rendered behind the `Drawer`.
      */
     overlayStyle: React.PropTypes.object,
 
@@ -82,7 +82,7 @@ const LeftNav = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * The width of the left most (or right most) area in pixels where the `LeftNav` can be
+     * The width of the left most (or right most) area in pixels where the `Drawer` can be
      * swiped open from. Setting this to `null` spans that area to the entire page
      * (**CAUTION!** Setting this property to `null` might cause issues with sliders and
      * swipeable `Tabs`: use at your own risk).
@@ -90,12 +90,12 @@ const LeftNav = React.createClass({
     swipeAreaWidth: React.PropTypes.number,
 
     /**
-     * The width of the `LeftNav` in pixels. Defaults to using the values from theme.
+     * The width of the `Drawer` in pixels. Defaults to using the values from theme.
      */
     width: React.PropTypes.number,
 
     /**
-     * This number represents the zDepth of the menu.
+     * The zDepth of the `Drawer`.
      */
     zDepth: propTypes.zDepth,
 
@@ -114,7 +114,7 @@ const LeftNav = React.createClass({
       disableSwipeToOpen: false,
       docked: true,
       open: null,
-      openRight: false,
+      openSecondary: false,
       swipeAreaWidth: 30,
       width: null,
       zDepth: 2,
@@ -166,7 +166,7 @@ const LeftNav = React.createClass({
 
   getStyles() {
     const muiTheme = this.state.muiTheme;
-    const theme = muiTheme.leftNav;
+    const theme = muiTheme.navDrawer;
 
     const x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
 
@@ -175,7 +175,7 @@ const LeftNav = React.createClass({
         height: '100%',
         width: this.props.width || theme.width,
         position: 'fixed',
-        zIndex: muiTheme.zIndex.leftNav,
+        zIndex: muiTheme.zIndex.navDrawer,
         left: 0,
         top: 0,
         transform: `translate3d(${x}px, 0, 0)`,
@@ -185,7 +185,7 @@ const LeftNav = React.createClass({
         WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
       },
       overlay: {
-        zIndex: muiTheme.zIndex.leftNavOverlay,
+        zIndex: muiTheme.zIndex.drawerOverlay,
         pointerEvents: this.state.open ? 'auto' : 'none', // Bypass mouse events when left nav is closing.
       },
       rootWhenOpenRight: {
@@ -227,12 +227,12 @@ const LeftNav = React.createClass({
   },
 
   _getMaxTranslateX() {
-    const width = this.props.width || this.state.muiTheme.leftNav.width;
+    const width = this.props.width || this.state.muiTheme.navDrawer.width;
     return width + 10;
   },
 
   _getTranslateMultiplier() {
-    return this.props.openRight ? 1 : -1;
+    return this.props.openSecondary ? 1 : -1;
   },
 
   _enableSwipeHandling() {
@@ -261,11 +261,11 @@ const LeftNav = React.createClass({
 
     // Open only if swiping from far left (or right) while closed
     if (swipeAreaWidth !== null && !this.state.open) {
-      if (this.props.openRight) {
-        // If openRight is true calculate from the far right
+      if (this.props.openSecondary) {
+        // If openSecondary is true calculate from the far right
         if (touchStartX < document.body.offsetWidth - swipeAreaWidth) return;
       } else {
-        // If openRight is false calculate from the far left
+        // If openSecondary is false calculate from the far left
         if (touchStartX > swipeAreaWidth) return;
       }
     }
@@ -287,10 +287,10 @@ const LeftNav = React.createClass({
   },
 
   _setPosition(translateX) {
-    const leftNav = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
+    const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
     const transformCSS = `translate3d(${(this._getTranslateMultiplier() * translateX)}px, 0, 0)`;
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
-    autoPrefix.set(leftNav.style, 'transform', transformCSS, this.state.muiTheme);
+    autoPrefix.set(drawer.style, 'transform', transformCSS, this.state.muiTheme);
   },
 
   _getTranslateX(currentX) {
@@ -374,7 +374,7 @@ const LeftNav = React.createClass({
       containerClassName,
       containerStyle,
       docked,
-      openRight,
+      openSecondary,
       overlayClassName,
       overlayStyle,
       style,
@@ -410,7 +410,7 @@ const LeftNav = React.createClass({
           rounded={false}
           transitionEnabled={!this.state.swiping}
           className={containerClassName}
-          style={Object.assign(styles.root, openRight && styles.rootWhenOpenRight, containerStyle)}
+          style={Object.assign(styles.root, openSecondary && styles.rootWhenOpenRight, containerStyle)}
         >
           {children}
         </Paper>
@@ -419,4 +419,4 @@ const LeftNav = React.createClass({
   },
 });
 
-export default LeftNav;
+export default Drawer;
