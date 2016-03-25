@@ -209,7 +209,7 @@ const TableBody = React.createClass({
           children.push(child);
         });
 
-        return React.cloneElement(child, {...props, ...handlers}, children);
+        return React.cloneElement(child, {...props, ...handlers, ...child.props}, children);
       }
     });
   },
