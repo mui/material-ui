@@ -362,7 +362,7 @@ const RaisedButton = React.createClass({
     const styles = getStyles(this.props, this.state);
     const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
-    const buttonEventHandlers = disabled && {
+    const buttonEventHandlers = !disabled && {
       onMouseDown: this._handleMouseDown,
       onMouseUp: this._handleMouseUp,
       onMouseLeave: this._handleMouseLeave,
