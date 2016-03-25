@@ -256,8 +256,6 @@ const AutoComplete = React.createClass({
     clearTimeout(this.timerTouchTapCloseId);
   },
 
-  timerTouchTapCloseId: null,
-
   close() {
     this.setState({
       open: false,

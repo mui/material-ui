@@ -204,12 +204,8 @@ const IconMenu = React.createClass({
   },
 
   componentWillUnmount() {
-    if (this.timerCloseId) {
-      clearTimeout(this.timerCloseId);
-    }
+    clearTimeout(this.timerCloseId);
   },
-
-  timerCloseId: undefined,
 
   isOpen() {
     return this.state.open;

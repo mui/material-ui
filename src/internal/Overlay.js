@@ -91,8 +91,6 @@ const Overlay = React.createClass({
     }
   },
 
-  _originalBodyOverflow: '',
-
   setOpacity(opacity) {
     this.refs.overlay.style.opacity = opacity;
   },
