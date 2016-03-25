@@ -380,7 +380,7 @@ const Popover = React.createClass({
 
   render() {
     return (
-      <div>
+      <div style={{display: 'none'}}>
         <EventListener
           elementName="window"
           onScroll={this.handleScroll}
