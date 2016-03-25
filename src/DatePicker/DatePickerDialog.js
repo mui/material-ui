@@ -17,6 +17,7 @@ const DatePickerDialog = React.createClass({
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
+    getDayElement: React.PropTypes.func,
     initialDate: React.PropTypes.object,
     locale: React.PropTypes.string,
     maxDate: React.PropTypes.object,
@@ -26,7 +27,6 @@ const DatePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
-    getDayElement: React.PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.

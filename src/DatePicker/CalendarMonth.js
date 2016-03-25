@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTestUtils from 'react-addons-test-utils';
 import DateTime from '../utils/dateTime';
 import DayButton from './DayButton';
 import ClearFix from '../internal/ClearFix';
@@ -9,11 +10,11 @@ const CalendarMonth = React.createClass({
     autoOk: React.PropTypes.bool,
     displayDate: React.PropTypes.object.isRequired,
     firstDayOfWeek: React.PropTypes.number,
+    getDayElement: React.PropTypes.func,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-    getDayElement: React.PropTypes.func,
   },
 
   _getWeekElements() {
@@ -31,7 +32,7 @@ const CalendarMonth = React.createClass({
   _getDayElements(week, i) {
     return week.map((day, j) => {
       if (this.props.getDayElement) {
-        let component = this.props.getDayElement(day, this.props.selectedDate);
+        const component = this.props.getDayElement(day, this.props.selectedDate);
 
         if (!ReactTestUtils.isElementOfType(component, DayButton)) {
           throw 'getDayElement must return an element of type DayButton';
@@ -39,7 +40,7 @@ const CalendarMonth = React.createClass({
 
         return React.cloneElement(component, {
           onTouchTap: this._handleDayTouchTap,
-          key: `db${(i + j)}`
+          key: `db${(i + j)}`,
         });
       }
 

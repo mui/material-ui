@@ -19,6 +19,7 @@ const Calendar = React.createClass({
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
+    getDayElement: React.PropTypes.func,
     initialDate: React.PropTypes.object,
     locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
@@ -26,7 +27,6 @@ const Calendar = React.createClass({
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     onDayTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
-    getDayElement: React.PropTypes.func,
   },
 
   contextTypes: {
