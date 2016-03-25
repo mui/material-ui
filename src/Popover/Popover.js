@@ -13,22 +13,22 @@ const Popover = React.createClass({
   propTypes: {
     /**
      * This is the DOM element that will be used to set the position of the
-     * component.
+     * popover.
      */
     anchorEl: React.PropTypes.object,
 
     /**
-     * This is the point on the anchor where the popover
-     * targetOrigin will stick to.
+     * This is the point on the anchor where the popover's
+     * `targetOrigin` will attach to.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right]
+     * vertical: [top, middle, bottom];
+     * horizontal: [left, center, right].
      */
     anchorOrigin: propTypes.origin,
 
     /**
      * If true, the popover will apply transitions when
-     * added it gets added to the DOM.
+     * it is added to the DOM.
      */
     animated: React.PropTypes.bool,
 
@@ -38,37 +38,37 @@ const Popover = React.createClass({
     animation: React.PropTypes.func,
 
     /**
-     * If true, the popover will hide when the anchor scrolls off the screen
+     * If true, the popover will hide when the anchor is scrolled off the screen.
      */
     autoCloseWhenOffScreen: React.PropTypes.bool,
 
     /**
-     * If true, the popover (potentially) ignores targetOrigin
-     * and anchorOrigin to make itself fit on screen,
+     * If true, the popover (potentially) ignores `targetOrigin`
+     * and `anchorOrigin` to make itself fit on screen,
      * which is useful for mobile devices.
      */
     canAutoPosition: React.PropTypes.bool,
 
     /**
-     * Use this property to render your component inside the `Popover`.
+     * The content of the popover.
      */
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root element.
+     * The CSS class name of the root element.
      */
     className: React.PropTypes.string,
 
     /**
-     * This is a callback that fires when the popover
-     * thinks it should close. (e.g. clickAway or offScreen)
+     * Callback function fired when the popover is requested to be closed.
      *
-     * @param {string} reason Determines what triggered this request.
+     * @param {string} reason The reason for the close request. Possibles values
+     * are 'clickAway' and 'offScreen'.
      */
     onRequestClose: React.PropTypes.func,
 
     /**
-     * Controls the visibility of the popover.
+     * If true, the popover is visible.
      */
     open: React.PropTypes.bool,
 
@@ -78,23 +78,23 @@ const Popover = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * This is the point on the popover which will stick to
-     * the anchors origin.
+     * This is the point on the popover which will attach to
+     * the anchor's origin.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right]
+     * vertical: [top, middle, bottom];
+     * horizontal: [left, center, right].
      */
     targetOrigin: propTypes.origin,
 
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying
-     * elements, and trigger an onRequestClose(clickAway) event.
+     * elements, and trigger an `onRequestClose('clickAway')` call.
      */
     useLayerForClickAway: React.PropTypes.bool,
 
     /**
-     * This number represents the zDepth of the paper shadow.
+     * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
   },

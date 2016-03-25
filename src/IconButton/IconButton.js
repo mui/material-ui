@@ -4,7 +4,7 @@ import propTypes from '../utils/propTypes';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Tooltip from '../internal/Tooltip';
-import Children from '../utils/children';
+import {extendChildren} from '../utils/childUtils';
 import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
@@ -303,7 +303,7 @@ const IconButton = React.createClass({
       >
         {tooltipElement}
         {fonticon}
-        {Children.extend(this.props.children, {
+        {extendChildren(this.props.children, {
           style: childrenStyle,
         })}
       </EnhancedButton>

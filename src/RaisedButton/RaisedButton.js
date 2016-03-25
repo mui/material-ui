@@ -1,7 +1,7 @@
 import React from 'react';
 import transitions from '../styles/transitions';
 import ColorManipulator from '../utils/colorManipulator';
-import Children from '../utils/children';
+import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -389,13 +389,12 @@ const RaisedButton = React.createClass({
         labelElement,
         iconCloned,
         children,
-      } :
-      {
+      } : {
         children,
         iconCloned,
         labelElement,
       };
-    const enhancedButtonChildren = Children.create(childrenFragment);
+    const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (
       <Paper

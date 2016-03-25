@@ -30,6 +30,11 @@ const TimePicker = React.createClass({
     defaultTime: React.PropTypes.object,
 
     /**
+     * If true, the TimePicker is disabled.
+     */
+    disabled: React.PropTypes.bool,
+
+    /**
      * Tells the component to display the picker in
      * ampm (12hr) format or 24hr format.
      */
@@ -103,6 +108,7 @@ const TimePicker = React.createClass({
   getDefaultProps() {
     return {
       defaultTime: null,
+      disabled: false,
       format: 'ampm',
       pedantic: false,
       autoOk: false,
@@ -181,7 +187,7 @@ const TimePicker = React.createClass({
   _handleInputTouchTap(event) {
     event.preventDefault();
 
-    this.openDialog();
+    if (!this.props.disabled) this.openDialog();
 
     if (this.props.onTouchTap) this.props.onTouchTap(event);
   },

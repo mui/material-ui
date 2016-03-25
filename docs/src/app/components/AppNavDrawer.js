@@ -1,5 +1,5 @@
 import React from 'react';
-import LeftNav from 'material-ui/LeftNav';
+import Drawer from 'material-ui/Drawer';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
@@ -10,13 +10,13 @@ import {cyan500} from 'material-ui/styles/colors';
 
 const SelectableList = MakeSelectable(List);
 
-const AppLeftNav = React.createClass({
+const AppNavDrawer = React.createClass({
 
   propTypes: {
     docked: React.PropTypes.bool.isRequired,
     location: React.PropTypes.object.isRequired,
-    onRequestChangeLeftNav: React.PropTypes.func.isRequired,
     onRequestChangeList: React.PropTypes.func.isRequired,
+    onRequestChangeNavDrawer: React.PropTypes.func.isRequired,
     open: React.PropTypes.bool.isRequired,
     style: React.PropTypes.object,
   },
@@ -85,7 +85,7 @@ const AppLeftNav = React.createClass({
 
   handleTouchTapHeader() {
     this.context.router.push('/');
-    this.props.onRequestChangeLeftNav(false);
+    this.props.onRequestChangeNavDrawer(false);
   },
 
   styles: {
@@ -109,19 +109,19 @@ const AppLeftNav = React.createClass({
     const {
       location,
       docked,
-      onRequestChangeLeftNav,
+      onRequestChangeNavDrawer,
       onRequestChangeList,
       open,
       style,
     } = this.props;
 
     return (
-      <LeftNav
+      <Drawer
         style={style}
         docked={docked}
         open={open}
-        onRequestChange={onRequestChangeLeftNav}
-        containerStyle={{zIndex: zIndex.leftNav - 100}}
+        onRequestChange={onRequestChangeNavDrawer}
+        containerStyle={{zIndex: zIndex.navDrawer - 100}}
       >
         <div style={this.styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
@@ -188,6 +188,7 @@ const AppLeftNav = React.createClass({
               <ListItem primaryText="Date Picker" value="/components/date-picker" />,
               <ListItem primaryText="Dialog" value="/components/dialog" />,
               <ListItem primaryText="Divider" value="/components/divider" />,
+              <ListItem primaryText="Drawer" value="/components/drawer" />,
               <ListItem primaryText="Grid List" value="/components/grid-list" />,
               <ListItem
                 primaryText="Icons"
@@ -197,7 +198,6 @@ const AppLeftNav = React.createClass({
                   <ListItem primaryText="SVG Icon" value="/components/svg-icon" />,
                 ]}
               />,
-              <ListItem primaryText="Left Nav" value="/components/left-nav" />,
               <ListItem primaryText="List" value="/components/list" />,
               <ListItem
                 primaryText="Menus"
@@ -263,9 +263,9 @@ const AppLeftNav = React.createClass({
             value="https://www.google.com/design/spec/material-design/introduction.html"
           />
         </SelectableList>
-      </LeftNav>
+      </Drawer>
     );
   },
 });
 
-export default AppLeftNav;
+export default AppNavDrawer;

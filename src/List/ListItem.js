@@ -14,106 +14,118 @@ const ListItem = React.createClass({
 
   propTypes: {
     /**
-     * Generate a nested list indicator icon when
-     * nested list items are detected. Set to false
-     * if you do not want an indicator auto-generated.
-     * Note that an indicator will not be created if a
-     * rightIcon/Button has been specified.
+     * If true, generate a nested-list-indicator icon when nested list
+     * items are detected. Note that an indicator will not be created
+     * if a `rightIcon` or `rightIconButton` has been provided to
+     * the element.
      */
     autoGenerateNestedIndicator: React.PropTypes.bool,
 
     /**
-     * Children passed into the ListItem.
+     * Children passed into the `ListItem`.
      */
     children: React.PropTypes.node,
 
     /**
-     * Does not allow the element to be focused by the keyboard.
+     * If true, the element will not be able to be focused by the keyboard.
      */
     disableKeyboardFocus: React.PropTypes.bool,
 
     /**
-     * If true, the list-item will not be clickable
-     * and will not display hover affects.
-     * This is automatically disabled if leftCheckbox
-     * or rightToggle is set.
+     * If true, the element will not be clickable
+     * and will not display hover effects.
+     * This is automatically disabled if either `leftCheckbox`
+     * or `rightToggle` is set.
      */
     disabled: React.PropTypes.bool,
 
     /**
-     * Controls whether or not the child ListItems are initially displayed.
+     * If true, the nested `ListItem`s are initially displayed.
      */
     initiallyOpen: React.PropTypes.bool,
 
     /**
-     * Style prop for the innder div element.
+     * Override the inline-styles of the inner div element.
      */
     innerDivStyle: React.PropTypes.object,
 
     /**
      * If true, the children will be indented by 72px.
-     * Only needed if there is no left avatar or left icon.
+     * This is useful if there is no left avatar or left icon.
      */
     insetChildren: React.PropTypes.bool,
 
     /**
-     * This is the Avatar element to be displayed on the left side.
+     * This is the `Avatar` element to be displayed on the left side.
      */
     leftAvatar: React.PropTypes.element,
 
     /**
-     * This is the Checkbox element to be displayed on the left side.
+     * This is the `Checkbox` element to be displayed on the left side.
      */
     leftCheckbox: React.PropTypes.element,
 
     /**
-     * This is the SvgIcon or FontIcon to be displayed on the left side.
+     * This is the `SvgIcon` or `FontIcon` to be displayed on the left side.
      */
     leftIcon: React.PropTypes.element,
 
     /**
-     * An array of ListItems to nest underneath the current ListItem.
+     * An array of `ListItem`s to nest underneath the current `ListItem`.
      */
     nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
 
     /**
-     * Controls how deep a ListItem appears.
-     * This property is automatically managed so modify at your own risk.
+     * Controls how deep a `ListItem` appears.
+     * This property is automatically managed, so modify at your own risk.
      */
     nestedLevel: React.PropTypes.number,
 
     /**
-     * Override the inline-styles of the nestedItems NestedList.
+     * Override the inline-styles of the nested items' `NestedList`.
      */
     nestedListStyle: React.PropTypes.object,
 
-    /**
-     * Called when the ListItem has keyboard focus.
+/**
+     * Callback function fired when the `ListItem` is focused or blurred by the keyboard.
+     *
+     * @param {object} event `focus` or `blur` event targeting the `ListItem`.
+     * @param {boolean} isKeyboardFocused If true, the `ListItem` is focused.
      */
     onKeyboardFocus: React.PropTypes.func,
 
     /**
-     * Called when the mouse is over the ListItem.
+     * Callback function fired when the mouse enters the `ListItem`.
+     *
+     * @param {object} event `mouseenter` event targeting the `ListItem`.
      */
     onMouseEnter: React.PropTypes.func,
 
     /**
-     * Called when the mouse is no longer over the ListItem.
+     * Callback function fired when the mouse leaves the `ListItem`.
+     *
+     * @param {object} event `mouseleave` event targeting the `ListItem`.
      */
     onMouseLeave: React.PropTypes.func,
 
     /**
-     * Called when the ListItem toggles its nested ListItems.
+     * Callbak function fired when the `ListItem` toggles its nested list.
+     *
+     * @param {object} listItem The `ListItem`.
      */
     onNestedListToggle: React.PropTypes.func,
 
     /**
-     * Called when touches start.
+     * Callback function fired when the `ListItem` is touched.
+     *
+     * @param {object} event `touchstart` event targeting the `ListItem`.
      */
     onTouchStart: React.PropTypes.func,
 
     /**
-     * Called when a touch tap event occures on the component.
+     * Callback function fired when the `ListItem` is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the `ListItem`.
      */
     onTouchTap: React.PropTypes.func,
 
@@ -124,32 +136,32 @@ const ListItem = React.createClass({
     primaryText: React.PropTypes.node,
 
     /**
-     * If provided, tapping on the primary text
-     * of the item toggles the nested list.
+     * If true, clicking or tapping the primary text of the `ListItem`
+     * toggles the nested list.
      */
     primaryTogglesNestedList: React.PropTypes.bool,
 
     /**
-     * This is the avatar element to be displayed on the right side.
+     * This is the `Avatar` element to be displayed on the right side.
      */
     rightAvatar: React.PropTypes.element,
 
     /**
-     * This is the SvgIcon or FontIcon to be displayed on the right side.
+     * This is the `SvgIcon` or `FontIcon` to be displayed on the right side.
      */
     rightIcon: React.PropTypes.element,
 
     /**
-     * This is the IconButton to be displayed on the right side.
-     * Hovering over this button will remove the ListItem hover.
+     * This is the `IconButton` to be displayed on the right side.
+     * Hovering over this button will remove the `ListItem` hover.
      * Also, clicking on this button will not trigger a
-     * ListItem ripple. The event will be stopped and prevented
-     * from bubbling up to cause a ListItem click.
+     * ripple on the `ListItem`; the event will be stopped and prevented
+     * from bubbling up to cause a `ListItem` click.
      */
     rightIconButton: React.PropTypes.element,
 
     /**
-     * This is the Toggle element to display on the right side.
+     * This is the `Toggle` element to display on the right side.
      */
     rightToggle: React.PropTypes.element,
 

@@ -29,6 +29,7 @@ import CheckboxPage from './components/pages/components/Checkbox/Page';
 import DatePicker from './components/pages/components/DatePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
+import DrawerPage from './components/pages/components/Drawer/Page';
 import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
 import FlatButtonPage from './components/pages/components/FlatButton/Page';
 import FloatingActionButtonPage from './components/pages/components/FloatingActionButton/Page';
@@ -36,7 +37,6 @@ import FontIconPage from './components/pages/components/FontIcon/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenuPage from './components/pages/components/IconMenu/Page';
-import LeftNavPage from './components/pages/components/LeftNav/Page';
 import ListPage from './components/pages/components/List/Page';
 import LinearProgressPage from './components/pages/components/LinearProgress/Page';
 import PaperPage from './components/pages/components/Paper/Page';
@@ -103,6 +103,7 @@ const AppRoutes = (
       <Route path="date-picker" component={DatePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
+      <Route path="drawer" component={DrawerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
       <Route path="font-icon" component={FontIconPage} />
       <Route path="flat-button" component={FlatButtonPage} />
@@ -110,7 +111,6 @@ const AppRoutes = (
       <Route path="grid-list" component={GridListPage} />
       <Route path="icon-button" component={IconButtonPage} />
       <Route path="icon-menu" component={IconMenuPage} />
-      <Route path="left-nav" component={LeftNavPage} />
       <Route path="list" component={ListPage} />
       <Route path="linear-progress" component={LinearProgressPage} />
       <Route path="paper" component={PaperPage} />

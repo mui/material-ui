@@ -1,3 +1,1 @@
-import MenuItem from './MenuItem';
-
-export default MenuItem;
+export default from './MenuItem';

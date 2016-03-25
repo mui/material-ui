@@ -1,17 +1,9 @@
-import Table from './Table';
-import TableBody from './TableBody';
-import TableFooter from './TableFooter';
-import TableHeader from './TableHeader';
-import TableHeaderColumn from './TableHeaderColumn';
-import TableRow from './TableRow';
-import TableRowColumn from './TableRowColumn';
+export Table from './Table';
+export TableBody from './TableBody';
+export TableFooter from './TableFooter';
+export TableHeader from './TableHeader';
+export TableHeaderColumn from './TableHeaderColumn';
+export TableRow from './TableRow';
+export TableRowColumn from './TableRowColumn';
 
-export {Table};
-export {TableBody};
-export {TableFooter};
-export {TableHeader};
-export {TableHeaderColumn};
-export {TableRow};
-export {TableRowColumn};
-
-export default Table;
+export default from './Table';

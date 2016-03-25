@@ -1,9 +1,9 @@
+/* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import getMuiTheme from 'src/styles/getMuiTheme';
-import FlatButton from 'src/FlatButton';
-import FontIcon from 'src/FontIcon';
+import getMuiTheme from '../styles/getMuiTheme';
+import FlatButton from './FlatButton';
 
 describe('<FlatButton />', () => {
   const flatButtonTheme = getMuiTheme().flatButton;
@@ -43,13 +43,13 @@ describe('<FlatButton />', () => {
   it('renders a label with an icon before', () => {
     const wrapper = shallow(
       <FlatButton
-        icon={<FontIcon className="test-icon" />}
+        icon={<span className="test-icon" />}
         label="Hello"
       />
     );
     const icon = wrapper.children().at(0);
     const label = wrapper.children().at(1);
-    assert.ok(icon.is('FontIcon'), );
+    assert.ok(icon.is('span'), );
     assert.ok(icon.hasClass('test-icon'));
     assert.ok(label.is('FlatButtonLabel'));
     assert.strictEqual(label.node.props.label, 'Hello', 'says hello');
@@ -58,14 +58,14 @@ describe('<FlatButton />', () => {
   it('renders a label with an icon after', () => {
     const wrapper = shallow(
       <FlatButton
-        icon={<FontIcon className="test-icon" />}
+        icon={<span className="test-icon" />}
         label="Hello"
         labelPosition="before"
       />
     );
     const icon = wrapper.children().at(1);
     const label = wrapper.children().at(0);
-    assert.ok(icon.is('FontIcon'), );
+    assert.ok(icon.is('span'), );
     assert.ok(icon.hasClass('test-icon'));
     assert.ok(label.is('FlatButtonLabel'));
     assert.strictEqual(label.node.props.label, 'Hello', 'says hello');
@@ -75,7 +75,7 @@ describe('<FlatButton />', () => {
     const wrapper = shallow(
       <FlatButton
         label="Button"
-        icon={<FontIcon className="test-icon" />}
+        icon={<span className="test-icon" />}
         primary={true}
       />
     );
@@ -86,13 +86,13 @@ describe('<FlatButton />', () => {
         color: flatButtonTheme.primaryTextColor,
       },
     }));
-    assert.ok(icon.is('FontIcon'));
+    assert.ok(icon.is('span'));
     assert.ok(icon.is({color: flatButtonTheme.primaryTextColor}));
   });
 
   it('colors the button the secondary theme color', () => {
     const wrapper = shallow(
-      <FlatButton secondary={true} icon={<FontIcon className="test-icon" />}>Button</FlatButton>
+      <FlatButton secondary={true} icon={<span className="test-icon" />}>Button</FlatButton>
     );
     assert.ok(wrapper.is('EnhancedButton'));
     assert.ok(wrapper.is({

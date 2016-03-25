@@ -6,7 +6,7 @@ import spacing from 'material-ui/styles/spacing';
 import styleResizable from 'material-ui/utils/styleResizable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
-import AppLeftNav from './AppLeftNav';
+import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
 
 const githubButton = (
@@ -39,7 +39,7 @@ const Master = React.createClass({
   getInitialState() {
     return {
       muiTheme: getMuiTheme(),
-      leftNavOpen: false,
+      navDrawerOpen: false,
     };
   },
 
@@ -108,20 +108,20 @@ const Master = React.createClass({
 
   handleTouchTapLeftIconButton() {
     this.setState({
-      leftNavOpen: !this.state.leftNavOpen,
+      navDrawerOpen: !this.state.navDrawerOpen,
     });
   },
 
-  handleChangeRequestLeftNav(open) {
+  handleChangeRequestNavDrawer(open) {
     this.setState({
-      leftNavOpen: open,
+      navDrawerOpen: open,
     });
   },
 
   handleRequestChangeList(event, value) {
     this.context.router.push(value);
     this.setState({
-      leftNavOpen: false,
+      navDrawerOpen: false,
     });
   },
 
@@ -138,7 +138,7 @@ const Master = React.createClass({
     } = this.props;
 
     let {
-      leftNavOpen,
+      navDrawerOpen,
     } = this.state;
 
     const {
@@ -158,10 +158,10 @@ const Master = React.createClass({
 
     if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && title !== '') {
       docked = true;
-      leftNavOpen = true;
+      navDrawerOpen = true;
       showMenuIconButton = false;
 
-      styles.leftNav = {
+      styles.navDrawer = {
         zIndex: styles.appBar.zIndex - 1,
       };
       styles.root.paddingLeft = 256;
@@ -189,13 +189,13 @@ const Master = React.createClass({
           </div> :
           children
         }
-        <AppLeftNav
-          style={styles.leftNav}
+        <AppNavDrawer
+          style={styles.navDrawer}
           location={location}
           docked={docked}
-          onRequestChangeLeftNav={this.handleChangeRequestLeftNav}
+          onRequestChangeNavDrawer={this.handleChangeRequestNavDrawer}
           onRequestChangeList={this.handleRequestChangeList}
-          open={leftNavOpen}
+          open={navDrawerOpen}
         />
         <FullWidthSection style={styles.footer}>
           <p style={prepareStyles(styles.p)}>
