@@ -1,9 +1,9 @@
 import React from 'react';
-import LeftNav from 'material-ui/LeftNav';
-import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class LeftNavOpenRightExample extends React.Component {
+export default class DrawerSimpleExample extends React.Component {
 
   constructor(props) {
     super(props);
@@ -16,12 +16,13 @@ export default class LeftNavOpenRightExample extends React.Component {
     return (
       <div>
         <RaisedButton
-          label="Toggle LeftNav"
+          label="Toggle Drawer"
           onTouchTap={this.handleToggle}
         />
-        <LeftNav width={200} openRight={true} open={this.state.open} >
-          <AppBar title="AppBar" />
-        </LeftNav>
+        <Drawer open={this.state.open}>
+          <MenuItem>Menu Item</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+        </Drawer>
       </div>
     );
   }
