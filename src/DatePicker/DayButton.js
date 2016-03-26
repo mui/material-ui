@@ -124,9 +124,9 @@ const DayButton = React.createClass({
 
   render() {
     const {
-      date,
-      onTouchTap,
-      selected,
+      date, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

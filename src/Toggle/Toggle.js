@@ -200,7 +200,7 @@ const Toggle = React.createClass({
 
   render() {
     const {
-      onToggle,
+      onToggle, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

@@ -407,8 +407,8 @@ const AutoComplete = React.createClass({
       listStyle,
       targetOrigin,
       disableFocusRipple,
-      triggerUpdateOnFocus,
-      openOnFocus,
+      triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
+      openOnFocus, // eslint-disable-line no-unused-vars
       maxSearchResults,
       dataSource,
       ...other,

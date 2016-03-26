@@ -98,8 +98,8 @@ const SvgIcon = React.createClass({
       children,
       color,
       hoverColor,
-      onMouseEnter,
-      onMouseLeave,
+      onMouseEnter, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
       style,
       viewBox,
       ...other,

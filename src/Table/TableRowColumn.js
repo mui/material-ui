@@ -133,11 +133,11 @@ const TableRowColumn = React.createClass({
     const {
       children,
       className,
-      columnNumber,
-      hoverable,
-      onClick,
-      onHover,
-      onHoverExit,
+      columnNumber, // eslint-disable-line no-unused-vars
+      hoverable, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
+      onHover, // eslint-disable-line no-unused-vars
+      onHoverExit, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

@@ -112,12 +112,12 @@ const Tab = React.createClass({
   render() {
     const {
       label,
-      onActive,
-      onTouchTap,
-      selected,
+      onActive, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
       style,
-      value,
-      width,
+      value, // eslint-disable-line no-unused-vars
+      width, // eslint-disable-line no-unused-vars
       icon,
       ...other,
     } = this.props;

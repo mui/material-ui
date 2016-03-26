@@ -187,7 +187,7 @@ const Popover = React.createClass({
 
   renderLayer() {
     const {
-      animated,
+      animated, // eslint-disable-line no-unused-vars
       animation,
       children,
       style,

@@ -143,13 +143,13 @@ const EnhancedTextarea = React.createClass({
 
   render() {
     const {
-      onChange,
-      onHeightChange,
-      rows,
+      onChange, // eslint-disable-line no-unused-vars
+      onHeightChange, // eslint-disable-line no-unused-vars
+      rows, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
       textareaStyle,
-      valueLink,
+      valueLink, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

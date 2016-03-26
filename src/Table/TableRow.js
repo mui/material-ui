@@ -210,18 +210,18 @@ const TableRow = React.createClass({
   render() {
     const {
       className,
-      displayBorder,
-      hoverable,
-      onCellClick,
-      onCellHover,
-      onCellHoverExit,
-      onRowClick,
-      onRowHover,
-      onRowHoverExit,
-      rowNumber,
-      selectable,
-      selected,
-      striped,
+      displayBorder, // eslint-disable-line no-unused-vars
+      hoverable, // eslint-disable-line no-unused-vars
+      onCellClick, // eslint-disable-line no-unused-vars
+      onCellHover, // eslint-disable-line no-unused-vars
+      onCellHoverExit, // eslint-disable-line no-unused-vars
+      onRowClick, // eslint-disable-line no-unused-vars
+      onRowHover, // eslint-disable-line no-unused-vars
+      onRowHoverExit, // eslint-disable-line no-unused-vars
+      rowNumber, // eslint-disable-line no-unused-vars
+      selectable, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
+      striped, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

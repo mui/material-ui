@@ -417,7 +417,6 @@ const TableBody = React.createClass({
     const {
       className,
       style,
-      ...other,
     } = this.props;
 
     const {

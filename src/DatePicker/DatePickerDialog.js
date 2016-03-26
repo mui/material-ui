@@ -125,8 +125,8 @@ const DatePickerDialog = React.createClass({
       firstDayOfWeek,
       locale,
       okLabel,
-      onAccept,
-      style,
+      onAccept, // eslint-disable-line no-unused-vars
+      style, // eslint-disable-line no-unused-vars
       wordings,
       minDate,
       maxDate,

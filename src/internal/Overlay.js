@@ -119,7 +119,7 @@ const Overlay = React.createClass({
 
   render() {
     const {
-      show,
+      show, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

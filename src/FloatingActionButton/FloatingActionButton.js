@@ -289,7 +289,7 @@ const FloatingActionButton = React.createClass({
       className,
       disabled,
       mini,
-      secondary,
+      secondary, // eslint-disable-line no-unused-vars
       iconStyle,
       iconClassName,
       ...other} = this.props;

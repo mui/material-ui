@@ -271,7 +271,6 @@ const Table = React.createClass({
       headerStyle,
       bodyStyle,
       footerStyle,
-      ...other,
     } = this.props;
 
     const {

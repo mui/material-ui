@@ -187,7 +187,7 @@ const RadioButton = React.createClass({
       iconStyle,
       labelStyle,
       labelPosition,
-      onCheck,
+      onCheck, // eslint-disable-line no-unused-vars
       uncheckedIcon,
       disabled,
       ...other,

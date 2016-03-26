@@ -262,24 +262,24 @@ const EnhancedButton = React.createClass({
 
   render() {
     const {
-      centerRipple,
+      centerRipple, // eslint-disable-line no-unused-vars
       children,
       containerElement,
       disabled,
       disableFocusRipple,
-      disableKeyboardFocus,
-      disableTouchRipple,
-      focusRippleColor,
-      focusRippleOpacity,
+      disableKeyboardFocus, // eslint-disable-line no-unused-vars
+      disableTouchRipple, // eslint-disable-line no-unused-vars
+      focusRippleColor, // eslint-disable-line no-unused-vars
+      focusRippleOpacity, // eslint-disable-line no-unused-vars
       linkButton,
-      touchRippleColor,
-      touchRippleOpacity,
-      onBlur,
-      onClick,
-      onFocus,
-      onKeyUp,
-      onKeyDown,
-      onTouchTap,
+      touchRippleColor, // eslint-disable-line no-unused-vars
+      touchRippleOpacity, // eslint-disable-line no-unused-vars
+      onBlur, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
+      onKeyUp, // eslint-disable-line no-unused-vars
+      onKeyDown, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       style,
       tabIndex,
       type,

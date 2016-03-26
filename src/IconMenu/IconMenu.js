@@ -274,7 +274,7 @@ const IconMenu = React.createClass({
       className,
       iconButtonElement,
       iconStyle,
-      onItemTouchTap,
+      onItemTouchTap, // eslint-disable-line no-unused-vars
       onKeyboardFocus,
       onMouseDown,
       onMouseLeave,

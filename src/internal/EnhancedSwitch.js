@@ -290,15 +290,15 @@ const EnhancedSwitch = React.createClass({
       label,
       labelStyle,
       labelPosition,
-      onSwitch,
+      onSwitch, // eslint-disable-line no-unused-vars
       defaultSwitched,
-      onBlur,
-      onFocus,
-      onMouseUp,
-      onMouseDown,
-      onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
+      onBlur, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
+      onMouseUp, // eslint-disable-line no-unused-vars
+      onMouseDown, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onTouchStart, // eslint-disable-line no-unused-vars
+      onTouchEnd, // eslint-disable-line no-unused-vars
       disabled,
       disableTouchRipple,
       disableFocusRipple,

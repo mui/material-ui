@@ -146,10 +146,10 @@ const RadioButtonGroup = React.createClass({
 
     const options = React.Children.map(this.props.children, (option) => {
       const {
-        name,
-        value,
-        label,
-        onCheck,
+        name, // eslint-disable-line no-unused-vars
+        value, // eslint-disable-line no-unused-vars
+        label, // eslint-disable-line no-unused-vars
+        onCheck, // eslint-disable-line no-unused-vars
         ...other,
       } = option.props;
 
