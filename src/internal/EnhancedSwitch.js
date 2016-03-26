@@ -95,7 +95,7 @@ const EnhancedSwitch = React.createClass({
     onMouseDown: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
-    onParentShouldUpdate: React.PropTypes.func.isRequired,
+    onParentShouldUpdate: React.PropTypes.func,
     onSwitch: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
@@ -136,7 +136,8 @@ const EnhancedSwitch = React.createClass({
 
   componentDidMount() {
     const inputNode = this.refs.checkbox;
-    if (!this.props.switched || inputNode.checked !== this.props.switched) {
+    if ((!this.props.switched || inputNode.checked !== this.props.switched) &&
+      this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
   },
@@ -160,7 +161,9 @@ const EnhancedSwitch = React.createClass({
       newState.switched = nextProps.defaultSwitched;
     }
 
-    if (newState.switched !== undefined && (newState.switched !== this.props.switched)) {
+    if (newState.switched !== undefined &&
+      newState.switched !== this.props.switched &&
+      this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(newState.switched);
     }
 
@@ -174,7 +177,9 @@ const EnhancedSwitch = React.createClass({
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
-      this.props.onParentShouldUpdate(newSwitchedValue);
+      if (this.props.onParentShouldUpdate) {
+        this.props.onParentShouldUpdate(newSwitchedValue);
+      }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
       warning(false, 'Cannot call set method while checked is defined as a property.');
@@ -193,7 +198,7 @@ const EnhancedSwitch = React.createClass({
 
     const isInputChecked = this.refs.checkbox.checked;
 
-    if (!this.props.hasOwnProperty('checked')) {
+    if (!this.props.hasOwnProperty('checked') && this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(isInputChecked);
     }
     if (this.props.onSwitch) {
