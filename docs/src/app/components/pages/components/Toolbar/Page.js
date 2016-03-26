@@ -15,7 +15,7 @@ import toolbarGroupCode from '!raw!material-ui/Toolbar/ToolbarGroup';
 import toolbarGroupText from './ToolbarGroup';
 import toolbarSeparatorCode from '!raw!material-ui/Toolbar/ToolbarSeparator';
 import toolbarSeparatorText from './ToolbarSeparator';
-import toolbarTitleCode from '!raw!material-ui/Toolbar/toolbarTitle';
+import toolbarTitleCode from '!raw!material-ui/Toolbar/ToolbarTitle';
 import toolbarTitleText from './ToolbarTitle';
 
 const description = 'An example Toolbar demonstrating the use of the available sub-components, and including a ' +
