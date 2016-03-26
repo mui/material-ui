@@ -3,8 +3,12 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import GridList from './GridList';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<GridList />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   const tilesData = [
     {
       img: 'images/grid-list/00-52-29-429_640.jpg',
@@ -20,7 +24,7 @@ describe('<GridList />', () => {
 
   it('renders children and change cellHeight', () => {
     const cellHeight = 250;
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <GridList cellHeight={cellHeight}>
         {tilesData.map((tile) => (
           <span
@@ -40,7 +44,7 @@ describe('<GridList />', () => {
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <GridList>
         {tilesData.map((tile) => (
           <span
@@ -59,7 +63,7 @@ describe('<GridList />', () => {
   });
 
   it('renders children and change cols', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <GridList cols={4}>
         {tilesData.map((tile) => (
           <span
@@ -80,7 +84,7 @@ describe('<GridList />', () => {
 
   it('renders children and change padding', () => {
     const padding = 10;
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <GridList padding={padding}>
         {tilesData.map((tile) => (
           <span
@@ -103,7 +107,7 @@ describe('<GridList />', () => {
     const style = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <GridList style={style}>
         {tilesData.map((tile) => (
           <span

@@ -2,7 +2,6 @@ import React from 'react';
 import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../IconButton';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles() {
   return {
@@ -21,10 +20,6 @@ const CardExpandable = React.createClass({
   propTypes: {
     expanded: React.PropTypes.bool,
     onExpanding: React.PropTypes.func.isRequired,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
   },
 
@@ -32,30 +27,8 @@ const CardExpandable = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   render() {
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     return (
       <IconButton

@@ -3,10 +3,14 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import Divider from './Divider';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Divider />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   it('renders className', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Divider
         className="test-class-name"
       />
@@ -16,7 +20,7 @@ describe('<Divider />', () => {
   });
 
   it('renders inset', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Divider
         inset={true}
       />
@@ -30,7 +34,7 @@ describe('<Divider />', () => {
     const style = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Divider
         style={style}
       />

@@ -1,5 +1,4 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const TimeDisplay = React.createClass({
 
@@ -17,10 +16,6 @@ const TimeDisplay = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       mode: 'hour',
@@ -31,21 +26,10 @@ const TimeDisplay = React.createClass({
   getInitialState() {
     return {
       transitionDirection: 'up',
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.selectedTime !== this.props.selectedTime) {
       const direction = nextProps.selectedTime > this.props.selectedTime ? 'up' : 'down';
 
@@ -72,7 +56,7 @@ const TimeDisplay = React.createClass({
   },
 
   getTheme() {
-    return this.state.muiTheme.timePicker;
+    return this.context.muiTheme.timePicker;
   },
 
   render() {
@@ -86,7 +70,7 @@ const TimeDisplay = React.createClass({
     const {
       prepareStyles,
       timePicker,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
     const styles = {
       root: {

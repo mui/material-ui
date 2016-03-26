@@ -3,12 +3,15 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import EnhancedButton from './EnhancedButton';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<EnhancedButton />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders a button', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton>Button</EnhancedButton>
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
@@ -16,7 +19,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('renders a link when href is provided & linkButton is true', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton href="http://google.com" linkButton={true}>Button</EnhancedButton>
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
@@ -24,7 +27,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('renders any container element', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton containerElement={<div />}>Button</EnhancedButton>
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
@@ -32,14 +35,14 @@ describe('<EnhancedButton />', () => {
   });
 
   it('renders children', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton backgroundColor="red">{testChildren}</EnhancedButton>
     );
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
   });
 
   it('renders a disabled button when disabled={true} which blocks onTouchTap from firing', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton disabled={true}>Button</EnhancedButton>
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
@@ -58,7 +61,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('renders a dummy link button when disabled={true} which blocks onTouchTap from firing', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton
         disabled={true}
         href="http://google.com"
@@ -84,7 +87,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('can be styled', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton style={{color: 'red'}}>Button</EnhancedButton>
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
@@ -92,7 +95,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('overrides default styles', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton>Button</EnhancedButton>
     );
 
@@ -106,7 +109,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('can set the button type', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton type="submit">Button</EnhancedButton>
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
@@ -116,7 +119,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('passes through other html attributes', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton name="hello">Button</EnhancedButton>
     );
     assert.ok(wrapper.is('button[name="hello"]'), 'should have the name attribute');
@@ -126,7 +129,7 @@ describe('<EnhancedButton />', () => {
     const eventStack = [];
     eventStack.reset = () => eventStack.splice(0, eventStack.length);
 
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton
         disableKeyboardFocus={true}
         onFocus={() => eventStack.push('focus')}
@@ -152,7 +155,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('has a TouchRipple and controls it using props', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton
         centerRipple={true}
         touchRippleColor="red"
@@ -171,14 +174,14 @@ describe('<EnhancedButton />', () => {
   });
 
   it('has no TouchRipple when disableTouchRipple={true}', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton disableTouchRipple={true}>Button</EnhancedButton>
     );
     assert.strictEqual(wrapper.find('TouchRipple').length, 0, 'should not have a TouchRipple');
   });
 
   it('has a FocusRipple when keyboard focused (tracked internally) and controls it using props', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton
         focusRippleColor="red"
         focusRippleOpacity={0.8}
@@ -220,7 +223,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('removes a FocusRipple on blur', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton>Button</EnhancedButton>
     );
     wrapper.setState({
@@ -232,7 +235,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('has no ripples when both are disabled', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton
         keyboardFocused={true}
         disableFocusRipple={true}
@@ -246,7 +249,7 @@ describe('<EnhancedButton />', () => {
   });
 
   it('has no ripples when button is disabled', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton keyboardFocused={true} disabled={true}>Button</EnhancedButton>
     );
     assert.strictEqual(wrapper.find('TouchRipple').length, 0, 'should not have a TouchRipple');
@@ -257,7 +260,7 @@ describe('<EnhancedButton />', () => {
     const eventStack = [];
     eventStack.reset = () => eventStack.splice(0, eventStack.length);
 
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <EnhancedButton
         keyboardFocused={true}
         onTouchTap={() => eventStack.push('touchTap')}

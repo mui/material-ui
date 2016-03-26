@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DateTime from '../utils/dateTime';
 import YearButton from './YearButton';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const CalendarYear = React.createClass({
 
@@ -16,22 +15,6 @@ const CalendarYear = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
   },
 
   componentDidMount() {
@@ -91,7 +74,7 @@ const CalendarYear = React.createClass({
 
   render() {
     const years = this._getYears();
-    const backgroundColor = this.state.muiTheme.datePicker.calendarYearBackgroundColor;
+    const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
       position: 'relative',
       height: 'inherit',

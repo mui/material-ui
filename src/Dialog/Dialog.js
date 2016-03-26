@@ -6,7 +6,6 @@ import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
 import Paper from '../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
@@ -21,27 +20,10 @@ const TransitionItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getInitialState() {
     return {
       style: {},
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   componentWillUnmount() {
@@ -54,7 +36,7 @@ const TransitionItem = React.createClass({
   },
 
   componentWillAppear(callback) {
-    const spacing = this.state.muiTheme.baseTheme.spacing;
+    const spacing = this.context.muiTheme.baseTheme.spacing;
 
     this.setState({
       style: {
@@ -84,9 +66,7 @@ const TransitionItem = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     return (
       <div {...other} style={prepareStyles(Object.assign({}, this.state.style, style))}>
@@ -96,7 +76,7 @@ const TransitionItem = React.createClass({
   },
 });
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     autoScrollBodyContent,
     open,
@@ -105,7 +85,7 @@ function getStyles(props, state) {
   const {
     baseTheme,
     zIndex,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const gutter = baseTheme.spacing.desktopGutter;
 
@@ -189,30 +169,8 @@ const DialogInline = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     this._positionDialog();
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   componentDidUpdate() {
@@ -256,7 +214,7 @@ const DialogInline = React.createClass({
 
     // Force a height if the dialog is taller than clientHeight
     if (autoDetectWindowHeight || autoScrollBodyContent) {
-      const styles = getStyles(this.props, this.state);
+      const styles = getStyles(this.props, this.context);
       styles.body = Object.assign(styles.body, bodyStyle);
       let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
 
@@ -314,11 +272,8 @@ const DialogInline = React.createClass({
       style,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     styles.root = Object.assign(styles.root, style);
     styles.content = Object.assign(styles.content, contentStyle);

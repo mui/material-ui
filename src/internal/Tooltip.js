@@ -1,8 +1,7 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const verticalPosition = props.verticalPosition;
   const horizontalPosition = props.horizontalPosition;
   const touchMarginOffset = props.touch ? 10 : 0;
@@ -14,7 +13,7 @@ function getStyles(props, state) {
     baseTheme,
     zIndex,
     tooltip,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const styles = {
     root: {
@@ -101,20 +100,9 @@ const Tooltip = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getInitialState() {
     return {
       offsetWidth: null,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -123,11 +111,8 @@ const Tooltip = React.createClass({
     this._setTooltipPosition();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps() {
     this._setTooltipPosition();
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   componentDidUpdate() {
@@ -157,15 +142,13 @@ const Tooltip = React.createClass({
   },
 
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const {
       label,
       ...other,
     } = this.props;
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <div

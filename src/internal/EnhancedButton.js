@@ -4,7 +4,6 @@ import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
-import getMuiTheme from '../styles/getMuiTheme';
 
 let styleInjected = false;
 let listening = false;
@@ -60,10 +59,6 @@ const EnhancedButton = React.createClass({
     onKeyUp: React.PropTypes.func,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
     tabIndex: React.PropTypes.number,
     touchRippleColor: React.PropTypes.string,
@@ -74,11 +69,7 @@ const EnhancedButton = React.createClass({
   contextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
+  
   getDefaultProps() {
     return {
       containerElement: 'button',
@@ -99,13 +90,6 @@ const EnhancedButton = React.createClass({
       isKeyboardFocused: !this.props.disabled &&
         this.props.keyboardFocused &&
         !this.props.disableKeyboardFocus,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -114,11 +98,7 @@ const EnhancedButton = React.createClass({
     listenForTabPresses();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
       this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: false});
@@ -176,7 +156,6 @@ const EnhancedButton = React.createClass({
     const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
       <FocusRipple
         color={focusRippleColor}
-        muiTheme={this.state.muiTheme}
         opacity={focusRippleOpacity}
         show={isKeyboardFocused}
       />
@@ -187,7 +166,6 @@ const EnhancedButton = React.createClass({
       <TouchRipple
         centerRipple={centerRipple}
         color={touchRippleColor}
-        muiTheme={this.state.muiTheme}
         opacity={touchRippleOpacity}
       >
         {children}
@@ -286,14 +264,14 @@ const EnhancedButton = React.createClass({
     const {
       prepareStyles,
       enhancedButton,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
     const mergedStyles = Object.assign({
       border: 10,
       background: 'none',
       boxSizing: 'border-box',
       display: 'inline-block',
-      fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+      fontFamily: this.context.muiTheme.rawTheme.fontFamily,
       WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',

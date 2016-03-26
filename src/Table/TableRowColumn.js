@@ -1,10 +1,9 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     tableRowColumn,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const styles = {
     root: {
@@ -82,10 +81,6 @@ const TableRowColumn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       hoverable: false,
@@ -94,21 +89,8 @@ const TableRowColumn = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       hovered: false,
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   _onClick(event) {
@@ -142,11 +124,8 @@ const TableRowColumn = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const handlers = {
       onClick: this._onClick,

@@ -80,7 +80,6 @@ const TextFieldUnderline = (props) => {
     },
   } = muiTheme;
 
-
   const styles = {
     root: {
       border: 'none',

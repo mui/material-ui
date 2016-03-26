@@ -2,9 +2,8 @@ import React from 'react';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const {
     disabled,
   } = props;
@@ -12,7 +11,7 @@ function getStyles(props, state) {
   const {
     baseTheme,
     toggle,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const toggleSize = 20;
   const toggleTrackWidth = 36;
@@ -147,10 +146,6 @@ const Toggle = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       defaultToggled: false,
@@ -166,20 +161,7 @@ const Toggle = React.createClass({
         this.props.defaultToggled ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   isToggled() {
@@ -204,11 +186,8 @@ const Toggle = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
 
     const trackStyles = Object.assign({},
       styles.track,

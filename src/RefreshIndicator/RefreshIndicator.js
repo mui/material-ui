@@ -2,7 +2,6 @@ import React from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const VIEWBOX_SIZE = 32;
 
@@ -78,10 +77,6 @@ const RefreshIndicator = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       percentage: 0,
@@ -90,26 +85,8 @@ const RefreshIndicator = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     this.componentDidUpdate();
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   componentDidUpdate() {
@@ -124,11 +101,9 @@ const RefreshIndicator = React.createClass({
   },
 
   _renderChildren() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
+    const {prepareStyles} = this.context.muiTheme;
     const paperSize = this._getPaperSize();
+
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
       const circleStyle = this._getCircleStyle(paperSize);
@@ -181,7 +156,7 @@ const RefreshIndicator = React.createClass({
   },
 
   _getTheme() {
-    return this.state.muiTheme.refreshIndicator;
+    return this.context.muiTheme.refreshIndicator;
   },
 
   _getPaddingSize() {
@@ -303,9 +278,9 @@ const RefreshIndicator = React.createClass({
       transitionDuration = '850ms';
     }
 
-    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray, this.state.muiTheme);
-    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset, this.state.muiTheme);
-    autoPrefix.set(path.style, 'transitionDuration', transitionDuration, this.state.muiTheme);
+    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
+    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
+    autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
 
     this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
@@ -313,14 +288,14 @@ const RefreshIndicator = React.createClass({
   _rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
 
-    autoPrefix.set(wrapper.style, 'transform', null, this.state.muiTheme);
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transform', null);
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
     this.rotateWrapperSecondTimer = setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
@@ -331,7 +306,7 @@ const RefreshIndicator = React.createClass({
       style,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     return (
       <Paper

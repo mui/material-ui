@@ -4,10 +4,14 @@ import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import TextField from './TextField';
 import TextFieldLabel from './TextFieldLabel';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<TextField />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   it('passes event and value to the onChange callback', (done) => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <TextField
         onChange={(event, value) => {
           assert.strictEqual(event.target.value, 'woof');
@@ -21,7 +25,7 @@ describe('<TextField />', () => {
   });
 
   it('shrinks TextFieldLabel when defaultValue is set and value is null', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <TextField
         floatingLabelText="floating label text"
         defaultValue="default value"
@@ -38,7 +42,7 @@ describe('<TextField />', () => {
 
   it(`unshrinks TextFieldLabel when defaultValue is set, the component has had input change,
         and value is re-set to null`, () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <TextField
         floatingLabelText="floating label text"
         defaultValue="default value"

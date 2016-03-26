@@ -1,11 +1,10 @@
 import React from 'react';
 import Tooltip from '../internal/Tooltip';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     tableHeaderColumn,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   return {
     root: {
@@ -75,27 +74,10 @@ const TableHeaderColumn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       hovered: false,
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   _onMouseEnter() {
@@ -122,11 +104,9 @@ const TableHeaderColumn = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
-    const styles = getStyles(this.props, this.state);
     const handlers = {
       onMouseEnter: this._onMouseEnter,
       onMouseLeave: this._onMouseLeave,

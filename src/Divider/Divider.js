@@ -1,5 +1,4 @@
 import React from 'react';
-import muiThemeable from '../styles/muiThemeable';
 
 const propTypes = {
   /**
@@ -13,12 +12,6 @@ const propTypes = {
   inset: React.PropTypes.bool,
 
   /**
-   * @ignore
-   * The material-ui theme applied to this component.
-   */
-  muiTheme: React.PropTypes.object.isRequired,
-
-  /**
    * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
@@ -28,17 +21,19 @@ const defaultProps = {
   inset: false,
 };
 
-let Divider = (props) => {
+const contextTypes = {
+  muiTheme: React.PropTypes.object,
+};
+
+const Divider = (props, context) => {
   const {
     inset,
-    muiTheme,
     style,
     ...other,
   } = props;
 
-  const {
-    prepareStyles,
-  } = muiTheme;
+  const {muiTheme} = context;
+  const {prepareStyles} = muiTheme;
 
   const styles = {
     root: {
@@ -58,8 +53,6 @@ let Divider = (props) => {
 
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-
-Divider = muiThemeable()(Divider);
-Divider.displayName = 'Divider';
+Divider.contextTypes = contextTypes;
 
 export default Divider;

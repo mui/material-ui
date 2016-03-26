@@ -2,7 +2,6 @@ import React from 'react';
 import Checkbox from '../Checkbox';
 import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const TableBody = React.createClass({
 
@@ -126,10 +125,6 @@ const TableBody = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       allRowsSelected: false,
@@ -144,22 +139,12 @@ const TableBody = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       selectedRows: this._calculatePreselectedRows(this.props),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    };
-
+  componentWillReceiveProps(nextProps) {
+    const newState = {};
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
       newState.selectedRows = this.state.selectedRows.length > 0 ?
         [this.state.selectedRows[this.state.selectedRows.length - 1]] : [];
@@ -419,10 +404,7 @@ const TableBody = React.createClass({
       style,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
+    const {prepareStyles} = this.context.muiTheme;
     const rows = this._createRows();
 
     return (

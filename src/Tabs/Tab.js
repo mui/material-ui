@@ -1,11 +1,10 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import EnhancedButton from '../internal/EnhancedButton';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     tabs,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   return {
     root: {
@@ -81,28 +80,6 @@ const Tab = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   handleTouchTap(event) {
     if (this.props.onTouchTap) {
       this.props.onTouchTap(this.props.value, event, this);
@@ -122,7 +99,7 @@ const Tab = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {

@@ -2,15 +2,17 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import getMuiTheme from '../styles/getMuiTheme';
 import Badge from './Badge';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Badge />', () => {
-  const badgeTheme = getMuiTheme().badge;
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const badgeTheme = muiTheme.badge;
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children and badgeContent', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge badgeContent={10}>{testChildren}</Badge>
     );
 
@@ -22,7 +24,7 @@ describe('<Badge />', () => {
     const badgeStyle = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge badgeContent={10} badgeStyle={badgeStyle}>{testChildren}</Badge>
     );
 
@@ -32,7 +34,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge>{testChildren}</Badge>
     );
 
@@ -40,7 +42,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children and className', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge className="testClassName">{testChildren}</Badge>
     );
 
@@ -49,7 +51,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children and have primary styles', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge badgeContent={10} primary={true}>{testChildren}</Badge>
     );
 
@@ -61,7 +63,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children and have secondary styles', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge badgeContent={10} secondary={true}>{testChildren}</Badge>
     );
 
@@ -76,7 +78,7 @@ describe('<Badge />', () => {
     const style = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Badge style={style}>{testChildren}</Badge>
     );
 

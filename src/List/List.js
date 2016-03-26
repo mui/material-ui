@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from '../utils/propTypes';
-import getMuiTheme from '../styles/getMuiTheme';
 import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
@@ -47,28 +46,6 @@ const List = React.createClass({
 
   contextTypes: {
     muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   render() {

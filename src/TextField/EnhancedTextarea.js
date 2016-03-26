@@ -1,10 +1,9 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   return {
     root: {
       position: 'relative', //because the shadow has position: 'absolute'
@@ -53,10 +52,6 @@ const EnhancedTextarea = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       rows: 1,
@@ -66,13 +61,6 @@ const EnhancedTextarea = React.createClass({
   getInitialState() {
     return {
       height: this.props.rows * rowsHeight,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -80,14 +68,10 @@ const EnhancedTextarea = React.createClass({
     this._syncHeightWithShadow();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
-
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   handleResize(event) {
@@ -153,11 +137,8 @@ const EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
     const rootStyles = Object.assign({}, styles.root, style);
     const textareaStyles = Object.assign({}, styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);

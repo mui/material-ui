@@ -1,8 +1,7 @@
 import React from 'react';
 import EnhancedButton from '../internal/EnhancedButton';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     selected,
     year,
@@ -10,12 +9,12 @@ function getStyles(props, state) {
 
   const {
     hover,
-  } = state;
+  } = context;
 
   const {
     baseTheme,
     datePicker,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   return {
     root: {
@@ -62,10 +61,6 @@ const YearButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       selected: false,
@@ -75,20 +70,7 @@ const YearButton = React.createClass({
   getInitialState() {
     return {
       hover: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   handleMouseEnter() {
@@ -112,11 +94,8 @@ const YearButton = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <EnhancedButton

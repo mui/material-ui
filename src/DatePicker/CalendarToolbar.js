@@ -5,7 +5,6 @@ import ToolbarGroup from '../Toolbar/ToolbarGroup';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
 import SlideInTransitionGroup from '../internal/SlideIn';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const styles = {
   root: {
@@ -40,11 +39,6 @@ const CalendarToolbar = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       nextMonth: true,
@@ -54,23 +48,11 @@ const CalendarToolbar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       transitionDirection: 'up',
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
       const direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
       this.setState({
@@ -99,8 +81,8 @@ const CalendarToolbar = React.createClass({
       year: 'numeric',
     }).format(displayDate);
 
-    const nextButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
-    const prevButtonIcon = this.state.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
+    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
 
     return (
       <Toolbar style={styles.root} noGutter={true}>

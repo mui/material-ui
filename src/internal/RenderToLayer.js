@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Dom from '../utils/dom';
-import getMuiTheme from '../styles/getMuiTheme';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 const RenderToLayer = React.createClass({
@@ -17,40 +16,14 @@ const RenderToLayer = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       useLayerForClickAway: true,
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     this._renderLayer();
-  },
-
-  //to update theme inside state whenever a new theme is passed down
-  //from the parent / owner using context
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({
-      muiTheme: newMuiTheme,
-    });
   },
 
   componentDidUpdate() {
@@ -123,7 +96,7 @@ const RenderToLayer = React.createClass({
           this._layer.style.bottom = 0;
           this._layer.style.left = 0;
           this._layer.style.right = 0;
-          this._layer.style.zIndex = this.state.muiTheme.zIndex.layer;
+          this._layer.style.zIndex = this.context.muiTheme.zIndex.layer;
         } else {
           setTimeout(() => {
             window.addEventListener('touchstart', this.onClickAway);

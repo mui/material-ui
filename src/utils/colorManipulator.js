@@ -129,7 +129,6 @@ export default {
     return this._convertColorToString(color);
   },
 
-
   // Calculates the contrast ratio between two colors.
   //
   // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef

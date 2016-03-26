@@ -4,7 +4,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Popover from '../Popover/Popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../List/ListItem';
-import getMuiTheme from '../styles/getMuiTheme';
 import Menu from '../Menu/Menu';
 
 const nestedMenuStyle = {
@@ -104,10 +103,6 @@ const MenuItem = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   mixins: [
     PureRenderMixin,
   ],
@@ -124,14 +119,7 @@ const MenuItem = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -139,11 +127,7 @@ const MenuItem = React.createClass({
     this._applyFocusState();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.focusState === 'none') {
       this.handleRequestClose();
     }
@@ -221,10 +205,10 @@ const MenuItem = React.createClass({
     const {
       prepareStyles,
       menuItem,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
-    const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
-    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+    const disabledColor = this.context.muiTheme.rawTheme.palette.disabledColor;
+    const textColor = this.context.muiTheme.rawTheme.palette.textColor;
     const leftIndent = desktop ? 64 : 72;
     const sidePadding = desktop ? 24 : 16;
 

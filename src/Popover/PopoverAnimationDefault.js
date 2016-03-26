@@ -1,21 +1,12 @@
 import transitions from '../styles/transitions';
 import React from 'react';
 import propTypes from '../utils/propTypes';
-import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../Paper';
 
-function getStyles(props, state) {
-  const {
-    targetOrigin,
-  } = props;
-
-  const {
-    open,
-    muiTheme: {
-      zIndex,
-    },
-  } = state;
-
+function getStyles(props, context, state) {
+  const {targetOrigin} = props;
+  const {open} = state;
+  const {muiTheme} = context;
   const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
 
   return {
@@ -24,7 +15,7 @@ function getStyles(props, state) {
       transform: open ? 'scale(1, 1)' : 'scale(0, 0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       position: 'fixed',
-      zIndex: zIndex.popover,
+      zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('250ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
@@ -68,10 +59,6 @@ const PopoverDefaultAnimation = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       style: {},
@@ -81,14 +68,7 @@ const PopoverDefaultAnimation = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -96,10 +76,9 @@ const PopoverDefaultAnimation = React.createClass({
     this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       open: nextProps.open,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -110,11 +89,8 @@ const PopoverDefaultAnimation = React.createClass({
       zDepth,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <Paper

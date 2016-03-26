@@ -4,7 +4,6 @@ import ColorManipulator from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label && !props.icon) {
@@ -12,12 +11,12 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const {
     baseTheme,
     button,
     raisedButton,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const {
     disabled,
@@ -248,10 +247,6 @@ const RaisedButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps: function() {
     return {
       disabled: false,
@@ -269,22 +264,14 @@ const RaisedButton = React.createClass({
       touched: false,
       initialZDepth: zDepth,
       zDepth: zDepth,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const zDepth = nextProps.disabled ? 0 : 1;
     this.setState({
       zDepth: zDepth,
       initialZDepth: zDepth,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -327,7 +314,7 @@ const RaisedButton = React.createClass({
   },
 
   handleKeyboardFocus(event, keyboardFocused) {
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     if (keyboardFocused && !this.props.disabled) {
       this.setState({
@@ -359,11 +346,8 @@ const RaisedButton = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
     const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
     const buttonEventHandlers = disabled ? {} : {
@@ -398,6 +382,7 @@ const RaisedButton = React.createClass({
       iconCloned,
       labelElement,
     };
+
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (

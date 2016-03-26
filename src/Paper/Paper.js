@@ -1,9 +1,8 @@
 import React from 'react';
 import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     circle,
     rounded,
@@ -14,7 +13,7 @@ function getStyles(props, state) {
   const {
     baseTheme,
     paper,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   return {
     root: {
@@ -69,10 +68,6 @@ const Paper = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       circle: false,
@@ -82,24 +77,6 @@ const Paper = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   render() {
     const {
       children,
@@ -107,11 +84,8 @@ const Paper = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>

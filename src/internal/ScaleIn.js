@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import ScaleInChild from './ScaleInChild';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const ScaleIn = React.createClass({
 
@@ -22,31 +21,10 @@ const ScaleIn = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       enterDelay: 0,
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   render() {
@@ -60,9 +38,7 @@ const ScaleIn = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',

@@ -3,7 +3,6 @@ import warning from 'warning';
 import DateTime from '../utils/dateTime.js';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const emptyTime = new Date();
 emptyTime.setHours(0);
@@ -122,19 +121,14 @@ const TimePicker = React.createClass({
     return {
       time: this._isControlled() ? this._getControlledTime() : this.props.defaultTime,
       dialogTime: new Date(),
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const newState = this.state;
-    if (nextContext.muiTheme) {
-      newState.muiTheme = nextContext.muiTheme;
-    }
     newState.time = this._getControlledTime(nextProps);
     this.setState(newState);
   },
-
 
   /**
    * Deprecated.
@@ -220,12 +214,8 @@ const TimePicker = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      muiTheme: {
-        prepareStyles,
-      },
-      time,
-    } = this.state;
+    const {prepareStyles} = this.context.muiTheme;
+    const {time} = this.state;
 
     return (
       <div style={prepareStyles(Object.assign({}, style))}>

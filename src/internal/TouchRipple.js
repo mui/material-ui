@@ -22,19 +22,12 @@ const TouchRipple = React.createClass({
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,
-
-    /**
-     * @ignore
-     * The material-ui theme applied to this component.
-     */
-    muiTheme: React.PropTypes.object.isRequired,
-
     opacity: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   getDefaultProps() {
@@ -61,7 +54,7 @@ const TouchRipple = React.createClass({
   },
 
   start(event, isRippleTouchGenerated) {
-    const theme = this.props.muiTheme.ripple;
+    const theme = this.context.muiTheme.ripple;
 
     if (this._ignoreNextMouseDown && !isRippleTouchGenerated) {
       this._ignoreNextMouseDown = false;
@@ -74,7 +67,6 @@ const TouchRipple = React.createClass({
     ripples = push(ripples, (
       <CircleRipple
         key={this.state.nextKey}
-        muiTheme={this.props.muiTheme}
         style={!this.props.centerRipple ? this._getRippleStyle(event) : {}}
         color={this.props.color || theme.color}
         opacity={this.props.opacity}
@@ -207,22 +199,13 @@ const TouchRipple = React.createClass({
     return Math.sqrt((a * a) + (b * b));
   },
 
-
   render() {
-    const {
-      children,
-      muiTheme: {
-        prepareStyles,
-      },
-      style,
-    } = this.props;
-
-    const {
-      hasRipples,
-      ripples,
-    } = this.state;
+    const {children, style} = this.props;
+    const {hasRipples, ripples} = this.state;
+    const {prepareStyles} = this.context.muiTheme;
 
     let rippleGroup;
+
     if (hasRipples) {
       const mergedStyles = Object.assign({
         height: '100%',

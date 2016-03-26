@@ -2,9 +2,8 @@ import React from 'react';
 import Transition from '../styles/transitions';
 import DateTime from '../utils/dateTime';
 import EnhancedButton from '../internal/EnhancedButton';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     date,
     disabled,
@@ -13,12 +12,12 @@ function getStyles(props, state) {
 
   const {
     hover,
-  } = state;
+  } = context;
 
   const {
     baseTheme,
     datePicker,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   let labelColor = baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
@@ -74,10 +73,6 @@ const DayButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       selected: false,
@@ -88,20 +83,7 @@ const DayButton = React.createClass({
   getInitialState() {
     return {
       hover: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   handleMouseEnter() {
@@ -130,11 +112,8 @@ const DayButton = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return this.props.date ? (
       <EnhancedButton

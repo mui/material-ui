@@ -6,11 +6,12 @@ import Paper from './Paper';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Paper />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
   const testChildren = <div className="unique">Hello World</div>;
-  const theme = getMuiTheme();
 
   it('renders children by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper>{testChildren}</Paper>
     );
 
@@ -18,7 +19,7 @@ describe('<Paper />', () => {
   });
 
   it('renders children and have borderRadius by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper>{testChildren}</Paper>
     );
 
@@ -27,7 +28,7 @@ describe('<Paper />', () => {
   });
 
   it('renders children and should be a circle', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper circle={true}>{testChildren}</Paper>
     );
 
@@ -36,7 +37,7 @@ describe('<Paper />', () => {
   });
 
   it('renders children and does not have rounded corners', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper rounded={false}>{testChildren}</Paper>
     );
 
@@ -49,7 +50,7 @@ describe('<Paper />', () => {
       backgroundColor: 'red',
       borderRadius: '70px',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper style={style}>{testChildren}</Paper>
     );
 
@@ -59,7 +60,7 @@ describe('<Paper />', () => {
   });
 
   it('renders children and has css transitions by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper>{testChildren}</Paper>
     );
 
@@ -68,7 +69,7 @@ describe('<Paper />', () => {
   });
 
   it('renders children and disable css transitions', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper transitionEnabled={false}>{testChildren}</Paper>
     );
 
@@ -78,12 +79,12 @@ describe('<Paper />', () => {
 
   it('renders children and change zDepth', () => {
     const zDepth = 3;
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Paper zDepth={zDepth}>{testChildren}</Paper>
     );
 
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
-    assert.strictEqual(wrapper.prop('style').boxShadow, theme.paper.zDepthShadows[zDepth - 1],
+    assert.strictEqual(wrapper.prop('style').boxShadow, muiTheme.paper.zDepthShadows[zDepth - 1],
       'should have good zDepthShadows');
   });
 });

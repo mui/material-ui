@@ -2,7 +2,6 @@ import React from 'react';
 import DateTime from '../utils/dateTime';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
-import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 
 const DatePicker = React.createClass({
@@ -20,7 +19,6 @@ const DatePicker = React.createClass({
      * If true, automatically accept and close the picker on select a date.
      */
     autoOk: React.PropTypes.bool,
-
 
     /**
      * Override the default text of the 'Cancel' button.
@@ -167,10 +165,6 @@ const DatePicker = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       autoOk: false,
@@ -187,21 +181,10 @@ const DatePicker = React.createClass({
   getInitialState() {
     return {
       date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this._isControlled()) {
       const newDate = this._getControlledDate(nextProps);
       if (!DateTime.isEqualDate(this.state.date, newDate)) {
@@ -318,8 +301,8 @@ const DatePicker = React.createClass({
       ...other,
     } = this.props;
 
+    const {prepareStyles} = this.context.muiTheme;
     const formatDate = this.props.formatDate || this._formatDate;
-    const {prepareStyles} = this.state.muiTheme;
 
     return (
       <div style={prepareStyles(Object.assign({}, style))}>

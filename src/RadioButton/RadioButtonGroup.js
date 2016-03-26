@@ -1,6 +1,5 @@
 import React from 'react';
 import RadioButton from '../RadioButton';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
 const RadioButtonGroup = React.createClass({
@@ -60,10 +59,6 @@ const RadioButtonGroup = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       style: {},
@@ -74,13 +69,6 @@ const RadioButtonGroup = React.createClass({
     return {
       numberCheckedRadioButtons: 0,
       selected: this.props.valueSelected || this.props.defaultSelected || '',
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -94,8 +82,8 @@ const RadioButtonGroup = React.createClass({
     this.setState({numberCheckedRadioButtons: cnt});
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
+  componentWillReceiveProps(nextProps) {
+    const newState = {};
 
     if (nextProps.hasOwnProperty('valueSelected')) {
       newState.selected = nextProps.valueSelected;
@@ -140,9 +128,7 @@ const RadioButtonGroup = React.createClass({
   },
 
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const options = React.Children.map(this.props.children, (option) => {
       const {

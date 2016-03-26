@@ -3,14 +3,24 @@ import TextField from 'TextField';
 import TimePicker from 'TimePicker';
 import DateTime from 'utils/dateTime';
 import TestUtils from 'react-addons-test-utils';
+import injectTheme from '../fixtures/inject-theme';
 
 describe('TimePicker', () => {
+  let ThemedTimePicker;
+
+  beforeEach(() => {
+    ThemedTimePicker = injectTheme(TimePicker);
+  });
+
   it('has to give value prop precedence over defaultTime', () => {
     const initialTime = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
     const valueTime = DateTime.addHours(initialTime, 2);
 
     const render = TestUtils.renderIntoDocument(
-      <TimePicker value={valueTime} format="ampm" locale="en-US"
+      <ThemedTimePicker
+        value={valueTime}
+        format="ampm"
+        locale="en-US"
         initialTime={initialTime}
       />
     );
@@ -24,9 +34,7 @@ describe('TimePicker', () => {
     const initialTime = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
 
     const render = TestUtils.renderIntoDocument(
-      <TimePicker format="ampm" locale="en-US"
-        defaultTime={initialTime}
-      />
+      <ThemedTimePicker format="ampm" locale="en-US" defaultTime={initialTime} />
     );
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
@@ -39,7 +47,10 @@ describe('TimePicker', () => {
     const valueTime = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GM
 
     const render = TestUtils.renderIntoDocument(
-      <TimePicker value={valueTime} format="ampm" locale="en-US"
+      <ThemedTimePicker
+        value={valueTime}
+        format="ampm"
+        locale="en-US"
         defaultTime={initialTime}
       />
     );

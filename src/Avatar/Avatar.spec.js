@@ -3,12 +3,15 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import Avatar from './Avatar';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Avatar />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Avatar>{testChildren}</Avatar>
     );
 
@@ -17,7 +20,7 @@ describe('<Avatar />', () => {
 
   it('renders children and an icon if passed in', () => {
     const icon = <div className="testIcon" />;
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Avatar icon={icon}>{testChildren}</Avatar>
     );
 
@@ -27,7 +30,7 @@ describe('<Avatar />', () => {
   });
 
   it('only renders an image when the src prop is set', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Avatar src="face.jpg">{testChildren}</Avatar>
     );
 

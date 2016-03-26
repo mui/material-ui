@@ -4,10 +4,14 @@ import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import FontIcon from './FontIcon';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<FontIcon />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   it('renders className', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon
         className="muidocs-icon-action-home"
       />
@@ -17,7 +21,7 @@ describe('<FontIcon />', () => {
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon className="material-icons">home</FontIcon>
     );
 
@@ -25,7 +29,7 @@ describe('<FontIcon />', () => {
   });
 
   it('renders children and color', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon className="material-icons" color="red">home</FontIcon>
     );
 
@@ -35,7 +39,7 @@ describe('<FontIcon />', () => {
 
   it('renders children and hoverColor when mouseEnter', () => {
     const onMouseEnter = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon
         className="material-icons"
         color="red"
@@ -56,7 +60,7 @@ describe('<FontIcon />', () => {
 
   it('renders children and call onMouseEnter callback', () => {
     const onMouseEnter = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon className="material-icons" onMouseEnter={onMouseEnter}>home</FontIcon>
     );
 
@@ -68,7 +72,7 @@ describe('<FontIcon />', () => {
 
   it('renders children and call onMouseLeave callback', () => {
     const onMouseLeave = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon className="material-icons" onMouseLeave={onMouseLeave}>home</FontIcon>
     );
 
@@ -82,7 +86,7 @@ describe('<FontIcon />', () => {
     const style = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <FontIcon className="material-icons" style={style}>home</FontIcon>
     );
 

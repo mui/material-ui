@@ -9,19 +9,12 @@ const CircleRipple = React.createClass({
   propTypes: {
     aborted: React.PropTypes.bool,
     color: React.PropTypes.string,
-
-    /**
-     * @ignore
-     * The material-ui theme applied to this component.
-     */
-    muiTheme: React.PropTypes.object.isRequired,
-
     opacity: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object,
   },
 
   mixins: [
@@ -68,27 +61,26 @@ const CircleRipple = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
     const transitionValue = `${transitions.easeOut('2s', 'opacity')}, ${
       transitions.easeOut('1s', 'transform')}`;
-    autoPrefix.set(style, 'transition', transitionValue, this.props.muiTheme);
-    autoPrefix.set(style, 'transform', 'scale(1)', this.props.muiTheme);
+    autoPrefix.set(style, 'transition', transitionValue);
+    autoPrefix.set(style, 'transform', 'scale(1)');
   },
 
   _initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
-    autoPrefix.set(style, 'transform', 'scale(0)', this.props.muiTheme);
+    autoPrefix.set(style, 'transform', 'scale(0)');
     this.leaveTimer = setTimeout(callback, 0);
   },
 
   render() {
     const {
       color,
-      muiTheme: {
-        prepareStyles,
-      },
       opacity, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
+
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedStyles = Object.assign({
       position: 'absolute',

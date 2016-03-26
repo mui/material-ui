@@ -2,7 +2,6 @@ import React from 'react';
 import TimeDisplay from './TimeDisplay';
 import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const Clock = React.createClass({
 
@@ -27,15 +26,13 @@ const Clock = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       selectedTime: this.props.initialTime || new Date(),
       mode: 'hour',
     };
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
       selectedTime: nextProps.initialTime || new Date(),
     });
   },
@@ -128,26 +125,22 @@ const Clock = React.createClass({
   render() {
     let clock = null;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const styles = {
       root: {},
-
       container: {
         height: 280,
         padding: 10,
         position: 'relative',
       },
-
       circle: {
         position: 'absolute',
         top: 20,
         width: 260,
         height: 260,
         borderRadius: '100%',
-        backgroundColor: this.state.muiTheme.timePicker.clockCircleColor,
+        backgroundColor: this.context.muiTheme.timePicker.clockCircleColor,
       },
     };
 

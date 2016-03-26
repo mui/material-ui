@@ -1,5 +1,4 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const AppCanvas = React.createClass({
 
@@ -11,33 +10,11 @@ const AppCanvas = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   render() {
     const {
       baseTheme,
       prepareStyles,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
     const styles = {
       height: '100%',

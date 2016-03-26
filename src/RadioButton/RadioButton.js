@@ -3,12 +3,9 @@ import transitions from '../styles/transitions';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 import RadioButtonOff from '../svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from '../svg-icons/toggle/radio-button-checked';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    radioButton,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {radioButton} = context.muiTheme;
 
   return {
     icon: {
@@ -127,10 +124,6 @@ const RadioButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       checked: false,
@@ -139,26 +132,7 @@ const RadioButton = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  getTheme() {
-    return this.state.muiTheme.radioButton;
+  handleStateChange() {
   },
 
   // Only called when selected, not when unselected.
@@ -193,7 +167,7 @@ const RadioButton = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     const uncheckedStyles = Object.assign(
       styles.target,
@@ -236,6 +210,7 @@ const RadioButton = React.createClass({
         iconStyle={mergedIconStyle}
         labelStyle={mergedLabelStyle}
         labelPosition={labelPosition}
+        onParentShouldUpdate={this.handleStateChange}
         onSwitch={this.handleSwitch}
         switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />

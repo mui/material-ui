@@ -1,7 +1,6 @@
 import React from 'react';
 import TouchRipple from '../internal/TouchRipple';
 import Avatar from '../Avatar';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const HorizontalStep = React.createClass({
   propTypes: {
@@ -77,23 +76,6 @@ const HorizontalStep = React.createClass({
     updateAvatarBackgroundColor: React.PropTypes.func,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
 
   getStyles() {
     const {
@@ -104,7 +86,7 @@ const HorizontalStep = React.createClass({
       stepHeaderWrapperStyle,
     } = this.props;
 
-    const theme = this.state.muiTheme.stepper;
+    const theme = this.context.muiTheme.stepper;
 
     const customAvatarBackgroundColor = this.context.updateAvatarBackgroundColor(this);
     const avatarBackgroundColor = customAvatarBackgroundColor ||
@@ -190,7 +172,6 @@ const HorizontalStep = React.createClass({
     this.props.onStepHeaderTouch(this.props.stepIndex, this);
   },
 
-
   handleStepHeaderMouseHover() {
     this.props.onStepHeaderHover(this.props.stepIndex);
   },
@@ -217,7 +198,7 @@ const HorizontalStep = React.createClass({
         onMouseOver={this.handleStepHeaderMouseHover}
         onMouseLeave={this.handleStepHeaderMouseLeave}
       >
-        <TouchRipple muiTheme={this.state.muiTheme}>
+        <TouchRipple muiTheme={this.context.muiTheme}>
           {avatarView}
           <div style={styles.stepLabel}>{stepLabel}</div>
           {!isFirstStep && <div style={styles.connectorLineLeft}></div>}

@@ -1,10 +1,9 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     cardMedia,
- } = state.muiTheme;
+ } = context.muiTheme;
   return {
     root: {
       position: 'relative',
@@ -91,42 +90,17 @@ const CardMedia = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const rootStyle = Object.assign(styles.root, this.props.style);
     const mediaStyle = Object.assign(styles.media, this.props.mediaStyle);
     const overlayContainerStyle = Object.assign(styles.overlayContainer, this.props.overlayContainerStyle);
     const overlayContentStyle = Object.assign(styles.overlayContent, this.props.overlayContentStyle);
     const overlayStyle = Object.assign(styles.overlay, this.props.overlayStyle);
-    const titleColor = this.state.muiTheme.cardMedia.titleColor;
-    const subtitleColor = this.state.muiTheme.cardMedia.subtitleColor;
-    const color = this.state.muiTheme.cardMedia.color;
+    const titleColor = this.context.muiTheme.cardMedia.titleColor;
+    const subtitleColor = this.context.muiTheme.cardMedia.subtitleColor;
+    const color = this.context.muiTheme.cardMedia.color;
 
     const children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {

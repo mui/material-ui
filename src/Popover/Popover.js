@@ -5,7 +5,6 @@ import RenderToLayer from '../internal/RenderToLayer';
 import propTypes from '../utils/propTypes';
 import Paper from '../Paper';
 import throttle from 'lodash.throttle';
-import getMuiTheme from '../styles/getMuiTheme';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
 const Popover = React.createClass({
@@ -103,10 +102,6 @@ const Popover = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       anchorOrigin: {
@@ -137,26 +132,16 @@ const Popover = React.createClass({
     return {
       open: this.props.open,
       closing: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
         this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
         this.setState({
           open: true,
           closing: false,
-          muiTheme: newMuiTheme,
         });
       } else {
         if (nextProps.animated) {
@@ -164,13 +149,11 @@ const Popover = React.createClass({
           this.timeout = setTimeout(() => {
             this.setState({
               open: false,
-              muiTheme: newMuiTheme,
             });
           }, 500);
         } else {
           this.setState({
             open: false,
-            muiTheme: newMuiTheme,
           });
         }
       }

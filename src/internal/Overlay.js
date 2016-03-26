@@ -1,9 +1,8 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import transitions from '../styles/transitions';
 
-function getStyles(props, state) {
-  const {overlay} = state.muiTheme;
+function getStyles(props, context) {
+  const {overlay} = context.muiTheme;
 
   const style = {
     root: {
@@ -63,23 +62,13 @@ const Overlay = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
   componentDidMount() {
     if (this.props.show) {
       this._applyAutoLockScrolling(this.props);
     }
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this.props.show !== nextProps.show) {
       this._applyAutoLockScrolling(nextProps);
     }
@@ -124,11 +113,8 @@ const Overlay = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} ref="overlay" style={prepareStyles(Object.assign(styles.root, style))} />

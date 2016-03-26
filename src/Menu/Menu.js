@@ -7,7 +7,6 @@ import transitions from '../styles/transitions';
 import keycode from 'keycode';
 import propTypes from '../utils/propTypes';
 import List from '../List/List';
-import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
 
@@ -152,10 +151,6 @@ const Menu = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       autoWidth: true,
@@ -179,13 +174,6 @@ const Menu = React.createClass({
       focusIndex: this.props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -195,14 +183,13 @@ const Menu = React.createClass({
     this.setScollPosition();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const filteredChildren = this.getFilteredChildren(nextProps.children);
     const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
 
     this.setState({
       focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -247,8 +234,8 @@ const Menu = React.createClass({
     const scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
     const menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
 
-    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)', this.state.muiTheme);
-    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)', this.state.muiTheme);
+    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
+    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
     scrollContainerStyle.opacity = 1;
 
     for (let i = 0; i < menuContainers.length; ++i) {
@@ -470,14 +457,14 @@ const Menu = React.createClass({
       desktop,
       initiallyKeyboardFocused, // eslint-disable-line no-unused-vars
       listStyle,
-      maxHeight,
+      maxHeight, // eslint-disable-line no-unused-vars
       multiple, // eslint-disable-line no-unused-vars
       openDirection = 'bottom-left',
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
-      width,
+      width, // eslint-disable-line no-unused-vars
       zDepth,
       ...other,
     } = this.props;
@@ -487,12 +474,10 @@ const Menu = React.createClass({
 
     const {
       focusIndex,
-      muiTheme,
     } = this.state;
 
-    const {
-      prepareStyles,
-    } = muiTheme;
+    const {muiTheme} = this.context;
+    const {prepareStyles} = muiTheme;
 
     const openDown = openDirection.split('-')[0] === 'bottom';
     const openLeft = openDirection.split('-')[1] === 'left';

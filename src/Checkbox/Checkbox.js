@@ -3,13 +3,12 @@ import EnhancedSwitch from '../internal/EnhancedSwitch';
 import transitions from '../styles/transitions';
 import CheckboxOutline from '../svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from '../svg-icons/toggle/check-box';
-import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     checkbox,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const checkboxSize = 24;
 
@@ -137,10 +136,6 @@ const Checkbox = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       defaultChecked: false,
@@ -156,19 +151,11 @@ const Checkbox = React.createClass({
         this.props.defaultChecked ||
         (this.props.valueLink && this.props.valueLink.value) ||
         false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
       switched: this.props.checked !== nextProps.checked ?
         nextProps.checked :
         this.state.switched,
@@ -200,7 +187,7 @@ const Checkbox = React.createClass({
       unCheckedIcon,
       ...other,
     } = this.props;
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
     const boxStyles =
       Object.assign(
         styles.box,

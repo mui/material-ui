@@ -2,12 +2,19 @@ import React from 'react';
 import Dialog from 'Dialog';
 import {spy} from 'sinon';
 import TestUtils from 'react-addons-test-utils';
+import injectTheme from './fixtures/inject-theme';
 
 describe('Dialog', () => {
+  let ThemedDialog;
+
+  beforeEach(() => {
+    ThemedDialog = injectTheme(Dialog);
+  });
+
   it('appends a dialog to the document body', () => {
     const testClass = 'test-dialog-class';
     TestUtils.renderIntoDocument(
-      <Dialog
+      <ThemedDialog
         open={true}
         contentClassName={testClass}
       />
@@ -22,7 +29,7 @@ describe('Dialog', () => {
     const testClass = 'dialog-action';
 
     TestUtils.renderIntoDocument(
-      <Dialog
+      <ThemedDialog
         open={true}
         actions={[
           <button

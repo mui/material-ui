@@ -2,15 +2,14 @@ import React from 'react';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import FocusRipple from '../internal/FocusRipple';
-import getMuiTheme from '../styles/getMuiTheme';
 
 /**
-  * Verifies min/max range.
-  * @param   {Object} props         Properties of the React component.
-  * @param   {String} propName      Name of the property to validate.
-  * @param   {String} componentName Name of the component whose property is being validated.
-  * @returns {Object} Returns an Error if min >= max otherwise null.
-  */
+ * Verifies min/max range.
+ * @param   {Object} props         Properties of the React component.
+ * @param   {String} propName      Name of the property to validate.
+ * @param   {String} componentName Name of the component whose property is being validated.
+ * @returns {Object} Returns an Error if min >= max otherwise null.
+ */
 const minMaxPropType = (props, propName, componentName) => {
   const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
@@ -22,12 +21,12 @@ const minMaxPropType = (props, propName, componentName) => {
 };
 
 /**
-  * Verifies value is within the min/max range.
-  * @param   {Object} props         Properties of the React component.
-  * @param   {String} propName      Name of the property to validate.
-  * @param   {String} componentName Name of the component whose property is being validated.
-  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
-  */
+ * Verifies value is within the min/max range.
+ * @param   {Object} props         Properties of the React component.
+ * @param   {String} propName      Name of the property to validate.
+ * @param   {String} componentName Name of the component whose property is being validated.
+ * @returns {Object} Returns an Error if the value is not within the range otherwise null.
+ */
 const valueInRangePropType = (props, propName, componentName) => {
   const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
@@ -38,11 +37,8 @@ const valueInRangePropType = (props, propName, componentName) => {
   }
 };
 
-const getStyles = (props, state) => {
-  const {
-    slider,
-  } = state.muiTheme;
-
+const getStyles = (props, context, state) => {
+  const {slider} = context.muiTheme;
   const fillGutter = slider.handleSize / 2;
   const disabledGutter = slider.trackSize + slider.handleSizeDisabled / 2;
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
@@ -251,11 +247,6 @@ const Slider = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       disabled: false,
@@ -283,25 +274,14 @@ const Slider = React.createClass({
       hovered: false,
       percent: percent,
       value: value,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
       this.setValue(nextProps.value);
     }
   },
-
 
   _onHandleTouchStart(event) {
     if (document) {
@@ -574,34 +554,39 @@ const Slider = React.createClass({
       ...others,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
+    const sliderStyles = Object.assign({}, styles.root, style);
 
+    let handleStyles = {};
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
-    const styles = getStyles(this.props, this.state);
-    const sliderStyles = Object.assign({}, styles.root, style);
-    const handleStyles = percent === 0 ? Object.assign(
-      {},
-      styles.handle,
-      styles.handleWhenPercentZero,
-      this.state.active && styles.handleWhenActive,
-      (this.state.hovered || this.state.focused) && !disabled &&
+    if (percent === 0) {
+      handleStyles = Object.assign(
+        {},
+        styles.handle,
+        styles.handleWhenPercentZero,
+        this.state.active && styles.handleWhenActive,
+        (this.state.hovered || this.state.focused) && !disabled &&
         styles.handleWhenPercentZeroAndFocused,
-      disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : Object.assign(
-      {},
-      styles.handle,
-      this.state.active && styles.handleWhenActive,
-      disabled && styles.handleWhenDisabled
-    );
+        disabled && styles.handleWhenPercentZeroAndDisabled
+      );
+    } else {
+      handleStyles = Object.assign(
+        {},
+        styles.handle,
+        this.state.active && styles.handleWhenActive,
+        disabled && styles.handleWhenDisabled
+      );
+    }
+
     const rippleStyle = Object.assign(
       {},
       styles.ripple,
       percent === 0 && styles.rippleWhenPercentZero
     );
+
     const rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
 
     let focusRipple;
@@ -613,7 +598,7 @@ const Slider = React.createClass({
           style={rippleStyle}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
-          muiTheme={this.state.muiTheme}
+          muiTheme={this.context.muiTheme}
           color={styles.rippleColor.fill}
         />
       );

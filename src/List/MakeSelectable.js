@@ -1,5 +1,4 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import ColorManipulator from '../utils/colorManipulator';
 
 export const MakeSelectable = (Component) => {
@@ -18,28 +17,6 @@ export const MakeSelectable = (Component) => {
 
     contextTypes: {
       muiTheme: React.PropTypes.object,
-    },
-
-    childContextTypes: {
-      muiTheme: React.PropTypes.object,
-    },
-
-    getInitialState() {
-      return {
-        muiTheme: this.context.muiTheme || getMuiTheme(),
-      };
-    },
-
-    getChildContext() {
-      return {
-        muiTheme: this.state.muiTheme,
-      };
-    },
-
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setState({
-        muiTheme: nextContext.muiTheme || this.state.muiTheme,
-      });
     },
 
     getValueLink: function(props) {
@@ -114,7 +91,7 @@ export const MakeSelectable = (Component) => {
       let styles = {};
 
       if (!selectedItemStyle) {
-        const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+        const textColor = this.context.muiTheme.rawTheme.palette.textColor;
         const selectedColor = ColorManipulator.fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,

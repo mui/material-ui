@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import TouchRipple from '../internal/TouchRipple';
 import Avatar from '../Avatar';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const Step = React.createClass({
   propTypes: {
@@ -102,22 +101,6 @@ const Step = React.createClass({
     updateAvatarBackgroundColor: PropTypes.func,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
 
   componentDidMount() {
     const {
@@ -166,7 +149,6 @@ const Step = React.createClass({
     }
   },
 
-
   handleStepHeaderTouch() {
     this.props.onStepHeaderTouch(this.props.stepIndex, this);
   },
@@ -178,7 +160,6 @@ const Step = React.createClass({
   handleStepHeaderMouseLeave() {
     this.props.onStepHeaderHover(-1);
   },
-
 
   getStyles() {
     const {
@@ -194,7 +175,7 @@ const Step = React.createClass({
       childrenWrapperStyle,
     } = this.props;
 
-    const theme = this.state.muiTheme.stepper;
+    const theme = this.context.muiTheme.stepper;
 
     const customAvatarBackgroundColor = this.context.updateAvatarBackgroundColor(this);
 
@@ -304,7 +285,6 @@ const Step = React.createClass({
       isLastStep,
     } = this.props;
 
-
     const styles = this.getStyles();
 
     const icon = this.context.createIcon(this);
@@ -319,7 +299,7 @@ const Step = React.createClass({
           onMouseOver={this.handleStepHeaderMouseHover}
           onMouseLeave={this.handleStepHeaderMouseLeave}
         >
-          <TouchRipple muiTheme={this.state.muiTheme}>
+          <TouchRipple muiTheme={this.context.muiTheme}>
             <div style={styles.stepHeader}>
               {avatarView}
               {stepLabel}
@@ -343,7 +323,6 @@ const Step = React.createClass({
       </div>
     );
   },
-
 
 });
 

@@ -5,14 +5,13 @@ import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Paper from '../Paper';
 import {extendChildren} from '../utils/childUtils';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 import propTypes from '../utils/propTypes';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     floatingActionButton,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   let backgroundColor = props.backgroundColor || floatingActionButton.color;
   let iconColor = floatingActionButton.iconColor;
@@ -187,10 +186,6 @@ const FloatingActionButton = React.createClass({
     muiTheme: React.PropTypes.object,
   },
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
   getDefaultProps() {
     return {
       disabled: false,
@@ -205,13 +200,6 @@ const FloatingActionButton = React.createClass({
       hovered: false,
       touch: false,
       zDepth: this.props.disabled ? 0 : this.props.zDepth,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -222,10 +210,8 @@ const FloatingActionButton = React.createClass({
       'icons to FloatingActionButtons.');
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    };
+  componentWillReceiveProps(nextProps) {
+    const newState = {};
 
     if (nextProps.disabled !== this.props.disabled) {
       const zDepth = nextProps.disabled ? 0 : this.props.zDepth;
@@ -294,11 +280,8 @@ const FloatingActionButton = React.createClass({
       iconClassName,
       ...other} = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     let iconElement;
     if (iconClassName) {
