@@ -267,7 +267,7 @@ const DropDownMenu = React.createClass({
       labelStyle,
       listStyle,
       maxHeight,
-      menuStyle,
+      menuStyle: menuStyleProps,
       style,
       underlineStyle,
       value,
@@ -294,11 +294,13 @@ const DropDownMenu = React.createClass({
       }
     });
 
-    let popoverStyle;
+    let menuStyle;
     if (anchorEl && !autoWidth) {
-      popoverStyle = {
+      menuStyle = Object.assign({
         width: anchorEl.clientWidth,
-      };
+      }, menuStyleProps);
+    } else {
+      menuStyle = menuStyleProps;
     }
 
     return (
@@ -320,7 +322,6 @@ const DropDownMenu = React.createClass({
         <Popover
           anchorOrigin={anchorOrigin}
           anchorEl={anchorEl}
-          style={popoverStyle}
           animation={PopoverAnimationFromTop}
           open={open}
           onRequestClose={this.handleRequestCloseMenu}
