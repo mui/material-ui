@@ -20,23 +20,25 @@ const MenuItem = React.createClass({
     checked: React.PropTypes.bool,
 
     /**
-     * Elements passed as children to inner ListItem.
+     * Elements passed as children to the underlying `ListItem`.
      */
     children: React.PropTypes.node,
 
     /**
      * @ignore
-     * Indicates if the menu should render with compact desktop styles.
+     * If true, the menu item will render with compact desktop
+     * styles.
      */
     desktop: React.PropTypes.bool,
 
     /**
-     * Disables a menu item.
+     * If true, the menu item will be disabled.
      */
     disabled: React.PropTypes.bool,
 
     /**
-     * Prop passed down to ListItem that tells it what kind of focus it has.
+     * The focus state of the menu item. This prop is used to set the focus
+     * state of the underlying `ListItem`.
      */
     focusState: React.PropTypes.oneOf([
       'none',
@@ -45,39 +47,45 @@ const MenuItem = React.createClass({
     ]),
 
     /**
-     * Style overrides for the inner div.
+     * Override the inline-styles of the inner div.
      */
     innerDivStyle: React.PropTypes.object,
 
     /**
      * If true, the children will be indented.
-     * Only needed when there is no leftIcon.
+     * This is only needed when there is no `leftIcon`.
      */
     insetChildren: React.PropTypes.bool,
 
     /**
-     * This is the SvgIcon or FontIcon to be displayed on the left side.
+     * The `SvgIcon` or `FontIcon` to be displayed on the left side.
      */
     leftIcon: React.PropTypes.element,
 
     /**
-     * Nested MenuItems for this MenuItem. Used to make nested menus.
+     * `MenuItem` elements to nest within the menu item.
      */
     menuItems: React.PropTypes.node,
 
     /**
-     * Fired when the element is touchTapped.
+     * Callback function fired when the menu item is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the menu item.
      */
     onTouchTap: React.PropTypes.func,
 
     /**
-     * This is the SvgIcon or FontIcon to be displayed on the right side.
+     * Can be used to render primary text within the menu item.
+     */
+    primaryText: React.PropTypes.node,
+
+    /**
+     * The `SvgIcon` or `FontIcon` to be displayed on the right side.
      */
     rightIcon: React.PropTypes.element,
 
     /**
-     * This is the block element that contains the secondary text.
-     * If a string is passed in, a div tag will be rendered.
+     * Can be used to render secondary text within the menu item.
      */
     secondaryText: React.PropTypes.node,
 
