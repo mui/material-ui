@@ -3,7 +3,7 @@ import ReactTestUtils from 'react-addons-test-utils';
 import DateTime from '../utils/dateTime';
 import DayButton from './DayButton';
 import ClearFix from '../internal/ClearFix';
-import warning  from 'warning';
+import warning from 'warning';
 
 const CalendarMonth = React.createClass({
 
