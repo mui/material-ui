@@ -137,7 +137,7 @@ const MenuItem = React.createClass({
     });
 
     if (this.state.open && nextProps.focusState === 'none') {
-      this._onRequestClose();
+      this.handleRequestClose();
     }
   },
 
@@ -161,18 +161,18 @@ const MenuItem = React.createClass({
     return React.cloneElement(item, {
       onTouchTap: (event) => {
         if (!item.props.menuItems) {
-          this._onRequestClose();
+          this.handleRequestClose();
         }
 
         if (item.props.onTouchTap) {
           item.props.onTouchTap(event);
         }
       },
-      onRequestClose: this._onRequestClose,
+      onRequestClose: this.handleRequestClose,
     });
   },
 
-  _onTouchTap(event) {
+  handleTouchTap(event) {
     event.preventDefault();
 
     this.setState({
@@ -185,7 +185,7 @@ const MenuItem = React.createClass({
     }
   },
 
-  _onRequestClose() {
+  handleRequestClose() {
     this.setState({
       open: false,
       anchorEl: null,
@@ -296,14 +296,14 @@ const MenuItem = React.createClass({
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           useLayerForClickAway={false}
-          onRequestClose={this._onRequestClose}
+          onRequestClose={this.handleRequestClose}
         >
           <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
             {React.Children.map(menuItems, this._cloneMenuItem)}
           </Menu>
         </Popover>
       );
-      other.onTouchTap = this._onTouchTap;
+      other.onTouchTap = this.handleTouchTap;
     }
 
     return (

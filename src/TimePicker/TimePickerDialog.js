@@ -71,20 +71,26 @@ const TimePickerDialog = React.createClass({
     });
   },
 
-  _handleOKTouchTap() {
+  handleRequestClose() {
+    this.dismiss();
+  },
+
+  handleTouchTapCancel() {
+    this.dismiss();
+  },
+
+  handleTouchTapOK() {
     this.dismiss();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.clock.getSelectedTime());
     }
   },
 
-  _handleWindowKeyUp(event) {
-    if (this.state.open) {
-      switch (keycode(event)) {
-        case 'enter':
-          this._handleOKTouchTap();
-          break;
-      }
+  handleKeyUp(event) {
+    switch (keycode(event)) {
+      case 'enter':
+        this.handleTouchTapOK();
+        break;
     }
   },
 
@@ -117,17 +123,18 @@ const TimePickerDialog = React.createClass({
         key={0}
         label={cancelLabel}
         primary={true}
-        onTouchTap={this.dismiss}
+        onTouchTap={this.handleTouchTapCancel}
       />,
       <FlatButton
         key={1}
         label={okLabel}
         primary={true}
-        onTouchTap={this._handleOKTouchTap}
+        onTouchTap={this.handleTouchTapOK}
       />,
     ];
 
-    const onClockChangeMinutes = (autoOk === true ? this._handleOKTouchTap : undefined);
+    const onClockChangeMinutes = autoOk === true ? this.handleTouchTapOK : undefined;
+    const open = this.state.open;
 
     return (
       <Dialog
@@ -138,16 +145,20 @@ const TimePickerDialog = React.createClass({
         actions={actions}
         contentStyle={styles.dialogContent}
         repositionOnUpdate={false}
-        open={this.state.open}
-        onRequestClose={this.dismiss}
+        open={open}
+        onRequestClose={this.handleRequestClose}
       >
-        <EventListener elementName="window" onKeyUp={this._handleWindowKeyUp} />
-        <Clock
-          ref="clock"
-          format={format}
-          initialTime={initialTime}
-          onChangeMinutes={onClockChangeMinutes}
-        />
+        {open &&
+          <EventListener elementName="window" onKeyUp={this.handleKeyUp} />
+        }
+        {open &&
+          <Clock
+            ref="clock"
+            format={format}
+            initialTime={initialTime}
+            onChangeMinutes={onClockChangeMinutes}
+          />
+        }
       </Dialog>
     );
   },

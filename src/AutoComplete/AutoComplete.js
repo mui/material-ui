@@ -308,6 +308,10 @@ const AutoComplete = React.createClass({
     }, this.props.menuCloseDelay);
   },
 
+  handleEscKeyDown() {
+    this.close();
+  },
+
   handleKeyDown(event) {
     switch (keycode(event)) {
       case 'enter':
@@ -482,7 +486,7 @@ const AutoComplete = React.createClass({
         ref="menu"
         autoWidth={false}
         disableAutoFocus={focusTextField}
-        onEscKeyDown={this.close}
+        onEscKeyDown={this.handleEscKeyDown}
         initiallyKeyboardFocused={false}
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}

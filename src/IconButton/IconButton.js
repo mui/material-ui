@@ -199,22 +199,22 @@ const IconButton = React.createClass({
     if (this.props.tooltip) this.setState({tooltipShown: false});
   },
 
-  _handleBlur(event) {
+  handleBlur(event) {
     this._hideTooltip();
     if (this.props.onBlur) this.props.onBlur(event);
   },
 
-  _handleFocus(event) {
+  handleFocus(event) {
     this._showTooltip();
     if (this.props.onFocus) this.props.onFocus(event);
   },
 
-  _handleMouseLeave(event) {
+  handleMouseLeave(event) {
     if (!this.refs.button.isKeyboardFocused()) this._hideTooltip();
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   },
 
-  _handleMouseOut(event) {
+  handleMouseOut(event) {
     if (this.props.disabled) this._hideTooltip();
     if (this.props.onMouseOut) this.props.onMouseOut(event);
   },
@@ -224,7 +224,7 @@ const IconButton = React.createClass({
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
   },
 
-  _handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus(event, keyboardFocused) {
     if (keyboardFocused && !this.props.disabled) {
       this._showTooltip();
       if (this.props.onFocus) this.props.onFocus(event);
@@ -294,12 +294,12 @@ const IconButton = React.createClass({
         disabled={disabled}
         style={Object.assign(styles.root, this.props.style)}
         disableTouchRipple={disableTouchRipple}
-        onBlur={this._handleBlur}
-        onFocus={this._handleFocus}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseOut={this._handleMouseOut}
-        onKeyboardFocus={this._handleKeyboardFocus}
+        onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseOut={this.handleMouseOut}
+        onKeyboardFocus={this.handleKeyboardFocus}
       >
         {tooltipElement}
         {fonticon}

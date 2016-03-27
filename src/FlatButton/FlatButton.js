@@ -169,23 +169,23 @@ const FlatButton = React.createClass({
     });
   },
 
-  _handleKeyboardFocus(event, isKeyboardFocused) {
+  handleKeyboardFocus(event, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleMouseEnter(event) {
+  handleMouseEnter(event) {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
   },
 
-  _handleMouseLeave(event) {
+  handleMouseLeave(event) {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
   },
 
-  _handleTouchStart(event) {
+  handleTouchStart(event) {
     this.setState({touch: true});
     this.props.onTouchStart(event);
   },
@@ -304,10 +304,10 @@ const FlatButton = React.createClass({
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
         linkButton={linkButton}
-        onKeyboardFocus={this._handleKeyboardFocus}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
-        onTouchStart={this._handleTouchStart}
+        onKeyboardFocus={this.handleKeyboardFocus}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
+        onTouchStart={this.handleTouchStart}
         style={mergedRootStyles}
         touchRippleColor={buttonRippleColor}
         touchRippleOpacity={0.3}

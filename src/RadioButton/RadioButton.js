@@ -155,11 +155,8 @@ const RadioButton = React.createClass({
   },
 
   // Only called when selected, not when unselected.
-  _handleCheck(event) {
+  handleSwitch(event) {
     if (this.props.onCheck) this.props.onCheck(event, this.props.value);
-  },
-
-  _handleStateChange() {
   },
 
   isChecked() {
@@ -232,8 +229,7 @@ const RadioButton = React.createClass({
         iconStyle={mergedIconStyle}
         labelStyle={mergedLabelStyle}
         labelPosition={labelPosition}
-        onSwitch={this._handleCheck}
-        onParentShouldUpdate={this._handleStateChange}
+        onSwitch={this.handleSwitch}
         switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />
     );

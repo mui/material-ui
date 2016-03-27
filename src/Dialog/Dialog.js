@@ -280,20 +280,18 @@ const DialogInline = React.createClass({
     }
   },
 
-  _handleOverlayTouchTap() {
+  handleTouchTapOverlay() {
     this._requestClose(false);
   },
 
-  _handleWindowKeyUp(event) {
+  handleKeyUp(event) {
     if (keycode(event) === 'esc') {
       this._requestClose(false);
     }
   },
 
-  _handleResize() {
-    if (this.props.open) {
-      this._positionDialog();
-    }
+  handleResize() {
+    this._positionDialog();
   },
 
   render() {
@@ -341,11 +339,13 @@ const DialogInline = React.createClass({
 
     return (
       <div className={className} style={prepareStyles(styles.root)}>
-        <EventListener
-          elementName="window"
-          onKeyUp={this._handleWindowKeyUp}
-          onResize={this._handleResize}
-        />
+        {open &&
+          <EventListener
+            elementName="window"
+            onKeyUp={this.handleKeyUp}
+            onResize={this.handleResize}
+          />
+        }
         <ReactTransitionGroup
           component="div" ref="dialogWindow"
           transitionAppear={true} transitionAppearTimeout={450}
@@ -376,7 +376,7 @@ const DialogInline = React.createClass({
           show={open}
           className={overlayClassName}
           style={styles.overlay}
-          onTouchTap={this._handleOverlayTouchTap}
+          onTouchTap={this.handleTouchTapOverlay}
         />
       </div>
     );

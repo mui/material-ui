@@ -324,28 +324,28 @@ const ListItem = React.createClass({
     );
   },
 
-  _handleKeyboardFocus(event, isKeyboardFocused) {
+  handleKeyboardFocus(event, isKeyboardFocused) {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleMouseEnter(event) {
+  handleMouseEnter(event) {
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
   },
 
-  _handleMouseLeave(event) {
+  handleMouseLeave(event) {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
   },
 
-  _handleNestedListToggle(event) {
+  handleNestedListToggle(event) {
     event.stopPropagation();
     this.setState({open: !this.state.open});
     this.props.onNestedListToggle(this);
   },
 
-  _handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
+  handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
     const iconButton = this.props.rightIconButton;
     const newState = {};
 
@@ -356,31 +356,25 @@ const ListItem = React.createClass({
     if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(event, isKeyboardFocused);
   },
 
-  _handleRightIconButtonMouseDown(event) {
-    const iconButton = this.props.rightIconButton;
-    event.stopPropagation();
-    if (iconButton && iconButton.props.onMouseDown) iconButton.props.onMouseDown(event);
-  },
-
-  _handleRightIconButtonMouseLeave(event) {
+  handleRightIconButtonMouseLeave(event) {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
     if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(event);
   },
 
-  _handleRightIconButtonMouseEnter(event) {
+  handleRightIconButtonMouseEnter(event) {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
     if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(event);
   },
 
-  _handleRightIconButtonMouseUp(event) {
+  handleRightIconButtonMouseUp(event) {
     const iconButton = this.props.rightIconButton;
     event.stopPropagation();
     if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(event);
   },
 
-  _handleRightIconButtonTouchTap(event) {
+  handleRightIconButtonTouchTap(event) {
     const iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
@@ -388,7 +382,7 @@ const ListItem = React.createClass({
     if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(event);
   },
 
-  _handleTouchStart(event) {
+  handleTouchStart(event) {
     this.setState({touch: true});
     this.props.onTouchStart(event);
   },
@@ -604,12 +598,12 @@ const ListItem = React.createClass({
     if (rightIconButton || needsNestedIndicator) {
       let rightIconButtonElement = rightIconButton;
       const rightIconButtonHandlers = {
-        onKeyboardFocus: this._handleRightIconButtonKeyboardFocus,
-        onMouseEnter: this._handleRightIconButtonMouseEnter,
-        onMouseLeave: this._handleRightIconButtonMouseLeave,
-        onTouchTap: this._handleRightIconButtonTouchTap,
-        onMouseDown: this._handleRightIconButtonMouseUp,
-        onMouseUp: this._handleRightIconButtonMouseUp,
+        onKeyboardFocus: this.handleRightIconButtonKeyboardFocus,
+        onMouseEnter: this.handleRightIconButtonMouseEnter,
+        onMouseLeave: this.handleRightIconButtonMouseLeave,
+        onTouchTap: this.handleRightIconButtonTouchTap,
+        onMouseDown: this.handleRightIconButtonMouseUp,
+        onMouseUp: this.handleRightIconButtonMouseUp,
       };
 
       // Create a nested list indicator icon if we don't have an icon on the right
@@ -617,7 +611,7 @@ const ListItem = React.createClass({
         rightIconButtonElement = this.state.open ?
           <IconButton><OpenIcon /></IconButton> :
           <IconButton><CloseIcon /></IconButton>;
-        rightIconButtonHandlers.onTouchTap = this._handleNestedListToggle;
+        rightIconButtonHandlers.onTouchTap = this.handleNestedListToggle;
       }
 
       this._pushElement(
@@ -670,11 +664,11 @@ const ListItem = React.createClass({
               disabled={disabled}
               disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
               linkButton={true}
-              onKeyboardFocus={this._handleKeyboardFocus}
-              onMouseLeave={this._handleMouseLeave}
-              onMouseEnter={this._handleMouseEnter}
-              onTouchStart={this._handleTouchStart}
-              onTouchTap={primaryTogglesNestedList ? this._handleNestedListToggle : onTouchTap}
+              onKeyboardFocus={this.handleKeyboardFocus}
+              onMouseLeave={this.handleMouseLeave}
+              onMouseEnter={this.handleMouseEnter}
+              onTouchStart={this.handleTouchStart}
+              onTouchTap={primaryTogglesNestedList ? this.handleNestedListToggle : onTouchTap}
               ref="enhancedButton"
               style={Object.assign({}, styles.root, style)}
             >

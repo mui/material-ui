@@ -104,19 +104,19 @@ const DayButton = React.createClass({
     });
   },
 
-  _handleMouseEnter() {
+  handleMouseEnter() {
     if (!this.props.disabled) this.setState({hover: true});
   },
 
-  _handleMouseLeave() {
+  handleMouseLeave() {
     if (!this.props.disabled) this.setState({hover: false});
   },
 
-  _handleTouchTap(event) {
+  handleTouchTap(event) {
     if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(event, this.props.date);
   },
 
-  _handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus(event, keyboardFocused) {
     if (!this.props.disabled && this.props.onKeyboardFocus) {
       this.props.onKeyboardFocus(event, keyboardFocused, this.props.date);
     }
@@ -144,10 +144,10 @@ const DayButton = React.createClass({
         disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseLeave={this._handleMouseLeave}
-        onTouchTap={this._handleTouchTap}
-        onKeyboardFocus={this._handleKeyboardFocus}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onTouchTap={this.handleTouchTap}
+        onKeyboardFocus={this.handleKeyboardFocus}
       >
         <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>

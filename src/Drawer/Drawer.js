@@ -218,10 +218,8 @@ const Drawer = React.createClass({
     this._close('clickaway');
   },
 
-  _onWindowKeyUp(event) {
-    if (keycode(event) === 'esc' &&
-        !this.props.docked &&
-        this.state.open) {
+  handleKeyUp(event) {
+    if (this.state.open && !this.props.docked && keycode(event) === 'esc') {
       this._close('escape');
     }
   },
@@ -402,7 +400,7 @@ const Drawer = React.createClass({
         className={className}
         style={style}
       >
-        <EventListener elementName="window" onKeyUp={this._onWindowKeyUp} />
+        <EventListener elementName="window" onKeyUp={this.handleKeyUp} />
         {overlay}
         <Paper
           ref="clickAwayableElement"

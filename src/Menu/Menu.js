@@ -191,7 +191,7 @@ const Menu = React.createClass({
     if (this.props.autoWidth) this._setWidth();
   },
 
-  componentClickAway(event) {
+  handleClickAway(event) {
     if (event.defaultPrevented) {
       return;
     }
@@ -330,7 +330,7 @@ const Menu = React.createClass({
     return selectedIndex;
   },
 
-  _handleKeyDown(event) {
+  handleKeyDown(event) {
     const filteredChildren = this._getFilteredChildren(this.props.children);
     switch (keycode(event)) {
       case 'down':
@@ -565,8 +565,8 @@ const Menu = React.createClass({
     });
 
     return (
-      <ClickAwayListener onClickAway={this.componentClickAway}>
-        <div onKeyDown={this._handleKeyDown} style={prepareStyles(mergedRootStyles)} ref="scrollContainer">
+      <ClickAwayListener onClickAway={this.handleClickAway}>
+        <div onKeyDown={this.handleKeyDown} style={prepareStyles(mergedRootStyles)} ref="scrollContainer">
           <List
             {...other}
             ref="list"

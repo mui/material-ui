@@ -103,7 +103,7 @@ const Tab = React.createClass({
     });
   },
 
-  _handleTouchTap(event) {
+  handleTouchTap(event) {
     if (this.props.onTouchTap) {
       this.props.onTouchTap(this.props.value, event, this);
     }
@@ -152,7 +152,7 @@ const Tab = React.createClass({
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
         touchRippleOpacity={rippleOpacity}
-        onTouchTap={this._handleTouchTap}
+        onTouchTap={this.handleTouchTap}
       >
         {iconElement}
         {label}

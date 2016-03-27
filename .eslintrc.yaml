@@ -77,7 +77,7 @@ rules:
   react/jsx-closing-bracket-location: 2
   react/jsx-curly-spacing: 2
   react/jsx-equals-spacing: 2
-  react/jsx-handler-names: 0 # Wishlist, one day
+  react/jsx-handler-names: 2
   react/jsx-indent-props: [2, 2]
   react/jsx-max-props-per-line: [2, {maximum: 3}]
   react/jsx-no-duplicate-props: 2
