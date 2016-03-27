@@ -41,7 +41,7 @@ return an element of type DayButton`);
         }
 
         return React.cloneElement(component, {
-          onTouchTap: this._handleDayTouchTap,
+          onTouchTap: this.handleTouchTap,
           key: `db${(i + j)}`,
         });
       }
