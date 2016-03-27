@@ -3,6 +3,7 @@ import ReactTestUtils from 'react-addons-test-utils';
 import DateTime from '../utils/dateTime';
 import DayButton from './DayButton';
 import ClearFix from '../internal/ClearFix';
+import warning  from 'warning';
 
 const CalendarMonth = React.createClass({
 
@@ -35,7 +36,8 @@ const CalendarMonth = React.createClass({
         const component = this.props.getDayElement(day, this.props.selectedDate);
 
         if (!ReactTestUtils.isElementOfType(component, DayButton)) {
-          throw 'getDayElement must return an element of type DayButton';
+          warning(ReactTestUtils.isElementOfType(component, DayButton), `getDayElement must
+return an element of type DayButton`);
         }
 
         return React.cloneElement(component, {
