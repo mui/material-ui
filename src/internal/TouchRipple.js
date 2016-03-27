@@ -105,20 +105,22 @@ const TouchRipple = React.createClass({
     }
   },
 
-  _handleMouseDown(event) {
+  handleMouseDown(event) {
     //only listen to left clicks
-    if (event.button === 0) this.start(event, false);
+    if (event.button === 0) {
+      this.start(event, false);
+    }
   },
 
-  _handleMouseUp() {
+  handleMouseUp() {
     this.end();
   },
 
-  _handleMouseLeave() {
+  handleMouseLeave() {
     this.end();
   },
 
-  _handleTouchStart(event) {
+  handleTouchStart(event) {
     event.stopPropagation();
     //If the user is swiping (not just tapping), save the position so we can
     //abort ripples if the user appears to be scrolling
@@ -129,7 +131,7 @@ const TouchRipple = React.createClass({
     this.start(event, true);
   },
 
-  _handleTouchEnd() {
+  handleTouchEnd() {
     this.end();
   },
 
@@ -245,11 +247,11 @@ const TouchRipple = React.createClass({
 
     return (
       <div
-        onMouseUp={this._handleMouseUp}
-        onMouseDown={this._handleMouseDown}
-        onMouseLeave={this._handleMouseLeave}
-        onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}
+        onMouseUp={this.handleMouseUp}
+        onMouseDown={this.handleMouseDown}
+        onMouseLeave={this.handleMouseLeave}
+        onTouchStart={this.handleTouchStart}
+        onTouchEnd={this.handleTouchEnd}
       >
         {rippleGroup}
         {children}

@@ -29,7 +29,7 @@ const VerticalNonLinearStepper = React.createClass({
     };
   },
 
-  selectStep(CurrentStep) {
+  handleStepHeaderTouch(CurrentStep) {
     this.setState({
       activeStep: CurrentStep,
     });
@@ -51,7 +51,7 @@ const VerticalNonLinearStepper = React.createClass({
     return <span>{step.props.orderStepLabel}</span>;
   },
 
-  continue() {
+  handleTouchTap() {
     const {
       activeStep,
       statusSteps,
@@ -73,7 +73,7 @@ const VerticalNonLinearStepper = React.createClass({
         </div>
         <Stepper
           activeStep={this.state.activeStep}
-          onStepHeaderTouch={this.selectStep}
+          onStepHeaderTouch={this.handleStepHeaderTouch}
           updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
@@ -85,7 +85,7 @@ const VerticalNonLinearStepper = React.createClass({
                 key={0}
                 label="Finish"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
                 style={styles.actionButton}
               />,
               <FlatButton
@@ -106,7 +106,7 @@ const VerticalNonLinearStepper = React.createClass({
                 key={0}
                 label="Finish"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
                 style={styles.actionButton}
               />,
               <FlatButton
@@ -128,7 +128,7 @@ const VerticalNonLinearStepper = React.createClass({
                 key={0}
                 label="Finish"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
                 style={styles.actionButton}
               />,
               <FlatButton

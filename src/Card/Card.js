@@ -74,7 +74,7 @@ const Card = React.createClass({
       this.setState({expanded: nextProps.expanded});
   },
 
-  _onExpandable(event) {
+  handleExpanding(event) {
     event.preventDefault();
     const newExpandedState = !this.state.expanded;
     //no automatic state update when the component is controlled
@@ -100,12 +100,12 @@ const Card = React.createClass({
         return;
       if (currentChild.props.actAsExpander === true) {
         doClone = true;
-        newProps.onTouchTap = this._onExpandable;
+        newProps.onTouchTap = this.handleExpanding;
         newProps.style = Object.assign({cursor: 'pointer'}, currentChild.props.style);
       }
       if (currentChild.props.showExpandableButton === true) {
         doClone = true;
-        newChild = <CardExpandable expanded={expanded} onExpanding={this._onExpandable} />;
+        newChild = <CardExpandable expanded={expanded} onExpanding={this.handleExpanding} />;
       }
       if (doClone) {
         element = React.cloneElement(currentChild, newProps, currentChild.props.children, newChild);

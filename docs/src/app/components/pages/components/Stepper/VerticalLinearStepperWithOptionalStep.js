@@ -40,7 +40,7 @@ const VerticalLinearStepper = React.createClass({
     };
   },
 
-  selectStep(currentStep, step) {
+  handleStepHeaderTouch(currentStep, step) {
     const {
       lastActiveStep,
       activeStep,
@@ -73,7 +73,7 @@ const VerticalLinearStepper = React.createClass({
     return <span>{step.props.orderStepLabel}</span>;
   },
 
-  continue() {
+  handleTouchTap() {
     const {
       activeStep,
       lastActiveStep,
@@ -97,7 +97,7 @@ const VerticalLinearStepper = React.createClass({
         </div>
         <Stepper
           activeStep={this.state.activeStep}
-          onStepHeaderTouch={this.selectStep}
+          onStepHeaderTouch={this.handleStepHeaderTouch}
           updateCompletedStatus={this.updateCompletedSteps}
           createIcon={this.createIcon}
         >
@@ -113,7 +113,7 @@ const VerticalLinearStepper = React.createClass({
                 key={0}
                 label="Continue"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
                 style={styles.actionButton}
               />,
               <FlatButton
@@ -145,7 +145,7 @@ const VerticalLinearStepper = React.createClass({
                 key={0}
                 label="Continue"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
                 style={styles.actionButton}
               />,
               <FlatButton
@@ -168,7 +168,7 @@ const VerticalLinearStepper = React.createClass({
                 key={0}
                 label="Finish"
                 primary={true}
-                onClick={this.continue}
+                onTouchTap={this.handleTouchTap}
                 style={styles.actionButton}
               />,
               <FlatButton

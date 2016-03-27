@@ -91,15 +91,15 @@ const YearButton = React.createClass({
     });
   },
 
-  _handleMouseEnter() {
+  handleMouseEnter() {
     this.setState({hover: true});
   },
 
-  _handleMouseLeave() {
+  handleMouseLeave() {
     this.setState({hover: false});
   },
 
-  _handleTouchTap(event) {
+  handleTouchTap(event) {
     if (this.props.onTouchTap) this.props.onTouchTap(event, this.props.year);
   },
 
@@ -124,9 +124,9 @@ const YearButton = React.createClass({
         style={styles.root}
         disableFocusRipple={true}
         disableTouchRipple={true}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseLeave={this._handleMouseLeave}
-        onTouchTap={this._handleTouchTap}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onTouchTap={this.handleTouchTap}
       >
         <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>{year}</span>

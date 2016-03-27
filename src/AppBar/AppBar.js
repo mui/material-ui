@@ -194,13 +194,13 @@ const AppBar = React.createClass({
     });
   },
 
-  _onLeftIconButtonTouchTap(event) {
+  handleTouchTapLeftIconButton(event) {
     if (this.props.onLeftIconButtonTouchTap) {
       this.props.onLeftIconButtonTouchTap(event);
     }
   },
 
-  _onRightIconButtonTouchTap(event) {
+  handleTouchTapRightIconButton(event) {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }
@@ -271,7 +271,7 @@ const AppBar = React.createClass({
             style={styles.iconButtonStyle}
             iconStyle={styles.iconButtonIconStyle}
             iconClassName={iconClassNameLeft}
-            onTouchTap={this._onLeftIconButtonTouchTap}
+            onTouchTap={this.handleTouchTapLeftIconButton}
           >
             {child}
           </IconButton>
@@ -313,7 +313,7 @@ const AppBar = React.createClass({
           style={iconRightStyle}
           iconStyle={styles.iconButtonIconStyle}
           iconClassName={iconClassNameRight}
-          onTouchTap={this._onRightIconButtonTouchTap}
+          onTouchTap={this.handleTouchTapRightIconButton}
         />
       );
     }

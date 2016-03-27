@@ -52,14 +52,14 @@ return an element of type DayButton`);
         <DayButton
           key={`db${(i + j)}`}
           date={day}
-          onTouchTap={this._handleDayTouchTap}
+          onTouchTap={this.handleTouchTap}
           selected={isSameDate}
         />
       );
     }, this);
   },
 
-  _handleDayTouchTap(event, date) {
+  handleTouchTap(event, date) {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
   },
 

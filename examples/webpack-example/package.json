@@ -19,7 +19,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-runtime": "^6.3.19",
     "eslint": "~2.2.0",
-    "eslint-loader": "^1.1.1",
+    "eslint-loader": "^1.3.0",
     "eslint-plugin-react": "^4.0.0",
     "html-webpack-plugin": "^2.7.2",
     "react-hot-loader": "^1.3.0",

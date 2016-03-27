@@ -84,7 +84,7 @@ const Calendar = React.createClass({
       <CalendarYear
         key={'years'}
         displayDate={this.state.displayDate}
-        onYearTouchTap={this._handleYearTouchTap}
+        onYearTouchTap={this.handleYearTouchTap}
         selectedDate={this.state.selectedDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
@@ -143,19 +143,19 @@ const Calendar = React.createClass({
     }
   },
 
-  _handleDayTouchTap(event, date) {
+  handleDayTouchTap(event, date) {
     this._setSelectedDate(date);
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
   },
 
-  _handleMonthChange(months) {
+  handleMonthChange(months) {
     this.setState({
       transitionDirection: months >= 0 ? 'left' : 'right',
       displayDate: DateTime.addMonths(this.state.displayDate, months),
     });
   },
 
-  _handleYearTouchTap(event, year) {
+  handleYearTouchTap(event, year) {
     const date = DateTime.clone(this.state.selectedDate);
     date.setFullYear(year);
     this._setSelectedDate(date, event);
@@ -168,19 +168,19 @@ const Calendar = React.createClass({
     };
   },
 
-  _handleMonthDayClick() {
+  handleTouchTapMonthDay() {
     this.setState({
       displayMonthDay: true,
     });
   },
 
-  _handleYearClick() {
+  handleTouchTapClick() {
     this.setState({
       displayMonthDay: false,
     });
   },
 
-  _handleWindowKeyDown(event) {
+  handleKeyDown(event) {
     if (this.props.open) {
       switch (keycode(event)) {
         case 'up':
@@ -291,7 +291,7 @@ const Calendar = React.createClass({
       <ClearFix style={styles.root}>
         <EventListener
           elementName="window"
-          onKeyDown={this._handleWindowKeyDown}
+          onKeyDown={this.handleKeyDown}
         />
         <DateDisplay
           DateTimeFormat={DateTimeFormat}
@@ -299,8 +299,8 @@ const Calendar = React.createClass({
           disableYearSelection={this.props.disableYearSelection}
           style={styles.dateDisplay}
           selectedDate={this.state.selectedDate}
-          handleMonthDayClick={this._handleMonthDayClick}
-          handleYearClick={this._handleYearClick}
+          onTouchTapMonthDay={this.handleTouchTapMonthDay}
+          onTouchTapYear={this.handleTouchTapClick}
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
           muiTheme={this.state.muiTheme}
@@ -312,7 +312,7 @@ const Calendar = React.createClass({
               DateTimeFormat={DateTimeFormat}
               locale={locale}
               displayDate={this.state.displayDate}
-              onMonthChange={this._handleMonthChange}
+              onMonthChange={this.handleMonthChange}
               prevMonth={toolbarInteractions.prevMonth}
               nextMonth={toolbarInteractions.nextMonth}
             />
@@ -331,7 +331,7 @@ const Calendar = React.createClass({
                 key={this.state.displayDate.toDateString()}
                 ref="calendar"
                 displayDate={this.state.displayDate}
-                onDayTouchTap={this._handleDayTouchTap}
+                onDayTouchTap={this.handleDayTouchTap}
                 selectedDate={this.state.selectedDate}
                 minDate={this.props.minDate}
                 maxDate={this.props.maxDate}

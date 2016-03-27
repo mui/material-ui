@@ -402,9 +402,11 @@ const TextField = React.createClass({
     if (this.props.onKeyDown) this.props.onKeyDown(event);
   },
 
-  _handleTextAreaHeightChange(event, height) {
+  handleHeightChange(event, height) {
     let newHeight = height + 24;
-    if (this.props.floatingLabelText) newHeight += 24;
+    if (this.props.floatingLabelText) {
+      newHeight += 24;
+    }
     ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
   },
 
@@ -493,7 +495,7 @@ const TextField = React.createClass({
           style={inputStyleMerged}
           rows={rows}
           rowsMax={rowsMax}
-          onHeightChange={this._handleTextAreaHeightChange}
+          onHeightChange={this.handleHeightChange}
           textareaStyle={Object.assign(styles.textarea, textareaStyle)}
         />
       ) : (

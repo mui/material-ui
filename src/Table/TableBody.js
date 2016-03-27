@@ -170,10 +170,14 @@ const TableBody = React.createClass({
     this.setState(newState);
   },
 
-  componentClickAway() {
+  handleClickAway() {
     if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
-      this.setState({selectedRows: []});
-      if (this.props.onRowSelection) this.props.onRowSelection([]);
+      this.setState({
+        selectedRows: [],
+      });
+      if (this.props.onRowSelection) {
+        this.props.onRowSelection([]);
+      }
     }
   },
 
@@ -423,7 +427,7 @@ const TableBody = React.createClass({
     const rows = this._createRows();
 
     return (
-      <ClickAwayListener onClickAway={this.componentClickAway}>
+      <ClickAwayListener onClickAway={this.handleClickAway}>
         <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
           {rows}
         </tbody>

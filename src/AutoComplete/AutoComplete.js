@@ -256,8 +256,6 @@ const AutoComplete = React.createClass({
     clearTimeout(this.timerTouchTapCloseId);
   },
 
-  timerTouchTapCloseId: null,
-
   close() {
     this.setState({
       open: false,
@@ -308,6 +306,10 @@ const AutoComplete = React.createClass({
       this.close();
       this.timerTouchTapCloseId = null;
     }, this.props.menuCloseDelay);
+  },
+
+  handleEscKeyDown() {
+    this.close();
   },
 
   handleKeyDown(event) {
@@ -484,7 +486,7 @@ const AutoComplete = React.createClass({
         ref="menu"
         autoWidth={false}
         disableAutoFocus={focusTextField}
-        onEscKeyDown={this.close}
+        onEscKeyDown={this.handleEscKeyDown}
         initiallyKeyboardFocused={false}
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}

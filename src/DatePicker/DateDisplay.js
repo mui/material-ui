@@ -56,8 +56,6 @@ const DateDisplay = React.createClass({
   propTypes: {
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
-    handleMonthDayClick: React.PropTypes.func,
-    handleYearClick: React.PropTypes.func,
     locale: React.PropTypes.string.isRequired,
     mode: React.PropTypes.oneOf([
       'portrait',
@@ -70,7 +68,8 @@ const DateDisplay = React.createClass({
      * The material-ui theme applied to this component.
      */
     muiTheme: React.PropTypes.object.isRequired,
-
+    onTouchTapMonthDay: React.PropTypes.func,
+    onTouchTapYear: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
 
     /**
@@ -110,17 +109,17 @@ const DateDisplay = React.createClass({
     }
   },
 
-  _handleMonthDayClick() {
-    if (this.props.handleMonthDayClick && this.state.selectedYear) {
-      this.props.handleMonthDayClick();
+  handleTouchTapMonthDay() {
+    if (this.props.onTouchTapMonthDay && this.state.selectedYear) {
+      this.props.onTouchTapMonthDay();
     }
 
     this.setState({selectedYear: false});
   },
 
-  _handleYearClick() {
-    if (this.props.handleYearClick && !this.props.disableYearSelection && !this.state.selectedYear) {
-      this.props.handleYearClick();
+  handleTouchTapYear() {
+    if (this.props.onTouchTapYear && !this.props.disableYearSelection && !this.state.selectedYear) {
+      this.props.onTouchTapYear();
     }
 
     if (!this.props.disableYearSelection) {
@@ -155,7 +154,7 @@ const DateDisplay = React.createClass({
           style={styles.year}
           direction={this.state.transitionDirection}
         >
-          <div key={year} style={styles.yearTitle} onTouchTap={this._handleYearClick}>
+          <div key={year} style={styles.yearTitle} onTouchTap={this.handleTouchTapYear}>
             {year}
           </div>
         </SlideInTransitionGroup>
@@ -166,7 +165,7 @@ const DateDisplay = React.createClass({
           <div
             key={dateTimeFormatted}
             style={styles.monthDayTitle}
-            onTouchTap={this._handleMonthDayClick}
+            onTouchTap={this.handleTouchTapMonthDay}
           >
             {dateTimeFormatted}
           </div>
