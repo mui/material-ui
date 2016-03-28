@@ -10,6 +10,59 @@ import List from '../List/List';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
 
+function getStyles(props, context) {
+  const {
+    animated,
+    desktop,
+    maxHeight,
+    openDirection = 'bottom-left',
+    width,
+  } = props;
+
+  const openDown = openDirection.split('-')[0] === 'bottom';
+  const openLeft = openDirection.split('-')[1] === 'left';
+
+  const {muiTheme} = context;
+
+  const styles = {
+    root: {
+      //Nested div bacause the List scales x faster than
+      //it scales y
+      transition: animated ? transitions.easeOut('250ms', 'transform') : null,
+      zIndex: muiTheme.zIndex.menu,
+      top: openDown ? 0 : null,
+      bottom: !openDown ? 0 : null,
+      left: !openLeft ? 0 : null,
+      right: openLeft ? 0 : null,
+      transform: animated ? 'scaleX(0)' : null,
+      transformOrigin: openLeft ? 'right' : 'left',
+      opacity: 0,
+      maxHeight: maxHeight,
+      overflowY: maxHeight ? 'auto' : null,
+    },
+    divider: {
+      marginTop: 7,
+      marginBottom: 8,
+    },
+    list: {
+      display: 'table-cell',
+      paddingBottom: desktop ? 16 : 8,
+      paddingTop: desktop ? 16 : 8,
+      userSelect: 'none',
+      width: width,
+    },
+    menuItemContainer: {
+      transition: animated ? transitions.easeOut(null, 'opacity') : null,
+      opacity: 0,
+    },
+    selectedMenuItem: {
+      color: muiTheme.baseTheme.palette.accent1Color,
+    },
+  };
+
+  return styles;
+}
+
 const Menu = React.createClass({
 
   propTypes: {
@@ -476,53 +529,13 @@ const Menu = React.createClass({
       focusIndex,
     } = this.state;
 
-    const {muiTheme} = this.context;
-    const {prepareStyles} = muiTheme;
-
-    const openDown = openDirection.split('-')[0] === 'bottom';
-    const openLeft = openDirection.split('-')[1] === 'left';
-
-    const baseTheme = muiTheme.baseTheme;
-
-    const styles = {
-      root: {
-        //Nested div bacause the List scales x faster than
-        //it scales y
-        transition: animated ? transitions.easeOut('250ms', 'transform') : null,
-        zIndex: muiTheme.zIndex.menu,
-        top: openDown ? 0 : null,
-        bottom: !openDown ? 0 : null,
-        left: !openLeft ? 0 : null,
-        right: openLeft ? 0 : null,
-        transform: animated ? 'scaleX(0)' : null,
-        transformOrigin: openLeft ? 'right' : 'left',
-        opacity: 0,
-        maxHeight: maxHeight,
-        overflowY: maxHeight ? 'auto' : null,
-      },
-      divider: {
-        marginTop: 7,
-        marginBottom: 8,
-      },
-      list: {
-        display: 'table-cell',
-        paddingBottom: desktop ? 16 : 8,
-        paddingTop: desktop ? 16 : 8,
-        userSelect: 'none',
-        width: width,
-      },
-      menuItemContainer: {
-        transition: animated ? transitions.easeOut(null, 'opacity') : null,
-        opacity: 0,
-      },
-      selectedMenuItem: {
-        color: baseTheme.palette.accent1Color,
-      },
-    };
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedListStyles = Object.assign(styles.list, listStyle);
 
+    const openDown = openDirection.split('-')[0] === 'bottom';
     const filteredChildren = this.getFilteredChildren(children);
 
     //Cascade children opacity
