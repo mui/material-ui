@@ -6,8 +6,10 @@ import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
   const {
+    backgroundColor,
     date,
     disabled,
+    hoverColor,
     selected,
   } = props;
 
@@ -20,12 +22,12 @@ function getStyles(props, state) {
     datePicker,
   } = state.muiTheme;
 
-  let labelColor = baseTheme.palette.textColor;
+  let labelColor = backgroundColor || baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
   let buttonStateTransform = 'scale(0)';
 
   if (hover || selected) {
-    labelColor = datePicker.selectTextColor;
+    labelColor = hoverColor || datePicker.selectTextColor;
     buttonStateOpacity = selected ? 1 : 0.6;
     buttonStateTransform = 'scale(1)';
   } else if (DateTime.isEqualDate(date, new Date())) {
@@ -55,7 +57,7 @@ function getStyles(props, state) {
       borderRadius: '50%',
       transform: buttonStateTransform,
       transition: Transition.easeOut(),
-      backgroundColor: datePicker.selectColor,
+      backgroundColor: backgroundColor || datePicker.selectColor,
     },
   };
 }
@@ -63,9 +65,10 @@ function getStyles(props, state) {
 const DayButton = React.createClass({
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
-    labelStyle: React.PropTypes.object,
+    hoverColor: React.PropTypes.string,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
@@ -126,8 +129,9 @@ const DayButton = React.createClass({
 
   render() {
     const {
+      backgroundColor,
       date,
-      labelStyle,
+      hoverColor,
       onTouchTap,
       selected,
       style,
@@ -154,10 +158,10 @@ const DayButton = React.createClass({
         onKeyboardFocus={this.handleKeyboardFocus}
       >
         <div style={prepareStyles(styles.buttonState)} />
-        <span style={prepareStyles(Object.assign({}, styles.label, labelStyle))}>{this.props.date.getDate()}</span>
+        <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span style={prepareStyles(styles.root)} />
+      <span style={Object.assign({}, styles.root, style)} />
     );
   },
 
