@@ -42,7 +42,7 @@ const Divider = (props, context) => {
       marginLeft: inset ? 72 : 0,
       height: 1,
       border: 'none',
-      backgroundColor: muiTheme.rawTheme.palette.borderColor,
+      backgroundColor: muiTheme.baseTheme.palette.borderColor,
     },
   };
 

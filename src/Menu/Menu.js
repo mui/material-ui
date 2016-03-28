@@ -482,7 +482,7 @@ const Menu = React.createClass({
     const openDown = openDirection.split('-')[0] === 'bottom';
     const openLeft = openDirection.split('-')[1] === 'left';
 
-    const rawTheme = muiTheme.rawTheme;
+    const baseTheme = muiTheme.baseTheme;
 
     const styles = {
       root: {
@@ -516,7 +516,7 @@ const Menu = React.createClass({
         opacity: 0,
       },
       selectedMenuItem: {
-        color: rawTheme.palette.accent1Color,
+        color: baseTheme.palette.accent1Color,
       },
     };
 

@@ -91,7 +91,7 @@ export const MakeSelectable = (Component) => {
       let styles = {};
 
       if (!selectedItemStyle) {
-        const textColor = this.context.muiTheme.rawTheme.palette.textColor;
+        const textColor = this.context.muiTheme.baseTheme.palette.textColor;
         const selectedColor = ColorManipulator.fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,
