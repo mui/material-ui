@@ -207,7 +207,7 @@ const AppBar = React.createClass({
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.context);
+    const styles = getStyles(this.props, this.context);
 
     let menuElementLeft;
     let menuElementRight;
