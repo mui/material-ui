@@ -21,7 +21,7 @@ export default function muiThemeable() {
     };
 
     MuiComponent.contextTypes = {
-      muiTheme: React.PropTypes.object,
+      muiTheme: React.PropTypes.object.isRequired,
     };
 
     return MuiComponent;

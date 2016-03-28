@@ -69,11 +69,10 @@ const Stepper = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: PropTypes.object,
+    muiTheme: PropTypes.object.isRequired,
   },
 
   childContextTypes: {
-    muiTheme: PropTypes.object,
     createIcon: PropTypes.func,
     updateAvatarBackgroundColor: PropTypes.func,
   },

@@ -77,7 +77,7 @@ const Tab = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   handleTouchTap(event) {

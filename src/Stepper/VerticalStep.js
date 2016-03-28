@@ -96,7 +96,7 @@ const Step = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: PropTypes.object,
+    muiTheme: PropTypes.object.isRequired,
     createIcon: PropTypes.func,
     updateAvatarBackgroundColor: PropTypes.func,
   },

@@ -9,7 +9,7 @@ class MuiThemeProvider extends Component {
   };
 
   static childContextTypes = {
-    muiTheme: PropTypes.object,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   getChildContext() {

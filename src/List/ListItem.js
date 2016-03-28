@@ -183,7 +183,7 @@ const ListItem = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   mixins: [
@@ -328,7 +328,6 @@ const ListItem = React.createClass({
   },
 
   handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
-
     if (isKeyboardFocused) {
       this.setState({
         isKeyboardFocused: false,

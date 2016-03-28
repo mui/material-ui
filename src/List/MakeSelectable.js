@@ -16,7 +16,7 @@ export const MakeSelectable = (Component) => {
     },
 
     contextTypes: {
-      muiTheme: React.PropTypes.object,
+      muiTheme: React.PropTypes.object.isRequired,
     },
 
     getValueLink: function(props) {

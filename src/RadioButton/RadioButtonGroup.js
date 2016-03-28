@@ -56,7 +56,7 @@ const RadioButtonGroup = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -85,7 +85,7 @@ const RadioButtonGroup = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
       this.setState({
-        selected: nextProps.valueSelected
+        selected: nextProps.valueSelected,
       });
     }
   },

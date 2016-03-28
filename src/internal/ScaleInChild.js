@@ -14,7 +14,7 @@ const ScaleInChild = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps: function() {

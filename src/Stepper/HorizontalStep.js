@@ -71,7 +71,7 @@ const HorizontalStep = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
     createIcon: React.PropTypes.func,
     updateAvatarBackgroundColor: React.PropTypes.func,
   },

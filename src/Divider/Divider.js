@@ -22,7 +22,7 @@ const defaultProps = {
 };
 
 const contextTypes = {
-  muiTheme: React.PropTypes.object,
+  muiTheme: React.PropTypes.object.isRequired,
 };
 
 const Divider = (props, context) => {
