@@ -10,6 +10,54 @@ const nestedMenuStyle = {
   position: 'relative',
 };
 
+function getStyles(props, context) {
+  const disabledColor = context.muiTheme.baseTheme.palette.disabledColor;
+  const textColor = context.muiTheme.baseTheme.palette.textColor;
+  const leftIndent = props.desktop ? 64 : 72;
+  const sidePadding = props.desktop ? 24 : 16;
+
+  const styles = {
+    root: {
+      color: props.disabled ? disabledColor : textColor,
+      lineHeight: props.desktop ? '32px' : '48px',
+      fontSize: props.desktop ? 15 : 16,
+      whiteSpace: 'nowrap',
+    },
+
+    innerDivStyle: {
+      paddingLeft: props.leftIcon || props.insetChildren || props.checked ? leftIndent : sidePadding,
+      paddingRight: sidePadding,
+      paddingBottom: 0,
+      paddingTop: 0,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignContent: 'space-between',
+    },
+
+    secondaryText: {
+      order: 2,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+
+    leftIconDesktop: {
+      margin: 0,
+      left: 24,
+      top: 4,
+    },
+
+    rightIconDesktop: {
+      margin: 0,
+      right: 24,
+      top: 4,
+      fill: context.muiTheme.menuItem.rightIconDesktopFill,
+    },
+  };
+
+  return styles;
+}
+
 const MenuItem = React.createClass({
 
   propTypes: {
@@ -202,55 +250,8 @@ const MenuItem = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-      menuItem,
-    } = this.context.muiTheme;
-
-    const disabledColor = this.context.muiTheme.rawTheme.palette.disabledColor;
-    const textColor = this.context.muiTheme.rawTheme.palette.textColor;
-    const leftIndent = desktop ? 64 : 72;
-    const sidePadding = desktop ? 24 : 16;
-
-    const styles = {
-      root: {
-        color: disabled ? disabledColor : textColor,
-        lineHeight: desktop ? '32px' : '48px',
-        fontSize: desktop ? 15 : 16,
-        whiteSpace: 'nowrap',
-      },
-
-      innerDivStyle: {
-        paddingLeft: leftIcon || insetChildren || checked ? leftIndent : sidePadding,
-        paddingRight: sidePadding,
-        paddingBottom: 0,
-        paddingTop: 0,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignContent: 'space-between',
-      },
-
-      secondaryText: {
-        order: 2,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      },
-
-      leftIconDesktop: {
-        margin: 0,
-        left: 24,
-        top: 4,
-      },
-
-      rightIconDesktop: {
-        margin: 0,
-        right: 24,
-        top: 4,
-        fill: menuItem.rightIconDesktopFill,
-      },
-    };
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
