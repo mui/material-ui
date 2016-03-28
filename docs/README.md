@@ -34,14 +34,12 @@ Open `http://localhost:3000` to view the documentation site.
 
 ```sh
 npm run native:development
+react-native run-ios
 ```
-
-Open `ios/iosApp.xcodeproj` in Xcode, build and run the project.
 
 ### Android
 
 ```sh
 npm run native:development
-npm run android:setup-port
 react-native run-android
 ```
