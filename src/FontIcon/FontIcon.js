@@ -116,8 +116,8 @@ const FontIcon = React.createClass({
 
   render() {
     const {
-      onMouseLeave,
-      onMouseEnter,
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onMouseEnter, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

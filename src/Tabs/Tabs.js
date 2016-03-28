@@ -192,7 +192,7 @@ const Tabs = React.createClass({
       children,
       contentContainerClassName,
       contentContainerStyle,
-      initialSelectedIndex,
+      initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
       style,
       tabItemContainerStyle,

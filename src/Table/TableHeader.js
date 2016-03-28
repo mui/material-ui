@@ -193,7 +193,6 @@ const TableHeader = React.createClass({
     const {
       className,
       style,
-      ...other,
     } = this.props;
 
     const {

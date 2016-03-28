@@ -85,7 +85,7 @@ const CircleRipple = React.createClass({
       muiTheme: {
         prepareStyles,
       },
-      opacity,
+      opacity, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

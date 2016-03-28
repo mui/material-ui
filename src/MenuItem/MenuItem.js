@@ -198,7 +198,7 @@ const MenuItem = React.createClass({
       children,
       desktop,
       disabled,
-      focusState,
+      focusState, // eslint-disable-line no-unused-vars
       innerDivStyle,
       insetChildren,
       leftIcon,
@@ -206,7 +206,7 @@ const MenuItem = React.createClass({
       rightIcon,
       secondaryText,
       style,
-      value,
+      value, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

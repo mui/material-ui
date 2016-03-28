@@ -419,18 +419,18 @@ const TextField = React.createClass({
       className,
       disabled,
       errorStyle,
-      errorText,
+      errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
       floatingLabelText,
-      fullWidth,
+      fullWidth, // eslint-disable-line no-unused-vars
       hintText,
       hintStyle,
       id,
       inputStyle,
       multiLine,
-      onBlur,
-      onChange,
-      onFocus,
+      onBlur, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
       style,
       type,
       underlineDisabledStyle,

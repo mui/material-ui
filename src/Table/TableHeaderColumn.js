@@ -114,8 +114,8 @@ const TableHeaderColumn = React.createClass({
     const {
       children,
       className,
-      columnNumber,
-      onClick,
+      columnNumber, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       style,
       tooltip,
       tooltipStyle,

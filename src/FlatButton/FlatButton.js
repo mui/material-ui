@@ -285,16 +285,16 @@ const FlatButton = React.createClass({
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      {
-        labelElement,
-        iconCloned,
-        children,
-      } :
-      {
-        children,
-        iconCloned,
-        labelElement,
-      };
+    {
+      labelElement,
+      iconCloned,
+      children,
+    } :
+    {
+      children,
+      iconCloned,
+      labelElement,
+    };
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (

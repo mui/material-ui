@@ -414,10 +414,10 @@ const ListItem = React.createClass({
       nestedItems,
       nestedLevel,
       nestedListStyle,
-      onKeyboardFocus,
-      onMouseLeave,
-      onMouseEnter,
-      onTouchStart,
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onMouseEnter, // eslint-disable-line no-unused-vars
+      onTouchStart, // eslint-disable-line no-unused-vars
       onTouchTap,
       rightAvatar,
       rightIcon,

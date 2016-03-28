@@ -77,7 +77,7 @@ const TimeDisplay = React.createClass({
 
   render() {
     const {
-      selectedTime,
+      selectedTime, // eslint-disable-line no-unused-vars
       mode,
       affix,
       ...other,

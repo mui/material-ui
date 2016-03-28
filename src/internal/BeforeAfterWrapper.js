@@ -95,9 +95,9 @@ const BeforeAfterWrapper = React.createClass({
     const {
       beforeStyle,
       afterStyle,
-      beforeElementType,
-      afterElementType,
-      elementType,
+      beforeElementType, // eslint-disable-line no-unused-vars
+      afterElementType, // eslint-disable-line no-unused-vars
+      elementType, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

@@ -97,7 +97,7 @@ const TimePickerDialog = React.createClass({
   render() {
     const {
       initialTime,
-      onAccept,
+      onAccept, // eslint-disable-line no-unused-vars
       format,
       autoOk,
       okLabel,

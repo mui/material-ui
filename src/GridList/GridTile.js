@@ -201,10 +201,10 @@ const GridTile = React.createClass({
     const {
       title,
       subtitle,
-      titlePosition,
-      titleBackground,
-      actionIcon,
-      actionPosition,
+      titlePosition, // eslint-disable-line no-unused-vars
+      titleBackground, // eslint-disable-line no-unused-vars
+      actionIcon, // eslint-disable-line no-unused-vars
+      actionPosition, // eslint-disable-line no-unused-vars
       style,
       children,
       containerElement,

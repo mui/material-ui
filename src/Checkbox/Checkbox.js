@@ -194,7 +194,7 @@ const Checkbox = React.createClass({
   render() {
     const {
       iconStyle,
-      onCheck,
+      onCheck, // eslint-disable-line no-unused-vars
       checkedIcon,
       uncheckedIcon,
       unCheckedIcon,

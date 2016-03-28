@@ -202,7 +202,7 @@ const CircularProgress = React.createClass({
     const {
       style,
       innerStyle,
-      size,
+      size, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

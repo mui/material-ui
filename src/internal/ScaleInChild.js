@@ -105,7 +105,7 @@ const ScaleInChild = React.createClass({
   render() {
     const {
       children,
-      enterDelay,
+      enterDelay, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

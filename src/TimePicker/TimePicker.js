@@ -19,9 +19,9 @@ const TimePicker = React.createClass({
      */
     autoOk: React.PropTypes.bool,
 
-   /**
-    * Override the label of the 'Cancel' button.
-    */
+    /**
+     * Override the label of the 'Cancel' button.
+     */
     cancelLabel: React.PropTypes.string,
 
     /**
@@ -210,8 +210,8 @@ const TimePicker = React.createClass({
       cancelLabel,
       format,
       okLabel,
-      onFocus,
-      onTouchTap,
+      onFocus, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       onShow,
       onDismiss,
       pedantic,

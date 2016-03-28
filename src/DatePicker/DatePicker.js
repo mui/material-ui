@@ -298,7 +298,7 @@ const DatePicker = React.createClass({
       autoOk,
       cancelLabel,
       container,
-      defaultDate,
+      defaultDate, // eslint-disable-line no-unused-vars
       disableYearSelection,
       firstDayOfWeek,
       locale,
@@ -307,12 +307,12 @@ const DatePicker = React.createClass({
       mode,
       okLabel,
       onDismiss,
-      onFocus,
-      onShow,
-      onTouchTap,
+      onFocus, // eslint-disable-line no-unused-vars
+      onShow, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       style,
       textFieldStyle,
-      valueLink,
+      valueLink, // eslint-disable-line no-unused-vars
       wordings,
       shouldDisableDate,
       ...other,

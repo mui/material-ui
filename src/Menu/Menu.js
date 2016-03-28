@@ -446,18 +446,18 @@ const Menu = React.createClass({
   render() {
     const {
       animated,
-      autoWidth,
+      autoWidth, // eslint-disable-line no-unused-vars
       children,
       desktop,
-      initiallyKeyboardFocused,
+      initiallyKeyboardFocused, // eslint-disable-line no-unused-vars
       listStyle,
       maxHeight,
-      multiple,
+      multiple, // eslint-disable-line no-unused-vars
       openDirection,
-      selectedMenuItemStyle,
+      selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       style,
-      value,
-      valueLink,
+      value, // eslint-disable-line no-unused-vars
+      valueLink, // eslint-disable-line no-unused-vars
       width,
       zDepth,
       ...other,

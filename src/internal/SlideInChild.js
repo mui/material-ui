@@ -92,8 +92,8 @@ const SlideInChild = React.createClass({
   render() {
     const {
       children,
-      enterDelay,
-      getLeaveDirection,
+      enterDelay, // eslint-disable-line no-unused-vars
+      getLeaveDirection, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
