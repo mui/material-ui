@@ -23,13 +23,17 @@ function getStyles(props, state) {
   } = state.muiTheme;
 
   let labelColor = backgroundColor || baseTheme.palette.textColor;
+  let buttonStateColor = backgroundColor || datePicker.selectColor;
   let buttonStateOpacity = 0;
   let buttonStateTransform = 'scale(0)';
 
   if (hover || selected) {
-    labelColor = hoverColor || datePicker.selectTextColor;
+    labelColor = datePicker.selectTextColor;
     buttonStateOpacity = selected ? 1 : 0.6;
     buttonStateTransform = 'scale(1)';
+    if (hoverColor) {
+      buttonStateColor = hoverColor;
+    }
   } else if (DateTime.isEqualDate(date, new Date())) {
     labelColor = datePicker.color;
   }
@@ -57,7 +61,7 @@ function getStyles(props, state) {
       borderRadius: '50%',
       transform: buttonStateTransform,
       transition: Transition.easeOut(),
-      backgroundColor: backgroundColor || datePicker.selectColor,
+      backgroundColor: buttonStateColor,
     },
   };
 }
