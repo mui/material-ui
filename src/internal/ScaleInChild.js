@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -26,10 +25,6 @@ const ScaleInChild = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    PureRenderMixin,
-  ],
 
   getDefaultProps: function() {
     return {

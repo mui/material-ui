@@ -213,12 +213,6 @@ const Snackbar = React.createClass({
     clearTimeout(this.timerOneAtTheTimeId);
   },
 
-  manuallyBindClickAway: true,
-
-  timerAutoHideId: undefined,
-  timerTransitionId: undefined,
-  timerOneAtTheTimeId: undefined,
-
   componentClickAway() {
     if (this.timerTransitionId) return; // If transitioning, don't close snackbar
 

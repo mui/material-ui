@@ -86,7 +86,7 @@ const ListItem = React.createClass({
      */
     nestedListStyle: React.PropTypes.object,
 
-/**
+    /**
      * Callback function fired when the `ListItem` is focused or blurred by the keyboard.
      *
      * @param {object} event `focus` or `blur` event targeting the `ListItem`.

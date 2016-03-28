@@ -1,5 +1,4 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -73,10 +72,6 @@ const Paper = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    PureRenderMixin,
-  ],
 
   getDefaultProps() {
     return {

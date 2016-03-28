@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import Dom from '../utils/dom';
 import CircleRipple from './CircleRipple';
@@ -37,10 +36,6 @@ const TouchRipple = React.createClass({
      */
     style: React.PropTypes.object,
   },
-
-  mixins: [
-    PureRenderMixin,
-  ],
 
   getDefaultProps() {
     return {
