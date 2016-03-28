@@ -69,6 +69,14 @@ const DatePicker = React.createClass({
     formatDate: React.PropTypes.func,
 
     /**
+     * Callback function used to determine the day's entry should be rendered on the calendar.
+     *
+     * @param {object} day Date object of a day.
+     * @returns {DayButton} The button to display on the calendar
+     */
+    getDayElement: React.PropTypes.func,
+
+    /**
      * Locale used for formatting the dialog date strings. If you are not using the default value, you
      * have to provide a `DateTimeFormat` that supports it.
      */
@@ -128,14 +136,6 @@ const DatePicker = React.createClass({
      * @param {object} event TouchTap event targeting the `TextField`.
      */
     onTouchTap: React.PropTypes.func,
-
-    /**
-     * Callback function used to determine if a day's entry should be disabled on the calendar.
-     *
-     * @param {object} day Date object of a day.
-     * @returns {boolean} Indicates whether the day should be disabled.
-     */
-    shouldDisableDate: React.PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
@@ -301,6 +301,7 @@ const DatePicker = React.createClass({
       defaultDate,
       disableYearSelection,
       firstDayOfWeek,
+      getDayElement,
       locale,
       maxDate,
       minDate,
@@ -314,7 +315,6 @@ const DatePicker = React.createClass({
       textFieldStyle,
       valueLink,
       wordings,
-      shouldDisableDate,
       ...other,
     } = this.props;
 
@@ -348,7 +348,7 @@ const DatePicker = React.createClass({
           onShow={onShow}
           onDismiss={onDismiss}
           ref="dialogWindow"
-          shouldDisableDate={shouldDisableDate}
+          getDayElement={getDayElement}
           wordings={wordings}
         />
       </div>

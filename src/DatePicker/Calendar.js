@@ -19,6 +19,7 @@ const Calendar = React.createClass({
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
+    getDayElement: React.PropTypes.func,
     initialDate: React.PropTypes.object,
     locale: React.PropTypes.string.isRequired,
     maxDate: React.PropTypes.object,
@@ -26,7 +27,6 @@ const Calendar = React.createClass({
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     onDayTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
-    shouldDisableDate: React.PropTypes.func,
   },
 
   contextTypes: {
@@ -97,11 +97,7 @@ const Calendar = React.createClass({
   },
 
   isSelectedDateDisabled() {
-    if (!this.state.displayMonthDay) {
-      return false;
-    }
-
-    return this.refs.calendar.isSelectedDateDisabled();
+    return !this.state.displayMonthDay;
   },
 
   _addSelectedDays(days) {
@@ -339,7 +335,7 @@ const Calendar = React.createClass({
                 selectedDate={this.state.selectedDate}
                 minDate={this.props.minDate}
                 maxDate={this.props.maxDate}
-                shouldDisableDate={this.props.shouldDisableDate}
+                getDayElement={this.props.getDayElement}
                 firstDayOfWeek={this.props.firstDayOfWeek}
               />
             </SlideInTransitionGroup>

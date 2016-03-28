@@ -6,8 +6,10 @@ import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props, state) {
   const {
+    backgroundColor,
     date,
     disabled,
+    hoverColor,
     selected,
   } = props;
 
@@ -20,7 +22,8 @@ function getStyles(props, state) {
     datePicker,
   } = state.muiTheme;
 
-  let labelColor = baseTheme.palette.textColor;
+  let labelColor = backgroundColor || baseTheme.palette.textColor;
+  let buttonStateColor = backgroundColor || datePicker.selectColor;
   let buttonStateOpacity = 0;
   let buttonStateTransform = 'scale(0)';
 
@@ -28,6 +31,9 @@ function getStyles(props, state) {
     labelColor = datePicker.selectTextColor;
     buttonStateOpacity = selected ? 1 : 0.6;
     buttonStateTransform = 'scale(1)';
+    if (hoverColor) {
+      buttonStateColor = hoverColor;
+    }
   } else if (DateTime.isEqualDate(date, new Date())) {
     labelColor = datePicker.color;
   }
@@ -55,7 +61,7 @@ function getStyles(props, state) {
       borderRadius: '50%',
       transform: buttonStateTransform,
       transition: Transition.easeOut(),
-      backgroundColor: datePicker.selectColor,
+      backgroundColor: buttonStateColor,
     },
   };
 }
@@ -63,11 +69,14 @@ function getStyles(props, state) {
 const DayButton = React.createClass({
 
   propTypes: {
+    backgroundColor: React.PropTypes.string,
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
+    hoverColor: React.PropTypes.string,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
+    style: React.PropTypes.object,
   },
 
   contextTypes: {
@@ -124,9 +133,12 @@ const DayButton = React.createClass({
 
   render() {
     const {
+      backgroundColor,
       date,
+      hoverColor,
       onTouchTap,
       selected,
+      style,
       ...other,
     } = this.props;
 
@@ -139,7 +151,7 @@ const DayButton = React.createClass({
     return this.props.date ? (
       <EnhancedButton
         {...other}
-        style={styles.root}
+        style={Object.assign({}, styles.root, style)}
         hoverStyle={styles.hover}
         disabled={this.props.disabled}
         disableFocusRipple={true}
@@ -153,7 +165,7 @@ const DayButton = React.createClass({
         <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span style={prepareStyles(styles.root)} />
+      <span style={Object.assign({}, styles.root, style)} />
     );
   },
 
