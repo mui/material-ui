@@ -125,9 +125,11 @@ const TimePicker = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const newState = this.state;
-    newState.time = this._getControlledTime(nextProps);
-    this.setState(newState);
+    if (nextProps.value !== this.props.value) {
+      this.setState({
+        time: this._getControlledTime(nextProps),
+      });
+    }
   },
 
   /**

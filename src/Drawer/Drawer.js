@@ -133,15 +133,17 @@ const Drawer = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const newState = {};
-
-    // If docked is changed, change the open state for when uncontrolled.
-    if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
-
     // If controlled then the open prop takes precedence.
-    if (nextProps.open !== null) newState.open = nextProps.open;
-
-    this.setState(newState);
+    if (nextProps.open !== null) {
+      this.setState({
+        open: nextProps.open,
+      });
+      // Otherwise, if docked is changed, change the open state for when uncontrolled.
+    } else if (this.props.docked !== nextProps.docked) {
+      this.setState({
+        open: nextProps.docked,
+      });
+    }
   },
 
   componentDidUpdate() {

@@ -127,23 +127,17 @@ const EnhancedSwitch = React.createClass({
       (nextProps.hasOwnProperty('defaultSwitched') &&
       (nextProps.defaultSwitched !== this.props.defaultSwitched));
 
-    const newState = {};
+    if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
+      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultSwitched;
 
-    if (hasCheckedProp) {
-      newState.switched = nextProps.checked;
-    } else if (hasToggledProp) {
-      newState.switched = nextProps.toggled;
-    } else if (hasNewDefaultProp) {
-      newState.switched = nextProps.defaultSwitched;
+      this.setState({
+        switched: switched,
+      });
+
+      if (this.props.onParentShouldUpdate && switched !== this.props.switched) {
+        this.props.onParentShouldUpdate(switched);
+      }
     }
-
-    if (newState.switched !== undefined &&
-      newState.switched !== this.props.switched &&
-      this.props.onParentShouldUpdate) {
-      this.props.onParentShouldUpdate(newState.switched);
-    }
-
-    this.setState(newState);
   },
 
   isSwitched() {

@@ -328,12 +328,15 @@ const ListItem = React.createClass({
   },
 
   handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
-    const iconButton = this.props.rightIconButton;
-    const newState = {};
 
-    newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
-    if (isKeyboardFocused) newState.isKeyboardFocused = false;
-    this.setState(newState);
+    if (isKeyboardFocused) {
+      this.setState({
+        isKeyboardFocused: false,
+        rightIconButtonKeyboardFocused: isKeyboardFocused,
+      });
+    }
+
+    const iconButton = this.props.rightIconButton;
 
     if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(event, isKeyboardFocused);
   },

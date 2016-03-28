@@ -211,14 +211,11 @@ const FloatingActionButton = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const newState = {};
-
     if (nextProps.disabled !== this.props.disabled) {
-      const zDepth = nextProps.disabled ? 0 : this.props.zDepth;
-      newState.zDepth = zDepth;
+      this.setState({
+        zDepth: nextProps.disabled ? 0 : this.props.zDepth,
+      });
     }
-
-    this.setState(newState);
   },
 
   _handleMouseDown(event) {

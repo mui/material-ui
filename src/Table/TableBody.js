@@ -144,15 +144,17 @@ const TableBody = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const newState = {};
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      newState.selectedRows = this.state.selectedRows.length > 0 ?
-        [this.state.selectedRows[this.state.selectedRows.length - 1]] : [];
+      this.setState({
+        selectedRows: this.state.selectedRows.length > 0 ?
+          [this.state.selectedRows[this.state.selectedRows.length - 1]] : [],
+      });
+      // TODO: should else be conditional, not run any time props other than allRowsSelected change?
     } else {
-      newState.selectedRows = this._calculatePreselectedRows(nextProps);
+      this.setState({
+        selectedRows: this._calculatePreselectedRows(nextProps),
+      });
     }
-
-    this.setState(newState);
   },
 
   handleClickAway() {

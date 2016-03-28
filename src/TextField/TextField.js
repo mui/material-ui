@@ -322,20 +322,26 @@ const TextField = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const newState = {
-      errorText: nextProps.errorText,
-    };
+    if (nextProps.errorText !== this.props.errorText) {
+      this.setState({
+        errorText: nextProps.errorText,
+      });
+    }
 
     if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }
 
     if (nextProps.hasOwnProperty('value')) {
-      newState.hasValue = isValid(nextProps.value) ||
+      const hasValue = isValid(nextProps.value) ||
         (this.state.isClean && isValid(nextProps.defaultValue));
-    }
 
-    if (newState) this.setState(newState);
+      if (hasValue !== this.state.hasValue) {
+        this.setState({
+          hasValue: hasValue,
+        });
+      }
+    }
   },
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {

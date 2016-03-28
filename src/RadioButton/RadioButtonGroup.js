@@ -83,13 +83,11 @@ const RadioButtonGroup = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const newState = {};
-
     if (nextProps.hasOwnProperty('valueSelected')) {
-      newState.selected = nextProps.valueSelected;
+      this.setState({
+        selected: nextProps.valueSelected
+      });
     }
-
-    this.setState(newState);
   },
 
   _hasCheckAttribute(radioButton) {
