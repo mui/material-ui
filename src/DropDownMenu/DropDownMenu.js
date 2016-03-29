@@ -20,7 +20,7 @@ const DropDownMenu = React.createClass({
   propTypes: {
     /**
      * The width will automatically be set according to the items inside the menu.
-     * To control this width in css instead, set this prop to false.
+     * To control this width in css instead, set this prop to `false`.
      */
     autoWidth: React.PropTypes.bool,
 
@@ -128,11 +128,16 @@ const DropDownMenu = React.createClass({
   },
 
   componentDidMount() {
-    if (this.props.autoWidth) this._setWidth();
+    if (this.props.autoWidth) {
+      this.setWidth();
+    }
     if (this.props.openImmediately) {
-      /*eslint-disable react/no-did-mount-set-state */
       // Temorary fix to make openImmediately work with popover.
-      setTimeout(() => this.setState({open: true, anchorEl: this.refs.root}));
+      /*eslint-disable react/no-did-mount-set-state */
+      setTimeout(() => this.setState({
+        open: true,
+        anchorEl: this.refs.root,
+      }), 0);
       /*eslint-enable react/no-did-mount-set-state */
     }
   },
@@ -142,7 +147,7 @@ const DropDownMenu = React.createClass({
     this.setState({muiTheme: newMuiTheme});
 
     if (this.props.autoWidth) {
-      this._setWidth();
+      this.setWidth();
     }
   },
 
@@ -152,6 +157,18 @@ const DropDownMenu = React.createClass({
     const palette = this.state.muiTheme.rawTheme.palette;
     const accentColor = this.state.muiTheme.dropDownMenu.accentColor;
     return {
+      root: {
+        display: 'inline-block',
+        fontSize: spacing.desktopDropDownMenuFontSize,
+        height: spacing.desktopSubheaderHeight,
+        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
+        outline: 'none',
+        position: 'relative',
+        transition: transitions.easeOut(),
+      },
+      rootWhenOpen: {
+        opacity: 1,
+      },
       control: {
         cursor: disabled ? 'not-allowed' : 'pointer',
         height: '100%',
@@ -162,7 +179,7 @@ const DropDownMenu = React.createClass({
         fill: accentColor,
         position: 'absolute',
         right: spacing.desktopGutterLess,
-        top: ((spacing.desktopToolbarHeight - 24) / 2),
+        top: (spacing.desktopToolbarHeight - 24) / 2,
       },
       label: {
         color: disabled ? palette.disabledColor : palette.textColor,
@@ -177,19 +194,7 @@ const DropDownMenu = React.createClass({
       },
       labelWhenOpen: {
         opacity: 0,
-        top: (spacing.desktopToolbarHeight / 8),
-      },
-      rootWhenOpen: {
-        opacity: 1,
-      },
-      root: {
-        display: 'inline-block',
-        fontSize: spacing.desktopDropDownMenuFontSize,
-        height: spacing.desktopSubheaderHeight,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-        outline: 'none',
-        position: 'relative',
-        transition: transitions.easeOut(),
+        top: spacing.desktopToolbarHeight / 8,
       },
       underline: {
         borderTop: `solid 1px ${accentColor}`,
@@ -221,8 +226,7 @@ const DropDownMenu = React.createClass({
     return root;
   },
 
-
-  _setWidth() {
+  setWidth() {
     const el = this.refs.root;
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
@@ -263,7 +267,7 @@ const DropDownMenu = React.createClass({
       labelStyle,
       listStyle,
       maxHeight,
-      menuStyle,
+      menuStyle: menuStyleProps,
       style,
       underlineStyle,
       value,
@@ -290,9 +294,13 @@ const DropDownMenu = React.createClass({
       }
     });
 
-    let popoverStyle;
+    let menuStyle;
     if (anchorEl && !autoWidth) {
-      popoverStyle = {width: anchorEl.clientWidth};
+      menuStyle = Object.assign({
+        width: anchorEl.clientWidth,
+      }, menuStyleProps);
+    } else {
+      menuStyle = menuStyleProps;
     }
 
     return (
@@ -314,7 +322,6 @@ const DropDownMenu = React.createClass({
         <Popover
           anchorOrigin={anchorOrigin}
           anchorEl={anchorEl}
-          style={popoverStyle}
           animation={PopoverAnimationFromTop}
           open={open}
           onRequestClose={this.handleRequestCloseMenu}

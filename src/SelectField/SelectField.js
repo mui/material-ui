@@ -23,9 +23,9 @@ const SelectField = React.createClass({
 
   propTypes: {
     /**
-     * The width will automatically be set according to the
-     * items inside the menu. To control this width in css
-     * instead, set this prop to `false`.
+     * If true, the width will automatically be set according to the
+     * items inside the menu.
+     * To control this width in css instead, leave this prop to `false`.
      */
     autoWidth: React.PropTypes.bool,
 
