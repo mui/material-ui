@@ -48,9 +48,7 @@ const HomeFeature = React.createClass({
         marginBottom: 0,
       },
       image: {
-        //Not sure why this is needed but it fixes a display
-        //issue in chrome
-        marginBottom: -6,
+        display: 'block'
       },
       heading: {
         fontSize: 20,
