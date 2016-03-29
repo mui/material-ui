@@ -4,11 +4,15 @@ import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import AppBar from './AppBar';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<AppBar />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   it('renders children by default', () => {
     const testChildren = <div className="unique">Hello World</div>;
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar>{testChildren}</AppBar>
     );
 
@@ -16,7 +20,7 @@ describe('<AppBar />', () => {
   });
 
   it('renders className', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar className="testClassName" />
     );
 
@@ -25,7 +29,7 @@ describe('<AppBar />', () => {
 
   it('renders iconClassNameLeft', () => {
     const iconClassName = 'muidocs-icon-navigation-expand-more';
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar iconClassNameLeft={iconClassName} />
     );
 
@@ -35,7 +39,7 @@ describe('<AppBar />', () => {
 
   it('renders iconClassNameRight', () => {
     const iconClassName = 'muidocs-icon-navigation-expand-more';
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar iconClassNameRight={iconClassName} />
     );
 
@@ -46,7 +50,7 @@ describe('<AppBar />', () => {
   it('renders iconClassNameLeft and iconClassNameRight', () => {
     const iconClassNameLeft = 'muidocs-icon-action-home';
     const iconClassNameRight = 'muidocs-icon-navigation-expand-more';
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar iconClassNameLeft={iconClassNameLeft} iconClassNameRight={iconClassNameRight} />
     );
 
@@ -57,7 +61,7 @@ describe('<AppBar />', () => {
   });
 
   it('renders iconElementLeft', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar iconElementLeft={<span className="icon" />} />
     );
 
@@ -65,7 +69,7 @@ describe('<AppBar />', () => {
   });
 
   it('renders iconElementRight', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar iconElementRight={<span className="icon" />} />
     );
 
@@ -75,7 +79,7 @@ describe('<AppBar />', () => {
   it('call onLeftIconButtonTouchTap callback', () => {
     const onLeftIconButtonTouchTap = sinon.spy();
     const iconClassNameLeft = 'muidocs-icon-action-home';
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar
         iconClassNameLeft={iconClassNameLeft}
         onLeftIconButtonTouchTap={onLeftIconButtonTouchTap}
@@ -90,7 +94,7 @@ describe('<AppBar />', () => {
   it('call onRightIconButtonTouchTap callback', () => {
     const onRightIconButtonTouchTap = sinon.spy();
     const iconClassNameRight = 'muidocs-icon-action-home';
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar
         iconClassNameRight={iconClassNameRight}
         onRightIconButtonTouchTap={onRightIconButtonTouchTap}
@@ -104,7 +108,7 @@ describe('<AppBar />', () => {
 
   it('call onTitleTouchTap callback', () => {
     const onTitleTouchTap = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar
         title="Title"
         onTitleTouchTap={onTitleTouchTap}
@@ -117,7 +121,7 @@ describe('<AppBar />', () => {
   });
 
   it('hide menu icon when showMenuIconButton is false', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar
         title="Title"
         showMenuIconButton={false}
@@ -131,7 +135,7 @@ describe('<AppBar />', () => {
     const style = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar title="Title" style={style} />
     );
 
@@ -140,7 +144,7 @@ describe('<AppBar />', () => {
   });
 
   it('renders title', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar title="Title" />
     );
 
@@ -151,7 +155,7 @@ describe('<AppBar />', () => {
     const titleStyle = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar title="Title" titleStyle={titleStyle} />
     );
 
@@ -161,7 +165,7 @@ describe('<AppBar />', () => {
   });
 
   it('renders zDepth to paper component', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <AppBar title="Title" zDepth={2} />
     );
 

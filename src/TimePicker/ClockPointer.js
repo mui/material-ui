@@ -1,5 +1,4 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function calcAngle(value, base) {
   value %= base;
@@ -14,19 +13,15 @@ function isInner(props) {
   return props.value < 1 || props.value > 12 ;
 }
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const {
     hasSelected,
     type,
     value,
   } = props;
 
-  const {
-    inner,
-    muiTheme: {
-      timePicker,
-    },
-  } = state;
+  const {inner} = state;
+  const {timePicker} = context.muiTheme;
 
   const angle = type === 'hour' ? calcAngle(value, 12) : calcAngle(value, 60);
 
@@ -67,11 +62,7 @@ const ClockPointer = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -85,20 +76,12 @@ const ClockPointer = React.createClass({
   getInitialState() {
     return {
       inner: isInner(this.props),
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       inner: isInner(nextProps),
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -107,11 +90,9 @@ const ClockPointer = React.createClass({
       return <span />;
     }
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context, this.state);
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     return (
       <div style={prepareStyles(styles.root)} >

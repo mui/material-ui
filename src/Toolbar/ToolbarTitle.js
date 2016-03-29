@@ -1,11 +1,10 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     baseTheme,
     toolbar,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   return {
     root: {
@@ -40,29 +39,7 @@ const ToolbarTitle = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   render() {
@@ -73,11 +50,8 @@ const ToolbarTitle = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>

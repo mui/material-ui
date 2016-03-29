@@ -6,7 +6,6 @@ import ColorManipulator from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from './EnhancedTextarea';
-import getMuiTheme from '../styles/getMuiTheme';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
@@ -280,11 +279,7 @@ const TextField = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -307,13 +302,6 @@ const TextField = React.createClass({
       errorText: this.props.errorText,
       hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
       isClean: true,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -333,22 +321,27 @@ const TextField = React.createClass({
     this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {
-      errorText: nextProps.errorText,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errorText !== this.props.errorText) {
+      this.setState({
+        errorText: nextProps.errorText,
+      });
+    }
 
     if (nextProps.children && nextProps.children.props) {
       nextProps = nextProps.children.props;
     }
 
     if (nextProps.hasOwnProperty('value')) {
-      newState.hasValue = isValid(nextProps.value) ||
+      const hasValue = isValid(nextProps.value) ||
         (this.state.isClean && isValid(nextProps.defaultValue));
-    }
 
-    if (newState) this.setState(newState);
+      if (hasValue !== this.state.hasValue) {
+        this.setState({
+          hasValue: hasValue,
+        });
+      }
+    }
   },
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -443,12 +436,8 @@ const TextField = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
@@ -457,7 +446,7 @@ const TextField = React.createClass({
 
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
-        muiTheme={this.state.muiTheme}
+        muiTheme={this.context.muiTheme}
         style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
@@ -513,7 +502,7 @@ const TextField = React.createClass({
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint
-            muiTheme={this.state.muiTheme}
+            muiTheme={this.context.muiTheme}
             show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
                   (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
             style={hintStyle}
@@ -530,7 +519,7 @@ const TextField = React.createClass({
             errorStyle={errorStyle}
             focus={this.state.isFocused}
             focusStyle={underlineFocusStyle}
-            muiTheme={this.state.muiTheme}
+            muiTheme={this.context.muiTheme}
             style={underlineStyle}
           /> :
           null

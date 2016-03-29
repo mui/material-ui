@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Events from '../utils/events';
 import propTypes from '../utils/propTypes';
 import Menu from '../Menu/Menu';
-import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../Popover/Popover';
 
 const IconMenu = React.createClass({
@@ -144,11 +143,7 @@ const IconMenu = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -178,23 +173,12 @@ const IconMenu = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
       menuInitiallyKeyboardFocused: false,
       open: false,
     };
   },
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.open != null) {
       this.setState({
         open: nextProps.open,
@@ -288,10 +272,7 @@ const IconMenu = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
+    const {prepareStyles} = this.context.muiTheme;
     const {open, anchorEl} = this.state;
 
     const styles = {
@@ -299,7 +280,6 @@ const IconMenu = React.createClass({
         display: 'inline-block',
         position: 'relative',
       },
-
       menu: {
         position: 'relative',
       },

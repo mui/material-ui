@@ -7,18 +7,12 @@ import MenuItem from '../MenuItem';
 import Divider from '../Divider';
 import Popover from '../Popover/Popover';
 import propTypes from '../utils/propTypes';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 import deprecated from '../utils/deprecatedPropType';
 
-function getStyles(props, state) {
-  const {
-    anchorEl,
-  } = state;
-
-  const {
-    fullWidth,
-  } = props;
+function getStyles(props, context) {
+  const {anchorEl} = context;
+  const {fullWidth} = props;
 
   const styles = {
     root: {
@@ -194,11 +188,7 @@ const AutoComplete = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -229,14 +219,7 @@ const AutoComplete = React.createClass({
       searchText: this.props.searchText,
       open: this.props.open,
       anchorEl: null,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       focusTextField: true,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -419,12 +402,10 @@ const AutoComplete = React.createClass({
       anchorEl,
       searchText,
       focusTextField,
-      muiTheme: {
-        prepareStyles,
-      },
     } = this.state;
 
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const requestsList = [];
 

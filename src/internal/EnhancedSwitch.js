@@ -5,13 +5,10 @@ import transitions from '../styles/transitions';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
 import Paper from './../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
-function getStyles(props, state) {
-  const {
-    baseTheme,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {baseTheme} = context.muiTheme;
 
   return {
     root: {
@@ -74,10 +71,6 @@ const EnhancedSwitch = React.createClass({
 
   propTypes: {
     checked: React.PropTypes.bool,
-
-    /**
-     * The css class name of the root element.
-     */
     className: React.PropTypes.string,
     defaultSwitched: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
@@ -101,10 +94,6 @@ const EnhancedSwitch = React.createClass({
     onTouchStart: React.PropTypes.func,
     rippleColor: React.PropTypes.string,
     rippleStyle: React.PropTypes.object,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
     switchElement: React.PropTypes.element.isRequired,
     switched: React.PropTypes.bool.isRequired,
@@ -114,23 +103,12 @@ const EnhancedSwitch = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getInitialState() {
     return {
       isKeyboardFocused: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -142,32 +120,24 @@ const EnhancedSwitch = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultSwitched') &&
       (nextProps.defaultSwitched !== this.props.defaultSwitched));
 
-    const newState = {
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    };
+    if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
+      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultSwitched;
 
-    if (hasCheckedProp) {
-      newState.switched = nextProps.checked;
-    } else if (hasToggledProp) {
-      newState.switched = nextProps.toggled;
-    } else if (hasNewDefaultProp) {
-      newState.switched = nextProps.defaultSwitched;
+      this.setState({
+        switched: switched,
+      });
+
+      if (this.props.onParentShouldUpdate && switched !== this.props.switched) {
+        this.props.onParentShouldUpdate(switched);
+      }
     }
-
-    if (newState.switched !== undefined &&
-      newState.switched !== this.props.switched &&
-      this.props.onParentShouldUpdate) {
-      this.props.onParentShouldUpdate(newState.switched);
-    }
-
-    this.setState(newState);
   },
 
   isSwitched() {
@@ -311,11 +281,8 @@ const EnhancedSwitch = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const wrapStyles = Object.assign(styles.wrap, iconStyle);
     const mergedRippleStyle = Object.assign(styles.ripple, rippleStyle);
 
@@ -339,7 +306,7 @@ const EnhancedSwitch = React.createClass({
         key="touchRipple"
         style={mergedRippleStyle}
         color={mergedRippleStyle.color}
-        muiTheme={this.state.muiTheme}
+        muiTheme={this.context.muiTheme}
         centerRipple={true}
       />
     );
@@ -349,7 +316,7 @@ const EnhancedSwitch = React.createClass({
         key="focusRipple"
         innerStyle={mergedRippleStyle}
         color={mergedRippleStyle.color}
-        muiTheme={this.state.muiTheme}
+        muiTheme={this.context.muiTheme}
         show={this.state.isKeyboardFocused}
       />
     );

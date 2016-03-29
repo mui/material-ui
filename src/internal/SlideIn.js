@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './SlideInChild';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const SlideIn = React.createClass({
 
@@ -10,19 +9,11 @@ const SlideIn = React.createClass({
     children: React.PropTypes.node,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
     enterDelay: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -30,23 +21,6 @@ const SlideIn = React.createClass({
       enterDelay: 0,
       direction: 'left',
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   _getLeaveDirection() {
@@ -63,9 +37,7 @@ const SlideIn = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',

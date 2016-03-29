@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
-function getStyles(props, state) {
-  const {
-    tabs,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {tabs} = context.muiTheme;
 
   return {
     tabItemContainer: {
@@ -20,7 +17,6 @@ function getStyles(props, state) {
     },
   };
 }
-
 
 const Tabs = React.createClass({
 
@@ -85,11 +81,7 @@ const Tabs = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -109,20 +101,13 @@ const Tabs = React.createClass({
         initialIndex < this.getTabCount() ?
         initialIndex :
         0,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
   componentWillReceiveProps(newProps, nextContext) {
     const valueLink = this.getValueLink(newProps);
     const newState = {
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
+      muiTheme: nextContext.muiTheme || this.context.muiTheme,
     };
 
     if (valueLink.value !== undefined) {
@@ -200,16 +185,11 @@ const Tabs = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const valueLink = this.getValueLink(this.props);
     const tabValue = valueLink.value;
     const tabContent = [];
-
     const width = 100 / this.getTabCount();
 
     const tabs = React.Children.map(children, (tab, index) => {

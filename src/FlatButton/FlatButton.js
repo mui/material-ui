@@ -4,7 +4,6 @@ import {createChildFragment} from '../utils/childUtils';
 import ColorManipulator from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label && !props.icon) {
@@ -127,11 +126,7 @@ const FlatButton = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -153,20 +148,7 @@ const FlatButton = React.createClass({
       hovered: false,
       isKeyboardFocused: false,
       touch: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   handleKeyboardFocus(event, isKeyboardFocused) {
@@ -225,7 +207,7 @@ const FlatButton = React.createClass({
         textColor,
         textTransform = buttonTextTransform || 'uppercase',
       },
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
     const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
       secondary ? secondaryTextColor :
@@ -295,6 +277,7 @@ const FlatButton = React.createClass({
       iconCloned,
       labelElement,
     };
+
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (

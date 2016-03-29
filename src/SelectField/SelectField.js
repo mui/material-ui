@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props) {
   return {
@@ -134,11 +133,7 @@ const SelectField = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -147,24 +142,6 @@ const SelectField = React.createClass({
       disabled: false,
       fullWidth: false,
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   render() {
@@ -193,7 +170,7 @@ const SelectField = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     return (
       <TextField

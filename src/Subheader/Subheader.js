@@ -1,5 +1,4 @@
 import React from 'react';
-import muiThemeable from '../styles/muiThemeable';
 
 const propTypes = {
   /**
@@ -13,12 +12,6 @@ const propTypes = {
   inset: React.PropTypes.bool,
 
   /**
-   * @ignore
-   * The material-ui theme applied to this component.
-   */
-  muiTheme: React.PropTypes.object.isRequired,
-
-  /**
    * Override the inline-styles of the root element.
    */
   style: React.PropTypes.object,
@@ -28,19 +21,19 @@ const defaultProps = {
   inset: false,
 };
 
-let Subheader = (props) => {
+const contextTypes = {
+  muiTheme: React.PropTypes.object.isRequired,
+};
+
+const Subheader = (props, context) => {
   const {
-    muiTheme,
     children,
     inset,
     style,
     ...other,
   } = props;
 
-  const {
-    prepareStyles,
-    subheader,
-  } = muiTheme;
+  const {prepareStyles, subheader} = context.muiTheme;
 
   const styles = {
     root: {
@@ -63,8 +56,6 @@ let Subheader = (props) => {
 
 Subheader.propTypes = propTypes;
 Subheader.defaultProps = defaultProps;
-
-Subheader = muiThemeable()(Subheader);
-Subheader.displayName = 'Subheader';
+Subheader.contextTypes = contextTypes;
 
 export default Subheader;

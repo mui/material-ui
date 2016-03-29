@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../Paper';
 
 const Stepper = React.createClass({
@@ -70,11 +69,10 @@ const Stepper = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: PropTypes.object,
+    muiTheme: PropTypes.object.isRequired,
   },
 
   childContextTypes: {
-    muiTheme: PropTypes.object,
     createIcon: PropTypes.func,
     updateAvatarBackgroundColor: PropTypes.func,
   },
@@ -92,15 +90,12 @@ const Stepper = React.createClass({
   getInitialState() {
     return {
       hoveredHeaderStepIndex: -1,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       itemWidth: 0,
     };
   },
 
-
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
       createIcon: this.props.createIcon,
       updateAvatarBackgroundColor: this.props.updateAvatarBackgroundColor,
     };
@@ -162,7 +157,6 @@ const Stepper = React.createClass({
       style
     );
 
-
     const container = Object.assign({
       transition: 'all 0.5s',
       height: 0,
@@ -183,9 +177,7 @@ const Stepper = React.createClass({
   },
 
   findFurthestOptionalStep(index) {
-    const {
-      children,
-    } = this.props;
+    const {children} = this.props;
 
     while (index > 0 && children[index - 1].props.optional) {
       index--;
@@ -201,9 +193,7 @@ const Stepper = React.createClass({
        updateCompletedStatus,
     } = this.props;
 
-    const {
-      hoveredHeaderStepIndex,
-    } = this.state;
+    const {hoveredHeaderStepIndex} = this.state;
 
     const setOfChildren = [];
     const setOfActions = [];
@@ -245,7 +235,6 @@ const Stepper = React.createClass({
           {steps}
         </Paper>
 
-
         <div style={styles.container} ref="containerWrapper">
           <div style={styles.childrenWrapper} ref="childrenWrapper">
             <div style={{display: 'inline-flex'}}>
@@ -272,9 +261,7 @@ const Stepper = React.createClass({
      updateCompletedStatus,
    } = this.props;
 
-    const {
-      hoveredHeaderStepIndex,
-    } = this.state;
+    const {hoveredHeaderStepIndex} = this.state;
 
     const steps = React.Children.map(children, (step, index) => {
       return React.cloneElement(step, {
@@ -298,9 +285,7 @@ const Stepper = React.createClass({
   },
 
   render() {
-    const {
-      horizontal,
-    } = this.props;
+    const {horizontal} = this.props;
 
     if (horizontal) {
       return this.renderHorizontalStepper();
@@ -308,7 +293,6 @@ const Stepper = React.createClass({
 
     return this.renderVerticalStepper();
   },
-
 
 });
 

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function rad2deg(rad) {
   return rad * 57.29577951308232;
@@ -29,11 +28,7 @@ const ClockHours = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -41,18 +36,6 @@ const ClockHours = React.createClass({
       initialHours: new Date().getHours(),
       onChange: () => {},
       format: 'ampm',
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -68,12 +51,6 @@ const ClockHours = React.createClass({
       x: this.center.x,
       y: 0,
     };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   isMousePressed(event) {
@@ -203,10 +180,7 @@ const ClockHours = React.createClass({
       },
     };
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
+    const {prepareStyles} = this.context.muiTheme;
     const hours = this._getSelected();
     const numbers = this._getHourNumbers();
 

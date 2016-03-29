@@ -1,7 +1,6 @@
 import React from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
@@ -10,7 +9,7 @@ function getRelativeValue(value, min, max) {
   return relValue * 100;
 }
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     max,
     min,
@@ -18,12 +17,7 @@ function getStyles(props, state) {
     value,
   } = props;
 
-  const {
-    baseTheme: {
-      palette,
-    },
-  } = state.muiTheme;
-
+  const {baseTheme: {palette}} = context.muiTheme;
   const zoom = size * 1.4 ;
   const baseSize = 50;
   let margin = Math.round( ((50 * zoom) - 50) / 2 );
@@ -115,11 +109,7 @@ const CircularProgress = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -132,27 +122,9 @@ const CircularProgress = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     this._scalePath(this.refs.path);
     this._rotateWrapper(this.refs.wrapper);
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   componentWillUnmount() {
@@ -186,13 +158,13 @@ const CircularProgress = React.createClass({
   _rotateWrapper(wrapper) {
     if (this.props.mode !== 'indeterminate') return;
 
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
     setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
@@ -206,11 +178,8 @@ const CircularProgress = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))} >

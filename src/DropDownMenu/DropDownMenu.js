@@ -3,7 +3,6 @@ import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
-import getMuiTheme from '../styles/getMuiTheme';
 import Popover from '../Popover/Popover';
 import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 
@@ -11,6 +10,62 @@ const anchorOrigin = {
   vertical: 'top',
   horizontal: 'left',
 };
+
+function getStyles(props, context) {
+  const {disabled} = props;
+  const spacing = context.muiTheme.baseTheme.spacing;
+  const palette = context.muiTheme.baseTheme.palette;
+  const accentColor = context.muiTheme.dropDownMenu.accentColor;
+  return {
+    control: {
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      height: '100%',
+      position: 'relative',
+      width: '100%',
+    },
+    icon: {
+      fill: accentColor,
+      position: 'absolute',
+      right: spacing.desktopGutterLess,
+      top: ((spacing.desktopToolbarHeight - 24) / 2),
+    },
+    label: {
+      color: disabled ? palette.disabledColor : palette.textColor,
+      lineHeight: `${spacing.desktopToolbarHeight}px`,
+      opacity: 1,
+      position: 'relative',
+      paddingLeft: spacing.desktopGutter,
+      paddingRight: spacing.iconSize +
+      spacing.desktopGutterLess +
+      spacing.desktopGutterMini,
+      top: 0,
+    },
+    labelWhenOpen: {
+      opacity: 0,
+      top: (spacing.desktopToolbarHeight / 8),
+    },
+    root: {
+      display: 'inline-block',
+      fontSize: spacing.desktopDropDownMenuFontSize,
+      height: spacing.desktopSubheaderHeight,
+      fontFamily: context.muiTheme.baseTheme.fontFamily,
+      outline: 'none',
+      position: 'relative',
+      transition: transitions.easeOut(),
+    },
+    rootWhenOpen: {
+      opacity: 1,
+    },
+    underline: {
+      borderTop: `solid 1px ${accentColor}`,
+      bottom: 1,
+      left: 0,
+      margin: `-1px ${spacing.desktopGutter}px`,
+      right: 0,
+      position: 'absolute',
+    },
+  };
+}
 
 const DropDownMenu = React.createClass({
 
@@ -97,12 +152,7 @@ const DropDownMenu = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -117,13 +167,6 @@ const DropDownMenu = React.createClass({
   getInitialState() {
     return {
       open: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -132,8 +175,9 @@ const DropDownMenu = React.createClass({
       this.setWidth();
     }
     if (this.props.openImmediately) {
-      // Temorary fix to make openImmediately work with popover.
+      // TODO: Temporary fix to make openImmediately work with popover.
       /*eslint-disable react/no-did-mount-set-state */
+      setTimeout(() => this.setState({open: true, anchorEl: this.refs.root}));
       setTimeout(() => this.setState({
         open: true,
         anchorEl: this.refs.root,
@@ -142,74 +186,14 @@ const DropDownMenu = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps() {
     if (this.props.autoWidth) {
       this.setWidth();
     }
   },
-
-  getStyles() {
-    const {disabled} = this.props;
-    const spacing = this.state.muiTheme.rawTheme.spacing;
-    const palette = this.state.muiTheme.rawTheme.palette;
-    const accentColor = this.state.muiTheme.dropDownMenu.accentColor;
-    return {
-      root: {
-        display: 'inline-block',
-        fontSize: spacing.desktopDropDownMenuFontSize,
-        height: spacing.desktopSubheaderHeight,
-        fontFamily: this.state.muiTheme.rawTheme.fontFamily,
-        outline: 'none',
-        position: 'relative',
-        transition: transitions.easeOut(),
-      },
-      rootWhenOpen: {
-        opacity: 1,
-      },
-      control: {
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        height: '100%',
-        position: 'relative',
-        width: '100%',
-      },
-      icon: {
-        fill: accentColor,
-        position: 'absolute',
-        right: spacing.desktopGutterLess,
-        top: (spacing.desktopToolbarHeight - 24) / 2,
-      },
-      label: {
-        color: disabled ? palette.disabledColor : palette.textColor,
-        lineHeight: `${spacing.desktopToolbarHeight}px`,
-        opacity: 1,
-        position: 'relative',
-        paddingLeft: spacing.desktopGutter,
-        paddingRight: spacing.iconSize +
-                      spacing.desktopGutterLess +
-                      spacing.desktopGutterMini,
-        top: 0,
-      },
-      labelWhenOpen: {
-        opacity: 0,
-        top: spacing.desktopToolbarHeight / 8,
-      },
-      underline: {
-        borderTop: `solid 1px ${accentColor}`,
-        bottom: 1,
-        left: 0,
-        margin: `-1px ${spacing.desktopGutter}px`,
-        right: 0,
-        position: 'absolute',
-      },
-    };
-  },
-
   /**
    * This method is deprecated but still here because the TextField
-   * need it in order to work. That will be addressed later.
+   * need it in order to work. TODO: That will be addressed later.
    */
   getInputNode() {
     const root = this.refs.root;
@@ -277,14 +261,10 @@ const DropDownMenu = React.createClass({
     const {
       anchorEl,
       open,
-      muiTheme,
     } = this.state;
 
-    const {
-      prepareStyles,
-    } = muiTheme;
-
-    const styles = this.getStyles();
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     let displayValue = '';
     React.Children.forEach(children, (child) => {

@@ -49,9 +49,7 @@ class DatePickerInline extends React.Component {
       ...other,
     } = this.props;
 
-    const {
-      anchorEl,
-    } = this.state;
+    const {anchorEl} = this.state;
 
     return (
       <div {...other} ref="root" style={style}>

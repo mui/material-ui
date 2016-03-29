@@ -6,7 +6,6 @@ import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import Paper from '../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 import propTypes from '../utils/propTypes';
 
 let openNavEventHandler = null;
@@ -102,11 +101,7 @@ const Drawer = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -130,13 +125,6 @@ const Drawer = React.createClass({
     return {
       open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -144,16 +132,18 @@ const Drawer = React.createClass({
     this._enableSwipeHandling();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
-
-    // If docked is changed, change the open state for when uncontrolled.
-    if (this.props.docked !== nextProps.docked) newState.open = nextProps.docked;
-
+  componentWillReceiveProps(nextProps) {
     // If controlled then the open prop takes precedence.
-    if (nextProps.open !== null) newState.open = nextProps.open;
-
-    this.setState(newState);
+    if (nextProps.open !== null) {
+      this.setState({
+        open: nextProps.open,
+      });
+      // Otherwise, if docked is changed, change the open state for when uncontrolled.
+    } else if (this.props.docked !== nextProps.docked) {
+      this.setState({
+        open: nextProps.docked,
+      });
+    }
   },
 
   componentDidUpdate() {
@@ -165,7 +155,7 @@ const Drawer = React.createClass({
   },
 
   getStyles() {
-    const muiTheme = this.state.muiTheme;
+    const muiTheme = this.context.muiTheme;
     const theme = muiTheme.navDrawer;
 
     const x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
@@ -225,7 +215,7 @@ const Drawer = React.createClass({
   },
 
   _getMaxTranslateX() {
-    const width = this.props.width || this.state.muiTheme.navDrawer.width;
+    const width = this.props.width || this.context.muiTheme.navDrawer.width;
     return width + 10;
   },
 
@@ -288,7 +278,7 @@ const Drawer = React.createClass({
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
     const transformCSS = `translate3d(${(this._getTranslateMultiplier() * translateX)}px, 0, 0)`;
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
-    autoPrefix.set(drawer.style, 'transform', transformCSS, this.state.muiTheme);
+    autoPrefix.set(drawer.style, 'transform', transformCSS);
   },
 
   _getTranslateX(currentX) {

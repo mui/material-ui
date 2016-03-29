@@ -4,12 +4,59 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Popover from '../Popover/Popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../List/ListItem';
-import getMuiTheme from '../styles/getMuiTheme';
 import Menu from '../Menu/Menu';
 
 const nestedMenuStyle = {
   position: 'relative',
 };
+
+function getStyles(props, context) {
+  const disabledColor = context.muiTheme.baseTheme.palette.disabledColor;
+  const textColor = context.muiTheme.baseTheme.palette.textColor;
+  const leftIndent = props.desktop ? 64 : 72;
+  const sidePadding = props.desktop ? 24 : 16;
+
+  const styles = {
+    root: {
+      color: props.disabled ? disabledColor : textColor,
+      lineHeight: props.desktop ? '32px' : '48px',
+      fontSize: props.desktop ? 15 : 16,
+      whiteSpace: 'nowrap',
+    },
+
+    innerDivStyle: {
+      paddingLeft: props.leftIcon || props.insetChildren || props.checked ? leftIndent : sidePadding,
+      paddingRight: sidePadding,
+      paddingBottom: 0,
+      paddingTop: 0,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignContent: 'space-between',
+    },
+
+    secondaryText: {
+      order: 2,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+
+    leftIconDesktop: {
+      margin: 0,
+      left: 24,
+      top: 4,
+    },
+
+    rightIconDesktop: {
+      margin: 0,
+      right: 24,
+      top: 4,
+      fill: context.muiTheme.menuItem.rightIconDesktopFill,
+    },
+  };
+
+  return styles;
+}
 
 const MenuItem = React.createClass({
 
@@ -101,11 +148,7 @@ const MenuItem = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   mixins: [
@@ -124,14 +167,7 @@ const MenuItem = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -139,11 +175,7 @@ const MenuItem = React.createClass({
     this._applyFocusState();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.focusState === 'none') {
       this.handleRequestClose();
     }
@@ -218,55 +250,8 @@ const MenuItem = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-      menuItem,
-    } = this.state.muiTheme;
-
-    const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
-    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
-    const leftIndent = desktop ? 64 : 72;
-    const sidePadding = desktop ? 24 : 16;
-
-    const styles = {
-      root: {
-        color: disabled ? disabledColor : textColor,
-        lineHeight: desktop ? '32px' : '48px',
-        fontSize: desktop ? 15 : 16,
-        whiteSpace: 'nowrap',
-      },
-
-      innerDivStyle: {
-        paddingLeft: leftIcon || insetChildren || checked ? leftIndent : sidePadding,
-        paddingRight: sidePadding,
-        paddingBottom: 0,
-        paddingTop: 0,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignContent: 'space-between',
-      },
-
-      secondaryText: {
-        order: 2,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      },
-
-      leftIconDesktop: {
-        margin: 0,
-        left: 24,
-        top: 4,
-      },
-
-      rightIconDesktop: {
-        margin: 0,
-        right: 24,
-        top: 4,
-        fill: menuItem.rightIconDesktopFill,
-      },
-    };
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 

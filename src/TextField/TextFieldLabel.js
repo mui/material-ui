@@ -78,9 +78,7 @@ const TextFieldLabel = (props) => {
     },
   };
 
-  const {
-    prepareStyles,
-  } = muiTheme;
+  const {prepareStyles} = muiTheme;
 
   return (
     <label

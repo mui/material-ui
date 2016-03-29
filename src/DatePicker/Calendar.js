@@ -9,7 +9,6 @@ import CalendarToolbar from './CalendarToolbar';
 import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../internal/SlideIn';
 import ClearFix from '../internal/ClearFix';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const daysArray = [...Array(7)];
 
@@ -30,11 +29,7 @@ const Calendar = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -48,7 +43,6 @@ const Calendar = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
       displayMonthDay: true,
       selectedDate: this.props.initialDate,
@@ -57,15 +51,7 @@ const Calendar = React.createClass({
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const muiTheme = nextContext.muiTheme || this.state.muiTheme;
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
       const d = nextProps.initialDate || new Date();
       this.setState({
@@ -73,8 +59,6 @@ const Calendar = React.createClass({
         selectedDate: d,
       });
     }
-
-    this.setState({muiTheme});
   },
 
   _yearSelector() {
@@ -231,10 +215,7 @@ const Calendar = React.createClass({
   },
 
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
+    const {prepareStyles} = this.context.muiTheme;
     const yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
     const weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     const toolbarInteractions = this._getToolbarInteractions();
@@ -307,7 +288,6 @@ const Calendar = React.createClass({
           onTouchTapYear={this.handleTouchTapClick}
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
-          muiTheme={this.state.muiTheme}
           weekCount={weekCount}
         />
         {this.state.displayMonthDay &&

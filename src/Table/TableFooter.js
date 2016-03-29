@@ -1,11 +1,8 @@
 import React from 'react';
 import TableRowColumn from './TableRowColumn';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    tableFooter,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {tableFooter} = context.muiTheme;
 
   return {
     cell: {
@@ -48,11 +45,7 @@ const TableFooter = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -60,24 +53,6 @@ const TableFooter = React.createClass({
       adjustForCheckbox: true,
       style: {},
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   render() {
@@ -89,11 +64,8 @@ const TableFooter = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const footerRows = React.Children.map(children, (child, rowNumber) => {
       const newChildProps = {

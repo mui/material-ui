@@ -5,12 +5,9 @@ import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Tooltip from '../internal/Tooltip';
 import {extendChildren} from '../utils/childUtils';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    baseTheme,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {baseTheme} = context.muiTheme;
 
   return {
     root: {
@@ -149,11 +146,7 @@ const IconButton = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -169,20 +162,7 @@ const IconButton = React.createClass({
   getInitialState() {
     return {
       tooltipShown: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   setKeyboardFocus() {
@@ -248,7 +228,7 @@ const IconButton = React.createClass({
     } = this.props;
     let fonticon;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
     const tooltipPosition = this.props.tooltipPosition.split('-');
 
     const tooltipElement = tooltip ? (

@@ -1,6 +1,5 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
@@ -9,18 +8,14 @@ function getRelativeValue(value, min, max) {
   return relValue * 100;
 }
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     max,
     min,
     value,
   } = props;
 
-  const {
-    baseTheme: {
-      palette,
-    },
-  } = state.muiTheme;
+  const {baseTheme: {palette}} = context.muiTheme;
 
   const styles = {
     root: {
@@ -103,11 +98,7 @@ const LinearProgress = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -116,18 +107,6 @@ const LinearProgress = React.createClass({
       value: 0,
       min: 0,
       max: 100,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -147,12 +126,6 @@ const LinearProgress = React.createClass({
     }, 850);
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
@@ -164,8 +137,8 @@ const LinearProgress = React.createClass({
     step = step || 0;
     step %= 4;
 
-    const right = this.state.muiTheme.isRtl ? 'left' : 'right';
-    const left = this.state.muiTheme.isRtl ? 'right' : 'left';
+    const right = this.context.muiTheme.isRtl ? 'left' : 'right';
+    const left = this.context.muiTheme.isRtl ? 'right' : 'left';
 
     if (step === 0) {
       barElement.style[left] = `${stepValues[0][0]}%`;
@@ -187,11 +160,8 @@ const LinearProgress = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>

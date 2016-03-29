@@ -2,7 +2,6 @@ import React from 'react';
 import Checkbox from '../Checkbox';
 import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const TableBody = React.createClass({
 
@@ -123,11 +122,7 @@ const TableBody = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -144,30 +139,22 @@ const TableBody = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       selectedRows: this._calculatePreselectedRows(this.props),
     };
   },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    };
-
+  componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      newState.selectedRows = this.state.selectedRows.length > 0 ?
-        [this.state.selectedRows[this.state.selectedRows.length - 1]] : [];
+      this.setState({
+        selectedRows: this.state.selectedRows.length > 0 ?
+          [this.state.selectedRows[this.state.selectedRows.length - 1]] : [],
+      });
+      // TODO: should else be conditional, not run any time props other than allRowsSelected change?
     } else {
-      newState.selectedRows = this._calculatePreselectedRows(nextProps);
+      this.setState({
+        selectedRows: this._calculatePreselectedRows(nextProps),
+      });
     }
-
-    this.setState(newState);
   },
 
   handleClickAway() {
@@ -419,10 +406,7 @@ const TableBody = React.createClass({
       style,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
+    const {prepareStyles} = this.context.muiTheme;
     const rows = this._createRows();
 
     return (

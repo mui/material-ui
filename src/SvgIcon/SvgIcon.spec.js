@@ -4,12 +4,15 @@ import sinon from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import SvgIcon from './SvgIcon';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<SvgIcon />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
   const path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
 
   it('renders children by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon>{path}</SvgIcon>
     );
 
@@ -17,7 +20,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children and color', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon color="red">{path}</SvgIcon>
     );
 
@@ -27,7 +30,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children and hoverColor when mouseEnter', () => {
     const onMouseEnter = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon
         className="material-icons"
         color="red"
@@ -48,7 +51,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children and call onMouseEnter callback', () => {
     const onMouseEnter = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon onMouseEnter={onMouseEnter} hoverColor="green">{path}</SvgIcon>
     );
 
@@ -60,7 +63,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children and call onMouseEnter callback even when hoverColor is not set', () => {
     const onMouseEnter = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon onMouseEnter={onMouseEnter}>{path}</SvgIcon>
     );
 
@@ -72,7 +75,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children and call onMouseLeave callback', () => {
     const onMouseLeave = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon onMouseLeave={onMouseLeave} hoverColor="green">{path}</SvgIcon>
     );
 
@@ -84,7 +87,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children and call onMouseLeave callback even when hoverColor is not set', () => {
     const onMouseLeave = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon onMouseLeave={onMouseLeave}>{path}</SvgIcon>
     );
 
@@ -98,7 +101,7 @@ describe('<SvgIcon />', () => {
     const style = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <SvgIcon style={style}>{path}</SvgIcon>
     );
 

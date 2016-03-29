@@ -1,7 +1,6 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     firstChild,
     lastChild,
@@ -11,7 +10,7 @@ function getStyles(props, state) {
     baseTheme,
     button,
     toolbar,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const marginHorizontal = baseTheme.spacing.desktopGutter;
   const marginVertical = (toolbar.height - button.height) / 2;
@@ -99,11 +98,7 @@ const ToolbarGroup = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -113,29 +108,9 @@ const ToolbarGroup = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  handleMouseEnterFontIcon(style) {
-    return (event) => {
-      event.target.style.zIndex = style.hover.zIndex;
-      event.target.style.color = style.hover.color;
-    };
+  handleMouseEnterFontIcon: (style) => (event) => {
+    event.target.style.zIndex = style.hover.zIndex;
+    event.target.style.color = style.hover.color;
   },
 
   handleMouseLeaveFontIcon(style) {
@@ -153,11 +128,8 @@ const ToolbarGroup = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const newChildren = React.Children.map(children, (currentChild) => {
       if (!currentChild) {

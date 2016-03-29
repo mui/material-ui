@@ -1,21 +1,12 @@
 import React from 'react';
 import Paper from '../Paper';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 import propTypes from '../utils/propTypes';
 
-function getStyles(props, state) {
-  const {
-    targetOrigin,
-  } = props;
-
-  const {
-    open,
-    muiTheme: {
-      zIndex,
-    },
-  } = state;
-
+function getStyles(props, context, state) {
+  const {targetOrigin} = props;
+  const {open} = state;
+  const {muiTheme} = context;
   const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
 
   return {
@@ -24,7 +15,7 @@ function getStyles(props, state) {
       transform: open ? 'scaleY(1)' : 'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       position: 'fixed',
-      zIndex: zIndex.popover,
+      zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('450ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
@@ -47,11 +38,7 @@ const PopoverAnimationVertical = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -63,14 +50,7 @@ const PopoverAnimationVertical = React.createClass({
 
   getInitialState() {
     return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
       open: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -78,10 +58,9 @@ const PopoverAnimationVertical = React.createClass({
     this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       open: nextProps.open,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -92,7 +71,7 @@ const PopoverAnimationVertical = React.createClass({
       zDepth,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <Paper

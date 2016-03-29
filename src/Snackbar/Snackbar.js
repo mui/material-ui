@@ -2,18 +2,18 @@ import React from 'react';
 import transitions from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import FlatButton from '../FlatButton';
-import getMuiTheme from '../styles/getMuiTheme';
 import StyleResizable from '../utils/styleResizable';
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const {
     muiTheme: {
       baseTheme,
       snackbar,
       zIndex,
     },
-    open,
-  } = state;
+  } = context;
+
+  const {open} = state;
 
   const {
     desktopGutter,
@@ -133,11 +133,7 @@ const Snackbar = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   mixins: [
@@ -149,13 +145,6 @@ const Snackbar = React.createClass({
       open: this.props.open,
       message: this.props.message,
       action: this.props.action,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -166,11 +155,7 @@ const Snackbar = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.open === this.props.open &&
         (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
@@ -257,13 +242,11 @@ const Snackbar = React.createClass({
     const {
       action,
       message,
-      muiTheme: {
-        prepareStyles,
-      },
       open,
     } = this.state;
 
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
 
     const actionButton = action && (
       <FlatButton

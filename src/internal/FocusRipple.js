@@ -12,20 +12,13 @@ const FocusRipple = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
-
-    /**
-     * @ignore
-     * The material-ui theme applied to this component.
-     */
-    muiTheme: React.PropTypes.object.isRequired,
-
     opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   mixins: [
@@ -56,12 +49,10 @@ const FocusRipple = React.createClass({
     const {
       color,
       innerStyle,
-      muiTheme: {
-        prepareStyles,
-        ripple,
-      },
       opacity,
     } = props;
+
+    const {prepareStyles, ripple} = this.context.muiTheme;
 
     const innerStyles = Object.assign({
       position: 'absolute',
@@ -85,7 +76,7 @@ const FocusRipple = React.createClass({
     const currentScale = innerCircle.style.transform || startScale;
     const nextScale = currentScale === startScale ? endScale : startScale;
 
-    autoPrefix.set(innerCircle.style, 'transform', nextScale, this.props.muiTheme);
+    autoPrefix.set(innerCircle.style, 'transform', nextScale);
     this.timeout = setTimeout(this.pulsate, pulsateDuration);
   },
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import Avatar from '../Avatar';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {card} = state.muiTheme;
+function getStyles(props, context) {
+  const {card} = context.muiTheme;
 
   return {
     root: {
@@ -105,11 +104,7 @@ const CardHeader = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -118,30 +113,9 @@ const CardHeader = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const rootStyle = Object.assign(styles.root, this.props.style);
     const textStyle = Object.assign(styles.text, this.props.textStyle);
     const titleStyle = Object.assign(styles.title, this.props.titleStyle);

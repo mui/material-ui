@@ -8,7 +8,139 @@ import IconButton from '../IconButton';
 import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
 import CloseIcon from '../svg-icons/navigation/arrow-drop-down';
 import NestedList from './NestedIist';
-import getMuiTheme from '../styles/getMuiTheme';
+
+function getStyles(props, context, state) {
+  const {
+    insetChildren,
+    leftAvatar,
+    leftCheckbox,
+    leftIcon,
+    nestedLevel,
+    rightAvatar,
+    rightIcon,
+    rightIconButton,
+    rightToggle,
+    secondaryText,
+    secondaryTextLines,
+  } = props;
+
+  const {muiTheme} = context;
+  const {listItem} = muiTheme;
+
+  const textColor = muiTheme.baseTheme.palette.textColor;
+  const hoverColor = ColorManipulator.fade(textColor, 0.1);
+  const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
+  const singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
+  const twoLine = secondaryText && secondaryTextLines === 1;
+  const threeLine = secondaryText && secondaryTextLines > 1;
+
+  const styles = {
+    root: {
+      backgroundColor: (state.isKeyboardFocused || state.hovered) &&
+      !state.rightIconButtonHovered &&
+      !state.rightIconButtonKeyboardFocused ? hoverColor : null,
+      color: textColor,
+      display: 'block',
+      fontSize: 16,
+      lineHeight: '16px',
+      position: 'relative',
+      transition: transitions.easeOut(),
+    },
+
+    //This inner div is needed so that ripples will span the entire container
+    innerDiv: {
+      marginLeft: nestedLevel * muiTheme.listItem.nestedLevelDepth,
+      paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
+      paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
+      paddingBottom: singleAvatar ? 20 : 16,
+      paddingTop: singleNoAvatar || threeLine ? 16 : 20,
+      position: 'relative',
+    },
+
+    icons: {
+      height: 24,
+      width: 24,
+      display: 'block',
+      position: 'absolute',
+      top: twoLine ? 12 : singleAvatar ? 4 : 0,
+      margin: 12,
+    },
+
+    leftIcon: {
+      color: listItem.leftIconColor,
+      fill: listItem.leftIconColor,
+      left: 4,
+    },
+
+    rightIcon: {
+      color: listItem.rightIconColor,
+      fill: listItem.rightIconColor,
+      right: 4,
+    },
+
+    avatars: {
+      position: 'absolute',
+      top: singleAvatar ? 8 : 16,
+    },
+
+    label: {
+      cursor: 'pointer',
+    },
+
+    leftAvatar: {
+      left: 16,
+    },
+
+    rightAvatar: {
+      right: 16,
+    },
+
+    leftCheckbox: {
+      position: 'absolute',
+      display: 'block',
+      width: 24,
+      top: twoLine ? 24 : singleAvatar ? 16 : 12,
+      left: 16,
+    },
+
+    primaryText: {
+    },
+
+    rightIconButton: {
+      position: 'absolute',
+      display: 'block',
+      top: twoLine ? 12 : singleAvatar ? 4 : 0,
+      right: 4,
+    },
+
+    rightToggle: {
+      position: 'absolute',
+      display: 'block',
+      width: 54,
+      top: twoLine ? 25 : singleAvatar ? 17 : 13,
+      right: 8,
+    },
+
+    secondaryText: {
+      fontSize: 14,
+      lineHeight: threeLine ? '18px' : '16px',
+      height: threeLine ? 36 : 16,
+      margin: 0,
+      marginTop: 4,
+      color: listItem.secondaryTextColor,
+
+      //needed for 2 and 3 line ellipsis
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: threeLine ? null : 'nowrap',
+      display: threeLine ? '-webkit-box' : null,
+      WebkitLineClamp: threeLine ? 2 : null,
+      WebkitBoxOrient: threeLine ? 'vertical' : null,
+    },
+  };
+
+  return styles;
+}
 
 const ListItem = React.createClass({
 
@@ -184,11 +316,7 @@ const ListItem = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   mixins: [
@@ -222,20 +350,7 @@ const ListItem = React.createClass({
       rightIconButtonHovered: false,
       rightIconButtonKeyboardFocused: false,
       touch: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   // This method is needed by the `MenuItem` component.
@@ -276,7 +391,7 @@ const ListItem = React.createClass({
     return (
       <div
         {...additionalProps}
-        style={this.state.muiTheme.prepareStyles(mergedDivStyles)}
+        style={this.context.muiTheme.prepareStyles(mergedDivStyles)}
       >
         {contentChildren}
       </div>
@@ -300,7 +415,7 @@ const ListItem = React.createClass({
     return (
       <label
         {...additionalProps}
-        style={this.state.muiTheme.prepareStyles(mergedLabelStyles)}
+        style={this.context.muiTheme.prepareStyles(mergedLabelStyles)}
       >
         {contentChildren}
       </label>
@@ -315,10 +430,10 @@ const ListItem = React.createClass({
     return isAnElement ? (
       React.cloneElement(data, {
         key: key,
-        style: this.state.muiTheme.prepareStyles(mergedStyles),
+        style: this.context.muiTheme.prepareStyles(mergedStyles),
       })
     ) : (
-      <div key={key} style={this.state.muiTheme.prepareStyles(styles)}>
+      <div key={key} style={this.context.muiTheme.prepareStyles(styles)}>
         {data}
       </div>
     );
@@ -346,12 +461,14 @@ const ListItem = React.createClass({
   },
 
   handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
-    const iconButton = this.props.rightIconButton;
-    const newState = {};
+    if (isKeyboardFocused) {
+      this.setState({
+        isKeyboardFocused: false,
+        rightIconButtonKeyboardFocused: isKeyboardFocused,
+      });
+    }
 
-    newState.rightIconButtonKeyboardFocused = isKeyboardFocused;
-    if (isKeyboardFocused) newState.isKeyboardFocused = false;
-    this.setState(newState);
+    const iconButton = this.props.rightIconButton;
 
     if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(event, isKeyboardFocused);
   },
@@ -407,7 +524,7 @@ const ListItem = React.createClass({
       disabled,
       disableKeyboardFocus,
       innerDivStyle,
-      insetChildren,
+      insetChildren, // eslint-disable-line no-unused-vars
       leftAvatar,
       leftCheckbox,
       leftIcon,
@@ -426,128 +543,13 @@ const ListItem = React.createClass({
       primaryText,
       primaryTogglesNestedList,
       secondaryText,
-      secondaryTextLines,
+      secondaryTextLines, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
 
-    const {
-      listItem,
-    } = this.state.muiTheme;
-
-    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
-    const hoverColor = ColorManipulator.fade(textColor, 0.1);
-    const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
-    const singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
-    const twoLine = secondaryText && secondaryTextLines === 1;
-    const threeLine = secondaryText && secondaryTextLines > 1;
-    const hasCheckbox = leftCheckbox || rightToggle;
-
-    const styles = {
-      root: {
-        backgroundColor: (this.state.isKeyboardFocused || this.state.hovered) &&
-          !this.state.rightIconButtonHovered &&
-          !this.state.rightIconButtonKeyboardFocused ? hoverColor : null,
-        color: textColor,
-        display: 'block',
-        fontSize: 16,
-        lineHeight: '16px',
-        position: 'relative',
-        transition: transitions.easeOut(),
-      },
-
-      //This inner div is needed so that ripples will span the entire container
-      innerDiv: {
-        marginLeft: nestedLevel * this.state.muiTheme.listItem.nestedLevelDepth,
-        paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
-        paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
-        paddingBottom: singleAvatar ? 20 : 16,
-        paddingTop: singleNoAvatar || threeLine ? 16 : 20,
-        position: 'relative',
-      },
-
-      icons: {
-        height: 24,
-        width: 24,
-        display: 'block',
-        position: 'absolute',
-        top: twoLine ? 12 : singleAvatar ? 4 : 0,
-        margin: 12,
-      },
-
-      leftIcon: {
-        color: listItem.leftIconColor,
-        fill: listItem.leftIconColor,
-        left: 4,
-      },
-
-      rightIcon: {
-        color: listItem.rightIconColor,
-        fill: listItem.rightIconColor,
-        right: 4,
-      },
-
-      avatars: {
-        position: 'absolute',
-        top: singleAvatar ? 8 : 16,
-      },
-
-      label: {
-        cursor: 'pointer',
-      },
-
-      leftAvatar: {
-        left: 16,
-      },
-
-      rightAvatar: {
-        right: 16,
-      },
-
-      leftCheckbox: {
-        position: 'absolute',
-        display: 'block',
-        width: 24,
-        top: twoLine ? 24 : singleAvatar ? 16 : 12,
-        left: 16,
-      },
-
-      primaryText: {
-      },
-
-      rightIconButton: {
-        position: 'absolute',
-        display: 'block',
-        top: twoLine ? 12 : singleAvatar ? 4 : 0,
-        right: 4,
-      },
-
-      rightToggle: {
-        position: 'absolute',
-        display: 'block',
-        width: 54,
-        top: twoLine ? 25 : singleAvatar ? 17 : 13,
-        right: 8,
-      },
-
-      secondaryText: {
-        fontSize: 14,
-        lineHeight: threeLine ? '18px' : '16px',
-        height: threeLine ? 36 : 16,
-        margin: 0,
-        marginTop: 4,
-        color: listItem.secondaryTextColor,
-
-        //needed for 2 and 3 line ellipsis
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: threeLine ? null : 'nowrap',
-        display: threeLine ? '-webkit-box' : null,
-        WebkitLineClamp: threeLine ? 2 : null,
-        WebkitBoxOrient: threeLine ? 'vertical' : null,
-      },
-    };
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
     const contentChildren = [children];
 
     if (leftIcon) {
@@ -654,6 +656,8 @@ const ListItem = React.createClass({
       </NestedList>
     ) : undefined;
 
+    const hasCheckbox = leftCheckbox || rightToggle;
+
     return (
       <div>
         {
@@ -672,7 +676,7 @@ const ListItem = React.createClass({
               ref="enhancedButton"
               style={Object.assign({}, styles.root, style)}
             >
-              <div style={this.state.muiTheme.prepareStyles(Object.assign(styles.innerDiv, innerDivStyle))}>
+              <div style={prepareStyles(Object.assign(styles.innerDiv, innerDivStyle))}>
                 {contentChildren}
               </div>
             </EnhancedButton>

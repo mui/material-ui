@@ -11,16 +11,6 @@ import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
 import {deepPurpleA700} from 'styles/colors';
 
 describe('Theming', () => {
-  describe('When no theme is specified, AppBar', () => {
-    it('should display with default light theme', () => {
-      const renderedAppbar = TestUtils.renderIntoDocument(<AppBar />);
-      const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-      const firstDiv = appbarDivs[0];
-
-      expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 188, 212)');
-    });
-  });
-
   describe('When the dark theme is specified', () => {
     describe('using context / react lifecycle methods, AppBar', () => {
       it('should display with passed down dark theme', () => {

@@ -5,7 +5,6 @@ import Calendar from './Calendar';
 import Dialog from '../Dialog';
 import DatePickerInline from './Date-PickerInline';
 import FlatButton from '../FlatButton';
-import getMuiTheme from '../styles/getMuiTheme';
 import DateTime from '../utils/dateTime';
 
 const DatePickerDialog = React.createClass({
@@ -27,20 +26,12 @@ const DatePickerDialog = React.createClass({
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     shouldDisableDate: React.PropTypes.func,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
     wordings: React.PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps: function() {
@@ -56,20 +47,7 @@ const DatePickerDialog = React.createClass({
   getInitialState() {
     return {
       open: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   show() {
@@ -136,14 +114,13 @@ const DatePickerDialog = React.createClass({
       ...other,
     } = this.props;
 
+    const {open} = this.state;
+
     const {
-      open,
-      muiTheme: {
-        datePicker: {
-          calendarTextColor,
-        },
+      datePicker: {
+        calendarTextColor,
       },
-    } = this.state;
+    } = this.context.muiTheme;
 
     const styles = {
       root: {

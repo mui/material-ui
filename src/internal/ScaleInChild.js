@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const ScaleInChild = React.createClass({
 
@@ -11,19 +10,11 @@ const ScaleInChild = React.createClass({
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,
     minScale: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps: function() {
@@ -32,23 +23,6 @@ const ScaleInChild = React.createClass({
       maxScale: 1,
       minScale: 0,
     };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
   },
 
   componentWillUnmount() {
@@ -76,7 +50,7 @@ const ScaleInChild = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`, this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`);
 
     this.leaveTimer = setTimeout(callback, 450);
   },
@@ -85,14 +59,14 @@ const ScaleInChild = React.createClass({
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
-    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`, this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`);
   },
 
   _initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'scale(0)', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', 'scale(0)');
 
     this.enterTimer = setTimeout(callback, this.props.enterDelay);
   },
@@ -105,9 +79,7 @@ const ScaleInChild = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'absolute',

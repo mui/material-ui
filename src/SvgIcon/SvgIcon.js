@@ -1,6 +1,5 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const SvgIcon = React.createClass({
 
@@ -49,11 +48,7 @@ const SvgIcon = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -67,20 +62,7 @@ const SvgIcon = React.createClass({
   getInitialState() {
     return {
       hovered: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   handleMouseLeave(event) {
@@ -108,7 +90,7 @@ const SvgIcon = React.createClass({
     const {
       baseTheme,
       prepareStyles,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
     const offColor = color ? color :
       style && style.fill ? style.fill :

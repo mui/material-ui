@@ -2,14 +2,9 @@ import React from 'react';
 import transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
-function getStyles(props, state) {
-  const {
-    datePicker,
-  } = props.muiTheme;
-
-  const {
-    selectedYear,
-  } = state;
+function getStyles(props, context, state) {
+  const {datePicker} = context.muiTheme;
+  const {selectedYear} = state;
 
   const styles = {
     root: {
@@ -57,26 +52,17 @@ const DateDisplay = React.createClass({
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
     locale: React.PropTypes.string.isRequired,
-    mode: React.PropTypes.oneOf([
-      'portrait',
-      'landscape',
-    ]),
+    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
     monthDaySelected: React.PropTypes.bool,
-
-    /**
-     * @ignore
-     * The material-ui theme applied to this component.
-     */
-    muiTheme: React.PropTypes.object.isRequired,
     onTouchTapMonthDay: React.PropTypes.func,
     onTouchTapYear: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
     weekCount: React.PropTypes.number,
+  },
+
+  contextTypes: {
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -133,14 +119,12 @@ const DateDisplay = React.createClass({
       locale,
       selectedDate,
       style,
-      muiTheme: {
-        prepareStyles,
-      },
       ...other,
     } = this.props;
 
+    const {prepareStyles} = this.context.muiTheme;
     const year = selectedDate.getFullYear();
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context, this.state);
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',

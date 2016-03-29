@@ -1,19 +1,18 @@
 import React from 'react';
 import IconButton from '../IconButton';
 import NavigationMenu from '../svg-icons/navigation/menu';
-import getMuiTheme from '../styles/getMuiTheme';
 import Paper from '../Paper';
 import propTypes from '../utils/propTypes';
 import warning from 'warning';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     appBar,
     button: {
       iconButtonSize,
     },
     zIndex,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const flatButtonSize = 36;
 
@@ -153,11 +152,7 @@ const AppBar = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -168,30 +163,12 @@ const AppBar = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Properties iconElementLeft
       and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.`);
 
     warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Properties iconElementRight
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   handleTouchTapLeftIconButton(event) {
@@ -229,11 +206,8 @@ const AppBar = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     let menuElementLeft;
     let menuElementRight;

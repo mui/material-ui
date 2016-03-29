@@ -5,8 +5,12 @@ import {assert} from 'chai';
 import sinon from 'sinon';
 import keycode from 'keycode';
 import Slider from './Slider';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Slider />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   sinon.assert.expose(assert, {prefix: ''});
 
   const getThumbElement = function(shallowWrapper) {
@@ -18,7 +22,7 @@ describe('<Slider />', () => {
   };
 
   it('renders slider and the hidden input', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" />
     );
 
@@ -26,7 +30,7 @@ describe('<Slider />', () => {
   });
 
   it('renders slider with an initial value', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" value={0.5} />
     );
 
@@ -40,7 +44,7 @@ describe('<Slider />', () => {
   });
 
   it('renders slider as a required element in a form', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" required={true} />
     );
 
@@ -51,7 +55,7 @@ describe('<Slider />', () => {
     const rootStyle = {
       backgroundColor: 'red',
     };
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" style={rootStyle} />
     );
 
@@ -59,7 +63,7 @@ describe('<Slider />', () => {
   });
 
   it('checks slider initial state', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" />
     );
 
@@ -71,7 +75,7 @@ describe('<Slider />', () => {
 
   it('checks drag start state', () => {
     const handleDragStart = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onDragStart={handleDragStart} />
     );
 
@@ -83,7 +87,7 @@ describe('<Slider />', () => {
 
   it('checks drag stop state', () => {
     const handleDragStop = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onDragStop={handleDragStop} />
     );
 
@@ -94,7 +98,7 @@ describe('<Slider />', () => {
   });
 
   it('checks that percent and value are being updated correctly', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider
         name="slider"
         step={0.5}
@@ -111,7 +115,7 @@ describe('<Slider />', () => {
   it('checks events do not fire on the handle when the slider is disabled', () => {
     const handleDragStart = sinon.spy();
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider
         name="slider"
         disabled={true}
@@ -134,7 +138,7 @@ describe('<Slider />', () => {
 
   it('simulates focus event', () => {
     const handleFocus = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onFocus={handleFocus} />
     );
 
@@ -144,7 +148,7 @@ describe('<Slider />', () => {
 
   it('simulates blur event', () => {
     const handleBlur = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onBlur={handleBlur} />
     );
 
@@ -153,7 +157,7 @@ describe('<Slider />', () => {
   });
 
   it('simulates onmouseenter event', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" />
     );
 
@@ -162,7 +166,7 @@ describe('<Slider />', () => {
   });
 
   it('simulates onmouseleave event', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" />
     );
 
@@ -172,7 +176,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event with a non tracked key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onChange={handleChange} />
     );
     const event = {
@@ -186,7 +190,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event for the end key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onChange={handleChange} />
     );
     const event = {
@@ -201,7 +205,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event for the up arrow key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(<Slider name="slider" onChange={handleChange} />);
+    const wrapper = shallowWithContext(<Slider name="slider" onChange={handleChange} />);
     const previousPercent = wrapper.state().percent;
     const event = {
       keyCode: keycode('up'),
@@ -215,7 +219,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event for the right arrow key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onChange={handleChange} />
     );
     const previousPercent = wrapper.state().percent;
@@ -231,7 +235,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event for the home key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onChange={handleChange} />
     );
     const event = {
@@ -246,7 +250,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event for the down arrow key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onChange={handleChange} />
     );
     const event = {
@@ -261,7 +265,7 @@ describe('<Slider />', () => {
 
   it('simulates keydown event for the left arrow key', () => {
     const handleChange = sinon.spy();
-    const wrapper = shallow(
+    const wrapper = shallowWithContext(
       <Slider name="slider" onChange={handleChange} />
     );
     const event = {

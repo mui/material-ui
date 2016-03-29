@@ -1,11 +1,10 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     baseTheme,
     gridTile,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const actionPos = props.actionIcon && props.actionPosition;
 
@@ -129,11 +128,7 @@ const GridTile = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -147,26 +142,8 @@ const GridTile = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
   componentDidMount() {
     this._ensureImageCover();
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   componentDidUpdate() {
@@ -196,7 +173,6 @@ const GridTile = React.createClass({
     }
   },
 
-
   render() {
     const {
       title,
@@ -211,12 +187,8 @@ const GridTile = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const mergedRootStyles = Object.assign(styles.root, style);
 
     let titleBar = null;

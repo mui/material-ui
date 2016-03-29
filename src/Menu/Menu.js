@@ -7,9 +7,61 @@ import transitions from '../styles/transitions';
 import keycode from 'keycode';
 import propTypes from '../utils/propTypes';
 import List from '../List/List';
-import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
+
+function getStyles(props, context) {
+  const {
+    animated,
+    desktop,
+    maxHeight,
+    openDirection = 'bottom-left',
+    width,
+  } = props;
+
+  const openDown = openDirection.split('-')[0] === 'bottom';
+  const openLeft = openDirection.split('-')[1] === 'left';
+
+  const {muiTheme} = context;
+
+  const styles = {
+    root: {
+      //Nested div bacause the List scales x faster than
+      //it scales y
+      transition: animated ? transitions.easeOut('250ms', 'transform') : null,
+      zIndex: muiTheme.zIndex.menu,
+      top: openDown ? 0 : null,
+      bottom: !openDown ? 0 : null,
+      left: !openLeft ? 0 : null,
+      right: openLeft ? 0 : null,
+      transform: animated ? 'scaleX(0)' : null,
+      transformOrigin: openLeft ? 'right' : 'left',
+      opacity: 0,
+      maxHeight: maxHeight,
+      overflowY: maxHeight ? 'auto' : null,
+    },
+    divider: {
+      marginTop: 7,
+      marginBottom: 8,
+    },
+    list: {
+      display: 'table-cell',
+      paddingBottom: desktop ? 16 : 8,
+      paddingTop: desktop ? 16 : 8,
+      userSelect: 'none',
+      width: width,
+    },
+    menuItemContainer: {
+      transition: animated ? transitions.easeOut(null, 'opacity') : null,
+      opacity: 0,
+    },
+    selectedMenuItem: {
+      color: muiTheme.baseTheme.palette.accent1Color,
+    },
+  };
+
+  return styles;
+}
 
 const Menu = React.createClass({
 
@@ -149,11 +201,7 @@ const Menu = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -179,13 +227,6 @@ const Menu = React.createClass({
       focusIndex: this.props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       isKeyboardFocused: this.props.initiallyKeyboardFocused,
       keyWidth: this.props.desktop ? 64 : 56,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -195,14 +236,13 @@ const Menu = React.createClass({
     this.setScollPosition();
   },
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const filteredChildren = this.getFilteredChildren(nextProps.children);
     const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
 
     this.setState({
       focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
   },
 
@@ -247,8 +287,8 @@ const Menu = React.createClass({
     const scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
     const menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
 
-    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)', this.state.muiTheme);
-    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)', this.state.muiTheme);
+    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
+    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
     scrollContainerStyle.opacity = 1;
 
     for (let i = 0; i < menuContainers.length; ++i) {
@@ -470,14 +510,14 @@ const Menu = React.createClass({
       desktop,
       initiallyKeyboardFocused, // eslint-disable-line no-unused-vars
       listStyle,
-      maxHeight,
+      maxHeight, // eslint-disable-line no-unused-vars
       multiple, // eslint-disable-line no-unused-vars
       openDirection = 'bottom-left',
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
-      width,
+      width, // eslint-disable-line no-unused-vars
       zDepth,
       ...other,
     } = this.props;
@@ -485,59 +525,15 @@ const Menu = React.createClass({
     warning((typeof zDepth === 'undefined'), 'Menu no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
       'or another component that provides `zDepth`.');
 
-    const {
-      focusIndex,
-      muiTheme,
-    } = this.state;
+    const {focusIndex} = this.state;
 
-    const {
-      prepareStyles,
-    } = muiTheme;
-
-    const openDown = openDirection.split('-')[0] === 'bottom';
-    const openLeft = openDirection.split('-')[1] === 'left';
-
-    const rawTheme = muiTheme.rawTheme;
-
-    const styles = {
-      root: {
-        //Nested div bacause the List scales x faster than
-        //it scales y
-        transition: animated ? transitions.easeOut('250ms', 'transform') : null,
-        zIndex: muiTheme.zIndex.menu,
-        top: openDown ? 0 : null,
-        bottom: !openDown ? 0 : null,
-        left: !openLeft ? 0 : null,
-        right: openLeft ? 0 : null,
-        transform: animated ? 'scaleX(0)' : null,
-        transformOrigin: openLeft ? 'right' : 'left',
-        opacity: 0,
-        maxHeight: maxHeight,
-        overflowY: maxHeight ? 'auto' : null,
-      },
-      divider: {
-        marginTop: 7,
-        marginBottom: 8,
-      },
-      list: {
-        display: 'table-cell',
-        paddingBottom: desktop ? 16 : 8,
-        paddingTop: desktop ? 16 : 8,
-        userSelect: 'none',
-        width: width,
-      },
-      menuItemContainer: {
-        transition: animated ? transitions.easeOut(null, 'opacity') : null,
-        opacity: 0,
-      },
-      selectedMenuItem: {
-        color: rawTheme.palette.accent1Color,
-      },
-    };
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedListStyles = Object.assign(styles.list, listStyle);
 
+    const openDown = openDirection.split('-')[0] === 'bottom';
     const filteredChildren = this.getFilteredChildren(children);
 
     //Cascade children opacity

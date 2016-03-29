@@ -4,7 +4,6 @@ import keycode from 'keycode';
 import Clock from './Clock';
 import Dialog from '../Dialog';
 import FlatButton from '../FlatButton';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const TimePickerDialog = React.createClass({
 
@@ -20,11 +19,7 @@ const TimePickerDialog = React.createClass({
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: React.PropTypes.object.isRequired,
   },
 
   getDefaultProps() {
@@ -37,24 +32,11 @@ const TimePickerDialog = React.createClass({
   getInitialState() {
     return {
       open: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
     };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
   },
 
   getTheme() {
-    return this.state.muiTheme.timePicker;
+    return this.context.muiTheme.timePicker;
   },
 
   show() {
