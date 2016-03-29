@@ -123,10 +123,6 @@ const RefreshIndicator = React.createClass({
     clearTimeout(this.rotateWrapperSecondTimer);
   },
 
-  scalePathTimer: undefined,
-  rotateWrapperTimer: undefined,
-  rotateWrapperSecondTimer: undefined,
-
   _renderChildren() {
     const {
       prepareStyles,

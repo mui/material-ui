@@ -1,5 +1,4 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import propTypes from '../utils/propTypes';
 import getMuiTheme from '../styles/getMuiTheme';
 import Subheader from '../Subheader';
@@ -53,10 +52,6 @@ const List = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
   },
-
-  mixins: [
-    PureRenderMixin,
-  ],
 
   getInitialState() {
     return {

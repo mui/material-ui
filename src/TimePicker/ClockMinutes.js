@@ -72,9 +72,6 @@ const ClockMinutes = React.createClass({
     });
   },
 
-  center: {x: 0, y: 0},
-  basePoint: {x: 0, y: 0},
-
   isMousePressed(event) {
     if (typeof event.buttons === 'undefined') {
       return event.nativeEvent.which;

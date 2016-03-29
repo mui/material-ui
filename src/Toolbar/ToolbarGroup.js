@@ -131,14 +131,18 @@ const ToolbarGroup = React.createClass({
     });
   },
 
-  _handleMouseEnterFontIcon: (style) => (event) => {
-    event.target.style.zIndex = style.hover.zIndex;
-    event.target.style.color = style.hover.color;
+  handleMouseEnterFontIcon(style) {
+    return (event) => {
+      event.target.style.zIndex = style.hover.zIndex;
+      event.target.style.color = style.hover.color;
+    };
   },
 
-  _handleMouseLeaveFontIcon: (style) => (event) => {
-    event.target.style.zIndex = 'auto';
-    event.target.style.color = style.root.color;
+  handleMouseLeaveFontIcon(style) {
+    return (event) => {
+      event.target.style.zIndex = 'auto';
+      event.target.style.color = style.root.color;
+    };
   },
 
   render() {
@@ -177,8 +181,8 @@ const ToolbarGroup = React.createClass({
         case 'FontIcon' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, styles.icon.root, currentChild.props.style),
-            onMouseEnter: this._handleMouseEnterFontIcon(styles.icon),
-            onMouseLeave: this._handleMouseLeaveFontIcon(styles.icon),
+            onMouseEnter: this.handleMouseEnterFontIcon(styles.icon),
+            onMouseLeave: this.handleMouseLeaveFontIcon(styles.icon),
           });
         case 'ToolbarSeparator' :
         case 'ToolbarTitle' :
