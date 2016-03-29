@@ -3,9 +3,7 @@ import Checkbox from '../Checkbox';
 import TableHeaderColumn from './TableHeaderColumn';
 
 function getStyles(props, context) {
-  const {
-    tableHeader,
-  } = context.muiTheme;
+  const {tableHeader} = context.muiTheme;
 
   return {
     root: {

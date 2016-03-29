@@ -5,9 +5,7 @@ import InkBar from './InkBar';
 import warning from 'warning';
 
 function getStyles(props, context) {
-  const {
-    tabs,
-  } = context.muiTheme;
+  const {tabs} = context.muiTheme;
 
   return {
     tabItemContainer: {

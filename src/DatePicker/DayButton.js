@@ -10,9 +10,7 @@ function getStyles(props, context) {
     selected,
   } = props;
 
-  const {
-    hover,
-  } = context;
+  const {hover} = context;
 
   const {
     baseTheme,

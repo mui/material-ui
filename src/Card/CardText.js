@@ -1,9 +1,7 @@
 import React from 'react';
 
 function getStyles(props, context) {
-  const {
-    cardText,
-  } = context.muiTheme;
+  const {cardText} = context.muiTheme;
 
   return {
     root: {

@@ -66,9 +66,7 @@ const TextFieldUnderline = (props) => {
     style,
   } = props;
 
-  const {
-    color: errorStyleColor,
-  } = errorStyle;
+  const {color: errorStyleColor} = errorStyle;
 
   const {
     prepareStyles,

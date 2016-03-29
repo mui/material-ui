@@ -302,10 +302,7 @@ const RefreshIndicator = React.createClass({
   },
 
   render() {
-    const {
-      style,
-    } = this.props;
-
+    const {style} = this.props;
     const styles = getStyles(this.props, this.context);
 
     return (

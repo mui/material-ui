@@ -1,9 +1,7 @@
 import React from 'react';
 
 function getStyles(props, context) {
-  const {
-    baseTheme,
-  } = context.muiTheme;
+  const {baseTheme} = context.muiTheme;
 
   return {
     root: {

@@ -4,9 +4,7 @@ import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 
 function getStyles(props, context, state) {
-  const {
-    disabled,
-  } = props;
+  const {disabled} = props;
 
   const {
     baseTheme,

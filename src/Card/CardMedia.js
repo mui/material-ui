@@ -1,9 +1,8 @@
 import React from 'react';
 
 function getStyles(props, context) {
-  const {
-    cardMedia,
- } = context.muiTheme;
+  const {cardMedia} = context.muiTheme;
+
   return {
     root: {
       position: 'relative',

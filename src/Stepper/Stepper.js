@@ -177,9 +177,7 @@ const Stepper = React.createClass({
   },
 
   findFurthestOptionalStep(index) {
-    const {
-      children,
-    } = this.props;
+    const {children} = this.props;
 
     while (index > 0 && children[index - 1].props.optional) {
       index--;

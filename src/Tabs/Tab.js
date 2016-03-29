@@ -2,9 +2,7 @@ import React from 'react';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {
-  const {
-    tabs,
-  } = context.muiTheme;
+  const {tabs} = context.muiTheme;
 
   return {
     root: {

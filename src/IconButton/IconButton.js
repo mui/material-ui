@@ -7,9 +7,7 @@ import Tooltip from '../internal/Tooltip';
 import {extendChildren} from '../utils/childUtils';
 
 function getStyles(props, context) {
-  const {
-    baseTheme,
-  } = context.muiTheme;
+  const {baseTheme} = context.muiTheme;
 
   return {
     root: {

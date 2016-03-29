@@ -525,9 +525,7 @@ const Menu = React.createClass({
     warning((typeof zDepth === 'undefined'), 'Menu no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
       'or another component that provides `zDepth`.');
 
-    const {
-      focusIndex,
-    } = this.state;
+    const {focusIndex} = this.state;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);

@@ -1,9 +1,7 @@
 import React from 'react';
 
 function getStyles(props, context) {
-  const {
-    tableRowColumn,
-  } = context.muiTheme;
+  const {tableRowColumn} = context.muiTheme;
 
   const styles = {
     root: {

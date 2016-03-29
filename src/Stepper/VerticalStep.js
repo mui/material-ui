@@ -103,9 +103,7 @@ const Step = React.createClass({
 
 
   componentDidMount() {
-    const {
-      isActive,
-    } = this.props;
+    const {isActive} = this.props;
 
     if (isActive) {
       const childrenWrapperNode = this.refs.childrenWrapper;
@@ -122,9 +120,7 @@ const Step = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const {
-      isActive,
-    } = this.props;
+    const {isActive} = this.props;
 
     if (!isActive && nextProps.isActive) {
       const childrenWrapperNode = this.refs.childrenWrapper;

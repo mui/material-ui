@@ -7,9 +7,7 @@ function getStyles(props, context) {
     year,
   } = props;
 
-  const {
-    hover,
-  } = context;
+  const {hover} = context;
 
   const {
     baseTheme,

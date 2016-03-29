@@ -6,10 +6,7 @@ import CheckboxChecked from '../svg-icons/toggle/check-box';
 import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props, context) {
-  const {
-    checkbox,
-  } = context.muiTheme;
-
+  const {checkbox} = context.muiTheme;
   const checkboxSize = 24;
 
   return {

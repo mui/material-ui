@@ -2,9 +2,7 @@ import React from 'react';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
-  const {
-    inkBar,
-  } = context.muiTheme;
+  const {inkBar} = context.muiTheme;
 
   return {
     root: {
@@ -39,10 +37,7 @@ const InkBar = React.createClass({
   },
 
   render() {
-    const {
-      style,
-    } = this.props;
-
+    const {style} = this.props;
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 

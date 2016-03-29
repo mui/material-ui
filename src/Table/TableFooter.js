@@ -2,9 +2,7 @@ import React from 'react';
 import TableRowColumn from './TableRowColumn';
 
 function getStyles(props, context) {
-  const {
-    tableFooter,
-  } = context.muiTheme;
+  const {tableFooter} = context.muiTheme;
 
   return {
     cell: {

@@ -9,9 +9,7 @@ import warning from 'warning';
 import propTypes from '../utils/propTypes';
 
 function getStyles(props, context) {
-  const {
-    floatingActionButton,
-  } = context.muiTheme;
+  const {floatingActionButton} = context.muiTheme;
 
   let backgroundColor = props.backgroundColor || floatingActionButton.color;
   let iconColor = floatingActionButton.iconColor;

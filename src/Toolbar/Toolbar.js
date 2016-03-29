@@ -1,9 +1,7 @@
 import React from 'react';
 
 function getStyles(props, context) {
-  const {
-    noGutter,
-  } = props;
+  const {noGutter} = props;
 
   const {
     baseTheme,

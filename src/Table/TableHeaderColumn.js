@@ -2,9 +2,7 @@ import React from 'react';
 import Tooltip from '../internal/Tooltip';
 
 function getStyles(props, context) {
-  const {
-    tableHeaderColumn,
-  } = context.muiTheme;
+  const {tableHeaderColumn} = context.muiTheme;
 
   return {
     root: {
