@@ -55,7 +55,7 @@ describe('<Slider />', () => {
       <Slider name="slider" style={rootStyle} />
     );
 
-    assert.deepEqual(wrapper.props().style, rootStyle, 'root element should have the style object');
+    assert.strictEqual(wrapper.props().style.backgroundColor, 'red', 'root element should have the style object');
   });
 
   it('checks slider initial state', () => {
