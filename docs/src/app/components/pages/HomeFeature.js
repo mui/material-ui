@@ -48,7 +48,7 @@ const HomeFeature = React.createClass({
         marginBottom: 0,
       },
       image: {
-        display: block
+        display: 'block'
       },
       heading: {
         fontSize: 20,
