@@ -1,6 +1,6 @@
 import React from 'react';
 import Transition from '../styles/transitions';
-import DateTime from '../utils/dateTime';
+import {isEqualDate} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {
@@ -25,7 +25,7 @@ function getStyles(props, context) {
     labelColor = datePicker.selectTextColor;
     buttonStateOpacity = selected ? 1 : 0.6;
     buttonStateTransform = 'scale(1)';
-  } else if (DateTime.isEqualDate(date, new Date())) {
+  } else if (isEqualDate(date, new Date())) {
     labelColor = datePicker.color;
   }
 

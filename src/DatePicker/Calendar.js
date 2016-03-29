@@ -1,6 +1,5 @@
 import React from 'react';
 import EventListener from 'react-event-listener';
-import DateTime from '../utils/dateTime';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import CalendarMonth from './CalendarMonth';
@@ -9,6 +8,20 @@ import CalendarToolbar from './CalendarToolbar';
 import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../internal/SlideIn';
 import ClearFix from '../internal/ClearFix';
+
+import {
+  addDays,
+  addMonths,
+  addYears,
+  cloneDate,
+  isAfterDate,
+  isBeforeDate,
+  getWeekArray,
+  getFirstDayOfMonth,
+  localizedWeekday,
+  monthDiff,
+  yearDiff,
+} from './dateUtils';
 
 const daysArray = [...Array(7)];
 
@@ -36,14 +49,14 @@ const Calendar = React.createClass({
     return {
       disableYearSelection: false,
       initialDate: new Date(),
-      minDate: DateTime.addYears(new Date(), -100),
-      maxDate: DateTime.addYears(new Date(), 100),
+      minDate: addYears(new Date(), -100),
+      maxDate: addYears(new Date(), 100),
     };
   },
 
   getInitialState() {
     return {
-      displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
+      displayDate: getFirstDayOfMonth(this.props.initialDate),
       displayMonthDay: true,
       selectedDate: this.props.initialDate,
       transitionDirection: 'left',
@@ -55,7 +68,7 @@ const Calendar = React.createClass({
     if (nextProps.initialDate !== this.props.initialDate) {
       const d = nextProps.initialDate || new Date();
       this.setState({
-        displayDate: DateTime.getFirstDayOfMonth(d),
+        displayDate: getFirstDayOfMonth(d),
         selectedDate: d,
       });
     }
@@ -89,19 +102,19 @@ const Calendar = React.createClass({
   },
 
   _addSelectedDays(days) {
-    this._setSelectedDate(DateTime.addDays(this.state.selectedDate, days));
+    this._setSelectedDate(addDays(this.state.selectedDate, days));
   },
 
   _addSelectedMonths(months) {
-    this._setSelectedDate(DateTime.addMonths(this.state.selectedDate, months));
+    this._setSelectedDate(addMonths(this.state.selectedDate, months));
   },
 
   _addSelectedYears(years) {
-    this._setSelectedDate(DateTime.addYears(this.state.selectedDate, years));
+    this._setSelectedDate(addYears(this.state.selectedDate, years));
   },
 
   _setDisplayDate(d, newSelectedDate) {
-    const newDisplayDate = DateTime.getFirstDayOfMonth(d);
+    const newDisplayDate = getFirstDayOfMonth(d);
     const direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
 
     if (newDisplayDate !== this.state.displayDate) {
@@ -115,13 +128,13 @@ const Calendar = React.createClass({
 
   _setSelectedDate(date) {
     let adjustedDate = date;
-    if (DateTime.isBeforeDate(date, this.props.minDate)) {
+    if (isBeforeDate(date, this.props.minDate)) {
       adjustedDate = this.props.minDate;
-    } else if (DateTime.isAfterDate(date, this.props.maxDate)) {
+    } else if (isAfterDate(date, this.props.maxDate)) {
       adjustedDate = this.props.maxDate;
     }
 
-    const newDisplayDate = DateTime.getFirstDayOfMonth(adjustedDate);
+    const newDisplayDate = getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, adjustedDate);
     } else {
@@ -139,20 +152,20 @@ const Calendar = React.createClass({
   handleMonthChange(months) {
     this.setState({
       transitionDirection: months >= 0 ? 'left' : 'right',
-      displayDate: DateTime.addMonths(this.state.displayDate, months),
+      displayDate: addMonths(this.state.displayDate, months),
     });
   },
 
   handleYearTouchTap(event, year) {
-    const date = DateTime.clone(this.state.selectedDate);
+    const date = cloneDate(this.state.selectedDate);
     date.setFullYear(year);
     this._setSelectedDate(date, event);
   },
 
   _getToolbarInteractions() {
     return {
-      prevMonth: DateTime.monthDiff(this.state.displayDate, this.props.minDate) > 0,
-      nextMonth: DateTime.monthDiff(this.state.displayDate, this.props.maxDate) < 0,
+      prevMonth: monthDiff(this.state.displayDate, this.props.minDate) > 0,
+      nextMonth: monthDiff(this.state.displayDate, this.props.maxDate) < 0,
     };
   },
 
@@ -216,8 +229,8 @@ const Calendar = React.createClass({
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
-    const yearCount = DateTime.yearDiff(this.props.maxDate, this.props.minDate) + 1;
-    const weekCount = DateTime.getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
+    const yearCount = yearDiff(this.props.maxDate, this.props.minDate) + 1;
+    const weekCount = getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     const toolbarInteractions = this._getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';
     const styles = {
@@ -306,7 +319,7 @@ const Calendar = React.createClass({
             >
               {daysArray.map((event, i) => (
                 <li key={i} style={weekTitleDayStyle}>
-                  {DateTime.localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
+                  {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
                 </li>
               ))}
             </ClearFix>

@@ -1,8 +1,8 @@
 import React from 'react';
 import warning from 'warning';
-import DateTime from '../utils/dateTime.js';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
+import {formatTime} from './timeUtils';
 
 const emptyTime = new Date();
 emptyTime.setHours(0);
@@ -194,7 +194,7 @@ const TimePicker = React.createClass({
 
   _getControlledTime(props = this.props) {
     let result = null;
-    if (DateTime.isDateObject(props.value)) {
+    if (props.value instanceof Date) {
       result = props.value;
     }
     return result;
@@ -225,7 +225,7 @@ const TimePicker = React.createClass({
           {...other}
           style={textFieldStyle}
           ref="input"
-          value={time === emptyTime ? null : DateTime.formatTime(time, format, pedantic)}
+          value={time === emptyTime ? null : formatTime(time, format, pedantic)}
           onFocus={this.handleFocusInput}
           onTouchTap={this.handleTouchTapInput}
         />

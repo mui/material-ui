@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'TextField';
 import TimePicker from 'TimePicker';
-import DateTime from 'utils/dateTime';
+import {addHours, formatTime} from 'TimePicker/timeUtils';
 import TestUtils from 'react-addons-test-utils';
 import injectTheme from '../fixtures/inject-theme';
 
@@ -14,7 +14,7 @@ describe('TimePicker', () => {
 
   it('has to give value prop precedence over defaultTime', () => {
     const initialTime = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
-    const valueTime = DateTime.addHours(initialTime, 2);
+    const valueTime = addHours(initialTime, 2);
 
     const render = TestUtils.renderIntoDocument(
       <ThemedTimePicker
@@ -27,7 +27,7 @@ describe('TimePicker', () => {
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
 
-    expect(timeTextField.props.value, DateTime.formatTime(valueTime));
+    expect(timeTextField.props.value, formatTime(valueTime));
   });
 
   it('takes defaulTime prop to set first value when value prop is missing', () => {
@@ -39,7 +39,7 @@ describe('TimePicker', () => {
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
 
-    expect(timeTextField.props.value, DateTime.formatTime(initialTime));
+    expect(timeTextField.props.value, formatTime(initialTime));
   });
 
   it('shows value prop if defaultTime is missing', () => {
@@ -57,6 +57,6 @@ describe('TimePicker', () => {
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
 
-    expect(timeTextField.props.value, DateTime.formatTime(valueTime));
+    expect(timeTextField.props.value, formatTime(valueTime));
   });
 });

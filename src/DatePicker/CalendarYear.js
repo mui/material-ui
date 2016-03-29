@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DateTime from '../utils/dateTime';
 import YearButton from './YearButton';
+import {cloneDate} from './dateUtils';
 
 const CalendarYear = React.createClass({
 
@@ -30,7 +30,7 @@ const CalendarYear = React.createClass({
     const maxYear = this.props.maxDate.getFullYear();
 
     const years = [];
-    const dateCheck = DateTime.clone(this.props.selectedDate);
+    const dateCheck = cloneDate(this.props.selectedDate);
     for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
       const selected = this.props.selectedDate.getFullYear() === year;

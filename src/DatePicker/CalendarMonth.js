@@ -1,5 +1,5 @@
 import React from 'react';
-import DateTime from '../utils/dateTime';
+import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
 import DayButton from './DayButton';
 import ClearFix from '../internal/ClearFix';
 
@@ -21,7 +21,7 @@ const CalendarMonth = React.createClass({
   },
 
   _getWeekElements() {
-    const weekArray = DateTime.getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
+    const weekArray = getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
 
     return weekArray.map((week, i) => {
       return (
@@ -34,7 +34,7 @@ const CalendarMonth = React.createClass({
 
   _getDayElements(week, i) {
     return week.map((day, j) => {
-      const isSameDate = DateTime.isEqualDate(this.props.selectedDate, day);
+      const isSameDate = isEqualDate(this.props.selectedDate, day);
       const disabled = this._shouldDisableDate(day);
       const selected = !disabled && isSameDate;
 
@@ -64,7 +64,7 @@ const CalendarMonth = React.createClass({
 
   _shouldDisableDate(day) {
     if (day === null) return false;
-    let disabled = !DateTime.isBetweenDates(day, this.props.minDate, this.props.maxDate);
+    let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
 
     return disabled;

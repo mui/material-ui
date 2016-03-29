@@ -1,5 +1,5 @@
 import React from 'react';
-import DateTime from '../utils/dateTime';
+import {formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
 import deprecated from '../utils/deprecatedPropType';
@@ -187,7 +187,7 @@ const DatePicker = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (this._isControlled()) {
       const newDate = this._getControlledDate(nextProps);
-      if (!DateTime.isEqualDate(this.state.date, newDate)) {
+      if (!isEqualDate(this.state.date, newDate)) {
         this.setState({
           date: newDate,
         });
@@ -256,9 +256,9 @@ const DatePicker = React.createClass({
   },
 
   _getControlledDate(props = this.props) {
-    if (DateTime.isDateObject(props.value)) {
+    if (props.value instanceof Date) {
       return props.value;
-    } else if (props.valueLink && DateTime.isDateObject(props.valueLink.value)) {
+    } else if (props.valueLink && props.valueLink.value instanceof Date) {
       return props.valueLink.value;
     }
   },
@@ -271,7 +271,7 @@ const DatePicker = React.createClass({
         year: 'numeric',
       }).format(date);
     } else {
-      return DateTime.format(date);
+      return formatIso(date);
     }
   },
 
