@@ -15,83 +15,103 @@ const Menu = React.createClass({
 
   propTypes: {
     /**
-     * If true, the menu will apply transitions when added it
-     * gets added to the DOM. In order for transitions to
-     * work, wrap the menu inside a ReactTransitionGroup.
+     * If true, the menu will apply transitions when it
+     * is added to the DOM. In order for transitions to
+     * work, wrap the menu inside a `ReactTransitionGroup`.
      */
     animated: deprecated(React.PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
 
     /**
-     * If true, the width will automatically be
-     * set according to the items inside the menu
-     * using the proper keyline increment.
+     * If true, the width of the menu will be set automatically
+     * according to the widths of its children,
+     * using proper keyline increments (64px for desktop,
+     * 56px otherwise).
      */
     autoWidth: React.PropTypes.bool,
 
     /**
-     * Children for the Menu. Usually MenuItems.
+     * The content of the menu. This is usually used to pass `MenuItem`
+     * elements.
      */
     children: React.PropTypes.node,
 
     /**
-     * Indicates if the menu should render with compact desktop styles.
+     * If true, the menu item will render with compact desktop styles.
      */
     desktop: React.PropTypes.bool,
 
     /**
-     * Disable the auto focus feature.
+     * If true, the menu will not be auto-focused.
      */
     disableAutoFocus: React.PropTypes.bool,
 
     /**
-     * True if this item should be focused by the keyboard initially.
+     * If true, the menu will be keyboard-focused initially.
      */
     initiallyKeyboardFocused: React.PropTypes.bool,
 
     /**
-     * The style object to use to override underlying list style.
+     * Override the inline-styles of the underlying `List` element.
      */
     listStyle: React.PropTypes.object,
 
     /**
-     * The maxHeight of the menu in pixels. If
-     * specified, the menu will scroll if larger than the maxHeight.
+     * The maximum height of the menu in pixels. If specified,
+     * the menu will be scrollable if it is taller than the provided
+     * height.
      */
     maxHeight: React.PropTypes.number,
 
     /**
-     * If true, the value can be an array and allow the menu to be a multi-select.
+     * If true, `value` must be an array and the menu will support
+     * multiple selections.
      */
     multiple: React.PropTypes.bool,
 
     /**
-     * Fired when a menu item is touchTapped and the menu item
-     * value is not equal to the current menu value.
+     * Callback function fired when a menu item with `value` not
+     * equal to the current `value` of the menu is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the menu item.
+     * @param {any}  value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
      */
     onChange: React.PropTypes.func,
 
     /**
-     * Fired when an Esc key is keyed down.
+     * Callback function fired when the menu is focused and the *Esc* key
+     * is pressed.
+     *
+     * @param {object} event `keydown` event targeting the menu.
      */
     onEscKeyDown: React.PropTypes.func,
 
     /**
-     * Fired when a menu item is touchTapped.
+     * Callback function fired when a menu item is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the menu item.
+     * @param {object} menuItem The menu item.
+     * @param {number} index The index of the menu item.
      */
     onItemTouchTap: React.PropTypes.func,
 
     /**
-     * Fired when a key is pressed.
+     * Callback function fired when the menu is focused and a key
+     * is pressed.
+     *
+     * @param {object} event `keydown` event targeting the menu.
      */
     onKeyDown: React.PropTypes.func,
 
     /**
-     * This is the placement of the menu relative to the IconButton.
+     * This is the placement of the menu relative to the `IconButton`.
      */
     openDirection: propTypes.corners,
 
     /**
-     * Style for the selected Menu Item.
+     * Override the inline-styles of selected menu items.
      */
     selectedMenuItemStyle: React.PropTypes.object,
 
@@ -101,22 +121,22 @@ const Menu = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * The value of the selected menu item. If passed in,
-     * this will make the menu a controlled component.
+     * If `multiple` is true, an array of the `value`s of the selected
+     * menu items. Otherwise, the `value` of the selected menu item.
+     * If provided, the menu will be a controlled component.
      * This component also supports valueLink.
      */
     value: React.PropTypes.any,
 
     /**
-     * ValueLink for this component when controlled.
+     * ValueLink for the menu's `value`.
      */
     valueLink: React.PropTypes.object,
 
     /**
-     * Sets the width of the menu. If not specified, the menu
-     * width will be dictated by its children. The rendered
-     * width will always be a keyline increment
-     * (64px for desktop, 56px otherwise).
+     * The width of the menu. If not specified, the menu's width
+     * will be set according to the widths of its children, using
+     * proper keyline increments (64px for desktop, 56px otherwise).
      */
     width: propTypes.stringOrNumber,
 
