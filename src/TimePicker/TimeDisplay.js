@@ -67,10 +67,7 @@ const TimeDisplay = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-      timePicker,
-    } = this.context.muiTheme;
+    const {prepareStyles, timePicker} = this.context.muiTheme;
 
     const styles = {
       root: {

@@ -8,15 +8,9 @@ function calcAngle(value, base) {
 }
 
 function getStyles(props, context, state) {
-  const {
-    hasSelected,
-    type,
-    value,
-  } = props;
-
+  const {hasSelected, type, value} = props;
   const {inner} = state;
   const {timePicker} = context.muiTheme;
-
   const angle = type === 'hour' ? calcAngle(value, 12) : calcAngle(value, 60);
 
   const styles = {

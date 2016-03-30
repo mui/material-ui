@@ -66,7 +66,7 @@ export function getTouchEventOffsetValues(event) {
   const el = event.target;
   const boundingRect = el.getBoundingClientRect();
 
-   return {
+  return {
     offsetX: event.clientX - boundingRect.left,
     offsetY: event.clientY - boundingRect.top,
   };

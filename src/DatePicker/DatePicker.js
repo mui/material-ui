@@ -180,7 +180,7 @@ const DatePicker = React.createClass({
 
   getInitialState() {
     return {
-      date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
+      date: this.isControlled() ? this._getControlledDate() : this.props.defaultDate,
     };
   },
 
