@@ -180,13 +180,13 @@ const DatePicker = React.createClass({
 
   getInitialState() {
     return {
-      date: this.isControlled() ? this._getControlledDate() : this.props.defaultDate,
+      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
     };
   },
 
   componentWillReceiveProps(nextProps) {
-    if (this._isControlled()) {
-      const newDate = this._getControlledDate(nextProps);
+    if (this.isControlled()) {
+      const newDate = this.getControlledDate(nextProps);
       if (!isEqualDate(this.state.date, newDate)) {
         this.setState({
           date: newDate,
@@ -227,7 +227,7 @@ const DatePicker = React.createClass({
   },
 
   handleAccept(date) {
-    if (!this._isControlled()) {
+    if (!this.isControlled()) {
       this.setState({
         date: date,
       });
@@ -250,12 +250,12 @@ const DatePicker = React.createClass({
       }, 0);
   },
 
-  _isControlled() {
+  isControlled() {
     return this.props.hasOwnProperty('value') ||
       this.props.hasOwnProperty('valueLink');
   },
 
-  _getControlledDate(props = this.props) {
+  getControlledDate(props = this.props) {
     if (props.value instanceof Date) {
       return props.value;
     } else if (props.valueLink && props.valueLink.value instanceof Date) {
@@ -263,7 +263,7 @@ const DatePicker = React.createClass({
     }
   },
 
-  _formatDate(date) {
+  formatDate(date) {
     if (this.props.locale && this.props.DateTimeFormat) {
       return new this.props.DateTimeFormat(this.props.locale, {
         day: 'numeric',
@@ -302,7 +302,7 @@ const DatePicker = React.createClass({
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const formatDate = this.props.formatDate || this._formatDate;
+    const formatDate = this.props.formatDate || this.formatDate;
 
     return (
       <div style={prepareStyles(Object.assign({}, style))}>
