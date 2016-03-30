@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import shallowEqual from 'recompose/shallowEqual';
 import Popover from '../Popover/Popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../List/ListItem';
@@ -169,6 +170,13 @@ class MenuItem extends React.Component {
     if (this.state.open && nextProps.focusState === 'none') {
       this.handleRequestClose();
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
   }
 
   componentDidUpdate() {

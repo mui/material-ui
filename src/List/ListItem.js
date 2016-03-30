@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import shallowEqual from 'recompose/shallowEqual';
 import ColorManipulator from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -342,6 +343,13 @@ class ListItem extends React.Component {
     rightIconButtonKeyboardFocused: false,
     touch: false,
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   // This method is needed by the `MenuItem` component.
   applyFocusState(focusState) {

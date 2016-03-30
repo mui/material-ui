@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import shallowEqual from 'recompose/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import ScaleInTransitionGroup from './ScaleIn';
@@ -24,6 +25,13 @@ class FocusRipple extends React.Component {
       this.setRippleSize();
       this.pulsate();
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
   }
 
   componentDidUpdate() {
