@@ -4,15 +4,16 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import stepperReadmeText from './README';
-import VerticalLinearStepper from './VerticalLinearStepper';
-import VerticalNonLinearStepper from './VerticalNonLinearStepper';
-import VerticalLinearStepperWithOptionalStep from './VerticalLinearStepperWithOptionalStep';
-import VerticalLinearStepperCode from '!raw!./VerticalLinearStepper';
-import VerticalLinearStepperWithOptionalStepCode from '!raw!./VerticalLinearStepperWithOptionalStep';
-import VerticalNonLinearStepperCode from '!raw!./VerticalNonLinearStepper';
-import HorizontalLinearStepper from './HorizontalLinearStepper';
-import HorizontalLinearStepperCode from '!raw!./HorizontalLinearStepper';
+import stepperReadmeText from 'material-ui/Stepper/examples/README';
+import VerticalLinearStepper from 'material-ui/Stepper/examples/VerticalLinearStepper';
+import VerticalNonLinearStepper from 'material-ui/Stepper/examples/VerticalNonLinearStepper';
+import VerticalLinearStepperWithOptionalStep from 'material-ui/Stepper/examples/VerticalLinearStepperWithOptionalStep';
+import VerticalLinearStepperCode from '!raw!material-ui/Stepper/examples/VerticalLinearStepper';
+import VerticalLinearStepperWithOptionalStepCode
+  from '!raw!material-ui/Stepper/examples/VerticalLinearStepperWithOptionalStep';
+import VerticalNonLinearStepperCode from '!raw!material-ui/Stepper/examples/VerticalNonLinearStepper';
+import HorizontalLinearStepper from 'material-ui/Stepper/examples/HorizontalLinearStepper';
+import HorizontalLinearStepperCode from '!raw!material-ui/Stepper/examples/HorizontalLinearStepper';
 
 import stepperCode from '!raw!material-ui/lib/Stepper/Stepper';
 import verticalStepCode from '!raw!material-ui/lib/Stepper/VerticalStep';

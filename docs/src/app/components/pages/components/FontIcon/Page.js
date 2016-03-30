@@ -6,11 +6,11 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import iconCode from '!raw!material-ui/lib/FontIcon/FontIcon';
-import iconReadmeText from './README';
-import IconExampleSimple from './ExampleSimple';
-import iconExampleSimpleCode from '!raw!./ExampleSimple';
-import IconExampleIcons from './ExampleIcons';
-import iconExampleIconsCode from '!raw!./ExampleIcons';
+import iconReadmeText from 'material-ui/FontIcon/examples/README';
+import IconExampleSimple from 'material-ui/FontIcon/examples/ExampleSimple';
+import iconExampleSimpleCode from '!raw!material-ui/FontIcon/examples/ExampleSimple';
+import IconExampleIcons from 'material-ui/FontIcon/examples/ExampleIcons';
+import iconExampleIconsCode from '!raw!material-ui/FontIcon/examples/ExampleIcons';
 
 const descriptions = {
   custom: 'This example uses a custom font (not part of Material-UI). The `className` defines the specific ' +

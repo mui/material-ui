@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import subheaderReadmeText from './README';
-import listExampleChatCode from '!raw!../List/ExampleChat';
-import ListExampleChat from '../List/ExampleChat';
-import listExampleFoldersCode from '!raw!../List/ExampleFolders';
-import ListExampleFolders from '../List/ExampleFolders';
-import gridListExampleSimpleCode from '!raw!../GridList/ExampleSimple';
-import GridListExampleSimple from '../GridList/ExampleSimple';
+import subheaderReadmeText from 'material-ui/Subheader/examples/README';
+import listExampleChatCode from '!raw!material-ui/List/examples/ExampleChat';
+import ListExampleChat from 'material-ui/List/examples/ExampleChat';
+import listExampleFoldersCode from '!raw!material-ui/List/examples/ExampleFolders';
+import ListExampleFolders from 'material-ui/List/examples/ExampleFolders';
+import gridListExampleSimpleCode from '!raw!material-ui/GridList/examples/ExampleSimple';
+import GridListExampleSimple from 'material-ui/GridList/examples/ExampleSimple';
 import subheaderCode from '!raw!material-ui/lib/Subheader/Subheader';
 
 const descriptions = {

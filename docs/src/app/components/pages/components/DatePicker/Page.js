@@ -5,19 +5,19 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import datePickerReadmeText from './README';
-import DatePickerExampleSimple from './ExampleSimple';
-import datePickerExampleSimpleCode from '!raw!./ExampleSimple';
-import DatePickerExampleInline from './ExampleInline';
-import datePickerExampleInlineCode from '!raw!./ExampleInline';
-import DatePickerExampleToggle from './ExampleToggle';
-import datePickerExampleToggleCode from '!raw!./ExampleToggle';
-import DatePickerExampleControlled from './ExampleControlled';
-import datePickerExampleControlledCode from '!raw!./ExampleControlled';
-import DatePickerExampleDisableDates from './ExampleDisableDates';
-import datePickerExampleDisableDatesCode from '!raw!./ExampleDisableDates';
-import DatePickerExampleInternational from './ExampleInternational';
-import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
+import datePickerReadmeText from 'material-ui/DatePicker/examples/README';
+import DatePickerExampleSimple from 'material-ui/DatePicker/examples/ExampleSimple';
+import datePickerExampleSimpleCode from '!raw!material-ui/DatePicker/examples/ExampleSimple';
+import DatePickerExampleInline from 'material-ui/DatePicker/examples/ExampleInline';
+import datePickerExampleInlineCode from '!raw!material-ui/DatePicker/examples/ExampleInline';
+import DatePickerExampleToggle from 'material-ui/DatePicker/examples/ExampleToggle';
+import datePickerExampleToggleCode from '!raw!material-ui/DatePicker/examples/ExampleToggle';
+import DatePickerExampleControlled from 'material-ui/DatePicker/examples/ExampleControlled';
+import datePickerExampleControlledCode from '!raw!material-ui/DatePicker/examples/ExampleControlled';
+import DatePickerExampleDisableDates from 'material-ui/DatePicker/examples/ExampleDisableDates';
+import datePickerExampleDisableDatesCode from '!raw!material-ui/DatePicker/examples/ExampleDisableDates';
+import DatePickerExampleInternational from 'material-ui/DatePicker/examples/ExampleInternational';
+import datePickerExampleInternationalCode from '!raw!material-ui/DatePicker/examples/ExampleInternational';
 import datePickerCode from '!raw!material-ui/lib/DatePicker/DatePicker';
 
 const descriptions = {

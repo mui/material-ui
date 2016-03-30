@@ -5,11 +5,11 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import badgeReadmeText from './README';
-import BadgeExampleSimple from './ExampleSimple';
-import badgeExampleSimpleCode from '!raw!./ExampleSimple';
-import BadgeExampleContent from './ExampleContent';
-import badgeExampleContentCode from '!raw!./ExampleContent';
+import badgeReadmeText from 'material-ui/Badge/examples/README';
+import BadgeExampleSimple from 'material-ui/Badge/examples/ExampleSimple';
+import badgeExampleSimpleCode from '!raw!material-ui/Badge/examples/ExampleSimple';
+import BadgeExampleContent from 'material-ui/Badge/examples/ExampleContent';
+import badgeExampleContentCode from '!raw!material-ui/Badge/examples/ExampleContent';
 import badgeCode from '!raw!material-ui/lib/Badge/Badge';
 
 const descriptions = {

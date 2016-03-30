@@ -3,5 +3,6 @@ instrumentation:
   excludes:
     - "**/svg-icons/**"
     - "**/*.spec.js"
+    - "**/examples/**"
   extensions:
     - .js

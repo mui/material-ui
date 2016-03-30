@@ -1,5 +1,5 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
+import MobileTearSheet from 'material-ui-docs/components/MobileTearSheet';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';

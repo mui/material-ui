@@ -5,17 +5,17 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import textFieldReadmeText from './README';
-import TextFieldExampleSimple from './ExampleSimple';
-import textFieldExampleSimpleCode from '!raw!./ExampleSimple';
-import TextFieldExampleCustomize from './ExampleCustomize';
-import textFieldExampleCustomizeCode from '!raw!./ExampleCustomize';
-import TextFieldExampleError from './ExampleError';
-import textFieldExampleErrorCode from '!raw!./ExampleError';
-import TextFieldExampleDisabled from './ExampleDisabled';
-import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
-import TextFieldExampleControlled from './ExampleControlled';
-import textFieldExampleControlledCode from '!raw!./ExampleControlled';
+import textFieldReadmeText from 'material-ui/TextField/examples/README';
+import TextFieldExampleSimple from 'material-ui/TextField/examples/ExampleSimple';
+import textFieldExampleSimpleCode from '!raw!material-ui/TextField/examples/ExampleSimple';
+import TextFieldExampleCustomize from 'material-ui/TextField/examples/ExampleCustomize';
+import textFieldExampleCustomizeCode from '!raw!material-ui/TextField/examples/ExampleCustomize';
+import TextFieldExampleError from 'material-ui/TextField/examples/ExampleError';
+import textFieldExampleErrorCode from '!raw!material-ui/TextField/examples/ExampleError';
+import TextFieldExampleDisabled from 'material-ui/TextField/examples/ExampleDisabled';
+import textFieldExampleDisabledCode from '!raw!material-ui/TextField/examples/ExampleDisabled';
+import TextFieldExampleControlled from 'material-ui/TextField/examples/ExampleControlled';
+import textFieldExampleControlledCode from '!raw!material-ui/TextField/examples/ExampleControlled';
 import textFieldCode from '!raw!material-ui/lib/TextField/TextField';
 
 const descriptions = {

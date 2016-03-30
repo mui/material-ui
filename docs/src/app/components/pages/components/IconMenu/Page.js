@@ -5,15 +5,15 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import iconMenuReadmeText from './README';
-import IconMenuExampleSimple from './ExampleSimple';
-import iconMenuExampleSimpleCode from '!raw!./ExampleSimple';
-import IconMenuExampleControlled from './ExampleControlled';
-import iconMenuExampleControlledCode from '!raw!./ExampleControlled';
-import IconMenuExampleScrollable from './ExampleScrollable';
-import iconMenuExampleScrollableCode from '!raw!./ExampleScrollable';
-import IconMenuExampleNested from './ExampleNested';
-import iconMenuExampleNestedCode from '!raw!./ExampleNested';
+import iconMenuReadmeText from 'material-ui/IconMenu/examples/README';
+import IconMenuExampleSimple from 'material-ui/IconMenu/examples/ExampleSimple';
+import iconMenuExampleSimpleCode from '!raw!material-ui/IconMenu/examples/ExampleSimple';
+import IconMenuExampleControlled from 'material-ui/IconMenu/examples/ExampleControlled';
+import iconMenuExampleControlledCode from '!raw!material-ui/IconMenu/examples/ExampleControlled';
+import IconMenuExampleScrollable from 'material-ui/IconMenu/examples/ExampleScrollable';
+import iconMenuExampleScrollableCode from '!raw!material-ui/IconMenu/examples/ExampleScrollable';
+import IconMenuExampleNested from 'material-ui/IconMenu/examples/ExampleNested';
+import iconMenuExampleNestedCode from '!raw!material-ui/IconMenu/examples/ExampleNested';
 import iconMenuCode from '!raw!material-ui/lib/IconMenu/IconMenu';
 
 const descriptions = {

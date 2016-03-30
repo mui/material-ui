@@ -5,15 +5,15 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import dialogReadmeText from './README';
-import DialogExampleSimple from './ExampleSimple';
-import dialogExampleSimpleCode from '!raw!./ExampleSimple';
-import DialogExampleModal from './ExampleModal';
-import dialogExampleModalCode from '!raw!./ExampleModal';
-import DialogExampleCustomWidth from './ExampleCustomWidth';
-import dialogExampleCustomWidthCode from '!raw!./ExampleCustomWidth';
-import DialogExampleDialogDatePicker from './ExampleDialogDatePicker';
-import dialogExampleDialogDatePickerCode from '!raw!./ExampleDialogDatePicker';
+import dialogReadmeText from 'material-ui/Dialog/examples/README';
+import DialogExampleSimple from 'material-ui/Dialog/examples/ExampleSimple';
+import dialogExampleSimpleCode from '!raw!material-ui/Dialog/examples/ExampleSimple';
+import DialogExampleModal from 'material-ui/Dialog/examples/ExampleModal';
+import dialogExampleModalCode from '!raw!material-ui/Dialog/examples/ExampleModal';
+import DialogExampleCustomWidth from 'material-ui/Dialog/examples/ExampleCustomWidth';
+import dialogExampleCustomWidthCode from '!raw!material-ui/Dialog/examples/ExampleCustomWidth';
+import DialogExampleDialogDatePicker from 'material-ui/Dialog/examples/ExampleDialogDatePicker';
+import dialogExampleDialogDatePickerCode from '!raw!material-ui/Dialog/examples/ExampleDialogDatePicker';
 import dialogCode from '!raw!material-ui/lib/Dialog/Dialog';
 
 const descriptions = {

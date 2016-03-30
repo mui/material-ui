@@ -5,11 +5,11 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import linearProgressReadmeText from './README';
-import LinearProgressExampleSimple from './ExampleSimple';
-import linearProgressExampleSimpleCode from '!raw!./ExampleSimple';
-import LinearProgressExampleDeterminate from './ExampleDeterminate';
-import linearProgressExampleDeterminateCode from '!raw!./ExampleDeterminate';
+import linearProgressReadmeText from 'material-ui/LinearProgress/examples/README';
+import LinearProgressExampleSimple from 'material-ui/LinearProgress/examples/ExampleSimple';
+import linearProgressExampleSimpleCode from '!raw!material-ui/LinearProgress/examples/ExampleSimple';
+import LinearProgressExampleDeterminate from 'material-ui/LinearProgress/examples/ExampleDeterminate';
+import linearProgressExampleDeterminateCode from '!raw!material-ui/LinearProgress/examples/ExampleDeterminate';
 import linearProgressCode from '!raw!material-ui/lib/LinearProgress/LinearProgress';
 
 const descriptions = {

@@ -5,17 +5,17 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import menuReadmeText from './README';
-import MenuExampleSimple from './ExampleSimple';
-import menuExampleSimpleCode from '!raw!./ExampleSimple';
-import MenuExampleDisable from './ExampleDisable';
-import menuExampleDisableCode from '!raw!./ExampleDisable';
-import MenuExampleIcons from './ExampleIcons';
-import menuExampleIconsCode from '!raw!./ExampleIcons';
-import MenuExampleSecondary from './ExampleSecondary';
-import menuExampleSecondaryCode from '!raw!./ExampleSecondary';
-import MenuExampleNested from './ExampleNested';
-import menuExampleNestedCode from '!raw!./ExampleNested';
+import menuReadmeText from 'material-ui/Menu/examples/README';
+import MenuExampleSimple from 'material-ui/Menu/examples/ExampleSimple';
+import menuExampleSimpleCode from '!raw!material-ui/Menu/examples/ExampleSimple';
+import MenuExampleDisable from 'material-ui/Menu/examples/ExampleDisable';
+import menuExampleDisableCode from '!raw!material-ui/Menu/examples/ExampleDisable';
+import MenuExampleIcons from 'material-ui/Menu/examples/ExampleIcons';
+import menuExampleIconsCode from '!raw!material-ui/Menu/examples/ExampleIcons';
+import MenuExampleSecondary from 'material-ui/Menu/examples/ExampleSecondary';
+import menuExampleSecondaryCode from '!raw!material-ui/Menu/examples/ExampleSecondary';
+import MenuExampleNested from 'material-ui/Menu/examples/ExampleNested';
+import menuExampleNestedCode from '!raw!material-ui/Menu/examples/ExampleNested';
 import menuCode from '!raw!material-ui/lib/Menu/Menu';
 import menuItemCode from '!raw!material-ui/lib/MenuItem/MenuItem';
 

@@ -5,9 +5,9 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import floatingButtonReadmeText from './README';
-import floatingButtonExampleSimpleCode from '!raw!./ExampleSimple';
-import FloatingButtonExampleSimple from './ExampleSimple';
+import floatingButtonReadmeText from 'material-ui/FloatingActionButton/examples/README';
+import floatingButtonExampleSimpleCode from '!raw!material-ui/FloatingActionButton/examples/ExampleSimple';
+import FloatingButtonExampleSimple from 'material-ui/FloatingActionButton/examples/ExampleSimple';
 import floatingButtonCode from '!raw!material-ui/lib/FloatingActionButton/FloatingActionButton';
 
 const descriptions = {

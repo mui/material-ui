@@ -5,10 +5,10 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import checkboxReadmeText from './README';
+import checkboxReadmeText from 'material-ui/Checkbox/examples/README';
 import checkboxCode from '!raw!material-ui/lib/Checkbox/Checkbox';
-import CheckboxExampleSimple from './ExampleSimple';
-import checkboxExampleSimpleCode from '!raw!./ExampleSimple';
+import CheckboxExampleSimple from 'material-ui/Checkbox/examples/ExampleSimple';
+import checkboxExampleSimpleCode from '!raw!material-ui/Checkbox/examples/ExampleSimple';
 
 const description = 'The second example is selected by default using the `defaultChecked` property. The third ' +
   'example is disabled using the `disabled` property. The fourth example uses custom icons through the ' +

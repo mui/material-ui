@@ -1,5 +1,5 @@
 import React from 'react';
-import MobileTearSheet from '../../../MobileTearSheet';
+import MobileTearSheet from 'material-ui-docs/components/MobileTearSheet';
 import {List, ListItem} from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';

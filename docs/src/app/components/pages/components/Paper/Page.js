@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import paperReadmeText from './README';
-import PaperExampleSimple from './ExampleSimple';
-import paperExampleSimpleCode from '!raw!./ExampleSimple';
-import PaperExampleRounded from './ExampleRounded';
-import paperExampleRoundedCode from '!raw!./ExampleRounded';
-import PaperExampleCircle from './ExampleCircle';
-import paperExampleCircleCode from '!raw!./ExampleCircle';
+import paperReadmeText from 'material-ui/Paper/examples/README';
+import PaperExampleSimple from 'material-ui/Paper/examples/ExampleSimple';
+import paperExampleSimpleCode from '!raw!material-ui/Paper/examples/ExampleSimple';
+import PaperExampleRounded from 'material-ui/Paper/examples/ExampleRounded';
+import paperExampleRoundedCode from '!raw!material-ui/Paper/examples/ExampleRounded';
+import PaperExampleCircle from 'material-ui/Paper/examples/ExampleCircle';
+import paperExampleCircleCode from '!raw!material-ui/Paper/examples/ExampleCircle';
 import paperCode from '!raw!material-ui/lib/Paper/Paper';
 
 const descriptions = {
