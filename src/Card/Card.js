@@ -63,9 +63,13 @@ const Card = React.createClass({
   },
 
   getInitialState() {
-    return {
+    return {expanded: null};
+  },
+
+  componentWillMount() {
+    this.setState({
       expanded: this.props.expanded === null ? this.props.initiallyExpanded === true : this.props.expanded,
-    };
+    });
   },
 
   componentWillReceiveProps(nextProps) {

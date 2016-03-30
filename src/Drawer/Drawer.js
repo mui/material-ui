@@ -116,16 +116,16 @@ const Drawer = React.createClass({
     };
   },
 
-  getInitialState() {
+  componentWillMount() {
     this._maybeSwiping = false;
     this._touchStartX = null;
     this._touchStartY = null;
     this._swipeStartX = null;
 
-    return {
+    this.setState({
       open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
-    };
+    });
   },
 
   componentDidMount() {

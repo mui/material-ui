@@ -197,8 +197,14 @@ const FloatingActionButton = React.createClass({
     return {
       hovered: false,
       touch: false,
-      zDepth: this.props.disabled ? 0 : this.props.zDepth,
+      zDepth: undefined,
     };
+  },
+
+  componentWillMount() {
+    this.setState({
+      zDepth: this.props.disabled ? 0 : this.props.zDepth,
+    });
   },
 
   componentDidMount() {

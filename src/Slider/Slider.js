@@ -260,6 +260,17 @@ const Slider = React.createClass({
   },
 
   getInitialState() {
+    return {
+      active: false,
+      dragging: false,
+      focused: false,
+      hovered: false,
+      percent: 0,
+      value: 0,
+    };
+  },
+
+  componentWillMount() {
     let value = this.props.value;
     if (value === undefined) {
       value = this.props.defaultValue !== undefined ? this.props.defaultValue : this.props.min;
@@ -267,14 +278,10 @@ const Slider = React.createClass({
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
 
-    return {
-      active: false,
-      dragging: false,
-      focused: false,
-      hovered: false,
+    this.setState({
       percent: percent,
       value: value,
-    };
+    });
   },
 
   componentWillReceiveProps(nextProps) {

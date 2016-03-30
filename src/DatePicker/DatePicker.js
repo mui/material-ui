@@ -180,8 +180,14 @@ const DatePicker = React.createClass({
 
   getInitialState() {
     return {
-      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
+      date: undefined,
     };
+  },
+
+  componentWillMount() {
+    this.setState({
+      date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
+    });
   },
 
   componentWillReceiveProps(nextProps) {

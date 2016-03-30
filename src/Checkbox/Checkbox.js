@@ -142,13 +142,15 @@ const Checkbox = React.createClass({
   },
 
   getInitialState() {
-    return {
-      switched:
-        this.props.checked ||
-        this.props.defaultChecked ||
-        (this.props.valueLink && this.props.valueLink.value) ||
-        false,
-    };
+    return {switched: false};
+  },
+
+  componentWillMount() {
+    const {checked, defaultChecked, valueLink} = this.props;
+
+    if (checked || defaultChecked || (valueLink && valueLink.value)) {
+      this.setState({switched: true});
+    }
   },
 
   componentWillReceiveProps(nextProps) {

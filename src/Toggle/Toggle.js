@@ -153,13 +153,15 @@ const Toggle = React.createClass({
   },
 
   getInitialState() {
-    return {
-      switched:
-        this.props.toggled ||
-        this.props.defaultToggled ||
-        (this.props.valueLink && this.props.valueLink.value) ||
-        false,
-    };
+    return {switched: false};
+  },
+
+  componentWillMount() {
+    const {toggled, defaultToggled, valueLink} = this.props;
+
+    if (toggled || defaultToggled || (valueLink && valueLink.value)) {
+      this.setState({switched: true});
+    }
   },
 
   isToggled() {

@@ -216,15 +216,19 @@ const AutoComplete = React.createClass({
 
   getInitialState() {
     return {
-      searchText: this.props.searchText,
-      open: this.props.open,
       anchorEl: null,
       focusTextField: true,
+      open: false,
+      searchText: undefined,
     };
   },
 
   componentWillMount() {
     this.requestsList = [];
+    this.setState({
+      open: this.props.open,
+      searchText: this.props.searchText,
+    });
   },
 
   componentWillReceiveProps: function(nextProps) {

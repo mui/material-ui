@@ -92,16 +92,20 @@ const Tabs = React.createClass({
   },
 
   getInitialState() {
+    return {selectedIndex: 0};
+  },
+
+  componentWillMount() {
     const valueLink = this.getValueLink(this.props);
     const initialIndex = this.props.initialSelectedIndex;
 
-    return {
+    this.setState({
       selectedIndex: valueLink.value !== undefined ?
         this._getSelectedIndex(this.props) :
         initialIndex < this.getTabCount() ?
         initialIndex :
         0,
-    };
+    });
   },
 
   componentWillReceiveProps(newProps, nextContext) {

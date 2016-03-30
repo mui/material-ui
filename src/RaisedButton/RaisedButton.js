@@ -258,13 +258,20 @@ const RaisedButton = React.createClass({
   },
 
   getInitialState() {
-    const zDepth = this.props.disabled ? 0 : 1;
     return {
       hovered: false,
       touched: false,
-      initialZDepth: zDepth,
-      zDepth: zDepth,
+      initialZDepth: 0,
+      zDepth: 0,
     };
+  },
+
+  componentWillMount() {
+    const zDepth = this.props.disabled ? 0 : 1;
+    this.setState({
+      zDepth: zDepth,
+      initialZDepth: zDepth,
+    });
   },
 
   componentWillReceiveProps(nextProps) {

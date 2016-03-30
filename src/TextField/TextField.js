@@ -295,23 +295,29 @@ const TextField = React.createClass({
   },
 
   getInitialState() {
-    const propsLeaf = this.props.children ? this.props.children.props : this.props;
-
     return {
       isFocused: false,
-      errorText: this.props.errorText,
-      hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
+      errorText: undefined,
+      hasValue: false,
       isClean: true,
     };
   },
 
   componentWillMount() {
     const {
+      children,
       name,
       hintText,
       floatingLabelText,
       id,
     } = this.props;
+
+    const propsLeaf = children ? children.props : this.props;
+
+    this.setState({
+      errorText: this.props.errorText,
+      hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
+    });
 
     warning(name || hintText || floatingLabelText || id, `We don't have enough information
       to build a robust unique id for the TextField component. Please provide an id or a name.`);
