@@ -23,9 +23,8 @@ function getStyles(props, context, state) {
   };
 }
 
-const FontIcon = React.createClass({
-
-  propTypes: {
+class FontIcon extends React.Component {
+  static propTypes = {
     /**
      * This is the font color of the font icon. If not specified,
      * this component will default to muiTheme.palette.textColor.
@@ -55,42 +54,38 @@ const FontIcon = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-    };
-  },
-
-  handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined)
       this.setState({hovered: false});
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
-  },
+  };
 
-  handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined)
       this.setState({hovered: true});
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -111,7 +106,7 @@ const FontIcon = React.createClass({
         style={prepareStyles(Object.assign(styles.root, style))}
       />
     );
-  },
-});
+  }
+}
 
 export default FontIcon;

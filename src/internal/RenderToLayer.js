@@ -3,38 +3,35 @@ import ReactDOM from 'react-dom';
 import Dom from '../utils/dom';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
-const RenderToLayer = React.createClass({
-
-  propTypes: {
+class RenderToLayer extends React.Component {
+  static propTypes = {
     componentClickAway: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     render: React.PropTypes.func.isRequired,
     useLayerForClickAway: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    useLayerForClickAway: true,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      useLayerForClickAway: true,
-    };
-  },
+  };
 
   componentDidMount() {
     this._renderLayer();
-  },
+  }
 
   componentDidUpdate() {
     this._renderLayer();
-  },
+  }
 
   componentWillUnmount() {
     this._unrenderLayer();
-  },
+  }
 
-  onClickAway(event) {
+  onClickAway = (event) => {
     if (event.defaultPrevented) {
       return;
     }
@@ -52,13 +49,13 @@ const RenderToLayer = React.createClass({
       (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
       this.props.componentClickAway(event);
     }
-  },
+  };
 
   getLayer() {
     return this._layer;
-  },
+  }
 
-  _unrenderLayer: function() {
+  _unrenderLayer() {
     if (!this._layer) {
       return;
     }
@@ -75,7 +72,7 @@ const RenderToLayer = React.createClass({
     ReactDOM.unmountComponentAtNode(this._layer);
     document.body.removeChild(this._layer);
     this._layer = null;
-  },
+  }
 
   _renderLayer() {
     const {
@@ -120,12 +117,11 @@ const RenderToLayer = React.createClass({
     } else {
       this._unrenderLayer();
     }
-  },
+  }
 
   render() {
     return null;
-  },
-
-});
+  }
+}
 
 export default RenderToLayer;

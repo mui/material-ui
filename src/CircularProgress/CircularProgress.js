@@ -63,9 +63,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const CircularProgress = React.createClass({
-
-  propTypes: {
+class CircularProgress extends React.Component {
+  static propTypes = {
     /**
      * Override the progress's color.
      */
@@ -106,31 +105,29 @@ const CircularProgress = React.createClass({
      * The value of progress, only works in determinate mode.
      */
     value: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    mode: 'indeterminate',
+    value: 0,
+    min: 0,
+    max: 100,
+    size: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      mode: 'indeterminate',
-      value: 0,
-      min: 0,
-      max: 100,
-      size: 1,
-    };
-  },
+  };
 
   componentDidMount() {
     this._scalePath(this.refs.path);
     this._rotateWrapper(this.refs.wrapper);
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
-  },
+  }
 
   _scalePath(path, step) {
     if (this.props.mode !== 'indeterminate') return;
@@ -153,7 +150,7 @@ const CircularProgress = React.createClass({
     }
 
     this.scalePathTimer = setTimeout(() => this._scalePath(path, step + 1), step ? 750 : 250);
-  },
+  }
 
   _rotateWrapper(wrapper) {
     if (this.props.mode !== 'indeterminate') return;
@@ -168,7 +165,7 @@ const CircularProgress = React.createClass({
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
-  },
+  }
 
   render() {
     const {
@@ -194,7 +191,7 @@ const CircularProgress = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default CircularProgress;

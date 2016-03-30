@@ -112,9 +112,8 @@ function isValid(value) {
   return Boolean(value || value === 0);
 }
 
-const TextField = React.createClass({
-
-  propTypes: {
+class TextField extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
 
     /**
@@ -276,32 +275,28 @@ const TextField = React.createClass({
      * The value of the text field.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disabled: false,
+    floatingLabelFixed: false,
+    multiLine: false,
+    fullWidth: false,
+    type: 'text',
+    underlineShow: true,
+    rows: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      floatingLabelFixed: false,
-      multiLine: false,
-      fullWidth: false,
-      type: 'text',
-      underlineShow: true,
-      rows: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      isFocused: false,
-      errorText: undefined,
-      hasValue: false,
-      isClean: true,
-    };
-  },
+  state = {
+    isFocused: false,
+    errorText: undefined,
+    hasValue: false,
+    isClean: true,
+  };
 
   componentWillMount() {
     const {
@@ -325,7 +320,7 @@ const TextField = React.createClass({
     const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
       Math.floor(Math.random() * 0xFFFF)}`;
     this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errorText !== this.props.errorText) {
@@ -348,7 +343,7 @@ const TextField = React.createClass({
         });
       }
     }
-  },
+  }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
@@ -356,62 +351,62 @@ const TextField = React.createClass({
       !shallowEqual(this.state, nextState) ||
       !shallowEqual(this.context, nextContext)
     );
-  },
+  }
 
   blur() {
     if (this.input) this._getInputNode().blur();
-  },
+  }
 
   focus() {
     if (this.input) this._getInputNode().focus();
-  },
+  }
 
   select() {
     if (this.input) this._getInputNode().select();
-  },
+  }
 
   getValue() {
     return this.input ? this._getInputNode().value : undefined;
-  },
+  }
 
   _getInputNode() {
     return (this.props.children || this.props.multiLine) ?
       this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
-  },
+  }
 
-  _handleInputBlur(event) {
+  _handleInputBlur = (event) => {
     this.setState({isFocused: false});
     if (this.props.onBlur) this.props.onBlur(event);
-  },
+  };
 
-  _handleInputChange(event) {
+  _handleInputChange = (event) => {
     this.setState({hasValue: isValid(event.target.value), isClean: false});
     if (this.props.onChange) this.props.onChange(event, event.target.value);
-  },
+  };
 
-  _handleInputFocus(event) {
+  _handleInputFocus = (event) => {
     if (this.props.disabled)
       return;
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  _handleInputKeyDown(event) {
+  _handleInputKeyDown = (event) => {
     if (keycode(event) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(event);
     if (this.props.onKeyDown) this.props.onKeyDown(event);
-  },
+  };
 
-  handleHeightChange(event, height) {
+  handleHeightChange = (event, height) => {
     let newHeight = height + 24;
     if (this.props.floatingLabelText) {
       newHeight += 24;
     }
     ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
-  },
+  };
 
   _isControlled() {
     return this.props.hasOwnProperty('value');
-  },
+  }
 
   render() {
     const {
@@ -533,8 +528,7 @@ const TextField = React.createClass({
         {errorTextElement}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default TextField;

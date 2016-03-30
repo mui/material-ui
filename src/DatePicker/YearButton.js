@@ -43,9 +43,8 @@ function getStyles(props, context) {
   };
 }
 
-const YearButton = React.createClass({
-
-  propTypes: {
+class YearButton extends React.Component {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -53,35 +52,31 @@ const YearButton = React.createClass({
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
     year: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    selected: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      selected: false,
-    };
-  },
+  state = {
+    hover: false,
+  };
 
-  getInitialState() {
-    return {
-      hover: false,
-    };
-  },
-
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     this.setState({hover: true});
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({hover: false});
-  },
+  };
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (this.props.onTouchTap) this.props.onTouchTap(event, this.props.year);
-  },
+  };
 
   render() {
     const {
@@ -109,8 +104,7 @@ const YearButton = React.createClass({
         <span style={prepareStyles(styles.label)}>{year}</span>
       </EnhancedButton>
     );
-  },
-
-});
+  }
+}
 
 export default YearButton;

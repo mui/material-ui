@@ -25,9 +25,8 @@ import {
 
 const daysArray = [...Array(7)];
 
-const Calendar = React.createClass({
-
-  propTypes: {
+class Calendar extends React.Component {
+  static propTypes = {
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
@@ -39,37 +38,33 @@ const Calendar = React.createClass({
     onDayTouchTap: React.PropTypes.func,
     open: React.PropTypes.bool,
     shouldDisableDate: React.PropTypes.func,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disableYearSelection: false,
+    initialDate: new Date(),
+    minDate: DateTime.addYears(new Date(), -100),
+    maxDate: DateTime.addYears(new Date(), 100),
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disableYearSelection: false,
-      initialDate: new Date(),
-      minDate: addYears(new Date(), -100),
-      maxDate: addYears(new Date(), 100),
-    };
-  },
-
-  getInitialState() {
-    return {
-      displayDate: undefined,
-      displayMonthDay: true,
-      selectedDate: undefined,
-      transitionDirection: 'left',
-      transitionEnter: true,
-    };
-  },
+  state = {
+    displayDate: undefined,
+    displayMonthDay: true,
+    selectedDate: undefined,
+    transitionDirection: 'left',
+    transitionEnter: true,
+  };
 
   componentWillMount() {
     this.setState({
       displayDate: getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
@@ -79,7 +74,7 @@ const Calendar = React.createClass({
         selectedDate: d,
       });
     }
-  },
+  }
 
   _yearSelector() {
     if (this.props.disableYearSelection) return;
@@ -94,11 +89,11 @@ const Calendar = React.createClass({
         maxDate={this.props.maxDate}
       />
     );
-  },
+  }
 
   getSelectedDate() {
     return this.state.selectedDate;
-  },
+  }
 
   isSelectedDateDisabled() {
     if (!this.state.displayMonthDay) {
@@ -106,19 +101,19 @@ const Calendar = React.createClass({
     }
 
     return this.refs.calendar.isSelectedDateDisabled();
-  },
+  }
 
   _addSelectedDays(days) {
     this._setSelectedDate(addDays(this.state.selectedDate, days));
-  },
+  }
 
   _addSelectedMonths(months) {
     this._setSelectedDate(addMonths(this.state.selectedDate, months));
-  },
+  }
 
   _addSelectedYears(years) {
     this._setSelectedDate(addYears(this.state.selectedDate, years));
-  },
+  }
 
   _setDisplayDate(d, newSelectedDate) {
     const newDisplayDate = getFirstDayOfMonth(d);
@@ -131,7 +126,7 @@ const Calendar = React.createClass({
         selectedDate: newSelectedDate || this.state.selectedDate,
       });
     }
-  },
+  }
 
   _setSelectedDate(date) {
     let adjustedDate = date;
@@ -149,46 +144,46 @@ const Calendar = React.createClass({
         selectedDate: adjustedDate,
       });
     }
-  },
+  }
 
-  handleDayTouchTap(event, date) {
+  handleDayTouchTap = (event, date) => {
     this._setSelectedDate(date);
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
-  },
+  };
 
-  handleMonthChange(months) {
+  handleMonthChange = (months) => {
     this.setState({
       transitionDirection: months >= 0 ? 'left' : 'right',
       displayDate: addMonths(this.state.displayDate, months),
     });
-  },
+  };
 
-  handleYearTouchTap(event, year) {
+  handleYearTouchTap = (event, year) => {
     const date = cloneDate(this.state.selectedDate);
     date.setFullYear(year);
     this._setSelectedDate(date, event);
-  },
+  };
 
   _getToolbarInteractions() {
     return {
       prevMonth: monthDiff(this.state.displayDate, this.props.minDate) > 0,
       nextMonth: monthDiff(this.state.displayDate, this.props.maxDate) < 0,
     };
-  },
+  }
 
-  handleTouchTapMonthDay() {
+  handleTouchTapMonthDay = () => {
     this.setState({
       displayMonthDay: true,
     });
-  },
+  };
 
-  handleTouchTapClick() {
+  handleTouchTapClick = () => {
     this.setState({
       displayMonthDay: false,
     });
-  },
+  };
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     if (this.props.open) {
       switch (keycode(event)) {
         case 'up':
@@ -232,7 +227,7 @@ const Calendar = React.createClass({
           break;
       }
     }
-  },
+  };
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -352,8 +347,7 @@ const Calendar = React.createClass({
         }
       </ClearFix>
     );
-  },
-
-});
+  }
+}
 
 export default Calendar;

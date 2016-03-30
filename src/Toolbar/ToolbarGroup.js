@@ -62,8 +62,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const ToolbarGroup = React.createClass({
-  propTypes: {
+class ToolbarGroup extends React.Component {
+  static propTypes = {
     /**
      * Can be any node or number of nodes.
      */
@@ -95,30 +95,30 @@ const ToolbarGroup = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    firstChild: false,
+    lastChild: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      firstChild: false,
-      lastChild: false,
+  handleMouseEnterFontIcon(style) {
+    return (event) => {
+      event.target.style.zIndex = style.hover.zIndex;
+      event.target.style.color = style.hover.color;
     };
-  },
-
-  handleMouseEnterFontIcon: (style) => (event) => {
-    event.target.style.zIndex = style.hover.zIndex;
-    event.target.style.color = style.hover.color;
-  },
+  }
 
   handleMouseLeaveFontIcon(style) {
     return (event) => {
       event.target.style.zIndex = 'auto';
       event.target.style.color = style.root.color;
     };
-  },
+  }
 
   render() {
     const {
@@ -171,7 +171,7 @@ const ToolbarGroup = React.createClass({
         {newChildren}
       </div>
     );
-  },
-});
+  }
+}
 
 export default ToolbarGroup;

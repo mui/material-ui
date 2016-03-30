@@ -23,9 +23,8 @@ function getStyles(props) {
   };
 }
 
-const RefreshIndicator = React.createClass({
-
-  propTypes: {
+class RefreshIndicator extends React.Component {
+  static propTypes = {
     /**
      * Override the theme's color of the indicator while it's status is
      * "ready" and it's percentage is less than 100.
@@ -71,34 +70,32 @@ const RefreshIndicator = React.createClass({
      * The absolute top position of the indicator in pixels.
      */
     top: React.PropTypes.number.isRequired,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    percentage: 0,
+    size: 40,
+    status: 'hide',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      percentage: 0,
-      size: 40,
-      status: 'hide',
-    };
-  },
+  };
 
   componentDidMount() {
     this.componentDidUpdate();
-  },
+  }
 
   componentDidUpdate() {
     this._scalePath(this.refs.path, 0);
     this._rotateWrapper(this.refs.wrapper);
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
     clearTimeout(this.rotateWrapperSecondTimer);
-  },
+  }
 
   _renderChildren() {
     const {prepareStyles} = this.context.muiTheme;
@@ -153,20 +150,20 @@ const RefreshIndicator = React.createClass({
     }
 
     return childrenCmp;
-  },
+  }
 
   _getTheme() {
     return this.context.muiTheme.refreshIndicator;
-  },
+  }
 
   _getPaddingSize() {
     const padding = this.props.size * 0.1;
     return padding;
-  },
+  }
 
   _getPaperSize() {
     return this.props.size - this._getPaddingSize() * 2;
-  },
+  }
 
   _getCircleAttr() {
     return {
@@ -175,7 +172,7 @@ const RefreshIndicator = React.createClass({
       originY: VIEWBOX_SIZE / 2,
       strokeWidth: 3,
     };
-  },
+  }
 
   _getArcDeg() {
     const p = this.props.percentage / 100;
@@ -183,14 +180,14 @@ const RefreshIndicator = React.createClass({
     const beginDeg = p * 120;
     const endDeg = p * 410;
     return [beginDeg, endDeg];
-  },
+  }
 
   _getFactor() {
     const p = this.props.percentage / 100;
     const p1 = Math.min(1, p / 0.4);
 
     return p1;
-  },
+  }
 
   _getCircleStyle() {
     const isLoading = this.props.status === 'loading';
@@ -221,7 +218,7 @@ const RefreshIndicator = React.createClass({
         r: circle.radiu,
       },
     };
-  },
+  }
 
   _getPolygonStyle() {
     const p1 = this._getFactor();
@@ -249,7 +246,7 @@ const RefreshIndicator = React.createClass({
         points: trianglePath,
       },
     };
-  },
+  }
 
   _scalePath(path, step) {
     if (this.props.status !== 'loading') return;
@@ -283,7 +280,7 @@ const RefreshIndicator = React.createClass({
     autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
 
     this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
-  },
+  }
 
   _rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
@@ -299,7 +296,7 @@ const RefreshIndicator = React.createClass({
     }, 50);
 
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
-  },
+  }
 
   render() {
     const {style} = this.props;
@@ -314,8 +311,7 @@ const RefreshIndicator = React.createClass({
         {this._renderChildren()}
       </Paper>
     );
-  },
-
-});
+  }
+}
 
 export default RefreshIndicator;

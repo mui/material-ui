@@ -2,9 +2,8 @@ import React from 'react';
 import Paper from '../Paper';
 import CardExpandable from './CardExpandable';
 
-const Card = React.createClass({
-
-  propTypes: {
+class Card extends React.Component {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card. Can be set on any child of the `Card` component.
      */
@@ -51,34 +50,30 @@ const Card = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      expanded: null,
-      expandable: false,
-      initiallyExpanded: false,
-      actAsExpander: false,
-    };
-  },
+  static defaultProps = {
+    expanded: null,
+    expandable: false,
+    initiallyExpanded: false,
+    actAsExpander: false,
+  };
 
-  getInitialState() {
-    return {expanded: null};
-  },
+  state = {expanded: null};
 
   componentWillMount() {
     this.setState({
       expanded: this.props.expanded === null ? this.props.initiallyExpanded === true : this.props.expanded,
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     //update the state when the component is controlled.
     if (nextProps.expanded !== null)
       this.setState({expanded: nextProps.expanded});
-  },
+  }
 
-  handleExpanding(event) {
+  handleExpanding = (event) => {
     event.preventDefault();
     const newExpandedState = !this.state.expanded;
     //no automatic state update when the component is controlled
@@ -87,7 +82,7 @@ const Card = React.createClass({
     }
     if (this.props.onExpandChange)
       this.props.onExpandChange(newExpandedState);
-  },
+  };
 
   render() {
     let lastElement;
@@ -137,7 +132,7 @@ const Card = React.createClass({
         </div>
       </Paper>
     );
-  },
-});
+  }
+}
 
 export default Card;

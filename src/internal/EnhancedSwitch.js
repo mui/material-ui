@@ -67,9 +67,8 @@ function getStyles(props, context) {
   };
 }
 
-const EnhancedSwitch = React.createClass({
-
-  propTypes: {
+class EnhancedSwitch extends React.Component {
+  static propTypes = {
     checked: React.PropTypes.bool,
     className: React.PropTypes.string,
     defaultSwitched: React.PropTypes.bool,
@@ -100,17 +99,15 @@ const EnhancedSwitch = React.createClass({
     thumbStyle: React.PropTypes.object,
     trackStyle: React.PropTypes.object,
     value: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getInitialState() {
-    return {
-      isKeyboardFocused: false,
-    };
-  },
+  state = {
+    isKeyboardFocused: false,
+  };
 
   componentDidMount() {
     const inputNode = this.refs.checkbox;
@@ -118,7 +115,7 @@ const EnhancedSwitch = React.createClass({
       this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
@@ -138,11 +135,11 @@ const EnhancedSwitch = React.createClass({
         this.props.onParentShouldUpdate(switched);
       }
     }
-  },
+  }
 
   isSwitched() {
     return this.refs.checkbox.checked;
-  },
+  }
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
@@ -154,13 +151,13 @@ const EnhancedSwitch = React.createClass({
     } else {
       warning(false, 'Cannot call set method while checked is defined as a property.');
     }
-  },
+  }
 
   getValue() {
     return this.refs.checkbox.value;
-  },
+  }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this._tabPressed = false;
     this.setState({
       isKeyboardFocused: false,
@@ -174,11 +171,11 @@ const EnhancedSwitch = React.createClass({
     if (this.props.onSwitch) {
       this.props.onSwitch(event, isInputChecked);
     }
-  },
+  };
 
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     const code = keycode(event);
 
     if (code === 'tab') {
@@ -187,43 +184,43 @@ const EnhancedSwitch = React.createClass({
     if (this.state.isKeyboardFocused && code === 'space') {
       this.handleChange(event);
     }
-  },
+  };
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     if (this.state.isKeyboardFocused && keycode(event) === 'space') {
       this.handleChange(event);
     }
-  },
+  };
 
   /**
    * Because both the ripples and the checkbox input cannot share pointer
    * events, the checkbox input takes control of pointer events and calls
    * ripple animations manually.
    */
-  handleMouseDown(event) {
+  handleMouseDown = (event) => {
     //only listen to left clicks
     if (event.button === 0) {
       this.refs.touchRipple.start(event);
     }
-  },
+  };
 
-  handleMouseUp() {
+  handleMouseUp = () => {
     this.refs.touchRipple.end();
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.refs.touchRipple.end();
-  },
+  };
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.refs.touchRipple.start(event);
-  },
+  };
 
-  handleTouchEnd() {
+  handleTouchEnd = () => {
     this.refs.touchRipple.end();
-  },
+  };
 
-  handleBlur(event) {
+  handleBlur = (event) => {
     this.setState({
       isKeyboardFocused: false,
     });
@@ -231,9 +228,9 @@ const EnhancedSwitch = React.createClass({
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-  },
+  };
 
-  handleFocus(event) {
+  handleFocus = (event) => {
     //setTimeout is needed becuase the focus event fires first
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
@@ -248,7 +245,7 @@ const EnhancedSwitch = React.createClass({
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -384,8 +381,7 @@ const EnhancedSwitch = React.createClass({
         {elementsInOrder}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default EnhancedSwitch;

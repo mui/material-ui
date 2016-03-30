@@ -3,9 +3,8 @@ import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
 import DayButton from './DayButton';
 import ClearFix from '../internal/ClearFix';
 
-const CalendarMonth = React.createClass({
-
-  propTypes: {
+class CalendarMonth extends React.Component {
+  static propTypes = {
     autoOk: React.PropTypes.bool,
     displayDate: React.PropTypes.object.isRequired,
     firstDayOfWeek: React.PropTypes.number,
@@ -14,11 +13,11 @@ const CalendarMonth = React.createClass({
     onDayTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
     shouldDisableDate: React.PropTypes.func,
-  },
+  };
 
   isSelectedDateDisabled() {
     return this._selectedDateDisabled;
-  },
+  }
 
   _getWeekElements() {
     const weekArray = getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
@@ -30,7 +29,7 @@ const CalendarMonth = React.createClass({
         </ClearFix>
       );
     }, this);
-  },
+  }
 
   _getDayElements(week, i) {
     return week.map((day, j) => {
@@ -56,11 +55,11 @@ const CalendarMonth = React.createClass({
         />
       );
     }, this);
-  },
+  }
 
-  handleTouchTap(event, date) {
+  handleTouchTap = (event, date) => {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
-  },
+  };
 
   _shouldDisableDate(day) {
     if (day === null) return false;
@@ -68,7 +67,7 @@ const CalendarMonth = React.createClass({
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
 
     return disabled;
-  },
+  }
 
   render() {
     const styles = {
@@ -82,8 +81,7 @@ const CalendarMonth = React.createClass({
         {this._getWeekElements()}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default CalendarMonth;

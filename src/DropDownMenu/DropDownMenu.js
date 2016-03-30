@@ -67,12 +67,11 @@ function getStyles(props, context) {
   };
 }
 
-const DropDownMenu = React.createClass({
-
+class DropDownMenu extends React.Component {
   // The nested styles for drop-down-menu are modified by toolbar and possibly
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
-  propTypes: {
+  static propTypes = {
     /**
      * The width will automatically be set according to the items inside the menu.
      * To control this width in css instead, set this prop to `false`.
@@ -149,26 +148,22 @@ const DropDownMenu = React.createClass({
      * The value that is currently selected.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoWidth: true,
+    disabled: false,
+    openImmediately: false,
+    maxHeight: 500,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      autoWidth: true,
-      disabled: false,
-      openImmediately: false,
-      maxHeight: 500,
-    };
-  },
-
-  getInitialState() {
-    return {
-      open: false,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   componentDidMount() {
     if (this.props.autoWidth) {
@@ -184,13 +179,14 @@ const DropDownMenu = React.createClass({
       }), 0);
       /*eslint-enable react/no-did-mount-set-state */
     }
-  },
+  }
 
   componentWillReceiveProps() {
     if (this.props.autoWidth) {
       this.setWidth();
     }
-  },
+  }
+
   /**
    * This method is deprecated but still here because the TextField
    * need it in order to work. TODO: That will be addressed later.
@@ -208,16 +204,16 @@ const DropDownMenu = React.createClass({
     };
 
     return root;
-  },
+  }
 
   setWidth() {
     const el = this.refs.root;
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
     }
-  },
+  }
 
-  handleTouchTapControl(event) {
+  handleTouchTapControl = (event) => {
     event.preventDefault();
     if (!this.props.disabled) {
       this.setState({
@@ -225,22 +221,22 @@ const DropDownMenu = React.createClass({
         anchorEl: this.refs.root,
       });
     }
-  },
+  };
 
-  handleRequestCloseMenu() {
+  handleRequestCloseMenu = () => {
     this.setState({
       open: false,
       anchorEl: null,
     });
-  },
+  };
 
-  handleItemTouchTap(event, child, index) {
+  handleItemTouchTap = (event, child, index) => {
     this.props.onChange(event, index, child.props.value);
 
     this.setState({
       open: false,
     });
-  },
+  };
 
   render() {
     const {
@@ -319,8 +315,7 @@ const DropDownMenu = React.createClass({
         </Popover>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default DropDownMenu;

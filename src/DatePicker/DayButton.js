@@ -57,50 +57,45 @@ function getStyles(props, context) {
   };
 }
 
-const DayButton = React.createClass({
-
-  propTypes: {
+class DayButton extends React.Component {
+  static propTypes = {
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    selected: false,
+    disabled: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      selected: false,
-      disabled: false,
-    };
-  },
+  state = {
+    hover: false,
+  };
 
-  getInitialState() {
-    return {
-      hover: false,
-    };
-  },
-
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     if (!this.props.disabled) this.setState({hover: true});
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     if (!this.props.disabled) this.setState({hover: false});
-  },
+  };
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(event, this.props.date);
-  },
+  };
 
-  handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus = (event, keyboardFocused) => {
     if (!this.props.disabled && this.props.onKeyboardFocus) {
       this.props.onKeyboardFocus(event, keyboardFocused, this.props.date);
     }
-  },
+  };
 
   render() {
     const {
@@ -132,8 +127,7 @@ const DayButton = React.createClass({
     ) : (
       <span style={prepareStyles(styles.root)} />
     );
-  },
-
-});
+  }
+}
 
 export default DayButton;

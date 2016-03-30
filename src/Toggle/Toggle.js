@@ -66,9 +66,8 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const Toggle = React.createClass({
-
-  propTypes: {
+class Toggle extends React.Component {
+  static propTypes = {
     /**
      * Determines whether the Toggle is initially turned on.
      */
@@ -138,23 +137,19 @@ const Toggle = React.createClass({
      * ValueLink prop for when using controlled toggle.
      */
     valueLink: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    defaultToggled: false,
+    disabled: false,
+    labelPosition: 'left',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      defaultToggled: false,
-      disabled: false,
-      labelPosition: 'left',
-    };
-  },
-
-  getInitialState() {
-    return {switched: false};
-  },
+  state = {switched: false};
 
   componentWillMount() {
     const {toggled, defaultToggled, valueLink} = this.props;
@@ -162,23 +157,23 @@ const Toggle = React.createClass({
     if (toggled || defaultToggled || (valueLink && valueLink.value)) {
       this.setState({switched: true});
     }
-  },
+  }
 
   isToggled() {
     return this.refs.enhancedSwitch.isSwitched();
-  },
+  }
 
   setToggled(newToggledValue) {
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
-  },
+  }
 
-  _handleToggle(event, isInputChecked) {
+  _handleToggle = (event, isInputChecked) => {
     if (this.props.onToggle) this.props.onToggle(event, isInputChecked);
-  },
+  };
 
-  _handleStateChange(newSwitched) {
+  _handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
-  },
+  };
 
   render() {
     const {
@@ -259,8 +254,7 @@ const Toggle = React.createClass({
         {...enhancedSwitchProps}
       />
     );
-  },
-
-});
+  }
+}
 
 export default Toggle;

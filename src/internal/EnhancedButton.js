@@ -35,9 +35,8 @@ function listenForTabPresses() {
   }
 }
 
-const EnhancedButton = React.createClass({
-
-  propTypes: {
+class EnhancedButton extends React.Component {
+  static propTypes = {
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     containerElement: React.PropTypes.oneOfType([
@@ -64,42 +63,38 @@ const EnhancedButton = React.createClass({
     touchRippleColor: React.PropTypes.string,
     touchRippleOpacity: React.PropTypes.number,
     type: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    containerElement: 'button',
+    onBlur: () => {},
+    onClick: () => {},
+    onFocus: () => {},
+    onKeyboardFocus: () => {},
+    onKeyDown: () => {},
+    onKeyUp: () => {},
+    onTouchTap: () => {},
+    tabIndex: 0,
+    type: 'button',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      containerElement: 'button',
-      onBlur: () => {},
-      onClick: () => {},
-      onFocus: () => {},
-      onKeyboardFocus: () => {},
-      onKeyDown: () => {},
-      onKeyUp: () => {},
-      onTouchTap: () => {},
-      tabIndex: 0,
-      type: 'button',
-    };
-  },
-
-  getInitialState() {
-    return {isKeyboardFocused: false};
-  },
+  state = {isKeyboardFocused: false};
 
   componentWillMount() {
     const {disabled, disableKeyboardFocus, keyboardFocused} = this.props;
     if (!disabled && keyboardFocused && !disableKeyboardFocus) {
       this.setState({isKeyboardFocused: true});
     }
-  },
+  }
 
   componentDidMount() {
     injectStyle();
     listenForTabPresses();
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if ((nextProps.disabled || nextProps.disableKeyboardFocus) &&
@@ -109,36 +104,36 @@ const EnhancedButton = React.createClass({
         nextProps.onKeyboardFocus(null, false);
       }
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this._focusTimeout);
-  },
+  }
 
   isKeyboardFocused() {
     return this.state.isKeyboardFocused;
-  },
+  }
 
   removeKeyboardFocus(event) {
     if (this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: false});
       this.props.onKeyboardFocus(event, false);
     }
-  },
+  }
 
   setKeyboardFocus(event) {
     if (!this.state.isKeyboardFocused) {
       this.setState({isKeyboardFocused: true});
       this.props.onKeyboardFocus(event, true);
     }
-  },
+  }
 
   _cancelFocusTimeout() {
     if (this._focusTimeout) {
       clearTimeout(this._focusTimeout);
       this._focusTimeout = null;
     }
-  },
+  }
 
   _createButtonChildren() {
     const {
@@ -180,33 +175,33 @@ const EnhancedButton = React.createClass({
       touchRipple,
       children: touchRipple ? undefined : children,
     });
-  },
+  }
 
-  _handleKeyDown(event) {
+  _handleKeyDown = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
         this._handleTouchTap(event);
       }
     }
     this.props.onKeyDown(event);
-  },
+  };
 
-  _handleKeyUp(event) {
+  _handleKeyUp = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
         this._handleTouchTap(event);
       }
     }
     this.props.onKeyUp(event);
-  },
+  };
 
-  _handleBlur(event) {
+  _handleBlur = (event) => {
     this._cancelFocusTimeout();
     this.removeKeyboardFocus(event);
     this.props.onBlur(event);
-  },
+  };
 
-  _handleFocus(event) {
+  _handleFocus = (event) => {
     if (event) event.persist();
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       //setTimeout is needed because the focus event fires first
@@ -220,23 +215,23 @@ const EnhancedButton = React.createClass({
 
       this.props.onFocus(event);
     }
-  },
+  };
 
-  _handleClick(event) {
+  _handleClick = (event) => {
     if (!this.props.disabled) {
       tabPressed = false;
       this.props.onClick(event);
     }
-  },
+  };
 
-  _handleTouchTap(event) {
+  _handleTouchTap = (event) => {
     this._cancelFocusTimeout();
     if (!this.props.disabled) {
       tabPressed = false;
       this.removeKeyboardFocus(event);
       this.props.onTouchTap(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -322,8 +317,7 @@ const EnhancedButton = React.createClass({
     return React.isValidElement(containerElement) ?
       React.cloneElement(containerElement, buttonProps, buttonChildren) :
       React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
-  },
-
-});
+  }
+}
 
 export default EnhancedButton;

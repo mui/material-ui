@@ -24,33 +24,28 @@ const styles = {
   },
 };
 
-const CalendarToolbar = React.createClass({
-
-  propTypes: {
+class CalendarToolbar extends React.Component {
+  static propTypes = {
     DateTimeFormat: React.PropTypes.func.isRequired,
     displayDate: React.PropTypes.object.isRequired,
     locale: React.PropTypes.string.isRequired,
     nextMonth: React.PropTypes.bool,
     onMonthChange: React.PropTypes.func,
     prevMonth: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    nextMonth: true,
+    prevMonth: true,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      nextMonth: true,
-      prevMonth: true,
-    };
-  },
-
-  getInitialState() {
-    return {
-      transitionDirection: 'up',
-    };
-  },
+  state = {
+    transitionDirection: 'up',
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
@@ -59,15 +54,15 @@ const CalendarToolbar = React.createClass({
         transitionDirection: direction,
       });
     }
-  },
+  }
 
-  handleTouchTapPrevMonth() {
+  handleTouchTapPrevMonth = () => {
     if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
-  },
+  };
 
-  handleTouchTapNextMonth() {
+  handleTouchTapNextMonth = () => {
     if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
-  },
+  };
 
   render() {
     const {
@@ -112,8 +107,7 @@ const CalendarToolbar = React.createClass({
         </ToolbarGroup>
       </Toolbar>
     );
-  },
-
-});
+  }
+}
 
 export default CalendarToolbar;

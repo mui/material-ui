@@ -41,9 +41,8 @@ function getStyles(props, context) {
   };
 }
 
-const IconButton = React.createClass({
-
-  propTypes: {
+class IconButton extends React.Component {
+  static propTypes = {
     /**
      * Can be used to pass a `FontIcon` element as the icon for the button.
      */
@@ -143,68 +142,64 @@ const IconButton = React.createClass({
      * readability on mobile devices.
      */
     touch: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disabled: false,
+    disableTouchRipple: false,
+    iconStyle: {},
+    tooltipPosition: 'bottom-center',
+    touch: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      disableTouchRipple: false,
-      iconStyle: {},
-      tooltipPosition: 'bottom-center',
-      touch: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      tooltipShown: false,
-    };
-  },
+  state = {
+    tooltipShown: false,
+  };
 
   setKeyboardFocus() {
     this.refs.button.setKeyboardFocus();
-  },
+  }
 
   _showTooltip() {
     if (this.props.tooltip) {
       this.setState({tooltipShown: true});
     }
-  },
+  }
 
   _hideTooltip() {
     if (this.props.tooltip) this.setState({tooltipShown: false});
-  },
+  }
 
-  handleBlur(event) {
+  handleBlur = (event) => {
     this._hideTooltip();
     if (this.props.onBlur) this.props.onBlur(event);
-  },
+  };
 
-  handleFocus(event) {
+  handleFocus = (event) => {
     this._showTooltip();
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     if (!this.refs.button.isKeyboardFocused()) this._hideTooltip();
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
-  },
+  };
 
-  handleMouseOut(event) {
+  handleMouseOut = (event) => {
     if (this.props.disabled) this._hideTooltip();
     if (this.props.onMouseOut) this.props.onMouseOut(event);
-  },
+  };
 
   _handleMouseEnter(event) {
     this._showTooltip();
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
-  },
+  }
 
-  handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
       this._showTooltip();
       if (this.props.onFocus) this.props.onFocus(event);
@@ -214,7 +209,7 @@ const IconButton = React.createClass({
     }
 
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(event, keyboardFocused);
-  },
+  };
 
   render() {
     const {
@@ -288,8 +283,7 @@ const IconButton = React.createClass({
         })}
       </EnhancedButton>
     );
-  },
-
-});
+  }
+}
 
 export default IconButton;

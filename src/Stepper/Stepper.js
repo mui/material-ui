@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import Paper from '../Paper';
 
-const Stepper = React.createClass({
-  propTypes: {
+class Stepper extends React.Component {
+  static propTypes = {
     /**
      * Set the active step.
      */
@@ -66,40 +66,36 @@ const Stepper = React.createClass({
      * @returns {boolean} `true` if the step is completed.
      */
     updateCompletedStatus: PropTypes.func,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    activeStep: -1,
+    onStepHeaderTouch: () => {},
+    updateAvatarBackgroundColor: () => null,
+    style: {},
+    horizontal: false,
+  };
+
+  static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     createIcon: PropTypes.func,
     updateAvatarBackgroundColor: PropTypes.func,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      activeStep: -1,
-      onStepHeaderTouch: () => {},
-      updateAvatarBackgroundColor: () => null,
-      style: {},
-      horizontal: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      hoveredHeaderStepIndex: -1,
-      itemWidth: 0,
-    };
-  },
+  state = {
+    hoveredHeaderStepIndex: -1,
+    itemWidth: 0,
+  };
 
   getChildContext() {
     return {
       createIcon: this.props.createIcon,
       updateAvatarBackgroundColor: this.props.updateAvatarBackgroundColor,
     };
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.horizontal) {
@@ -120,11 +116,11 @@ const Stepper = React.createClass({
     } else {
       childrenWrapperNode.style.transition = 'all 1s';
     }
-  },
+  }
 
   getTotalSteps() {
     return React.Children.count(this.props.children);
-  },
+  }
 
   getStylesForHorizontalStepper() {
     const {
@@ -168,13 +164,13 @@ const Stepper = React.createClass({
       stepHeadersWrapper: stepHeadersWrapper,
       childrenWrapper: childrenWrapper,
     };
-  },
+  }
 
-  _handleHeaderStepHover(stepIndex) {
+  _handleHeaderStepHover = (stepIndex) => {
     this.setState({
       hoveredHeaderStepIndex: stepIndex,
     });
-  },
+  };
 
   findFurthestOptionalStep(index) {
     const {children} = this.props;
@@ -183,7 +179,7 @@ const Stepper = React.createClass({
       index--;
     }
     return index;
-  },
+  }
 
   renderHorizontalStepper() {
     const {
@@ -250,7 +246,7 @@ const Stepper = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
   renderVerticalStepper() {
     const {
@@ -282,7 +278,7 @@ const Stepper = React.createClass({
         {steps}
       </div>
     );
-  },
+  }
 
   render() {
     const {horizontal} = this.props;
@@ -292,8 +288,7 @@ const Stepper = React.createClass({
     }
 
     return this.renderVerticalStepper();
-  },
-
-});
+  }
+}
 
 export default Stepper;

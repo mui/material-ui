@@ -36,9 +36,8 @@ function getStyles(props, context) {
   };
 }
 
-const CardMedia = React.createClass({
-
-  propTypes: {
+class CardMedia extends React.Component {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
@@ -83,11 +82,11 @@ const CardMedia = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -137,7 +136,7 @@ const CardMedia = React.createClass({
           </div> : ''}
       </div>
     );
-  },
-});
+  }
+}
 
 export default CardMedia;

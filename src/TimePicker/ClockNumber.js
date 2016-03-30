@@ -81,26 +81,23 @@ function getStyles(props, context) {
   return styles;
 }
 
-const ClockNumber = React.createClass({
-
-  propTypes: {
+class ClockNumber extends React.Component {
+  static propTypes = {
     isSelected: React.PropTypes.bool,
     onSelected: React.PropTypes.func,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     value: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    value: 0,
+    type: 'minute',
+    isSelected: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      value: 0,
-      type: 'minute',
-      isSelected: false,
-    };
-  },
+  };
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -110,7 +107,7 @@ const ClockNumber = React.createClass({
     return (
       <span style={prepareStyles(styles.root)}>{clockNumber}</span>
     );
-  },
-});
+  }
+}
 
 export default ClockNumber;

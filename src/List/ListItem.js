@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ColorManipulator from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -142,9 +141,8 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const ListItem = React.createClass({
-
-  propTypes: {
+class ListItem extends React.Component {
+  static propTypes = {
     /**
      * If true, generate a nested-list-indicator icon when nested list
      * items are detected. Note that an indicator will not be created
@@ -313,45 +311,37 @@ const ListItem = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoGenerateNestedIndicator: true,
+    disableKeyboardFocus: false,
+    disabled: false,
+    initiallyOpen: false,
+    insetChildren: false,
+    nestedItems: [],
+    nestedLevel: 0,
+    onKeyboardFocus: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onNestedListToggle: () => {},
+    onTouchStart: () => {},
+    primaryTogglesNestedList: false,
+    secondaryTextLines: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps() {
-    return {
-      autoGenerateNestedIndicator: true,
-      disableKeyboardFocus: false,
-      disabled: false,
-      initiallyOpen: false,
-      insetChildren: false,
-      nestedItems: [],
-      nestedLevel: 0,
-      onKeyboardFocus: () => {},
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      onNestedListToggle: () => {},
-      onTouchStart: () => {},
-      primaryTogglesNestedList: false,
-      secondaryTextLines: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      hovered: false,
-      isKeyboardFocused: false,
-      open: this.props.initiallyOpen,
-      rightIconButtonHovered: false,
-      rightIconButtonKeyboardFocused: false,
-      touch: false,
-    };
-  },
+  state = {
+    hovered: false,
+    isKeyboardFocused: false,
+    open: this.props.initiallyOpen,
+    rightIconButtonHovered: false,
+    rightIconButtonKeyboardFocused: false,
+    touch: false,
+  };
 
   // This method is needed by the `MenuItem` component.
   applyFocusState(focusState) {
@@ -373,7 +363,7 @@ const ListItem = React.createClass({
           break;
       }
     }
-  },
+  }
 
   _createDisabledElement(styles, contentChildren, additionalProps) {
     const {
@@ -396,7 +386,7 @@ const ListItem = React.createClass({
         {contentChildren}
       </div>
      );
-  },
+  }
 
   _createLabelElement(styles, contentChildren, additionalProps) {
     const {
@@ -420,7 +410,7 @@ const ListItem = React.createClass({
         {contentChildren}
       </label>
      );
-  },
+  }
 
   _createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
@@ -437,30 +427,30 @@ const ListItem = React.createClass({
         {data}
       </div>
     );
-  },
+  }
 
-  handleKeyboardFocus(event, isKeyboardFocused) {
+  handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
-  },
+  };
 
-  handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
-  },
+  };
 
-  handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
-  },
+  };
 
-  handleNestedListToggle(event) {
+  handleNestedListToggle = (event) => {
     event.stopPropagation();
     this.setState({open: !this.state.open});
     this.props.onNestedListToggle(this);
-  },
+  };
 
-  handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
+  handleRightIconButtonKeyboardFocus = (event, isKeyboardFocused) => {
     if (isKeyboardFocused) {
       this.setState({
         isKeyboardFocused: false,
@@ -471,38 +461,38 @@ const ListItem = React.createClass({
     const iconButton = this.props.rightIconButton;
 
     if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(event, isKeyboardFocused);
-  },
+  };
 
-  handleRightIconButtonMouseLeave(event) {
+  handleRightIconButtonMouseLeave = (event) => {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
     if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(event);
-  },
+  };
 
-  handleRightIconButtonMouseEnter(event) {
+  handleRightIconButtonMouseEnter = (event) => {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
     if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(event);
-  },
+  };
 
-  handleRightIconButtonMouseUp(event) {
+  handleRightIconButtonMouseUp = (event) => {
     const iconButton = this.props.rightIconButton;
     event.stopPropagation();
     if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(event);
-  },
+  };
 
-  handleRightIconButtonTouchTap(event) {
+  handleRightIconButtonTouchTap = (event) => {
     const iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
     event.stopPropagation();
     if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(event);
-  },
+  };
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.setState({touch: true});
     this.props.onTouchStart(event);
-  },
+  };
 
   _pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
@@ -515,7 +505,7 @@ const ListItem = React.createClass({
         })
       );
     }
-  },
+  }
 
   render() {
     const {
@@ -685,8 +675,7 @@ const ListItem = React.createClass({
         {nestedList}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default ListItem;

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Popover from '../Popover/Popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../List/ListItem';
@@ -58,9 +57,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const MenuItem = React.createClass({
-
-  propTypes: {
+class MenuItem extends React.Component {
+  static propTypes = {
     /**
      * If true, a left check mark will be rendered.
      */
@@ -145,45 +143,37 @@ const MenuItem = React.createClass({
      * The value of the menu item.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    checked: false,
+    desktop: false,
+    disabled: false,
+    focusState: 'none',
+    insetChildren: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps() {
-    return {
-      checked: false,
-      desktop: false,
-      disabled: false,
-      focusState: 'none',
-      insetChildren: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      open: false,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   componentDidMount() {
     this._applyFocusState();
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.focusState === 'none') {
       this.handleRequestClose();
     }
-  },
+  }
 
   componentDidUpdate() {
     this._applyFocusState();
-  },
+  }
 
   componentWillUnmount() {
     if (this.state.open) {
@@ -191,13 +181,13 @@ const MenuItem = React.createClass({
         open: false,
       });
     }
-  },
+  }
 
   _applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
-  },
+  }
 
-  _cloneMenuItem(item) {
+  _cloneMenuItem = (item) => {
     return React.cloneElement(item, {
       onTouchTap: (event) => {
         if (!item.props.menuItems) {
@@ -210,9 +200,9 @@ const MenuItem = React.createClass({
       },
       onRequestClose: this.handleRequestClose,
     });
-  },
+  };
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     event.preventDefault();
 
     this.setState({
@@ -223,14 +213,14 @@ const MenuItem = React.createClass({
     if (this.props.onTouchTap) {
       this.props.onTouchTap(event);
     }
-  },
+  };
 
-  handleRequestClose() {
+  handleRequestClose = () => {
     this.setState({
       open: false,
       anchorEl: null,
     });
-  },
+  };
 
   render() {
     const {
@@ -315,8 +305,7 @@ const MenuItem = React.createClass({
         {childMenuPopover}
       </ListItem>
     );
-  },
-
-});
+  }
+}
 
 export default MenuItem;

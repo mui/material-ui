@@ -18,9 +18,8 @@ function getStyles(props, context) {
   };
 }
 
-const Tabs = React.createClass({
-
-  propTypes: {
+class Tabs extends React.Component {
+  static propTypes = {
     /**
      * Should be used to pass `Tab` components.
      */
@@ -78,22 +77,18 @@ const Tabs = React.createClass({
      * Makes Tabs controllable and selects the tab whose value prop matches this prop.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    initialSelectedIndex: 0,
+    onChange: () => {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      initialSelectedIndex: 0,
-      onChange: () => {},
-    };
-  },
-
-  getInitialState() {
-    return {selectedIndex: 0};
-  },
+  state = {selectedIndex: 0};
 
   componentWillMount() {
     const valueLink = this.getValueLink(this.props);
@@ -106,7 +101,7 @@ const Tabs = React.createClass({
         initialIndex :
         0,
     });
-  },
+  }
 
   componentWillReceiveProps(newProps, nextContext) {
     const valueLink = this.getValueLink(newProps);
@@ -119,7 +114,7 @@ const Tabs = React.createClass({
     }
 
     this.setState(newState);
-  },
+  }
 
   getEvenWidth() {
     return (
@@ -127,7 +122,7 @@ const Tabs = React.createClass({
         .getComputedStyle(ReactDOM.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
-  },
+  }
 
   getTabs() {
     const tabs = [];
@@ -137,11 +132,11 @@ const Tabs = React.createClass({
       }
     });
     return tabs;
-  },
+  }
 
   getTabCount() {
     return this.getTabs().length;
-  },
+  }
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
@@ -149,7 +144,7 @@ const Tabs = React.createClass({
       value: props.value,
       requestChange: props.onChange,
     };
-  },
+  }
 
   _getSelectedIndex(props) {
     const valueLink = this.getValueLink(props);
@@ -162,9 +157,9 @@ const Tabs = React.createClass({
     });
 
     return selectedIndex;
-  },
+  }
 
-  _handleTabTouchTap(value, event, tab) {
+  _handleTabTouchTap = (value, event, tab) => {
     const valueLink = this.getValueLink(this.props);
     const tabIndex = tab.props.tabIndex;
 
@@ -178,13 +173,13 @@ const Tabs = React.createClass({
     if (tab.props.onActive) {
       tab.props.onActive(tab);
     }
-  },
+  };
 
   _getSelected(tab, index) {
     const valueLink = this.getValueLink(this.props);
     return valueLink.value ? valueLink.value === tab.props.value :
       this.state.selectedIndex === index;
-  },
+  }
 
   render() {
     const {
@@ -260,7 +255,7 @@ const Tabs = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Tabs;

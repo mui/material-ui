@@ -10,9 +10,8 @@ import propTypes from '../utils/propTypes';
 
 let openNavEventHandler = null;
 
-const Drawer = React.createClass({
-
-  propTypes: {
+class Drawer extends React.Component {
+  static propTypes = {
     /**
      * The contents of the `Drawer`
      */
@@ -98,23 +97,21 @@ const Drawer = React.createClass({
      */
     zDepth: propTypes.zDepth,
 
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disableSwipeToOpen: false,
+    docked: true,
+    open: null,
+    openSecondary: false,
+    swipeAreaWidth: 30,
+    width: null,
+    zDepth: 2,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      disableSwipeToOpen: false,
-      docked: true,
-      open: null,
-      openSecondary: false,
-      swipeAreaWidth: 30,
-      width: null,
-      zDepth: 2,
-    };
-  },
+  };
 
   componentWillMount() {
     this._maybeSwiping = false;
@@ -126,11 +123,11 @@ const Drawer = React.createClass({
       open: (this.props.open !== null ) ? this.props.open : this.props.docked,
       swiping: null,
     });
-  },
+  }
 
   componentDidMount() {
     this._enableSwipeHandling();
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     // If controlled then the open prop takes precedence.
@@ -144,15 +141,15 @@ const Drawer = React.createClass({
         open: nextProps.docked,
       });
     }
-  },
+  }
 
   componentDidUpdate() {
     this._enableSwipeHandling();
-  },
+  }
 
   componentWillUnmount() {
     this._disableSwipeHandling();
-  },
+  }
 
   getStyles() {
     const muiTheme = this.context.muiTheme;
@@ -185,43 +182,43 @@ const Drawer = React.createClass({
     };
 
     return styles;
-  },
+  }
 
   _shouldShow() {
     return this.state.open || !!this.state.swiping;  // component is swiping
-  },
+  }
 
   _close(reason) {
     if (this.props.open === null) this.setState({open: false});
     if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
     return this;
-  },
+  }
 
   _open(reason) {
     if (this.props.open === null) this.setState({open: true});
     if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
     return this;
-  },
+  }
 
-  handleTouchTapOverlay(event) {
+  handleTouchTapOverlay = (event) => {
     event.preventDefault();
     this._close('clickaway');
-  },
+  };
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     if (this.state.open && !this.props.docked && keycode(event) === 'esc') {
       this._close('escape');
     }
-  },
+  };
 
   _getMaxTranslateX() {
     const width = this.props.width || this.context.muiTheme.navDrawer.width;
     return width + 10;
-  },
+  }
 
   _getTranslateMultiplier() {
     return this.props.openSecondary ? 1 : -1;
-  },
+  }
 
   _enableSwipeHandling() {
     if (!this.props.docked) {
@@ -232,16 +229,16 @@ const Drawer = React.createClass({
     } else {
       this._disableSwipeHandling();
     }
-  },
+  }
 
   _disableSwipeHandling() {
     document.body.removeEventListener('touchstart', this._onBodyTouchStart);
     if (openNavEventHandler === this._onBodyTouchStart) {
       openNavEventHandler = null;
     }
-  },
+  }
 
-  _onBodyTouchStart(event) {
+  _onBodyTouchStart = (event) => {
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
     const touchStartX = event.touches[0].pageX;
@@ -272,14 +269,14 @@ const Drawer = React.createClass({
     document.body.addEventListener('touchmove', this._onBodyTouchMove);
     document.body.addEventListener('touchend', this._onBodyTouchEnd);
     document.body.addEventListener('touchcancel', this._onBodyTouchEnd);
-  },
+  };
 
   _setPosition(translateX) {
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
     const transformCSS = `translate3d(${(this._getTranslateMultiplier() * translateX)}px, 0, 0)`;
     this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
     autoPrefix.set(drawer.style, 'transform', transformCSS);
-  },
+  }
 
   _getTranslateX(currentX) {
     return Math.min(
@@ -291,9 +288,9 @@ const Drawer = React.createClass({
              ),
              this._getMaxTranslateX()
            );
-  },
+  }
 
-  _onBodyTouchMove(event) {
+  _onBodyTouchMove = (event) => {
     const currentX = event.touches[0].pageX;
     const currentY = event.touches[0].pageY;
 
@@ -318,9 +315,9 @@ const Drawer = React.createClass({
         this._onBodyTouchEnd();
       }
     }
-  },
+  };
 
-  _onBodyTouchEnd(event) {
+  _onBodyTouchEnd = (event) => {
     if (this.state.swiping) {
       const currentX = event.changedTouches[0].pageX;
       const translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
@@ -353,7 +350,7 @@ const Drawer = React.createClass({
     document.body.removeEventListener('touchmove', this._onBodyTouchMove);
     document.body.removeEventListener('touchend', this._onBodyTouchEnd);
     document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
-  },
+  };
 
   render() {
     const {
@@ -404,7 +401,7 @@ const Drawer = React.createClass({
         </Paper>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Drawer;

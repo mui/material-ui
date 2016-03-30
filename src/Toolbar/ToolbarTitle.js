@@ -19,9 +19,8 @@ function getStyles(props, context) {
   };
 }
 
-const ToolbarTitle = React.createClass({
-
-  propTypes: {
+class ToolbarTitle extends React.Component {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -36,11 +35,11 @@ const ToolbarTitle = React.createClass({
      * The text to be displayed.
      */
     text: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {
@@ -58,8 +57,7 @@ const ToolbarTitle = React.createClass({
         {text}
       </span>
     );
-  },
-
-});
+  }
+}
 
 export default ToolbarTitle;

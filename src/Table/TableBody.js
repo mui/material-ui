@@ -3,9 +3,8 @@ import Checkbox from '../Checkbox';
 import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
 
-const TableBody = React.createClass({
-
-  propTypes: {
+class TableBody extends React.Component {
+  static propTypes = {
     /**
      * @ignore
      * Set to true to indicate that all rows should be selected.
@@ -119,29 +118,25 @@ const TableBody = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    allRowsSelected: false,
+    deselectOnClickaway: true,
+    displayRowCheckbox: true,
+    multiSelectable: false,
+    preScanRows: true,
+    selectable: true,
+    style: {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      allRowsSelected: false,
-      deselectOnClickaway: true,
-      displayRowCheckbox: true,
-      multiSelectable: false,
-      preScanRows: true,
-      selectable: true,
-      style: {},
-    };
-  },
-
-  getInitialState() {
-    return {
-      selectedRows: this._calculatePreselectedRows(this.props),
-    };
-  },
+  state = {
+    selectedRows: this._calculatePreselectedRows(this.props),
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
@@ -155,9 +150,9 @@ const TableBody = React.createClass({
         selectedRows: this._calculatePreselectedRows(nextProps),
       });
     }
-  },
+  }
 
-  handleClickAway() {
+  handleClickAway = () => {
     if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
       this.setState({
         selectedRows: [],
@@ -166,7 +161,7 @@ const TableBody = React.createClass({
         this.props.onRowSelection([]);
       }
     }
-  },
+  };
 
   _createRows() {
     const numChildren = React.Children.count(this.props.children);
@@ -203,7 +198,7 @@ const TableBody = React.createClass({
         return React.cloneElement(child, {...props, ...handlers}, children);
       }
     });
-  },
+  }
 
   _createRowCheckboxColumn(rowProps) {
     if (!this.props.displayRowCheckbox) return null;
@@ -228,7 +223,7 @@ const TableBody = React.createClass({
         {checkbox}
       </TableRowColumn>
     );
-  },
+  }
 
   _calculatePreselectedRows(props) {
     // Determine what rows are 'pre-selected'.
@@ -248,7 +243,7 @@ const TableBody = React.createClass({
     }
 
     return preSelectedRows;
-  },
+  }
 
   _isRowSelected(rowNumber) {
     if (this.props.allRowsSelected) {
@@ -266,7 +261,7 @@ const TableBody = React.createClass({
     }
 
     return false;
-  },
+  }
 
   _isValueInRange(value, range) {
     if (!range) return false;
@@ -276,9 +271,9 @@ const TableBody = React.createClass({
     }
 
     return false;
-  },
+  }
 
-  _onRowClick(event, rowNumber) {
+  _onRowClick = (event, rowNumber) => {
     event.stopPropagation();
 
     if (this.props.selectable) {
@@ -286,7 +281,7 @@ const TableBody = React.createClass({
       window.getSelection().removeAllRanges();
       this._processRowSelection(event, rowNumber);
     }
-  },
+  };
 
   _processRowSelection(event, rowNumber) {
     let selectedRows = this.state.selectedRows;
@@ -329,7 +324,7 @@ const TableBody = React.createClass({
 
     this.setState({selectedRows: selectedRows});
     if (this.props.onRowSelection) this.props.onRowSelection(this._flattenRanges(selectedRows));
-  },
+  }
 
   _splitRange(range, splitPoint) {
     const splitValues = [];
@@ -343,7 +338,7 @@ const TableBody = React.createClass({
     splitValues.push(...this._genRangeOfValues(splitPoint, endOffset));
 
     return splitValues;
-  },
+  }
 
   _genRangeOfValues(start, offset) {
     const values = [];
@@ -354,7 +349,7 @@ const TableBody = React.createClass({
     }
 
     return values;
-  },
+  }
 
   _flattenRanges(selectedRows) {
     const rows = [];
@@ -368,37 +363,37 @@ const TableBody = React.createClass({
     }
 
     return rows.sort();
-  },
+  }
 
-  _onCellClick(event, rowNumber, columnNumber) {
+  _onCellClick = (event, rowNumber, columnNumber) => {
     event.stopPropagation();
     if (this.props.onCellClick) this.props.onCellClick(rowNumber, this._getColumnId(columnNumber), event);
-  },
+  };
 
-  _onCellHover(event, rowNumber, columnNumber) {
+  _onCellHover = (event, rowNumber, columnNumber) => {
     if (this.props.onCellHover) this.props.onCellHover(rowNumber, this._getColumnId(columnNumber), event);
     this._onRowHover(event, rowNumber);
-  },
+  };
 
-  _onCellHoverExit(event, rowNumber, columnNumber) {
+  _onCellHoverExit = (event, rowNumber, columnNumber) => {
     if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, this._getColumnId(columnNumber), event);
     this._onRowHoverExit(event, rowNumber);
-  },
+  };
 
-  _onRowHover(event, rowNumber) {
+  _onRowHover = (event, rowNumber) => {
     if (this.props.onRowHover) this.props.onRowHover(rowNumber);
-  },
+  };
 
-  _onRowHoverExit(event, rowNumber) {
+  _onRowHoverExit = (event, rowNumber) => {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
-  },
+  };
 
   _getColumnId(columnNumber) {
     let columnId = columnNumber;
     if (this.props.displayRowCheckbox) columnId--;
 
     return columnId;
-  },
+  }
 
   render() {
     const {
@@ -416,8 +411,7 @@ const TableBody = React.createClass({
         </tbody>
       </ClickAwayListener>
     );
-  },
-
-});
+  }
+}
 
 export default TableBody;

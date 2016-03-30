@@ -34,9 +34,8 @@ function getStyles(props, context) {
   };
 }
 
-const CardHeader = React.createClass({
-
-  propTypes: {
+class CardHeader extends React.Component {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
@@ -101,17 +100,15 @@ const CardHeader = React.createClass({
      * Override the inline-styles of the title.
      */
     titleStyle: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    avatar: null,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      avatar: null,
-    };
-  },
+  };
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -146,7 +143,7 @@ const CardHeader = React.createClass({
         {this.props.children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default CardHeader;

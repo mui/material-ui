@@ -15,35 +15,33 @@ function shift(array) {
   return update(array, {$splice: [[0, 1]]});
 }
 
-const TouchRipple = React.createClass({
-
-  propTypes: {
+class TouchRipple extends React.Component {
+  static propTypes = {
     abortOnScroll: React.PropTypes.bool,
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    abortOnScroll: true,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      abortOnScroll: true,
-    };
-  },
-
-  getInitialState() {
+  constructor(props, context) {
+    super(props, context);
     //Touch start produces a mouse down event for compat reasons. To avoid
     //showing ripples twice we skip showing a ripple for the first mouse down
     //after a touch start. Note we don't store ignoreNextMouseDown in this.state
     //to avoid re-rendering when we change it
     this._ignoreNextMouseDown = false;
 
-    return {
+    this.state = {
       //This prop allows us to only render the ReactTransitionGroup
       //on the first click of the component, making the inital
       //render faster
@@ -51,7 +49,7 @@ const TouchRipple = React.createClass({
       nextKey: 0,
       ripples: [],
     };
-  },
+  }
 
   start(event, isRippleTouchGenerated) {
     const theme = this.context.muiTheme.ripple;
@@ -80,7 +78,7 @@ const TouchRipple = React.createClass({
       nextKey: this.state.nextKey + 1,
       ripples: ripples,
     });
-  },
+  }
 
   end() {
     const currentRipples = this.state.ripples;
@@ -90,24 +88,24 @@ const TouchRipple = React.createClass({
     if (this.props.abortOnScroll) {
       this._stopListeningForScrollAbort();
     }
-  },
+  }
 
-  handleMouseDown(event) {
+  handleMouseDown = (event) => {
     //only listen to left clicks
     if (event.button === 0) {
       this.start(event, false);
     }
-  },
+  };
 
-  handleMouseUp() {
+  handleMouseUp = () => {
     this.end();
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.end();
-  },
+  };
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     event.stopPropagation();
     //If the user is swiping (not just tapping), save the position so we can
     //abort ripples if the user appears to be scrolling
@@ -116,14 +114,14 @@ const TouchRipple = React.createClass({
       this._startTime = Date.now();
     }
     this.start(event, true);
-  },
+  };
 
-  handleTouchEnd() {
+  handleTouchEnd = () => {
     this.end();
-  },
+  };
 
   //Check if the user seems to be scrolling and abort the animation if so
-  _handleTouchMove(event) {
+  _handleTouchMove = (event) => {
     //Stop trying to abort if we're already 300ms into the animation
     const timeSinceStart = Math.abs(Date.now() - this._startTime);
     if (timeSinceStart > 300) {
@@ -150,7 +148,7 @@ const TouchRipple = React.createClass({
         this.end();
       });
     }
-  },
+  };
 
   _startListeningForScrollAbort(event) {
     this._firstTouchY = event.touches[0].clientY;
@@ -159,11 +157,11 @@ const TouchRipple = React.createClass({
     //Also note we don't listen for scroll events directly as there's no general
     //way to cover cases like scrolling within containers on the page
     document.body.addEventListener('touchmove', this._handleTouchMove);
-  },
+  }
 
   _stopListeningForScrollAbort() {
     document.body.removeEventListener('touchmove', this._handleTouchMove);
-  },
+  }
 
   _getRippleStyle(event) {
     const style = {};
@@ -193,11 +191,11 @@ const TouchRipple = React.createClass({
     style.left = `${left}px`;
 
     return style;
-  },
+  }
 
   _calcDiag(a, b) {
     return Math.sqrt((a * a) + (b * b));
-  },
+  }
 
   render() {
     const {children, style} = this.props;
@@ -235,8 +233,7 @@ const TouchRipple = React.createClass({
         {children}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default TouchRipple;

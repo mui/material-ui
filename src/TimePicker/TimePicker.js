@@ -10,9 +10,8 @@ emptyTime.setMinutes(0);
 emptyTime.setSeconds(0);
 emptyTime.setMilliseconds(0);
 
-const TimePicker = React.createClass({
-
-  propTypes: {
+class TimePicker extends React.Component {
+  static propTypes = {
     /**
      * If true, automatically accept and close the picker on set minutes.
      */
@@ -94,31 +93,27 @@ const TimePicker = React.createClass({
      */
     value: React.PropTypes.object,
 
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    defaultTime: null,
+    disabled: false,
+    format: 'ampm',
+    pedantic: false,
+    autoOk: false,
+    style: {},
+    okLabel: 'OK',
+    cancelLabel: 'Cancel',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      defaultTime: null,
-      disabled: false,
-      format: 'ampm',
-      pedantic: false,
-      autoOk: false,
-      style: {},
-      okLabel: 'OK',
-      cancelLabel: 'Cancel',
-    };
-  },
-
-  getInitialState() {
-    return {
-      time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
-      dialogTime: new Date(),
-    };
-  },
+  state = {
+    time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    dialogTime: new Date(),
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
@@ -126,7 +121,7 @@ const TimePicker = React.createClass({
         time: this.getControlledTime(nextProps),
       });
     }
-  },
+  }
 
   /**
    * Deprecated.
@@ -137,7 +132,7 @@ const TimePicker = React.createClass({
     instead. Or use the TimePicker as a controlled component with the value
     property.`);
     return this.state.time;
-  },
+  }
 
   /**
    * Deprecated
@@ -148,45 +143,45 @@ const TimePicker = React.createClass({
     instead. Or use the TimePicker as a controlled component with the value
     property.`);
     this.setState({time: time ? time : emptyTime});
-  },
+  }
 
   /**
    * Alias for `openDialog()` for an api consistent with TextField.
    */
   focus() {
     this.openDialog();
-  },
+  }
 
   openDialog() {
     this.setState({
       dialogTime: this.state.time,
     });
     this.refs.dialogWindow.show();
-  },
+  }
 
-  handleAcceptDialog(time) {
+  handleAcceptDialog = (time) => {
     this.setState({
       time: time,
     });
     if (this.props.onChange) this.props.onChange(null, time);
-  },
+  };
 
-  handleFocusInput(event) {
+  handleFocusInput = (event) => {
     event.target.blur();
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  handleTouchTapInput(event) {
+  handleTouchTapInput = (event) => {
     event.preventDefault();
 
     if (!this.props.disabled) this.openDialog();
 
     if (this.props.onTouchTap) this.props.onTouchTap(event);
-  },
+  };
 
   isControlled() {
     return this.props.value !== null;
-  },
+  }
 
   getControlledTime(props = this.props) {
     let result = null;
@@ -194,7 +189,7 @@ const TimePicker = React.createClass({
       result = props.value;
     }
     return result;
-  },
+  }
 
   render() {
     const {
@@ -238,7 +233,7 @@ const TimePicker = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 export default TimePicker;

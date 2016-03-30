@@ -7,9 +7,8 @@ import DatePickerInline from './DatePickerInline';
 import FlatButton from '../FlatButton';
 import {dateTimeFormat} from './dateUtils';
 
-const DatePickerDialog = React.createClass({
-
-  propTypes: {
+class DatePickerDialog extends React.Component {
+  static propTypes = {
     DateTimeFormat: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
     cancelLabel: React.PropTypes.string,
@@ -28,71 +27,67 @@ const DatePickerDialog = React.createClass({
     shouldDisableDate: React.PropTypes.func,
     style: React.PropTypes.object,
     wordings: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    DateTimeFormat: DateTime.DateTimeFormat,
+    container: 'dialog',
+    locale: 'en-US',
+    okLabel: 'OK',
+    cancelLabel: 'Cancel',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps: function() {
-    return {
-      DateTimeFormat: dateTimeFormat,
-      container: 'dialog',
-      locale: 'en-US',
-      okLabel: 'OK',
-      cancelLabel: 'Cancel',
-    };
-  },
-
-  getInitialState() {
-    return {
-      open: false,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   show() {
     if (this.props.onShow && !this.state.open) this.props.onShow();
     this.setState({
       open: true,
     });
-  },
+  }
 
   dismiss() {
     if (this.props.onDismiss && this.state.open) this.props.onDismiss();
     this.setState({
       open: false,
     });
-  },
+  }
 
-  handleTouchTapDay() {
+  handleTouchTapDay = () => {
     if (this.props.autoOk) {
       setTimeout(this.handleTouchTapOK, 300);
     }
-  },
+  };
 
-  handleTouchTapCancel() {
+  handleTouchTapCancel = () => {
     this.dismiss();
-  },
+  };
 
-  handleRequestClose() {
+  handleRequestClose = () => {
     this.dismiss();
-  },
+  };
 
-  handleTouchTapOK() {
+  handleTouchTapOK = () => {
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
 
     this.dismiss();
-  },
+  };
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     switch (keycode(event)) {
       case 'enter':
         this.handleTouchTapOK();
         break;
     }
-  },
+  };
 
   render() {
     const {
@@ -202,8 +197,7 @@ const DatePickerDialog = React.createClass({
         }
       </Container>
     );
-  },
-
-});
+  }
+}
 
 export default DatePickerDialog;

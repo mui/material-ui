@@ -46,9 +46,8 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const DateDisplay = React.createClass({
-
-  propTypes: {
+class DateDisplay extends React.Component {
+  static propTypes = {
     DateTimeFormat: React.PropTypes.func.isRequired,
     disableYearSelection: React.PropTypes.bool,
     locale: React.PropTypes.string.isRequired,
@@ -59,26 +58,22 @@ const DateDisplay = React.createClass({
     selectedDate: React.PropTypes.object.isRequired,
     style: React.PropTypes.object,
     weekCount: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disableYearSelection: false,
+    monthDaySelected: true,
+    weekCount: 4,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disableYearSelection: false,
-      monthDaySelected: true,
-      weekCount: 4,
-    };
-  },
-
-  getInitialState() {
-    return {
-      selectedYear: !this.props.monthDaySelected,
-      transitionDirection: 'up',
-    };
-  },
+  state = {
+    selectedYear: !this.props.monthDaySelected,
+    transitionDirection: 'up',
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDate !== this.props.selectedDate) {
@@ -93,17 +88,17 @@ const DateDisplay = React.createClass({
         selectedYear: !nextProps.monthDaySelected,
       });
     }
-  },
+  }
 
-  handleTouchTapMonthDay() {
+  handleTouchTapMonthDay = () => {
     if (this.props.onTouchTapMonthDay && this.state.selectedYear) {
       this.props.onTouchTapMonthDay();
     }
 
     this.setState({selectedYear: false});
-  },
+  };
 
-  handleTouchTapYear() {
+  handleTouchTapYear = () => {
     if (this.props.onTouchTapYear && !this.props.disableYearSelection && !this.state.selectedYear) {
       this.props.onTouchTapYear();
     }
@@ -111,7 +106,7 @@ const DateDisplay = React.createClass({
     if (!this.props.disableYearSelection) {
       this.setState({selectedYear: true});
     }
-  },
+  };
 
   render() {
     const {
@@ -156,8 +151,7 @@ const DateDisplay = React.createClass({
         </SlideInTransitionGroup>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default DateDisplay;

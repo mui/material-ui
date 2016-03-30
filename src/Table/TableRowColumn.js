@@ -23,9 +23,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const TableRowColumn = React.createClass({
-
-  propTypes: {
+class TableRowColumn extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
 
     /**
@@ -73,41 +72,37 @@ const TableRowColumn = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    hoverable: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      hoverable: false,
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-    };
-  },
-
-  _onClick(event) {
+  _onClick = (event) => {
     if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
-  },
+  };
 
-  _onMouseEnter(event) {
+  _onMouseEnter = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
     }
-  },
+  };
 
-  _onMouseLeave(event) {
+  _onMouseLeave = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
     }
-  },
+  };
 
   render() {
     const {
@@ -142,8 +137,7 @@ const TableRowColumn = React.createClass({
         {children}
       </td>
     );
-  },
-
-});
+  }
+}
 
 export default TableRowColumn;

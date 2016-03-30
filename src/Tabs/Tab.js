@@ -17,9 +17,8 @@ function getStyles(props, context) {
   };
 }
 
-const Tab = React.createClass({
-
-  propTypes: {
+class Tab extends React.Component {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -72,17 +71,17 @@ const Tab = React.createClass({
      * This property is overriden by the Tabs component.
      */
     width: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (this.props.onTouchTap) {
       this.props.onTouchTap(this.props.value, event, this);
     }
-  },
+  };
 
   render() {
     const {
@@ -133,8 +132,7 @@ const Tab = React.createClass({
         {label}
       </EnhancedButton>
     );
-  },
-
-});
+  }
+}
 
 export default Tab;

@@ -19,9 +19,8 @@ function getStyles(props, context) {
   };
 }
 
-const InkBar = React.createClass({
-
-  propTypes: {
+class InkBar extends React.Component {
+  static propTypes = {
     color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
 
@@ -30,11 +29,11 @@ const InkBar = React.createClass({
      */
     style: React.PropTypes.object,
     width: React.PropTypes.string.isRequired,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {style} = this.props;
@@ -44,8 +43,7 @@ const InkBar = React.createClass({
     return (
       <div style={prepareStyles(Object.assign(styles.root, style))} />
     );
-  },
-
-});
+  }
+}
 
 export default InkBar;

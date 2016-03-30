@@ -61,9 +61,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const AppBar = React.createClass({
-
-  propTypes: {
+class AppBar extends React.Component {
+  static propTypes = {
     /**
      * Can be used to render a tab inside an app bar for instance.
      */
@@ -149,19 +148,17 @@ const AppBar = React.createClass({
      * The shadow of the app bar is also dependent on this property.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    showMenuIconButton: true,
+    title: '',
+    zDepth: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      showMenuIconButton: true,
-      title: '',
-      zDepth: 1,
-    };
-  },
+  };
 
   componentDidMount() {
     warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Properties iconElementLeft
@@ -169,25 +166,25 @@ const AppBar = React.createClass({
 
     warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Properties iconElementRight
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
-  },
+  }
 
-  handleTouchTapLeftIconButton(event) {
+  handleTouchTapLeftIconButton = (event) => {
     if (this.props.onLeftIconButtonTouchTap) {
       this.props.onLeftIconButtonTouchTap(event);
     }
-  },
+  };
 
-  handleTouchTapRightIconButton(event) {
+  handleTouchTapRightIconButton = (event) => {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }
-  },
+  };
 
-  handleTitleTouchTap(event) {
+  handleTitleTouchTap = (event) => {
     if (this.props.onTitleTouchTap) {
       this.props.onTitleTouchTap(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -306,7 +303,7 @@ const AppBar = React.createClass({
         {children}
       </Paper>
     );
-  },
-});
+  }
+}
 
 export default AppBar;

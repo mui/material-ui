@@ -151,9 +151,8 @@ const getStyles = (props, context, state) => {
   return styles;
 };
 
-const Slider = React.createClass({
-
-  propTypes: {
+class Slider extends React.Component {
+  static propTypes = {
     /**
      * The default value of the slider.
      */
@@ -241,34 +240,30 @@ const Slider = React.createClass({
      * The value of the slider.
      */
     value: valueInRangePropType,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disabled: false,
+    disableFocusRipple: false,
+    max: 1,
+    min: 0,
+    required: true,
+    step: 0.01,
+    style: {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      disableFocusRipple: false,
-      max: 1,
-      min: 0,
-      required: true,
-      step: 0.01,
-      style: {},
-    };
-  },
-
-  getInitialState() {
-    return {
-      active: false,
-      dragging: false,
-      focused: false,
-      hovered: false,
-      percent: 0,
-      value: 0,
-    };
-  },
+  state = {
+    active: false,
+    dragging: false,
+    focused: false,
+    hovered: false,
+    percent: 0,
+    value: 0,
+  };
 
   componentWillMount() {
     let value = this.props.value;
@@ -282,15 +277,15 @@ const Slider = React.createClass({
       percent: percent,
       value: value,
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
       this.setValue(nextProps.value);
     }
-  },
+  }
 
-  _onHandleTouchStart(event) {
+  _onHandleTouchStart = (event) => {
     if (document) {
       document.addEventListener('touchmove', this._dragTouchHandler, false);
       document.addEventListener('touchup', this._dragTouchEndHandler, false);
@@ -301,9 +296,9 @@ const Slider = React.createClass({
 
     // Cancel scroll and context menu
     event.preventDefault();
-  },
+  };
 
-  _onHandleMouseDown(event) {
+  _onHandleMouseDown = (event) => {
     if (document) {
       document.addEventListener('mousemove', this._dragHandler, false);
       document.addEventListener('mouseup', this._dragEndHandler, false);
@@ -315,9 +310,9 @@ const Slider = React.createClass({
       this.refs.handle.focus();
     }
     this._onDragStart(event);
-  },
+  };
 
-  _onHandleKeyDown(event) {
+  _onHandleKeyDown = (event) => {
     const {min, max, step} = this.props;
     let action;
 
@@ -379,9 +374,9 @@ const Slider = React.createClass({
         });
       }
     }
-  },
+  };
 
-  _dragHandler(event) {
+  _dragHandler = (event) => {
     if (this._dragRunning) {
       return;
     }
@@ -390,9 +385,9 @@ const Slider = React.createClass({
       this._onDragUpdate(event, event.clientX - this._getTrackLeft());
       this._dragRunning = false;
     });
-  },
+  };
 
-  _dragTouchHandler(event) {
+  _dragTouchHandler = (event) => {
     if (this._dragRunning) {
       return;
     }
@@ -401,18 +396,18 @@ const Slider = React.createClass({
       this._onDragUpdate(event, event.touches[0].clientX - this._getTrackLeft());
       this._dragRunning = false;
     });
-  },
+  };
 
-  _dragEndHandler(event) {
+  _dragEndHandler = (event) => {
     if (document) {
       document.removeEventListener('mousemove', this._dragHandler, false);
       document.removeEventListener('mouseup', this._dragEndHandler, false);
     }
 
     this._onDragStop(event);
-  },
+  };
 
-  _dragTouchEndHandler(event) {
+  _dragTouchEndHandler = (event) => {
     if (document) {
       document.removeEventListener('touchmove', this._dragTouchHandler, false);
       document.removeEventListener('touchup', this._dragTouchEndHandler, false);
@@ -421,11 +416,11 @@ const Slider = React.createClass({
     }
 
     this._onDragStop(event);
-  },
+  };
 
   getValue() {
     return this.state.value;
-  },
+  }
 
   setValue(i) {
     // calculate percentage
@@ -436,11 +431,11 @@ const Slider = React.createClass({
       value: i,
       percent: percent,
     });
-  },
+  }
 
   getPercent() {
     return this.state.percent;
-  },
+  }
 
   setPercent(percent, callback) {
     const value = this._alignValue(this._percentToValue(percent));
@@ -449,19 +444,19 @@ const Slider = React.createClass({
     if (this.state.value !== value) {
       this.setState({value: value, percent: alignedPercent}, callback);
     }
-  },
+  }
 
   clearValue() {
     this.setValue(this.props.min);
-  },
+  }
 
   _alignValue(val) {
     const {step, min} = this.props;
     const alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
-  },
+  }
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     if (!this.props.disabled && !this.state.dragging) {
       const pos = event.touches[0].clientX - this._getTrackLeft();
       this._dragX(event, pos);
@@ -470,19 +465,19 @@ const Slider = React.createClass({
       // track, we need to manually propagate the event to the handle.
       this._onHandleTouchStart(event);
     }
-  },
+  };
 
-  handleFocus(event) {
+  handleFocus = (event) => {
     this.setState({focused: true});
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  handleBlur(event) {
+  handleBlur = (event) => {
     this.setState({focused: false, active: false});
     if (this.props.onBlur) this.props.onBlur(event);
-  },
+  };
 
-  handleMouseDown(event) {
+  handleMouseDown = (event) => {
     if (!this.props.disabled && !this.state.dragging) {
       const pos = event.clientX - this._getTrackLeft();
       this._dragX(event, pos);
@@ -491,23 +486,23 @@ const Slider = React.createClass({
       // track, we need to manually propagate the event to the handle.
       this._onHandleMouseDown(event);
     }
-  },
+  };
 
-  handleMouseUp() {
+  handleMouseUp = () => {
     if (!this.props.disabled) this.setState({active: false});
-  },
+  };
 
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     this.setState({hovered: true});
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({hovered: false});
-  },
+  };
 
   _getTrackLeft() {
     return this.refs.track.getBoundingClientRect().left;
-  },
+  }
 
   _onDragStart(event) {
     this.setState({
@@ -515,7 +510,7 @@ const Slider = React.createClass({
       active: true,
     });
     if (this.props.onDragStart) this.props.onDragStart(event);
-  },
+  }
 
   _onDragStop(event) {
     this.setState({
@@ -523,28 +518,28 @@ const Slider = React.createClass({
       active: false,
     });
     if (this.props.onDragStop) this.props.onDragStop(event);
-  },
+  }
 
   _onDragUpdate(event, pos) {
     if (!this.state.dragging) return;
     if (!this.props.disabled) this._dragX(event, pos);
-  },
+  }
 
   _dragX(event, pos) {
     const max = this.refs.track.clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this._updateWithChangeEvent(event, pos / max);
-  },
+  }
 
   _updateWithChangeEvent(event, percent) {
     this.setPercent(percent, () => {
       if (this.props.onChange) this.props.onChange(event, this.state.value);
     });
-  },
+  }
 
   _percentToValue(percent) {
     return percent * (this.props.max - this.props.min) + this.props.min;
-  },
+  }
 
   render() {
     const {
@@ -657,7 +652,7 @@ const Slider = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 export default Slider;

@@ -1,14 +1,13 @@
 import React from 'react';
 
-const AppCanvas = React.createClass({
-
-  propTypes: {
+class AppCanvas extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {
@@ -45,8 +44,7 @@ const AppCanvas = React.createClass({
         {newChildren}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default AppCanvas;

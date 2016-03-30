@@ -77,9 +77,8 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const Tooltip = React.createClass({
-
-  propTypes: {
+class Tooltip extends React.Component {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -94,30 +93,28 @@ const Tooltip = React.createClass({
     style: React.PropTypes.object,
     touch: React.PropTypes.bool,
     verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getInitialState() {
-    return {
-      offsetWidth: null,
-    };
-  },
+  state = {
+    offsetWidth: null,
+  };
 
   componentDidMount() {
     this._setRippleSize();
     this._setTooltipPosition();
-  },
+  }
 
   componentWillReceiveProps() {
     this._setTooltipPosition();
-  },
+  }
 
   componentDidUpdate() {
     this._setRippleSize();
-  },
+  }
 
   _setRippleSize() {
     const ripple = this.refs.ripple;
@@ -135,11 +132,11 @@ const Tooltip = React.createClass({
       ripple.style.width = '0px';
       ripple.style.height = '0px';
     }
-  },
+  }
 
   _setTooltipPosition() {
     this.setState({offsetWidth: this.refs.tooltip.offsetWidth});
-  },
+  }
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -174,8 +171,7 @@ const Tooltip = React.createClass({
         </span>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default Tooltip;

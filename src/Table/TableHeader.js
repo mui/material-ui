@@ -12,9 +12,8 @@ function getStyles(props, context) {
   };
 }
 
-const TableHeader = React.createClass({
-
-  propTypes: {
+class TableHeader extends React.Component {
+  static propTypes = {
     /**
      * Controls whether or not header rows should be
      * adjusted for a checkbox column. If the select all
@@ -64,20 +63,18 @@ const TableHeader = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    adjustForCheckbox: true,
+    displaySelectAll: true,
+    enableSelectAll: true,
+    selectAllSelected: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      adjustForCheckbox: true,
-      displaySelectAll: true,
-      enableSelectAll: true,
-      selectAllSelected: false,
-    };
-  },
+  };
 
   _createSuperHeaderRows() {
     const numChildren = React.Children.count(this.props.children);
@@ -97,7 +94,7 @@ const TableHeader = React.createClass({
     }
 
     if (superHeaders.length) return superHeaders;
-  },
+  }
 
   _createSuperHeaderRow(child, props) {
     const children = [];
@@ -109,7 +106,7 @@ const TableHeader = React.createClass({
     });
 
     return React.cloneElement(child, props, children);
-  },
+  }
 
   _createBaseHeaderRow() {
     const numChildren = React.Children.count(this.props.children);
@@ -129,14 +126,14 @@ const TableHeader = React.createClass({
       props,
       children
     );
-  },
+  }
 
   _getCheckboxPlaceholder(props) {
     if (!this.props.adjustForCheckbox) return null;
 
     const key = `hpcb${props.rowNumber}`;
     return <TableHeaderColumn key={key} style={{width: 24}} />;
-  },
+  }
 
   _getSelectAllCheckboxColumn(props) {
     if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props);
@@ -158,11 +155,11 @@ const TableHeader = React.createClass({
         {checkbox}
       </TableHeaderColumn>
     );
-  },
+  }
 
-  handleCheckAll(event, checked) {
+  handleCheckAll = (event, checked) => {
     if (this.props.onSelectAll) this.props.onSelectAll(checked);
-  },
+  };
 
   render() {
     const {
@@ -181,8 +178,7 @@ const TableHeader = React.createClass({
         {baseHeaderRow}
       </thead>
     );
-  },
-
-});
+  }
+}
 
 export default TableHeader;

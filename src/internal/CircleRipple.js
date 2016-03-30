@@ -1,53 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
-const CircleRipple = React.createClass({
-
-  propTypes: {
+class CircleRipple extends React.Component {
+  static propTypes = {
     aborted: React.PropTypes.bool,
     color: React.PropTypes.string,
     opacity: React.PropTypes.number,
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    opacity: 0.1,
+    aborted: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps() {
-    return {
-      opacity: 0.1,
-      aborted: false,
-    };
-  },
+  };
 
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
-  },
+  }
 
   componentWillAppear(callback) {
     this._initializeAnimation(callback);
-  },
+  }
 
   componentWillEnter(callback) {
     this._initializeAnimation(callback);
-  },
+  }
 
   componentDidAppear() {
     this._animate();
-  },
+  }
 
   componentDidEnter() {
     this._animate();
-  },
+  }
 
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
@@ -55,7 +47,7 @@ const CircleRipple = React.createClass({
     //If the animation is aborted, remove from the DOM immediately
     const removeAfter = this.props.aborted ? 0 : 2000;
     this.enterTimer = setTimeout(callback, removeAfter);
-  },
+  }
 
   _animate() {
     const style = ReactDOM.findDOMNode(this).style;
@@ -63,14 +55,14 @@ const CircleRipple = React.createClass({
       transitions.easeOut('1s', 'transform')}`;
     autoPrefix.set(style, 'transition', transitionValue);
     autoPrefix.set(style, 'transform', 'scale(1)');
-  },
+  }
 
   _initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
     autoPrefix.set(style, 'transform', 'scale(0)');
     this.leaveTimer = setTimeout(callback, 0);
-  },
+  }
 
   render() {
     const {
@@ -95,7 +87,7 @@ const CircleRipple = React.createClass({
     return (
       <div {...other} style={prepareStyles(mergedStyles)} />
     );
-  },
-});
+  }
+}
 
 export default CircleRipple;

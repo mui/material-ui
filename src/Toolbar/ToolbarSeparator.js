@@ -19,9 +19,8 @@ function getStyles(props, context) {
   };
 }
 
-const ToolbarSeparator = React.createClass({
-
-  propTypes: {
+class ToolbarSeparator extends React.Component {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -31,11 +30,11 @@ const ToolbarSeparator = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {
@@ -50,8 +49,7 @@ const ToolbarSeparator = React.createClass({
     return (
       <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))} />
     );
-  },
-
-});
+  }
+}
 
 export default ToolbarSeparator;

@@ -53,9 +53,8 @@ function getStyles(props, context) {
   };
 }
 
-const Checkbox = React.createClass({
-
-  propTypes: {
+class Checkbox extends React.Component {
+  static propTypes = {
     /**
      * Checkbox is checked if true.
      */
@@ -127,23 +126,19 @@ const Checkbox = React.createClass({
      * ValueLink for when using controlled checkbox.
      */
     valueLink: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    defaultChecked: false,
+    labelPosition: 'right',
+    disabled: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      defaultChecked: false,
-      labelPosition: 'right',
-      disabled: false,
-    };
-  },
-
-  getInitialState() {
-    return {switched: false};
-  },
+  state = {switched: false};
 
   componentWillMount() {
     const {checked, defaultChecked, valueLink} = this.props;
@@ -151,7 +146,7 @@ const Checkbox = React.createClass({
     if (checked || defaultChecked || (valueLink && valueLink.value)) {
       this.setState({switched: true});
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -159,23 +154,23 @@ const Checkbox = React.createClass({
         nextProps.checked :
         this.state.switched,
     });
-  },
+  }
 
   isChecked() {
     return this.refs.enhancedSwitch.isSwitched();
-  },
+  }
 
   setChecked(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
-  },
+  }
 
-  _handleCheck(event, isInputChecked) {
+  _handleCheck = (event, isInputChecked) => {
     if (this.props.onCheck) this.props.onCheck(event, isInputChecked);
-  },
+  };
 
-  _handleStateChange(newSwitched) {
+  _handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
-  },
+  };
 
   render() {
     const {
@@ -247,7 +242,7 @@ const Checkbox = React.createClass({
         {...enhancedSwitchProps}
       />
     );
-  },
-});
+  }
+}
 
 export default Checkbox;

@@ -2,8 +2,8 @@ import React, {PropTypes} from 'react';
 import TouchRipple from '../internal/TouchRipple';
 import Avatar from '../Avatar';
 
-const Step = React.createClass({
-  propTypes: {
+class Step extends React.Component {
+  static propTypes = {
     /**
      * An array of nodes for handling moving or canceling steps.
      */
@@ -93,14 +93,13 @@ const Step = React.createClass({
      * Customize the step label.
      */
     stepLabel: PropTypes.node,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
     createIcon: PropTypes.func,
     updateAvatarBackgroundColor: PropTypes.func,
-  },
-
+  };
 
   componentDidMount() {
     const {isActive} = this.props;
@@ -117,7 +116,7 @@ const Step = React.createClass({
         childrenWrapperNode.style.height = 'auto';
       }, 300);
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     const {isActive} = this.props;
@@ -143,19 +142,19 @@ const Step = React.createClass({
       const containerWrapper = this.refs.containerWrapper;
       containerWrapper.style.height = '32px';
     }
-  },
+  }
 
-  handleStepHeaderTouch() {
+  handleStepHeaderTouch = () => {
     this.props.onStepHeaderTouch(this.props.stepIndex, this);
-  },
+  };
 
-  handleStepHeaderMouseHover() {
+  handleStepHeaderMouseHover = () => {
     this.props.onStepHeaderHover(this.props.stepIndex);
-  },
+  };
 
-  handleStepHeaderMouseLeave() {
+  handleStepHeaderMouseLeave = () => {
     this.props.onStepHeaderHover(-1);
-  },
+  };
 
   getStyles() {
     const {
@@ -271,7 +270,7 @@ const Step = React.createClass({
       childrenWrapper: childrenWrapper,
       stepHeader: stepHeader,
     };
-  },
+  }
 
   render() {
     const {
@@ -318,8 +317,7 @@ const Step = React.createClass({
         </div>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default Step;

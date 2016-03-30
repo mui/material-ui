@@ -3,27 +3,26 @@ import ReactDOM from 'react-dom';
 import YearButton from './YearButton';
 import {cloneDate} from './dateUtils';
 
-const CalendarYear = React.createClass({
-
-  propTypes: {
+class CalendarYear extends React.Component {
+  static propTypes = {
     displayDate: React.PropTypes.object.isRequired,
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     onYearTouchTap: React.PropTypes.func,
     selectedDate: React.PropTypes.object.isRequired,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   componentDidMount() {
     this._scrollToSelectedYear();
-  },
+  }
 
   componentDidUpdate() {
     this._scrollToSelectedYear();
-  },
+  }
 
   _getYears() {
     const minYear = this.props.minDate.getFullYear();
@@ -53,7 +52,7 @@ const CalendarYear = React.createClass({
     }
 
     return years;
-  },
+  }
 
   _scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
@@ -66,11 +65,11 @@ const CalendarYear = React.createClass({
 
     const scrollYOffset = (yearButtonNode.offsetTop + yearButtonNodeHeight / 2) - containerHeight / 2;
     container.scrollTop = scrollYOffset;
-  },
+  }
 
-  handleTouchTap(event, year) {
+  handleTouchTap = (event, year) => {
     if (this.props.onYearTouchTap) this.props.onYearTouchTap(event, year);
-  },
+  };
 
   render() {
     const years = this._getYears();
@@ -91,8 +90,7 @@ const CalendarYear = React.createClass({
         {years}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default CalendarYear;

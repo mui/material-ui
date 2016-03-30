@@ -14,9 +14,8 @@ function getStyles(props) {
   };
 }
 
-const GridList = React.createClass({
-
-  propTypes: {
+class GridList extends React.Component {
+  static propTypes = {
     /**
      * Number of px for one cell height.
      */
@@ -41,19 +40,17 @@ const GridList = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    cols: 2,
+    padding: 4,
+    cellHeight: 180,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      cols: 2,
-      padding: 4,
-      cellHeight: 180,
-    };
-  },
+  };
 
   render() {
     const {
@@ -88,7 +85,7 @@ const GridList = React.createClass({
         {wrappedChildren}
       </div>
     );
-  },
-});
+  }
+}
 
 export default GridList;

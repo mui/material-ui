@@ -62,8 +62,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const LinearProgress = React.createClass({
-  propTypes: {
+class LinearProgress extends React.Component {
+  static propTypes = {
     /**
      * The mode of show your progress, indeterminate for
      * when there is no value for progress.
@@ -95,20 +95,18 @@ const LinearProgress = React.createClass({
      * The value of progress, only works in determinate mode.
      */
     value: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    mode: 'indeterminate',
+    value: 0,
+    min: 0,
+    max: 100,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      mode: 'indeterminate',
-      value: 0,
-      min: 0,
-      max: 100,
-    };
-  },
+  };
 
   componentDidMount() {
     this.timers = {};
@@ -124,12 +122,12 @@ const LinearProgress = React.createClass({
         [107, -8],
       ]);
     }, 850);
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
-  },
+  }
 
   _barUpdate(id, step, barElement, stepValues) {
     if (this.props.mode !== 'indeterminate') return;
@@ -152,7 +150,7 @@ const LinearProgress = React.createClass({
       barElement.style.transitionDuration = '0ms';
     }
     this.timers[id] = setTimeout(() => this._barUpdate(id, step + 1, barElement, stepValues), 420);
-  },
+  }
 
   render() {
     const {
@@ -171,7 +169,7 @@ const LinearProgress = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default LinearProgress;

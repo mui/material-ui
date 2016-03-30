@@ -2,30 +2,27 @@ import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './SlideInChild';
 
-const SlideIn = React.createClass({
-
-  propTypes: {
+class SlideIn extends React.Component {
+  static propTypes = {
     childStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
     enterDelay: React.PropTypes.number,
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    enterDelay: 0,
+    direction: 'left',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      enterDelay: 0,
-      direction: 'left',
-    };
-  },
-
-  _getLeaveDirection() {
+  _getLeaveDirection = () => {
     return this.props.direction;
-  },
+  };
 
   render() {
     const {
@@ -68,8 +65,7 @@ const SlideIn = React.createClass({
         {newChildren}
       </ReactTransitionGroup>
     );
-  },
-
-});
+  }
+}
 
 export default SlideIn;

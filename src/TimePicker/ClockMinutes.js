@@ -3,22 +3,20 @@ import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
 import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
-const ClockMinutes = React.createClass({
-  propTypes: {
+class ClockMinutes extends React.Component {
+  static propTypes = {
     initialMinutes: React.PropTypes.number,
     onChange: React.PropTypes.func,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    initialMinutes: new Date().getMinutes(),
+    onChange: () => {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      initialMinutes: new Date().getMinutes(),
-      onChange: () => {},
-    };
-  },
+  };
 
   componentDidMount() {
     const clockElement = this.refs.mask;
@@ -32,30 +30,30 @@ const ClockMinutes = React.createClass({
       x: this.center.x,
       y: 0,
     };
-  },
+  }
 
   isMousePressed(event) {
     if (typeof event.buttons === 'undefined') {
       return event.nativeEvent.which;
     }
     return event.buttons;
-  },
+  }
 
-  handleUp(event) {
+  handleUp = (event) => {
     event.preventDefault();
     this.setClock(event.nativeEvent, true);
-  },
+  };
 
-  handleMove(event) {
+  handleMove = (event) => {
     event.preventDefault();
     if (this.isMousePressed(event) !== 1 ) return;
     this.setClock(event.nativeEvent, false);
-  },
+  };
 
-  handleTouch(event) {
+  handleTouch = (event) => {
     event.preventDefault();
     this.setClock(event.changedTouches[0], false);
-  },
+  };
 
   setClock(event, finish) {
     if (typeof event.offsetX === 'undefined') {
@@ -68,7 +66,7 @@ const ClockMinutes = React.createClass({
     const minutes = this.getMinutes(event.offsetX, event.offsetY);
 
     this.props.onChange(minutes, finish);
-  },
+  }
 
   getMinutes(offsetX, offsetY) {
     const step = 6;
@@ -86,7 +84,7 @@ const ClockMinutes = React.createClass({
     const value = Math.floor(deg / step) || 0;
 
     return value;
-  },
+  }
 
   getMinuteNumbers() {
     const minutes = [];
@@ -112,7 +110,7 @@ const ClockMinutes = React.createClass({
       hasSelected: hasSelected,
       selected: selectedMinutes,
     };
-  },
+  }
 
   render() {
     const styles = {
@@ -145,7 +143,7 @@ const ClockMinutes = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 export default ClockMinutes;

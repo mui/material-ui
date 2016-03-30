@@ -63,9 +63,8 @@ function getStyles(props, context) {
   };
 }
 
-const FloatingActionButton = React.createClass({
-
-  propTypes: {
+class FloatingActionButton extends React.Component {
+  static propTypes = {
     /**
      * This value will override the default background color for the button.
      * However it will not override the default disabled background color.
@@ -178,41 +177,37 @@ const FloatingActionButton = React.createClass({
      * The zDepth of the underlying `Paper` component.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disabled: false,
+    mini: false,
+    secondary: false,
+    zDepth: 2,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      mini: false,
-      secondary: false,
-      zDepth: 2,
-    };
-  },
-
-  getInitialState() {
-    return {
-      hovered: false,
-      touch: false,
-      zDepth: undefined,
-    };
-  },
+  state = {
+    hovered: false,
+    touch: false,
+    zDepth: undefined,
+  };
 
   componentWillMount() {
     this.setState({
       zDepth: this.props.disabled ? 0 : this.props.zDepth,
     });
-  },
+  }
 
   componentDidMount() {
     warning(!this.props.iconClassName || !this.props.children,
       'You have set both an iconClassName and a child icon. ' +
       'It is recommended you use only one method when adding ' +
       'icons to FloatingActionButtons.');
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.disabled !== this.props.disabled) {
@@ -220,47 +215,47 @@ const FloatingActionButton = React.createClass({
         zDepth: nextProps.disabled ? 0 : this.props.zDepth,
       });
     }
-  },
+  }
 
-  _handleMouseDown(event) {
+  _handleMouseDown = (event) => {
     //only listen to left clicks
     if (event.button === 0) {
       this.setState({zDepth: this.props.zDepth + 1});
     }
     if (this.props.onMouseDown) this.props.onMouseDown(event);
-  },
+  };
 
-  _handleMouseUp(event) {
+  _handleMouseUp = (event) => {
     this.setState({zDepth: this.props.zDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(event);
-  },
+  };
 
-  _handleMouseLeave(event) {
+  _handleMouseLeave = (event) => {
     if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.props.zDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
-  },
+  };
 
-  _handleMouseEnter(event) {
+  _handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
-  },
+  };
 
-  _handleTouchStart(event) {
+  _handleTouchStart = (event) => {
     this.setState({
       touch: true,
       zDepth: this.props.zDepth + 1,
     });
     if (this.props.onTouchStart) this.props.onTouchStart(event);
-  },
+  };
 
-  _handleTouchEnd(event) {
+  _handleTouchEnd = (event) => {
     this.setState({zDepth: this.props.zDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(event);
-  },
+  };
 
-  _handleKeyboardFocus(event, keyboardFocused) {
+  _handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.props.zDepth + 1});
       this.refs.overlay.style.backgroundColor =
@@ -269,7 +264,7 @@ const FloatingActionButton = React.createClass({
       this.setState({zDepth: this.props.zDepth});
       this.refs.overlay.style.backgroundColor = 'transparent';
     }
-  },
+  };
 
   render() {
     const {
@@ -347,7 +342,7 @@ const FloatingActionButton = React.createClass({
         </EnhancedButton>
       </Paper>
     );
-  },
-});
+  }
+}
 
 export default FloatingActionButton;
