@@ -3,7 +3,7 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
-import DatePickerInline from './Date-PickerInline';
+import DatePickerInline from './DatePickerInline';
 import FlatButton from '../FlatButton';
 import {dateTimeFormat} from './dateUtils';
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {isInner} from './timeUtils';
 
 const ClockNumber = React.createClass({
 
@@ -21,18 +22,12 @@ const ClockNumber = React.createClass({
     };
   },
 
-  getTheme() {
-    return this.context.muiTheme.timePicker;
-  },
-
   render() {
     const {prepareStyles} = this.context.muiTheme;
 
     let pos = this.props.value;
-    let inner = false;
 
     if (this.props.type === 'hour') {
-      inner = pos < 1 || pos > 12;
       pos %= 12;
     } else {
       pos = pos / 5;
@@ -86,14 +81,16 @@ const ClockNumber = React.createClass({
       },
     };
 
+    const {muiTheme} = this.context;
+
     if (this.props.isSelected) {
-      styles.root.backgroundColor = this.getTheme().accentColor;
-      styles.root.color = this.getTheme().selectTextColor;
+      styles.root.backgroundColor = muiTheme.timePicker.accentColor;
+      styles.root.color = muiTheme.timePicker.selectTextColor;
     }
 
     let transformPos = positions[pos];
 
-    if (inner) {
+    if (isInner(this.props)) {
       styles.root.width = 28;
       styles.root.height = 28;
       styles.root.left = 'calc(50% - 14px)';

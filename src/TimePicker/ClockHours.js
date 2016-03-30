@@ -2,22 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
-
-function rad2deg(rad) {
-  return rad * 57.29577951308232;
-}
-
-function getTouchEventOffsetValues(event) {
-  const el = event.target;
-  const boundingRect = el.getBoundingClientRect();
-
-  const offset = {
-    offsetX: event.clientX - boundingRect.left,
-    offsetY: event.clientY - boundingRect.top,
-  };
-
-  return offset;
-}
+import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
 const ClockHours = React.createClass({
 

@@ -1,16 +1,10 @@
 import React from 'react';
+import {isInner} from './timeUtils';
 
 function calcAngle(value, base) {
   value %= base;
   const angle = 360 / base * value;
   return angle;
-}
-
-function isInner(props) {
-  if (props.type !== 'hour' ) {
-    return false;
-  }
-  return props.value < 1 || props.value > 12 ;
 }
 
 function getStyles(props, context, state) {
@@ -91,7 +85,6 @@ const ClockPointer = React.createClass({
     }
 
     const styles = getStyles(this.props, this.context, this.state);
-
     const {prepareStyles} = this.context.muiTheme;
 
     return (

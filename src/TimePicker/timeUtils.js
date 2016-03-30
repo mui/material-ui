@@ -57,3 +57,24 @@ export function formatTime(date, format = 'ampm', pedantic = false) {
 
   return `${hours}:${mins}`;
 }
+
+export function rad2deg(rad) {
+  return rad * 57.29577951308232;
+}
+
+export function getTouchEventOffsetValues(event) {
+  const el = event.target;
+  const boundingRect = el.getBoundingClientRect();
+
+   return {
+    offsetX: event.clientX - boundingRect.left,
+    offsetY: event.clientY - boundingRect.top,
+  };
+}
+
+export function isInner(props) {
+  if (props.type !== 'hour' ) {
+    return false;
+  }
+  return props.value < 1 || props.value > 12 ;
+}

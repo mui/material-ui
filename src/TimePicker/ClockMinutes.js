@@ -1,22 +1,7 @@
 import React from 'react';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
-
-function rad2deg(rad) {
-  return rad * 57.29577951308232;
-}
-
-function getTouchEventOffsetValues(event) {
-  const el = event.target;
-  const boundingRect = el.getBoundingClientRect();
-
-  const offset = {
-    offsetX: event.clientX - boundingRect.left,
-    offsetY: event.clientY - boundingRect.top,
-  };
-
-  return offset;
-}
+import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
 const ClockMinutes = React.createClass({
   propTypes: {
@@ -103,7 +88,7 @@ const ClockMinutes = React.createClass({
     return value;
   },
 
-  _getMinuteNumbers() {
+  getMinuteNumbers() {
     const minutes = [];
     for (let i = 0; i < 12; i++) {
       minutes.push(i * 5);
@@ -148,7 +133,7 @@ const ClockMinutes = React.createClass({
     };
 
     const {prepareStyles} = this.context.muiTheme;
-    const minutes = this._getMinuteNumbers();
+    const minutes = this.getMinuteNumbers();
 
     return (
       <div ref="clock" style={prepareStyles(styles.root)} >
