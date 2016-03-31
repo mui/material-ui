@@ -23,7 +23,6 @@ function isValid(value) {
 }
 
 const TextField = React.createClass({
-
   mixins: [
     ContextPure,
     StylePropable,

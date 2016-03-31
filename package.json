@@ -11,6 +11,7 @@
     "prebuild": "rimraf lib",
     "lint": "gulp eslint:src && gulp eslint:docs && gulp eslint:test",
     "build": "babel ./src --out-dir ./lib",
+    "watch": "babel ./src --out-dir ./lib --watch",
     "prepublish": "npm run build"
   },
   "keywords": [

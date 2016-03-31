@@ -11,6 +11,7 @@ import PopoverAnimationFromTop from '../popover/popover-animation-from-top';
 import styleUtils from '../utils/styles';
 import warning from 'warning';
 import deprecated from '../utils/deprecatedPropType';
+import KeyCode from '../utils/key-code';
 
 const DropDownMenu = React.createClass({
 
@@ -307,6 +308,8 @@ const DropDownMenu = React.createClass({
     const menuItemElements = menuItems
       ? menuItems.map((item, idx) => (
           <MenuItem
+            className={menuItemsClassName}
+            style={menuItemsStyle}
             key={idx}
             primaryText={item[displayMember || 'text']}
             value={item[valueMember]}
@@ -376,6 +379,19 @@ const DropDownMenu = React.createClass({
     if (!this.props.disabled) {
       this.setState({
         open: !this.state.open,
+        anchorEl: this.refs.root,
+      });
+    }
+  },
+
+  _onControlKeyPress(event){
+    event.persist();
+    console.log( '_onControlKeyPress', event );
+    let _code = event.keyCode || event.charCode;
+    if ( _code == KeyCode.DOWN || _code == KeyCode.SPACE || _code == KeyCode.ENTER ) {
+      event.preventDefault();
+      this.setState({
+        open: true,
         anchorEl: this.refs.root,
       });
     }
