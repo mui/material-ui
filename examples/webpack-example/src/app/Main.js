@@ -51,7 +51,7 @@ class Main extends React.Component {
     const standardActions = (
       <FlatButton
         label="Okey"
-        secondary={true}
+        secondary
         onTouchTap={this.handleRequestClose}
       />
     );
@@ -71,7 +71,7 @@ class Main extends React.Component {
           <h2>example project</h2>
           <RaisedButton
             label="Super Secret Password"
-            primary={true}
+            primary
             onTouchTap={this.handleTouchTap}
           />
         </div>
