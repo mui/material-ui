@@ -1,8 +1,8 @@
 import React from 'react';
 import warning from 'warning';
-import DateTime from '../utils/dateTime.js';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
+import {formatTime} from './timeUtils';
 
 const emptyTime = new Date();
 emptyTime.setHours(0);
@@ -24,7 +24,7 @@ const TimePicker = React.createClass({
     cancelLabel: React.PropTypes.string,
 
     /**
-     * This is the initial time value of the component.
+     * The initial time value of the TimePicker.
      */
     defaultTime: React.PropTypes.object,
 
@@ -34,8 +34,7 @@ const TimePicker = React.createClass({
     disabled: React.PropTypes.bool,
 
     /**
-     * Tells the component to display the picker in
-     * ampm (12hr) format or 24hr format.
+     * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
     format: React.PropTypes.oneOf(['ampm', '24hr']),
 
@@ -45,41 +44,38 @@ const TimePicker = React.createClass({
     okLabel: React.PropTypes.string,
 
     /**
-     * Callback function that is fired when the time
-     * value changes. The time value is passed in a Date
-     * Object.Since there is no particular event associated
-     * with the change the first argument will always be null
+     * Callback function that is fired when the time value changes. The time value is passed in a Date Object.
+     * Since there is no particular event associated with the change the first argument will always be null
      * and the second argument will be the new Date instance.
      */
     onChange: React.PropTypes.func,
 
     /**
-     * Fired when the timepicker dialog is dismissed.
+     * Callback function fired when the TimePicker dialog is dismissed.
      */
     onDismiss: React.PropTypes.func,
 
     /**
-     * Callback function that is fired when the timepicker field gains focus.
+     * Callback function fired when the TimePicker `TextField` gains focus.
      */
     onFocus: React.PropTypes.func,
 
     /**
-     * Fired when the timepicker dialog is shown.
+     * Callback function fired when the TimePicker dialog is shown.
      */
     onShow: React.PropTypes.func,
 
     /**
-     * Callback for touch tap event.
+     * Callback function fired when the TimePicker is tapped or clicked.
      */
     onTouchTap: React.PropTypes.func,
 
     /**
-     * It's technically more correct to refer to
-     * "12 noon" and "12 midnight" rather than
-     * "12 a.m." and "12 p.m." and it avoids real
-     * confusion between different locales. By default
-     * (for compatibility reasons) TimePicker uses
-     * (12 a.m./12 p.m.) To use (noon/midnight) set pedantic={true}.
+     * If true, uses ("noon" / "midnight") instead of ("12 a.m." / "12 p.m.").
+     *
+     * It's technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m."
+     * and it avoids confusion between different locales. By default (for compatibility reasons) TimePicker uses
+     * ("12 a.m." / "12 p.m.").
      */
     pedantic: React.PropTypes.bool,
 
@@ -119,7 +115,7 @@ const TimePicker = React.createClass({
 
   getInitialState() {
     return {
-      time: this._isControlled() ? this._getControlledTime() : this.props.defaultTime,
+      time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
       dialogTime: new Date(),
     };
   },
@@ -127,7 +123,7 @@ const TimePicker = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({
-        time: this._getControlledTime(nextProps),
+        time: this.getControlledTime(nextProps),
       });
     }
   },
@@ -188,13 +184,13 @@ const TimePicker = React.createClass({
     if (this.props.onTouchTap) this.props.onTouchTap(event);
   },
 
-  _isControlled() {
+  isControlled() {
     return this.props.value !== null;
   },
 
-  _getControlledTime(props = this.props) {
+  getControlledTime(props = this.props) {
     let result = null;
-    if (DateTime.isDateObject(props.value)) {
+    if (props.value instanceof Date) {
       result = props.value;
     }
     return result;
@@ -225,7 +221,7 @@ const TimePicker = React.createClass({
           {...other}
           style={textFieldStyle}
           ref="input"
-          value={time === emptyTime ? null : DateTime.formatTime(time, format, pedantic)}
+          value={time === emptyTime ? null : formatTime(time, format, pedantic)}
           onFocus={this.handleFocusInput}
           onTouchTap={this.handleTouchTapInput}
         />

@@ -3,9 +3,9 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
-import DatePickerInline from './Date-PickerInline';
+import DatePickerInline from './DatePickerInline';
 import FlatButton from '../FlatButton';
-import DateTime from '../utils/dateTime';
+import {dateTimeFormat} from './dateUtils';
 
 const DatePickerDialog = React.createClass({
 
@@ -36,7 +36,7 @@ const DatePickerDialog = React.createClass({
 
   getDefaultProps: function() {
     return {
-      DateTimeFormat: DateTime.DateTimeFormat,
+      DateTimeFormat: dateTimeFormat,
       container: 'dialog',
       locale: 'en-US',
       okLabel: 'OK',

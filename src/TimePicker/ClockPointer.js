@@ -1,4 +1,5 @@
 import React from 'react';
+import {isInner} from './timeUtils';
 
 function calcAngle(value, base) {
   value %= base;
@@ -6,23 +7,10 @@ function calcAngle(value, base) {
   return angle;
 }
 
-function isInner(props) {
-  if (props.type !== 'hour' ) {
-    return false;
-  }
-  return props.value < 1 || props.value > 12 ;
-}
-
 function getStyles(props, context, state) {
-  const {
-    hasSelected,
-    type,
-    value,
-  } = props;
-
+  const {hasSelected, type, value} = props;
   const {inner} = state;
   const {timePicker} = context.muiTheme;
-
   const angle = type === 'hour' ? calcAngle(value, 12) : calcAngle(value, 60);
 
   const styles = {
@@ -91,7 +79,6 @@ const ClockPointer = React.createClass({
     }
 
     const styles = getStyles(this.props, this.context, this.state);
-
     const {prepareStyles} = this.context.muiTheme;
 
     return (
