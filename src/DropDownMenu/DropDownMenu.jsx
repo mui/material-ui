@@ -255,6 +255,8 @@ const DropDownMenu = React.createClass({
       maxHeight,
       menuItems,
       menuStyle,
+      menuItemsClassName,
+      menuItemsStyle,
       style,
       underlineStyle,
       valueLink,
