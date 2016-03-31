@@ -82,10 +82,6 @@ const SelectField = React.createClass({
     };
   },
 
-  componentDidMount(){
-    console.log( 'componentDidMount', this.refs );
-  },
-
   //to update theme inside state whenever a new theme is passed down
   //from the parent / owner using context
   componentWillReceiveProps(nextProps, nextContext) {
@@ -185,8 +181,6 @@ const SelectField = React.createClass({
     let _code = event.keyCode || event.charCode;
     if ( _code == KeyCode.DOWN || _code == KeyCode.SPACE || _code == KeyCode.ENTER ) {
       event.preventDefault();
-
-      console.log( '_onControlKeyPress', this.refs.root );
 
       if ( this.refs.root.refs.input ) {
         this.refs.root.refs.input.setState({
