@@ -356,6 +356,7 @@ const DropDownMenu = React.createClass({
             desktop={true}
             value={value}
             style={menuStyle}
+            onEscKeyDown={this._onEscKeyDown}
             >
             {menuItemElements}
           </Menu>
@@ -381,19 +382,6 @@ const DropDownMenu = React.createClass({
     if (!this.props.disabled) {
       this.setState({
         open: !this.state.open,
-        anchorEl: this.refs.root,
-      });
-    }
-  },
-
-  _onControlKeyPress(event){
-    event.persist();
-    console.log( '_onControlKeyPress', event );
-    let _code = event.keyCode || event.charCode;
-    if ( _code == KeyCode.DOWN || _code == KeyCode.SPACE || _code == KeyCode.ENTER ) {
-      event.preventDefault();
-      this.setState({
-        open: true,
         anchorEl: this.refs.root,
       });
     }
@@ -433,6 +421,11 @@ const DropDownMenu = React.createClass({
       open: false,
       anchorEl: null,
     });
+  },
+
+  _onEscKeyDown(event){
+    this._onMenuRequestClose();
+    if ( this.props.onEscKeyDown ) this.props.onEscKeyDown(event);
   },
 
   _isControlled() {

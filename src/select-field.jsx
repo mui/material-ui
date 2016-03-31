@@ -152,7 +152,6 @@ const SelectField = React.createClass({
           errorStyle={errorStyle}
           onFocus={onFocus}
           onBlur={onBlur}
-          onKeyDown={ this._onControlKeyPress }
           underlineDisabledStyle={underlineDisabledStyle}
           underlineFocusStyle={underlineFocusStyle}
         >
@@ -166,6 +165,8 @@ const SelectField = React.createClass({
             autoWidth={autoWidth}
             value={value}
             onChange={onChange}
+            onKeyDown={ this._onControlKeyPress }
+            onEscKeyDown={ this._onControlEsc }
             {...other}
             ref="ddMenu"
           >
@@ -177,7 +178,6 @@ const SelectField = React.createClass({
   },
 
   _onControlKeyPress(event){
-    event.persist();
     let _code = event.keyCode || event.charCode;
     if ( _code == KeyCode.DOWN || _code == KeyCode.SPACE || _code == KeyCode.ENTER ) {
       event.preventDefault();
@@ -189,6 +189,12 @@ const SelectField = React.createClass({
         });
       }
     }
+  },
+
+  _onControlEsc(event){
+    // this.refs.root.focus();
+    if ( this.refs.root.refs.input ) ReactDOM.findDOMNode(this.refs.root.refs.input).focus();
+    console.log("_onControlEsc", this.refs.root.focus, this.refs.root);
   },
 
 });
