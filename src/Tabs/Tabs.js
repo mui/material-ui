@@ -125,8 +125,18 @@ const Tabs = React.createClass({
     );
   },
 
+  getTabs() {
+    const tabs = [];
+    React.Children.forEach(this.props.children, (tab) => {
+      if (React.isValidElement(tab)) {
+        tabs.push(tab);
+      }
+    });
+    return tabs;
+  },
+
   getTabCount() {
-    return React.Children.count(this.props.children);
+    return this.getTabs().length;
   },
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
@@ -141,7 +151,7 @@ const Tabs = React.createClass({
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
-    React.Children.forEach(props.children, (tab, index) => {
+    this.getTabs().forEach((tab, index) => {
       if (valueLink.value === tab.props.value) {
         selectedIndex = index;
       }
@@ -174,7 +184,6 @@ const Tabs = React.createClass({
 
   render() {
     const {
-      children,
       contentContainerClassName,
       contentContainerStyle,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
@@ -192,7 +201,7 @@ const Tabs = React.createClass({
     const tabContent = [];
     const width = 100 / this.getTabCount();
 
-    const tabs = React.Children.map(children, (tab, index) => {
+    const tabs = this.getTabs().map((tab, index) => {
       warning(tab.type && tab.type.displayName === 'Tab',
         `Tabs only accepts Tab Components as children.
         Found ${tab.type.displayName || tab.type} as child number ${index + 1} of Tabs`);
