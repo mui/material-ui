@@ -51,6 +51,7 @@ const Divider = (props, context) => {
   );
 };
 
+Divider.muiName = 'Divider';
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
 Divider.contextTypes = contextTypes;

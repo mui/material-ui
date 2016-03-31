@@ -143,6 +143,8 @@ function getStyles(props, context, state) {
 }
 
 class ListItem extends React.Component {
+  static muiName = 'ListItem';
+
   static propTypes = {
     /**
      * If true, generate a nested-list-indicator icon when nested list

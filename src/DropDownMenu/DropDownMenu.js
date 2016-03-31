@@ -68,6 +68,8 @@ function getStyles(props, context) {
 }
 
 class DropDownMenu extends React.Component {
+  static muiName = 'DropDownMenu';
+
   // The nested styles for drop-down-menu are modified by toolbar and possibly
   // other user components, so it will give full access to its js styles rather
   // than just the parent.

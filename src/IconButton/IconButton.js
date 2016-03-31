@@ -42,6 +42,8 @@ function getStyles(props, context) {
 }
 
 class IconButton extends React.Component {
+  static muiName = 'IconButton';
+
   static propTypes = {
     /**
      * Can be used to pass a `FontIcon` element as the icon for the button.

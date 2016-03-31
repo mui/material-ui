@@ -13,6 +13,8 @@ function getStyles(props, context) {
 }
 
 class CardText extends React.Component {
+  static muiName = 'CardText';
+
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.

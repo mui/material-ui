@@ -429,8 +429,8 @@ class AutoComplete extends React.Component {
         case 'object':
           if (item && typeof item.text === 'string') {
             if (this.props.filter(searchText, item.text, item)) {
-              if (item.value.type && (item.value.type.displayName === MenuItem.displayName ||
-                 item.value.type.displayName === Divider.displayName)) {
+              if (item.value.type && (item.value.type.muiName === MenuItem.muiName ||
+                 item.value.type.muiName === Divider.muiName)) {
                 requestsList.push({
                   text: item.text,
                   value: React.cloneElement(item.value, {
@@ -453,6 +453,9 @@ class AutoComplete extends React.Component {
             }
           }
           break;
+
+        default:
+          // Do nothing
       }
 
       return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults);

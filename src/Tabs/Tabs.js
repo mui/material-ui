@@ -201,9 +201,9 @@ class Tabs extends React.Component {
     const width = 100 / this.getTabCount();
 
     const tabs = this.getTabs().map((tab, index) => {
-      warning(tab.type && tab.type.displayName === 'Tab',
+      warning(tab.type && tab.type.muiName === 'Tab',
         `Tabs only accepts Tab Components as children.
-        Found ${tab.type.displayName || tab.type} as child number ${index + 1} of Tabs`);
+        Found ${tab.type.muiName || tab.type} as child number ${index + 1} of Tabs`);
 
       warning(!tabValue || tab.props.value !== undefined,
         `Tabs value prop has been passed, but Tab ${index}

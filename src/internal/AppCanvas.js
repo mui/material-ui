@@ -27,7 +27,7 @@ class AppCanvas extends React.Component {
         return null;
       }
 
-      switch (currentChild.type.displayName) {
+      switch (currentChild.type.muiName) {
         case 'AppBar' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, currentChild.props.style, {

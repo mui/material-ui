@@ -59,6 +59,8 @@ function getStyles(props, context) {
 }
 
 class MenuItem extends React.Component {
+  static muiName = 'MenuItem';
+
   static propTypes = {
     /**
      * If true, a left check mark will be rendered.

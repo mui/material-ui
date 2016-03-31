@@ -16,6 +16,8 @@ function getStyles(props, context) {
 }
 
 class TableFooter extends React.Component {
+  static muiName = 'TableFooter';
+
   static propTypes = {
     /**
      * @ignore

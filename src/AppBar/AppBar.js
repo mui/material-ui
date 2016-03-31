@@ -62,6 +62,8 @@ function getStyles(props, context) {
 }
 
 class AppBar extends React.Component {
+  static muiName = 'AppBar';
+
   static propTypes = {
     /**
      * Can be used to render a tab inside an app bar for instance.
@@ -222,12 +224,10 @@ class AppBar extends React.Component {
       let iconElementLeftNode = iconElementLeft;
 
       if (iconElementLeft) {
-        switch (iconElementLeft.type.displayName) {
-          case 'IconButton':
-            iconElementLeftNode = React.cloneElement(iconElementLeft, {
-              iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementLeft.props.iconStyle),
-            });
-            break;
+        if (iconElementLeft.type.muiName === 'IconButton') {
+          iconElementLeftNode = React.cloneElement(iconElementLeft, {
+            iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementLeft.props.iconStyle),
+          });
         }
 
         menuElementLeft = (
@@ -258,7 +258,7 @@ class AppBar extends React.Component {
     if (iconElementRight) {
       let iconElementRightNode = iconElementRight;
 
-      switch (iconElementRight.type.displayName) {
+      switch (iconElementRight.type.muiName) {
         case 'IconMenu':
         case 'IconButton':
           iconElementRightNode = React.cloneElement(iconElementRight, {
@@ -271,6 +271,8 @@ class AppBar extends React.Component {
             style: Object.assign({}, styles.flatButton, iconElementRight.props.style),
           });
           break;
+
+        default:
       }
 
       menuElementRight = (

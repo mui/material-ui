@@ -20,6 +20,8 @@ function getStyles(props, context) {
 }
 
 class ToolbarTitle extends React.Component {
+  static muiName = 'ToolbarTitle';
+
   static propTypes = {
     /**
      * The css class name of the root element.

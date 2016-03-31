@@ -260,12 +260,12 @@ class Table extends React.Component {
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
 
-      const displayName = child.type.displayName;
-      if (displayName === 'TableBody') {
+      const {muiName} = child.type;
+      if (muiName === 'TableBody') {
         tBody = this._createTableBody(child);
-      } else if (displayName === 'TableHeader') {
+      } else if (muiName === 'TableHeader') {
         tHead = this._createTableHeader(child);
-      } else if (displayName === 'TableFooter') {
+      } else if (muiName === 'TableFooter') {
         tFoot = this._createTableFooter(child);
       }
     });

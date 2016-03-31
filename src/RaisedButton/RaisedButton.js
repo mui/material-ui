@@ -107,6 +107,8 @@ function getStyles(props, context, state) {
 }
 
 class RaisedButton extends React.Component {
+  static muiName = 'RaisedButton';
+
   static propTypes = {
     /**
      * Override the background color. Always takes precedence unless the button is disabled.

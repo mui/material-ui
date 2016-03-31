@@ -24,6 +24,8 @@ function getStyles(props, context, state) {
 }
 
 class FontIcon extends React.Component {
+  static muiName = 'FontIcon';
+
   static propTypes = {
     /**
      * This is the font color of the font icon. If not specified,

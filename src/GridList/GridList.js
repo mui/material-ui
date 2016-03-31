@@ -67,7 +67,7 @@ class GridList extends React.Component {
     const mergedRootStyles = Object.assign(styles.root, style);
 
     const wrappedChildren = React.Children.map(children, (currentChild) => {
-      if (React.isValidElement(currentChild) && currentChild.type.displayName === 'Subheader') {
+      if (React.isValidElement(currentChild) && currentChild.type.muiName === 'Subheader') {
         return currentChild;
       }
       const childCols = currentChild.props.cols || 1;

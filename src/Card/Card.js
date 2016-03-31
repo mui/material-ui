@@ -114,8 +114,8 @@ class Card extends React.Component {
 
     // If the last element is text or a title we should add
     // 8px padding to the bottom of the card
-    const addBottomPadding = (lastElement && (lastElement.type.displayName === 'CardText' ||
-      lastElement.type.displayName === 'CardTitle'));
+    const addBottomPadding = (lastElement && (lastElement.type.muiName === 'CardText' ||
+      lastElement.type.muiName === 'CardTitle'));
     const {
       style,
       ...other,

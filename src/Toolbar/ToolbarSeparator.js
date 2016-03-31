@@ -20,6 +20,8 @@ function getStyles(props, context) {
 }
 
 class ToolbarSeparator extends React.Component {
+  static muiName = 'ToolbarSeparator';
+
   static propTypes = {
     /**
      * The css class name of the root element.

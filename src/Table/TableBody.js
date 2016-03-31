@@ -4,6 +4,8 @@ import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
 
 class TableBody extends React.Component {
+  static muiName = 'TableBody';
+
   static propTypes = {
     /**
      * @ignore

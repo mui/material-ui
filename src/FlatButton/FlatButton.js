@@ -12,6 +12,8 @@ function validateLabel(props, propName, componentName) {
 }
 
 class FlatButton extends React.Component {
+  static muiName = 'FlatButton';
+
   static propTypes = {
     /**
      * Color of button when mouse is not hovering over it.

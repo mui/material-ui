@@ -361,7 +361,7 @@ class Menu extends React.Component {
     //max menu height
     filteredChildren.forEach((child) => {
       if (currentHeight < maxHeight) {
-        const childIsADivider = child.type && child.type.displayName === 'Divider';
+        const childIsADivider = child.type && child.type.muiName === 'Divider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -374,7 +374,7 @@ class Menu extends React.Component {
   getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
@@ -386,7 +386,7 @@ class Menu extends React.Component {
     let menuItemIndex = 0;
 
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === 'Divider';
 
       if (this.isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
@@ -549,7 +549,7 @@ class Menu extends React.Component {
 
     let menuItemIndex = 0;
     const newChildren = React.Children.map(filteredChildren, (child, index) => {
-      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 

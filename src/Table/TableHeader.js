@@ -13,6 +13,8 @@ function getStyles(props, context) {
 }
 
 class TableHeader extends React.Component {
+  static muiName = 'TableHeader';
+
   static propTypes = {
     /**
      * Controls whether or not header rows should be

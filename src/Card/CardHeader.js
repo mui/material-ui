@@ -35,6 +35,8 @@ function getStyles(props, context) {
 }
 
 class CardHeader extends React.Component {
+  static muiName = 'CardHeader';
+
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.

@@ -6,6 +6,8 @@ import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 
 class IconMenu extends React.Component {
+  static muiName = 'IconMenu';
+
   static propTypes = {
     /**
      * This is the point on the icon where the menu

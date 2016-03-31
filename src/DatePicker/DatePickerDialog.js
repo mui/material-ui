@@ -45,14 +45,14 @@ class DatePickerDialog extends React.Component {
     open: false,
   };
 
-  show() {
+  show = () => {
     if (this.props.onShow && !this.state.open) this.props.onShow();
     this.setState({
       open: true,
     });
-  }
+  };
 
-  dismiss() {
+  dismiss = () => {
     if (this.props.onDismiss && this.state.open) this.props.onDismiss();
     this.setState({
       open: false,

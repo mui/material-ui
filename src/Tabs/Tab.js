@@ -18,6 +18,8 @@ function getStyles(props, context) {
 }
 
 class Tab extends React.Component {
+  static muiName = 'Tab';
+
   static propTypes = {
     /**
      * The css class name of the root element.
@@ -109,7 +111,7 @@ class Tab extends React.Component {
         },
       };
       // If it's svg icon set color via props
-      if (icon.type.displayName !== 'FontIcon') {
+      if (icon.type.muiName !== 'FontIcon') {
         params.color = styles.root.color;
       }
       iconElement = React.cloneElement(icon, params);
