@@ -5,9 +5,9 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import toggleReadmeText from './README';
-import ToggleExampleSimple from './ExampleSimple';
-import toggleExampleSimpleCode from '!raw!./ExampleSimple';
+import toggleReadmeText from 'material-ui/Toggle/examples/README';
+import ToggleExampleSimple from 'material-ui/Toggle/examples/ExampleSimple';
+import toggleExampleSimpleCode from '!raw!material-ui/Toggle/examples/ExampleSimple';
 import toggleCode from '!raw!material-ui/lib/Toggle/Toggle';
 
 const description = 'The second example is selected by default using the `defaultToggled` property. The third ' +

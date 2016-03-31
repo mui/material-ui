@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import drawerReadmeText from './README';
-import DrawerSimpleExample from './ExampleSimple';
-import drawerSimpleExampleCode from '!raw!./ExampleSimple';
-import DrawerUndockedExample from './ExampleUndocked';
-import drawerUndockedExampleCode from '!raw!./ExampleUndocked';
-import DrawerOpenSecondaryExample from './ExampleOpenSecondary';
-import drawerOpenSecondaryExampleCode from '!raw!./ExampleOpenSecondary';
+import drawerReadmeText from 'material-ui/Drawer/examples/README';
+import DrawerSimpleExample from 'material-ui/Drawer/examples/ExampleSimple';
+import drawerSimpleExampleCode from '!raw!material-ui/Drawer/examples/ExampleSimple';
+import DrawerUndockedExample from 'material-ui/Drawer/examples/ExampleUndocked';
+import drawerUndockedExampleCode from '!raw!material-ui/Drawer/examples/ExampleUndocked';
+import DrawerOpenSecondaryExample from 'material-ui/Drawer/examples/ExampleOpenSecondary';
+import drawerOpenSecondaryExampleCode from '!raw!material-ui/Drawer/examples/ExampleOpenSecondary';
 import drawerCode from '!raw!material-ui/lib/Drawer/Drawer';
 
 const descriptions = {

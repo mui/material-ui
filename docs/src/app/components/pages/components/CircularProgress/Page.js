@@ -5,12 +5,12 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import circleProgressReadmeText from './README';
+import circleProgressReadmeText from 'material-ui/CircularProgress/examples/README';
 import circleProgressCode from '!raw!material-ui/lib/CircularProgress/CircularProgress';
-import CircleProgressExampleSimple from './ExampleSimple';
-import circleProgressExampleSimpleCode from '!raw!./ExampleSimple';
-import CircleProgressExampleDeterminate from './ExampleDeterminate';
-import circleProgressExampleDeterminateCode from '!raw!./ExampleDeterminate';
+import CircleProgressExampleSimple from 'material-ui/CircularProgress/examples/ExampleSimple';
+import circleProgressExampleSimpleCode from '!raw!material-ui/CircularProgress/examples/ExampleSimple';
+import CircleProgressExampleDeterminate from 'material-ui/CircularProgress/examples/ExampleDeterminate';
+import circleProgressExampleDeterminateCode from '!raw!material-ui/CircularProgress/examples/ExampleDeterminate';
 
 const descriptions = {
   indeterminate: 'By default, the indicator animates continuously.',

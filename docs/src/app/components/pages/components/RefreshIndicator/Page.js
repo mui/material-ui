@@ -5,11 +5,11 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import refreshIndicatorReadmeText from './README';
-import RefreshIndicatorExampleReady from './ExampleReady';
-import refreshIndicatorExampleReadyCode from '!raw!./ExampleReady';
-import RefreshIndicatorExampleLoading from './ExampleLoading';
-import refreshIndicatorExampleLoadingCode from '!raw!./ExampleLoading';
+import refreshIndicatorReadmeText from 'material-ui/RefreshIndicator/examples/README';
+import RefreshIndicatorExampleReady from 'material-ui/RefreshIndicator/examples/ExampleReady';
+import refreshIndicatorExampleReadyCode from '!raw!material-ui/RefreshIndicator/examples/ExampleReady';
+import RefreshIndicatorExampleLoading from 'material-ui/RefreshIndicator/examples/ExampleLoading';
+import refreshIndicatorExampleLoadingCode from '!raw!material-ui/RefreshIndicator/examples/ExampleLoading';
 import refreshIndicatorCode from '!raw!material-ui/lib/RefreshIndicator/RefreshIndicator';
 
 const descriptions = {

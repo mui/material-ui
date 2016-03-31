@@ -18,7 +18,12 @@ const config = {
       //material-ui requires will be searched in src folder, not in node_modules
       'material-ui/lib': path.resolve(__dirname, '../src'),
       'material-ui': path.resolve(__dirname, '../src'),
+      'material-ui-docs': path.resolve(__dirname, 'src/app'),
     },
+    fallback: [
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, '../node_modules'),
+    ],
   },
   //Configuration for dev server
   devServer: {

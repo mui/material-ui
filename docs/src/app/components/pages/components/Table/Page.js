@@ -5,11 +5,11 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import tableReadmeText from './README';
-import TableExampleSimple from './ExampleSimple';
-import tableExampleSimpleCode from '!raw!./ExampleSimple';
-import TableExampleComplex from './ExampleComplex';
-import tableExampleComplexCode from '!raw!./ExampleComplex';
+import tableReadmeText from 'material-ui/Table/examples/README';
+import TableExampleSimple from 'material-ui/Table/examples/ExampleSimple';
+import tableExampleSimpleCode from '!raw!material-ui/Table/examples/ExampleSimple';
+import TableExampleComplex from 'material-ui/Table/examples/ExampleComplex';
+import tableExampleComplexCode from '!raw!material-ui/Table/examples/ExampleComplex';
 
 import tableCode from '!raw!material-ui/lib/Table/Table';
 import tableRowCode from '!raw!material-ui/lib/Table/TableRow';

@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import sliderReadmeText from './README';
-import SliderExampleSimple from './ExampleSimple';
-import sliderExampleSimpleCode from '!raw!./ExampleSimple';
-import SliderExampleDisabled from './ExampleDisabled';
-import sliderExampleDisabledCode from '!raw!./ExampleDisabled';
-import SliderExampleStep from './ExampleStep';
-import sliderExampleStepCode from '!raw!./ExampleStep';
+import sliderReadmeText from 'material-ui/Slider/examples/README';
+import SliderExampleSimple from 'material-ui/Slider/examples/ExampleSimple';
+import sliderExampleSimpleCode from '!raw!material-ui/Slider/examples/ExampleSimple';
+import SliderExampleDisabled from 'material-ui/Slider/examples/ExampleDisabled';
+import sliderExampleDisabledCode from '!raw!material-ui/Slider/examples/ExampleDisabled';
+import SliderExampleStep from 'material-ui/Slider/examples/ExampleStep';
+import sliderExampleStepCode from '!raw!material-ui/Slider/examples/ExampleStep';
 import sliderCode from '!raw!material-ui/lib/Slider/Slider';
 
 const descriptions = {

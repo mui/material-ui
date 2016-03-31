@@ -5,17 +5,17 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import tabsReadmeText from './README';
-import tabsExampleSimpleCode from '!raw!./ExampleSimple';
-import TabsExampleSimple from './ExampleSimple';
-import tabsExampleControlledCode from '!raw!./ExampleControlled';
-import TabsExampleControlled from './ExampleControlled';
-import tabsExampleSwipeableCode from '!raw!./ExampleSwipeable';
-import TabsExampleSwipeable from './ExampleSwipeable';
-import tabsExampleIconCode from '!raw!./ExampleIcon';
-import TabsExampleIcon from './ExampleIcon';
-import tabsExampleIconTextCode from '!raw!./ExampleIconText';
-import TabsExampleIconText from './ExampleIconText';
+import tabsReadmeText from 'material-ui/Tabs/examples/README';
+import tabsExampleSimpleCode from '!raw!material-ui/Tabs/examples/ExampleSimple';
+import TabsExampleSimple from 'material-ui/Tabs/examples/ExampleSimple';
+import tabsExampleControlledCode from '!raw!material-ui/Tabs/examples/ExampleControlled';
+import TabsExampleControlled from 'material-ui/Tabs/examples/ExampleControlled';
+import tabsExampleSwipeableCode from '!raw!material-ui/Tabs/examples/ExampleSwipeable';
+import TabsExampleSwipeable from 'material-ui/Tabs/examples/ExampleSwipeable';
+import tabsExampleIconCode from '!raw!material-ui/Tabs/examples/ExampleIcon';
+import TabsExampleIcon from 'material-ui/Tabs/examples/ExampleIcon';
+import tabsExampleIconTextCode from '!raw!material-ui/Tabs/examples/ExampleIconText';
+import TabsExampleIconText from 'material-ui/Tabs/examples/ExampleIconText';
 import tabsCode from '!raw!material-ui/lib/Tabs/Tabs';
 import tabCode from '!raw!material-ui/lib/Tabs/Tab';
 

@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import appBarReadmeText from './README';
-import AppBarExampleIcon from './ExampleIcon';
-import appBarExampleIconCode from '!raw!./ExampleIcon';
-import AppBarExampleIconButton from './ExampleIconButton';
-import appBarExampleIconButtonCode from '!raw!./ExampleIconButton';
-import AppBarExampleIconMenu from './ExampleIconMenu';
-import appBarExampleIconMenuCode from '!raw!./ExampleIconMenu';
+import appBarReadmeText from 'material-ui/AppBar/examples/README';
+import AppBarExampleIcon from 'material-ui/AppBar/examples/ExampleIcon';
+import appBarExampleIconCode from '!raw!material-ui/AppBar/examples/ExampleIcon';
+import AppBarExampleIconButton from 'material-ui/AppBar/examples/ExampleIconButton';
+import appBarExampleIconButtonCode from '!raw!material-ui/AppBar/examples/ExampleIconButton';
+import AppBarExampleIconMenu from 'material-ui/AppBar/examples/ExampleIconMenu';
+import appBarExampleIconMenuCode from '!raw!material-ui/AppBar/examples/ExampleIconMenu';
 import appBarCode from '!raw!material-ui/lib/AppBar/AppBar';
 
 const descriptions = {

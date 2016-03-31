@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import cardReadmeText from './README';
-import cardExampleWithAvatarCode from '!raw!./ExampleWithAvatar';
-import CardExampleWithAvatar from './ExampleWithAvatar';
-import cardExampleWithoutAvatarCode from '!raw!./ExampleWithoutAvatar';
-import CardExampleWithoutAvatar from './ExampleWithoutAvatar';
-import cardExampleControlledCode from '!raw!./ExampleControlled';
-import CardExampleControlled from './ExampleControlled';
+import cardReadmeText from 'material-ui/Card/examples/README';
+import cardExampleWithAvatarCode from '!raw!material-ui/Card/examples/ExampleWithAvatar';
+import CardExampleWithAvatar from 'material-ui/Card/examples/ExampleWithAvatar';
+import cardExampleWithoutAvatarCode from '!raw!material-ui/Card/examples/ExampleWithoutAvatar';
+import CardExampleWithoutAvatar from 'material-ui/Card/examples/ExampleWithoutAvatar';
+import cardExampleControlledCode from '!raw!material-ui/Card/examples/ExampleControlled';
+import CardExampleControlled from 'material-ui/Card/examples/ExampleControlled';
 
 import cardCode from '!raw!material-ui/lib/Card/Card';
 import cardActionsCode from '!raw!material-ui/lib/Card/CardActions';

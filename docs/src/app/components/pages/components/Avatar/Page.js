@@ -5,9 +5,9 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import avatarReadmeText from './README';
-import AvatarExampleSimple from './ExampleSimple';
-import avatarExampleSimpleCode from '!raw!./ExampleSimple';
+import avatarReadmeText from 'material-ui/Avatar/examples/README';
+import AvatarExampleSimple from 'material-ui/Avatar/examples/ExampleSimple';
+import avatarExampleSimpleCode from '!raw!material-ui/Avatar/examples/ExampleSimple';
 import avatarCode from '!raw!material-ui/lib/Avatar/Avatar';
 
 const description = 'Examples of `Avatar` using an image, [Font Icon](/#/components/font-icon), ' +

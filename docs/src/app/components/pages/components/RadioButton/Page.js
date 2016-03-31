@@ -5,9 +5,9 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import radioButtonReadmeText from './README';
-import RadioButtonExampleSimple from './ExampleSimple';
-import radioButtonExampleSimpleCode from '!raw!./ExampleSimple';
+import radioButtonReadmeText from 'material-ui/RadioButton/examples/README';
+import RadioButtonExampleSimple from 'material-ui/RadioButton/examples/ExampleSimple';
+import radioButtonExampleSimpleCode from '!raw!material-ui/RadioButton/examples/ExampleSimple';
 import radioButtonCode from '!raw!material-ui/lib/RadioButton/RadioButton';
 import radioButtonGroupCode from '!raw!material-ui/lib/RadioButton/RadioButtonGroup';
 

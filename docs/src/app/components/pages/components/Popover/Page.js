@@ -5,14 +5,14 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import popoverReadmeText from './README';
-import PopoverExampleSimple from './ExampleSimple';
-import popoverExampleSimpleCode from '!raw!./ExampleSimple';
-import PopoverExampleAnimation from './ExampleAnimation';
-import popoverExampleAnimationCode from '!raw!./ExampleAnimation';
-import PopoverExampleConfigurable from './ExampleConfigurable';
-import popoverExampleConfigurableCode from '!raw!./ExampleConfigurable';
-import popoverNoteText from './NOTE';
+import popoverReadmeText from 'material-ui/Popover/examples/README';
+import PopoverExampleSimple from 'material-ui/Popover/examples/ExampleSimple';
+import popoverExampleSimpleCode from '!raw!material-ui/Popover/examples/ExampleSimple';
+import PopoverExampleAnimation from 'material-ui/Popover/examples/ExampleAnimation';
+import popoverExampleAnimationCode from '!raw!material-ui/Popover/examples/ExampleAnimation';
+import PopoverExampleConfigurable from 'material-ui/Popover/examples/ExampleConfigurable';
+import popoverExampleConfigurableCode from '!raw!material-ui/Popover/examples/ExampleConfigurable';
+import popoverNoteText from 'material-ui/Popover/examples/NOTE';
 import popoverCode from '!raw!material-ui/lib/Popover/Popover';
 
 const descriptions = {

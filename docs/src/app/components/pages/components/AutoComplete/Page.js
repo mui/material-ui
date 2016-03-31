@@ -5,14 +5,14 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import autoCompleteReadmeText from './README';
+import autoCompleteReadmeText from 'material-ui/AutoComplete/examples/README';
 import autoCompleteCode from '!raw!material-ui/lib/AutoComplete/AutoComplete';
-import AutoCompleteExampleSimple from './ExampleSimple';
-import autoCompleteExampleSimpleCode from '!raw!./ExampleSimple';
-import AutoCompleteExampleDataSources from './ExampleDataSources';
-import autoCompleteExampleDataSourcesCode from '!raw!./ExampleDataSources';
-import AutoCompleteExampleFilters from './ExampleFilters';
-import autoCompleteExampleFiltersCode from '!raw!./ExampleFilters';
+import AutoCompleteExampleSimple from 'material-ui/AutoComplete/examples/ExampleSimple';
+import autoCompleteExampleSimpleCode from '!raw!material-ui/AutoComplete/examples/ExampleSimple';
+import AutoCompleteExampleDataSources from 'material-ui/AutoComplete/examples/ExampleDataSources';
+import autoCompleteExampleDataSourcesCode from '!raw!material-ui/AutoComplete/examples/ExampleDataSources';
+import AutoCompleteExampleFilters from 'material-ui/AutoComplete/examples/ExampleFilters';
+import autoCompleteExampleFiltersCode from '!raw!material-ui/AutoComplete/examples/ExampleFilters';
 
 const descriptions = {
   simple: 'The input is used to create the `dataSource`, so the input always matches three entries.',

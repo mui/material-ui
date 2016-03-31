@@ -5,11 +5,11 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import iconReadmeText from './README';
-import IconExampleSimple from './ExampleSimple';
-import iconExampleSimpleCode from '!raw!./ExampleSimple';
-import IconExampleIcons from './ExampleIcons';
-import iconExampleIconsCode from '!raw!./ExampleIcons';
+import iconReadmeText from 'material-ui/SvgIcon/examples/README';
+import IconExampleSimple from 'material-ui/SvgIcon/examples/ExampleSimple';
+import iconExampleSimpleCode from '!raw!material-ui/SvgIcon/examples/ExampleSimple';
+import IconExampleIcons from 'material-ui/SvgIcon/examples/ExampleIcons';
+import iconExampleIconsCode from '!raw!material-ui/SvgIcon/examples/ExampleIcons';
 import iconCode from '!raw!material-ui/lib/SvgIcon/SvgIcon';
 
 const descriptions = {

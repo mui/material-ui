@@ -5,11 +5,11 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import gridListReadmeText from './README';
-import gridListExampleSimpleCode from '!raw!./ExampleSimple';
-import GridListExampleSimple from './ExampleSimple';
-import gridListExampleComplexCode from '!raw!./ExampleComplex';
-import GridListExampleComplex from './ExampleComplex';
+import gridListReadmeText from 'material-ui/GridList/examples/README';
+import gridListExampleSimpleCode from '!raw!material-ui/GridList/examples/ExampleSimple';
+import GridListExampleSimple from 'material-ui/GridList/examples/ExampleSimple';
+import gridListExampleComplexCode from '!raw!material-ui/GridList/examples/ExampleComplex';
+import GridListExampleComplex from 'material-ui/GridList/examples/ExampleComplex';
 import gridListCode from '!raw!material-ui/lib/GridList/GridList';
 import gridTileCode from '!raw!material-ui/lib/GridList/GridTile';
 

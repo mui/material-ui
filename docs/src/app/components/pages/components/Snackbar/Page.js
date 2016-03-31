@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import SnackbarReadmeText from './README';
-import SnackbarExampleSimple from './ExampleSimple';
-import SnackbarExampleSimpleCode from '!raw!./ExampleSimple';
-import SnackbarExampleAction from './ExampleAction';
-import SnackbarExampleActionCode from '!raw!./ExampleAction';
-import SnackbarExampleTwice from './ExampleTwice';
-import SnackbarExampleTwiceCode from '!raw!./ExampleTwice';
+import SnackbarReadmeText from 'material-ui/Snackbar/examples/README';
+import SnackbarExampleSimple from 'material-ui/Snackbar/examples/ExampleSimple';
+import SnackbarExampleSimpleCode from '!raw!material-ui/Snackbar/examples/ExampleSimple';
+import SnackbarExampleAction from 'material-ui/Snackbar/examples/ExampleAction';
+import SnackbarExampleActionCode from '!raw!material-ui/Snackbar/examples/ExampleAction';
+import SnackbarExampleTwice from 'material-ui/Snackbar/examples/ExampleTwice';
+import SnackbarExampleTwiceCode from '!raw!material-ui/Snackbar/examples/ExampleTwice';
 import SnackbarCode from '!raw!material-ui/lib/Snackbar/Snackbar';
 
 const descriptions = {

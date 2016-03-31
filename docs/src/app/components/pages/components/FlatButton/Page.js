@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import flatButtonReadmeText from './README';
-import flatButtonExampleSimpleCode from '!raw!./ExampleSimple';
-import FlatButtonExampleSimple from './ExampleSimple';
-import flatButtonExampleComplexCode from '!raw!./ExampleComplex';
-import FlatButtonExampleComplex from './ExampleComplex';
-import flatButtonExampleIconCode from '!raw!./ExampleIcon';
-import FlatButtonExampleIcon from './ExampleIcon';
+import flatButtonReadmeText from 'material-ui/FlatButton/examples/README';
+import flatButtonExampleSimpleCode from '!raw!material-ui/FlatButton/examples/ExampleSimple';
+import FlatButtonExampleSimple from 'material-ui/FlatButton/examples/ExampleSimple';
+import flatButtonExampleComplexCode from '!raw!material-ui/FlatButton/examples/ExampleComplex';
+import FlatButtonExampleComplex from 'material-ui/FlatButton/examples/ExampleComplex';
+import flatButtonExampleIconCode from '!raw!material-ui/FlatButton/examples/ExampleIcon';
+import FlatButtonExampleIcon from 'material-ui/FlatButton/examples/ExampleIcon';
 import flatButtonCode from '!raw!material-ui/lib/FlatButton/FlatButton';
 
 const descriptions = {

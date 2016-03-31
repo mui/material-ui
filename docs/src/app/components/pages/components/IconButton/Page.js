@@ -6,17 +6,17 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import iconButtonCode from '!raw!material-ui/lib/IconButton/IconButton';
-import iconButtonReadmeText from './README';
-import iconButtonExampleSimpleCode from '!raw!./ExampleSimple';
-import IconButtonExampleSimple from './ExampleSimple';
-import iconButtonExampleComplexCode from '!raw!./ExampleComplex';
-import IconButtonExampleComplex from './ExampleComplex';
-import iconButtonExampleSizeCode from '!raw!./ExampleSize';
-import IconButtonExampleSize from './ExampleSize';
-import iconButtonExampleTooltipCode from '!raw!./ExampleTooltip';
-import IconButtonExampleTooltip from './ExampleTooltip';
-import iconButtonExampleTouchCode from '!raw!./ExampleTouch';
-import IconButtonExampleTouch from './ExampleTouch';
+import iconButtonReadmeText from 'material-ui/IconButton/examples/README';
+import iconButtonExampleSimpleCode from '!raw!material-ui/IconButton/examples/ExampleSimple';
+import IconButtonExampleSimple from 'material-ui/IconButton/examples/ExampleSimple';
+import iconButtonExampleComplexCode from '!raw!material-ui/IconButton/examples/ExampleComplex';
+import IconButtonExampleComplex from 'material-ui/IconButton/examples/ExampleComplex';
+import iconButtonExampleSizeCode from '!raw!material-ui/IconButton/examples/ExampleSize';
+import IconButtonExampleSize from 'material-ui/IconButton/examples/ExampleSize';
+import iconButtonExampleTooltipCode from '!raw!material-ui/IconButton/examples/ExampleTooltip';
+import IconButtonExampleTooltip from 'material-ui/IconButton/examples/ExampleTooltip';
+import iconButtonExampleTouchCode from '!raw!material-ui/IconButton/examples/ExampleTouch';
+import IconButtonExampleTouch from 'material-ui/IconButton/examples/ExampleTouch';
 
 const descriptions = {
   simple: 'An Icon Button using an icon specified with the `iconClassName` property, and a `disabled` example.',

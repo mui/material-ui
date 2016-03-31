@@ -5,15 +5,15 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import dropDownMenuReadmeText from './README';
-import DropDownMenuSimpleExample from './ExampleSimple';
-import dropDownMenuSimpleExampleCode from '!raw!./ExampleSimple';
-import DropDownMenuOpenImmediateExample from './ExampleOpenImmediate';
-import dropDownMenuOpenImmediateExampleCode from '!raw!./ExampleOpenImmediate';
-import DropDownMenuLongMenuExample from './ExampleLongMenu';
-import dropDownMenuLongMenuExampleCode from '!raw!./ExampleLongMenu';
-import DropDownMenuLabeledExample from './ExampleLabeled';
-import dropDownMenuLabeledExampleCode from '!raw!./ExampleLabeled';
+import dropDownMenuReadmeText from 'material-ui/DropDownMenu/examples/README';
+import DropDownMenuSimpleExample from 'material-ui/DropDownMenu/examples/ExampleSimple';
+import dropDownMenuSimpleExampleCode from '!raw!material-ui/DropDownMenu/examples/ExampleSimple';
+import DropDownMenuOpenImmediateExample from 'material-ui/DropDownMenu/examples/ExampleOpenImmediate';
+import dropDownMenuOpenImmediateExampleCode from '!raw!material-ui/DropDownMenu/examples/ExampleOpenImmediate';
+import DropDownMenuLongMenuExample from 'material-ui/DropDownMenu/examples/ExampleLongMenu';
+import dropDownMenuLongMenuExampleCode from '!raw!material-ui/DropDownMenu/examples/ExampleLongMenu';
+import DropDownMenuLabeledExample from 'material-ui/DropDownMenu/examples/ExampleLabeled';
+import dropDownMenuLabeledExampleCode from '!raw!material-ui/DropDownMenu/examples/ExampleLabeled';
 import dropDownMenuCode from '!raw!material-ui/lib/DropDownMenu/DropDownMenu';
 
 const descriptions = {

@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import dividerReadmeText from './README';
-import DividerExampleForm from './ExampleForm';
-import dividerExampleFormCode from '!raw!./ExampleForm';
-import DividerExampleList from './ExampleList';
-import dividerExampleListCode from '!raw!./ExampleList';
-import DividerExampleMenu from './ExampleMenu';
-import dividerExampleMenuCode from '!raw!./ExampleMenu';
+import dividerReadmeText from 'material-ui/Divider/examples/README';
+import DividerExampleForm from 'material-ui/Divider/examples/ExampleForm';
+import dividerExampleFormCode from '!raw!material-ui/Divider/examples/ExampleForm';
+import DividerExampleList from 'material-ui/Divider/examples/ExampleList';
+import dividerExampleListCode from '!raw!material-ui/Divider/examples/ExampleList';
+import DividerExampleMenu from 'material-ui/Divider/examples/ExampleMenu';
+import dividerExampleMenuCode from '!raw!material-ui/Divider/examples/ExampleMenu';
 import dividerCode from '!raw!material-ui/lib/Divider/Divider';
 
 const descriptions = {

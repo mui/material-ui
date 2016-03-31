@@ -5,17 +5,17 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import selectFieldReadmeText from './README';
-import SelectFieldExampleSimple from './ExampleSimple';
-import selectFieldExampleSimpleCode from '!raw!./ExampleSimple';
-import SelectFieldLongMenuExample from './ExampleLongMenu';
-import selectFieldLongMenuExampleCode from '!raw!./ExampleLongMenu';
-import SelectFieldExampleCustomLabel from './ExampleCustomLabel';
-import selectFieldExampleCustomLabelCode from '!raw!./ExampleCustomLabel';
-import SelectFieldExampleFloatingLabel from './ExampleFloatingLabel';
-import selectFieldExampleFloatingLabelCode from '!raw!./ExampleFloatingLabel';
-import SelectFieldExampleError from './ExampleError';
-import selectFieldExampleErrorCode from '!raw!./ExampleError';
+import selectFieldReadmeText from 'material-ui/SelectField/examples/README';
+import SelectFieldExampleSimple from 'material-ui/SelectField/examples/ExampleSimple';
+import selectFieldExampleSimpleCode from '!raw!material-ui/SelectField/examples/ExampleSimple';
+import SelectFieldLongMenuExample from 'material-ui/SelectField/examples/ExampleLongMenu';
+import selectFieldLongMenuExampleCode from '!raw!material-ui/SelectField/examples/ExampleLongMenu';
+import SelectFieldExampleCustomLabel from 'material-ui/SelectField/examples/ExampleCustomLabel';
+import selectFieldExampleCustomLabelCode from '!raw!material-ui/SelectField/examples/ExampleCustomLabel';
+import SelectFieldExampleFloatingLabel from 'material-ui/SelectField/examples/ExampleFloatingLabel';
+import selectFieldExampleFloatingLabelCode from '!raw!material-ui/SelectField/examples/ExampleFloatingLabel';
+import SelectFieldExampleError from 'material-ui/SelectField/examples/ExampleError';
+import selectFieldExampleErrorCode from '!raw!material-ui/SelectField/examples/ExampleError';
 import selectFieldCode from '!raw!material-ui/lib/SelectField/SelectField';
 
 const descriptions = {

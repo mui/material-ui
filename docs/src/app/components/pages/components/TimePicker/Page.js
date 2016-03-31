@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import timePickerReadmeText from './README';
-import TimePickerExampleSimple from './ExampleSimple';
-import timePickerExampleSimpleCode from '!raw!./ExampleSimple';
-import TimePickerExampleComplex from './ExampleComplex';
-import timePickerExampleComplexCode from '!raw!./ExampleComplex';
-import TimePickerExampleInternational from './ExampleInternational';
-import timePickerExampleInternationalCode from '!raw!./ExampleInternational';
+import timePickerReadmeText from 'material-ui/TimePicker/examples/README';
+import TimePickerExampleSimple from 'material-ui/TimePicker/examples/ExampleSimple';
+import timePickerExampleSimpleCode from '!raw!material-ui/TimePicker/examples/ExampleSimple';
+import TimePickerExampleComplex from 'material-ui/TimePicker/examples/ExampleComplex';
+import timePickerExampleComplexCode from '!raw!material-ui/TimePicker/examples/ExampleComplex';
+import TimePickerExampleInternational from 'material-ui/TimePicker/examples/ExampleInternational';
+import timePickerExampleInternationalCode from '!raw!material-ui/TimePicker/examples/ExampleInternational';
 import timePickerCode from '!raw!material-ui/lib/TimePicker/TimePicker';
 
 const descriptions = {

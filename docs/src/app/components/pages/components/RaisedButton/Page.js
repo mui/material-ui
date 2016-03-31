@@ -5,13 +5,13 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import raisedButtonReadmeText from './README';
-import raisedButtonExampleSimpleCode from '!raw!./ExampleSimple';
-import RaisedButtonExampleSimple from './ExampleSimple';
-import raisedButtonExampleComplexCode from '!raw!./ExampleComplex';
-import RaisedButtonExampleComplex from './ExampleComplex';
-import raisedButtonExampleIconCode from '!raw!./ExampleIcon';
-import RaisedButtonExampleIcon from './ExampleIcon';
+import raisedButtonReadmeText from 'material-ui/RaisedButton/examples/README';
+import raisedButtonExampleSimpleCode from '!raw!material-ui/RaisedButton/examples/ExampleSimple';
+import RaisedButtonExampleSimple from 'material-ui/RaisedButton/examples/ExampleSimple';
+import raisedButtonExampleComplexCode from '!raw!material-ui/RaisedButton/examples/ExampleComplex';
+import RaisedButtonExampleComplex from 'material-ui/RaisedButton/examples/ExampleComplex';
+import raisedButtonExampleIconCode from '!raw!material-ui/RaisedButton/examples/ExampleIcon';
+import RaisedButtonExampleIcon from 'material-ui/RaisedButton/examples/ExampleIcon';
 import raisedButtonCode from '!raw!material-ui/lib/RaisedButton/RaisedButton';
 
 const descriptions = {
