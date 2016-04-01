@@ -54,6 +54,7 @@ const Subheader = (props, context) => {
   );
 };
 
+Subheader.muiName = 'Subheader';
 Subheader.propTypes = propTypes;
 Subheader.defaultProps = defaultProps;
 Subheader.contextTypes = contextTypes;
