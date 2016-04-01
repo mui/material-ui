@@ -34,14 +34,6 @@ const config = {
     ], path.resolve(__dirname,"src")),
   ],
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        include: [path.resolve(__dirname, "src/app")],
-        exclude: [nodeModulesPath],
-      },
-    ],
     loaders: [
       {
         test: /\.js$/, // All .js files

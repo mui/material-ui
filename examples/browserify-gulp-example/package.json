@@ -7,21 +7,25 @@
     "url": "https://github.com/callemall/material-ui.git"
   },
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "lint": "eslint src && echo \"eslint: no lint errors\""
   },
   "private": true,
   "devDependencies": {
+    "babel-core": "^6.3.26",
+    "babel-eslint": "^6.0.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "browser-sync": "^2.11.0",
     "browserify": "^13.0.0",
-    "gulp": "^3.8.10",
-    "gulp-notify": "^2.1.0",
+    "eslint": "^2.5.1",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
     "gulp-util": "^3.0.1",
     "pretty-hrtime": "^1.0.1",
     "require-dir": "^0.3.0",
-    "underscore": "^1.7.0",
+    "underscore": "^1.8.3",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^3.6.1"
   },
