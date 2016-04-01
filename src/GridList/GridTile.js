@@ -140,14 +140,14 @@ class GridTile extends React.Component {
   };
 
   componentDidMount() {
-    this._ensureImageCover();
+    this.ensureImageCover();
   }
 
   componentDidUpdate() {
-    this._ensureImageCover();
+    this.ensureImageCover();
   }
 
-  _ensureImageCover() {
+  ensureImageCover() {
     let imgEl = this.refs.img;
 
     if (imgEl) {

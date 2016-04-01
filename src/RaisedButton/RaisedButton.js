@@ -279,7 +279,7 @@ class RaisedButton extends React.Component {
     });
   }
 
-  _handleMouseDown = (event) => {
+  handleMouseDown = (event) => {
     //only listen to left clicks
     if (event.button === 0) {
       this.setState({zDepth: this.state.initialZDepth + 1});
@@ -287,24 +287,24 @@ class RaisedButton extends React.Component {
     if (this.props.onMouseDown) this.props.onMouseDown(event);
   };
 
-  _handleMouseUp = (event) => {
+  handleMouseUp = (event) => {
     this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(event);
   };
 
-  _handleMouseLeave = (event) => {
+  handleMouseLeave = (event) => {
     if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   };
 
-  _handleMouseEnter = (event) => {
+  handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
   };
 
-  _handleTouchStart = (event) => {
+  handleTouchStart = (event) => {
     this.setState({
       touch: true,
       zDepth: this.state.initialZDepth + 1,
@@ -312,7 +312,7 @@ class RaisedButton extends React.Component {
     if (this.props.onTouchStart) this.props.onTouchStart(event);
   };
 
-  _handleTouchEnd = (event) => {
+  handleTouchEnd = (event) => {
     this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(event);
   };
@@ -355,12 +355,12 @@ class RaisedButton extends React.Component {
     const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
     const buttonEventHandlers = disabled ? {} : {
-      onMouseDown: this._handleMouseDown,
-      onMouseUp: this._handleMouseUp,
-      onMouseLeave: this._handleMouseLeave,
-      onMouseEnter: this._handleMouseEnter,
-      onTouchStart: this._handleTouchStart,
-      onTouchEnd: this._handleTouchEnd,
+      onMouseDown: this.handleMouseDown,
+      onMouseUp: this.handleMouseUp,
+      onMouseLeave: this.handleMouseLeave,
+      onMouseEnter: this.handleMouseEnter,
+      onTouchStart: this.handleTouchStart,
+      onTouchEnd: this.handleTouchEnd,
       onKeyboardFocus: this.handleKeyboardFocus,
     };
 

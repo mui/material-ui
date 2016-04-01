@@ -181,7 +181,7 @@ class DatePicker extends React.Component {
 
   componentWillMount() {
     this.setState({
-      date: this._isControlled() ? this._getControlledDate() : this.props.defaultDate,
+      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
     });
   }
 

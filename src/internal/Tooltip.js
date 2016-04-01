@@ -104,19 +104,19 @@ class Tooltip extends React.Component {
   };
 
   componentDidMount() {
-    this._setRippleSize();
-    this._setTooltipPosition();
+    this.setRippleSize();
+    this.setTooltipPosition();
   }
 
   componentWillReceiveProps() {
-    this._setTooltipPosition();
+    this.setTooltipPosition();
   }
 
   componentDidUpdate() {
-    this._setRippleSize();
+    this.setRippleSize();
   }
 
-  _setRippleSize() {
+  setRippleSize() {
     const ripple = this.refs.ripple;
     const tooltip = this.refs.tooltip;
     const tooltipWidth = parseInt(tooltip.offsetWidth, 10) /
@@ -134,7 +134,7 @@ class Tooltip extends React.Component {
     }
   }
 
-  _setTooltipPosition() {
+  setTooltipPosition() {
     this.setState({offsetWidth: this.refs.tooltip.offsetWidth});
   }
 

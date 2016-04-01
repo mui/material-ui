@@ -114,10 +114,10 @@ class Drawer extends React.Component {
   };
 
   componentWillMount() {
-    this._maybeSwiping = false;
-    this._touchStartX = null;
-    this._touchStartY = null;
-    this._swipeStartX = null;
+    this.maybeSwiping = false;
+    this.touchStartX = null;
+    this.touchStartY = null;
+    this.swipeStartX = null;
 
     this.setState({
       open: (this.props.open !== null ) ? this.props.open : this.props.docked,
@@ -126,7 +126,7 @@ class Drawer extends React.Component {
   }
 
   componentDidMount() {
-    this._enableSwipeHandling();
+    this.enableSwipeHandling();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -144,18 +144,18 @@ class Drawer extends React.Component {
   }
 
   componentDidUpdate() {
-    this._enableSwipeHandling();
+    this.enableSwipeHandling();
   }
 
   componentWillUnmount() {
-    this._disableSwipeHandling();
+    this.disableSwipeHandling();
   }
 
   getStyles() {
     const muiTheme = this.context.muiTheme;
     const theme = muiTheme.navDrawer;
 
-    const x = this._getTranslateMultiplier() * (this.state.open ? 0 : this._getMaxTranslateX());
+    const x = this.getTranslateMultiplier() * (this.state.open ? 0 : this.getMaxTranslateX());
 
     const styles = {
       root: {
@@ -184,17 +184,17 @@ class Drawer extends React.Component {
     return styles;
   }
 
-  _shouldShow() {
+  shouldShow() {
     return this.state.open || !!this.state.swiping;  // component is swiping
   }
 
-  _close(reason) {
+  close(reason) {
     if (this.props.open === null) this.setState({open: false});
     if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
     return this;
   }
 
-  _open(reason) {
+  open(reason) {
     if (this.props.open === null) this.setState({open: true});
     if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
     return this;
@@ -202,43 +202,43 @@ class Drawer extends React.Component {
 
   handleTouchTapOverlay = (event) => {
     event.preventDefault();
-    this._close('clickaway');
+    this.close('clickaway');
   };
 
   handleKeyUp = (event) => {
     if (this.state.open && !this.props.docked && keycode(event) === 'esc') {
-      this._close('escape');
+      this.close('escape');
     }
   };
 
-  _getMaxTranslateX() {
+  getMaxTranslateX() {
     const width = this.props.width || this.context.muiTheme.navDrawer.width;
     return width + 10;
   }
 
-  _getTranslateMultiplier() {
+  getTranslateMultiplier() {
     return this.props.openSecondary ? 1 : -1;
   }
 
-  _enableSwipeHandling() {
+  enableSwipeHandling() {
     if (!this.props.docked) {
-      document.body.addEventListener('touchstart', this._onBodyTouchStart);
+      document.body.addEventListener('touchstart', this.onBodyTouchStart);
       if (!openNavEventHandler) {
-        openNavEventHandler = this._onBodyTouchStart;
+        openNavEventHandler = this.onBodyTouchStart;
       }
     } else {
-      this._disableSwipeHandling();
+      this.disableSwipeHandling();
     }
   }
 
-  _disableSwipeHandling() {
-    document.body.removeEventListener('touchstart', this._onBodyTouchStart);
-    if (openNavEventHandler === this._onBodyTouchStart) {
+  disableSwipeHandling() {
+    document.body.removeEventListener('touchstart', this.onBodyTouchStart);
+    if (openNavEventHandler === this.onBodyTouchStart) {
       openNavEventHandler = null;
     }
   }
 
-  _onBodyTouchStart = (event) => {
+  onBodyTouchStart = (event) => {
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
     const touchStartX = event.touches[0].pageX;
@@ -256,73 +256,73 @@ class Drawer extends React.Component {
     }
 
     if (!this.state.open &&
-         (openNavEventHandler !== this._onBodyTouchStart ||
+         (openNavEventHandler !== this.onBodyTouchStart ||
           this.props.disableSwipeToOpen)
        ) {
       return;
     }
 
-    this._maybeSwiping = true;
-    this._touchStartX = touchStartX;
-    this._touchStartY = touchStartY;
+    this.maybeSwiping = true;
+    this.touchStartX = touchStartX;
+    this.touchStartY = touchStartY;
 
-    document.body.addEventListener('touchmove', this._onBodyTouchMove);
-    document.body.addEventListener('touchend', this._onBodyTouchEnd);
-    document.body.addEventListener('touchcancel', this._onBodyTouchEnd);
+    document.body.addEventListener('touchmove', this.onBodyTouchMove);
+    document.body.addEventListener('touchend', this.onBodyTouchEnd);
+    document.body.addEventListener('touchcancel', this.onBodyTouchEnd);
   };
 
-  _setPosition(translateX) {
+  setPosition(translateX) {
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    const transformCSS = `translate3d(${(this._getTranslateMultiplier() * translateX)}px, 0, 0)`;
-    this.refs.overlay.setOpacity(1 - translateX / this._getMaxTranslateX());
+    const transformCSS = `translate3d(${(this.getTranslateMultiplier() * translateX)}px, 0, 0)`;
+    this.refs.overlay.setOpacity(1 - translateX / this.getMaxTranslateX());
     autoPrefix.set(drawer.style, 'transform', transformCSS);
   }
 
-  _getTranslateX(currentX) {
+  getTranslateX(currentX) {
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
-                 this._getTranslateMultiplier() * (currentX - this._swipeStartX) :
-                 this._getMaxTranslateX() - this._getTranslateMultiplier() * (this._swipeStartX - currentX),
+                 this.getTranslateMultiplier() * (currentX - this.swipeStartX) :
+                 this.getMaxTranslateX() - this.getTranslateMultiplier() * (this.swipeStartX - currentX),
                0
              ),
-             this._getMaxTranslateX()
+             this.getMaxTranslateX()
            );
   }
 
-  _onBodyTouchMove = (event) => {
+  onBodyTouchMove = (event) => {
     const currentX = event.touches[0].pageX;
     const currentY = event.touches[0].pageY;
 
     if (this.state.swiping) {
       event.preventDefault();
-      this._setPosition(this._getTranslateX(currentX));
-    } else if (this._maybeSwiping) {
-      const dXAbs = Math.abs(currentX - this._touchStartX);
-      const dYAbs = Math.abs(currentY - this._touchStartY);
+      this.setPosition(this.getTranslateX(currentX));
+    } else if (this.maybeSwiping) {
+      const dXAbs = Math.abs(currentX - this.touchStartX);
+      const dYAbs = Math.abs(currentY - this.touchStartY);
       // If the user has moved his thumb ten pixels in either direction,
       // we can safely make an assumption about whether he was intending
       // to swipe or scroll.
       const threshold = 10;
 
       if (dXAbs > threshold && dYAbs <= threshold) {
-        this._swipeStartX = currentX;
+        this.swipeStartX = currentX;
         this.setState({
           swiping: this.state.open ? 'closing' : 'opening',
         });
-        this._setPosition(this._getTranslateX(currentX));
+        this.setPosition(this.getTranslateX(currentX));
       } else if (dXAbs <= threshold && dYAbs > threshold) {
-        this._onBodyTouchEnd();
+        this.onBodyTouchEnd();
       }
     }
   };
 
-  _onBodyTouchEnd = (event) => {
+  onBodyTouchEnd = (event) => {
     if (this.state.swiping) {
       const currentX = event.changedTouches[0].pageX;
-      const translateRatio = this._getTranslateX(currentX) / this._getMaxTranslateX();
+      const translateRatio = this.getTranslateX(currentX) / this.getMaxTranslateX();
 
-      this._maybeSwiping = false;
+      this.maybeSwiping = false;
       const swiping = this.state.swiping;
       this.setState({
         swiping: null,
@@ -332,24 +332,24 @@ class Drawer extends React.Component {
       // because only then CSS transition is enabled.
       if (translateRatio > 0.5) {
         if (swiping === 'opening') {
-          this._setPosition(this._getMaxTranslateX());
+          this.setPosition(this.getMaxTranslateX());
         } else {
-          this._close('swipe');
+          this.close('swipe');
         }
       } else {
         if (swiping === 'opening') {
-          this._open('swipe');
+          this.open('swipe');
         } else {
-          this._setPosition(0);
+          this.setPosition(0);
         }
       }
     } else {
-      this._maybeSwiping = false;
+      this.maybeSwiping = false;
     }
 
-    document.body.removeEventListener('touchmove', this._onBodyTouchMove);
-    document.body.removeEventListener('touchend', this._onBodyTouchEnd);
-    document.body.removeEventListener('touchcancel', this._onBodyTouchEnd);
+    document.body.removeEventListener('touchmove', this.onBodyTouchMove);
+    document.body.removeEventListener('touchend', this.onBodyTouchEnd);
+    document.body.removeEventListener('touchcancel', this.onBodyTouchEnd);
   };
 
   render() {
@@ -373,7 +373,7 @@ class Drawer extends React.Component {
       overlay = (
         <Overlay
           ref="overlay"
-          show={this._shouldShow()}
+          show={this.shouldShow()}
           className={overlayClassName}
           style={Object.assign(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}

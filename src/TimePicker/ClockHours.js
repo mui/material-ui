@@ -108,7 +108,7 @@ class ClockHours extends React.Component {
     return value;
   }
 
-  _getSelected() {
+  getSelected() {
     let hour = this.props.initialHours;
 
     if (this.props.format === 'ampm') {
@@ -119,7 +119,7 @@ class ClockHours extends React.Component {
     return hour;
   }
 
-  _getHourNumbers() {
+  getHourNumbers() {
     const style = {
       pointerEvents: 'none',
     };
@@ -131,7 +131,7 @@ class ClockHours extends React.Component {
     }
 
     return hours.map((hour) => {
-      const isSelected = this._getSelected() === hour;
+      const isSelected = this.getSelected() === hour;
       return (
         <ClockNumber
           key={hour}
@@ -163,8 +163,8 @@ class ClockHours extends React.Component {
     };
 
     const {prepareStyles} = this.context.muiTheme;
-    const hours = this._getSelected();
-    const numbers = this._getHourNumbers();
+    const hours = this.getSelected();
+    const numbers = this.getHourNumbers();
 
     return (
       <div ref="clock" style={prepareStyles(styles.root)} >

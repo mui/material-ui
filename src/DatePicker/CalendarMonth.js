@@ -16,32 +16,32 @@ class CalendarMonth extends React.Component {
   };
 
   isSelectedDateDisabled() {
-    return this._selectedDateDisabled;
+    return this.selectedDateDisabled;
   }
 
-  _getWeekElements() {
+  getWeekElements() {
     const weekArray = getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
 
     return weekArray.map((week, i) => {
       return (
         <ClearFix key={i}>
-          {this._getDayElements(week, i)}
+          {this.getDayElements(week, i)}
         </ClearFix>
       );
     }, this);
   }
 
-  _getDayElements(week, i) {
+  getDayElements(week, i) {
     return week.map((day, j) => {
       const isSameDate = isEqualDate(this.props.selectedDate, day);
-      const disabled = this._shouldDisableDate(day);
+      const disabled = this.shouldDisableDate(day);
       const selected = !disabled && isSameDate;
 
       if (isSameDate) {
         if (disabled) {
-          this._selectedDateDisabled = true;
+          this.selectedDateDisabled = true;
         } else {
-          this._selectedDateDisabled = false;
+          this.selectedDateDisabled = false;
         }
       }
 
@@ -61,7 +61,7 @@ class CalendarMonth extends React.Component {
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
   };
 
-  _shouldDisableDate(day) {
+  shouldDisableDate(day) {
     if (day === null) return false;
     let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
@@ -78,7 +78,7 @@ class CalendarMonth extends React.Component {
 
     return (
       <div style={styles}>
-        {this._getWeekElements()}
+        {this.getWeekElements()}
       </div>
     );
   }

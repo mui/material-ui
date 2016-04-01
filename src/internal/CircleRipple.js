@@ -31,19 +31,19 @@ class CircleRipple extends React.Component {
   }
 
   componentWillAppear(callback) {
-    this._initializeAnimation(callback);
+    this.initializeAnimation(callback);
   }
 
   componentWillEnter(callback) {
-    this._initializeAnimation(callback);
+    this.initializeAnimation(callback);
   }
 
   componentDidAppear() {
-    this._animate();
+    this.animate();
   }
 
   componentDidEnter() {
-    this._animate();
+    this.animate();
   }
 
   componentWillLeave(callback) {
@@ -54,7 +54,7 @@ class CircleRipple extends React.Component {
     this.enterTimer = setTimeout(callback, removeAfter);
   }
 
-  _animate() {
+  animate() {
     const style = ReactDOM.findDOMNode(this).style;
     const transitionValue = `${transitions.easeOut('2s', 'opacity')}, ${
       transitions.easeOut('1s', 'transform')}`;
@@ -62,7 +62,7 @@ class CircleRipple extends React.Component {
     autoPrefix.set(style, 'transform', 'scale(1)');
   }
 
-  _initializeAnimation(callback) {
+  initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
     autoPrefix.set(style, 'transform', 'scale(0)');

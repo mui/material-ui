@@ -107,7 +107,7 @@ class EnhancedButton extends React.Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this._focusTimeout);
+    clearTimeout(this.focusTimeout);
   }
 
   isKeyboardFocused() {
@@ -128,14 +128,14 @@ class EnhancedButton extends React.Component {
     }
   }
 
-  _cancelFocusTimeout() {
-    if (this._focusTimeout) {
-      clearTimeout(this._focusTimeout);
-      this._focusTimeout = null;
+  cancelFocusTimeout() {
+    if (this.focusTimeout) {
+      clearTimeout(this.focusTimeout);
+      this.focusTimeout = null;
     }
   }
 
-  _createButtonChildren() {
+  createButtonChildren() {
     const {
       centerRipple,
       children,
@@ -177,37 +177,37 @@ class EnhancedButton extends React.Component {
     });
   }
 
-  _handleKeyDown = (event) => {
+  handleKeyDown = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
-        this._handleTouchTap(event);
+        this.handleTouchTap(event);
       }
     }
     this.props.onKeyDown(event);
   };
 
-  _handleKeyUp = (event) => {
+  handleKeyUp = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
-        this._handleTouchTap(event);
+        this.handleTouchTap(event);
       }
     }
     this.props.onKeyUp(event);
   };
 
-  _handleBlur = (event) => {
-    this._cancelFocusTimeout();
+  handleBlur = (event) => {
+    this.cancelFocusTimeout();
     this.removeKeyboardFocus(event);
     this.props.onBlur(event);
   };
 
-  _handleFocus = (event) => {
+  handleFocus = (event) => {
     if (event) event.persist();
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       //setTimeout is needed because the focus event fires first
       //Wait so that we can capture if this was a keyboard focus
       //or touch focus
-      this._focusTimeout = setTimeout(() => {
+      this.focusTimeout = setTimeout(() => {
         if (tabPressed) {
           this.setKeyboardFocus(event);
         }
@@ -217,15 +217,15 @@ class EnhancedButton extends React.Component {
     }
   };
 
-  _handleClick = (event) => {
+  handleClick = (event) => {
     if (!this.props.disabled) {
       tabPressed = false;
       this.props.onClick(event);
     }
   };
 
-  _handleTouchTap = (event) => {
-    this._cancelFocusTimeout();
+  handleTouchTap = (event) => {
+    this.cancelFocusTimeout();
     if (!this.props.disabled) {
       tabPressed = false;
       this.removeKeyboardFocus(event);
@@ -300,16 +300,16 @@ class EnhancedButton extends React.Component {
       ...other,
       style: prepareStyles(mergedStyles),
       disabled: disabled,
-      onBlur: this._handleBlur,
-      onClick: this._handleClick,
-      onFocus: this._handleFocus,
-      onTouchTap: this._handleTouchTap,
-      onKeyUp: this._handleKeyUp,
-      onKeyDown: this._handleKeyDown,
+      onBlur: this.handleBlur,
+      onClick: this.handleClick,
+      onFocus: this.handleFocus,
+      onTouchTap: this.handleTouchTap,
+      onKeyUp: this.handleKeyUp,
+      onKeyDown: this.handleKeyDown,
       tabIndex: tabIndex,
       type: type,
     };
-    const buttonChildren = this._createButtonChildren();
+    const buttonChildren = this.createButtonChildren();
 
     // Provides backward compatibity. Added to support wrapping around <a> element.
     const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';

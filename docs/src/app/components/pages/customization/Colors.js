@@ -65,7 +65,7 @@ const ColorsPage = React.createClass({
     return styles;
   },
 
-  _getColorGroup(styles, color, showAltPalette) {
+  getColorGroup(styles, color, showAltPalette) {
     const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
     const altPalette = ['A100', 'A200', 'A400', 'A700'];
     const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
@@ -73,24 +73,24 @@ const ColorsPage = React.createClass({
     const colorGroupStyle = styles.colorGroup;
 
     mainPalette.forEach((mainValue) => {
-      colors.push(this._getColorBlock(styles, cssColor, mainValue));
+      colors.push(this.getColorBlock(styles, cssColor, mainValue));
     }, this);
 
     if (showAltPalette) {
       altPalette.forEach((altValue) => {
-        colors.push(this._getColorBlock(styles, cssColor, altValue));
+        colors.push(this.getColorBlock(styles, cssColor, altValue));
       }, this);
     }
 
     return (
       <ul style={colorGroupStyle}>
-        {React.Children.toArray(this._getColorBlock(styles, cssColor, 500, color))}
+        {React.Children.toArray(this.getColorBlock(styles, cssColor, 500, color))}
         {React.Children.toArray(colors)}
       </ul>
     );
   },
 
-  _getColorBlock(styles, colorName, colorValue, colorTitle) {
+  getColorBlock(styles, colorName, colorValue, colorTitle) {
     const bgColorText = colorName + colorValue;
     const bgColor = colors[bgColorText];
     let fgColor = colors.fullBlack;
@@ -116,12 +116,12 @@ const ColorsPage = React.createClass({
     return (
       <li style={rowStyle}>
         {blockTitle}
-        {this._getColorName(styles, bgColorText, bgColor)}
+        {this.getColorName(styles, bgColorText, bgColor)}
       </li>
     );
   },
 
-  _getColorName(styles, text, colorValue) {
+  getColorName(styles, text, colorValue) {
     return (
       <div style={styles.colorContainer}>
         <span>{text}</span>
@@ -142,11 +142,11 @@ const ColorsPage = React.createClass({
     const neutralGroups = [];
 
     mainColors.forEach((color) => {
-      colorGroups.push(this._getColorGroup(styles, color, true));
+      colorGroups.push(this.getColorGroup(styles, color, true));
     }, this);
 
     neutralColors.forEach((color) => {
-      neutralGroups.push(this._getColorGroup(styles, color, false));
+      neutralGroups.push(this.getColorGroup(styles, color, false));
     }, this);
 
     const googleLink = 'https://www.google.com/design/spec/style/color.html#color-ui-color-palette';

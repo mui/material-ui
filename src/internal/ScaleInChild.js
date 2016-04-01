@@ -28,19 +28,19 @@ class ScaleInChild extends React.Component {
   }
 
   componentWillAppear(callback) {
-    this._initializeAnimation(callback);
+    this.initializeAnimation(callback);
   }
 
   componentWillEnter(callback) {
-    this._initializeAnimation(callback);
+    this.initializeAnimation(callback);
   }
 
   componentDidAppear() {
-    this._animate();
+    this.animate();
   }
 
   componentDidEnter() {
-    this._animate();
+    this.animate();
   }
 
   componentWillLeave(callback) {
@@ -52,14 +52,14 @@ class ScaleInChild extends React.Component {
     this.leaveTimer = setTimeout(callback, 450);
   }
 
-  _animate() {
+  animate() {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
     autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`);
   }
 
-  _initializeAnimation(callback) {
+  initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';

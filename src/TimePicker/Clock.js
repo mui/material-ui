@@ -32,7 +32,7 @@ class Clock extends React.Component {
     });
   }
 
-  _setMode = (mode) => {
+  setMode = (mode) => {
     setTimeout(() => {
       this.setState({
         mode: mode,
@@ -41,7 +41,7 @@ class Clock extends React.Component {
   };
 
   handleSelectAffix = (affix) => {
-    if (affix === this._getAffix()) return;
+    if (affix === this.getAffix()) return;
 
     const hours = this.state.selectedTime.getHours();
 
@@ -53,7 +53,7 @@ class Clock extends React.Component {
     this.handleChangeHours(hours + 12, affix);
   };
 
-  _getAffix() {
+  getAffix() {
     if (this.props.format !== 'ampm') return '';
 
     const hours = this.state.selectedTime.getHours();
@@ -73,7 +73,7 @@ class Clock extends React.Component {
       finished = undefined;
     }
     if (!affix) {
-      affix = this._getAffix();
+      affix = this.getAffix();
     }
     if (affix === 'pm' && hours < 12) {
       hours += 12;
@@ -162,10 +162,10 @@ class Clock extends React.Component {
           selectedTime={this.state.selectedTime}
           mode={this.state.mode}
           format={this.props.format}
-          affix={this._getAffix()}
+          affix={this.getAffix()}
           onSelectAffix={this.handleSelectAffix}
-          onSelectHour={this._setMode.bind(this, 'hour')}
-          onSelectMin={this._setMode.bind(this, 'minute')}
+          onSelectHour={this.setMode.bind(this, 'hour')}
+          onSelectMin={this.setMode.bind(this, 'minute')}
         />
         <div style={prepareStyles(styles.container)} >
           <div style={prepareStyles(styles.circle)} />

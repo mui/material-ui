@@ -76,7 +76,7 @@ class Calendar extends React.Component {
     }
   }
 
-  _yearSelector() {
+  yearSelector() {
     if (this.props.disableYearSelection) return;
 
     return (
@@ -103,19 +103,19 @@ class Calendar extends React.Component {
     return this.refs.calendar.isSelectedDateDisabled();
   }
 
-  _addSelectedDays(days) {
-    this._setSelectedDate(addDays(this.state.selectedDate, days));
+  addSelectedDays(days) {
+    this.setSelectedDate(addDays(this.state.selectedDate, days));
   }
 
-  _addSelectedMonths(months) {
-    this._setSelectedDate(addMonths(this.state.selectedDate, months));
+  addSelectedMonths(months) {
+    this.setSelectedDate(addMonths(this.state.selectedDate, months));
   }
 
-  _addSelectedYears(years) {
-    this._setSelectedDate(addYears(this.state.selectedDate, years));
+  addSelectedYears(years) {
+    this.setSelectedDate(addYears(this.state.selectedDate, years));
   }
 
-  _setDisplayDate(d, newSelectedDate) {
+  setDisplayDate(d, newSelectedDate) {
     const newDisplayDate = getFirstDayOfMonth(d);
     const direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
 
@@ -128,7 +128,7 @@ class Calendar extends React.Component {
     }
   }
 
-  _setSelectedDate(date) {
+  setSelectedDate(date) {
     let adjustedDate = date;
     if (isBeforeDate(date, this.props.minDate)) {
       adjustedDate = this.props.minDate;
@@ -138,7 +138,7 @@ class Calendar extends React.Component {
 
     const newDisplayDate = getFirstDayOfMonth(adjustedDate);
     if (newDisplayDate !== this.state.displayDate) {
-      this._setDisplayDate(newDisplayDate, adjustedDate);
+      this.setDisplayDate(newDisplayDate, adjustedDate);
     } else {
       this.setState({
         selectedDate: adjustedDate,
@@ -147,7 +147,7 @@ class Calendar extends React.Component {
   }
 
   handleDayTouchTap = (event, date) => {
-    this._setSelectedDate(date);
+    this.setSelectedDate(date);
     if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
   };
 
@@ -161,10 +161,10 @@ class Calendar extends React.Component {
   handleYearTouchTap = (event, year) => {
     const date = cloneDate(this.state.selectedDate);
     date.setFullYear(year);
-    this._setSelectedDate(date, event);
+    this.setSelectedDate(date, event);
   };
 
-  _getToolbarInteractions() {
+  getToolbarInteractions() {
     return {
       prevMonth: monthDiff(this.state.displayDate, this.props.minDate) > 0,
       nextMonth: monthDiff(this.state.displayDate, this.props.maxDate) < 0,
@@ -188,41 +188,41 @@ class Calendar extends React.Component {
       switch (keycode(event)) {
         case 'up':
           if (event.altKey && event.shiftKey) {
-            this._addSelectedYears(-1);
+            this.addSelectedYears(-1);
           } else if (event.shiftKey) {
-            this._addSelectedMonths(-1);
+            this.addSelectedMonths(-1);
           } else {
-            this._addSelectedDays(-7);
+            this.addSelectedDays(-7);
           }
           break;
 
         case 'down':
           if (event.altKey && event.shiftKey) {
-            this._addSelectedYears(1);
+            this.addSelectedYears(1);
           } else if (event.shiftKey) {
-            this._addSelectedMonths(1);
+            this.addSelectedMonths(1);
           } else {
-            this._addSelectedDays(7);
+            this.addSelectedDays(7);
           }
           break;
 
         case 'right':
           if (event.altKey && event.shiftKey) {
-            this._addSelectedYears(1);
+            this.addSelectedYears(1);
           } else if (event.shiftKey) {
-            this._addSelectedMonths(1);
+            this.addSelectedMonths(1);
           } else {
-            this._addSelectedDays(1);
+            this.addSelectedDays(1);
           }
           break;
 
         case 'left':
           if (event.altKey && event.shiftKey) {
-            this._addSelectedYears(-1);
+            this.addSelectedYears(-1);
           } else if (event.shiftKey) {
-            this._addSelectedMonths(-1);
+            this.addSelectedMonths(-1);
           } else {
-            this._addSelectedDays(-1);
+            this.addSelectedDays(-1);
           }
           break;
       }
@@ -233,7 +233,7 @@ class Calendar extends React.Component {
     const {prepareStyles} = this.context.muiTheme;
     const yearCount = yearDiff(this.props.maxDate, this.props.minDate) + 1;
     const weekCount = getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
-    const toolbarInteractions = this._getToolbarInteractions();
+    const toolbarInteractions = this.getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';
     const styles = {
       root: {
@@ -342,7 +342,7 @@ class Calendar extends React.Component {
         }
         {!this.state.displayMonthDay &&
           <div style={prepareStyles(styles.yearContainer)}>
-            {this._yearSelector()}
+            {this.yearSelector()}
           </div>
         }
       </ClearFix>

@@ -96,7 +96,7 @@ class Tabs extends React.Component {
 
     this.setState({
       selectedIndex: valueLink.value !== undefined ?
-        this._getSelectedIndex(this.props) :
+        this.getSelectedIndex(this.props) :
         initialIndex < this.getTabCount() ?
         initialIndex :
         0,
@@ -110,7 +110,7 @@ class Tabs extends React.Component {
     };
 
     if (valueLink.value !== undefined) {
-      newState.selectedIndex = this._getSelectedIndex(newProps);
+      newState.selectedIndex = this.getSelectedIndex(newProps);
     }
 
     this.setState(newState);
@@ -146,7 +146,7 @@ class Tabs extends React.Component {
     };
   }
 
-  _getSelectedIndex(props) {
+  getSelectedIndex(props) {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
@@ -159,7 +159,7 @@ class Tabs extends React.Component {
     return selectedIndex;
   }
 
-  _handleTabTouchTap = (value, event, tab) => {
+  handleTabTouchTap = (value, event, tab) => {
     const valueLink = this.getValueLink(this.props);
     const tabIndex = tab.props.tabIndex;
 
@@ -175,7 +175,7 @@ class Tabs extends React.Component {
     }
   };
 
-  _getSelected(tab, index) {
+  getSelected(tab, index) {
     const valueLink = this.getValueLink(this.props);
     return valueLink.value ? valueLink.value === tab.props.value :
       this.state.selectedIndex === index;
@@ -213,15 +213,15 @@ class Tabs extends React.Component {
       tabContent.push(tab.props.children ?
         React.createElement(tabTemplate || TabTemplate, {
           key: index,
-          selected: this._getSelected(tab, index),
+          selected: this.getSelected(tab, index),
         }, tab.props.children) : undefined);
 
       return React.cloneElement(tab, {
         key: index,
-        selected: this._getSelected(tab, index),
+        selected: this.getSelected(tab, index),
         tabIndex: index,
         width: `${width}%`,
-        onTouchTap: this._handleTabTouchTap,
+        onTouchTap: this.handleTabTouchTap,
       });
     });
 

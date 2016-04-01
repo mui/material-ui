@@ -71,7 +71,7 @@ class RadioButtonGroup extends React.Component {
     let cnt = 0;
 
     React.Children.forEach(this.props.children, (option) => {
-      if (this._hasCheckAttribute(option)) cnt++;
+      if (this.hasCheckAttribute(option)) cnt++;
     }, this);
 
     this.setState({numberCheckedRadioButtons: cnt});
@@ -85,12 +85,12 @@ class RadioButtonGroup extends React.Component {
     }
   }
 
-  _hasCheckAttribute(radioButton) {
+  hasCheckAttribute(radioButton) {
     return radioButton.props.hasOwnProperty('checked') &&
       radioButton.props.checked;
   }
 
-  _updateRadioButtons(newSelection) {
+  updateRadioButtons(newSelection) {
     if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
     } else {
@@ -100,7 +100,7 @@ class RadioButtonGroup extends React.Component {
   }
 
   handleChange = (event, newSelection) => {
-    this._updateRadioButtons(newSelection);
+    this.updateRadioButtons(newSelection);
 
     // Successful update
     if (this.state.numberCheckedRadioButtons === 0) {
@@ -113,7 +113,7 @@ class RadioButtonGroup extends React.Component {
   }
 
   setSelectedValue(newSelectionValue) {
-    this._updateRadioButtons(newSelectionValue);
+    this.updateRadioButtons(newSelectionValue);
   }
 
   clearValue() {

@@ -6,7 +6,7 @@ import Paper from '../Paper';
 const VIEWBOX_SIZE = 32;
 
 function getStyles(props) {
-  const padding = props.size * 0.1; // same implementation of `this._getPaddingSize()`
+  const padding = props.size * 0.1; // same implementation of `this.getPaddingSize()`
   return {
     root: {
       position: 'absolute',
@@ -87,8 +87,8 @@ class RefreshIndicator extends React.Component {
   }
 
   componentDidUpdate() {
-    this._scalePath(this.refs.path, 0);
-    this._rotateWrapper(this.refs.wrapper);
+    this.scalePath(this.refs.path, 0);
+    this.rotateWrapper(this.refs.wrapper);
   }
 
   componentWillUnmount() {
@@ -97,13 +97,13 @@ class RefreshIndicator extends React.Component {
     clearTimeout(this.rotateWrapperSecondTimer);
   }
 
-  _renderChildren() {
+  renderChildren() {
     const {prepareStyles} = this.context.muiTheme;
-    const paperSize = this._getPaperSize();
+    const paperSize = this.getPaperSize();
 
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
-      const circleStyle = this._getCircleStyle(paperSize);
+      const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp = (
         <div ref="wrapper" style={prepareStyles({
           transition: transitions.create('transform', '20s', null, 'linear'),
@@ -127,8 +127,8 @@ class RefreshIndicator extends React.Component {
         </div>
       );
     } else {
-      const circleStyle = this._getCircleStyle(paperSize);
-      const polygonStyle = this._getPolygonStyle(paperSize);
+      const circleStyle = this.getCircleStyle(paperSize);
+      const polygonStyle = this.getPolygonStyle(paperSize);
       childrenCmp = (
         <svg style={{
           width: paperSize,
@@ -152,20 +152,20 @@ class RefreshIndicator extends React.Component {
     return childrenCmp;
   }
 
-  _getTheme() {
+  getTheme() {
     return this.context.muiTheme.refreshIndicator;
   }
 
-  _getPaddingSize() {
+  getPaddingSize() {
     const padding = this.props.size * 0.1;
     return padding;
   }
 
-  _getPaperSize() {
-    return this.props.size - this._getPaddingSize() * 2;
+  getPaperSize() {
+    return this.props.size - this.getPaddingSize() * 2;
   }
 
-  _getCircleAttr() {
+  getCircleAttr() {
     return {
       radiu: VIEWBOX_SIZE / 2 - 5,
       originX: VIEWBOX_SIZE / 2,
@@ -174,7 +174,7 @@ class RefreshIndicator extends React.Component {
     };
   }
 
-  _getArcDeg() {
+  getArcDeg() {
     const p = this.props.percentage / 100;
 
     const beginDeg = p * 120;
@@ -182,24 +182,24 @@ class RefreshIndicator extends React.Component {
     return [beginDeg, endDeg];
   }
 
-  _getFactor() {
+  getFactor() {
     const p = this.props.percentage / 100;
     const p1 = Math.min(1, p / 0.4);
 
     return p1;
   }
 
-  _getCircleStyle() {
+  getCircleStyle() {
     const isLoading = this.props.status === 'loading';
-    const p1 = isLoading ? 1 : this._getFactor();
-    const circle = this._getCircleAttr();
+    const p1 = isLoading ? 1 : this.getFactor();
+    const circle = this.getCircleAttr();
     const perimeter = Math.PI * 2 * circle.radiu;
 
-    const [beginDeg, endDeg] = this._getArcDeg();
+    const [beginDeg, endDeg] = this.getArcDeg();
     const arcLen = (endDeg - beginDeg) * perimeter / 360;
     const dashOffset = -beginDeg * perimeter / 360;
 
-    const theme = this._getTheme();
+    const theme = this.getTheme();
     return {
       style: {
         strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
@@ -220,9 +220,9 @@ class RefreshIndicator extends React.Component {
     };
   }
 
-  _getPolygonStyle() {
-    const p1 = this._getFactor();
-    const circle = this._getCircleAttr();
+  getPolygonStyle() {
+    const p1 = this.getFactor();
+    const circle = this.getCircleAttr();
 
     const triangleCx = circle.originX + circle.radiu;
     const triangleCy = circle.originY;
@@ -230,9 +230,9 @@ class RefreshIndicator extends React.Component {
     const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
       triangleCy} ${triangleCx},${(triangleCy + dx)}`;
 
-    const [, endDeg] = this._getArcDeg();
+    const [, endDeg] = this.getArcDeg();
 
-    const theme = this._getTheme();
+    const theme = this.getTheme();
     return {
       style: {
         fill: this.props.percentage === 100 ?
@@ -248,12 +248,12 @@ class RefreshIndicator extends React.Component {
     };
   }
 
-  _scalePath(path, step) {
+  scalePath(path, step) {
     if (this.props.status !== 'loading') return;
 
     const currStep = (step || 0) % 3;
 
-    const circle = this._getCircleAttr();
+    const circle = this.getCircleAttr();
     const perimeter = Math.PI * 2 * circle.radiu;
     const arcLen = perimeter * 0.64;
 
@@ -279,10 +279,10 @@ class RefreshIndicator extends React.Component {
     autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
     autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
 
-    this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
+    this.scalePathTimer = setTimeout(() => this.scalePath(path, currStep + 1), currStep ? 750 : 250);
   }
 
-  _rotateWrapper(wrapper) {
+  rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
 
     autoPrefix.set(wrapper.style, 'transform', null);
@@ -295,7 +295,7 @@ class RefreshIndicator extends React.Component {
       autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
-    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
+    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
   }
 
   render() {
@@ -308,7 +308,7 @@ class RefreshIndicator extends React.Component {
         style={Object.assign(styles.root, style)}
         ref="indicatorCt"
       >
-        {this._renderChildren()}
+        {this.renderChildren()}
       </Paper>
     );
   }

@@ -60,17 +60,17 @@ class EnhancedTextarea extends React.Component {
   };
 
   componentDidMount() {
-    this._syncHeightWithShadow();
+    this.syncHeightWithShadow();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
-      this._syncHeightWithShadow(nextProps.value);
+      this.syncHeightWithShadow(nextProps.value);
     }
   }
 
   handleResize = (event) => {
-    this._syncHeightWithShadow(undefined, event);
+    this.syncHeightWithShadow(undefined, event);
   };
 
   getInputNode() {
@@ -79,10 +79,10 @@ class EnhancedTextarea extends React.Component {
 
   setValue(value) {
     this.getInputNode().value = value;
-    this._syncHeightWithShadow(value);
+    this.syncHeightWithShadow(value);
   }
 
-  _syncHeightWithShadow(newValue, event) {
+  syncHeightWithShadow(newValue, event) {
     const shadow = this.refs.shadow;
 
     if (newValue !== undefined) {
@@ -109,7 +109,7 @@ class EnhancedTextarea extends React.Component {
   }
 
   handleChange = (event) => {
-    this._syncHeightWithShadow(event.target.value);
+    this.syncHeightWithShadow(event.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
       this.props.valueLink.requestChange(event.target.value);

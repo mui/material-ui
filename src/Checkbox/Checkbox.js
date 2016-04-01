@@ -164,11 +164,11 @@ class Checkbox extends React.Component {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   }
 
-  _handleCheck = (event, isInputChecked) => {
+  handleCheck = (event, isInputChecked) => {
     if (this.props.onCheck) this.props.onCheck(event, isInputChecked);
   };
 
-  _handleStateChange = (newSwitched) => {
+  handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
   };
 
@@ -229,9 +229,9 @@ class Checkbox extends React.Component {
       switchElement: checkboxElement,
       rippleColor: rippleColor,
       iconStyle: mergedIconStyle,
-      onSwitch: this._handleCheck,
+      onSwitch: this.handleCheck,
       labelStyle: labelStyle,
-      onParentShouldUpdate: this._handleStateChange,
+      onParentShouldUpdate: this.handleStateChange,
       defaultSwitched: this.props.defaultChecked,
       labelPosition: this.props.labelPosition,
     };

@@ -167,11 +167,11 @@ class Toggle extends React.Component {
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
   }
 
-  _handleToggle = (event, isInputChecked) => {
+  handleToggle = (event, isInputChecked) => {
     if (this.props.onToggle) this.props.onToggle(event, isInputChecked);
   };
 
-  _handleStateChange = (newSwitched) => {
+  handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
   };
 
@@ -240,8 +240,8 @@ class Toggle extends React.Component {
       thumbStyle: thumbStyles,
       labelStyle: labelStyle,
       switched: this.state.switched,
-      onSwitch: this._handleToggle,
-      onParentShouldUpdate: this._handleStateChange,
+      onSwitch: this.handleToggle,
+      onParentShouldUpdate: this.handleStateChange,
       defaultSwitched: this.props.defaultToggled,
       labelPosition: this.props.labelPosition,
     };

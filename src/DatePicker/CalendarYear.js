@@ -17,14 +17,14 @@ class CalendarYear extends React.Component {
   };
 
   componentDidMount() {
-    this._scrollToSelectedYear();
+    this.scrollToSelectedYear();
   }
 
   componentDidUpdate() {
-    this._scrollToSelectedYear();
+    this.scrollToSelectedYear();
   }
 
-  _getYears() {
+  getYears() {
     const minYear = this.props.minDate.getFullYear();
     const maxYear = this.props.maxDate.getFullYear();
 
@@ -54,7 +54,7 @@ class CalendarYear extends React.Component {
     return years;
   }
 
-  _scrollToSelectedYear() {
+  scrollToSelectedYear() {
     if (this.refs.selectedYearButton === undefined) return;
 
     const container = ReactDOM.findDOMNode(this);
@@ -72,7 +72,7 @@ class CalendarYear extends React.Component {
   };
 
   render() {
-    const years = this._getYears();
+    const years = this.getYears();
     const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
       position: 'relative',

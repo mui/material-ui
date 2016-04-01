@@ -165,7 +165,7 @@ class MenuItem extends React.Component {
   };
 
   componentDidMount() {
-    this._applyFocusState();
+    this.applyFocusState();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -182,7 +182,7 @@ class MenuItem extends React.Component {
   }
 
   componentDidUpdate() {
-    this._applyFocusState();
+    this.applyFocusState();
   }
 
   componentWillUnmount() {
@@ -193,11 +193,11 @@ class MenuItem extends React.Component {
     }
   }
 
-  _applyFocusState() {
+  applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
   }
 
-  _cloneMenuItem = (item) => {
+  cloneMenuItem = (item) => {
     return React.cloneElement(item, {
       onTouchTap: (event) => {
         if (!item.props.menuItems) {
@@ -292,7 +292,7 @@ class MenuItem extends React.Component {
           onRequestClose={this.handleRequestClose}
         >
           <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
-            {React.Children.map(menuItems, this._cloneMenuItem)}
+            {React.Children.map(menuItems, this.cloneMenuItem)}
           </Menu>
         </Popover>
       );

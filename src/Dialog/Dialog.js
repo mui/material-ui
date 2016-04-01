@@ -166,14 +166,14 @@ class DialogInline extends React.Component {
   };
 
   componentDidMount() {
-    this._positionDialog();
+    this.positionDialog();
   }
 
   componentDidUpdate() {
-    this._positionDialog();
+    this.positionDialog();
   }
 
-  _positionDialog() {
+  positionDialog() {
     const {
       actions,
       autoDetectWindowHeight,
@@ -224,7 +224,7 @@ class DialogInline extends React.Component {
     }
   }
 
-  _requestClose(buttonClicked) {
+  requestClose(buttonClicked) {
     if (!buttonClicked && this.props.modal) {
       return;
     }
@@ -235,17 +235,17 @@ class DialogInline extends React.Component {
   }
 
   handleTouchTapOverlay = () => {
-    this._requestClose(false);
+    this.requestClose(false);
   };
 
   handleKeyUp = (event) => {
     if (keycode(event) === 'esc') {
-      this._requestClose(false);
+      this.requestClose(false);
     }
   };
 
   handleResize = () => {
-    this._positionDialog();
+    this.positionDialog();
   };
 
   render() {

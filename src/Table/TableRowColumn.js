@@ -86,18 +86,18 @@ class TableRowColumn extends React.Component {
     hovered: false,
   };
 
-  _onClick = (event) => {
+  onClick = (event) => {
     if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
   };
 
-  _onMouseEnter = (event) => {
+  onMouseEnter = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
     }
   };
 
-  _onMouseLeave = (event) => {
+  onMouseLeave = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
@@ -121,9 +121,9 @@ class TableRowColumn extends React.Component {
     const styles = getStyles(this.props, this.context);
 
     const handlers = {
-      onClick: this._onClick,
-      onMouseEnter: this._onMouseEnter,
-      onMouseLeave: this._onMouseLeave,
+      onClick: this.onClick,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
     };
 
     return (

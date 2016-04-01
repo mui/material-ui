@@ -158,7 +158,7 @@ class EnhancedSwitch extends React.Component {
   }
 
   handleChange = (event) => {
-    this._tabPressed = false;
+    this.tabPressed = false;
     this.setState({
       isKeyboardFocused: false,
     });
@@ -179,7 +179,7 @@ class EnhancedSwitch extends React.Component {
     const code = keycode(event);
 
     if (code === 'tab') {
-      this._tabPressed = true;
+      this.tabPressed = true;
     }
     if (this.state.isKeyboardFocused && code === 'space') {
       this.handleChange(event);
@@ -235,7 +235,7 @@ class EnhancedSwitch extends React.Component {
     //Wait so that we can capture if this was a keyboard focus
     //or touch focus
     setTimeout(() => {
-      if (this._tabPressed) {
+      if (this.tabPressed) {
         this.setState({
           isKeyboardFocused: true,
         });

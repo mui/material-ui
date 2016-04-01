@@ -111,13 +111,13 @@ class LinearProgress extends React.Component {
   componentDidMount() {
     this.timers = {};
 
-    this.timers.bar1 = this._barUpdate('bar1', 0, this.refs.bar1, [
+    this.timers.bar1 = this.barUpdate('bar1', 0, this.refs.bar1, [
       [-35, 100],
       [100, -90],
     ]);
 
     this.timers.bar2 = setTimeout(() => {
-      this._barUpdate('bar2', 0, this.refs.bar2, [
+      this.barUpdate('bar2', 0, this.refs.bar2, [
         [-200, 100],
         [107, -8],
       ]);
@@ -129,7 +129,7 @@ class LinearProgress extends React.Component {
     clearTimeout(this.timers.bar2);
   }
 
-  _barUpdate(id, step, barElement, stepValues) {
+  barUpdate(id, step, barElement, stepValues) {
     if (this.props.mode !== 'indeterminate') return;
 
     step = step || 0;
@@ -149,7 +149,7 @@ class LinearProgress extends React.Component {
     } else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
-    this.timers[id] = setTimeout(() => this._barUpdate(id, step + 1, barElement, stepValues), 420);
+    this.timers[id] = setTimeout(() => this.barUpdate(id, step + 1, barElement, stepValues), 420);
   }
 
   render() {

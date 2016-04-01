@@ -166,47 +166,47 @@ class IconButton extends React.Component {
     this.refs.button.setKeyboardFocus();
   }
 
-  _showTooltip() {
+  showTooltip() {
     if (this.props.tooltip) {
       this.setState({tooltipShown: true});
     }
   }
 
-  _hideTooltip() {
+  hideTooltip() {
     if (this.props.tooltip) this.setState({tooltipShown: false});
   }
 
   handleBlur = (event) => {
-    this._hideTooltip();
+    this.hideTooltip();
     if (this.props.onBlur) this.props.onBlur(event);
   };
 
   handleFocus = (event) => {
-    this._showTooltip();
+    this.showTooltip();
     if (this.props.onFocus) this.props.onFocus(event);
   };
 
   handleMouseLeave = (event) => {
-    if (!this.refs.button.isKeyboardFocused()) this._hideTooltip();
+    if (!this.refs.button.isKeyboardFocused()) this.hideTooltip();
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   };
 
   handleMouseOut = (event) => {
-    if (this.props.disabled) this._hideTooltip();
+    if (this.props.disabled) this.hideTooltip();
     if (this.props.onMouseOut) this.props.onMouseOut(event);
   };
 
   _handleMouseEnter(event) {
-    this._showTooltip();
+    this.showTooltip();
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
   }
 
   handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
-      this._showTooltip();
+      this.showTooltip();
       if (this.props.onFocus) this.props.onFocus(event);
     } else if (!this.state.hovered) {
-      this._hideTooltip();
+      this.hideTooltip();
       if (this.props.onBlur) this.props.onBlur(event);
     }
 

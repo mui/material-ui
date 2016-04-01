@@ -61,19 +61,19 @@ class Overlay extends React.Component {
 
   componentDidMount() {
     if (this.props.show) {
-      this._applyAutoLockScrolling(this.props);
+      this.applyAutoLockScrolling(this.props);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.show !== nextProps.show) {
-      this._applyAutoLockScrolling(nextProps);
+      this.applyAutoLockScrolling(nextProps);
     }
   }
 
   componentWillUnmount() {
     if (this.props.show === true) {
-      this._allowScrolling();
+      this.allowScrolling();
     }
   }
 
@@ -81,26 +81,26 @@ class Overlay extends React.Component {
     this.refs.overlay.style.opacity = opacity;
   }
 
-  _applyAutoLockScrolling(props) {
+  applyAutoLockScrolling(props) {
     if (props.autoLockScrolling) {
       if (props.show) {
-        this._preventScrolling();
+        this.preventScrolling();
       } else {
-        this._allowScrolling();
+        this.allowScrolling();
       }
     }
   }
 
-  _preventScrolling() {
+  preventScrolling() {
     const body = document.getElementsByTagName('body')[0];
-    this._originalBodyOverflow = body.style.overflow;
+    this.originalBodyOverflow = body.style.overflow;
 
     body.style.overflow = 'hidden';
   }
 
-  _allowScrolling() {
+  allowScrolling() {
     const body = document.getElementsByTagName('body')[0];
-    body.style.overflow = this._originalBodyOverflow || '';
+    body.style.overflow = this.originalBodyOverflow || '';
   }
 
   render() {

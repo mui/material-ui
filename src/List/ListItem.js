@@ -375,7 +375,7 @@ class ListItem extends React.Component {
     }
   }
 
-  _createDisabledElement(styles, contentChildren, additionalProps) {
+  createDisabledElement(styles, contentChildren, additionalProps) {
     const {
       innerDivStyle,
       style,
@@ -398,7 +398,7 @@ class ListItem extends React.Component {
      );
   }
 
-  _createLabelElement(styles, contentChildren, additionalProps) {
+  createLabelElement(styles, contentChildren, additionalProps) {
     const {
       innerDivStyle,
       style,
@@ -422,7 +422,7 @@ class ListItem extends React.Component {
      );
   }
 
-  _createTextElement(styles, data, key) {
+  createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
     const mergedStyles = isAnElement ?
       Object.assign({}, styles, data.props.style) : null;
@@ -504,7 +504,7 @@ class ListItem extends React.Component {
     this.props.onTouchStart(event);
   };
 
-  _pushElement(children, element, baseStyles, additionalProps) {
+  pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
       const styles = Object.assign({}, baseStyles, element.props.style);
       children.push(
@@ -553,7 +553,7 @@ class ListItem extends React.Component {
     const contentChildren = [children];
 
     if (leftIcon) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         leftIcon,
         Object.assign({}, styles.icons, styles.leftIcon)
@@ -561,7 +561,7 @@ class ListItem extends React.Component {
     }
 
     if (rightIcon) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightIcon,
         Object.assign({}, styles.icons, styles.rightIcon)
@@ -569,7 +569,7 @@ class ListItem extends React.Component {
     }
 
     if (leftAvatar) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         leftAvatar,
         Object.assign({}, styles.avatars, styles.leftAvatar)
@@ -577,7 +577,7 @@ class ListItem extends React.Component {
     }
 
     if (rightAvatar) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightAvatar,
         Object.assign({}, styles.avatars, styles.rightAvatar)
@@ -585,7 +585,7 @@ class ListItem extends React.Component {
     }
 
     if (leftCheckbox) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         leftCheckbox,
         Object.assign({}, styles.leftCheckbox)
@@ -616,7 +616,7 @@ class ListItem extends React.Component {
         rightIconButtonHandlers.onTouchTap = this.handleNestedListToggle;
       }
 
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightIconButtonElement,
         Object.assign({}, styles.rightIconButton),
@@ -625,7 +625,7 @@ class ListItem extends React.Component {
     }
 
     if (rightToggle) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightToggle,
         Object.assign({}, styles.rightToggle)
@@ -633,7 +633,7 @@ class ListItem extends React.Component {
     }
 
     if (primaryText) {
-      const primaryTextElement = this._createTextElement(
+      const primaryTextElement = this.createTextElement(
         styles.primaryText,
         primaryText,
         'primaryText'
@@ -642,7 +642,7 @@ class ListItem extends React.Component {
     }
 
     if (secondaryText) {
-      const secondaryTextElement = this._createTextElement(
+      const secondaryTextElement = this.createTextElement(
         styles.secondaryText,
         secondaryText,
         'secondaryText'
@@ -661,8 +661,8 @@ class ListItem extends React.Component {
     return (
       <div>
         {
-          hasCheckbox ? this._createLabelElement(styles, contentChildren, other) :
-          disabled ? this._createDisabledElement(styles, contentChildren, other) : (
+          hasCheckbox ? this.createLabelElement(styles, contentChildren, other) :
+          disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
               {...other}
               disabled={disabled}

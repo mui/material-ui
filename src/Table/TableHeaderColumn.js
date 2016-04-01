@@ -75,15 +75,15 @@ class TableHeaderColumn extends React.Component {
     hovered: false,
   };
 
-  _onMouseEnter = () => {
+  onMouseEnter = () => {
     if (this.props.tooltip !== undefined) this.setState({hovered: true});
   };
 
-  _onMouseLeave = () => {
+  onMouseLeave = () => {
     if (this.props.tooltip !== undefined) this.setState({hovered: false});
   };
 
-  _onClick = (event) => {
+  onClick = (event) => {
     if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
   };
 
@@ -103,9 +103,9 @@ class TableHeaderColumn extends React.Component {
     const styles = getStyles(this.props, this.context);
 
     const handlers = {
-      onMouseEnter: this._onMouseEnter,
-      onMouseLeave: this._onMouseLeave,
-      onClick: this._onClick,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
+      onClick: this.onClick,
     };
 
     let tooltipNode;

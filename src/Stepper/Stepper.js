@@ -166,7 +166,7 @@ class Stepper extends React.Component {
     };
   }
 
-  _handleHeaderStepHover = (stepIndex) => {
+  handleHeaderStepHover = (stepIndex) => {
     this.setState({
       hoveredHeaderStepIndex: stepIndex,
     });
@@ -205,7 +205,7 @@ class Stepper extends React.Component {
         isActive: activeStep === index,
         isStepHeaderHovered: hoveredHeaderStepIndex === index,
         onStepHeaderTouch: onStepHeaderTouch,
-        onStepHeaderHover: this._handleHeaderStepHover,
+        onStepHeaderHover: this.handleHeaderStepHover,
         isLastStep: index === (this.getTotalSteps() - 1),
         isFirstStep: index === 0,
         isCompleted: updateCompletedStatus(index, step),
@@ -266,7 +266,7 @@ class Stepper extends React.Component {
         isActive: activeStep === index,
         isStepHeaderHovered: hoveredHeaderStepIndex === index,
         onStepHeaderTouch: onStepHeaderTouch,
-        onStepHeaderHover: this._handleHeaderStepHover,
+        onStepHeaderHover: this.handleHeaderStepHover,
         isLastStep: index === (this.getTotalSteps() - 1),
         isCompleted: updateCompletedStatus(index, step),
         previousStepOptionalIndex: this.findFurthestOptionalStep(index),

@@ -20,7 +20,7 @@ class SlideIn extends React.Component {
     muiTheme: React.PropTypes.object.isRequired,
   };
 
-  _getLeaveDirection = () => {
+  getLeaveDirection = () => {
     return this.props.direction;
   };
 
@@ -48,7 +48,7 @@ class SlideIn extends React.Component {
           key={child.key}
           direction={direction}
           enterDelay={enterDelay}
-          getLeaveDirection={this._getLeaveDirection}
+          getLeaveDirection={this.getLeaveDirection}
           style={childStyle}
         >
           {child}

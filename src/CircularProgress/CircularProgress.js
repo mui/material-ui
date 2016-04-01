@@ -120,8 +120,8 @@ class CircularProgress extends React.Component {
   };
 
   componentDidMount() {
-    this._scalePath(this.refs.path);
-    this._rotateWrapper(this.refs.wrapper);
+    this.scalePath(this.refs.path);
+    this.rotateWrapper(this.refs.wrapper);
   }
 
   componentWillUnmount() {
@@ -129,7 +129,7 @@ class CircularProgress extends React.Component {
     clearTimeout(this.rotateWrapperTimer);
   }
 
-  _scalePath(path, step) {
+  scalePath(path, step) {
     if (this.props.mode !== 'indeterminate') return;
 
     step = step || 0;
@@ -149,10 +149,10 @@ class CircularProgress extends React.Component {
       path.style.transitionDuration = '850ms';
     }
 
-    this.scalePathTimer = setTimeout(() => this._scalePath(path, step + 1), step ? 750 : 250);
+    this.scalePathTimer = setTimeout(() => this.scalePath(path, step + 1), step ? 750 : 250);
   }
 
-  _rotateWrapper(wrapper) {
+  rotateWrapper(wrapper) {
     if (this.props.mode !== 'indeterminate') return;
 
     autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
@@ -164,7 +164,7 @@ class CircularProgress extends React.Component {
       autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
-    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
+    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
   }
 
   render() {

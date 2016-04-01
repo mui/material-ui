@@ -79,7 +79,7 @@ describe('<Slider />', () => {
       <Slider name="slider" onDragStart={handleDragStart} />
     );
 
-    wrapper.instance()._onDragStart();
+    wrapper.instance().onDragStart();
     assert.calledOnce(handleDragStart);
     assert.isTrue(wrapper.state().active);
     assert.isTrue(wrapper.state().dragging);
@@ -91,7 +91,7 @@ describe('<Slider />', () => {
       <Slider name="slider" onDragStop={handleDragStop} />
     );
 
-    wrapper.instance()._onDragStop();
+    wrapper.instance().onDragStop();
     assert.calledOnce(handleDragStop);
     assert.isFalse(wrapper.state().active);
     assert.isFalse(wrapper.state().dragging);

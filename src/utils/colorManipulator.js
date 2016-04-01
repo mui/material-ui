@@ -15,7 +15,7 @@ export default {
    * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
    */
   luminance(color) {
-    color = this._decomposeColor(color);
+    color = this.decomposeColor(color);
 
     if (color.type.indexOf('rgb') > -1) {
       const rgb = color.values.map((val) => {
@@ -37,7 +37,7 @@ export default {
    * additionalValue = An extra value that has been calculated but not included
    *                   with the original color object, such as an alpha value.
    */
-  _convertColorToString(color, additonalValue) {
+  convertColorToString(color, additonalValue) {
     let str = `${color.type}(${
       parseInt(color.values[0])}, ${
       parseInt(color.values[1])}, ${
@@ -55,7 +55,7 @@ export default {
   },
 
   // Converts a color from hex format to rgb format.
-  _convertHexToRGB(color) {
+  convertHexToRGB(color) {
     if (color.length === 4) {
       let extendedColor = '#';
       for (let i = 1; i < color.length; i++) {
@@ -74,9 +74,9 @@ export default {
   },
 
   // Returns the type and values of a color of any given type.
-  _decomposeColor(color) {
+  decomposeColor(color) {
     if (color.charAt(0) === '#') {
-      return this._decomposeColor(this._convertHexToRGB(color));
+      return this.decomposeColor(this.convertHexToRGB(color));
     }
 
     const marker = color.indexOf('(');
@@ -89,18 +89,18 @@ export default {
   // Set the absolute transparency of a color.
   // Any existing alpha values are overwritten.
   fade(color, amount) {
-    color = this._decomposeColor(color);
+    color = this.decomposeColor(color);
     if (color.type === 'rgb' || color.type === 'hsl') color.type += 'a';
-    return this._convertColorToString(color, amount);
+    return this.convertColorToString(color, amount);
   },
 
   // Desaturates rgb and sets opacity (defaults to 0.15)
   lighten(color, amount, opacity = '0.15') {
-    color = this._decomposeColor(color);
+    color = this.decomposeColor(color);
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
-      return this._decomposeColor(this._convertColorToString(color));
+      return this.decomposeColor(this.convertColorToString(color));
     } else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
         color.values[i] *= 1 + amount;
@@ -110,15 +110,15 @@ export default {
 
     if (color.type.indexOf('a') <= -1) color.type += 'a';
 
-    return this._convertColorToString(color, opacity);
+    return this.convertColorToString(color, opacity);
   },
 
   darken(color, amount) {
-    color = this._decomposeColor(color);
+    color = this.decomposeColor(color);
 
     if (color.type.indexOf('hsl') > -1) {
       color.values[2] += amount;
-      return this._decomposeColor(this._convertColorToString(color));
+      return this.decomposeColor(this.convertColorToString(color));
     } else if (color.type.indexOf('rgb') > -1) {
       for (let i = 0; i < 3; i++) {
         color.values[i] *= 1 - amount;
@@ -126,7 +126,7 @@ export default {
       }
     }
 
-    return this._convertColorToString(color);
+    return this.convertColorToString(color);
   },
 
   // Calculates the contrast ratio between two colors.

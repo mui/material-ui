@@ -354,44 +354,44 @@ class TextField extends React.Component {
   }
 
   blur() {
-    if (this.input) this._getInputNode().blur();
+    if (this.input) this.getInputNode().blur();
   }
 
   focus() {
-    if (this.input) this._getInputNode().focus();
+    if (this.input) this.getInputNode().focus();
   }
 
   select() {
-    if (this.input) this._getInputNode().select();
+    if (this.input) this.getInputNode().select();
   }
 
   getValue() {
-    return this.input ? this._getInputNode().value : undefined;
+    return this.input ? this.getInputNode().value : undefined;
   }
 
-  _getInputNode() {
+  getInputNode() {
     return (this.props.children || this.props.multiLine) ?
       this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
   }
 
-  _handleInputBlur = (event) => {
+  handleInputBlur = (event) => {
     this.setState({isFocused: false});
     if (this.props.onBlur) this.props.onBlur(event);
   };
 
-  _handleInputChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({hasValue: isValid(event.target.value), isClean: false});
     if (this.props.onChange) this.props.onChange(event, event.target.value);
   };
 
-  _handleInputFocus = (event) => {
+  handleInputFocus = (event) => {
     if (this.props.disabled)
       return;
     this.setState({isFocused: true});
     if (this.props.onFocus) this.props.onFocus(event);
   };
 
-  _handleInputKeyDown = (event) => {
+  handleInputKeyDown = (event) => {
     if (keycode(event) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(event);
     if (this.props.onKeyDown) this.props.onKeyDown(event);
   };
@@ -461,10 +461,10 @@ class TextField extends React.Component {
       id: inputId,
       ref: (elem) => this.input = elem,
       disabled: this.props.disabled,
-      onBlur: this._handleInputBlur,
-      onChange: this._handleInputChange,
-      onFocus: this._handleInputFocus,
-      onKeyDown: this._handleInputKeyDown,
+      onBlur: this.handleInputBlur,
+      onChange: this.handleInputChange,
+      onFocus: this.handleInputFocus,
+      onKeyDown: this.handleInputKeyDown,
     };
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
