@@ -9,7 +9,7 @@
     "build:icon-index": "cd src/svg-icons/ && babel-node index-generator.js",
     "coverage": "npm run test",
     "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary lcovonly json",
-    "lint": "eslint --ext .js src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
+    "lint": "eslint src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
     "prebuild": "rimraf lib",
     "prepublish": "in-publish && npm run build || not-in-publish",
     "test": "npm run test:unit && npm run test:browser && npm run test:unit:coverage && npm run coverage:combine",

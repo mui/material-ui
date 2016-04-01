@@ -14,6 +14,13 @@ Now you can run your local server:
 ```sh
 npm start
 ```
+
+You can also lint your code with:
+
+```sh
+npm run lint
+```
+
 ## Description of [Gulp](https://github.com/gulpjs/gulp) Plugins
 
 ### [browserify](https://github.com/substack/node-browserify)
