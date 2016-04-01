@@ -21,9 +21,8 @@ function getStyles(props, context) {
   };
 }
 
-const Toolbar = React.createClass({
-
-  propTypes: {
+class Toolbar extends React.Component {
+  static propTypes = {
     /**
      * Can be a `ToolbarGroup` to render a group of related items.
      */
@@ -43,17 +42,15 @@ const Toolbar = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    noGutter: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      noGutter: false,
-    };
-  },
+  };
 
   render() {
     const {
@@ -71,7 +68,7 @@ const Toolbar = React.createClass({
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default Toolbar;

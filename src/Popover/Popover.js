@@ -7,9 +7,8 @@ import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
-const Popover = React.createClass({
-
-  propTypes: {
+class Popover extends React.Component {
+  static propTypes = {
     /**
      * This is the DOM element that will be used to set the position of the
      * popover.
@@ -96,44 +95,43 @@ const Popover = React.createClass({
      * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left',
+    },
+    animated: true,
+    autoCloseWhenOffScreen: true,
+    canAutoPosition: true,
+    onRequestClose: () => {},
+    open: false,
+    style: {
+      overflowY: 'auto',
+    },
+    targetOrigin: {
+      vertical: 'top',
+      horizontal: 'left',
+    },
+    useLayerForClickAway: true,
+    zDepth: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      anchorOrigin: {
-        vertical: 'bottom',
-        horizontal: 'left',
-      },
-      animated: true,
-      autoCloseWhenOffScreen: true,
-      canAutoPosition: true,
-      onRequestClose: () => {},
-      open: false,
-      style: {
-        overflowY: 'auto',
-      },
-      targetOrigin: {
-        vertical: 'top',
-        horizontal: 'left',
-      },
-      useLayerForClickAway: true,
-      zDepth: 1,
-    };
-  },
-
-  getInitialState() {
+  constructor(props, context) {
+    super(props, context);
     this.handleResize = throttle(this.setPlacement, 100);
     this.handleScroll = throttle(this.setPlacement.bind(this, true), 100);
 
-    return {
-      open: this.props.open,
+    this.state = {
+      open: props.open,
       closing: false,
     };
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
@@ -158,17 +156,17 @@ const Popover = React.createClass({
         }
       }
     }
-  },
+  }
 
   componentDidUpdate() {
     this.setPlacement();
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
-  },
+  }
 
-  renderLayer() {
+  renderLayer = () => {
     const {
       animated, // eslint-disable-line no-unused-vars
       animation,
@@ -195,21 +193,21 @@ const Popover = React.createClass({
         {children}
       </Animation>
     );
-  },
+  };
 
   requestClose(reason) {
     if (this.props.onRequestClose) {
       this.props.onRequestClose(reason);
     }
-  },
+  }
 
-  componentClickAway() {
+  componentClickAway = () => {
     this.requestClose('clickAway');
-  },
+  };
 
   _resizeAutoPosition() {
     this.setPlacement();
-  },
+  }
 
   getAnchorPosition(el) {
     if (!el) {
@@ -230,7 +228,7 @@ const Popover = React.createClass({
     a.center = a.top + ((a.bottom - a.top) / 2);
 
     return a;
-  },
+  }
 
   getTargetPosition(targetEl) {
     return {
@@ -241,9 +239,9 @@ const Popover = React.createClass({
       middle: targetEl.offsetWidth / 2,
       right: targetEl.offsetWidth,
     };
-  },
+  }
 
-  setPlacement(scrolling) {
+  setPlacement = (scrolling) => {
     if (!this.state.open) {
       return;
     }
@@ -281,7 +279,7 @@ const Popover = React.createClass({
     targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
     targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
     targetEl.style.maxHeight = `${window.innerHeight}px`;
-  },
+  };
 
   autoCloseWhenOffScreen(anchorPosition) {
     if (anchorPosition.top < 0 ||
@@ -290,13 +288,13 @@ const Popover = React.createClass({
       anchorPosition.left > window.innerWith) {
       this.requestClose('offScreen');
     }
-  },
+  }
 
   getOverlapMode(anchor, target, median) {
     if ([anchor, target].indexOf(median) >= 0) return 'auto';
     if (anchor === target) return 'inclusive';
     return 'exclusive';
-  },
+  }
 
   getPositions(anchor, target) {
     const a = {...anchor};
@@ -333,7 +331,7 @@ const Popover = React.createClass({
       positions: positions,
       anchorPos: a,
     };
-  },
+  }
 
   applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition) {
     const {positions, anchorPos} = this.getPositions(anchorOrigin, targetOrigin);
@@ -359,7 +357,7 @@ const Popover = React.createClass({
       }
     }
     return targetPosition;
-  },
+  }
 
   render() {
     return (
@@ -378,8 +376,7 @@ const Popover = React.createClass({
         />
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default Popover;

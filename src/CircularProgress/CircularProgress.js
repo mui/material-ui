@@ -63,9 +63,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const CircularProgress = React.createClass({
-
-  propTypes: {
+class CircularProgress extends React.Component {
+  static propTypes = {
     /**
      * Override the progress's color.
      */
@@ -106,33 +105,31 @@ const CircularProgress = React.createClass({
      * The value of progress, only works in determinate mode.
      */
     value: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    mode: 'indeterminate',
+    value: 0,
+    min: 0,
+    max: 100,
+    size: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      mode: 'indeterminate',
-      value: 0,
-      min: 0,
-      max: 100,
-      size: 1,
-    };
-  },
+  };
 
   componentDidMount() {
-    this._scalePath(this.refs.path);
-    this._rotateWrapper(this.refs.wrapper);
-  },
+    this.scalePath(this.refs.path);
+    this.rotateWrapper(this.refs.wrapper);
+  }
 
   componentWillUnmount() {
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
-  },
+  }
 
-  _scalePath(path, step) {
+  scalePath(path, step) {
     if (this.props.mode !== 'indeterminate') return;
 
     step = step || 0;
@@ -152,10 +149,10 @@ const CircularProgress = React.createClass({
       path.style.transitionDuration = '850ms';
     }
 
-    this.scalePathTimer = setTimeout(() => this._scalePath(path, step + 1), step ? 750 : 250);
-  },
+    this.scalePathTimer = setTimeout(() => this.scalePath(path, step + 1), step ? 750 : 250);
+  }
 
-  _rotateWrapper(wrapper) {
+  rotateWrapper(wrapper) {
     if (this.props.mode !== 'indeterminate') return;
 
     autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
@@ -167,8 +164,8 @@ const CircularProgress = React.createClass({
       autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
-    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
-  },
+    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
+  }
 
   render() {
     const {
@@ -194,7 +191,7 @@ const CircularProgress = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default CircularProgress;

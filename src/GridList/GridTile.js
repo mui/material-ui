@@ -57,9 +57,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const GridTile = React.createClass({
-
-  propTypes: {
+class GridTile extends React.Component {
+  static propTypes = {
     /**
      * An IconButton element to be used as secondary action target
      * (primary action target is the tile itself).
@@ -125,32 +124,30 @@ const GridTile = React.createClass({
      * Position of the title bar (container of title, subtitle and action icon).
      */
     titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    titlePosition: 'bottom',
+    titleBackground: 'rgba(0, 0, 0, 0.4)',
+    actionPosition: 'right',
+    cols: 1,
+    rows: 1,
+    containerElement: 'div',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      titlePosition: 'bottom',
-      titleBackground: 'rgba(0, 0, 0, 0.4)',
-      actionPosition: 'right',
-      cols: 1,
-      rows: 1,
-      containerElement: 'div',
-    };
-  },
+  };
 
   componentDidMount() {
-    this._ensureImageCover();
-  },
+    this.ensureImageCover();
+  }
 
   componentDidUpdate() {
-    this._ensureImageCover();
-  },
+    this.ensureImageCover();
+  }
 
-  _ensureImageCover() {
+  ensureImageCover() {
     let imgEl = this.refs.img;
 
     if (imgEl) {
@@ -171,7 +168,7 @@ const GridTile = React.createClass({
         imgEl.addEventListener('load', fit);
       }
     }
-  },
+  }
 
   render() {
     const {
@@ -231,7 +228,7 @@ const GridTile = React.createClass({
     return React.isValidElement(containerElement) ?
       React.cloneElement(containerElement, containerProps, [newChildren, titleBar]) :
       React.createElement(containerElement, containerProps, [newChildren, titleBar]);
-  },
-});
+  }
+}
 
 export default GridTile;

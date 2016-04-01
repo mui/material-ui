@@ -19,19 +19,19 @@ export default {
   },
 
   componentDidMount() {
-    this._updateDeviceSize();
-    if (!this.manuallyBindResize) this._bindResize();
+    this.updateDeviceSize();
+    if (!this.manuallyBindResize) this.bindResize();
   },
 
   componentWillUnmount() {
-    this._unbindResize();
+    this.unbindResize();
   },
 
   isDeviceSize(desiredSize) {
     return this.state.deviceSize >= desiredSize;
   },
 
-  _updateDeviceSize() {
+  updateDeviceSize() {
     const width = window.innerWidth;
 
     if (width >= 992) {
@@ -43,11 +43,11 @@ export default {
     }
   },
 
-  _bindResize() {
-    Events.on(window, 'resize', this._updateDeviceSize);
+  bindResize() {
+    Events.on(window, 'resize', this.updateDeviceSize);
   },
 
-  _unbindResize() {
-    Events.off(window, 'resize', this._updateDeviceSize);
+  unbindResize() {
+    Events.off(window, 'resize', this.updateDeviceSize);
   },
 };

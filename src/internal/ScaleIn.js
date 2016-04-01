@@ -2,9 +2,8 @@ import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import ScaleInChild from './ScaleInChild';
 
-const ScaleIn = React.createClass({
-
-  propTypes: {
+class ScaleIn extends React.Component {
+  static propTypes = {
     childStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
@@ -15,17 +14,15 @@ const ScaleIn = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    enterDelay: 0,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      enterDelay: 0,
-    };
-  },
+  };
 
   render() {
     const {
@@ -69,8 +66,7 @@ const ScaleIn = React.createClass({
         {newChildren}
       </ReactTransitionGroup>
     );
-  },
-
-});
+  }
+}
 
 export default ScaleIn;

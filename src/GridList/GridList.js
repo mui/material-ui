@@ -14,9 +14,8 @@ function getStyles(props) {
   };
 }
 
-const GridList = React.createClass({
-
-  propTypes: {
+class GridList extends React.Component {
+  static propTypes = {
     /**
      * Number of px for one cell height.
      */
@@ -41,19 +40,17 @@ const GridList = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    cols: 2,
+    padding: 4,
+    cellHeight: 180,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      cols: 2,
-      padding: 4,
-      cellHeight: 180,
-    };
-  },
+  };
 
   render() {
     const {
@@ -70,7 +67,7 @@ const GridList = React.createClass({
     const mergedRootStyles = Object.assign(styles.root, style);
 
     const wrappedChildren = React.Children.map(children, (currentChild) => {
-      if (React.isValidElement(currentChild) && currentChild.type.displayName === 'Subheader') {
+      if (React.isValidElement(currentChild) && currentChild.type.muiName === 'Subheader') {
         return currentChild;
       }
       const childCols = currentChild.props.cols || 1;
@@ -88,7 +85,7 @@ const GridList = React.createClass({
         {wrappedChildren}
       </div>
     );
-  },
-});
+  }
+}
 
 export default GridList;

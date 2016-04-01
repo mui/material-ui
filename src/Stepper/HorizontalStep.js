@@ -2,8 +2,8 @@ import React from 'react';
 import TouchRipple from '../internal/TouchRipple';
 import Avatar from '../Avatar';
 
-const HorizontalStep = React.createClass({
-  propTypes: {
+class HorizontalStep extends React.Component {
+  static propTypes = {
 
     /**
      * @ignore
@@ -68,14 +68,13 @@ const HorizontalStep = React.createClass({
      * The label of step which be shown in step header.
      */
     stepLabel: React.PropTypes.node,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
     createIcon: React.PropTypes.func,
     updateAvatarBackgroundColor: React.PropTypes.func,
-  },
-
+  };
 
   getStyles() {
     const {
@@ -166,19 +165,19 @@ const HorizontalStep = React.createClass({
     };
 
     return styles;
-  },
+  }
 
-  handleStepHeaderTouch() {
+  handleStepHeaderTouch = () => {
     this.props.onStepHeaderTouch(this.props.stepIndex, this);
-  },
+  };
 
-  handleStepHeaderMouseHover() {
+  handleStepHeaderMouseHover = () => {
     this.props.onStepHeaderHover(this.props.stepIndex);
-  },
+  };
 
-  handleStepHeaderMouseLeave() {
+  handleStepHeaderMouseLeave = () => {
     this.props.onStepHeaderHover(-1);
-  },
+  };
 
   render() {
     const styles = this.getStyles();
@@ -206,7 +205,7 @@ const HorizontalStep = React.createClass({
         </TouchRipple>
       </div>
     );
-  },
-});
+  }
+}
 
 export default HorizontalStep;

@@ -36,9 +36,8 @@ function getStyles(props, context) {
   };
 }
 
-const CardMedia = React.createClass({
-
-  propTypes: {
+class CardMedia extends React.Component {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
@@ -83,11 +82,11 @@ const CardMedia = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -108,12 +107,12 @@ const CardMedia = React.createClass({
     });
 
     const overlayChildren = React.Children.map(this.props.overlay, (child) => {
-      if (child.type.displayName === 'CardHeader' || child.type.displayName === 'CardTitle') {
+      if (child.type.muiName === 'CardHeader' || child.type.muiName === 'CardTitle') {
         return React.cloneElement(child, {
           titleColor: titleColor,
           subtitleColor: subtitleColor,
         });
-      } else if (child.type.displayName === 'CardText') {
+      } else if (child.type.muiName === 'CardText') {
         return React.cloneElement(child, {
           color: color,
         });
@@ -137,7 +136,7 @@ const CardMedia = React.createClass({
           </div> : ''}
       </div>
     );
-  },
-});
+  }
+}
 
 export default CardMedia;

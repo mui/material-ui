@@ -29,9 +29,8 @@ function getStyles(props, context, state) {
   };
 }
 
-const EnhancedTextarea = React.createClass({
-
-  propTypes: {
+class EnhancedTextarea extends React.Component {
+  static propTypes = {
     defaultValue: React.PropTypes.any,
     disabled: React.PropTypes.bool,
     onChange: React.PropTypes.func,
@@ -46,48 +45,44 @@ const EnhancedTextarea = React.createClass({
     textareaStyle: React.PropTypes.object,
     value: React.PropTypes.string,
     valueLink: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    rows: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      rows: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      height: this.props.rows * rowsHeight,
-    };
-  },
+  state = {
+    height: this.props.rows * rowsHeight,
+  };
 
   componentDidMount() {
-    this._syncHeightWithShadow();
-  },
+    this.syncHeightWithShadow();
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
-      this._syncHeightWithShadow(nextProps.value);
+      this.syncHeightWithShadow(nextProps.value);
     }
-  },
+  }
 
-  handleResize(event) {
-    this._syncHeightWithShadow(undefined, event);
-  },
+  handleResize = (event) => {
+    this.syncHeightWithShadow(undefined, event);
+  };
 
   getInputNode() {
     return this.refs.input;
-  },
+  }
 
   setValue(value) {
     this.getInputNode().value = value;
-    this._syncHeightWithShadow(value);
-  },
+    this.syncHeightWithShadow(value);
+  }
 
-  _syncHeightWithShadow(newValue, event) {
+  syncHeightWithShadow(newValue, event) {
     const shadow = this.refs.shadow;
 
     if (newValue !== undefined) {
@@ -111,10 +106,10 @@ const EnhancedTextarea = React.createClass({
         this.props.onHeightChange(event, newHeight);
       }
     }
-  },
+  }
 
-  handleChange(event) {
-    this._syncHeightWithShadow(event.target.value);
+  handleChange = (event) => {
+    this.syncHeightWithShadow(event.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
       this.props.valueLink.requestChange(event.target.value);
@@ -123,7 +118,7 @@ const EnhancedTextarea = React.createClass({
     if (this.props.onChange) {
       this.props.onChange(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -169,8 +164,7 @@ const EnhancedTextarea = React.createClass({
         />
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default EnhancedTextarea;

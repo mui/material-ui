@@ -4,9 +4,8 @@ import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
 import deprecated from '../utils/deprecatedPropType';
 
-const DatePicker = React.createClass({
-
-  propTypes: {
+class DatePicker extends React.Component {
+  static propTypes = {
     /**
      * Constructor for date formatting for the specified `locale`.
      * The constructor must follow this specification: ECMAScript Internationalization API 1.0 (ECMA-402).
@@ -159,30 +158,32 @@ const DatePicker = React.createClass({
      * Wordings used inside the button of the dialog.
      */
     wordings: deprecated(React.PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoOk: false,
+    cancelLabel: 'Cancel',
+    container: 'dialog',
+    disabled: false,
+    disableYearSelection: false,
+    firstDayOfWeek: 1,
+    okLabel: 'OK',
+    style: {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      autoOk: false,
-      cancelLabel: 'Cancel',
-      container: 'dialog',
-      disabled: false,
-      disableYearSelection: false,
-      firstDayOfWeek: 1,
-      okLabel: 'OK',
-      style: {},
-    };
-  },
+  state = {
+    date: undefined,
+  };
 
-  getInitialState() {
-    return {
+  componentWillMount() {
+    this.setState({
       date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
-    };
-  },
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.isControlled()) {
@@ -193,11 +194,11 @@ const DatePicker = React.createClass({
         });
       }
     }
-  },
+  }
 
   getDate() {
     return this.state.date;
-  },
+  }
 
   /**
    * Open the date-picker dialog programmatically from a parent.
@@ -217,16 +218,16 @@ const DatePicker = React.createClass({
         dialogDate: new Date(),
       }, this.refs.dialogWindow.show);
     }
-  },
+  }
 
   /**
    * Alias for `openDialog()` for an api consistent with TextField.
    */
   focus() {
     this.openDialog();
-  },
+  }
 
-  handleAccept(date) {
+  handleAccept = (date) => {
     if (!this.isControlled()) {
       this.setState({
         date: date,
@@ -234,26 +235,26 @@ const DatePicker = React.createClass({
     }
     if (this.props.onChange) this.props.onChange(null, date);
     if (this.props.valueLink) this.props.valueLink.requestChange(date);
-  },
+  };
 
-  handleFocus(event) {
+  handleFocus = (event) => {
     event.target.blur();
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (this.props.onTouchTap) this.props.onTouchTap(event);
 
     if (!this.props.disabled)
       setTimeout(() => {
         this.openDialog();
       }, 0);
-  },
+  };
 
   isControlled() {
     return this.props.hasOwnProperty('value') ||
       this.props.hasOwnProperty('valueLink');
-  },
+  }
 
   getControlledDate(props = this.props) {
     if (props.value instanceof Date) {
@@ -261,9 +262,9 @@ const DatePicker = React.createClass({
     } else if (props.valueLink && props.valueLink.value instanceof Date) {
       return props.valueLink.value;
     }
-  },
+  }
 
-  formatDate(date) {
+  formatDate = (date) => {
     if (this.props.locale && this.props.DateTimeFormat) {
       return new this.props.DateTimeFormat(this.props.locale, {
         day: 'numeric',
@@ -273,7 +274,7 @@ const DatePicker = React.createClass({
     } else {
       return formatIso(date);
     }
-  },
+  };
 
   render() {
     const {
@@ -336,8 +337,7 @@ const DatePicker = React.createClass({
         />
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default DatePicker;

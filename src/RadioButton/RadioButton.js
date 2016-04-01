@@ -50,9 +50,8 @@ function getStyles(props, context) {
   };
 }
 
-const RadioButton = React.createClass({
-
-  propTypes: {
+class RadioButton extends React.Component {
+  static propTypes = {
     /**
      * @ignore
      * checked if true
@@ -118,41 +117,39 @@ const RadioButton = React.createClass({
      * The value of the radio button.
      */
     value: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    checked: false,
+    disabled: false,
+    labelPosition: 'right',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      checked: false,
-      disabled: false,
-      labelPosition: 'right',
-    };
-  },
-
-  handleStateChange() {
-  },
+  handleStateChange = () => {
+  };
 
   // Only called when selected, not when unselected.
-  handleSwitch(event) {
+  handleSwitch = (event) => {
     if (this.props.onCheck) this.props.onCheck(event, this.props.value);
-  },
+  };
 
   isChecked() {
     return this.refs.enhancedSwitch.isSwitched();
-  },
+  }
 
   // Use RadioButtonGroup.setSelectedValue(newSelectionValue) to set a
   // RadioButton's checked value.
   setChecked(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
-  },
+  }
 
   getValue() {
     return this.refs.enhancedSwitch.getValue();
-  },
+  }
 
   render() {
     const {
@@ -215,8 +212,7 @@ const RadioButton = React.createClass({
         switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />
     );
-  },
-
-});
+  }
+}
 
 export default RadioButton;

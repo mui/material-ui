@@ -48,8 +48,8 @@ function getStyles(props, context) {
   };
 }
 
-const Badge = React.createClass({
-  propTypes: {
+class Badge extends React.Component {
+  static propTypes = {
     /**
      * This is the content rendered within the badge.
      */
@@ -84,18 +84,16 @@ const Badge = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    primary: false,
+    secondary: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      primary: false,
-      secondary: false,
-    };
-  },
+  };
 
   render() {
     const {
@@ -117,7 +115,7 @@ const Badge = React.createClass({
         </span>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Badge;

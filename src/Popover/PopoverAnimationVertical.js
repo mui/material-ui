@@ -22,9 +22,8 @@ function getStyles(props, context, state) {
   };
 }
 
-const PopoverAnimationVertical = React.createClass({
-
-  propTypes: {
+class PopoverAnimationVertical extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     open: React.PropTypes.bool.isRequired,
@@ -35,34 +34,30 @@ const PopoverAnimationVertical = React.createClass({
     style: React.PropTypes.object,
     targetOrigin: propTypes.origin,
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    style: {},
+    zDepth: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      style: {},
-      zDepth: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      open: false,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   componentDidMount() {
     this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       open: nextProps.open,
     });
-  },
+  }
 
   render() {
     const {
@@ -82,7 +77,7 @@ const PopoverAnimationVertical = React.createClass({
           {this.props.children}
       </Paper>
     );
-  },
-});
+  }
+}
 
 export default PopoverAnimationVertical;

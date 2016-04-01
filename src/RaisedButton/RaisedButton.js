@@ -106,9 +106,10 @@ function getStyles(props, context, state) {
   };
 }
 
-const RaisedButton = React.createClass({
+class RaisedButton extends React.Component {
+  static muiName = 'RaisedButton';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Override the background color. Always takes precedence unless the button is disabled.
      */
@@ -241,31 +242,34 @@ const RaisedButton = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disabled: false,
+    labelPosition: 'after',
+    fullWidth: false,
+    primary: false,
+    secondary: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps: function() {
-    return {
-      disabled: false,
-      labelPosition: 'after',
-      fullWidth: false,
-      primary: false,
-      secondary: false,
-    };
-  },
+  state = {
+    hovered: false,
+    touched: false,
+    initialZDepth: 0,
+    zDepth: 0,
+  };
 
-  getInitialState() {
+  componentWillMount() {
     const zDepth = this.props.disabled ? 0 : 1;
-    return {
-      hovered: false,
-      touched: false,
-      initialZDepth: zDepth,
+    this.setState({
       zDepth: zDepth,
-    };
-  },
+      initialZDepth: zDepth,
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     const zDepth = nextProps.disabled ? 0 : 1;
@@ -273,47 +277,47 @@ const RaisedButton = React.createClass({
       zDepth: zDepth,
       initialZDepth: zDepth,
     });
-  },
+  }
 
-  _handleMouseDown(event) {
+  handleMouseDown = (event) => {
     //only listen to left clicks
     if (event.button === 0) {
       this.setState({zDepth: this.state.initialZDepth + 1});
     }
     if (this.props.onMouseDown) this.props.onMouseDown(event);
-  },
+  };
 
-  _handleMouseUp(event) {
+  handleMouseUp = (event) => {
     this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onMouseUp) this.props.onMouseUp(event);
-  },
+  };
 
-  _handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
-  },
+  };
 
-  _handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
-  },
+  };
 
-  _handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.setState({
       touch: true,
       zDepth: this.state.initialZDepth + 1,
     });
     if (this.props.onTouchStart) this.props.onTouchStart(event);
-  },
+  };
 
-  _handleTouchEnd(event) {
+  handleTouchEnd = (event) => {
     this.setState({zDepth: this.state.initialZDepth});
     if (this.props.onTouchEnd) this.props.onTouchEnd(event);
-  },
+  };
 
-  handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus = (event, keyboardFocused) => {
     const styles = getStyles(this.props, this.context);
 
     if (keyboardFocused && !this.props.disabled) {
@@ -329,7 +333,7 @@ const RaisedButton = React.createClass({
       });
       this.refs.overlay.style.backgroundColor = 'transparent';
     }
-  },
+  };
 
   render() {
     const {
@@ -351,12 +355,12 @@ const RaisedButton = React.createClass({
     const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
 
     const buttonEventHandlers = disabled ? {} : {
-      onMouseDown: this._handleMouseDown,
-      onMouseUp: this._handleMouseUp,
-      onMouseLeave: this._handleMouseLeave,
-      onMouseEnter: this._handleMouseEnter,
-      onTouchStart: this._handleTouchStart,
-      onTouchEnd: this._handleTouchEnd,
+      onMouseDown: this.handleMouseDown,
+      onMouseUp: this.handleMouseUp,
+      onMouseLeave: this.handleMouseLeave,
+      onMouseEnter: this.handleMouseEnter,
+      onTouchStart: this.handleTouchStart,
+      onTouchEnd: this.handleTouchEnd,
       onKeyboardFocus: this.handleKeyboardFocus,
     };
 
@@ -411,8 +415,7 @@ const RaisedButton = React.createClass({
         </EnhancedButton>
       </Paper>
     );
-  },
-
-});
+  }
+}
 
 export default RaisedButton;

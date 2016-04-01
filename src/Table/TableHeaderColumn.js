@@ -24,9 +24,8 @@ function getStyles(props, context) {
   };
 }
 
-const TableHeaderColumn = React.createClass({
-
-  propTypes: {
+class TableHeaderColumn extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
 
     /**
@@ -66,29 +65,27 @@ const TableHeaderColumn = React.createClass({
      * Additional styling that can be applied to the tooltip.
      */
     tooltipStyle: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  _onMouseEnter() {
+  onMouseEnter = () => {
     if (this.props.tooltip !== undefined) this.setState({hovered: true});
-  },
+  };
 
-  _onMouseLeave() {
+  onMouseLeave = () => {
     if (this.props.tooltip !== undefined) this.setState({hovered: false});
-  },
+  };
 
-  _onClick(event) {
+  onClick = (event) => {
     if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
-  },
+  };
 
   render() {
     const {
@@ -106,9 +103,9 @@ const TableHeaderColumn = React.createClass({
     const styles = getStyles(this.props, this.context);
 
     const handlers = {
-      onMouseEnter: this._onMouseEnter,
-      onMouseLeave: this._onMouseLeave,
-      onClick: this._onClick,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
+      onClick: this.onClick,
     };
 
     let tooltipNode;
@@ -135,8 +132,7 @@ const TableHeaderColumn = React.createClass({
         {children}
       </th>
     );
-  },
-
-});
+  }
+}
 
 export default TableHeaderColumn;

@@ -1,9 +1,8 @@
 import React from 'react';
 import transitions from '../styles/transitions';
 
-const SvgIcon = React.createClass({
-
-  propTypes: {
+class SvgIcon extends React.Component {
+  static propTypes = {
     /**
      * Elements passed into the SVG Icon.
      */
@@ -45,35 +44,31 @@ const SvgIcon = React.createClass({
      * and each unit will be worth 10px.
      */
     viewBox: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    viewBox: '0 0 24 24',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      viewBox: '0 0 24 24',
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-    };
-  },
-
-  handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
-  },
+  };
 
-  handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     this.setState({hovered: true});
     this.props.onMouseEnter(event);
-  },
+  };
 
   render() {
     const {
@@ -117,8 +112,7 @@ const SvgIcon = React.createClass({
         {children}
       </svg>
     );
-  },
-
-});
+  }
+}
 
 export default SvgIcon;

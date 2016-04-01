@@ -61,9 +61,10 @@ function getStyles(props, context) {
   return styles;
 }
 
-const AppBar = React.createClass({
+class AppBar extends React.Component {
+  static muiName = 'AppBar';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Can be used to render a tab inside an app bar for instance.
      */
@@ -149,19 +150,17 @@ const AppBar = React.createClass({
      * The shadow of the app bar is also dependent on this property.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    showMenuIconButton: true,
+    title: '',
+    zDepth: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      showMenuIconButton: true,
-      title: '',
-      zDepth: 1,
-    };
-  },
+  };
 
   componentDidMount() {
     warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Properties iconElementLeft
@@ -169,25 +168,25 @@ const AppBar = React.createClass({
 
     warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Properties iconElementRight
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
-  },
+  }
 
-  handleTouchTapLeftIconButton(event) {
+  handleTouchTapLeftIconButton = (event) => {
     if (this.props.onLeftIconButtonTouchTap) {
       this.props.onLeftIconButtonTouchTap(event);
     }
-  },
+  };
 
-  handleTouchTapRightIconButton(event) {
+  handleTouchTapRightIconButton = (event) => {
     if (this.props.onRightIconButtonTouchTap) {
       this.props.onRightIconButtonTouchTap(event);
     }
-  },
+  };
 
-  handleTitleTouchTap(event) {
+  handleTitleTouchTap = (event) => {
     if (this.props.onTitleTouchTap) {
       this.props.onTitleTouchTap(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -225,12 +224,10 @@ const AppBar = React.createClass({
       let iconElementLeftNode = iconElementLeft;
 
       if (iconElementLeft) {
-        switch (iconElementLeft.type.displayName) {
-          case 'IconButton':
-            iconElementLeftNode = React.cloneElement(iconElementLeft, {
-              iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementLeft.props.iconStyle),
-            });
-            break;
+        if (iconElementLeft.type.muiName === 'IconButton') {
+          iconElementLeftNode = React.cloneElement(iconElementLeft, {
+            iconStyle: Object.assign({}, styles.iconButtonIconStyle, iconElementLeft.props.iconStyle),
+          });
         }
 
         menuElementLeft = (
@@ -261,7 +258,7 @@ const AppBar = React.createClass({
     if (iconElementRight) {
       let iconElementRightNode = iconElementRight;
 
-      switch (iconElementRight.type.displayName) {
+      switch (iconElementRight.type.muiName) {
         case 'IconMenu':
         case 'IconButton':
           iconElementRightNode = React.cloneElement(iconElementRight, {
@@ -274,6 +271,8 @@ const AppBar = React.createClass({
             style: Object.assign({}, styles.flatButton, iconElementRight.props.style),
           });
           break;
+
+        default:
       }
 
       menuElementRight = (
@@ -306,7 +305,7 @@ const AppBar = React.createClass({
         {children}
       </Paper>
     );
-  },
-});
+  }
+}
 
 export default AppBar;

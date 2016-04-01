@@ -15,9 +15,10 @@ function getStyles(props, context) {
   };
 }
 
-const TableFooter = React.createClass({
+class TableFooter extends React.Component {
+  static muiName = 'TableFooter';
 
-  propTypes: {
+  static propTypes = {
     /**
      * @ignore
      * Controls whether or not header rows should be adjusted
@@ -42,18 +43,16 @@ const TableFooter = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    adjustForCheckbox: true,
+    style: {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      adjustForCheckbox: true,
-      style: {},
-    };
-  },
+  };
 
   render() {
     const {
@@ -91,8 +90,7 @@ const TableFooter = React.createClass({
         {footerRows}
       </tfoot>
     );
-  },
-
-});
+  }
+}
 
 export default TableFooter;

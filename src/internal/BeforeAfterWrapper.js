@@ -40,9 +40,8 @@ const styles = {
   },
 };
 
-const BeforeAfterWrapper = React.createClass({
-
-  propTypes: {
+class BeforeAfterWrapper extends React.Component {
+  static propTypes = {
     afterElementType: React.PropTypes.string,
     afterStyle: React.PropTypes.object,
     beforeElementType: React.PropTypes.string,
@@ -54,19 +53,17 @@ const BeforeAfterWrapper = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    beforeElementType: 'div',
+    afterElementType: 'div',
+    elementType: 'div',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      beforeElementType: 'div',
-      afterElementType: 'div',
-      elementType: 'div',
-    };
-  },
+  };
 
   render() {
     const {
@@ -105,8 +102,7 @@ const BeforeAfterWrapper = React.createClass({
     props.style = prepareStyles(Object.assign({}, this.props.style));
 
     return React.createElement(this.props.elementType, props, children);
-  },
-
-});
+  }
+}
 
 export default BeforeAfterWrapper;

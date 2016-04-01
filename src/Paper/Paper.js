@@ -29,9 +29,8 @@ function getStyles(props, context) {
   };
 }
 
-const Paper = React.createClass({
-
-  propTypes: {
+class Paper extends React.Component {
+  static propTypes = {
     /**
      * Children passed into the paper element.
      */
@@ -62,20 +61,18 @@ const Paper = React.createClass({
      * This number represents the zDepth of the paper shadow.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    circle: false,
+    rounded: true,
+    transitionEnabled: true,
+    zDepth: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      circle: false,
-      rounded: true,
-      transitionEnabled: true,
-      zDepth: 1,
-    };
-  },
+  };
 
   render() {
     const {
@@ -92,7 +89,7 @@ const Paper = React.createClass({
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default Paper;

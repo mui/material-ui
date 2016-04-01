@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
+import shallowEqual from 'recompose/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
@@ -63,9 +64,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const Menu = React.createClass({
-
-  propTypes: {
+class Menu extends React.Component {
+  static propTypes = {
     /**
      * If true, the menu will apply transitions when it
      * is added to the DOM. In order for transitions to
@@ -198,43 +198,42 @@ const Menu = React.createClass({
      * or another component that provides zDepth.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoWidth: true,
+    desktop: false,
+    disableAutoFocus: false,
+    initiallyKeyboardFocused: false,
+    maxHeight: null,
+    multiple: false,
+    onChange: () => {},
+    onEscKeyDown: () => {},
+    onItemTouchTap: () => {},
+    onKeyDown: () => {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      autoWidth: true,
-      desktop: false,
-      disableAutoFocus: false,
-      initiallyKeyboardFocused: false,
-      maxHeight: null,
-      multiple: false,
-      onChange: () => {},
-      onEscKeyDown: () => {},
-      onItemTouchTap: () => {},
-      onKeyDown: () => {},
+  constructor(props, context) {
+    super(props, context);
+    const filteredChildren = this.getFilteredChildren(props.children);
+    const selectedIndex = this.getSelectedIndex(props, filteredChildren);
+
+    this.state = {
+      focusIndex: props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
+      isKeyboardFocused: props.initiallyKeyboardFocused,
+      keyWidth: props.desktop ? 64 : 56,
     };
-  },
-
-  getInitialState() {
-    const filteredChildren = this.getFilteredChildren(this.props.children);
-    const selectedIndex = this.getSelectedIndex(this.props, filteredChildren);
-
-    return {
-      focusIndex: this.props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
-      isKeyboardFocused: this.props.initiallyKeyboardFocused,
-      keyWidth: this.props.desktop ? 64 : 56,
-    };
-  },
+  }
 
   componentDidMount() {
     if (this.props.autoWidth) this.setWidth();
     if (!this.props.animated) this.animateOpen();
     this.setScollPosition();
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     const filteredChildren = this.getFilteredChildren(nextProps.children);
@@ -244,19 +243,26 @@ const Menu = React.createClass({
       focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
     });
-  },
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   componentDidUpdate() {
     if (this.props.autoWidth) this.setWidth();
-  },
+  }
 
-  handleClickAway(event) {
+  handleClickAway = (event) => {
     if (event.defaultPrevented) {
       return;
     }
 
     this.setFocusIndex(-1, false);
-  },
+  };
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
@@ -264,13 +270,13 @@ const Menu = React.createClass({
       value: props.value,
       requestChange: props.onChange,
     };
-  },
+  }
 
   setKeyboardFocused(keyboardFocused) {
     this.setState({
       isKeyboardFocused: keyboardFocused,
     });
-  },
+  }
 
   getFilteredChildren(children) {
     const filteredChildren = [];
@@ -280,7 +286,7 @@ const Menu = React.createClass({
       }
     });
     return filteredChildren;
-  },
+  }
 
   animateOpen() {
     const rootStyle = ReactDOM.findDOMNode(this).style;
@@ -294,7 +300,7 @@ const Menu = React.createClass({
     for (let i = 0; i < menuContainers.length; ++i) {
       menuContainers[i].style.opacity = 1;
     }
-  },
+  }
 
   cloneMenuItem(child, childIndex, styles, index) {
     const {
@@ -328,7 +334,7 @@ const Menu = React.createClass({
       ref: isFocused ? 'focusedMenuItem' : null,
       style: mergedChildrenStyles,
     });
-  },
+  }
 
   decrementKeyboardFocusIndex() {
     let index = this.state.focusIndex;
@@ -337,7 +343,7 @@ const Menu = React.createClass({
     if (index < 0) index = 0;
 
     this.setFocusIndex(index, true);
-  },
+  }
 
   getCascadeChildrenCount(filteredChildren) {
     const {
@@ -355,7 +361,7 @@ const Menu = React.createClass({
     //max menu height
     filteredChildren.forEach((child) => {
       if (currentHeight < maxHeight) {
-        const childIsADivider = child.type && child.type.displayName === 'Divider';
+        const childIsADivider = child.type && child.type.muiName === 'Divider';
 
         currentHeight += childIsADivider ? 16 : menuItemHeight;
         count++;
@@ -363,33 +369,33 @@ const Menu = React.createClass({
     });
 
     return count;
-  },
+  }
 
   getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
       if (!childIsADivider && !childIsDisabled) menuItemCount++;
     });
     return menuItemCount;
-  },
+  }
 
   getSelectedIndex(props, filteredChildren) {
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === 'Divider';
 
       if (this.isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
     });
 
     return selectedIndex;
-  },
+  }
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     const filteredChildren = this.getFilteredChildren(this.props.children);
     switch (keycode(event)) {
       case 'down':
@@ -413,7 +419,7 @@ const Menu = React.createClass({
         break;
     }
     this.props.onKeyDown(event);
-  },
+  };
 
   handleMenuItemTouchTap(event, item, index) {
     const children = this.props.children;
@@ -437,7 +443,7 @@ const Menu = React.createClass({
     }
 
     this.props.onItemTouchTap(event, item, index);
-  },
+  }
 
   incrementKeyboardFocusIndex(filteredChildren) {
     let index = this.state.focusIndex;
@@ -447,7 +453,7 @@ const Menu = React.createClass({
     if (index > maxIndex) index = maxIndex;
 
     this.setFocusIndex(index, true);
-  },
+  }
 
   isChildSelected(child, props) {
     const menuValue = this.getValueLink(props).value;
@@ -458,14 +464,14 @@ const Menu = React.createClass({
     } else {
       return child.props.hasOwnProperty('value') && menuValue === childValue;
     }
-  },
+  }
 
   setFocusIndex(newIndex, isKeyboardFocused) {
     this.setState({
       focusIndex: newIndex,
       isKeyboardFocused: isKeyboardFocused,
     });
-  },
+  }
 
   setScollPosition() {
     const desktop = this.props.desktop;
@@ -482,7 +488,7 @@ const Menu = React.createClass({
 
       ReactDOM.findDOMNode(this.refs.scrollContainer).scrollTop = scrollTop;
     }
-  },
+  }
 
   setWidth() {
     const el = ReactDOM.findDOMNode(this);
@@ -500,7 +506,7 @@ const Menu = React.createClass({
 
     el.style.width = `${newWidth}px`;
     listEl.style.width = `${newWidth}px`;
-  },
+  }
 
   render() {
     const {
@@ -543,7 +549,7 @@ const Menu = React.createClass({
 
     let menuItemIndex = 0;
     const newChildren = React.Children.map(filteredChildren, (child, index) => {
-      const childIsADivider = child.type && child.type.displayName === 'Divider';
+      const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
       let childrenContainerStyles = {};
 
@@ -592,8 +598,7 @@ const Menu = React.createClass({
         </div>
       </ClickAwayListener>
     );
-  },
-
-});
+  }
+}
 
 export default Menu;

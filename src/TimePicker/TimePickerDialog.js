@@ -5,9 +5,8 @@ import Clock from './Clock';
 import Dialog from '../Dialog';
 import FlatButton from '../FlatButton';
 
-const TimePickerDialog = React.createClass({
-
-  propTypes: {
+class TimePickerDialog extends React.Component {
+  static propTypes = {
     autoOk: React.PropTypes.bool,
     cancelLabel: React.PropTypes.string,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
@@ -16,65 +15,61 @@ const TimePickerDialog = React.createClass({
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    okLabel: 'OK',
+    cancelLabel: 'Cancel',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      okLabel: 'OK',
-      cancelLabel: 'Cancel',
-    };
-  },
-
-  getInitialState() {
-    return {
-      open: false,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   getTheme() {
     return this.context.muiTheme.timePicker;
-  },
+  }
 
   show() {
     if (this.props.onShow && !this.state.open) this.props.onShow();
     this.setState({
       open: true,
     });
-  },
+  }
 
   dismiss() {
     if (this.props.onDismiss && this.state.open) this.props.onDismiss();
     this.setState({
       open: false,
     });
-  },
+  }
 
-  handleRequestClose() {
+  handleRequestClose = () => {
     this.dismiss();
-  },
+  };
 
-  handleTouchTapCancel() {
+  handleTouchTapCancel = () => {
     this.dismiss();
-  },
+  };
 
-  handleTouchTapOK() {
+  handleTouchTapOK = () => {
     this.dismiss();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.clock.getSelectedTime());
     }
-  },
+  };
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     switch (keycode(event)) {
       case 'enter':
         this.handleTouchTapOK();
         break;
     }
-  },
+  };
 
   render() {
     const {
@@ -143,8 +138,7 @@ const TimePickerDialog = React.createClass({
         }
       </Dialog>
     );
-  },
-
-});
+  }
+}
 
 export default TimePickerDialog;

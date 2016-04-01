@@ -37,9 +37,8 @@ function getStyles(props, context) {
   return style;
 }
 
-const Overlay = React.createClass({
-
-  propTypes: {
+class Overlay extends React.Component {
+  static propTypes = {
     autoLockScrolling: React.PropTypes.bool,
     show: React.PropTypes.bool.isRequired,
 
@@ -48,63 +47,61 @@ const Overlay = React.createClass({
      */
     style: React.PropTypes.object,
     transitionEnabled: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoLockScrolling: true,
+    transitionEnabled: true,
+    style: {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      autoLockScrolling: true,
-      transitionEnabled: true,
-      style: {},
-    };
-  },
+  };
 
   componentDidMount() {
     if (this.props.show) {
-      this._applyAutoLockScrolling(this.props);
+      this.applyAutoLockScrolling(this.props);
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.show !== nextProps.show) {
-      this._applyAutoLockScrolling(nextProps);
+      this.applyAutoLockScrolling(nextProps);
     }
-  },
+  }
 
   componentWillUnmount() {
     if (this.props.show === true) {
-      this._allowScrolling();
+      this.allowScrolling();
     }
-  },
+  }
 
   setOpacity(opacity) {
     this.refs.overlay.style.opacity = opacity;
-  },
+  }
 
-  _applyAutoLockScrolling(props) {
+  applyAutoLockScrolling(props) {
     if (props.autoLockScrolling) {
       if (props.show) {
-        this._preventScrolling();
+        this.preventScrolling();
       } else {
-        this._allowScrolling();
+        this.allowScrolling();
       }
     }
-  },
+  }
 
-  _preventScrolling() {
+  preventScrolling() {
     const body = document.getElementsByTagName('body')[0];
-    this._originalBodyOverflow = body.style.overflow;
+    this.originalBodyOverflow = body.style.overflow;
 
     body.style.overflow = 'hidden';
-  },
+  }
 
-  _allowScrolling() {
+  allowScrolling() {
     const body = document.getElementsByTagName('body')[0];
-    body.style.overflow = this._originalBodyOverflow || '';
-  },
+    body.style.overflow = this.originalBodyOverflow || '';
+  }
 
   render() {
     const {
@@ -119,8 +116,7 @@ const Overlay = React.createClass({
     return (
       <div {...other} ref="overlay" style={prepareStyles(Object.assign(styles.root, style))} />
     );
-  },
-
-});
+  }
+}
 
 export default Overlay;

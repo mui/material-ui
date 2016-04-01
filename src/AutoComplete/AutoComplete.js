@@ -41,9 +41,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const AutoComplete = React.createClass({
-
-  propTypes: {
+class AutoComplete extends React.Component {
+  static propTypes = {
     /**
      * Location of the anchor for the auto complete.
      */
@@ -185,74 +184,74 @@ const AutoComplete = React.createClass({
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: deprecated(React.PropTypes.bool, 'Instead, use openOnFocus'),
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left',
+    },
+    animated: true,
+    disableFocusRipple: true,
+    filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
+    fullWidth: false,
+    open: false,
+    openOnFocus: false,
+    onUpdateInput: () => {},
+    onNewRequest: () => {},
+    searchText: '',
+    menuCloseDelay: 300,
+    targetOrigin: {
+      vertical: 'top',
+      horizontal: 'left',
+    },
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      anchorOrigin: {
-        vertical: 'bottom',
-        horizontal: 'left',
-      },
-      animated: true,
-      disableFocusRipple: true,
-      filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
-      fullWidth: false,
-      open: false,
-      openOnFocus: false,
-      onUpdateInput: () => {},
-      onNewRequest: () => {},
-      searchText: '',
-      menuCloseDelay: 300,
-      targetOrigin: {
-        vertical: 'top',
-        horizontal: 'left',
-      },
-    };
-  },
-
-  getInitialState() {
-    return {
-      searchText: this.props.searchText,
-      open: this.props.open,
-      anchorEl: null,
-      focusTextField: true,
-    };
-  },
+  state = {
+    anchorEl: null,
+    focusTextField: true,
+    open: false,
+    searchText: undefined,
+  };
 
   componentWillMount() {
     this.requestsList = [];
-  },
+    this.setState({
+      open: this.props.open,
+      searchText: this.props.searchText,
+    });
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.searchText !== nextProps.searchText) {
       this.setState({
         searchText: nextProps.searchText,
       });
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timerTouchTapCloseId);
-  },
+  }
 
   close() {
     this.setState({
       open: false,
       anchorEl: null,
     });
-  },
+  }
 
-  handleRequestClose() {
+  handleRequestClose = () => {
     // Only take into account the Popover clickAway when we are
     // not focusing the TextField.
     if (!this.state.focusTextField) {
       this.close();
     }
-  },
+  };
 
   setValue(textValue) {
     warning(false, 'setValue() is deprecated, use the searchText property.');
@@ -260,20 +259,20 @@ const AutoComplete = React.createClass({
     this.setState({
       searchText: textValue,
     });
-  },
+  }
 
   getValue() {
     warning(false, 'getValue() is deprecated.');
 
     return this.state.searchText;
-  },
+  }
 
-  handleMouseDown(event) {
+  handleMouseDown = (event) => {
     // Keep the TextField focused
     event.preventDefault();
-  },
+  };
 
-  handleItemTouchTap(event, child) {
+  handleItemTouchTap = (event, child) => {
     const dataSource = this.props.dataSource;
 
     const index = parseInt(child.key, 10);
@@ -289,13 +288,13 @@ const AutoComplete = React.createClass({
       this.close();
       this.timerTouchTapCloseId = null;
     }, this.props.menuCloseDelay);
-  },
+  };
 
-  handleEscKeyDown() {
+  handleEscKeyDown = () => {
     this.close();
-  },
+  };
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     switch (keycode(event)) {
       case 'enter':
         this.close();
@@ -321,9 +320,9 @@ const AutoComplete = React.createClass({
       default:
         break;
     }
-  },
+  };
 
-  handleChange(event) {
+  handleChange = (event) => {
     const searchText = event.target.value;
 
     // Make sure that we have a new searchText.
@@ -339,9 +338,9 @@ const AutoComplete = React.createClass({
     }, () => {
       this.props.onUpdateInput(searchText, this.props.dataSource);
     });
-  },
+  };
 
-  handleBlur(event) {
+  handleBlur = (event) => {
     if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
       this.close();
     }
@@ -349,9 +348,9 @@ const AutoComplete = React.createClass({
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-  },
+  };
 
-  handleFocus(event) {
+  handleFocus = (event) => {
     if (!this.state.open && (this.props.triggerUpdateOnFocus || this.props.openOnFocus)) {
       this.setState({
         open: true,
@@ -366,15 +365,15 @@ const AutoComplete = React.createClass({
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-  },
+  };
 
   blur() {
     this.refs.searchTextField.blur();
-  },
+  }
 
   focus() {
     this.refs.searchTextField.focus();
-  },
+  }
 
   render() {
     const {
@@ -430,8 +429,8 @@ const AutoComplete = React.createClass({
         case 'object':
           if (item && typeof item.text === 'string') {
             if (this.props.filter(searchText, item.text, item)) {
-              if (item.value.type && (item.value.type.displayName === MenuItem.displayName ||
-                 item.value.type.displayName === Divider.displayName)) {
+              if (item.value.type && (item.value.type.muiName === MenuItem.muiName ||
+                 item.value.type.muiName === Divider.muiName)) {
                 requestsList.push({
                   text: item.text,
                   value: React.cloneElement(item.value, {
@@ -454,6 +453,9 @@ const AutoComplete = React.createClass({
             }
           }
           break;
+
+        default:
+          // Do nothing
       }
 
       return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults);
@@ -510,9 +512,8 @@ const AutoComplete = React.createClass({
         </Popover>
       </div>
     );
-  },
-
-});
+  }
+}
 
 AutoComplete.levenshteinDistance = (searchText, key) => {
   const current = [];

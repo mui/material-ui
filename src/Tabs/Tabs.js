@@ -18,9 +18,8 @@ function getStyles(props, context) {
   };
 }
 
-const Tabs = React.createClass({
-
-  propTypes: {
+class Tabs extends React.Component {
+  static propTypes = {
     /**
      * Should be used to pass `Tab` components.
      */
@@ -78,31 +77,31 @@ const Tabs = React.createClass({
      * Makes Tabs controllable and selects the tab whose value prop matches this prop.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    initialSelectedIndex: 0,
+    onChange: () => {},
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      initialSelectedIndex: 0,
-      onChange: () => {},
-    };
-  },
+  state = {selectedIndex: 0};
 
-  getInitialState() {
+  componentWillMount() {
     const valueLink = this.getValueLink(this.props);
     const initialIndex = this.props.initialSelectedIndex;
 
-    return {
+    this.setState({
       selectedIndex: valueLink.value !== undefined ?
-        this._getSelectedIndex(this.props) :
+        this.getSelectedIndex(this.props) :
         initialIndex < this.getTabCount() ?
         initialIndex :
         0,
-    };
-  },
+    });
+  }
 
   componentWillReceiveProps(newProps, nextContext) {
     const valueLink = this.getValueLink(newProps);
@@ -111,11 +110,11 @@ const Tabs = React.createClass({
     };
 
     if (valueLink.value !== undefined) {
-      newState.selectedIndex = this._getSelectedIndex(newProps);
+      newState.selectedIndex = this.getSelectedIndex(newProps);
     }
 
     this.setState(newState);
-  },
+  }
 
   getEvenWidth() {
     return (
@@ -123,7 +122,7 @@ const Tabs = React.createClass({
         .getComputedStyle(ReactDOM.findDOMNode(this))
         .getPropertyValue('width'), 10)
     );
-  },
+  }
 
   getTabs() {
     const tabs = [];
@@ -133,11 +132,11 @@ const Tabs = React.createClass({
       }
     });
     return tabs;
-  },
+  }
 
   getTabCount() {
     return this.getTabs().length;
-  },
+  }
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
@@ -145,9 +144,9 @@ const Tabs = React.createClass({
       value: props.value,
       requestChange: props.onChange,
     };
-  },
+  }
 
-  _getSelectedIndex(props) {
+  getSelectedIndex(props) {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
@@ -158,9 +157,9 @@ const Tabs = React.createClass({
     });
 
     return selectedIndex;
-  },
+  }
 
-  _handleTabTouchTap(value, event, tab) {
+  handleTabTouchTap = (value, event, tab) => {
     const valueLink = this.getValueLink(this.props);
     const tabIndex = tab.props.tabIndex;
 
@@ -174,13 +173,13 @@ const Tabs = React.createClass({
     if (tab.props.onActive) {
       tab.props.onActive(tab);
     }
-  },
+  };
 
-  _getSelected(tab, index) {
+  getSelected(tab, index) {
     const valueLink = this.getValueLink(this.props);
     return valueLink.value ? valueLink.value === tab.props.value :
       this.state.selectedIndex === index;
-  },
+  }
 
   render() {
     const {
@@ -202,9 +201,9 @@ const Tabs = React.createClass({
     const width = 100 / this.getTabCount();
 
     const tabs = this.getTabs().map((tab, index) => {
-      warning(tab.type && tab.type.displayName === 'Tab',
+      warning(tab.type && tab.type.muiName === 'Tab',
         `Tabs only accepts Tab Components as children.
-        Found ${tab.type.displayName || tab.type} as child number ${index + 1} of Tabs`);
+        Found ${tab.type.muiName || tab.type} as child number ${index + 1} of Tabs`);
 
       warning(!tabValue || tab.props.value !== undefined,
         `Tabs value prop has been passed, but Tab ${index}
@@ -214,15 +213,15 @@ const Tabs = React.createClass({
       tabContent.push(tab.props.children ?
         React.createElement(tabTemplate || TabTemplate, {
           key: index,
-          selected: this._getSelected(tab, index),
+          selected: this.getSelected(tab, index),
         }, tab.props.children) : undefined);
 
       return React.cloneElement(tab, {
         key: index,
-        selected: this._getSelected(tab, index),
+        selected: this.getSelected(tab, index),
         tabIndex: index,
         width: `${width}%`,
-        onTouchTap: this._handleTabTouchTap,
+        onTouchTap: this.handleTabTouchTap,
       });
     });
 
@@ -256,7 +255,7 @@ const Tabs = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Tabs;

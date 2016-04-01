@@ -66,9 +66,8 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const Toggle = React.createClass({
-
-  propTypes: {
+class Toggle extends React.Component {
+  static propTypes = {
     /**
      * Determines whether the Toggle is initially turned on.
      */
@@ -138,45 +137,43 @@ const Toggle = React.createClass({
      * ValueLink prop for when using controlled toggle.
      */
     valueLink: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    defaultToggled: false,
+    disabled: false,
+    labelPosition: 'left',
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      defaultToggled: false,
-      disabled: false,
-      labelPosition: 'left',
-    };
-  },
+  state = {switched: false};
 
-  getInitialState() {
-    return {
-      switched:
-        this.props.toggled ||
-        this.props.defaultToggled ||
-        (this.props.valueLink && this.props.valueLink.value) ||
-        false,
-    };
-  },
+  componentWillMount() {
+    const {toggled, defaultToggled, valueLink} = this.props;
+
+    if (toggled || defaultToggled || (valueLink && valueLink.value)) {
+      this.setState({switched: true});
+    }
+  }
 
   isToggled() {
     return this.refs.enhancedSwitch.isSwitched();
-  },
+  }
 
   setToggled(newToggledValue) {
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
-  },
+  }
 
-  _handleToggle(event, isInputChecked) {
+  handleToggle = (event, isInputChecked) => {
     if (this.props.onToggle) this.props.onToggle(event, isInputChecked);
-  },
+  };
 
-  _handleStateChange(newSwitched) {
+  handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
-  },
+  };
 
   render() {
     const {
@@ -243,8 +240,8 @@ const Toggle = React.createClass({
       thumbStyle: thumbStyles,
       labelStyle: labelStyle,
       switched: this.state.switched,
-      onSwitch: this._handleToggle,
-      onParentShouldUpdate: this._handleStateChange,
+      onSwitch: this.handleToggle,
+      onParentShouldUpdate: this.handleStateChange,
       defaultSwitched: this.props.defaultToggled,
       labelPosition: this.props.labelPosition,
     };
@@ -257,8 +254,7 @@ const Toggle = React.createClass({
         {...enhancedSwitchProps}
       />
     );
-  },
-
-});
+  }
+}
 
 export default Toggle;

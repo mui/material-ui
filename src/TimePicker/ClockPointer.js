@@ -41,37 +41,32 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const ClockPointer = React.createClass({
-
-  propTypes: {
+class ClockPointer extends React.Component {
+  static propTypes = {
     hasSelected: React.PropTypes.bool,
     type: React.PropTypes.oneOf(['hour', 'minute']),
     value: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    value: null,
+    type: 'minute',
+    hasSelected: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      value: null,
-      type: 'minute',
-      hasSelected: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      inner: isInner(this.props),
-    };
-  },
+  state = {
+    inner: isInner(this.props),
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       inner: isInner(nextProps),
     });
-  },
+  }
 
   render() {
     if (this.props.value === null) {
@@ -86,7 +81,7 @@ const ClockPointer = React.createClass({
         <div style={prepareStyles(styles.mark)} />
       </div>
     );
-  },
-});
+  }
+}
 
 export default ClockPointer;

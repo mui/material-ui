@@ -11,9 +11,10 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-const FlatButton = React.createClass({
+class FlatButton extends React.Component {
+  static muiName = 'FlatButton';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Color of button when mouse is not hovering over it.
      */
@@ -123,54 +124,50 @@ const FlatButton = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    disabled: false,
+    labelStyle: {},
+    labelPosition: 'after',
+    onKeyboardFocus: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onTouchStart: () => {},
+    primary: false,
+    secondary: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      labelStyle: {},
-      labelPosition: 'after',
-      onKeyboardFocus: () => {},
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      onTouchStart: () => {},
-      primary: false,
-      secondary: false,
-    };
-  },
+  state = {
+    hovered: false,
+    isKeyboardFocused: false,
+    touch: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-      isKeyboardFocused: false,
-      touch: false,
-    };
-  },
-
-  handleKeyboardFocus(event, isKeyboardFocused) {
+  handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
-  },
+  };
 
-  handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     //Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
-  },
+  };
 
-  handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
-  },
+  };
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.setState({touch: true});
     this.props.onTouchStart(event);
-  },
+  };
 
   render() {
     const {
@@ -298,7 +295,7 @@ const FlatButton = React.createClass({
         {enhancedButtonChildren}
       </EnhancedButton>
     );
-  },
-});
+  }
+}
 
 export default FlatButton;

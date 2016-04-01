@@ -28,9 +28,8 @@ function getStyles(props, context) {
   };
 }
 
-const Table = React.createClass({
-
-  propTypes: {
+class Table extends React.Component {
+  static propTypes = {
     /**
      * Set to true to indicate that all rows should be selected.
      */
@@ -142,95 +141,91 @@ const Table = React.createClass({
      * Override the inline-styles of the table's wrapper element.
      */
     wrapperStyle: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    allRowsSelected: false,
+    fixedFooter: true,
+    fixedHeader: true,
+    height: 'inherit',
+    multiSelectable: false,
+    selectable: true,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      allRowsSelected: false,
-      fixedFooter: true,
-      fixedHeader: true,
-      height: 'inherit',
-      multiSelectable: false,
-      selectable: true,
-    };
-  },
-
-  getInitialState() {
-    return {
-      allRowsSelected: this.props.allRowsSelected,
-    };
-  },
+  state = {
+    allRowsSelected: this.props.allRowsSelected,
+  };
 
   isScrollbarVisible() {
     const tableDivHeight = this.refs.tableDiv.clientHeight;
     const tableBodyHeight = this.refs.tableBody.clientHeight;
 
     return tableBodyHeight > tableDivHeight;
-  },
+  }
 
-  _createTableHeader(base) {
+  createTableHeader(base) {
     return React.cloneElement(
       base,
       {
         enableSelectAll: base.props.enableSelectAll && this.props.selectable && this.props.multiSelectable,
-        onSelectAll: this._onSelectAll,
+        onSelectAll: this.onSelectAll,
         selectAllSelected: this.state.allRowsSelected,
       }
     );
-  },
+  }
 
-  _createTableBody(base) {
+  createTableBody(base) {
     return React.cloneElement(
       base,
       {
         allRowsSelected: this.state.allRowsSelected,
         multiSelectable: this.props.multiSelectable,
-        onCellClick: this._onCellClick,
-        onCellHover: this._onCellHover,
-        onCellHoverExit: this._onCellHoverExit,
-        onRowHover: this._onRowHover,
-        onRowHoverExit: this._onRowHoverExit,
-        onRowSelection: this._onRowSelection,
+        onCellClick: this.onCellClick,
+        onCellHover: this.onCellHover,
+        onCellHoverExit: this.onCellHoverExit,
+        onRowHover: this.onRowHover,
+        onRowHoverExit: this.onRowHoverExit,
+        onRowSelection: this.onRowSelection,
         selectable: this.props.selectable,
         style: Object.assign({height: this.props.height}, base.props.style),
       }
     );
-  },
+  }
 
-  _createTableFooter(base) {
+  createTableFooter(base) {
     return base;
-  },
+  }
 
-  _onCellClick(rowNumber, columnNumber, event) {
+  onCellClick = (rowNumber, columnNumber, event) => {
     if (this.props.onCellClick) this.props.onCellClick(rowNumber, columnNumber, event);
-  },
+  };
 
-  _onCellHover(rowNumber, columnNumber, event) {
+  onCellHover = (rowNumber, columnNumber, event) => {
     if (this.props.onCellHover) this.props.onCellHover(rowNumber, columnNumber, event);
-  },
+  };
 
-  _onCellHoverExit(rowNumber, columnNumber, event) {
+  onCellHoverExit = (rowNumber, columnNumber, event) => {
     if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, columnNumber, event);
-  },
+  };
 
-  _onRowHover(rowNumber) {
+  onRowHover = (rowNumber) => {
     if (this.props.onRowHover) this.props.onRowHover(rowNumber);
-  },
+  };
 
-  _onRowHoverExit(rowNumber) {
+  onRowHoverExit = (rowNumber) => {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
-  },
+  };
 
-  _onRowSelection(selectedRows) {
+  onRowSelection = (selectedRows) => {
     if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
     if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
-  },
+  };
 
-  _onSelectAll() {
+  onSelectAll = () => {
     if (this.props.onRowSelection) {
       if (!this.state.allRowsSelected) {
         this.props.onRowSelection('all');
@@ -240,7 +235,7 @@ const Table = React.createClass({
     }
 
     this.setState({allRowsSelected: !this.state.allRowsSelected});
-  },
+  };
 
   render() {
     const {
@@ -265,13 +260,13 @@ const Table = React.createClass({
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
 
-      const displayName = child.type.displayName;
-      if (displayName === 'TableBody') {
-        tBody = this._createTableBody(child);
-      } else if (displayName === 'TableHeader') {
-        tHead = this._createTableHeader(child);
-      } else if (displayName === 'TableFooter') {
-        tFoot = this._createTableFooter(child);
+      const {muiName} = child.type;
+      if (muiName === 'TableBody') {
+        tBody = this.createTableBody(child);
+      } else if (muiName === 'TableHeader') {
+        tHead = this.createTableHeader(child);
+      } else if (muiName === 'TableFooter') {
+        tFoot = this.createTableFooter(child);
       }
     });
 
@@ -323,7 +318,7 @@ const Table = React.createClass({
         {footerTable}
       </div>
     );
-  },
-});
+  }
+}
 
 export default Table;

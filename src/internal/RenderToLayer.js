@@ -3,38 +3,35 @@ import ReactDOM from 'react-dom';
 import Dom from '../utils/dom';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
-const RenderToLayer = React.createClass({
-
-  propTypes: {
+class RenderToLayer extends React.Component {
+  static propTypes = {
     componentClickAway: React.PropTypes.func,
     open: React.PropTypes.bool.isRequired,
     render: React.PropTypes.func.isRequired,
     useLayerForClickAway: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    useLayerForClickAway: true,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      useLayerForClickAway: true,
-    };
-  },
+  };
 
   componentDidMount() {
-    this._renderLayer();
-  },
+    this.renderLayer();
+  }
 
   componentDidUpdate() {
-    this._renderLayer();
-  },
+    this.renderLayer();
+  }
 
   componentWillUnmount() {
-    this._unrenderLayer();
-  },
+    this.unrenderLayer();
+  }
 
-  onClickAway(event) {
+  onClickAway = (event) => {
     if (event.defaultPrevented) {
       return;
     }
@@ -47,56 +44,56 @@ const RenderToLayer = React.createClass({
       return;
     }
 
-    const el = this._layer;
+    const el = this.layer;
     if (event.target !== el && event.target === window ||
       (document.documentElement.contains(event.target) && !Dom.isDescendant(el, event.target))) {
       this.props.componentClickAway(event);
     }
-  },
+  };
 
   getLayer() {
-    return this._layer;
-  },
+    return this.layer;
+  }
 
-  _unrenderLayer: function() {
-    if (!this._layer) {
+  unrenderLayer() {
+    if (!this.layer) {
       return;
     }
 
     if (this.props.useLayerForClickAway) {
-      this._layer.style.position = 'relative';
-      this._layer.removeEventListener('touchstart', this.onClickAway);
-      this._layer.removeEventListener('click', this.onClickAway);
+      this.layer.style.position = 'relative';
+      this.layer.removeEventListener('touchstart', this.onClickAway);
+      this.layer.removeEventListener('click', this.onClickAway);
     } else {
       window.removeEventListener('touchstart', this.onClickAway);
       window.removeEventListener('click', this.onClickAway);
     }
 
-    ReactDOM.unmountComponentAtNode(this._layer);
-    document.body.removeChild(this._layer);
-    this._layer = null;
-  },
+    ReactDOM.unmountComponentAtNode(this.layer);
+    document.body.removeChild(this.layer);
+    this.layer = null;
+  }
 
-  _renderLayer() {
+  renderLayer() {
     const {
       open,
       render,
     } = this.props;
 
     if (open) {
-      if (!this._layer) {
-        this._layer = document.createElement('div');
-        document.body.appendChild(this._layer);
+      if (!this.layer) {
+        this.layer = document.createElement('div');
+        document.body.appendChild(this.layer);
 
         if (this.props.useLayerForClickAway) {
-          this._layer.addEventListener('touchstart', this.onClickAway);
-          this._layer.addEventListener('click', this.onClickAway);
-          this._layer.style.position = 'fixed';
-          this._layer.style.top = 0;
-          this._layer.style.bottom = 0;
-          this._layer.style.left = 0;
-          this._layer.style.right = 0;
-          this._layer.style.zIndex = this.context.muiTheme.zIndex.layer;
+          this.layer.addEventListener('touchstart', this.onClickAway);
+          this.layer.addEventListener('click', this.onClickAway);
+          this.layer.style.position = 'fixed';
+          this.layer.style.top = 0;
+          this.layer.style.bottom = 0;
+          this.layer.style.left = 0;
+          this.layer.style.right = 0;
+          this.layer.style.zIndex = this.context.muiTheme.zIndex.layer;
         } else {
           setTimeout(() => {
             window.addEventListener('touchstart', this.onClickAway);
@@ -113,19 +110,18 @@ const RenderToLayer = React.createClass({
       const layerElement = render();
 
       if (layerElement === null) {
-        this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, null, this._layer);
+        this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, null, this.layer);
       } else {
-        this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this._layer);
+        this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
       }
     } else {
-      this._unrenderLayer();
+      this.unrenderLayer();
     }
-  },
+  }
 
   render() {
     return null;
-  },
-
-});
+  }
+}
 
 export default RenderToLayer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowEqual from 'recompose/shallowEqual';
 import ColorManipulator from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -142,9 +142,10 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const ListItem = React.createClass({
+class ListItem extends React.Component {
+  static muiName = 'ListItem';
 
-  propTypes: {
+  static propTypes = {
     /**
      * If true, generate a nested-list-indicator icon when nested list
      * items are detected. Note that an indicator will not be created
@@ -313,45 +314,44 @@ const ListItem = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoGenerateNestedIndicator: true,
+    disableKeyboardFocus: false,
+    disabled: false,
+    initiallyOpen: false,
+    insetChildren: false,
+    nestedItems: [],
+    nestedLevel: 0,
+    onKeyboardFocus: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onNestedListToggle: () => {},
+    onTouchStart: () => {},
+    primaryTogglesNestedList: false,
+    secondaryTextLines: 1,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  mixins: [
-    PureRenderMixin,
-  ],
+  state = {
+    hovered: false,
+    isKeyboardFocused: false,
+    open: this.props.initiallyOpen,
+    rightIconButtonHovered: false,
+    rightIconButtonKeyboardFocused: false,
+    touch: false,
+  };
 
-  getDefaultProps() {
-    return {
-      autoGenerateNestedIndicator: true,
-      disableKeyboardFocus: false,
-      disabled: false,
-      initiallyOpen: false,
-      insetChildren: false,
-      nestedItems: [],
-      nestedLevel: 0,
-      onKeyboardFocus: () => {},
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      onNestedListToggle: () => {},
-      onTouchStart: () => {},
-      primaryTogglesNestedList: false,
-      secondaryTextLines: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      hovered: false,
-      isKeyboardFocused: false,
-      open: this.props.initiallyOpen,
-      rightIconButtonHovered: false,
-      rightIconButtonKeyboardFocused: false,
-      touch: false,
-    };
-  },
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   // This method is needed by the `MenuItem` component.
   applyFocusState(focusState) {
@@ -373,9 +373,9 @@ const ListItem = React.createClass({
           break;
       }
     }
-  },
+  }
 
-  _createDisabledElement(styles, contentChildren, additionalProps) {
+  createDisabledElement(styles, contentChildren, additionalProps) {
     const {
       innerDivStyle,
       style,
@@ -396,9 +396,9 @@ const ListItem = React.createClass({
         {contentChildren}
       </div>
      );
-  },
+  }
 
-  _createLabelElement(styles, contentChildren, additionalProps) {
+  createLabelElement(styles, contentChildren, additionalProps) {
     const {
       innerDivStyle,
       style,
@@ -420,9 +420,9 @@ const ListItem = React.createClass({
         {contentChildren}
       </label>
      );
-  },
+  }
 
-  _createTextElement(styles, data, key) {
+  createTextElement(styles, data, key) {
     const isAnElement = React.isValidElement(data);
     const mergedStyles = isAnElement ?
       Object.assign({}, styles, data.props.style) : null;
@@ -437,30 +437,30 @@ const ListItem = React.createClass({
         {data}
       </div>
     );
-  },
+  }
 
-  handleKeyboardFocus(event, isKeyboardFocused) {
+  handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
-  },
+  };
 
-  handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
-  },
+  };
 
-  handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
-  },
+  };
 
-  handleNestedListToggle(event) {
+  handleNestedListToggle = (event) => {
     event.stopPropagation();
     this.setState({open: !this.state.open});
     this.props.onNestedListToggle(this);
-  },
+  };
 
-  handleRightIconButtonKeyboardFocus(event, isKeyboardFocused) {
+  handleRightIconButtonKeyboardFocus = (event, isKeyboardFocused) => {
     if (isKeyboardFocused) {
       this.setState({
         isKeyboardFocused: false,
@@ -471,40 +471,40 @@ const ListItem = React.createClass({
     const iconButton = this.props.rightIconButton;
 
     if (iconButton && iconButton.props.onKeyboardFocus) iconButton.props.onKeyboardFocus(event, isKeyboardFocused);
-  },
+  };
 
-  handleRightIconButtonMouseLeave(event) {
+  handleRightIconButtonMouseLeave = (event) => {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: false});
     if (iconButton && iconButton.props.onMouseLeave) iconButton.props.onMouseLeave(event);
-  },
+  };
 
-  handleRightIconButtonMouseEnter(event) {
+  handleRightIconButtonMouseEnter = (event) => {
     const iconButton = this.props.rightIconButton;
     this.setState({rightIconButtonHovered: true});
     if (iconButton && iconButton.props.onMouseEnter) iconButton.props.onMouseEnter(event);
-  },
+  };
 
-  handleRightIconButtonMouseUp(event) {
+  handleRightIconButtonMouseUp = (event) => {
     const iconButton = this.props.rightIconButton;
     event.stopPropagation();
     if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(event);
-  },
+  };
 
-  handleRightIconButtonTouchTap(event) {
+  handleRightIconButtonTouchTap = (event) => {
     const iconButton = this.props.rightIconButton;
 
     //Stop the event from bubbling up to the list-item
     event.stopPropagation();
     if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(event);
-  },
+  };
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.setState({touch: true});
     this.props.onTouchStart(event);
-  },
+  };
 
-  _pushElement(children, element, baseStyles, additionalProps) {
+  pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
       const styles = Object.assign({}, baseStyles, element.props.style);
       children.push(
@@ -515,7 +515,7 @@ const ListItem = React.createClass({
         })
       );
     }
-  },
+  }
 
   render() {
     const {
@@ -553,7 +553,7 @@ const ListItem = React.createClass({
     const contentChildren = [children];
 
     if (leftIcon) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         leftIcon,
         Object.assign({}, styles.icons, styles.leftIcon)
@@ -561,7 +561,7 @@ const ListItem = React.createClass({
     }
 
     if (rightIcon) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightIcon,
         Object.assign({}, styles.icons, styles.rightIcon)
@@ -569,7 +569,7 @@ const ListItem = React.createClass({
     }
 
     if (leftAvatar) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         leftAvatar,
         Object.assign({}, styles.avatars, styles.leftAvatar)
@@ -577,7 +577,7 @@ const ListItem = React.createClass({
     }
 
     if (rightAvatar) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightAvatar,
         Object.assign({}, styles.avatars, styles.rightAvatar)
@@ -585,7 +585,7 @@ const ListItem = React.createClass({
     }
 
     if (leftCheckbox) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         leftCheckbox,
         Object.assign({}, styles.leftCheckbox)
@@ -616,7 +616,7 @@ const ListItem = React.createClass({
         rightIconButtonHandlers.onTouchTap = this.handleNestedListToggle;
       }
 
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightIconButtonElement,
         Object.assign({}, styles.rightIconButton),
@@ -625,7 +625,7 @@ const ListItem = React.createClass({
     }
 
     if (rightToggle) {
-      this._pushElement(
+      this.pushElement(
         contentChildren,
         rightToggle,
         Object.assign({}, styles.rightToggle)
@@ -633,7 +633,7 @@ const ListItem = React.createClass({
     }
 
     if (primaryText) {
-      const primaryTextElement = this._createTextElement(
+      const primaryTextElement = this.createTextElement(
         styles.primaryText,
         primaryText,
         'primaryText'
@@ -642,7 +642,7 @@ const ListItem = React.createClass({
     }
 
     if (secondaryText) {
-      const secondaryTextElement = this._createTextElement(
+      const secondaryTextElement = this.createTextElement(
         styles.secondaryText,
         secondaryText,
         'secondaryText'
@@ -661,8 +661,8 @@ const ListItem = React.createClass({
     return (
       <div>
         {
-          hasCheckbox ? this._createLabelElement(styles, contentChildren, other) :
-          disabled ? this._createDisabledElement(styles, contentChildren, other) : (
+          hasCheckbox ? this.createLabelElement(styles, contentChildren, other) :
+          disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
               {...other}
               disabled={disabled}
@@ -685,8 +685,7 @@ const ListItem = React.createClass({
         {nestedList}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default ListItem;

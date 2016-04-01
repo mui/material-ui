@@ -18,9 +18,8 @@ function getStyles(props) {
   };
 }
 
-const SelectField = React.createClass({
-
-  propTypes: {
+class SelectField extends React.Component {
+  static propTypes = {
     /**
      * If true, the width will automatically be set according to the
      * items inside the menu.
@@ -130,19 +129,17 @@ const SelectField = React.createClass({
      * The value that is currently selected.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    autoWidth: false,
+    disabled: false,
+    fullWidth: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      autoWidth: false,
-      disabled: false,
-      fullWidth: false,
-    };
-  },
+  };
 
   render() {
     const {
@@ -203,7 +200,7 @@ const SelectField = React.createClass({
         </DropDownMenu>
       </TextField>
     );
-  },
-});
+  }
+}
 
 export default SelectField;

@@ -9,31 +9,28 @@ import Paper from '../Paper';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
-const TransitionItem = React.createClass({
-
-  propTypes: {
+class TransitionItem extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getInitialState() {
-    return {
-      style: {},
-    };
-  },
+  state = {
+    style: {},
+  };
 
   componentWillUnmount() {
     clearTimeout(this.enterTimeout);
     clearTimeout(this.leaveTimeout);
-  },
+  }
 
   componentWillEnter(callback) {
     this.componentWillAppear(callback);
-  },
+  }
 
   componentWillAppear(callback) {
     const spacing = this.context.muiTheme.baseTheme.spacing;
@@ -46,7 +43,7 @@ const TransitionItem = React.createClass({
     });
 
     this.enterTimeout = setTimeout(callback, 450); // matches transition duration
-  },
+  }
 
   componentWillLeave(callback) {
     this.setState({
@@ -57,7 +54,7 @@ const TransitionItem = React.createClass({
     });
 
     this.leaveTimeout = setTimeout(callback, 450); // matches transition duration
-  },
+  }
 
   render() {
     const {
@@ -73,8 +70,8 @@ const TransitionItem = React.createClass({
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 function getStyles(props, context) {
   const {
@@ -139,9 +136,8 @@ function getStyles(props, context) {
   };
 }
 
-const DialogInline = React.createClass({
-
-  propTypes: {
+class DialogInline extends React.Component {
+  static propTypes = {
     actions: React.PropTypes.node,
     actionsContainerClassName: React.PropTypes.string,
     actionsContainerStyle: React.PropTypes.object,
@@ -163,21 +159,21 @@ const DialogInline = React.createClass({
     title: React.PropTypes.node,
     titleClassName: React.PropTypes.string,
     titleStyle: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   componentDidMount() {
-    this._positionDialog();
-  },
+    this.positionDialog();
+  }
 
   componentDidUpdate() {
-    this._positionDialog();
-  },
+    this.positionDialog();
+  }
 
-  _positionDialog() {
+  positionDialog() {
     const {
       actions,
       autoDetectWindowHeight,
@@ -226,9 +222,9 @@ const DialogInline = React.createClass({
 
       dialogContent.style.maxHeight = `${maxDialogContentHeight}px`;
     }
-  },
+  }
 
-  _requestClose(buttonClicked) {
+  requestClose(buttonClicked) {
     if (!buttonClicked && this.props.modal) {
       return;
     }
@@ -236,21 +232,21 @@ const DialogInline = React.createClass({
     if (this.props.onRequestClose) {
       this.props.onRequestClose(!!buttonClicked);
     }
-  },
+  }
 
-  handleTouchTapOverlay() {
-    this._requestClose(false);
-  },
+  handleTouchTapOverlay = () => {
+    this.requestClose(false);
+  };
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     if (keycode(event) === 'esc') {
-      this._requestClose(false);
+      this.requestClose(false);
     }
-  },
+  };
 
-  handleResize() {
-    this._positionDialog();
-  },
+  handleResize = () => {
+    this.positionDialog();
+  };
 
   render() {
     const {
@@ -335,13 +331,11 @@ const DialogInline = React.createClass({
         />
       </div>
     );
-  },
+  }
+}
 
-});
-
-const Dialog = React.createClass({
-
-  propTypes: {
+class Dialog extends React.Component {
+  static propTypes = {
     /**
      * Action buttons to display below the Dialog content (`children`).
      * This property accepts either a React element, or an array of React elements.
@@ -451,29 +445,26 @@ const Dialog = React.createClass({
      * Overrides the inline-styles of the title's root container element.
      */
     titleStyle: React.PropTypes.object,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      autoDetectWindowHeight: true,
-      autoScrollBodyContent: false,
-      modal: false,
-      repositionOnUpdate: true,
-    };
-  },
+  static defaultProps = {
+    autoDetectWindowHeight: true,
+    autoScrollBodyContent: false,
+    modal: false,
+    repositionOnUpdate: true,
+  };
 
-  renderLayer() {
+  renderLayer = () => {
     return (
       <DialogInline {...this.props} />
     );
-  },
+  };
 
   render() {
     return (
       <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
     );
-  },
-
-});
+  }
+}
 
 export default Dialog;

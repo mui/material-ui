@@ -22,9 +22,10 @@ function getStyles(props, context) {
   };
 }
 
-const CardTitle = React.createClass({
+class CardTitle extends React.Component {
+  static muiName = 'CardTitle';
 
-  propTypes: {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
@@ -79,11 +80,11 @@ const CardTitle = React.createClass({
      * Override the inline-styles of the title.
      */
     titleStyle: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
@@ -109,7 +110,7 @@ const CardTitle = React.createClass({
         {this.props.children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default CardTitle;

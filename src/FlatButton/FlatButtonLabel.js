@@ -13,22 +13,21 @@ function getStyles(props, context) {
   };
 }
 
-const FlatButtonLabel = React.createClass({
-
-  propTypes: {
+class FlatButtonLabel extends React.Component {
+  static propTypes = {
     label: React.PropTypes.node,
 
     /**
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  render: function() {
+  render() {
     const {
       label,
       style,
@@ -40,7 +39,7 @@ const FlatButtonLabel = React.createClass({
     return (
       <span style={prepareStyles(Object.assign(styles.root, style))}>{label}</span>
     );
-  },
-});
+  }
+}
 
 export default FlatButtonLabel;

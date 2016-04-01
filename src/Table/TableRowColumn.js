@@ -23,9 +23,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const TableRowColumn = React.createClass({
-
-  propTypes: {
+class TableRowColumn extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
 
     /**
@@ -73,41 +72,37 @@ const TableRowColumn = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    hoverable: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      hoverable: false,
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-    };
-  },
-
-  _onClick(event) {
+  onClick = (event) => {
     if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
-  },
+  };
 
-  _onMouseEnter(event) {
+  onMouseEnter = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
     }
-  },
+  };
 
-  _onMouseLeave(event) {
+  onMouseLeave = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
     }
-  },
+  };
 
   render() {
     const {
@@ -126,9 +121,9 @@ const TableRowColumn = React.createClass({
     const styles = getStyles(this.props, this.context);
 
     const handlers = {
-      onClick: this._onClick,
-      onMouseEnter: this._onMouseEnter,
-      onMouseLeave: this._onMouseLeave,
+      onClick: this.onClick,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
     };
 
     return (
@@ -142,8 +137,7 @@ const TableRowColumn = React.createClass({
         {children}
       </td>
     );
-  },
-
-});
+  }
+}
 
 export default TableRowColumn;

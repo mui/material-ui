@@ -5,9 +5,10 @@ import propTypes from '../utils/propTypes';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 
-const IconMenu = React.createClass({
+class IconMenu extends React.Component {
+  static muiName = 'IconMenu';
 
-  propTypes: {
+  static propTypes = {
     /**
      * This is the point on the icon where the menu
      * `targetOrigin` will attach.
@@ -140,44 +141,41 @@ const IconMenu = React.createClass({
      * layer, which will prevent clicks to the underlying elements.
      */
     useLayerForClickAway: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    anchorOrigin: {
+      vertical: 'top',
+      horizontal: 'left',
+    },
+    multiple: false,
+    open: null,
+    onItemTouchTap: () => {},
+    onKeyboardFocus: () => {},
+    onMouseDown: () => {},
+    onMouseLeave: () => {},
+    onMouseEnter: () => {},
+    onMouseUp: () => {},
+    onTouchTap: () => {},
+    onRequestChange: () => {},
+    targetOrigin: {
+      vertical: 'top',
+      horizontal: 'left',
+    },
+    touchTapCloseDelay: 200,
+    useLayerForClickAway: false,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      anchorOrigin: {
-        vertical: 'top',
-        horizontal: 'left',
-      },
-      multiple: false,
-      open: null,
-      onItemTouchTap: () => {},
-      onKeyboardFocus: () => {},
-      onMouseDown: () => {},
-      onMouseLeave: () => {},
-      onMouseEnter: () => {},
-      onMouseUp: () => {},
-      onTouchTap: () => {},
-      onRequestChange: () => {},
-      targetOrigin: {
-        vertical: 'top',
-        horizontal: 'left',
-      },
-      touchTapCloseDelay: 200,
-      useLayerForClickAway: false,
-    };
-  },
+  state = {
+    iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
+    menuInitiallyKeyboardFocused: false,
+    open: false,
+  };
 
-  getInitialState() {
-    return {
-      iconButtonRef: this.props.iconButtonElement.props.ref || 'iconButton',
-      menuInitiallyKeyboardFocused: false,
-      open: false,
-    };
-  },
   componentWillReceiveProps(nextProps) {
     if (nextProps.open != null) {
       this.setState({
@@ -185,15 +183,15 @@ const IconMenu = React.createClass({
         anchorEl: this.refs.iconMenuContainer,
       });
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timerCloseId);
-  },
+  }
 
   isOpen() {
     return this.state.open;
-  },
+  }
 
   close(reason, isKeyboard) {
     if (!this.state.open) {
@@ -212,7 +210,7 @@ const IconMenu = React.createClass({
         iconButton.setKeyboardFocus();
       }
     });
-  },
+  }
 
   open(reason, event) {
     if (this.props.open !== null) {
@@ -231,9 +229,9 @@ const IconMenu = React.createClass({
     });
 
     event.preventDefault();
-  },
+  }
 
-  handleItemTouchTap(event, child) {
+  handleItemTouchTap = (event, child) => {
     if (this.props.touchTapCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
       const isKeyboard = Events.isKeyboard(event);
       this.timerCloseId = setTimeout(() => {
@@ -242,15 +240,15 @@ const IconMenu = React.createClass({
     }
 
     this.props.onItemTouchTap(event, child);
-  },
+  };
 
-  handleRequestClose(reason) {
+  handleRequestClose = (reason) => {
     this.close(reason);
-  },
+  };
 
-  handleEscKeyDownMenu(event) {
+  handleEscKeyDownMenu = (event) => {
     this.close('escape', event);
-  },
+  };
 
   render() {
     const {
@@ -337,8 +335,7 @@ const IconMenu = React.createClass({
         </Popover>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default IconMenu;

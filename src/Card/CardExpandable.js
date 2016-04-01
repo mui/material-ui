@@ -15,17 +15,16 @@ function getStyles() {
   };
 }
 
-const CardExpandable = React.createClass({
-
-  propTypes: {
+class CardExpandable extends React.Component {
+  static propTypes = {
     expanded: React.PropTypes.bool,
     onExpanding: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const styles = getStyles(this.props, this.context);
@@ -38,7 +37,7 @@ const CardExpandable = React.createClass({
         {this.props.expanded ? <OpenIcon /> : <CloseIcon />}
       </IconButton>
     );
-  },
-});
+  }
+}
 
 export default CardExpandable;

@@ -40,9 +40,8 @@ function getStyles(props, context) {
   return styles;
 }
 
-const Avatar = React.createClass({
-
-  propTypes: {
+class Avatar extends React.Component {
+  static propTypes = {
     /**
      * The backgroundColor of the avatar. Does not apply to image avatars.
      */
@@ -82,17 +81,15 @@ const Avatar = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static defaultProps = {
+    size: 40,
+  };
+
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps() {
-    return {
-      size: 40,
-    };
-  },
+  };
 
   render() {
     const {
@@ -130,7 +127,7 @@ const Avatar = React.createClass({
         </div>
       );
     }
-  },
-});
+  }
+}
 
 export default Avatar;

@@ -17,9 +17,10 @@ function getStyles(props, context) {
   };
 }
 
-const Tab = React.createClass({
+class Tab extends React.Component {
+  static muiName = 'Tab';
 
-  propTypes: {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -72,17 +73,17 @@ const Tab = React.createClass({
      * This property is overriden by the Tabs component.
      */
     width: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (this.props.onTouchTap) {
       this.props.onTouchTap(this.props.value, event, this);
     }
-  },
+  };
 
   render() {
     const {
@@ -110,7 +111,7 @@ const Tab = React.createClass({
         },
       };
       // If it's svg icon set color via props
-      if (icon.type.displayName !== 'FontIcon') {
+      if (icon.type.muiName !== 'FontIcon') {
         params.color = styles.root.color;
       }
       iconElement = React.cloneElement(icon, params);
@@ -133,8 +134,7 @@ const Tab = React.createClass({
         {label}
       </EnhancedButton>
     );
-  },
-
-});
+  }
+}
 
 export default Tab;

@@ -4,9 +4,8 @@ import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
 
-const List = React.createClass({
-
-  propTypes: {
+class List extends React.Component {
+  static propTypes = {
     /**
      * These are usually `ListItem`s that are passed to
      * be part of the list.
@@ -42,11 +41,11 @@ const List = React.createClass({
      * or another component that provides zDepth.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
   render() {
     const {
@@ -90,7 +89,7 @@ const List = React.createClass({
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default List;
