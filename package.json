@@ -43,7 +43,6 @@
     "lodash.merge": "^4.1.0",
     "lodash.throttle": "^4.0.0",
     "react-addons-create-fragment": "^0.14.0",
-    "react-addons-pure-render-mixin": "^0.14.0",
     "react-addons-transition-group": "^0.14.0",
     "react-addons-update": "^0.14.0",
     "react-event-listener": "^0.1.1",
