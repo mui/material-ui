@@ -138,7 +138,7 @@ class ToolbarGroup extends React.Component {
       if (!currentChild.type) {
         return currentChild;
       }
-      switch (currentChild.type.displayName) {
+      switch (currentChild.type.muiName) {
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, styles.dropDownMenu.root, currentChild.props.style),
