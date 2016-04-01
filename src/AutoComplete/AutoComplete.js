@@ -138,6 +138,11 @@ class AutoComplete extends React.Component {
     onFocus: React.PropTypes.func,
 
     /**
+     * Callback function that is fired when the `TextField` receives a keydown event.
+     */
+    onKeyDown: React.PropTypes.func,
+
+    /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
      *
      * @param {string} chosenRequest Either the `TextField` input value, if enter is pressed in the `TextField`,
@@ -296,6 +301,8 @@ class AutoComplete extends React.Component {
   };
 
   handleKeyDown = (event) => {
+    if (this.props.onKeyDown) this.props.onKeyDown(event);
+
     switch (keycode(event)) {
       case 'enter':
         this.close();
