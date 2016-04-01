@@ -30,7 +30,7 @@ class DatePickerDialog extends React.Component {
   };
 
   static defaultProps = {
-    DateTimeFormat: DateTime.DateTimeFormat,
+    DateTimeFormat: dateTimeFormat,
     container: 'dialog',
     locale: 'en-US',
     okLabel: 'OK',

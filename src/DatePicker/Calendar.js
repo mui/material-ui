@@ -43,8 +43,8 @@ class Calendar extends React.Component {
   static defaultProps = {
     disableYearSelection: false,
     initialDate: new Date(),
-    minDate: DateTime.addYears(new Date(), -100),
-    maxDate: DateTime.addYears(new Date(), 100),
+    minDate: addYears(new Date(), -100),
+    maxDate: addYears(new Date(), 100),
   };
 
   static contextTypes = {
