@@ -50,7 +50,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       backgroundColor: ColorManipulator.luminance(palette.canvasColor) > 0.5 ?
         ColorManipulator.darken(palette.canvasColor, 0.26) :
         ColorManipulator.lighten(palette.canvasColor, 1.26, 1.0),
-      borderColor: ColorManipulator.fade(palette.textColor, 0.08),
+      borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
       color: palette.alternateTextColor,
