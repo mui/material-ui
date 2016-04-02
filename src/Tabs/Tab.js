@@ -117,8 +117,8 @@ class Tab extends React.Component {
       iconElement = React.cloneElement(icon, params);
     }
 
-    const rippleColor = styles.color;
     const rippleOpacity = 0.3;
+    const rippleColor = this.context.muiTheme.tabs.selectedTextColor;
 
     return (
       <EnhancedButton
