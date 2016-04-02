@@ -31,6 +31,9 @@ function getStyles(props, context) {
 
   if (src && avatar.borderColor) {
     Object.assign(styles.root, {
+      background: `url(${src})`,
+      backgroundSize: size,
+      backgroundOrigin: 'border-box',
       border: `solid 1px ${avatar.borderColor}`,
       height: size - 2,
       width: size - 2,
@@ -105,9 +108,8 @@ class Avatar extends React.Component {
 
     if (src) {
       return (
-        <img
+        <div
           {...other}
-          src={src}
           style={prepareStyles(Object.assign(styles.root, style))}
           className={className}
         />
