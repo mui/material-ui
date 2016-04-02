@@ -10,8 +10,8 @@ import propTypes from '../utils/propTypes';
 import warning from 'warning';
 import deprecated from '../utils/deprecatedPropType';
 
-function getStyles(props, context) {
-  const {anchorEl} = context;
+function getStyles(props, state) {
+  const {anchorEl} = state;
   const {fullWidth} = props;
 
   const styles = {
@@ -224,6 +224,7 @@ class AutoComplete extends React.Component {
       open: this.props.open,
       searchText: this.props.searchText,
     });
+    this.timerTouchTapCloseId = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -404,7 +405,7 @@ class AutoComplete extends React.Component {
     } = this.state;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.state);
 
     const requestsList = [];
 
@@ -473,8 +474,8 @@ class AutoComplete extends React.Component {
         initiallyKeyboardFocused={false}
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}
-        listStyle={Object.assign(styles.list, listStyle)}
         style={Object.assign(styles.menu, menuStyle)}
+        listStyle={Object.assign(styles.list, listStyle)}
       >
         {requestsList.map((i) => i.value)}
       </Menu>
