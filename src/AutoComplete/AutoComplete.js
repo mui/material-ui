@@ -10,7 +10,7 @@ import propTypes from '../utils/propTypes';
 import warning from 'warning';
 import deprecated from '../utils/deprecatedPropType';
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const {anchorEl} = state;
   const {fullWidth} = props;
 
@@ -405,7 +405,7 @@ class AutoComplete extends React.Component {
     } = this.state;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context, this.state);
 
     const requestsList = [];
 
