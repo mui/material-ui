@@ -1,5 +1,6 @@
 import React from 'react';
 import transitions from '../styles/transitions';
+import AutoLockScrolling from './AutoLockScrolling';
 
 function getStyles(props, context) {
   const {overlay} = context.muiTheme;
@@ -59,53 +60,14 @@ class Overlay extends React.Component {
     muiTheme: React.PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    if (this.props.show) {
-      this.applyAutoLockScrolling(this.props);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.show !== nextProps.show) {
-      this.applyAutoLockScrolling(nextProps);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.show === true) {
-      this.allowScrolling();
-    }
-  }
-
   setOpacity(opacity) {
     this.refs.overlay.style.opacity = opacity;
   }
 
-  applyAutoLockScrolling(props) {
-    if (props.autoLockScrolling) {
-      if (props.show) {
-        this.preventScrolling();
-      } else {
-        this.allowScrolling();
-      }
-    }
-  }
-
-  preventScrolling() {
-    const body = document.getElementsByTagName('body')[0];
-    this.originalBodyOverflow = body.style.overflow;
-
-    body.style.overflow = 'hidden';
-  }
-
-  allowScrolling() {
-    const body = document.getElementsByTagName('body')[0];
-    body.style.overflow = this.originalBodyOverflow || '';
-  }
-
   render() {
     const {
-      show, // eslint-disable-line no-unused-vars
+      autoLockScrolling,
+      show,
       style,
       ...other,
     } = this.props;
@@ -114,7 +76,9 @@ class Overlay extends React.Component {
     const styles = getStyles(this.props, this.context);
 
     return (
-      <div {...other} ref="overlay" style={prepareStyles(Object.assign(styles.root, style))} />
+      <div {...other} ref="overlay" style={prepareStyles(Object.assign(styles.root, style))}>
+        {autoLockScrolling && <AutoLockScrolling lock={show} />}
+      </div>
     );
   }
 }

@@ -6,13 +6,21 @@ function getStyles(props, context) {
 
   return {
     root: {
-      padding: '0px 12px',
-      height: (props.label && props.icon) ? 72 : 48,
       color: props.selected ? tabs.selectedTextColor : tabs.textColor,
       fontWeight: 500,
       fontSize: 14,
       width: props.width,
       textTransform: 'uppercase',
+      padding: 0,
+    },
+    button: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: (props.label && props.icon) ? 53 : 24,
+      padding: 12,
+      paddingBottom: (props.label && props.icon) ? 7 : 12,
     },
   };
 }
@@ -105,8 +113,6 @@ class Tab extends React.Component {
       const params = {
         style: {
           fontSize: 24,
-          marginBottom: (label) ? 5 : 0,
-          display: label ? 'block' : 'inline-block',
           color: styles.root.color,
         },
       };
@@ -130,8 +136,10 @@ class Tab extends React.Component {
         touchRippleOpacity={rippleOpacity}
         onTouchTap={this.handleTouchTap}
       >
-        {iconElement}
-        {label}
+        <div style={styles.button} >
+          {iconElement}
+          {label}
+        </div>
       </EnhancedButton>
     );
   }
