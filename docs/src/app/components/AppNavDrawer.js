@@ -181,6 +181,7 @@ class AppNavDrawer extends Component {
                 ]}
               />,
               <ListItem primaryText="Card" value="/components/card" />,
+              <ListItem primaryText="Chip" value="/components/chip" />,
               <ListItem primaryText="Date Picker" value="/components/date-picker" />,
               <ListItem primaryText="Dialog" value="/components/dialog" />,
               <ListItem primaryText="Divider" value="/components/divider" />,

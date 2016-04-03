@@ -77,6 +77,15 @@ export default function getMuiTheme(muiTheme, ...more) {
       labelColor: palette.textColor,
       labelDisabledColor: palette.disabledColor,
     },
+    chip: {
+      backgroundColor: emphasize(palette.canvasColor, 0.12),
+      deleteIconColor: fade(palette.textColor, 0.26),
+      textColor: fade(palette.textColor, 0.87),
+      fontSize: 14,
+      fontWeight: typography.fontWeightNormal,
+      shadow: `0 1px 6px ${fade(palette.shadowColor, 0.12)},
+        0 1px 4px ${fade(palette.shadowColor, 0.12)}`,
+    },
     datePicker: {
       color: palette.primary1Color,
       textColor: palette.alternateTextColor,
