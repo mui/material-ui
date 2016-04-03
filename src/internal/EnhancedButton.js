@@ -182,6 +182,9 @@ class EnhancedButton extends Component {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
         this.handleTouchTap(event);
       }
+      if (keycode(event) === 'esc' && this.state.isKeyboardFocused) {
+        this.removeKeyboardFocus(event);
+      }
     }
     this.props.onKeyDown(event);
   };
@@ -273,6 +276,8 @@ class EnhancedButton extends Component {
       WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
+      margin: 0,
+      padding: 0,
       outline: 'none',
       fontSize: 'inherit',
       fontWeight: 'inherit',
@@ -318,7 +323,7 @@ class EnhancedButton extends Component {
     };
     const buttonChildren = this.createButtonChildren();
 
-    // Provides backward compatibity. Added to support wrapping around <a> element.
+    // Provides backward compatibility. Added to support wrapping around <a> element.
     const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
 
     return React.isValidElement(containerElement) ?
