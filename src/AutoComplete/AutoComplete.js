@@ -479,6 +479,7 @@ class AutoComplete extends React.Component {
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.handleEscKeyDown}
         initiallyKeyboardFocused={false}
+        keyboardFocused={true}
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
