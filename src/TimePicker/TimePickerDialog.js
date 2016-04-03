@@ -8,10 +8,10 @@ import FlatButton from '../FlatButton';
 class TimePickerDialog extends React.Component {
   static propTypes = {
     autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.string,
+    cancelLabel: React.PropTypes.node,
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     initialTime: React.PropTypes.object,
-    okLabel: React.PropTypes.string,
+    okLabel: React.PropTypes.node,
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,

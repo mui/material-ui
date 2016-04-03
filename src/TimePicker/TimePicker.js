@@ -20,7 +20,7 @@ class TimePicker extends React.Component {
     /**
      * Override the label of the 'Cancel' button.
      */
-    cancelLabel: React.PropTypes.string,
+    cancelLabel: React.PropTypes.node,
 
     /**
      * The initial time value of the TimePicker.
@@ -40,7 +40,7 @@ class TimePicker extends React.Component {
     /**
      * Override the label of the 'OK' button.
      */
-    okLabel: React.PropTypes.string,
+    okLabel: React.PropTypes.node,
 
     /**
      * Callback function that is fired when the time value changes. The time value is passed in a Date Object.
