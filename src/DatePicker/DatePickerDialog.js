@@ -11,7 +11,7 @@ class DatePickerDialog extends React.Component {
   static propTypes = {
     DateTimeFormat: React.PropTypes.func,
     autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.string,
+    cancelLabel: React.PropTypes.node,
     container: React.PropTypes.oneOf(['dialog', 'inline']),
     disableYearSelection: React.PropTypes.bool,
     firstDayOfWeek: React.PropTypes.number,
@@ -20,7 +20,7 @@ class DatePickerDialog extends React.Component {
     maxDate: React.PropTypes.object,
     minDate: React.PropTypes.object,
     mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    okLabel: React.PropTypes.string,
+    okLabel: React.PropTypes.node,
     onAccept: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,

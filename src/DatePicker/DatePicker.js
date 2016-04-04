@@ -22,7 +22,7 @@ class DatePicker extends React.Component {
     /**
      * Override the default text of the 'Cancel' button.
      */
-    cancelLabel: React.PropTypes.string,
+    cancelLabel: React.PropTypes.node,
 
     /**
      * Used to control how the DatePicker will be displayed when a user tries to set a date.
@@ -91,7 +91,7 @@ class DatePicker extends React.Component {
     /**
      * Override the default text of the 'OK' button.
      */
-    okLabel: React.PropTypes.string,
+    okLabel: React.PropTypes.node,
 
     /**
      * Callback function that is fired when the date value changes.
