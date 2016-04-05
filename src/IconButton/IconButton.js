@@ -196,10 +196,10 @@ class IconButton extends React.Component {
     if (this.props.onMouseOut) this.props.onMouseOut(event);
   };
 
-  _handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     this.showTooltip();
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
-  }
+  };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
