@@ -259,7 +259,7 @@ class FloatingActionButton extends React.Component {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.props.zDepth + 1});
       this.refs.overlay.style.backgroundColor =
-        ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+        ColorManipulator.fade(getStyles(this.props, this.context).icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({zDepth: this.props.zDepth});
       this.refs.overlay.style.backgroundColor = 'transparent';
