@@ -7,19 +7,20 @@ export default class SnackbarExampleSimple extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      openSingleLine: false,
+      openMultiLine: false,
     };
   }
 
-  handleTouchTap = () => {
+  handleTouchTap = (fieldName) => {
     this.setState({
-      open: true,
+      [fieldName]: true,
     });
   };
 
-  handleRequestClose = () => {
+  handleRequestClose = (fieldName) => {
     this.setState({
-      open: false,
+      [fieldName]: false,
     });
   };
 
@@ -27,14 +28,30 @@ export default class SnackbarExampleSimple extends React.Component {
     return (
       <div>
         <RaisedButton
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={this.handleTouchTap.bind(null, 'openSingleLine')}
           label="Add to my calendar"
         />
+        <RaisedButton
+          onTouchTap={this.handleTouchTap.bind(null, 'openMultiLine')}
+          label="Add to my calendar - multiline"
+          style={{marginLeft: '20px'}}
+        />
+
         <Snackbar
-          open={this.state.open}
+          open={this.state.openSingleLine}
           message="Event added to your calendar"
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
+          autoHideDuration={400000}
+          onRequestClose={this.handleRequestClose.bind(null, 'openSingleLine')}
+        />
+
+        <Snackbar
+          open={this.state.openMultiLine}
+          message={`Event added to your calendar. Please do not forget about it.
+             Kidding, don't worry - we'll notify you. Maybe.`}
+          autoHideDuration={400000}
+          multiline={true}
+          onRequestClose={this.handleRequestClose.bind(null, 'openMultiLine')}
+          action="undo"
         />
       </div>
     );

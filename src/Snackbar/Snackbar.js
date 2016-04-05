@@ -38,24 +38,33 @@ function getStyles(props, context, state) {
     body: {
       backgroundColor: snackbar.backgroundColor,
       padding: `0 ${desktopGutter}px`,
-      height: desktopSubheaderHeight,
-      lineHeight: `${desktopSubheaderHeight}px`,
+      height: props.multiline ? 'auto' : desktopSubheaderHeight,
       borderRadius: isSmall ? 0 : 2,
       maxWidth: isSmall ? 'inherit' : 568,
       minWidth: isSmall ? 'inherit' : 288,
       flexGrow: isSmall ? 1 : 0,
+      lineHeight: props.multiline ? '16px' : '20px',
       margin: 'auto',
     },
     content: {
       fontSize: 14,
+      display: 'flex',
+      minHeight: '100%',
       color: snackbar.textColor,
       opacity: open ? 1 : 0,
+      padding: props.multiline && props.action ? '22px 0' : props.multiline ? '24px 0' : '0',
       transition: open ? transitions.easeOut('500ms', 'opacity', '100ms') : transitions.easeOut('400ms', 'opacity'),
     },
+    text: {
+      flex: 1,
+      alignSelf: 'center',
+      display: 'inline-block',
+    },
     action: {
+      flexGrow: 0,
+      flexShrink: 0,
+      alignSelf: 'center',
       color: snackbar.actionColor,
-      float: 'right',
-      marginTop: 6,
       marginRight: -16,
       marginLeft: desktopGutter,
       backgroundColor: 'transparent',
@@ -65,9 +74,9 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-const Snackbar = React.createClass({
+class Snackbar extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     /**
      * The label for the action on the snackbar.
      */
@@ -101,6 +110,11 @@ const Snackbar = React.createClass({
     message: React.PropTypes.node.isRequired,
 
     /**
+     * Controls whether the `Snackbar` is multi-line or single-line.
+     */
+    multiline: React.PropTypes.bool,
+
+    /**
      * Fired when the action button is touchtapped.
      *
      * @param {object} event Action button event.
@@ -130,30 +144,36 @@ const Snackbar = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: React.PropTypes.object.isRequired,
-  },
+  };
 
-  mixins: [
+  static mixins = [
     StyleResizable,
-  ],
+  ];
 
-  getInitialState() {
-    return {
-      open: this.props.open,
-      message: this.props.message,
-      action: this.props.action,
+  static defaultProps = {
+    multiline: false,
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: props.open,
+      message: props.message,
+      action: props.action,
     };
-  },
+  }
 
   componentDidMount() {
     if (this.state.open) {
       this.setAutoHideTimer();
       this.setTransitionTimer();
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.open === this.props.open &&
@@ -179,7 +199,7 @@ const Snackbar = React.createClass({
         action: nextProps.action,
       });
     }
-  },
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.open !== this.state.open) {
@@ -190,13 +210,13 @@ const Snackbar = React.createClass({
         clearTimeout(this.timerAutoHideId);
       }
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timerAutoHideId);
     clearTimeout(this.timerTransitionId);
     clearTimeout(this.timerOneAtTheTimeId);
-  },
+  }
 
   componentClickAway() {
     if (this.timerTransitionId) return; // If transitioning, don't close snackbar
@@ -206,7 +226,7 @@ const Snackbar = React.createClass({
     } else {
       this.setState({open: false});
     }
-  },
+  }
 
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer() {
@@ -222,14 +242,14 @@ const Snackbar = React.createClass({
         }
       }, autoHideDuration);
     }
-  },
+  }
 
   // Timer that controls delay before click-away events are captured (based on when animation completes)
   setTransitionTimer() {
     this.timerTransitionId = setTimeout(() => {
       this.timerTransitionId = undefined;
     }, 400);
-  },
+  }
 
   render() {
     const {
@@ -257,19 +277,18 @@ const Snackbar = React.createClass({
     );
 
     return (
-      <ClickAwayListener onClickAway={open && this.componentClickAway}>
+      <ClickAwayListener onClickAway={open && this.componentClickAway.bind(this)}>
         <div {...others} style={prepareStyles(Object.assign(styles.root, style))}>
           <div style={prepareStyles(Object.assign(styles.body, bodyStyle))}>
             <div style={prepareStyles(styles.content)}>
-              <span>{message}</span>
+              <span style={prepareStyles(styles.text)}>{message}</span>
               {actionButton}
             </div>
           </div>
         </div>
       </ClickAwayListener>
     );
-  },
-
-});
+  }
+}
 
 export default Snackbar;
