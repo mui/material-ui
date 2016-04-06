@@ -37,9 +37,14 @@ class FlatButton extends React.Component {
     disabled: React.PropTypes.bool,
 
     /**
-     * Color of button when mouse hovers over.
+     * Color of button background when mouse hovers over.
      */
     hoverColor: React.PropTypes.string,
+
+    /**
+     * Color of button text when mouse hovers over.
+     */
+    hoverTextColor: React.PropTypes.string,
 
     /**
      * URL to link to when button clicked if `linkButton` is set to true.
@@ -174,6 +179,7 @@ class FlatButton extends React.Component {
       children,
       disabled,
       hoverColor,
+      hoverTextColor,
       backgroundColor,
       icon,
       label,
@@ -213,12 +219,13 @@ class FlatButton extends React.Component {
     const defaultHoverColor = ColorManipulator.fade(buttonFilterColor, 0.2);
     const defaultRippleColor = buttonFilterColor;
     const buttonHoverColor = hoverColor || defaultHoverColor;
+    const buttonHoverTextColor = hoverTextColor || defaultTextColor;
     const buttonRippleColor = rippleColor || defaultRippleColor;
     const buttonBackgroundColor = backgroundColor || buttonColor;
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
     const mergedRootStyles = Object.assign({}, {
-      color: defaultTextColor,
+      color: hovered ? buttonHoverTextColor : defaultTextColor,
       transition: transitions.easeOut(),
       fontSize: fontSize,
       letterSpacing: 0,
