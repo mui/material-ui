@@ -127,10 +127,6 @@ class DatePicker extends Component {
      */
     value: PropTypes.any,
     /**
-     * Creates a ValueLink with the value of date picker.
-     */
-    valueLink: PropTypes.object,
-    /**
      * Wordings used inside the button of the dialog.
      */
     wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
@@ -213,7 +209,6 @@ class DatePicker extends Component {
       });
     }
     if (this.props.onChange) this.props.onChange(null, date);
-    if (this.props.valueLink) this.props.valueLink.requestChange(date);
   };
 
   handleFocus = (event) => {
@@ -231,15 +226,12 @@ class DatePicker extends Component {
   };
 
   isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
+    return this.props.hasOwnProperty('value');
   }
 
   getControlledDate(props = this.props) {
     if (props.value instanceof Date) {
       return props.value;
-    } else if (props.valueLink && props.valueLink.value instanceof Date) {
-      return props.valueLink.value;
     }
   }
 
@@ -275,7 +267,6 @@ class DatePicker extends Component {
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       textFieldStyle,
-      valueLink, // eslint-disable-line no-unused-vars
       wordings,
       shouldDisableDate,
       ...other,
