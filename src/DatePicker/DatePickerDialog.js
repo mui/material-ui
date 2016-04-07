@@ -3,7 +3,8 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
-import Popover from './Popover';
+import Popover from '../Popover/Popover';
+import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
@@ -124,40 +125,44 @@ class DatePickerDialog extends Component {
 
     const Container = (container === 'inline' ? Popover : Dialog);
     return (
-      <Container
-        {...other}
-        ref="dialog"
-        contentStyle={styles.dialogContent}
-        bodyStyle={styles.dialogBodyContent}
-        repositionOnUpdate={false}
-        open={open}
-        onRequestClose={this.handleRequestClose}
-      >
-        <EventListener
-          elementName="window"
-          onKeyUp={this.handleWindowKeyUp}
-        />
-        <Calendar
-          DateTimeFormat={DateTimeFormat}
-          firstDayOfWeek={firstDayOfWeek}
-          locale={locale}
-          ref="calendar"
-          onTouchTapDay={this.handleTouchTapDay}
-          initialDate={initialDate}
+      <div {...other} ref="root">
+        <Container
+          {...other}
+          animation={PopoverAnimationFromTop} // For Popover
+          anchorEl={this.refs.root} // For Popover
+          contentStyle={styles.dialogContent}
+          bodyStyle={styles.dialogBodyContent}
+          ref="dialog"
+          repositionOnUpdate={false}
+          onRequestClose={this.handleRequestClose}
           open={open}
-          minDate={minDate}
-          maxDate={maxDate}
-          shouldDisableDate={shouldDisableDate}
-          disableYearSelection={disableYearSelection}
-          mode={mode}
-          onTouchTapCancel={this.handleTouchTapCancel}
-          onTouchTapOk={this.handleTouchTapOk}
-          okLabel={okLabel}
-          cancelLabel={cancelLabel}
-          wordings={wordings}
-          showActionButtons={true}
-        />
-      </Container>
+        >
+          <EventListener
+            elementName="window"
+            onKeyUp={this.handleWindowKeyUp}
+          />
+          <Calendar
+            DateTimeFormat={DateTimeFormat}
+            firstDayOfWeek={firstDayOfWeek}
+            locale={locale}
+            ref="calendar"
+            onTouchTapDay={this.handleTouchTapDay}
+            initialDate={initialDate}
+            open={open}
+            minDate={minDate}
+            maxDate={maxDate}
+            shouldDisableDate={shouldDisableDate}
+            disableYearSelection={disableYearSelection}
+            mode={mode}
+            onTouchTapCancel={this.handleTouchTapCancel}
+            onTouchTapOk={this.handleTouchTapOk}
+            okLabel={okLabel}
+            cancelLabel={cancelLabel}
+            wordings={wordings}
+            showActionButtons={true}
+          />
+        </Container>
+      </div>
     );
   }
 }
