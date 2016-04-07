@@ -256,7 +256,7 @@ class Calendar extends React.Component {
       },
       calendarContainer: {
         fontSize: 12,
-        width: 'auto',
+        width: isLandscape ? 298 : 'auto',
         height: 'auto',
         transition: transitions.easeOut(),
         display: 'flex',
@@ -326,7 +326,6 @@ class Calendar extends React.Component {
           locale={locale}
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
-          style={styles.dateDisplay}
           selectedDate={this.state.selectedDate}
           weekCount={weekCount}
         />

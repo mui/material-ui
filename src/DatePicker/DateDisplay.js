@@ -5,18 +5,21 @@ import SlideInTransitionGroup from '../internal/SlideIn';
 function getStyles(props, context, state) {
   const {datePicker} = context.muiTheme;
   const {selectedYear} = state;
+  const isLandscape = props.mode === 'landscape';
 
   const styles = {
     root: {
-      display: 'block',
+      width: isLandscape ? 125 : 270,
+      height: isLandscape ? 298 : 'auto',
+      float: isLandscape ? 'left' : 'none',
+      fontWeight: 'bolder',
+      display: 'inline-block',
       backgroundColor: datePicker.selectColor,
       borderTopLeftRadius: 2,
-      borderTopRightRadius: props.mode === 'portrait' ? 2 : 0,
-      borderBottomLeftRadius: props.mode === 'portrait' ? 0 : 2,
+      borderTopRightRadius: isLandscape ? 0 : 2,
+      borderBottomLeftRadius: isLandscape ? 2 : 0,
       color: datePicker.textColor,
-      height: '100%',
       padding: 20,
-      fontWeight: 900,
     },
     monthDay: {
       display: 'block',
@@ -133,7 +136,7 @@ class DateDisplay extends Component {
     }).format(selectedDate);
 
     return (
-      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+      <div {...other} style={prepareStyles(styles.root)}>
         <SlideInTransitionGroup
           style={styles.year}
           direction={this.state.transitionDirection}
