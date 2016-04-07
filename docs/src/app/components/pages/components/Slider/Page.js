@@ -12,6 +12,8 @@ import SliderExampleDisabled from './ExampleDisabled';
 import sliderExampleDisabledCode from '!raw!./ExampleDisabled';
 import SliderExampleStep from './ExampleStep';
 import sliderExampleStepCode from '!raw!./ExampleStep';
+import SliderExampleControlled from './ExampleControlled';
+import sliderExampleControlledCode from '!raw!./ExampleControlled';
 import sliderCode from '!raw!material-ui/lib/Slider/Slider';
 
 const descriptions = {
@@ -19,6 +21,8 @@ const descriptions = {
   'not at the starting position.',
   stepped: 'By default, the slider is continuous. The `step` property causes the slider to move in discrete ' +
   'increments.',
+  value: 'The slider bar can have a set minimum and maximum, and the value can be ' +
+  'obtained through the value parameter fired on an onChange event.',
 };
 
 const SliderPage = () => (
@@ -45,6 +49,14 @@ const SliderPage = () => (
     >
       <SliderExampleStep />
     </CodeExample>
+    <CodeExample
+      title="Controlled Examples"
+      description={descriptions.value}
+      code={sliderExampleControlledCode}
+    >
+      <SliderExampleControlled />
+    </CodeExample>
+
     <PropTypeDescription code={sliderCode} />
   </div>
 );
