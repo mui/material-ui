@@ -48,7 +48,7 @@ Please create a new branch from an up to date master on your fork.
 4. Make your changes, lint, then push to to github with `git push --set-upstream origin my-topic-branch`.
 5. Visit github and make your pull request.
 
-If you have an existing local repositiry, please update it before you start, to minimise the chance of merge conflicts.
+If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```js
 git remote add upstream git@github.com:callemall/material-ui.git
 git checkout master
