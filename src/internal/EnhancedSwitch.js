@@ -198,7 +198,7 @@ class EnhancedSwitch extends React.Component {
    * ripple animations manually.
    */
   handleMouseDown = (event) => {
-    //only listen to left clicks
+    // only listen to left clicks
     if (event.button === 0) {
       this.refs.touchRipple.start(event);
     }
@@ -231,9 +231,9 @@ class EnhancedSwitch extends React.Component {
   };
 
   handleFocus = (event) => {
-    //setTimeout is needed becuase the focus event fires first
-    //Wait so that we can capture if this was a keyboard focus
-    //or touch focus
+    // setTimeout is needed becuase the focus event fires first
+    // Wait so that we can capture if this was a keyboard focus
+    // or touch focus
     setTimeout(() => {
       if (this.tabPressed) {
         this.setState({

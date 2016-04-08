@@ -150,7 +150,7 @@ class EnhancedButton extends React.Component {
     } = this.props;
     const {isKeyboardFocused} = this.state;
 
-    //Focus Ripple
+    // Focus Ripple
     const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
       <FocusRipple
         color={focusRippleColor}
@@ -159,7 +159,7 @@ class EnhancedButton extends React.Component {
       />
     ) : undefined;
 
-    //Touch Ripple
+    // Touch Ripple
     const touchRipple = !disabled && !disableTouchRipple ? (
       <TouchRipple
         centerRipple={centerRipple}
@@ -204,9 +204,9 @@ class EnhancedButton extends React.Component {
   handleFocus = (event) => {
     if (event) event.persist();
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      //setTimeout is needed because the focus event fires first
-      //Wait so that we can capture if this was a keyboard focus
-      //or touch focus
+      // setTimeout is needed because the focus event fires first
+      // Wait so that we can capture if this was a keyboard focus
+      // or touch focus
       this.focusTimeout = setTimeout(() => {
         if (tabPressed) {
           this.setKeyboardFocus(event);
@@ -275,11 +275,11 @@ class EnhancedButton extends React.Component {
       textDecoration: 'none',
       outline: 'none',
       font: 'inherit',
-      /*
-        This is needed so that ripples do not bleed
-        past border radius.
-        See: http://stackoverflow.com/questions/17298739/
-          css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+      /**
+       * This is needed so that ripples do not bleed
+       * past border radius.
+       * See: http://stackoverflow.com/questions/17298739/
+       * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
        */
       transform: disableTouchRipple && disableFocusRipple ? null : 'translate3d(0, 0, 0)',
       verticalAlign: other.hasOwnProperty('href') ? 'middle' : null,

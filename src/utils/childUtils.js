@@ -6,7 +6,7 @@ export function createChildFragment(fragments) {
   let validChildrenCount = 0;
   let firstKey;
 
-  //Only create non-empty key fragments
+  // Only create non-empty key fragments
   for (const key in fragments) {
     const currentChild = fragments[key];
 

@@ -218,7 +218,7 @@ class FloatingActionButton extends React.Component {
   }
 
   handleMouseDown = (event) => {
-    //only listen to left clicks
+    // only listen to left clicks
     if (event.button === 0) {
       this.setState({zDepth: this.props.zDepth + 1});
     }

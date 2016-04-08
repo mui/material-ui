@@ -27,8 +27,7 @@ function getStyles(props, context) {
 
   const styles = {
     root: {
-      //Nested div bacause the List scales x faster than
-      //it scales y
+      // Nested div bacause the List scales x faster than it scales y
       transition: animated ? transitions.easeOut('250ms', 'transform') : null,
       zIndex: muiTheme.zIndex.menu,
       top: openDown ? 0 : null,
@@ -354,11 +353,10 @@ class Menu extends React.Component {
     let currentHeight = desktop ? 16 : 8;
     const menuItemHeight = desktop ? 32 : 48;
 
-    //MaxHeight isn't set - cascade all of the children
+    // MaxHeight isn't set - cascade all of the children
     if (!maxHeight) return filteredChildren.length;
 
-    //Count all the children that will fit inside the
-    //max menu height
+    // Count all the children that will fit inside the max menu height
     filteredChildren.forEach((child) => {
       if (currentHeight < maxHeight) {
         const childIsADivider = child.type && child.type.muiName === 'Divider';
@@ -481,8 +479,7 @@ class Menu extends React.Component {
     if (focusedMenuItem) {
       const selectedOffSet = ReactDOM.findDOMNode(focusedMenuItem).offsetTop;
 
-      //Make the focused item be the 2nd item in the list the
-      //user sees
+      // Make the focused item be the 2nd item in the list the user sees
       let scrollTop = selectedOffSet - menuItemHeight;
       if (scrollTop < menuItemHeight) scrollTop = 0;
 
@@ -542,7 +539,7 @@ class Menu extends React.Component {
     const openDown = openDirection.split('-')[0] === 'bottom';
     const filteredChildren = this.getFilteredChildren(children);
 
-    //Cascade children opacity
+    // Cascade children opacity
     let cumulativeDelay = openDown ? 175 : 325;
     const cascadeChildrenCount = this.getCascadeChildrenCount(filteredChildren);
     const cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
@@ -556,7 +553,7 @@ class Menu extends React.Component {
       if (animated) {
         let transitionDelay = 0;
 
-        //Only cascade the visible menu items
+        // Only cascade the visible menu items
         if ((menuItemIndex >= focusIndex - 1) &&
           (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
           cumulativeDelay = openDown ?
