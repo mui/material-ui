@@ -280,7 +280,7 @@ class RaisedButton extends React.Component {
   }
 
   handleMouseDown = (event) => {
-    //only listen to left clicks
+    // only listen to left clicks
     if (event.button === 0) {
       this.setState({zDepth: this.state.initialZDepth + 1});
     }

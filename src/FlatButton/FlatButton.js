@@ -154,7 +154,7 @@ class FlatButton extends React.Component {
   };
 
   handleMouseEnter = (event) => {
-    //Cancel hover styles for touch devices
+    // Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
   };

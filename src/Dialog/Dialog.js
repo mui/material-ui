@@ -194,7 +194,7 @@ class DialogInline extends React.Component {
     const dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
     const minPaddingTop = 16;
 
-    //Reset the height in case the window was resized.
+    // Reset the height in case the window was resized.
     dialogWindow.style.height = '';
     dialogContent.style.height = '';
 
@@ -202,8 +202,8 @@ class DialogInline extends React.Component {
     let paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 64;
     if (paddingTop < minPaddingTop) paddingTop = minPaddingTop;
 
-    //Vertically center the dialog window, but make sure it doesn't
-    //transition to that position.
+    // Vertically center the dialog window, but make sure it doesn't
+    // transition to that position.
     if (repositionOnUpdate || !container.style.paddingTop) {
       container.style.paddingTop = `${paddingTop}px`;
     }

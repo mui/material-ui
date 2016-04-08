@@ -173,13 +173,13 @@ class DropDownMenu extends React.Component {
     }
     if (this.props.openImmediately) {
       // TODO: Temporary fix to make openImmediately work with popover.
-      /*eslint-disable react/no-did-mount-set-state */
+      /* eslint-disable react/no-did-mount-set-state */
       setTimeout(() => this.setState({open: true, anchorEl: this.refs.root}));
       setTimeout(() => this.setState({
         open: true,
         anchorEl: this.refs.root,
       }), 0);
-      /*eslint-enable react/no-did-mount-set-state */
+      /* eslint-enable react/no-did-mount-set-state */
     }
   }
 

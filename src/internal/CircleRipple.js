@@ -49,7 +49,7 @@ class CircleRipple extends React.Component {
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = 0;
-    //If the animation is aborted, remove from the DOM immediately
+    // If the animation is aborted, remove from the DOM immediately
     const removeAfter = this.props.aborted ? 0 : 2000;
     this.enterTimer = setTimeout(callback, removeAfter);
   }
