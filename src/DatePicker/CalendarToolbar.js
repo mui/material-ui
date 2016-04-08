@@ -84,22 +84,22 @@ class CalendarToolbar extends Component {
     return (
       <div style={styles.root}>
         <IconButton
-          style={styles.button}
           disabled={!this.props.prevMonth}
           onTouchTap={this.handleTouchTapPrevMonth}
+          style={styles.button}
         >
           {nextButtonIcon}
         </IconButton>
         <SlideInTransitionGroup
-          style={styles.title}
           direction={this.state.transitionDirection}
+          style={styles.title}
         >
           <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
         <IconButton
-          style={styles.button}
           disabled={!this.props.nextMonth}
           onTouchTap={this.handleTouchTapNextMonth}
+          style={styles.button}
         >
           {prevButtonIcon}
         </IconButton>

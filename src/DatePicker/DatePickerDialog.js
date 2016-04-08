@@ -128,14 +128,15 @@ class DatePickerDialog extends Component {
       <div {...other} ref="root">
         <Container
           {...other}
-          animation={PopoverAnimationFromTop} // For Popover
           anchorEl={this.refs.root} // For Popover
-          contentStyle={styles.dialogContent}
+          animation={PopoverAnimationFromTop} // For Popover
           bodyStyle={styles.dialogBodyContent}
+          contentStyle={styles.dialogContent}
           ref="dialog"
           repositionOnUpdate={false}
-          onRequestClose={this.handleRequestClose}
           open={open}
+          onRequestClose={this.handleRequestClose}
+          style={styles.dialogBodyContent}
         >
           <EventListener
             elementName="window"
@@ -143,23 +144,23 @@ class DatePickerDialog extends Component {
           />
           <Calendar
             DateTimeFormat={DateTimeFormat}
-            firstDayOfWeek={firstDayOfWeek}
-            locale={locale}
-            ref="calendar"
-            onTouchTapDay={this.handleTouchTapDay}
-            initialDate={initialDate}
-            open={open}
-            minDate={minDate}
-            maxDate={maxDate}
-            shouldDisableDate={shouldDisableDate}
+            cancelLabel={cancelLabel}
             disableYearSelection={disableYearSelection}
+            firstDayOfWeek={firstDayOfWeek}
+            initialDate={initialDate}
+            locale={locale}
+            onTouchTapDay={this.handleTouchTapDay}
+            maxDate={maxDate}
+            minDate={minDate}
             mode={mode}
+            open={open}
+            ref="calendar"
             onTouchTapCancel={this.handleTouchTapCancel}
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
-            cancelLabel={cancelLabel}
-            wordings={wordings}
             showActionButtons={true}
+            shouldDisableDate={shouldDisableDate}
+            wordings={wordings}
           />
         </Container>
       </div>

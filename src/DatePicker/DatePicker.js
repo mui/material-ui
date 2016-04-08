@@ -265,10 +265,10 @@ class DatePicker extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
+      shouldDisableDate,
       style,
       textFieldStyle,
       wordings,
-      shouldDisableDate,
       ...other,
     } = this.props;
 
@@ -279,11 +279,11 @@ class DatePicker extends Component {
       <div style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
-          style={textFieldStyle}
-          ref="input"
-          value={this.state.date ? formatDate(this.state.date) : ''}
           onFocus={this.handleFocus}
           onTouchTap={this.handleTouchTap}
+          ref="input"
+          style={textFieldStyle}
+          value={this.state.date ? formatDate(this.state.date) : undefined}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}

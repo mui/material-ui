@@ -19,15 +19,24 @@ class CalendarActionButton extends React.Component {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         margin: 0,
-        padding: 0,
         maxHeight: 48,
+        padding: 0,
+<<<<<<< 0f408deaaef6be85ed071ed00945336364b2f2f7
+        maxHeight: 48,
+=======
+        //backgroundColor: 'pink',
+>>>>>>> [DatePicker] cleanup
       },
       flatButtons: {
-        minWidth: 64,
-        maxHeight: 36,
-        padding: 0,
         fontsize: 14,
         margin: '4px 8px 8px 0px',
+<<<<<<< 0f408deaaef6be85ed071ed00945336364b2f2f7
+=======
+        maxHeight: 36,
+        minWidth: 64,
+        padding: 0,
+        //backgroundColor: 'yellow',
+>>>>>>> [DatePicker] cleanup
       },
     };
 
@@ -36,17 +45,17 @@ class CalendarActionButton extends React.Component {
         <FlatButton
           key={0}
           label={wordings ? wordings.cancel : cancelLabel}
+          onTouchTap={this.props.onTouchTapCancel}
           primary={true}
           style={styles.flatButtons}
-          onTouchTap={this.props.onTouchTapCancel}
         />
         <FlatButton
+          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
           key={1}
           label={wordings ? wordings.ok : okLabel}
-          primary={true}
-          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-          style={styles.flatButtons}
           onTouchTap={this.props.onTouchTapOk}
+          primary={true}
+          style={styles.flatButtons}
         />
       </div>
     );

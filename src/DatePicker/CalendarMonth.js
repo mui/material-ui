@@ -55,11 +55,11 @@ class CalendarMonth extends Component {
 
       return (
         <DayButton
-          key={`db${(i + j)}`}
           date={day}
+          disabled={disabled}
+          key={`db${(i + j)}`}
           onTouchTap={this.handleTouchTapDay}
           selected={selected}
-          disabled={disabled}
         />
       );
     }, this);

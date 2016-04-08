@@ -10,7 +10,7 @@ function getStyles(props, context, state) {
   const styles = {
     root: {
       width: isLandscape ? 125 : 270,
-      height: isLandscape ? 298 : 'auto',
+      height: isLandscape ? 290 : 'auto',
       float: isLandscape ? 'left' : 'none',
       fontWeight: 'bolder',
       display: 'inline-block',
@@ -121,7 +121,6 @@ class DateDisplay extends Component {
       DateTimeFormat,
       locale,
       selectedDate,
-      style,
       ...other,
     } = this.props;
 
@@ -151,8 +150,8 @@ class DateDisplay extends Component {
         >
           <div
             key={dateTimeFormatted}
-            style={styles.monthDayTitle}
             onTouchTap={this.handleTouchTapMonthDay}
+            style={styles.monthDayTitle}
           >
             {dateTimeFormatted}
           </div>

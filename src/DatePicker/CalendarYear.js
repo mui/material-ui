@@ -41,9 +41,9 @@ class CalendarYear extends Component {
       const yearButton = (
         <YearButton
           key={`yb${year}`}
-          year={year}
           onTouchTap={this.handleTouchTapYear}
           selected={selected}
+          year={year}
           {...selectedProps}
         />
       );
@@ -75,13 +75,13 @@ class CalendarYear extends Component {
     const years = this.getYears();
     const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
-      position: 'relative',
+      backgroundColor: backgroundColor,
       height: 'inherit',
       lineHeight: '35px',
-      textAlign: 'center',
-      backgroundColor: backgroundColor,
       overflowX: 'hidden',
       overflowY: 'scroll',
+      position: 'relative',
+      textAlign: 'center',
     };
 
     return (

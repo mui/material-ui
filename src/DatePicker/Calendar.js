@@ -228,9 +228,7 @@ class Calendar extends React.Component {
   };
 
   yearSelector() {
-    if (this.props.disableYearSelection) return;
-
-    return (
+    if (!this.props.disableYearSelection) return (
       <CalendarYear
         key={'years'}
         displayDate={this.state.displayDate}
@@ -254,26 +252,30 @@ class Calendar extends React.Component {
       root: {
         color: calendarTextColor,
       },
-      calendarContainer: {
-        fontSize: 12,
-        width: isLandscape ? 298 : 'auto',
-        height: 'auto',
-        transition: transitions.easeOut(),
+      calendar: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+      },
+      calendarContainer: {
         alignContent: 'space-between',
+        display: 'flex',
+        flexDirection: 'column',
+        fontSize: 12,
         fontWeight: 400,
-        margin: '0px 8px 0px 8px',
+        height: 'auto',
+        justifyContent: 'space-between',
+        padding: '0px 8px 0px 8px',
+        transition: transitions.easeOut(),
+        width: isLandscape ? 294 : 'auto',
       },
       yearContainer: {
-        width: 'auto',
-        overflow: 'hidden',
-        height: 275,
         display: 'flex',
         flexDirection: 'column',
+        height: 272,
         justifyContent: 'space-between',
         marginTop: 10,
+        overflow: 'hidden',
+        width: 310,
       },
       dateDisplay: {
         width: isLandscape ? 125 : 270,
@@ -282,13 +284,13 @@ class Calendar extends React.Component {
         fontWeight: 'bolder',
       },
       weekTitle: {
-        lineHeight: '20px',
-        opacity: '0.5',
-        height: 20,
-        fontWeight: '500',
         display: 'flex',
         flexDirection: 'row',
+        fontWeight: '500',
+        height: 20,
         justifyContent: 'space-between',
+        lineHeight: '15px',
+        opacity: '0.5',
         textAlign: 'center',
       },
       weekTitleDay: {
@@ -300,6 +302,9 @@ class Calendar extends React.Component {
     };
 
     const weekTitleDayStyle = prepareStyles(styles.weekTitleDay);
+    const weekTitleStyle = prepareStyles(styles.weekTitle);
+    const calendarContainerStyle = prepareStyles(styles.calendarContainer);
+    const yearContainerStyle = prepareStyles(styles.yearContainer);
 
     const {
       cancelLabel,
@@ -329,52 +334,54 @@ class Calendar extends React.Component {
           selectedDate={this.state.selectedDate}
           weekCount={weekCount}
         />
-        {this.state.displayMonthDay &&
-          <div style={prepareStyles(styles.calendarContainer)}>
-            <CalendarToolbar
-              DateTimeFormat={DateTimeFormat}
-              locale={locale}
-              displayDate={this.state.displayDate}
-              onMonthChange={this.handleMonthChange}
-              prevMonth={toolbarInteractions.prevMonth}
-              nextMonth={toolbarInteractions.nextMonth}
-            />
-            <div style={styles.weekTitle}>
-              {daysArray.map((event, i) => (
-                <span key={i} style={weekTitleDayStyle}>
-                  {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
-                </span>
-              ))}
-            </div>
-            <SlideInTransitionGroup direction={this.state.transitionDirection} style={styles.transitionSlide}>
-              <CalendarMonth
-                key={this.state.displayDate.toDateString()}
-                ref="calendar"
+        <div style={styles.calendar}>
+          {this.state.displayMonthDay &&
+            <div style={calendarContainerStyle}>
+              <CalendarToolbar
+                DateTimeFormat={DateTimeFormat}
+                locale={locale}
                 displayDate={this.state.displayDate}
-                onTouchTapDay={this.handleTouchTapDay}
-                selectedDate={this.state.selectedDate}
-                minDate={this.props.minDate}
-                maxDate={this.props.maxDate}
-                shouldDisableDate={this.props.shouldDisableDate}
-                firstDayOfWeek={this.props.firstDayOfWeek}
+                onMonthChange={this.handleMonthChange}
+                prevMonth={toolbarInteractions.prevMonth}
+                nextMonth={toolbarInteractions.nextMonth}
               />
-            </SlideInTransitionGroup>
-          </div>
-        }
-        {!this.state.displayMonthDay &&
-          <div style={prepareStyles(styles.yearContainer)}>
-            {this.yearSelector()}
-          </div>
-        }
-        {this.props.showActionButtons &&
-          <CalendarActionButtons
-            cancelLabel={cancelLabel}
-            okLabel={okLabel}
-            onTouchTapCancel={onTouchTapCancel}
-            onTouchTapOk={onTouchTapOk}
-            wordings={wordings}
-          />
-        }
+              <div style={weekTitleStyle}>
+                {daysArray.map((event, i) => (
+                  <span key={i} style={weekTitleDayStyle}>
+                    {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
+                  </span>
+                ))}
+              </div>
+              <SlideInTransitionGroup direction={this.state.transitionDirection} style={styles.transitionSlide}>
+                <CalendarMonth
+                  displayDate={this.state.displayDate}
+                  firstDayOfWeek={this.props.firstDayOfWeek}
+                  key={this.state.displayDate.toDateString()}
+                  minDate={this.props.minDate}
+                  maxDate={this.props.maxDate}
+                  onTouchTapDay={this.handleTouchTapDay}
+                  ref="calendar"
+                  selectedDate={this.state.selectedDate}
+                  shouldDisableDate={this.props.shouldDisableDate}
+                />
+              </SlideInTransitionGroup>
+            </div>
+          }
+          {!this.state.displayMonthDay &&
+            <div style={yearContainerStyle}>
+              {this.yearSelector()}
+            </div>
+          }
+          {this.props.showActionButtons &&
+            <CalendarActionButtons
+              cancelLabel={cancelLabel}
+              okLabel={okLabel}
+              onTouchTapCancel={onTouchTapCancel}
+              onTouchTapOk={onTouchTapOk}
+              wordings={wordings}
+            />
+          }
+        </div>
       </ClearFix>
     );
   }
