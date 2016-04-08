@@ -423,17 +423,20 @@ class ListItem extends React.Component {
   }
 
   createTextElement(styles, data, key) {
-    const isAnElement = React.isValidElement(data);
-    const mergedStyles = isAnElement ?
-      Object.assign({}, styles, data.props.style) : null;
-
-    return isAnElement ? (
-      React.cloneElement(data, {
+    const {prepareStyles} = this.context.muiTheme;
+    if (React.isValidElement(data)) {
+      let style = Object.assign({}, styles, data.props.style);
+      if (typeof data.type === 'string') { // if element is a native dom node
+        style = prepareStyles(style);
+      }
+      return React.cloneElement(data, {
         key: key,
-        style: this.context.muiTheme.prepareStyles(mergedStyles),
-      })
-    ) : (
-      <div key={key} style={this.context.muiTheme.prepareStyles(styles)}>
+        style: style,
+      });
+    }
+
+    return (
+      <div key={key} style={prepareStyles(styles)}>
         {data}
       </div>
     );
