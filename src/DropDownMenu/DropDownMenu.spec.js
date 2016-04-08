@@ -19,7 +19,7 @@ describe('<DropDownMenu />', () => {
         </DropDownMenu>
       );
 
-      assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Never');
+      assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).childAt(1).node, 'Never');
     });
   });
 
@@ -32,7 +32,34 @@ describe('<DropDownMenu />', () => {
         </DropDownMenu>
       );
 
-      assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Never');
+      assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).childAt(1).node, 'Never');
     });
+  });
+
+  it('displays the left icon if set properly', () => {
+    const wrapper = shallowWithContext(
+      <DropDownMenu value={1}>
+        <div value={1} primaryText="Never" leftIcon="leftIcon" />
+        <div value={2} primaryText="Every Night" />
+        <div value={3} primaryText="Weeknights" />
+      </DropDownMenu>
+    );
+
+    assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).childAt(0).childAt(0).node, 'leftIcon');
+    assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).childAt(1).node, 'Never');
+  });
+
+  it('displays the right icon if set properly', () => {
+    const wrapper = shallowWithContext(
+      <DropDownMenu value={1}>
+        <div value={1} primaryText="Never" rightIcon="rightIcon" />
+        <div value={2} primaryText="Every Night" />
+        <div value={3} primaryText="Weeknights" />
+      </DropDownMenu>
+    );
+
+    assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).childAt(1).node, 'Never');
+    assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).childAt(2).childAt(0).node, 'rightIcon');
+
   });
 });
