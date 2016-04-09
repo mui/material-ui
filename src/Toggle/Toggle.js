@@ -94,7 +94,7 @@ class Toggle extends React.Component {
     inputStyle: React.PropTypes.object,
 
     /**
-     * Label for toggle
+     * Label for toggle.
      */
     label: React.PropTypes.string,
 
