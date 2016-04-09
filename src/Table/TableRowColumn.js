@@ -46,11 +46,6 @@ class TableRowColumn extends React.Component {
     hoverable: React.PropTypes.bool,
 
     /**
-     * Key for this element.
-     */
-    key: React.PropTypes.string,
-
-    /**
      * @ignore
      * Callback function for click event.
      */
@@ -128,7 +123,6 @@ class TableRowColumn extends React.Component {
 
     return (
       <td
-        key={this.props.key}
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
         {...handlers}
