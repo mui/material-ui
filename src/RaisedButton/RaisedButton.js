@@ -95,7 +95,8 @@ function getStyles(props, context, state) {
       marginRight: label && labelPosition === 'before' ? 12 : 0,
     },
     overlay: {
-      backgroundColor: state.hovered && !disabled && ColorManipulator.fade(labelColor, amount),
+      backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
+        ColorManipulator.fade(labelColor, amount),
       transition: transitions.easeOut(),
       top: 0,
     },
@@ -318,21 +319,13 @@ class RaisedButton extends React.Component {
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
-    const styles = getStyles(this.props, this.context);
+    const zDepth = keyboardFocused && !this.props.disabled ?
+      this.state.initialZDepth + 1 : this.state.initialZDepth;
 
-    if (keyboardFocused && !this.props.disabled) {
-      this.setState({
-        zDepth: this.state.initialZDepth + 1,
-      });
-      const amount = (this.props.primary || this.props.secondary) ? 0.4 : 0.08;
-      this.refs.overlay.style.backgroundColor =
-        ColorManipulator.fade(Object.assign({}, styles.label, this.props.labelStyle).color, amount);
-    } else if (!this.state.hovered) {
-      this.setState({
-        zDepth: this.state.initialZDepth,
-      });
-      this.refs.overlay.style.backgroundColor = 'transparent';
-    }
+    this.setState({
+      zDepth: zDepth,
+      keyboardFocused,
+    });
   };
 
   render() {
