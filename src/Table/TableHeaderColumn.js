@@ -40,11 +40,6 @@ class TableHeaderColumn extends React.Component {
     columnNumber: React.PropTypes.number,
 
     /**
-     * Key prop for table header column.
-     */
-    key: React.PropTypes.string,
-
-    /**
      * @ignore
      * Callback function for click event.
      */
@@ -122,7 +117,6 @@ class TableHeaderColumn extends React.Component {
 
     return (
       <th
-        key={this.props.key}
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
         {...handlers}
