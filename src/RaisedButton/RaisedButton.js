@@ -112,69 +112,70 @@ class RaisedButton extends React.Component {
 
   static propTypes = {
     /**
-     * Override the background color. Always takes precedence unless the button is disabled.
+     * Override the default background color for the button,
+     * but not the default disabled background color
+     * (use `disabledBackgroundColor` for this).
      */
     backgroundColor: React.PropTypes.string,
 
     /**
-     * This is what will be displayed inside the button.
-     * If a label is specified, the text within the label prop will
-     * be displayed. Otherwise, the component will expect children
-     * which will then be displayed. (In our example,
-     * we are nesting an `<input type="file" />` and a `span`
-     * that acts as our label to be displayed.) This only
-     * applies to flat and raised buttons.
+     * The content of the button.
+     * If a label is provided via the `label` prop, the text within the label
+     * will be displayed in addition to the content provided here.
      */
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root element.
+     * The CSS class name of the root element.
      */
     className: React.PropTypes.string,
 
     /**
-     * Disables the button if set to true.
+     * If true, the button will be disabled.
      */
     disabled: React.PropTypes.bool,
 
     /**
-     * Override the background color if the button is disabled.
+     * Override the default background color for the button
+     * when it is disabled.
      */
     disabledBackgroundColor: React.PropTypes.string,
 
     /**
-     * Color of the label if disabled is true.
+     * The color of the button's label when the button is disabled.
      */
     disabledLabelColor: React.PropTypes.string,
 
     /**
-     * If true, then the button will take up the full
-     * width of its container.
+     * If true, the button will take up the full width of its container.
      */
     fullWidth: React.PropTypes.bool,
 
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * If `linkButton` is true, the URL to link to when the button
+     * is clicked.
      */
     href: React.PropTypes.string,
 
     /**
-     * Use this property to display an icon.
+     * An icon to be displayed within the button.
      */
     icon: React.PropTypes.node,
 
     /**
-     * The label for the button.
+     * The label to be displayed within the button.
+     * If content is provided via the `children` prop, that content will be
+     * displayed in addition to the label provided here.
      */
     label: validateLabel,
 
     /**
-     * The color of the label for the button.
+     * The color of the button's label.
      */
     labelColor: React.PropTypes.string,
 
     /**
-     * Place label before or after the passed children.
+     * The position of the button's label relative to the button's `children`.
      */
     labelPosition: React.PropTypes.oneOf([
       'before',
@@ -187,55 +188,68 @@ class RaisedButton extends React.Component {
     labelStyle: React.PropTypes.object,
 
     /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
+     * If true, enable the use of the `href` property to provide
+     * a URL to link to.
      */
     linkButton: React.PropTypes.bool,
 
     /**
-     * Callback function for when the mouse is pressed down inside this element.
+     * Callback function fired when a mouse button is pressed down on
+     * the element.
+     *
+     * @param {object} event `mousedown` event targeting the element.
      */
     onMouseDown: React.PropTypes.func,
 
     /**
-     * Callback function for when the mouse enters this element.
+     * Callback function fired when the mouse enters the element.
+     *
+     * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: React.PropTypes.func,
 
     /**
-     * Callback function for when the mouse leaves this element.
+     * Callback function fired when the mouse leaves the element.
+     *
+     * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: React.PropTypes.func,
 
     /**
-     * Callback function for when the mouse is realeased
-     * above this element.
+     * Callback function fired when a mouse button is released on the element.
+     *
+     * @param {object} event `mouseup` event targeting the element.
      */
     onMouseUp: React.PropTypes.func,
 
     /**
-     * Callback function for when a touchTap event ends.
+     * Callback function fired when a touch point is removed from the element.
+     *
+     * @param {object} event `touchend` event targeting the element.
      */
     onTouchEnd: React.PropTypes.func,
 
     /**
-     * Callback function for when a touchTap event starts.
+     * Callback function fired when the element is touched.
+     *
+     * @param {object} event `touchstart` event targeting the element.
      */
     onTouchStart: React.PropTypes.func,
 
     /**
-     * If true, colors button according to
-     * primaryTextColor from the Theme.
+     * If true, the button will use the theme's primary color.
      */
     primary: React.PropTypes.bool,
 
     /**
-     * Override the inline style of ripple element.
+     * Override the inline style of the ripple element.
      */
     rippleStyle: React.PropTypes.object,
 
     /**
-     * If true, colors button according to secondaryTextColor from the theme.
-     * The primary prop has precendent if set to true.
+     * If true, the button will use the theme's secondary color.
+     * If both `secondary` and `primary` are true, the button will use
+     * the theme's primary color.
      */
     secondary: React.PropTypes.bool,
 
