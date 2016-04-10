@@ -29,16 +29,10 @@ function getStyles(props, context) {
       paddingRight: sidePadding,
       paddingBottom: 0,
       paddingTop: 0,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignContent: 'space-between',
     },
 
     secondaryText: {
-      order: 2,
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      float: 'right',
     },
 
     leftIconDesktop: {
