@@ -138,7 +138,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       nestedLevelDepth: 18,
       secondaryTextColor: lightBlack,
       leftIconColor: grey600,
-      rightIconColor: grey400,
+      rightIconColor: grey600,
     },
     menu: {
       backgroundColor: palette.canvasColor,
