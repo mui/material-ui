@@ -1,6 +1,6 @@
 import Minimist from 'minimist';
 import Mocha from 'mocha';
-import glob from 'glob';
+import Glob from 'glob';
 
 const argv = Minimist(process.argv.slice(2), {
   alias: {
@@ -13,19 +13,7 @@ const mocha = new Mocha({
   grep: argv.grep ? argv.grep : undefined,
 });
 
-const paths = [
-  `src/**/*${argv.component ? argv.component : '*'}*.spec.js`,
-];
-
-let pattern;
-
-if (paths.length > 1) {
-  pattern = `{${paths.join(',')}}`;
-} else {
-  pattern = paths[0];
-}
-
-glob(pattern, {}, (err, files) => {
+Glob(`src/**/${argv.component ? argv.component : '*'}.spec.js`, {}, (err, files) => {
   files.forEach((file) => mocha.addFile(file));
 
   mocha.run((failures) => {
