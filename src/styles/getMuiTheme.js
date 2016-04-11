@@ -127,6 +127,10 @@ export default function getMuiTheme(muiTheme, ...more) {
     gridTile: {
       textColor: white,
     },
+    icon: {
+      color: palette.canvasColor,
+      backgroundColor: palette.primary1Color,
+    },
     inkBar: {
       backgroundColor: palette.accent1Color,
     },
@@ -224,18 +228,14 @@ export default function getMuiTheme(muiTheme, ...more) {
       fontWeight: typography.fontWeightMedium,
     },
     stepper: {
-      activeAvatarColor: palette.primary1Color,
-      hoveredAvatarColor: grey700,
-      inactiveAvatarColor: grey500,
-
-      inactiveTextColor: ColorManipulator.fade(black, 0.26),
-      activeTextColor: ColorManipulator.fade(black, 0.87),
-      hoveredTextColor: grey600,
-
-      hoveredHeaderColor: ColorManipulator.fade(black, 0.06),
-
+      backgroundColor: 'transparent',
+      hoverBackgroundColor: ColorManipulator.fade(black, 0.06),
+      iconColor: palette.primary1Color,
+      hoveredIconColor: grey700,
+      inactiveIconColor: grey500,
+      textColor: ColorManipulator.fade(black, 0.87),
+      disabledTextColor: ColorManipulator.fade(black, 0.26),
       connectorLineColor: grey400,
-      avatarSize: 24,
     },
     table: {
       backgroundColor: palette.canvasColor,
