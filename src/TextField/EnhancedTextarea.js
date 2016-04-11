@@ -6,7 +6,7 @@ const rowsHeight = 24;
 function getStyles(props, context, state) {
   return {
     root: {
-      position: 'relative', //because the shadow has position: 'absolute'
+      position: 'relative', // because the shadow has position: 'absolute'
     },
     textarea: {
       height: state.height,

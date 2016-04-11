@@ -47,7 +47,7 @@ function getStyles(props, context, state) {
       transition: transitions.easeOut(),
     },
 
-    //This inner div is needed so that ripples will span the entire container
+    // This inner div is needed so that ripples will span the entire container
     innerDiv: {
       marginLeft: nestedLevel * muiTheme.listItem.nestedLevelDepth,
       paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
@@ -129,7 +129,7 @@ function getStyles(props, context, state) {
       marginTop: 4,
       color: listItem.secondaryTextColor,
 
-      //needed for 2 and 3 line ellipsis
+      // needed for 2 and 3 line ellipsis
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: threeLine ? null : 'nowrap',
@@ -423,17 +423,20 @@ class ListItem extends React.Component {
   }
 
   createTextElement(styles, data, key) {
-    const isAnElement = React.isValidElement(data);
-    const mergedStyles = isAnElement ?
-      Object.assign({}, styles, data.props.style) : null;
-
-    return isAnElement ? (
-      React.cloneElement(data, {
+    const {prepareStyles} = this.context.muiTheme;
+    if (React.isValidElement(data)) {
+      let style = Object.assign({}, styles, data.props.style);
+      if (typeof data.type === 'string') { // if element is a native dom node
+        style = prepareStyles(style);
+      }
+      return React.cloneElement(data, {
         key: key,
-        style: this.context.muiTheme.prepareStyles(mergedStyles),
-      })
-    ) : (
-      <div key={key} style={this.context.muiTheme.prepareStyles(styles)}>
+        style: style,
+      });
+    }
+
+    return (
+      <div key={key} style={prepareStyles(styles)}>
         {data}
       </div>
     );
@@ -494,7 +497,7 @@ class ListItem extends React.Component {
   handleRightIconButtonTouchTap = (event) => {
     const iconButton = this.props.rightIconButton;
 
-    //Stop the event from bubbling up to the list-item
+    // Stop the event from bubbling up to the list-item
     event.stopPropagation();
     if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(event);
   };
@@ -592,7 +595,7 @@ class ListItem extends React.Component {
       );
     }
 
-    //RightIconButtonElement
+    // RightIconButtonElement
     const hasNestListItems = nestedItems.length;
     const hasRightElement = rightAvatar || rightIcon || rightIconButton || rightToggle;
     const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator && !hasRightElement;

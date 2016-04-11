@@ -68,7 +68,7 @@ class Card extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    //update the state when the component is controlled.
+    // update the state when the component is controlled.
     if (nextProps.expanded !== null)
       this.setState({expanded: nextProps.expanded});
   }
@@ -76,7 +76,7 @@ class Card extends React.Component {
   handleExpanding = (event) => {
     event.preventDefault();
     const newExpandedState = !this.state.expanded;
-    //no automatic state update when the component is controlled
+    // no automatic state update when the component is controlled
     if (this.props.expanded === null) {
       this.setState({expanded: newExpandedState});
     }

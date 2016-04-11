@@ -209,7 +209,7 @@ class TableRow extends React.Component {
         return React.cloneElement(child, {
           columnNumber: columnNumber,
           hoverable: this.props.hoverable,
-          key: child.props.key || `${this.props.rowNumber}-${columnNumber}`,
+          key: `${this.props.rowNumber}-${columnNumber}`,
           onClick: this.onCellClick,
           onHover: this.onCellHover,
           onHoverExit: this.onCellHoverExit,

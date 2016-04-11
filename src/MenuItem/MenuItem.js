@@ -29,16 +29,10 @@ function getStyles(props, context) {
       paddingRight: sidePadding,
       paddingBottom: 0,
       paddingTop: 0,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignContent: 'space-between',
     },
 
     secondaryText: {
-      order: 2,
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      float: 'right',
     },
 
     leftIconDesktop: {
@@ -255,14 +249,14 @@ class MenuItem extends React.Component {
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
-    //Left Icon
+    // Left Icon
     let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;
     if (leftIconElement && desktop) {
       const mergedLeftIconStyles = Object.assign(styles.leftIconDesktop, leftIconElement.props.style);
       leftIconElement = React.cloneElement(leftIconElement, {style: mergedLeftIconStyles});
     }
 
-    //Right Icon
+    // Right Icon
     let rightIconElement;
     if (rightIcon) {
       const mergedRightIconStyles = desktop ?
@@ -270,7 +264,7 @@ class MenuItem extends React.Component {
       rightIconElement = React.cloneElement(rightIcon, {style: mergedRightIconStyles});
     }
 
-    //Secondary Text
+    // Secondary Text
     let secondaryTextElement;
     if (secondaryText) {
       const secondaryTextIsAnElement = React.isValidElement(secondaryText);

@@ -203,7 +203,7 @@ class IconMenu extends React.Component {
     }
 
     this.setState({open: false}, () => {
-      //Set focus on the icon button when the menu close
+      // Set focus on the icon button when the menu close
       if (isKeyboard) {
         const iconButton = this.refs[this.state.iconButtonRef];
         ReactDOM.findDOMNode(iconButton).focus();
