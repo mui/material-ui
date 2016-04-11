@@ -6,3 +6,4 @@ script:
   - npm run lint
   - npm test
   - ./node_modules/.bin/codecov
+  - cd packages/material-ui-codemod && npm install && npm test
