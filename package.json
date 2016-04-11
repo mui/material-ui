@@ -1,31 +1,15 @@
 {
-  "name": "material-ui",
+  "name": "material-ui-build",
+  "private": true,
   "author": "Call-em-all Engineering Team",
   "version": "0.15.0-alpha.2",
   "description": "Material Design UI components built with React",
-  "main": "./lib",
-  "scripts": {
-    "build": "babel ./src --ignore *.spec.js --out-dir ./lib",
-    "build:icon-index": "cd src/svg-icons/ && babel-node index-generator.js",
-    "coverage": "npm run test",
-    "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary lcovonly json",
-    "lint": "eslint src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
-    "prebuild": "rimraf lib",
-    "prepublish": "in-publish && npm run build || not-in-publish",
-    "test": "npm run test:unit && npm run test:browser && npm run test:unit:coverage && npm run coverage:combine",
-    "test:browser": "npm run test:browser:base -- --single-run",
-    "test:browser:watch": "npm run test:browser:base -- --auto-watch",
-    "test:browser:base": "karma start test/karma.conf.js",
-    "test:unit": "babel-node test/unit.js",
-    "test:unit:watch": "babel-node test/unit.watch.js",
-    "test:unit:coverage": "babel-node node_modules/.bin/isparta cover --report lcovonly --include-all-sources --dir test/coverage/unit test/unit.js"
-  },
+  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
     "material design",
-    "material-ui",
-    "material ui"
+    "material-ui"
   ],
   "repository": {
     "type": "git",
@@ -36,6 +20,29 @@
     "url": "https://github.com/callemall/material-ui/issues"
   },
   "homepage": "http://material-ui.com/",
+  "scripts": {
+    "build": "npm run build:icon-index && npm run build:babel && npm run build:copy-files",
+    "build:icon-index": "babel-node ./scripts/icon-index-generator.js",
+    "build:babel": "babel ./src --ignore *.spec.js --out-dir ./build",
+    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "clean:build": "rimraf build",
+    "coverage": "npm run test",
+    "coverage:combine": "istanbul report --dir test/coverage/combined --include test/**/*coverage.json text-summary lcovonly json",
+    "lint": "eslint src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
+    "prebuild": "npm run clean:build",
+    "test": "npm run test:unit && npm run test:browser && npm run test:unit:coverage && npm run coverage:combine",
+    "test:browser": "npm run test:browser:base -- --single-run",
+    "test:browser:watch": "npm run test:browser:base -- --auto-watch",
+    "test:browser:base": "karma start test/karma.conf.js",
+    "test:unit": "babel-node test/unit.js",
+    "test:unit:watch": "babel-node test/unit.watch.js",
+    "test:unit:coverage": "babel-node node_modules/.bin/isparta cover --report lcovonly --include-all-sources --dir test/coverage/unit test/unit.js"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-tap-event-plugin": "^0.2.0"
+  },
   "dependencies": {
     "inline-style-prefixer": "^1.0.2",
     "keycode": "^2.1.0",
@@ -50,15 +57,6 @@
     "simple-assign": "^0.1.0",
     "warning": "^2.1.0"
   },
-  "peerDependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "react-tap-event-plugin": "^0.2.0"
-  },
-  "files": [
-    "lib",
-    "src"
-  ],
   "devDependencies": {
     "app-module-path": "^1.0.5",
     "babel-cli": "^6.3.17",
@@ -82,8 +80,8 @@
     "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "eslint-plugin-react": "^4.0.0",
+    "fs-extra": "^0.26.7",
     "glob": "^7.0.0",
-    "in-publish": "^2.0.0",
     "isparta": "^4.0.0",
     "isparta-loader": "^2.0.0",
     "istanbul": "^0.4.2",
