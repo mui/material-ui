@@ -118,7 +118,7 @@ const Master = React.createClass({
     });
   },
 
-  handleRequestChangeList(event, value) {
+  handleChangeList(event, value) {
     this.context.router.push(value);
     this.setState({
       navDrawerOpen: false,
@@ -194,7 +194,7 @@ const Master = React.createClass({
           location={location}
           docked={docked}
           onRequestChangeNavDrawer={this.handleChangeRequestNavDrawer}
-          onRequestChangeList={this.handleRequestChangeList}
+          onChangeList={this.handleChangeList}
           open={navDrawerOpen}
         />
         <FullWidthSection style={styles.footer}>
