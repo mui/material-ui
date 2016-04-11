@@ -1,5 +1,6 @@
 import React from 'react';
 import {fade} from '../utils/colorManipulator';
+import deprecated from '../utils/deprecatedPropType';
 
 export const MakeSelectable = (Component) => {
   const composed = React.createClass({
@@ -8,11 +9,13 @@ export const MakeSelectable = (Component) => {
 
     propTypes: {
       children: React.PropTypes.node,
+      onChange: React.PropTypes.func,
       selectedItemStyle: React.PropTypes.object,
-      valueLink: React.PropTypes.shape({
+      value: React.PropTypes.any,
+      valueLink: deprecated(React.PropTypes.shape({
         value: React.PropTypes.any,
         requestChange: React.PropTypes.func,
-      }).isRequired,
+      }), 'This property is deprecated due to his low popularity. Use the value and onChange property.'),
     },
 
     contextTypes: {
@@ -80,13 +83,18 @@ export const MakeSelectable = (Component) => {
       const valueLink = this.getValueLink(this.props);
       const itemValue = item.props.value;
       const menuValue = valueLink.value;
-      if ( itemValue !== menuValue) {
+
+      if (itemValue !== menuValue) {
         valueLink.requestChange(event, itemValue);
       }
     },
 
     render() {
-      const {children, selectedItemStyle} = this.props;
+      const {
+        children,
+        selectedItemStyle,
+      } = this.props;
+
       this.keyIndex = 0;
       let styles = {};
 

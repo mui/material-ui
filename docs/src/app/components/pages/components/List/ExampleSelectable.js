@@ -7,33 +7,42 @@ import Subheader from 'material-ui/Subheader';
 let SelectableList = MakeSelectable(List);
 
 function wrapState(ComposedComponent) {
-  const StateWrapper = React.createClass({
-    getInitialState() {
-      return {selectedIndex: 1};
-    },
-    handleUpdateSelectedIndex(event, index) {
+  return class SelectableList extends React.Component {
+    static propTypes = {
+      children: React.PropTypes.node.isRequired,
+      defaultValue: React.PropTypes.number.isRequired,
+    };
+
+    componentWillMount() {
+      this.setState({
+        selectedIndex: this.props.defaultValue,
+      });
+    }
+
+    handleRequestChange = (event, index) => {
       this.setState({
         selectedIndex: index,
       });
-    },
+    };
+
     render() {
       return (
         <ComposedComponent
-          {...this.props}
-          {...this.state}
-          valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}
-        />
+          value={this.state.selectedIndex}
+          onChange={this.handleRequestChange}
+        >
+          {this.props.children}
+        </ComposedComponent>
       );
-    },
-  });
-  return StateWrapper;
+    }
+  };
 }
 
 SelectableList = wrapState(SelectableList);
 
 const ListExampleSelectable = () => (
   <MobileTearSheet>
-    <SelectableList value={3}>
+    <SelectableList defaultValue={3}>
       <Subheader>Selectable Contacts</Subheader>
       <ListItem
         value={1}

@@ -15,7 +15,7 @@ const AppNavDrawer = React.createClass({
   propTypes: {
     docked: React.PropTypes.bool.isRequired,
     location: React.PropTypes.object.isRequired,
-    onRequestChangeList: React.PropTypes.func.isRequired,
+    onChangeList: React.PropTypes.func.isRequired,
     onRequestChangeNavDrawer: React.PropTypes.func.isRequired,
     open: React.PropTypes.bool.isRequired,
     style: React.PropTypes.object,
@@ -110,7 +110,7 @@ const AppNavDrawer = React.createClass({
       location,
       docked,
       onRequestChangeNavDrawer,
-      onRequestChangeList,
+      onChangeList,
       open,
       style,
     } = this.props;
@@ -126,7 +126,6 @@ const AppNavDrawer = React.createClass({
         <div style={this.styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
         </div>
-
         <span style={this.styles.version}>Version:</span>
         <DropDownMenu
           value={this.currentVersion()}
@@ -142,9 +141,9 @@ const AppNavDrawer = React.createClass({
             />
           ))}
         </DropDownMenu>
-
         <SelectableList
-          valueLink={{value: location.pathname, requestChange: onRequestChangeList}}
+          value={location.pathname}
+          onChange={onChangeList}
         >
           <ListItem
             primaryText="Get Started"
@@ -253,7 +252,8 @@ const AppNavDrawer = React.createClass({
         </SelectableList>
         <Divider />
         <SelectableList
-          valueLink={{value: '', requestChange: this.handleRequestChangeLink}}
+          value=""
+          onChange={this.handleRequestChangeLink}
         >
           <Subheader>Resources</Subheader>
           <ListItem primaryText="GitHub" value="https://github.com/callemall/material-ui" />
