@@ -71,7 +71,7 @@ class EnhancedSwitch extends React.Component {
   static propTypes = {
     checked: React.PropTypes.bool,
     className: React.PropTypes.string,
-    defaultSwitched: React.PropTypes.bool,
+    defaultChecked: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
@@ -121,11 +121,11 @@ class EnhancedSwitch extends React.Component {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
-      (nextProps.hasOwnProperty('defaultSwitched') &&
-      (nextProps.defaultSwitched !== this.props.defaultSwitched));
+      (nextProps.hasOwnProperty('defaultChecked') &&
+      (nextProps.defaultChecked !== this.props.defaultChecked));
 
     if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
-      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultSwitched;
+      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked;
 
       this.setState({
         switched: switched,
@@ -258,7 +258,6 @@ class EnhancedSwitch extends React.Component {
       labelStyle,
       labelPosition,
       onSwitch, // eslint-disable-line no-unused-vars
-      defaultSwitched,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onMouseUp, // eslint-disable-line no-unused-vars
@@ -331,7 +330,6 @@ class EnhancedSwitch extends React.Component {
         style={prepareStyles(Object.assign(styles.input, inputStyle))}
         name={name}
         value={value}
-        defaultChecked={defaultSwitched}
         disabled={disabled}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
