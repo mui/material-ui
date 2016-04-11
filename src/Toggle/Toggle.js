@@ -204,7 +204,7 @@ class Toggle extends React.Component {
     );
 
     if (this.state.switched) {
-      thumbStyles.marginLeft = `-${thumbStyles.width}`;
+      thumbStyles.marginLeft = 0 - thumbStyles.width;
     }
 
     const toggleElementStyles = Object.assign({},
