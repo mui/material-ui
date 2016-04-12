@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "material-ui": "^0.15.0-alpha.2",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-tap-event-plugin": "^0.2.1"
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-tap-event-plugin": "^1.0.0"
   }
 }
