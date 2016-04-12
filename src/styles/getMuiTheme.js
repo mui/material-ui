@@ -5,7 +5,7 @@ import zIndex from './zIndex';
 import autoprefixer from '../utils/autoprefixer';
 import callOnce from '../utils/callOnce';
 import rtl from '../utils/rtl';
-import compose from 'lodash.flowright';
+import compose from 'recompose/compose';
 import typography from './typography';
 import {
   red500, grey400, grey500, grey600, grey700,
