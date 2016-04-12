@@ -39,7 +39,7 @@ const ColorsPage = React.createClass({
         lineHeight: '32px',
         paddingTop: 16,
         marginBottom: 12,
-        letterSpacing: '0',
+        letterSpacing: 0,
         fontWeight: typography.fontWeightNormal,
         color: typography.textDarkBlack,
       },
