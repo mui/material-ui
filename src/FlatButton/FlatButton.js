@@ -1,7 +1,7 @@
 import React from 'react';
 import transitions from '../styles/transitions';
 import {createChildFragment} from '../utils/childUtils';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
 
@@ -210,7 +210,7 @@ class FlatButton extends React.Component {
       secondary ? secondaryTextColor :
       textColor;
 
-    const defaultHoverColor = ColorManipulator.fade(buttonFilterColor, 0.2);
+    const defaultHoverColor = fade(buttonFilterColor, 0.2);
     const defaultRippleColor = buttonFilterColor;
     const buttonHoverColor = hoverColor || defaultHoverColor;
     const buttonRippleColor = rippleColor || defaultRippleColor;

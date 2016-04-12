@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import shallowEqual from 'recompose/shallowEqual';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from './EnhancedTextarea';
@@ -78,7 +78,7 @@ const getStyles = (props, state) => {
   }
 
   if (state.hasValue) {
-    styles.floatingLabel.color = ColorManipulator.fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
+    styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
   }
 
   if (props.floatingLabelText) {
