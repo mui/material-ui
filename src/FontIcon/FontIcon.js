@@ -13,12 +13,14 @@ function getStyles(props, context, state) {
 
   return {
     root: {
-      color: state.hovered ? onColor : offColor,
       position: 'relative',
       fontSize: baseTheme.spacing.iconSize,
       display: 'inline-block',
       userSelect: 'none',
       transition: transitions.easeOut(),
+    },
+    iconColor: {
+      color: state.hovered ? onColor : offColor,
     },
   };
 }
@@ -105,7 +107,7 @@ class FontIcon extends React.Component {
         {...other}
         onMouseLeave={this.handleMouseLeave}
         onMouseEnter={this.handleMouseEnter}
-        style={prepareStyles(Object.assign(styles.root, style))}
+        style={prepareStyles(Object.assign(styles.root, style, styles.iconColor))}
       />
     );
   }
