@@ -13,11 +13,10 @@
   "scripts": {
     "start": "npm run browser:development",
     "browser:development": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
-    "browser:build": "NODE_ENV=docs-production webpack --config webpack-production.config.js --progress --colors --profile",
-    "browser:prd": "NODE_ENV=docs-production webpack-dev-server --config webpack-production.config.js --progress --colors",
-    "gh-pages:build": "node ./gh-pages-build.js",
-    "native:development": "node_modules/react-native/packager/packager.sh --reset-cache",
-    "android:setup-port": "adb reverse tcp:8081 tcp:8081"
+    "browser:build": "NODE_ENV=docs-browser-production webpack --config webpack-production.config.js --progress --colors --profile",
+    "browser:prd": "NODE_ENV=docs-browser-production webpack-dev-server --config webpack-production.config.js --progress --colors",
+    "native:development": "cd ../ && NODE_ENV=docs-native-development ./node_modules/react-native/packager/packager.sh start --reset-cache",
+    "gh-pages:build": "node ./gh-pages-build.js"
   },
   "dependencies": {
     "react-title-component": "^1.0.1",
@@ -43,7 +42,6 @@
     "react-docgen": "^2.4.0",
     "react-hot-loader": "^1.2.8",
     "react-motion": "^0.4.2",
-    "react-native": "^0.17.0",
     "react-router": "^2.0.0",
     "react-swipeable-views": "^0.4.0",
     "recast": "^0.10.41",

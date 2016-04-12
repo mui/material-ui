@@ -1,0 +1,3 @@
+rootProject.name = 'MaterialUIDocs'
+
+include ':app'

@@ -1,11 +1,17 @@
 {
-  "presets": ["es2015", "stage-1", "react"],
-  "plugins": [
-    ["transform-replace-object-assign", "simple-assign"],
-    "transform-dev-warning"
-  ],
   "env": {
-    "docs-production": {
+    development: {
+      "presets": ["es2015", "react", "stage-1"],
+      "plugins": [
+        ["transform-replace-object-assign", "simple-assign"],
+        "transform-dev-warning"
+      ]
+    },
+    "docs-native-development": {
+      "presets": ["react-native"]
+    },
+    "docs-browser-production": {
+      "presets": ["es2015", "react", "stage-1"],
       "plugins": [
         ["transform-replace-object-assign", "simple-assign"],
         "transform-react-remove-prop-types",
