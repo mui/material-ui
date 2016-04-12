@@ -311,7 +311,7 @@ class DatePicker extends React.Component {
           {...other}
           style={textFieldStyle}
           ref="input"
-          value={this.state.date ? formatDate(this.state.date) : undefined}
+          value={this.state.date ? formatDate(this.state.date) : ''}
           onFocus={this.handleFocus}
           onTouchTap={this.handleTouchTap}
         />
