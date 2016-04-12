@@ -271,6 +271,7 @@ class EnhancedSwitch extends React.Component {
       className,
       rippleStyle,
       style,
+      switched, // eslint-disable-line no-unused-vars
       switchElement,
       thumbStyle,
       trackStyle,
