@@ -9,7 +9,7 @@ const isDescendant = (el, target) => {
   return false;
 };
 
-const clickAwayEvents = ['mousedown', 'touchstart'];
+const clickAwayEvents = ['mouseup', 'touchend'];
 const bind = (callback) => clickAwayEvents.forEach((event) => events.on(document, event, callback));
 const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(document, event, callback));
 
