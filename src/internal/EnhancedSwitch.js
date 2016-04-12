@@ -125,7 +125,7 @@ class EnhancedSwitch extends React.Component {
       (nextProps.defaultChecked !== this.props.defaultChecked));
 
     if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
-      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked;
+      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
 
       this.setState({
         switched: switched,
