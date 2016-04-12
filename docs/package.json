@@ -45,9 +45,9 @@
     "react-motion": "^0.4.2",
     "react-native": "^0.17.0",
     "react-router": "^2.0.0",
-    "react-swipeable-views": "^0.4.0",
-    "recast": "^0.10.41",
-    "style-loader": "0.13.0",
+    "react-swipeable-views": "^0.5.0",
+    "recast": "^0.11.4",
+    "style-loader": "0.13.1",
     "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
