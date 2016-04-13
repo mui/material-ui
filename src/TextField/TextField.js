@@ -11,7 +11,7 @@ import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
 import warning from 'warning';
 
-const getStyles = (props, state) => {
+const getStyles = (props, context, state) => {
   const {
     baseTheme,
     textField: {
@@ -23,7 +23,7 @@ const getStyles = (props, state) => {
       hintColor,
       errorColor,
     },
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const styles = {
     root: {
@@ -438,7 +438,7 @@ class TextField extends React.Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
     const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
