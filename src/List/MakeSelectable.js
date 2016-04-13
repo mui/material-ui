@@ -3,11 +3,8 @@ import {fade} from '../utils/colorManipulator';
 import deprecated from '../utils/deprecatedPropType';
 
 export const MakeSelectable = (Component) => {
-  const composed = React.createClass({
-
-    displayName: `Selectable${Component.displayName || Component.muiName || Component.name}`,
-
-    propTypes: {
+  return class extends React.Component {
+    static propTypes = {
       children: React.PropTypes.node,
       onChange: React.PropTypes.func,
       selectedItemStyle: React.PropTypes.object,
@@ -16,18 +13,18 @@ export const MakeSelectable = (Component) => {
         value: React.PropTypes.any,
         requestChange: React.PropTypes.func,
       }), 'This property is deprecated due to his low popularity. Use the value and onChange property.'),
-    },
+    };
 
-    contextTypes: {
+    static contextTypes = {
       muiTheme: React.PropTypes.object.isRequired,
-    },
+    };
 
-    getValueLink: function(props) {
+    getValueLink(props) {
       return props.valueLink || {
         value: props.value,
         requestChange: props.onChange,
       };
-    },
+    }
 
     extendChild(child, styles, selectedItemStyle) {
       if (child && child.type && child.type.muiName === 'ListItem') {
@@ -56,38 +53,34 @@ export const MakeSelectable = (Component) => {
       } else {
         return child;
       }
-    },
+    }
 
     isInitiallyOpen(child) {
       if (child.props.initiallyOpen) {
         return child.props.initiallyOpen;
       }
       return this.hasSelectedDescendant(false, child);
-    },
+    }
 
-    hasSelectedDescendant(previousValue, child) {
+    hasSelectedDescendant = (previousValue, child) => {
       if (React.isValidElement(child) && child.props.nestedItems && child.props.nestedItems.length > 0) {
         return child.props.nestedItems.reduce(this.hasSelectedDescendant, previousValue);
       }
       return previousValue || this.isChildSelected(child, this.props);
-    },
+    };
 
     isChildSelected(child, props) {
-      const itemValue = this.getValueLink(props).value;
-      const childValue = child.props.value;
+      return this.getValueLink(props).value === child.props.value;
+    }
 
-      return (itemValue === childValue);
-    },
-
-    handleItemTouchTap(event, item) {
+    handleItemTouchTap = (event, item) => {
       const valueLink = this.getValueLink(this.props);
       const itemValue = item.props.value;
-      const menuValue = valueLink.value;
 
-      if (itemValue !== menuValue) {
+      if (itemValue !== valueLink.value) {
         valueLink.requestChange(event, itemValue);
       }
-    },
+    };
 
     render() {
       const {
@@ -96,27 +89,22 @@ export const MakeSelectable = (Component) => {
       } = this.props;
 
       this.keyIndex = 0;
-      let styles = {};
+      const styles = {};
 
       if (!selectedItemStyle) {
         const textColor = this.context.muiTheme.baseTheme.palette.textColor;
-        const selectedColor = fade(textColor, 0.2);
-        styles = {
-          backgroundColor: selectedColor,
-        };
+        styles.backgroundColor = fade(textColor, 0.2);
       }
-
-      const newChildren = React.Children.map(children, (child) => this.extendChild(child, styles, selectedItemStyle));
 
       return (
         <Component {...this.props} {...this.state}>
-          {newChildren}
+          {React.Children.map(children, (child) => (
+            this.extendChild(child, styles, selectedItemStyle))
+          )}
         </Component>
       );
-    },
-  });
-
-  return composed;
+    }
+  };
 };
 
 export default MakeSelectable;
