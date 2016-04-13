@@ -1,3 +1,4 @@
+/* global assert */
 import React from 'react';
 import List from 'List/List';
 import ListItem from 'List/ListItem';
@@ -35,6 +36,27 @@ describe('MakeSelectable', () => {
     );
 
     const nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
-    expect(nodeTree[0].innerText).to.equal('Brendan LimGrace NgKerem Suer');
+    assert.equal(
+      nodeTree[0].innerText,
+      'Brendan LimGrace NgKerem Suer',
+      'Render the primaryText'
+    );
+  });
+
+  it('should select the right item', () => {
+    const SelectableList = injectTheme(MakeSelectable(List));
+
+    const render = TestUtils.renderIntoDocument(
+      <SelectableList value={2}>
+        {testChildren}
+      </SelectableList>
+    );
+
+    const nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
+    assert.equal(
+      nodeTree[0].firstChild.lastChild.querySelector('span').style.backgroundColor,
+      'rgba(0, 0, 0, 0.2)',
+      'Change the backgroundColor of the selected item'
+    );
   });
 });
