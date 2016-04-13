@@ -234,6 +234,9 @@ class AutoComplete extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.searchText !== nextProps.searchText) {
+      // Eventually clear the timer in case the component is controlled
+      clearTimeout(this.timerTouchTapCloseId);
+
       this.setState({
         searchText: nextProps.searchText,
       });
