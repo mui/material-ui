@@ -21,12 +21,14 @@ class TouchRipple extends React.Component {
     centerRipple: React.PropTypes.bool,
     children: React.PropTypes.node,
     color: React.PropTypes.string,
+    onRippleStart: React.PropTypes.func,
     opacity: React.PropTypes.number,
     style: React.PropTypes.object,
   };
 
   static defaultProps = {
     abortOnScroll: true,
+    onRippleStart: () => {},
   };
 
   static contextTypes = {
@@ -68,6 +70,7 @@ class TouchRipple extends React.Component {
         color={this.props.color || theme.color}
         opacity={this.props.opacity}
         touchGenerated={isRippleTouchGenerated}
+        onRippleStart={this.handleRippleStart}
       />
     ));
 
@@ -148,6 +151,8 @@ class TouchRipple extends React.Component {
       });
     }
   };
+
+  handleRippleStart = this.props.onRippleStart;
 
   startListeningForScrollAbort(event) {
     this.firstTouchY = event.touches[0].clientY;
