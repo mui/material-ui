@@ -46,7 +46,7 @@ const getStyles = (props, context, state) => {
       transition: transitions.easeOut(),
     },
     floatingLabel: {
-      color: hintColor,
+      color: floatingLabelColor,
       pointerEvents: 'none',
     },
     input: {
