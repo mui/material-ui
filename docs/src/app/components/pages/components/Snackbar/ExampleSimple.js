@@ -40,5 +40,3 @@ export default class SnackbarExampleSimple extends React.Component {
     );
   }
 }
-
-export default SnackbarExampleSimple;

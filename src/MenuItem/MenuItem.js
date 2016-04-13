@@ -1,42 +1,86 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowEqual from 'recompose/shallowEqual';
 import Popover from '../Popover/Popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../List/ListItem';
-import getMuiTheme from '../styles/getMuiTheme';
 import Menu from '../Menu/Menu';
 
 const nestedMenuStyle = {
   position: 'relative',
 };
 
-const MenuItem = React.createClass({
+function getStyles(props, context) {
+  const disabledColor = context.muiTheme.baseTheme.palette.disabledColor;
+  const textColor = context.muiTheme.baseTheme.palette.textColor;
+  const leftIndent = props.desktop ? 64 : 72;
+  const sidePadding = props.desktop ? 24 : 16;
 
-  propTypes: {
+  const styles = {
+    root: {
+      color: props.disabled ? disabledColor : textColor,
+      lineHeight: props.desktop ? '32px' : '48px',
+      fontSize: props.desktop ? 15 : 16,
+      whiteSpace: 'nowrap',
+    },
+
+    innerDivStyle: {
+      paddingLeft: props.leftIcon || props.insetChildren || props.checked ? leftIndent : sidePadding,
+      paddingRight: sidePadding,
+      paddingBottom: 0,
+      paddingTop: 0,
+    },
+
+    secondaryText: {
+      float: 'right',
+    },
+
+    leftIconDesktop: {
+      margin: 0,
+      left: 24,
+      top: 4,
+    },
+
+    rightIconDesktop: {
+      margin: 0,
+      right: 24,
+      top: 4,
+      fill: context.muiTheme.menuItem.rightIconDesktopFill,
+    },
+  };
+
+  return styles;
+}
+
+class MenuItem extends React.Component {
+  static muiName = 'MenuItem';
+
+  static propTypes = {
     /**
      * If true, a left check mark will be rendered.
      */
     checked: React.PropTypes.bool,
 
     /**
-     * Elements passed as children to inner ListItem.
+     * Elements passed as children to the underlying `ListItem`.
      */
     children: React.PropTypes.node,
 
     /**
      * @ignore
-     * Indicates if the menu should render with compact desktop styles.
+     * If true, the menu item will render with compact desktop
+     * styles.
      */
     desktop: React.PropTypes.bool,
 
     /**
-     * Disables a menu item.
+     * If true, the menu item will be disabled.
      */
     disabled: React.PropTypes.bool,
 
     /**
-     * Prop passed down to ListItem that tells it what kind of focus it has.
+     * The focus state of the menu item. This prop is used to set the focus
+     * state of the underlying `ListItem`.
      */
     focusState: React.PropTypes.oneOf([
       'none',
@@ -45,39 +89,45 @@ const MenuItem = React.createClass({
     ]),
 
     /**
-     * Style overrides for the inner div.
+     * Override the inline-styles of the inner div.
      */
     innerDivStyle: React.PropTypes.object,
 
     /**
      * If true, the children will be indented.
-     * Only needed when there is no leftIcon.
+     * This is only needed when there is no `leftIcon`.
      */
     insetChildren: React.PropTypes.bool,
 
     /**
-     * This is the SvgIcon or FontIcon to be displayed on the left side.
+     * The `SvgIcon` or `FontIcon` to be displayed on the left side.
      */
     leftIcon: React.PropTypes.element,
 
     /**
-     * Nested MenuItems for this MenuItem. Used to make nested menus.
+     * `MenuItem` elements to nest within the menu item.
      */
     menuItems: React.PropTypes.node,
 
     /**
-     * Fired when the element is touchTapped.
+     * Callback function fired when the menu item is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the menu item.
      */
     onTouchTap: React.PropTypes.func,
 
     /**
-     * This is the SvgIcon or FontIcon to be displayed on the right side.
+     * Can be used to render primary text within the menu item.
+     */
+    primaryText: React.PropTypes.node,
+
+    /**
+     * The `SvgIcon` or `FontIcon` to be displayed on the right side.
      */
     rightIcon: React.PropTypes.element,
 
     /**
-     * This is the block element that contains the secondary text.
-     * If a string is passed in, a div tag will be rendered.
+     * Can be used to render secondary text within the menu item.
      */
     secondaryText: React.PropTypes.node,
 
@@ -90,60 +140,44 @@ const MenuItem = React.createClass({
      * The value of the menu item.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    checked: false,
+    desktop: false,
+    disabled: false,
+    focusState: 'none',
+    insetChildren: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps() {
-    return {
-      checked: false,
-      desktop: false,
-      disabled: false,
-      focusState: 'none',
-      insetChildren: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-      open: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   componentDidMount() {
-    this._applyFocusState();
-  },
+    this.applyFocusState();
+  }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-
+  componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.focusState === 'none') {
-      this._onRequestClose();
+      this.handleRequestClose();
     }
-  },
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   componentDidUpdate() {
-    this._applyFocusState();
-  },
+    this.applyFocusState();
+  }
 
   componentWillUnmount() {
     if (this.state.open) {
@@ -151,28 +185,28 @@ const MenuItem = React.createClass({
         open: false,
       });
     }
-  },
+  }
 
-  _applyFocusState() {
+  applyFocusState() {
     this.refs.listItem.applyFocusState(this.props.focusState);
-  },
+  }
 
-  _cloneMenuItem(item) {
+  cloneMenuItem = (item) => {
     return React.cloneElement(item, {
       onTouchTap: (event) => {
         if (!item.props.menuItems) {
-          this._onRequestClose();
+          this.handleRequestClose();
         }
 
         if (item.props.onTouchTap) {
           item.props.onTouchTap(event);
         }
       },
-      onRequestClose: this._onRequestClose,
+      onRequestClose: this.handleRequestClose,
     });
-  },
+  };
 
-  _onTouchTap(event) {
+  handleTouchTap = (event) => {
     event.preventDefault();
 
     this.setState({
@@ -183,14 +217,14 @@ const MenuItem = React.createClass({
     if (this.props.onTouchTap) {
       this.props.onTouchTap(event);
     }
-  },
+  };
 
-  _onRequestClose() {
+  handleRequestClose = () => {
     this.setState({
       open: false,
       anchorEl: null,
     });
-  },
+  };
 
   render() {
     const {
@@ -198,7 +232,7 @@ const MenuItem = React.createClass({
       children,
       desktop,
       disabled,
-      focusState,
+      focusState, // eslint-disable-line no-unused-vars
       innerDivStyle,
       insetChildren,
       leftIcon,
@@ -206,70 +240,23 @@ const MenuItem = React.createClass({
       rightIcon,
       secondaryText,
       style,
-      value,
+      value, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-      menuItem,
-    } = this.state.muiTheme;
-
-    const disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
-    const textColor = this.state.muiTheme.rawTheme.palette.textColor;
-    const leftIndent = desktop ? 64 : 72;
-    const sidePadding = desktop ? 24 : 16;
-
-    const styles = {
-      root: {
-        color: disabled ? disabledColor : textColor,
-        lineHeight: desktop ? '32px' : '48px',
-        fontSize: desktop ? 15 : 16,
-        whiteSpace: 'nowrap',
-      },
-
-      innerDivStyle: {
-        paddingLeft: leftIcon || insetChildren || checked ? leftIndent : sidePadding,
-        paddingRight: sidePadding,
-        paddingBottom: 0,
-        paddingTop: 0,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignContent: 'space-between',
-      },
-
-      secondaryText: {
-        order: 2,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      },
-
-      leftIconDesktop: {
-        margin: 0,
-        left: 24,
-        top: 4,
-      },
-
-      rightIconDesktop: {
-        margin: 0,
-        right: 24,
-        top: 4,
-        fill: menuItem.rightIconDesktopFill,
-      },
-    };
-
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
-    //Left Icon
+    // Left Icon
     let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;
     if (leftIconElement && desktop) {
       const mergedLeftIconStyles = Object.assign(styles.leftIconDesktop, leftIconElement.props.style);
       leftIconElement = React.cloneElement(leftIconElement, {style: mergedLeftIconStyles});
     }
 
-    //Right Icon
+    // Right Icon
     let rightIconElement;
     if (rightIcon) {
       const mergedRightIconStyles = desktop ?
@@ -277,7 +264,7 @@ const MenuItem = React.createClass({
       rightIconElement = React.cloneElement(rightIcon, {style: mergedRightIconStyles});
     }
 
-    //Secondary Text
+    // Secondary Text
     let secondaryTextElement;
     if (secondaryText) {
       const secondaryTextIsAnElement = React.isValidElement(secondaryText);
@@ -296,14 +283,14 @@ const MenuItem = React.createClass({
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           useLayerForClickAway={false}
-          onRequestClose={this._onRequestClose}
+          onRequestClose={this.handleRequestClose}
         >
           <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
-            {React.Children.map(menuItems, this._cloneMenuItem)}
+            {React.Children.map(menuItems, this.cloneMenuItem)}
           </Menu>
         </Popover>
       );
-      other.onTouchTap = this._onTouchTap;
+      other.onTouchTap = this.handleTouchTap;
     }
 
     return (
@@ -322,8 +309,7 @@ const MenuItem = React.createClass({
         {childMenuPopover}
       </ListItem>
     );
-  },
-
-});
+  }
+}
 
 export default MenuItem;

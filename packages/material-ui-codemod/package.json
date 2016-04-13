@@ -1,0 +1,25 @@
+{
+  "name": "material-ui-codemod",
+  "author": "Material-UI collaborators",
+  "version": "0.1.0",
+  "description": "Codemod scripts for Material-UI",
+  "keywords": [
+    "react",
+    "material-ui",
+    "codemod",
+    "jscodeshift"
+  ],
+  "scripts": {
+    "test": "babel-node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
+  "homepage": "https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "jscodeshift": "^0.3.18"
+  }
+}

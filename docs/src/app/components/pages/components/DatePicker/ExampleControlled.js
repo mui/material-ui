@@ -11,7 +11,7 @@ export default class DatePickerExampleControlled extends React.Component {
     };
   }
 
-  _handleChange = (event, date) => {
+  handleChange = (event, date) => {
     this.setState({
       controlledDate: date,
     });
@@ -22,7 +22,7 @@ export default class DatePickerExampleControlled extends React.Component {
       <DatePicker
         hintText="Controlled Date Input"
         value={this.state.controlledDate}
-        onChange={this._handleChange}
+        onChange={this.handleChange}
       />
     );
   }

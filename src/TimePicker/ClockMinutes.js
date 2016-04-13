@@ -1,56 +1,22 @@
 import React from 'react';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
-import getMuiTheme from '../styles/getMuiTheme';
+import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
-function rad2deg(rad) {
-  return rad * 57.29577951308232;
-}
-
-function getTouchEventOffsetValues(event) {
-  const el = event.target;
-  const boundingRect = el.getBoundingClientRect();
-
-  const offset = {
-    offsetX: event.clientX - boundingRect.left,
-    offsetY: event.clientY - boundingRect.top,
-  };
-
-  return offset;
-}
-
-const ClockMinutes = React.createClass({
-  propTypes: {
+class ClockMinutes extends React.Component {
+  static propTypes = {
     initialMinutes: React.PropTypes.number,
     onChange: React.PropTypes.func,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    initialMinutes: new Date().getMinutes(),
+    onChange: () => {},
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      initialMinutes: new Date().getMinutes(),
-      onChange: () => {},
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   componentDidMount() {
     const clockElement = this.refs.mask;
@@ -64,39 +30,30 @@ const ClockMinutes = React.createClass({
       x: this.center.x,
       y: 0,
     };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  center: {x: 0, y: 0},
-  basePoint: {x: 0, y: 0},
+  }
 
   isMousePressed(event) {
     if (typeof event.buttons === 'undefined') {
       return event.nativeEvent.which;
     }
     return event.buttons;
-  },
+  }
 
-  handleUp(event) {
+  handleUp = (event) => {
     event.preventDefault();
     this.setClock(event.nativeEvent, true);
-  },
+  };
 
-  handleMove(event) {
+  handleMove = (event) => {
     event.preventDefault();
     if (this.isMousePressed(event) !== 1 ) return;
     this.setClock(event.nativeEvent, false);
-  },
+  };
 
-  handleTouch(event) {
+  handleTouch = (event) => {
     event.preventDefault();
     this.setClock(event.changedTouches[0], false);
-  },
+  };
 
   setClock(event, finish) {
     if (typeof event.offsetX === 'undefined') {
@@ -109,7 +66,7 @@ const ClockMinutes = React.createClass({
     const minutes = this.getMinutes(event.offsetX, event.offsetY);
 
     this.props.onChange(minutes, finish);
-  },
+  }
 
   getMinutes(offsetX, offsetY) {
     const step = 6;
@@ -127,9 +84,9 @@ const ClockMinutes = React.createClass({
     const value = Math.floor(deg / step) || 0;
 
     return value;
-  },
+  }
 
-  _getMinuteNumbers() {
+  getMinuteNumbers() {
     const minutes = [];
     for (let i = 0; i < 12; i++) {
       minutes.push(i * 5);
@@ -153,7 +110,7 @@ const ClockMinutes = React.createClass({
       hasSelected: hasSelected,
       selected: selectedMinutes,
     };
-  },
+  }
 
   render() {
     const styles = {
@@ -173,11 +130,8 @@ const ClockMinutes = React.createClass({
       },
     };
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const minutes = this._getMinuteNumbers();
+    const {prepareStyles} = this.context.muiTheme;
+    const minutes = this.getMinuteNumbers();
 
     return (
       <div ref="clock" style={prepareStyles(styles.root)} >
@@ -189,7 +143,7 @@ const ClockMinutes = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 export default ClockMinutes;

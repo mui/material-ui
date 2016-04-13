@@ -5,7 +5,7 @@ import zIndex from './zIndex';
 import autoprefixer from '../utils/autoprefixer';
 import callOnce from '../utils/callOnce';
 import rtl from '../utils/rtl';
-import compose from 'lodash.flowright';
+import compose from 'recompose/compose';
 import typography from './typography';
 import {
   red500, grey400, grey500, grey600, grey700,
@@ -50,7 +50,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       backgroundColor: ColorManipulator.luminance(palette.canvasColor) > 0.5 ?
         ColorManipulator.darken(palette.canvasColor, 0.26) :
         ColorManipulator.lighten(palette.canvasColor, 1.26, 1.0),
-      borderColor: ColorManipulator.fade(palette.textColor, 0.08),
+      borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
       color: palette.alternateTextColor,
@@ -127,10 +127,14 @@ export default function getMuiTheme(muiTheme, ...more) {
     gridTile: {
       textColor: white,
     },
+    icon: {
+      color: palette.canvasColor,
+      backgroundColor: palette.primary1Color,
+    },
     inkBar: {
       backgroundColor: palette.accent1Color,
     },
-    leftNav: {
+    navDrawer: {
       width: spacing.desktopKeylineIncrement * 4,
       color: palette.canvasColor,
     },
@@ -138,7 +142,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       nestedLevelDepth: 18,
       secondaryTextColor: lightBlack,
       leftIconColor: grey600,
-      rightIconColor: grey400,
+      rightIconColor: grey600,
     },
     menu: {
       backgroundColor: palette.canvasColor,
@@ -224,18 +228,14 @@ export default function getMuiTheme(muiTheme, ...more) {
       fontWeight: typography.fontWeightMedium,
     },
     stepper: {
-      activeAvatarColor: palette.primary1Color,
-      hoveredAvatarColor: grey700,
-      inactiveAvatarColor: grey500,
-
-      inactiveTextColor: ColorManipulator.fade(black, 0.26),
-      activeTextColor: ColorManipulator.fade(black, 0.87),
-      hoveredTextColor: grey600,
-
-      hoveredHeaderColor: ColorManipulator.fade(black, 0.06),
-
+      backgroundColor: 'transparent',
+      hoverBackgroundColor: ColorManipulator.fade(black, 0.06),
+      iconColor: palette.primary1Color,
+      hoveredIconColor: grey700,
+      inactiveIconColor: grey500,
+      textColor: ColorManipulator.fade(black, 0.87),
+      disabledTextColor: ColorManipulator.fade(black, 0.26),
       connectorLineColor: grey400,
-      avatarSize: 24,
     },
     table: {
       backgroundColor: palette.canvasColor,

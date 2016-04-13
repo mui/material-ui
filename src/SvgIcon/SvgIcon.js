@@ -1,10 +1,10 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-const SvgIcon = React.createClass({
+class SvgIcon extends React.Component {
+  static muiName = 'SvgIcon';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Elements passed into the SVG Icon.
      */
@@ -46,60 +46,39 @@ const SvgIcon = React.createClass({
      * and each unit will be worth 10px.
      */
     viewBox: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    viewBox: '0 0 24 24',
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      viewBox: '0 0 24 24',
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
-  },
+  };
 
-  _handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     this.setState({hovered: true});
     this.props.onMouseEnter(event);
-  },
+  };
 
   render() {
     const {
       children,
       color,
       hoverColor,
-      onMouseEnter,
-      onMouseLeave,
+      onMouseEnter, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
       style,
       viewBox,
       ...other,
@@ -108,7 +87,7 @@ const SvgIcon = React.createClass({
     const {
       baseTheme,
       prepareStyles,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
     const offColor = color ? color :
       style && style.fill ? style.fill :
@@ -127,16 +106,15 @@ const SvgIcon = React.createClass({
     return (
       <svg
         {...other}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseLeave={this._handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
         style={prepareStyles(mergedStyles)}
         viewBox={viewBox}
       >
         {children}
       </svg>
     );
-  },
-
-});
+  }
+}
 
 export default SvgIcon;

@@ -1,28 +1,34 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import EnhancedButton from '../internal/EnhancedButton';
 
-function getStyles(props, state) {
-  const {
-    tabs,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {tabs} = context.muiTheme;
 
   return {
     root: {
-      padding: '0px 12px',
-      height: (props.label && props.icon) ? 72 : 48,
       color: props.selected ? tabs.selectedTextColor : tabs.textColor,
       fontWeight: 500,
       fontSize: 14,
       width: props.width,
       textTransform: 'uppercase',
+      padding: 0,
+    },
+    button: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: (props.label && props.icon) ? 53 : 24,
+      padding: 12,
+      paddingBottom: (props.label && props.icon) ? 7 : 12,
     },
   };
 }
 
-const Tab = React.createClass({
+class Tab extends React.Component {
+  static muiName = 'Tab';
 
-  propTypes: {
+  static propTypes = {
     /**
      * The css class name of the root element.
      */
@@ -75,74 +81,50 @@ const Tab = React.createClass({
      * This property is overriden by the Tabs component.
      */
     width: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (this.props.onTouchTap) {
       this.props.onTouchTap(this.props.value, event, this);
     }
-  },
+  };
 
   render() {
     const {
       label,
-      onActive,
-      onTouchTap,
-      selected,
+      onActive, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
       style,
-      value,
-      width,
+      value, // eslint-disable-line no-unused-vars
+      width, // eslint-disable-line no-unused-vars
       icon,
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {
       const params = {
         style: {
           fontSize: 24,
-          marginBottom: (label) ? 5 : 0,
-          display: label ? 'block' : 'inline-block',
           color: styles.root.color,
         },
       };
       // If it's svg icon set color via props
-      if (icon.type.displayName !== 'FontIcon') {
+      if (icon.type.muiName !== 'FontIcon') {
         params.color = styles.root.color;
       }
       iconElement = React.cloneElement(icon, params);
     }
 
-    const rippleColor = styles.color;
     const rippleOpacity = 0.3;
+    const rippleColor = this.context.muiTheme.tabs.selectedTextColor;
 
     return (
       <EnhancedButton
@@ -152,14 +134,15 @@ const Tab = React.createClass({
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
         touchRippleOpacity={rippleOpacity}
-        onTouchTap={this._handleTouchTap}
+        onTouchTap={this.handleTouchTap}
       >
-        {iconElement}
-        {label}
+        <div style={styles.button} >
+          {iconElement}
+          {label}
+        </div>
       </EnhancedButton>
     );
-  },
-
-});
+  }
+}
 
 export default Tab;

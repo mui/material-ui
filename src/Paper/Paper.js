@@ -1,10 +1,8 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     circle,
     rounded,
@@ -15,7 +13,7 @@ function getStyles(props, state) {
   const {
     baseTheme,
     paper,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   return {
     root: {
@@ -31,9 +29,8 @@ function getStyles(props, state) {
   };
 }
 
-const Paper = React.createClass({
-
-  propTypes: {
+class Paper extends React.Component {
+  static propTypes = {
     /**
      * Children passed into the paper element.
      */
@@ -64,46 +61,18 @@ const Paper = React.createClass({
      * This number represents the zDepth of the paper shadow.
      */
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    circle: false,
+    rounded: true,
+    transitionEnabled: true,
+    zDepth: 1,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps() {
-    return {
-      circle: false,
-      rounded: true,
-      transitionEnabled: true,
-      zDepth: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -112,18 +81,15 @@ const Paper = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default Paper;

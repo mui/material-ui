@@ -24,7 +24,7 @@ Then, you can use `<MuiThemeProvider />` to provide it down the tree to componen
 ```js
 import React from 'react';
 import {cyan500} from 'material-ui/styles/colors';
-import MuiThemeProvider from 'material-ui/stylesMuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
@@ -210,7 +210,7 @@ const lightBaseTheme = {
     desktopKeylineIncrement: 64,
     desktopDropDownMenuItemHeight: 32,
     desktopDropDownMenuFontSize: 15,
-    desktopLeftNavMenuItemHeight: 48,
+    desktopDrawerMenuItemHeight: 48,
     desktopSubheaderHeight: 48,
     desktopToolbarHeight: 56,
   },

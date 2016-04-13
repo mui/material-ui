@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles(props) {
   return {
@@ -19,13 +18,12 @@ function getStyles(props) {
   };
 }
 
-const SelectField = React.createClass({
-
-  propTypes: {
+class SelectField extends React.Component {
+  static propTypes = {
     /**
-     * The width will automatically be set according to the
-     * items inside the menu. To control this width in css
-     * instead, set this prop to `false`.
+     * If true, the width will automatically be set according to the
+     * items inside the menu.
+     * To control this width in css instead, leave this prop to `false`.
      */
     autoWidth: React.PropTypes.bool,
 
@@ -131,41 +129,17 @@ const SelectField = React.createClass({
      * The value that is currently selected.
      */
     value: React.PropTypes.any,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    autoWidth: false,
+    disabled: false,
+    fullWidth: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      autoWidth: false,
-      disabled: false,
-      fullWidth: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -193,7 +167,7 @@ const SelectField = React.createClass({
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
 
     return (
       <TextField
@@ -226,7 +200,7 @@ const SelectField = React.createClass({
         </DropDownMenu>
       </TextField>
     );
-  },
-});
+  }
+}
 
 export default SelectField;

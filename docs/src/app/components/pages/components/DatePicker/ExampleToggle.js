@@ -59,26 +59,26 @@ export default class DatePickerExampleToggle extends React.Component {
         <div style={optionsStyle}>
           <TextField
             floatingLabelText="Min Date"
-            defaultValue={this.state.minDate.toDateString()}
+            value={this.state.minDate.toDateString()}
             onChange={this.handleChangeMinDate}
           />
           <TextField
             floatingLabelText="Max Date"
-            defaultValue={this.state.maxDate.toDateString()}
+            value={this.state.maxDate.toDateString()}
             onChange={this.handleChangeMaxDate}
           />
           <Toggle
             name="autoOk"
             value="autoOk"
             label="Auto Accept"
-            defaultToggled={this.state.autoOk}
+            toggled={this.state.autoOk}
             onToggle={this.handleToggle}
           />
           <Toggle
             name="disableYearSelection"
             value="disableYearSelection"
             label="Disable Year Selection"
-            defaultToggled={this.state.disableYearSelection}
+            toggled={this.state.disableYearSelection}
             onToggle={this.handleToggle}
           />
         </div>

@@ -2,15 +2,14 @@ import React from 'react';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import FocusRipple from '../internal/FocusRipple';
-import getMuiTheme from '../styles/getMuiTheme';
 
 /**
-  * Verifies min/max range.
-  * @param   {Object} props         Properties of the React component.
-  * @param   {String} propName      Name of the property to validate.
-  * @param   {String} componentName Name of the component whose property is being validated.
-  * @returns {Object} Returns an Error if min >= max otherwise null.
-  */
+ * Verifies min/max range.
+ * @param   {Object} props         Properties of the React component.
+ * @param   {String} propName      Name of the property to validate.
+ * @param   {String} componentName Name of the component whose property is being validated.
+ * @returns {Object} Returns an Error if min >= max otherwise null.
+ */
 const minMaxPropType = (props, propName, componentName) => {
   const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
@@ -22,12 +21,12 @@ const minMaxPropType = (props, propName, componentName) => {
 };
 
 /**
-  * Verifies value is within the min/max range.
-  * @param   {Object} props         Properties of the React component.
-  * @param   {String} propName      Name of the property to validate.
-  * @param   {String} componentName Name of the component whose property is being validated.
-  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
-  */
+ * Verifies value is within the min/max range.
+ * @param   {Object} props         Properties of the React component.
+ * @param   {String} propName      Name of the property to validate.
+ * @param   {String} componentName Name of the component whose property is being validated.
+ * @returns {Object} Returns an Error if the value is not within the range otherwise null.
+ */
 const valueInRangePropType = (props, propName, componentName) => {
   const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
@@ -38,11 +37,8 @@ const valueInRangePropType = (props, propName, componentName) => {
   }
 };
 
-const getStyles = (props, state) => {
-  const {
-    slider,
-  } = state.muiTheme;
-
+const getStyles = (props, context, state) => {
+  const {slider} = context.muiTheme;
   const fillGutter = slider.handleSize / 2;
   const disabledGutter = slider.trackSize + slider.handleSizeDisabled / 2;
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
@@ -155,9 +151,8 @@ const getStyles = (props, state) => {
   return styles;
 };
 
-const Slider = React.createClass({
-
-  propTypes: {
+class Slider extends React.Component {
+  static propTypes = {
     /**
      * The default value of the slider.
      */
@@ -245,30 +240,32 @@ const Slider = React.createClass({
      * The value of the slider.
      */
     value: valueInRangePropType,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    disabled: false,
+    disableFocusRipple: false,
+    max: 1,
+    min: 0,
+    required: true,
+    step: 0.01,
+    style: {},
+  };
 
-  //for passing default theme context to children
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      disableFocusRipple: false,
-      max: 1,
-      min: 0,
-      required: true,
-      step: 0.01,
-      style: {},
-    };
-  },
+  state = {
+    active: false,
+    dragging: false,
+    focused: false,
+    hovered: false,
+    percent: 0,
+    value: 0,
+  };
 
-  getInitialState() {
+  componentWillMount() {
     let value = this.props.value;
     if (value === undefined) {
       value = this.props.defaultValue !== undefined ? this.props.defaultValue : this.props.min;
@@ -276,50 +273,35 @@ const Slider = React.createClass({
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
 
-    return {
-      active: false,
-      dragging: false,
-      focused: false,
-      hovered: false,
+    this.setState({
       percent: percent,
       value: value,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
+    });
+  }
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
       this.setValue(nextProps.value);
     }
-  },
+  }
 
-
-  _onHandleTouchStart(event) {
+  onHandleTouchStart = (event) => {
     if (document) {
-      document.addEventListener('touchmove', this._dragTouchHandler, false);
-      document.addEventListener('touchup', this._dragTouchEndHandler, false);
-      document.addEventListener('touchend', this._dragTouchEndHandler, false);
-      document.addEventListener('touchcancel', this._dragTouchEndHandler, false);
+      document.addEventListener('touchmove', this.dragTouchHandler, false);
+      document.addEventListener('touchup', this.dragTouchEndHandler, false);
+      document.addEventListener('touchend', this.dragTouchEndHandler, false);
+      document.addEventListener('touchcancel', this.dragTouchEndHandler, false);
     }
-    this._onDragStart(event);
+    this.onDragStart(event);
 
     // Cancel scroll and context menu
     event.preventDefault();
-  },
+  };
 
-  _onHandleMouseDown(event) {
+  onHandleMouseDown = (event) => {
     if (document) {
-      document.addEventListener('mousemove', this._dragHandler, false);
-      document.addEventListener('mouseup', this._dragEndHandler, false);
+      document.addEventListener('mousemove', this.dragHandler, false);
+      document.addEventListener('mouseup', this.dragEndHandler, false);
 
       // Cancel text selection
       event.preventDefault();
@@ -327,10 +309,10 @@ const Slider = React.createClass({
       // Set focus manually since we called preventDefault()
       this.refs.handle.focus();
     }
-    this._onDragStart(event);
-  },
+    this.onDragStart(event);
+  };
 
-  _onHandleKeyDown(event) {
+  onHandleKeyDown = (event) => {
     const {min, max, step} = this.props;
     let action;
 
@@ -392,53 +374,53 @@ const Slider = React.createClass({
         });
       }
     }
-  },
+  };
 
-  _dragHandler(event) {
-    if (this._dragRunning) {
+  dragHandler = (event) => {
+    if (this.dragRunning) {
       return;
     }
-    this._dragRunning = true;
+    this.dragRunning = true;
     requestAnimationFrame(() => {
-      this._onDragUpdate(event, event.clientX - this._getTrackLeft());
-      this._dragRunning = false;
+      this.onDragUpdate(event, event.clientX - this.getTrackLeft());
+      this.dragRunning = false;
     });
-  },
+  };
 
-  _dragTouchHandler(event) {
-    if (this._dragRunning) {
+  dragTouchHandler = (event) => {
+    if (this.dragRunning) {
       return;
     }
-    this._dragRunning = true;
+    this.dragRunning = true;
     requestAnimationFrame(() => {
-      this._onDragUpdate(event, event.touches[0].clientX - this._getTrackLeft());
-      this._dragRunning = false;
+      this.onDragUpdate(event, event.touches[0].clientX - this.getTrackLeft());
+      this.dragRunning = false;
     });
-  },
+  };
 
-  _dragEndHandler(event) {
+  dragEndHandler = (event) => {
     if (document) {
-      document.removeEventListener('mousemove', this._dragHandler, false);
-      document.removeEventListener('mouseup', this._dragEndHandler, false);
+      document.removeEventListener('mousemove', this.dragHandler, false);
+      document.removeEventListener('mouseup', this.dragEndHandler, false);
     }
 
-    this._onDragStop(event);
-  },
+    this.onDragStop(event);
+  };
 
-  _dragTouchEndHandler(event) {
+  dragTouchEndHandler = (event) => {
     if (document) {
-      document.removeEventListener('touchmove', this._dragTouchHandler, false);
-      document.removeEventListener('touchup', this._dragTouchEndHandler, false);
-      document.removeEventListener('touchend', this._dragTouchEndHandler, false);
-      document.removeEventListener('touchcancel', this._dragTouchEndHandler, false);
+      document.removeEventListener('touchmove', this.dragTouchHandler, false);
+      document.removeEventListener('touchup', this.dragTouchEndHandler, false);
+      document.removeEventListener('touchend', this.dragTouchEndHandler, false);
+      document.removeEventListener('touchcancel', this.dragTouchEndHandler, false);
     }
 
-    this._onDragStop(event);
-  },
+    this.onDragStop(event);
+  };
 
   getValue() {
     return this.state.value;
-  },
+  }
 
   setValue(i) {
     // calculate percentage
@@ -449,115 +431,115 @@ const Slider = React.createClass({
       value: i,
       percent: percent,
     });
-  },
+  }
 
   getPercent() {
     return this.state.percent;
-  },
+  }
 
   setPercent(percent, callback) {
-    const value = this._alignValue(this._percentToValue(percent));
+    const value = this.alignValue(this.percentToValue(percent));
     const {min, max} = this.props;
     const alignedPercent = (value - min) / (max - min);
     if (this.state.value !== value) {
       this.setState({value: value, percent: alignedPercent}, callback);
     }
-  },
+  }
 
   clearValue() {
     this.setValue(this.props.min);
-  },
+  }
 
-  _alignValue(val) {
+  alignValue(val) {
     const {step, min} = this.props;
     const alignValue = Math.round((val - min) / step) * step + min;
     return parseFloat(alignValue.toFixed(5));
-  },
+  }
 
-  handleTouchStart(event) {
+  handleTouchStart = (event) => {
     if (!this.props.disabled && !this.state.dragging) {
-      const pos = event.touches[0].clientX - this._getTrackLeft();
-      this._dragX(event, pos);
+      const pos = event.touches[0].clientX - this.getTrackLeft();
+      this.dragX(event, pos);
 
       // Since the touch event fired for the track and handle is child of
       // track, we need to manually propagate the event to the handle.
-      this._onHandleTouchStart(event);
+      this.onHandleTouchStart(event);
     }
-  },
+  };
 
-  handleFocus(event) {
+  handleFocus = (event) => {
     this.setState({focused: true});
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  handleBlur(event) {
+  handleBlur = (event) => {
     this.setState({focused: false, active: false});
     if (this.props.onBlur) this.props.onBlur(event);
-  },
+  };
 
-  handleMouseDown(event) {
+  handleMouseDown = (event) => {
     if (!this.props.disabled && !this.state.dragging) {
-      const pos = event.clientX - this._getTrackLeft();
-      this._dragX(event, pos);
+      const pos = event.clientX - this.getTrackLeft();
+      this.dragX(event, pos);
 
       // Since the click event fired for the track and handle is child of
       // track, we need to manually propagate the event to the handle.
-      this._onHandleMouseDown(event);
+      this.onHandleMouseDown(event);
     }
-  },
+  };
 
-  handleMouseUp() {
+  handleMouseUp = () => {
     if (!this.props.disabled) this.setState({active: false});
-  },
+  };
 
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     this.setState({hovered: true});
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({hovered: false});
-  },
+  };
 
-  _getTrackLeft() {
+  getTrackLeft() {
     return this.refs.track.getBoundingClientRect().left;
-  },
+  }
 
-  _onDragStart(event) {
+  onDragStart(event) {
     this.setState({
       dragging: true,
       active: true,
     });
     if (this.props.onDragStart) this.props.onDragStart(event);
-  },
+  }
 
-  _onDragStop(event) {
+  onDragStop(event) {
     this.setState({
       dragging: false,
       active: false,
     });
     if (this.props.onDragStop) this.props.onDragStop(event);
-  },
+  }
 
-  _onDragUpdate(event, pos) {
+  onDragUpdate(event, pos) {
     if (!this.state.dragging) return;
-    if (!this.props.disabled) this._dragX(event, pos);
-  },
+    if (!this.props.disabled) this.dragX(event, pos);
+  }
 
-  _dragX(event, pos) {
+  dragX(event, pos) {
     const max = this.refs.track.clientWidth;
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
-    this._updateWithChangeEvent(event, pos / max);
-  },
+    this.updateWithChangeEvent(event, pos / max);
+  }
 
-  _updateWithChangeEvent(event, percent) {
+  updateWithChangeEvent(event, percent) {
     this.setPercent(percent, () => {
       if (this.props.onChange) this.props.onChange(event, this.state.value);
     });
-  },
+  }
 
-  _percentToValue(percent) {
+  percentToValue(percent) {
     return percent * (this.props.max - this.props.min) + this.props.min;
-  },
+  }
 
   render() {
     const {
@@ -574,34 +556,39 @@ const Slider = React.createClass({
       ...others,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
+    const sliderStyles = Object.assign({}, styles.root, style);
 
+    let handleStyles = {};
     let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
-    const styles = getStyles(this.props, this.state);
-    const sliderStyles = Object.assign({}, styles.root, style);
-    const handleStyles = percent === 0 ? Object.assign(
-      {},
-      styles.handle,
-      styles.handleWhenPercentZero,
-      this.state.active && styles.handleWhenActive,
-      (this.state.hovered || this.state.focused) && !disabled &&
+    if (percent === 0) {
+      handleStyles = Object.assign(
+        {},
+        styles.handle,
+        styles.handleWhenPercentZero,
+        this.state.active && styles.handleWhenActive,
+        (this.state.hovered || this.state.focused) && !disabled &&
         styles.handleWhenPercentZeroAndFocused,
-      disabled && styles.handleWhenPercentZeroAndDisabled
-    ) : Object.assign(
-      {},
-      styles.handle,
-      this.state.active && styles.handleWhenActive,
-      disabled && styles.handleWhenDisabled
-    );
+        disabled && styles.handleWhenPercentZeroAndDisabled
+      );
+    } else {
+      handleStyles = Object.assign(
+        {},
+        styles.handle,
+        this.state.active && styles.handleWhenActive,
+        disabled && styles.handleWhenDisabled
+      );
+    }
+
     const rippleStyle = Object.assign(
       {},
       styles.ripple,
       percent === 0 && styles.rippleWhenPercentZero
     );
+
     const rippleShowCondition = (this.state.hovered || this.state.focused) && !this.state.active;
 
     let focusRipple;
@@ -613,7 +600,7 @@ const Slider = React.createClass({
           style={rippleStyle}
           innerStyle={styles.rippleInner}
           show={rippleShowCondition}
-          muiTheme={this.state.muiTheme}
+          muiTheme={this.context.muiTheme}
           color={styles.rippleColor.fill}
         />
       );
@@ -622,9 +609,9 @@ const Slider = React.createClass({
     let handleDragProps;
     if (!disabled) {
       handleDragProps = {
-        onTouchStart: this._onHandleTouchStart,
-        onMouseDown: this._onHandleMouseDown,
-        onKeyDown: this._onHandleKeyDown,
+        onTouchStart: this.onHandleTouchStart,
+        onMouseDown: this.onHandleMouseDown,
+        onKeyDown: this.onHandleKeyDown,
       };
     }
 
@@ -665,7 +652,7 @@ const Slider = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 export default Slider;

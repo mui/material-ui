@@ -1,11 +1,8 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    inkBar,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {inkBar} = context.muiTheme;
 
   return {
     root: {
@@ -22,9 +19,8 @@ function getStyles(props, state) {
   };
 }
 
-const InkBar = React.createClass({
-
-  propTypes: {
+class InkBar extends React.Component {
+  static propTypes = {
     color: React.PropTypes.string,
     left: React.PropTypes.string.isRequired,
 
@@ -33,50 +29,21 @@ const InkBar = React.createClass({
      */
     style: React.PropTypes.object,
     width: React.PropTypes.string.isRequired,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
-    const {
-      style,
-    } = this.props;
-
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {style} = this.props;
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div style={prepareStyles(Object.assign(styles.root, style))} />
     );
-  },
-
-});
+  }
+}
 
 export default InkBar;

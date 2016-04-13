@@ -1,12 +1,9 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import ScaleInChild from './ScaleInChild';
-import getMuiTheme from '../styles/getMuiTheme';
 
-const ScaleIn = React.createClass({
-
-  propTypes: {
+class ScaleIn extends React.Component {
+  static propTypes = {
     childStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
@@ -17,42 +14,15 @@ const ScaleIn = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    enterDelay: 0,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps() {
-    return {
-      enterDelay: 0,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -65,9 +35,7 @@ const ScaleIn = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',
@@ -98,8 +66,7 @@ const ScaleIn = React.createClass({
         {newChildren}
       </ReactTransitionGroup>
     );
-  },
-
-});
+  }
+}
 
 export default ScaleIn;

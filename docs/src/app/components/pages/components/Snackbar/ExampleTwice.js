@@ -53,5 +53,3 @@ export default class SnackbarExampleTwice extends React.Component {
     );
   }
 }
-
-export default SnackbarExampleTwice;

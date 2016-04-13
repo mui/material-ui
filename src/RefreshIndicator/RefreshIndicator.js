@@ -2,12 +2,11 @@ import React from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 
 const VIEWBOX_SIZE = 32;
 
 function getStyles(props) {
-  const padding = props.size * 0.1; // same implementation of `this._getPaddingSize()`
+  const padding = props.size * 0.1; // same implementation of `this.getPaddingSize()`
   return {
     root: {
       position: 'absolute',
@@ -24,9 +23,8 @@ function getStyles(props) {
   };
 }
 
-const RefreshIndicator = React.createClass({
-
-  propTypes: {
+class RefreshIndicator extends React.Component {
+  static propTypes = {
     /**
      * Override the theme's color of the indicator while it's status is
      * "ready" and it's percentage is less than 100.
@@ -72,70 +70,40 @@ const RefreshIndicator = React.createClass({
      * The absolute top position of the indicator in pixels.
      */
     top: React.PropTypes.number.isRequired,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    percentage: 0,
+    size: 40,
+    status: 'hide',
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      percentage: 0,
-      size: 40,
-      status: 'hide',
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   componentDidMount() {
     this.componentDidUpdate();
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  }
 
   componentDidUpdate() {
-    this._scalePath(this.refs.path, 0);
-    this._rotateWrapper(this.refs.wrapper);
-  },
+    this.scalePath(this.refs.path, 0);
+    this.rotateWrapper(this.refs.wrapper);
+  }
 
   componentWillUnmount() {
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
     clearTimeout(this.rotateWrapperSecondTimer);
-  },
+  }
 
-  scalePathTimer: undefined,
-  rotateWrapperTimer: undefined,
-  rotateWrapperSecondTimer: undefined,
+  renderChildren() {
+    const {prepareStyles} = this.context.muiTheme;
+    const paperSize = this.getPaperSize();
 
-  _renderChildren() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const paperSize = this._getPaperSize();
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
-      const circleStyle = this._getCircleStyle(paperSize);
+      const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp = (
         <div ref="wrapper" style={prepareStyles({
           transition: transitions.create('transform', '20s', null, 'linear'),
@@ -159,8 +127,8 @@ const RefreshIndicator = React.createClass({
         </div>
       );
     } else {
-      const circleStyle = this._getCircleStyle(paperSize);
-      const polygonStyle = this._getPolygonStyle(paperSize);
+      const circleStyle = this.getCircleStyle(paperSize);
+      const polygonStyle = this.getPolygonStyle(paperSize);
       childrenCmp = (
         <svg style={{
           width: paperSize,
@@ -182,56 +150,56 @@ const RefreshIndicator = React.createClass({
     }
 
     return childrenCmp;
-  },
+  }
 
-  _getTheme() {
-    return this.state.muiTheme.refreshIndicator;
-  },
+  getTheme() {
+    return this.context.muiTheme.refreshIndicator;
+  }
 
-  _getPaddingSize() {
+  getPaddingSize() {
     const padding = this.props.size * 0.1;
     return padding;
-  },
+  }
 
-  _getPaperSize() {
-    return this.props.size - this._getPaddingSize() * 2;
-  },
+  getPaperSize() {
+    return this.props.size - this.getPaddingSize() * 2;
+  }
 
-  _getCircleAttr() {
+  getCircleAttr() {
     return {
       radiu: VIEWBOX_SIZE / 2 - 5,
       originX: VIEWBOX_SIZE / 2,
       originY: VIEWBOX_SIZE / 2,
       strokeWidth: 3,
     };
-  },
+  }
 
-  _getArcDeg() {
+  getArcDeg() {
     const p = this.props.percentage / 100;
 
     const beginDeg = p * 120;
     const endDeg = p * 410;
     return [beginDeg, endDeg];
-  },
+  }
 
-  _getFactor() {
+  getFactor() {
     const p = this.props.percentage / 100;
     const p1 = Math.min(1, p / 0.4);
 
     return p1;
-  },
+  }
 
-  _getCircleStyle() {
+  getCircleStyle() {
     const isLoading = this.props.status === 'loading';
-    const p1 = isLoading ? 1 : this._getFactor();
-    const circle = this._getCircleAttr();
+    const p1 = isLoading ? 1 : this.getFactor();
+    const circle = this.getCircleAttr();
     const perimeter = Math.PI * 2 * circle.radiu;
 
-    const [beginDeg, endDeg] = this._getArcDeg();
+    const [beginDeg, endDeg] = this.getArcDeg();
     const arcLen = (endDeg - beginDeg) * perimeter / 360;
     const dashOffset = -beginDeg * perimeter / 360;
 
-    const theme = this._getTheme();
+    const theme = this.getTheme();
     return {
       style: {
         strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
@@ -250,11 +218,11 @@ const RefreshIndicator = React.createClass({
         r: circle.radiu,
       },
     };
-  },
+  }
 
-  _getPolygonStyle() {
-    const p1 = this._getFactor();
-    const circle = this._getCircleAttr();
+  getPolygonStyle() {
+    const p1 = this.getFactor();
+    const circle = this.getCircleAttr();
 
     const triangleCx = circle.originX + circle.radiu;
     const triangleCy = circle.originY;
@@ -262,9 +230,9 @@ const RefreshIndicator = React.createClass({
     const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
       triangleCy} ${triangleCx},${(triangleCy + dx)}`;
 
-    const [, endDeg] = this._getArcDeg();
+    const [, endDeg] = this.getArcDeg();
 
-    const theme = this._getTheme();
+    const theme = this.getTheme();
     return {
       style: {
         fill: this.props.percentage === 100 ?
@@ -278,14 +246,14 @@ const RefreshIndicator = React.createClass({
         points: trianglePath,
       },
     };
-  },
+  }
 
-  _scalePath(path, step) {
+  scalePath(path, step) {
     if (this.props.status !== 'loading') return;
 
     const currStep = (step || 0) % 3;
 
-    const circle = this._getCircleAttr();
+    const circle = this.getCircleAttr();
     const perimeter = Math.PI * 2 * circle.radiu;
     const arcLen = perimeter * 0.64;
 
@@ -307,35 +275,32 @@ const RefreshIndicator = React.createClass({
       transitionDuration = '850ms';
     }
 
-    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray, this.state.muiTheme);
-    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset, this.state.muiTheme);
-    autoPrefix.set(path.style, 'transitionDuration', transitionDuration, this.state.muiTheme);
+    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
+    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
+    autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
 
-    this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
-  },
+    this.scalePathTimer = setTimeout(() => this.scalePath(path, currStep + 1), currStep ? 750 : 250);
+  }
 
-  _rotateWrapper(wrapper) {
+  rotateWrapper(wrapper) {
     if (this.props.status !== 'loading') return;
 
-    autoPrefix.set(wrapper.style, 'transform', null, this.state.muiTheme);
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)', this.state.muiTheme);
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms', this.state.muiTheme);
+    autoPrefix.set(wrapper.style, 'transform', null);
+    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
+    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
 
     this.rotateWrapperSecondTimer = setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)', this.state.muiTheme);
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s', this.state.muiTheme);
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
+      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
+      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
+      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
     }, 50);
 
-    this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
-  },
+    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
+  }
 
   render() {
-    const {
-      style,
-    } = this.props;
-
-    const styles = getStyles(this.props, this.state);
+    const {style} = this.props;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <Paper
@@ -343,11 +308,10 @@ const RefreshIndicator = React.createClass({
         style={Object.assign(styles.root, style)}
         ref="indicatorCt"
       >
-        {this._renderChildren()}
+        {this.renderChildren()}
       </Paper>
     );
-  },
-
-});
+  }
+}
 
 export default RefreshIndicator;

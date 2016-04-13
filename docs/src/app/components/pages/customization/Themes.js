@@ -16,7 +16,7 @@ import {
   DropDownMenu,
   FlatButton,
   FloatingActionButton,
-  LeftNav,
+  Drawer,
   MenuItem,
   Paper,
   RadioButton,
@@ -53,7 +53,7 @@ const ThemesPage = React.createClass({
       valueTabs: this.props.muiTheme.name || 'light',
       dialogOpen: false,
       snackbarOpen: false,
-      leftNavOpen: false,
+      drawerOpen: false,
     };
   },
 
@@ -168,7 +168,6 @@ const ThemesPage = React.createClass({
               <RadioButton
                 value="euro"
                 label="Euro"
-                defaultChecked={true}
               />
               <RadioButton
                 value="mxn"
@@ -180,12 +179,10 @@ const ThemesPage = React.createClass({
           <div style={styles.container}>
             <Toggle
               name="toggleName1"
-              value="toggleValue1"
               label="toggle"
             />
             <Toggle
               name="toggleName2"
-              value="toggleValue2"
               label="disabled toggle"
               defaultToggled={true}
               disabled={true}
@@ -240,23 +237,23 @@ const ThemesPage = React.createClass({
               ]}
               onRequestClose={this.handleRequestCloseDialog}
             >
-              The actions in this window are created from the json that&#39;s passed in.
+              The actions in this window are created from tan array of element's that&#39;s passed in.
             </Dialog>
           </div>
         </div>
         <div style={styles.group}>
           <div style={styles.containerCentered}>
             <FlatButton
-              onTouchTap={this.handleTouchTapLeftNav}
-              label="View LeftNav"
+              onTouchTap={this.handleTouchTapDrawer}
+              label="View Drawer"
             />
-            <LeftNav
-              open={this.state.leftNavOpen} docked={false}
-              onRequestChange={this.handleRequestChangeLeftNav}
+            <Drawer
+              open={this.state.drawerOpen} docked={false}
+              onRequestChange={this.handleRequestChangeDrawer}
             >
               <MenuItem index={0}>Menu Item</MenuItem>
               <MenuItem index={1}>Menu Item 2</MenuItem>
-            </LeftNav>
+            </Drawer>
           </div>
         </div>
         <div style={styles.group}>
@@ -317,15 +314,15 @@ const ThemesPage = React.createClass({
     );
   },
 
-  handleTouchTapLeftNav() {
+  handleTouchTapDrawer() {
     this.setState({
-      leftNavOpen: true,
+      drawerOpen: true,
     });
   },
 
-  handleRequestChangeLeftNav(open) {
+  handleRequestChangeDrawer(open) {
     this.setState({
-      leftNavOpen: open,
+      drawerOpen: open,
     });
   },
 

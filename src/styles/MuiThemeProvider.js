@@ -1,4 +1,5 @@
 import {Component, PropTypes} from 'react';
+import getMuiTheme from './getMuiTheme';
 
 class MuiThemeProvider extends Component {
 
@@ -8,12 +9,12 @@ class MuiThemeProvider extends Component {
   };
 
   static childContextTypes = {
-    muiTheme: PropTypes.object,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   getChildContext() {
     return {
-      muiTheme: this.props.muiTheme,
+      muiTheme: this.props.muiTheme || getMuiTheme(),
     };
   }
 

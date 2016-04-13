@@ -1,5 +1,5 @@
-//NOTE: all these tests depend on DarkRawTheme, and Colors
-//Modifying any of the above files will break these tests!
+// NOTE: all these tests depend on DarkRawTheme, and Colors
+// Modifying any of the above files will break these tests!
 
 import AppBar from 'AppBar';
 import RaisedButton from 'RaisedButton';
@@ -11,16 +11,6 @@ import darkBaseTheme from 'styles/baseThemes/darkBaseTheme';
 import {deepPurpleA700} from 'styles/colors';
 
 describe('Theming', () => {
-  describe('When no theme is specified, AppBar', () => {
-    it('should display with default light theme', () => {
-      const renderedAppbar = TestUtils.renderIntoDocument(<AppBar />);
-      const appbarDivs = TestUtils.scryRenderedDOMComponentsWithTag(renderedAppbar, 'div');
-      const firstDiv = appbarDivs[0];
-
-      expect(firstDiv.style.backgroundColor).to.equal('rgb(0, 188, 212)');
-    });
-  });
-
   describe('When the dark theme is specified', () => {
     describe('using context / react lifecycle methods, AppBar', () => {
       it('should display with passed down dark theme', () => {
@@ -80,17 +70,17 @@ describe('Theming', () => {
       expect(appbarDiv.style.backgroundColor).to.equal('rgb(0, 151, 167)');
       expect(firstH1.style.color).to.equal('rgb(48, 48, 48)');
 
-      //simulate button click
+      // simulate button click
       TestUtils.Simulate.click(buttonNode);
 
-      //now new theme should be applied and text color of app bar should be changed
+      // now new theme should be applied and text color of app bar should be changed
       expect(appbarDiv.style.backgroundColor).to.equal('rgb(0, 188, 212)');
       expect(firstH1.style.color).to.equal('rgb(98, 0, 234)');
     });
   });
 });
 
-//react components used for context-theme-passing testing
+// react components used for context-theme-passing testing
 const AppBarDarkUsingContext = React.createClass({
 
   childContextTypes: {
@@ -160,7 +150,7 @@ const AppBarDarkThemeOverride = React.createClass({
   },
 });
 
-//react component used to test whether or not theme updates down the hierarchy
+// react component used to test whether or not theme updates down the hierarchy
 const ButtonToUpdateThemeWithAppBar = React.createClass({
 
   childContextTypes: {

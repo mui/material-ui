@@ -1,10 +1,7 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    tableRowColumn,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {tableRowColumn} = context.muiTheme;
 
   const styles = {
     root: {
@@ -26,9 +23,8 @@ function getStyles(props, state) {
   return styles;
 }
 
-const TableRowColumn = React.createClass({
-
-  propTypes: {
+class TableRowColumn extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
 
     /**
@@ -48,11 +44,6 @@ const TableRowColumn = React.createClass({
      * If true, this column responds to hover events.
      */
     hoverable: React.PropTypes.bool,
-
-    /**
-     * Key for this element.
-     */
-    key: React.PropTypes.string,
 
     /**
      * @ignore
@@ -76,87 +67,62 @@ const TableRowColumn = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    hoverable: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      hoverable: false,
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-      hovered: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _onClick(event) {
+  onClick = (event) => {
     if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
-  },
+  };
 
-  _onMouseEnter(event) {
+  onMouseEnter = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
     }
-  },
+  };
 
-  _onMouseLeave(event) {
+  onMouseLeave = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
     }
-  },
+  };
 
   render() {
     const {
       children,
       className,
-      columnNumber,
-      hoverable,
-      onClick,
-      onHover,
-      onHoverExit,
+      columnNumber, // eslint-disable-line no-unused-vars
+      hoverable, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
+      onHover, // eslint-disable-line no-unused-vars
+      onHoverExit, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const handlers = {
-      onClick: this._onClick,
-      onMouseEnter: this._onMouseEnter,
-      onMouseLeave: this._onMouseLeave,
+      onClick: this.onClick,
+      onMouseEnter: this.onMouseEnter,
+      onMouseLeave: this.onMouseLeave,
     };
 
     return (
       <td
-        key={this.props.key}
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
         {...handlers}
@@ -165,8 +131,7 @@ const TableRowColumn = React.createClass({
         {children}
       </td>
     );
-  },
-
-});
+  }
+}
 
 export default TableRowColumn;

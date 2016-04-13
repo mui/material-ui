@@ -1,43 +1,19 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-const AppCanvas = React.createClass({
-
-  propTypes: {
+class AppCanvas extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
       baseTheme,
       prepareStyles,
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
 
     const styles = {
       height: '100%',
@@ -51,7 +27,7 @@ const AppCanvas = React.createClass({
         return null;
       }
 
-      switch (currentChild.type.displayName) {
+      switch (currentChild.type.muiName) {
         case 'AppBar' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, currentChild.props.style, {
@@ -68,8 +44,7 @@ const AppCanvas = React.createClass({
         {newChildren}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default AppCanvas;

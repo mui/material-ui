@@ -5,12 +5,11 @@ const React = require('react');
 function stubContext(BaseComponent, context) {
   if (typeof context === 'undefined' || context === null) context = {};
 
-  const _contextTypes = {};
-  const _context = context;
+  const contextTypes = {};
 
   try {
-    Object.keys(_context).forEach(function(key) {
-      _contextTypes[key] = React.PropTypes.any;
+    Object.keys(context).forEach(function(key) {
+      contextTypes[key] = React.PropTypes.any;
     });
   } catch (err) {
     throw new TypeError('createdStubbedContextComponent requires an object');
@@ -21,10 +20,10 @@ function stubContext(BaseComponent, context) {
     propTypes: {
       children: React.PropTypes.node,
     },
-    contextTypes: _contextTypes,
-    childContextTypes: _contextTypes,
+    contextTypes: contextTypes,
+    childContextTypes: contextTypes,
     getChildContext() {
-      return _context;
+      return context;
     },
     render() {
       return React.Children.only(this.props.children);
@@ -33,25 +32,25 @@ function stubContext(BaseComponent, context) {
 
   const StubbedContextHandler = React.createClass({
     displayName: 'StubbedContextHandler',
-    childContextTypes: _contextTypes,
+    childContextTypes: contextTypes,
     getChildContext() {
-      return _context;
+      return context;
     },
     getWrappedElement() {
-      return this._wrappedElement;
+      return this.wrappedElement;
     },
     getWrappedParentElement() {
-      return this._wrappedParentElement;
+      return this.wrappedParentElement;
     },
     render() {
-      this._wrappedElement = <BaseComponent {...this.state} {...this.props} />;
-      this._wrappedParentElement = <StubbedContextParent>{this._wrappedElement}</StubbedContextParent>;
+      this.wrappedElement = <BaseComponent {...this.state} {...this.props} />;
+      this.wrappedParentElement = <StubbedContextParent>{this.wrappedElement}</StubbedContextParent>;
 
-      return this._wrappedParentElement;
+      return this.wrappedParentElement;
     },
   });
 
-  BaseComponent.contextTypes = Object.assign({}, BaseComponent.contextTypes, _contextTypes);
+  BaseComponent.contextTypes = Object.assign({}, BaseComponent.contextTypes, contextTypes);
 
   StubbedContextHandler.getWrappedComponent = function() {
     return BaseComponent;

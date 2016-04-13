@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 
 const styles = {
-  propContainerStyle: {
+  propContainer: {
     width: 200,
     overflow: 'hidden',
     margin: '20px auto 0',
@@ -86,7 +86,6 @@ export default class TableExampleComplex extends React.Component {
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
-          onRowSelection={this._onRowSelection}
         >
           <TableHeader
             displaySelectAll={this.state.showCheckboxes}
@@ -134,7 +133,7 @@ export default class TableExampleComplex extends React.Component {
           </TableFooter>
         </Table>
 
-        <div style={styles.propContainerStyle}>
+        <div style={styles.propContainer}>
           <h3>Table Properties</h3>
           <TextField
             floatingLabelText="Table Body Height"

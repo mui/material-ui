@@ -54,14 +54,18 @@ module.exports = function(config) {
       module: {
         preLoaders: opts.coverage ? [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.js$/,
             loader: 'isparta',
-            exclude: /(node_modules|test|svg-icons)/,
+            include: /src/,
+            exclude: [
+              /svg-icons/,
+              /node_modules/,
+            ],
           },
         ] : [],
         loaders: [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.js$/,
             loader: 'babel',
             exclude: /node_modules/,
             query: {
@@ -105,10 +109,8 @@ module.exports = function(config) {
       includeAllSources: true,
       reporters: [
         {type: 'lcovonly', file: 'lcov.info'},
-        {type: 'text', file: 'text.txt'},
         {type: 'json', file: 'coverage.json'},
         {type: 'text-summary'},
-        {type: 'html'},
       ],
     } : {},
   });

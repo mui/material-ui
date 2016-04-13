@@ -1,21 +1,12 @@
 import React from 'react';
 import Paper from '../Paper';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 import propTypes from '../utils/propTypes';
 
-function getStyles(props, state) {
-  const {
-    targetOrigin,
-  } = props;
-
-  const {
-    open,
-    muiTheme: {
-      zIndex,
-    },
-  } = state;
-
+function getStyles(props, context, state) {
+  const {targetOrigin} = props;
+  const {open} = state;
+  const {muiTheme} = context;
   const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
 
   return {
@@ -24,16 +15,15 @@ function getStyles(props, state) {
       transform: open ? 'scaleY(1)' : 'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
       position: 'fixed',
-      zIndex: zIndex.popover,
+      zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('450ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
   };
 }
 
-const PopoverAnimationVertical = React.createClass({
-
-  propTypes: {
+class PopoverAnimationVertical extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
     open: React.PropTypes.bool.isRequired,
@@ -44,46 +34,30 @@ const PopoverAnimationVertical = React.createClass({
     style: React.PropTypes.object,
     targetOrigin: propTypes.origin,
     zDepth: propTypes.zDepth,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    style: {},
+    zDepth: 1,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      style: {},
-      zDepth: 1,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-      open: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  state = {
+    open: false,
+  };
 
   componentDidMount() {
-    this.setState({open: true}); //eslint-disable-line react/no-did-mount-set-state
-  },
+    this.setState({open: true}); // eslint-disable-line react/no-did-mount-set-state
+  }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       open: nextProps.open,
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
     });
-  },
+  }
 
   render() {
     const {
@@ -92,7 +66,7 @@ const PopoverAnimationVertical = React.createClass({
       zDepth,
     } = this.props;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <Paper
@@ -103,7 +77,7 @@ const PopoverAnimationVertical = React.createClass({
           {this.props.children}
       </Paper>
     );
-  },
-});
+  }
+}
 
 export default PopoverAnimationVertical;

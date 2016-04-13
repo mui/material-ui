@@ -1,94 +1,83 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowEqual from 'recompose/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
-const CircleRipple = React.createClass({
-
-  propTypes: {
+class CircleRipple extends React.Component {
+  static propTypes = {
     aborted: React.PropTypes.bool,
     color: React.PropTypes.string,
-
-    /**
-     * @ignore
-     * The material-ui theme applied to this component.
-     */
-    muiTheme: React.PropTypes.object.isRequired,
-
     opacity: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
-  },
+  };
 
-  mixins: [
-    PureRenderMixin,
-  ],
+  static defaultProps = {
+    opacity: 0.1,
+    aborted: false,
+  };
 
-  getDefaultProps() {
-    return {
-      opacity: 0.1,
-      aborted: false,
-    };
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
+
+  shouldComponentUpdate(nextProps) {
+    return !shallowEqual(this.props, nextProps);
+  }
 
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
-  },
+  }
 
   componentWillAppear(callback) {
-    this._initializeAnimation(callback);
-  },
+    this.initializeAnimation(callback);
+  }
 
   componentWillEnter(callback) {
-    this._initializeAnimation(callback);
-  },
+    this.initializeAnimation(callback);
+  }
 
   componentDidAppear() {
-    this._animate();
-  },
+    this.animate();
+  }
 
   componentDidEnter() {
-    this._animate();
-  },
+    this.animate();
+  }
 
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = 0;
-    //If the animation is aborted, remove from the DOM immediately
+    // If the animation is aborted, remove from the DOM immediately
     const removeAfter = this.props.aborted ? 0 : 2000;
     this.enterTimer = setTimeout(callback, removeAfter);
-  },
+  }
 
-  _animate() {
+  animate() {
     const style = ReactDOM.findDOMNode(this).style;
     const transitionValue = `${transitions.easeOut('2s', 'opacity')}, ${
       transitions.easeOut('1s', 'transform')}`;
-    autoPrefix.set(style, 'transition', transitionValue, this.props.muiTheme);
-    autoPrefix.set(style, 'transform', 'scale(1)', this.props.muiTheme);
-  },
+    autoPrefix.set(style, 'transition', transitionValue);
+    autoPrefix.set(style, 'transform', 'scale(1)');
+  }
 
-  _initializeAnimation(callback) {
+  initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = this.props.opacity;
-    autoPrefix.set(style, 'transform', 'scale(0)', this.props.muiTheme);
+    autoPrefix.set(style, 'transform', 'scale(0)');
     this.leaveTimer = setTimeout(callback, 0);
-  },
+  }
 
   render() {
     const {
       color,
-      muiTheme: {
-        prepareStyles,
-      },
-      opacity,
+      opacity, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
+
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedStyles = Object.assign({
       position: 'absolute',
@@ -103,7 +92,7 @@ const CircleRipple = React.createClass({
     return (
       <div {...other} style={prepareStyles(mergedStyles)} />
     );
-  },
-});
+  }
+}
 
 export default CircleRipple;

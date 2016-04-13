@@ -1,43 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowEqual from 'recompose/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import ScaleInTransitionGroup from './ScaleIn';
 
 const pulsateDuration = 750;
 
-const FocusRipple = React.createClass({
-
-  propTypes: {
+class FocusRipple extends React.Component {
+  static propTypes = {
     color: React.PropTypes.string,
     innerStyle: React.PropTypes.object,
-
-    /**
-     * @ignore
-     * The material-ui theme applied to this component.
-     */
-    muiTheme: React.PropTypes.object.isRequired,
-
     opacity: React.PropTypes.number,
     show: React.PropTypes.bool,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
-  },
+  };
 
-  mixins: [
-    PureRenderMixin,
-  ],
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   componentDidMount() {
     if (this.props.show) {
       this.setRippleSize();
       this.pulsate();
     }
-  },
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   componentDidUpdate() {
     if (this.props.show) {
@@ -46,22 +41,20 @@ const FocusRipple = React.createClass({
     } else {
       if (this.timeout) clearTimeout(this.timeout);
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
-  },
+  }
 
   getRippleElement(props) {
     const {
       color,
       innerStyle,
-      muiTheme: {
-        prepareStyles,
-        ripple,
-      },
       opacity,
     } = props;
+
+    const {prepareStyles, ripple} = this.context.muiTheme;
 
     const innerStyles = Object.assign({
       position: 'absolute',
@@ -74,9 +67,9 @@ const FocusRipple = React.createClass({
     }, innerStyle);
 
     return <div ref="innerCircle" style={prepareStyles(Object.assign({}, innerStyles))} />;
-  },
+  }
 
-  pulsate() {
+  pulsate = () => {
     const innerCircle = ReactDOM.findDOMNode(this.refs.innerCircle);
     if (!innerCircle) return;
 
@@ -85,9 +78,9 @@ const FocusRipple = React.createClass({
     const currentScale = innerCircle.style.transform || startScale;
     const nextScale = currentScale === startScale ? endScale : startScale;
 
-    autoPrefix.set(innerCircle.style, 'transform', nextScale, this.props.muiTheme);
+    autoPrefix.set(innerCircle.style, 'transform', nextScale);
     this.timeout = setTimeout(this.pulsate, pulsateDuration);
-  },
+  };
 
   setRippleSize() {
     const el = ReactDOM.findDOMNode(this.refs.innerCircle);
@@ -102,7 +95,7 @@ const FocusRipple = React.createClass({
     }
     el.style.height = `${size}px`;
     el.style.top = `${(height / 2) - (size / 2 ) + oldTop}px`;
-  },
+  }
 
   render() {
     const {
@@ -128,7 +121,7 @@ const FocusRipple = React.createClass({
         {ripple}
       </ScaleInTransitionGroup>
     );
-  },
-});
+  }
+}
 
 export default FocusRipple;

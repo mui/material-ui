@@ -4,13 +4,10 @@ import propTypes from '../utils/propTypes';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Tooltip from '../internal/Tooltip';
-import Children from '../utils/children';
-import getMuiTheme from '../styles/getMuiTheme';
+import {extendChildren} from '../utils/childUtils';
 
-function getStyles(props, state) {
-  const {
-    baseTheme,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {baseTheme} = context.muiTheme;
 
   return {
     root: {
@@ -44,9 +41,10 @@ function getStyles(props, state) {
   };
 }
 
-const IconButton = React.createClass({
+class IconButton extends React.Component {
+  static muiName = 'IconButton';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Can be used to pass a `FontIcon` element as the icon for the button.
      */
@@ -146,95 +144,74 @@ const IconButton = React.createClass({
      * readability on mobile devices.
      */
     touch: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    disabled: false,
+    disableTouchRipple: false,
+    iconStyle: {},
+    tooltipPosition: 'bottom-center',
+    touch: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      disableTouchRipple: false,
-      iconStyle: {},
-      tooltipPosition: 'bottom-center',
-      touch: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      tooltipShown: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  state = {
+    tooltipShown: false,
+  };
 
   setKeyboardFocus() {
     this.refs.button.setKeyboardFocus();
-  },
+  }
 
-  _showTooltip() {
+  showTooltip() {
     if (this.props.tooltip) {
       this.setState({tooltipShown: true});
     }
-  },
+  }
 
-  _hideTooltip() {
+  hideTooltip() {
     if (this.props.tooltip) this.setState({tooltipShown: false});
-  },
+  }
 
-  _handleBlur(event) {
-    this._hideTooltip();
+  handleBlur = (event) => {
+    this.hideTooltip();
     if (this.props.onBlur) this.props.onBlur(event);
-  },
+  };
 
-  _handleFocus(event) {
-    this._showTooltip();
+  handleFocus = (event) => {
+    this.showTooltip();
     if (this.props.onFocus) this.props.onFocus(event);
-  },
+  };
 
-  _handleMouseLeave(event) {
-    if (!this.refs.button.isKeyboardFocused()) this._hideTooltip();
+  handleMouseLeave = (event) => {
+    if (!this.refs.button.isKeyboardFocused()) this.hideTooltip();
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
-  },
+  };
 
-  _handleMouseOut(event) {
-    if (this.props.disabled) this._hideTooltip();
+  handleMouseOut = (event) => {
+    if (this.props.disabled) this.hideTooltip();
     if (this.props.onMouseOut) this.props.onMouseOut(event);
-  },
+  };
 
-  _handleMouseEnter(event) {
-    this._showTooltip();
+  handleMouseEnter = (event) => {
+    this.showTooltip();
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
-  },
+  };
 
-  _handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
-      this._showTooltip();
+      this.showTooltip();
       if (this.props.onFocus) this.props.onFocus(event);
     } else if (!this.state.hovered) {
-      this._hideTooltip();
+      this.hideTooltip();
       if (this.props.onBlur) this.props.onBlur(event);
     }
 
     if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(event, keyboardFocused);
-  },
+  };
 
   render() {
     const {
@@ -248,7 +225,7 @@ const IconButton = React.createClass({
     } = this.props;
     let fonticon;
 
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
     const tooltipPosition = this.props.tooltipPosition.split('-');
 
     const tooltipElement = tooltip ? (
@@ -294,22 +271,21 @@ const IconButton = React.createClass({
         disabled={disabled}
         style={Object.assign(styles.root, this.props.style)}
         disableTouchRipple={disableTouchRipple}
-        onBlur={this._handleBlur}
-        onFocus={this._handleFocus}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseOut={this._handleMouseOut}
-        onKeyboardFocus={this._handleKeyboardFocus}
+        onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseOut={this.handleMouseOut}
+        onKeyboardFocus={this.handleKeyboardFocus}
       >
         {tooltipElement}
         {fonticon}
-        {Children.extend(this.props.children, {
+        {extendChildren(this.props.children, {
           style: childrenStyle,
         })}
       </EnhancedButton>
     );
-  },
-
-});
+  }
+}
 
 export default IconButton;

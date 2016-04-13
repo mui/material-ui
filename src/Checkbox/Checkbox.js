@@ -3,14 +3,10 @@ import EnhancedSwitch from '../internal/EnhancedSwitch';
 import transitions from '../styles/transitions';
 import CheckboxOutline from '../svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from '../svg-icons/toggle/check-box';
-import getMuiTheme from '../styles/getMuiTheme';
 import deprecated from '../utils/deprecatedPropType';
 
-function getStyles(props, state) {
-  const {
-    checkbox,
-  } = state.muiTheme;
-
+function getStyles(props, context) {
+  const {checkbox} = context.muiTheme;
   const checkboxSize = 24;
 
   return {
@@ -57,9 +53,8 @@ function getStyles(props, state) {
   };
 }
 
-const Checkbox = React.createClass({
-
-  propTypes: {
+class Checkbox extends React.Component {
+  static propTypes = {
     /**
      * Checkbox is checked if true.
      */
@@ -73,6 +68,9 @@ const Checkbox = React.createClass({
 
     /**
      * The default state of our checkbox component.
+     * **Warning:** This cannot be used in conjunction with `checked`.
+     * Decide between using a controlled or uncontrolled input element and remove one of these props.
+     * More info: https://fb.me/react-controlled-components
      */
     defaultChecked: React.PropTypes.bool,
 
@@ -131,76 +129,61 @@ const Checkbox = React.createClass({
      * ValueLink for when using controlled checkbox.
      */
     valueLink: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    labelPosition: 'right',
+    disabled: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      defaultChecked: false,
-      labelPosition: 'right',
-      disabled: false,
-    };
-  },
+  state = {switched: false};
 
-  getInitialState() {
-    return {
-      switched:
-        this.props.checked ||
-        this.props.defaultChecked ||
-        (this.props.valueLink && this.props.valueLink.value) ||
-        false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
+  componentWillMount() {
+    const {checked, defaultChecked, valueLink} = this.props;
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+    if (checked || defaultChecked || (valueLink && valueLink.value)) {
+      this.setState({switched: true});
+    }
+  }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
       switched: this.props.checked !== nextProps.checked ?
         nextProps.checked :
         this.state.switched,
     });
-  },
+  }
 
   isChecked() {
     return this.refs.enhancedSwitch.isSwitched();
-  },
+  }
 
   setChecked(newCheckedValue) {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
-  },
+  }
 
-  _handleCheck(event, isInputChecked) {
+  handleCheck = (event, isInputChecked) => {
     if (this.props.onCheck) this.props.onCheck(event, isInputChecked);
-  },
+  };
 
-  _handleStateChange(newSwitched) {
+  handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
-  },
+  };
 
   render() {
     const {
       iconStyle,
-      onCheck,
+      onCheck, // eslint-disable-line no-unused-vars
       checkedIcon,
       uncheckedIcon,
       unCheckedIcon,
       ...other,
     } = this.props;
-    const styles = getStyles(this.props, this.state);
+    const styles = getStyles(this.props, this.context);
     const boxStyles =
       Object.assign(
         styles.box,
@@ -248,10 +231,9 @@ const Checkbox = React.createClass({
       switchElement: checkboxElement,
       rippleColor: rippleColor,
       iconStyle: mergedIconStyle,
-      onSwitch: this._handleCheck,
+      onSwitch: this.handleCheck,
       labelStyle: labelStyle,
-      onParentShouldUpdate: this._handleStateChange,
-      defaultSwitched: this.props.defaultChecked,
+      onParentShouldUpdate: this.handleStateChange,
       labelPosition: this.props.labelPosition,
     };
 
@@ -261,7 +243,7 @@ const Checkbox = React.createClass({
         {...enhancedSwitchProps}
       />
     );
-  },
-});
+  }
+}
 
 export default Checkbox;

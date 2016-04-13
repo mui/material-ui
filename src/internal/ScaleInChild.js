@@ -1,118 +1,82 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-const ScaleInChild = React.createClass({
-
-  propTypes: {
+class ScaleInChild extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     enterDelay: React.PropTypes.number,
     maxScale: React.PropTypes.number,
     minScale: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    enterDelay: 0,
+    maxScale: 1,
+    minScale: 0,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    PureRenderMixin,
-  ],
-
-  getDefaultProps: function() {
-    return {
-      enterDelay: 0,
-      maxScale: 1,
-      minScale: 0,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
-  },
+  }
 
   componentWillAppear(callback) {
-    this._initializeAnimation(callback);
-  },
+    this.initializeAnimation(callback);
+  }
 
   componentWillEnter(callback) {
-    this._initializeAnimation(callback);
-  },
+    this.initializeAnimation(callback);
+  }
 
   componentDidAppear() {
-    this._animate();
-  },
+    this.animate();
+  }
 
   componentDidEnter() {
-    this._animate();
-  },
+    this.animate();
+  }
 
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`, this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `scale(${this.props.minScale})`);
 
     this.leaveTimer = setTimeout(callback, 450);
-  },
+  }
 
-  _animate() {
+  animate() {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
-    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`, this.state.muiTheme);
-  },
+    autoPrefix.set(style, 'transform', `scale(${this.props.maxScale})`);
+  }
 
-  _initializeAnimation(callback) {
+  initializeAnimation(callback) {
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', 'scale(0)', this.state.muiTheme);
+    autoPrefix.set(style, 'transform', 'scale(0)');
 
     this.enterTimer = setTimeout(callback, this.props.enterDelay);
-  },
+  }
 
   render() {
     const {
       children,
-      enterDelay,
+      enterDelay, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'absolute',
@@ -128,7 +92,7 @@ const ScaleInChild = React.createClass({
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default ScaleInChild;

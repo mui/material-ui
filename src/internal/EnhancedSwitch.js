@@ -5,13 +5,10 @@ import transitions from '../styles/transitions';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
 import Paper from './../Paper';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
-function getStyles(props, state) {
-  const {
-    baseTheme,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {baseTheme} = context.muiTheme;
 
   return {
     root: {
@@ -70,16 +67,11 @@ function getStyles(props, state) {
   };
 }
 
-const EnhancedSwitch = React.createClass({
-
-  propTypes: {
+class EnhancedSwitch extends React.Component {
+  static propTypes = {
     checked: React.PropTypes.bool,
-
-    /**
-     * The css class name of the root element.
-     */
     className: React.PropTypes.string,
-    defaultSwitched: React.PropTypes.bool,
+    defaultChecked: React.PropTypes.bool,
     disableFocusRipple: React.PropTypes.bool,
     disableTouchRipple: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
@@ -95,158 +87,140 @@ const EnhancedSwitch = React.createClass({
     onMouseDown: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     onMouseUp: React.PropTypes.func,
-    onParentShouldUpdate: React.PropTypes.func.isRequired,
+    onParentShouldUpdate: React.PropTypes.func,
     onSwitch: React.PropTypes.func,
     onTouchEnd: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
     rippleColor: React.PropTypes.string,
     rippleStyle: React.PropTypes.object,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
     switchElement: React.PropTypes.element.isRequired,
     switched: React.PropTypes.bool.isRequired,
     thumbStyle: React.PropTypes.object,
     trackStyle: React.PropTypes.object,
     value: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      isKeyboardFocused: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  state = {
+    isKeyboardFocused: false,
+  };
 
   componentDidMount() {
     const inputNode = this.refs.checkbox;
-    if (!this.props.switched || inputNode.checked !== this.props.switched) {
+    if ((!this.props.switched || inputNode.checked !== this.props.switched) &&
+      this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(inputNode.checked);
     }
-  },
+  }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
-      (nextProps.hasOwnProperty('defaultSwitched') &&
-      (nextProps.defaultSwitched !== this.props.defaultSwitched));
+      (nextProps.hasOwnProperty('defaultChecked') &&
+      (nextProps.defaultChecked !== this.props.defaultChecked));
 
-    const newState = {
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    };
+    if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
+      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
 
-    if (hasCheckedProp) {
-      newState.switched = nextProps.checked;
-    } else if (hasToggledProp) {
-      newState.switched = nextProps.toggled;
-    } else if (hasNewDefaultProp) {
-      newState.switched = nextProps.defaultSwitched;
+      this.setState({
+        switched: switched,
+      });
+
+      if (this.props.onParentShouldUpdate && switched !== this.props.switched) {
+        this.props.onParentShouldUpdate(switched);
+      }
     }
-
-    if (newState.switched !== undefined && (newState.switched !== this.props.switched)) {
-      this.props.onParentShouldUpdate(newState.switched);
-    }
-
-    this.setState(newState);
-  },
+  }
 
   isSwitched() {
     return this.refs.checkbox.checked;
-  },
+  }
 
   // no callback here because there is no event
   setSwitched(newSwitchedValue) {
     if (!this.props.hasOwnProperty('checked') || this.props.checked === false) {
-      this.props.onParentShouldUpdate(newSwitchedValue);
+      if (this.props.onParentShouldUpdate) {
+        this.props.onParentShouldUpdate(newSwitchedValue);
+      }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
       warning(false, 'Cannot call set method while checked is defined as a property.');
     }
-  },
+  }
 
   getValue() {
     return this.refs.checkbox.value;
-  },
+  }
 
-  _handleChange(event) {
-    this._tabPressed = false;
+  handleChange = (event) => {
+    this.tabPressed = false;
     this.setState({
       isKeyboardFocused: false,
     });
 
     const isInputChecked = this.refs.checkbox.checked;
 
-    if (!this.props.hasOwnProperty('checked')) {
+    if (!this.props.hasOwnProperty('checked') && this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(isInputChecked);
     }
     if (this.props.onSwitch) {
       this.props.onSwitch(event, isInputChecked);
     }
-  },
+  };
 
   // Checkbox inputs only use SPACE to change their state. Using ENTER will
   // update the ui but not the input.
-  _handleWindowKeydown(event) {
-    if (keycode(event) === 'tab') {
-      this._tabPressed = true;
-    }
-    if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
-      this._handleChange(event);
-    }
-  },
+  handleKeyDown = (event) => {
+    const code = keycode(event);
 
-  _handleWindowKeyup(event) {
-    if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
-      this._handleChange(event);
+    if (code === 'tab') {
+      this.tabPressed = true;
     }
-  },
+    if (this.state.isKeyboardFocused && code === 'space') {
+      this.handleChange(event);
+    }
+  };
+
+  handleKeyUp = (event) => {
+    if (this.state.isKeyboardFocused && keycode(event) === 'space') {
+      this.handleChange(event);
+    }
+  };
 
   /**
    * Because both the ripples and the checkbox input cannot share pointer
    * events, the checkbox input takes control of pointer events and calls
    * ripple animations manually.
    */
-  _handleMouseDown(event) {
-    //only listen to left clicks
+  handleMouseDown = (event) => {
+    // only listen to left clicks
     if (event.button === 0) {
       this.refs.touchRipple.start(event);
     }
-  },
+  };
 
-  _handleMouseUp() {
+  handleMouseUp = () => {
     this.refs.touchRipple.end();
-  },
+  };
 
-  _handleMouseLeave() {
+  handleMouseLeave = () => {
     this.refs.touchRipple.end();
-  },
+  };
 
-  _handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.refs.touchRipple.start(event);
-  },
+  };
 
-  _handleTouchEnd() {
+  handleTouchEnd = () => {
     this.refs.touchRipple.end();
-  },
+  };
 
-  _handleBlur(event) {
+  handleBlur = (event) => {
     this.setState({
       isKeyboardFocused: false,
     });
@@ -254,14 +228,14 @@ const EnhancedSwitch = React.createClass({
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-  },
+  };
 
-  _handleFocus(event) {
-    //setTimeout is needed becuase the focus event fires first
-    //Wait so that we can capture if this was a keyboard focus
-    //or touch focus
+  handleFocus = (event) => {
+    // setTimeout is needed becuase the focus event fires first
+    // Wait so that we can capture if this was a keyboard focus
+    // or touch focus
     setTimeout(() => {
-      if (this._tabPressed) {
+      if (this.tabPressed) {
         this.setState({
           isKeyboardFocused: true,
         });
@@ -271,7 +245,7 @@ const EnhancedSwitch = React.createClass({
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-  },
+  };
 
   render() {
     const {
@@ -283,32 +257,29 @@ const EnhancedSwitch = React.createClass({
       label,
       labelStyle,
       labelPosition,
-      onSwitch,
-      defaultSwitched,
-      onBlur,
-      onFocus,
-      onMouseUp,
-      onMouseDown,
-      onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
+      onSwitch, // eslint-disable-line no-unused-vars
+      onBlur, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
+      onMouseUp, // eslint-disable-line no-unused-vars
+      onMouseDown, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onTouchStart, // eslint-disable-line no-unused-vars
+      onTouchEnd, // eslint-disable-line no-unused-vars
       disabled,
       disableTouchRipple,
       disableFocusRipple,
       className,
       rippleStyle,
       style,
+      switched, // eslint-disable-line no-unused-vars
       switchElement,
       thumbStyle,
       trackStyle,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const wrapStyles = Object.assign(styles.wrap, iconStyle);
     const mergedRippleStyle = Object.assign(styles.ripple, rippleStyle);
 
@@ -332,7 +303,7 @@ const EnhancedSwitch = React.createClass({
         key="touchRipple"
         style={mergedRippleStyle}
         color={mergedRippleStyle.color}
-        muiTheme={this.state.muiTheme}
+        muiTheme={this.context.muiTheme}
         centerRipple={true}
       />
     );
@@ -342,7 +313,7 @@ const EnhancedSwitch = React.createClass({
         key="focusRipple"
         innerStyle={mergedRippleStyle}
         color={mergedRippleStyle.color}
-        muiTheme={this.state.muiTheme}
+        muiTheme={this.context.muiTheme}
         show={this.state.isKeyboardFocused}
       />
     );
@@ -360,16 +331,15 @@ const EnhancedSwitch = React.createClass({
         style={prepareStyles(Object.assign(styles.input, inputStyle))}
         name={name}
         value={value}
-        defaultChecked={defaultSwitched}
         disabled={disabled}
-        onBlur={this._handleBlur}
-        onFocus={this._handleFocus}
-        onChange={this._handleChange}
-        onMouseUp={showTouchRipple && this._handleMouseUp}
-        onMouseDown={showTouchRipple && this._handleMouseDown}
-        onMouseLeave={showTouchRipple && this._handleMouseLeave}
-        onTouchStart={showTouchRipple && this._handleTouchStart}
-        onTouchEnd={showTouchRipple && this._handleTouchEnd}
+        onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
+        onChange={this.handleChange}
+        onMouseUp={showTouchRipple && this.handleMouseUp}
+        onMouseDown={showTouchRipple && this.handleMouseDown}
+        onMouseLeave={showTouchRipple && this.handleMouseLeave}
+        onTouchStart={showTouchRipple && this.handleTouchStart}
+        onTouchEnd={showTouchRipple && this.handleTouchEnd}
       />
     );
 
@@ -403,15 +373,14 @@ const EnhancedSwitch = React.createClass({
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         <EventListener
           elementName="window"
-          onKeyDown={this._handleWindowKeydown}
-          onKeyUp={this._handleWindowKeyup}
+          onKeyDown={this.handleKeyDown}
+          onKeyUp={this.handleKeyUp}
         />
         {inputElement}
         {elementsInOrder}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default EnhancedSwitch;

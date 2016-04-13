@@ -1,3 +1,1 @@
-import AppBar from './AppBar';
-
-export default AppBar;
+export default from './AppBar';

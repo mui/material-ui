@@ -1,7 +1,6 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     backgroundColor,
     color,
@@ -9,9 +8,7 @@ function getStyles(props, state) {
     src,
   } = props;
 
-  const {
-    avatar,
-  } = state.muiTheme;
+  const {avatar} = context.muiTheme;
 
   const styles = {
     root: {
@@ -34,6 +31,9 @@ function getStyles(props, state) {
 
   if (src && avatar.borderColor) {
     Object.assign(styles.root, {
+      background: `url(${src})`,
+      backgroundSize: size,
+      backgroundOrigin: 'border-box',
       border: `solid 1px ${avatar.borderColor}`,
       height: size - 2,
       width: size - 2,
@@ -43,9 +43,8 @@ function getStyles(props, state) {
   return styles;
 }
 
-const Avatar = React.createClass({
-
-  propTypes: {
+class Avatar extends React.Component {
+  static propTypes = {
     /**
      * The backgroundColor of the avatar. Does not apply to image avatars.
      */
@@ -85,39 +84,15 @@ const Avatar = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    size: 40,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      size: 40,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -128,17 +103,13 @@ const Avatar = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     if (src) {
       return (
-        <img
+        <div
           {...other}
-          src={src}
           style={prepareStyles(Object.assign(styles.root, style))}
           className={className}
         />
@@ -158,7 +129,7 @@ const Avatar = React.createClass({
         </div>
       );
     }
-  },
-});
+  }
+}
 
 export default Avatar;

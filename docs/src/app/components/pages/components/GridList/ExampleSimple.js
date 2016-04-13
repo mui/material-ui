@@ -12,7 +12,7 @@ const styles = {
   },
   gridList: {
     width: 500,
-    height: 400,
+    height: 500,
     overflowY: 'auto',
     marginBottom: 24,
   },
@@ -60,7 +60,6 @@ const tilesData = [
     author: 'BkrmadtyaKarki',
   },
 ];
-
 
 const GridListExampleSimple = () => (
   <div style={styles.root}>

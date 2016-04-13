@@ -1,5 +1,4 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getStyles() {
   return {
@@ -13,9 +12,8 @@ function getStyles() {
   };
 }
 
-const CardActions = React.createClass({
-
-  propTypes: {
+class CardActions extends React.Component {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
@@ -40,40 +38,15 @@ const CardActions = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const children = React.Children.map(this.props.children, (child) => {
       if (React.isValidElement(child)) {
@@ -88,7 +61,7 @@ const CardActions = React.createClass({
         {children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default CardActions;

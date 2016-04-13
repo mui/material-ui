@@ -34,18 +34,10 @@ const config = {
     ], path.resolve(__dirname,"src")),
   ],
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        include: [path.resolve(__dirname, "src/app")],
-        exclude: [nodeModulesPath],
-      },
-    ],
     loaders: [
       {
         test: /\.js$/, // All .js files
-        loaders: ['babel'], //react-hot is like browser sync and babel loads jsx and es6-7
+        loaders: ['babel-loader'], //react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath],
       },
     ],

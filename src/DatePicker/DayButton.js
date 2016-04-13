@@ -1,24 +1,21 @@
 import React from 'react';
 import Transition from '../styles/transitions';
-import DateTime from '../utils/dateTime';
+import {isEqualDate} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     date,
     disabled,
     selected,
   } = props;
 
-  const {
-    hover,
-  } = state;
+  const {hover} = context;
 
   const {
     baseTheme,
     datePicker,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   let labelColor = baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
@@ -28,7 +25,7 @@ function getStyles(props, state) {
     labelColor = datePicker.selectTextColor;
     buttonStateOpacity = selected ? 1 : 0.6;
     buttonStateTransform = 'scale(1)';
-  } else if (DateTime.isEqualDate(date, new Date())) {
+  } else if (isEqualDate(date, new Date())) {
     labelColor = datePicker.color;
   }
 
@@ -60,81 +57,56 @@ function getStyles(props, state) {
   };
 }
 
-const DayButton = React.createClass({
-
-  propTypes: {
+class DayButton extends React.Component {
+  static propTypes = {
     date: React.PropTypes.object,
     disabled: React.PropTypes.bool,
     onKeyboardFocus: React.PropTypes.func,
     onTouchTap: React.PropTypes.func,
     selected: React.PropTypes.bool,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    selected: false,
+    disabled: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      selected: false,
-      disabled: false,
-    };
-  },
+  state = {
+    hover: false,
+  };
 
-  getInitialState() {
-    return {
-      hover: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _handleMouseEnter() {
+  handleMouseEnter = () => {
     if (!this.props.disabled) this.setState({hover: true});
-  },
+  };
 
-  _handleMouseLeave() {
+  handleMouseLeave = () => {
     if (!this.props.disabled) this.setState({hover: false});
-  },
+  };
 
-  _handleTouchTap(event) {
+  handleTouchTap = (event) => {
     if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(event, this.props.date);
-  },
+  };
 
-  _handleKeyboardFocus(event, keyboardFocused) {
+  handleKeyboardFocus = (event, keyboardFocused) => {
     if (!this.props.disabled && this.props.onKeyboardFocus) {
       this.props.onKeyboardFocus(event, keyboardFocused, this.props.date);
     }
-  },
+  };
 
   render() {
     const {
-      date,
-      onTouchTap,
-      selected,
+      date, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return this.props.date ? (
       <EnhancedButton
@@ -144,10 +116,10 @@ const DayButton = React.createClass({
         disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
-        onMouseEnter={this._handleMouseEnter}
-        onMouseLeave={this._handleMouseLeave}
-        onTouchTap={this._handleTouchTap}
-        onKeyboardFocus={this._handleKeyboardFocus}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onTouchTap={this.handleTouchTap}
+        onKeyboardFocus={this.handleKeyboardFocus}
       >
         <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
@@ -155,8 +127,7 @@ const DayButton = React.createClass({
     ) : (
       <span style={prepareStyles(styles.root)} />
     );
-  },
-
-});
+  }
+}
 
 export default DayButton;

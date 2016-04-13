@@ -1,17 +1,13 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
+function getStyles(props, context, state) {
   const {
     color,
     hoverColor,
   } = props;
 
-  const {
-    baseTheme,
-  } = state.muiTheme;
-
+  const {baseTheme} = context.muiTheme;
   const offColor = color || baseTheme.palette.textColor;
   const onColor = hoverColor || offColor;
 
@@ -27,10 +23,10 @@ function getStyles(props, state) {
   };
 }
 
+class FontIcon extends React.Component {
+  static muiName = 'FontIcon';
 
-const FontIcon = React.createClass({
-
-  propTypes: {
+  static propTypes = {
     /**
      * This is the font color of the font icon. If not specified,
      * this component will default to muiTheme.palette.textColor.
@@ -60,83 +56,59 @@ const FontIcon = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined)
       this.setState({hovered: false});
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
-  },
+  };
 
-  _handleMouseEnter(event) {
+  handleMouseEnter = (event) => {
     // hover is needed only when a hoverColor is defined
     if (this.props.hoverColor !== undefined)
       this.setState({hovered: true});
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
-  },
+  };
 
   render() {
     const {
-      onMouseLeave,
-      onMouseEnter,
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onMouseEnter, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <span
         {...other}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
         style={prepareStyles(Object.assign(styles.root, style))}
       />
     );
-  },
-});
+  }
+}
 
 export default FontIcon;

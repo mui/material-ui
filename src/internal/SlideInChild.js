@@ -2,59 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
-const SlideInChild = React.createClass({
-
-  propTypes: {
+class SlideInChild extends React.Component {
+  static propTypes = {
     children: React.PropTypes.node,
     direction: React.PropTypes.string,
     enterDelay: React.PropTypes.number,
-    //This callback is needed bacause
-    //the direction could change when leaving the dom
+    // This callback is needed bacause the direction could change when leaving the DOM
     getLeaveDirection: React.PropTypes.func.isRequired,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    enterDelay: 0,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps: function() {
-    return {
-      enterDelay: 0,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
-  },
+  }
 
   componentWillEnter(callback) {
     const style = ReactDOM.findDOMNode(this).style;
@@ -64,16 +34,16 @@ const SlideInChild = React.createClass({
       this.props.direction === 'down' ? '-100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`);
 
     this.enterTimer = setTimeout(callback, this.props.enterDelay);
-  },
+  }
 
   componentDidEnter() {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '1';
-    autoPrefix.set(style, 'transform', 'translate3d(0,0,0)', this.state.muiTheme);
-  },
+    autoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
+  }
 
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
@@ -84,23 +54,21 @@ const SlideInChild = React.createClass({
       direction === 'down' ? '100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`, this.state.muiTheme);
+    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`);
 
     this.leaveTimer = setTimeout(callback, 450);
-  },
+  }
 
   render() {
     const {
       children,
-      enterDelay,
-      getLeaveDirection,
+      enterDelay, // eslint-disable-line no-unused-vars
+      getLeaveDirection, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'absolute',
@@ -116,8 +84,7 @@ const SlideInChild = React.createClass({
         {children}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default SlideInChild;

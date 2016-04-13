@@ -41,21 +41,11 @@ const config = {
     ], path.resolve(__dirname, "src")),
   ],
   module: {
-    //Loaders to interpret non-vanilla javascript code as well as most other extensions including images and text.
-    preLoaders: [
-      {
-        //Eslint loader
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        include: [path.resolve(__dirname, "src/app")],
-        exclude: [nodeModulesPath],
-      },
-    ],
     loaders: [
       {
         //React-hot loader and
         test: /\.js$/,  //All .js files
-        loaders: ['react-hot', 'babel'], //react-hot is like browser sync and babel loads jsx and es6-7
+        loaders: ['react-hot', 'babel-loader'], //react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath],
       },
     ],

@@ -2,17 +2,14 @@ import React from 'react';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    disabled,
-  } = props;
+function getStyles(props, context, state) {
+  const {disabled} = props;
 
   const {
     baseTheme,
     toggle,
-  } = state.muiTheme;
+  } = context.muiTheme;
 
   const toggleSize = 20;
   const toggleTrackWidth = 36;
@@ -69,11 +66,13 @@ function getStyles(props, state) {
   return styles;
 }
 
-const Toggle = React.createClass({
-
-  propTypes: {
+class Toggle extends React.Component {
+  static propTypes = {
     /**
      * Determines whether the Toggle is initially turned on.
+     * **Warning:** This cannot be used in conjunction with `toggled`.
+     * Decide between using a controlled or uncontrolled input element and remove one of these props.
+     * More info: https://fb.me/react-controlled-components
      */
     defaultToggled: React.PropTypes.bool,
 
@@ -96,6 +95,11 @@ const Toggle = React.createClass({
      * Overrides the inline-styles of the input element.
      */
     inputStyle: React.PropTypes.object,
+
+    /**
+     * Label for toggle.
+     */
+    label: React.PropTypes.string,
 
     /**
      * Where the label will be placed next to the toggle.
@@ -141,74 +145,54 @@ const Toggle = React.createClass({
      * ValueLink prop for when using controlled toggle.
      */
     valueLink: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    defaultToggled: false,
+    disabled: false,
+    labelPosition: 'left',
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      defaultToggled: false,
-      disabled: false,
-      labelPosition: 'left',
-    };
-  },
+  state = {switched: false};
 
-  getInitialState() {
-    return {
-      switched:
-        this.props.toggled ||
-        this.props.defaultToggled ||
-        (this.props.valueLink && this.props.valueLink.value) ||
-        false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
+  componentWillMount() {
+    const {toggled, defaultToggled, valueLink} = this.props;
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+    if (toggled || defaultToggled || (valueLink && valueLink.value)) {
+      this.setState({switched: true});
+    }
+  }
 
   isToggled() {
     return this.refs.enhancedSwitch.isSwitched();
-  },
+  }
 
   setToggled(newToggledValue) {
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
-  },
+  }
 
-  _handleToggle(event, isInputChecked) {
+  handleToggle = (event, isInputChecked) => {
     if (this.props.onToggle) this.props.onToggle(event, isInputChecked);
-  },
+  };
 
-  _handleStateChange(newSwitched) {
+  handleStateChange = (newSwitched) => {
     this.setState({switched: newSwitched});
-  },
+  };
 
   render() {
     const {
-      onToggle,
+      defaultToggled,
+      onToggle, // eslint-disable-line no-unused-vars
+      toggled,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
 
     const trackStyles = Object.assign({},
       styles.track,
@@ -225,7 +209,7 @@ const Toggle = React.createClass({
     );
 
     if (this.state.switched) {
-      thumbStyles.marginLeft = `-${thumbStyles.width}`;
+      thumbStyles.marginLeft = 0 - thumbStyles.width;
     }
 
     const toggleElementStyles = Object.assign({},
@@ -266,13 +250,16 @@ const Toggle = React.createClass({
       thumbStyle: thumbStyles,
       labelStyle: labelStyle,
       switched: this.state.switched,
-      onSwitch: this._handleToggle,
-      onParentShouldUpdate: this._handleStateChange,
-      defaultSwitched: this.props.defaultToggled,
+      onSwitch: this.handleToggle,
+      onParentShouldUpdate: this.handleStateChange,
       labelPosition: this.props.labelPosition,
     };
 
-    if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
+    if (this.props.hasOwnProperty('toggled')) {
+      enhancedSwitchProps.checked = toggled;
+    } else if (this.props.hasOwnProperty('defaultToggled')) {
+      enhancedSwitchProps.defaultChecked = defaultToggled;
+    }
 
     return (
       <EnhancedSwitch
@@ -280,8 +267,7 @@ const Toggle = React.createClass({
         {...enhancedSwitchProps}
       />
     );
-  },
-
-});
+  }
+}
 
 export default Toggle;

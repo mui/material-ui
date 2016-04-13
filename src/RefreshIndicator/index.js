@@ -1,3 +1,1 @@
-import RefreshIndicator from './RefreshIndicator';
-
-export default RefreshIndicator;
+export default from './RefreshIndicator';

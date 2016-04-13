@@ -1,45 +1,45 @@
 import React from 'react';
 import RadioButton from '../RadioButton';
-import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
-const RadioButtonGroup = React.createClass({
-
-  propTypes: {
+class RadioButtonGroup extends React.Component {
+  static propTypes = {
     /**
      * Should be used to pass `RadioButton` components.
      */
     children: React.PropTypes.node,
 
     /**
-     * The css class name of the root element.
+     * The CSS class name of the root element.
      */
     className: React.PropTypes.string,
 
     /**
-     * Sets the default radio button to be the one whose
-     * value matches defaultSelected (case-sensitive).
-     * This will override any individual radio button with
-     * the defaultChecked or checked property stated.
+     * The `value` property (case-sensitive) of the radio button that will be
+     * selected by default. This takes precedence over the `checked` property
+     * of the `RadioButton` elements.
      */
     defaultSelected: React.PropTypes.string,
 
     /**
-     * Where the label will be placed for all radio buttons.
-     * This will override any labelPosition properties defined
-     * for an individual radio button.
+     * Where the label will be placed for all child radio buttons.
+     * This takes precedence over the `labelPosition` property of the
+     * `RadioButton` elements.
      */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
 
     /**
-     * The name that will be applied to all radio buttons inside it.
+     * The name that will be applied to all child radio buttons.
      */
     name: React.PropTypes.string.isRequired,
 
     /**
      * Callback function that is fired when a radio button has
-     * been clicked. Returns the event and the value of the radio
-     * button that has been selected.
+     * been checked.
+     *
+     * @param {object} event `change` event targeting the selected
+     * radio button.
+     * @param {string} value The `value` of the selected radio button.
      */
     onChange: React.PropTypes.func,
 
@@ -49,105 +49,86 @@ const RadioButtonGroup = React.createClass({
     style: React.PropTypes.object,
 
     /**
-     * The value of the currently selected radio button.
+     * The `value` of the currently selected radio button.
      */
     valueSelected: React.PropTypes.string,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    style: {},
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      style: {},
-    };
-  },
-
-  getInitialState() {
-    return {
-      numberCheckedRadioButtons: 0,
-      selected: this.props.valueSelected || this.props.defaultSelected || '',
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  state = {
+    numberCheckedRadioButtons: 0,
+    selected: this.props.valueSelected || this.props.defaultSelected || '',
+  };
 
   componentWillMount() {
     let cnt = 0;
 
     React.Children.forEach(this.props.children, (option) => {
-      if (this._hasCheckAttribute(option)) cnt++;
+      if (this.hasCheckAttribute(option)) cnt++;
     }, this);
 
     this.setState({numberCheckedRadioButtons: cnt});
-  },
+  }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newState = {muiTheme: nextContext.muiTheme || this.state.muiTheme};
-
+  componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
-      newState.selected = nextProps.valueSelected;
+      this.setState({
+        selected: nextProps.valueSelected,
+      });
     }
+  }
 
-    this.setState(newState);
-  },
-
-  _hasCheckAttribute(radioButton) {
+  hasCheckAttribute(radioButton) {
     return radioButton.props.hasOwnProperty('checked') &&
       radioButton.props.checked;
-  },
+  }
 
-  _updateRadioButtons(newSelection) {
+  updateRadioButtons(newSelection) {
     if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
     } else {
       warning(false, `Cannot select a different radio button while another radio button
         has the 'checked' property set to true.`);
     }
-  },
+  }
 
-  handleChange(event, newSelection) {
-    this._updateRadioButtons(newSelection);
+  handleChange = (event, newSelection) => {
+    this.updateRadioButtons(newSelection);
 
     // Successful update
     if (this.state.numberCheckedRadioButtons === 0) {
       if (this.props.onChange) this.props.onChange(event, newSelection);
     }
-  },
+  };
 
   getSelectedValue() {
     return this.state.selected;
-  },
+  }
 
   setSelectedValue(newSelectionValue) {
-    this._updateRadioButtons(newSelectionValue);
-  },
+    this.updateRadioButtons(newSelectionValue);
+  }
 
   clearValue() {
     this.setSelectedValue('');
-  },
+  }
 
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const options = React.Children.map(this.props.children, (option) => {
       const {
-        name,
-        value,
-        label,
-        onCheck,
+        name, // eslint-disable-line no-unused-vars
+        value, // eslint-disable-line no-unused-vars
+        label, // eslint-disable-line no-unused-vars
+        onCheck, // eslint-disable-line no-unused-vars
         ...other,
       } = option.props;
 
@@ -174,8 +155,7 @@ const RadioButtonGroup = React.createClass({
         {options}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default RadioButtonGroup;

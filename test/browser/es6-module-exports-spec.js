@@ -1,5 +1,6 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
+import injectTheme from './fixtures/inject-theme';
 
 const Divider = require('Divider').default;
 const ActionAccessibility = require('svg-icons').ActionAccessibility;
@@ -10,16 +11,20 @@ const RequireGetMuiTheme = require('styles/getMuiTheme').default;
 import ImportColorManipulator from 'utils/colorManipulator';
 const RequireColorManipulator = require('utils/colorManipulator').default;
 
-describe('require() style import of ', () => {
+describe('require() style import of ', ()
+  => {
+  const ThemedDivider = injectTheme(Divider);
+  const ThemedActionAccessibility = injectTheme(ActionAccessibility);
+
   it('Divider component should not fail when rendering', () => {
     expect(() => {
-      TestUtils.renderIntoDocument(<Divider />);
+      TestUtils.renderIntoDocument(<ThemedDivider />);
     }).to.not.throw(Error);
   });
 
   it('ActionAccessibility component should not fail when rendering', () => {
     expect(() => {
-      TestUtils.renderIntoDocument(<ActionAccessibility />);
+      TestUtils.renderIntoDocument(<ThemedActionAccessibility />);
     }).to.not.throw(Error);
   });
 

@@ -1,11 +1,8 @@
 import React from 'react';
 import TableRowColumn from './TableRowColumn';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    tableFooter,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {tableFooter} = context.muiTheme;
 
   return {
     cell: {
@@ -18,9 +15,10 @@ function getStyles(props, state) {
   };
 }
 
-const TableFooter = React.createClass({
+class TableFooter extends React.Component {
+  static muiName = 'TableFooter';
 
-  propTypes: {
+  static propTypes = {
     /**
      * @ignore
      * Controls whether or not header rows should be adjusted
@@ -45,40 +43,16 @@ const TableFooter = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    adjustForCheckbox: true,
+    style: {},
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      adjustForCheckbox: true,
-      style: {},
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -89,11 +63,8 @@ const TableFooter = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     const footerRows = React.Children.map(children, (child, rowNumber) => {
       const newChildProps = {
@@ -119,8 +90,7 @@ const TableFooter = React.createClass({
         {footerRows}
       </tfoot>
     );
-  },
-
-});
+  }
+}
 
 export default TableFooter;

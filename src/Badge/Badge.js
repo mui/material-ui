@@ -1,15 +1,8 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    primary,
-    secondary,
-  } = props;
-
-  const {
-    badge,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {primary, secondary} = props;
+  const {badge} = context.muiTheme;
 
   let badgeBackgroundColor;
   let badgeTextColor;
@@ -55,8 +48,8 @@ function getStyles(props, state) {
   };
 }
 
-const Badge = React.createClass({
-  propTypes: {
+class Badge extends React.Component {
+  static propTypes = {
     /**
      * This is the content rendered within the badge.
      */
@@ -91,40 +84,16 @@ const Badge = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    primary: false,
+    secondary: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      primary: false,
-      secondary: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -135,11 +104,8 @@ const Badge = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
@@ -149,7 +115,7 @@ const Badge = React.createClass({
         </span>
       </div>
     );
-  },
-});
+  }
+}
 
 export default Badge;

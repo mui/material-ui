@@ -1,10 +1,7 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    cardText,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {cardText} = context.muiTheme;
 
   return {
     root: {
@@ -15,9 +12,10 @@ function getStyles(props, state) {
   };
 }
 
-const CardText = React.createClass({
+class CardText extends React.Component {
+  static muiName = 'CardText';
 
-  propTypes: {
+  static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
@@ -42,40 +40,15 @@ const CardText = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   render() {
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
     const rootStyle = Object.assign(styles.root, this.props.style);
 
     return (
@@ -83,7 +56,7 @@ const CardText = React.createClass({
         {this.props.children}
       </div>
     );
-  },
-});
+  }
+}
 
 export default CardText;

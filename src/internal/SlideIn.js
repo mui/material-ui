@@ -1,57 +1,28 @@
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './SlideInChild';
-import getMuiTheme from '../styles/getMuiTheme';
 
-const SlideIn = React.createClass({
-
-  propTypes: {
+class SlideIn extends React.Component {
+  static propTypes = {
     childStyle: React.PropTypes.object,
     children: React.PropTypes.node,
     direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
     enterDelay: React.PropTypes.number,
-
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    enterDelay: 0,
+    direction: 'left',
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      enterDelay: 0,
-      direction: 'left',
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
-    this.setState({muiTheme: newMuiTheme});
-  },
-
-  _getLeaveDirection() {
+  getLeaveDirection = () => {
     return this.props.direction;
-  },
+  };
 
   render() {
     const {
@@ -63,9 +34,7 @@ const SlideIn = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
+    const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',
@@ -79,7 +48,7 @@ const SlideIn = React.createClass({
           key={child.key}
           direction={direction}
           enterDelay={enterDelay}
-          getLeaveDirection={this._getLeaveDirection}
+          getLeaveDirection={this.getLeaveDirection}
           style={childStyle}
         >
           {child}
@@ -96,8 +65,7 @@ const SlideIn = React.createClass({
         {newChildren}
       </ReactTransitionGroup>
     );
-  },
-
-});
+  }
+}
 
 export default SlideIn;

@@ -1,10 +1,9 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import Children from '../utils/children';
+import {createChildFragment} from '../utils/childUtils';
 import ColorManipulator from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label && !props.icon) {
@@ -12,9 +11,10 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-const FlatButton = React.createClass({
+class FlatButton extends React.Component {
+  static muiName = 'FlatButton';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Color of button when mouse is not hovering over it.
      */
@@ -124,71 +124,50 @@ const FlatButton = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    disabled: false,
+    labelStyle: {},
+    labelPosition: 'after',
+    onKeyboardFocus: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onTouchStart: () => {},
+    primary: false,
+    secondary: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      disabled: false,
-      labelStyle: {},
-      labelPosition: 'after',
-      onKeyboardFocus: () => {},
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      onTouchStart: () => {},
-      primary: false,
-      secondary: false,
-    };
-  },
+  state = {
+    hovered: false,
+    isKeyboardFocused: false,
+    touch: false,
+  };
 
-  getInitialState() {
-    return {
-      hovered: false,
-      isKeyboardFocused: false,
-      touch: false,
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _handleKeyboardFocus(event, isKeyboardFocused) {
+  handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
-  },
+  };
 
-  _handleMouseEnter(event) {
-    //Cancel hover styles for touch devices
+  handleMouseEnter = (event) => {
+    // Cancel hover styles for touch devices
     if (!this.state.touch) this.setState({hovered: true});
     this.props.onMouseEnter(event);
-  },
+  };
 
-  _handleMouseLeave(event) {
+  handleMouseLeave = (event) => {
     this.setState({hovered: false});
     this.props.onMouseLeave(event);
-  },
+  };
 
-  _handleTouchStart(event) {
+  handleTouchStart = (event) => {
     this.setState({touch: true});
     this.props.onTouchStart(event);
-  },
+  };
 
   render() {
     const {
@@ -225,7 +204,7 @@ const FlatButton = React.createClass({
         textColor,
         textTransform = buttonTextTransform || 'uppercase',
       },
-    } = this.state.muiTheme;
+    } = this.context.muiTheme;
     const defaultTextColor = disabled ? disabledTextColor :
       primary ? primaryTextColor :
       secondary ? secondaryTextColor :
@@ -285,17 +264,18 @@ const FlatButton = React.createClass({
 
     // Place label before or after children.
     const childrenFragment = labelPosition === 'before' ?
-      {
-        labelElement,
-        iconCloned,
-        children,
-      } :
-      {
-        children,
-        iconCloned,
-        labelElement,
-      };
-    const enhancedButtonChildren = Children.create(childrenFragment);
+    {
+      labelElement,
+      iconCloned,
+      children,
+    } :
+    {
+      children,
+      iconCloned,
+      labelElement,
+    };
+
+    const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (
       <EnhancedButton
@@ -304,10 +284,10 @@ const FlatButton = React.createClass({
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
         linkButton={linkButton}
-        onKeyboardFocus={this._handleKeyboardFocus}
-        onMouseLeave={this._handleMouseLeave}
-        onMouseEnter={this._handleMouseEnter}
-        onTouchStart={this._handleTouchStart}
+        onKeyboardFocus={this.handleKeyboardFocus}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
+        onTouchStart={this.handleTouchStart}
         style={mergedRootStyles}
         touchRippleColor={buttonRippleColor}
         touchRippleOpacity={0.3}
@@ -315,7 +295,7 @@ const FlatButton = React.createClass({
         {enhancedButtonChildren}
       </EnhancedButton>
     );
-  },
-});
+  }
+}
 
 export default FlatButton;

@@ -1,10 +1,7 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    tableRow,
-  } = state.muiTheme;
+function getStyles(props, context, state) {
+  const {tableRow} = context.muiTheme;
 
   let cellBgColor = 'inherit';
   if (props.hovered || state.hovered) {
@@ -27,9 +24,8 @@ function getStyles(props, state) {
   };
 }
 
-const TableRow = React.createClass({
-
-  propTypes: {
+class TableRow extends React.Component {
+  static propTypes = {
     /**
      * Children passed to table row.
      */
@@ -131,116 +127,92 @@ const TableRow = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    displayBorder: true,
+    hoverable: false,
+    hovered: false,
+    selectable: true,
+    selected: false,
+    striped: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      displayBorder: true,
-      hoverable: false,
-      hovered: false,
-      selectable: true,
-      selected: false,
-      striped: false,
-    };
-  },
+  state = {
+    hovered: false,
+  };
 
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-      hovered: false,
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _onRowClick(event) {
+  onRowClick(event) {
     if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(event, this.props.rowNumber);
-  },
+  }
 
-  _onRowHover(event) {
+  onRowHover(event) {
     if (this.props.onRowHover) this.props.onRowHover(event, this.props.rowNumber);
-  },
+  }
 
-  _onRowHoverExit(event) {
+  onRowHoverExit(event) {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(event, this.props.rowNumber);
-  },
+  }
 
-  _onCellClick(event, columnIndex) {
+  onCellClick = (event, columnIndex) => {
     if (this.props.selectable && this.props.onCellClick) {
       this.props.onCellClick(event, this.props.rowNumber, columnIndex);
     }
     event.ctrlKey = true;
-    this._onRowClick(event);
-  },
+    this.onRowClick(event);
+  };
 
-  _onCellHover(event, columnIndex) {
+  onCellHover = (event, columnIndex) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
       if (this.props.onCellHover) this.props.onCellHover(event, this.props.rowNumber, columnIndex);
-      this._onRowHover(event);
+      this.onRowHover(event);
     }
-  },
+  };
 
-  _onCellHoverExit(event, columnIndex) {
+  onCellHoverExit = (event, columnIndex) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
       if (this.props.onCellHoverExit) this.props.onCellHoverExit(event, this.props.rowNumber, columnIndex);
-      this._onRowHoverExit(event);
+      this.onRowHoverExit(event);
     }
-  },
+  };
 
   render() {
     const {
       className,
-      displayBorder,
-      hoverable,
-      onCellClick,
-      onCellHover,
-      onCellHoverExit,
-      onRowClick,
-      onRowHover,
-      onRowHoverExit,
-      rowNumber,
-      selectable,
-      selected,
-      striped,
+      displayBorder, // eslint-disable-line no-unused-vars
+      hoverable, // eslint-disable-line no-unused-vars
+      onCellClick, // eslint-disable-line no-unused-vars
+      onCellHover, // eslint-disable-line no-unused-vars
+      onCellHoverExit, // eslint-disable-line no-unused-vars
+      onRowClick, // eslint-disable-line no-unused-vars
+      onRowHover, // eslint-disable-line no-unused-vars
+      onRowHoverExit, // eslint-disable-line no-unused-vars
+      rowNumber, // eslint-disable-line no-unused-vars
+      selectable, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
+      striped, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context, this.state);
 
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
           columnNumber: columnNumber,
           hoverable: this.props.hoverable,
-          key: child.props.key || `${this.props.rowNumber}-${columnNumber}`,
-          onClick: this._onCellClick,
-          onHover: this._onCellHover,
-          onHoverExit: this._onCellHoverExit,
+          key: `${this.props.rowNumber}-${columnNumber}`,
+          onClick: this.onCellClick,
+          onHover: this.onCellHover,
+          onHoverExit: this.onCellHoverExit,
           style: Object.assign({}, styles.cell, child.props.style),
         });
       }
@@ -255,7 +227,7 @@ const TableRow = React.createClass({
         {rowColumns}
       </tr>
     );
-  },
-});
+  }
+}
 
 export default TableRow;

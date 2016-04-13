@@ -1,13 +1,10 @@
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from 'DatePicker/Calendar';
 import CalendarToolbar from 'DatePicker/CalendarToolbar';
 import IconButton from 'IconButton';
 import injectTheme from '../fixtures/inject-theme';
-import DateTime from 'utils/dateTime';
+import {addMonths, dateTimeFormat} from 'DatePicker/dateUtils';
 import TestUtils from 'react-addons-test-utils';
 
 describe('Calendar', () => {
@@ -25,11 +22,12 @@ describe('Calendar', () => {
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           maxDate={maxDate}
         />
       );
+
       const renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
@@ -39,16 +37,17 @@ describe('Calendar', () => {
     it('should initially be disabled if the current month is after the month in the maxDate prop', () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let maxDate = new Date(initialDate.toDateString());
-      maxDate = DateTime.addMonths(maxDate, -1);
+      maxDate = addMonths(maxDate, -1);
 
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           maxDate={maxDate}
         />
       );
+
       const renderedCalendarToolbar =
                 TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
@@ -58,12 +57,12 @@ describe('Calendar', () => {
     it('should initially enable the next month button if the current month is before the maxDate prop', () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let maxDate = new Date(initialDate.toDateString());
-      maxDate = DateTime.addMonths(maxDate, 1);
+      maxDate = addMonths(maxDate, 1);
 
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           maxDate={maxDate}
         />
@@ -82,11 +81,12 @@ describe('Calendar', () => {
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           maxDate={maxDate}
         />
       );
+
       const prevMonthButton = ReactDOM.findDOMNode(
                 TestUtils.scryRenderedComponentsWithType(render, IconButton)[0]);
       TestUtils.Simulate.touchTap(prevMonthButton);
@@ -100,16 +100,17 @@ describe('Calendar', () => {
     it('should redisable the next month button when the current month is the same as the maxDate prop', () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let maxDate = new Date(initialDate.toDateString());
-      maxDate = DateTime.addMonths(maxDate, 1);
+      maxDate = addMonths(maxDate, 1);
 
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           maxDate={maxDate}
         />
       );
+
       const nextMonthButton = ReactDOM.findDOMNode(
                 TestUtils.scryRenderedComponentsWithType(render, IconButton)[1]);
       TestUtils.Simulate.touchTap(nextMonthButton);
@@ -130,11 +131,12 @@ describe('Calendar', () => {
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           minDate={minDate}
         />
       );
+
       const calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
       expect(calendarToolbar.props.prevMonth).to.be.false;
@@ -144,16 +146,17 @@ describe('Calendar', () => {
       is before the minDate month prop`, () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let minDate = new Date(initialDate.toDateString());
-      minDate = DateTime.addMonths(initialDate, 1);
+      minDate = addMonths(initialDate, 1);
 
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           minDate={minDate}
         />
       );
+
       const calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
       expect(calendarToolbar.props.prevMonth).to.be.false;
@@ -162,16 +165,17 @@ describe('Calendar', () => {
     it('should initially enable the previous month button if the current month is after the minDate month prop', () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let minDate = new Date(initialDate.toDateString());
-      minDate = DateTime.addMonths(initialDate, -1);
+      minDate = addMonths(initialDate, -1);
 
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           minDate={minDate}
         />
       );
+
       const calendarToolbar = TestUtils.findRenderedComponentWithType(render, CalendarToolbar);
 
       expect(calendarToolbar.props.prevMonth).to.be.true;
@@ -184,7 +188,7 @@ describe('Calendar', () => {
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           minDate={minDate}
         />
@@ -200,12 +204,12 @@ describe('Calendar', () => {
     it('should disable the previous month button when the current month is the same as the minDate month prop', () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       let minDate = new Date(initialDate.toDateString());
-      minDate = DateTime.addMonths(minDate, -1);
+      minDate = addMonths(minDate, -1);
 
       const render = TestUtils.renderIntoDocument(
         <ThemedCalendar
           initialDate={initialDate}
-          DateTimeFormat={DateTime.DateTimeFormat}
+          DateTimeFormat={dateTimeFormat}
           locale="en-US"
           minDate={minDate}
         />

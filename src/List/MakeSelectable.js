@@ -1,11 +1,10 @@
 import React from 'react';
-import getMuiTheme from '../styles/getMuiTheme';
 import ColorManipulator from '../utils/colorManipulator';
 
 export const MakeSelectable = (Component) => {
   const composed = React.createClass({
 
-    displayName: `Selectable${Component.displayName}`,
+    displayName: `Selectable${Component.displayName || Component.muiName || Component.name}`,
 
     propTypes: {
       children: React.PropTypes.node,
@@ -17,29 +16,7 @@ export const MakeSelectable = (Component) => {
     },
 
     contextTypes: {
-      muiTheme: React.PropTypes.object,
-    },
-
-    childContextTypes: {
-      muiTheme: React.PropTypes.object,
-    },
-
-    getInitialState() {
-      return {
-        muiTheme: this.context.muiTheme || getMuiTheme(),
-      };
-    },
-
-    getChildContext() {
-      return {
-        muiTheme: this.state.muiTheme,
-      };
-    },
-
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setState({
-        muiTheme: nextContext.muiTheme || this.state.muiTheme,
-      });
+      muiTheme: React.PropTypes.object.isRequired,
     },
 
     getValueLink: function(props) {
@@ -50,7 +27,7 @@ export const MakeSelectable = (Component) => {
     },
 
     extendChild(child, styles, selectedItemStyle) {
-      if (child && child.type && child.type.displayName === 'ListItem') {
+      if (child && child.type && child.type.muiName === 'ListItem') {
         const selected = this.isChildSelected(child, this.props);
         let selectedChildrenStyles;
         if (selected) {
@@ -114,7 +91,7 @@ export const MakeSelectable = (Component) => {
       let styles = {};
 
       if (!selectedItemStyle) {
-        const textColor = this.state.muiTheme.rawTheme.palette.textColor;
+        const textColor = this.context.muiTheme.baseTheme.palette.textColor;
         const selectedColor = ColorManipulator.fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,

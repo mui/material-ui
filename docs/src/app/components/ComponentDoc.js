@@ -47,7 +47,7 @@ const ComponentDoc = React.createClass({
         paddingTop: '0',
       },
       headline: {
-        //headline
+        // headline
         fontSize: 24,
         lineHeight: '32px',
         paddingTop: 16,

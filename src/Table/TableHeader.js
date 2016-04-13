@@ -1,12 +1,9 @@
 import React from 'react';
 import Checkbox from '../Checkbox';
 import TableHeaderColumn from './TableHeaderColumn';
-import getMuiTheme from '../styles/getMuiTheme';
 
-function getStyles(props, state) {
-  const {
-    tableHeader,
-  } = state.muiTheme;
+function getStyles(props, context) {
+  const {tableHeader} = context.muiTheme;
 
   return {
     root: {
@@ -15,9 +12,10 @@ function getStyles(props, state) {
   };
 }
 
-const TableHeader = React.createClass({
+class TableHeader extends React.Component {
+  static muiName = 'TableHeader';
 
-  propTypes: {
+  static propTypes = {
     /**
      * Controls whether or not header rows should be
      * adjusted for a checkbox column. If the select all
@@ -67,44 +65,20 @@ const TableHeader = React.createClass({
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    adjustForCheckbox: true,
+    displaySelectAll: true,
+    enableSelectAll: true,
+    selectAllSelected: false,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
-  getDefaultProps() {
-    return {
-      adjustForCheckbox: true,
-      displaySelectAll: true,
-      enableSelectAll: true,
-      selectAllSelected: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
-
-  _createSuperHeaderRows() {
+  createSuperHeaderRows() {
     const numChildren = React.Children.count(this.props.children);
     if (numChildren === 1) return undefined;
 
@@ -118,25 +92,25 @@ const TableHeader = React.createClass({
         key: `sh${index}`,
         rowNumber: index,
       };
-      superHeaders.push(this._createSuperHeaderRow(child, props));
+      superHeaders.push(this.createSuperHeaderRow(child, props));
     }
 
     if (superHeaders.length) return superHeaders;
-  },
+  }
 
-  _createSuperHeaderRow(child, props) {
+  createSuperHeaderRow(child, props) {
     const children = [];
     if (this.props.adjustForCheckbox) {
-      children.push(this._getCheckboxPlaceholder(props));
+      children.push(this.getCheckboxPlaceholder(props));
     }
     React.Children.forEach(child.props.children, (child) => {
       children.push(child);
     });
 
     return React.cloneElement(child, props, children);
-  },
+  }
 
-  _createBaseHeaderRow() {
+  createBaseHeaderRow() {
     const numChildren = React.Children.count(this.props.children);
     const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
     const props = {
@@ -144,7 +118,7 @@ const TableHeader = React.createClass({
       rowNumber: numChildren,
     };
 
-    const children = [this._getSelectAllCheckboxColumn(props)];
+    const children = [this.getSelectAllCheckboxColumn(props)];
     React.Children.forEach(child.props.children, (child) => {
       children.push(child);
     });
@@ -154,17 +128,17 @@ const TableHeader = React.createClass({
       props,
       children
     );
-  },
+  }
 
-  _getCheckboxPlaceholder(props) {
+  getCheckboxPlaceholder(props) {
     if (!this.props.adjustForCheckbox) return null;
 
     const key = `hpcb${props.rowNumber}`;
     return <TableHeaderColumn key={key} style={{width: 24}} />;
-  },
+  }
 
-  _getSelectAllCheckboxColumn(props) {
-    if (!this.props.displaySelectAll) return this._getCheckboxPlaceholder(props);
+  getSelectAllCheckboxColumn(props) {
+    if (!this.props.displaySelectAll) return this.getCheckboxPlaceholder(props);
 
     const checkbox = (
       <Checkbox
@@ -183,27 +157,22 @@ const TableHeader = React.createClass({
         {checkbox}
       </TableHeaderColumn>
     );
-  },
+  }
 
-  handleCheckAll(event, checked) {
+  handleCheckAll = (event, checked) => {
     if (this.props.onSelectAll) this.props.onSelectAll(checked);
-  },
+  };
 
   render() {
     const {
       className,
       style,
-      ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
-
-    const superHeaderRows = this._createSuperHeaderRows();
-    const baseHeaderRow = this._createBaseHeaderRow();
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
+    const superHeaderRows = this.createSuperHeaderRows();
+    const baseHeaderRow = this.createBaseHeaderRow();
 
     return (
       <thead className={className} style={prepareStyles(Object.assign(styles.root, style))}>
@@ -211,8 +180,7 @@ const TableHeader = React.createClass({
         {baseHeaderRow}
       </thead>
     );
-  },
-
-});
+  }
+}
 
 export default TableHeader;

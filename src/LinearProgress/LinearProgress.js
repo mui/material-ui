@@ -1,6 +1,5 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import getMuiTheme from '../styles/getMuiTheme';
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
@@ -9,18 +8,14 @@ function getRelativeValue(value, min, max) {
   return relValue * 100;
 }
 
-function getStyles(props, state) {
+function getStyles(props, context) {
   const {
     max,
     min,
     value,
   } = props;
 
-  const {
-    baseTheme: {
-      palette,
-    },
-  } = state.muiTheme;
+  const {baseTheme: {palette}} = context.muiTheme;
 
   const styles = {
     root: {
@@ -67,8 +62,8 @@ function getStyles(props, state) {
   return styles;
 }
 
-const LinearProgress = React.createClass({
-  propTypes: {
+class LinearProgress extends React.Component {
+  static propTypes = {
     /**
      * The mode of show your progress, indeterminate for
      * when there is no value for progress.
@@ -100,72 +95,48 @@ const LinearProgress = React.createClass({
      * The value of progress, only works in determinate mode.
      */
     value: React.PropTypes.number,
-  },
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    mode: 'indeterminate',
+    value: 0,
+    min: 0,
+    max: 100,
+  };
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getDefaultProps() {
-    return {
-      mode: 'indeterminate',
-      value: 0,
-      min: 0,
-      max: 100,
-    };
-  },
-
-  getInitialState() {
-    return {
-      muiTheme: this.context.muiTheme || getMuiTheme(),
-    };
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+  static contextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  };
 
   componentDidMount() {
     this.timers = {};
 
-    this.timers.bar1 = this._barUpdate('bar1', 0, this.refs.bar1, [
+    this.timers.bar1 = this.barUpdate('bar1', 0, this.refs.bar1, [
       [-35, 100],
       [100, -90],
     ]);
 
     this.timers.bar2 = setTimeout(() => {
-      this._barUpdate('bar2', 0, this.refs.bar2, [
+      this.barUpdate('bar2', 0, this.refs.bar2, [
         [-200, 100],
         [107, -8],
       ]);
     }, 850);
-  },
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      muiTheme: nextContext.muiTheme || this.state.muiTheme,
-    });
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
-  },
+  }
 
-  _barUpdate(id, step, barElement, stepValues) {
+  barUpdate(id, step, barElement, stepValues) {
     if (this.props.mode !== 'indeterminate') return;
 
     step = step || 0;
     step %= 4;
 
-    const right = this.state.muiTheme.isRtl ? 'left' : 'right';
-    const left = this.state.muiTheme.isRtl ? 'right' : 'left';
+    const right = this.context.muiTheme.isRtl ? 'left' : 'right';
+    const left = this.context.muiTheme.isRtl ? 'right' : 'left';
 
     if (step === 0) {
       barElement.style[left] = `${stepValues[0][0]}%`;
@@ -178,8 +149,8 @@ const LinearProgress = React.createClass({
     } else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
-    this.timers[id] = setTimeout(() => this._barUpdate(id, step + 1, barElement, stepValues), 420);
-  },
+    this.timers[id] = setTimeout(() => this.barUpdate(id, step + 1, barElement, stepValues), 420);
+  }
 
   render() {
     const {
@@ -187,11 +158,8 @@ const LinearProgress = React.createClass({
       ...other,
     } = this.props;
 
-    const {
-      prepareStyles,
-    } = this.state.muiTheme;
-
-    const styles = getStyles(this.props, this.state);
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
@@ -201,7 +169,7 @@ const LinearProgress = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default LinearProgress;
