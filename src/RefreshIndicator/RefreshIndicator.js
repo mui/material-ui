@@ -92,6 +92,7 @@ class RefreshIndicator extends React.Component {
   }
 
   componentWillUnmount() {
+    this.unmounted = true;
     clearTimeout(this.scalePathTimer);
     clearTimeout(this.rotateWrapperTimer);
     clearTimeout(this.rotateWrapperSecondTimer);
@@ -249,7 +250,7 @@ class RefreshIndicator extends React.Component {
   }
 
   scalePath(path, step) {
-    if (this.props.status !== 'loading') return;
+    if (this.unmounted || this.props.status !== 'loading') return;
 
     const currStep = (step || 0) % 3;
 
@@ -283,7 +284,7 @@ class RefreshIndicator extends React.Component {
   }
 
   rotateWrapper(wrapper) {
-    if (this.props.status !== 'loading') return;
+    if (this.unmounted || this.props.status !== 'loading') return;
 
     autoPrefix.set(wrapper.style, 'transform', null);
     autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
