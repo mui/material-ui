@@ -20,7 +20,6 @@ const getStyles = (props, context, state) => {
       textColor,
       disabledTextColor,
       backgroundColor,
-      hintColor,
       errorColor,
     },
   } = context.muiTheme;
