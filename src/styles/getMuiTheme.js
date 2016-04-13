@@ -25,17 +25,8 @@ export default function getMuiTheme(muiTheme, ...more) {
     userAgent: undefined,
   }, lightBaseTheme, muiTheme, ...more);
 
-  const {
-    spacing,
-    fontFamily,
-    palette,
-  } = muiTheme;
-
-  const baseTheme = {
-    spacing,
-    fontFamily,
-    palette,
-  };
+  const {spacing, fontFamily, palette} = muiTheme;
+  const baseTheme = {spacing, fontFamily, palette};
 
   muiTheme = merge({
     appBar: {
@@ -49,7 +40,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       color: palette.canvasColor,
       backgroundColor: getLuminance(palette.canvasColor) > 0.5 ?
         darken(palette.canvasColor, 0.26) :
-        lighten(palette.canvasColor, 1.26, 1.0),
+        lighten(palette.canvasColor, 0.26),
       borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
@@ -122,7 +113,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       disabledTextColor: palette.disabledColor,
       disabledColor: getLuminance(palette.canvasColor) > 0.5 ?
         darken(palette.canvasColor, 0.12) :
-        lighten(palette.canvasColor, 1.12, 1.0),
+        lighten(palette.canvasColor, 0.12),
     },
     gridTile: {
       textColor: white,
@@ -254,7 +245,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     tableRow: {
       hoverColor: palette.accent2Color,
-      stripeColor: lighten(palette.primary1Color, 0.55),
+      stripeColor: fade(lighten(palette.primary1Color, 0.5), 0.4),
       selectedColor: palette.borderColor,
       textColor: palette.textColor,
       borderColor: palette.borderColor,
