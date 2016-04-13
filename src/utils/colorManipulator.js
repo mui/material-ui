@@ -116,6 +116,19 @@ export function getLuminance(color) {
 }
 
 /**
+ * Darken or lighten a colour, depending on its luminance
+ * Light colors are darkened, dark colors lightened
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
+ */
+export function emphasize(color, coefficient = 0.15) {
+  return getLuminance(color) > 0.5 ?
+    darken(color, coefficient) :
+    lighten(color, coefficient);
+}
+
+/**
  * Set the absolute transparency of a color.
  * Any existing alpha values are overwritten.
  * Hex values will be converted to rgba.

@@ -5,6 +5,7 @@ import {
   convertHexToRGB,
   darken,
   decomposeColor,
+  emphasize,
   fade,
   getContrastRatio,
   getLuminance,
@@ -169,6 +170,39 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(
         getLuminance('hsl(100, 100%, 50%)'),
         0.5
+      );
+    });
+  });
+
+  /**
+   * emphasize()
+   */
+  describe('emphasize', () => {
+    it('lightens a dark rgb color with the coefficient provided', () => {
+      assert.strictEqual(
+        emphasize('rgb(1, 2, 3)', 0.4),
+        lighten('rgb(1, 2, 3)', 0.4)
+      );
+    });
+
+    it('darkens a light rgb color with the coefficient provided', () => {
+      assert.strictEqual(
+        emphasize('rgb(250, 240, 230)', 0.3),
+        darken('rgb(250, 240, 230)', 0.3)
+      );
+    });
+
+    it('lightens a dark rgb color with the c0efficient 0.15 by default', () => {
+      assert.strictEqual(
+        emphasize('rgb(1, 2, 3)'),
+        lighten('rgb(1, 2, 3)', 0.15)
+      );
+    });
+
+    it('darkens a light rgb color with the coefficient 0.15 by default', () => {
+      assert.strictEqual(
+        emphasize('rgb(250, 240, 230)'),
+        darken('rgb(250, 240, 230)', 0.15)
       );
     });
   });
@@ -348,7 +382,7 @@ describe('utils/colorManipulator', () => {
       );
     });
 
-    it("doesn't modify hsl colors when l is 100%", () => {
+    it("doesn't modify hsl colors when `l` is 100%", () => {
       assert.strictEqual(
         lighten('hsl(0, 50%, 100%)', 0.5),
         'hsl(0, 50%, 100%)'

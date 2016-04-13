@@ -1,5 +1,5 @@
 import merge from 'lodash.merge';
-import {darken, fade, lighten, getLuminance} from '../utils/colorManipulator';
+import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
 import autoprefixer from '../utils/autoprefixer';
@@ -38,9 +38,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     avatar: {
       color: palette.canvasColor,
-      backgroundColor: getLuminance(palette.canvasColor) > 0.5 ?
-        darken(palette.canvasColor, 0.26) :
-        lighten(palette.canvasColor, 0.26),
+      backgroundColor: emphasize(palette.canvasColor, 0.26),
       borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
@@ -111,9 +109,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       secondaryColor: palette.accent1Color,
       secondaryIconColor: palette.alternateTextColor,
       disabledTextColor: palette.disabledColor,
-      disabledColor: getLuminance(palette.canvasColor) > 0.5 ?
-        darken(palette.canvasColor, 0.12) :
-        lighten(palette.canvasColor, 0.12),
+      disabledColor: emphasize(palette.canvasColor, 0.12),
     },
     gridTile: {
       textColor: white,
