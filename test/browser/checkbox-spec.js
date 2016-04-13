@@ -20,7 +20,7 @@ describe('Checkbox', () => {
     const svgs = TestUtils.scryRenderedDOMComponentsWithTag(render, 'svg');
     const checkMarkNode = svgs[1];
 
-    expect(input.hasAttribute('checked')).to.be.true;
+    expect(input.checked).to.be.true;
     expect(checkMarkNode.style.opacity).to.equal('1');
     expect(checkMarkNode.firstChild.getAttribute('d')).to.equal(CHECKMARK_PATH);
   });
@@ -32,7 +32,7 @@ describe('Checkbox', () => {
     const svgs = TestUtils.scryRenderedDOMComponentsWithTag(render, 'svg');
     const checkMarkNode = svgs[1];
 
-    expect(input.hasAttribute('checked')).to.be.false;
+    expect(input.checked).to.be.false;
     expect(checkMarkNode.style.opacity).to.equal('0');
     expect(checkMarkNode.firstChild.getAttribute('d')).to.equal(CHECKMARK_PATH);
   });

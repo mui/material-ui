@@ -168,7 +168,6 @@ const ThemesPage = React.createClass({
               <RadioButton
                 value="euro"
                 label="Euro"
-                defaultChecked={true}
               />
               <RadioButton
                 value="mxn"
@@ -180,12 +179,10 @@ const ThemesPage = React.createClass({
           <div style={styles.container}>
             <Toggle
               name="toggleName1"
-              value="toggleValue1"
               label="toggle"
             />
             <Toggle
               name="toggleName2"
-              value="toggleValue2"
               label="disabled toggle"
               defaultToggled={true}
               disabled={true}

@@ -8,9 +8,14 @@ class CodeExample extends React.Component {
   static propTypes = {
     children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
+    component: React.PropTypes.bool,
     description: React.PropTypes.string,
     layoutSideBySide: React.PropTypes.bool,
     title: React.PropTypes.string,
+  };
+
+  static defaultProps = {
+    component: true,
   };
 
   static contextTypes = {
@@ -21,6 +26,7 @@ class CodeExample extends React.Component {
     const {
       children,
       code,
+      component,
       layoutSideBySide,
     } = this.props;
 
@@ -41,7 +47,7 @@ class CodeExample extends React.Component {
       },
     };
 
-    const docs = parse(code);
+    const docs = component ? parse(code) : {};
 
     return (
       <Paper style={styles.root}>

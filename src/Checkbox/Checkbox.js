@@ -68,6 +68,9 @@ class Checkbox extends React.Component {
 
     /**
      * The default state of our checkbox component.
+     * **Warning:** This cannot be used in conjunction with `checked`.
+     * Decide between using a controlled or uncontrolled input element and remove one of these props.
+     * More info: https://fb.me/react-controlled-components
      */
     defaultChecked: React.PropTypes.bool,
 
@@ -129,7 +132,6 @@ class Checkbox extends React.Component {
   };
 
   static defaultProps = {
-    defaultChecked: false,
     labelPosition: 'right',
     disabled: false,
   };
@@ -232,7 +234,6 @@ class Checkbox extends React.Component {
       onSwitch: this.handleCheck,
       labelStyle: labelStyle,
       onParentShouldUpdate: this.handleStateChange,
-      defaultSwitched: this.props.defaultChecked,
       labelPosition: this.props.labelPosition,
     };
 

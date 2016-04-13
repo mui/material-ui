@@ -70,6 +70,9 @@ class Toggle extends React.Component {
   static propTypes = {
     /**
      * Determines whether the Toggle is initially turned on.
+     * **Warning:** This cannot be used in conjunction with `toggled`.
+     * Decide between using a controlled or uncontrolled input element and remove one of these props.
+     * More info: https://fb.me/react-controlled-components
      */
     defaultToggled: React.PropTypes.bool,
 
@@ -182,7 +185,9 @@ class Toggle extends React.Component {
 
   render() {
     const {
+      defaultToggled,
       onToggle, // eslint-disable-line no-unused-vars
+      toggled,
       ...other,
     } = this.props;
 
@@ -204,7 +209,7 @@ class Toggle extends React.Component {
     );
 
     if (this.state.switched) {
-      thumbStyles.marginLeft = `-${thumbStyles.width}`;
+      thumbStyles.marginLeft = 0 - thumbStyles.width;
     }
 
     const toggleElementStyles = Object.assign({},
@@ -247,11 +252,14 @@ class Toggle extends React.Component {
       switched: this.state.switched,
       onSwitch: this.handleToggle,
       onParentShouldUpdate: this.handleStateChange,
-      defaultSwitched: this.props.defaultToggled,
       labelPosition: this.props.labelPosition,
     };
 
-    if (this.props.hasOwnProperty('toggled')) enhancedSwitchProps.checked = this.props.toggled;
+    if (this.props.hasOwnProperty('toggled')) {
+      enhancedSwitchProps.checked = toggled;
+    } else if (this.props.hasOwnProperty('defaultToggled')) {
+      enhancedSwitchProps.defaultChecked = defaultToggled;
+    }
 
     return (
       <EnhancedSwitch
