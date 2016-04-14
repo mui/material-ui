@@ -83,10 +83,15 @@ class RefreshIndicator extends React.Component {
   };
 
   componentDidMount() {
-    this.componentDidUpdate();
+    this.scalePath(this.refs.path, 0);
+    this.rotateWrapper(this.refs.wrapper);
   }
 
   componentDidUpdate() {
+    clearTimeout(this.scalePathTimer);
+    clearTimeout(this.rotateWrapperTimer);
+    clearTimeout(this.rotateWrapperSecondTimer);
+
     this.scalePath(this.refs.path, 0);
     this.rotateWrapper(this.refs.wrapper);
   }
