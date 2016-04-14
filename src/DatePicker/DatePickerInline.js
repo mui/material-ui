@@ -8,6 +8,9 @@ const styles = {
     paddingBottom: 12,
     textAlign: 'right',
   },
+  root: {
+    userSelect: 'none',
+  },
 };
 
 class DatePickerInline extends React.Component {
@@ -58,6 +61,7 @@ class DatePickerInline extends React.Component {
           open={open}
           anchorEl={anchorEl}
           animation={PopoverAnimationFromTop}
+          style={Object.assign({}, styles.root, style)}
         >
           {children}
           <div style={styles.actions}>

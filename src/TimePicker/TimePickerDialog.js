@@ -86,6 +86,7 @@ class TimePickerDialog extends React.Component {
       root: {
         fontSize: 14,
         color: this.getTheme().clockColor,
+        userSelect: 'none',
       },
       dialogContent: {
         width: 280,
