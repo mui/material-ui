@@ -67,14 +67,10 @@ function getStyles(props, context, state) {
     },
 
     leftIcon: {
-      color: listItem.leftIconColor,
-      fill: listItem.leftIconColor,
       left: 4,
     },
 
     rightIcon: {
-      color: listItem.rightIconColor,
-      fill: listItem.rightIconColor,
       right: 4,
     },
 
@@ -530,18 +526,26 @@ class ListItem extends Component {
     const contentChildren = [children];
 
     if (leftIcon) {
+      const additionalProps = {
+        color: leftIcon.props.color || this.context.muiTheme.listItem.leftIconColor,
+      };
       this.pushElement(
         contentChildren,
         leftIcon,
-        Object.assign({}, styles.icons, styles.leftIcon)
+        Object.assign({}, styles.icons, styles.leftIcon),
+        additionalProps,
       );
     }
 
     if (rightIcon) {
+      const additionalProps = {
+        color: rightIcon.props.color || this.context.muiTheme.listItem.rightIconColor,
+      };
       this.pushElement(
         contentChildren,
         rightIcon,
-        Object.assign({}, styles.icons, styles.rightIcon)
+        Object.assign({}, styles.icons, styles.rightIcon),
+        additionalProps,
       );
     }
 
