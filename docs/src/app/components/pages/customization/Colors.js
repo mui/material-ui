@@ -2,7 +2,7 @@ import React from 'react';
 import Title from 'react-title-component';
 import styleResizable from 'material-ui/utils/styleResizable';
 import ClearFix from 'material-ui/internal/ClearFix';
-import colorManipulator from 'material-ui/utils/colorManipulator';
+import {getContrastRatio} from 'material-ui/utils/colorManipulator';
 import typography from 'material-ui/styles/typography';
 import * as colors from 'material-ui/styles/colors';
 
@@ -94,7 +94,7 @@ const ColorsPage = React.createClass({
     const bgColorText = colorName + colorValue;
     const bgColor = colors[bgColorText];
     let fgColor = colors.fullBlack;
-    const contrastRatio = colorManipulator.contrastRatio(bgColor, fgColor);
+    const contrastRatio = getContrastRatio(bgColor, fgColor);
     let blockTitle;
 
     if (contrastRatio < 7) fgColor = colors.fullWhite;

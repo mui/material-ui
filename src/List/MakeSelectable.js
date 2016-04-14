@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 
 export const MakeSelectable = (Component) => {
   const composed = React.createClass({
@@ -92,7 +92,7 @@ export const MakeSelectable = (Component) => {
 
       if (!selectedItemStyle) {
         const textColor = this.context.muiTheme.baseTheme.palette.textColor;
-        const selectedColor = ColorManipulator.fade(textColor, 0.2);
+        const selectedColor = fade(textColor, 0.2);
         styles = {
           backgroundColor: selectedColor,
         };

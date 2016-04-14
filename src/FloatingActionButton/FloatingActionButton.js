@@ -1,6 +1,6 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Paper from '../Paper';
@@ -48,7 +48,7 @@ function getStyles(props, context) {
       top: 0,
     },
     overlayWhenHovered: {
-      backgroundColor: ColorManipulator.fade(iconColor, 0.4),
+      backgroundColor: fade(iconColor, 0.4),
     },
     icon: {
       height: floatingActionButton.buttonSize,
@@ -259,7 +259,7 @@ class FloatingActionButton extends React.Component {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.props.zDepth + 1});
       this.refs.overlay.style.backgroundColor =
-        ColorManipulator.fade(getStyles(this.props, this.context).icon.color, 0.4);
+        fade(getStyles(this.props, this.context).icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({zDepth: this.props.zDepth});
       this.refs.overlay.style.backgroundColor = 'transparent';

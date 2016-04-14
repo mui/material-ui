@@ -1,6 +1,6 @@
 import React from 'react';
 import transitions from '../styles/transitions';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
@@ -96,7 +96,7 @@ function getStyles(props, context, state) {
     },
     overlay: {
       backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
-        ColorManipulator.fade(labelColor, amount),
+        fade(labelColor, amount),
       transition: transitions.easeOut(),
       top: 0,
     },
