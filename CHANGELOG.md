@@ -1,5 +1,122 @@
 ## HEAD
 
+## 0.15.0-beta.1
+###### _Apr 13, 2016_
+
+#### React 15 compatibility :tada: :tada:
+
+This release also ensures compatibility with React 15. You should update to
+this version if you need it.
+
+#### Simplify import statements :tada:
+
+This release changes how components are imported. You will need to update every
+import statement, Like:
+
+```js
+import RaisedButton from 'material-ui/lib/raised-button';
+import Tabs from 'material-ui/tabs/tabs';
+import Tab from 'material-ui/tabs/tab';
+```
+
+to:
+
+```js
+import RaisedButton from 'material-ui/RaisedButton';
+import {Tabs, Tab} from 'material-ui/Tabs';
+```
+
+The exact import statements for each component can be found in their respective
+documentation page.
+
+Have a ton of imports? almost had a heart attack? worry not, we also made a tool
+to ease your pain. checkout the 
+[readme](https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod/README.md).
+
+##### Breaking Changes
+- [Core] Improve import path for published lib (#3921)
+- [Core] PascalCase component names, reorganise directory structure (#3749)
+- [Core] Remove default theme handling from components (#3820)
+
+As of now you will need to provide theme on context, see:
+http://www.material-ui.com/#/customization/themes
+
+- [Core] Removed redundant default export from the main library `index.js`. 
+
+You will probably need to turn
+
+```js
+import Mui from 'material-ui';
+```
+into
+```js
+import * as Mui from 'material-ui';
+```
+
+Although we discourage you to use this library like that.
+
+- [LeftNav] Rename to Drawer (#3799)
+- [GridList] Replace `rootClass` with `containerElement` (#3783) (`rootClass` was broken before this change)
+- [Core] These changes are for internal modules and will affect you only if they were directly required in your code
+  1. Rename utils/children.js (#3779)
+  1. Remove unused utils/keyLine.js (#3837)
+  1. Remove cssEvent util (#3836)
+  1. Remove utils/shallowEqual.js and replace with recompose (#3835)
+  1. Move DateTime utils to component directories (#3834)
+
+##### General
+- [Core] Update to React v15 (#3941) :tada: :tada:
+- [Core] Remove dependency on lodash.flowright (#3955)
+- [Core] update components to es6 classes (#3843) :tada: :tada:
+- [Core] Add a `material-ui-codemod` package (#3782)
+- [Core] Update export syntax, move unit tests, update test dependencies (#3785)
+- [Core] Use .js extension instead of .jsx (#3765)
+- [Themes] colorManipulator cleanup (#3966)
+- [SvgIcon] Add the new Material Icons (#3747)
+- [Docs] Add example for slider showing how to access value (#3892)
+- [Docs] Document callback signatures ( Thanks to @theosherry )
+  - [IconMenu](#3732)
+  - [LeftNav](#3743)
+  - [List](#3748)
+  - [ListItem](#3748)
+  - [Popover](#3796)
+  - [RadioButton](#3797)
+  - [Menu](#3821)
+  - [MenuItem](#3821)
+  - [RaisedButton](#3839)
+- Added the following eslint rules:
+  1. Enforce `jsx-handler-names` (#3408)
+  1. Enforce `spaced-comment` (#3910)
+
+##### Component Fixes / Enhancements
+- [AutoComplete] Add `onKeyDown` property (#3853)
+- [AutoComplete] Fix the regressions (#3858)
+- [Avatar] Use semi-transparent border (#3859)
+- [DatePicker] ok/cancel labels in date pickers should be of PropTypes.node (#3869)
+- [DropDownMenu] Fix support for autoWidth and custom width (#3823)
+- [DropDownMenu] Slightly improve performance (#3707)
+- [FloatingActionButton] fixed an error when element gets focus via tab (#3885)
+- [IconButton] Fix tooltip on hover (#3878)
+- [IconMenu] Removed props.ref call (#3913)
+- [LinearProgress] Prevent instances from sharing state (#3763)
+- [ListItem] Change color of rightIcon from `grey400` to `grey600` (#3938)
+- [ListItem] Fix duplicate prepareStyles with primaryText element (#3174)
+- [ListItem] Use the new icons to follow the material spec (#3899)
+- [MenuItem] Revert flex props from #3597, fixes #3845, reopens #3531 (#3928)
+- [Overlay] Split out AutoLockScrolling (#3690)
+- [Popover] Fix rendering for nested Menus (#3806)
+- [RaisedButton] Fix for Uncaught `TypeError` when tabbing onto button (#3897)
+- [Stepper] Refactor Stepper (#3903)
+- [Tab] Change the ripple color to follow the spec (#3857)
+- [Tab] Fix centering for label with SvgIcon (#3697)
+- [TableHeaderColumn] Remove props.key calls (#3918)
+- [TableRowColumn] Remove props.key calls (#3918)
+- [Tabs] Better type checking on Tab children (#3750)
+- [TextField] Fix incorrect state in getStyles() (#3972)
+- [TimePicker] Add disabled property with example (#3778)
+- [TimePicker] Fix label for 12AM as per material spec (#3781)
+- [TimePicker] ok/cancel labels in time pickers should be of PropTypes.node (#3869)
+
 ## 0.15.0-alpha.2
 ###### _Mar 18, 2016_
 
