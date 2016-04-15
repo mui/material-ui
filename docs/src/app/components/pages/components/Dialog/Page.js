@@ -14,6 +14,8 @@ import DialogExampleCustomWidth from './ExampleCustomWidth';
 import dialogExampleCustomWidthCode from '!raw!./ExampleCustomWidth';
 import DialogExampleDialogDatePicker from './ExampleDialogDatePicker';
 import dialogExampleDialogDatePickerCode from '!raw!./ExampleDialogDatePicker';
+import DialogExampleScrollable from './ExampleScrollable';
+import DialogExampleScrollableCode from '!raw!./ExampleScrollable';
 import dialogCode from '!raw!material-ui/lib/Dialog/Dialog';
 
 const descriptions = {
@@ -23,6 +25,7 @@ const descriptions = {
   modal: 'A modal dialog can only be closed by selecting one of the actions.',
   styled: 'The dialog width has been set to occupy the full width of browser through the `contentStyle` property.',
   nested: 'Dialogs can be nested. This example opens a Date Picker from within a Dialog.',
+  scrollable: 'Dialog content can be scrollable.',
 };
 
 const DialogPage = () => (
@@ -56,6 +59,13 @@ const DialogPage = () => (
       code={dialogExampleDialogDatePickerCode}
     >
       <DialogExampleDialogDatePicker />
+    </CodeExample>
+    <CodeExample
+      title="Scrollable dialog"
+      description={descriptions.scrollable}
+      code={DialogExampleScrollableCode}
+    >
+      <DialogExampleScrollable />
     </CodeExample>
     <PropTypeDescription code={dialogCode} />
   </div>

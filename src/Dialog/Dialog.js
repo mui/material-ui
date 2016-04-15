@@ -85,6 +85,7 @@ function getStyles(props, context) {
   } = context.muiTheme;
 
   const gutter = baseTheme.spacing.desktopGutter;
+  const borderScroll = `1px solid ${baseTheme.palette.borderColor}`;
 
   return {
     root: {
@@ -111,7 +112,8 @@ function getStyles(props, context) {
       zIndex: zIndex.dialog,
     },
     body: {
-      padding: baseTheme.spacing.desktopGutter,
+      padding: gutter,
+      paddingTop: 0,
       overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
     },
     actionsContainer: {
@@ -121,17 +123,21 @@ function getStyles(props, context) {
       marginBottom: 8,
       width: '100%',
       textAlign: 'right',
+      marginTop: autoScrollBodyContent ? -1 : 0,
+      borderTop: autoScrollBodyContent ? borderScroll : 'none',
     },
     overlay: {
       zIndex: zIndex.dialogOverlay,
     },
     title: {
       margin: 0,
-      padding: `${gutter}px ${gutter}px 0 ${gutter}px`,
+      padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
       color: baseTheme.palette.textColor,
       fontSize: 24,
       lineHeight: '32px',
       fontWeight: 400,
+      marginBottom: autoScrollBodyContent ? -1 : 0,
+      borderBottom: autoScrollBodyContent ? borderScroll : 'none',
     },
   };
 }
