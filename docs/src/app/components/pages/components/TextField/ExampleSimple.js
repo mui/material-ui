@@ -39,6 +39,10 @@ const TextFieldExampleSimple = () => (
       floatingLabelText="MultiLine and FloatingLabel"
       multiLine={true}
       rows={2}
+    /><br />
+    <TextField
+      hintText="Full width"
+      fullWidth={true}
     />
   </div>
 );
