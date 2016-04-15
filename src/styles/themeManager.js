@@ -7,7 +7,7 @@ export default
   {
     getMuiTheme(baseTheme, muiTheme) {
       warning(false, 'ThemeManager is deprecated. please import getMuiTheme' +
-        ' directly from "material-ui/lib/getMuiTheme"');
+        ' directly from "material-ui/getMuiTheme"');
       return getMuiTheme(baseTheme, muiTheme);
     },
     modifyRawThemeSpacing(muiTheme, spacing) {
