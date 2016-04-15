@@ -26,8 +26,12 @@ describe('TimePicker', () => {
     );
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
+    const timepicker = TestUtils.findRenderedComponentWithType(render, TimePicker);
+    const formattedTime = formatTime(valueTime);
 
-    expect(timeTextField.props.value, formatTime(valueTime));
+    expect(timepicker.state.time).to.be.equal(valueTime);
+    expect(formatTime(timepicker.state.time)).to.be.equal(formattedTime);
+    expect(timeTextField.props.value).to.be.equal(formattedTime);
   });
 
   it('takes defaulTime prop to set first value when value prop is missing', () => {
@@ -38,8 +42,12 @@ describe('TimePicker', () => {
     );
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
+    const timepicker = TestUtils.findRenderedComponentWithType(render, TimePicker);
+    const formattedTime = formatTime(initialTime);
 
-    expect(timeTextField.props.value, formatTime(initialTime));
+    expect(timepicker.state.time).to.be.equal(initialTime);
+    expect(formatTime(timepicker.state.time)).to.be.equal(formattedTime);
+    expect(timeTextField.props.value).to.be.equal(formattedTime);
   });
 
   it('shows value prop if defaultTime is missing', () => {
@@ -56,7 +64,31 @@ describe('TimePicker', () => {
     );
 
     const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
+    const timepicker = TestUtils.findRenderedComponentWithType(render, TimePicker);
+    const formattedTime = formatTime(valueTime);
 
-    expect(timeTextField.props.value, formatTime(valueTime));
+    expect(timepicker.state.time).to.be.equal(valueTime);
+    expect(formatTime(timepicker.state.time)).to.be.equal(formattedTime);
+    expect(timeTextField.props.value).to.be.equal(formattedTime);
+  });
+
+  it('should have time null if value is null', () => {
+    const valueTime = null;
+
+    const render = TestUtils.renderIntoDocument(
+      <ThemedTimePicker
+        value={valueTime}
+        format="ampm"
+        locale="en-US"
+      />
+    );
+
+    const timeTextField = TestUtils.findRenderedComponentWithType(render, TextField);
+    const timepicker = TestUtils.findRenderedComponentWithType(render, TimePicker);
+    const formattedTime = formatTime(valueTime);
+
+    expect(timepicker.state.time).to.be.equal(valueTime);
+    expect(formatTime(timepicker.state.time)).to.be.equal(formattedTime);
+    expect(timeTextField.props.value).to.be.equal(formattedTime);
   });
 });
