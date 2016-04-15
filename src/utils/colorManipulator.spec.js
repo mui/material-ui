@@ -251,6 +251,20 @@ describe('utils/colorManipulator', () => {
       );
     });
 
+    it("doesn't overshoot if an above-range coefficient is supplied", () => {
+      assert.strictEqual(
+        darken('rgb(0, 127, 255)', 1.5),
+        'rgb(0, 0, 0)'
+      );
+    });
+
+    it("doesn't overshoot if a below-range coefficient is supplied", () => {
+      assert.strictEqual(
+        darken('rgb(0, 127, 255)', -0.1),
+        'rgb(0, 127, 255)'
+      );
+    });
+
     it('darkens rgb white to black when coefficient is 1', () => {
       assert.strictEqual(
         darken('rgb(255, 255, 255)', 1),
@@ -323,6 +337,20 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(
         lighten('rgb(255, 255, 255)', 0.1),
         'rgb(255, 255, 255)'
+      );
+    });
+
+    it("doesn't overshoot if an above-range coefficient is supplied", () => {
+      assert.strictEqual(
+        lighten('rgb(0, 127, 255)', 1.5),
+        'rgb(255, 255, 255)'
+      );
+    });
+
+    it("doesn't overshoot if a below-range coefficient is supplied", () => {
+      assert.strictEqual(
+        lighten('rgb(0, 127, 255)', -0.1),
+        'rgb(0, 127, 255)'
       );
     });
 
