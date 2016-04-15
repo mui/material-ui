@@ -82,11 +82,16 @@ class CalendarYear extends Component {
       overflowY: 'scroll',
       position: 'relative',
       textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     };
 
     return (
       <div style={styles}>
-        {years}
+        <div>
+          {years}
+        </div>
       </div>
     );
   }
