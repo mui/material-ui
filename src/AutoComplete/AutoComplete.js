@@ -71,7 +71,7 @@ class AutoComplete extends React.Component {
     /**
      * The error content to display.
      */
-    errorText: React.PropTypes.string,
+    errorText: React.PropTypes.node,
 
     /**
      * Callback function used to filter the auto complete.
@@ -85,7 +85,7 @@ class AutoComplete extends React.Component {
     /**
      * The content to use for adding floating label element.
      */
-    floatingLabelText: React.PropTypes.string,
+    floatingLabelText: React.PropTypes.node,
 
     /**
      * If true, the field receives the property `width: 100%`.
@@ -95,7 +95,7 @@ class AutoComplete extends React.Component {
     /**
      * The hint content to display.
      */
-    hintText: React.PropTypes.string,
+    hintText: React.PropTypes.node,
 
     /**
      * Override style for list.
