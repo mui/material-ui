@@ -188,7 +188,9 @@ class MenuItem extends React.Component {
   }
 
   applyFocusState() {
-    this.refs.listItem.applyFocusState(this.props.focusState);
+    if (this.refs.listItem) {
+      this.refs.listItem.applyFocusState(this.props.focusState);
+    }
   }
 
   cloneMenuItem = (item) => {
