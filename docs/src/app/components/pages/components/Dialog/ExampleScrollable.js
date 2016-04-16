@@ -2,6 +2,13 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+
+const styles = {
+  radioButton: {
+    marginTop: 16,
+  },
+};
 
 export default class DialogExampleScrollable extends React.Component {
   state = {
@@ -30,16 +37,18 @@ export default class DialogExampleScrollable extends React.Component {
         onTouchTap={this.handleClose}
       />,
     ];
-    const str = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus scelerisque urna in aliquam.
-    Mauris vitae iaculis orci. Mauris rhoncus ultricies lectus, et eleifend erat lacinia id. Vivamus dolor arcu,
-    euismod sagittis tortor et, lacinia malesuada felis. Suspendisse consectetur elit lorem, sed feugiat justo
-    sollicitudin ac. Morbi dictum finibus purus. Suspendisse velit quam, consectetur id ipsum eget, hendrerit
-    tincidunt elit. Aenean vehicula orci at risus viverra, ut consectetur nisl venenatis. Vivamus sodales, sapien non
-    hendrerit imperdiet, tellus libero dictum metus, nec molestie mauris elit a risus. Nam porttitor metus eget lorem
-    blandit, quis tincidunt metus accumsan. Phasellus at justo in velit pulvinar lacinia eget consectetur eros.
-    Phasellus euismod lacus quis laoreet sollicitudin. Suspendisse eget felis fermentum, maximus ex quis, facilisis
-    urna. Proin vitae mauris et massa feugiat aliquet id eget sem. Nullam efficitur ultricies mi, at hendrerit lacus
-    egestas quis. Interdum et malesuada fames ac ante ipsum primis in faucibus.`;
+
+    const radios = [];
+    for (let i = 0; i < 30; i++) {
+      radios.push(
+        <RadioButton
+          key={i}
+          value={`value${i + 1}`}
+          label={`Option ${i + 1}`}
+          style={styles.radioButton}
+        />
+      );
+    }
 
     return (
       <div>
@@ -52,10 +61,9 @@ export default class DialogExampleScrollable extends React.Component {
           onRequestClose={this.handleClose}
           autoScrollBodyContent={true}
         >
-          <p>{str}</p>
-          <p>{str}</p>
-          <p>{str}</p>
-          <p>{str}</p>
+          <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+            {radios}
+          </RadioButtonGroup>
         </Dialog>
       </div>
     );
