@@ -7,7 +7,7 @@ import EnhancedButton from '../internal/EnhancedButton';
 import IconButton from '../IconButton';
 import OpenIcon from '../svg-icons/navigation/expand-less';
 import CloseIcon from '../svg-icons/navigation/expand-more';
-import NestedList from './NestedIist';
+import NestedList from './NestedList';
 
 function getStyles(props, context, state) {
   const {
