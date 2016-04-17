@@ -85,6 +85,11 @@ export default function getMuiTheme(muiTheme, ...more) {
       selectTextColor: palette.alternateTextColor,
       calendarYearBackgroundColor: white,
     },
+    dialog: {
+      titleFontSize: 22,
+      bodyFontSize: 16,
+      bodyColor: fade(palette.textColor, 0.6),
+    },
     dropDownMenu: {
       accentColor: palette.borderColor,
     },

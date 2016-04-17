@@ -3,15 +3,10 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const customContentStyle = {
-  width: '100%',
-  maxWidth: 'none',
-};
-
 /**
- * The dialog width has been set to occupy the full width of browser through the `contentStyle` property.
+ * Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
  */
-export default class DialogExampleCustomWidth extends React.Component {
+export default class DialogExampleAlert extends React.Component {
   state = {
     open: false,
   };
@@ -32,7 +27,7 @@ export default class DialogExampleCustomWidth extends React.Component {
         onTouchTap={this.handleClose}
       />,
       <FlatButton
-        label="Submit"
+        label="Discard"
         primary={true}
         onTouchTap={this.handleClose}
       />,
@@ -40,15 +35,14 @@ export default class DialogExampleCustomWidth extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Dialog With Custom Width" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Alert" onTouchTap={this.handleOpen} />
         <Dialog
-          title="Dialog With Custom Width"
           actions={actions}
-          modal={true}
-          contentStyle={customContentStyle}
+          modal={false}
           open={this.state.open}
+          onRequestClose={this.handleClose}
         >
-          This dialog spans the entire width of the screen.
+          Discard draft?
         </Dialog>
       </div>
     );

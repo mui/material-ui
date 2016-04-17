@@ -80,12 +80,16 @@ function getStyles(props, context) {
   } = props;
 
   const {
-    baseTheme,
+    baseTheme: {
+      spacing,
+      palette,
+    },
+    dialog,
     zIndex,
   } = context.muiTheme;
 
-  const gutter = baseTheme.spacing.desktopGutter;
-  const borderScroll = `1px solid ${baseTheme.palette.borderColor}`;
+  const gutter = spacing.desktopGutter;
+  const borderScroll = `1px solid ${palette.borderColor}`;
 
   return {
     root: {
@@ -107,20 +111,14 @@ function getStyles(props, context) {
       transition: transitions.easeOut(),
       position: 'relative',
       width: '75%',
-      maxWidth: baseTheme.spacing.desktopKeylineIncrement * 12,
+      maxWidth: spacing.desktopKeylineIncrement * 12,
       margin: '0 auto',
       zIndex: zIndex.dialog,
-    },
-    body: {
-      padding: gutter,
-      paddingTop: 0,
-      overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
     },
     actionsContainer: {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 8,
-      marginBottom: 8,
       width: '100%',
       textAlign: 'right',
       marginTop: autoScrollBodyContent ? -1 : 0,
@@ -132,12 +130,19 @@ function getStyles(props, context) {
     title: {
       margin: 0,
       padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
-      color: baseTheme.palette.textColor,
-      fontSize: 24,
+      color: palette.textColor,
+      fontSize: dialog.titleFontSize,
       lineHeight: '32px',
       fontWeight: 400,
       marginBottom: autoScrollBodyContent ? -1 : 0,
       borderBottom: autoScrollBodyContent ? borderScroll : 'none',
+    },
+    body: {
+      fontSize: dialog.bodyFontSize,
+      color: dialog.bodyColor,
+      padding: gutter,
+      paddingTop: props.title ? 0 : gutter,
+      overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
     },
   };
 }
@@ -291,8 +296,9 @@ class DialogInline extends React.Component {
     );
 
     const titleElement = typeof title === 'string' ?
-      <h3 className={titleClassName} style={prepareStyles(styles.title)}>{title}</h3> :
-      title;
+      <h3 className={titleClassName} style={prepareStyles(styles.title)}>
+        {title}
+      </h3> : title;
 
     return (
       <div className={className} style={prepareStyles(styles.root)}>
@@ -304,18 +310,19 @@ class DialogInline extends React.Component {
           />
         }
         <ReactTransitionGroup
-          component="div" ref="dialogWindow"
-          transitionAppear={true} transitionAppearTimeout={450}
-          transitionEnter={true} transitionEnterTimeout={450}
+          component="div"
+          ref="dialogWindow"
+          transitionAppear={true}
+          transitionAppearTimeout={450}
+          transitionEnter={true}
+          transitionEnterTimeout={450}
         >
           {open &&
             <TransitionItem
               className={contentClassName}
               style={styles.content}
             >
-              <Paper
-                zDepth={4}
-              >
+              <Paper zDepth={4}>
                 {titleElement}
                 <div
                   ref="dialogContent"
