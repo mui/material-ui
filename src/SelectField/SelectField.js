@@ -81,6 +81,11 @@ class SelectField extends React.Component {
     iconStyle: React.PropTypes.object,
 
     /**
+     * The id prop for the text field.
+     */
+    id: React.PropTypes.string,
+
+    /**
      * Overrides the styles of label when the `SelectField` is inactive.
      */
     labelStyle: React.PropTypes.object,
@@ -148,6 +153,7 @@ class SelectField extends React.Component {
       style,
       labelStyle,
       iconStyle,
+      id,
       underlineDisabledStyle,
       underlineFocusStyle,
       underlineStyle,
@@ -182,6 +188,7 @@ class SelectField extends React.Component {
         errorStyle={errorStyle}
         onFocus={onFocus}
         onBlur={onBlur}
+        id={id}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
       >
