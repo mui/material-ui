@@ -17,10 +17,8 @@ function getStyles(props, context) {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      height: (props.label && props.icon) ? 53 : 24,
-      padding: 12,
-      paddingBottom: (props.label && props.icon) ? 7 : 12,
+      justifyContent: 'center',
+      height: (props.label && props.icon) ? 72 : 48,
     },
   };
 }
@@ -95,13 +93,15 @@ class Tab extends React.Component {
 
   render() {
     const {
+      /* eslint-disable no-unused-vars */
+      onActive,
+      onTouchTap,
+      selected,
+      value,
+      width,
+      /* eslint-enable no-unused-vars */
       label,
-      onActive, // eslint-disable-line no-unused-vars
-      onTouchTap, // eslint-disable-line no-unused-vars
-      selected, // eslint-disable-line no-unused-vars
       style,
-      value, // eslint-disable-line no-unused-vars
-      width, // eslint-disable-line no-unused-vars
       icon,
       ...other,
     } = this.props;
@@ -110,17 +110,18 @@ class Tab extends React.Component {
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {
-      const params = {
+      const iconProps = {
         style: {
           fontSize: 24,
           color: styles.root.color,
+          marginBottom: label ? 5 : 0,
         },
       };
       // If it's svg icon set color via props
       if (icon.type.muiName !== 'FontIcon') {
-        params.color = styles.root.color;
+        iconProps.color = styles.root.color;
       }
-      iconElement = React.cloneElement(icon, params);
+      iconElement = React.cloneElement(icon, iconProps);
     }
 
     const rippleOpacity = 0.3;

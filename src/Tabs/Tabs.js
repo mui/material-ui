@@ -9,8 +9,6 @@ function getStyles(props, context) {
 
   return {
     tabItemContainer: {
-      margin: 0,
-      padding: 0,
       width: '100%',
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
