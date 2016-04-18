@@ -242,7 +242,6 @@ class Calendar extends React.Component {
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
-
     const weekCount = getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     const toolbarInteractions = this.getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';

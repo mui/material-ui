@@ -117,7 +117,8 @@ class DatePickerDialog extends Component {
         width: mode === 'landscape' ? 479 : 310,
       },
       dialogBodyContent: {
-        padding: 0,
+        paddingLeft: 0,
+        paddingBottom: 0,
         minHeight: mode === 'landscape' ? 330 : 434,
         minWidth: mode === 'landscape' ? 479 : 310,
       },
