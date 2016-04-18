@@ -26,16 +26,21 @@ const getStyles = (props, context, state) => {
   } = context.muiTheme;
 
   const styles = {
+    wrapper: {
+      width: props.fullWidth ? '100%' : 256,
+      backgroundColor: backgroundColor,
+      transition: transitions.easeOut('200ms', 'height'),
+    },
+    icon: {
+      verticalAlign: 'middle',
+    },
     root: {
       fontSize: 16,
       lineHeight: '24px',
-      width: props.fullWidth ? '100%' : 256,
       height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
       display: 'inline-block',
       position: 'relative',
-      backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
-      transition: transitions.easeOut('200ms', 'height'),
     },
     error: {
       position: 'relative',
@@ -184,6 +189,11 @@ class TextField extends React.Component {
     inputStyle: React.PropTypes.object,
 
     /**
+     * This is the `SvgIcon` or `FontIcon` to be displayed on the left side.
+     */
+    leftIcon: React.PropTypes.element,
+
+    /**
      * If true, a textarea element will be rendered.
      * The textarea also grows and shrinks according to the number of lines.
      */
@@ -219,6 +229,12 @@ class TextField extends React.Component {
      * Callback function fired when key is pressed down.
      */
     onKeyDown: React.PropTypes.func,
+
+    /**
+     * This is the `SvgIcon` or `FontIcon` to be displayed on the right side.
+     */
+    rightIcon: React.PropTypes.element,
+
 
     /**
      * Number of rows to display when multiLine option is set to true.
@@ -421,6 +437,7 @@ class TextField extends React.Component {
       hintStyle,
       id,
       inputStyle,
+      leftIcon,
       multiLine,
       onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -431,6 +448,7 @@ class TextField extends React.Component {
       underlineFocusStyle,
       underlineShow,
       underlineStyle,
+      rightIcon,
       rows,
       rowsMax,
       textareaStyle,
@@ -444,6 +462,26 @@ class TextField extends React.Component {
     const errorTextElement = this.state.errorText && (
       <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
     );
+
+    let leftIconElement;
+    if (leftIcon) {
+      leftIconElement = React.cloneElement(this.props.leftIcon,
+        {
+          ...this.props.leftIcon,
+          key: 'leftIcon',
+          style: Object.assign({}, styles.icon, this.props.leftIcon.style),
+        });
+    }
+
+    let rightIconElement;
+    if (rightIcon) {
+      rightIconElement = React.cloneElement(this.props.rightIcon,
+        {
+          ...this.props.rightIcon,
+          key: 'rightIcon',
+          style: Object.assign({}, styles.icon, this.props.rightIcon.style),
+        });
+    }
 
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
@@ -499,33 +537,37 @@ class TextField extends React.Component {
     }
 
     return (
-      <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
-        {floatingLabelTextElement}
-        {hintText ?
-          <TextFieldHint
-            muiTheme={this.context.muiTheme}
-            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
-                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
-            style={hintStyle}
-            text={hintText}
-          /> :
-          null
-        }
-        {inputElement}
-        {underlineShow ?
-          <TextFieldUnderline
-            disabled={disabled}
-            disabledStyle={underlineDisabledStyle}
-            error={!!this.state.errorText}
-            errorStyle={errorStyle}
-            focus={this.state.isFocused}
-            focusStyle={underlineFocusStyle}
-            muiTheme={this.context.muiTheme}
-            style={underlineStyle}
-          /> :
-          null
-        }
-        {errorTextElement}
+      <div style={styles.wrapper}>
+      {leftIconElement}
+        <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+          {floatingLabelTextElement}
+          {hintText ?
+            <TextFieldHint
+              muiTheme={this.context.muiTheme}
+              show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
+                    (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
+              style={hintStyle}
+              text={hintText}
+            /> :
+            null
+          }
+          {inputElement}
+          {underlineShow ?
+            <TextFieldUnderline
+              disabled={disabled}
+              disabledStyle={underlineDisabledStyle}
+              error={!!this.state.errorText}
+              errorStyle={errorStyle}
+              focus={this.state.isFocused}
+              focusStyle={underlineFocusStyle}
+              muiTheme={this.context.muiTheme}
+              style={underlineStyle}
+            /> :
+            null
+          }
+          {errorTextElement}
+        </div>
+      {rightIconElement}
       </div>
     );
   }

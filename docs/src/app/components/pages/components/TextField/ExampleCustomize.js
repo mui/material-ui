@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 import {orange500} from 'material-ui/styles/colors';
 
 const styles = {
@@ -29,6 +30,14 @@ const TextFieldExampleCustomize = () => (
     <TextField
       hintText="Custom Underline Focus Color"
       underlineFocusStyle={styles.underlineStyle}
+    />
+    <TextField
+      leftIcon={<ActionGrade color={orange500} />}
+      hintText="Left icon"
+    />
+    <TextField
+      rightIcon={<ActionGrade color={orange500} />}
+      hintText="Right icon"
     />
   </div>
 );
