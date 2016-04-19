@@ -1,3 +1,4 @@
+const path = require('path');
 const argv = process.argv.slice(2);
 const opts = {
   coverage: true,
@@ -83,6 +84,7 @@ module.exports = function(config) {
       },
       resolve: {
         alias: {
+          'material-ui': path.resolve(__dirname, '../src'),
           sinon: 'sinon/pkg/sinon.js',
         },
         extensions: ['', '.js', '.jsx', '.json'],
