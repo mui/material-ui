@@ -30,14 +30,10 @@ const TextFieldExampleCustomize = () => (
     <TextField
       hintText="Custom Underline Focus Color"
       underlineFocusStyle={styles.underlineStyle}
-    />
+    /><br />
     <TextField
       leftIcon={<ActionGrade color={orange500} />}
       hintText="Left icon"
-    />
-    <TextField
-      rightIcon={<ActionGrade color={orange500} />}
-      hintText="Right icon"
     />
   </div>
 );

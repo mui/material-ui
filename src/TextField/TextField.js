@@ -33,6 +33,11 @@ const getStyles = (props, context, state) => {
     },
     icon: {
       verticalAlign: 'middle',
+      position: 'absolute',
+      top: 10,
+    },
+    hintStyleMargin: {
+      marginLeft: 24,
     },
     root: {
       fontSize: 16,
@@ -44,6 +49,7 @@ const getStyles = (props, context, state) => {
     },
     error: {
       position: 'relative',
+      marginLeft: 24,
       bottom: 2,
       fontSize: 12,
       lineHeight: '12px',
@@ -52,9 +58,11 @@ const getStyles = (props, context, state) => {
     },
     floatingLabel: {
       color: hintColor,
+      marginLeft: 24,
       pointerEvents: 'none',
     },
     input: {
+      marginLeft: 24,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 0,
       position: 'relative',
@@ -229,12 +237,6 @@ class TextField extends React.Component {
      * Callback function fired when key is pressed down.
      */
     onKeyDown: React.PropTypes.func,
-
-    /**
-     * This is the `SvgIcon` or `FontIcon` to be displayed on the right side.
-     */
-    rightIcon: React.PropTypes.element,
-
 
     /**
      * Number of rows to display when multiLine option is set to true.
@@ -448,7 +450,6 @@ class TextField extends React.Component {
       underlineFocusStyle,
       underlineShow,
       underlineStyle,
-      rightIcon,
       rows,
       rowsMax,
       textareaStyle,
@@ -473,16 +474,6 @@ class TextField extends React.Component {
         });
     }
 
-    let rightIconElement;
-    if (rightIcon) {
-      rightIconElement = React.cloneElement(this.props.rightIcon,
-        {
-          ...this.props.rightIcon,
-          key: 'rightIcon',
-          style: Object.assign({}, styles.icon, this.props.rightIcon.style),
-        });
-    }
-
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
@@ -504,6 +495,8 @@ class TextField extends React.Component {
       onFocus: this.handleInputFocus,
       onKeyDown: this.handleInputKeyDown,
     };
+
+    const hintStyleMerged = Object.assign(styles.hintStyleMargin, hintStyle);
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
 
@@ -537,37 +530,34 @@ class TextField extends React.Component {
     }
 
     return (
-      <div style={styles.wrapper}>
-      {leftIconElement}
-        <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
-          {floatingLabelTextElement}
-          {hintText ?
-            <TextFieldHint
-              muiTheme={this.context.muiTheme}
-              show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
-                    (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
-              style={hintStyle}
-              text={hintText}
-            /> :
-            null
-          }
-          {inputElement}
-          {underlineShow ?
-            <TextFieldUnderline
-              disabled={disabled}
-              disabledStyle={underlineDisabledStyle}
-              error={!!this.state.errorText}
-              errorStyle={errorStyle}
-              focus={this.state.isFocused}
-              focusStyle={underlineFocusStyle}
-              muiTheme={this.context.muiTheme}
-              style={underlineStyle}
-            /> :
-            null
-          }
-          {errorTextElement}
-        </div>
-      {rightIconElement}
+      <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+        {leftIconElement}
+        {floatingLabelTextElement}
+        {hintText ?
+          <TextFieldHint
+            muiTheme={this.context.muiTheme}
+            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
+                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
+            style={hintStyleMerged}
+            text={hintText}
+          /> :
+          null
+        }
+        {inputElement}
+        {underlineShow ?
+          <TextFieldUnderline
+            disabled={disabled}
+            disabledStyle={underlineDisabledStyle}
+            error={!!this.state.errorText}
+            errorStyle={errorStyle}
+            focus={this.state.isFocused}
+            focusStyle={underlineFocusStyle}
+            muiTheme={this.context.muiTheme}
+            style={underlineStyle}
+          /> :
+          null
+        }
+        {errorTextElement}
       </div>
     );
   }
