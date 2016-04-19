@@ -21,6 +21,8 @@ specification.
 Check out our [documentation site](http://www.material-ui.com/) for live examples.
 It's still a work in progress, but hopefully you can see where we're headed.
 
+**Recently Updated?** Please read the [changelog](https://github.com/callemall/material-ui/releases), this README and the documentation before posting an issue.
+
 ## Prerequisites
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
@@ -65,10 +67,32 @@ on how to do so.
 
 ## Usage
 
-Using material-ui components is very straightforward.
-Once material-ui is included in your project, you can use the components this way:
+Material-UI components are easy to use. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can to use any of the components as demonstrated in our documentation.
 
-```js
+Here is a quick example to get you started:
+
+**./App.js**
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+
+const App = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <MyAwesomeReactComponent />
+  </MuiThemeProvider>
+);
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+);
+```
+
+**./MyAwesomeReactComponent.js**
+```jsx
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
