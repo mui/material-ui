@@ -1,8 +1,6 @@
 ## Installation
 
 Material-UI is available as an [npm package](https://www.npmjs.org/package/material-ui).
-After npm install, you will find all the `.jsx` files in the `/src` folder and
-their compiled versions in the pachage root.
 
 ### react-tap-event-plugin
 

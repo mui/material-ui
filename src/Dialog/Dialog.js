@@ -140,8 +140,8 @@ function getStyles(props, context) {
     body: {
       fontSize: dialog.bodyFontSize,
       color: dialog.bodyColor,
-      padding: gutter,
-      paddingTop: props.title ? 0 : gutter,
+      padding: `${props.title ? 0 : gutter}px ${gutter}px ${gutter}px`,
+      boxSizing: 'border-box',
       overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
     },
   };
@@ -223,7 +223,7 @@ class DialogInline extends React.Component {
     if (autoDetectWindowHeight || autoScrollBodyContent) {
       const styles = getStyles(this.props, this.context);
       styles.body = Object.assign(styles.body, bodyStyle);
-      let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
+      let maxDialogContentHeight = clientHeight - 2 * 64;
 
       if (title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
 
@@ -295,10 +295,19 @@ class DialogInline extends React.Component {
       </div>
     );
 
-    const titleElement = typeof title === 'string' ?
-      <h3 className={titleClassName} style={prepareStyles(styles.title)}>
-        {title}
-      </h3> : title;
+    let titleElement = title;
+    if (React.isValidElement(title)) {
+      titleElement = React.cloneElement(title, {
+        className: title.props.className || titleClassName,
+        style: prepareStyles(Object.assign(styles.title, title.props.style)),
+      });
+    } else if (typeof title === 'string') {
+      titleElement = (
+        <h3 className={titleClassName} style={prepareStyles(styles.title)}>
+          {title}
+        </h3>
+      );
+    }
 
     return (
       <div className={className} style={prepareStyles(styles.root)}>
