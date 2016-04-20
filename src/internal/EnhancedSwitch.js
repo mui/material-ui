@@ -51,6 +51,7 @@ function getStyles(props, context) {
       float: 'left',
       position: 'relative',
       display: 'block',
+      flexShrink: 0,
       width: 60 - baseTheme.spacing.desktopGutterLess,
       marginRight: (props.labelPosition === 'right') ?
         baseTheme.spacing.desktopGutterLess : 0,
