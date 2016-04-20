@@ -36,11 +36,20 @@ for a quick introduction before you read on.)
 ## Installation
 
 Material-UI is available as an [npm package](https://www.npmjs.org/package/material-ui).
+
+**Stable channel**
 ```sh
 npm install material-ui
 ```
-After npm install, you'll find all the .js files in the /src folder and
-their compiled versions in the /lib folder.
+
+Our next version (`0.15.0`) is coming soon! If you need React 15 support or want to preview our latest updates, you can install the current beta.
+
+**Pre-release channel (React 15 support)**
+```sh
+npm install material-ui@next
+```
+
+
 
 ### React-Tap-Event-Plugin
 
