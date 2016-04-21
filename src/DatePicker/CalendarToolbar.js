@@ -94,7 +94,7 @@ class CalendarToolbar extends Component {
           direction={this.state.transitionDirection}
           style={styles.title}
         >
-          <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
+          <div key={dateTimeFormatted} style={{paddingTop: 13}}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
         <IconButton
           disabled={!this.props.nextMonth}

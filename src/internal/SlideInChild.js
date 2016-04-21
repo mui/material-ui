@@ -71,7 +71,7 @@ class SlideInChild extends Component {
     const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
-      position: 'relative',
+      position: 'absolute',
       height: '100%',
       width: '100%',
       top: 0,
