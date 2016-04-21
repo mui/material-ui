@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {
@@ -19,23 +19,23 @@ function getStyles(props, context) {
   };
 }
 
-class ToolbarSeparator extends React.Component {
+class ToolbarSeparator extends Component {
   static muiName = 'ToolbarSeparator';
 
   static propTypes = {
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

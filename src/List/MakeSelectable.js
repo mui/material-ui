@@ -1,22 +1,22 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {fade} from '../utils/colorManipulator';
 import deprecated from '../utils/deprecatedPropType';
 
 export const MakeSelectable = (Component) => {
-  return class extends React.Component {
+  return class extends Component {
     static propTypes = {
-      children: React.PropTypes.node,
-      onChange: React.PropTypes.func,
-      selectedItemStyle: React.PropTypes.object,
-      value: React.PropTypes.any,
-      valueLink: deprecated(React.PropTypes.shape({
-        value: React.PropTypes.any,
-        requestChange: React.PropTypes.func,
+      children: PropTypes.node,
+      onChange: PropTypes.func,
+      selectedItemStyle: PropTypes.object,
+      value: PropTypes.any,
+      valueLink: deprecated(PropTypes.shape({
+        value: PropTypes.any,
+        requestChange: PropTypes.func,
       }), 'This property is deprecated due to his low popularity. Use the value and onChange property.'),
     };
 
     static contextTypes = {
-      muiTheme: React.PropTypes.object.isRequired,
+      muiTheme: PropTypes.object.isRequired,
     };
 
     getValueLink(props) {

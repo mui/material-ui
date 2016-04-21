@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -10,20 +10,20 @@ import {cyan500} from 'material-ui/styles/colors';
 
 const SelectableList = MakeSelectable(List);
 
-const AppNavDrawer = React.createClass({
+const AppNavDrawer = createClass({
 
   propTypes: {
-    docked: React.PropTypes.bool.isRequired,
-    location: React.PropTypes.object.isRequired,
-    onChangeList: React.PropTypes.func.isRequired,
-    onRequestChangeNavDrawer: React.PropTypes.func.isRequired,
-    open: React.PropTypes.bool.isRequired,
-    style: React.PropTypes.object,
+    docked: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
+    onChangeList: PropTypes.func.isRequired,
+    onRequestChangeNavDrawer: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object.isRequired,
-    router: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   },
 
   getInitialState: () => {

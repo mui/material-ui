@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 const propTypes = {
@@ -6,22 +6,22 @@ const propTypes = {
    * @ignore
    * The material-ui theme applied to this component.
    */
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 
   /**
    * True if the hint text should be visible.
    */
-  show: React.PropTypes.bool,
+  show: PropTypes.bool,
 
   /**
    * Override the inline-styles of the root element.
    */
-  style: React.PropTypes.object,
+  style: PropTypes.object,
 
   /**
    * The hint text displayed.
    */
-  text: React.PropTypes.node,
+  text: PropTypes.node,
 };
 
 const defaultProps = {

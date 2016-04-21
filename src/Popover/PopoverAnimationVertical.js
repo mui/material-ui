@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Paper from '../Paper';
 import transitions from '../styles/transitions';
 import propTypes from '../utils/propTypes';
@@ -22,16 +22,16 @@ function getStyles(props, context, state) {
   };
 }
 
-class PopoverAnimationVertical extends React.Component {
+class PopoverAnimationVertical extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    open: React.PropTypes.bool.isRequired,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    open: PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
     targetOrigin: propTypes.origin,
     zDepth: propTypes.zDepth,
   };
@@ -42,7 +42,7 @@ class PopoverAnimationVertical extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

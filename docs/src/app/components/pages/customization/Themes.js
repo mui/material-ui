@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -39,11 +39,11 @@ You can use the tabs to change the theme. The changes will be applied to the who
 documentation.
 `;
 
-const ThemesPage = React.createClass({
+const ThemesPage = createClass({
 
   propTypes: {
-    muiTheme: React.PropTypes.object,
-    onChangeMuiTheme: React.PropTypes.func,
+    muiTheme: PropTypes.object,
+    onChangeMuiTheme: PropTypes.func,
   },
 
   mixins: [styleResizable],

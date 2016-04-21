@@ -1,12 +1,12 @@
-import React from 'react';
+import {Component, PropTypes} from 'react';
 
 let originalBodyOverflow = null;
 let lockingCounter = 0;
 
-export default class AutoLockScrolling extends React.Component {
+export default class AutoLockScrolling extends Component {
 
   static propTypes = {
-    lock: React.PropTypes.bool.isRequired,
+    lock: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {

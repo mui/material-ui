@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {
@@ -57,30 +57,30 @@ function getStyles(props, context) {
   return styles;
 }
 
-class GridTile extends React.Component {
+class GridTile extends Component {
   static propTypes = {
     /**
      * An IconButton element to be used as secondary action target
      * (primary action target is the tile itself).
      */
-    actionIcon: React.PropTypes.element,
+    actionIcon: PropTypes.element,
 
     /**
      * Position of secondary action IconButton.
      */
-    actionPosition: React.PropTypes.oneOf(['left', 'right']),
+    actionPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * Theoretically you can pass any node as children, but the main use case is to pass an img,
      * in whichcase GridTile takes care of making the image "cover" available space
      * (similar to background-size: cover or to object-fit:cover).
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Width of the tile in number of grid cells.
      */
-    cols: React.PropTypes.number,
+    cols: PropTypes.number,
 
     /**
      * Either a string used as tag name for the tile root element, or a ReactElement.
@@ -89,41 +89,41 @@ class GridTile extends React.Component {
      * In case you pass a ReactElement, please ensure that it passes all props,
      * accepts styles overrides and render it's children.
      */
-    containerElement: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
     ]),
 
     /**
      * Height of the tile in number of grid cells.
      */
-    rows: React.PropTypes.number,
+    rows: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * String or element serving as subtitle (support text).
      */
-    subtitle: React.PropTypes.node,
+    subtitle: PropTypes.node,
 
     /**
      * Title to be displayed on tile.
      */
-    title: React.PropTypes.node,
+    title: PropTypes.node,
 
     /**
      * Style used for title bar background.
      * Useful for setting custom gradients for example
      */
-    titleBackground: React.PropTypes.string,
+    titleBackground: PropTypes.string,
 
     /**
      * Position of the title bar (container of title, subtitle and action icon).
      */
-    titlePosition: React.PropTypes.oneOf(['top', 'bottom']),
+    titlePosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
   static defaultProps = {
@@ -136,7 +136,7 @@ class GridTile extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {

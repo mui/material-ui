@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {isInner} from './timeUtils';
 
 function calcAngle(value, base) {
@@ -41,11 +41,11 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-class ClockPointer extends React.Component {
+class ClockPointer extends Component {
   static propTypes = {
-    hasSelected: React.PropTypes.bool,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
-    value: React.PropTypes.number,
+    hasSelected: PropTypes.bool,
+    type: PropTypes.oneOf(['hour', 'minute']),
+    value: PropTypes.number,
   };
 
   static defaultProps = {
@@ -55,7 +55,7 @@ class ClockPointer extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

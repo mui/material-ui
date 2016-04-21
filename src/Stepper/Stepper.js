@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import StepConnector from './StepConnector';
 
 const getStyles = (props) => {
@@ -14,7 +14,7 @@ const getStyles = (props) => {
   };
 };
 
-class Stepper extends React.Component {
+class Stepper extends Component {
 
   static propTypes = {
     /**

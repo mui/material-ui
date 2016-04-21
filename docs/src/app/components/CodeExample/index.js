@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {parse} from 'react-docgen';
 import CodeBlock from './CodeBlock';
 import ClearFix from 'material-ui/internal/ClearFix';
 import Paper from 'material-ui/Paper';
 
-class CodeExample extends React.Component {
+class CodeExample extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    code: React.PropTypes.string.isRequired,
-    component: React.PropTypes.bool,
-    description: React.PropTypes.string,
-    layoutSideBySide: React.PropTypes.bool,
-    title: React.PropTypes.string,
+    children: PropTypes.node,
+    code: PropTypes.string.isRequired,
+    component: PropTypes.bool,
+    description: PropTypes.string,
+    layoutSideBySide: PropTypes.bool,
+    title: PropTypes.string,
   };
 
   static defaultProps = {
@@ -19,7 +19,7 @@ class CodeExample extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   };
 
   render() {

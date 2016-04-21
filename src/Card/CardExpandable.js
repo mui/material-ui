@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../IconButton';
@@ -15,15 +15,15 @@ function getStyles() {
   };
 }
 
-class CardExpandable extends React.Component {
+class CardExpandable extends Component {
   static propTypes = {
-    expanded: React.PropTypes.bool,
-    onExpanding: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object,
+    expanded: PropTypes.bool,
+    onExpanding: PropTypes.func.isRequired,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

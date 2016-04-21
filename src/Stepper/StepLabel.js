@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import CheckCircle from '../svg-icons/action/check-circle';
 import SvgIcon from '../SvgIcon';
 
@@ -52,7 +52,7 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
   return styles;
 };
 
-class StepLabel extends React.Component {
+class StepLabel extends Component {
   static muiName = 'StepLabel';
 
   static propTypes = {

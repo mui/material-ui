@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import Dom from '../utils/dom';
@@ -15,14 +15,14 @@ function shift(array) {
   return update(array, {$splice: [[0, 1]]});
 }
 
-class TouchRipple extends React.Component {
+class TouchRipple extends Component {
   static propTypes = {
-    abortOnScroll: React.PropTypes.bool,
-    centerRipple: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    color: React.PropTypes.string,
-    opacity: React.PropTypes.number,
-    style: React.PropTypes.object,
+    abortOnScroll: PropTypes.bool,
+    centerRipple: PropTypes.bool,
+    children: PropTypes.node,
+    color: PropTypes.string,
+    opacity: PropTypes.number,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -30,7 +30,7 @@ class TouchRipple extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {

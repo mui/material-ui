@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {primary, secondary} = props;
@@ -48,42 +48,42 @@ function getStyles(props, context) {
   };
 }
 
-class Badge extends React.Component {
+class Badge extends Component {
   static propTypes = {
     /**
      * This is the content rendered within the badge.
      */
-    badgeContent: React.PropTypes.node.isRequired,
+    badgeContent: PropTypes.node.isRequired,
 
     /**
      * Override the inline-styles of the badge element.
      */
-    badgeStyle: React.PropTypes.object,
+    badgeStyle: PropTypes.object,
 
     /**
      * The badge will be added relativelty to this node.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * If true, the badge will use the primary badge colors.
      */
-    primary: React.PropTypes.bool,
+    primary: PropTypes.bool,
 
     /**
      * If true, the badge will use the secondary badge colors.
      */
-    secondary: React.PropTypes.bool,
+    secondary: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -92,7 +92,7 @@ class Badge extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

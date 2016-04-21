@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import shallowEqual from 'recompose/shallowEqual';
@@ -112,169 +112,169 @@ function isValid(value) {
   return Boolean(value || value === 0);
 }
 
-class TextField extends React.Component {
+class TextField extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * The text string to use for the default value.
      */
-    defaultValue: React.PropTypes.any,
+    defaultValue: PropTypes.any,
 
     /**
      * Disables the text field if set to true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * The style object to use to override error styles.
      */
-    errorStyle: React.PropTypes.object,
+    errorStyle: PropTypes.object,
 
     /**
      * The error content to display.
      */
-    errorText: React.PropTypes.node,
+    errorText: PropTypes.node,
 
     /**
      * If true, the floating label will float even when there is no value.
      */
-    floatingLabelFixed: React.PropTypes.bool,
+    floatingLabelFixed: PropTypes.bool,
 
     /**
      * The style object to use to override floating label styles.
      */
-    floatingLabelStyle: React.PropTypes.object,
+    floatingLabelStyle: PropTypes.object,
 
     /**
      * The content to use for the floating label element.
      */
-    floatingLabelText: React.PropTypes.node,
+    floatingLabelText: PropTypes.node,
 
     /**
      * If true, the field receives the property width 100%.
      */
-    fullWidth: React.PropTypes.bool,
+    fullWidth: PropTypes.bool,
 
     /**
      * Override the inline-styles of the TextField's hint text element.
      */
-    hintStyle: React.PropTypes.object,
+    hintStyle: PropTypes.object,
 
     /**
      * The hint content to display.
      */
-    hintText: React.PropTypes.node,
+    hintText: PropTypes.node,
 
     /**
      * The id prop for the text field.
      */
-    id: React.PropTypes.string,
+    id: PropTypes.string,
 
     /**
      * Override the inline-styles of the TextField's input element.
      * When multiLine is false: define the style of the input element.
      * When multiLine is true: define the style of the container of the textarea.
      */
-    inputStyle: React.PropTypes.object,
+    inputStyle: PropTypes.object,
 
     /**
      * If true, a textarea element will be rendered.
      * The textarea also grows and shrinks according to the number of lines.
      */
-    multiLine: React.PropTypes.bool,
+    multiLine: PropTypes.bool,
 
     /**
      * Name applied to the input.
      */
-    name: React.PropTypes.string,
+    name: PropTypes.string,
 
     /**
      * Callback function that is fired when the textfield loses focus.
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback function that is fired when the textfield's value changes.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * The function to call when the user presses the Enter key.
      */
-    onEnterKeyDown: deprecated(React.PropTypes.func,
+    onEnterKeyDown: deprecated(PropTypes.func,
       'Use onKeyDown and check for keycode instead.'),
 
     /**
      * Callback function that is fired when the textfield gains focus.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Callback function fired when key is pressed down.
      */
-    onKeyDown: React.PropTypes.func,
+    onKeyDown: PropTypes.func,
 
     /**
      * Number of rows to display when multiLine option is set to true.
      */
-    rows: React.PropTypes.number,
+    rows: PropTypes.number,
 
     /**
      * Maximum number of rows to display when
      * multiLine option is set to true.
      */
-    rowsMax: React.PropTypes.number,
+    rowsMax: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Override the inline-styles of the TextField's textarea element.
      * The TextField use either a textarea or an input,
      * this property has effects only when multiLine is true.
      */
-    textareaStyle: React.PropTypes.object,
+    textareaStyle: PropTypes.object,
 
     /**
      * Specifies the type of input to display
      * such as "password" or "text".
      */
-    type: React.PropTypes.string,
+    type: PropTypes.string,
 
     /**
      * Override the inline-styles of the
      * TextField's underline element when disabled.
      */
-    underlineDisabledStyle: React.PropTypes.object,
+    underlineDisabledStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the TextField's
      * underline element when focussed.
      */
-    underlineFocusStyle: React.PropTypes.object,
+    underlineFocusStyle: PropTypes.object,
 
     /**
      * If true, shows the underline for the text field.
      */
-    underlineShow: React.PropTypes.bool,
+    underlineShow: PropTypes.bool,
 
     /**
      * Override the inline-styles of the TextField's underline element.
      */
-    underlineStyle: React.PropTypes.object,
+    underlineStyle: PropTypes.object,
 
     /**
      * The value of the text field.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
   };
 
   static defaultProps = {
@@ -288,7 +288,7 @@ class TextField extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

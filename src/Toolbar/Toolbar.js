@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {noGutter} = props;
@@ -21,27 +21,27 @@ function getStyles(props, context) {
   };
 }
 
-class Toolbar extends React.Component {
+class Toolbar extends Component {
   static propTypes = {
     /**
      * Can be a `ToolbarGroup` to render a group of related items.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Do not apply `desktopGutter` to the `Toolbar`.
      */
-    noGutter: React.PropTypes.bool,
+    noGutter: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -49,7 +49,7 @@ class Toolbar extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

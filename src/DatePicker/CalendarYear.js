@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import YearButton from './YearButton';
 import {cloneDate} from './dateUtils';
 
-class CalendarYear extends React.Component {
+class CalendarYear extends Component {
   static propTypes = {
-    displayDate: React.PropTypes.object.isRequired,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onYearTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
+    displayDate: PropTypes.object.isRequired,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onYearTouchTap: PropTypes.func,
+    selectedDate: PropTypes.object.isRequired,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {

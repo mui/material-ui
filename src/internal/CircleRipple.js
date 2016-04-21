@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
-class CircleRipple extends React.Component {
+class CircleRipple extends Component {
   static propTypes = {
-    aborted: React.PropTypes.bool,
-    color: React.PropTypes.string,
-    opacity: React.PropTypes.number,
-    style: React.PropTypes.object,
+    aborted: PropTypes.bool,
+    color: PropTypes.string,
+    opacity: PropTypes.number,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -18,7 +18,7 @@ class CircleRipple extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   shouldComponentUpdate(nextProps) {

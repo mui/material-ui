@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
-class SlideInChild extends React.Component {
+class SlideInChild extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    direction: React.PropTypes.string,
-    enterDelay: React.PropTypes.number,
+    children: PropTypes.node,
+    direction: PropTypes.string,
+    enterDelay: PropTypes.number,
     // This callback is needed bacause the direction could change when leaving the DOM
-    getLeaveDirection: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object,
+    getLeaveDirection: PropTypes.func.isRequired,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -18,7 +18,7 @@ class SlideInChild extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentWillUnmount() {

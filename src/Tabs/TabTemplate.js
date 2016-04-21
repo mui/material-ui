@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
-class TabTemplate extends React.Component {
+class TabTemplate extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    selected: React.PropTypes.bool,
+    children: PropTypes.node,
+    selected: PropTypes.bool,
   };
 
   render() {

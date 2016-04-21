@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
 import DayButton from './DayButton';
 import ClearFix from '../internal/ClearFix';
 
-class CalendarMonth extends React.Component {
+class CalendarMonth extends Component {
   static propTypes = {
-    autoOk: React.PropTypes.bool,
-    displayDate: React.PropTypes.object.isRequired,
-    firstDayOfWeek: React.PropTypes.number,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onDayTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
-    shouldDisableDate: React.PropTypes.func,
+    autoOk: PropTypes.bool,
+    displayDate: PropTypes.object.isRequired,
+    firstDayOfWeek: PropTypes.number,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onDayTouchTap: PropTypes.func,
+    selectedDate: PropTypes.object.isRequired,
+    shouldDisableDate: PropTypes.func,
   };
 
   isSelectedDateDisabled() {

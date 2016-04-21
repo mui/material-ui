@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {
@@ -28,94 +28,94 @@ function getStyles(props, context) {
   };
 }
 
-class Table extends React.Component {
+class Table extends Component {
   static propTypes = {
     /**
      * Set to true to indicate that all rows should be selected.
      */
-    allRowsSelected: React.PropTypes.bool,
+    allRowsSelected: PropTypes.bool,
 
     /**
      * Override the inline-styles of the body's table element.
      */
-    bodyStyle: React.PropTypes.object,
+    bodyStyle: PropTypes.object,
 
     /**
      * Children passed to table.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * If true, the footer will appear fixed below the table.
      * The default value is true.
      */
-    fixedFooter: React.PropTypes.bool,
+    fixedFooter: PropTypes.bool,
 
     /**
      * If true, the header will appear fixed above the table.
      * The default value is true.
      */
-    fixedHeader: React.PropTypes.bool,
+    fixedHeader: PropTypes.bool,
 
     /**
      * Override the inline-styles of the footer's table element.
      */
-    footerStyle: React.PropTypes.object,
+    footerStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the header's table element.
      */
-    headerStyle: React.PropTypes.object,
+    headerStyle: PropTypes.object,
 
     /**
      * The height of the table.
      */
-    height: React.PropTypes.string,
+    height: PropTypes.string,
 
     /**
      * If true, multiple table rows can be selected.
      * CTRL/CMD+Click and SHIFT+Click are valid actions.
      * The default value is false.
      */
-    multiSelectable: React.PropTypes.bool,
+    multiSelectable: PropTypes.bool,
 
     /**
      * Called when a row cell is clicked.
      * rowNumber is the row number and columnId is
      * the column number or the column key.
      */
-    onCellClick: React.PropTypes.func,
+    onCellClick: PropTypes.func,
 
     /**
      * Called when a table cell is hovered.
      * rowNumber is the row number of the hovered row
      * and columnId is the column number or the column key of the cell.
      */
-    onCellHover: React.PropTypes.func,
+    onCellHover: PropTypes.func,
 
     /**
      * Called when a table cell is no longer hovered.
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
      */
-    onCellHoverExit: React.PropTypes.func,
+    onCellHoverExit: PropTypes.func,
 
     /**
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
-    onRowHover: React.PropTypes.func,
+    onRowHover: PropTypes.func,
 
     /**
      * Called when a table row is no longer hovered.
      * rowNumber is the row number of the row that is no longer hovered.
      */
-    onRowHoverExit: React.PropTypes.func,
+    onRowHoverExit: PropTypes.func,
 
     /**
      * Called when a row is selected.
@@ -123,24 +123,24 @@ class Table extends React.Component {
      * IF all rows have been selected, the string "all"
      * will be returned instead to indicate that all rows have been selected.
      */
-    onRowSelection: React.PropTypes.func,
+    onRowSelection: PropTypes.func,
 
     /**
      * If true, table rows can be selected.
      * If multiple row selection is desired, enable multiSelectable.
      * The default value is true.
      */
-    selectable: React.PropTypes.bool,
+    selectable: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Override the inline-styles of the table's wrapper element.
      */
-    wrapperStyle: React.PropTypes.object,
+    wrapperStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -153,7 +153,7 @@ class Table extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {
@@ -62,39 +62,39 @@ function getStyles(props, context) {
   return styles;
 }
 
-class ToolbarGroup extends React.Component {
+class ToolbarGroup extends Component {
   static propTypes = {
     /**
      * Can be any node or number of nodes.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
      * to prevent setting the left gap.
      */
-    firstChild: React.PropTypes.bool,
+    firstChild: PropTypes.bool,
 
     /**
      * Determines the side the `ToolbarGroup` will snap to. Either 'left' or 'right'.
      */
-    float: React.PropTypes.oneOf(['left', 'right']),
+    float: PropTypes.oneOf(['left', 'right']),
 
     /**
      * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
      * to prevent setting the right gap.
      */
-    lastChild: React.PropTypes.bool,
+    lastChild: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -103,7 +103,7 @@ class ToolbarGroup extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   handleMouseEnterFontIcon(style) {

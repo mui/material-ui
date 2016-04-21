@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 function getRelativeValue(value, min, max) {
@@ -62,39 +62,39 @@ function getStyles(props, context) {
   return styles;
 }
 
-class LinearProgress extends React.Component {
+class LinearProgress extends Component {
   static propTypes = {
     /**
      * The mode of show your progress, indeterminate for
      * when there is no value for progress.
      */
-    color: React.PropTypes.string,
+    color: PropTypes.string,
 
     /**
      * The max value of progress, only works in determinate mode.
      */
-    max: React.PropTypes.number,
+    max: PropTypes.number,
 
     /**
      * The min value of progress, only works in determinate mode.
      */
-    min: React.PropTypes.number,
+    min: PropTypes.number,
 
     /**
      * The mode of show your progress, indeterminate for when
      * there is no value for progress.
      */
-    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
+    mode: PropTypes.oneOf(['determinate', 'indeterminate']),
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The value of progress, only works in determinate mode.
      */
-    value: React.PropTypes.number,
+    value: PropTypes.number,
   };
 
   static defaultProps = {
@@ -105,7 +105,7 @@ class LinearProgress extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {

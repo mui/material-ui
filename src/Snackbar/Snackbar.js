@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import FlatButton from '../FlatButton';
@@ -71,7 +71,7 @@ const Snackbar = React.createClass({
     /**
      * The label for the action on the snackbar.
      */
-    action: React.PropTypes.string,
+    action: PropTypes.string,
 
     /**
      * The number of milliseconds to wait before automatically dismissing.
@@ -79,17 +79,17 @@ const Snackbar = React.createClass({
      * If a value is provided the snackbar can still be dismissed normally.
      * If a snackbar is dismissed before the timer expires, the timer will be cleared.
      */
-    autoHideDuration: React.PropTypes.number,
+    autoHideDuration: PropTypes.number,
 
     /**
      * Override the inline-styles of the body element.
      */
-    bodyStyle: React.PropTypes.object,
+    bodyStyle: PropTypes.object,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * The message to be displayed.
@@ -98,14 +98,14 @@ const Snackbar = React.createClass({
      * ensure that the same object remains as the `message` property if you want to avoid the `Snackbar` hiding and
      * showing again)
      */
-    message: React.PropTypes.node.isRequired,
+    message: PropTypes.node.isRequired,
 
     /**
      * Fired when the action button is touchtapped.
      *
      * @param {object} event Action button event.
      */
-    onActionTouchTap: React.PropTypes.func,
+    onActionTouchTap: PropTypes.func,
 
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
@@ -119,21 +119,21 @@ const Snackbar = React.createClass({
      *
      * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
      */
-    onRequestClose: React.PropTypes.func,
+    onRequestClose: PropTypes.func,
 
     /**
      * Controls whether the `Snackbar` is opened or not.
      */
-    open: React.PropTypes.bool.isRequired,
+    open: PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   },
 
   mixins: [

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {createChildFragment} from '../utils/childUtils';
 import {fade} from '../utils/colorManipulator';
@@ -11,14 +11,14 @@ function validateLabel(props, propName, componentName) {
   }
 }
 
-class FlatButton extends React.Component {
+class FlatButton extends Component {
   static muiName = 'FlatButton';
 
   static propTypes = {
     /**
      * Color of button when mouse is not hovering over it.
      */
-    backgroundColor: React.PropTypes.string,
+    backgroundColor: PropTypes.string,
 
     /**
      * This is what will be displayed inside the button.
@@ -29,27 +29,27 @@ class FlatButton extends React.Component {
      * that acts as our label to be displayed.) This only
      * applies to flat and raised buttons.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Disables the button if set to true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Color of button when mouse hovers over.
      */
-    hoverColor: React.PropTypes.string,
+    hoverColor: PropTypes.string,
 
     /**
      * URL to link to when button clicked if `linkButton` is set to true.
      */
-    href: React.PropTypes.string,
+    href: PropTypes.string,
 
     /**
      * Use this property to display an icon.
      */
-    icon: React.PropTypes.node,
+    icon: PropTypes.node,
 
     /**
      * Label for the button.
@@ -59,7 +59,7 @@ class FlatButton extends React.Component {
     /**
      * Place label before or after the passed children.
      */
-    labelPosition: React.PropTypes.oneOf([
+    labelPosition: PropTypes.oneOf([
       'before',
       'after',
     ]),
@@ -67,12 +67,12 @@ class FlatButton extends React.Component {
     /**
      * Override the inline-styles of the button's label element.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Enables use of `href` property to provide a URL to link to if set to true.
      */
-    linkButton: React.PropTypes.bool,
+    linkButton: PropTypes.bool,
 
     /**
      * Callback function fired when the element is focused or blurred by the keyboard.
@@ -80,50 +80,50 @@ class FlatButton extends React.Component {
      * @param {object} event `focus` or `blur` event targeting the element.
      * @param {boolean} isKeyboardFocused Indicates whether the element is focused.
      */
-    onKeyboardFocus: React.PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
 
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Callback function fired when the element is touched.
      *
      * @param {object} event `touchstart` event targeting the element.
      */
-    onTouchStart: React.PropTypes.func,
+    onTouchStart: PropTypes.func,
 
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.
      */
-    primary: React.PropTypes.bool,
+    primary: PropTypes.bool,
 
     /**
      * Color for the ripple after button is clicked.
      */
-    rippleColor: React.PropTypes.string,
+    rippleColor: PropTypes.string,
 
     /**
      * If true, colors button according to secondaryTextColor from the theme.
      * The primary prop has precendent if set to true.
      */
-    secondary: React.PropTypes.bool,
+    secondary: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -139,7 +139,7 @@ class FlatButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

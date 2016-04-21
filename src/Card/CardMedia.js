@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {cardMedia} = context.muiTheme;
@@ -36,56 +36,56 @@ function getStyles(props, context) {
   };
 }
 
-class CardMedia extends React.Component {
+class CardMedia extends Component {
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
-    actAsExpander: React.PropTypes.bool,
+    actAsExpander: PropTypes.bool,
 
     /**
      * Can be used to render elements inside the Card Media.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * If true, this card component is expandable.
      */
-    expandable: React.PropTypes.bool,
+    expandable: PropTypes.bool,
 
     /**
      * Override the inline-styles of the Card Media.
      */
-    mediaStyle: React.PropTypes.object,
+    mediaStyle: PropTypes.object,
 
     /**
      * Can be used to render overlay element in Card Media.
      */
-    overlay: React.PropTypes.node,
+    overlay: PropTypes.node,
 
     /**
      * Override the inline-styles of the overlay container.
      */
-    overlayContainerStyle: React.PropTypes.object,
+    overlayContainerStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the overlay content.
      */
-    overlayContentStyle: React.PropTypes.object,
+    overlayContentStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the overlay element.
      */
-    overlayStyle: React.PropTypes.object,
+    overlayStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

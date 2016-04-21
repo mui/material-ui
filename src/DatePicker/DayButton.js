@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Transition from '../styles/transitions';
 import {isEqualDate} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -57,13 +57,13 @@ function getStyles(props, context) {
   };
 }
 
-class DayButton extends React.Component {
+class DayButton extends Component {
   static propTypes = {
-    date: React.PropTypes.object,
-    disabled: React.PropTypes.bool,
-    onKeyboardFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
+    date: PropTypes.object,
+    disabled: PropTypes.bool,
+    onKeyboardFocus: PropTypes.func,
+    onTouchTap: PropTypes.func,
+    selected: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -72,7 +72,7 @@ class DayButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

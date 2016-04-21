@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
@@ -68,42 +68,42 @@ function getStyles(props, context) {
   };
 }
 
-class EnhancedSwitch extends React.Component {
+class EnhancedSwitch extends Component {
   static propTypes = {
-    checked: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    defaultChecked: React.PropTypes.bool,
-    disableFocusRipple: React.PropTypes.bool,
-    disableTouchRipple: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    iconStyle: React.PropTypes.object,
-    inputStyle: React.PropTypes.object,
-    inputType: React.PropTypes.string.isRequired,
-    label: React.PropTypes.node,
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    labelStyle: React.PropTypes.object,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onMouseDown: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onParentShouldUpdate: React.PropTypes.func,
-    onSwitch: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    rippleColor: React.PropTypes.string,
-    rippleStyle: React.PropTypes.object,
-    style: React.PropTypes.object,
-    switchElement: React.PropTypes.element.isRequired,
-    switched: React.PropTypes.bool.isRequired,
-    thumbStyle: React.PropTypes.object,
-    trackStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    defaultChecked: PropTypes.bool,
+    disableFocusRipple: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
+    disabled: PropTypes.bool,
+    iconStyle: PropTypes.object,
+    inputStyle: PropTypes.object,
+    inputType: PropTypes.string.isRequired,
+    label: PropTypes.node,
+    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelStyle: PropTypes.object,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onMouseDown: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onMouseUp: PropTypes.func,
+    onParentShouldUpdate: PropTypes.func,
+    onSwitch: PropTypes.func,
+    onTouchEnd: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    rippleColor: PropTypes.string,
+    rippleStyle: PropTypes.object,
+    style: PropTypes.object,
+    switchElement: PropTypes.element.isRequired,
+    switched: PropTypes.bool.isRequired,
+    thumbStyle: PropTypes.object,
+    trackStyle: PropTypes.object,
+    value: PropTypes.string,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
@@ -29,22 +29,22 @@ function getStyles(props, context, state) {
   };
 }
 
-class EnhancedTextarea extends React.Component {
+class EnhancedTextarea extends Component {
   static propTypes = {
-    defaultValue: React.PropTypes.any,
-    disabled: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    onHeightChange: React.PropTypes.func,
-    rows: React.PropTypes.number,
-    rowsMax: React.PropTypes.number,
-    shadowStyle: React.PropTypes.object,
+    defaultValue: PropTypes.any,
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func,
+    onHeightChange: PropTypes.func,
+    rows: PropTypes.number,
+    rowsMax: PropTypes.number,
+    shadowStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    textareaStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
-    valueLink: React.PropTypes.object,
+    style: PropTypes.object,
+    textareaStyle: PropTypes.object,
+    value: PropTypes.string,
+    valueLink: PropTypes.object,
   };
 
   static defaultProps = {
@@ -52,7 +52,7 @@ class EnhancedTextarea extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

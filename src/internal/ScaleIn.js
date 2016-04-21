@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import ScaleInChild from './ScaleInChild';
 
-class ScaleIn extends React.Component {
+class ScaleIn extends Component {
   static propTypes = {
-    childStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    enterDelay: React.PropTypes.number,
-    maxScale: React.PropTypes.number,
-    minScale: React.PropTypes.number,
+    childStyle: PropTypes.object,
+    children: PropTypes.node,
+    enterDelay: PropTypes.number,
+    maxScale: PropTypes.number,
+    minScale: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -21,7 +21,7 @@ class ScaleIn extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {
