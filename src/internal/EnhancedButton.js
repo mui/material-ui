@@ -8,6 +8,7 @@ import TouchRipple from './TouchRipple';
 let styleInjected = false;
 let listening = false;
 let tabPressed = false;
+let rippleStartCallbacks = [];
 
 function injectStyle() {
   if (!styleInjected) {
@@ -165,6 +166,7 @@ class EnhancedButton extends React.Component {
         centerRipple={centerRipple}
         color={touchRippleColor}
         opacity={touchRippleOpacity}
+        onRippleStart={this.handleRippleStart}
       >
         {children}
       </TouchRipple>
@@ -180,7 +182,7 @@ class EnhancedButton extends React.Component {
   handleKeyDown = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
-        this.handleTouchTap(event);
+        this.handleTouchTap(event, true);
       }
     }
     this.props.onKeyDown(event);
@@ -189,7 +191,7 @@ class EnhancedButton extends React.Component {
   handleKeyUp = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
-        this.handleTouchTap(event);
+        this.handleTouchTap(event, true);
       }
     }
     this.props.onKeyUp(event);
@@ -224,13 +226,36 @@ class EnhancedButton extends React.Component {
     }
   };
 
-  handleTouchTap = (event) => {
-    this.cancelFocusTimeout();
-    if (!this.props.disabled) {
-      tabPressed = false;
-      this.removeKeyboardFocus(event);
-      this.props.onTouchTap(event);
+  // Running this code immediately after a tap may prevent the TouchRipple
+  // animation from starting so instead call it only after the ripple animation
+  // starts
+  handleTouchTap = (event, triggeredByKeyboard) => {
+    const respondToTouchTap = () => {
+      this.cancelFocusTimeout();
+      if (!this.props.disabled) {
+        tabPressed = false;
+        this.removeKeyboardFocus(event);
+        this.props.onTouchTap(event);
+      }
+    };
+    // Note that pressing the button with a keyboard will not trigger a touch
+    // ripple, so don't wait for one
+    if (this.disableTouchRipple || triggeredByKeyboard) {
+      respondToTouchTap();
+    } else {
+      // Wait for the ripples to start so we don't block the main thread and
+      // prevent the animations from working
+      this.onNextRippleStart(respondToTouchTap);
     }
+  };
+
+  handleRippleStart = () => {
+    rippleStartCallbacks.map((callback) => callback());
+    rippleStartCallbacks = [];
+  };
+
+  onNextRippleStart = (callback) => {
+    rippleStartCallbacks.push(callback);
   };
 
   render() {
