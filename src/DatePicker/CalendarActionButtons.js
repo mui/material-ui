@@ -21,22 +21,13 @@ class CalendarActionButton extends React.Component {
         margin: 0,
         maxHeight: 48,
         padding: 0,
-<<<<<<< 0f408deaaef6be85ed071ed00945336364b2f2f7
-        maxHeight: 48,
-=======
-        //backgroundColor: 'pink',
->>>>>>> [DatePicker] cleanup
       },
       flatButtons: {
         fontsize: 14,
         margin: '4px 8px 8px 0px',
-<<<<<<< 0f408deaaef6be85ed071ed00945336364b2f2f7
-=======
         maxHeight: 36,
         minWidth: 64,
         padding: 0,
-        //backgroundColor: 'yellow',
->>>>>>> [DatePicker] cleanup
       },
     };
 
