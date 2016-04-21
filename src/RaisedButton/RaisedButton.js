@@ -54,14 +54,17 @@ function getStyles(props, context, state) {
     }
   }
 
+  const buttonHeight = style && style.height || `${button.height}px`;
+
   return {
     root: {
       display: 'inline-block',
       minWidth: fullWidth ? '100%' : button.minWidth,
-      height: button.height,
+      height: buttonHeight,
       transition: transitions.easeOut(),
     },
     container: {
+      lineHeight: buttonHeight,
       position: 'relative',
       height: '100%',
       width: '100%',
@@ -85,16 +88,15 @@ function getStyles(props, context, state) {
       userSelect: 'none',
       paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
       paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
-      lineHeight: style && style.height || `${button.height}px`,
       color: labelColor,
     },
     icon: {
-      lineHeight: style && style.height || `${button.height}px`,
       verticalAlign: 'middle',
       marginLeft: label && labelPosition !== 'before' ? 12 : 0,
       marginRight: label && labelPosition === 'before' ? 12 : 0,
     },
     overlay: {
+      height: buttonHeight,
       backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
         fade(labelColor, amount),
       transition: transitions.easeOut(),
