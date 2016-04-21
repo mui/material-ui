@@ -39,6 +39,11 @@ class IconMenu extends React.Component {
     iconStyle: React.PropTypes.object,
 
     /**
+     * Override the inline-styles of the list element inside of menu.
+     */
+    listStyle: React.PropTypes.object,
+
+    /**
      * Override the inline-styles of the menu element.
      */
     menuStyle: React.PropTypes.object,
@@ -263,6 +268,7 @@ class IconMenu extends React.Component {
       onMouseUp,
       onTouchTap,
       menuStyle,
+      listStyle,
       style,
       targetOrigin,
       useLayerForClickAway,
@@ -280,10 +286,12 @@ class IconMenu extends React.Component {
       menu: {
         position: 'relative',
       },
+      list: {},
     };
 
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
+    const mergedListStyles = Object.assign(styles.list, listStyle);
 
     const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: onKeyboardFocus,
@@ -303,6 +311,7 @@ class IconMenu extends React.Component {
         onEscKeyDown={this.handleEscKeyDownMenu}
         onItemTouchTap={this.handleItemTouchTap}
         style={mergedMenuStyles}
+        listStyle={mergedListStyles}
       >
         {this.props.children}
       </Menu>
