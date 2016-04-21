@@ -1,5 +1,29 @@
 ## HEAD
 
+## 0.15.0-beta.2
+###### _Apr 21, 2016_
+
+##### General
+- [.gitignore] Ignore `jsconfig.json` - VSCode config file (#4011)
+- [Docs] Update usage docs with muiTheme instructions (#4034)
+- [Docs] Add beta installation details to the README (#4048)
+- [Examples] Update import statements (#3992)
+
+##### Component Fixes / Enhancements
+- [AutoComplete] Change `error`, `hint`, `floatingLabel` property validators to `PropTypes.node` (#4019)
+- [Dialog] Add border to title and actions when content is scrollable (#4001)
+- [Dialog] Add support for the Alert (#4022)
+- [Dialog] Merge title style when title it a node (#4033)
+- [ListItem] Fix flexbox shrinking [issue](#4016) (#4044)
+- [Menu] Fix regression that caused nested menus to be unreachable (#3947)
+- [RaisedButton] fix hover overlay for icon only buttons, fixes #3815 (#4035)
+- [RefreshIndicator] Fix timer leaks (#3986)
+- [SelectField] Fix server side rendering (#4004)
+- [Tab] Fix the justify content when there is only one child (#4023)
+
+##### Deprecations
+- [List] Deprecate the `valueLink` property (#3936)
+
 ## 0.15.0-beta.1
 ###### _Apr 13, 2016_
 
