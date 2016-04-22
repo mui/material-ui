@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
 import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
-class ClockHours extends React.Component {
+class ClockHours extends Component {
   static propTypes = {
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialHours: React.PropTypes.number,
-    onChange: React.PropTypes.func,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialHours: PropTypes.number,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -18,7 +18,7 @@ class ClockHours extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {

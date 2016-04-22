@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 
-const MobileTearSheet = React.createClass({
+const MobileTearSheet = createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
-    height: React.PropTypes.number,
+    children: PropTypes.node,
+    height: PropTypes.number,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getDefaultProps() {

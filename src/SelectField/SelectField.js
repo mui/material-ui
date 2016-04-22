@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
 
@@ -18,14 +18,14 @@ function getStyles(props) {
   };
 }
 
-class SelectField extends React.Component {
+class SelectField extends Component {
   static propTypes = {
     /**
      * If true, the width will automatically be set according to the
      * items inside the menu.
      * To control this width in css instead, leave this prop to `false`.
      */
-    autoWidth: React.PropTypes.bool,
+    autoWidth: PropTypes.bool,
 
     /**
      * The `MenuItem` elements to populate the `Menu` with.
@@ -33,107 +33,107 @@ class SelectField extends React.Component {
      * be used to render the representation of that
      * item within the field.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Disables the select field if set to true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * The style object to use to override error styles.
      */
-    errorStyle: React.PropTypes.object,
+    errorStyle: PropTypes.object,
 
     /**
      * The error content to display.
      */
-    errorText: React.PropTypes.node,
+    errorText: PropTypes.node,
 
     /**
      * The style object to use to override floating label styles.
      */
-    floatingLabelStyle: React.PropTypes.object,
+    floatingLabelStyle: PropTypes.object,
 
     /**
      * The content to use for the floating label element.
      */
-    floatingLabelText: React.PropTypes.node,
+    floatingLabelText: PropTypes.node,
 
     /**
      * If true, the field receives the property width 100%.
      */
-    fullWidth: React.PropTypes.bool,
+    fullWidth: PropTypes.bool,
 
     /**
      * The style object to use to override hint styles.
      */
-    hintStyle: React.PropTypes.object,
+    hintStyle: PropTypes.object,
 
     /**
      * The hint content to display.
      */
-    hintText: React.PropTypes.node,
+    hintText: PropTypes.node,
 
     /**
      * Overrides the styles of the icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * The id prop for the text field.
      */
-    id: React.PropTypes.string,
+    id: PropTypes.string,
 
     /**
      * Overrides the styles of label when the `SelectField` is inactive.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Callback function that is fired when the `SelectField` loses focus.
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback function that is fired when the value changes.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Callback function that is fired when the `SelectField` gains focus.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * The style object to use to override the `DropDownMenu`.
      */
-    selectFieldRoot: React.PropTypes.object, // Must be changed!
+    selectFieldRoot: PropTypes.object, // Must be changed!
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Override the inline-styles of the underline element when disabled.
      */
-    underlineDisabledStyle: React.PropTypes.object,
+    underlineDisabledStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the underline element when focused.
      */
-    underlineFocusStyle: React.PropTypes.object,
+    underlineFocusStyle: PropTypes.object,
 
     /**
      * Overrides the styles of the underline element.
      */
-    underlineStyle: React.PropTypes.object,
+    underlineStyle: PropTypes.object,
 
     /**
      * The value that is currently selected.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
   };
 
   static defaultProps = {
@@ -143,7 +143,7 @@ class SelectField extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import TableRowColumn from './TableRowColumn';
 
 function getStyles(props, context) {
@@ -15,7 +15,7 @@ function getStyles(props, context) {
   };
 }
 
-class TableFooter extends React.Component {
+class TableFooter extends Component {
   static muiName = 'TableFooter';
 
   static propTypes = {
@@ -28,21 +28,21 @@ class TableFooter extends React.Component {
      * the checkbox column does not create an offset that needs
      * to be accounted for manually.
      */
-    adjustForCheckbox: React.PropTypes.bool,
+    adjustForCheckbox: PropTypes.bool,
     /**
      * Children passed to table footer.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -51,7 +51,7 @@ class TableFooter extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

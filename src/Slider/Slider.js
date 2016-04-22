@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import FocusRipple from '../internal/FocusRipple';
@@ -11,7 +11,7 @@ import FocusRipple from '../internal/FocusRipple';
  * @returns {Object} Returns an Error if min >= max otherwise null.
  */
 const minMaxPropType = (props, propName, componentName) => {
-  const error = React.PropTypes.number(props, propName, componentName);
+  const error = PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
   if (props.min >= props.max) {
@@ -28,7 +28,7 @@ const minMaxPropType = (props, propName, componentName) => {
  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
  */
 const valueInRangePropType = (props, propName, componentName) => {
-  const error = React.PropTypes.number(props, propName, componentName);
+  const error = PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
   const value = props[propName];
@@ -151,7 +151,7 @@ const getStyles = (props, context, state) => {
   return styles;
 };
 
-class Slider extends React.Component {
+class Slider extends Component {
   static propTypes = {
     /**
      * The default value of the slider.
@@ -161,22 +161,22 @@ class Slider extends React.Component {
     /**
      * Describe the slider.
      */
-    description: React.PropTypes.string,
+    description: PropTypes.string,
 
     /**
      * Disables focus ripple if set to true.
      */
-    disableFocusRipple: React.PropTypes.bool,
+    disableFocusRipple: PropTypes.bool,
 
     /**
      * If true, the slider will not be interactable.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * An error message for the slider.
      */
-    error: React.PropTypes.string,
+    error: PropTypes.string,
 
     /**
      * The maximum value the slider can slide to on
@@ -194,47 +194,47 @@ class Slider extends React.Component {
      * The name of the slider. Behaves like the name attribute
      * of an input element.
      */
-    name: React.PropTypes.string,
+    name: PropTypes.string,
 
     /**
      * Callback function that is fired when the focus has left the slider.
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback function that is fired when the user changes the slider's value.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Callback function that is fired when the slider has begun to move.
      */
-    onDragStart: React.PropTypes.func,
+    onDragStart: PropTypes.func,
 
     /**
      * Callback function that is fried when the slide has stopped moving.
      */
-    onDragStop: React.PropTypes.func,
+    onDragStop: PropTypes.func,
 
     /**
      * Callback fired when the user has focused on the slider.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Whether or not the slider is required in a form.
      */
-    required: React.PropTypes.bool,
+    required: PropTypes.bool,
 
     /**
      * The granularity the slider can step through values.
      */
-    step: React.PropTypes.number,
+    step: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The value of the slider.
@@ -253,7 +253,7 @@ class Slider extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

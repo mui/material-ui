@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import propTypes from '../utils/propTypes';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -41,51 +41,51 @@ function getStyles(props, context) {
   };
 }
 
-class IconButton extends React.Component {
+class IconButton extends Component {
   static muiName = 'IconButton';
 
   static propTypes = {
     /**
      * Can be used to pass a `FontIcon` element as the icon for the button.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The CSS class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * If true, the element's ripple effect will be disabled.
      */
-    disableTouchRipple: React.PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
 
     /**
      * If true, the element will be disabled.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * The CSS class name of the icon. Used for setting the icon with a stylesheet.
      */
-    iconClassName: React.PropTypes.string,
+    iconClassName: PropTypes.string,
 
     /**
      * Override the inline-styles of the icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * Callback function fired when the element loses focus.
      * @param {object} event `blur` event targeting the element.
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback function fired when the element gains focus.
      * @param {object} event `focus` event targeting the element.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Callback function fired when the element is focused or blurred by the keyboard.
@@ -93,21 +93,21 @@ class IconButton extends React.Component {
      * @param {object} event `focus` or `blur` event targeting the element.
      * @param {boolean} keyboardFocused Indicates whether the element is focused.
      */
-    onKeyboardFocus: React.PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
 
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Callback function fired when the mouse leaves the element. Unlike `onMouseLeave`,
@@ -115,17 +115,17 @@ class IconButton extends React.Component {
      *
      * @param {object} event `mouseout` event targeting the element.
      */
-    onMouseOut: React.PropTypes.func,
+    onMouseOut: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The text to supply to the element's tooltip.
      */
-    tooltip: React.PropTypes.node,
+    tooltip: PropTypes.node,
 
     /**
      * The vertical and horizontal positions, respectively, of the element's tooltip.
@@ -137,13 +137,13 @@ class IconButton extends React.Component {
     /**
      * Override the inline-styles of the tooltip element.
      */
-    tooltipStyles: React.PropTypes.object,
+    tooltipStyles: PropTypes.object,
 
     /**
      * If true, increase the tooltip element's size.  Useful for increasing tooltip
      * readability on mobile devices.
      */
-    touch: React.PropTypes.bool,
+    touch: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -155,7 +155,7 @@ class IconButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

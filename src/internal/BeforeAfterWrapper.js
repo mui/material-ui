@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 /**
  *  BeforeAfterWrapper
@@ -40,19 +40,19 @@ const styles = {
   },
 };
 
-class BeforeAfterWrapper extends React.Component {
+class BeforeAfterWrapper extends Component {
   static propTypes = {
-    afterElementType: React.PropTypes.string,
-    afterStyle: React.PropTypes.object,
-    beforeElementType: React.PropTypes.string,
-    beforeStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    elementType: React.PropTypes.string,
+    afterElementType: PropTypes.string,
+    afterStyle: PropTypes.object,
+    beforeElementType: PropTypes.string,
+    beforeStyle: PropTypes.object,
+    children: PropTypes.node,
+    elementType: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -62,7 +62,7 @@ class BeforeAfterWrapper extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

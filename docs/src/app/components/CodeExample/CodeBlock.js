@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import MarkdownElement from '../MarkdownElement';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import transitions from 'material-ui/styles/transitions';
@@ -31,11 +31,11 @@ const styles = {
   },
 };
 
-const CodeBlock = React.createClass({
+const CodeBlock = createClass({
   propTypes: {
-    children: React.PropTypes.string,
-    description: React.PropTypes.string,
-    title: React.PropTypes.string,
+    children: PropTypes.string,
+    description: PropTypes.string,
+    title: PropTypes.string,
   },
   mixins: [
     PureRenderMixin,

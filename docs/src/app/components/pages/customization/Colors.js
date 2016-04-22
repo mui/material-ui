@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass} from 'react';
 import Title from 'react-title-component';
 import styleResizable from 'material-ui/utils/styleResizable';
 import ClearFix from 'material-ui/internal/ClearFix';
@@ -6,7 +6,7 @@ import {getContrastRatio} from 'material-ui/utils/colorManipulator';
 import typography from 'material-ui/styles/typography';
 import * as colors from 'material-ui/styles/colors';
 
-const ColorsPage = React.createClass({
+const ColorsPage = createClass({
 
   mixins: [
     styleResizable,

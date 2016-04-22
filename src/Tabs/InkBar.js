@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
@@ -19,20 +19,20 @@ function getStyles(props, context) {
   };
 }
 
-class InkBar extends React.Component {
+class InkBar extends Component {
   static propTypes = {
-    color: React.PropTypes.string,
-    left: React.PropTypes.string.isRequired,
+    color: PropTypes.string,
+    left: PropTypes.string.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    width: React.PropTypes.string.isRequired,
+    style: PropTypes.object,
+    width: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

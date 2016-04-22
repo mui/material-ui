@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 
-class ExpandTransitionChild extends React.Component {
+class ExpandTransitionChild extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    enterDelay: React.PropTypes.number,
-    style: React.PropTypes.object,
+    children: PropTypes.node,
+    enterDelay: PropTypes.number,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -14,7 +14,7 @@ class ExpandTransitionChild extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidUpdate() {

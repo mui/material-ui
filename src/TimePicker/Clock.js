@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import TimeDisplay from './TimeDisplay';
 import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
 
-class Clock extends React.Component {
+class Clock extends Component {
   static propTypes = {
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialTime: React.PropTypes.object,
-    isActive: React.PropTypes.bool,
-    mode: React.PropTypes.oneOf(['hour', 'minute']),
-    onChangeHours: React.PropTypes.func,
-    onChangeMinutes: React.PropTypes.func,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: PropTypes.object,
+    isActive: PropTypes.bool,
+    mode: PropTypes.oneOf(['hour', 'minute']),
+    onChangeHours: PropTypes.func,
+    onChangeMinutes: PropTypes.func,
   };
 
   static defaultProps = {
@@ -18,7 +18,7 @@ class Clock extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

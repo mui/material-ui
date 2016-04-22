@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {baseTheme} = context.muiTheme;
@@ -13,18 +13,18 @@ function getStyles(props, context) {
   };
 }
 
-class FlatButtonLabel extends React.Component {
+class FlatButtonLabel extends Component {
   static propTypes = {
-    label: React.PropTypes.node,
+    label: PropTypes.node,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

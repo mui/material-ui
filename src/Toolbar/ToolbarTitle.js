@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {
@@ -19,28 +19,28 @@ function getStyles(props, context) {
   };
 }
 
-class ToolbarTitle extends React.Component {
+class ToolbarTitle extends Component {
   static muiName = 'ToolbarTitle';
 
   static propTypes = {
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The text to be displayed.
      */
-    text: React.PropTypes.string,
+    text: PropTypes.string,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

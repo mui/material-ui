@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import warning from 'warning';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
@@ -10,64 +10,64 @@ emptyTime.setMinutes(0);
 emptyTime.setSeconds(0);
 emptyTime.setMilliseconds(0);
 
-class TimePicker extends React.Component {
+class TimePicker extends Component {
   static propTypes = {
     /**
      * If true, automatically accept and close the picker on set minutes.
      */
-    autoOk: React.PropTypes.bool,
+    autoOk: PropTypes.bool,
 
     /**
      * Override the label of the 'Cancel' button.
      */
-    cancelLabel: React.PropTypes.node,
+    cancelLabel: PropTypes.node,
 
     /**
      * The initial time value of the TimePicker.
      */
-    defaultTime: React.PropTypes.object,
+    defaultTime: PropTypes.object,
 
     /**
      * If true, the TimePicker is disabled.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
+    format: PropTypes.oneOf(['ampm', '24hr']),
 
     /**
      * Override the label of the 'OK' button.
      */
-    okLabel: React.PropTypes.node,
+    okLabel: PropTypes.node,
 
     /**
      * Callback function that is fired when the time value changes. The time value is passed in a Date Object.
      * Since there is no particular event associated with the change the first argument will always be null
      * and the second argument will be the new Date instance.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Callback function fired when the TimePicker dialog is dismissed.
      */
-    onDismiss: React.PropTypes.func,
+    onDismiss: PropTypes.func,
 
     /**
      * Callback function fired when the TimePicker `TextField` gains focus.
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Callback function fired when the TimePicker dialog is shown.
      */
-    onShow: React.PropTypes.func,
+    onShow: PropTypes.func,
 
     /**
      * Callback function fired when the TimePicker is tapped or clicked.
      */
-    onTouchTap: React.PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * If true, uses ("noon" / "midnight") instead of ("12 a.m." / "12 p.m.").
@@ -76,22 +76,22 @@ class TimePicker extends React.Component {
      * and it avoids confusion between different locales. By default (for compatibility reasons) TimePicker uses
      * ("12 a.m." / "12 p.m.").
      */
-    pedantic: React.PropTypes.bool,
+    pedantic: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Override the inline-styles of TimePicker's TextField element.
      */
-    textFieldStyle: React.PropTypes.object,
+    textFieldStyle: PropTypes.object,
 
     /**
      * Sets the time for the Time Picker programmatically.
      */
-    value: React.PropTypes.object,
+    value: PropTypes.object,
 
   };
 
@@ -107,7 +107,7 @@ class TimePicker extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

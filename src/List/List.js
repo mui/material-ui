@@ -1,38 +1,38 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import propTypes from '../utils/propTypes';
 import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
 
-class List extends React.Component {
+class List extends Component {
   static propTypes = {
     /**
      * These are usually `ListItem`s that are passed to
      * be part of the list.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * If true, the subheader will be indented by 72px.
      */
-    insetSubheader: deprecated(React.PropTypes.bool,
+    insetSubheader: deprecated(PropTypes.bool,
       'Refer to the `subheader` property.'),
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The subheader string that will be displayed at the top of the list.
      */
-    subheader: deprecated(React.PropTypes.node,
+    subheader: deprecated(PropTypes.node,
       'Instead, nest the `Subheader` component directly inside the `List`.'),
 
     /**
      * Override the inline-styles of the subheader element.
      */
-    subheaderStyle: deprecated(React.PropTypes.object,
+    subheaderStyle: deprecated(PropTypes.object,
       'Refer to the `subheader` property.'),
 
     /**
@@ -44,7 +44,7 @@ class List extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

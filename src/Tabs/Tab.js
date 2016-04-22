@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {
@@ -23,24 +23,24 @@ function getStyles(props, context) {
   };
 }
 
-class Tab extends React.Component {
+class Tab extends Component {
   static muiName = 'Tab';
 
   static propTypes = {
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
      */
-    icon: React.PropTypes.node,
+    icon: PropTypes.node,
 
     /**
      * Sets the text value of the tab item to the string specified.
      */
-    label: React.PropTypes.node,
+    label: PropTypes.node,
 
     /**
      * Fired when the active tab changes by touch or tap.
@@ -48,41 +48,41 @@ class Tab extends React.Component {
      * For example - we are using this to route to home when the third tab becomes active.
      * This function will always recieve the active tab as it\'s first argument.
      */
-    onActive: React.PropTypes.func,
+    onActive: PropTypes.func,
 
     /**
      * @ignore
      * This property is overriden by the Tabs component.
      */
-    onTouchTap: React.PropTypes.func,
+    onTouchTap: PropTypes.func,
 
     /**
      * @ignore
      * Defines if the current tab is selected or not.
      * The Tabs component is responsible for setting this property.
      */
-    selected: React.PropTypes.bool,
+    selected: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * If value prop passed to Tabs component, this value prop is also required.
      * It assigns a value to the tab so that it can be selected by the Tabs.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
 
     /**
      * @ignore
      * This property is overriden by the Tabs component.
      */
-    width: React.PropTypes.string,
+    width: PropTypes.string,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   handleTouchTap = (event) => {

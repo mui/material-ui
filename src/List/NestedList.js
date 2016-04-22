@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import List from './List';
 
-class NestedList extends React.Component {
+class NestedList extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    nestedLevel: React.PropTypes.number,
-    open: React.PropTypes.bool,
+    children: PropTypes.node,
+    nestedLevel: PropTypes.number,
+    open: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {

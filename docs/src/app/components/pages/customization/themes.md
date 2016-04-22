@@ -113,7 +113,7 @@ class DeepDownTheTree extends React.Component {
 }
 
 DeepDownTheTree.propTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 export default muiThemeable()(DeepDownTheTree);
@@ -145,7 +145,7 @@ class Main extends React.Component {
 }
 
 Main.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 export default Main;
@@ -167,7 +167,7 @@ class DeepDownTheTree extends React.Component {
 }
 
 DeepDownTheTree.contextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 export default DeepDownTheTree;

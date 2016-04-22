@@ -1,4 +1,4 @@
-import React from 'react';
+import {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import events from '../utils/events';
 
@@ -13,11 +13,11 @@ const clickAwayEvents = ['mouseup', 'touchend'];
 const bind = (callback) => clickAwayEvents.forEach((event) => events.on(document, event, callback));
 const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(document, event, callback));
 
-export default class ClickAwayListener extends React.Component {
+export default class ClickAwayListener extends Component {
 
   static propTypes = {
-    children: React.PropTypes.node,
-    onClickAway: React.PropTypes.any,
+    children: PropTypes.node,
+    onClickAway: PropTypes.any,
   };
 
   componentDidMount() {

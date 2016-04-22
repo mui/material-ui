@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
@@ -9,14 +9,14 @@ import Paper from '../Paper';
 
 import ReactTransitionGroup from 'react-addons-transition-group';
 
-class TransitionItem extends React.Component {
+class TransitionItem extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    style: React.PropTypes.object,
+    children: PropTypes.node,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -147,33 +147,33 @@ function getStyles(props, context) {
   };
 }
 
-class DialogInline extends React.Component {
+class DialogInline extends Component {
   static propTypes = {
-    actions: React.PropTypes.node,
-    actionsContainerClassName: React.PropTypes.string,
-    actionsContainerStyle: React.PropTypes.object,
-    autoDetectWindowHeight: React.PropTypes.bool,
-    autoScrollBodyContent: React.PropTypes.bool,
-    bodyClassName: React.PropTypes.string,
-    bodyStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    contentClassName: React.PropTypes.string,
-    contentStyle: React.PropTypes.object,
-    modal: React.PropTypes.bool,
-    onRequestClose: React.PropTypes.func,
-    open: React.PropTypes.bool.isRequired,
-    overlayClassName: React.PropTypes.string,
-    overlayStyle: React.PropTypes.object,
-    repositionOnUpdate: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    title: React.PropTypes.node,
-    titleClassName: React.PropTypes.string,
-    titleStyle: React.PropTypes.object,
+    actions: PropTypes.node,
+    actionsContainerClassName: PropTypes.string,
+    actionsContainerStyle: PropTypes.object,
+    autoDetectWindowHeight: PropTypes.bool,
+    autoScrollBodyContent: PropTypes.bool,
+    bodyClassName: PropTypes.string,
+    bodyStyle: PropTypes.object,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    contentClassName: PropTypes.string,
+    contentStyle: PropTypes.object,
+    modal: PropTypes.bool,
+    onRequestClose: PropTypes.func,
+    open: PropTypes.bool.isRequired,
+    overlayClassName: PropTypes.string,
+    overlayStyle: PropTypes.object,
+    repositionOnUpdate: PropTypes.bool,
+    style: PropTypes.object,
+    title: PropTypes.node,
+    titleClassName: PropTypes.string,
+    titleStyle: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -356,117 +356,117 @@ class DialogInline extends React.Component {
   }
 }
 
-class Dialog extends React.Component {
+class Dialog extends Component {
   static propTypes = {
     /**
      * Action buttons to display below the Dialog content (`children`).
      * This property accepts either a React element, or an array of React elements.
      */
-    actions: React.PropTypes.node,
+    actions: PropTypes.node,
 
     /**
      * The `className` to add to the actions container's root element.
      */
-    actionsContainerClassName: React.PropTypes.string,
+    actionsContainerClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the actions container's root element.
      */
-    actionsContainerStyle: React.PropTypes.object,
+    actionsContainerStyle: PropTypes.object,
 
     /**
      * If set to true, the height of the `Dialog` will be auto detected. A max height
      * will be enforced so that the content does not extend beyond the viewport.
      */
-    autoDetectWindowHeight: React.PropTypes.bool,
+    autoDetectWindowHeight: PropTypes.bool,
 
     /**
      * If set to true, the body content of the `Dialog` will be scrollable.
      */
-    autoScrollBodyContent: React.PropTypes.bool,
+    autoScrollBodyContent: PropTypes.bool,
 
     /**
      * The `className` to add to the content's root element under the title.
      */
-    bodyClassName: React.PropTypes.string,
+    bodyClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the content's root element under the title.
      */
-    bodyStyle: React.PropTypes.object,
+    bodyStyle: PropTypes.object,
 
     /**
      * The contents of the `Dialog`.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * The `className` to add to the content container.
      */
-    contentClassName: React.PropTypes.string,
+    contentClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the content container.
      */
-    contentStyle: React.PropTypes.object,
+    contentStyle: PropTypes.object,
 
     /**
      * Force the user to use one of the actions in the `Dialog`.
      * Clicking outside the `Dialog` will not trigger the `onRequestClose`.
      */
-    modal: React.PropTypes.bool,
+    modal: PropTypes.bool,
 
     /**
      * Fired when the `Dialog` is requested to be closed by a click outside the `Dialog` or on the buttons.
      *
      * @param {bool} buttonClicked Determines whether a button click triggered this request.
      */
-    onRequestClose: React.PropTypes.func,
+    onRequestClose: PropTypes.func,
 
     /**
      * Controls whether the Dialog is opened or not.
      */
-    open: React.PropTypes.bool.isRequired,
+    open: PropTypes.bool.isRequired,
 
     /**
      * The `className` to add to the `Overlay` component that is rendered behind the `Dialog`.
      */
-    overlayClassName: React.PropTypes.string,
+    overlayClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the `Overlay` component that is rendered behind the `Dialog`.
      */
-    overlayStyle: React.PropTypes.object,
+    overlayStyle: PropTypes.object,
 
     /**
      * Determines whether the `Dialog` should be repositioned when it's contents are updated.
      */
-    repositionOnUpdate: React.PropTypes.bool,
+    repositionOnUpdate: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The title to display on the `Dialog`. Could be number, string, element or an array containing these types.
      */
-    title: React.PropTypes.node,
+    title: PropTypes.node,
 
     /**
      * The `className` to add to the title's root container element.
      */
-    titleClassName: React.PropTypes.string,
+    titleClassName: PropTypes.string,
 
     /**
      * Overrides the inline-styles of the title's root container element.
      */
-    titleStyle: React.PropTypes.object,
+    titleStyle: PropTypes.object,
   };
 
   static defaultProps = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Checkbox from '../Checkbox';
 import TableHeaderColumn from './TableHeaderColumn';
 
@@ -12,7 +12,7 @@ function getStyles(props, context) {
   };
 }
 
-class TableHeader extends React.Component {
+class TableHeader extends Component {
   static muiName = 'TableHeader';
 
   static propTypes = {
@@ -25,46 +25,46 @@ class TableHeader extends React.Component {
      * does not create an offset that needs to be accounted
      * for manually.
      */
-    adjustForCheckbox: React.PropTypes.bool,
+    adjustForCheckbox: PropTypes.bool,
 
     /**
      * Children passed to table header.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * Controls whether or not the select all checkbox is displayed.
      */
-    displaySelectAll: React.PropTypes.bool,
+    displaySelectAll: PropTypes.bool,
 
     /**
      * If set to true, the select all button will be interactable.
      * If set to false, the button will not be interactable.
      * To hide the checkbox, set displaySelectAll to false.
      */
-    enableSelectAll: React.PropTypes.bool,
+    enableSelectAll: PropTypes.bool,
 
     /**
      * @ignore
      * Callback when select all has been checked.
      */
-    onSelectAll: React.PropTypes.func,
+    onSelectAll: PropTypes.func,
 
     /**
      * @ignore
      * True when select all has been checked.
      */
-    selectAllSelected: React.PropTypes.bool,
+    selectAllSelected: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -75,7 +75,7 @@ class TableHeader extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   createSuperHeaderRows() {

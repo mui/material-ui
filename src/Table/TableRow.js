@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context, state) {
   const {tableRow} = context.muiTheme;
@@ -24,28 +24,28 @@ function getStyles(props, context, state) {
   };
 }
 
-class TableRow extends React.Component {
+class TableRow extends Component {
   static propTypes = {
     /**
      * Children passed to table row.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * If true, row border will be displayed for the row.
      * If false, no border will be drawn.
      */
-    displayBorder: React.PropTypes.bool,
+    displayBorder: PropTypes.bool,
 
     /**
      * Controls whether or not the row reponseds to hover events.
      */
-    hoverable: React.PropTypes.bool,
+    hoverable: PropTypes.bool,
 
     /**
      * Controls whether or not the row should be rendered as being
@@ -53,7 +53,7 @@ class TableRow extends React.Component {
      * and can be used to synchronize the hovered state with some other
      * external events.
      */
-    hovered: React.PropTypes.bool,
+    hovered: PropTypes.bool,
 
     /**
      * @ignore
@@ -61,7 +61,7 @@ class TableRow extends React.Component {
      * rowNumber is the row number and columnId is
      * the column number or the column key.
      */
-    onCellClick: React.PropTypes.func,
+    onCellClick: PropTypes.func,
 
     /**
      * @ignore
@@ -69,7 +69,7 @@ class TableRow extends React.Component {
      * rowNumber is the row number of the hovered row
      * and columnId is the column number or the column key of the cell.
      */
-    onCellHover: React.PropTypes.func,
+    onCellHover: PropTypes.func,
 
     /**
      * @ignore
@@ -77,56 +77,56 @@ class TableRow extends React.Component {
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
      */
-    onCellHoverExit: React.PropTypes.func,
+    onCellHoverExit: PropTypes.func,
 
     /**
      * @ignore
      * Called when row is clicked.
      */
-    onRowClick: React.PropTypes.func,
+    onRowClick: PropTypes.func,
 
     /**
      * @ignore
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
-    onRowHover: React.PropTypes.func,
+    onRowHover: PropTypes.func,
 
     /**
      * @ignore
      * Called when a table row is no longer hovered.
      * rowNumber is the row number of the row that is no longer hovered.
      */
-    onRowHoverExit: React.PropTypes.func,
+    onRowHoverExit: PropTypes.func,
 
     /**
      * Number to identify the row. This property is
      * automatically populated when used with the TableBody component.
      */
-    rowNumber: React.PropTypes.number,
+    rowNumber: PropTypes.number,
 
     /**
      * If true, table rows can be selected. If multiple row
      * selection is desired, enable multiSelectable.
      * The default value is true.
      */
-    selectable: React.PropTypes.bool,
+    selectable: PropTypes.bool,
 
     /**
      * Indicates that a particular row is selected.
      * This property can be used to programmatically select rows.
      */
-    selected: React.PropTypes.bool,
+    selected: PropTypes.bool,
 
     /**
      * Indicates whether or not the row is striped.
      */
-    striped: React.PropTypes.bool,
+    striped: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -139,7 +139,7 @@ class TableRow extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {tableRowColumn} = context.muiTheme;
@@ -23,50 +23,50 @@ function getStyles(props, context) {
   return styles;
 }
 
-class TableRowColumn extends React.Component {
+class TableRowColumn extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * @ignore
      * Number to identify the header row. This property
      * is automatically populated when used with TableHeader.
      */
-    columnNumber: React.PropTypes.number,
+    columnNumber: PropTypes.number,
 
     /**
      * @ignore
      * If true, this column responds to hover events.
      */
-    hoverable: React.PropTypes.bool,
+    hoverable: PropTypes.bool,
 
     /**
      * @ignore
      * Callback function for click event.
      */
-    onClick: React.PropTypes.func,
+    onClick: PropTypes.func,
 
     /**
      * @ignore
      * Callback function for hover event.
      */
-    onHover: React.PropTypes.func,
+    onHover: PropTypes.func,
 
     /**
      * @ignore
      * Callback function for hover exit event.
      */
-    onHoverExit: React.PropTypes.func,
+    onHoverExit: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -74,7 +74,7 @@ class TableRowColumn extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

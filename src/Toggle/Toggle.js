@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
@@ -66,7 +66,7 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-class Toggle extends React.Component {
+class Toggle extends Component {
   static propTypes = {
     /**
      * Determines whether the Toggle is initially turned on.
@@ -74,77 +74,77 @@ class Toggle extends React.Component {
      * Decide between using a controlled or uncontrolled input element and remove one of these props.
      * More info: https://fb.me/react-controlled-components
      */
-    defaultToggled: React.PropTypes.bool,
+    defaultToggled: PropTypes.bool,
 
     /**
      * Will disable the toggle if true.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Overrides the inline-styles of the Toggle element.
      */
-    elementStyle: React.PropTypes.object,
+    elementStyle: PropTypes.object,
 
     /**
      * Overrides the inline-styles of the Icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * Overrides the inline-styles of the input element.
      */
-    inputStyle: React.PropTypes.object,
+    inputStyle: PropTypes.object,
 
     /**
      * Label for toggle.
      */
-    label: React.PropTypes.string,
+    label: PropTypes.string,
 
     /**
      * Where the label will be placed next to the toggle.
      */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * Overrides the inline-styles of the Toggle element label.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Callback function that is fired when the toggle switch is toggled.
      */
-    onToggle: React.PropTypes.func,
+    onToggle: PropTypes.func,
 
     /**
      * Override style of ripple.
      */
-    rippleStyle: React.PropTypes.object,
+    rippleStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Override style for thumb.
      */
-    thumbStyle: React.PropTypes.object,
+    thumbStyle: PropTypes.object,
 
     /**
      * Toggled if set to true.
      */
-    toggled: React.PropTypes.bool,
+    toggled: PropTypes.bool,
 
     /**
      * Override style for track.
      */
-    trackStyle: React.PropTypes.object,
+    trackStyle: PropTypes.object,
 
     /**
      * ValueLink prop for when using controlled toggle.
      */
-    valueLink: React.PropTypes.object,
+    valueLink: PropTypes.object,
   };
 
   static defaultProps = {
@@ -154,7 +154,7 @@ class Toggle extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {switched: false};

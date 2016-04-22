@@ -1,37 +1,37 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import RadioButton from '../RadioButton';
 import warning from 'warning';
 
-class RadioButtonGroup extends React.Component {
+class RadioButtonGroup extends Component {
   static propTypes = {
     /**
      * Should be used to pass `RadioButton` components.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The CSS class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * The `value` property (case-sensitive) of the radio button that will be
      * selected by default. This takes precedence over the `checked` property
      * of the `RadioButton` elements.
      */
-    defaultSelected: React.PropTypes.string,
+    defaultSelected: PropTypes.string,
 
     /**
      * Where the label will be placed for all child radio buttons.
      * This takes precedence over the `labelPosition` property of the
      * `RadioButton` elements.
      */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * The name that will be applied to all child radio buttons.
      */
-    name: React.PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 
     /**
      * Callback function that is fired when a radio button has
@@ -41,17 +41,17 @@ class RadioButtonGroup extends React.Component {
      * radio button.
      * @param {string} value The `value` of the selected radio button.
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The `value` of the currently selected radio button.
      */
-    valueSelected: React.PropTypes.string,
+    valueSelected: PropTypes.string,
   };
 
   static defaultProps = {
@@ -59,7 +59,7 @@ class RadioButtonGroup extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

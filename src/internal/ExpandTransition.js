@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import ExpandTransitionChild from './ExpandTransitionChild';
 
-class ExpandTransition extends React.Component {
+class ExpandTransition extends Component {
   static propTypes = {
     children: PropTypes.node,
     enterDelay: PropTypes.number,
@@ -18,7 +18,7 @@ class ExpandTransition extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   renderChildren(children, loading) {

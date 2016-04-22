@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 const propTypes = {
   /**
    * The css class name of the root element.
    */
-  className: React.PropTypes.string,
+  className: PropTypes.string,
 
   /**
    * If true, the `Divider` will be indented `72px`.
    */
-  inset: React.PropTypes.bool,
+  inset: PropTypes.bool,
 
   /**
    * Override the inline-styles of the root element.
    */
-  style: React.PropTypes.object,
+  style: PropTypes.object,
 };
 
 const defaultProps = {
@@ -22,7 +22,7 @@ const defaultProps = {
 };
 
 const contextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 const Divider = (props, context) => {

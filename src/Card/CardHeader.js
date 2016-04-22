@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Avatar from '../Avatar';
 
 function getStyles(props, context) {
@@ -34,74 +34,74 @@ function getStyles(props, context) {
   };
 }
 
-class CardHeader extends React.Component {
+class CardHeader extends Component {
   static muiName = 'CardHeader';
 
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
-    actAsExpander: React.PropTypes.bool,
+    actAsExpander: PropTypes.bool,
 
     /**
      * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
      */
-    avatar: React.PropTypes.node,
+    avatar: PropTypes.node,
 
     /**
      * Can be used to render elements inside the Card Header.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * If true, this card component is expandable.
      */
-    expandable: React.PropTypes.bool,
+    expandable: PropTypes.bool,
 
     /**
      * If true, this card component will include a button to expand the card.
      */
-    showExpandableButton: React.PropTypes.bool,
+    showExpandableButton: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * Can be used to render a subtitle in Card Header.
      */
-    subtitle: React.PropTypes.node,
+    subtitle: PropTypes.node,
 
     /**
      * Override the subtitle color.
      */
-    subtitleColor: React.PropTypes.string,
+    subtitleColor: PropTypes.string,
 
     /**
      * Override the inline-styles of the subtitle.
      */
-    subtitleStyle: React.PropTypes.object,
+    subtitleStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the text.
      */
-    textStyle: React.PropTypes.object,
+    textStyle: PropTypes.object,
 
     /**
      * Can be used to render a title in Card Header.
      */
-    title: React.PropTypes.node,
+    title: PropTypes.node,
 
     /**
      * Override the title color.
      */
-    titleColor: React.PropTypes.string,
+    titleColor: PropTypes.string,
 
     /**
      * Override the inline-styles of the title.
      */
-    titleStyle: React.PropTypes.object,
+    titleStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -109,7 +109,7 @@ class CardHeader extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

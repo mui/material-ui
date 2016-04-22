@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './SlideInChild';
 
-class SlideIn extends React.Component {
+class SlideIn extends Component {
   static propTypes = {
-    childStyle: React.PropTypes.object,
-    children: React.PropTypes.node,
-    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down']),
-    enterDelay: React.PropTypes.number,
-    style: React.PropTypes.object,
+    childStyle: PropTypes.object,
+    children: PropTypes.node,
+    direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    enterDelay: PropTypes.number,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -17,7 +17,7 @@ class SlideIn extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   getLeaveDirection = () => {

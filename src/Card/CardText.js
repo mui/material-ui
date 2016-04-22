@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props, context) {
   const {cardText} = context.muiTheme;
@@ -12,38 +12,38 @@ function getStyles(props, context) {
   };
 }
 
-class CardText extends React.Component {
+class CardText extends Component {
   static muiName = 'CardText';
 
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.
      */
-    actAsExpander: React.PropTypes.bool,
+    actAsExpander: PropTypes.bool,
 
     /**
      * Can be used to render elements inside the Card Text.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Override the CardText color.
      */
-    color: React.PropTypes.string,
+    color: PropTypes.string,
 
     /**
      * If true, this card component is expandable.
      */
-    expandable: React.PropTypes.bool,
+    expandable: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

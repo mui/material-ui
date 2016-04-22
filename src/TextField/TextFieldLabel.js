@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 const propTypes = {
@@ -6,42 +6,42 @@ const propTypes = {
    * @ignore
    * The material-ui theme applied to this component.
    */
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 
   /**
    * The css class name of the root element.
    */
-  className: React.PropTypes.string,
+  className: PropTypes.string,
 
   /**
    * The label contents.
    */
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 
   /**
    * Disables the label if set to true.
    */
-  disabled: React.PropTypes.bool,
+  disabled: PropTypes.bool,
 
   /**
    * True if the floating label should shrink.
    */
-  shrink: React.PropTypes.bool,
+  shrink: PropTypes.bool,
 
   /**
    * The id of the target element that this label should refer to.
    */
-  htmlFor: React.PropTypes.string,
+  htmlFor: PropTypes.string,
 
   /**
    * Callback function for when the label is selected via a touch tap.
    */
-  onTouchTap: React.PropTypes.func,
+  onTouchTap: PropTypes.func,
 
   /**
    * Override the inline-styles of the root element.
    */
-  style: React.PropTypes.object,
+  style: PropTypes.object,
 };
 
 const defaultProps = {

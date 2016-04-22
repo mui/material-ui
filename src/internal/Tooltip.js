@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context, state) {
@@ -77,26 +77,26 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-class Tooltip extends React.Component {
+class Tooltip extends Component {
   static propTypes = {
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-    horizontalPosition: React.PropTypes.oneOf(['left', 'right', 'center']),
-    label: React.PropTypes.node.isRequired,
-    show: React.PropTypes.bool,
+    className: PropTypes.string,
+    horizontalPosition: PropTypes.oneOf(['left', 'right', 'center']),
+    label: PropTypes.node.isRequired,
+    show: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    touch: React.PropTypes.bool,
-    verticalPosition: React.PropTypes.oneOf(['top', 'bottom']),
+    style: PropTypes.object,
+    touch: PropTypes.bool,
+    verticalPosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

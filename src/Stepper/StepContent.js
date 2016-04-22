@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ExpandTransition from '../internal/ExpandTransition';
 import warning from 'warning';
 
@@ -20,7 +20,7 @@ const getStyles = (props, context) => {
   return styles;
 };
 
-class StepContent extends React.Component {
+class StepContent extends Component {
   static propTypes = {
     /**
      * Expands the content

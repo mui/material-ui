@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import AutoLockScrolling from './AutoLockScrolling';
 
@@ -38,16 +38,16 @@ function getStyles(props, context) {
   return style;
 }
 
-class Overlay extends React.Component {
+class Overlay extends Component {
   static propTypes = {
-    autoLockScrolling: React.PropTypes.bool,
-    show: React.PropTypes.bool.isRequired,
+    autoLockScrolling: PropTypes.bool,
+    show: PropTypes.bool.isRequired,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-    transitionEnabled: React.PropTypes.bool,
+    style: PropTypes.object,
+    transitionEnabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -57,7 +57,7 @@ class Overlay extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   setOpacity(opacity) {

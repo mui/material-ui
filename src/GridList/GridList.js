@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 function getStyles(props) {
   return {
@@ -14,32 +14,32 @@ function getStyles(props) {
   };
 }
 
-class GridList extends React.Component {
+class GridList extends Component {
   static propTypes = {
     /**
      * Number of px for one cell height.
      */
-    cellHeight: React.PropTypes.number,
+    cellHeight: PropTypes.number,
 
     /**
      * Grid Tiles that will be in Grid List.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * Number of columns.
      */
-    cols: React.PropTypes.number,
+    cols: PropTypes.number,
 
     /**
      * Number of px for the padding/spacing between items.
      */
-    padding: React.PropTypes.number,
+    padding: PropTypes.number,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -49,7 +49,7 @@ class GridList extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

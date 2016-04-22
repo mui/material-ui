@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
 import StepLabel from './StepLabel';
@@ -26,7 +26,7 @@ const getStyles = (props, context, state) => {
   return styles;
 };
 
-class StepButton extends React.Component {
+class StepButton extends Component {
 
   static propTypes = {
     /**

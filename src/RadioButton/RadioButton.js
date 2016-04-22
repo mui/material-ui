@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 import RadioButtonOff from '../svg-icons/toggle/radio-button-unchecked';
@@ -50,46 +50,46 @@ function getStyles(props, context) {
   };
 }
 
-class RadioButton extends React.Component {
+class RadioButton extends Component {
   static propTypes = {
     /**
      * @ignore
      * checked if true
      * Used internally by `RadioButtonGroup`.
      */
-    checked: React.PropTypes.bool,
+    checked: PropTypes.bool,
 
     /**
      * The icon element to show when the radio button is checked.
      */
-    checkedIcon: React.PropTypes.element,
+    checkedIcon: PropTypes.element,
 
     /**
      * If true, the radio button is disabled.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Override the inline-styles of the icon element.
      */
-    iconStyle: React.PropTypes.object,
+    iconStyle: PropTypes.object,
 
     /**
      * Override the inline-styles of the input element.
      */
-    inputStyle: React.PropTypes.object,
+    inputStyle: PropTypes.object,
 
     /**
      * @ignore
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      * Where the label will be placed next to the radio button.
      */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right']),
 
     /**
      * Override the inline-styles of the label element.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * @ignore
@@ -101,22 +101,22 @@ class RadioButton extends React.Component {
      * @param {object} event `change` event targeting the element.
      * @param {string} value The element's `value`.
      */
-    onCheck: React.PropTypes.func,
+    onCheck: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * The icon element to show when the radio button is unchecked.
      */
-    uncheckedIcon: React.PropTypes.element,
+    uncheckedIcon: PropTypes.element,
 
     /**
      * The value of the radio button.
      */
-    value: React.PropTypes.string,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
@@ -126,7 +126,7 @@ class RadioButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   handleStateChange = () => {

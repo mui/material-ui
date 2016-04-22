@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import {Link} from 'react-router';
 import styleResizable from 'material-ui/utils/styleResizable';
 import spacing from 'material-ui/styles/spacing';
@@ -7,14 +7,14 @@ import typography from 'material-ui/styles/typography';
 import {grey200} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 
-const HomeFeature = React.createClass({
+const HomeFeature = createClass({
 
   propTypes: {
-    firstChild: React.PropTypes.bool,
-    heading: React.PropTypes.string,
-    img: React.PropTypes.string,
-    lastChild: React.PropTypes.bool,
-    route: React.PropTypes.string,
+    firstChild: PropTypes.bool,
+    heading: PropTypes.string,
+    img: PropTypes.string,
+    lastChild: PropTypes.bool,
+    route: PropTypes.string,
   },
 
   mixins: [styleResizable],

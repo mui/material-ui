@@ -1,47 +1,47 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 const propTypes = {
   /**
    * True if the parent `TextField` is disabled.
    */
-  disabled: React.PropTypes.bool,
+  disabled: PropTypes.bool,
 
   /**
    * Override the inline-styles of the underline when parent `TextField` is disabled.
    */
-  disabledStyle: React.PropTypes.object,
+  disabledStyle: PropTypes.object,
 
   /**
    * True if the parent `TextField` has an error.
    */
-  error: React.PropTypes.bool,
+  error: PropTypes.bool,
 
   /**
    * Override the inline-styles of the underline when parent `TextField` has an error.
    */
-  errorStyle: React.PropTypes.object,
+  errorStyle: PropTypes.object,
 
   /**
    * True if the parent `TextField` is focused.
    */
-  focus: React.PropTypes.bool,
+  focus: PropTypes.bool,
 
   /**
    * Override the inline-styles of the underline when parent `TextField` is focused.
    */
-  focusStyle: React.PropTypes.object,
+  focusStyle: PropTypes.object,
 
   /**
    * @ignore
    * The material-ui theme applied to this component.
    */
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 
   /**
    * Override the inline-styles of the root element.
    */
-  style: React.PropTypes.object,
+  style: PropTypes.object,
 };
 
 const defaultProps = {

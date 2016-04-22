@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 const getStyles = ({index}, {stepper}) => {
   const {orientation} = stepper;
@@ -19,7 +19,7 @@ const getStyles = ({index}, {stepper}) => {
   return styles;
 };
 
-export default class Step extends React.Component {
+export default class Step extends Component {
 
   static propTypes = {
     /**

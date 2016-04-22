@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
@@ -109,7 +109,7 @@ function getStyles(props, context, state) {
   };
 }
 
-class RaisedButton extends React.Component {
+class RaisedButton extends Component {
   static muiName = 'RaisedButton';
 
   static propTypes = {
@@ -118,51 +118,51 @@ class RaisedButton extends React.Component {
      * but not the default disabled background color
      * (use `disabledBackgroundColor` for this).
      */
-    backgroundColor: React.PropTypes.string,
+    backgroundColor: PropTypes.string,
 
     /**
      * The content of the button.
      * If a label is provided via the `label` prop, the text within the label
      * will be displayed in addition to the content provided here.
      */
-    children: React.PropTypes.node,
+    children: PropTypes.node,
 
     /**
      * The CSS class name of the root element.
      */
-    className: React.PropTypes.string,
+    className: PropTypes.string,
 
     /**
      * If true, the button will be disabled.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
 
     /**
      * Override the default background color for the button
      * when it is disabled.
      */
-    disabledBackgroundColor: React.PropTypes.string,
+    disabledBackgroundColor: PropTypes.string,
 
     /**
      * The color of the button's label when the button is disabled.
      */
-    disabledLabelColor: React.PropTypes.string,
+    disabledLabelColor: PropTypes.string,
 
     /**
      * If true, the button will take up the full width of its container.
      */
-    fullWidth: React.PropTypes.bool,
+    fullWidth: PropTypes.bool,
 
     /**
      * If `linkButton` is true, the URL to link to when the button
      * is clicked.
      */
-    href: React.PropTypes.string,
+    href: PropTypes.string,
 
     /**
      * An icon to be displayed within the button.
      */
-    icon: React.PropTypes.node,
+    icon: PropTypes.node,
 
     /**
      * The label to be displayed within the button.
@@ -174,12 +174,12 @@ class RaisedButton extends React.Component {
     /**
      * The color of the button's label.
      */
-    labelColor: React.PropTypes.string,
+    labelColor: PropTypes.string,
 
     /**
      * The position of the button's label relative to the button's `children`.
      */
-    labelPosition: React.PropTypes.oneOf([
+    labelPosition: PropTypes.oneOf([
       'before',
       'after',
     ]),
@@ -187,13 +187,13 @@ class RaisedButton extends React.Component {
     /**
      * Override the inline-styles of the button's label element.
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * If true, enable the use of the `href` property to provide
      * a URL to link to.
      */
-    linkButton: React.PropTypes.bool,
+    linkButton: PropTypes.bool,
 
     /**
      * Callback function fired when a mouse button is pressed down on
@@ -201,64 +201,64 @@ class RaisedButton extends React.Component {
      *
      * @param {object} event `mousedown` event targeting the element.
      */
-    onMouseDown: React.PropTypes.func,
+    onMouseDown: PropTypes.func,
 
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
-    onMouseEnter: React.PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
-    onMouseLeave: React.PropTypes.func,
+    onMouseLeave: PropTypes.func,
 
     /**
      * Callback function fired when a mouse button is released on the element.
      *
      * @param {object} event `mouseup` event targeting the element.
      */
-    onMouseUp: React.PropTypes.func,
+    onMouseUp: PropTypes.func,
 
     /**
      * Callback function fired when a touch point is removed from the element.
      *
      * @param {object} event `touchend` event targeting the element.
      */
-    onTouchEnd: React.PropTypes.func,
+    onTouchEnd: PropTypes.func,
 
     /**
      * Callback function fired when the element is touched.
      *
      * @param {object} event `touchstart` event targeting the element.
      */
-    onTouchStart: React.PropTypes.func,
+    onTouchStart: PropTypes.func,
 
     /**
      * If true, the button will use the theme's primary color.
      */
-    primary: React.PropTypes.bool,
+    primary: PropTypes.bool,
 
     /**
      * Override the inline style of the ripple element.
      */
-    rippleStyle: React.PropTypes.object,
+    rippleStyle: PropTypes.object,
 
     /**
      * If true, the button will use the theme's secondary color.
      * If both `secondary` and `primary` are true, the button will use
      * the theme's primary color.
      */
-    secondary: React.PropTypes.bool,
+    secondary: PropTypes.bool,
 
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -270,7 +270,7 @@ class RaisedButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
