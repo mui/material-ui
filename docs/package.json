@@ -12,7 +12,7 @@
   "private": true,
   "scripts": {
     "start": "npm run browser:development",
-    "browser:development": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
+    "browser:development": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline --host=",
     "browser:build": "NODE_ENV=docs-production webpack --config webpack-production.config.js --progress --colors --profile",
     "browser:prd": "NODE_ENV=docs-production webpack-dev-server --config webpack-production.config.js --progress --colors",
     "gh-pages:build": "node ./gh-pages-build.js",
