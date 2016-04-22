@@ -18,6 +18,8 @@ const pathConversion = {
   'divider': 'Divider',
   'grid-list/grid-list': 'GridList/GridList',
   'grid-list/grid-tile': 'GridList/GridTile',
+  'font-icon': 'FontIcon',
+  'svg-icon': 'SvgIcon',
   'left-nav': 'Drawer',
   'lists/list': 'List/List',
   'lists/list-item': 'List/ListItem',
@@ -28,10 +30,12 @@ const pathConversion = {
   'popover/popover': 'Popover',
   'circular-progress': 'CircularProgress',
   'linear-progress': 'LinearProgress',
+  'refresh-indicator': 'RefreshIndicator',
   'select-field': 'SelectField',
   'slider': 'Slider',
   'checkbox': 'Checkbox',
   'radio-button': 'RadioButton',
+  'radio-button-group': 'RadioButton/RadioButtonGroup',
   'toggle': 'Toggle',
   'snackbar': 'Snackbar',
   'table/table': 'Table/Table',
@@ -40,6 +44,7 @@ const pathConversion = {
   'table/table-header': 'Table/TableHeader',
   'table/table-row-column': 'Table/TableRowColumn',
   'table/table-body': 'Table/TableBody',
+  'table/table-footer': 'Table/TableFooter',
   'tabs/tab': 'Tabs/Tab',
   'tabs/tabs': 'Tabs/Tabs',
   'text-field': 'TextField',
@@ -83,14 +88,14 @@ export default function transformer(file, api) {
       (path) => {
         const pathOld = path.value.source.value;
         const pathsBase = getPathsBase(pathOld);
-        const pathPrefix = pathOld.substring(pathsBase[0].length);
+        const pathSuffix = pathOld.substring(pathsBase[0].length);
 
         let pathNew;
 
-        if (pathConversion[pathPrefix]) {
-          pathNew = pathsBase[1] + pathConversion[pathPrefix];
+        if (pathConversion[pathSuffix]) {
+          pathNew = pathsBase[1] + pathConversion[pathSuffix];
         } else {
-          pathNew = pathOld;
+          pathNew = pathsBase[1] + pathSuffix;
         }
 
         return j.importDeclaration(path.node.specifiers, j.literal(pathNew));
