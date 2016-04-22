@@ -27,7 +27,6 @@ class PopoverAnimationVertical extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     open: PropTypes.bool.isRequired,
-
     /**
      * Override the inline-styles of the root element.
      */

@@ -16,59 +16,48 @@ class TimePicker extends Component {
      * If true, automatically accept and close the picker on set minutes.
      */
     autoOk: PropTypes.bool,
-
     /**
      * Override the label of the 'Cancel' button.
      */
     cancelLabel: PropTypes.node,
-
     /**
      * The initial time value of the TimePicker.
      */
     defaultTime: PropTypes.object,
-
     /**
      * If true, the TimePicker is disabled.
      */
     disabled: PropTypes.bool,
-
     /**
      * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
     format: PropTypes.oneOf(['ampm', '24hr']),
-
     /**
      * Override the label of the 'OK' button.
      */
     okLabel: PropTypes.node,
-
     /**
      * Callback function that is fired when the time value changes. The time value is passed in a Date Object.
      * Since there is no particular event associated with the change the first argument will always be null
      * and the second argument will be the new Date instance.
      */
     onChange: PropTypes.func,
-
     /**
      * Callback function fired when the TimePicker dialog is dismissed.
      */
     onDismiss: PropTypes.func,
-
     /**
      * Callback function fired when the TimePicker `TextField` gains focus.
      */
     onFocus: PropTypes.func,
-
     /**
      * Callback function fired when the TimePicker dialog is shown.
      */
     onShow: PropTypes.func,
-
     /**
      * Callback function fired when the TimePicker is tapped or clicked.
      */
     onTouchTap: PropTypes.func,
-
     /**
      * If true, uses ("noon" / "midnight") instead of ("12 a.m." / "12 p.m.").
      *
@@ -77,17 +66,14 @@ class TimePicker extends Component {
      * ("12 a.m." / "12 p.m.").
      */
     pedantic: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Override the inline-styles of TimePicker's TextField element.
      */
     textFieldStyle: PropTypes.object,
-
     /**
      * Sets the time for the Time Picker programmatically.
      */

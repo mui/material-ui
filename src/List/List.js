@@ -11,30 +11,25 @@ class List extends Component {
      * be part of the list.
      */
     children: PropTypes.node,
-
     /**
      * If true, the subheader will be indented by 72px.
      */
     insetSubheader: deprecated(PropTypes.bool,
       'Refer to the `subheader` property.'),
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The subheader string that will be displayed at the top of the list.
      */
     subheader: deprecated(PropTypes.node,
       'Instead, nest the `Subheader` component directly inside the `List`.'),
-
     /**
      * Override the inline-styles of the subheader element.
      */
     subheaderStyle: deprecated(PropTypes.object,
       'Refer to the `subheader` property.'),
-
     /**
      * @ignore
      * ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`

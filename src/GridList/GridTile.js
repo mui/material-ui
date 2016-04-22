@@ -64,24 +64,20 @@ class GridTile extends Component {
      * (primary action target is the tile itself).
      */
     actionIcon: PropTypes.element,
-
     /**
      * Position of secondary action IconButton.
      */
     actionPosition: PropTypes.oneOf(['left', 'right']),
-
     /**
      * Theoretically you can pass any node as children, but the main use case is to pass an img,
      * in whichcase GridTile takes care of making the image "cover" available space
      * (similar to background-size: cover or to object-fit:cover).
      */
     children: PropTypes.node,
-
     /**
      * Width of the tile in number of grid cells.
      */
     cols: PropTypes.number,
-
     /**
      * Either a string used as tag name for the tile root element, or a ReactElement.
      * This is useful when you have, for example, a custom implementation of
@@ -93,33 +89,27 @@ class GridTile extends Component {
       PropTypes.string,
       PropTypes.element,
     ]),
-
     /**
      * Height of the tile in number of grid cells.
      */
     rows: PropTypes.number,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * String or element serving as subtitle (support text).
      */
     subtitle: PropTypes.node,
-
     /**
      * Title to be displayed on tile.
      */
     title: PropTypes.node,
-
     /**
      * Style used for title bar background.
      * Useful for setting custom gradients for example
      */
     titleBackground: PropTypes.string,
-
     /**
      * Position of the title bar (container of title, subtitle and action icon).
      */

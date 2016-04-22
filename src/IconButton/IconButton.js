@@ -49,44 +49,36 @@ class IconButton extends Component {
      * Can be used to pass a `FontIcon` element as the icon for the button.
      */
     children: PropTypes.node,
-
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * If true, the element's ripple effect will be disabled.
      */
     disableTouchRipple: PropTypes.bool,
-
     /**
      * If true, the element will be disabled.
      */
     disabled: PropTypes.bool,
-
     /**
      * The CSS class name of the icon. Used for setting the icon with a stylesheet.
      */
     iconClassName: PropTypes.string,
-
     /**
      * Override the inline-styles of the icon element.
      */
     iconStyle: PropTypes.object,
-
     /**
      * Callback function fired when the element loses focus.
      * @param {object} event `blur` event targeting the element.
      */
     onBlur: PropTypes.func,
-
     /**
      * Callback function fired when the element gains focus.
      * @param {object} event `focus` event targeting the element.
      */
     onFocus: PropTypes.func,
-
     /**
      * Callback function fired when the element is focused or blurred by the keyboard.
      *
@@ -94,21 +86,18 @@ class IconButton extends Component {
      * @param {boolean} keyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: PropTypes.func,
-
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: PropTypes.func,
-
     /**
      * Callback function fired when the mouse leaves the element. Unlike `onMouseLeave`,
      * this callback will fire on disabled icon buttons.
@@ -116,29 +105,24 @@ class IconButton extends Component {
      * @param {object} event `mouseout` event targeting the element.
      */
     onMouseOut: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The text to supply to the element's tooltip.
      */
     tooltip: PropTypes.node,
-
     /**
      * The vertical and horizontal positions, respectively, of the element's tooltip.
      * Possible values are: "bottom-center", "top-center", "bottom-right", "top-right",
      * "bottom-left", and "top-left".
      */
     tooltipPosition: propTypes.cornersAndCenter,
-
     /**
      * Override the inline-styles of the tooltip element.
      */
     tooltipStyles: PropTypes.object,
-
     /**
      * If true, increase the tooltip element's size.  Useful for increasing tooltip
      * readability on mobile devices.

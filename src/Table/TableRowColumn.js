@@ -26,43 +26,36 @@ function getStyles(props, context) {
 class TableRowColumn extends Component {
   static propTypes = {
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * @ignore
      * Number to identify the header row. This property
      * is automatically populated when used with TableHeader.
      */
     columnNumber: PropTypes.number,
-
     /**
      * @ignore
      * If true, this column responds to hover events.
      */
     hoverable: PropTypes.bool,
-
     /**
      * @ignore
      * Callback function for click event.
      */
     onClick: PropTypes.func,
-
     /**
      * @ignore
      * Callback function for hover event.
      */
     onHover: PropTypes.func,
-
     /**
      * @ignore
      * Callback function for hover exit event.
      */
     onHoverExit: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */

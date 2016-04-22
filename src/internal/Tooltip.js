@@ -86,7 +86,6 @@ class Tooltip extends Component {
     horizontalPosition: PropTypes.oneOf(['left', 'right', 'center']),
     label: PropTypes.node.isRequired,
     show: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

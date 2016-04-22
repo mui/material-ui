@@ -33,12 +33,10 @@ class TableFooter extends Component {
      * Children passed to table footer.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Override the inline-styles of the root element.
      */

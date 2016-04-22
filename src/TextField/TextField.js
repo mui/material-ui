@@ -115,162 +115,132 @@ function isValid(value) {
 class TextField extends Component {
   static propTypes = {
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * The text string to use for the default value.
      */
     defaultValue: PropTypes.any,
-
     /**
      * Disables the text field if set to true.
      */
     disabled: PropTypes.bool,
-
     /**
      * The style object to use to override error styles.
      */
     errorStyle: PropTypes.object,
-
     /**
      * The error content to display.
      */
     errorText: PropTypes.node,
-
     /**
      * If true, the floating label will float even when there is no value.
      */
     floatingLabelFixed: PropTypes.bool,
-
     /**
      * The style object to use to override floating label styles.
      */
     floatingLabelStyle: PropTypes.object,
-
     /**
      * The content to use for the floating label element.
      */
     floatingLabelText: PropTypes.node,
-
     /**
      * If true, the field receives the property width 100%.
      */
     fullWidth: PropTypes.bool,
-
     /**
      * Override the inline-styles of the TextField's hint text element.
      */
     hintStyle: PropTypes.object,
-
     /**
      * The hint content to display.
      */
     hintText: PropTypes.node,
-
     /**
      * The id prop for the text field.
      */
     id: PropTypes.string,
-
     /**
      * Override the inline-styles of the TextField's input element.
      * When multiLine is false: define the style of the input element.
      * When multiLine is true: define the style of the container of the textarea.
      */
     inputStyle: PropTypes.object,
-
     /**
      * If true, a textarea element will be rendered.
      * The textarea also grows and shrinks according to the number of lines.
      */
     multiLine: PropTypes.bool,
-
     /**
      * Name applied to the input.
      */
     name: PropTypes.string,
-
     /**
      * Callback function that is fired when the textfield loses focus.
      */
     onBlur: PropTypes.func,
-
     /**
      * Callback function that is fired when the textfield's value changes.
      */
     onChange: PropTypes.func,
-
     /**
      * The function to call when the user presses the Enter key.
      */
     onEnterKeyDown: deprecated(PropTypes.func,
       'Use onKeyDown and check for keycode instead.'),
-
     /**
      * Callback function that is fired when the textfield gains focus.
      */
     onFocus: PropTypes.func,
-
     /**
      * Callback function fired when key is pressed down.
      */
     onKeyDown: PropTypes.func,
-
     /**
      * Number of rows to display when multiLine option is set to true.
      */
     rows: PropTypes.number,
-
     /**
      * Maximum number of rows to display when
      * multiLine option is set to true.
      */
     rowsMax: PropTypes.number,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Override the inline-styles of the TextField's textarea element.
      * The TextField use either a textarea or an input,
      * this property has effects only when multiLine is true.
      */
     textareaStyle: PropTypes.object,
-
     /**
      * Specifies the type of input to display
      * such as "password" or "text".
      */
     type: PropTypes.string,
-
     /**
      * Override the inline-styles of the
      * TextField's underline element when disabled.
      */
     underlineDisabledStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the TextField's
      * underline element when focussed.
      */
     underlineFocusStyle: PropTypes.object,
-
     /**
      * If true, shows the underline for the text field.
      */
     underlineShow: PropTypes.bool,
-
     /**
      * Override the inline-styles of the TextField's underline element.
      */
     underlineStyle: PropTypes.object,
-
     /**
      * The value of the text field.
      */

@@ -48,7 +48,6 @@ class BeforeAfterWrapper extends Component {
     beforeStyle: PropTypes.object,
     children: PropTypes.node,
     elementType: PropTypes.string,
-
     /**
      * Override the inline-styles of the root element.
      */

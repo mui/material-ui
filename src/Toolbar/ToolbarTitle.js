@@ -27,12 +27,10 @@ class ToolbarTitle extends Component {
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The text to be displayed.
      */

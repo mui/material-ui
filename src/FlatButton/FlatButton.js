@@ -19,7 +19,6 @@ class FlatButton extends Component {
      * Color of button when mouse is not hovering over it.
      */
     backgroundColor: PropTypes.string,
-
     /**
      * This is what will be displayed inside the button.
      * If a label is specified, the text within the label prop will
@@ -30,32 +29,26 @@ class FlatButton extends Component {
      * applies to flat and raised buttons.
      */
     children: PropTypes.node,
-
     /**
      * Disables the button if set to true.
      */
     disabled: PropTypes.bool,
-
     /**
      * Color of button when mouse hovers over.
      */
     hoverColor: PropTypes.string,
-
     /**
      * URL to link to when button clicked if `linkButton` is set to true.
      */
     href: PropTypes.string,
-
     /**
      * Use this property to display an icon.
      */
     icon: PropTypes.node,
-
     /**
      * Label for the button.
      */
     label: validateLabel,
-
     /**
      * Place label before or after the passed children.
      */
@@ -63,17 +56,14 @@ class FlatButton extends Component {
       'before',
       'after',
     ]),
-
     /**
      * Override the inline-styles of the button's label element.
      */
     labelStyle: PropTypes.object,
-
     /**
      * Enables use of `href` property to provide a URL to link to if set to true.
      */
     linkButton: PropTypes.bool,
-
     /**
      * Callback function fired when the element is focused or blurred by the keyboard.
      *
@@ -81,45 +71,38 @@ class FlatButton extends Component {
      * @param {boolean} isKeyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: PropTypes.func,
-
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: PropTypes.func,
-
     /**
      * Callback function fired when the element is touched.
      *
      * @param {object} event `touchstart` event targeting the element.
      */
     onTouchStart: PropTypes.func,
-
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.
      */
     primary: PropTypes.bool,
-
     /**
      * Color for the ripple after button is clicked.
      */
     rippleColor: PropTypes.string,
-
     /**
      * If true, colors button according to secondaryTextColor from the theme.
      * The primary prop has precendent if set to true.
      */
     secondary: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

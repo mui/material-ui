@@ -9,7 +9,6 @@ class ScaleIn extends Component {
     enterDelay: PropTypes.number,
     maxScale: PropTypes.number,
     minScale: PropTypes.number,
-
     /**
      * Override the inline-styles of the root element.
      */

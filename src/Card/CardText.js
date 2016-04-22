@@ -20,22 +20,18 @@ class CardText extends Component {
      * If true, a click on this card component expands the card.
      */
     actAsExpander: PropTypes.bool,
-
     /**
      * Can be used to render elements inside the Card Text.
      */
     children: PropTypes.node,
-
     /**
      * Override the CardText color.
      */
     color: PropTypes.string,
-
     /**
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

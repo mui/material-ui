@@ -72,7 +72,6 @@ const Snackbar = React.createClass({
      * The label for the action on the snackbar.
      */
     action: PropTypes.string,
-
     /**
      * The number of milliseconds to wait before automatically dismissing.
      * If no value is specified the snackbar will dismiss normally.
@@ -80,17 +79,14 @@ const Snackbar = React.createClass({
      * If a snackbar is dismissed before the timer expires, the timer will be cleared.
      */
     autoHideDuration: PropTypes.number,
-
     /**
      * Override the inline-styles of the body element.
      */
     bodyStyle: PropTypes.object,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * The message to be displayed.
      *
@@ -99,14 +95,12 @@ const Snackbar = React.createClass({
      * showing again)
      */
     message: PropTypes.node.isRequired,
-
     /**
      * Fired when the action button is touchtapped.
      *
      * @param {object} event Action button event.
      */
     onActionTouchTap: PropTypes.func,
-
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
      * `autoHideDuration` timer expires.
@@ -120,12 +114,10 @@ const Snackbar = React.createClass({
      * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
      */
     onRequestClose: PropTypes.func,
-
     /**
      * Controls whether the `Snackbar` is opened or not.
      */
     open: PropTypes.bool.isRequired,
-
     /**
      * Override the inline-styles of the root element.
      */

@@ -58,39 +58,32 @@ class RadioButton extends Component {
      * Used internally by `RadioButtonGroup`.
      */
     checked: PropTypes.bool,
-
     /**
      * The icon element to show when the radio button is checked.
      */
     checkedIcon: PropTypes.element,
-
     /**
      * If true, the radio button is disabled.
      */
     disabled: PropTypes.bool,
-
     /**
      * Override the inline-styles of the icon element.
      */
     iconStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the input element.
      */
     inputStyle: PropTypes.object,
-
     /**
      * @ignore
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      * Where the label will be placed next to the radio button.
      */
     labelPosition: PropTypes.oneOf(['left', 'right']),
-
     /**
      * Override the inline-styles of the label element.
      */
     labelStyle: PropTypes.object,
-
     /**
      * @ignore
      * Callback function fired when the radio button is checked. Note that this
@@ -102,17 +95,14 @@ class RadioButton extends Component {
      * @param {string} value The element's `value`.
      */
     onCheck: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The icon element to show when the radio button is unchecked.
      */
     uncheckedIcon: PropTypes.element,
-
     /**
      * The value of the radio button.
      */

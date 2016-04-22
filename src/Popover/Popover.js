@@ -14,7 +14,6 @@ class Popover extends Component {
      * popover.
      */
     anchorEl: PropTypes.object,
-
     /**
      * This is the point on the anchor where the popover's
      * `targetOrigin` will attach to.
@@ -23,40 +22,33 @@ class Popover extends Component {
      * horizontal: [left, center, right].
      */
     anchorOrigin: propTypes.origin,
-
     /**
      * If true, the popover will apply transitions when
      * it is added to the DOM.
      */
     animated: PropTypes.bool,
-
     /**
      * Override the default animation component used.
      */
     animation: PropTypes.func,
-
     /**
      * If true, the popover will hide when the anchor is scrolled off the screen.
      */
     autoCloseWhenOffScreen: PropTypes.bool,
-
     /**
      * If true, the popover (potentially) ignores `targetOrigin`
      * and `anchorOrigin` to make itself fit on screen,
      * which is useful for mobile devices.
      */
     canAutoPosition: PropTypes.bool,
-
     /**
      * The content of the popover.
      */
     children: PropTypes.node,
-
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Callback function fired when the popover is requested to be closed.
      *
@@ -64,17 +56,14 @@ class Popover extends Component {
      * are 'clickAway' and 'offScreen'.
      */
     onRequestClose: PropTypes.func,
-
     /**
      * If true, the popover is visible.
      */
     open: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * This is the point on the popover which will attach to
      * the anchor's origin.
@@ -83,14 +72,12 @@ class Popover extends Component {
      * horizontal: [left, center, right].
      */
     targetOrigin: propTypes.origin,
-
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying
      * elements, and trigger an `onRequestClose('clickAway')` call.
      */
     useLayerForClickAway: PropTypes.bool,
-
     /**
      * The zDepth of the popover.
      */

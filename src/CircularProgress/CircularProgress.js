@@ -69,38 +69,31 @@ class CircularProgress extends Component {
      * Override the progress's color.
      */
     color: PropTypes.string,
-
     /**
      * Style for inner wrapper div.
      */
     innerStyle: PropTypes.object,
-
     /**
      * The max value of progress, only works in determinate mode.
      */
     max: PropTypes.number,
-
     /**
      * The min value of progress, only works in determinate mode.
      */
     min: PropTypes.number,
-
     /**
      * The mode of show your progress, indeterminate
      * for when there is no value for progress.
      */
     mode: PropTypes.oneOf(['determinate', 'indeterminate']),
-
     /**
      * The size of the progress.
      */
     size: PropTypes.number,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The value of progress, only works in determinate mode.
      */

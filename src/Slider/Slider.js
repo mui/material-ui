@@ -157,85 +157,69 @@ class Slider extends Component {
      * The default value of the slider.
      */
     defaultValue: valueInRangePropType,
-
     /**
      * Describe the slider.
      */
     description: PropTypes.string,
-
     /**
      * Disables focus ripple if set to true.
      */
     disableFocusRipple: PropTypes.bool,
-
     /**
      * If true, the slider will not be interactable.
      */
     disabled: PropTypes.bool,
-
     /**
      * An error message for the slider.
      */
     error: PropTypes.string,
-
     /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
      */
     max: minMaxPropType,
-
     /**
      * The minimum value the slider can slide to on a scale
      * from 0 to 1 inclusive. Cannot be equal to max.
      */
     min: minMaxPropType,
-
     /**
      * The name of the slider. Behaves like the name attribute
      * of an input element.
      */
     name: PropTypes.string,
-
     /**
      * Callback function that is fired when the focus has left the slider.
      */
     onBlur: PropTypes.func,
-
     /**
      * Callback function that is fired when the user changes the slider's value.
      */
     onChange: PropTypes.func,
-
     /**
      * Callback function that is fired when the slider has begun to move.
      */
     onDragStart: PropTypes.func,
-
     /**
      * Callback function that is fried when the slide has stopped moving.
      */
     onDragStop: PropTypes.func,
-
     /**
      * Callback fired when the user has focused on the slider.
      */
     onFocus: PropTypes.func,
-
     /**
      * Whether or not the slider is required in a form.
      */
     required: PropTypes.bool,
-
     /**
      * The granularity the slider can step through values.
      */
     step: PropTypes.number,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The value of the slider.
      */

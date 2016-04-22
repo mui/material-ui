@@ -34,89 +34,74 @@ class Table extends Component {
      * Set to true to indicate that all rows should be selected.
      */
     allRowsSelected: PropTypes.bool,
-
     /**
      * Override the inline-styles of the body's table element.
      */
     bodyStyle: PropTypes.object,
-
     /**
      * Children passed to table.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * If true, the footer will appear fixed below the table.
      * The default value is true.
      */
     fixedFooter: PropTypes.bool,
-
     /**
      * If true, the header will appear fixed above the table.
      * The default value is true.
      */
     fixedHeader: PropTypes.bool,
-
     /**
      * Override the inline-styles of the footer's table element.
      */
     footerStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the header's table element.
      */
     headerStyle: PropTypes.object,
-
     /**
      * The height of the table.
      */
     height: PropTypes.string,
-
     /**
      * If true, multiple table rows can be selected.
      * CTRL/CMD+Click and SHIFT+Click are valid actions.
      * The default value is false.
      */
     multiSelectable: PropTypes.bool,
-
     /**
      * Called when a row cell is clicked.
      * rowNumber is the row number and columnId is
      * the column number or the column key.
      */
     onCellClick: PropTypes.func,
-
     /**
      * Called when a table cell is hovered.
      * rowNumber is the row number of the hovered row
      * and columnId is the column number or the column key of the cell.
      */
     onCellHover: PropTypes.func,
-
     /**
      * Called when a table cell is no longer hovered.
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
      */
     onCellHoverExit: PropTypes.func,
-
     /**
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
     onRowHover: PropTypes.func,
-
     /**
      * Called when a table row is no longer hovered.
      * rowNumber is the row number of the row that is no longer hovered.
      */
     onRowHoverExit: PropTypes.func,
-
     /**
      * Called when a row is selected.
      * selectedRows is an array of all row selections.
@@ -124,19 +109,16 @@ class Table extends Component {
      * will be returned instead to indicate that all rows have been selected.
      */
     onRowSelection: PropTypes.func,
-
     /**
      * If true, table rows can be selected.
      * If multiple row selection is desired, enable multiSelectable.
      * The default value is true.
      */
     selectable: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Override the inline-styles of the table's wrapper element.
      */

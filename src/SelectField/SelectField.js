@@ -26,7 +26,6 @@ class SelectField extends Component {
      * To control this width in css instead, leave this prop to `false`.
      */
     autoWidth: PropTypes.bool,
-
     /**
      * The `MenuItem` elements to populate the `Menu` with.
      * If the MenuItems have the prop `label` that value will
@@ -34,77 +33,62 @@ class SelectField extends Component {
      * item within the field.
      */
     children: PropTypes.node,
-
     /**
      * Disables the select field if set to true.
      */
     disabled: PropTypes.bool,
-
     /**
      * The style object to use to override error styles.
      */
     errorStyle: PropTypes.object,
-
     /**
      * The error content to display.
      */
     errorText: PropTypes.node,
-
     /**
      * The style object to use to override floating label styles.
      */
     floatingLabelStyle: PropTypes.object,
-
     /**
      * The content to use for the floating label element.
      */
     floatingLabelText: PropTypes.node,
-
     /**
      * If true, the field receives the property width 100%.
      */
     fullWidth: PropTypes.bool,
-
     /**
      * The style object to use to override hint styles.
      */
     hintStyle: PropTypes.object,
-
     /**
      * The hint content to display.
      */
     hintText: PropTypes.node,
-
     /**
      * Overrides the styles of the icon element.
      */
     iconStyle: PropTypes.object,
-
     /**
      * The id prop for the text field.
      */
     id: PropTypes.string,
-
     /**
      * Overrides the styles of label when the `SelectField` is inactive.
      */
     labelStyle: PropTypes.object,
-
     /**
      * Callback function that is fired when the `SelectField` loses focus.
      */
     onBlur: PropTypes.func,
-
     /**
      * Callback function that is fired when the value changes.
      */
     onChange: PropTypes.func,
-
     /**
      * Callback function that is fired when the `SelectField` gains focus.
      */
     onFocus: PropTypes.func,
-
     /**
      * The style object to use to override the `DropDownMenu`.
      */
@@ -114,22 +98,18 @@ class SelectField extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Override the inline-styles of the underline element when disabled.
      */
     underlineDisabledStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the underline element when focused.
      */
     underlineFocusStyle: PropTypes.object,
-
     /**
      * Overrides the styles of the underline element.
      */
     underlineStyle: PropTypes.object,
-
     /**
      * The value that is currently selected.
      */
