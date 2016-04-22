@@ -17,37 +17,30 @@ class IconMenu extends Component {
      * horizontal: [left, center, right].
      */
     anchorOrigin: propTypes.origin,
-
     /**
      * Should be used to pass `MenuItem` components.
      */
     children: PropTypes.node,
-
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * This is the `IconButton` to render. This button will open the menu.
      */
     iconButtonElement: PropTypes.element.isRequired,
-
     /**
      * Override the inline-styles of the underlying icon element.
      */
     iconStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the menu element.
      */
     menuStyle: PropTypes.object,
-
     /**
      * If true, the value can an be array and allow the menu to be a multi-select.
      */
     multiple: PropTypes.bool,
-
     /**
      * Callback function fired when a menu item is selected with a touch-tap.
      *
@@ -55,7 +48,6 @@ class IconMenu extends Component {
      * @param {object} child The selected element.
      */
     onItemTouchTap: PropTypes.func,
-
     /**
      * Callback function fired when the `IconButton` element is focused or blurred by the keyboard.
      *
@@ -63,35 +55,30 @@ class IconMenu extends Component {
      * @param {boolean} keyboardFocused If true, the `IconButton` element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-
     /**
      * Callback function fired when a mouse button is pressed down on the `IconButton` element.
      *
      * @param {object} event `mousedown` event targeting the `IconButton` element.
      */
     onMouseDown: PropTypes.func,
-
     /**
      * Callback function fired when the mouse enters the `IconButton` element.
      *
      * @param {object} event `mouseenter` event targeting the `IconButton` element.
      */
     onMouseEnter: PropTypes.func,
-
     /**
      * Callback function fired when the mouse leaves the `IconButton` element.
      *
      * @param {object} event `mouseleave` event targeting the `IconButton` element.
      */
     onMouseLeave: PropTypes.func,
-
     /**
      * Callback function fired when a mouse button is released on the `IconButton` element.
      *
      * @param {object} event `mouseup` event targeting the `IconButton` element.
      */
     onMouseUp: PropTypes.func,
-
     /**
      * Callback function fired when the `open` state of the menu is requested to be changed.
      *
@@ -101,24 +88,20 @@ class IconMenu extends Component {
      * for close requests.
      */
     onRequestChange: PropTypes.func,
-
     /**
      * Callback function fired when the `IconButton` element is touch-tapped.
      *
      * @param {object} event TouchTap event targeting the `IconButton` element.
      */
     onTouchTap: PropTypes.func,
-
     /**
      * If true, the `IconMenu` is opened.
      */
     open: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * This is the point on the menu which will stick to the menu
      * origin.
@@ -127,7 +110,6 @@ class IconMenu extends Component {
      * horizontal: [left, center, right].
      */
     targetOrigin: propTypes.origin,
-
     /**
      * Sets the delay in milliseconds before closing the
      * menu when an item is clicked.
@@ -135,7 +117,6 @@ class IconMenu extends Component {
      * will be disabled.
      */
     touchTapCloseDelay: PropTypes.number,
-
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying elements.

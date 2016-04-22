@@ -42,62 +42,50 @@ class CardHeader extends Component {
      * If true, a click on this card component expands the card.
      */
     actAsExpander: PropTypes.bool,
-
     /**
      * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
      */
     avatar: PropTypes.node,
-
     /**
      * Can be used to render elements inside the Card Header.
      */
     children: PropTypes.node,
-
     /**
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
-
     /**
      * If true, this card component will include a button to expand the card.
      */
     showExpandableButton: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Can be used to render a subtitle in Card Header.
      */
     subtitle: PropTypes.node,
-
     /**
      * Override the subtitle color.
      */
     subtitleColor: PropTypes.string,
-
     /**
      * Override the inline-styles of the subtitle.
      */
     subtitleStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the text.
      */
     textStyle: PropTypes.object,
-
     /**
      * Can be used to render a title in Card Header.
      */
     title: PropTypes.node,
-
     /**
      * Override the title color.
      */
     titleColor: PropTypes.string,
-
     /**
      * Override the inline-styles of the title.
      */

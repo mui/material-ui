@@ -18,22 +18,18 @@ class CardActions extends Component {
      * If true, a click on this card component expands the card.
      */
     actAsExpander: PropTypes.bool,
-
     /**
      * Can be used to render elements inside the Card Action.
      */
     children: PropTypes.node,
-
     /**
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
-
     /**
      * If true, this card component will include a button to expand the card.
      */
     showExpandableButton: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

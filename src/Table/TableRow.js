@@ -30,23 +30,19 @@ class TableRow extends Component {
      * Children passed to table row.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * If true, row border will be displayed for the row.
      * If false, no border will be drawn.
      */
     displayBorder: PropTypes.bool,
-
     /**
      * Controls whether or not the row reponseds to hover events.
      */
     hoverable: PropTypes.bool,
-
     /**
      * Controls whether or not the row should be rendered as being
      * hovered. This property is evaluated in addition to this.state.hovered
@@ -54,7 +50,6 @@ class TableRow extends Component {
      * external events.
      */
     hovered: PropTypes.bool,
-
     /**
      * @ignore
      * Called when a row cell is clicked.
@@ -62,7 +57,6 @@ class TableRow extends Component {
      * the column number or the column key.
      */
     onCellClick: PropTypes.func,
-
     /**
      * @ignore
      * Called when a table cell is hovered.
@@ -70,7 +64,6 @@ class TableRow extends Component {
      * and columnId is the column number or the column key of the cell.
      */
     onCellHover: PropTypes.func,
-
     /**
      * @ignore
      * Called when a table cell is no longer hovered.
@@ -78,51 +71,43 @@ class TableRow extends Component {
      * is the column number or the column key of the cell.
      */
     onCellHoverExit: PropTypes.func,
-
     /**
      * @ignore
      * Called when row is clicked.
      */
     onRowClick: PropTypes.func,
-
     /**
      * @ignore
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
     onRowHover: PropTypes.func,
-
     /**
      * @ignore
      * Called when a table row is no longer hovered.
      * rowNumber is the row number of the row that is no longer hovered.
      */
     onRowHoverExit: PropTypes.func,
-
     /**
      * Number to identify the row. This property is
      * automatically populated when used with the TableBody component.
      */
     rowNumber: PropTypes.number,
-
     /**
      * If true, table rows can be selected. If multiple row
      * selection is desired, enable multiSelectable.
      * The default value is true.
      */
     selectable: PropTypes.bool,
-
     /**
      * Indicates that a particular row is selected.
      * This property can be used to programmatically select rows.
      */
     selected: PropTypes.bool,
-
     /**
      * Indicates whether or not the row is striped.
      */
     striped: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

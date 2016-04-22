@@ -28,7 +28,6 @@ ClearFix.muiName = 'ClearFix';
 
 ClearFix.propTypes = {
   children: PropTypes.node,
-
   /**
    * Override the inline-styles of the root element.
    */

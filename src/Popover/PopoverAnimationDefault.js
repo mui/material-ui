@@ -39,13 +39,11 @@ function getStyles(props, context, state) {
 class PopoverDefaultAnimation extends Component {
   static propTypes = {
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
     open: PropTypes.bool.isRequired,
-
     /**
      * Override the inline-styles of the root element.
      */

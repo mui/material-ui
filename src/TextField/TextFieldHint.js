@@ -7,17 +7,14 @@ const propTypes = {
    * The material-ui theme applied to this component.
    */
   muiTheme: PropTypes.object.isRequired,
-
   /**
    * True if the hint text should be visible.
    */
   show: PropTypes.bool,
-
   /**
    * Override the inline-styles of the root element.
    */
   style: PropTypes.object,
-
   /**
    * The hint text displayed.
    */

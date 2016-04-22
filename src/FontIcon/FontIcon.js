@@ -32,26 +32,22 @@ class FontIcon extends Component {
      * this component will default to muiTheme.palette.textColor.
      */
     color: PropTypes.string,
-
     /**
      * This is the icon color when the mouse hovers over the icon.
      */
     hoverColor: PropTypes.string,
-
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: PropTypes.func,
-
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */

@@ -6,7 +6,6 @@ class NestedList extends Component {
     children: PropTypes.node,
     nestedLevel: PropTypes.number,
     open: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

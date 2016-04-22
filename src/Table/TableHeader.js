@@ -26,41 +26,34 @@ class TableHeader extends Component {
      * for manually.
      */
     adjustForCheckbox: PropTypes.bool,
-
     /**
      * Children passed to table header.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Controls whether or not the select all checkbox is displayed.
      */
     displaySelectAll: PropTypes.bool,
-
     /**
      * If set to true, the select all button will be interactable.
      * If set to false, the button will not be interactable.
      * To hide the checkbox, set displaySelectAll to false.
      */
     enableSelectAll: PropTypes.bool,
-
     /**
      * @ignore
      * Callback when select all has been checked.
      */
     onSelectAll: PropTypes.func,
-
     /**
      * @ignore
      * True when select all has been checked.
      */
     selectAllSelected: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

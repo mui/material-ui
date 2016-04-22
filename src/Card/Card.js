@@ -8,36 +8,30 @@ class Card extends Component {
      * If true, a click on this card component expands the card. Can be set on any child of the `Card` component.
      */
     actAsExpander: PropTypes.bool,
-
     /**
      * Can be used to render elements inside the Card.
      */
     children: PropTypes.node,
-
     /**
      * If true, this card component is expandable. Can be set on any child of the `Card` component.
      */
     expandable: PropTypes.bool,
-
     /**
      * Whether this card is expanded.
      * If `true` or `false` the component is controlled.
      * if `null` the component is uncontrolled.
      */
     expanded: PropTypes.bool,
-
     /**
      * Whether this card is initially expanded.
      */
     initiallyExpanded: PropTypes.bool,
-
     /**
      * Callback function fired when the `expandable` state of the card has changed.
      *
      * @param {boolean} newExpandedState Represents the new `expanded` state of the card.
      */
     onExpandChange: PropTypes.func,
-
     /**
      * If true, this card component will include a button to expand the card. `CardTitle`,
      * `CardHeader` and `CardActions` implement `showExpandableButton`. Any child component
@@ -45,7 +39,6 @@ class Card extends Component {
      * component supporting it.
      */
     showExpandableButton: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

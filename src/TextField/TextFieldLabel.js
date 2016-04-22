@@ -7,37 +7,30 @@ const propTypes = {
    * The material-ui theme applied to this component.
    */
   muiTheme: PropTypes.object.isRequired,
-
   /**
    * The css class name of the root element.
    */
   className: PropTypes.string,
-
   /**
    * The label contents.
    */
   children: PropTypes.node,
-
   /**
    * Disables the label if set to true.
    */
   disabled: PropTypes.bool,
-
   /**
    * True if the floating label should shrink.
    */
   shrink: PropTypes.bool,
-
   /**
    * The id of the target element that this label should refer to.
    */
   htmlFor: PropTypes.string,
-
   /**
    * Callback function for when the label is selected via a touch tap.
    */
   onTouchTap: PropTypes.func,
-
   /**
    * Override the inline-styles of the root element.
    */

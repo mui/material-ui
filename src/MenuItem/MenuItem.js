@@ -60,24 +60,20 @@ class MenuItem extends Component {
      * If true, a left check mark will be rendered.
      */
     checked: PropTypes.bool,
-
     /**
      * Elements passed as children to the underlying `ListItem`.
      */
     children: PropTypes.node,
-
     /**
      * @ignore
      * If true, the menu item will render with compact desktop
      * styles.
      */
     desktop: PropTypes.bool,
-
     /**
      * If true, the menu item will be disabled.
      */
     disabled: PropTypes.bool,
-
     /**
      * The focus state of the menu item. This prop is used to set the focus
      * state of the underlying `ListItem`.
@@ -87,55 +83,45 @@ class MenuItem extends Component {
       'focused',
       'keyboard-focused',
     ]),
-
     /**
      * Override the inline-styles of the inner div.
      */
     innerDivStyle: PropTypes.object,
-
     /**
      * If true, the children will be indented.
      * This is only needed when there is no `leftIcon`.
      */
     insetChildren: PropTypes.bool,
-
     /**
      * The `SvgIcon` or `FontIcon` to be displayed on the left side.
      */
     leftIcon: PropTypes.element,
-
     /**
      * `MenuItem` elements to nest within the menu item.
      */
     menuItems: PropTypes.node,
-
     /**
      * Callback function fired when the menu item is touch-tapped.
      *
      * @param {object} event TouchTap event targeting the menu item.
      */
     onTouchTap: PropTypes.func,
-
     /**
      * Can be used to render primary text within the menu item.
      */
     primaryText: PropTypes.node,
-
     /**
      * The `SvgIcon` or `FontIcon` to be displayed on the right side.
      */
     rightIcon: PropTypes.element,
-
     /**
      * Can be used to render secondary text within the menu item.
      */
     secondaryText: PropTypes.node,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The value of the menu item.
      */

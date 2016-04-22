@@ -71,7 +71,6 @@ class Menu extends Component {
      * work, wrap the menu inside a `ReactTransitionGroup`.
      */
     animated: deprecated(PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
-
     /**
      * If true, the width of the menu will be set automatically
      * according to the widths of its children,
@@ -79,46 +78,38 @@ class Menu extends Component {
      * 56px otherwise).
      */
     autoWidth: PropTypes.bool,
-
     /**
      * The content of the menu. This is usually used to pass `MenuItem`
      * elements.
      */
     children: PropTypes.node,
-
     /**
      * If true, the menu item will render with compact desktop styles.
      */
     desktop: PropTypes.bool,
-
     /**
      * If true, the menu will not be auto-focused.
      */
     disableAutoFocus: PropTypes.bool,
-
     /**
      * If true, the menu will be keyboard-focused initially.
      */
     initiallyKeyboardFocused: PropTypes.bool,
-
     /**
      * Override the inline-styles of the underlying `List` element.
      */
     listStyle: PropTypes.object,
-
     /**
      * The maximum height of the menu in pixels. If specified,
      * the menu will be scrollable if it is taller than the provided
      * height.
      */
     maxHeight: PropTypes.number,
-
     /**
      * If true, `value` must be an array and the menu will support
      * multiple selections.
      */
     multiple: PropTypes.bool,
-
     /**
      * Callback function fired when a menu item with `value` not
      * equal to the current `value` of the menu is touch-tapped.
@@ -130,7 +121,6 @@ class Menu extends Component {
      * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
-
     /**
      * Callback function fired when the menu is focused and the *Esc* key
      * is pressed.
@@ -138,7 +128,6 @@ class Menu extends Component {
      * @param {object} event `keydown` event targeting the menu.
      */
     onEscKeyDown: PropTypes.func,
-
     /**
      * Callback function fired when a menu item is touch-tapped.
      *
@@ -147,7 +136,6 @@ class Menu extends Component {
      * @param {number} index The index of the menu item.
      */
     onItemTouchTap: PropTypes.func,
-
     /**
      * Callback function fired when the menu is focused and a key
      * is pressed.
@@ -155,22 +143,18 @@ class Menu extends Component {
      * @param {object} event `keydown` event targeting the menu.
      */
     onKeyDown: PropTypes.func,
-
     /**
      * This is the placement of the menu relative to the `IconButton`.
      */
     openDirection: deprecated(propTypes.corners, 'Instead, use a [Popover](/#/components/popover).'),
-
     /**
      * Override the inline-styles of selected menu items.
      */
     selectedMenuItemStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * If `multiple` is true, an array of the `value`s of the selected
      * menu items. Otherwise, the `value` of the selected menu item.
@@ -178,19 +162,16 @@ class Menu extends Component {
      * This component also supports valueLink.
      */
     value: PropTypes.any,
-
     /**
      * ValueLink for the menu's `value`.
      */
     valueLink: PropTypes.object,
-
     /**
      * The width of the menu. If not specified, the menu's width
      * will be set according to the widths of its children, using
      * proper keyline increments (64px for desktop, 56px otherwise).
      */
     width: propTypes.stringOrNumber,
-
     /**
      * @ignore
      * Menu no longer supports `zDepth`. Instead, wrap it in `Paper`

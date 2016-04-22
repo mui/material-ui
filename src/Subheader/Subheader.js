@@ -5,12 +5,10 @@ const propTypes = {
    * Node that will be placed inside the `Subheader`.
    */
   children: PropTypes.node,
-
   /**
    * If true, the `Subheader` will be indented by `72px`.
    */
   inset: PropTypes.bool,
-
   /**
    * Override the inline-styles of the root element.
    */

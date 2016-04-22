@@ -5,12 +5,10 @@ const propTypes = {
    * The css class name of the root element.
    */
   className: PropTypes.string,
-
   /**
    * If true, the `Divider` will be indented `72px`.
    */
   inset: PropTypes.bool,
-
   /**
    * Override the inline-styles of the root element.
    */

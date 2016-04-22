@@ -8,31 +8,26 @@ class RadioButtonGroup extends Component {
      * Should be used to pass `RadioButton` components.
      */
     children: PropTypes.node,
-
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * The `value` property (case-sensitive) of the radio button that will be
      * selected by default. This takes precedence over the `checked` property
      * of the `RadioButton` elements.
      */
     defaultSelected: PropTypes.string,
-
     /**
      * Where the label will be placed for all child radio buttons.
      * This takes precedence over the `labelPosition` property of the
      * `RadioButton` elements.
      */
     labelPosition: PropTypes.oneOf(['left', 'right']),
-
     /**
      * The name that will be applied to all child radio buttons.
      */
     name: PropTypes.string.isRequired,
-
     /**
      * Callback function that is fired when a radio button has
      * been checked.
@@ -42,12 +37,10 @@ class RadioButtonGroup extends Component {
      * @param {string} value The `value` of the selected radio button.
      */
     onChange: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The `value` of the currently selected radio button.
      */

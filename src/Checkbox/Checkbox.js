@@ -59,13 +59,11 @@ class Checkbox extends Component {
      * Checkbox is checked if true.
      */
     checked: PropTypes.bool,
-
     /**
      * The SvgIcon to use for the checked state.
      * This is useful to create icon toggles.
      */
     checkedIcon: PropTypes.element,
-
     /**
      * The default state of our checkbox component.
      * **Warning:** This cannot be used in conjunction with `checked`.
@@ -73,32 +71,26 @@ class Checkbox extends Component {
      * More info: https://fb.me/react-controlled-components
      */
     defaultChecked: PropTypes.bool,
-
     /**
      * Disabled if true.
      */
     disabled: PropTypes.bool,
-
     /**
      * Overrides the inline-styles of the icon element.
      */
     iconStyle: PropTypes.object,
-
     /**
      * Overrides the inline-styles of the input element.
      */
     inputStyle: PropTypes.object,
-
     /**
      * Where the label will be placed next to the checkbox.
      */
     labelPosition: PropTypes.oneOf(['left', 'right']),
-
     /**
      * Overrides the inline-styles of the Checkbox element label.
      */
     labelStyle: PropTypes.object,
-
     /**
      * Callback function that is fired when the checkbox is checked.
      *
@@ -106,25 +98,21 @@ class Checkbox extends Component {
      * @param {boolean} isInputChecked The `checked` value of the underlying checkbox `input`.
      */
     onCheck: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.
      */
     unCheckedIcon: deprecated(PropTypes.element,
       'Use uncheckedIcon instead.'),
-
     /**
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.
      */
     uncheckedIcon: PropTypes.element,
-
     /**
      * ValueLink for when using controlled checkbox.
      */

@@ -119,63 +119,52 @@ class RaisedButton extends Component {
      * (use `disabledBackgroundColor` for this).
      */
     backgroundColor: PropTypes.string,
-
     /**
      * The content of the button.
      * If a label is provided via the `label` prop, the text within the label
      * will be displayed in addition to the content provided here.
      */
     children: PropTypes.node,
-
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * If true, the button will be disabled.
      */
     disabled: PropTypes.bool,
-
     /**
      * Override the default background color for the button
      * when it is disabled.
      */
     disabledBackgroundColor: PropTypes.string,
-
     /**
      * The color of the button's label when the button is disabled.
      */
     disabledLabelColor: PropTypes.string,
-
     /**
      * If true, the button will take up the full width of its container.
      */
     fullWidth: PropTypes.bool,
-
     /**
      * If `linkButton` is true, the URL to link to when the button
      * is clicked.
      */
     href: PropTypes.string,
-
     /**
      * An icon to be displayed within the button.
      */
     icon: PropTypes.node,
-
     /**
      * The label to be displayed within the button.
      * If content is provided via the `children` prop, that content will be
      * displayed in addition to the label provided here.
      */
     label: validateLabel,
-
     /**
      * The color of the button's label.
      */
     labelColor: PropTypes.string,
-
     /**
      * The position of the button's label relative to the button's `children`.
      */
@@ -183,18 +172,15 @@ class RaisedButton extends Component {
       'before',
       'after',
     ]),
-
     /**
      * Override the inline-styles of the button's label element.
      */
     labelStyle: PropTypes.object,
-
     /**
      * If true, enable the use of the `href` property to provide
      * a URL to link to.
      */
     linkButton: PropTypes.bool,
-
     /**
      * Callback function fired when a mouse button is pressed down on
      * the element.
@@ -202,59 +188,50 @@ class RaisedButton extends Component {
      * @param {object} event `mousedown` event targeting the element.
      */
     onMouseDown: PropTypes.func,
-
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
     onMouseEnter: PropTypes.func,
-
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
     onMouseLeave: PropTypes.func,
-
     /**
      * Callback function fired when a mouse button is released on the element.
      *
      * @param {object} event `mouseup` event targeting the element.
      */
     onMouseUp: PropTypes.func,
-
     /**
      * Callback function fired when a touch point is removed from the element.
      *
      * @param {object} event `touchend` event targeting the element.
      */
     onTouchEnd: PropTypes.func,
-
     /**
      * Callback function fired when the element is touched.
      *
      * @param {object} event `touchstart` event targeting the element.
      */
     onTouchStart: PropTypes.func,
-
     /**
      * If true, the button will use the theme's primary color.
      */
     primary: PropTypes.bool,
-
     /**
      * Override the inline style of the ripple element.
      */
     rippleStyle: PropTypes.object,
-
     /**
      * If true, the button will use the theme's secondary color.
      * If both `secondary` and `primary` are true, the button will use
      * the theme's primary color.
      */
     secondary: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

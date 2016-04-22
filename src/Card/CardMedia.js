@@ -42,42 +42,34 @@ class CardMedia extends Component {
      * If true, a click on this card component expands the card.
      */
     actAsExpander: PropTypes.bool,
-
     /**
      * Can be used to render elements inside the Card Media.
      */
     children: PropTypes.node,
-
     /**
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
-
     /**
      * Override the inline-styles of the Card Media.
      */
     mediaStyle: PropTypes.object,
-
     /**
      * Can be used to render overlay element in Card Media.
      */
     overlay: PropTypes.node,
-
     /**
      * Override the inline-styles of the overlay container.
      */
     overlayContainerStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the overlay content.
      */
     overlayContentStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the overlay element.
      */
     overlayStyle: PropTypes.object,
-
     /**
      * Override the inline-styles of the root element.
      */

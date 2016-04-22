@@ -54,32 +54,26 @@ class Badge extends Component {
      * This is the content rendered within the badge.
      */
     badgeContent: PropTypes.node.isRequired,
-
     /**
      * Override the inline-styles of the badge element.
      */
     badgeStyle: PropTypes.object,
-
     /**
      * The badge will be added relativelty to this node.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * If true, the badge will use the primary badge colors.
      */
     primary: PropTypes.bool,
-
     /**
      * If true, the badge will use the secondary badge colors.
      */
     secondary: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

@@ -6,38 +6,31 @@ const propTypes = {
    * True if the parent `TextField` is disabled.
    */
   disabled: PropTypes.bool,
-
   /**
    * Override the inline-styles of the underline when parent `TextField` is disabled.
    */
   disabledStyle: PropTypes.object,
-
   /**
    * True if the parent `TextField` has an error.
    */
   error: PropTypes.bool,
-
   /**
    * Override the inline-styles of the underline when parent `TextField` has an error.
    */
   errorStyle: PropTypes.object,
-
   /**
    * True if the parent `TextField` is focused.
    */
   focus: PropTypes.bool,
-
   /**
    * Override the inline-styles of the underline when parent `TextField` is focused.
    */
   focusStyle: PropTypes.object,
-
   /**
    * @ignore
    * The material-ui theme applied to this component.
    */
   muiTheme: PropTypes.object.isRequired,
-
   /**
    * Override the inline-styles of the root element.
    */

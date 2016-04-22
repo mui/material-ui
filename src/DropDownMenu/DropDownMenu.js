@@ -79,49 +79,40 @@ class DropDownMenu extends Component {
      * To control this width in css instead, set this prop to `false`.
      */
     autoWidth: PropTypes.bool,
-
     /**
      * The `MenuItem`s to populate the `Menu` with. If the `MenuItems` have the
      * prop `label` that value will be used to render the representation of that
      * item within the field.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Disables the menu.
      */
     disabled: PropTypes.bool,
-
     /**
      * Overrides the styles of icon element.
      */
     iconStyle: PropTypes.object,
-
     /**
      * Overrides the styles of label when the `DropDownMenu` is inactive.
      */
     labelStyle: PropTypes.object,
-
     /**
      * The style object to use to override underlying list style.
      */
     listStyle: PropTypes.object,
-
     /**
      * The maximum height of the `Menu` when it is displayed.
      */
     maxHeight: PropTypes.number,
-
     /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
      */
     menuStyle: PropTypes.object,
-
     /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
@@ -130,22 +121,18 @@ class DropDownMenu extends Component {
      * @param {any} payload The `value` prop of the clicked menu item.
      */
     onChange: PropTypes.func,
-
     /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Overrides the inline-styles of the underline.
      */
     underlineStyle: PropTypes.object,
-
     /**
      * The value that is currently selected.
      */

@@ -16,7 +16,6 @@ class DatePickerInline extends Component {
     children: PropTypes.node,
     onRequestClose: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
-
     /**
      * Override the inline-styles of the root element.
      */

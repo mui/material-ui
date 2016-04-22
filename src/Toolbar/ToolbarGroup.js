@@ -68,29 +68,24 @@ class ToolbarGroup extends Component {
      * Can be any node or number of nodes.
      */
     children: PropTypes.node,
-
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
      * to prevent setting the left gap.
      */
     firstChild: PropTypes.bool,
-
     /**
      * Determines the side the `ToolbarGroup` will snap to. Either 'left' or 'right'.
      */
     float: PropTypes.oneOf(['left', 'right']),
-
     /**
      * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
      * to prevent setting the right gap.
      */
     lastChild: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */

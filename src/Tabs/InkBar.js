@@ -23,7 +23,6 @@ class InkBar extends Component {
   static propTypes = {
     color: PropTypes.string,
     left: PropTypes.string.isRequired,
-
     /**
      * Override the inline-styles of the root element.
      */

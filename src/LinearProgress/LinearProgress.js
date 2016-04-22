@@ -69,28 +69,23 @@ class LinearProgress extends Component {
      * when there is no value for progress.
      */
     color: PropTypes.string,
-
     /**
      * The max value of progress, only works in determinate mode.
      */
     max: PropTypes.number,
-
     /**
      * The min value of progress, only works in determinate mode.
      */
     min: PropTypes.number,
-
     /**
      * The mode of show your progress, indeterminate for when
      * there is no value for progress.
      */
     mode: PropTypes.oneOf(['determinate', 'indeterminate']),
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * The value of progress, only works in determinate mode.
      */

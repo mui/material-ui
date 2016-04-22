@@ -42,7 +42,6 @@ class Overlay extends Component {
   static propTypes = {
     autoLockScrolling: PropTypes.bool,
     show: PropTypes.bool.isRequired,
-
     /**
      * Override the inline-styles of the root element.
      */

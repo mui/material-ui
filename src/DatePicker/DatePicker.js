@@ -13,41 +13,34 @@ class DatePicker extends Component {
      * otherwise https://github.com/andyearnshaw/Intl.js is a good polyfill.
      */
     DateTimeFormat: PropTypes.func,
-
     /**
      * If true, automatically accept and close the picker on select a date.
      */
     autoOk: PropTypes.bool,
-
     /**
      * Override the default text of the 'Cancel' button.
      */
     cancelLabel: PropTypes.node,
-
     /**
      * Used to control how the DatePicker will be displayed when a user tries to set a date.
      * `dialog` (default) displays the DatePicker as a dialog with a modal.
      * `inline` displays the DatePicker below the input field (similar to auto complete).
      */
     container: PropTypes.oneOf(['dialog', 'inline']),
-
     /**
      * This is the initial date value of the component.
      * If either `value` or `valueLink` is provided they will override this
      * prop with `value` taking precedence.
      */
     defaultDate: PropTypes.object,
-
     /**
      * Disables the year selection in the date picker.
      */
     disableYearSelection: PropTypes.bool,
-
     /**
      * Disables the DatePicker.
      */
     disabled: PropTypes.bool,
-
     /**
      * Used to change the first day of week. It varies from
      * Saturday to Monday between different locales.
@@ -55,7 +48,6 @@ class DatePicker extends Component {
      * The default is `1`, Monday, as per ISO 8601.
      */
     firstDayOfWeek: PropTypes.number,
-
     /**
      * This function is called to format the date displayed in the input box, and should return a string.
      * By default if no `locale` and `DateTimeFormat` is provided date objects are formatted to ISO 8601 YYYY-MM-DD.
@@ -64,35 +56,29 @@ class DatePicker extends Component {
      * @returns {any} The formatted date.
      */
     formatDate: PropTypes.func,
-
     /**
      * Locale used for formatting the dialog date strings. If you are not using the default value, you
      * have to provide a `DateTimeFormat` that supports it.
      */
     locale: PropTypes.string,
-
     /**
      * The ending of a range of valid dates. The range includes the endDate.
      * The default value is current date + 100 years.
      */
     maxDate: PropTypes.object,
-
     /**
      * The beginning of a range of valid dates. The range includes the startDate.
      * The default value is current date - 100 years.
      */
     minDate: PropTypes.object,
-
     /**
      * Tells the component to display the picker in portrait or landscape mode.
      */
     mode: PropTypes.oneOf(['portrait', 'landscape']),
-
     /**
      * Override the default text of the 'OK' button.
      */
     okLabel: PropTypes.node,
-
     /**
      * Callback function that is fired when the date value changes.
      *
@@ -101,31 +87,26 @@ class DatePicker extends Component {
      * @param {object} date The new date.
      */
     onChange: PropTypes.func,
-
     /**
      * Callback function that is fired when the Date Picker's dialog is dismissed.
      */
     onDismiss: PropTypes.func,
-
     /**
      * Callback function that is fired when the Date Picker's `TextField` gains focus.
      *
      * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: PropTypes.func,
-
     /**
      * Callback function that is fired when the Date Picker's dialog is shown.
      */
     onShow: PropTypes.func,
-
     /**
      * Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.
      *
      * @param {object} event TouchTap event targeting the `TextField`.
      */
     onTouchTap: PropTypes.func,
-
     /**
      * Callback function used to determine if a day's entry should be disabled on the calendar.
      *
@@ -133,27 +114,22 @@ class DatePicker extends Component {
      * @returns {boolean} Indicates whether the day should be disabled.
      */
     shouldDisableDate: PropTypes.func,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Override the inline-styles of DatePicker's TextField element.
      */
     textFieldStyle: PropTypes.object,
-
     /**
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.any,
-
     /**
      * Creates a ValueLink with the value of date picker.
      */
     valueLink: PropTypes.object,
-
     /**
      * Wordings used inside the button of the dialog.
      */

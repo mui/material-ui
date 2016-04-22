@@ -31,17 +31,14 @@ class Tab extends Component {
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
      */
     icon: PropTypes.node,
-
     /**
      * Sets the text value of the tab item to the string specified.
      */
     label: PropTypes.node,
-
     /**
      * Fired when the active tab changes by touch or tap.
      * Use this event to specify any functionality when an active tab changes.
@@ -49,31 +46,26 @@ class Tab extends Component {
      * This function will always recieve the active tab as it\'s first argument.
      */
     onActive: PropTypes.func,
-
     /**
      * @ignore
      * This property is overriden by the Tabs component.
      */
     onTouchTap: PropTypes.func,
-
     /**
      * @ignore
      * Defines if the current tab is selected or not.
      * The Tabs component is responsible for setting this property.
      */
     selected: PropTypes.bool,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * If value prop passed to Tabs component, this value prop is also required.
      * It assigns a value to the tab so that it can be selected by the Tabs.
      */
     value: PropTypes.any,
-
     /**
      * @ignore
      * This property is overriden by the Tabs component.

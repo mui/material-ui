@@ -20,22 +20,18 @@ class GridList extends Component {
      * Number of px for one cell height.
      */
     cellHeight: PropTypes.number,
-
     /**
      * Grid Tiles that will be in Grid List.
      */
     children: PropTypes.node,
-
     /**
      * Number of columns.
      */
     cols: PropTypes.number,
-
     /**
      * Number of px for the padding/spacing between items.
      */
     padding: PropTypes.number,
-
     /**
      * Override the inline-styles of the root element.
      */

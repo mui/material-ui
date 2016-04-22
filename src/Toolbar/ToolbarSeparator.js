@@ -27,7 +27,6 @@ class ToolbarSeparator extends Component {
      * The css class name of the root element.
      */
     className: PropTypes.string,
-
     /**
      * Override the inline-styles of the root element.
      */

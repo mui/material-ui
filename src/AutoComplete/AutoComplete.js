@@ -47,32 +47,26 @@ class AutoComplete extends Component {
      * Location of the anchor for the auto complete.
      */
     anchorOrigin: propTypes.origin,
-
     /**
      * If true, the auto complete is animated as it is toggled.
      */
     animated: PropTypes.bool,
-
     /**
      * Array of strings or nodes used to populate the list.
      */
     dataSource: PropTypes.array.isRequired,
-
     /**
      * Disables focus ripple when true.
      */
     disableFocusRipple: PropTypes.bool,
-
     /**
      * Override style prop for error.
      */
     errorStyle: PropTypes.object,
-
     /**
      * The error content to display.
      */
     errorText: PropTypes.node,
-
     /**
      * Callback function used to filter the auto complete.
      *
@@ -81,67 +75,55 @@ class AutoComplete extends Component {
      * @returns {boolean} `true` indicates the auto complete list will include `key` when the input is `searchText`.
      */
     filter: PropTypes.func,
-
     /**
      * The content to use for adding floating label element.
      */
     floatingLabelText: PropTypes.node,
-
     /**
      * If true, the field receives the property `width: 100%`.
      */
     fullWidth: PropTypes.bool,
-
     /**
      * The hint content to display.
      */
     hintText: PropTypes.node,
-
     /**
      * Override style for list.
      */
     listStyle: PropTypes.object,
-
     /**
      * The max number of search results to be shown.
      * By default it shows all the items which matches filter.
      */
     maxSearchResults: PropTypes.number,
-
     /**
      * Delay for closing time of the menu.
      */
     menuCloseDelay: PropTypes.number,
-
     /**
      * Props to be passed to menu.
      */
     menuProps: PropTypes.object,
-
     /**
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
-
     /**
      * Callback function that is fired when the `TextField` loses focus.
      *
      * @param {object} event `blur` event targeting the `TextField`.
      */
     onBlur: PropTypes.func,
-
     /**
      * Callback function that is fired when the `TextField` gains focus.
      *
      * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: PropTypes.func,
-
     /**
      * Callback function that is fired when the `TextField` receives a keydown event.
      */
     onKeyDown: PropTypes.func,
-
     /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
      *
@@ -151,7 +133,6 @@ class AutoComplete extends Component {
      * `TextField`.
      */
     onNewRequest: PropTypes.func,
-
     /**
      * Callback function that is fired when the user updates the `TextField`.
      *
@@ -159,32 +140,26 @@ class AutoComplete extends Component {
      * @param {array} dataSource The auto-complete's `dataSource` array.
      */
     onUpdateInput: PropTypes.func,
-
     /**
      * Auto complete menu is open if true.
      */
     open: PropTypes.bool,
-
     /**
      * If true, the list item is showed when a focus event triggers.
      */
     openOnFocus: PropTypes.bool,
-
     /**
      * Text being input to auto complete.
      */
     searchText: PropTypes.string,
-
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-
     /**
      * Origin for location of target.
      */
     targetOrigin: propTypes.origin,
-
     /**
      * If true, will update when focus event triggers.
      */
