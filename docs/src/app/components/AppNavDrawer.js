@@ -187,6 +187,11 @@ class AppNavDrawer extends Component {
                 href="#/components/badge"
               />,
               <ListItem
+                primaryText="Bottom Navigation"
+                value="/components/bottom-navigation"
+                href="#/components/bottom-navigation"
+              />,
+              <ListItem
                 primaryText="Buttons"
                 primaryTogglesNestedList={true}
                 nestedItems={[
