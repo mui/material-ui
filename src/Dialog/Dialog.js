@@ -140,8 +140,8 @@ function getStyles(props, context) {
     body: {
       fontSize: dialog.bodyFontSize,
       color: dialog.bodyColor,
-      padding: gutter,
-      paddingTop: props.title ? 0 : gutter,
+      padding: `${props.title ? 0 : gutter}px ${gutter}px ${gutter}px`,
+      boxSizing: 'border-box',
       overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
     },
   };
@@ -223,7 +223,7 @@ class DialogInline extends Component {
     if (autoDetectWindowHeight || autoScrollBodyContent) {
       const styles = getStyles(this.props, this.context);
       styles.body = Object.assign(styles.body, bodyStyle);
-      let maxDialogContentHeight = clientHeight - 2 * (styles.body.padding + 64);
+      let maxDialogContentHeight = clientHeight - 2 * 64;
 
       if (title) maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
 
