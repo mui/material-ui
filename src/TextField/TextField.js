@@ -20,7 +20,6 @@ const getStyles = (props, context, state) => {
       textColor,
       disabledTextColor,
       backgroundColor,
-      hintColor,
       errorColor,
     },
   } = context.muiTheme;
@@ -46,7 +45,7 @@ const getStyles = (props, context, state) => {
       transition: transitions.easeOut(),
     },
     floatingLabel: {
-      color: hintColor,
+      color: floatingLabelColor,
       pointerEvents: 'none',
     },
     input: {
