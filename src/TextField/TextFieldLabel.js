@@ -1,12 +1,31 @@
 import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
+function getStyles(props) {
+  const defaultStyles = {
+    position: 'absolute',
+    lineHeight: '22px',
+    top: 38,
+    transition: transitions.easeOut(),
+    zIndex: 1, // Needed to display label above Chrome's autocomplete field background
+    cursor: props.disabled ? 'default' : 'text',
+    transform: 'scale(1) translate3d(0, 0, 0)',
+    transformOrigin: 'left top',
+    pointerEvents: 'auto',
+    userSelect: 'none',
+  };
+
+  const shrinkStyles = props.shrink ? Object.assign({
+    transform: 'perspective(1px) scale(0.75) translate3d(0, -28px, 0)',
+    pointerEvents: 'none',
+  }, props.shrinkStyle) : null;
+
+  return {
+    root: Object.assign(defaultStyles, props.style, shrinkStyles),
+  };
+}
+
 const propTypes = {
-  /**
-   * @ignore
-   * The material-ui theme applied to this component.
-   */
-  muiTheme: PropTypes.object.isRequired,
   /**
    * The css class name of the root element.
    */
@@ -20,17 +39,26 @@ const propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * True if the floating label should shrink.
-   */
-  shrink: PropTypes.bool,
-  /**
    * The id of the target element that this label should refer to.
    */
   htmlFor: PropTypes.string,
   /**
+   * @ignore
+   * The material-ui theme applied to this component.
+   */
+  muiTheme: PropTypes.object.isRequired,
+  /**
    * Callback function for when the label is selected via a touch tap.
    */
   onTouchTap: PropTypes.func,
+  /**
+   * True if the floating label should shrink.
+   */
+  shrink: PropTypes.bool,
+  /**
+   * Override the inline-styles of the root element when focused.
+   */
+  shrinkStyle: PropTypes.object,
   /**
    * Override the inline-styles of the root element.
    */
@@ -47,36 +75,17 @@ const TextFieldLabel = (props) => {
     muiTheme,
     className,
     children,
-    disabled,
-    shrink,
     htmlFor,
-    style,
     onTouchTap,
   } = props;
 
-  const styles = {
-    root: {
-      position: 'absolute',
-      lineHeight: '22px',
-      top: 38,
-      transition: transitions.easeOut(),
-      zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-      cursor: disabled ? 'default' : 'text',
-      transform: shrink ?
-        'perspective(1px) scale(0.75) translate3d(0, -28px, 0)' :
-        'scale(1) translate3d(0, 0, 0)',
-      transformOrigin: 'left top',
-      pointerEvents: shrink ? 'none' : 'auto',
-      userSelect: 'none',
-    },
-  };
-
   const {prepareStyles} = muiTheme;
+  const styles = getStyles(props);
 
   return (
     <label
       className={className}
-      style={prepareStyles(Object.assign({}, styles.root, style))}
+      style={prepareStyles(styles.root)}
       htmlFor={htmlFor}
       onTouchTap={onTouchTap}
     >

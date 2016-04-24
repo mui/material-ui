@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import {orange500} from 'material-ui/styles/colors';
+import {orange500, blue500} from 'material-ui/styles/colors';
 
 const styles = {
   errorStyle: {
@@ -8,6 +8,12 @@ const styles = {
   },
   underlineStyle: {
     borderColor: orange500,
+  },
+  floatingLabelStyle: {
+    color: orange500,
+  },
+  floatingLabelFocusStyle: {
+    color: blue500,
   },
 };
 
@@ -29,6 +35,11 @@ const TextFieldExampleCustomize = () => (
     <TextField
       hintText="Custom Underline Focus Color"
       underlineFocusStyle={styles.underlineStyle}
+    /><br />
+    <TextField
+      floatingLabelText="Styled Floating Label Text"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     />
   </div>
 );
