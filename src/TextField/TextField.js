@@ -47,7 +47,6 @@ const getStyles = (props, context, state) => {
     },
     floatingLabel: {
       color: hintColor,
-      pointerEvents: 'none',
     },
     input: {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
@@ -73,12 +72,12 @@ const getStyles = (props, context, state) => {
     font: 'inherit',
   });
 
-  if (state.isFocused) {
-    styles.floatingLabel.color = focusColor;
-  }
-
   if (state.hasValue) {
     styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
+  }
+
+  if (state.isFocused) {
+    styles.floatingLabel.color = focusColor;
   }
 
   if (props.floatingLabelText) {
@@ -139,6 +138,10 @@ class TextField extends Component {
      * If true, the floating label will float even when there is no value.
      */
     floatingLabelFixed: PropTypes.bool,
+    /**
+     * The style object to use to override floating label styles when focused.
+     */
+    floatingLabelFocusStyle: PropTypes.object,
     /**
      * The style object to use to override floating label styles.
      */
@@ -419,6 +422,7 @@ class TextField extends Component {
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
         style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
+        shrinkStyle={this.props.floatingLabelFocusStyle}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
