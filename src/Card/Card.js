@@ -13,6 +13,10 @@ class Card extends Component {
      */
     children: PropTypes.node,
     /**
+     * Override the inline-styles of the container element.
+     */
+    containerStyle: PropTypes.object,
+    /**
      * If true, this card component is expandable. Can be set on any child of the `Card` component.
      */
     expandable: PropTypes.bool,
@@ -111,16 +115,20 @@ class Card extends Component {
       lastElement.type.muiName === 'CardTitle'));
     const {
       style,
+      containerStyle,
       ...other,
     } = this.props;
 
     const mergedStyles = Object.assign({
       zIndex: 1,
     }, style);
+    const containerMergedStyles = Object.assign({
+      paddingBottom: addBottomPadding ? 8 : 0,
+    }, containerStyle);
 
     return (
       <Paper {...other} style={mergedStyles}>
-        <div style={{paddingBottom: addBottomPadding ? 8 : 0}}>
+        <div style={containerMergedStyles}>
           {newChildren}
         </div>
       </Paper>
