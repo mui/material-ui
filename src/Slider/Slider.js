@@ -44,7 +44,7 @@ const getStyles = (props, context, state) => {
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
 
   const styles = {
-    root: {
+    slider: {
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
@@ -558,7 +558,7 @@ class Slider extends React.Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const sliderStyles = Object.assign({}, styles.root, style);
+    const sliderStyles = Object.assign({}, styles.slider);
 
     let handleStyles = {};
     let percent = this.state.percent;
