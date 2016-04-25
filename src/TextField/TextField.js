@@ -26,19 +26,30 @@ const getStyles = (props, context, state) => {
   } = context.muiTheme;
 
   const styles = {
+    wrapper: {
+      width: props.fullWidth ? '100%' : 256,
+      backgroundColor: backgroundColor,
+      transition: transitions.easeOut('200ms', 'height'),
+    },
+    icon: {
+      verticalAlign: 'middle',
+      position: 'absolute',
+      top: 10,
+    },
+    hintStyleMargin: {
+      marginLeft: 24,
+    },
     root: {
       fontSize: 16,
       lineHeight: '24px',
-      width: props.fullWidth ? '100%' : 256,
       height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
       display: 'inline-block',
       position: 'relative',
-      backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
-      transition: transitions.easeOut('200ms', 'height'),
     },
     error: {
       position: 'relative',
+      marginLeft: 24,
       bottom: 2,
       fontSize: 12,
       lineHeight: '12px',
@@ -47,9 +58,11 @@ const getStyles = (props, context, state) => {
     },
     floatingLabel: {
       color: hintColor,
+      marginLeft: 24,
       pointerEvents: 'none',
     },
     input: {
+      marginLeft: 24,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 0,
       position: 'relative',
@@ -169,6 +182,11 @@ class TextField extends Component {
      * When multiLine is true: define the style of the container of the textarea.
      */
     inputStyle: PropTypes.object,
+    /**
+     * This is the `SvgIcon` or `FontIcon` to be displayed on the left side.
+     */
+    leftIcon: React.PropTypes.element,
+
     /**
      * If true, a textarea element will be rendered.
      * The textarea also grows and shrinks according to the number of lines.
@@ -391,6 +409,7 @@ class TextField extends Component {
       hintStyle,
       id,
       inputStyle,
+      leftIcon,
       multiLine,
       onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -415,6 +434,16 @@ class TextField extends Component {
       <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
     );
 
+    let leftIconElement;
+    if (leftIcon) {
+      leftIconElement = React.cloneElement(this.props.leftIcon,
+        {
+          ...this.props.leftIcon,
+          key: 'leftIcon',
+          style: Object.assign({}, styles.icon, this.props.leftIcon.style),
+        });
+    }
+
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
@@ -436,6 +465,8 @@ class TextField extends Component {
       onFocus: this.handleInputFocus,
       onKeyDown: this.handleInputKeyDown,
     };
+
+    const hintStyleMerged = Object.assign(styles.hintStyleMargin, hintStyle);
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
 
@@ -470,13 +501,14 @@ class TextField extends Component {
 
     return (
       <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+        {leftIconElement}
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint
             muiTheme={this.context.muiTheme}
             show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
                   (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
-            style={hintStyle}
+            style={hintStyleMerged}
             text={hintText}
           /> :
           null

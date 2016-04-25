@@ -1,5 +1,7 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
+import Search from 'material-ui/svg-icons/action/search';
+import {orange500} from 'material-ui/styles/colors';
 
 export default class AutoCompleteExampleSimple extends React.Component {
 
@@ -26,6 +28,7 @@ export default class AutoCompleteExampleSimple extends React.Component {
       <div>
         <AutoComplete
           hintText="Type anything"
+          leftIcon={<Search color={orange500} />}
           dataSource={this.state.dataSource}
           onUpdateInput={this.handleUpdateInput}
         />

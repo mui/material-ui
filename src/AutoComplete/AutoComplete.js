@@ -88,6 +88,11 @@ class AutoComplete extends Component {
      */
     hintText: PropTypes.node,
     /**
+     * This is the `SvgIcon` or `FontIcon` to be displayed on the left side.
+     */
+    leftIcon: React.PropTypes.element,
+
+    /**
      * Override style for list.
      */
     listStyle: PropTypes.object,
@@ -370,6 +375,7 @@ class AutoComplete extends Component {
       menuStyle,
       menuProps,
       listStyle,
+      leftIcon,
       targetOrigin,
       disableFocusRipple,
       triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
@@ -467,6 +473,7 @@ class AutoComplete extends Component {
       <div style={prepareStyles(Object.assign(styles.root, style))} >
         <TextField
           {...other}
+          leftIcon={leftIcon}
           ref="searchTextField"
           autoComplete="off"
           value={searchText}
