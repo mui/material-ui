@@ -9,6 +9,7 @@ import CalendarToolbar from './CalendarToolbar';
 import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../internal/SlideIn';
 import ClearFix from '../internal/ClearFix';
+import deprecated from '../utils/deprecatedPropType';
 
 import {
   addDays,
@@ -26,9 +27,7 @@ import {
 
 const daysArray = [...Array(7)];
 
-
-class Calendar extends React.Component {
-
+class Calendar extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
@@ -47,7 +46,7 @@ class Calendar extends React.Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     showActionButtons: PropTypes.bool,
-    wordings: PropTypes.object,
+    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
   };
 
   static defaultProps = {
@@ -69,7 +68,6 @@ class Calendar extends React.Component {
     selectedDate: undefined,
     transitionDirection: 'left',
     transitionEnter: true,
-    open: true,
   };
 
   componentWillMount() {
@@ -256,22 +254,21 @@ class Calendar extends React.Component {
         flexDirection: 'column',
       },
       calendarContainer: {
-        alignContent: 'space-between',
         display: 'flex',
+        alignContent: 'space-between',
+        justifyContent: 'space-between',
         flexDirection: 'column',
         fontSize: 12,
         fontWeight: 400,
-        height: 'auto',
-        justifyContent: 'space-between',
-        padding: '0px 8px 0px 8px',
+        padding: '0px 8px',
         transition: transitions.easeOut(),
         width: isLandscape ? 294 : 'auto',
       },
       yearContainer: {
         display: 'flex',
+        justifyContent: 'space-between',
         flexDirection: 'column',
         height: 272,
-        justifyContent: 'space-between',
         marginTop: 10,
         overflow: 'hidden',
         width: 310,
@@ -285,9 +282,9 @@ class Calendar extends React.Component {
       weekTitle: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         fontWeight: '500',
         height: 20,
-        justifyContent: 'space-between',
         lineHeight: '15px',
         opacity: '0.5',
         textAlign: 'center',
@@ -358,7 +355,7 @@ class Calendar extends React.Component {
                   key={this.state.displayDate.toDateString()}
                   minDate={this.props.minDate}
                   maxDate={this.props.maxDate}
-                  onTouchTapDay={this.handleTouchTapDay}
+                  onDayTouchTap={this.handleTouchTapDay}
                   ref="calendar"
                   selectedDate={this.state.selectedDate}
                   shouldDisableDate={this.props.shouldDisableDate}

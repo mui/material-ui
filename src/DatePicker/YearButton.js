@@ -15,6 +15,7 @@ function getStyles(props, context, state) {
       margin: '0 auto',
       position: 'relative',
       textAlign: 'center',
+      lineHeight: 'inherit',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
     },
     label: {

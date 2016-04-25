@@ -6,27 +6,20 @@ import SlideInTransitionGroup from '../internal/SlideIn';
 
 const styles = {
   root: {
-    position: 'relative',
     display: 'flex',
     justifyContent: 'space-between',
     backgroundColor: 'inherit',
     height: 48,
   },
-  title: {
+  titleDiv: {
     fontSize: 14,
     fontWeight: '500',
-    lineHeight: '20px',
-    position: 'relative',
     textAlign: 'center',
-    paddingTop: 12,
     width: '100%',
   },
-  button: {
-    padding: 0,
-    paddingTop: 12,
-    margin: 0,
+  titleText: {
     height: 'inherit',
-    textAlign: 'center',
+    paddingTop: 12,
   },
 };
 
@@ -78,30 +71,28 @@ class CalendarToolbar extends Component {
       year: 'numeric',
     }).format(displayDate);
 
-    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
-    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
 
     return (
       <div style={styles.root}>
         <IconButton
           disabled={!this.props.prevMonth}
           onTouchTap={this.handleTouchTapPrevMonth}
-          style={styles.button}
         >
-          {nextButtonIcon}
+          {prevButtonIcon}
         </IconButton>
         <SlideInTransitionGroup
           direction={this.state.transitionDirection}
-          style={styles.title}
+          style={styles.titleDiv}
         >
-          <div key={dateTimeFormatted} style={{paddingTop: 13}}>{dateTimeFormatted}</div>
+          <div key={dateTimeFormatted} style={styles.titleText}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
         <IconButton
           disabled={!this.props.nextMonth}
           onTouchTap={this.handleTouchTapNextMonth}
-          style={styles.button}
         >
-          {prevButtonIcon}
+          {nextButtonIcon}
         </IconButton>
       </div>
     );

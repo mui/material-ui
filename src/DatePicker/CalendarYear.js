@@ -8,8 +8,9 @@ class CalendarYear extends Component {
     displayDate: PropTypes.object.isRequired,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    onYearTouchTap: PropTypes.func,
+    onTouchTapYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
+    wordings: PropTypes.object,
   };
 
   static contextTypes = {
@@ -81,7 +82,6 @@ class CalendarYear extends Component {
       overflowX: 'hidden',
       overflowY: 'scroll',
       position: 'relative',
-      textAlign: 'center',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',

@@ -12,7 +12,7 @@ function getStyles(props, context, state) {
       width: isLandscape ? 125 : 270,
       height: isLandscape ? 290 : 'auto',
       float: isLandscape ? 'left' : 'none',
-      fontWeight: 'bolder',
+      fontWeight: 700,
       display: 'inline-block',
       backgroundColor: datePicker.selectColor,
       borderTopLeftRadius: 2,
@@ -121,6 +121,7 @@ class DateDisplay extends Component {
       DateTimeFormat,
       locale,
       selectedDate,
+      style,
       ...other,
     } = this.props;
 
@@ -135,7 +136,7 @@ class DateDisplay extends Component {
     }).format(selectedDate);
 
     return (
-      <div {...other} style={prepareStyles(styles.root)}>
+      <div {...other} style={prepareStyles(styles.root, style)}>
         <SlideInTransitionGroup
           style={styles.year}
           direction={this.state.transitionDirection}

@@ -5,6 +5,7 @@ import Calendar from './Calendar';
 import Dialog from '../Dialog';
 import Popover from '../Popover/Popover';
 import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import deprecated from '../utils/deprecatedPropType';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
@@ -24,9 +25,10 @@ class DatePickerDialog extends Component {
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
+    open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
-    wordings: PropTypes.object,
+    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
   };
 
   static defaultProps = {
@@ -117,8 +119,7 @@ class DatePickerDialog extends Component {
         width: mode === 'landscape' ? 479 : 310,
       },
       dialogBodyContent: {
-        paddingLeft: 0,
-        paddingBottom: 0,
+        padding: 0,
         minHeight: mode === 'landscape' ? 330 : 434,
         minWidth: mode === 'landscape' ? 479 : 310,
       },
@@ -134,7 +135,7 @@ class DatePickerDialog extends Component {
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
           ref="dialog"
-          repositionOnUpdate={false}
+          repositionOnUpdate={true}
           open={open}
           onRequestClose={this.handleRequestClose}
           style={styles.dialogBodyContent}

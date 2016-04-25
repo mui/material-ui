@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import FlatButton from '../FlatButton';
+import deprecated from '../utils/deprecatedPropType';
 
-class CalendarActionButton extends React.Component {
+class CalendarActionButton extends Component {
   static propTypes = {
-    cancelLabel: React.PropTypes.node,
-    okLabel: React.PropTypes.node,
-    onTouchTapCancel: React.PropTypes.func,
-    onTouchTapOk: React.PropTypes.func,
-    wordings: React.PropTypes.object,
+    cancelLabel: PropTypes.node,
+    okLabel: PropTypes.node,
+    onTouchTapCancel: PropTypes.func,
+    onTouchTapOk: PropTypes.func,
+    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
   };
 
   render() {
@@ -34,7 +35,6 @@ class CalendarActionButton extends React.Component {
     return (
       <div style={styles.root} >
         <FlatButton
-          key={0}
           label={wordings ? wordings.cancel : cancelLabel}
           onTouchTap={this.props.onTouchTapCancel}
           primary={true}
@@ -42,7 +42,6 @@ class CalendarActionButton extends React.Component {
         />
         <FlatButton
           disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-          key={1}
           label={wordings ? wordings.ok : okLabel}
           onTouchTap={this.props.onTouchTapOk}
           primary={true}

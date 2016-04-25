@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
 import DayButton from './DayButton';
-import ClearFix from '../internal/ClearFix';
 
 class CalendarMonth extends Component {
   static propTypes = {
@@ -20,7 +19,7 @@ class CalendarMonth extends Component {
   }
 
   handleTouchTapDay = (event, date) => {
-    if (this.props.onTouchTapDay) this.props.onTouchTapDay(event, date);
+    if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
   };
 
   shouldDisableDate(day) {
@@ -36,9 +35,9 @@ class CalendarMonth extends Component {
 
     return weekArray.map((week, i) => {
       return (
-        <ClearFix key={i} style={this.styles.week}>
+        <div key={i} style={this.styles.week}>
           {this.getDayElements(week, i)}
-        </ClearFix>
+        </div>
       );
     }, this);
   }
@@ -69,22 +68,20 @@ class CalendarMonth extends Component {
     root: {
       display: 'flex',
       flexDirection: 'column',
+      justifyContent: 'flex-start',
       fontWeight: 400,
       height: 228,
-      justifyContent: 'flex-start',
       lineHeight: 2,
       position: 'relative',
       textAlign: 'center',
       MozPaddingStart: 0,
-      // backgroundColor: 'cyan',
     },
     week: {
       display: 'flex',
       flexDirection: 'row',
-      height: 34,
       justifyContent: 'space-around',
+      height: 34,
       marginBottom: 2,
-      // backgroundColor: 'yellow',
     },
   };
 

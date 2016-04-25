@@ -149,14 +149,12 @@ class DatePicker extends Component {
   };
 
   state = {
-    date: null,
-    dialogDate: null,
+    date: undefined,
   };
 
   componentWillMount() {
     this.setState({
       date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
-      dialogDate: new Date(),
     });
   }
 
@@ -283,7 +281,7 @@ class DatePicker extends Component {
           onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : undefined}
+          value={this.state.date ? formatDate(this.state.date) : ''}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
