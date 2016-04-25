@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import FocusRipple from '../internal/FocusRipple';
@@ -11,7 +11,7 @@ import FocusRipple from '../internal/FocusRipple';
  * @returns {Object} Returns an Error if min >= max otherwise null.
  */
 const minMaxPropType = (props, propName, componentName) => {
-  const error = PropTypes.number(props, propName, componentName);
+  const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
   if (props.min >= props.max) {
@@ -28,7 +28,7 @@ const minMaxPropType = (props, propName, componentName) => {
  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
  */
 const valueInRangePropType = (props, propName, componentName) => {
-  const error = PropTypes.number(props, propName, componentName);
+  const error = React.PropTypes.number(props, propName, componentName);
   if (error !== null) return error;
 
   const value = props[propName];
@@ -52,6 +52,7 @@ const getStyles = (props, context, state) => {
       position: 'relative',
       marginTop: 24,
       marginBottom: 48,
+      width: '100%',
     },
     track: {
       position: 'absolute',
@@ -151,75 +152,91 @@ const getStyles = (props, context, state) => {
   return styles;
 };
 
-class Slider extends Component {
+class Slider extends React.Component {
   static propTypes = {
     /**
      * The default value of the slider.
      */
     defaultValue: valueInRangePropType,
+
     /**
      * Describe the slider.
      */
-    description: PropTypes.string,
+    description: React.PropTypes.string,
+
     /**
      * Disables focus ripple if set to true.
      */
-    disableFocusRipple: PropTypes.bool,
+    disableFocusRipple: React.PropTypes.bool,
+
     /**
      * If true, the slider will not be interactable.
      */
-    disabled: PropTypes.bool,
+    disabled: React.PropTypes.bool,
+
     /**
      * An error message for the slider.
      */
-    error: PropTypes.string,
+    error: React.PropTypes.string,
+
     /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
      */
     max: minMaxPropType,
+
     /**
      * The minimum value the slider can slide to on a scale
      * from 0 to 1 inclusive. Cannot be equal to max.
      */
     min: minMaxPropType,
+
     /**
      * The name of the slider. Behaves like the name attribute
      * of an input element.
      */
-    name: PropTypes.string,
+    name: React.PropTypes.string,
+
     /**
      * Callback function that is fired when the focus has left the slider.
      */
-    onBlur: PropTypes.func,
+    onBlur: React.PropTypes.func,
+
     /**
      * Callback function that is fired when the user changes the slider's value.
      */
-    onChange: PropTypes.func,
+    onChange: React.PropTypes.func,
+
     /**
      * Callback function that is fired when the slider has begun to move.
      */
-    onDragStart: PropTypes.func,
+    onDragStart: React.PropTypes.func,
+
     /**
      * Callback function that is fried when the slide has stopped moving.
      */
-    onDragStop: PropTypes.func,
+    onDragStop: React.PropTypes.func,
+
     /**
      * Callback fired when the user has focused on the slider.
      */
-    onFocus: PropTypes.func,
+    onFocus: React.PropTypes.func,
+
     /**
      * Whether or not the slider is required in a form.
      */
-    required: PropTypes.bool,
+    required: React.PropTypes.bool,
+
     /**
      * The granularity the slider can step through values.
      */
-    step: PropTypes.number,
+    step: React.PropTypes.number,
+
     /**
      * Override the inline-styles of the root element.
      */
-    style: PropTypes.object,
+    style: React.PropTypes.object,
+
     /**
      * The value of the slider.
      */
@@ -237,7 +254,7 @@ class Slider extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: React.PropTypes.object.isRequired,
   };
 
   state = {
@@ -542,7 +559,6 @@ class Slider extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const sliderStyles = Object.assign({}, styles.root, style);
 
     let handleStyles = {};
     let percent = this.state.percent;
@@ -604,7 +620,7 @@ class Slider extends Component {
         <span>{description}</span>
         <span>{error}</span>
         <div
-          style={prepareStyles(sliderStyles)}
+          style={styles.root}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onMouseDown={this.handleMouseDown}
