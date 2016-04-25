@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import {Mixins, Styles} from 'material-ui';
 
 const {StyleResizable} = Mixins;
 const {typography, spacing} = Styles;
 
-const ComponentInfo = React.createClass({
+const ComponentInfo = createClass({
 
   propTypes: {
-    infoArray: React.PropTypes.array.isRequired,
-    name: React.PropTypes.string.isRequired,
-    style: React.PropTypes.object,
+    infoArray: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired,
+    style: PropTypes.object,
   },
 
   contextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   mixins: [StyleResizable],

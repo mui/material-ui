@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
-class ScaleInChild extends React.Component {
+class ScaleInChild extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    enterDelay: React.PropTypes.number,
-    maxScale: React.PropTypes.number,
-    minScale: React.PropTypes.number,
-    style: React.PropTypes.object,
+    children: PropTypes.node,
+    enterDelay: PropTypes.number,
+    maxScale: PropTypes.number,
+    minScale: PropTypes.number,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -19,7 +19,7 @@ class ScaleInChild extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentWillUnmount() {

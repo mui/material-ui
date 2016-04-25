@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
-class TimeDisplay extends React.Component {
+class TimeDisplay extends Component {
   static propTypes = {
-    affix: React.PropTypes.oneOf(['', 'pm', 'am']),
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    mode: React.PropTypes.oneOf(['hour', 'minute']),
-    onSelectAffix: React.PropTypes.func,
-    onSelectHour: React.PropTypes.func,
-    onSelectMin: React.PropTypes.func,
-    selectedTime: React.PropTypes.object.isRequired,
+    affix: PropTypes.oneOf(['', 'pm', 'am']),
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    mode: PropTypes.oneOf(['hour', 'minute']),
+    onSelectAffix: PropTypes.func,
+    onSelectHour: PropTypes.func,
+    onSelectMin: PropTypes.func,
+    selectedTime: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -17,7 +17,7 @@ class TimeDisplay extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

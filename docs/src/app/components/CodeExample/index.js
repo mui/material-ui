@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {parse} from 'react-docgen';
 import CodeBlock from './CodeBlock';
 import ClearFix from 'material-ui/internal/ClearFix';
 import Paper from 'material-ui/Paper';
 
-class CodeExample extends React.Component {
+class CodeExample extends Component {
   static propTypes = {
     children: React.PropTypes.node,
     code: React.PropTypes.string.isRequired,
@@ -20,7 +20,7 @@ class CodeExample extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   };
 
   render() {

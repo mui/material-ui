@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import IconButton from '../IconButton';
 import Toolbar from '../Toolbar/Toolbar';
 import ToolbarGroup from '../Toolbar/ToolbarGroup';
@@ -24,14 +24,14 @@ const styles = {
   },
 };
 
-class CalendarToolbar extends React.Component {
+class CalendarToolbar extends Component {
   static propTypes = {
-    DateTimeFormat: React.PropTypes.func.isRequired,
-    displayDate: React.PropTypes.object.isRequired,
-    locale: React.PropTypes.string.isRequired,
-    nextMonth: React.PropTypes.bool,
-    onMonthChange: React.PropTypes.func,
-    prevMonth: React.PropTypes.bool,
+    DateTimeFormat: PropTypes.func.isRequired,
+    displayDate: PropTypes.object.isRequired,
+    locale: PropTypes.string.isRequired,
+    nextMonth: PropTypes.bool,
+    onMonthChange: PropTypes.func,
+    prevMonth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -40,7 +40,7 @@ class CalendarToolbar extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
@@ -46,18 +46,18 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-class DateDisplay extends React.Component {
+class DateDisplay extends Component {
   static propTypes = {
-    DateTimeFormat: React.PropTypes.func.isRequired,
-    disableYearSelection: React.PropTypes.bool,
-    locale: React.PropTypes.string.isRequired,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    monthDaySelected: React.PropTypes.bool,
-    onTouchTapMonthDay: React.PropTypes.func,
-    onTouchTapYear: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
-    style: React.PropTypes.object,
-    weekCount: React.PropTypes.number,
+    DateTimeFormat: PropTypes.func.isRequired,
+    disableYearSelection: PropTypes.bool,
+    locale: PropTypes.string.isRequired,
+    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    monthDaySelected: PropTypes.bool,
+    onTouchTapMonthDay: PropTypes.func,
+    onTouchTapYear: PropTypes.func,
+    selectedDate: PropTypes.object.isRequired,
+    style: PropTypes.object,
+    weekCount: PropTypes.number,
   };
 
   static defaultProps = {
@@ -67,7 +67,7 @@ class DateDisplay extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

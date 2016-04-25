@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Calendar from './Calendar';
@@ -7,26 +7,26 @@ import DatePickerInline from './DatePickerInline';
 import FlatButton from '../FlatButton';
 import {dateTimeFormat} from './dateUtils';
 
-class DatePickerDialog extends React.Component {
+class DatePickerDialog extends Component {
   static propTypes = {
-    DateTimeFormat: React.PropTypes.func,
-    autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.node,
-    container: React.PropTypes.oneOf(['dialog', 'inline']),
-    disableYearSelection: React.PropTypes.bool,
-    firstDayOfWeek: React.PropTypes.number,
-    initialDate: React.PropTypes.object,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    okLabel: React.PropTypes.node,
-    onAccept: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    shouldDisableDate: React.PropTypes.func,
-    style: React.PropTypes.object,
-    wordings: React.PropTypes.object,
+    DateTimeFormat: PropTypes.func,
+    autoOk: PropTypes.bool,
+    cancelLabel: PropTypes.node,
+    container: PropTypes.oneOf(['dialog', 'inline']),
+    disableYearSelection: PropTypes.bool,
+    firstDayOfWeek: PropTypes.number,
+    initialDate: PropTypes.object,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    okLabel: PropTypes.node,
+    onAccept: PropTypes.func,
+    onDismiss: PropTypes.func,
+    onShow: PropTypes.func,
+    shouldDisableDate: PropTypes.func,
+    style: PropTypes.object,
+    wordings: PropTypes.object,
   };
 
   static defaultProps = {
@@ -38,7 +38,7 @@ class DatePickerDialog extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

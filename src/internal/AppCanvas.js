@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
-class AppCanvas extends React.Component {
+class AppCanvas extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {createChildFragment} from '../utils/childUtils';
 import Events from '../utils/events';
 import keycode from 'keycode';
@@ -35,34 +35,34 @@ function listenForTabPresses() {
   }
 }
 
-class EnhancedButton extends React.Component {
+class EnhancedButton extends Component {
   static propTypes = {
-    centerRipple: React.PropTypes.bool,
-    children: React.PropTypes.node,
-    containerElement: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
+    centerRipple: PropTypes.bool,
+    children: PropTypes.node,
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
     ]),
-    disableFocusRipple: React.PropTypes.bool,
-    disableKeyboardFocus: React.PropTypes.bool,
-    disableTouchRipple: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    focusRippleColor: React.PropTypes.string,
-    focusRippleOpacity: React.PropTypes.number,
-    keyboardFocused: React.PropTypes.bool,
-    linkButton: React.PropTypes.bool,
-    onBlur: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    onKeyUp: React.PropTypes.func,
-    onKeyboardFocus: React.PropTypes.func,
-    onTouchTap: React.PropTypes.func,
-    style: React.PropTypes.object,
-    tabIndex: React.PropTypes.number,
-    touchRippleColor: React.PropTypes.string,
-    touchRippleOpacity: React.PropTypes.number,
-    type: React.PropTypes.string,
+    disableFocusRipple: PropTypes.bool,
+    disableKeyboardFocus: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
+    disabled: PropTypes.bool,
+    focusRippleColor: PropTypes.string,
+    focusRippleOpacity: PropTypes.number,
+    keyboardFocused: PropTypes.bool,
+    linkButton: PropTypes.bool,
+    onBlur: PropTypes.func,
+    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
+    onTouchTap: PropTypes.func,
+    style: PropTypes.object,
+    tabIndex: PropTypes.number,
+    touchRippleColor: PropTypes.string,
+    touchRippleOpacity: PropTypes.number,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
@@ -79,7 +79,7 @@ class EnhancedButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {isKeyboardFocused: false};

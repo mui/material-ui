@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import RenderToLayer from '../internal/RenderToLayer';
@@ -7,14 +7,13 @@ import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
-class Popover extends React.Component {
+class Popover extends Component {
   static propTypes = {
     /**
      * This is the DOM element that will be used to set the position of the
      * popover.
      */
-    anchorEl: React.PropTypes.object,
-
+    anchorEl: PropTypes.object,
     /**
      * This is the point on the anchor where the popover's
      * `targetOrigin` will attach to.
@@ -23,58 +22,48 @@ class Popover extends React.Component {
      * horizontal: [left, center, right].
      */
     anchorOrigin: propTypes.origin,
-
     /**
      * If true, the popover will apply transitions when
      * it is added to the DOM.
      */
-    animated: React.PropTypes.bool,
-
+    animated: PropTypes.bool,
     /**
      * Override the default animation component used.
      */
-    animation: React.PropTypes.func,
-
+    animation: PropTypes.func,
     /**
      * If true, the popover will hide when the anchor is scrolled off the screen.
      */
-    autoCloseWhenOffScreen: React.PropTypes.bool,
-
+    autoCloseWhenOffScreen: PropTypes.bool,
     /**
      * If true, the popover (potentially) ignores `targetOrigin`
      * and `anchorOrigin` to make itself fit on screen,
      * which is useful for mobile devices.
      */
-    canAutoPosition: React.PropTypes.bool,
-
+    canAutoPosition: PropTypes.bool,
     /**
      * The content of the popover.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * The CSS class name of the root element.
      */
-    className: React.PropTypes.string,
-
+    className: PropTypes.string,
     /**
      * Callback function fired when the popover is requested to be closed.
      *
      * @param {string} reason The reason for the close request. Possibles values
      * are 'clickAway' and 'offScreen'.
      */
-    onRequestClose: React.PropTypes.func,
-
+    onRequestClose: PropTypes.func,
     /**
      * If true, the popover is visible.
      */
-    open: React.PropTypes.bool,
-
+    open: PropTypes.bool,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * This is the point on the popover which will attach to
      * the anchor's origin.
@@ -83,14 +72,12 @@ class Popover extends React.Component {
      * horizontal: [left, center, right].
      */
     targetOrigin: propTypes.origin,
-
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying
      * elements, and trigger an `onRequestClose('clickAway')` call.
      */
-    useLayerForClickAway: React.PropTypes.bool,
-
+    useLayerForClickAway: PropTypes.bool,
     /**
      * The zDepth of the popover.
      */
@@ -119,7 +106,7 @@ class Popover extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {

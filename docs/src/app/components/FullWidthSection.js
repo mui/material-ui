@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import ClearFix from 'material-ui/internal/ClearFix';
 import spacing from 'material-ui/styles/spacing';
 import styleResizable from 'material-ui/utils/styleResizable';
 const desktopGutter = spacing.desktopGutter;
 
-const FullWidthSection = React.createClass({
+const FullWidthSection = createClass({
 
   propTypes: {
-    children: React.PropTypes.node,
-    contentStyle: React.PropTypes.object,
-    contentType: React.PropTypes.string,
-    style: React.PropTypes.object,
-    useContent: React.PropTypes.bool,
+    children: PropTypes.node,
+    contentStyle: PropTypes.object,
+    contentType: PropTypes.string,
+    style: PropTypes.object,
+    useContent: PropTypes.bool,
   },
 
   mixins: [

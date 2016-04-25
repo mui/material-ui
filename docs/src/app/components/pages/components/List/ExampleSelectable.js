@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -7,10 +7,10 @@ import Subheader from 'material-ui/Subheader';
 let SelectableList = MakeSelectable(List);
 
 function wrapState(ComposedComponent) {
-  return class SelectableList extends React.Component {
+  return class SelectableList extends Component {
     static propTypes = {
-      children: React.PropTypes.node.isRequired,
-      defaultValue: React.PropTypes.number.isRequired,
+      children: PropTypes.node.isRequired,
+      defaultValue: PropTypes.number.isRequired,
     };
 
     componentWillMount() {

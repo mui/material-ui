@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import {parse} from 'react-docgen';
 import {parse as parseDoctrine} from 'doctrine';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -8,7 +8,7 @@ import recast from 'recast';
 require('./prop-type-description.css');
 
 function getDeprecatedInfo(type) {
-  const deprecatedPropType = 'deprecated(React.PropTypes.';
+  const deprecatedPropType = 'deprecated(PropTypes.';
 
   const indexStart = type.raw.indexOf(deprecatedPropType);
 
@@ -101,10 +101,10 @@ function generateDescription(required, description, type) {
   return `${deprecated} ${jsDocText}${signature}`;
 }
 
-const PropTypeDescription = React.createClass({
+const PropTypeDescription = createClass({
   propTypes: {
-    code: React.PropTypes.string,
-    header: React.PropTypes.string,
+    code: PropTypes.string,
+    header: PropTypes.string,
   },
   mixins: [
     PureRenderMixin,

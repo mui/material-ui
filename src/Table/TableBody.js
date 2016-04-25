@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Checkbox from '../Checkbox';
 import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
 
-class TableBody extends React.Component {
+class TableBody extends Component {
   static muiName = 'TableBody';
 
   static propTypes = {
@@ -11,74 +11,63 @@ class TableBody extends React.Component {
      * @ignore
      * Set to true to indicate that all rows should be selected.
      */
-    allRowsSelected: React.PropTypes.bool,
-
+    allRowsSelected: PropTypes.bool,
     /**
      * Children passed to table body.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-
+    className: PropTypes.string,
     /**
      * Controls whether or not to deselect all selected
      * rows after clicking outside the table.
      */
-    deselectOnClickaway: React.PropTypes.bool,
-
+    deselectOnClickaway: PropTypes.bool,
     /**
      * Controls the display of the row checkbox. The default value is true.
      */
-    displayRowCheckbox: React.PropTypes.bool,
-
+    displayRowCheckbox: PropTypes.bool,
     /**
      * @ignore
      * If true, multiple table rows can be selected.
      * CTRL/CMD+Click and SHIFT+Click are valid actions.
      * The default value is false.
      */
-    multiSelectable: React.PropTypes.bool,
-
+    multiSelectable: PropTypes.bool,
     /**
      * @ignore
      * Callback function for when a cell is clicked.
      */
-    onCellClick: React.PropTypes.func,
-
+    onCellClick: PropTypes.func,
     /**
      * @ignore
      * Called when a table cell is hovered. rowNumber
      * is the row number of the hovered row and columnId
      * is the column number or the column key of the cell.
      */
-    onCellHover: React.PropTypes.func,
-
+    onCellHover: PropTypes.func,
     /**
      * @ignore
      * Called when a table cell is no longer hovered.
      * rowNumber is the row number of the row and columnId
      * is the column number or the column key of the cell.
      */
-    onCellHoverExit: React.PropTypes.func,
-
+    onCellHoverExit: PropTypes.func,
     /**
      * @ignore
      * Called when a table row is hovered.
      * rowNumber is the row number of the hovered row.
      */
-    onRowHover: React.PropTypes.func,
-
+    onRowHover: PropTypes.func,
     /**
      * @ignore
      * Called when a table row is no longer
      * hovered. rowNumber is the row number of the row
      * that is no longer hovered.
      */
-    onRowHoverExit: React.PropTypes.func,
-
+    onRowHoverExit: PropTypes.func,
     /**
      * @ignore
      * Called when a row is selected. selectedRows is an
@@ -86,40 +75,35 @@ class TableBody extends React.Component {
      * the string "all" will be returned instead to indicate that
      * all rows have been selected.
      */
-    onRowSelection: React.PropTypes.func,
-
+    onRowSelection: PropTypes.func,
     /**
      * Controls whether or not the rows are pre-scanned to determine
      * initial state. If your table has a large number of rows and
      * you are experiencing a delay in rendering, turn off this property.
      */
-    preScanRows: React.PropTypes.bool,
-
+    preScanRows: PropTypes.bool,
     /**
      * @ignore
      * If true, table rows can be selected. If multiple
      * row selection is desired, enable multiSelectable.
      * The default value is true.
      */
-    selectable: React.PropTypes.bool,
-
+    selectable: PropTypes.bool,
     /**
      * If true, table rows will be highlighted when
      * the cursor is hovering over the row. The default
      * value is false.
      */
-    showRowHover: React.PropTypes.bool,
-
+    showRowHover: PropTypes.bool,
     /**
      * If true, every other table row starting
      * with the first row will be striped. The default value is false.
      */
-    stripedRows: React.PropTypes.bool,
-
+    stripedRows: PropTypes.bool,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -133,7 +117,7 @@ class TableBody extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

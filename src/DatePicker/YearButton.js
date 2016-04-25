@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {
@@ -43,15 +43,15 @@ function getStyles(props, context) {
   };
 }
 
-class YearButton extends React.Component {
+class YearButton extends Component {
   static propTypes = {
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-    onTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
-    year: React.PropTypes.number,
+    className: PropTypes.string,
+    onTouchTap: PropTypes.func,
+    selected: PropTypes.bool,
+    year: PropTypes.number,
   };
 
   static defaultProps = {
@@ -59,7 +59,7 @@ class YearButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

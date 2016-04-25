@@ -1,14 +1,14 @@
-import React from 'react';
+import {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Dom from '../utils/dom';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
-class RenderToLayer extends React.Component {
+class RenderToLayer extends Component {
   static propTypes = {
-    componentClickAway: React.PropTypes.func,
-    open: React.PropTypes.bool.isRequired,
-    render: React.PropTypes.func.isRequired,
-    useLayerForClickAway: React.PropTypes.bool,
+    componentClickAway: PropTypes.func,
+    open: PropTypes.bool.isRequired,
+    render: PropTypes.func.isRequired,
+    useLayerForClickAway: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -16,7 +16,7 @@ class RenderToLayer extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {

@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Clock from './Clock';
 import Dialog from '../Dialog';
 import FlatButton from '../FlatButton';
 
-class TimePickerDialog extends React.Component {
+class TimePickerDialog extends Component {
   static propTypes = {
-    autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.node,
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialTime: React.PropTypes.object,
-    okLabel: React.PropTypes.node,
-    onAccept: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
+    autoOk: PropTypes.bool,
+    cancelLabel: PropTypes.node,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: PropTypes.object,
+    okLabel: PropTypes.node,
+    onAccept: PropTypes.func,
+    onDismiss: PropTypes.func,
+    onShow: PropTypes.func,
   };
 
   static defaultProps = {
@@ -23,7 +23,7 @@ class TimePickerDialog extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
@@ -25,19 +25,19 @@ import {
 
 const daysArray = [...Array(7)];
 
-class Calendar extends React.Component {
+class Calendar extends Component {
   static propTypes = {
-    DateTimeFormat: React.PropTypes.func.isRequired,
-    disableYearSelection: React.PropTypes.bool,
-    firstDayOfWeek: React.PropTypes.number,
-    initialDate: React.PropTypes.object,
-    locale: React.PropTypes.string.isRequired,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape']),
-    onDayTouchTap: React.PropTypes.func,
-    open: React.PropTypes.bool,
-    shouldDisableDate: React.PropTypes.func,
+    DateTimeFormat: PropTypes.func.isRequired,
+    disableYearSelection: PropTypes.bool,
+    firstDayOfWeek: PropTypes.number,
+    initialDate: PropTypes.object,
+    locale: PropTypes.string.isRequired,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    mode: PropTypes.oneOf(['portrait', 'landscape']),
+    onDayTouchTap: PropTypes.func,
+    open: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
   };
 
   static defaultProps = {
@@ -48,7 +48,7 @@ class Calendar extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {

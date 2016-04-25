@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createClass, PropTypes} from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -8,10 +8,10 @@ import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
 
-const HomePage = React.createClass({
+const HomePage = createClass({
 
   contextTypes: {
-    router: React.PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
   },
 
   mixins: [
