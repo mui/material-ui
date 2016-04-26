@@ -198,7 +198,7 @@ grey100, grey300, grey400, grey500,
 pinkA200,
 white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
-import ColorManipulator from 'material-ui/utils/color-manipulator';
+import {fade} from 'material-ui/utils/colorManipulator';
 
 const lightBaseTheme = {
   spacing: {
@@ -226,9 +226,9 @@ const lightBaseTheme = {
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
-    disabledColor: ColorManipulator.fade(darkBlack, 0.3),
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: cyan500,
-    clockCircleColor: ColorManipulator.fade(darkBlack, 0.07),
+    clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack,
   },
 };
