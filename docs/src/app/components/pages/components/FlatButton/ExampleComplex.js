@@ -2,6 +2,8 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
+import {green500, yellow500} from 'material-ui/styles/colors';
+
 
 const styles = {
   exampleImageInput: {
@@ -36,6 +38,15 @@ const FlatButtonExampleComplex = () => (
       href="https://github.com/callemall/material-ui"
       secondary={true}
       icon={<FontIcon className="muidocs-icon-custom-github" />}
+    />
+
+    <FlatButton
+      label="Color Change On Hover"
+      primary={true}
+      hoverColor={green500}
+      hoverTextColor={yellow500}
+      style={styles.button}
+      icon={<ActionAndroid />}
     />
 
   </div>
