@@ -166,7 +166,7 @@ class TimePicker extends Component {
   };
 
   isControlled() {
-    return this.props.value !== null;
+    return !!this.props.value;
   }
 
   getControlledTime(props = this.props) {
