@@ -8,6 +8,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 describe('<Avatar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children by default', () => {

@@ -3,17 +3,17 @@ import Nodemon from 'nodemon';
 
 Nodemon({
   args: process.argv,
-  script: 'test/unit.js',
+  script: 'test/index.js',
   execMap: {js: 'node_modules/.bin/babel-node'},
   ext: 'js',
-  watch: 'src/',
+  watch: ['src/', 'test/integration'],
 });
 
 Nodemon.on('start', () => {
-  console.log('Unit tests have started');
+  console.log('Test have started');
 }).on('quit', () => {
-  console.log('Unit tests have quit');
+  console.log('Test have quit');
   process.exit();
 }).on('restart', (files) => {
-  console.log('Unit tests restarted due to: ', files);
+  console.log('Test restarted due to: ', files);
 });

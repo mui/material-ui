@@ -1,35 +1,35 @@
+/* eslint-env mocha */
 import React from 'react';
-import Dialog from 'Dialog';
+import Dialog from './Dialog';
 import {spy} from 'sinon';
+import {mount} from 'enzyme';
+import {assert} from 'chai';
 import TestUtils from 'react-addons-test-utils';
-import injectTheme from './fixtures/inject-theme';
+import getMuiTheme from '../styles/getMuiTheme';
 
-describe('Dialog', () => {
-  let ThemedDialog;
-
-  beforeEach(() => {
-    ThemedDialog = injectTheme(Dialog);
-  });
+describe('<Dialog />', () => {
+  const muiTheme = getMuiTheme();
+  const mountWithContext = (node) => mount(node, {context: {muiTheme}});
 
   it('appends a dialog to the document body', () => {
     const testClass = 'test-dialog-class';
-    TestUtils.renderIntoDocument(
-      <ThemedDialog
+    mountWithContext(
+      <Dialog
         open={true}
         contentClassName={testClass}
       />
     );
 
     const dialogEl = document.getElementsByClassName(testClass)[0];
-    expect(dialogEl).to.be.ok;
+    assert.ok(dialogEl);
   });
 
   it('registers events on dialog actions', () => {
     const clickSpy = spy();
     const testClass = 'dialog-action';
 
-    TestUtils.renderIntoDocument(
-      <ThemedDialog
+    mountWithContext(
+      <Dialog
         open={true}
         actions={[
           <button
@@ -44,9 +44,9 @@ describe('Dialog', () => {
     );
 
     const actionEl = document.getElementsByClassName(testClass)[0];
-    expect(actionEl).to.be.ok;
+    assert.ok(actionEl);
 
     TestUtils.Simulate.click(actionEl);
-    expect(clickSpy.called).to.be.ok;
+    assert.ok(clickSpy.called);
   });
 });
