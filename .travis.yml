@@ -1,9 +1,14 @@
+---
 language: node_js
 node_js:
   - "stable"
 sudo: false
+cache:
+  directories:
+    - node_modules
 script:
   - npm run lint
-  - npm test
+  - npm run test:coverage
   - ./node_modules/.bin/codecov
+  - npm run test:karma
   - cd packages/material-ui-codemod && npm install && npm test

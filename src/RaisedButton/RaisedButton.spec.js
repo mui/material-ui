@@ -1,13 +1,17 @@
 /* eslint-env mocha */
 import React from 'react';
-import {shallow} from 'enzyme';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+import {mount, shallow} from 'enzyme';
 import {assert} from 'chai';
 import RaisedButton from './RaisedButton';
+import ActionAndroid from '../svg-icons/action/android';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<RaisedButton />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const mountWithContext = (node) => mount(node, {context: {muiTheme}});
   const testChildren = <span className="unique">Hello World</span>;
 
   it('renders an enhanced button inside paper', () => {
@@ -42,7 +46,7 @@ describe('<RaisedButton />', () => {
     assert.ok(wrapper.childAt(0).is(props));
   });
 
-  it('renders a label with an icon before', () => {
+  it('renders a label with an icon', () => {
     const wrapper = shallowWithContext(
       <RaisedButton
         icon={<span className="test-icon" />}
@@ -53,5 +57,38 @@ describe('<RaisedButton />', () => {
     const label = wrapper.find('.test-label');
     assert.ok(icon.is('span'));
     assert.strictEqual(label.children().node, 'Hello', 'says hello');
+  });
+
+  it('renders a hover overlay of equal height to the button', () => {
+    const wrappers = [
+      () => mountWithContext(
+        <RaisedButton>Hello World</RaisedButton>
+      ),
+      () => mountWithContext(
+        <RaisedButton
+          backgroundColor="#a4c639"
+          icon={<ActionAndroid />}
+        />
+      ),
+    ];
+
+    wrappers.forEach((createWrapper) => {
+      const wrapper = createWrapper();
+      wrapper.simulate('mouseEnter');
+
+      const overlay = wrapper.ref('overlay');
+      const button = ReactDOM.findDOMNode(
+        TestUtils.findRenderedDOMComponentWithTag(
+          wrapper.instance(),
+          'button'
+        )
+      );
+
+      assert.strictEqual(
+        overlay.node.clientHeight,
+        button.clientHeight,
+        'overlay height should match the button height'
+      );
+    });
   });
 });

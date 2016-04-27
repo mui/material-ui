@@ -449,6 +449,10 @@ class Dialog extends Component {
     titleStyle: PropTypes.object,
   };
 
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
+
   static defaultProps = {
     autoDetectWindowHeight: true,
     autoScrollBodyContent: false,

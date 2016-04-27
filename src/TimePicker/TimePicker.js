@@ -90,6 +90,7 @@ class TimePicker extends Component {
     style: {},
     okLabel: 'OK',
     cancelLabel: 'Cancel',
+    value: null,
   };
 
   static contextTypes = {

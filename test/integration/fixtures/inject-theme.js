@@ -1,6 +1,5 @@
-// import stubContext from 'react-stub-context';
-import stubContext from '../react-stub-context';
-import getMuiTheme from 'styles/getMuiTheme';
+import stubContext from './react-stub-context';
+import getMuiTheme from 'src/styles/getMuiTheme';
 
 function injectTheme(Component, theme) {
   const injectedTheme = theme || getMuiTheme();

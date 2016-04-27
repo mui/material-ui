@@ -5,6 +5,9 @@
     "transform-dev-warning"
   ],
   "env": {
+    "test": {
+      "sourceMaps": "inline"
+    },
     "docs-production": {
       "plugins": [
         ["transform-replace-object-assign", "simple-assign"],
