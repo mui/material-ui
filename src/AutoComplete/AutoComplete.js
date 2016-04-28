@@ -56,6 +56,16 @@ class AutoComplete extends Component {
      */
     dataSource: PropTypes.array.isRequired,
     /**
+     * Config for objects list dataSource.
+     *
+     * @typedef {Object} dataSourceConfig
+     *
+     * @property {string} text `dataSource` element key used to find a string to be matched for search
+     * and shown as a `TextField` input value after choosing the result.
+     * @property {string} value `dataSource` element key used to find a string to be shown in search results.
+     */
+    dataSourceConfig: PropTypes.object,
+    /**
      * Disables focus ripple when true.
      */
     disableFocusRipple: PropTypes.bool,
@@ -172,6 +182,10 @@ class AutoComplete extends Component {
       horizontal: 'left',
     },
     animated: true,
+    dataSourceConfig: {
+      text: 'text',
+      value: 'value',
+    },
     disableFocusRipple: true,
     filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
     fullWidth: false,
@@ -258,7 +272,7 @@ class AutoComplete extends Component {
 
     const index = parseInt(child.key, 10);
     const chosenRequest = dataSource[index];
-    const searchText = typeof chosenRequest === 'string' ? chosenRequest : chosenRequest.text;
+    const searchText = this.chosenRequestText(chosenRequest);
 
     this.props.onNewRequest(chosenRequest, index);
 
@@ -269,6 +283,14 @@ class AutoComplete extends Component {
       this.close();
       this.timerTouchTapCloseId = null;
     }, this.props.menuCloseDelay);
+  };
+
+  chosenRequestText = (chosenRequest) => {
+    if (typeof chosenRequest === 'string') {
+      return chosenRequest;
+    } else {
+      return chosenRequest[this.props.dataSourceConfig.text];
+    }
   };
 
   handleEscKeyDown = () => {
@@ -411,29 +433,31 @@ class AutoComplete extends Component {
           break;
 
         case 'object':
-          if (item && typeof item.text === 'string') {
-            if (filter(searchText, item.text, item)) {
-              if (item.value.type && (item.value.type.muiName === MenuItem.muiName ||
-                 item.value.type.muiName === Divider.muiName)) {
-                requestsList.push({
-                  text: item.text,
-                  value: React.cloneElement(item.value, {
-                    key: index,
-                    disableFocusRipple: disableFocusRipple,
-                  }),
-                });
-              } else {
-                requestsList.push({
-                  text: item.text,
-                  value: (
-                    <MenuItem
-                      innerDivStyle={styles.innerDiv}
-                      primaryText={item.value}
-                      disableFocusRipple={disableFocusRipple}
-                      key={index}
-                    />),
-                });
-              }
+          if (item && typeof item[this.props.dataSourceConfig.text] === 'string') {
+            const itemText = item[this.props.dataSourceConfig.text];
+            if (!this.props.filter(searchText, itemText, item)) break;
+
+            const itemValue = item[this.props.dataSourceConfig.value];
+            if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
+               itemValue.type.muiName === Divider.muiName)) {
+              requestsList.push({
+                text: itemText,
+                value: React.cloneElement(itemValue, {
+                  key: index,
+                  disableFocusRipple: disableFocusRipple,
+                }),
+              });
+            } else {
+              requestsList.push({
+                text: itemText,
+                value: (
+                  <MenuItem
+                    innerDivStyle={styles.innerDiv}
+                    primaryText={itemValue}
+                    disableFocusRipple={disableFocusRipple}
+                    key={index}
+                  />),
+              });
             }
           }
           break;
