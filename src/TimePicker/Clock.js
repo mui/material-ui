@@ -141,7 +141,8 @@ class Clock extends Component {
 
     if ( this.state.mode === 'hour') {
       clock = (
-        <ClockHours key="hours"
+        <ClockHours
+          key="hours"
           format={this.props.format}
           onChange={this.handleChangeHours}
           initialHours={this.state.selectedTime.getHours()}
@@ -149,7 +150,8 @@ class Clock extends Component {
       );
     } else {
       clock = (
-        <ClockMinutes key="minutes"
+        <ClockMinutes
+          key="minutes"
           onChange={this.handleChangeMinutes}
           initialMinutes={this.state.selectedTime.getMinutes()}
         />
