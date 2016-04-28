@@ -103,19 +103,23 @@ class RefreshIndicator extends Component {
     if (this.props.status !== 'ready') {
       const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp = (
-        <div ref="wrapper" style={prepareStyles({
-          transition: transitions.create('transform', '20s', null, 'linear'),
-          width: '100%',
-          height: '100%',
-        })}
+        <div
+          ref="wrapper"
+          style={prepareStyles({
+            transition: transitions.create('transform', '20s', null, 'linear'),
+            width: '100%',
+            height: '100%',
+          })}
         >
-          <svg style={{
-            width: paperSize,
-            height: paperSize,
-          }}
+          <svg
+            style={{
+              width: paperSize,
+              height: paperSize,
+            }}
             viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
           >
-            <circle ref="path"
+            <circle
+              ref="path"
               style={prepareStyles(Object.assign(circleStyle.style, {
                 transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
               }))}
@@ -128,10 +132,11 @@ class RefreshIndicator extends Component {
       const circleStyle = this.getCircleStyle(paperSize);
       const polygonStyle = this.getPolygonStyle(paperSize);
       childrenCmp = (
-        <svg style={{
-          width: paperSize,
-          height: paperSize,
-        }}
+        <svg
+          style={{
+            width: paperSize,
+            height: paperSize,
+          }}
           viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         >
           <circle

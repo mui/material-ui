@@ -626,7 +626,9 @@ class Slider extends Component {
             </div>
           </div>
         </div>
-        <input ref="input" type="hidden"
+        <input
+          ref="input"
+          type="hidden"
           name={name}
           value={this.state.value}
           required={required}

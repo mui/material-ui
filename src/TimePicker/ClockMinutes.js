@@ -137,9 +137,14 @@ class ClockMinutes extends Component {
       <div ref="clock" style={prepareStyles(styles.root)} >
         <ClockPointer value={minutes.selected} type="minute" />
         {minutes.numbers}
-        <div ref="mask" style={prepareStyles(styles.hitMask)} hasSelected={minutes.hasSelected}
-          onTouchMove={this.handleTouch} onTouchEnd={this.handleTouch}
-          onMouseUp={this.handleUp} onMouseMove={this.handleMove}
+        <div
+          ref="mask"
+          style={prepareStyles(styles.hitMask)}
+          hasSelected={minutes.hasSelected}
+          onTouchMove={this.handleTouch}
+          onTouchEnd={this.handleTouch}
+          onMouseUp={this.handleUp}
+          onMouseMove={this.handleMove}
         />
       </div>
     );
