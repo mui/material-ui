@@ -1,5 +1,10 @@
 # Material-UI codemod
 
+> Codemod scripts for Material-UI
+
+[![npm version](https://img.shields.io/npm/v/material-ui-codemod.svg?style=flat-square)](https://www.npmjs.com/package/material-ui-codemod)
+[![npm downloads](https://img.shields.io/npm/dm/material-ui-codemod.svg?style=flat-square)](https://www.npmjs.com/package/material-ui-codemod)
+
 This repository contains a collection of codemod scripts based for use with
 [JSCodeshift](https://github.com/facebook/jscodeshift) that help update Material-UI
 APIs.
