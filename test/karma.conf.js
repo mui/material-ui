@@ -23,7 +23,7 @@ module.exports = function(config) {
       },
     },
     colors: true,
-    frameworks: ['mocha', 'chai-sinon'],
+    frameworks: ['mocha'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
       {
@@ -35,7 +35,6 @@ module.exports = function(config) {
     ],
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-chai-sinon',
       'karma-mocha',
       'karma-sourcemap-loader',
       'karma-webpack',
