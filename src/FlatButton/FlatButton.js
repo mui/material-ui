@@ -201,22 +201,17 @@ class FlatButton extends Component {
     const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
 
     const mergedRootStyles = Object.assign({}, {
+      height: buttonHeight,
+      minWidth: buttonMinWidth,
       color: defaultTextColor,
       transition: transitions.easeOut(),
-      fontSize: fontSize,
-      letterSpacing: 0,
-      textTransform: textTransform,
-      fontWeight: fontWeight,
       borderRadius: 2,
       userSelect: 'none',
       position: 'relative',
       overflow: 'hidden',
       backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
-      lineHeight: `${buttonHeight}px`,
-      minWidth: buttonMinWidth,
       padding: 0,
       margin: 0,
-      // That's the default value for a button but not a link
       textAlign: 'center',
     }, style);
 
@@ -241,8 +236,16 @@ class FlatButton extends Component {
       }
     }
 
+    const mergedLabelStyles = Object.assign({
+      letterSpacing: 0,
+      textTransform: textTransform,
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+      lineHeight: `${buttonHeight}px`,
+    }, labelStyleIcon, labelStyle);
+
     const labelElement = label ? (
-      <FlatButtonLabel label={label} style={Object.assign({}, labelStyleIcon, labelStyle)} />
+      <FlatButtonLabel label={label} style={mergedLabelStyles} />
     ) : undefined;
 
     // Place label before or after children.
