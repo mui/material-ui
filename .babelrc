@@ -6,7 +6,7 @@
   ],
   "env": {
     "test": {
-      "sourceMaps": "inline"
+      "sourceMaps": "both"
     },
     "docs-production": {
       "plugins": [
