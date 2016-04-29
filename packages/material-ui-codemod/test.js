@@ -16,7 +16,7 @@ const mocha = new Mocha({
 const paths = [];
 
 if (!argv.component) {
-  paths.push('transforms/**/*.spec.js');
+  paths.push('modules/**/*.spec.js');
 }
 
 let pattern;

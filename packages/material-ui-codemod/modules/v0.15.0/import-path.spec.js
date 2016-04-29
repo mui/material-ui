@@ -1,4 +1,5 @@
-import sinon from 'sinon';
+/* eslint-env mocha */
+
 import fs from 'fs';
 import path from 'path';
 import {assert} from 'chai';
@@ -20,12 +21,12 @@ describe('material-ui-codemod', () => {
         const actual = transform({
           source: read('./import-path.spec/actual.js'),
         }, {
-          jscodeshift: jscodeshift
+          jscodeshift: jscodeshift,
         });
 
         const expected = read('./import-path.spec/expected.js');
 
-        assert.equal(
+        assert.strictEqual(
           trim(actual),
           trim(expected),
           'The transformed version should be correct'
