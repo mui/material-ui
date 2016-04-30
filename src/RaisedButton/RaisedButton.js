@@ -66,6 +66,7 @@ function getStyles(props, context, state) {
       position: 'relative',
       minWidth: fullWidth ? '100%' : button.minWidth,
       height: buttonHeight,
+      lineHeight: `${buttonHeight}px`,
       width: '100%',
       padding: 0,
       borderRadius: borderRadius,
@@ -94,7 +95,6 @@ function getStyles(props, context, state) {
     },
     overlay: {
       height: buttonHeight,
-      lineHeight: `${buttonHeight}px`,
       borderRadius: borderRadius,
       backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
         fade(labelColor, amount),
