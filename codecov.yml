@@ -1,6 +1,11 @@
+codecov:
+  branch: master
+  bot: null
+
 coverage:
   status:
+    project: false
     patch: false
-    project:
-      default:
-        target: false
+    changes: false
+
+comment: false
