@@ -274,7 +274,8 @@ class EnhancedButton extends Component {
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
       outline: 'none',
-      font: 'inherit',
+      fontSize: 'inherit',
+      fontWeight: 'inherit',
       /**
        * This is needed so that ripples do not bleed
        * past border radius.

@@ -202,6 +202,7 @@ class FlatButton extends Component {
 
     const mergedRootStyles = Object.assign({}, {
       height: buttonHeight,
+      lineHeight: `${buttonHeight}px`,
       minWidth: buttonMinWidth,
       color: defaultTextColor,
       transition: transitions.easeOut(),
@@ -222,7 +223,6 @@ class FlatButton extends Component {
       iconCloned = React.cloneElement(icon, {
         color: mergedRootStyles.color,
         style: {
-          lineHeight: `${buttonHeight}px`,
           verticalAlign: 'middle',
           marginLeft: label && labelPosition !== 'before' ? 12 : 0,
           marginRight: label && labelPosition === 'before' ? 12 : 0,
@@ -241,7 +241,6 @@ class FlatButton extends Component {
       textTransform: textTransform,
       fontWeight: fontWeight,
       fontSize: fontSize,
-      lineHeight: `${buttonHeight}px`,
     }, labelStyleIcon, labelStyle);
 
     const labelElement = label ? (
