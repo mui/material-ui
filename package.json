@@ -71,6 +71,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-runtime": "^6.6.1",
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
     "cross-env": "^1.0.7",
     "enzyme": "^2.2.0",
     "eslint": "^2.8.0",
