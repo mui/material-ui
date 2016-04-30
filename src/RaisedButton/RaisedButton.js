@@ -251,6 +251,7 @@ class RaisedButton extends Component {
 
   state = {
     hovered: false,
+    keyboardFocused: false,
     touched: false,
     initialZDepth: 0,
     zDepth: 0,
@@ -275,48 +276,72 @@ class RaisedButton extends Component {
   handleMouseDown = (event) => {
     // only listen to left clicks
     if (event.button === 0) {
-      this.setState({zDepth: this.state.initialZDepth + 1});
+      this.setState({
+        zDepth: this.state.initialZDepth + 1,
+      });
     }
-    if (this.props.onMouseDown) this.props.onMouseDown(event);
+    if (this.props.onMouseDown) {
+      this.props.onMouseDown(event);
+    }
   };
 
   handleMouseUp = (event) => {
-    this.setState({zDepth: this.state.initialZDepth});
-    if (this.props.onMouseUp) this.props.onMouseUp(event);
+    this.setState({
+      zDepth: this.state.initialZDepth,
+    });
+    if (this.props.onMouseUp) {
+      this.props.onMouseUp(event);
+    }
   };
 
   handleMouseLeave = (event) => {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.state.initialZDepth, hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
+    if (!this.state.keyboardFocused) {
+      this.setState({
+        zDepth: this.state.initialZDepth,
+        hovered: false,
+      });
+    }
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(event);
+    }
   };
 
   handleMouseEnter = (event) => {
-    if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
+    if (!this.state.keyboardFocused && !this.state.touched) {
       this.setState({hovered: true});
     }
-    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(event);
+    }
   };
 
   handleTouchStart = (event) => {
     this.setState({
-      touch: true,
+      touched: true,
       zDepth: this.state.initialZDepth + 1,
     });
-    if (this.props.onTouchStart) this.props.onTouchStart(event);
+
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(event);
+    }
   };
 
   handleTouchEnd = (event) => {
-    this.setState({zDepth: this.state.initialZDepth});
-    if (this.props.onTouchEnd) this.props.onTouchEnd(event);
+    this.setState({
+      zDepth: this.state.initialZDepth,
+    });
+
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(event);
+    }
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
-    const zDepth = keyboardFocused && !this.props.disabled ?
-      this.state.initialZDepth + 1 : this.state.initialZDepth;
+    const zDepth = (keyboardFocused && !this.props.disabled) ? this.state.initialZDepth + 1 : this.state.initialZDepth;
 
     this.setState({
       zDepth: zDepth,
-      keyboardFocused,
+      keyboardFocused: keyboardFocused,
     });
   };
 

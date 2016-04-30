@@ -16,9 +16,6 @@ function getStyles(props, context) {
 class FlatButtonLabel extends Component {
   static propTypes = {
     label: PropTypes.node,
-    /**
-     * Override the inline-styles of the root element.
-     */
     style: PropTypes.object,
   };
 
