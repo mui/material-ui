@@ -9,6 +9,6 @@ cache:
 script:
   - npm run lint
   - npm run test:coverage
-  - bash <(curl -s https://codecov.io/bash) -f test/coverage/lcov.info
+  - cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - npm run test:karma
   - cd packages/material-ui-codemod && npm install && npm test
