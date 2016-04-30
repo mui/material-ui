@@ -210,6 +210,7 @@ class EnhancedButton extends Component {
       this.focusTimeout = setTimeout(() => {
         if (tabPressed) {
           this.setKeyboardFocus(event);
+          tabPressed = false;
         }
       }, 150);
 
