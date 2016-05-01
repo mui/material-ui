@@ -1,16 +1,15 @@
-import React, {createClass} from 'react';
+import React, {createClass, PropTypes} from 'react';
 import Title from 'react-title-component';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 import ClearFix from 'material-ui/internal/ClearFix';
 import {getContrastRatio} from 'material-ui/utils/colorManipulator';
 import typography from 'material-ui/styles/typography';
 import * as colors from 'material-ui/styles/colors';
 
 const ColorsPage = createClass({
-
-  mixins: [
-    styleResizable,
-  ],
+  propTypes: {
+    width: PropTypes.number.isRequired,
+  },
 
   getStyles() {
     const styles = {
@@ -54,9 +53,9 @@ const ColorsPage = createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === LARGE) {
       styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenLarge);
-    } else if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM)) {
+    } else if (this.props.width === MEDIUM) {
       styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenMedium);
     } else {
       styles.colorGroup = Object.assign(styles.colorGroup, styles.colorGroupWhenSmall);
@@ -175,4 +174,4 @@ const ColorsPage = createClass({
 
 });
 
-export default ColorsPage;
+export default withWidth()(ColorsPage);

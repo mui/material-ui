@@ -1,7 +1,7 @@
 import React, {createClass, PropTypes} from 'react';
 import ClearFix from 'material-ui/internal/ClearFix';
 import spacing from 'material-ui/styles/spacing';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
 const desktopGutter = spacing.desktopGutter;
 
 const FullWidthSection = createClass({
@@ -12,11 +12,8 @@ const FullWidthSection = createClass({
     contentType: PropTypes.string,
     style: PropTypes.object,
     useContent: PropTypes.bool,
+    width: PropTypes.number.isRequired,
   },
-
-  mixins: [
-    styleResizable,
-  ],
 
   getDefaultProps() {
     return {
@@ -52,6 +49,7 @@ const FullWidthSection = createClass({
       useContent,
       contentType,
       contentStyle,
+      width,
       ...other,
     } = this.props;
 
@@ -75,8 +73,8 @@ const FullWidthSection = createClass({
         style={Object.assign(
           styles.root,
           style,
-          this.isDeviceSize(styleResizable.statics.Sizes.SMALL) && styles.rootWhenSmall,
-          this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && styles.rootWhenLarge)}
+          width === SMALL && styles.rootWhenSmall,
+          width === LARGE && styles.rootWhenLarge)}
       >
         {content}
       </ClearFix>
@@ -84,4 +82,4 @@ const FullWidthSection = createClass({
   },
 });
 
-export default FullWidthSection;
+export default withWidth()(FullWidthSection);

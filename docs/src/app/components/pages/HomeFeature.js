@@ -1,6 +1,6 @@
 import React, {createClass, PropTypes} from 'react';
 import {Link} from 'react-router';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
 import transitions from 'material-ui/styles/transitions';
 import typography from 'material-ui/styles/typography';
@@ -15,9 +15,8 @@ const HomeFeature = createClass({
     img: PropTypes.string,
     lastChild: PropTypes.bool,
     route: PropTypes.string,
+    width: PropTypes.number.isRequired,
   },
-
-  mixins: [styleResizable],
 
   getDefaultProps() {
     return {
@@ -76,8 +75,7 @@ const HomeFeature = createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === MEDIUM || this.props.width === LARGE) {
       styles.root = Object.assign(
         styles.root,
         styles.rootWhenMedium,
@@ -124,4 +122,4 @@ const HomeFeature = createClass({
 
 });
 
-export default HomeFeature;
+export default withWidth()(HomeFeature);

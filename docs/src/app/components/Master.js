@@ -3,11 +3,11 @@ import Title from 'react-title-component';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import spacing from 'material-ui/styles/spacing';
-import styleResizable from 'material-ui/utils/styleResizable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
+import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 
 const githubButton = (
   <IconButton
@@ -22,6 +22,7 @@ const Master = createClass({
   propTypes: {
     children: PropTypes.node,
     location: PropTypes.object,
+    width: PropTypes.number.isRequired,
   },
 
   contextTypes: {
@@ -31,10 +32,6 @@ const Master = createClass({
   childContextTypes: {
     muiTheme: PropTypes.object,
   },
-
-  mixins: [
-    styleResizable,
-  ],
 
   getInitialState() {
     return {
@@ -98,8 +95,7 @@ const Master = createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === MEDIUM || this.props.width === LARGE) {
       styles.content = Object.assign(styles.content, styles.contentWhenMedium);
     }
 
@@ -156,7 +152,7 @@ const Master = createClass({
     let docked = false;
     let showMenuIconButton = true;
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && title !== '') {
+    if (this.props.width === LARGE && title !== '') {
       docked = true;
       navDrawerOpen = true;
       showMenuIconButton = false;
@@ -223,4 +219,4 @@ const Master = createClass({
   },
 });
 
-export default Master;
+export default withWidth()(Master);

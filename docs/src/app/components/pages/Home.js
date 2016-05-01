@@ -2,7 +2,7 @@ import React, {createClass, PropTypes} from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui/RaisedButton';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -10,13 +10,13 @@ import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
 
 const HomePage = createClass({
 
+  propTypes: {
+    width: PropTypes.number.isRequired,
+  },
+
   contextTypes: {
     router: PropTypes.object.isRequired,
   },
-
-  mixins: [
-    styleResizable,
-  ],
 
   homePageHero() {
     const styles = {
@@ -73,7 +73,7 @@ const HomePage = createClass({
 
     styles.h2 = Object.assign({}, styles.h1, styles.h2);
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === LARGE) {
       styles.tagline = Object.assign({}, styles.tagline, styles.taglineWhenLarge);
       styles.h1 = Object.assign({}, styles.h1, styles.h1WhenLarge);
       styles.h2 = Object.assign({}, styles.h2, styles.h2WhenLarge);
@@ -221,4 +221,4 @@ const HomePage = createClass({
 
 });
 
-export default HomePage;
+export default withWidth()(HomePage);

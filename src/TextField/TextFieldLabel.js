@@ -25,15 +25,39 @@ function getStyles(props) {
   };
 }
 
-const propTypes = {
-  /**
-   * The css class name of the root element.
-   */
-  className: PropTypes.string,
+const TextFieldLabel = (props) => {
+  const {
+    muiTheme,
+    className,
+    children,
+    htmlFor,
+    onTouchTap,
+  } = props;
+
+  const {prepareStyles} = muiTheme;
+  const styles = getStyles(props);
+
+  return (
+    <label
+      className={className}
+      style={prepareStyles(styles.root)}
+      htmlFor={htmlFor}
+      onTouchTap={onTouchTap}
+    >
+      {children}
+    </label>
+  );
+};
+
+TextFieldLabel.propTypes = {
   /**
    * The label contents.
    */
   children: PropTypes.node,
+  /**
+   * The css class name of the root element.
+   */
+  className: PropTypes.string,
   /**
    * Disables the label if set to true.
    */
@@ -65,36 +89,9 @@ const propTypes = {
   style: PropTypes.object,
 };
 
-const defaultProps = {
+TextFieldLabel.defaultProps = {
   disabled: false,
   shrink: false,
 };
-
-const TextFieldLabel = (props) => {
-  const {
-    muiTheme,
-    className,
-    children,
-    htmlFor,
-    onTouchTap,
-  } = props;
-
-  const {prepareStyles} = muiTheme;
-  const styles = getStyles(props);
-
-  return (
-    <label
-      className={className}
-      style={prepareStyles(styles.root)}
-      htmlFor={htmlFor}
-      onTouchTap={onTouchTap}
-    >
-      {children}
-    </label>
-  );
-};
-
-TextFieldLabel.propTypes = propTypes;
-TextFieldLabel.defaultProps = defaultProps;
 
 export default TextFieldLabel;

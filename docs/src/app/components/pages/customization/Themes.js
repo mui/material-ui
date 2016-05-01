@@ -3,7 +3,7 @@ import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {MEDIUM} from 'material-ui/utils/withWidth';
 import typography from 'material-ui/styles/typography';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import themesText from './themes.md';
@@ -44,9 +44,8 @@ const ThemesPage = createClass({
   propTypes: {
     muiTheme: PropTypes.object,
     onChangeMuiTheme: PropTypes.func,
+    width: PropTypes.number.isRequired,
   },
-
-  mixins: [styleResizable],
 
   getInitialState() {
     return {
@@ -113,7 +112,7 @@ const ThemesPage = createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM)) {
+    if (this.props.width === MEDIUM) {
       styles.group.width = '33%';
     }
 
@@ -369,4 +368,4 @@ const ThemesPage = createClass({
 
 });
 
-export default muiThemeable()(ThemesPage);
+export default muiThemeable()(withWidth()(ThemesPage));

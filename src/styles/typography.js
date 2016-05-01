@@ -1,11 +1,11 @@
 import {
-fullBlack,
-darkBlack,
-lightBlack,
-minBlack,
-fullWhite,
-darkWhite,
-lightWhite,
+  fullBlack,
+  darkBlack,
+  lightBlack,
+  minBlack,
+  fullWhite,
+  darkWhite,
+  lightWhite,
 } from './colors';
 
 class Typography {
