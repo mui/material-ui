@@ -24,6 +24,7 @@ function getStyles(props, context) {
       width: 36,
       fontSize: 14,
       padding: '8px 2px',
+      lineHeight: 'inherit',
       color: year === new Date().getFullYear() && datePicker.color,
     },
     label: {
