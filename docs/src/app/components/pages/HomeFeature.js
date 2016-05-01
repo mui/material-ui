@@ -1,4 +1,4 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
@@ -7,29 +7,25 @@ import typography from 'material-ui/styles/typography';
 import {grey200} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 
-const HomeFeature = createClass({
+class HomeFeature extends Component {
 
-  propTypes: {
+  static propTypes = {
     firstChild: PropTypes.bool,
     heading: PropTypes.string,
     img: PropTypes.string,
     lastChild: PropTypes.bool,
     route: PropTypes.string,
     width: PropTypes.number.isRequired,
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      firstChild: false,
-      lastChild: false,
-    };
-  },
+  static defaultProps = {
+    firstChild: false,
+    lastChild: false,
+  };
 
-  getInitialState() {
-    return {
-      zDepth: 0,
-    };
-  },
+  state = {
+    zDepth: 0,
+  };
 
   getStyles() {
     const desktopGutter = spacing.desktopGutter;
@@ -85,19 +81,19 @@ const HomeFeature = createClass({
     }
 
     return styles;
-  },
+  }
 
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     this.setState({
       zDepth: 4,
     });
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({
       zDepth: 0,
     });
-  },
+  };
 
   render() {
     const styles = this.getStyles();
@@ -118,8 +114,7 @@ const HomeFeature = createClass({
         </Link>
       </Paper>
     );
-  },
-
-});
+  }
+}
 
 export default withWidth()(HomeFeature);

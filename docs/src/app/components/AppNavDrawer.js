@@ -1,4 +1,4 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -10,29 +10,43 @@ import {cyan500} from 'material-ui/styles/colors';
 
 const SelectableList = MakeSelectable(List);
 
-const AppNavDrawer = createClass({
+const styles = {
+  logo: {
+    cursor: 'pointer',
+    fontSize: 24,
+    color: typography.textFullWhite,
+    lineHeight: `${spacing.desktopKeylineIncrement}px`,
+    fontWeight: typography.fontWeightLight,
+    backgroundColor: cyan500,
+    paddingLeft: spacing.desktopGutter,
+    marginBottom: 8,
+  },
+  version: {
+    paddingLeft: spacing.desktopGutterLess,
+    fontSize: 16,
+  },
+};
 
-  propTypes: {
+class AppNavDrawer extends Component {
+  static propTypes = {
     docked: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     onChangeList: PropTypes.func.isRequired,
     onRequestChangeNavDrawer: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
     style: PropTypes.object,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
     router: PropTypes.object.isRequired,
-  },
+  };
 
-  getInitialState: () => {
-    return ({
-      muiVersions: [],
-    });
-  },
+  state = {
+    muiVersions: [],
+  };
 
-  componentDidMount: function() {
+  componentDidMount() {
     const self = this;
     const url = '/versions.json';
     const request = new XMLHttpRequest();
@@ -48,9 +62,9 @@ const AppNavDrawer = createClass({
 
     request.open('GET', url, true);
     request.send();
-  },
+  }
 
-  firstNonPreReleaseVersion: function() {
+  firstNonPreReleaseVersion() {
     let version;
     for (let i = 0; i < this.state.muiVersions.length; i++) {
       version = this.state.muiVersions[i];
@@ -60,50 +74,33 @@ const AppNavDrawer = createClass({
       }
     }
     return version;
-  },
+  }
 
-  handleVersionChange: function(event, index, value) {
+  handleVersionChange = (event, index, value) => {
     if (value === this.firstNonPreReleaseVersion()) {
       window.location = 'http://www.material-ui.com/';
     } else {
       window.location = `http://www.material-ui.com/${value}`;
     }
-  },
+  };
 
-  currentVersion: function() {
+  currentVersion() {
     if (window.location.hostname === 'localhost') return this.state.muiVersions[0];
     if (window.location.pathname === '/') {
       return this.firstNonPreReleaseVersion();
     } else {
       return window.location.pathname.replace(/\//g, '');
     }
-  },
+  }
 
-  handleRequestChangeLink(event, value) {
+  handleRequestChangeLink = (event, value) => {
     window.location = value;
-  },
+  };
 
-  handleTouchTapHeader() {
+  handleTouchTapHeader = () => {
     this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);
-  },
-
-  styles: {
-    logo: {
-      cursor: 'pointer',
-      fontSize: 24,
-      color: typography.textFullWhite,
-      lineHeight: `${spacing.desktopKeylineIncrement}px`,
-      fontWeight: typography.fontWeightLight,
-      backgroundColor: cyan500,
-      paddingLeft: spacing.desktopGutter,
-      marginBottom: 8,
-    },
-    version: {
-      paddingLeft: spacing.desktopGutterLess,
-      fontSize: 16,
-    },
-  },
+  };
 
   render() {
     const {
@@ -123,10 +120,10 @@ const AppNavDrawer = createClass({
         onRequestChange={onRequestChangeNavDrawer}
         containerStyle={{zIndex: zIndex.navDrawer - 100}}
       >
-        <div style={this.styles.logo} onTouchTap={this.handleTouchTapHeader}>
+        <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
         </div>
-        <span style={this.styles.version}>Version:</span>
+        <span style={styles.version}>Version:</span>
         <DropDownMenu
           value={this.currentVersion()}
           onChange={this.handleVersionChange}
@@ -265,7 +262,7 @@ const AppNavDrawer = createClass({
         </SelectableList>
       </Drawer>
     );
-  },
-});
+  }
+}
 
 export default AppNavDrawer;

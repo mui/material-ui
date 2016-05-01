@@ -1,4 +1,4 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -8,15 +8,15 @@ import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
 
-const HomePage = createClass({
+class HomePage extends Component {
 
-  propTypes: {
+  static propTypes = {
     width: PropTypes.number.isRequired,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     router: PropTypes.object.isRequired,
-  },
+  };
 
   homePageHero() {
     const styles = {
@@ -100,7 +100,7 @@ const HomePage = createClass({
         </div>
       </FullWidthSection>
     );
-  },
+  }
 
   homePurpose() {
     const styles = {
@@ -138,7 +138,7 @@ const HomePage = createClass({
         and making it better in the coming months.
       </FullWidthSection>
     );
-  },
+  }
 
   homeFeatures() {
     const styles = {maxWidth: 906};
@@ -164,7 +164,7 @@ const HomePage = createClass({
         />
       </FullWidthSection>
     );
-  },
+  }
 
   homeContribute() {
     const styles = {
@@ -198,11 +198,11 @@ const HomePage = createClass({
         />
       </FullWidthSection>
     );
-  },
+  }
 
-  handleTouchTapDemo() {
+  handleTouchTapDemo = () => {
     this.context.router.push('/components');
-  },
+  };
 
   render() {
     const style = {
@@ -217,8 +217,7 @@ const HomePage = createClass({
         {this.homeContribute()}
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default withWidth()(HomePage);

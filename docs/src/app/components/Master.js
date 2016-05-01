@@ -1,4 +1,4 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -9,55 +9,43 @@ import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
 import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 
-const githubButton = (
-  <IconButton
-    iconClassName="muidocs-icon-custom-github"
-    href="https://github.com/callemall/material-ui"
-    linkButton={true}
-  />
-);
-
-const Master = createClass({
-
-  propTypes: {
+class Master extends Component {
+  static propTypes = {
     children: PropTypes.node,
     location: PropTypes.object,
     width: PropTypes.number.isRequired,
-  },
+  };
 
-  contextTypes: {
+  static contextTypes = {
     router: PropTypes.object.isRequired,
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     muiTheme: PropTypes.object,
-  },
+  };
 
-  getInitialState() {
-    return {
-      muiTheme: getMuiTheme(),
-      navDrawerOpen: false,
-    };
-  },
+  state = {
+    navDrawerOpen: false,
+  };
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
   componentWillMount() {
     this.setState({
-      muiTheme: this.state.muiTheme,
+      muiTheme: getMuiTheme(),
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       muiTheme: newMuiTheme,
     });
-  },
+  }
 
   getStyles() {
     const styles = {
@@ -100,32 +88,32 @@ const Master = createClass({
     }
 
     return styles;
-  },
+  }
 
-  handleTouchTapLeftIconButton() {
+  handleTouchTapLeftIconButton = () => {
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen,
     });
-  },
+  };
 
-  handleChangeRequestNavDrawer(open) {
+  handleChangeRequestNavDrawer = (open) => {
     this.setState({
       navDrawerOpen: open,
     });
-  },
+  };
 
-  handleChangeList(event, value) {
+  handleChangeList = (event, value) => {
     this.context.router.push(value);
     this.setState({
       navDrawerOpen: false,
     });
-  },
+  };
 
-  handleChangeMuiTheme(muiTheme) {
+  handleChangeMuiTheme = (muiTheme) => {
     this.setState({
       muiTheme: muiTheme,
     });
-  },
+  };
 
   render() {
     const {
@@ -171,7 +159,13 @@ const Master = createClass({
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
           zDepth={0}
-          iconElementRight={githubButton}
+          iconElementRight={
+            <IconButton
+              iconClassName="muidocs-icon-custom-github"
+              href="https://github.com/callemall/material-ui"
+              linkButton={true}
+            />
+          }
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
@@ -216,7 +210,7 @@ const Master = createClass({
         </FullWidthSection>
       </div>
     );
-  },
-});
+  }
+}
 
 export default withWidth()(Master);

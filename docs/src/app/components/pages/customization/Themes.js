@@ -1,4 +1,4 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -39,22 +39,24 @@ You can use the tabs to change the theme. The changes will be applied to the who
 documentation.
 `;
 
-const ThemesPage = createClass({
-
-  propTypes: {
+class ThemesPage extends Component {
+  static propTypes = {
     muiTheme: PropTypes.object,
     onChangeMuiTheme: PropTypes.func,
     width: PropTypes.number.isRequired,
-  },
+  };
 
-  getInitialState() {
-    return {
+  state = {
+    dialogOpen: false,
+    snackbarOpen: false,
+    drawerOpen: false,
+  };
+
+  componentWillMount() {
+    this.setState({
       valueTabs: this.props.muiTheme.name || 'light',
-      dialogOpen: false,
-      snackbarOpen: false,
-      drawerOpen: false,
-    };
-  },
+    });
+  }
 
   getStyles() {
     const canvasColor = this.props.muiTheme.baseTheme.palette.canvasColor;
@@ -120,7 +122,7 @@ const ThemesPage = createClass({
     styles.groupSlider = Object.assign({}, styles.group, styles.groupSlider);
 
     return styles;
-  },
+  }
 
   getComponentGroup() {
     const styles = this.getStyles();
@@ -226,7 +228,7 @@ const ThemesPage = createClass({
                   label="Cancel"
                   keyboardFocus={true}
                   onTouchTap={this.handleRequestCloseDialog}
-                  secondary={true}
+                  primary={true}
                 />,
                 <FlatButton
                   label="Submit"
@@ -261,20 +263,20 @@ const ThemesPage = createClass({
               onTouchTap={this.handleTouchTapSnackbar}
               label="View Snackbar"
             />
-            <Snackbar
-              open={this.state.snackbarOpen}
-              onRequestClose={this.handleRequestCloseSnackbar}
-              message="This is a snackbar"
-              action="Got It!"
-              onActionTouchTap={this.handleRequestCloseSnackbar}
-            />
           </div>
+          <Snackbar
+            open={this.state.snackbarOpen}
+            onRequestClose={this.handleRequestCloseSnackbar}
+            message="This is a snackbar"
+            action="Got It!"
+            onActionTouchTap={this.handleRequestCloseSnackbar}
+          />
         </div>
       </ClearFix>
     );
-  },
+  }
 
-  handleChangeTabs(valueTabs) {
+  handleChangeTabs = (valueTabs) => {
     let newMuiTheme = null;
 
     if (valueTabs === 'light') {
@@ -290,7 +292,7 @@ const ThemesPage = createClass({
     });
 
     this.props.onChangeMuiTheme(newMuiTheme);
-  },
+  };
 
   getThemeExamples() {
     return (
@@ -311,43 +313,43 @@ const ThemesPage = createClass({
         {this.getComponentGroup()}
       </div>
     );
-  },
+  }
 
-  handleTouchTapDrawer() {
+  handleTouchTapDrawer = () => {
     this.setState({
       drawerOpen: true,
     });
-  },
+  };
 
-  handleRequestChangeDrawer(open) {
+  handleRequestChangeDrawer = (open) => {
     this.setState({
       drawerOpen: open,
     });
-  },
+  };
 
-  handleTouchTapDialog() {
+  handleTouchTapDialog = () => {
     this.setState({
       dialogOpen: true,
     });
-  },
+  };
 
-  handleRequestCloseDialog() {
+  handleRequestCloseDialog = () => {
     this.setState({
       dialogOpen: false,
     });
-  },
+  };
 
-  handleTouchTapSnackbar() {
+  handleTouchTapSnackbar = () => {
     this.setState({
       snackbarOpen: true,
     });
-  },
+  };
 
-  handleRequestCloseSnackbar() {
+  handleRequestCloseSnackbar = () => {
     this.setState({
       snackbarOpen: false,
     });
-  },
+  };
 
   render() {
     const styles = this.getStyles();
@@ -364,8 +366,7 @@ const ThemesPage = createClass({
         </div>
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default muiThemeable()(withWidth()(ThemesPage));

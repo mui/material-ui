@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-es6-class */
 import React, {PropTypes} from 'react';
 import warning from 'warning';
 
