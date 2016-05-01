@@ -12,7 +12,7 @@ import SnackbarExampleAction from './ExampleAction';
 import SnackbarExampleActionCode from '!raw!./ExampleAction';
 import SnackbarExampleTwice from './ExampleTwice';
 import SnackbarExampleTwiceCode from '!raw!./ExampleTwice';
-import SnackbarCode from '!raw!material-ui/lib/Snackbar/Snackbar';
+import SnackbarCode from '!raw!material-ui/Snackbar/Snackbar';
 
 const descriptions = {
   simple: '`Snackbar` is a controlled component, and is displayed when `open` is `true`. Click away from the ' +

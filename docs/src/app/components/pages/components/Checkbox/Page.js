@@ -6,7 +6,7 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import checkboxReadmeText from './README';
-import checkboxCode from '!raw!material-ui/lib/Checkbox/Checkbox';
+import checkboxCode from '!raw!material-ui/Checkbox/Checkbox';
 import CheckboxExampleSimple from './ExampleSimple';
 import checkboxExampleSimpleCode from '!raw!./ExampleSimple';
 

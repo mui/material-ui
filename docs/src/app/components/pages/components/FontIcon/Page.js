@@ -5,7 +5,7 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import iconCode from '!raw!material-ui/lib/FontIcon/FontIcon';
+import iconCode from '!raw!material-ui/FontIcon/FontIcon';
 import iconReadmeText from './README';
 import IconExampleSimple from './ExampleSimple';
 import iconExampleSimpleCode from '!raw!./ExampleSimple';

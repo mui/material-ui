@@ -18,7 +18,7 @@ import DatePickerExampleDisableDates from './ExampleDisableDates';
 import datePickerExampleDisableDatesCode from '!raw!./ExampleDisableDates';
 import DatePickerExampleInternational from './ExampleInternational';
 import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
-import datePickerCode from '!raw!material-ui/lib/DatePicker/DatePicker';
+import datePickerCode from '!raw!material-ui/DatePicker/DatePicker';
 
 const descriptions = {
   simple: 'The Date Picker defaults to a portrait dialog. The `mode` property can be set to `landscape`. You can ' +

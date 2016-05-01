@@ -16,7 +16,7 @@ import SelectFieldExampleFloatingLabel from './ExampleFloatingLabel';
 import selectFieldExampleFloatingLabelCode from '!raw!./ExampleFloatingLabel';
 import SelectFieldExampleError from './ExampleError';
 import selectFieldExampleErrorCode from '!raw!./ExampleError';
-import selectFieldCode from '!raw!material-ui/lib/SelectField/SelectField';
+import selectFieldCode from '!raw!material-ui/SelectField/SelectField';
 
 const descriptions = {
   simple: '`SelectField` is implemented as a controlled component, with the current selection set through the ' +

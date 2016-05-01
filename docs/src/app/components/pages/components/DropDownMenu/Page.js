@@ -14,7 +14,7 @@ import DropDownMenuLongMenuExample from './ExampleLongMenu';
 import dropDownMenuLongMenuExampleCode from '!raw!./ExampleLongMenu';
 import DropDownMenuLabeledExample from './ExampleLabeled';
 import dropDownMenuLabeledExampleCode from '!raw!./ExampleLabeled';
-import dropDownMenuCode from '!raw!material-ui/lib/DropDownMenu/DropDownMenu';
+import dropDownMenuCode from '!raw!material-ui/DropDownMenu/DropDownMenu';
 
 const descriptions = {
   simple: '`DropDownMenu` is implemented as a controlled component, with the current selection set through the ' +

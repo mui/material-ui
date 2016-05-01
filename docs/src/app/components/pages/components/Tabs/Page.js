@@ -16,8 +16,8 @@ import tabsExampleIconCode from '!raw!./ExampleIcon';
 import TabsExampleIcon from './ExampleIcon';
 import tabsExampleIconTextCode from '!raw!./ExampleIconText';
 import TabsExampleIconText from './ExampleIconText';
-import tabsCode from '!raw!material-ui/lib/Tabs/Tabs';
-import tabCode from '!raw!material-ui/lib/Tabs/Tab';
+import tabsCode from '!raw!material-ui/Tabs/Tabs';
+import tabCode from '!raw!material-ui/Tabs/Tab';
 
 const descriptions = {
   simple: 'A simple example of Tabs. The third tab demonstrates the `onActive` property of `Tab`.',

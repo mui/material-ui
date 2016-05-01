@@ -12,7 +12,7 @@ import TimePickerExampleComplex from './ExampleComplex';
 import timePickerExampleComplexCode from '!raw!./ExampleComplex';
 import TimePickerExampleInternational from './ExampleInternational';
 import timePickerExampleInternationalCode from '!raw!./ExampleInternational';
-import timePickerCode from '!raw!material-ui/lib/TimePicker/TimePicker';
+import timePickerCode from '!raw!material-ui/TimePicker/TimePicker';
 
 const descriptions = {
   simple: 'Time Picker supports 12 hour and 24 hour formats. In 12 hour format the AM and PM indicators toggle the ' +
