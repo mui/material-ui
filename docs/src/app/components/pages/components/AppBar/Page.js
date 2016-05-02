@@ -12,7 +12,7 @@ import AppBarExampleIconButton from './ExampleIconButton';
 import appBarExampleIconButtonCode from '!raw!./ExampleIconButton';
 import AppBarExampleIconMenu from './ExampleIconMenu';
 import appBarExampleIconMenuCode from '!raw!./ExampleIconMenu';
-import appBarCode from '!raw!material-ui/lib/AppBar/AppBar';
+import appBarCode from '!raw!material-ui/AppBar/AppBar';
 
 const descriptions = {
   icon: 'A simple example of `AppBar` with an icon on the right. ' +

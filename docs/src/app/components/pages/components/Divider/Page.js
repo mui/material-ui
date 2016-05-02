@@ -12,7 +12,7 @@ import DividerExampleList from './ExampleList';
 import dividerExampleListCode from '!raw!./ExampleList';
 import DividerExampleMenu from './ExampleMenu';
 import dividerExampleMenuCode from '!raw!./ExampleMenu';
-import dividerCode from '!raw!material-ui/lib/Divider/Divider';
+import dividerCode from '!raw!material-ui/Divider/Divider';
 
 const descriptions = {
   simple: 'Here, `Divider` is used to separate [TextField](/#/components/text-field) components. ' +

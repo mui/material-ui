@@ -12,7 +12,7 @@ import raisedButtonExampleComplexCode from '!raw!./ExampleComplex';
 import RaisedButtonExampleComplex from './ExampleComplex';
 import raisedButtonExampleIconCode from '!raw!./ExampleIcon';
 import RaisedButtonExampleIcon from './ExampleIcon';
-import raisedButtonCode from '!raw!material-ui/lib/RaisedButton/RaisedButton';
+import raisedButtonCode from '!raw!material-ui/RaisedButton/RaisedButton';
 
 const descriptions = {
   simple: '`RaisedButton` with default color, `primary`, `secondary` and and `disabled` props applied.',

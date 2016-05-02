@@ -1,66 +1,51 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import spacing from 'material-ui/styles/spacing';
-import styleResizable from 'material-ui/utils/styleResizable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
+import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 
-const githubButton = (
-  <IconButton
-    iconClassName="muidocs-icon-custom-github"
-    href="https://github.com/callemall/material-ui"
-    linkButton={true}
-  />
-);
-
-const Master = createClass({
-
-  propTypes: {
+class Master extends Component {
+  static propTypes = {
     children: PropTypes.node,
     location: PropTypes.object,
-  },
+    width: PropTypes.number.isRequired,
+  };
 
-  contextTypes: {
+  static contextTypes = {
     router: PropTypes.object.isRequired,
-  },
+  };
 
-  childContextTypes: {
+  static childContextTypes = {
     muiTheme: PropTypes.object,
-  },
+  };
 
-  mixins: [
-    styleResizable,
-  ],
-
-  getInitialState() {
-    return {
-      muiTheme: getMuiTheme(),
-      navDrawerOpen: false,
-    };
-  },
+  state = {
+    navDrawerOpen: false,
+  };
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
   componentWillMount() {
     this.setState({
-      muiTheme: this.state.muiTheme,
+      muiTheme: getMuiTheme(),
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       muiTheme: newMuiTheme,
     });
-  },
+  }
 
   getStyles() {
     const styles = {
@@ -98,38 +83,37 @@ const Master = createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === MEDIUM || this.props.width === LARGE) {
       styles.content = Object.assign(styles.content, styles.contentWhenMedium);
     }
 
     return styles;
-  },
+  }
 
-  handleTouchTapLeftIconButton() {
+  handleTouchTapLeftIconButton = () => {
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen,
     });
-  },
+  };
 
-  handleChangeRequestNavDrawer(open) {
+  handleChangeRequestNavDrawer = (open) => {
     this.setState({
       navDrawerOpen: open,
     });
-  },
+  };
 
-  handleChangeList(event, value) {
+  handleChangeList = (event, value) => {
     this.context.router.push(value);
     this.setState({
       navDrawerOpen: false,
     });
-  },
+  };
 
-  handleChangeMuiTheme(muiTheme) {
+  handleChangeMuiTheme = (muiTheme) => {
     this.setState({
       muiTheme: muiTheme,
     });
-  },
+  };
 
   render() {
     const {
@@ -156,7 +140,7 @@ const Master = createClass({
     let docked = false;
     let showMenuIconButton = true;
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && title !== '') {
+    if (this.props.width === LARGE && title !== '') {
       docked = true;
       navDrawerOpen = true;
       showMenuIconButton = false;
@@ -175,7 +159,13 @@ const Master = createClass({
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
           zDepth={0}
-          iconElementRight={githubButton}
+          iconElementRight={
+            <IconButton
+              iconClassName="muidocs-icon-custom-github"
+              href="https://github.com/callemall/material-ui"
+              linkButton={true}
+            />
+          }
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
@@ -220,7 +210,7 @@ const Master = createClass({
         </FullWidthSection>
       </div>
     );
-  },
-});
+  }
+}
 
-export default Master;
+export default withWidth()(Master);

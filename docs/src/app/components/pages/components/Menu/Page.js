@@ -16,8 +16,8 @@ import MenuExampleSecondary from './ExampleSecondary';
 import menuExampleSecondaryCode from '!raw!./ExampleSecondary';
 import MenuExampleNested from './ExampleNested';
 import menuExampleNestedCode from '!raw!./ExampleNested';
-import menuCode from '!raw!material-ui/lib/Menu/Menu';
-import menuItemCode from '!raw!material-ui/lib/MenuItem/MenuItem';
+import menuCode from '!raw!material-ui/Menu/Menu';
+import menuItemCode from '!raw!material-ui/MenuItem/MenuItem';
 
 const descriptions = {
   simple: 'Two simple examples. The menu widths adjusts to accommodate the content in keyline increments.',

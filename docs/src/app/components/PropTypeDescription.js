@@ -1,7 +1,6 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {parse} from 'react-docgen';
 import {parse as parseDoctrine} from 'doctrine';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import MarkdownElement from './MarkdownElement';
 import recast from 'recast';
 
@@ -101,19 +100,17 @@ function generateDescription(required, description, type) {
   return `${deprecated} ${jsDocText}${signature}`;
 }
 
-const PropTypeDescription = createClass({
-  propTypes: {
+class PropTypeDescription extends Component {
+
+  static propTypes = {
     code: PropTypes.string,
-    header: PropTypes.string,
-  },
-  mixins: [
-    PureRenderMixin,
-  ],
-  getDefaultProps() {
-    return {
-      header: '### Properties',
-    };
-  },
+    header: PropTypes.string.isRequired,
+  };
+
+  static defaultProps = {
+    header: '### Properties',
+  };
+
   render() {
     const {
       code,
@@ -165,7 +162,7 @@ const PropTypeDescription = createClass({
         <div style={{fontSize: '90%', paddingLeft: '15px'}}>{requiredPropFootnote}</div>
       </div>
     );
-  },
-});
+  }
+}
 
 export default PropTypeDescription;

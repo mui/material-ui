@@ -10,7 +10,7 @@ import IconExampleSimple from './ExampleSimple';
 import iconExampleSimpleCode from '!raw!./ExampleSimple';
 import IconExampleIcons from './ExampleIcons';
 import iconExampleIconsCode from '!raw!./ExampleIcons';
-import iconCode from '!raw!material-ui/lib/SvgIcon/SvgIcon';
+import iconCode from '!raw!material-ui/SvgIcon/SvgIcon';
 
 const descriptions = {
   custom: 'This example uses a custom svg icon. The third example has a `hoverColor` defined.',

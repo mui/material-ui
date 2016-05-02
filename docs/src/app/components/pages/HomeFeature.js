@@ -1,36 +1,31 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
 import transitions from 'material-ui/styles/transitions';
 import typography from 'material-ui/styles/typography';
 import {grey200} from 'material-ui/styles/colors';
 import Paper from 'material-ui/Paper';
 
-const HomeFeature = createClass({
+class HomeFeature extends Component {
 
-  propTypes: {
+  static propTypes = {
     firstChild: PropTypes.bool,
     heading: PropTypes.string,
     img: PropTypes.string,
     lastChild: PropTypes.bool,
     route: PropTypes.string,
-  },
+    width: PropTypes.number.isRequired,
+  };
 
-  mixins: [styleResizable],
+  static defaultProps = {
+    firstChild: false,
+    lastChild: false,
+  };
 
-  getDefaultProps() {
-    return {
-      firstChild: false,
-      lastChild: false,
-    };
-  },
-
-  getInitialState() {
-    return {
-      zDepth: 0,
-    };
-  },
+  state = {
+    zDepth: 0,
+  };
 
   getStyles() {
     const desktopGutter = spacing.desktopGutter;
@@ -76,8 +71,7 @@ const HomeFeature = createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === MEDIUM || this.props.width === LARGE) {
       styles.root = Object.assign(
         styles.root,
         styles.rootWhenMedium,
@@ -87,19 +81,19 @@ const HomeFeature = createClass({
     }
 
     return styles;
-  },
+  }
 
-  handleMouseEnter() {
+  handleMouseEnter = () => {
     this.setState({
       zDepth: 4,
     });
-  },
+  };
 
-  handleMouseLeave() {
+  handleMouseLeave = () => {
     this.setState({
       zDepth: 0,
     });
-  },
+  };
 
   render() {
     const styles = this.getStyles();
@@ -120,8 +114,7 @@ const HomeFeature = createClass({
         </Link>
       </Paper>
     );
-  },
+  }
+}
 
-});
-
-export default HomeFeature;
+export default withWidth()(HomeFeature);

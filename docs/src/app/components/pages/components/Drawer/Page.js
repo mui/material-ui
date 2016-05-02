@@ -12,7 +12,7 @@ import DrawerUndockedExample from './ExampleUndocked';
 import drawerUndockedExampleCode from '!raw!./ExampleUndocked';
 import DrawerOpenSecondaryExample from './ExampleOpenSecondary';
 import drawerOpenSecondaryExampleCode from '!raw!./ExampleOpenSecondary';
-import drawerCode from '!raw!material-ui/lib/Drawer/Drawer';
+import drawerCode from '!raw!material-ui/Drawer/Drawer';
 
 const descriptions = {
   simple: 'A simple controlled `Drawer`. The Drawer is `docked` by default, ' +

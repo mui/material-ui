@@ -14,7 +14,7 @@ import SliderExampleStep from './ExampleStep';
 import sliderExampleStepCode from '!raw!./ExampleStep';
 import SliderExampleControlled from './ExampleControlled';
 import sliderExampleControlledCode from '!raw!./ExampleControlled';
-import sliderCode from '!raw!material-ui/lib/Slider/Slider';
+import sliderCode from '!raw!material-ui/Slider/Slider';
 
 const descriptions = {
   simple: 'The `defaultValue` property sets the initial position of the slider. The slider appearance changes when ' +

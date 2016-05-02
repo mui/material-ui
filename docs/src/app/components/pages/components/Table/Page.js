@@ -11,13 +11,13 @@ import tableExampleSimpleCode from '!raw!./ExampleSimple';
 import TableExampleComplex from './ExampleComplex';
 import tableExampleComplexCode from '!raw!./ExampleComplex';
 
-import tableCode from '!raw!material-ui/lib/Table/Table';
-import tableRowCode from '!raw!material-ui/lib/Table/TableRow';
-import tableRowColumnCode from '!raw!material-ui/lib/Table/TableRowColumn';
-import tableHeaderCode from '!raw!material-ui/lib/Table/TableHeader';
-import tableHeaderColumnCode from '!raw!material-ui/lib/Table/TableHeaderColumn';
-import tableBodyCode from '!raw!material-ui/lib/Table/TableBody';
-import tableFooterCode from '!raw!material-ui/lib/Table/TableFooter';
+import tableCode from '!raw!material-ui/Table/Table';
+import tableRowCode from '!raw!material-ui/Table/TableRow';
+import tableRowColumnCode from '!raw!material-ui/Table/TableRowColumn';
+import tableHeaderCode from '!raw!material-ui/Table/TableHeader';
+import tableHeaderColumnCode from '!raw!material-ui/Table/TableHeaderColumn';
+import tableBodyCode from '!raw!material-ui/Table/TableBody';
+import tableFooterCode from '!raw!material-ui/Table/TableFooter';
 
 const descriptions = {
   simple: 'A simple table demonstrating the hierarchy of the `Table` component and its sub-components.',

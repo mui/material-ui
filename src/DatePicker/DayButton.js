@@ -38,6 +38,7 @@ function getStyles(props, context) {
       width: 41,
       padding: '4px 2px',
       opacity: disabled && '0.6',
+      lineHeight: 'inherit',
     },
     label: {
       position: 'relative',

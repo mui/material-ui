@@ -6,7 +6,7 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import autoCompleteReadmeText from './README';
-import autoCompleteCode from '!raw!material-ui/lib/AutoComplete/AutoComplete';
+import autoCompleteCode from '!raw!material-ui/AutoComplete/AutoComplete';
 import AutoCompleteExampleSimple from './ExampleSimple';
 import autoCompleteExampleSimpleCode from '!raw!./ExampleSimple';
 import AutoCompleteExampleDataSources from './ExampleDataSources';

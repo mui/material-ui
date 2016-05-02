@@ -10,7 +10,7 @@ import RefreshIndicatorExampleReady from './ExampleReady';
 import refreshIndicatorExampleReadyCode from '!raw!./ExampleReady';
 import RefreshIndicatorExampleLoading from './ExampleLoading';
 import refreshIndicatorExampleLoadingCode from '!raw!./ExampleLoading';
-import refreshIndicatorCode from '!raw!material-ui/lib/RefreshIndicator/RefreshIndicator';
+import refreshIndicatorCode from '!raw!material-ui/RefreshIndicator/RefreshIndicator';
 
 const descriptions = {
   ready: 'The `ready` status can be used in response to a pull-to-refresh action, with the `percentage` tracking ' +

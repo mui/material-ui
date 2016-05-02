@@ -110,7 +110,7 @@ module.exports = {
     'react/no-unknown-property': 'error',
     'react/no-is-mounted': 'error',
     'react/prefer-arrow-callback': 'off', // Wishlist, one day
-    'react/prefer-es6-class': 'off', // Wishlist, one day
+    'react/prefer-es6-class': 'error',
     'react/prop-types': 'error',
     'react/react-in-jsx-scope': 'error',
     'react/require-extension': 'error',

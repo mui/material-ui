@@ -10,7 +10,7 @@ import BadgeExampleSimple from './ExampleSimple';
 import badgeExampleSimpleCode from '!raw!./ExampleSimple';
 import BadgeExampleContent from './ExampleContent';
 import badgeExampleContentCode from '!raw!./ExampleContent';
-import badgeCode from '!raw!material-ui/lib/Badge/Badge';
+import badgeCode from '!raw!material-ui/Badge/Badge';
 
 const descriptions = {
   simple: 'Two examples of badges containing text, using primary and secondary colors. ' +

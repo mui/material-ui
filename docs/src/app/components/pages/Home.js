@@ -1,22 +1,22 @@
-import React, {createClass, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui/RaisedButton';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
 
-const HomePage = createClass({
+class HomePage extends Component {
 
-  contextTypes: {
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+  };
+
+  static contextTypes = {
     router: PropTypes.object.isRequired,
-  },
-
-  mixins: [
-    styleResizable,
-  ],
+  };
 
   homePageHero() {
     const styles = {
@@ -73,7 +73,7 @@ const HomePage = createClass({
 
     styles.h2 = Object.assign({}, styles.h1, styles.h2);
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === LARGE) {
       styles.tagline = Object.assign({}, styles.tagline, styles.taglineWhenLarge);
       styles.h1 = Object.assign({}, styles.h1, styles.h1WhenLarge);
       styles.h2 = Object.assign({}, styles.h2, styles.h2WhenLarge);
@@ -100,7 +100,7 @@ const HomePage = createClass({
         </div>
       </FullWidthSection>
     );
-  },
+  }
 
   homePurpose() {
     const styles = {
@@ -138,7 +138,7 @@ const HomePage = createClass({
         and making it better in the coming months.
       </FullWidthSection>
     );
-  },
+  }
 
   homeFeatures() {
     const styles = {maxWidth: 906};
@@ -164,7 +164,7 @@ const HomePage = createClass({
         />
       </FullWidthSection>
     );
-  },
+  }
 
   homeContribute() {
     const styles = {
@@ -198,11 +198,11 @@ const HomePage = createClass({
         />
       </FullWidthSection>
     );
-  },
+  }
 
-  handleTouchTapDemo() {
+  handleTouchTapDemo = () => {
     this.context.router.push('/components');
-  },
+  };
 
   render() {
     const style = {
@@ -217,8 +217,7 @@ const HomePage = createClass({
         {this.homeContribute()}
       </div>
     );
-  },
+  }
+}
 
-});
-
-export default HomePage;
+export default withWidth()(HomePage);

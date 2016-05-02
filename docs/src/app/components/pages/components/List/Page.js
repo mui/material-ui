@@ -24,8 +24,8 @@ import listExampleMessagesCode from '!raw!./ExampleMessages';
 import ListExampleMessages from './ExampleMessages';
 import listExampleSelectableCode from '!raw!./ExampleSelectable';
 import ListExampleSelectable from './ExampleSelectable';
-import listCode from '!raw!material-ui/lib/List/List';
-import listItemCode from '!raw!material-ui/lib/List/ListItem';
+import listCode from '!raw!material-ui/List/List';
+import listItemCode from '!raw!material-ui/List/ListItem';
 
 const descriptions = {
   simple: 'A simple `List` with left and right [SVG icons](/#/components/svg-icon).',

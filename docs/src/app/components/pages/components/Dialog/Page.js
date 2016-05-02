@@ -18,7 +18,7 @@ import DialogExampleScrollable from './ExampleScrollable';
 import DialogExampleScrollableCode from '!raw!./ExampleScrollable';
 import DialogExampleAlert from './ExampleAlert';
 import DialogExampleAlertCode from '!raw!./ExampleAlert';
-import dialogCode from '!raw!material-ui/lib/Dialog/Dialog';
+import dialogCode from '!raw!material-ui/Dialog/Dialog';
 
 const DialogPage = () => (
   <div>
