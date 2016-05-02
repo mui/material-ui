@@ -19,7 +19,7 @@ function getStyles(props, context) {
       paddingRight: '90px',
     },
     avatar: {
-      marginRight: 16,
+      margin: this.state.muiTheme.isRtl? '0 0 0 16px': '0 16px 0 0'
     },
     title: {
       color: props.titleColor || card.titleColor,
