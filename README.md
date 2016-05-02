@@ -128,7 +128,7 @@ achieved in the following two ways:
 There are 2 projects that you can look at to get started. They can be found in the
 [examples folder](https://github.com/callemall/material-ui/tree/master/examples).
 These projects are basic examples that show how to consume material-ui components
-in your own project. The first project uses [browserify](http://browserify.org/
+in your own project. The first project uses [browserify](http://browserify.org/)
 for module bundling and [gulp](http://gulpjs.com/) for JS task automation,
 while the second project uses [webpack](http://webpack.github.io/) for module bundling and building.
 
