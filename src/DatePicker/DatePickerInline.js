@@ -37,7 +37,6 @@ class DatePickerInline extends Component {
       });
     }
   }
-
   render() {
     const {
       actions,

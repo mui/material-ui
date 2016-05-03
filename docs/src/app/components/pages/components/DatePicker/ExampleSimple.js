@@ -6,6 +6,7 @@ const DatePickerExampleSimple = () => (
     <DatePicker hintText="Portrait Dialog" />
     <DatePicker hintText="Landscape Dialog" mode="landscape" />
     <DatePicker hintText="Dialog Disabled" disabled={true} />
+    <DatePicker hintText="Portrait Dialog With Time" timeAware={true} />
   </div>
 );
 

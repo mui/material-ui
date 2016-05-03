@@ -5,16 +5,21 @@ import ClockMinutes from './ClockMinutes';
 
 class Clock extends Component {
   static propTypes = {
+    clockStyles: PropTypes.object,
+    containerStyle: PropTypes.object,
     format: PropTypes.oneOf(['ampm', '24hr']),
+    hideSelector: PropTypes.bool,
     initialTime: PropTypes.object,
     isActive: PropTypes.bool,
     mode: PropTypes.oneOf(['hour', 'minute']),
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
+    onTouchTap: PropTypes.func,
   };
 
   static defaultProps = {
     initialTime: new Date(),
+    hideSelector: false,
   };
 
   static contextTypes = {
@@ -23,16 +28,21 @@ class Clock extends Component {
 
   state = {
     selectedTime: this.props.initialTime || new Date(),
+    hideSelector: this.props.hideSelector,
     mode: 'hour',
   };
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      selectedTime: nextProps.initialTime || new Date(),
-    });
+    const state = {hideSelector: nextProps.hideSelector};
+    if (!this.state.selectedTime) {
+      state.selectedTime = nextProps.initialTime || new Date();
+    }
+
+    this.setState(state);
   }
 
   setMode = (mode) => {
+    if (this.props.onTouchTap) this.props.onTouchTap();
     setTimeout(() => {
       this.setState({
         mode: mode,
@@ -41,6 +51,8 @@ class Clock extends Component {
   };
 
   handleSelectAffix = (affix) => {
+    if (this.props.onTouchTap) this.props.onTouchTap();
+
     if (affix === this.getAffix()) return;
 
     const hours = this.state.selectedTime.getHours();
@@ -127,6 +139,7 @@ class Clock extends Component {
       container: {
         height: 280,
         padding: 10,
+        margin: 'auto',
         position: 'relative',
       },
       circle: {
@@ -157,7 +170,15 @@ class Clock extends Component {
         />
       );
     }
+    const containerStyle = prepareStyles(styles.container);
 
+    if (this.props.containerStyle) {
+      for (const attr in this.props.containerStyle) {
+        if (this.props.containerStyle.hasOwnProperty(attr)) {
+          containerStyle[attr] = this.props.containerStyle[attr];
+        }
+      }
+    }
     return (
       <div style={prepareStyles(styles.root)}>
         <TimeDisplay
@@ -169,10 +190,12 @@ class Clock extends Component {
           onSelectHour={this.setMode.bind(this, 'hour')}
           onSelectMin={this.setMode.bind(this, 'minute')}
         />
-        <div style={prepareStyles(styles.container)} >
-          <div style={prepareStyles(styles.circle)} />
-          {clock}
-        </div>
+        {!this.props.hideSelector && (
+          <div style={containerStyle} >
+            <div style={prepareStyles(styles.circle)} />
+            {clock}
+          </div>
+        )}
       </div>
     );
   }

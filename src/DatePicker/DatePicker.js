@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {formatIso, isEqualDate} from './dateUtils';
+import {formatIso, formatIsoTime, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
 import deprecated from '../utils/deprecatedPropType';
@@ -123,6 +123,15 @@ class DatePicker extends Component {
      */
     textFieldStyle: PropTypes.object,
     /**
+     * Makes the date picker time aware.  Used for selecting date and time in the datepicker
+     * currently disabled for `landscape` mode
+     */
+    timeAware: PropTypes.bool,
+    /**
+     * Tells the time component to display the picker in `ampm` (12hr) format or `24hr` format.
+     */
+    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
+    /**
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.any,
@@ -140,6 +149,8 @@ class DatePicker extends Component {
     autoOk: false,
     cancelLabel: 'Cancel',
     container: 'dialog',
+    timeAware: false,
+    timeFormat: 'ampm',
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
@@ -242,13 +253,18 @@ class DatePicker extends Component {
 
   formatDate = (date) => {
     if (this.props.locale && this.props.DateTimeFormat) {
-      return new this.props.DateTimeFormat(this.props.locale, {
+      const obj = {
         day: 'numeric',
         month: 'numeric',
         year: 'numeric',
-      }).format(date);
+      };
+      if (this.props.timeAware) {
+        obj.minute = 'numeric';
+        obj.hour = 'numeric';
+      }
+      return new this.props.DateTimeFormat(this.props.locale, obj).format(date);
     } else {
-      return formatIso(date);
+      return this.props.timeAware ? formatIsoTime(date, this.props.timeFormat) : formatIso(date);
     }
   };
 
@@ -258,6 +274,8 @@ class DatePicker extends Component {
       autoOk,
       cancelLabel,
       container,
+      timeAware,
+      timeFormat,
       defaultDate, // eslint-disable-line no-unused-vars
       disableYearSelection,
       firstDayOfWeek,
@@ -303,6 +321,8 @@ class DatePicker extends Component {
           maxDate={maxDate}
           minDate={minDate}
           mode={mode}
+          timeAware={timeAware}
+          timeFormat={timeFormat}
           okLabel={okLabel}
           onAccept={this.handleAccept}
           onShow={onShow}

@@ -26,6 +26,8 @@ class DatePickerDialog extends Component {
     onShow: PropTypes.func,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
+    timeAware: PropTypes.bool,
+    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
     wordings: PropTypes.object,
   };
 
@@ -105,6 +107,8 @@ class DatePickerDialog extends Component {
       maxDate,
       shouldDisableDate,
       mode,
+      timeAware,
+      timeFormat,
       disableYearSelection,
       ...other,
     } = this.props;
@@ -158,7 +162,6 @@ class DatePickerDialog extends Component {
         />
       );
     }
-
     // will change later when Popover is available.
     const Container = (container === 'inline' ? DatePickerInline : Dialog);
     return (
@@ -193,6 +196,8 @@ class DatePickerDialog extends Component {
             shouldDisableDate={shouldDisableDate}
             disableYearSelection={disableYearSelection}
             mode={mode}
+            timeAware={timeAware}
+            timeFormat={timeFormat}
           />
         }
       </Container>

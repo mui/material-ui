@@ -1,5 +1,7 @@
 import warning from 'warning';
 
+import {formatTime} from '../TimePicker/timeUtils';
+
 const dayAbbreviation = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
@@ -116,6 +118,10 @@ export function localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
 // Convert date to ISO 8601 (YYYY-MM-DD) date string, accounting for current timezone
 export function formatIso(date) {
   return (new Date(`${date.toDateString()} 12:00:00 +0000`)).toISOString().substring(0, 10);
+}
+
+export function formatIsoTime(date, format = 'ampm') {
+  return `${formatIso(date)} ${formatTime(date, format)}`;
 }
 
 export function isEqualDate(d1, d2) {
