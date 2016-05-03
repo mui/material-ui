@@ -14,6 +14,8 @@ pink400,
 purple500,
 } from 'material-ui/styles/colors';
 
+const style = {margin: 5};
+
 const AvatarExampleSimple = () => (
   <List>
     <ListItem
@@ -23,6 +25,18 @@ const AvatarExampleSimple = () => (
       }
     >
       Image Avatar
+    </ListItem>
+    <ListItem
+      disabled={true}
+      leftAvatar={
+        <Avatar
+          src="images/uxceo-128.jpg"
+          size={30}
+          style={style}
+        />
+      }
+    >
+      Image Avatar with custom size
     </ListItem>
     <ListItem
       disabled={true}
@@ -39,10 +53,12 @@ const AvatarExampleSimple = () => (
           icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
           color={blue300}
           backgroundColor={indigo900}
+          size={30}
+          style={style}
         />
       }
     >
-      FontIcon Avatar with custom colors
+      FontIcon Avatar with custom colors and size
     </ListItem>
     <ListItem
       disabled={true}
@@ -59,10 +75,12 @@ const AvatarExampleSimple = () => (
           icon={<FileFolder />}
           color={orange200}
           backgroundColor={pink400}
+          size={30}
+          style={style}
         />
       }
     >
-      SvgIcon Avatar with custom colors
+      SvgIcon Avatar with custom colors and size
     </ListItem>
     <ListItem
       disabled={true}
@@ -76,12 +94,14 @@ const AvatarExampleSimple = () => (
         <Avatar
           color={deepOrange300}
           backgroundColor={purple500}
+          size={30}
+          style={style}
         >
           A
         </Avatar>
       }
     >
-      Letter Avatar with custom colors
+      Letter Avatar with custom colors and size
     </ListItem>
   </List>
 );
