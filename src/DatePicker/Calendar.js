@@ -23,6 +23,8 @@ import {
   yearDiff,
 } from './dateUtils';
 
+import Clock from '../TimePicker/Clock';
+
 const daysArray = [...Array(7)];
 
 class Calendar extends Component {
@@ -38,10 +40,13 @@ class Calendar extends Component {
     onDayTouchTap: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
+    timeAware: PropTypes.bool,
+    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
   };
 
   static defaultProps = {
     disableYearSelection: false,
+    timeAware: false,
     initialDate: new Date(),
     minDate: addYears(new Date(), -100),
     maxDate: addYears(new Date(), 100),
@@ -52,7 +57,8 @@ class Calendar extends Component {
   };
 
   state = {
-    displayDate: undefined,
+    timeActive: false,
+    dateActive: true,
     displayMonthDay: true,
     selectedDate: undefined,
     transitionDirection: 'left',
@@ -76,6 +82,23 @@ class Calendar extends Component {
     }
   }
 
+  timeSelector() {
+    this.setState({
+      timeActive: true,
+      dateActive: false,
+    });
+  }
+
+  setTime(time) {
+    const newDate = this.state.selectedDate;
+    newDate.setHours(time.getHours());
+    newDate.setMinutes(time.getHours());
+    newDate.setSeconds(time.getSeconds());
+    this.setState({
+      selectedDate: newDate,
+    });
+  }
+
   yearSelector() {
     if (this.props.disableYearSelection) return;
 
@@ -96,11 +119,10 @@ class Calendar extends Component {
   }
 
   isSelectedDateDisabled() {
-    if (!this.state.displayMonthDay) {
-      return false;
+    if (this.refs.calendar && this.state.displayMonthDay ) {
+      return this.refs.calendar.isSelectedDateDisabled();
     }
-
-    return this.refs.calendar.isSelectedDateDisabled();
+    return false;
   }
 
   addSelectedDays(days) {
@@ -174,12 +196,16 @@ class Calendar extends Component {
   handleTouchTapMonthDay = () => {
     this.setState({
       displayMonthDay: true,
+      timeActive: false,
+      dateActive: true,
     });
   };
 
   handleTouchTapClick = () => {
     this.setState({
       displayMonthDay: false,
+      timeActive: false,
+      dateActive: true,
     });
   };
 
@@ -247,6 +273,11 @@ class Calendar extends Component {
         transition: transitions.easeOut('150ms', 'height'),
         overflow: 'hidden',
       },
+      clockContainer: {
+        width: 260,
+        transition: transitions.easeOut('150ms', 'height'),
+        overflow: 'hidden',
+      },
       yearContainer: {
         width: 280,
         overflow: 'hidden',
@@ -305,7 +336,19 @@ class Calendar extends Component {
           mode={this.props.mode}
           weekCount={weekCount}
         />
-        {this.state.displayMonthDay &&
+        {this.props.timeAware && this.props.mode !== 'landscape' && (
+          <Clock
+            ref="clock"
+            onTouchTap={this.timeSelector.bind(this)}
+            hideSelector={!this.state.timeActive}
+            initialTime={this.props.initialDate}
+            onChangeMinutes={this.setTime.bind(this)}
+            onChangeHours={this.setTime.bind(this)}
+            containerStyle={prepareStyles(styles.clockContainer)}
+            format={this.props.timeFormat}
+          />
+        )}
+        {this.state.dateActive && this.state.displayMonthDay &&
           <div style={prepareStyles(styles.calendarContainer)}>
             <CalendarToolbar
               DateTimeFormat={DateTimeFormat}
@@ -340,7 +383,7 @@ class Calendar extends Component {
             </SlideInTransitionGroup>
           </div>
         }
-        {!this.state.displayMonthDay &&
+        {this.state.dateActive && !this.state.displayMonthDay &&
           <div style={prepareStyles(styles.yearContainer)}>
             {this.yearSelector()}
           </div>
