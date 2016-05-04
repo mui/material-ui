@@ -4,6 +4,7 @@ import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import FlatButton from './FlatButton';
 import getMuiTheme from '../styles/getMuiTheme';
+import ActionAndroid from '../svg-icons/action/android';
 
 describe('<FlatButton />', () => {
   const muiTheme = getMuiTheme();
@@ -90,6 +91,19 @@ describe('<FlatButton />', () => {
     }));
     assert.ok(icon.is('span'));
     assert.ok(icon.is({color: flatButtonTheme.primaryTextColor}));
+  });
+
+  it('colors the icon with the passed color in prop', () => {
+    const color = 'white';
+    const wrapper = shallowWithContext(
+      <FlatButton
+        backgroundColor="#a4c639"
+        hoverColor="#8AA62F"
+        icon={<ActionAndroid color={color} />}
+      />
+    );
+    const icon = wrapper.find('ActionAndroid');
+    assert.strictEqual(icon.prop('color'), color, 'icon should have same color as that of color prop');
   });
 
   it('colors the button the secondary theme color', () => {
