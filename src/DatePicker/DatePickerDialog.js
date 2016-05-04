@@ -82,7 +82,7 @@ class DatePickerDialog extends Component {
     this.dismiss();
   };
 
-  handleKeyUp = (event) => { // FIXME: Unused function
+  handleWindowKeyUp = (event) => {
     switch (keycode(event)) {
       case 'enter':
         this.handleTouchTapOk();
@@ -139,7 +139,7 @@ class DatePickerDialog extends Component {
           style={styles.dialogBodyContent}
         >
           <EventListener
-            elementName="window"
+            target="window"
             onKeyUp={this.handleWindowKeyUp}
           />
           <Calendar

@@ -313,7 +313,7 @@ class DialogInline extends Component {
       <div className={className} style={prepareStyles(styles.root)}>
         {open &&
           <EventListener
-            elementName="window"
+            target="window"
             onKeyUp={this.handleKeyUp}
             onResize={this.handleResize}
           />

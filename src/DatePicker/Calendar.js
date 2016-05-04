@@ -316,7 +316,7 @@ class Calendar extends Component {
     return (
       <ClearFix style={styles.root}>
         <EventListener
-          elementName="window"
+          target="window"
           onKeyDown={this.handleWindowKeyDown}
         />
         <DateDisplay
@@ -368,7 +368,7 @@ class Calendar extends Component {
               {this.yearSelector()}
             </div>
           }
-          {this.props.okLabel && this.props.okLabel &&
+          {okLabel &&
             <CalendarActionButtons
               autoOk={this.props.autoOk}
               cancelLabel={cancelLabel}
