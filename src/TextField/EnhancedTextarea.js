@@ -144,7 +144,7 @@ class EnhancedTextarea extends Component {
 
     return (
       <div style={prepareStyles(rootStyles)}>
-        <EventListener elementName="window" onResize={this.handleResize} />
+        <EventListener target="window" onResize={this.handleResize} />
         <textarea
           ref="shadow"
           style={prepareStyles(shadowStyles)}

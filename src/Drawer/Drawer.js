@@ -373,7 +373,7 @@ class Drawer extends Component {
         className={className}
         style={style}
       >
-        <EventListener elementName="window" onKeyUp={this.handleKeyUp} />
+        <EventListener target="window" onKeyUp={this.handleKeyUp} />
         {overlay}
         <Paper
           ref="clickAwayableElement"
