@@ -134,12 +134,10 @@ class DatePicker extends Component {
 
   static defaultProps = {
     autoOk: false,
-    cancelLabel: 'Cancel',
     container: 'dialog',
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
-    okLabel: 'OK',
     style: {},
   };
 

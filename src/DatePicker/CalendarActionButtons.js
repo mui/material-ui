@@ -3,6 +3,7 @@ import FlatButton from '../FlatButton';
 
 class CalendarActionButton extends Component {
   static propTypes = {
+    autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
     okLabel: PropTypes.node,
     onTouchTapCancel: PropTypes.func,
@@ -39,13 +40,15 @@ class CalendarActionButton extends Component {
           primary={true}
           style={styles.flatButtons}
         />
-        <FlatButton
-          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-          label={wordings ? wordings.ok : okLabel}
-          onTouchTap={this.props.onTouchTapOk}
-          primary={true}
-          style={styles.flatButtons}
-        />
+        {!this.props.autoOk &&
+          <FlatButton
+            disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
+            label={wordings ? wordings.ok : okLabel}
+            onTouchTap={this.props.onTouchTapOk}
+            primary={true}
+            style={styles.flatButtons}
+          />
+        }
       </div>
     );
   }

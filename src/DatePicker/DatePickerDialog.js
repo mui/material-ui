@@ -92,7 +92,6 @@ class DatePickerDialog extends Component {
 
   render() {
     const {
-      // autoOk, FIXME: autoOk not working
       DateTimeFormat,
       cancelLabel,
       container,
@@ -144,6 +143,7 @@ class DatePickerDialog extends Component {
             onKeyUp={this.handleWindowKeyUp}
           />
           <Calendar
+            autoOk={this.props.autoOk}
             DateTimeFormat={DateTimeFormat}
             cancelLabel={cancelLabel}
             disableYearSelection={disableYearSelection}

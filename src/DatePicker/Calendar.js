@@ -354,7 +354,7 @@ class Calendar extends Component {
                   key={this.state.displayDate.toDateString()}
                   minDate={this.props.minDate}
                   maxDate={this.props.maxDate}
-                  onDayTouchTap={this.handleTouchTapDay}
+                  onTouchTapDay={this.handleTouchTapDay}
                   ref="calendar"
                   selectedDate={this.state.selectedDate}
                   shouldDisableDate={this.props.shouldDisableDate}
@@ -369,6 +369,7 @@ class Calendar extends Component {
           }
           {this.props.showActionButtons &&
             <CalendarActionButtons
+              autoOk={this.props.autoOk}
               cancelLabel={cancelLabel}
               okLabel={okLabel}
               onTouchTapCancel={onTouchTapCancel}

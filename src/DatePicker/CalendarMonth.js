@@ -9,7 +9,7 @@ class CalendarMonth extends Component {
     firstDayOfWeek: PropTypes.number,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    onDayTouchTap: PropTypes.func,
+    onTouchTapDay: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
   };
@@ -19,7 +19,7 @@ class CalendarMonth extends Component {
   }
 
   handleTouchTapDay = (event, date) => {
-    if (this.props.onDayTouchTap) this.props.onDayTouchTap(event, date);
+    if (this.props.onTouchTapDay) this.props.onTouchTapDay(event, date);
   };
 
   shouldDisableDate(day) {
