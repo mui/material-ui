@@ -44,6 +44,8 @@ class CardHeader extends Component {
     actAsExpander: PropTypes.bool,
     /**
      * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
+     * If `avatar` is an `Avatar` or other element, it will be rendered.
+     * If `avatar` is a string, it will be used as the image `src` for an `Avatar`.
      */
     avatar: PropTypes.node,
     /**
