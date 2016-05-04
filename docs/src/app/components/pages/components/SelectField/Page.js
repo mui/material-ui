@@ -26,7 +26,7 @@ const descriptions = {
   label: 'With a `label` applied to each `MenuItem`, `SelectField` displays a complementary description of the ' +
   'selected item.',
   floating: '`SelectField` supports a floating label with the `floatingLabelText` property. This can be customised ' +
-  'with `the floatingLabelText` property.',
+  'with the `floatingLabelText` property.',
   errorText: 'The `errorText` property displays an error message below the Select Field. This can be customised with ' +
   'the `errorStyle` property.',
 };
