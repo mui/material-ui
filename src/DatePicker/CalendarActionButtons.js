@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import FlatButton from '../FlatButton';
-import deprecated from '../utils/deprecatedPropType';
 
 class CalendarActionButton extends Component {
   static propTypes = {
@@ -8,7 +7,7 @@ class CalendarActionButton extends Component {
     okLabel: PropTypes.node,
     onTouchTapCancel: PropTypes.func,
     onTouchTapOk: PropTypes.func,
-    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
+    wordings: PropTypes.object,
   };
 
   render() {

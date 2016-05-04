@@ -5,7 +5,6 @@ import Calendar from './Calendar';
 import Dialog from '../Dialog';
 import Popover from '../Popover/Popover';
 import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
-import deprecated from '../utils/deprecatedPropType';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
@@ -28,7 +27,7 @@ class DatePickerDialog extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
-    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
+    wordings: PropTypes.object,
   };
 
   static defaultProps = {

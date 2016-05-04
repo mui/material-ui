@@ -9,7 +9,6 @@ import CalendarToolbar from './CalendarToolbar';
 import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../internal/SlideIn';
 import ClearFix from '../internal/ClearFix';
-import deprecated from '../utils/deprecatedPropType';
 
 import {
   addDays,
@@ -46,7 +45,7 @@ class Calendar extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     showActionButtons: PropTypes.bool,
-    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
+    wordings: PropTypes.object,
   };
 
   static defaultProps = {
