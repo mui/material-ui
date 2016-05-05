@@ -6,7 +6,7 @@
 Please read through the aplha and beta releases from 0.14.4 too as their changes are not listed here.
 
 ##### General
-- [Style] Add a `withWidth` HOC (#4126)
+- [Core] Add a `withWidth` HOC (#4126)
 - [Core] Use named imports for createClass, Component & PropTypes (#4058)
 - [Core] Update dependencies and remove a couple of unneeded (#4107)
 - [eslint] Use the js format instead of the yaml one (#4074)
