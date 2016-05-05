@@ -25,6 +25,7 @@ Please read through the aplha and beta releases from 0.14.4 too as their changes
 - [Buttons] Fixed alignment related regressions (#4130)
 - [Card] Add `containerStyle` prop (#4085)
 - [CircularProgress] Fix for Android (#4026)
+- [DatePicker] Add support for built-in en-US locale (#4161)
 - [Dialog] Stop mixing `padding` and `paddingTop` (#4082)
 - [EnhancedButton] Fix keyboard focus jumping (#4127)
 - [Slider] Fix Slider div style (#4087)
