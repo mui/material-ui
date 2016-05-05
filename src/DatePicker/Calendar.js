@@ -246,6 +246,7 @@ class Calendar extends Component {
     const styles = {
       root: {
         color: calendarTextColor,
+        width: isLandscape ? 479 : 310,
       },
       calendar: {
         display: 'flex',
