@@ -7,8 +7,10 @@ const optionsStyle = {
   marginRight: 'auto',
 };
 
+/**
+ * This example allows you to set a date range, and to toggle `autoOk`, and `disableYearSelection`.
+ */
 export default class DatePickerExampleToggle extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -73,7 +75,7 @@ export default class DatePickerExampleToggle extends React.Component {
           <Toggle
             name="autoOk"
             value="autoOk"
-            label="Auto Accept"
+            label="Auto Ok"
             toggled={this.state.autoOk}
             onToggle={this.handleToggle}
           />

@@ -8,7 +8,9 @@ function disableWeekends(date) {
 function disableRandomDates() {
   return Math.random() > 0.7;
 }
-
+/**
+ * `DatePicker` can disable specific dates based on the return value of a callback.
+ */
 const DatePickerExampleDisableDates = () => (
   <div>
     <DatePicker hintText="Weekends Disabled" shouldDisableDate={disableWeekends} />
