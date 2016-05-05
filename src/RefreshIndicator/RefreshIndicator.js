@@ -311,6 +311,7 @@ const RefreshIndicator = React.createClass({
     autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset, this.state.muiTheme);
     autoPrefix.set(path.style, 'transitionDuration', transitionDuration, this.state.muiTheme);
 
+    clearTimeout(this.scalePathTimer);
     this.scalePathTimer = setTimeout(() => this._scalePath(path, currStep + 1), currStep ? 750 : 250);
   },
 
@@ -327,6 +328,8 @@ const RefreshIndicator = React.createClass({
       autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear', this.state.muiTheme);
     }, 50);
 
+    clearTimeout(this.rotateWrapperTimer);
+  
     this.rotateWrapperTimer = setTimeout(() => this._rotateWrapper(wrapper), 10050);
   },
 
