@@ -125,6 +125,7 @@ class DatePickerDialog extends Component {
 
       dialogContent: {
         width: mode === 'landscape' ? 480 : 320,
+        userSelect: 'none',
       },
 
       dialogBodyContent: {
