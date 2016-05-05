@@ -159,7 +159,6 @@ class DatePickerDialog extends Component {
             onTouchTapCancel={this.handleTouchTapCancel}
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
-            showActionButtons={true}
             shouldDisableDate={shouldDisableDate}
             wordings={wordings}
           />

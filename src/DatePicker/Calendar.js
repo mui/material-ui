@@ -44,7 +44,6 @@ class Calendar extends Component {
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
-    showActionButtons: PropTypes.bool,
     wordings: PropTypes.object,
   };
 
@@ -367,7 +366,7 @@ class Calendar extends Component {
               {this.yearSelector()}
             </div>
           }
-          {this.props.showActionButtons &&
+          {this.props.okLabel && this.props.okLabel &&
             <CalendarActionButtons
               autoOk={this.props.autoOk}
               cancelLabel={cancelLabel}
