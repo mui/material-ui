@@ -7,7 +7,9 @@ import {
   scThemePrimaryDefault,
   scThemeBasicXLight,
   scThemeBasicXXXLight,
-  scThemeForeground
+  scThemeBasicXXDark,
+  scThemeForeground,
+  scThemeBasicDark
 } from '../colors';
 import {fade} from '../../utils/colorManipulator';
 import spacing from '../spacing';
@@ -36,5 +38,6 @@ export default {
     pickerHeaderColor: cyan500,
     clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack,
+    inverseColor: scThemeBasicDark
   },
 };

@@ -181,15 +181,15 @@ export default function getMuiTheme(muiTheme, ...more) {
       labelDisabledColor: palette.disabledColor,
     },
     raisedButton: {
-      color: palette.alternateTextColor,
+      color: palette.canvasColor,
       textColor: palette.textColor,
       primaryColor: palette.primary1Color,
       primaryTextColor: palette.alternateTextColor,
-      secondaryColor: palette.accent1Color,
+      secondaryColor: palette.inverseColor,
       secondaryTextColor: palette.alternateTextColor,
-      disabledColor: darken(palette.alternateTextColor, 0.1),
+      disabledColor: fade(darken(palette.canvasColor, 0.1), 0.3),
       disabledTextColor: fade(palette.textColor, 0.3),
-      fontWeight: typography.fontWeightMedium,
+      fontWeight: typography.fontWeightMedium
     },
     refreshIndicator: {
       strokeColor: palette.borderColor,
