@@ -246,6 +246,7 @@ class Calendar extends Component {
     const styles = {
       root: {
         color: calendarTextColor,
+        userSelect: 'none',
         width: isLandscape ? 479 : 310,
       },
       calendar: {
