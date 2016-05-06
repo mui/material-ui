@@ -3,12 +3,15 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Clock from './Clock';
 import Dialog from '../Dialog';
-import FlatButton from '../FlatButton';
+import Popover from '../Popover';
+import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import TimePickerActionButtons from './TimePickerActionButtons';
 
 class TimePickerDialog extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
+    container: PropTypes.oneOf(['dialog', 'inline']),
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
     okLabel: PropTypes.node,
@@ -73,6 +76,7 @@ class TimePickerDialog extends Component {
 
   render() {
     const {
+      container,
       initialTime,
       onAccept, // eslint-disable-line no-unused-vars
       format,
@@ -88,55 +92,51 @@ class TimePickerDialog extends Component {
         color: this.getTheme().clockColor,
       },
       dialogContent: {
-        width: 280,
+        width: 310,
       },
-      body: {
+      dialogBodyContent: {
         padding: 0,
+        minHeight: 434,
+        minWidth: 310,
       },
     };
-
-    const actions = [
-      <FlatButton
-        key={0}
-        label={cancelLabel}
-        primary={true}
-        onTouchTap={this.handleTouchTapCancel}
-      />,
-      <FlatButton
-        key={1}
-        label={okLabel}
-        primary={true}
-        onTouchTap={this.handleTouchTapOK}
-      />,
-    ];
-
     const onClockChangeMinutes = autoOk === true ? this.handleTouchTapOK : undefined;
     const open = this.state.open;
+    const Container = (container === 'inline' ? Popover : Dialog);
 
     return (
-      <Dialog
-        {...other}
-        ref="dialogWindow"
-        style={styles.root}
-        bodyStyle={styles.body}
-        actions={actions}
-        contentStyle={styles.dialogContent}
-        repositionOnUpdate={false}
-        open={open}
-        onRequestClose={this.handleRequestClose}
-      >
-        {open &&
-          <EventListener target="window" onKeyUp={this.handleKeyUp} />
-        }
-        {open &&
-          <Clock
-            ref="clock"
-            format={format}
-            initialTime={initialTime}
-            onChangeMinutes={onClockChangeMinutes}
+      <div {...other} ref="root">
+        <Container
+          {...other}
+          anchorEl={this.refs.root} // For Popover
+          animation={PopoverAnimationFromTop} // For Popover
+          bodyStyle={styles.dialogBodyContent}
+          contentStyle={styles.dialogContent}
+          ref="dialogWindow"
+          repositionOnUpdate={true}
+          open={open}
+          onRequestClose={this.handleRequestClose}
+          style={styles.dialogBodyContent}
+        >
+          {open &&
+            <EventListener elementName="window" onKeyUp={this.handleKeyUp} />
+          }
+          {open &&
+            <Clock
+              ref="clock"
+              format={format}
+              initialTime={initialTime}
+              onChangeMinutes={onClockChangeMinutes}
+            />
+          }
+          <TimePickerActionButtons
+            cancelLabel={cancelLabel}
+            okLabel={okLabel}
+            onTouchTapCancel={this.handleTouchTapCancel}
+            onTouchTapOk={this.handleTouchTapOK}
           />
-        }
-      </Dialog>
+        </Container>
+      </div>
     );
   }
 }

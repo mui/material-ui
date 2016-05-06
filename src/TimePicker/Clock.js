@@ -133,7 +133,8 @@ class Clock extends Component {
       },
       circle: {
         position: 'absolute',
-        top: 20,
+        left: 15,
+        padding: 10,
         width: 260,
         height: 260,
         borderRadius: '100%',
