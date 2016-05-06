@@ -26,6 +26,7 @@ Please read through the aplha and beta releases of 0.15.0 too as their changes a
 - [Card] Add `containerStyle` prop (#4085)
 - [CircularProgress] Fix for Android (#4026)
 - [DatePicker] Add support for built-in en-US locale (#4161)
+- [Datepicker] Redesign datepicker as per material spec (#3739)
 - [Dialog] Stop mixing `padding` and `paddingTop` (#4082)
 - [EnhancedButton] Fix keyboard focus jumping (#4127)
 - [Slider] Fix Slider div style (#4087)
