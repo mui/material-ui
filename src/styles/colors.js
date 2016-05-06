@@ -1,3 +1,6 @@
+import {darken, lighten} from '../utils/colorManipulator';
+
+
 export const red50 = '#ffebee';
 export const red100 = '#ffcdd2';
 export const red200 = '#ef9a9a';
@@ -283,3 +286,172 @@ export const faintBlack = 'rgba(0, 0, 0, 0.12)';
 export const fullWhite = 'rgba(255, 255, 255, 1)';
 export const darkWhite = 'rgba(255, 255, 255, 0.87)';
 export const lightWhite = 'rgba(255, 255, 255, 0.54)';
+
+//////////////////
+// SPEAK Colors //
+//////////////////
+
+//-- BRAND, MAIN, PRIMARY  
+export const scThemeMainDefault = 'hsla(3, 76%, 49%, 1)';         // DC291E
+export const scThemeBasicDefault = 'hsla(0, 0%, 80%, 1)';         // CCCCCC
+export const scThemePrimaryDefault = 'hsla(197, 67%, 65%, 1)';    // 6AC0E2
+export const scThemeBasicBlack = 'hsla(0, 0%, 7%, 1)';            // 131313
+export const scThemeBasicWhite = 'hsla(0, 0%, 100%, 1)';          // ffffff
+export const scThemeBackground = 'hsla(0, 0%, 94%, 1)';           // F0f0f0
+export const scThemeForeground = scThemeBasicBlack;               // 131313
+export const scThemeBackgroundLighter = scThemeBasicWhite;        // FFFFFF
+export const scThemeInverseForeground = scThemeBasicWhite;        // FFFFFF
+
+//-- DATA VISUALIZATION
+export const scThemeTomatoDefault = 'hsla(3, 76%, 65%, 1)';       // EA6962
+export const scThemeSkyDefault = 'hsla(197, 67%, 65%, 1)';        // A2CA81
+export const scThemeGrassDefault = 'hsla(93, 41%, 65%, 1)';       // 9DBF8D
+export const scThemeCarrotDefault = 'hsla(25, 95%, 65%, 1)';      // FB9851
+export const scThemeBananaDefault = 'hsla(48, 95%, 65%, 1)';      // FBD951 
+export const scThemeSandDefault = 'hsla(33, 54%, 65%, 1)';        // D1C47A
+export const scThemeWoodDefault = 'hsla(33, 54%, 55%, 1)';        // D6AB76
+export const scThemeEggplantDefault = 'hsla(315, 16%, 65%, 1)';   // B497AD
+export const scThemeSteelDefault = 'hsla(0, 0%, 65%, 1)';         // A6A6A6
+
+// -- Sitecore Brand Colors -------------------------------------------------------------
+export const scBrandingBlue = 'rgb(18, 86, 135)';
+export const scBrandingTeal = 'rgb(0, 137, 152)';
+export const scBrandingGray = 'rgb(159, 164, 166)';
+export const scBrandingOrange = 'rgb(239, 130, 0)';
+export const scBrandingPurple = 'rgb(101, 31, 118)';
+export const scBrandingRed = 'rgb(220, 41, 30)';
+export const scBrandingblack = 'rgb(17, 28, 36)';
+
+
+// SPEAK Palette
+// Colors shades 
+const scThemeDark = 0.05;
+const scThemeXDark = 0.10;
+const scThemeXXDark = 0.20;
+const scThemeXXXDark = 0.29;
+const scThemeLight = 0.08;
+const scThemeXLight = 0.15;
+const scThemeXXLight = 0.24;
+const scThemeXXXLight = 0.30;
+
+
+// BRAND PALETTE 
+// Main Colors 
+export const scThemeMainDark = darken(scThemeMainDefault, 0.04);     
+export const scThemeMainXDark = darken(scThemeMainDefault, 0.13);    
+export const scThemeMainXXDark = darken(scThemeMainDefault, 0.18);    
+export const scThemeMainXXXDark = darken(scThemeMainDefault, 0.27);    
+export const scThemeMainLight = lighten(scThemeMainDefault, 0.09);   
+export const scThemeMainXLight = lighten(scThemeMainDefault, 0.22);   
+export const scThemeMainXXLight = lighten(scThemeMainDefault, 0.33);   
+export const scThemeMainXXXLight = lighten(scThemeMainDefault, 0.42);   
+
+// Basic Colors 
+export const scThemeBasicDark = darken(scThemeBasicDefault, 0.21);   
+export const scThemeBasicXDark = darken(scThemeBasicDefault, 0.43);   
+export const scThemeBasicXXDark = darken(scThemeBasicDefault, 0.52);   
+export const scThemeBasicXXXDark = darken(scThemeBasicDefault, 0.63);   
+export const scThemeBasicLight = lighten(scThemeBasicDefault, 0.04);   
+export const scThemeBasicXLight = lighten(scThemeBasicDefault, 0.09);  
+export const scThemeBasicXXLight = lighten(scThemeBasicDefault, 0.14);  
+export const scThemeBasicXXXLight = lighten(scThemeBasicDefault, 0.17);  
+
+// Primary Colors 
+export const scThemePrimaryDark = darken(scThemePrimaryDefault, 0.18);   
+export const scThemePrimaryXDark = darken(scThemePrimaryDefault, 0.27);   
+export const scThemePrimaryXXDark = darken(scThemePrimaryDefault, 0.36);   
+export const scThemePrimaryXXXDark = darken(scThemePrimaryDefault, 0.47);   
+export const scThemePrimaryLight = lighten(scThemePrimaryDefault, 0.09);   
+export const scThemePrimaryXLight = lighten(scThemePrimaryDefault, 0.24);  
+export const scThemePrimaryXXLight = lighten(scThemePrimaryDefault, 0.29);  
+export const scThemePrimaryXXXLight = lighten(scThemePrimaryDefault, 0.32);  
+
+// Sky Colors (Blue)
+export const scThemeTomatoDark = darken(scThemeTomatoDefault, scThemeDark);
+export const scThemeTomatoXDark = darken(scThemeTomatoDefault, scThemeXDark);
+export const scThemeTomatoXXDark = darken(scThemeTomatoDefault, scThemeXXDark);
+export const scThemeTomatoXXXDark = darken(scThemeTomatoDefault, scThemeXXXDark);
+export const scThemeTomatoLight = lighten(scThemeTomatoDefault, scThemeLight);
+export const scThemeTomatoXLight = lighten(scThemeTomatoDefault, scThemeXLight);
+export const scThemeTomatoXXLight = lighten(scThemeTomatoDefault, scThemeXXLight);
+export const scThemeTomatoXXXLight = lighten(scThemeTomatoDefault, scThemeXXXLight);
+
+// Sky Colors (Blue)
+export const scThemeSkyDark = darken(scThemeSkyDefault, scThemeDark);
+export const scThemeSkyXDark = darken(scThemeSkyDefault, scThemeXDark);
+export const scThemeSkyXXDark = darken(scThemeSkyDefault, scThemeXXDark);
+export const scThemeSkyXXXDark = darken(scThemeSkyDefault, scThemeXXXDark);
+export const scThemeSkyLight = lighten(scThemeSkyDefault, scThemeLight);
+export const scThemeSkyXLight = lighten(scThemeSkyDefault, scThemeXLight);
+export const scThemeSkyXXLight = lighten(scThemeSkyDefault, scThemeXXLight);
+export const scThemeSkyXXXLight = lighten(scThemeSkyDefault, scThemeXXXLight);
+
+// Grass Colors (Green)
+export const scThemeGrassDark = darken(scThemeGrassDefault, scThemeDark);
+export const scThemeGrassXDark = darken(scThemeGrassDefault, scThemeXDark);
+export const scThemeGrassXXDark = darken(scThemeGrassDefault, scThemeXXDark);
+export const scThemeGrassXXXDark = darken(scThemeGrassDefault, scThemeXXXDark);
+export const scThemeGrassLight = lighten(scThemeGrassDefault, scThemeLight);
+export const scThemeGrassXLight = lighten(scThemeGrassDefault, scThemeXLight);
+export const scThemeGrassXXLight = lighten(scThemeGrassDefault, scThemeXXLight);
+export const scThemeGrassXXXLight = lighten(scThemeGrassDefault, scThemeXXXLight);
+
+// Carrot Colors (Orange)
+export const scThemeCarrotDark = darken(scThemeCarrotDefault, scThemeDark);
+export const scThemeCarrotXDark = darken(scThemeCarrotDefault, scThemeXDark);
+export const scThemeCarrotXXDark = darken(scThemeCarrotDefault, scThemeXXDark);
+export const scThemeCarrotXXXDark = darken(scThemeCarrotDefault, scThemeXXXDark);
+export const scThemeCarrotLight = lighten(scThemeCarrotDefault, scThemeLight);
+export const scThemeCarrotXLight = lighten(scThemeCarrotDefault, scThemeXLight);
+export const scThemeCarrotXXLight = lighten(scThemeCarrotDefault, scThemeXXLight);
+export const scThemeCarrotXXXLight = lighten(scThemeCarrotDefault, scThemeXXXLight);
+
+// Banana Colors (Yellow)
+export const scThemeBananaDark = darken(scThemeBananaDefault, scThemeDark);
+export const scThemeBananaXDark = darken(scThemeBananaDefault, scThemeXDark);
+export const scThemeBananaXXDark = darken(scThemeBananaDefault, scThemeXXDark);
+export const scThemeBananaXXXDark = darken(scThemeBananaDefault, scThemeXXXDark);
+export const scThemeBananaLight = lighten(scThemeBananaDefault, scThemeLight);
+export const scThemeBananaXLight = lighten(scThemeBananaDefault, scThemeXLight);
+export const scThemeBananaXXLight = lighten(scThemeBananaDefault, scThemeXXLight);
+export const scThemeBananaXXXLight = lighten(scThemeBananaDefault, scThemeXXXLight);
+
+// Sand Colors (Beige)
+export const scThemeSandDark = darken(scThemeSandDefault, scThemeDark);
+export const scThemeSandXDark = darken(scThemeSandDefault, scThemeXDark);
+export const scThemeSandXXDark = darken(scThemeSandDefault, scThemeXXDark);
+export const scThemeSandXXXDark = darken(scThemeSandDefault, scThemeXXXDark);
+export const scThemeSandLight = lighten(scThemeSandDefault, scThemeLight);
+export const scThemeSandXLight = lighten(scThemeSandDefault, scThemeXLight);
+export const scThemeSandXXLight = lighten(scThemeSandDefault, scThemeXXLight);
+export const scThemeSandXXXLight = lighten(scThemeSandDefault, scThemeXXXLight);
+
+// Wood Colors  (Brown)
+export const scThemeWoodDark = darken(scThemeWoodDefault, scThemeDark);
+export const scThemeWoodXDark = darken(scThemeWoodDefault, scThemeXDark);
+export const scThemeWoodXXDark = darken(scThemeWoodDefault, scThemeXXDark);
+export const scThemeWoodXXXDark = darken(scThemeWoodDefault, scThemeXXXDark);
+export const scThemeWoodLight = lighten(scThemeWoodDefault, scThemeLight);
+export const scThemeWoodXLight = lighten(scThemeWoodDefault, scThemeXLight);
+export const scThemeWoodXXLight = lighten(scThemeWoodDefault, scThemeXXLight);
+export const scThemeWoodXXXLight = lighten(scThemeWoodDefault, scThemeXXXLight);
+
+// Eggplant Colors  (Purple)
+export const scThemeEggplantDark = darken(scThemeEggplantDefault, scThemeDark);
+export const scThemeEggplantXDark = darken(scThemeEggplantDefault, scThemeXDark);
+export const scThemeEggplantXXDark = darken(scThemeEggplantDefault, scThemeXXDark);
+export const scThemeEggplantXXXDark = darken(scThemeEggplantDefault, scThemeXXXDark);
+export const scThemeEggplantLight = lighten(scThemeEggplantDefault, scThemeLight);
+export const scThemeEggplantXLight = lighten(scThemeEggplantDefault, scThemeXLight);
+export const scThemeEggplantXXLight = lighten(scThemeEggplantDefault, scThemeXXLight);
+export const scThemeEggplantXXXLight = lighten(scThemeEggplantDefault, scThemeXXXLight);
+
+// Steel Colors (Gray) 
+export const scThemeSteelDark = darken(scThemeSteelDefault, scThemeDark);
+export const scThemeSteelXDark = darken(scThemeSteelDefault, scThemeXDark);
+export const scThemeSteelXXDark = darken(scThemeSteelDefault, scThemeXXDark);
+export const scThemeSteelXXXDark = darken(scThemeSteelDefault, scThemeXXXDark);
+export const scThemeSteelLight = lighten(scThemeSteelDefault, scThemeLight);
+export const scThemeSteelXLight = lighten(scThemeSteelDefault, scThemeXLight);
+export const scThemeSteelXXLight = lighten(scThemeSteelDefault, scThemeXXLight);
+export const scThemeSteelXXXLight = lighten(scThemeSteelDefault, scThemeXXXLight);
