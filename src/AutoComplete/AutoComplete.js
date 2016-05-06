@@ -539,14 +539,17 @@ AutoComplete.levenshteinDistanceFilter = (distanceLessThan) => {
 };
 
 AutoComplete.fuzzyFilter = (searchText, key) => {
-  if (searchText.length === 0) {
-    return false;
+  const compareString = key.toLowerCase();
+  searchText = searchText.toLowerCase();
+
+  let searchTextIndex = 0;
+  for (let index = 0; index < key.length; index++) {
+    if (compareString[index] === searchText[searchTextIndex]) {
+      searchTextIndex += 1;
+    }
   }
 
-  const subMatchKey = key.substring(0, searchText.length);
-  const distance = AutoComplete.levenshteinDistance(searchText.toLowerCase(), subMatchKey.toLowerCase());
-
-  return searchText.length > 3 ? distance < 2 : distance === 0;
+  return searchTextIndex === searchText.length;
 };
 
 AutoComplete.Item = MenuItem;
