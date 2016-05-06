@@ -1,45 +1,30 @@
 import React, {Component, PropTypes} from 'react';
 import EnhancedButton from '../internal/EnhancedButton';
 
-function getStyles(props, context) {
-  const {
-    selected,
-    year,
-  } = props;
-
-  const {hover} = context;
-
-  const {
-    baseTheme,
-    datePicker,
-  } = context.muiTheme;
+function getStyles(props, context, state) {
+  const {selected, year} = props;
+  const {baseTheme, datePicker} = context.muiTheme;
+  const {hover} = state;
 
   return {
     root: {
       boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      position: 'relative',
-      display: 'block',
-      margin: '0 auto',
-      width: 36,
-      fontSize: 14,
-      padding: '8px 2px',
-      lineHeight: 'inherit',
       color: year === new Date().getFullYear() && datePicker.color,
+      display: 'block',
+      fontSize: 14,
+      margin: '0 auto',
+      position: 'relative',
+      textAlign: 'center',
+      lineHeight: 'inherit',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
     },
     label: {
+      alignSelf: 'center',
+      color: hover || selected ? datePicker.color : baseTheme.palette.textColor,
+      fontSize: selected ? 26 : 17,
+      fontWeight: hover ? 450 : selected ? 500 : 400,
       position: 'relative',
       top: -1,
-      color: hover || selected ? datePicker.selectTextColor : baseTheme.palette.textColor,
-    },
-    buttonState: {
-      position: 'absolute',
-      height: 32,
-      width: 32,
-      opacity: hover ? 0.6 : selected ? 1 : 0,
-      borderRadius: '50%',
-      transform: hover || selected ? 'scale(1.5)' : 'scale(0)',
-      backgroundColor: datePicker.selectColor,
     },
   };
 }
@@ -89,19 +74,18 @@ class YearButton extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
 
     return (
       <EnhancedButton
         {...other}
-        style={styles.root}
         disableFocusRipple={true}
         disableTouchRipple={true}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         onTouchTap={this.handleTouchTap}
+        style={styles.root}
       >
-        <div style={prepareStyles(styles.buttonState)} />
         <span style={prepareStyles(styles.label)}>{year}</span>
       </EnhancedButton>
     );

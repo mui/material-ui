@@ -1,26 +1,25 @@
 import React, {Component, PropTypes} from 'react';
 import IconButton from '../IconButton';
-import Toolbar from '../Toolbar/Toolbar';
-import ToolbarGroup from '../Toolbar/ToolbarGroup';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
 const styles = {
   root: {
-    position: 'relative',
-    padding: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
     backgroundColor: 'inherit',
+    height: 48,
   },
-  title: {
-    position: 'absolute',
-    top: 17,
-    lineHeight: '14px',
+  titleDiv: {
     fontSize: 14,
-    height: 14,
-    width: '100%',
     fontWeight: '500',
     textAlign: 'center',
+    width: '100%',
+  },
+  titleText: {
+    height: 'inherit',
+    paddingTop: 12,
   },
 };
 
@@ -49,7 +48,7 @@ class CalendarToolbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
-      const direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
+      const direction = nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
       this.setState({
         transitionDirection: direction,
       });
@@ -65,47 +64,37 @@ class CalendarToolbar extends Component {
   };
 
   render() {
-    const {
-      DateTimeFormat,
-      locale,
-      displayDate,
-    } = this.props;
+    const {DateTimeFormat, locale, displayDate} = this.props;
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
       year: 'numeric',
     }).format(displayDate);
 
-    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
-    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
 
     return (
-      <Toolbar style={styles.root} noGutter={true}>
-        <SlideInTransitionGroup
-          style={styles.title}
-          direction={this.state.transitionDirection}
+      <div style={styles.root}>
+        <IconButton
+          disabled={!this.props.prevMonth}
+          onTouchTap={this.handleTouchTapPrevMonth}
         >
-          <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
+          {prevButtonIcon}
+        </IconButton>
+        <SlideInTransitionGroup
+          direction={this.state.transitionDirection}
+          style={styles.titleDiv}
+        >
+          <div key={dateTimeFormatted} style={styles.titleText}>{dateTimeFormatted}</div>
         </SlideInTransitionGroup>
-        <ToolbarGroup key={0} float="left">
-          <IconButton
-            style={styles.button}
-            disabled={!this.props.prevMonth}
-            onTouchTap={this.handleTouchTapPrevMonth}
-          >
-            {nextButtonIcon}
-          </IconButton>
-        </ToolbarGroup>
-        <ToolbarGroup key={1} float="right">
-          <IconButton
-            style={styles.button}
-            disabled={!this.props.nextMonth}
-            onTouchTap={this.handleTouchTapNextMonth}
-          >
-            {prevButtonIcon}
-          </IconButton>
-        </ToolbarGroup>
-      </Toolbar>
+        <IconButton
+          disabled={!this.props.nextMonth}
+          onTouchTap={this.handleTouchTapNextMonth}
+        >
+          {nextButtonIcon}
+        </IconButton>
+      </div>
     );
   }
 }

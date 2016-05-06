@@ -8,8 +8,9 @@ class CalendarYear extends Component {
     displayDate: PropTypes.object.isRequired,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
-    onYearTouchTap: PropTypes.func,
+    onTouchTapYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
+    wordings: PropTypes.object,
   };
 
   static contextTypes = {
@@ -41,9 +42,9 @@ class CalendarYear extends Component {
       const yearButton = (
         <YearButton
           key={`yb${year}`}
-          year={year}
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={this.handleTouchTapYear}
           selected={selected}
+          year={year}
           {...selectedProps}
         />
       );
@@ -67,27 +68,30 @@ class CalendarYear extends Component {
     container.scrollTop = scrollYOffset;
   }
 
-  handleTouchTap = (event, year) => {
-    if (this.props.onYearTouchTap) this.props.onYearTouchTap(event, year);
+  handleTouchTapYear = (event, year) => {
+    if (this.props.onTouchTapYear) this.props.onTouchTapYear(event, year);
   };
 
   render() {
     const years = this.getYears();
     const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
-      position: 'relative',
-      height: 'inherit',
-      lineHeight: '36px',
-      textAlign: 'center',
-      padding: '8px 14px 0 14px',
       backgroundColor: backgroundColor,
+      height: 'inherit',
+      lineHeight: '35px',
       overflowX: 'hidden',
       overflowY: 'scroll',
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     };
 
     return (
       <div style={styles}>
-        {years}
+        <div>
+          {years}
+        </div>
       </div>
     );
   }

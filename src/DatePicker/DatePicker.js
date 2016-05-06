@@ -129,10 +129,6 @@ class DatePicker extends Component {
      */
     value: PropTypes.any,
     /**
-     * Creates a ValueLink with the value of date picker.
-     */
-    valueLink: PropTypes.object,
-    /**
      * Wordings used inside the button of the dialog.
      */
     wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
@@ -140,14 +136,13 @@ class DatePicker extends Component {
 
   static defaultProps = {
     autoOk: false,
-    cancelLabel: 'Cancel',
     container: 'dialog',
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
-    okLabel: 'OK',
     style: {},
   };
+
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
@@ -212,7 +207,6 @@ class DatePicker extends Component {
       });
     }
     if (this.props.onChange) this.props.onChange(null, date);
-    if (this.props.valueLink) this.props.valueLink.requestChange(date);
   };
 
   handleFocus = (event) => {
@@ -230,15 +224,12 @@ class DatePicker extends Component {
   };
 
   isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
+    return this.props.hasOwnProperty('value');
   }
 
   getControlledDate(props = this.props) {
     if (props.value instanceof Date) {
       return props.value;
-    } else if (props.valueLink && props.valueLink.value instanceof Date) {
-      return props.valueLink.value;
     }
   }
 
@@ -271,13 +262,12 @@ class DatePicker extends Component {
       okLabel,
       onDismiss,
       onFocus, // eslint-disable-line no-unused-vars
-      onShow, // eslint-disable-line no-unused-vars
+      onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
+      shouldDisableDate,
       style,
       textFieldStyle,
-      valueLink, // eslint-disable-line no-unused-vars
       wordings,
-      shouldDisableDate,
       ...other,
     } = this.props;
 
@@ -288,11 +278,11 @@ class DatePicker extends Component {
       <div style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
-          style={textFieldStyle}
-          ref="input"
-          value={this.state.date ? formatDate(this.state.date) : ''}
           onFocus={this.handleFocus}
           onTouchTap={this.handleTouchTap}
+          ref="input"
+          style={textFieldStyle}
+          value={this.state.date ? formatDate(this.state.date) : ''}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}

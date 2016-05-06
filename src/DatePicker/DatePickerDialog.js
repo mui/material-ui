@@ -3,8 +3,8 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
-import DatePickerInline from './DatePickerInline';
-import FlatButton from '../FlatButton';
+import Popover from '../Popover/Popover';
+import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
@@ -24,6 +24,7 @@ class DatePickerDialog extends Component {
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
+    open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
     wordings: PropTypes.object,
@@ -57,11 +58,11 @@ class DatePickerDialog extends Component {
     this.setState({
       open: false,
     });
-  }
+  };
 
   handleTouchTapDay = () => {
     if (this.props.autoOk) {
-      setTimeout(this.handleTouchTapOK, 300);
+      setTimeout(this.handleTouchTapOk, 300);
     }
   };
 
@@ -73,7 +74,7 @@ class DatePickerDialog extends Component {
     this.dismiss();
   };
 
-  handleTouchTapOK = () => {
+  handleTouchTapOk = () => {
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
@@ -81,10 +82,10 @@ class DatePickerDialog extends Component {
     this.dismiss();
   };
 
-  handleKeyUp = (event) => {
+  handleKeyUp = (event) => { // FIXME: Unused function
     switch (keycode(event)) {
       case 'enter':
-        this.handleTouchTapOK();
+        this.handleTouchTapOk();
         break;
     }
   };
@@ -94,108 +95,75 @@ class DatePickerDialog extends Component {
       DateTimeFormat,
       cancelLabel,
       container,
+      disableYearSelection,
       initialDate,
       firstDayOfWeek,
       locale,
+      maxDate,
+      minDate,
+      mode,
       okLabel,
       onAccept, // eslint-disable-line no-unused-vars
+      shouldDisableDate,
       style, // eslint-disable-line no-unused-vars
       wordings,
-      minDate,
-      maxDate,
-      shouldDisableDate,
-      mode,
-      disableYearSelection,
       ...other,
     } = this.props;
 
     const {open} = this.state;
 
-    const {
-      datePicker: {
-        calendarTextColor,
-      },
-    } = this.context.muiTheme;
-
     const styles = {
-      root: {
-        fontSize: 14,
-        color: calendarTextColor,
-      },
-
       dialogContent: {
-        width: mode === 'landscape' ? 480 : 320,
+        width: mode === 'landscape' ? 479 : 310,
       },
-
       dialogBodyContent: {
         padding: 0,
-      },
-
-      actions: {
-        marginRight: 8,
+        minHeight: mode === 'landscape' ? 330 : 434,
+        minWidth: mode === 'landscape' ? 479 : 310,
       },
     };
 
-    const actions = [
-      <FlatButton
-        key={0}
-        label={wordings ? wordings.cancel : cancelLabel}
-        primary={true}
-        style={styles.actions}
-        onTouchTap={this.handleTouchTapCancel}
-      />,
-    ];
-
-    if (!this.props.autoOk) {
-      actions.push(
-        <FlatButton
-          key={1}
-          label={wordings ? wordings.ok : okLabel}
-          primary={true}
-          disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-          style={styles.actions}
-          onTouchTap={this.handleTouchTapOK}
-        />
-      );
-    }
-
-    // will change later when Popover is available.
-    const Container = (container === 'inline' ? DatePickerInline : Dialog);
+    const Container = (container === 'inline' ? Popover : Dialog);
     return (
-      <Container
-        {...other}
-        ref="dialog"
-        style={styles.root}
-        contentStyle={styles.dialogContent}
-        bodyStyle={styles.dialogBodyContent}
-        actions={actions}
-        repositionOnUpdate={false}
-        open={open}
-        onRequestClose={this.handleRequestClose}
-      >
-        {open &&
+      <div {...other} ref="root">
+        <Container
+          {...other}
+          anchorEl={this.refs.root} // For Popover
+          animation={PopoverAnimationFromTop} // For Popover
+          bodyStyle={styles.dialogBodyContent}
+          contentStyle={styles.dialogContent}
+          ref="dialog"
+          repositionOnUpdate={true}
+          open={open}
+          onRequestClose={this.handleRequestClose}
+          style={styles.dialogBodyContent}
+        >
           <EventListener
             elementName="window"
-            onKeyUp={this.handleKeyUp}
+            onKeyUp={this.handleWindowKeyUp}
           />
-        }
-        {open &&
           <Calendar
+            autoOk={this.props.autoOk}
             DateTimeFormat={DateTimeFormat}
-            firstDayOfWeek={firstDayOfWeek}
-            locale={locale}
-            ref="calendar"
-            onDayTouchTap={this.handleTouchTapDay}
-            initialDate={initialDate}
-            open={true}
-            minDate={minDate}
-            maxDate={maxDate}
-            shouldDisableDate={shouldDisableDate}
+            cancelLabel={cancelLabel}
             disableYearSelection={disableYearSelection}
+            firstDayOfWeek={firstDayOfWeek}
+            initialDate={initialDate}
+            locale={locale}
+            onTouchTapDay={this.handleTouchTapDay}
+            maxDate={maxDate}
+            minDate={minDate}
             mode={mode}
+            open={open}
+            ref="calendar"
+            onTouchTapCancel={this.handleTouchTapCancel}
+            onTouchTapOk={this.handleTouchTapOk}
+            okLabel={okLabel}
+            shouldDisableDate={shouldDisableDate}
+            wordings={wordings}
           />
-        }
-      </Container>
+        </Container>
+      </div>
     );
   }
 }

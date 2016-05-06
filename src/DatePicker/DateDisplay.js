@@ -5,33 +5,41 @@ import SlideInTransitionGroup from '../internal/SlideIn';
 function getStyles(props, context, state) {
   const {datePicker} = context.muiTheme;
   const {selectedYear} = state;
+  const isLandscape = props.mode === 'landscape';
 
   const styles = {
     root: {
+      width: isLandscape ? 125 : 270,
+      height: isLandscape ? 290 : 'auto',
+      float: isLandscape ? 'left' : 'none',
+      fontWeight: 700,
+      display: 'inline-block',
       backgroundColor: datePicker.selectColor,
       borderTopLeftRadius: 2,
-      borderTopRightRadius: 2,
+      borderTopRightRadius: isLandscape ? 0 : 2,
+      borderBottomLeftRadius: isLandscape ? 2 : 0,
       color: datePicker.textColor,
-      height: 60,
       padding: 20,
     },
     monthDay: {
-      display: 'inline-block',
+      display: 'block',
       fontSize: 36,
-      fontWeight: '400',
       lineHeight: '36px',
-      height: props.mode === 'landscape' ? 76 : 38,
+      height: props.mode === 'landscape' ? '100%' : 38,
       opacity: selectedYear ? 0.7 : 1,
       transition: transitions.easeOut(),
       width: '100%',
+      fontWeight: '500',
     },
     monthDayTitle: {
       cursor: !selectedYear ? 'default' : 'pointer',
+      width: '100%',
+      display: 'block',
     },
     year: {
       margin: 0,
       fontSize: 16,
-      fontWeight: '400',
+      fontWeight: '500',
       lineHeight: '16px',
       height: 16,
       opacity: selectedYear ? 1 : 0.7,
@@ -118,8 +126,8 @@ class DateDisplay extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const year = selectedDate.getFullYear();
     const styles = getStyles(this.props, this.context, this.state);
+    const year = selectedDate.getFullYear();
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',
@@ -128,7 +136,7 @@ class DateDisplay extends Component {
     }).format(selectedDate);
 
     return (
-      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+      <div {...other} style={prepareStyles(styles.root, style)}>
         <SlideInTransitionGroup
           style={styles.year}
           direction={this.state.transitionDirection}
@@ -143,8 +151,8 @@ class DateDisplay extends Component {
         >
           <div
             key={dateTimeFormatted}
-            style={styles.monthDayTitle}
             onTouchTap={this.handleTouchTapMonthDay}
+            style={styles.monthDayTitle}
           >
             {dateTimeFormatted}
           </div>
