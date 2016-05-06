@@ -1,6 +1,6 @@
 import merge from 'lodash.merge';
 import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';
-import lightBaseTheme from './baseThemes/lightBaseTheme';
+import speakBaseTheme from './baseThemes/speakBaseTheme';
 import zIndex from './zIndex';
 import autoprefixer from '../utils/autoprefixer';
 import callOnce from '../utils/callOnce';
@@ -23,7 +23,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     zIndex,
     isRtl: false,
     userAgent: undefined,
-  }, lightBaseTheme, muiTheme, ...more);
+  }, speakBaseTheme, muiTheme, ...more);
 
   const {spacing, fontFamily, palette} = muiTheme;
   const baseTheme = {spacing, fontFamily, palette};
