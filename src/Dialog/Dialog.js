@@ -38,7 +38,9 @@ class TransitionItem extends Component {
     this.setState({
       style: {
         opacity: 1,
-        transform: this.isTranslate3d() ? `translate3d(0, ${spacing.desktopKeylineIncrement}px, 0)` :`translate(0, ${spacing.desktopKeylineIncrement}px)`,
+        transform: this.isTranslate3d() ?
+                    `translate3d(0, ${spacing.desktopKeylineIncrement}px, 0)` :
+                    `translate(0, ${spacing.desktopKeylineIncrement}px)`,
       },
     });
 
@@ -55,10 +57,12 @@ class TransitionItem extends Component {
 
     this.leaveTimeout = setTimeout(callback, 450); // matches transition duration
   }
-  
-  isTranslate3d(){
-    //if internet explorer, use translate instead of translate3d
-    return !(window.navigator.userAgent.indexOf("MSIE ") > 0 || !!window.navigator.userAgent.match(/Trident.*rv\:11\./));
+
+  isTranslate3d() {
+    // if internet explorer, use translate instead of translate3d
+    return !(
+      window.navigator.userAgent.indexOf('MSIE ') > 0 ||
+      !!window.navigator.userAgent.match(/Trident.*rv\:11\./));
   }
 
   render() {
