@@ -123,7 +123,9 @@ class Clock extends Component {
     const {prepareStyles} = this.context.muiTheme;
 
     const styles = {
-      root: {},
+      root: {
+        userSelect: 'none',
+      },
       container: {
         height: 280,
         padding: 10,
