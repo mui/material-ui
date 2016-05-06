@@ -1,5 +1,40 @@
 ## HEAD
 
+## 0.15.0
+###### _May 5, 2016_
+
+Please read through the aplha and beta releases of 0.15.0 too as their changes are not listed here.
+
+##### General
+- [Core] Add a `withWidth` HOC (#4126)
+- [Core] Use named imports for createClass, Component & PropTypes (#4058)
+- [Core] Update dependencies and remove a couple of unneeded (#4107)
+- [eslint] Use the js format instead of the yaml one (#4074)
+- [codemod] Improve the path migration (#4069)
+- [codemod] Add a babel transpilation for npm (#4115)
+- [Tests] Refactor karma tests, add JSDOM for node tests and improve coverage (#4102)
+- [Tests] Add basic README for test setup (#4106)
+- [colorManipulator] Prevent illegal color values (#3989)
+- Added the following eslint rules:
+  1. Enforce `jsx-first-prop-new-line` (#4112)
+  1. Enforce `react/prefer-es6-class` (#4126)
+
+##### Component Fixes / Enhancements
+- [Avatar] Fix icon size issue for non-default Avatar size (#4148)
+- [Buttons] Address various browser compatibility issues (#4108)
+- [Buttons] Fixed alignment related regressions (#4130)
+- [Card] Add `containerStyle` prop (#4085)
+- [CircularProgress] Fix for Android (#4026)
+- [DatePicker] Add support for built-in en-US locale (#4161)
+- [Datepicker] Redesign datepicker as per material spec (#3739)
+- [Dialog] Stop mixing `padding` and `paddingTop` (#4082)
+- [EnhancedButton] Fix keyboard focus jumping (#4127)
+- [Slider] Fix Slider div style (#4087)
+- [TextField] Add `floatingLabelFocusStyle` property (#4043)
+
+##### Deprecations
+- [styleResizable] This mixin has been deprecated in favor of `withWidth` HOC (#4126)
+
 ## 0.15.0-beta.2
 ###### _Apr 21, 2016_
 
