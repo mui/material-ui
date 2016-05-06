@@ -3,7 +3,7 @@
 ## 0.15.0
 ###### _May 5, 2016_
 
-Please read through the aplha and beta releases of 0.15.0 too as their changes are not listed here.
+Please read through the alpha and beta releases of 0.15.0 too as their changes are not listed here.
 
 ##### General
 - [Core] Add a `withWidth` HOC (#4126)
