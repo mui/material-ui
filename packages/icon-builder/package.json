@@ -5,8 +5,7 @@
   "private": "true",
   "scripts": {
     "prebuild": "rimraf js jsx",
-    "createMuiIconsJsx": "node build.js --output-dir jsx --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --mui-require relative --renameFilter ./filters/rename/material-design-icons.js",
-    "build": "npm run createMuiIconsJsx && babel --stage 1 ./jsx --out-dir ./js",
+    "build": "node build.js --output-dir ../../src/svg-icons --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --mui-require relative --renameFilter ./filters/rename/material-design-icons.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
