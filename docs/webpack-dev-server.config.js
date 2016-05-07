@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const buildPath = path.resolve(__dirname, 'src/www');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
   // Entry point to the project
@@ -26,6 +26,8 @@ const config = {
     hot: true,
     inline: true,
     port: 3000,
+    // Required for webpack-dev-server.
+    outputPath: buildPath,
   },
   devtool: 'eval',
   // Output file config
@@ -34,15 +36,13 @@ const config = {
     filename: 'app.js', // Name of output file
   },
   plugins: [
-    // Used to include index.html in build folder
-    new HtmlWebpackPlugin({
-      inject: false,
-      template: path.join(__dirname, '/src/www/index.html'),
-    }),
     // Allows for sync with browser while developing (like BorwserSync)
     new webpack.HotModuleReplacementPlugin(),
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
+    new CopyWebpackPlugin([
+      {from: 'src/www/index.html'},
+    ]),
   ],
   externals: {
     fs: 'js', // To remove once https://github.com/benjamn/recast/pull/238 is released
