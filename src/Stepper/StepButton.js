@@ -84,13 +84,13 @@ class StepButton extends Component {
 
   state = {
     hovered: false,
-    touch: false,
+    touched: false,
   };
 
   handleMouseEnter = (event) => {
     const {onMouseEnter} = this.props;
     // Cancel hover styles for touch devices
-    if (!this.state.touch) {
+    if (!this.state.touched) {
       this.setState({hovered: true});
     }
     if (typeof onMouseEnter === 'function') {
@@ -108,7 +108,9 @@ class StepButton extends Component {
 
   handleTouchStart = (event) => {
     const {onTouchStart} = this.props;
-    this.setState({touch: true});
+    if (!this.state.touched) {
+      this.setState({touched: true});
+    }
     if (typeof onTouchStart === 'function') {
       onTouchStart(event);
     }
@@ -121,6 +123,9 @@ class StepButton extends Component {
       completed,
       disabled,
       icon,
+      onMouseEnter, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onTouchStart, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;

@@ -21,11 +21,7 @@ class ExpandTransition extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  renderChildren(children, loading) {
-    if (loading) {
-      return ([]);
-    }
-
+  renderChildren(children) {
     return React.Children.map(children, (child) => {
       return (
         <ExpandTransitionChild
@@ -55,7 +51,7 @@ class ExpandTransition extends Component {
       height: '100%',
     }, style);
 
-    const newChildren = this.renderChildren(children, loading);
+    const newChildren = loading ? [] : this.renderChildren(children);
 
     return (
       <ReactTransitionGroup

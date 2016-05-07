@@ -35,13 +35,7 @@ class ExpandTransitionChild extends Component {
     const {enterDelay} = this.props;
     const {style} = ReactDOM.findDOMNode(this);
     style.height = 0;
-
-    if (enterDelay) {
-      this.enterTimer = setTimeout(() => callback(), 450);
-      return;
-    }
-
-    callback();
+    this.enterTimer = setTimeout(() => callback(), enterDelay);
   }
 
   componentDidEnter() {
@@ -49,14 +43,14 @@ class ExpandTransitionChild extends Component {
   }
 
   componentWillLeave(callback) {
-    const style = ReactDOM.findDOMNode(this).style;
+    const {style} = ReactDOM.findDOMNode(this);
     style.height = this.refs.wrapper.clientHeight;
     style.height = 0;
     this.leaveTimer = setTimeout(() => callback(), 450);
   }
 
   open() {
-    const style = ReactDOM.findDOMNode(this).style;
+    const {style} = ReactDOM.findDOMNode(this);
     style.height = `${this.refs.wrapper.clientHeight}px`;
   }
 
