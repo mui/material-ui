@@ -176,7 +176,6 @@ class Master extends Component {
             <IconButton
               iconClassName="muidocs-icon-custom-github"
               href="https://github.com/callemall/material-ui"
-              linkButton={true}
             />
           }
           style={styles.appBar}
@@ -218,7 +217,6 @@ class Master extends Component {
             iconStyle={styles.iconButton}
             iconClassName="muidocs-icon-custom-github"
             href="https://github.com/callemall/material-ui"
-            linkButton={true}
           />
           <p style={prepareStyles(styles.browserstack)}>
             {'Thank you to '}

@@ -4,6 +4,7 @@ import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
+import deprecated from '../utils/deprecatedPropType';
 
 let styleInjected = false;
 let listening = false;
@@ -49,8 +50,12 @@ class EnhancedButton extends Component {
     disabled: PropTypes.bool,
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
+    href: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
     keyboardFocused: PropTypes.bool,
-    linkButton: PropTypes.bool,
+    linkButton: deprecated(PropTypes.bool, 'LinkButton is no longer required when the `href` property is provided.'),
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
@@ -264,7 +269,8 @@ class EnhancedButton extends Component {
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
       focusRippleOpacity, // eslint-disable-line no-unused-vars
-      linkButton,
+      href,
+      linkButton, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       touchRippleOpacity, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
@@ -313,7 +319,7 @@ class EnhancedButton extends Component {
       mergedStyles.background = 'none';
     }
 
-    if (disabled && linkButton) {
+    if (disabled && href) {
       return (
         <span
           {...other}
@@ -329,6 +335,7 @@ class EnhancedButton extends Component {
       style: prepareStyles(mergedStyles),
       ref: 'enhancedButton',
       disabled: disabled,
+      href: href,
       onBlur: this.handleBlur,
       onClick: this.handleClick,
       onFocus: this.handleFocus,
@@ -340,12 +347,9 @@ class EnhancedButton extends Component {
     };
     const buttonChildren = this.createButtonChildren();
 
-    // Provides backward compatibility. Added to support wrapping around <a> element.
-    const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
-
     return React.isValidElement(containerElement) ?
       React.cloneElement(containerElement, buttonProps, buttonChildren) :
-      React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
+      React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
   }
 }
 

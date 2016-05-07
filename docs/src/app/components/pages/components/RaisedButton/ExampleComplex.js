@@ -37,7 +37,6 @@ const RaisedButtonExampleComplex = () => (
     />
     <RaisedButton
       label="Github Link"
-      linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}
