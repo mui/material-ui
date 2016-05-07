@@ -453,7 +453,7 @@ class AutoComplete extends Component {
         autoWidth={false}
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.handleEscKeyDown}
-        initiallyKeyboardFocused={false}
+        initiallyKeyboardFocused={true}
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
