@@ -38,7 +38,7 @@ class FlatButton extends Component {
      */
     hoverColor: PropTypes.string,
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
     /**
@@ -60,10 +60,6 @@ class FlatButton extends Component {
      * Override the inline-styles of the button's label element.
      */
     labelStyle: PropTypes.object,
-    /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
-     */
-    linkButton: PropTypes.bool,
     /**
      * Callback function fired when the element is focused or blurred by the keyboard.
      *
@@ -162,7 +158,6 @@ class FlatButton extends Component {
       label,
       labelStyle,
       labelPosition,
-      linkButton,
       primary,
       rippleColor,
       secondary,
@@ -268,7 +263,6 @@ class FlatButton extends Component {
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
-        linkButton={linkButton}
         onKeyboardFocus={this.handleKeyboardFocus}
         onMouseLeave={this.handleMouseLeave}
         onMouseEnter={this.handleMouseEnter}

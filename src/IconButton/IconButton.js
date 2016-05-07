@@ -62,6 +62,10 @@ class IconButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * The URL to link to when the button is clicked.
+     */
+    href: PropTypes.string,
+    /**
      * The CSS class name of the icon. Used for setting the icon with a stylesheet.
      */
     iconClassName: PropTypes.string,
