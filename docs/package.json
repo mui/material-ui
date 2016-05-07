@@ -33,7 +33,6 @@
     "eslint-plugin-react": "^5.0.1",
     "highlight.js": "^9.0.0",
     "history": "^2.0.0",
-    "html-webpack-plugin": "^2.8.1",
     "intl": "^1.0.1",
     "intl-locales-supported": "^1.0.0",
     "json-loader": "^0.5.4",

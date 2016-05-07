@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const buildPath = path.resolve(__dirname, 'build');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
@@ -44,17 +43,15 @@ const config = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      template: path.join(__dirname, '/src/www/index.html'),
-    }),
+
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
     // Transfer Files
     new CopyWebpackPlugin([
       {from: 'src/www/css', to: 'css'},
       {from: 'src/www/images', to: 'images'},
-      {from: 'src/www/versions.json', to: 'versions.json'},
+      {from: 'src/www/index.html'},
+      {from: 'src/www/versions.json'},
     ]),
   ],
   externals: {
