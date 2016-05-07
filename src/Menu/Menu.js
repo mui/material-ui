@@ -96,6 +96,11 @@ class Menu extends Component {
      */
     initiallyKeyboardFocused: PropTypes.bool,
     /**
+    * If true, the menu will be focused by the keyboard.
+    */
+    keyboardFocused: React.PropTypes.bool,
+
+    /**
      * Override the inline-styles of the underlying `List` element.
      */
     listStyle: PropTypes.object,
@@ -185,6 +190,7 @@ class Menu extends Component {
     desktop: false,
     disableAutoFocus: false,
     initiallyKeyboardFocused: false,
+    isKeyboardFocused: null,
     maxHeight: null,
     multiple: false,
     onChange: () => {},
@@ -204,7 +210,7 @@ class Menu extends Component {
 
     this.state = {
       focusIndex: props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
-      isKeyboardFocused: props.initiallyKeyboardFocused,
+      isKeyboardFocused: props.keyboardFocused !== null ? props.keyboardFocused : props.initiallyKeyboardFocused,
       keyWidth: props.desktop ? 64 : 56,
     };
   }
@@ -222,6 +228,7 @@ class Menu extends Component {
     this.setState({
       focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
       keyWidth: nextProps.desktop ? 64 : 56,
+      isKeyboardFocused: nextProps.keyboardFocused !== null ? nextProps.keyboardFocused : this.state.isKeyboardFocused,
     });
   }
 
