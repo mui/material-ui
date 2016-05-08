@@ -9,5 +9,6 @@ let ImageCameraAlt = (props) => (
 );
 ImageCameraAlt = pure(ImageCameraAlt);
 ImageCameraAlt.displayName = 'ImageCameraAlt';
+ImageCameraAlt.muiName = 'SvgIcon';
 
 export default ImageCameraAlt;

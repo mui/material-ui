@@ -9,5 +9,6 @@ let ImageTimelapse = (props) => (
 );
 ImageTimelapse = pure(ImageTimelapse);
 ImageTimelapse.displayName = 'ImageTimelapse';
+ImageTimelapse.muiName = 'SvgIcon';
 
 export default ImageTimelapse;

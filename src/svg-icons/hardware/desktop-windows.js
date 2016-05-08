@@ -9,5 +9,6 @@ let HardwareDesktopWindows = (props) => (
 );
 HardwareDesktopWindows = pure(HardwareDesktopWindows);
 HardwareDesktopWindows.displayName = 'HardwareDesktopWindows';
+HardwareDesktopWindows.muiName = 'SvgIcon';
 
 export default HardwareDesktopWindows;

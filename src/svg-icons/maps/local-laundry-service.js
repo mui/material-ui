@@ -9,5 +9,6 @@ let MapsLocalLaundryService = (props) => (
 );
 MapsLocalLaundryService = pure(MapsLocalLaundryService);
 MapsLocalLaundryService.displayName = 'MapsLocalLaundryService';
+MapsLocalLaundryService.muiName = 'SvgIcon';
 
 export default MapsLocalLaundryService;

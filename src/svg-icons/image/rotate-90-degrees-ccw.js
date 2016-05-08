@@ -9,5 +9,6 @@ let ImageRotate90DegreesCcw = (props) => (
 );
 ImageRotate90DegreesCcw = pure(ImageRotate90DegreesCcw);
 ImageRotate90DegreesCcw.displayName = 'ImageRotate90DegreesCcw';
+ImageRotate90DegreesCcw.muiName = 'SvgIcon';
 
 export default ImageRotate90DegreesCcw;

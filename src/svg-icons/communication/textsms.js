@@ -9,5 +9,6 @@ let CommunicationTextsms = (props) => (
 );
 CommunicationTextsms = pure(CommunicationTextsms);
 CommunicationTextsms.displayName = 'CommunicationTextsms';
+CommunicationTextsms.muiName = 'SvgIcon';
 
 export default CommunicationTextsms;

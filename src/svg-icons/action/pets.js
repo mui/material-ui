@@ -9,5 +9,6 @@ let ActionPets = (props) => (
 );
 ActionPets = pure(ActionPets);
 ActionPets.displayName = 'ActionPets';
+ActionPets.muiName = 'SvgIcon';
 
 export default ActionPets;

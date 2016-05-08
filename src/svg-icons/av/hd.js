@@ -9,5 +9,6 @@ let AvHd = (props) => (
 );
 AvHd = pure(AvHd);
 AvHd.displayName = 'AvHd';
+AvHd.muiName = 'SvgIcon';
 
 export default AvHd;

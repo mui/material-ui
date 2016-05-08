@@ -9,5 +9,6 @@ let ActionReorder = (props) => (
 );
 ActionReorder = pure(ActionReorder);
 ActionReorder.displayName = 'ActionReorder';
+ActionReorder.muiName = 'SvgIcon';
 
 export default ActionReorder;

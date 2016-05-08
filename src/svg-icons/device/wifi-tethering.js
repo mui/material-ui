@@ -9,5 +9,6 @@ let DeviceWifiTethering = (props) => (
 );
 DeviceWifiTethering = pure(DeviceWifiTethering);
 DeviceWifiTethering.displayName = 'DeviceWifiTethering';
+DeviceWifiTethering.muiName = 'SvgIcon';
 
 export default DeviceWifiTethering;

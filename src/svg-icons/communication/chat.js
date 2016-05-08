@@ -9,5 +9,6 @@ let CommunicationChat = (props) => (
 );
 CommunicationChat = pure(CommunicationChat);
 CommunicationChat.displayName = 'CommunicationChat';
+CommunicationChat.muiName = 'SvgIcon';
 
 export default CommunicationChat;

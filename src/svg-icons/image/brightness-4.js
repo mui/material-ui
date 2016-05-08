@@ -9,5 +9,6 @@ let ImageBrightness4 = (props) => (
 );
 ImageBrightness4 = pure(ImageBrightness4);
 ImageBrightness4.displayName = 'ImageBrightness4';
+ImageBrightness4.muiName = 'SvgIcon';
 
 export default ImageBrightness4;

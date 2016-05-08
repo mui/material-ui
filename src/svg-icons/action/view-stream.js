@@ -9,5 +9,6 @@ let ActionViewStream = (props) => (
 );
 ActionViewStream = pure(ActionViewStream);
 ActionViewStream.displayName = 'ActionViewStream';
+ActionViewStream.muiName = 'SvgIcon';
 
 export default ActionViewStream;

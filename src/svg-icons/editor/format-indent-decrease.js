@@ -9,5 +9,6 @@ let EditorFormatIndentDecrease = (props) => (
 );
 EditorFormatIndentDecrease = pure(EditorFormatIndentDecrease);
 EditorFormatIndentDecrease.displayName = 'EditorFormatIndentDecrease';
+EditorFormatIndentDecrease.muiName = 'SvgIcon';
 
 export default EditorFormatIndentDecrease;

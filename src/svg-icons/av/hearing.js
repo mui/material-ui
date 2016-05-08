@@ -9,5 +9,6 @@ let AvHearing = (props) => (
 );
 AvHearing = pure(AvHearing);
 AvHearing.displayName = 'AvHearing';
+AvHearing.muiName = 'SvgIcon';
 
 export default AvHearing;

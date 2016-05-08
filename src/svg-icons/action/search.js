@@ -9,5 +9,6 @@ let ActionSearch = (props) => (
 );
 ActionSearch = pure(ActionSearch);
 ActionSearch.displayName = 'ActionSearch';
+ActionSearch.muiName = 'SvgIcon';
 
 export default ActionSearch;

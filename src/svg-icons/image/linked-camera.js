@@ -9,5 +9,6 @@ let ImageLinkedCamera = (props) => (
 );
 ImageLinkedCamera = pure(ImageLinkedCamera);
 ImageLinkedCamera.displayName = 'ImageLinkedCamera';
+ImageLinkedCamera.muiName = 'SvgIcon';
 
 export default ImageLinkedCamera;

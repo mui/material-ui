@@ -9,5 +9,6 @@ let EditorTextFields = (props) => (
 );
 EditorTextFields = pure(EditorTextFields);
 EditorTextFields.displayName = 'EditorTextFields';
+EditorTextFields.muiName = 'SvgIcon';
 
 export default EditorTextFields;

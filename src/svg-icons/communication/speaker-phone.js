@@ -9,5 +9,6 @@ let CommunicationSpeakerPhone = (props) => (
 );
 CommunicationSpeakerPhone = pure(CommunicationSpeakerPhone);
 CommunicationSpeakerPhone.displayName = 'CommunicationSpeakerPhone';
+CommunicationSpeakerPhone.muiName = 'SvgIcon';
 
 export default CommunicationSpeakerPhone;

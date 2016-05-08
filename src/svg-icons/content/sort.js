@@ -9,5 +9,6 @@ let ContentSort = (props) => (
 );
 ContentSort = pure(ContentSort);
 ContentSort.displayName = 'ContentSort';
+ContentSort.muiName = 'SvgIcon';
 
 export default ContentSort;

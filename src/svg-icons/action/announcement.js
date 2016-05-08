@@ -9,5 +9,6 @@ let ActionAnnouncement = (props) => (
 );
 ActionAnnouncement = pure(ActionAnnouncement);
 ActionAnnouncement.displayName = 'ActionAnnouncement';
+ActionAnnouncement.muiName = 'SvgIcon';
 
 export default ActionAnnouncement;

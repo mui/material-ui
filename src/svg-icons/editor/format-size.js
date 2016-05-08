@@ -9,5 +9,6 @@ let EditorFormatSize = (props) => (
 );
 EditorFormatSize = pure(EditorFormatSize);
 EditorFormatSize.displayName = 'EditorFormatSize';
+EditorFormatSize.muiName = 'SvgIcon';
 
 export default EditorFormatSize;

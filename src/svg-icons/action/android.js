@@ -9,5 +9,6 @@ let ActionAndroid = (props) => (
 );
 ActionAndroid = pure(ActionAndroid);
 ActionAndroid.displayName = 'ActionAndroid';
+ActionAndroid.muiName = 'SvgIcon';
 
 export default ActionAndroid;

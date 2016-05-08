@@ -9,5 +9,6 @@ let ImageEdit = (props) => (
 );
 ImageEdit = pure(ImageEdit);
 ImageEdit.displayName = 'ImageEdit';
+ImageEdit.muiName = 'SvgIcon';
 
 export default ImageEdit;

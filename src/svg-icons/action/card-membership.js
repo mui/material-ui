@@ -9,5 +9,6 @@ let ActionCardMembership = (props) => (
 );
 ActionCardMembership = pure(ActionCardMembership);
 ActionCardMembership.displayName = 'ActionCardMembership';
+ActionCardMembership.muiName = 'SvgIcon';
 
 export default ActionCardMembership;

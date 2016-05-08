@@ -9,5 +9,6 @@ let EditorBubbleChart = (props) => (
 );
 EditorBubbleChart = pure(EditorBubbleChart);
 EditorBubbleChart.displayName = 'EditorBubbleChart';
+EditorBubbleChart.muiName = 'SvgIcon';
 
 export default EditorBubbleChart;

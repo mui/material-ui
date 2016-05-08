@@ -9,5 +9,6 @@ let EditorFormatAlignRight = (props) => (
 );
 EditorFormatAlignRight = pure(EditorFormatAlignRight);
 EditorFormatAlignRight.displayName = 'EditorFormatAlignRight';
+EditorFormatAlignRight.muiName = 'SvgIcon';
 
 export default EditorFormatAlignRight;

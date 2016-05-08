@@ -9,5 +9,6 @@ let ImageImageAspectRatio = (props) => (
 );
 ImageImageAspectRatio = pure(ImageImageAspectRatio);
 ImageImageAspectRatio.displayName = 'ImageImageAspectRatio';
+ImageImageAspectRatio.muiName = 'SvgIcon';
 
 export default ImageImageAspectRatio;

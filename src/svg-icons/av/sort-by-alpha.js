@@ -9,5 +9,6 @@ let AvSortByAlpha = (props) => (
 );
 AvSortByAlpha = pure(AvSortByAlpha);
 AvSortByAlpha.displayName = 'AvSortByAlpha';
+AvSortByAlpha.muiName = 'SvgIcon';
 
 export default AvSortByAlpha;

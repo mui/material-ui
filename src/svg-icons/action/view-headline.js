@@ -9,5 +9,6 @@ let ActionViewHeadline = (props) => (
 );
 ActionViewHeadline = pure(ActionViewHeadline);
 ActionViewHeadline.displayName = 'ActionViewHeadline';
+ActionViewHeadline.muiName = 'SvgIcon';
 
 export default ActionViewHeadline;

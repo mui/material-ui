@@ -9,5 +9,6 @@ let ActionDateRange = (props) => (
 );
 ActionDateRange = pure(ActionDateRange);
 ActionDateRange.displayName = 'ActionDateRange';
+ActionDateRange.muiName = 'SvgIcon';
 
 export default ActionDateRange;

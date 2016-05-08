@@ -9,5 +9,6 @@ let CommunicationRingVolume = (props) => (
 );
 CommunicationRingVolume = pure(CommunicationRingVolume);
 CommunicationRingVolume.displayName = 'CommunicationRingVolume';
+CommunicationRingVolume.muiName = 'SvgIcon';
 
 export default CommunicationRingVolume;

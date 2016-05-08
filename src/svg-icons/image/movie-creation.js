@@ -9,5 +9,6 @@ let ImageMovieCreation = (props) => (
 );
 ImageMovieCreation = pure(ImageMovieCreation);
 ImageMovieCreation.displayName = 'ImageMovieCreation';
+ImageMovieCreation.muiName = 'SvgIcon';
 
 export default ImageMovieCreation;

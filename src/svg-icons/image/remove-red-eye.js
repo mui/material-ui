@@ -9,5 +9,6 @@ let ImageRemoveRedEye = (props) => (
 );
 ImageRemoveRedEye = pure(ImageRemoveRedEye);
 ImageRemoveRedEye.displayName = 'ImageRemoveRedEye';
+ImageRemoveRedEye.muiName = 'SvgIcon';
 
 export default ImageRemoveRedEye;

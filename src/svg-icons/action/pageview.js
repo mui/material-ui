@@ -9,5 +9,6 @@ let ActionPageview = (props) => (
 );
 ActionPageview = pure(ActionPageview);
 ActionPageview.displayName = 'ActionPageview';
+ActionPageview.muiName = 'SvgIcon';
 
 export default ActionPageview;

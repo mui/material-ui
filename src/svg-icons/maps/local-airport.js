@@ -9,5 +9,6 @@ let MapsLocalAirport = (props) => (
 );
 MapsLocalAirport = pure(MapsLocalAirport);
 MapsLocalAirport.displayName = 'MapsLocalAirport';
+MapsLocalAirport.muiName = 'SvgIcon';
 
 export default MapsLocalAirport;

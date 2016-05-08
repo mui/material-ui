@@ -9,5 +9,6 @@ let PlacesSpa = (props) => (
 );
 PlacesSpa = pure(PlacesSpa);
 PlacesSpa.displayName = 'PlacesSpa';
+PlacesSpa.muiName = 'SvgIcon';
 
 export default PlacesSpa;

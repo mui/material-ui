@@ -9,5 +9,6 @@ let SocialPoll = (props) => (
 );
 SocialPoll = pure(SocialPoll);
 SocialPoll.displayName = 'SocialPoll';
+SocialPoll.muiName = 'SvgIcon';
 
 export default SocialPoll;

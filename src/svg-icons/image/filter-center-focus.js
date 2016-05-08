@@ -9,5 +9,6 @@ let ImageFilterCenterFocus = (props) => (
 );
 ImageFilterCenterFocus = pure(ImageFilterCenterFocus);
 ImageFilterCenterFocus.displayName = 'ImageFilterCenterFocus';
+ImageFilterCenterFocus.muiName = 'SvgIcon';
 
 export default ImageFilterCenterFocus;

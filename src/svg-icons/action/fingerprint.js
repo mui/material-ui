@@ -9,5 +9,6 @@ let ActionFingerprint = (props) => (
 );
 ActionFingerprint = pure(ActionFingerprint);
 ActionFingerprint.displayName = 'ActionFingerprint';
+ActionFingerprint.muiName = 'SvgIcon';
 
 export default ActionFingerprint;

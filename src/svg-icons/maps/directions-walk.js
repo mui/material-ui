@@ -9,5 +9,6 @@ let MapsDirectionsWalk = (props) => (
 );
 MapsDirectionsWalk = pure(MapsDirectionsWalk);
 MapsDirectionsWalk.displayName = 'MapsDirectionsWalk';
+MapsDirectionsWalk.muiName = 'SvgIcon';
 
 export default MapsDirectionsWalk;

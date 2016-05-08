@@ -9,5 +9,6 @@ let ActionToday = (props) => (
 );
 ActionToday = pure(ActionToday);
 ActionToday.displayName = 'ActionToday';
+ActionToday.muiName = 'SvgIcon';
 
 export default ActionToday;

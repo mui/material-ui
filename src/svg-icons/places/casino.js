@@ -9,5 +9,6 @@ let PlacesCasino = (props) => (
 );
 PlacesCasino = pure(PlacesCasino);
 PlacesCasino.displayName = 'PlacesCasino';
+PlacesCasino.muiName = 'SvgIcon';
 
 export default PlacesCasino;

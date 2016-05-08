@@ -9,5 +9,6 @@ let MapsLocalShipping = (props) => (
 );
 MapsLocalShipping = pure(MapsLocalShipping);
 MapsLocalShipping.displayName = 'MapsLocalShipping';
+MapsLocalShipping.muiName = 'SvgIcon';
 
 export default MapsLocalShipping;

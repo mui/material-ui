@@ -9,5 +9,6 @@ let ActionLoyalty = (props) => (
 );
 ActionLoyalty = pure(ActionLoyalty);
 ActionLoyalty.displayName = 'ActionLoyalty';
+ActionLoyalty.muiName = 'SvgIcon';
 
 export default ActionLoyalty;

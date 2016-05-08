@@ -9,5 +9,6 @@ let MapsLocalPostOffice = (props) => (
 );
 MapsLocalPostOffice = pure(MapsLocalPostOffice);
 MapsLocalPostOffice.displayName = 'MapsLocalPostOffice';
+MapsLocalPostOffice.muiName = 'SvgIcon';
 
 export default MapsLocalPostOffice;

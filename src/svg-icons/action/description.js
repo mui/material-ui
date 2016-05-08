@@ -9,5 +9,6 @@ let ActionDescription = (props) => (
 );
 ActionDescription = pure(ActionDescription);
 ActionDescription.displayName = 'ActionDescription';
+ActionDescription.muiName = 'SvgIcon';
 
 export default ActionDescription;

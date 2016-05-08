@@ -9,5 +9,6 @@ let ActionPrint = (props) => (
 );
 ActionPrint = pure(ActionPrint);
 ActionPrint.displayName = 'ActionPrint';
+ActionPrint.muiName = 'SvgIcon';
 
 export default ActionPrint;

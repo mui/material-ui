@@ -9,5 +9,6 @@ let ActionAccessible = (props) => (
 );
 ActionAccessible = pure(ActionAccessible);
 ActionAccessible.displayName = 'ActionAccessible';
+ActionAccessible.muiName = 'SvgIcon';
 
 export default ActionAccessible;

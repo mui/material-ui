@@ -9,5 +9,6 @@ let ActionDonutLarge = (props) => (
 );
 ActionDonutLarge = pure(ActionDonutLarge);
 ActionDonutLarge.displayName = 'ActionDonutLarge';
+ActionDonutLarge.muiName = 'SvgIcon';
 
 export default ActionDonutLarge;

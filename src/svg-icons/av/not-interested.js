@@ -9,5 +9,6 @@ let AvNotInterested = (props) => (
 );
 AvNotInterested = pure(AvNotInterested);
 AvNotInterested.displayName = 'AvNotInterested';
+AvNotInterested.muiName = 'SvgIcon';
 
 export default AvNotInterested;

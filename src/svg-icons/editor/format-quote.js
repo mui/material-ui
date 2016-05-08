@@ -9,5 +9,6 @@ let EditorFormatQuote = (props) => (
 );
 EditorFormatQuote = pure(EditorFormatQuote);
 EditorFormatQuote.displayName = 'EditorFormatQuote';
+EditorFormatQuote.muiName = 'SvgIcon';
 
 export default EditorFormatQuote;

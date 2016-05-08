@@ -9,5 +9,6 @@ let ImageGridOn = (props) => (
 );
 ImageGridOn = pure(ImageGridOn);
 ImageGridOn.displayName = 'ImageGridOn';
+ImageGridOn.muiName = 'SvgIcon';
 
 export default ImageGridOn;

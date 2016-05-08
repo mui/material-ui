@@ -9,5 +9,6 @@ let DeviceLocationDisabled = (props) => (
 );
 DeviceLocationDisabled = pure(DeviceLocationDisabled);
 DeviceLocationDisabled.displayName = 'DeviceLocationDisabled';
+DeviceLocationDisabled.muiName = 'SvgIcon';
 
 export default DeviceLocationDisabled;

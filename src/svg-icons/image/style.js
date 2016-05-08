@@ -9,5 +9,6 @@ let ImageStyle = (props) => (
 );
 ImageStyle = pure(ImageStyle);
 ImageStyle.displayName = 'ImageStyle';
+ImageStyle.muiName = 'SvgIcon';
 
 export default ImageStyle;

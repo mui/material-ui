@@ -9,5 +9,6 @@ let ActionFavorite = (props) => (
 );
 ActionFavorite = pure(ActionFavorite);
 ActionFavorite.displayName = 'ActionFavorite';
+ActionFavorite.muiName = 'SvgIcon';
 
 export default ActionFavorite;

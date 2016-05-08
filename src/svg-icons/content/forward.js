@@ -9,5 +9,6 @@ let ContentForward = (props) => (
 );
 ContentForward = pure(ContentForward);
 ContentForward.displayName = 'ContentForward';
+ContentForward.muiName = 'SvgIcon';
 
 export default ContentForward;

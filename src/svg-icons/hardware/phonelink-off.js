@@ -9,5 +9,6 @@ let HardwarePhonelinkOff = (props) => (
 );
 HardwarePhonelinkOff = pure(HardwarePhonelinkOff);
 HardwarePhonelinkOff.displayName = 'HardwarePhonelinkOff';
+HardwarePhonelinkOff.muiName = 'SvgIcon';
 
 export default HardwarePhonelinkOff;

@@ -9,5 +9,6 @@ let PlacesRoomService = (props) => (
 );
 PlacesRoomService = pure(PlacesRoomService);
 PlacesRoomService.displayName = 'PlacesRoomService';
+PlacesRoomService.muiName = 'SvgIcon';
 
 export default PlacesRoomService;

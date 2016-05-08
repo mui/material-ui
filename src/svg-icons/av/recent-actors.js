@@ -9,5 +9,6 @@ let AvRecentActors = (props) => (
 );
 AvRecentActors = pure(AvRecentActors);
 AvRecentActors.displayName = 'AvRecentActors';
+AvRecentActors.muiName = 'SvgIcon';
 
 export default AvRecentActors;

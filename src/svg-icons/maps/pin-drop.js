@@ -9,5 +9,6 @@ let MapsPinDrop = (props) => (
 );
 MapsPinDrop = pure(MapsPinDrop);
 MapsPinDrop.displayName = 'MapsPinDrop';
+MapsPinDrop.muiName = 'SvgIcon';
 
 export default MapsPinDrop;

@@ -9,5 +9,6 @@ let ActionPayment = (props) => (
 );
 ActionPayment = pure(ActionPayment);
 ActionPayment.displayName = 'ActionPayment';
+ActionPayment.muiName = 'SvgIcon';
 
 export default ActionPayment;

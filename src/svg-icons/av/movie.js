@@ -9,5 +9,6 @@ let AvMovie = (props) => (
 );
 AvMovie = pure(AvMovie);
 AvMovie.displayName = 'AvMovie';
+AvMovie.muiName = 'SvgIcon';
 
 export default AvMovie;

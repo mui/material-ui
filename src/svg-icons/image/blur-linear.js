@@ -9,5 +9,6 @@ let ImageBlurLinear = (props) => (
 );
 ImageBlurLinear = pure(ImageBlurLinear);
 ImageBlurLinear.displayName = 'ImageBlurLinear';
+ImageBlurLinear.muiName = 'SvgIcon';
 
 export default ImageBlurLinear;

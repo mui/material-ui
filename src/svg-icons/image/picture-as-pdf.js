@@ -9,5 +9,6 @@ let ImagePictureAsPdf = (props) => (
 );
 ImagePictureAsPdf = pure(ImagePictureAsPdf);
 ImagePictureAsPdf.displayName = 'ImagePictureAsPdf';
+ImagePictureAsPdf.muiName = 'SvgIcon';
 
 export default ImagePictureAsPdf;

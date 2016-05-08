@@ -9,5 +9,6 @@ let CommunicationPortableWifiOff = (props) => (
 );
 CommunicationPortableWifiOff = pure(CommunicationPortableWifiOff);
 CommunicationPortableWifiOff.displayName = 'CommunicationPortableWifiOff';
+CommunicationPortableWifiOff.muiName = 'SvgIcon';
 
 export default CommunicationPortableWifiOff;

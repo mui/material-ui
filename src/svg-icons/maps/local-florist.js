@@ -9,5 +9,6 @@ let MapsLocalFlorist = (props) => (
 );
 MapsLocalFlorist = pure(MapsLocalFlorist);
 MapsLocalFlorist.displayName = 'MapsLocalFlorist';
+MapsLocalFlorist.muiName = 'SvgIcon';
 
 export default MapsLocalFlorist;

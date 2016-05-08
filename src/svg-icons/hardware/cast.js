@@ -9,5 +9,6 @@ let HardwareCast = (props) => (
 );
 HardwareCast = pure(HardwareCast);
 HardwareCast.displayName = 'HardwareCast';
+HardwareCast.muiName = 'SvgIcon';
 
 export default HardwareCast;

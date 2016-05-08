@@ -9,5 +9,6 @@ let NavigationArrowDropDown = (props) => (
 );
 NavigationArrowDropDown = pure(NavigationArrowDropDown);
 NavigationArrowDropDown.displayName = 'NavigationArrowDropDown';
+NavigationArrowDropDown.muiName = 'SvgIcon';
 
 export default NavigationArrowDropDown;

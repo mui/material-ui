@@ -9,5 +9,6 @@ let EditorFormatItalic = (props) => (
 );
 EditorFormatItalic = pure(EditorFormatItalic);
 EditorFormatItalic.displayName = 'EditorFormatItalic';
+EditorFormatItalic.muiName = 'SvgIcon';
 
 export default EditorFormatItalic;

@@ -9,5 +9,6 @@ let ImageControlPoint = (props) => (
 );
 ImageControlPoint = pure(ImageControlPoint);
 ImageControlPoint.displayName = 'ImageControlPoint';
+ImageControlPoint.muiName = 'SvgIcon';
 
 export default ImageControlPoint;

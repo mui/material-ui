@@ -9,5 +9,6 @@ let DeviceSignalCellularConnectedNoInternet4Bar = (props) => (
 );
 DeviceSignalCellularConnectedNoInternet4Bar = pure(DeviceSignalCellularConnectedNoInternet4Bar);
 DeviceSignalCellularConnectedNoInternet4Bar.displayName = 'DeviceSignalCellularConnectedNoInternet4Bar';
+DeviceSignalCellularConnectedNoInternet4Bar.muiName = 'SvgIcon';
 
 export default DeviceSignalCellularConnectedNoInternet4Bar;

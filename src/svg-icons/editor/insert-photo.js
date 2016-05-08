@@ -9,5 +9,6 @@ let EditorInsertPhoto = (props) => (
 );
 EditorInsertPhoto = pure(EditorInsertPhoto);
 EditorInsertPhoto.displayName = 'EditorInsertPhoto';
+EditorInsertPhoto.muiName = 'SvgIcon';
 
 export default EditorInsertPhoto;

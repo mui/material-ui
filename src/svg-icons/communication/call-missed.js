@@ -9,5 +9,6 @@ let CommunicationCallMissed = (props) => (
 );
 CommunicationCallMissed = pure(CommunicationCallMissed);
 CommunicationCallMissed.displayName = 'CommunicationCallMissed';
+CommunicationCallMissed.muiName = 'SvgIcon';
 
 export default CommunicationCallMissed;

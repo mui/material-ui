@@ -9,5 +9,6 @@ let CommunicationContactMail = (props) => (
 );
 CommunicationContactMail = pure(CommunicationContactMail);
 CommunicationContactMail.displayName = 'CommunicationContactMail';
+CommunicationContactMail.muiName = 'SvgIcon';
 
 export default CommunicationContactMail;

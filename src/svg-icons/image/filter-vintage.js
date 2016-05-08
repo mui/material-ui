@@ -9,5 +9,6 @@ let ImageFilterVintage = (props) => (
 );
 ImageFilterVintage = pure(ImageFilterVintage);
 ImageFilterVintage.displayName = 'ImageFilterVintage';
+ImageFilterVintage.muiName = 'SvgIcon';
 
 export default ImageFilterVintage;

@@ -9,5 +9,6 @@ let ContentRemove = (props) => (
 );
 ContentRemove = pure(ContentRemove);
 ContentRemove.displayName = 'ContentRemove';
+ContentRemove.muiName = 'SvgIcon';
 
 export default ContentRemove;

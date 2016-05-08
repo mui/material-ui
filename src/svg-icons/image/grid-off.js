@@ -9,5 +9,6 @@ let ImageGridOff = (props) => (
 );
 ImageGridOff = pure(ImageGridOff);
 ImageGridOff.displayName = 'ImageGridOff';
+ImageGridOff.muiName = 'SvgIcon';
 
 export default ImageGridOff;

@@ -9,5 +9,6 @@ let ActionSettingsApplications = (props) => (
 );
 ActionSettingsApplications = pure(ActionSettingsApplications);
 ActionSettingsApplications.displayName = 'ActionSettingsApplications';
+ActionSettingsApplications.muiName = 'SvgIcon';
 
 export default ActionSettingsApplications;

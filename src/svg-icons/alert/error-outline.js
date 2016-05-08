@@ -9,5 +9,6 @@ let AlertErrorOutline = (props) => (
 );
 AlertErrorOutline = pure(AlertErrorOutline);
 AlertErrorOutline.displayName = 'AlertErrorOutline';
+AlertErrorOutline.muiName = 'SvgIcon';
 
 export default AlertErrorOutline;

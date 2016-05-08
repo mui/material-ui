@@ -9,5 +9,6 @@ let ImageFlashAuto = (props) => (
 );
 ImageFlashAuto = pure(ImageFlashAuto);
 ImageFlashAuto.displayName = 'ImageFlashAuto';
+ImageFlashAuto.muiName = 'SvgIcon';
 
 export default ImageFlashAuto;

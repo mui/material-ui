@@ -9,5 +9,6 @@ let CommunicationCallSplit = (props) => (
 );
 CommunicationCallSplit = pure(CommunicationCallSplit);
 CommunicationCallSplit.displayName = 'CommunicationCallSplit';
+CommunicationCallSplit.muiName = 'SvgIcon';
 
 export default CommunicationCallSplit;

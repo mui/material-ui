@@ -9,5 +9,6 @@ let ActionOpenInBrowser = (props) => (
 );
 ActionOpenInBrowser = pure(ActionOpenInBrowser);
 ActionOpenInBrowser.displayName = 'ActionOpenInBrowser';
+ActionOpenInBrowser.muiName = 'SvgIcon';
 
 export default ActionOpenInBrowser;

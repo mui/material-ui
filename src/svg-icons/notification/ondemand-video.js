@@ -9,5 +9,6 @@ let NotificationOndemandVideo = (props) => (
 );
 NotificationOndemandVideo = pure(NotificationOndemandVideo);
 NotificationOndemandVideo.displayName = 'NotificationOndemandVideo';
+NotificationOndemandVideo.muiName = 'SvgIcon';
 
 export default NotificationOndemandVideo;

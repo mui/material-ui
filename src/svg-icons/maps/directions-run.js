@@ -9,5 +9,6 @@ let MapsDirectionsRun = (props) => (
 );
 MapsDirectionsRun = pure(MapsDirectionsRun);
 MapsDirectionsRun.displayName = 'MapsDirectionsRun';
+MapsDirectionsRun.muiName = 'SvgIcon';
 
 export default MapsDirectionsRun;

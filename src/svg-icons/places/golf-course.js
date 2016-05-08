@@ -9,5 +9,6 @@ let PlacesGolfCourse = (props) => (
 );
 PlacesGolfCourse = pure(PlacesGolfCourse);
 PlacesGolfCourse.displayName = 'PlacesGolfCourse';
+PlacesGolfCourse.muiName = 'SvgIcon';
 
 export default PlacesGolfCourse;

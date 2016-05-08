@@ -9,5 +9,6 @@ let ImageLandscape = (props) => (
 );
 ImageLandscape = pure(ImageLandscape);
 ImageLandscape.displayName = 'ImageLandscape';
+ImageLandscape.muiName = 'SvgIcon';
 
 export default ImageLandscape;

@@ -9,5 +9,6 @@ let ActionVisibility = (props) => (
 );
 ActionVisibility = pure(ActionVisibility);
 ActionVisibility.displayName = 'ActionVisibility';
+ActionVisibility.muiName = 'SvgIcon';
 
 export default ActionVisibility;

@@ -9,5 +9,6 @@ let ImageHealing = (props) => (
 );
 ImageHealing = pure(ImageHealing);
 ImageHealing.displayName = 'ImageHealing';
+ImageHealing.muiName = 'SvgIcon';
 
 export default ImageHealing;

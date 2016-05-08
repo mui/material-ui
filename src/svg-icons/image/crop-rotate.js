@@ -9,5 +9,6 @@ let ImageCropRotate = (props) => (
 );
 ImageCropRotate = pure(ImageCropRotate);
 ImageCropRotate.displayName = 'ImageCropRotate';
+ImageCropRotate.muiName = 'SvgIcon';
 
 export default ImageCropRotate;

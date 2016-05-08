@@ -9,5 +9,6 @@ let ImageExposureNeg2 = (props) => (
 );
 ImageExposureNeg2 = pure(ImageExposureNeg2);
 ImageExposureNeg2.displayName = 'ImageExposureNeg2';
+ImageExposureNeg2.muiName = 'SvgIcon';
 
 export default ImageExposureNeg2;

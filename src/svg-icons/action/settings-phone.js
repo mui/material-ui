@@ -9,5 +9,6 @@ let ActionSettingsPhone = (props) => (
 );
 ActionSettingsPhone = pure(ActionSettingsPhone);
 ActionSettingsPhone.displayName = 'ActionSettingsPhone';
+ActionSettingsPhone.muiName = 'SvgIcon';
 
 export default ActionSettingsPhone;

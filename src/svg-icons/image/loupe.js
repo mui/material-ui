@@ -9,5 +9,6 @@ let ImageLoupe = (props) => (
 );
 ImageLoupe = pure(ImageLoupe);
 ImageLoupe.displayName = 'ImageLoupe';
+ImageLoupe.muiName = 'SvgIcon';
 
 export default ImageLoupe;

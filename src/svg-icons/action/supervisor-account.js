@@ -9,5 +9,6 @@ let ActionSupervisorAccount = (props) => (
 );
 ActionSupervisorAccount = pure(ActionSupervisorAccount);
 ActionSupervisorAccount.displayName = 'ActionSupervisorAccount';
+ActionSupervisorAccount.muiName = 'SvgIcon';
 
 export default ActionSupervisorAccount;

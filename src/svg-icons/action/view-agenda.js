@@ -9,5 +9,6 @@ let ActionViewAgenda = (props) => (
 );
 ActionViewAgenda = pure(ActionViewAgenda);
 ActionViewAgenda.displayName = 'ActionViewAgenda';
+ActionViewAgenda.muiName = 'SvgIcon';
 
 export default ActionViewAgenda;

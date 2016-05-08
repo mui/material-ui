@@ -9,5 +9,6 @@ let ActionHighlightOff = (props) => (
 );
 ActionHighlightOff = pure(ActionHighlightOff);
 ActionHighlightOff.displayName = 'ActionHighlightOff';
+ActionHighlightOff.muiName = 'SvgIcon';
 
 export default ActionHighlightOff;

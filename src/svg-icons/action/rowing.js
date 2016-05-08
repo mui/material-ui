@@ -9,5 +9,6 @@ let ActionRowing = (props) => (
 );
 ActionRowing = pure(ActionRowing);
 ActionRowing.displayName = 'ActionRowing';
+ActionRowing.muiName = 'SvgIcon';
 
 export default ActionRowing;

@@ -9,5 +9,6 @@ let ActionOpenInNew = (props) => (
 );
 ActionOpenInNew = pure(ActionOpenInNew);
 ActionOpenInNew.displayName = 'ActionOpenInNew';
+ActionOpenInNew.muiName = 'SvgIcon';
 
 export default ActionOpenInNew;

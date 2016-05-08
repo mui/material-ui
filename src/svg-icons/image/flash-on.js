@@ -9,5 +9,6 @@ let ImageFlashOn = (props) => (
 );
 ImageFlashOn = pure(ImageFlashOn);
 ImageFlashOn.displayName = 'ImageFlashOn';
+ImageFlashOn.muiName = 'SvgIcon';
 
 export default ImageFlashOn;

@@ -9,5 +9,6 @@ let ToggleStarBorder = (props) => (
 );
 ToggleStarBorder = pure(ToggleStarBorder);
 ToggleStarBorder.displayName = 'ToggleStarBorder';
+ToggleStarBorder.muiName = 'SvgIcon';
 
 export default ToggleStarBorder;

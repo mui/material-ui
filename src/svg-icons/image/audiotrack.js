@@ -9,5 +9,6 @@ let ImageAudiotrack = (props) => (
 );
 ImageAudiotrack = pure(ImageAudiotrack);
 ImageAudiotrack.displayName = 'ImageAudiotrack';
+ImageAudiotrack.muiName = 'SvgIcon';
 
 export default ImageAudiotrack;

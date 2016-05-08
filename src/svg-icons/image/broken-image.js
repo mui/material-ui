@@ -9,5 +9,6 @@ let ImageBrokenImage = (props) => (
 );
 ImageBrokenImage = pure(ImageBrokenImage);
 ImageBrokenImage.displayName = 'ImageBrokenImage';
+ImageBrokenImage.muiName = 'SvgIcon';
 
 export default ImageBrokenImage;

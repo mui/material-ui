@@ -9,5 +9,6 @@ let ImageTonality = (props) => (
 );
 ImageTonality = pure(ImageTonality);
 ImageTonality.displayName = 'ImageTonality';
+ImageTonality.muiName = 'SvgIcon';
 
 export default ImageTonality;

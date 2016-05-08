@@ -9,5 +9,6 @@ let MapsTraffic = (props) => (
 );
 MapsTraffic = pure(MapsTraffic);
 MapsTraffic.displayName = 'MapsTraffic';
+MapsTraffic.muiName = 'SvgIcon';
 
 export default MapsTraffic;

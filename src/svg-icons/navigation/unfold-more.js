@@ -9,5 +9,6 @@ let NavigationUnfoldMore = (props) => (
 );
 NavigationUnfoldMore = pure(NavigationUnfoldMore);
 NavigationUnfoldMore.displayName = 'NavigationUnfoldMore';
+NavigationUnfoldMore.muiName = 'SvgIcon';
 
 export default NavigationUnfoldMore;

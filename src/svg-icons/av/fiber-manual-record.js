@@ -9,5 +9,6 @@ let AvFiberManualRecord = (props) => (
 );
 AvFiberManualRecord = pure(AvFiberManualRecord);
 AvFiberManualRecord.displayName = 'AvFiberManualRecord';
+AvFiberManualRecord.muiName = 'SvgIcon';
 
 export default AvFiberManualRecord;
