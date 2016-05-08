@@ -9,5 +9,6 @@ let PlacesChildCare = (props) => (
 );
 PlacesChildCare = pure(PlacesChildCare);
 PlacesChildCare.displayName = 'PlacesChildCare';
+PlacesChildCare.muiName = 'SvgIcon';
 
 export default PlacesChildCare;

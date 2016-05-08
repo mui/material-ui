@@ -9,5 +9,6 @@ let ImageCameraRoll = (props) => (
 );
 ImageCameraRoll = pure(ImageCameraRoll);
 ImageCameraRoll.displayName = 'ImageCameraRoll';
+ImageCameraRoll.muiName = 'SvgIcon';
 
 export default ImageCameraRoll;

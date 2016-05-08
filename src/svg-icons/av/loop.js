@@ -9,5 +9,6 @@ let AvLoop = (props) => (
 );
 AvLoop = pure(AvLoop);
 AvLoop.displayName = 'AvLoop';
+AvLoop.muiName = 'SvgIcon';
 
 export default AvLoop;

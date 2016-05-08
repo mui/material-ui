@@ -9,5 +9,6 @@ let ImageDehaze = (props) => (
 );
 ImageDehaze = pure(ImageDehaze);
 ImageDehaze.displayName = 'ImageDehaze';
+ImageDehaze.muiName = 'SvgIcon';
 
 export default ImageDehaze;

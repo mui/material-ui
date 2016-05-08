@@ -9,5 +9,6 @@ let AvVolumeMute = (props) => (
 );
 AvVolumeMute = pure(AvVolumeMute);
 AvVolumeMute.displayName = 'AvVolumeMute';
+AvVolumeMute.muiName = 'SvgIcon';
 
 export default AvVolumeMute;

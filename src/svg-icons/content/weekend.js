@@ -9,5 +9,6 @@ let ContentWeekend = (props) => (
 );
 ContentWeekend = pure(ContentWeekend);
 ContentWeekend.displayName = 'ContentWeekend';
+ContentWeekend.muiName = 'SvgIcon';
 
 export default ContentWeekend;

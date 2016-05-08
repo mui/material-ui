@@ -9,5 +9,6 @@ let AvStop = (props) => (
 );
 AvStop = pure(AvStop);
 AvStop.displayName = 'AvStop';
+AvStop.muiName = 'SvgIcon';
 
 export default AvStop;

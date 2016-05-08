@@ -9,5 +9,6 @@ let ActionAlarmOff = (props) => (
 );
 ActionAlarmOff = pure(ActionAlarmOff);
 ActionAlarmOff.displayName = 'ActionAlarmOff';
+ActionAlarmOff.muiName = 'SvgIcon';
 
 export default ActionAlarmOff;

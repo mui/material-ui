@@ -9,5 +9,6 @@ let ActionPictureInPictureAlt = (props) => (
 );
 ActionPictureInPictureAlt = pure(ActionPictureInPictureAlt);
 ActionPictureInPictureAlt.displayName = 'ActionPictureInPictureAlt';
+ActionPictureInPictureAlt.muiName = 'SvgIcon';
 
 export default ActionPictureInPictureAlt;

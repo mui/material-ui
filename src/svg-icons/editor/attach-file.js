@@ -9,5 +9,6 @@ let EditorAttachFile = (props) => (
 );
 EditorAttachFile = pure(EditorAttachFile);
 EditorAttachFile.displayName = 'EditorAttachFile';
+EditorAttachFile.muiName = 'SvgIcon';
 
 export default EditorAttachFile;

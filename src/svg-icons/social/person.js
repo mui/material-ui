@@ -9,5 +9,6 @@ let SocialPerson = (props) => (
 );
 SocialPerson = pure(SocialPerson);
 SocialPerson.displayName = 'SocialPerson';
+SocialPerson.muiName = 'SvgIcon';
 
 export default SocialPerson;

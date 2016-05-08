@@ -9,5 +9,6 @@ let CommunicationContactPhone = (props) => (
 );
 CommunicationContactPhone = pure(CommunicationContactPhone);
 CommunicationContactPhone.displayName = 'CommunicationContactPhone';
+CommunicationContactPhone.muiName = 'SvgIcon';
 
 export default CommunicationContactPhone;

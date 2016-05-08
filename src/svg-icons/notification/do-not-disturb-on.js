@@ -9,5 +9,6 @@ let NotificationDoNotDisturbOn = (props) => (
 );
 NotificationDoNotDisturbOn = pure(NotificationDoNotDisturbOn);
 NotificationDoNotDisturbOn.displayName = 'NotificationDoNotDisturbOn';
+NotificationDoNotDisturbOn.muiName = 'SvgIcon';
 
 export default NotificationDoNotDisturbOn;

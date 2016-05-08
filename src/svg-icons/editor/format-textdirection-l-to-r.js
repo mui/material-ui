@@ -9,5 +9,6 @@ let EditorFormatTextdirectionLToR = (props) => (
 );
 EditorFormatTextdirectionLToR = pure(EditorFormatTextdirectionLToR);
 EditorFormatTextdirectionLToR.displayName = 'EditorFormatTextdirectionLToR';
+EditorFormatTextdirectionLToR.muiName = 'SvgIcon';
 
 export default EditorFormatTextdirectionLToR;

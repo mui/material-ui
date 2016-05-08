@@ -9,5 +9,6 @@ let ActionStars = (props) => (
 );
 ActionStars = pure(ActionStars);
 ActionStars.displayName = 'ActionStars';
+ActionStars.muiName = 'SvgIcon';
 
 export default ActionStars;

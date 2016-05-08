@@ -9,5 +9,6 @@ let ContentLowPriority = (props) => (
 );
 ContentLowPriority = pure(ContentLowPriority);
 ContentLowPriority.displayName = 'ContentLowPriority';
+ContentLowPriority.muiName = 'SvgIcon';
 
 export default ContentLowPriority;

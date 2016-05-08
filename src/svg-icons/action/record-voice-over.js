@@ -9,5 +9,6 @@ let ActionRecordVoiceOver = (props) => (
 );
 ActionRecordVoiceOver = pure(ActionRecordVoiceOver);
 ActionRecordVoiceOver.displayName = 'ActionRecordVoiceOver';
+ActionRecordVoiceOver.muiName = 'SvgIcon';
 
 export default ActionRecordVoiceOver;

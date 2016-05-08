@@ -9,5 +9,6 @@ let ActionCreditCard = (props) => (
 );
 ActionCreditCard = pure(ActionCreditCard);
 ActionCreditCard.displayName = 'ActionCreditCard';
+ActionCreditCard.muiName = 'SvgIcon';
 
 export default ActionCreditCard;

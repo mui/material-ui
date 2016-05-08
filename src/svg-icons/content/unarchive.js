@@ -9,5 +9,6 @@ let ContentUnarchive = (props) => (
 );
 ContentUnarchive = pure(ContentUnarchive);
 ContentUnarchive.displayName = 'ContentUnarchive';
+ContentUnarchive.muiName = 'SvgIcon';
 
 export default ContentUnarchive;

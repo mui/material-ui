@@ -9,5 +9,6 @@ let ImageCamera = (props) => (
 );
 ImageCamera = pure(ImageCamera);
 ImageCamera.displayName = 'ImageCamera';
+ImageCamera.muiName = 'SvgIcon';
 
 export default ImageCamera;

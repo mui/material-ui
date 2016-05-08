@@ -9,5 +9,6 @@ let AvVolumeDown = (props) => (
 );
 AvVolumeDown = pure(AvVolumeDown);
 AvVolumeDown.displayName = 'AvVolumeDown';
+AvVolumeDown.muiName = 'SvgIcon';
 
 export default AvVolumeDown;

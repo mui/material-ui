@@ -9,5 +9,6 @@ let CommunicationRssFeed = (props) => (
 );
 CommunicationRssFeed = pure(CommunicationRssFeed);
 CommunicationRssFeed.displayName = 'CommunicationRssFeed';
+CommunicationRssFeed.muiName = 'SvgIcon';
 
 export default CommunicationRssFeed;

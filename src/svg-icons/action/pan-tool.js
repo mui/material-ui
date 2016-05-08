@@ -9,5 +9,6 @@ let ActionPanTool = (props) => (
 );
 ActionPanTool = pure(ActionPanTool);
 ActionPanTool.displayName = 'ActionPanTool';
+ActionPanTool.muiName = 'SvgIcon';
 
 export default ActionPanTool;

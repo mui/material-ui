@@ -9,5 +9,6 @@ let ActionThumbsUpDown = (props) => (
 );
 ActionThumbsUpDown = pure(ActionThumbsUpDown);
 ActionThumbsUpDown.displayName = 'ActionThumbsUpDown';
+ActionThumbsUpDown.muiName = 'SvgIcon';
 
 export default ActionThumbsUpDown;

@@ -9,5 +9,6 @@ let ActionEject = (props) => (
 );
 ActionEject = pure(ActionEject);
 ActionEject.displayName = 'ActionEject';
+ActionEject.muiName = 'SvgIcon';
 
 export default ActionEject;

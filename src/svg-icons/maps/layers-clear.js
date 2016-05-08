@@ -9,5 +9,6 @@ let MapsLayersClear = (props) => (
 );
 MapsLayersClear = pure(MapsLayersClear);
 MapsLayersClear.displayName = 'MapsLayersClear';
+MapsLayersClear.muiName = 'SvgIcon';
 
 export default MapsLayersClear;

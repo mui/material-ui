@@ -9,5 +9,6 @@ let ActionRestorePage = (props) => (
 );
 ActionRestorePage = pure(ActionRestorePage);
 ActionRestorePage.displayName = 'ActionRestorePage';
+ActionRestorePage.muiName = 'SvgIcon';
 
 export default ActionRestorePage;

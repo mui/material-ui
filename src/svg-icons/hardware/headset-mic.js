@@ -9,5 +9,6 @@ let HardwareHeadsetMic = (props) => (
 );
 HardwareHeadsetMic = pure(HardwareHeadsetMic);
 HardwareHeadsetMic.displayName = 'HardwareHeadsetMic';
+HardwareHeadsetMic.muiName = 'SvgIcon';
 
 export default HardwareHeadsetMic;

@@ -9,5 +9,6 @@ let ActionSettingsEthernet = (props) => (
 );
 ActionSettingsEthernet = pure(ActionSettingsEthernet);
 ActionSettingsEthernet.displayName = 'ActionSettingsEthernet';
+ActionSettingsEthernet.muiName = 'SvgIcon';
 
 export default ActionSettingsEthernet;

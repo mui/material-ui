@@ -9,5 +9,6 @@ let NotificationPhoneLocked = (props) => (
 );
 NotificationPhoneLocked = pure(NotificationPhoneLocked);
 NotificationPhoneLocked.displayName = 'NotificationPhoneLocked';
+NotificationPhoneLocked.muiName = 'SvgIcon';
 
 export default NotificationPhoneLocked;

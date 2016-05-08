@@ -9,5 +9,6 @@ let ImageHdrStrong = (props) => (
 );
 ImageHdrStrong = pure(ImageHdrStrong);
 ImageHdrStrong.displayName = 'ImageHdrStrong';
+ImageHdrStrong.muiName = 'SvgIcon';
 
 export default ImageHdrStrong;

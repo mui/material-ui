@@ -9,5 +9,6 @@ let MapsPersonPinCircle = (props) => (
 );
 MapsPersonPinCircle = pure(MapsPersonPinCircle);
 MapsPersonPinCircle.displayName = 'MapsPersonPinCircle';
+MapsPersonPinCircle.muiName = 'SvgIcon';
 
 export default MapsPersonPinCircle;

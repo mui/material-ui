@@ -9,5 +9,6 @@ let ActionSettingsRemote = (props) => (
 );
 ActionSettingsRemote = pure(ActionSettingsRemote);
 ActionSettingsRemote.displayName = 'ActionSettingsRemote';
+ActionSettingsRemote.muiName = 'SvgIcon';
 
 export default ActionSettingsRemote;

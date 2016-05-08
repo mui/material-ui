@@ -9,5 +9,6 @@ let ActionHttps = (props) => (
 );
 ActionHttps = pure(ActionHttps);
 ActionHttps.displayName = 'ActionHttps';
+ActionHttps.muiName = 'SvgIcon';
 
 export default ActionHttps;

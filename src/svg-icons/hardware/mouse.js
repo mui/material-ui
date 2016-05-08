@@ -9,5 +9,6 @@ let HardwareMouse = (props) => (
 );
 HardwareMouse = pure(HardwareMouse);
 HardwareMouse.displayName = 'HardwareMouse';
+HardwareMouse.muiName = 'SvgIcon';
 
 export default HardwareMouse;

@@ -9,5 +9,6 @@ let DeviceAirplanemodeActive = (props) => (
 );
 DeviceAirplanemodeActive = pure(DeviceAirplanemodeActive);
 DeviceAirplanemodeActive.displayName = 'DeviceAirplanemodeActive';
+DeviceAirplanemodeActive.muiName = 'SvgIcon';
 
 export default DeviceAirplanemodeActive;

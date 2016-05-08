@@ -9,5 +9,6 @@ let ActionSettingsInputSvideo = (props) => (
 );
 ActionSettingsInputSvideo = pure(ActionSettingsInputSvideo);
 ActionSettingsInputSvideo.displayName = 'ActionSettingsInputSvideo';
+ActionSettingsInputSvideo.muiName = 'SvgIcon';
 
 export default ActionSettingsInputSvideo;

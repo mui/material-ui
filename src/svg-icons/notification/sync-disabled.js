@@ -9,5 +9,6 @@ let NotificationSyncDisabled = (props) => (
 );
 NotificationSyncDisabled = pure(NotificationSyncDisabled);
 NotificationSyncDisabled.displayName = 'NotificationSyncDisabled';
+NotificationSyncDisabled.muiName = 'SvgIcon';
 
 export default NotificationSyncDisabled;

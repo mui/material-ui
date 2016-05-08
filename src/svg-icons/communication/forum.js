@@ -9,5 +9,6 @@ let CommunicationForum = (props) => (
 );
 CommunicationForum = pure(CommunicationForum);
 CommunicationForum.displayName = 'CommunicationForum';
+CommunicationForum.muiName = 'SvgIcon';
 
 export default CommunicationForum;

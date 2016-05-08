@@ -9,5 +9,6 @@ let ContentSelectAll = (props) => (
 );
 ContentSelectAll = pure(ContentSelectAll);
 ContentSelectAll.displayName = 'ContentSelectAll';
+ContentSelectAll.muiName = 'SvgIcon';
 
 export default ContentSelectAll;

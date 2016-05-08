@@ -9,5 +9,6 @@ let MapsMap = (props) => (
 );
 MapsMap = pure(MapsMap);
 MapsMap.displayName = 'MapsMap';
+MapsMap.muiName = 'SvgIcon';
 
 export default MapsMap;

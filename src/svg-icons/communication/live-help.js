@@ -9,5 +9,6 @@ let CommunicationLiveHelp = (props) => (
 );
 CommunicationLiveHelp = pure(CommunicationLiveHelp);
 CommunicationLiveHelp.displayName = 'CommunicationLiveHelp';
+CommunicationLiveHelp.muiName = 'SvgIcon';
 
 export default CommunicationLiveHelp;

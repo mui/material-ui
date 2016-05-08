@@ -9,5 +9,6 @@ let ActionRoom = (props) => (
 );
 ActionRoom = pure(ActionRoom);
 ActionRoom.displayName = 'ActionRoom';
+ActionRoom.muiName = 'SvgIcon';
 
 export default ActionRoom;

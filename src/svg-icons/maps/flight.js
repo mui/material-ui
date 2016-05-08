@@ -9,5 +9,6 @@ let MapsFlight = (props) => (
 );
 MapsFlight = pure(MapsFlight);
 MapsFlight.displayName = 'MapsFlight';
+MapsFlight.muiName = 'SvgIcon';
 
 export default MapsFlight;

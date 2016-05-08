@@ -9,5 +9,6 @@ let ImageFlare = (props) => (
 );
 ImageFlare = pure(ImageFlare);
 ImageFlare.displayName = 'ImageFlare';
+ImageFlare.muiName = 'SvgIcon';
 
 export default ImageFlare;

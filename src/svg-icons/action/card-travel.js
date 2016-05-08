@@ -9,5 +9,6 @@ let ActionCardTravel = (props) => (
 );
 ActionCardTravel = pure(ActionCardTravel);
 ActionCardTravel.displayName = 'ActionCardTravel';
+ActionCardTravel.muiName = 'SvgIcon';
 
 export default ActionCardTravel;

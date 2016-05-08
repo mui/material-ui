@@ -9,5 +9,6 @@ let HardwareLaptop = (props) => (
 );
 HardwareLaptop = pure(HardwareLaptop);
 HardwareLaptop.displayName = 'HardwareLaptop';
+HardwareLaptop.muiName = 'SvgIcon';
 
 export default HardwareLaptop;

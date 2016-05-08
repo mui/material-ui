@@ -9,5 +9,6 @@ let DeviceBluetoothDisabled = (props) => (
 );
 DeviceBluetoothDisabled = pure(DeviceBluetoothDisabled);
 DeviceBluetoothDisabled.displayName = 'DeviceBluetoothDisabled';
+DeviceBluetoothDisabled.muiName = 'SvgIcon';
 
 export default DeviceBluetoothDisabled;

@@ -9,5 +9,6 @@ let ImageHdrOff = (props) => (
 );
 ImageHdrOff = pure(ImageHdrOff);
 ImageHdrOff.displayName = 'ImageHdrOff';
+ImageHdrOff.muiName = 'SvgIcon';
 
 export default ImageHdrOff;

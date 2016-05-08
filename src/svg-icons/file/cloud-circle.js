@@ -9,5 +9,6 @@ let FileCloudCircle = (props) => (
 );
 FileCloudCircle = pure(FileCloudCircle);
 FileCloudCircle.displayName = 'FileCloudCircle';
+FileCloudCircle.muiName = 'SvgIcon';
 
 export default FileCloudCircle;

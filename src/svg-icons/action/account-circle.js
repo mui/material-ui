@@ -9,5 +9,6 @@ let ActionAccountCircle = (props) => (
 );
 ActionAccountCircle = pure(ActionAccountCircle);
 ActionAccountCircle.displayName = 'ActionAccountCircle';
+ActionAccountCircle.muiName = 'SvgIcon';
 
 export default ActionAccountCircle;

@@ -9,5 +9,6 @@ let NotificationEnhancedEncryption = (props) => (
 );
 NotificationEnhancedEncryption = pure(NotificationEnhancedEncryption);
 NotificationEnhancedEncryption.displayName = 'NotificationEnhancedEncryption';
+NotificationEnhancedEncryption.muiName = 'SvgIcon';
 
 export default NotificationEnhancedEncryption;

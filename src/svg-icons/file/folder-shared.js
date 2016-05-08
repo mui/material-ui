@@ -9,5 +9,6 @@ let FileFolderShared = (props) => (
 );
 FileFolderShared = pure(FileFolderShared);
 FileFolderShared.displayName = 'FileFolderShared';
+FileFolderShared.muiName = 'SvgIcon';
 
 export default FileFolderShared;

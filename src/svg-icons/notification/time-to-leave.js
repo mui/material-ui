@@ -9,5 +9,6 @@ let NotificationTimeToLeave = (props) => (
 );
 NotificationTimeToLeave = pure(NotificationTimeToLeave);
 NotificationTimeToLeave.displayName = 'NotificationTimeToLeave';
+NotificationTimeToLeave.muiName = 'SvgIcon';
 
 export default NotificationTimeToLeave;

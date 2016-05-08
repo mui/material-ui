@@ -9,5 +9,6 @@ let ContentFontDownload = (props) => (
 );
 ContentFontDownload = pure(ContentFontDownload);
 ContentFontDownload.displayName = 'ContentFontDownload';
+ContentFontDownload.muiName = 'SvgIcon';
 
 export default ContentFontDownload;

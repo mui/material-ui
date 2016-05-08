@@ -9,5 +9,6 @@ let AvEqualizer = (props) => (
 );
 AvEqualizer = pure(AvEqualizer);
 AvEqualizer.displayName = 'AvEqualizer';
+AvEqualizer.muiName = 'SvgIcon';
 
 export default AvEqualizer;

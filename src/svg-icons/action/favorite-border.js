@@ -9,5 +9,6 @@ let ActionFavoriteBorder = (props) => (
 );
 ActionFavoriteBorder = pure(ActionFavoriteBorder);
 ActionFavoriteBorder.displayName = 'ActionFavoriteBorder';
+ActionFavoriteBorder.muiName = 'SvgIcon';
 
 export default ActionFavoriteBorder;

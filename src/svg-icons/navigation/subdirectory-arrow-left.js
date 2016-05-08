@@ -9,5 +9,6 @@ let NavigationSubdirectoryArrowLeft = (props) => (
 );
 NavigationSubdirectoryArrowLeft = pure(NavigationSubdirectoryArrowLeft);
 NavigationSubdirectoryArrowLeft.displayName = 'NavigationSubdirectoryArrowLeft';
+NavigationSubdirectoryArrowLeft.muiName = 'SvgIcon';
 
 export default NavigationSubdirectoryArrowLeft;

@@ -9,5 +9,6 @@ let MapsStreetview = (props) => (
 );
 MapsStreetview = pure(MapsStreetview);
 MapsStreetview.displayName = 'MapsStreetview';
+MapsStreetview.muiName = 'SvgIcon';
 
 export default MapsStreetview;

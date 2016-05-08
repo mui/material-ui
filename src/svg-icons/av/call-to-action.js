@@ -9,5 +9,6 @@ let AvCallToAction = (props) => (
 );
 AvCallToAction = pure(AvCallToAction);
 AvCallToAction.displayName = 'AvCallToAction';
+AvCallToAction.muiName = 'SvgIcon';
 
 export default AvCallToAction;

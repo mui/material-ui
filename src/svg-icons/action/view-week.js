@@ -9,5 +9,6 @@ let ActionViewWeek = (props) => (
 );
 ActionViewWeek = pure(ActionViewWeek);
 ActionViewWeek.displayName = 'ActionViewWeek';
+ActionViewWeek.muiName = 'SvgIcon';
 
 export default ActionViewWeek;

@@ -9,5 +9,6 @@ let AvPlayCircleOutline = (props) => (
 );
 AvPlayCircleOutline = pure(AvPlayCircleOutline);
 AvPlayCircleOutline.displayName = 'AvPlayCircleOutline';
+AvPlayCircleOutline.muiName = 'SvgIcon';
 
 export default AvPlayCircleOutline;

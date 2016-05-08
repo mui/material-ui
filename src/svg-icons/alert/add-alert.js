@@ -9,5 +9,6 @@ let AlertAddAlert = (props) => (
 );
 AlertAddAlert = pure(AlertAddAlert);
 AlertAddAlert.displayName = 'AlertAddAlert';
+AlertAddAlert.muiName = 'SvgIcon';
 
 export default AlertAddAlert;

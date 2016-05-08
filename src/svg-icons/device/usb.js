@@ -9,5 +9,6 @@ let DeviceUsb = (props) => (
 );
 DeviceUsb = pure(DeviceUsb);
 DeviceUsb.displayName = 'DeviceUsb';
+DeviceUsb.muiName = 'SvgIcon';
 
 export default DeviceUsb;

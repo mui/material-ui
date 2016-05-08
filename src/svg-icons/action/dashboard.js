@@ -9,5 +9,6 @@ let ActionDashboard = (props) => (
 );
 ActionDashboard = pure(ActionDashboard);
 ActionDashboard.displayName = 'ActionDashboard';
+ActionDashboard.muiName = 'SvgIcon';
 
 export default ActionDashboard;

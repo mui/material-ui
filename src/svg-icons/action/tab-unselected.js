@@ -9,5 +9,6 @@ let ActionTabUnselected = (props) => (
 );
 ActionTabUnselected = pure(ActionTabUnselected);
 ActionTabUnselected.displayName = 'ActionTabUnselected';
+ActionTabUnselected.muiName = 'SvgIcon';
 
 export default ActionTabUnselected;

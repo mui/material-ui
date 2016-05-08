@@ -9,5 +9,6 @@ let MapsDirectionsSubway = (props) => (
 );
 MapsDirectionsSubway = pure(MapsDirectionsSubway);
 MapsDirectionsSubway.displayName = 'MapsDirectionsSubway';
+MapsDirectionsSubway.muiName = 'SvgIcon';
 
 export default MapsDirectionsSubway;

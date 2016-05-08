@@ -9,5 +9,6 @@ let EditorMonetizationOn = (props) => (
 );
 EditorMonetizationOn = pure(EditorMonetizationOn);
 EditorMonetizationOn.displayName = 'EditorMonetizationOn';
+EditorMonetizationOn.muiName = 'SvgIcon';
 
 export default EditorMonetizationOn;

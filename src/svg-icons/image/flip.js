@@ -9,5 +9,6 @@ let ImageFlip = (props) => (
 );
 ImageFlip = pure(ImageFlip);
 ImageFlip.displayName = 'ImageFlip';
+ImageFlip.muiName = 'SvgIcon';
 
 export default ImageFlip;

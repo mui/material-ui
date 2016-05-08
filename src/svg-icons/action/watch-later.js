@@ -9,5 +9,6 @@ let ActionWatchLater = (props) => (
 );
 ActionWatchLater = pure(ActionWatchLater);
 ActionWatchLater.displayName = 'ActionWatchLater';
+ActionWatchLater.muiName = 'SvgIcon';
 
 export default ActionWatchLater;

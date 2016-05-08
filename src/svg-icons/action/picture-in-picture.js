@@ -9,5 +9,6 @@ let ActionPictureInPicture = (props) => (
 );
 ActionPictureInPicture = pure(ActionPictureInPicture);
 ActionPictureInPicture.displayName = 'ActionPictureInPicture';
+ActionPictureInPicture.muiName = 'SvgIcon';
 
 export default ActionPictureInPicture;

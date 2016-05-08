@@ -9,5 +9,6 @@ let ActionNoteAdd = (props) => (
 );
 ActionNoteAdd = pure(ActionNoteAdd);
 ActionNoteAdd.displayName = 'ActionNoteAdd';
+ActionNoteAdd.muiName = 'SvgIcon';
 
 export default ActionNoteAdd;

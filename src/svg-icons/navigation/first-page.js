@@ -9,5 +9,6 @@ let NavigationFirstPage = (props) => (
 );
 NavigationFirstPage = pure(NavigationFirstPage);
 NavigationFirstPage.displayName = 'NavigationFirstPage';
+NavigationFirstPage.muiName = 'SvgIcon';
 
 export default NavigationFirstPage;

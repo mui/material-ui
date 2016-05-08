@@ -9,5 +9,6 @@ let ActionDoneAll = (props) => (
 );
 ActionDoneAll = pure(ActionDoneAll);
 ActionDoneAll.displayName = 'ActionDoneAll';
+ActionDoneAll.muiName = 'SvgIcon';
 
 export default ActionDoneAll;

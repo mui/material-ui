@@ -9,5 +9,6 @@ let AvSurroundSound = (props) => (
 );
 AvSurroundSound = pure(AvSurroundSound);
 AvSurroundSound.displayName = 'AvSurroundSound';
+AvSurroundSound.muiName = 'SvgIcon';
 
 export default AvSurroundSound;

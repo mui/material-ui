@@ -9,5 +9,6 @@ let EditorInsertInvitation = (props) => (
 );
 EditorInsertInvitation = pure(EditorInsertInvitation);
 EditorInsertInvitation.displayName = 'EditorInsertInvitation';
+EditorInsertInvitation.muiName = 'SvgIcon';
 
 export default EditorInsertInvitation;

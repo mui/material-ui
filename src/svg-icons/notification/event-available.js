@@ -9,5 +9,6 @@ let NotificationEventAvailable = (props) => (
 );
 NotificationEventAvailable = pure(NotificationEventAvailable);
 NotificationEventAvailable.displayName = 'NotificationEventAvailable';
+NotificationEventAvailable.muiName = 'SvgIcon';
 
 export default NotificationEventAvailable;

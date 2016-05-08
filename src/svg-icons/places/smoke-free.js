@@ -9,5 +9,6 @@ let PlacesSmokeFree = (props) => (
 );
 PlacesSmokeFree = pure(PlacesSmokeFree);
 PlacesSmokeFree.displayName = 'PlacesSmokeFree';
+PlacesSmokeFree.muiName = 'SvgIcon';
 
 export default PlacesSmokeFree;

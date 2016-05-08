@@ -9,5 +9,6 @@ let ToggleIndeterminateCheckBox = (props) => (
 );
 ToggleIndeterminateCheckBox = pure(ToggleIndeterminateCheckBox);
 ToggleIndeterminateCheckBox.displayName = 'ToggleIndeterminateCheckBox';
+ToggleIndeterminateCheckBox.muiName = 'SvgIcon';
 
 export default ToggleIndeterminateCheckBox;

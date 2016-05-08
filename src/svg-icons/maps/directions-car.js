@@ -9,5 +9,6 @@ let MapsDirectionsCar = (props) => (
 );
 MapsDirectionsCar = pure(MapsDirectionsCar);
 MapsDirectionsCar.displayName = 'MapsDirectionsCar';
+MapsDirectionsCar.muiName = 'SvgIcon';
 
 export default MapsDirectionsCar;

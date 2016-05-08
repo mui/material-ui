@@ -9,5 +9,6 @@ let CommunicationBusiness = (props) => (
 );
 CommunicationBusiness = pure(CommunicationBusiness);
 CommunicationBusiness.displayName = 'CommunicationBusiness';
+CommunicationBusiness.muiName = 'SvgIcon';
 
 export default CommunicationBusiness;

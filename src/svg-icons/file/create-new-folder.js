@@ -9,5 +9,6 @@ let FileCreateNewFolder = (props) => (
 );
 FileCreateNewFolder = pure(FileCreateNewFolder);
 FileCreateNewFolder.displayName = 'FileCreateNewFolder';
+FileCreateNewFolder.muiName = 'SvgIcon';
 
 export default FileCreateNewFolder;

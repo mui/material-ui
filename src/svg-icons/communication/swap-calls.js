@@ -9,5 +9,6 @@ let CommunicationSwapCalls = (props) => (
 );
 CommunicationSwapCalls = pure(CommunicationSwapCalls);
 CommunicationSwapCalls.displayName = 'CommunicationSwapCalls';
+CommunicationSwapCalls.muiName = 'SvgIcon';
 
 export default CommunicationSwapCalls;

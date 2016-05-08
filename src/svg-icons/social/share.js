@@ -9,5 +9,6 @@ let SocialShare = (props) => (
 );
 SocialShare = pure(SocialShare);
 SocialShare.displayName = 'SocialShare';
+SocialShare.muiName = 'SvgIcon';
 
 export default SocialShare;

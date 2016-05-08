@@ -9,5 +9,6 @@ let SocialSchool = (props) => (
 );
 SocialSchool = pure(SocialSchool);
 SocialSchool.displayName = 'SocialSchool';
+SocialSchool.muiName = 'SvgIcon';
 
 export default SocialSchool;

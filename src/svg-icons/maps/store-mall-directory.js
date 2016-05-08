@@ -9,5 +9,6 @@ let MapsStoreMallDirectory = (props) => (
 );
 MapsStoreMallDirectory = pure(MapsStoreMallDirectory);
 MapsStoreMallDirectory.displayName = 'MapsStoreMallDirectory';
+MapsStoreMallDirectory.muiName = 'SvgIcon';
 
 export default MapsStoreMallDirectory;

@@ -9,5 +9,6 @@ let AvShuffle = (props) => (
 );
 AvShuffle = pure(AvShuffle);
 AvShuffle.displayName = 'AvShuffle';
+AvShuffle.muiName = 'SvgIcon';
 
 export default AvShuffle;

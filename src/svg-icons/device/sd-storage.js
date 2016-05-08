@@ -9,5 +9,6 @@ let DeviceSdStorage = (props) => (
 );
 DeviceSdStorage = pure(DeviceSdStorage);
 DeviceSdStorage.displayName = 'DeviceSdStorage';
+DeviceSdStorage.muiName = 'SvgIcon';
 
 export default DeviceSdStorage;

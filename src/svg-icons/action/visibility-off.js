@@ -9,5 +9,6 @@ let ActionVisibilityOff = (props) => (
 );
 ActionVisibilityOff = pure(ActionVisibilityOff);
 ActionVisibilityOff.displayName = 'ActionVisibilityOff';
+ActionVisibilityOff.muiName = 'SvgIcon';
 
 export default ActionVisibilityOff;

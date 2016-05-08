@@ -9,5 +9,6 @@ let AvBrandingWatermark = (props) => (
 );
 AvBrandingWatermark = pure(AvBrandingWatermark);
 AvBrandingWatermark.displayName = 'AvBrandingWatermark';
+AvBrandingWatermark.muiName = 'SvgIcon';
 
 export default AvBrandingWatermark;

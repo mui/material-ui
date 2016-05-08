@@ -9,5 +9,6 @@ let ActionGavel = (props) => (
 );
 ActionGavel = pure(ActionGavel);
 ActionGavel.displayName = 'ActionGavel';
+ActionGavel.muiName = 'SvgIcon';
 
 export default ActionGavel;

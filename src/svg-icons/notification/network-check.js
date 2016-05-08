@@ -9,5 +9,6 @@ let NotificationNetworkCheck = (props) => (
 );
 NotificationNetworkCheck = pure(NotificationNetworkCheck);
 NotificationNetworkCheck.displayName = 'NotificationNetworkCheck';
+NotificationNetworkCheck.muiName = 'SvgIcon';
 
 export default NotificationNetworkCheck;

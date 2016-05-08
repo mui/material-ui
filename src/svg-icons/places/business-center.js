@@ -9,5 +9,6 @@ let PlacesBusinessCenter = (props) => (
 );
 PlacesBusinessCenter = pure(PlacesBusinessCenter);
 PlacesBusinessCenter.displayName = 'PlacesBusinessCenter';
+PlacesBusinessCenter.muiName = 'SvgIcon';
 
 export default PlacesBusinessCenter;

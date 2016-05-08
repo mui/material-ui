@@ -9,5 +9,6 @@ let ActionAutorenew = (props) => (
 );
 ActionAutorenew = pure(ActionAutorenew);
 ActionAutorenew.displayName = 'ActionAutorenew';
+ActionAutorenew.muiName = 'SvgIcon';
 
 export default ActionAutorenew;

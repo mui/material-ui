@@ -9,5 +9,6 @@ let AvLibraryBooks = (props) => (
 );
 AvLibraryBooks = pure(AvLibraryBooks);
 AvLibraryBooks.displayName = 'AvLibraryBooks';
+AvLibraryBooks.muiName = 'SvgIcon';
 
 export default AvLibraryBooks;

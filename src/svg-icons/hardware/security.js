@@ -9,5 +9,6 @@ let HardwareSecurity = (props) => (
 );
 HardwareSecurity = pure(HardwareSecurity);
 HardwareSecurity.displayName = 'HardwareSecurity';
+HardwareSecurity.muiName = 'SvgIcon';
 
 export default HardwareSecurity;

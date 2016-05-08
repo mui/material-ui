@@ -9,5 +9,6 @@ let HardwareDock = (props) => (
 );
 HardwareDock = pure(HardwareDock);
 HardwareDock.displayName = 'HardwareDock';
+HardwareDock.muiName = 'SvgIcon';
 
 export default HardwareDock;

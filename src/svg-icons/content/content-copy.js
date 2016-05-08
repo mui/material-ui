@@ -9,5 +9,6 @@ let ContentContentCopy = (props) => (
 );
 ContentContentCopy = pure(ContentContentCopy);
 ContentContentCopy.displayName = 'ContentContentCopy';
+ContentContentCopy.muiName = 'SvgIcon';
 
 export default ContentContentCopy;

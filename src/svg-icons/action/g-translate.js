@@ -9,5 +9,6 @@ let ActionGTranslate = (props) => (
 );
 ActionGTranslate = pure(ActionGTranslate);
 ActionGTranslate.displayName = 'ActionGTranslate';
+ActionGTranslate.muiName = 'SvgIcon';
 
 export default ActionGTranslate;

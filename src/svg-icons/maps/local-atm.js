@@ -9,5 +9,6 @@ let MapsLocalAtm = (props) => (
 );
 MapsLocalAtm = pure(MapsLocalAtm);
 MapsLocalAtm.displayName = 'MapsLocalAtm';
+MapsLocalAtm.muiName = 'SvgIcon';
 
 export default MapsLocalAtm;

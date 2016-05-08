@@ -9,5 +9,6 @@ let DeviceGraphicEq = (props) => (
 );
 DeviceGraphicEq = pure(DeviceGraphicEq);
 DeviceGraphicEq.displayName = 'DeviceGraphicEq';
+DeviceGraphicEq.muiName = 'SvgIcon';
 
 export default DeviceGraphicEq;

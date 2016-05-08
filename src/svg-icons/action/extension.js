@@ -9,5 +9,6 @@ let ActionExtension = (props) => (
 );
 ActionExtension = pure(ActionExtension);
 ActionExtension.displayName = 'ActionExtension';
+ActionExtension.muiName = 'SvgIcon';
 
 export default ActionExtension;

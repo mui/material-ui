@@ -9,5 +9,6 @@ let NotificationVibration = (props) => (
 );
 NotificationVibration = pure(NotificationVibration);
 NotificationVibration.displayName = 'NotificationVibration';
+NotificationVibration.muiName = 'SvgIcon';
 
 export default NotificationVibration;

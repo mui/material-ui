@@ -9,5 +9,6 @@ let NotificationNetworkLocked = (props) => (
 );
 NotificationNetworkLocked = pure(NotificationNetworkLocked);
 NotificationNetworkLocked.displayName = 'NotificationNetworkLocked';
+NotificationNetworkLocked.muiName = 'SvgIcon';
 
 export default NotificationNetworkLocked;

@@ -9,5 +9,6 @@ let ImageControlPointDuplicate = (props) => (
 );
 ImageControlPointDuplicate = pure(ImageControlPointDuplicate);
 ImageControlPointDuplicate.displayName = 'ImageControlPointDuplicate';
+ImageControlPointDuplicate.muiName = 'SvgIcon';
 
 export default ImageControlPointDuplicate;

@@ -9,5 +9,6 @@ let CommunicationCallEnd = (props) => (
 );
 CommunicationCallEnd = pure(CommunicationCallEnd);
 CommunicationCallEnd.displayName = 'CommunicationCallEnd';
+CommunicationCallEnd.muiName = 'SvgIcon';
 
 export default CommunicationCallEnd;

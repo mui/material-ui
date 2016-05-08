@@ -9,5 +9,6 @@ let MapsRateReview = (props) => (
 );
 MapsRateReview = pure(MapsRateReview);
 MapsRateReview.displayName = 'MapsRateReview';
+MapsRateReview.muiName = 'SvgIcon';
 
 export default MapsRateReview;

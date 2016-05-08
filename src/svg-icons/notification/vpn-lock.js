@@ -9,5 +9,6 @@ let NotificationVpnLock = (props) => (
 );
 NotificationVpnLock = pure(NotificationVpnLock);
 NotificationVpnLock.displayName = 'NotificationVpnLock';
+NotificationVpnLock.muiName = 'SvgIcon';
 
 export default NotificationVpnLock;

@@ -9,5 +9,6 @@ let MapsLocalLibrary = (props) => (
 );
 MapsLocalLibrary = pure(MapsLocalLibrary);
 MapsLocalLibrary.displayName = 'MapsLocalLibrary';
+MapsLocalLibrary.muiName = 'SvgIcon';
 
 export default MapsLocalLibrary;

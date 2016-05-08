@@ -9,5 +9,6 @@ let EditorPieChart = (props) => (
 );
 EditorPieChart = pure(EditorPieChart);
 EditorPieChart.displayName = 'EditorPieChart';
+EditorPieChart.muiName = 'SvgIcon';
 
 export default EditorPieChart;

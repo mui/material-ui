@@ -9,5 +9,6 @@ let AvVideocamOff = (props) => (
 );
 AvVideocamOff = pure(AvVideocamOff);
 AvVideocamOff.displayName = 'AvVideocamOff';
+AvVideocamOff.muiName = 'SvgIcon';
 
 export default AvVideocamOff;

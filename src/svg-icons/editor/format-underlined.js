@@ -9,5 +9,6 @@ let EditorFormatUnderlined = (props) => (
 );
 EditorFormatUnderlined = pure(EditorFormatUnderlined);
 EditorFormatUnderlined.displayName = 'EditorFormatUnderlined';
+EditorFormatUnderlined.muiName = 'SvgIcon';
 
 export default EditorFormatUnderlined;

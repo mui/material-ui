@@ -9,5 +9,6 @@ let CommunicationDialerSip = (props) => (
 );
 CommunicationDialerSip = pure(CommunicationDialerSip);
 CommunicationDialerSip.displayName = 'CommunicationDialerSip';
+CommunicationDialerSip.muiName = 'SvgIcon';
 
 export default CommunicationDialerSip;

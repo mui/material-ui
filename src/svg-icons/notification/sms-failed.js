@@ -9,5 +9,6 @@ let NotificationSmsFailed = (props) => (
 );
 NotificationSmsFailed = pure(NotificationSmsFailed);
 NotificationSmsFailed.displayName = 'NotificationSmsFailed';
+NotificationSmsFailed.muiName = 'SvgIcon';
 
 export default NotificationSmsFailed;
