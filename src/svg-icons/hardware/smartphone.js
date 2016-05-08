@@ -9,5 +9,6 @@ let HardwareSmartphone = (props) => (
 );
 HardwareSmartphone = pure(HardwareSmartphone);
 HardwareSmartphone.displayName = 'HardwareSmartphone';
+HardwareSmartphone.muiName = 'SvgIcon';
 
 export default HardwareSmartphone;

@@ -9,5 +9,6 @@ let CommunicationCallMerge = (props) => (
 );
 CommunicationCallMerge = pure(CommunicationCallMerge);
 CommunicationCallMerge.displayName = 'CommunicationCallMerge';
+CommunicationCallMerge.muiName = 'SvgIcon';
 
 export default CommunicationCallMerge;

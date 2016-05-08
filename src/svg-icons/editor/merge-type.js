@@ -9,5 +9,6 @@ let EditorMergeType = (props) => (
 );
 EditorMergeType = pure(EditorMergeType);
 EditorMergeType.displayName = 'EditorMergeType';
+EditorMergeType.muiName = 'SvgIcon';
 
 export default EditorMergeType;

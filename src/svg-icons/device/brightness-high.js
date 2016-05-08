@@ -9,5 +9,6 @@ let DeviceBrightnessHigh = (props) => (
 );
 DeviceBrightnessHigh = pure(DeviceBrightnessHigh);
 DeviceBrightnessHigh.displayName = 'DeviceBrightnessHigh';
+DeviceBrightnessHigh.muiName = 'SvgIcon';
 
 export default DeviceBrightnessHigh;

@@ -9,5 +9,6 @@ let ImageFilterTiltShift = (props) => (
 );
 ImageFilterTiltShift = pure(ImageFilterTiltShift);
 ImageFilterTiltShift.displayName = 'ImageFilterTiltShift';
+ImageFilterTiltShift.muiName = 'SvgIcon';
 
 export default ImageFilterTiltShift;

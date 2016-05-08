@@ -9,5 +9,6 @@ let ImageLens = (props) => (
 );
 ImageLens = pure(ImageLens);
 ImageLens.displayName = 'ImageLens';
+ImageLens.muiName = 'SvgIcon';
 
 export default ImageLens;

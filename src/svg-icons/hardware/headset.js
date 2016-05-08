@@ -9,5 +9,6 @@ let HardwareHeadset = (props) => (
 );
 HardwareHeadset = pure(HardwareHeadset);
 HardwareHeadset.displayName = 'HardwareHeadset';
+HardwareHeadset.muiName = 'SvgIcon';
 
 export default HardwareHeadset;

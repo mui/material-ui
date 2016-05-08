@@ -9,5 +9,6 @@ let ActionSettingsVoice = (props) => (
 );
 ActionSettingsVoice = pure(ActionSettingsVoice);
 ActionSettingsVoice.displayName = 'ActionSettingsVoice';
+ActionSettingsVoice.muiName = 'SvgIcon';
 
 export default ActionSettingsVoice;

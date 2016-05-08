@@ -9,5 +9,6 @@ let HardwareComputer = (props) => (
 );
 HardwareComputer = pure(HardwareComputer);
 HardwareComputer.displayName = 'HardwareComputer';
+HardwareComputer.muiName = 'SvgIcon';
 
 export default HardwareComputer;

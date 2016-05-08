@@ -9,5 +9,6 @@ let ActionMarkunreadMailbox = (props) => (
 );
 ActionMarkunreadMailbox = pure(ActionMarkunreadMailbox);
 ActionMarkunreadMailbox.displayName = 'ActionMarkunreadMailbox';
+ActionMarkunreadMailbox.muiName = 'SvgIcon';
 
 export default ActionMarkunreadMailbox;

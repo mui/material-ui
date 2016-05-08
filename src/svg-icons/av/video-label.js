@@ -9,5 +9,6 @@ let AvVideoLabel = (props) => (
 );
 AvVideoLabel = pure(AvVideoLabel);
 AvVideoLabel.displayName = 'AvVideoLabel';
+AvVideoLabel.muiName = 'SvgIcon';
 
 export default AvVideoLabel;

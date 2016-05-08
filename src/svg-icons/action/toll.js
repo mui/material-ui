@@ -9,5 +9,6 @@ let ActionToll = (props) => (
 );
 ActionToll = pure(ActionToll);
 ActionToll.displayName = 'ActionToll';
+ActionToll.muiName = 'SvgIcon';
 
 export default ActionToll;

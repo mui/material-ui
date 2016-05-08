@@ -9,5 +9,6 @@ let MapsLocalGasStation = (props) => (
 );
 MapsLocalGasStation = pure(MapsLocalGasStation);
 MapsLocalGasStation.displayName = 'MapsLocalGasStation';
+MapsLocalGasStation.muiName = 'SvgIcon';
 
 export default MapsLocalGasStation;

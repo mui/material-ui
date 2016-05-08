@@ -9,5 +9,6 @@ let PlacesAirportShuttle = (props) => (
 );
 PlacesAirportShuttle = pure(PlacesAirportShuttle);
 PlacesAirportShuttle.displayName = 'PlacesAirportShuttle';
+PlacesAirportShuttle.muiName = 'SvgIcon';
 
 export default PlacesAirportShuttle;

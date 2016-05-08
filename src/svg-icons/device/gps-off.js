@@ -9,5 +9,6 @@ let DeviceGpsOff = (props) => (
 );
 DeviceGpsOff = pure(DeviceGpsOff);
 DeviceGpsOff.displayName = 'DeviceGpsOff';
+DeviceGpsOff.muiName = 'SvgIcon';
 
 export default DeviceGpsOff;

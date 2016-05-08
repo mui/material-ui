@@ -9,5 +9,6 @@ let NotificationPhoneInTalk = (props) => (
 );
 NotificationPhoneInTalk = pure(NotificationPhoneInTalk);
 NotificationPhoneInTalk.displayName = 'NotificationPhoneInTalk';
+NotificationPhoneInTalk.muiName = 'SvgIcon';
 
 export default NotificationPhoneInTalk;

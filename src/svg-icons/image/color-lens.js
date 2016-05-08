@@ -9,5 +9,6 @@ let ImageColorLens = (props) => (
 );
 ImageColorLens = pure(ImageColorLens);
 ImageColorLens.displayName = 'ImageColorLens';
+ImageColorLens.muiName = 'SvgIcon';
 
 export default ImageColorLens;

@@ -9,5 +9,6 @@ let EditorVerticalAlignCenter = (props) => (
 );
 EditorVerticalAlignCenter = pure(EditorVerticalAlignCenter);
 EditorVerticalAlignCenter.displayName = 'EditorVerticalAlignCenter';
+EditorVerticalAlignCenter.muiName = 'SvgIcon';
 
 export default EditorVerticalAlignCenter;

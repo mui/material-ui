@@ -9,5 +9,6 @@ let NotificationBluetoothAudio = (props) => (
 );
 NotificationBluetoothAudio = pure(NotificationBluetoothAudio);
 NotificationBluetoothAudio.displayName = 'NotificationBluetoothAudio';
+NotificationBluetoothAudio.muiName = 'SvgIcon';
 
 export default NotificationBluetoothAudio;

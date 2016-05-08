@@ -9,5 +9,6 @@ let AvAddToQueue = (props) => (
 );
 AvAddToQueue = pure(AvAddToQueue);
 AvAddToQueue.displayName = 'AvAddToQueue';
+AvAddToQueue.muiName = 'SvgIcon';
 
 export default AvAddToQueue;

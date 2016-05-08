@@ -9,5 +9,6 @@ let NavigationMenu = (props) => (
 );
 NavigationMenu = pure(NavigationMenu);
 NavigationMenu.displayName = 'NavigationMenu';
+NavigationMenu.muiName = 'SvgIcon';
 
 export default NavigationMenu;

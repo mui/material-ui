@@ -9,5 +9,6 @@ let MapsDirectionsBike = (props) => (
 );
 MapsDirectionsBike = pure(MapsDirectionsBike);
 MapsDirectionsBike.displayName = 'MapsDirectionsBike';
+MapsDirectionsBike.muiName = 'SvgIcon';
 
 export default MapsDirectionsBike;

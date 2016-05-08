@@ -9,5 +9,6 @@ let NotificationDiscFull = (props) => (
 );
 NotificationDiscFull = pure(NotificationDiscFull);
 NotificationDiscFull.displayName = 'NotificationDiscFull';
+NotificationDiscFull.muiName = 'SvgIcon';
 
 export default NotificationDiscFull;

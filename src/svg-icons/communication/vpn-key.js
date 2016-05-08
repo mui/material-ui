@@ -9,5 +9,6 @@ let CommunicationVpnKey = (props) => (
 );
 CommunicationVpnKey = pure(CommunicationVpnKey);
 CommunicationVpnKey.displayName = 'CommunicationVpnKey';
+CommunicationVpnKey.muiName = 'SvgIcon';
 
 export default CommunicationVpnKey;

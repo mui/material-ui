@@ -9,5 +9,6 @@ let AvLibraryMusic = (props) => (
 );
 AvLibraryMusic = pure(AvLibraryMusic);
 AvLibraryMusic.displayName = 'AvLibraryMusic';
+AvLibraryMusic.muiName = 'SvgIcon';
 
 export default AvLibraryMusic;

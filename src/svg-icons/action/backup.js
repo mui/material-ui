@@ -9,5 +9,6 @@ let ActionBackup = (props) => (
 );
 ActionBackup = pure(ActionBackup);
 ActionBackup.displayName = 'ActionBackup';
+ActionBackup.muiName = 'SvgIcon';
 
 export default ActionBackup;

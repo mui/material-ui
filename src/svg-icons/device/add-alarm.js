@@ -9,5 +9,6 @@ let DeviceAddAlarm = (props) => (
 );
 DeviceAddAlarm = pure(DeviceAddAlarm);
 DeviceAddAlarm.displayName = 'DeviceAddAlarm';
+DeviceAddAlarm.muiName = 'SvgIcon';
 
 export default DeviceAddAlarm;

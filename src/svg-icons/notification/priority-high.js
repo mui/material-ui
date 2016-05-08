@@ -9,5 +9,6 @@ let NotificationPriorityHigh = (props) => (
 );
 NotificationPriorityHigh = pure(NotificationPriorityHigh);
 NotificationPriorityHigh.displayName = 'NotificationPriorityHigh';
+NotificationPriorityHigh.muiName = 'SvgIcon';
 
 export default NotificationPriorityHigh;

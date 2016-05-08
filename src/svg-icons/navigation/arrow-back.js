@@ -9,5 +9,6 @@ let NavigationArrowBack = (props) => (
 );
 NavigationArrowBack = pure(NavigationArrowBack);
 NavigationArrowBack.displayName = 'NavigationArrowBack';
+NavigationArrowBack.muiName = 'SvgIcon';
 
 export default NavigationArrowBack;

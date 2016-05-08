@@ -9,5 +9,6 @@ let EditorWrapText = (props) => (
 );
 EditorWrapText = pure(EditorWrapText);
 EditorWrapText.displayName = 'EditorWrapText';
+EditorWrapText.muiName = 'SvgIcon';
 
 export default EditorWrapText;

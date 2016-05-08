@@ -9,5 +9,6 @@ let SocialNotificationsActive = (props) => (
 );
 SocialNotificationsActive = pure(SocialNotificationsActive);
 SocialNotificationsActive.displayName = 'SocialNotificationsActive';
+SocialNotificationsActive.muiName = 'SvgIcon';
 
 export default SocialNotificationsActive;

@@ -9,5 +9,6 @@ let ToggleStar = (props) => (
 );
 ToggleStar = pure(ToggleStar);
 ToggleStar.displayName = 'ToggleStar';
+ToggleStar.muiName = 'SvgIcon';
 
 export default ToggleStar;

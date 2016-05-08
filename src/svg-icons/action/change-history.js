@@ -9,5 +9,6 @@ let ActionChangeHistory = (props) => (
 );
 ActionChangeHistory = pure(ActionChangeHistory);
 ActionChangeHistory.displayName = 'ActionChangeHistory';
+ActionChangeHistory.muiName = 'SvgIcon';
 
 export default ActionChangeHistory;

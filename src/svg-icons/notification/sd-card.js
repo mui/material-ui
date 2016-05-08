@@ -9,5 +9,6 @@ let NotificationSdCard = (props) => (
 );
 NotificationSdCard = pure(NotificationSdCard);
 NotificationSdCard.displayName = 'NotificationSdCard';
+NotificationSdCard.muiName = 'SvgIcon';
 
 export default NotificationSdCard;

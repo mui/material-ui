@@ -9,5 +9,6 @@ let NotificationLiveTv = (props) => (
 );
 NotificationLiveTv = pure(NotificationLiveTv);
 NotificationLiveTv.displayName = 'NotificationLiveTv';
+NotificationLiveTv.muiName = 'SvgIcon';
 
 export default NotificationLiveTv;

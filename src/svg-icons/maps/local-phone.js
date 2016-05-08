@@ -9,5 +9,6 @@ let MapsLocalPhone = (props) => (
 );
 MapsLocalPhone = pure(MapsLocalPhone);
 MapsLocalPhone.displayName = 'MapsLocalPhone';
+MapsLocalPhone.muiName = 'SvgIcon';
 
 export default MapsLocalPhone;

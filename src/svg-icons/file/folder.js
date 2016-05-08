@@ -9,5 +9,6 @@ let FileFolder = (props) => (
 );
 FileFolder = pure(FileFolder);
 FileFolder.displayName = 'FileFolder';
+FileFolder.muiName = 'SvgIcon';
 
 export default FileFolder;

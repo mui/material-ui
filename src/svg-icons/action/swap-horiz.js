@@ -9,5 +9,6 @@ let ActionSwapHoriz = (props) => (
 );
 ActionSwapHoriz = pure(ActionSwapHoriz);
 ActionSwapHoriz.displayName = 'ActionSwapHoriz';
+ActionSwapHoriz.muiName = 'SvgIcon';
 
 export default ActionSwapHoriz;

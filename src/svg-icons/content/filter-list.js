@@ -9,5 +9,6 @@ let ContentFilterList = (props) => (
 );
 ContentFilterList = pure(ContentFilterList);
 ContentFilterList.displayName = 'ContentFilterList';
+ContentFilterList.muiName = 'SvgIcon';
 
 export default ContentFilterList;

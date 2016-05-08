@@ -9,5 +9,6 @@ let DeviceGpsNotFixed = (props) => (
 );
 DeviceGpsNotFixed = pure(DeviceGpsNotFixed);
 DeviceGpsNotFixed.displayName = 'DeviceGpsNotFixed';
+DeviceGpsNotFixed.muiName = 'SvgIcon';
 
 export default DeviceGpsNotFixed;

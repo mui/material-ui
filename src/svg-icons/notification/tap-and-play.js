@@ -9,5 +9,6 @@ let NotificationTapAndPlay = (props) => (
 );
 NotificationTapAndPlay = pure(NotificationTapAndPlay);
 NotificationTapAndPlay.displayName = 'NotificationTapAndPlay';
+NotificationTapAndPlay.muiName = 'SvgIcon';
 
 export default NotificationTapAndPlay;

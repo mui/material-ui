@@ -9,5 +9,6 @@ let EditorInsertDriveFile = (props) => (
 );
 EditorInsertDriveFile = pure(EditorInsertDriveFile);
 EditorInsertDriveFile.displayName = 'EditorInsertDriveFile';
+EditorInsertDriveFile.muiName = 'SvgIcon';
 
 export default EditorInsertDriveFile;

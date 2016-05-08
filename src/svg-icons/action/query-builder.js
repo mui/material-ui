@@ -9,5 +9,6 @@ let ActionQueryBuilder = (props) => (
 );
 ActionQueryBuilder = pure(ActionQueryBuilder);
 ActionQueryBuilder.displayName = 'ActionQueryBuilder';
+ActionQueryBuilder.muiName = 'SvgIcon';
 
 export default ActionQueryBuilder;

@@ -9,5 +9,6 @@ let NavigationUnfoldLess = (props) => (
 );
 NavigationUnfoldLess = pure(NavigationUnfoldLess);
 NavigationUnfoldLess.displayName = 'NavigationUnfoldLess';
+NavigationUnfoldLess.muiName = 'SvgIcon';
 
 export default NavigationUnfoldLess;

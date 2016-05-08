@@ -9,5 +9,6 @@ let ImageBlurOff = (props) => (
 );
 ImageBlurOff = pure(ImageBlurOff);
 ImageBlurOff.displayName = 'ImageBlurOff';
+ImageBlurOff.muiName = 'SvgIcon';
 
 export default ImageBlurOff;

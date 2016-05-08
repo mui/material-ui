@@ -9,5 +9,6 @@ let ActionVerifiedUser = (props) => (
 );
 ActionVerifiedUser = pure(ActionVerifiedUser);
 ActionVerifiedUser.displayName = 'ActionVerifiedUser';
+ActionVerifiedUser.muiName = 'SvgIcon';
 
 export default ActionVerifiedUser;

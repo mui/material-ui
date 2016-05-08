@@ -9,5 +9,6 @@ let ActionPermDataSetting = (props) => (
 );
 ActionPermDataSetting = pure(ActionPermDataSetting);
 ActionPermDataSetting.displayName = 'ActionPermDataSetting';
+ActionPermDataSetting.muiName = 'SvgIcon';
 
 export default ActionPermDataSetting;

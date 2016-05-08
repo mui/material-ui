@@ -9,5 +9,6 @@ let NotificationSimCardAlert = (props) => (
 );
 NotificationSimCardAlert = pure(NotificationSimCardAlert);
 NotificationSimCardAlert.displayName = 'NotificationSimCardAlert';
+NotificationSimCardAlert.muiName = 'SvgIcon';
 
 export default NotificationSimCardAlert;

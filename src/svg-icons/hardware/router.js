@@ -9,5 +9,6 @@ let HardwareRouter = (props) => (
 );
 HardwareRouter = pure(HardwareRouter);
 HardwareRouter.displayName = 'HardwareRouter';
+HardwareRouter.muiName = 'SvgIcon';
 
 export default HardwareRouter;

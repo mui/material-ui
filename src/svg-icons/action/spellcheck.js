@@ -9,5 +9,6 @@ let ActionSpellcheck = (props) => (
 );
 ActionSpellcheck = pure(ActionSpellcheck);
 ActionSpellcheck.displayName = 'ActionSpellcheck';
+ActionSpellcheck.muiName = 'SvgIcon';
 
 export default ActionSpellcheck;

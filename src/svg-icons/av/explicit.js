@@ -9,5 +9,6 @@ let AvExplicit = (props) => (
 );
 AvExplicit = pure(AvExplicit);
 AvExplicit.displayName = 'AvExplicit';
+AvExplicit.muiName = 'SvgIcon';
 
 export default AvExplicit;

@@ -9,5 +9,6 @@ let ActionAccountBalance = (props) => (
 );
 ActionAccountBalance = pure(ActionAccountBalance);
 ActionAccountBalance.displayName = 'ActionAccountBalance';
+ActionAccountBalance.muiName = 'SvgIcon';
 
 export default ActionAccountBalance;

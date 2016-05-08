@@ -9,5 +9,6 @@ let ImagePanoramaFishEye = (props) => (
 );
 ImagePanoramaFishEye = pure(ImagePanoramaFishEye);
 ImagePanoramaFishEye.displayName = 'ImagePanoramaFishEye';
+ImagePanoramaFishEye.muiName = 'SvgIcon';
 
 export default ImagePanoramaFishEye;

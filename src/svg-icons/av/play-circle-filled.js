@@ -9,5 +9,6 @@ let AvPlayCircleFilled = (props) => (
 );
 AvPlayCircleFilled = pure(AvPlayCircleFilled);
 AvPlayCircleFilled.displayName = 'AvPlayCircleFilled';
+AvPlayCircleFilled.muiName = 'SvgIcon';
 
 export default AvPlayCircleFilled;

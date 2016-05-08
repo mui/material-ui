@@ -9,5 +9,6 @@ let ContentUndo = (props) => (
 );
 ContentUndo = pure(ContentUndo);
 ContentUndo.displayName = 'ContentUndo';
+ContentUndo.muiName = 'SvgIcon';
 
 export default ContentUndo;

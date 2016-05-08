@@ -9,5 +9,6 @@ let NavigationMoreHoriz = (props) => (
 );
 NavigationMoreHoriz = pure(NavigationMoreHoriz);
 NavigationMoreHoriz.displayName = 'NavigationMoreHoriz';
+NavigationMoreHoriz.muiName = 'SvgIcon';
 
 export default NavigationMoreHoriz;

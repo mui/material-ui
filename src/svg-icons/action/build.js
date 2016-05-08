@@ -9,5 +9,6 @@ let ActionBuild = (props) => (
 );
 ActionBuild = pure(ActionBuild);
 ActionBuild.displayName = 'ActionBuild';
+ActionBuild.muiName = 'SvgIcon';
 
 export default ActionBuild;

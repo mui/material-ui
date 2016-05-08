@@ -9,5 +9,6 @@ let AvVideocam = (props) => (
 );
 AvVideocam = pure(AvVideocam);
 AvVideocam.displayName = 'AvVideocam';
+AvVideocam.muiName = 'SvgIcon';
 
 export default AvVideocam;

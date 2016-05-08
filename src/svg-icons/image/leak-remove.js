@@ -9,5 +9,6 @@ let ImageLeakRemove = (props) => (
 );
 ImageLeakRemove = pure(ImageLeakRemove);
 ImageLeakRemove.displayName = 'ImageLeakRemove';
+ImageLeakRemove.muiName = 'SvgIcon';
 
 export default ImageLeakRemove;

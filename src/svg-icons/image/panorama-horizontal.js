@@ -9,5 +9,6 @@ let ImagePanoramaHorizontal = (props) => (
 );
 ImagePanoramaHorizontal = pure(ImagePanoramaHorizontal);
 ImagePanoramaHorizontal.displayName = 'ImagePanoramaHorizontal';
+ImagePanoramaHorizontal.muiName = 'SvgIcon';
 
 export default ImagePanoramaHorizontal;

@@ -9,5 +9,6 @@ let CommunicationDialpad = (props) => (
 );
 CommunicationDialpad = pure(CommunicationDialpad);
 CommunicationDialpad.displayName = 'CommunicationDialpad';
+CommunicationDialpad.muiName = 'SvgIcon';
 
 export default CommunicationDialpad;

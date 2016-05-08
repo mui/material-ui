@@ -9,5 +9,6 @@ let AvPauseCircleOutline = (props) => (
 );
 AvPauseCircleOutline = pure(AvPauseCircleOutline);
 AvPauseCircleOutline.displayName = 'AvPauseCircleOutline';
+AvPauseCircleOutline.muiName = 'SvgIcon';
 
 export default AvPauseCircleOutline;

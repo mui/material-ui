@@ -9,5 +9,6 @@ let ImageSwitchCamera = (props) => (
 );
 ImageSwitchCamera = pure(ImageSwitchCamera);
 ImageSwitchCamera.displayName = 'ImageSwitchCamera';
+ImageSwitchCamera.muiName = 'SvgIcon';
 
 export default ImageSwitchCamera;

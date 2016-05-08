@@ -9,5 +9,6 @@ let ActionEventSeat = (props) => (
 );
 ActionEventSeat = pure(ActionEventSeat);
 ActionEventSeat.displayName = 'ActionEventSeat';
+ActionEventSeat.muiName = 'SvgIcon';
 
 export default ActionEventSeat;

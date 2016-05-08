@@ -9,5 +9,6 @@ let ActionLineStyle = (props) => (
 );
 ActionLineStyle = pure(ActionLineStyle);
 ActionLineStyle.displayName = 'ActionLineStyle';
+ActionLineStyle.muiName = 'SvgIcon';
 
 export default ActionLineStyle;

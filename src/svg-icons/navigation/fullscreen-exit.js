@@ -9,5 +9,6 @@ let NavigationFullscreenExit = (props) => (
 );
 NavigationFullscreenExit = pure(NavigationFullscreenExit);
 NavigationFullscreenExit.displayName = 'NavigationFullscreenExit';
+NavigationFullscreenExit.muiName = 'SvgIcon';
 
 export default NavigationFullscreenExit;

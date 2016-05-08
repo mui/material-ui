@@ -9,5 +9,6 @@ let ActionViewList = (props) => (
 );
 ActionViewList = pure(ActionViewList);
 ActionViewList.displayName = 'ActionViewList';
+ActionViewList.muiName = 'SvgIcon';
 
 export default ActionViewList;

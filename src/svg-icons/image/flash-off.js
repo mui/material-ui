@@ -9,5 +9,6 @@ let ImageFlashOff = (props) => (
 );
 ImageFlashOff = pure(ImageFlashOff);
 ImageFlashOff.displayName = 'ImageFlashOff';
+ImageFlashOff.muiName = 'SvgIcon';
 
 export default ImageFlashOff;

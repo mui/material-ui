@@ -9,5 +9,6 @@ let NavigationArrowDropDownCircle = (props) => (
 );
 NavigationArrowDropDownCircle = pure(NavigationArrowDropDownCircle);
 NavigationArrowDropDownCircle.displayName = 'NavigationArrowDropDownCircle';
+NavigationArrowDropDownCircle.muiName = 'SvgIcon';
 
 export default NavigationArrowDropDownCircle;

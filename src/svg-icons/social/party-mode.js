@@ -9,5 +9,6 @@ let SocialPartyMode = (props) => (
 );
 SocialPartyMode = pure(SocialPartyMode);
 SocialPartyMode.displayName = 'SocialPartyMode';
+SocialPartyMode.muiName = 'SvgIcon';
 
 export default SocialPartyMode;

@@ -9,5 +9,6 @@ let NotificationSystemUpdate = (props) => (
 );
 NotificationSystemUpdate = pure(NotificationSystemUpdate);
 NotificationSystemUpdate.displayName = 'NotificationSystemUpdate';
+NotificationSystemUpdate.muiName = 'SvgIcon';
 
 export default NotificationSystemUpdate;

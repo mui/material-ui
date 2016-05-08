@@ -9,5 +9,6 @@ let ContentMarkunread = (props) => (
 );
 ContentMarkunread = pure(ContentMarkunread);
 ContentMarkunread.displayName = 'ContentMarkunread';
+ContentMarkunread.muiName = 'SvgIcon';
 
 export default ContentMarkunread;

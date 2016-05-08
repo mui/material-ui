@@ -9,5 +9,6 @@ let EditorLinearScale = (props) => (
 );
 EditorLinearScale = pure(EditorLinearScale);
 EditorLinearScale.displayName = 'EditorLinearScale';
+EditorLinearScale.muiName = 'SvgIcon';
 
 export default EditorLinearScale;

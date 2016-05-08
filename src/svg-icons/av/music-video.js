@@ -9,5 +9,6 @@ let AvMusicVideo = (props) => (
 );
 AvMusicVideo = pure(AvMusicVideo);
 AvMusicVideo.displayName = 'AvMusicVideo';
+AvMusicVideo.muiName = 'SvgIcon';
 
 export default AvMusicVideo;

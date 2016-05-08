@@ -9,5 +9,6 @@ let ActionTrackChanges = (props) => (
 );
 ActionTrackChanges = pure(ActionTrackChanges);
 ActionTrackChanges.displayName = 'ActionTrackChanges';
+ActionTrackChanges.muiName = 'SvgIcon';
 
 export default ActionTrackChanges;

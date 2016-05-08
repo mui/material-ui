@@ -9,5 +9,6 @@ let ContentLink = (props) => (
 );
 ContentLink = pure(ContentLink);
 ContentLink.displayName = 'ContentLink';
+ContentLink.muiName = 'SvgIcon';
 
 export default ContentLink;

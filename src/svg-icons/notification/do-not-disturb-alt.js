@@ -9,5 +9,6 @@ let NotificationDoNotDisturbAlt = (props) => (
 );
 NotificationDoNotDisturbAlt = pure(NotificationDoNotDisturbAlt);
 NotificationDoNotDisturbAlt.displayName = 'NotificationDoNotDisturbAlt';
+NotificationDoNotDisturbAlt.muiName = 'SvgIcon';
 
 export default NotificationDoNotDisturbAlt;

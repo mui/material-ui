@@ -9,5 +9,6 @@ let ActionViewQuilt = (props) => (
 );
 ActionViewQuilt = pure(ActionViewQuilt);
 ActionViewQuilt.displayName = 'ActionViewQuilt';
+ActionViewQuilt.muiName = 'SvgIcon';
 
 export default ActionViewQuilt;

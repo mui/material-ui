@@ -9,5 +9,6 @@ let ActionLock = (props) => (
 );
 ActionLock = pure(ActionLock);
 ActionLock.displayName = 'ActionLock';
+ActionLock.muiName = 'SvgIcon';
 
 export default ActionLock;

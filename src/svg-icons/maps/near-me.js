@@ -9,5 +9,6 @@ let MapsNearMe = (props) => (
 );
 MapsNearMe = pure(MapsNearMe);
 MapsNearMe.displayName = 'MapsNearMe';
+MapsNearMe.muiName = 'SvgIcon';
 
 export default MapsNearMe;

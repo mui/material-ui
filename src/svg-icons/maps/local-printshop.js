@@ -9,5 +9,6 @@ let MapsLocalPrintshop = (props) => (
 );
 MapsLocalPrintshop = pure(MapsLocalPrintshop);
 MapsLocalPrintshop.displayName = 'MapsLocalPrintshop';
+MapsLocalPrintshop.muiName = 'SvgIcon';
 
 export default MapsLocalPrintshop;

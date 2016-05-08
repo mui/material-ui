@@ -9,5 +9,6 @@ let MapsLocalPharmacy = (props) => (
 );
 MapsLocalPharmacy = pure(MapsLocalPharmacy);
 MapsLocalPharmacy.displayName = 'MapsLocalPharmacy';
+MapsLocalPharmacy.muiName = 'SvgIcon';
 
 export default MapsLocalPharmacy;

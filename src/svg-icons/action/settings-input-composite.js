@@ -9,5 +9,6 @@ let ActionSettingsInputComposite = (props) => (
 );
 ActionSettingsInputComposite = pure(ActionSettingsInputComposite);
 ActionSettingsInputComposite.displayName = 'ActionSettingsInputComposite';
+ActionSettingsInputComposite.muiName = 'SvgIcon';
 
 export default ActionSettingsInputComposite;

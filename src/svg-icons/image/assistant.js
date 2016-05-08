@@ -9,5 +9,6 @@ let ImageAssistant = (props) => (
 );
 ImageAssistant = pure(ImageAssistant);
 ImageAssistant.displayName = 'ImageAssistant';
+ImageAssistant.muiName = 'SvgIcon';
 
 export default ImageAssistant;

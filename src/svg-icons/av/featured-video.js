@@ -9,5 +9,6 @@ let AvFeaturedVideo = (props) => (
 );
 AvFeaturedVideo = pure(AvFeaturedVideo);
 AvFeaturedVideo.displayName = 'AvFeaturedVideo';
+AvFeaturedVideo.muiName = 'SvgIcon';
 
 export default AvFeaturedVideo;

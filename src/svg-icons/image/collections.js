@@ -9,5 +9,6 @@ let ImageCollections = (props) => (
 );
 ImageCollections = pure(ImageCollections);
 ImageCollections.displayName = 'ImageCollections';
+ImageCollections.muiName = 'SvgIcon';
 
 export default ImageCollections;

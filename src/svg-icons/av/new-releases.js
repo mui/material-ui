@@ -9,5 +9,6 @@ let AvNewReleases = (props) => (
 );
 AvNewReleases = pure(AvNewReleases);
 AvNewReleases.displayName = 'AvNewReleases';
+AvNewReleases.muiName = 'SvgIcon';
 
 export default AvNewReleases;

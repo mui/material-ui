@@ -9,5 +9,6 @@ let ContentContentCut = (props) => (
 );
 ContentContentCut = pure(ContentContentCut);
 ContentContentCut.displayName = 'ContentContentCut';
+ContentContentCut.muiName = 'SvgIcon';
 
 export default ContentContentCut;

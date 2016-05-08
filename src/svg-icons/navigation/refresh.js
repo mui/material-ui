@@ -9,5 +9,6 @@ let NavigationRefresh = (props) => (
 );
 NavigationRefresh = pure(NavigationRefresh);
 NavigationRefresh.displayName = 'NavigationRefresh';
+NavigationRefresh.muiName = 'SvgIcon';
 
 export default NavigationRefresh;

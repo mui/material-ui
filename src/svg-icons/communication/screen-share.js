@@ -9,5 +9,6 @@ let CommunicationScreenShare = (props) => (
 );
 CommunicationScreenShare = pure(CommunicationScreenShare);
 CommunicationScreenShare.displayName = 'CommunicationScreenShare';
+CommunicationScreenShare.muiName = 'SvgIcon';
 
 export default CommunicationScreenShare;

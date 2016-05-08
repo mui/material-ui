@@ -9,5 +9,6 @@ let ToggleCheckBoxOutlineBlank = (props) => (
 );
 ToggleCheckBoxOutlineBlank = pure(ToggleCheckBoxOutlineBlank);
 ToggleCheckBoxOutlineBlank.displayName = 'ToggleCheckBoxOutlineBlank';
+ToggleCheckBoxOutlineBlank.muiName = 'SvgIcon';
 
 export default ToggleCheckBoxOutlineBlank;

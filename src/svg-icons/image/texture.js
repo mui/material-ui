@@ -9,5 +9,6 @@ let ImageTexture = (props) => (
 );
 ImageTexture = pure(ImageTexture);
 ImageTexture.displayName = 'ImageTexture';
+ImageTexture.muiName = 'SvgIcon';
 
 export default ImageTexture;

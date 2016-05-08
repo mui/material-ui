@@ -9,5 +9,6 @@ let SocialCake = (props) => (
 );
 SocialCake = pure(SocialCake);
 SocialCake.displayName = 'SocialCake';
+SocialCake.muiName = 'SvgIcon';
 
 export default SocialCake;

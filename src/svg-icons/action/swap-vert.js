@@ -9,5 +9,6 @@ let ActionSwapVert = (props) => (
 );
 ActionSwapVert = pure(ActionSwapVert);
 ActionSwapVert.displayName = 'ActionSwapVert';
+ActionSwapVert.muiName = 'SvgIcon';
 
 export default ActionSwapVert;

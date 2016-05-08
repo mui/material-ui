@@ -9,5 +9,6 @@ let ActionCopyright = (props) => (
 );
 ActionCopyright = pure(ActionCopyright);
 ActionCopyright.displayName = 'ActionCopyright';
+ActionCopyright.muiName = 'SvgIcon';
 
 export default ActionCopyright;

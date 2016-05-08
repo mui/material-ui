@@ -9,5 +9,6 @@ let EditorTitle = (props) => (
 );
 EditorTitle = pure(EditorTitle);
 EditorTitle.displayName = 'EditorTitle';
+EditorTitle.muiName = 'SvgIcon';
 
 export default EditorTitle;

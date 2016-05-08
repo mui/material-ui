@@ -9,5 +9,6 @@ let ActionExplore = (props) => (
 );
 ActionExplore = pure(ActionExplore);
 ActionExplore.displayName = 'ActionExplore';
+ActionExplore.muiName = 'SvgIcon';
 
 export default ActionExplore;

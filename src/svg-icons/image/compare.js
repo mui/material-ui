@@ -9,5 +9,6 @@ let ImageCompare = (props) => (
 );
 ImageCompare = pure(ImageCompare);
 ImageCompare.displayName = 'ImageCompare';
+ImageCompare.muiName = 'SvgIcon';
 
 export default ImageCompare;

@@ -9,5 +9,6 @@ let AvRadio = (props) => (
 );
 AvRadio = pure(AvRadio);
 AvRadio.displayName = 'AvRadio';
+AvRadio.muiName = 'SvgIcon';
 
 export default AvRadio;

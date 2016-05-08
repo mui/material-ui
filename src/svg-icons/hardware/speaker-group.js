@@ -9,5 +9,6 @@ let HardwareSpeakerGroup = (props) => (
 );
 HardwareSpeakerGroup = pure(HardwareSpeakerGroup);
 HardwareSpeakerGroup.displayName = 'HardwareSpeakerGroup';
+HardwareSpeakerGroup.muiName = 'SvgIcon';
 
 export default HardwareSpeakerGroup;

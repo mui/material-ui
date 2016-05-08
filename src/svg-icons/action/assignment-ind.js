@@ -9,5 +9,6 @@ let ActionAssignmentInd = (props) => (
 );
 ActionAssignmentInd = pure(ActionAssignmentInd);
 ActionAssignmentInd.displayName = 'ActionAssignmentInd';
+ActionAssignmentInd.muiName = 'SvgIcon';
 
 export default ActionAssignmentInd;

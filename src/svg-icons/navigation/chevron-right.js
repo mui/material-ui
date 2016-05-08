@@ -9,5 +9,6 @@ let NavigationChevronRight = (props) => (
 );
 NavigationChevronRight = pure(NavigationChevronRight);
 NavigationChevronRight.displayName = 'NavigationChevronRight';
+NavigationChevronRight.muiName = 'SvgIcon';
 
 export default NavigationChevronRight;

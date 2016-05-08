@@ -9,5 +9,6 @@ let ActionSpeakerNotes = (props) => (
 );
 ActionSpeakerNotes = pure(ActionSpeakerNotes);
 ActionSpeakerNotes.displayName = 'ActionSpeakerNotes';
+ActionSpeakerNotes.muiName = 'SvgIcon';
 
 export default ActionSpeakerNotes;
