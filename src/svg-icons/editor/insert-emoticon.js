@@ -9,5 +9,6 @@ let EditorInsertEmoticon = (props) => (
 );
 EditorInsertEmoticon = pure(EditorInsertEmoticon);
 EditorInsertEmoticon.displayName = 'EditorInsertEmoticon';
+EditorInsertEmoticon.muiName = 'SvgIcon';
 
 export default EditorInsertEmoticon;

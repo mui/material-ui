@@ -9,5 +9,6 @@ let HardwareWatch = (props) => (
 );
 HardwareWatch = pure(HardwareWatch);
 HardwareWatch.displayName = 'HardwareWatch';
+HardwareWatch.muiName = 'SvgIcon';
 
 export default HardwareWatch;

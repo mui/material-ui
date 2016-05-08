@@ -9,5 +9,6 @@ let ContentDrafts = (props) => (
 );
 ContentDrafts = pure(ContentDrafts);
 ContentDrafts.displayName = 'ContentDrafts';
+ContentDrafts.muiName = 'SvgIcon';
 
 export default ContentDrafts;

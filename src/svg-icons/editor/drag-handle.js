@@ -9,5 +9,6 @@ let EditorDragHandle = (props) => (
 );
 EditorDragHandle = pure(EditorDragHandle);
 EditorDragHandle.displayName = 'EditorDragHandle';
+EditorDragHandle.muiName = 'SvgIcon';
 
 export default EditorDragHandle;

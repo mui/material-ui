@@ -9,5 +9,6 @@ let PlacesKitchen = (props) => (
 );
 PlacesKitchen = pure(PlacesKitchen);
 PlacesKitchen.displayName = 'PlacesKitchen';
+PlacesKitchen.muiName = 'SvgIcon';
 
 export default PlacesKitchen;

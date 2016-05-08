@@ -9,5 +9,6 @@ let HardwareDeveloperBoard = (props) => (
 );
 HardwareDeveloperBoard = pure(HardwareDeveloperBoard);
 HardwareDeveloperBoard.displayName = 'HardwareDeveloperBoard';
+HardwareDeveloperBoard.muiName = 'SvgIcon';
 
 export default HardwareDeveloperBoard;

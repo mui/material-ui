@@ -9,5 +9,6 @@ let ActionFlightTakeoff = (props) => (
 );
 ActionFlightTakeoff = pure(ActionFlightTakeoff);
 ActionFlightTakeoff.displayName = 'ActionFlightTakeoff';
+ActionFlightTakeoff.muiName = 'SvgIcon';
 
 export default ActionFlightTakeoff;

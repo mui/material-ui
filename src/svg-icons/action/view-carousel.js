@@ -9,5 +9,6 @@ let ActionViewCarousel = (props) => (
 );
 ActionViewCarousel = pure(ActionViewCarousel);
 ActionViewCarousel.displayName = 'ActionViewCarousel';
+ActionViewCarousel.muiName = 'SvgIcon';
 
 export default ActionViewCarousel;

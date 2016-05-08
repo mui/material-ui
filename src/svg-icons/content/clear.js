@@ -9,5 +9,6 @@ let ContentClear = (props) => (
 );
 ContentClear = pure(ContentClear);
 ContentClear.displayName = 'ContentClear';
+ContentClear.muiName = 'SvgIcon';
 
 export default ContentClear;

@@ -9,5 +9,6 @@ let ActionBookmarkBorder = (props) => (
 );
 ActionBookmarkBorder = pure(ActionBookmarkBorder);
 ActionBookmarkBorder.displayName = 'ActionBookmarkBorder';
+ActionBookmarkBorder.muiName = 'SvgIcon';
 
 export default ActionBookmarkBorder;

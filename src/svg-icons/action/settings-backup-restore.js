@@ -9,5 +9,6 @@ let ActionSettingsBackupRestore = (props) => (
 );
 ActionSettingsBackupRestore = pure(ActionSettingsBackupRestore);
 ActionSettingsBackupRestore.displayName = 'ActionSettingsBackupRestore';
+ActionSettingsBackupRestore.muiName = 'SvgIcon';
 
 export default ActionSettingsBackupRestore;

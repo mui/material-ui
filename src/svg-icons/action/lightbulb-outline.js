@@ -9,5 +9,6 @@ let ActionLightbulbOutline = (props) => (
 );
 ActionLightbulbOutline = pure(ActionLightbulbOutline);
 ActionLightbulbOutline.displayName = 'ActionLightbulbOutline';
+ActionLightbulbOutline.muiName = 'SvgIcon';
 
 export default ActionLightbulbOutline;

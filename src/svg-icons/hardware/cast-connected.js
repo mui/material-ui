@@ -9,5 +9,6 @@ let HardwareCastConnected = (props) => (
 );
 HardwareCastConnected = pure(HardwareCastConnected);
 HardwareCastConnected.displayName = 'HardwareCastConnected';
+HardwareCastConnected.muiName = 'SvgIcon';
 
 export default HardwareCastConnected;

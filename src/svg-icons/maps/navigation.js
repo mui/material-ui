@@ -9,5 +9,6 @@ let MapsNavigation = (props) => (
 );
 MapsNavigation = pure(MapsNavigation);
 MapsNavigation.displayName = 'MapsNavigation';
+MapsNavigation.muiName = 'SvgIcon';
 
 export default MapsNavigation;

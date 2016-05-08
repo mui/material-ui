@@ -9,5 +9,6 @@ let ActionSettingsInputHdmi = (props) => (
 );
 ActionSettingsInputHdmi = pure(ActionSettingsInputHdmi);
 ActionSettingsInputHdmi.displayName = 'ActionSettingsInputHdmi';
+ActionSettingsInputHdmi.muiName = 'SvgIcon';
 
 export default ActionSettingsInputHdmi;

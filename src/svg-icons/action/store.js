@@ -9,5 +9,6 @@ let ActionStore = (props) => (
 );
 ActionStore = pure(ActionStore);
 ActionStore.displayName = 'ActionStore';
+ActionStore.muiName = 'SvgIcon';
 
 export default ActionStore;

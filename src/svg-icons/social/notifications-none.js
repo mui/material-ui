@@ -9,5 +9,6 @@ let SocialNotificationsNone = (props) => (
 );
 SocialNotificationsNone = pure(SocialNotificationsNone);
 SocialNotificationsNone.displayName = 'SocialNotificationsNone';
+SocialNotificationsNone.muiName = 'SvgIcon';
 
 export default SocialNotificationsNone;

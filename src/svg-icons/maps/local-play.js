@@ -9,5 +9,6 @@ let MapsLocalPlay = (props) => (
 );
 MapsLocalPlay = pure(MapsLocalPlay);
 MapsLocalPlay.displayName = 'MapsLocalPlay';
+MapsLocalPlay.muiName = 'SvgIcon';
 
 export default MapsLocalPlay;

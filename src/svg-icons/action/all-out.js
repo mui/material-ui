@@ -9,5 +9,6 @@ let ActionAllOut = (props) => (
 );
 ActionAllOut = pure(ActionAllOut);
 ActionAllOut.displayName = 'ActionAllOut';
+ActionAllOut.muiName = 'SvgIcon';
 
 export default ActionAllOut;

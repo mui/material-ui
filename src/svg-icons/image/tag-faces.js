@@ -9,5 +9,6 @@ let ImageTagFaces = (props) => (
 );
 ImageTagFaces = pure(ImageTagFaces);
 ImageTagFaces.displayName = 'ImageTagFaces';
+ImageTagFaces.muiName = 'SvgIcon';
 
 export default ImageTagFaces;

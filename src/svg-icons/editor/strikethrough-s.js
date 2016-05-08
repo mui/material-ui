@@ -9,5 +9,6 @@ let EditorStrikethroughS = (props) => (
 );
 EditorStrikethroughS = pure(EditorStrikethroughS);
 EditorStrikethroughS.displayName = 'EditorStrikethroughS';
+EditorStrikethroughS.muiName = 'SvgIcon';
 
 export default EditorStrikethroughS;

@@ -9,5 +9,6 @@ let MapsLocalMovies = (props) => (
 );
 MapsLocalMovies = pure(MapsLocalMovies);
 MapsLocalMovies.displayName = 'MapsLocalMovies';
+MapsLocalMovies.muiName = 'SvgIcon';
 
 export default MapsLocalMovies;

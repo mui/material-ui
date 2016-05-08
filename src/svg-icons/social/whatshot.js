@@ -9,5 +9,6 @@ let SocialWhatshot = (props) => (
 );
 SocialWhatshot = pure(SocialWhatshot);
 SocialWhatshot.displayName = 'SocialWhatshot';
+SocialWhatshot.muiName = 'SvgIcon';
 
 export default SocialWhatshot;

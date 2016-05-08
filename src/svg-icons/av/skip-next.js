@@ -9,5 +9,6 @@ let AvSkipNext = (props) => (
 );
 AvSkipNext = pure(AvSkipNext);
 AvSkipNext.displayName = 'AvSkipNext';
+AvSkipNext.muiName = 'SvgIcon';
 
 export default AvSkipNext;

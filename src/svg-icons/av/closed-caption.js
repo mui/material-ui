@@ -9,5 +9,6 @@ let AvClosedCaption = (props) => (
 );
 AvClosedCaption = pure(AvClosedCaption);
 AvClosedCaption.displayName = 'AvClosedCaption';
+AvClosedCaption.muiName = 'SvgIcon';
 
 export default AvClosedCaption;

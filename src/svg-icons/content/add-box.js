@@ -9,5 +9,6 @@ let ContentAddBox = (props) => (
 );
 ContentAddBox = pure(ContentAddBox);
 ContentAddBox.displayName = 'ContentAddBox';
+ContentAddBox.muiName = 'SvgIcon';
 
 export default ContentAddBox;

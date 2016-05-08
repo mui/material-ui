@@ -9,5 +9,6 @@ let EditorFormatListNumbered = (props) => (
 );
 EditorFormatListNumbered = pure(EditorFormatListNumbered);
 EditorFormatListNumbered.displayName = 'EditorFormatListNumbered';
+EditorFormatListNumbered.muiName = 'SvgIcon';
 
 export default EditorFormatListNumbered;

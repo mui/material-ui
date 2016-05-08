@@ -9,5 +9,6 @@ let ImageSlideshow = (props) => (
 );
 ImageSlideshow = pure(ImageSlideshow);
 ImageSlideshow.displayName = 'ImageSlideshow';
+ImageSlideshow.muiName = 'SvgIcon';
 
 export default ImageSlideshow;

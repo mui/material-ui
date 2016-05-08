@@ -9,5 +9,6 @@ let MapsTerrain = (props) => (
 );
 MapsTerrain = pure(MapsTerrain);
 MapsTerrain.displayName = 'MapsTerrain';
+MapsTerrain.muiName = 'SvgIcon';
 
 export default MapsTerrain;

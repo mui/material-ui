@@ -9,5 +9,6 @@ let ActionTrendingUp = (props) => (
 );
 ActionTrendingUp = pure(ActionTrendingUp);
 ActionTrendingUp.displayName = 'ActionTrendingUp';
+ActionTrendingUp.muiName = 'SvgIcon';
 
 export default ActionTrendingUp;

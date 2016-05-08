@@ -9,5 +9,6 @@ let DeviceSettingsSystemDaydream = (props) => (
 );
 DeviceSettingsSystemDaydream = pure(DeviceSettingsSystemDaydream);
 DeviceSettingsSystemDaydream.displayName = 'DeviceSettingsSystemDaydream';
+DeviceSettingsSystemDaydream.muiName = 'SvgIcon';
 
 export default DeviceSettingsSystemDaydream;

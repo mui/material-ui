@@ -9,5 +9,6 @@ let EditorBorderColor = (props) => (
 );
 EditorBorderColor = pure(EditorBorderColor);
 EditorBorderColor.displayName = 'EditorBorderColor';
+EditorBorderColor.muiName = 'SvgIcon';
 
 export default EditorBorderColor;

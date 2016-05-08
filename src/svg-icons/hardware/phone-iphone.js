@@ -9,5 +9,6 @@ let HardwarePhoneIphone = (props) => (
 );
 HardwarePhoneIphone = pure(HardwarePhoneIphone);
 HardwarePhoneIphone.displayName = 'HardwarePhoneIphone';
+HardwarePhoneIphone.muiName = 'SvgIcon';
 
 export default HardwarePhoneIphone;

@@ -9,5 +9,6 @@ let NotificationAirlineSeatReclineExtra = (props) => (
 );
 NotificationAirlineSeatReclineExtra = pure(NotificationAirlineSeatReclineExtra);
 NotificationAirlineSeatReclineExtra.displayName = 'NotificationAirlineSeatReclineExtra';
+NotificationAirlineSeatReclineExtra.muiName = 'SvgIcon';
 
 export default NotificationAirlineSeatReclineExtra;

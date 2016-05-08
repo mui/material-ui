@@ -9,5 +9,6 @@ let ImageNavigateBefore = (props) => (
 );
 ImageNavigateBefore = pure(ImageNavigateBefore);
 ImageNavigateBefore.displayName = 'ImageNavigateBefore';
+ImageNavigateBefore.muiName = 'SvgIcon';
 
 export default ImageNavigateBefore;

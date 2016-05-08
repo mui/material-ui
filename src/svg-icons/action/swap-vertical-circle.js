@@ -9,5 +9,6 @@ let ActionSwapVerticalCircle = (props) => (
 );
 ActionSwapVerticalCircle = pure(ActionSwapVerticalCircle);
 ActionSwapVerticalCircle.displayName = 'ActionSwapVerticalCircle';
+ActionSwapVerticalCircle.muiName = 'SvgIcon';
 
 export default ActionSwapVerticalCircle;

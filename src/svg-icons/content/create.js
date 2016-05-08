@@ -9,5 +9,6 @@ let ContentCreate = (props) => (
 );
 ContentCreate = pure(ContentCreate);
 ContentCreate.displayName = 'ContentCreate';
+ContentCreate.muiName = 'SvgIcon';
 
 export default ContentCreate;

@@ -9,5 +9,6 @@ let ActionSchedule = (props) => (
 );
 ActionSchedule = pure(ActionSchedule);
 ActionSchedule.displayName = 'ActionSchedule';
+ActionSchedule.muiName = 'SvgIcon';
 
 export default ActionSchedule;

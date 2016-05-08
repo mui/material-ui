@@ -9,5 +9,6 @@ let ActionCached = (props) => (
 );
 ActionCached = pure(ActionCached);
 ActionCached.displayName = 'ActionCached';
+ActionCached.muiName = 'SvgIcon';
 
 export default ActionCached;

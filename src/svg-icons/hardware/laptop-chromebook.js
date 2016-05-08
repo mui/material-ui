@@ -9,5 +9,6 @@ let HardwareLaptopChromebook = (props) => (
 );
 HardwareLaptopChromebook = pure(HardwareLaptopChromebook);
 HardwareLaptopChromebook.displayName = 'HardwareLaptopChromebook';
+HardwareLaptopChromebook.muiName = 'SvgIcon';
 
 export default HardwareLaptopChromebook;

@@ -9,5 +9,6 @@ let AvFastRewind = (props) => (
 );
 AvFastRewind = pure(AvFastRewind);
 AvFastRewind.displayName = 'AvFastRewind';
+AvFastRewind.muiName = 'SvgIcon';
 
 export default AvFastRewind;

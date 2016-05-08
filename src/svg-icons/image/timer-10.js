@@ -9,5 +9,6 @@ let ImageTimer10 = (props) => (
 );
 ImageTimer10 = pure(ImageTimer10);
 ImageTimer10.displayName = 'ImageTimer10';
+ImageTimer10.muiName = 'SvgIcon';
 
 export default ImageTimer10;

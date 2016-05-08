@@ -9,5 +9,6 @@ let DeviceScreenLockPortrait = (props) => (
 );
 DeviceScreenLockPortrait = pure(DeviceScreenLockPortrait);
 DeviceScreenLockPortrait.displayName = 'DeviceScreenLockPortrait';
+DeviceScreenLockPortrait.muiName = 'SvgIcon';
 
 export default DeviceScreenLockPortrait;

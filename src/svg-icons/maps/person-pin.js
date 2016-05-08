@@ -9,5 +9,6 @@ let MapsPersonPin = (props) => (
 );
 MapsPersonPin = pure(MapsPersonPin);
 MapsPersonPin.displayName = 'MapsPersonPin';
+MapsPersonPin.muiName = 'SvgIcon';
 
 export default MapsPersonPin;

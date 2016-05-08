@@ -9,5 +9,6 @@ let ImageCrop = (props) => (
 );
 ImageCrop = pure(ImageCrop);
 ImageCrop.displayName = 'ImageCrop';
+ImageCrop.muiName = 'SvgIcon';
 
 export default ImageCrop;

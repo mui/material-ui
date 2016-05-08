@@ -9,5 +9,6 @@ let NotificationVoiceChat = (props) => (
 );
 NotificationVoiceChat = pure(NotificationVoiceChat);
 NotificationVoiceChat.displayName = 'NotificationVoiceChat';
+NotificationVoiceChat.muiName = 'SvgIcon';
 
 export default NotificationVoiceChat;

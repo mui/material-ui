@@ -9,5 +9,6 @@ let EditorFormatAlignJustify = (props) => (
 );
 EditorFormatAlignJustify = pure(EditorFormatAlignJustify);
 EditorFormatAlignJustify.displayName = 'EditorFormatAlignJustify';
+EditorFormatAlignJustify.muiName = 'SvgIcon';
 
 export default EditorFormatAlignJustify;

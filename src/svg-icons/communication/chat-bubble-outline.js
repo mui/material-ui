@@ -9,5 +9,6 @@ let CommunicationChatBubbleOutline = (props) => (
 );
 CommunicationChatBubbleOutline = pure(CommunicationChatBubbleOutline);
 CommunicationChatBubbleOutline.displayName = 'CommunicationChatBubbleOutline';
+CommunicationChatBubbleOutline.muiName = 'SvgIcon';
 
 export default CommunicationChatBubbleOutline;

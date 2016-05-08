@@ -9,5 +9,6 @@ let ActionEuroSymbol = (props) => (
 );
 ActionEuroSymbol = pure(ActionEuroSymbol);
 ActionEuroSymbol.displayName = 'ActionEuroSymbol';
+ActionEuroSymbol.muiName = 'SvgIcon';
 
 export default ActionEuroSymbol;

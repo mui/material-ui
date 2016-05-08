@@ -9,5 +9,6 @@ let ActionFindInPage = (props) => (
 );
 ActionFindInPage = pure(ActionFindInPage);
 ActionFindInPage.displayName = 'ActionFindInPage';
+ActionFindInPage.muiName = 'SvgIcon';
 
 export default ActionFindInPage;

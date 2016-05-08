@@ -9,5 +9,6 @@ let ImageFilter9Plus = (props) => (
 );
 ImageFilter9Plus = pure(ImageFilter9Plus);
 ImageFilter9Plus.displayName = 'ImageFilter9Plus';
+ImageFilter9Plus.muiName = 'SvgIcon';
 
 export default ImageFilter9Plus;

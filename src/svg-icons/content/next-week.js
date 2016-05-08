@@ -9,5 +9,6 @@ let ContentNextWeek = (props) => (
 );
 ContentNextWeek = pure(ContentNextWeek);
 ContentNextWeek.displayName = 'ContentNextWeek';
+ContentNextWeek.muiName = 'SvgIcon';
 
 export default ContentNextWeek;

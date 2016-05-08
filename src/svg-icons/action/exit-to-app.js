@@ -9,5 +9,6 @@ let ActionExitToApp = (props) => (
 );
 ActionExitToApp = pure(ActionExitToApp);
 ActionExitToApp.displayName = 'ActionExitToApp';
+ActionExitToApp.muiName = 'SvgIcon';
 
 export default ActionExitToApp;

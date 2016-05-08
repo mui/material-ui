@@ -9,5 +9,6 @@ let HardwareKeyboardTab = (props) => (
 );
 HardwareKeyboardTab = pure(HardwareKeyboardTab);
 HardwareKeyboardTab.displayName = 'HardwareKeyboardTab';
+HardwareKeyboardTab.muiName = 'SvgIcon';
 
 export default HardwareKeyboardTab;

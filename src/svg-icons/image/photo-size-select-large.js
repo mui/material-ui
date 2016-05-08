@@ -9,5 +9,6 @@ let ImagePhotoSizeSelectLarge = (props) => (
 );
 ImagePhotoSizeSelectLarge = pure(ImagePhotoSizeSelectLarge);
 ImagePhotoSizeSelectLarge.displayName = 'ImagePhotoSizeSelectLarge';
+ImagePhotoSizeSelectLarge.muiName = 'SvgIcon';
 
 export default ImagePhotoSizeSelectLarge;

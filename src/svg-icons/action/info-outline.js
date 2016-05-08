@@ -9,5 +9,6 @@ let ActionInfoOutline = (props) => (
 );
 ActionInfoOutline = pure(ActionInfoOutline);
 ActionInfoOutline.displayName = 'ActionInfoOutline';
+ActionInfoOutline.muiName = 'SvgIcon';
 
 export default ActionInfoOutline;

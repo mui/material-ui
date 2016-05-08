@@ -9,5 +9,6 @@ let DeviceSignalWifi1BarLock = (props) => (
 );
 DeviceSignalWifi1BarLock = pure(DeviceSignalWifi1BarLock);
 DeviceSignalWifi1BarLock.displayName = 'DeviceSignalWifi1BarLock';
+DeviceSignalWifi1BarLock.muiName = 'SvgIcon';
 
 export default DeviceSignalWifi1BarLock;

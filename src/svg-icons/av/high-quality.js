@@ -9,5 +9,6 @@ let AvHighQuality = (props) => (
 );
 AvHighQuality = pure(AvHighQuality);
 AvHighQuality.displayName = 'AvHighQuality';
+AvHighQuality.muiName = 'SvgIcon';
 
 export default AvHighQuality;

@@ -9,5 +9,6 @@ let HardwareVideogameAsset = (props) => (
 );
 HardwareVideogameAsset = pure(HardwareVideogameAsset);
 HardwareVideogameAsset.displayName = 'HardwareVideogameAsset';
+HardwareVideogameAsset.muiName = 'SvgIcon';
 
 export default HardwareVideogameAsset;

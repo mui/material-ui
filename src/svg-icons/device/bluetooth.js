@@ -9,5 +9,6 @@ let DeviceBluetooth = (props) => (
 );
 DeviceBluetooth = pure(DeviceBluetooth);
 DeviceBluetooth.displayName = 'DeviceBluetooth';
+DeviceBluetooth.muiName = 'SvgIcon';
 
 export default DeviceBluetooth;

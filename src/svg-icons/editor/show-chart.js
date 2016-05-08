@@ -9,5 +9,6 @@ let EditorShowChart = (props) => (
 );
 EditorShowChart = pure(EditorShowChart);
 EditorShowChart.displayName = 'EditorShowChart';
+EditorShowChart.muiName = 'SvgIcon';
 
 export default EditorShowChart;

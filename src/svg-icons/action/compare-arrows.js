@@ -9,5 +9,6 @@ let ActionCompareArrows = (props) => (
 );
 ActionCompareArrows = pure(ActionCompareArrows);
 ActionCompareArrows.displayName = 'ActionCompareArrows';
+ActionCompareArrows.muiName = 'SvgIcon';
 
 export default ActionCompareArrows;

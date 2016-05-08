@@ -9,5 +9,6 @@ let ActionDns = (props) => (
 );
 ActionDns = pure(ActionDns);
 ActionDns.displayName = 'ActionDns';
+ActionDns.muiName = 'SvgIcon';
 
 export default ActionDns;

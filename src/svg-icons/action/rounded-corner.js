@@ -9,5 +9,6 @@ let ActionRoundedCorner = (props) => (
 );
 ActionRoundedCorner = pure(ActionRoundedCorner);
 ActionRoundedCorner.displayName = 'ActionRoundedCorner';
+ActionRoundedCorner.muiName = 'SvgIcon';
 
 export default ActionRoundedCorner;

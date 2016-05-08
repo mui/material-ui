@@ -9,5 +9,6 @@ let NotificationPower = (props) => (
 );
 NotificationPower = pure(NotificationPower);
 NotificationPower.displayName = 'NotificationPower';
+NotificationPower.muiName = 'SvgIcon';
 
 export default NotificationPower;

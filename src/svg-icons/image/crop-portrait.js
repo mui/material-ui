@@ -9,5 +9,6 @@ let ImageCropPortrait = (props) => (
 );
 ImageCropPortrait = pure(ImageCropPortrait);
 ImageCropPortrait.displayName = 'ImageCropPortrait';
+ImageCropPortrait.muiName = 'SvgIcon';
 
 export default ImageCropPortrait;

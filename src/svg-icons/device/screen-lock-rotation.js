@@ -9,5 +9,6 @@ let DeviceScreenLockRotation = (props) => (
 );
 DeviceScreenLockRotation = pure(DeviceScreenLockRotation);
 DeviceScreenLockRotation.displayName = 'DeviceScreenLockRotation';
+DeviceScreenLockRotation.muiName = 'SvgIcon';
 
 export default DeviceScreenLockRotation;

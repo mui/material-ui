@@ -9,5 +9,6 @@ let ActionTouchApp = (props) => (
 );
 ActionTouchApp = pure(ActionTouchApp);
 ActionTouchApp.displayName = 'ActionTouchApp';
+ActionTouchApp.muiName = 'SvgIcon';
 
 export default ActionTouchApp;

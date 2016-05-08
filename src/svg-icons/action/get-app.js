@@ -9,5 +9,6 @@ let ActionGetApp = (props) => (
 );
 ActionGetApp = pure(ActionGetApp);
 ActionGetApp.displayName = 'ActionGetApp';
+ActionGetApp.muiName = 'SvgIcon';
 
 export default ActionGetApp;

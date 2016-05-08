@@ -9,5 +9,6 @@ let DeviceDataUsage = (props) => (
 );
 DeviceDataUsage = pure(DeviceDataUsage);
 DeviceDataUsage.displayName = 'DeviceDataUsage';
+DeviceDataUsage.muiName = 'SvgIcon';
 
 export default DeviceDataUsage;

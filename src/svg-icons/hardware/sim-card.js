@@ -9,5 +9,6 @@ let HardwareSimCard = (props) => (
 );
 HardwareSimCard = pure(HardwareSimCard);
 HardwareSimCard.displayName = 'HardwareSimCard';
+HardwareSimCard.muiName = 'SvgIcon';
 
 export default HardwareSimCard;

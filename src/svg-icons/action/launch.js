@@ -9,5 +9,6 @@ let ActionLaunch = (props) => (
 );
 ActionLaunch = pure(ActionLaunch);
 ActionLaunch.displayName = 'ActionLaunch';
+ActionLaunch.muiName = 'SvgIcon';
 
 export default ActionLaunch;

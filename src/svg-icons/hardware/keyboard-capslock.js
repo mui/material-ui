@@ -9,5 +9,6 @@ let HardwareKeyboardCapslock = (props) => (
 );
 HardwareKeyboardCapslock = pure(HardwareKeyboardCapslock);
 HardwareKeyboardCapslock.displayName = 'HardwareKeyboardCapslock';
+HardwareKeyboardCapslock.muiName = 'SvgIcon';
 
 export default HardwareKeyboardCapslock;

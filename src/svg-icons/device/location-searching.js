@@ -9,5 +9,6 @@ let DeviceLocationSearching = (props) => (
 );
 DeviceLocationSearching = pure(DeviceLocationSearching);
 DeviceLocationSearching.displayName = 'DeviceLocationSearching';
+DeviceLocationSearching.muiName = 'SvgIcon';
 
 export default DeviceLocationSearching;

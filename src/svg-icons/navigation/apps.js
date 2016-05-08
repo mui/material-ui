@@ -9,5 +9,6 @@ let NavigationApps = (props) => (
 );
 NavigationApps = pure(NavigationApps);
 NavigationApps.displayName = 'NavigationApps';
+NavigationApps.muiName = 'SvgIcon';
 
 export default NavigationApps;

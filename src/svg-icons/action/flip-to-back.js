@@ -9,5 +9,6 @@ let ActionFlipToBack = (props) => (
 );
 ActionFlipToBack = pure(ActionFlipToBack);
 ActionFlipToBack.displayName = 'ActionFlipToBack';
+ActionFlipToBack.muiName = 'SvgIcon';
 
 export default ActionFlipToBack;

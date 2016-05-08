@@ -9,5 +9,6 @@ let EditorFormatShapes = (props) => (
 );
 EditorFormatShapes = pure(EditorFormatShapes);
 EditorFormatShapes.displayName = 'EditorFormatShapes';
+EditorFormatShapes.muiName = 'SvgIcon';
 
 export default EditorFormatShapes;

@@ -9,5 +9,6 @@ let HardwareTv = (props) => (
 );
 HardwareTv = pure(HardwareTv);
 HardwareTv.displayName = 'HardwareTv';
+HardwareTv.muiName = 'SvgIcon';
 
 export default HardwareTv;

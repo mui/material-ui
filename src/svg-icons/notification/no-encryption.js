@@ -9,5 +9,6 @@ let NotificationNoEncryption = (props) => (
 );
 NotificationNoEncryption = pure(NotificationNoEncryption);
 NotificationNoEncryption.displayName = 'NotificationNoEncryption';
+NotificationNoEncryption.muiName = 'SvgIcon';
 
 export default NotificationNoEncryption;

@@ -9,5 +9,6 @@ let DeviceDeveloperMode = (props) => (
 );
 DeviceDeveloperMode = pure(DeviceDeveloperMode);
 DeviceDeveloperMode.displayName = 'DeviceDeveloperMode';
+DeviceDeveloperMode.muiName = 'SvgIcon';
 
 export default DeviceDeveloperMode;

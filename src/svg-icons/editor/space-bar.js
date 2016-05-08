@@ -9,5 +9,6 @@ let EditorSpaceBar = (props) => (
 );
 EditorSpaceBar = pure(EditorSpaceBar);
 EditorSpaceBar.displayName = 'EditorSpaceBar';
+EditorSpaceBar.muiName = 'SvgIcon';
 
 export default EditorSpaceBar;

@@ -9,5 +9,6 @@ let ContentFlag = (props) => (
 );
 ContentFlag = pure(ContentFlag);
 ContentFlag.displayName = 'ContentFlag';
+ContentFlag.muiName = 'SvgIcon';
 
 export default ContentFlag;

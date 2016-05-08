@@ -9,5 +9,6 @@ let NotificationFolderSpecial = (props) => (
 );
 NotificationFolderSpecial = pure(NotificationFolderSpecial);
 NotificationFolderSpecial.displayName = 'NotificationFolderSpecial';
+NotificationFolderSpecial.muiName = 'SvgIcon';
 
 export default NotificationFolderSpecial;

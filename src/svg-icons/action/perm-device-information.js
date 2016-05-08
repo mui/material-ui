@@ -9,5 +9,6 @@ let ActionPermDeviceInformation = (props) => (
 );
 ActionPermDeviceInformation = pure(ActionPermDeviceInformation);
 ActionPermDeviceInformation.displayName = 'ActionPermDeviceInformation';
+ActionPermDeviceInformation.muiName = 'SvgIcon';
 
 export default ActionPermDeviceInformation;

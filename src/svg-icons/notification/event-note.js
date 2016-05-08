@@ -9,5 +9,6 @@ let NotificationEventNote = (props) => (
 );
 NotificationEventNote = pure(NotificationEventNote);
 NotificationEventNote.displayName = 'NotificationEventNote';
+NotificationEventNote.muiName = 'SvgIcon';
 
 export default NotificationEventNote;

@@ -9,5 +9,6 @@ let ContentDeleteSweep = (props) => (
 );
 ContentDeleteSweep = pure(ContentDeleteSweep);
 ContentDeleteSweep.displayName = 'ContentDeleteSweep';
+ContentDeleteSweep.muiName = 'SvgIcon';
 
 export default ContentDeleteSweep;

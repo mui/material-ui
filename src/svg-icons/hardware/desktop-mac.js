@@ -9,5 +9,6 @@ let HardwareDesktopMac = (props) => (
 );
 HardwareDesktopMac = pure(HardwareDesktopMac);
 HardwareDesktopMac.displayName = 'HardwareDesktopMac';
+HardwareDesktopMac.muiName = 'SvgIcon';
 
 export default HardwareDesktopMac;

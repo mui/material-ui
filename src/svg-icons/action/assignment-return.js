@@ -9,5 +9,6 @@ let ActionAssignmentReturn = (props) => (
 );
 ActionAssignmentReturn = pure(ActionAssignmentReturn);
 ActionAssignmentReturn.displayName = 'ActionAssignmentReturn';
+ActionAssignmentReturn.muiName = 'SvgIcon';
 
 export default ActionAssignmentReturn;

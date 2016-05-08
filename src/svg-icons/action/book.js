@@ -9,5 +9,6 @@ let ActionBook = (props) => (
 );
 ActionBook = pure(ActionBook);
 ActionBook.displayName = 'ActionBook';
+ActionBook.muiName = 'SvgIcon';
 
 export default ActionBook;

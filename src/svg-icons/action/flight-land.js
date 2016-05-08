@@ -9,5 +9,6 @@ let ActionFlightLand = (props) => (
 );
 ActionFlightLand = pure(ActionFlightLand);
 ActionFlightLand.displayName = 'ActionFlightLand';
+ActionFlightLand.muiName = 'SvgIcon';
 
 export default ActionFlightLand;

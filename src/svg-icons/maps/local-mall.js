@@ -9,5 +9,6 @@ let MapsLocalMall = (props) => (
 );
 MapsLocalMall = pure(MapsLocalMall);
 MapsLocalMall.displayName = 'MapsLocalMall';
+MapsLocalMall.muiName = 'SvgIcon';
 
 export default MapsLocalMall;

@@ -9,5 +9,6 @@ let NotificationSyncProblem = (props) => (
 );
 NotificationSyncProblem = pure(NotificationSyncProblem);
 NotificationSyncProblem.displayName = 'NotificationSyncProblem';
+NotificationSyncProblem.muiName = 'SvgIcon';
 
 export default NotificationSyncProblem;

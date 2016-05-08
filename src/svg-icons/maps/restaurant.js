@@ -9,5 +9,6 @@ let MapsRestaurant = (props) => (
 );
 MapsRestaurant = pure(MapsRestaurant);
 MapsRestaurant.displayName = 'MapsRestaurant';
+MapsRestaurant.muiName = 'SvgIcon';
 
 export default MapsRestaurant;

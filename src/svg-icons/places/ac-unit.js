@@ -9,5 +9,6 @@ let PlacesAcUnit = (props) => (
 );
 PlacesAcUnit = pure(PlacesAcUnit);
 PlacesAcUnit.displayName = 'PlacesAcUnit';
+PlacesAcUnit.muiName = 'SvgIcon';
 
 export default PlacesAcUnit;

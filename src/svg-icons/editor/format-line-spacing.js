@@ -9,5 +9,6 @@ let EditorFormatLineSpacing = (props) => (
 );
 EditorFormatLineSpacing = pure(EditorFormatLineSpacing);
 EditorFormatLineSpacing.displayName = 'EditorFormatLineSpacing';
+EditorFormatLineSpacing.muiName = 'SvgIcon';
 
 export default EditorFormatLineSpacing;

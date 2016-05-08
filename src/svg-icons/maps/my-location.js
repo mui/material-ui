@@ -9,5 +9,6 @@ let MapsMyLocation = (props) => (
 );
 MapsMyLocation = pure(MapsMyLocation);
 MapsMyLocation.displayName = 'MapsMyLocation';
+MapsMyLocation.muiName = 'SvgIcon';
 
 export default MapsMyLocation;

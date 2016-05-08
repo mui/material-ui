@@ -9,5 +9,6 @@ let CommunicationStopScreenShare = (props) => (
 );
 CommunicationStopScreenShare = pure(CommunicationStopScreenShare);
 CommunicationStopScreenShare.displayName = 'CommunicationStopScreenShare';
+CommunicationStopScreenShare.muiName = 'SvgIcon';
 
 export default CommunicationStopScreenShare;

@@ -9,5 +9,6 @@ let EditorFormatColorReset = (props) => (
 );
 EditorFormatColorReset = pure(EditorFormatColorReset);
 EditorFormatColorReset.displayName = 'EditorFormatColorReset';
+EditorFormatColorReset.muiName = 'SvgIcon';
 
 export default EditorFormatColorReset;

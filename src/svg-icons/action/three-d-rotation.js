@@ -9,5 +9,6 @@ let ActionThreeDRotation = (props) => (
 );
 ActionThreeDRotation = pure(ActionThreeDRotation);
 ActionThreeDRotation.displayName = 'ActionThreeDRotation';
+ActionThreeDRotation.muiName = 'SvgIcon';
 
 export default ActionThreeDRotation;

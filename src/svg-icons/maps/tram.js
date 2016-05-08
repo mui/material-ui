@@ -9,5 +9,6 @@ let MapsTram = (props) => (
 );
 MapsTram = pure(MapsTram);
 MapsTram.displayName = 'MapsTram';
+MapsTram.muiName = 'SvgIcon';
 
 export default MapsTram;

@@ -9,5 +9,6 @@ let CommunicationPresentToAll = (props) => (
 );
 CommunicationPresentToAll = pure(CommunicationPresentToAll);
 CommunicationPresentToAll.displayName = 'CommunicationPresentToAll';
+CommunicationPresentToAll.muiName = 'SvgIcon';
 
 export default CommunicationPresentToAll;
