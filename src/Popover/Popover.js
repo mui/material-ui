@@ -112,7 +112,7 @@ class Popover extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleResize = throttle(this.setPlacement, 100);
-    this.handleScroll = throttle(this.setPlacement.bind(this, true), 100);
+    this.handleScroll = throttle(this.setPlacement.bind(this, true), 50);
 
     this.state = {
       open: props.open,
@@ -350,7 +350,7 @@ class Popover extends Component {
     return (
       <div style={{display: 'none'}}>
         <EventListener
-          elementName="window"
+          target="window"
           onScroll={this.handleScroll}
           onResize={this.handleResize}
         />

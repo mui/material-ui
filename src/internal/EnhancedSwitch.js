@@ -373,7 +373,7 @@ class EnhancedSwitch extends Component {
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         <EventListener
-          elementName="window"
+          target="window"
           onKeyDown={this.handleKeyDown}
           onKeyUp={this.handleKeyUp}
         />
