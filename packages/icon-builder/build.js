@@ -20,7 +20,7 @@ const glob = require('glob');
 const mkdirp = require('mkdirp');
 
 const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
-const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/lib/SvgIcon';
+const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/SvgIcon';
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
 
