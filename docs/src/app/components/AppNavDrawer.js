@@ -118,7 +118,7 @@ class AppNavDrawer extends Component {
         docked={docked}
         open={open}
         onRequestChange={onRequestChangeNavDrawer}
-        containerStyle={{zIndex: zIndex.navDrawer - 100}}
+        containerStyle={{zIndex: zIndex.drawer - 100}}
       >
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
