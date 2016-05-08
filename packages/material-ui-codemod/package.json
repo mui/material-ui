@@ -1,7 +1,7 @@
 {
   "name": "material-ui-codemod",
   "author": "Material-UI collaborators",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Codemod scripts for Material-UI",
   "keywords": [
     "react",
