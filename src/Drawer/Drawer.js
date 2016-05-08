@@ -139,7 +139,7 @@ class Drawer extends Component {
 
   getStyles() {
     const muiTheme = this.context.muiTheme;
-    const theme = muiTheme.navDrawer;
+    const theme = muiTheme.drawer;
 
     const x = this.getTranslateMultiplier() * (this.state.open ? 0 : this.getMaxTranslateX());
 
@@ -148,7 +148,7 @@ class Drawer extends Component {
         height: '100%',
         width: this.props.width || theme.width,
         position: 'fixed',
-        zIndex: muiTheme.zIndex.navDrawer,
+        zIndex: muiTheme.zIndex.drawer,
         left: 0,
         top: 0,
         transform: `translate3d(${x}px, 0, 0)`,
@@ -198,7 +198,7 @@ class Drawer extends Component {
   };
 
   getMaxTranslateX() {
-    const width = this.props.width || this.context.muiTheme.navDrawer.width;
+    const width = this.props.width || this.context.muiTheme.drawer.width;
     return width + 10;
   }
 

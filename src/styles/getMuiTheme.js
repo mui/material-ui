@@ -126,7 +126,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     inkBar: {
       backgroundColor: palette.accent1Color,
     },
-    navDrawer: {
+    drawer: {
       width: spacing.desktopKeylineIncrement * 4,
       color: palette.canvasColor,
     },
