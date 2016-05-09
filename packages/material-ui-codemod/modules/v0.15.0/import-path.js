@@ -39,7 +39,7 @@ const pathConversion = {
   'toggle': 'Toggle',
   'snackbar': 'Snackbar',
   'table/table': 'Table/Table',
-  'table/table-header-column': 'Table/TableHeader',
+  'table/table-header-column': 'Table/TableHeaderColumn',
   'table/table-row': 'Table/TableRow',
   'table/table-header': 'Table/TableHeader',
   'table/table-row-column': 'Table/TableRowColumn',
