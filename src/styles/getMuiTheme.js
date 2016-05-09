@@ -261,8 +261,8 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.textColor,
       selectedBackgroundColor: palette.darkBackground,
       selectedTextColor: palette.alternateTextColor, 
-      hoverdBackgroundColor: palette.primary3Color,
-      hoverTextColor: palette.textColor,
+      hoveredBackgroundColor: palette.primary3Color,
+      hoveredTextColor: palette.textColor,
       inkBarColor:palette.darkBackground,
     },
     textField: {

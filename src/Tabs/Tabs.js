@@ -141,11 +141,10 @@ class Tabs extends Component {
   getSelectedIndex(props) {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
-
     this.getTabs().forEach((tab, index) => {
       if (valueLink.value === tab.props.value) {
         selectedIndex = index;
-      }
+      }         
     });
 
     return selectedIndex;
@@ -184,7 +183,6 @@ class Tabs extends Component {
       tabTemplate,
       ...other,
     } = this.props;
-
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const valueLink = this.getValueLink(this.props);
@@ -213,7 +211,8 @@ class Tabs extends Component {
         selected: this.getSelected(tab, index),
         tabIndex: index,
         width: `${width}%`,
-        onTouchTap: this.handleTabTouchTap,
+        onTouchTap: this.handleTabTouchTap,            
+        isLastTab: index === (this.getTabCount() -1), 
       });
     });
 
