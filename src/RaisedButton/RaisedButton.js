@@ -78,7 +78,7 @@ function getStyles(props, context, state) {
     label: {
       position: 'relative',
       opacity: 1,
-      fontSize: '14px',
+      fontSize: raisedButton.fontSize,
       letterSpacing: 0,
       textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
       fontWeight: raisedButton.fontWeight,
