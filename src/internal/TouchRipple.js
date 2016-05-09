@@ -3,17 +3,9 @@ import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import Dom from '../utils/dom';
 import CircleRipple from './CircleRipple';
-import update from 'react-addons-update';
 
-function push(array, obj) {
-  const newObj = Array.isArray(obj) ? obj : [obj];
-  return update(array, {$push: newObj});
-}
-
-function shift(array) {
-  // Remove the first element in the array using React immutability helpers
-  return update(array, {$splice: [[0, 1]]});
-}
+// Remove the first element of the array
+const shift = ([, ...newArray]) => newArray;
 
 class TouchRipple extends Component {
   static propTypes = {
@@ -61,7 +53,7 @@ class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     // Add a ripple to the ripples array
-    ripples = push(ripples, (
+    ripples = [...ripples, (
       <CircleRipple
         key={this.state.nextKey}
         style={!this.props.centerRipple ? this.getRippleStyle(event) : {}}
@@ -69,7 +61,7 @@ class TouchRipple extends Component {
         opacity={this.props.opacity}
         touchGenerated={isRippleTouchGenerated}
       />
-    ));
+    )];
 
     this.ignoreNextMouseDown = isRippleTouchGenerated;
     this.setState({
@@ -140,7 +132,7 @@ class TouchRipple extends Component {
       const abortedRipple = React.cloneElement(ripple, {aborted: true});
       // Remove the old ripple and replace it with the new updated one
       currentRipples = shift(currentRipples);
-      currentRipples = push(currentRipples, abortedRipple);
+      currentRipples = [...currentRipples, abortedRipple];
       this.setState({ripples: currentRipples}, () => {
         // Call end after we've set the ripple to abort otherwise the setState
         // in end() merges with this and the ripple abort fails
