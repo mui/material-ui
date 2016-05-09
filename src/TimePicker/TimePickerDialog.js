@@ -10,7 +10,7 @@ class TimePickerDialog extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
-    container: PropTypes.oneOf(['dialog', 'inline']),
+    container: PropTypes.oneOf(['dialog', 'inline']).isRequired,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
     okLabel: PropTypes.node,
@@ -101,7 +101,7 @@ class TimePickerDialog extends Component {
     };
     const onClockChangeMinutes = autoOk === true ? this.handleTouchTapOK : undefined;
     const open = this.state.open;
-    const Container = (container === 'inline' ? Popover : Dialog);
+    const Container = container === 'inline' ? Popover : Dialog;
 
     return (
       <div {...other} ref="root">

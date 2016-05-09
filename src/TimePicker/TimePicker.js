@@ -25,7 +25,7 @@ class TimePicker extends Component {
      * `dialog` (default) displays the TimePicker as a dialog with a modal.
      * `inline` displays the TimePicker below the input field (similar to auto complete).
      */
-    container: PropTypes.oneOf(['dialog', 'inline']),
+    container: PropTypes.oneOf(['dialog', 'inline']).isRequired,
     /**
      * The initial time value of the TimePicker.
      */
