@@ -23,7 +23,7 @@ class TimePickerActionButtons extends Component {
       },
       flatButtons: {
         fontsize: 14,
-        margin: '4px 8px 8px 0px',
+        margin: '4px 0px 8px 0px',
         maxHeight: 36,
         minWidth: 64,
         padding: 0,

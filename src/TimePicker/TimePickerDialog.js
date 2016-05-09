@@ -5,7 +5,6 @@ import Clock from './Clock';
 import Dialog from '../Dialog';
 import Popover from '../Popover';
 import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
-import TimePickerActionButtons from './TimePickerActionButtons';
 
 class TimePickerDialog extends Component {
   static propTypes = {
@@ -126,15 +125,13 @@ class TimePickerDialog extends Component {
               ref="clock"
               format={format}
               initialTime={initialTime}
+              cancelLabel={cancelLabel}
+              okLabel={okLabel}
               onChangeMinutes={onClockChangeMinutes}
+              onTouchTapCancel={this.handleTouchTapCancel}
+              onTouchTapOk={this.handleTouchTapOK}
             />
           }
-          <TimePickerActionButtons
-            cancelLabel={cancelLabel}
-            okLabel={okLabel}
-            onTouchTapCancel={this.handleTouchTapCancel}
-            onTouchTapOk={this.handleTouchTapOK}
-          />
         </Container>
       </div>
     );
