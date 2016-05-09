@@ -41,11 +41,13 @@ describe('DropDownMenu', () => {
 
     expect(menuItems.length).to.be.ok;
 
+    // find the DOM node for the second option: Every Night
     const menuItemDomElement = ReactDOM.findDOMNode(menuItems[1]);
 
     expect(menuItemDomElement).to.be.ok;
 
-    TestUtils.Simulate.click(divWithSelectedText);
+    // Simulate a click which should trigger change
+    TestUtils.Simulate.click(menuItemDomElement);
 
     expect(onDropDownValueChange.calledOnce);
     // index
