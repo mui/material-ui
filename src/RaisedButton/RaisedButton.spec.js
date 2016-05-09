@@ -91,4 +91,16 @@ describe('<RaisedButton />', () => {
       );
     });
   });
+
+  it('inherits fontSize from theme', () => {
+    const wrapper = shallowWithContext(
+      <RaisedButton label="test" />
+    );
+
+    assert.strictEqual(wrapper.contains('test'), true);
+    assert.equal(
+      wrapper.find('[children="test"]').prop('style').fontSize,
+      muiTheme.raisedButton.fontSize
+    );
+  });
 });
