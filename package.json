@@ -48,7 +48,6 @@
     "lodash.throttle": "^4.0.1",
     "react-addons-create-fragment": "^15.0.1",
     "react-addons-transition-group": "^15.0.1",
-    "react-addons-update": "^15.0.1",
     "react-event-listener": "^0.2.1",
     "recompose": "^0.17.0",
     "simple-assign": "^0.1.0",
