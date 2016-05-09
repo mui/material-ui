@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
-import {fade, darken} from '../utils/colorManipulator';
+import {fade, darkenAbs} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
@@ -31,10 +31,10 @@ function getStyles(props, context, state) {
     style,
   } = props;
 
-  let backgroundColor = 'linear-gradient(' + raisedButton.color + ' 0%, ' + darken(raisedButton.color, 0.2) + ' 100%)';
+  let backgroundColor = 'linear-gradient(' + raisedButton.color + ' 0%, ' + darkenAbs(raisedButton.color, 0.11) + ' 100%)';
 
   if (state.hovered) {
-    backgroundColor = (state.touched || state.clicked) ? darken(raisedButton.color, 0.09) : raisedButton.color;
+    backgroundColor = (state.touched || state.clicked) ? darkenAbs(raisedButton.color, 0.09) : raisedButton.color;
   }
 
   let labelColor = raisedButton.textColor;
@@ -45,19 +45,19 @@ function getStyles(props, context, state) {
     borderColor = disabledBackgroundColor || raisedButton.disabledColor;
     labelColor = disabledLabelColor || raisedButton.disabledTextColor;
   } else if (primary) {
-    backgroundColor = 'linear-gradient(' + raisedButton.primaryColor + ' 0%, ' + darken(raisedButton.primaryColor, 0.2) + ' 100%)';
+    backgroundColor = 'linear-gradient(to bottom, ' + raisedButton.primaryColor + ' 0%, ' + darkenAbs(raisedButton.primaryColor, 0.11) + ' 100%)';
 
     if (state.hovered) {
-      backgroundColor = (state.touched || state.clicked) ? darken(raisedButton.primaryColor, 0.09) : raisedButton.primaryColor;
+      backgroundColor = (state.touched || state.clicked) ? darkenAbs(raisedButton.primaryColor, 0.09) : raisedButton.primaryColor;
     }
 
     borderColor = raisedButton.primaryColor;
     labelColor = raisedButton.primaryTextColor;
   } else if (secondary) {
-    backgroundColor = 'linear-gradient(' + raisedButton.secondaryColor + ' 0%, ' + darken(raisedButton.secondaryColor, 0.2) + ' 100%)';
+    backgroundColor = 'linear-gradient(' + raisedButton.secondaryColor + ' 0%, ' + darkenAbs(raisedButton.secondaryColor, 0.11) + ' 100%)';
 
     if (state.hovered) {
-      backgroundColor = (state.touched || state.clicked) ? darken(raisedButton.secondaryColor, 0.09) : raisedButton.secondaryColor;
+      backgroundColor = (state.touched || state.clicked) ? darkenAbs(raisedButton.secondaryColor, 0.09) : raisedButton.secondaryColor;
     }
 
     borderColor = raisedButton.secondaryColor;
@@ -86,9 +86,9 @@ function getStyles(props, context, state) {
       width: '100%',
       padding: 0,
       borderRadius: borderRadius,
-      border: "1px solid " + darken(borderColor, 0.2),
+      border: "1px solid " + darkenAbs(borderColor, 0.2),
       background: backgroundColor,
-      boxShadow: state.touched || state.clicked ? 'inset 0 3px 3px ' + darken(borderColor, 0.25) : 'none',
+      boxShadow: state.touched || state.clicked ? 'inset 0 3px 3px ' + darkenAbs(borderColor, 0.25) : 'none',
       // That's the default value for a button but not a link
       textAlign: 'center',
     },

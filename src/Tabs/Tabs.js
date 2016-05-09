@@ -13,6 +13,10 @@ function getStyles(props, context) {
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
     },
+    
+    inkBar : {
+      color: tabs.inkBarColor,
+    }
   };
 }
 
@@ -213,14 +217,16 @@ class Tabs extends Component {
       });
     });
 
-    const inkBar = this.state.selectedIndex !== -1 ? (
-      <InkBar
-        left={`${width * this.state.selectedIndex}%`}
-        width={`${width}%`}
+    const inkBar = 
+      <InkBar     
+        color={styles.inkBar.color}   
+        left={'0%'}
+        width={`100%`}
         style={inkBarStyle}
       />
-    ) : null;
+    ;
 
+      
     const inkBarContainerWidth = tabItemContainerStyle ?
       tabItemContainerStyle.width : '100%';
 

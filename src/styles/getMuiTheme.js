@@ -257,9 +257,13 @@ export default function getMuiTheme(muiTheme, ...more) {
       spacing: 24,
     },
     tabs: {
-      backgroundColor: palette.primary1Color,
-      textColor: fade(palette.alternateTextColor, 0.7),
-      selectedTextColor: palette.alternateTextColor,
+      backgroundColor: palette.lightBackground,
+      textColor: palette.textColor,
+      selectedBackgroundColor: palette.darkBackground,
+      selectedTextColor: palette.alternateTextColor, 
+      hoverdBackgroundColor: palette.primary3Color,
+      hoverTextColor: palette.textColor,
+      inkBarColor:palette.darkBackground,
     },
     textField: {
       textColor: palette.textColor,

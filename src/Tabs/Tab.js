@@ -7,11 +7,15 @@ function getStyles(props, context) {
   return {
     root: {
       color: props.selected ? tabs.selectedTextColor : tabs.textColor,
+      backgroundColor: props.selected ? tabs.selectedBackgroundColor : tabs.backgroundColor,
       fontWeight: 500,
       fontSize: 14,
       width: props.width,
       textTransform: 'uppercase',
       padding: 0,
+      border: '1px solid #cccccc',
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
     },
     button: {
       display: 'flex',
@@ -127,6 +131,9 @@ class Tab extends Component {
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
         touchRippleOpacity={rippleOpacity}
+        disableFocusRipple= {true}
+        disableKeyboardFocus= {true}
+        disableTouchRipple= {true}
         onTouchTap={this.handleTouchTap}
       >
         <div style={styles.button} >
