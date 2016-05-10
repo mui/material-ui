@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import StepButton from './StepButton';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -58,8 +58,8 @@ describe('<StepButton />', () => {
 
   describe('event handlers', () => {
     describe('handleMouseEnter/Leave', () => {
-      const handleMouseEnter = sinon.spy();
-      const handleMouseLeave = sinon.spy();
+      const handleMouseEnter = spy();
+      const handleMouseLeave = spy();
       const wrapper = themedShallow(
         <StepButton
           onMouseEnter={handleMouseEnter}
@@ -88,8 +88,8 @@ describe('<StepButton />', () => {
     });
 
     describe('handleTouchStart', () => {
-      const handleTouchStart = sinon.spy();
-      const handleMouseEnter = sinon.spy();
+      const handleTouchStart = spy();
+      const handleMouseEnter = spy();
       const wrapper = themedShallow(
         <StepButton
           onTouchStart={handleTouchStart}
@@ -114,9 +114,9 @@ describe('<StepButton />', () => {
     });
 
     it('should bubble callbacks used internally', () => {
-      const handleMouseEnter = sinon.spy();
-      const handleMouseLeave = sinon.spy();
-      const handleTouchStart = sinon.spy();
+      const handleMouseEnter = spy();
+      const handleMouseLeave = spy();
+      const handleTouchStart = spy();
       const wrapper = themedShallow(
         <StepButton
           onMouseEnter={handleMouseEnter}

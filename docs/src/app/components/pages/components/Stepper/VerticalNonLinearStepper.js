@@ -15,7 +15,6 @@ class VerticalNonLinear extends React.Component {
 
   state = {
     stepIndex: 0,
-    test: true,
   };
 
   handleNext = () => {
@@ -84,8 +83,6 @@ class VerticalNonLinear extends React.Component {
             </StepButton>
             <StepContent>
               <p>An ad group contains one or more ads which target a shared set of keywords.</p>
-              {this.state.test && <div>woof</div>}
-              <div><button onClick={() => this.setState({test: !this.state.test})}>meow</button></div>
               {this.renderStepActions(1)}
             </StepContent>
           </Step>

@@ -41,7 +41,6 @@ class Stepper extends Component {
 
   static defaultProps = {
     orientation: 'horizontal',
-    activeStep: 0,
     linear: true,
   };
 
