@@ -23,7 +23,7 @@ function getStyles(props, context, state) {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: (props.label && props.icon) ? 74 : 50,
+      height: (props.label && props.icon) ? 74 : (props.icon && props.tabIndex === 0) ?  54 : 50,
     },
   };
 }
