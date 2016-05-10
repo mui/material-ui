@@ -17,7 +17,7 @@ function getStyles(props, context, state) {
       position: 'fixed',
       zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('450ms', ['transform', 'opacity']),
-      maxHeight: '100%',
+      maxHeight: '100%',  
     },
   };
 }
@@ -69,6 +69,8 @@ class PopoverAnimationVertical extends Component {
 
     return (
       <Paper
+        circle= {false}
+        rounded={false}
         style={Object.assign(styles.root, style)}
         zDepth={zDepth}
         className={className}

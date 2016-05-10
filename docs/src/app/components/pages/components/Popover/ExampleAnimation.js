@@ -45,7 +45,7 @@ export default class PopoverExampleAnimation extends React.Component {
           animation={PopoverAnimationVertical}
         >
           <Menu>
-            <MenuItem primaryText="Refresh" />
+            <MenuItem primaryText="Refreshhhhh" />
             <MenuItem primaryText="Help &amp; feedback" />
             <MenuItem primaryText="Settings" />
             <MenuItem primaryText="Sign out" />

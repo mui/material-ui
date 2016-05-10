@@ -158,7 +158,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     paper: {
       color: palette.textColor,
-      backgroundColor: palette.canvasColor,
+      backgroundColor: palette.lightBackground,
       zDepthShadows: [
         [1, 6, 0.12, 1, 4, 0.12],
         [3, 10, 0.16, 3, 10, 0.23],

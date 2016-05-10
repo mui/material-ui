@@ -84,9 +84,10 @@ class PopoverDefaultAnimation extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-
     return (
       <Paper
+        circle= {false}
+        rounded={false}
         style={Object.assign(styles.root, style)}
         zDepth={zDepth}
         className={className}
