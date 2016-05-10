@@ -5,6 +5,7 @@ import {
   white, darkBlack, fullBlack,
   scThemeBackground,
   scThemePrimaryDark,
+  scThemeMainDefault,
   scThemeBasicXLight,
   scThemeBasicXXXLight,
   scThemeBasicXXDark,
@@ -26,7 +27,7 @@ export default {
   fontFamily: 'Open Sans, Arial, sans-serif',
   palette: {
     primary1Color: scThemePrimaryDark,
-    primary2Color: scThemePrimaryDark,
+    primary2Color: scThemeMainDefault,
     primary3Color: scThemeBasicXLight,
     accent1Color: pinkA200,
     accent2Color: grey100,
