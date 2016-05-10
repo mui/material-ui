@@ -1,3 +1,7 @@
+/**
+ * NB: If you update this file, please also update `docs/src/app/customization/Themes.js`
+ */
+
 import {
   cyan500, cyan700,
   pinkA200,
@@ -12,7 +16,6 @@ import spacing from '../spacing';
  *  have all theme variables needed for every component. Variables not defined
  *  in a custom theme will default to these values.
  */
-
 export default {
   spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
