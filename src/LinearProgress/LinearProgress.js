@@ -20,13 +20,14 @@ function getStyles(props, context) {
   const styles = {
     root: {
       position: 'relative',
-      height: 4,
+      height: 18,
       display: 'block',
       width: '100%',
-      backgroundColor: palette.primary3Color,
-      borderRadius: 2,
+      backgroundColor: 'red',//palette.primary3Color, //'#969696',
+      borderRadius: 6,
       margin: 0,
       overflow: 'hidden',
+      background: 'linear-gradient(red, yellow)'
     },
     bar: {
       height: '100%',
@@ -55,6 +56,9 @@ function getStyles(props, context) {
     };
   } else {
     styles.bar.backgroundColor = props.color || palette.primary1Color;
+    
+    styles.bar.background ='linear-gradient(pink, purple)';
+    
     styles.bar.transition = transitions.create('width', '.3s', null, 'linear');
     styles.bar.width = `${getRelativeValue(value, min, max)}%`;
   }
@@ -155,11 +159,16 @@ class LinearProgress extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
+    const valueStyle = {
+        textAlign: 'center',
+        lineHeight: '18px'
+    }
 
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         <div style={prepareStyles(styles.bar)}>
           <div ref="bar1" style={prepareStyles(styles.barFragment1)}></div>
+          <div style={valueStyle}>{Math.round(this.props.value)}%</div>
           <div ref="bar2" style={prepareStyles(styles.barFragment2)}></div>
         </div>
       </div>
