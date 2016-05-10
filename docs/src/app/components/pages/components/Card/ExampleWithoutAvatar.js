@@ -6,7 +6,6 @@ const CardExampleWithoutAvatar = () => (
   <Card>
     <CardHeader
       title="Without Avatar"
-      subtitle="Subtitle"
       actAsExpander={true}
       showExpandableButton={true}
     />

@@ -6,11 +6,13 @@ function getStyles(props, context) {
 
   return {
     root: {
-      padding: 16,
+      padding: 11,
       fontWeight: card.fontWeight,
       boxSizing: 'border-box',
       position: 'relative',
       whiteSpace: 'nowrap',
+      backgroundColor: card.headerColor,
+      borderLeft: '5px solid ' + card.headerHighlightColor
     },
     text: {
       display: 'inline-block',
@@ -25,6 +27,7 @@ function getStyles(props, context) {
       color: props.titleColor || card.titleColor,
       display: 'block',
       fontSize: 15,
+      fontWeight: 'bold'
     },
     subtitle: {
       color: props.subtitleColor || card.subtitleColor,

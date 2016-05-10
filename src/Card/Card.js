@@ -84,6 +84,25 @@ class Card extends Component {
   render() {
     let lastElement;
     const expanded = this.state.expanded;
+    
+    // If the last element is text or a title we should add
+    // 8px padding to the bottom of the card
+    const addBottomPadding = (lastElement && (lastElement.type.muiName === 'CardText' ||
+      lastElement.type.muiName === 'CardTitle'));
+    const {
+      style,
+      containerStyle,
+      ...other,
+    } = this.props;
+
+    const mergedStyles = Object.assign({
+      zIndex: 0,
+    }, style);
+    const containerMergedStyles = Object.assign({
+      paddingBottom: addBottomPadding ? 8 : 0
+    }, containerStyle);
+
+    
     const newChildren = React.Children.map(this.props.children, (currentChild) => {
       let doClone = false;
       let newChild = undefined;
@@ -109,25 +128,8 @@ class Card extends Component {
       return element;
     }, this);
 
-    // If the last element is text or a title we should add
-    // 8px padding to the bottom of the card
-    const addBottomPadding = (lastElement && (lastElement.type.muiName === 'CardText' ||
-      lastElement.type.muiName === 'CardTitle'));
-    const {
-      style,
-      containerStyle,
-      ...other,
-    } = this.props;
-
-    const mergedStyles = Object.assign({
-      zIndex: 1,
-    }, style);
-    const containerMergedStyles = Object.assign({
-      paddingBottom: addBottomPadding ? 8 : 0,
-    }, containerStyle);
-
     return (
-      <Paper {...other} style={mergedStyles}>
+      <Paper {...other} style={mergedStyles} rounded={false}>
         <div style={containerMergedStyles}>
           {newChildren}
         </div>

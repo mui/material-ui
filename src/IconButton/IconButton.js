@@ -132,7 +132,7 @@ class IconButton extends Component {
 
   static defaultProps = {
     disabled: false,
-    disableTouchRipple: false,
+    disableTouchRipple: true,
     iconStyle: {},
     tooltipPosition: 'bottom-center',
     touch: false,
