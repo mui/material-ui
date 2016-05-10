@@ -1,8 +1,14 @@
 /* eslint-env mocha */
+import React from 'react';
 import {assert} from 'chai';
 import AutoComplete from './AutoComplete';
+import {shallow} from 'enzyme';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<AutoComplete />', () => {
+  const muiTheme = getMuiTheme();
+  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+
   it('search using fuzzy filter', () => {
     assert.strictEqual(AutoComplete.fuzzyFilter('ea', 'Peach'), true, 'should match Peach with ea');
     assert.strictEqual(AutoComplete.fuzzyFilter('pah', 'Peach'), true, 'should match Peach with pah');
@@ -29,5 +35,23 @@ describe('<AutoComplete />', () => {
 
     search_result = AutoComplete.fuzzyFilter('off bit by', 'off by a bit');
     assert.strictEqual(search_result, false, 'should not match pattern when can not find letters in order ');
+  });
+
+  /**
+   * This test ensures that <AutoComplete /> doesn't pass down filter property to <TextField />,
+   * otherwise <TextField /> will render input as <input filter="function (...) {...}" ... />,
+   * which will have different behaviors in different environments, producing indent conflicts and
+   * breaking server rendering.
+   * Read more: https://github.com/callemall/material-ui/issues/4195
+   */
+  it('should not pass filter property to children', () => {
+    const wrapper = shallowWithContext(
+      <AutoComplete dataSource={[]} />
+    );
+
+    assert.strictEqual(
+      wrapper.find('TextField').prop('filter'),
+      undefined,
+      'should not pass filter property to children');
   });
 });
