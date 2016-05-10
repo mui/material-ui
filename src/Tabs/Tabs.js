@@ -13,6 +13,10 @@ function getStyles(props, context) {
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
     },
+    
+    inkBar : {
+      color: tabs.inkBarColor,
+    }
   };
 }
 
@@ -137,11 +141,10 @@ class Tabs extends Component {
   getSelectedIndex(props) {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
-
     this.getTabs().forEach((tab, index) => {
       if (valueLink.value === tab.props.value) {
         selectedIndex = index;
-      }
+      }         
     });
 
     return selectedIndex;
@@ -180,7 +183,6 @@ class Tabs extends Component {
       tabTemplate,
       ...other,
     } = this.props;
-
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const valueLink = this.getValueLink(this.props);
@@ -209,18 +211,21 @@ class Tabs extends Component {
         selected: this.getSelected(tab, index),
         tabIndex: index,
         width: `${width}%`,
-        onTouchTap: this.handleTabTouchTap,
+        onTouchTap: this.handleTabTouchTap,            
+        isLastTab: index === (this.getTabCount() -1), 
       });
     });
 
-    const inkBar = this.state.selectedIndex !== -1 ? (
-      <InkBar
-        left={`${width * this.state.selectedIndex}%`}
-        width={`${width}%`}
+    const inkBar = 
+      <InkBar     
+        color={styles.inkBar.color}   
+        left={'0%'}
+        width={`100%`}
         style={inkBarStyle}
       />
-    ) : null;
+    ;
 
+      
     const inkBarContainerWidth = tabItemContainerStyle ?
       tabItemContainerStyle.width : '100%';
 

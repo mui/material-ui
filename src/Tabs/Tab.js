@@ -1,24 +1,29 @@
 import React, {Component, PropTypes} from 'react';
 import EnhancedButton from '../internal/EnhancedButton';
 
-function getStyles(props, context) {
+function getStyles(props, context, state) {
   const {tabs} = context.muiTheme;
 
   return {
     root: {
       color: props.selected ? tabs.selectedTextColor : tabs.textColor,
+      backgroundColor: props.selected ? tabs.selectedBackgroundColor : state.hovered ? tabs.hoveredBackgroundColor : tabs.backgroundColor,
       fontWeight: 500,
-      fontSize: 14,
+      fontSize: 12,
       width: props.width,
       textTransform: 'uppercase',
       padding: 0,
+      border: '1px solid ' + (props.selected ?  tabs.selectedBackgroundColor : '#cccccc'),     
+      borderBottomWidth: 0,      
+      borderRightWidth: props.selected ? 1 : props.isLastTab ? 1 : 0,
+      height: (props.label && props.icon) ? 74 : 50,
     },
     button: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: (props.label && props.icon) ? 72 : 48,
+      height: (props.label && props.icon) ? 74 : (props.icon && props.tabIndex === 0) ?  54 : 50,
     },
   };
 }
@@ -71,12 +76,30 @@ class Tab extends Component {
      * This property is overriden by the Tabs component.
      */
     width: PropTypes.string,
+    /**
+     * @ignore
+     * Defines if the current tab is teh last oned or not.
+     * The Tabs component is responsible for setting this property.
+     */
+    isLastTab: PropTypes.bool,
+  };
+
+  state = {
+    hovered: false,
   };
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
   };
 
+  handleMouseLeave = (event) => {
+    this.setState({hovered: false,});       
+  };
+
+  handleMouseEnter = (event) => {    
+    this.setState({ hovered: true });    
+  };
+  
   handleTouchTap = (event) => {
     if (this.props.onTouchTap) {
       this.props.onTouchTap(this.props.value, event, this);
@@ -98,7 +121,7 @@ class Tab extends Component {
       ...other,
     } = this.props;
 
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {
@@ -118,16 +141,25 @@ class Tab extends Component {
 
     const rippleOpacity = 0.3;
     const rippleColor = this.context.muiTheme.tabs.selectedTextColor;
+    const buttonEventHandlers = {     
+      onMouseLeave: this.handleMouseLeave,
+      onMouseEnter: this.handleMouseEnter,
+      onTouchTap: this.handleTouchTap,
+      onTouchEnd: this.handleTouchEnd
+    };
 
     return (
       <EnhancedButton
         {...other}
+        {...buttonEventHandlers}
         style={Object.assign(styles.root, style)}
         focusRippleColor={rippleColor}
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
         touchRippleOpacity={rippleOpacity}
-        onTouchTap={this.handleTouchTap}
+        disableFocusRipple= {true}
+        disableKeyboardFocus= {true}
+        disableTouchRipple= {true}
       >
         <div style={styles.button} >
           {iconElement}

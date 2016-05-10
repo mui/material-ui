@@ -67,9 +67,9 @@ export function convertHexToRGB(color) {
   }
 
   const values = {
-    r:	parseInt(color.substr(1, 2), 16),
-    g:	parseInt(color.substr(3, 2), 16),
-    b:	parseInt(color.substr(5, 2), 16),
+    r: parseInt(color.substr(1, 2), 16),
+    g: parseInt(color.substr(3, 2), 16),
+    b: parseInt(color.substr(5, 2), 16),
   };
 
   return `rgb(${values.r}, ${values.g}, ${values.b})`;
@@ -93,7 +93,7 @@ export function decomposeColor(color) {
   let values = color.substring(marker + 1, color.length - 1).split(',');
   values = values.map((value) => parseFloat(value));
 
-  return {type: type, values: values};
+  return { type: type, values: values };
 }
 
 /**
@@ -210,5 +210,36 @@ export function lighten(color, coefficient) {
     }
   }
 
+  return convertColorToString(color);
+}
+
+export function lightenAbs(color, coefficient) {
+
+  color = decomposeColor(color);
+  coefficient = clamp(coefficient, 0, 1);
+
+  if (color.type.indexOf('hsl') > -1) {
+    color.values[2] = clamp(color.values[2] + (100 * coefficient), 0, 100);
+  } else if (color.type.indexOf('rgb') > -1) {
+    for (let i = 0; i < 3; i++) {
+      color.values[i] = clamp(color.values[i] + (255 * coefficient), 0, 255);
+    }
+  }
+
+  return convertColorToString(color);
+}
+
+export function darkenAbs(color, coefficient) {
+
+  color = decomposeColor(color);
+  coefficient = clamp(coefficient, 0, 1);
+
+  if (color.type.indexOf('hsl') > -1) {
+    color.values[2] = clamp(color.values[2] - (100 * coefficient), 0, 100);
+  } else if (color.type.indexOf('rgb') > -1) {
+    for (let i = 0; i < 3; i++) {
+      color.values[i] = clamp(color.values[i] - (255 * coefficient), 0, 255);
+    }
+  }
   return convertColorToString(color);
 }
