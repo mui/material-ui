@@ -1,3 +1,33 @@
+
+### Predefined themes
+
+We ship two base themes with Material-UI: light and dark. They are located
+under [`material-ui/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
+Custom themes may be defined similarly.
+The [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js)
+is the default so you will not need to do anything to use it other than using `MuiThemeProvider` as described in [Usage](/#/get-started/usage).
+For the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/darkBaseTheme.js) you can use this snippet:
+
+```js
+import React from 'react';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+
+class Main extends React.Component {
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <AppBar title="My AppBar" />
+      </MuiThemeProvider>
+    );
+  }
+}
+
+export default Main;
+```
+
 ### How it works
 
 To achieve the level of customizability that you can see in the example above,
@@ -5,7 +35,7 @@ Material-UI is using a single JS object called `muiTheme`.
 By default, this `muiTheme` object is based on the
 [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js).
 
-This object contains the following keys:
+The `muiTheme` object contains the following keys:
  - `spacing`: can be used to change the spacing of components.
  - `fontFamily` can be used to change the default font family.
  - `palette` can be used to change the color of components.
@@ -18,7 +48,8 @@ This object contains the following keys:
 
 ### Customizing the theme
 
-To customize the `muiTheme` you must use `getMuiTheme()` to compute a valid `muiTheme`.
+To customize the `muiTheme` you must use `getMuiTheme()` to compute a valid `muiTheme` object,
+and providing an object containing the keys you wish to customize.
 Then, you can use `<MuiThemeProvider />` to provide it down the tree to components.
 
 ```js
@@ -43,8 +74,7 @@ const muiTheme = getMuiTheme({
 class Main extends React.Component {
   render() {
     // MuiThemeProvider takes the theme as a property and passed it down the hierarchy
-    // using React's context feature. If no muiTheme is on the context the default
-    // lazily calculated theme is used instead.
+    // using React's context feature.
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <AppBar title="My AppBar" />
@@ -62,69 +92,10 @@ to use props at every level.
 In fact, context is very convenient for concepts like theming, which are usually
 implemented in a hierarchical manner.
 
-### Predefined themes
-
-We ship two base themes with Material-UI: light and dark. They are located
-under [`material-ui/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
-Custom themes may be defined similarly.
-The [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js)
-is the default so you will not need to do anything to use it.
-But for the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/darkBaseTheme.js) you can use this snippet:
-
-```js
-import React from 'react';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
-
-const darkMuiTheme = getMuiTheme(darkBaseTheme);
-
-class Main extends React.Component {
-  render() {
-    return (
-      <MuiThemeProvider muiTheme={darkMuiTheme}>
-        <AppBar title="My AppBar" />
-      </MuiThemeProvider>
-    );
-  }
-}
-
-export default Main;
-```
-
-### Using the theme
-
-In case you wish to access the theme object yourself you can use the
-`muiThemeable` decorator:
-
-```js
-import React from 'react';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-
-class DeepDownTheTree extends React.Component {
-  render() {
-    return (
-      <span style={{color: this.props.muiTheme.palette.textColor}}>
-        Hello World!
-      </span>
-    );
-  }
-}
-
-DeepDownTheTree.propTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
-
-export default muiThemeable()(DeepDownTheTree);
-```
-
-`muiThemeable` gets the theme from context and passes it down as a property.
-
 ### Using context
 
-The `MuiThemeProvider` component and `muiThemeable` decorator simply use context.
-If you prefer using context instead of these you can follow these pattern:
+The `MuiThemeProvider` component simply adds the `muTheme` object to context.
+If you prefer using context directly instead, you can follow this pattern:
 
 Pass theme down the context:
 
@@ -193,27 +164,16 @@ The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js
 import {
-cyan500, cyan700,
-grey100, grey300, grey400, grey500,
-pinkA200,
-white, darkBlack, fullBlack,
-} from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+  cyan500, cyan700,
+  pinkA200,
+  grey100, grey300, grey400, grey500,
+  white, darkBlack, fullBlack,
+} from '../colors';
+import {fade} from '../../utils/colorManipulator';
+import spacing from '../spacing';
 
-const lightBaseTheme = {
-  spacing: {
-    iconSize: 24,
-    desktopGutter: 24,
-    desktopGutterMore: 32,
-    desktopGutterLess: 16,
-    desktopGutterMini: 8,
-    desktopKeylineIncrement: 64,
-    desktopDropDownMenuItemHeight: 32,
-    desktopDropDownMenuFontSize: 15,
-    desktopDrawerMenuItemHeight: 48,
-    desktopSubheaderHeight: 48,
-    desktopToolbarHeight: 56,
-  },
+export default {
+  spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: cyan500,
@@ -239,10 +199,3 @@ const lightBaseTheme = {
 This component takes a theme as a property and passes it down with context.
 This should preferably be at the root of your component tree. The first
 example demonstrates it's usage.
-
-#### `muiThemeable() => ThemeWrapper(Component) => WrappedComponent`
-
-This function creates a wrapper function that you can call providing a component.
-The resulting component from calling `ThemeWrapper` is a higher order component (HOC)
-that retrieves the theme from the context and passes it down as a property to the wrapped
-component. The second example demonstrates it's usage.
