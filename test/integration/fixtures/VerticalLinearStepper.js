@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {
   Step,
   Stepper,
@@ -8,9 +8,9 @@ import {
 import RaisedButton from 'src/RaisedButton';
 import FlatButton from 'src/FlatButton';
 
-class VerticalLinearStepper extends React.Component {
+class VerticalLinearStepper extends Component {
 
-  static contextTypes = {muiTheme: React.PropTypes.object.isRequired};
+  static contextTypes = {muiTheme: PropTypes.object.isRequired};
 
   state = {
     finished: false,
@@ -60,8 +60,8 @@ class VerticalLinearStepper extends React.Component {
       <Stepper activeStep={stepIndex} orientation="vertical" style={{width: 380, margin: 'auto'}}>
         <Step>
           <StepLabel>Select campaign settings</StepLabel>
-          <StepContent>
-            <p>
+          <StepContent transitionDuration={10}>
+            <p testContent={0}>
               For each ad campaign that you create, you can control how much
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.
@@ -71,15 +71,15 @@ class VerticalLinearStepper extends React.Component {
         </Step>
         <Step>
           <StepLabel>Create an ad group</StepLabel>
-          <StepContent>
-            <p>An ad group contains one or more ads which target a shared set of keywords.</p>
+          <StepContent transitionDuration={10}>
+            <p testContent={1}>An ad group contains one or more ads which target a shared set of keywords.</p>
             {this.renderStepActions(1)}
           </StepContent>
         </Step>
         <Step>
           <StepLabel>Create an ad</StepLabel>
-          <StepContent>
-            <p>
+          <StepContent transitionDuration={10}>
+            <p testContent={2}>
               Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if

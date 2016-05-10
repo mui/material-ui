@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
 import {assert} from 'chai';
 import getMuiTheme from 'src/styles/getMuiTheme';
@@ -28,26 +27,34 @@ describe('Vertical Stepper', () => {
       });
 
       it('should have an active 1st step', () => {
-        assert.ok(steps.at(0).prop('active'), 'should be active');
-        assert.notOk(steps.at(1).prop('active'), 'should not be active');
-        assert.notOk(steps.at(2).prop('active'), 'should not be active');
+        assert.strictEqual(wrapper.find({testContent: 0}).length, 1, 'step 1 content should be visible');
+        assert.strictEqual(wrapper.find({testContent: 1}).length, 0, 'step 2 content should not be visible');
+        assert.strictEqual(wrapper.find({testContent: 2}).length, 0, 'step 3 content should not be visible');
       });
     });
   });
 
   describe('navigating steps', () => {
-    it('should navigate to the second step', () => {
+    it('should navigate to the second step', (done) => {
       wrapper.setState({stepIndex: 1});
-      assert.notOk(steps.at(0).prop('active'), 'should not be active');
-      assert.ok(steps.at(1).prop('active'), 'should be active');
-      assert.notOk(steps.at(2).prop('active'), 'should not be active');
+
+      setTimeout(() => {
+        assert.strictEqual(wrapper.find({testContent: 0}).length, 0, 'step 1 content should not be visible');
+        assert.strictEqual(wrapper.find({testContent: 1}).length, 1, 'step 2 content should be visible');
+        assert.strictEqual(wrapper.find({testContent: 2}).length, 0, 'step 3 content should not be visible');
+        done();
+      }, 30);
     });
 
-    it('should navigate to the third step', () => {
-      wrapper.setState({stepIndex: 1});
-      assert.notOk(steps.at(0).prop('active'), 'should not be active');
-      assert.ok(steps.at(1).prop('active'), 'should be active');
-      assert.notOk(steps.at(2).prop('active'), 'should not be active');
+    it('should navigate to the third step', (done) => {
+      wrapper.setState({stepIndex: 2});
+
+      setTimeout(() => {
+        assert.strictEqual(wrapper.find({testContent: 0}).length, 0, 'step 1 content should not be visible');
+        assert.strictEqual(wrapper.find({testContent: 1}).length, 0, 'step 2 content should not be visible');
+        assert.strictEqual(wrapper.find({testContent: 2}).length, 1, 'step 3 content should be visible');
+        done();
+      }, 30);
     });
   });
 });
