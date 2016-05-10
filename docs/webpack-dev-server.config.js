@@ -8,7 +8,7 @@ const config = {
   entry: [
     'webpack/hot/dev-server',
     'webpack/hot/only-dev-server',
-    path.join(__dirname, '/src/app/app.js'),
+    path.resolve(__dirname, 'src/app/app.js'),
   ],
   // Webpack config options on how to obtain modules
   resolve: {
