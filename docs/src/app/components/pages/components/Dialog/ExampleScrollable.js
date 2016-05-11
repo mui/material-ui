@@ -27,17 +27,23 @@ export default class DialogExampleScrollable extends React.Component {
   };
 
   render() {
+    const buttonStyle = {    
+      margin: 12,    
+    };
+    
     const actions = [
-      <FlatButton
+      <RaisedButton
         label="Cancel"
         primary={true}
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
-      <FlatButton
+      <RaisedButton
         label="Submit"
         primary={true}
-        keyboardFocused={true}
+        keyboardFocused={false}
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
     ];
 

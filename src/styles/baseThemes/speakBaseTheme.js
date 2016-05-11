@@ -11,6 +11,7 @@ import {
   scThemeForeground,
   scThemeBasicDark,
   scThemeBasicWhite,
+  scBackDropColor,
 } from '../colors';
 import {fade} from '../../utils/colorManipulator';
 import spacing from '../spacing';
@@ -42,6 +43,7 @@ export default {
     inverseColor: scThemeBasicDark,
     lightBackground: scThemeBasicWhite,
     darkBackground: scThemeBasicXXDark,
+    backDropColor: scBackDropColor,
     
   },
 };

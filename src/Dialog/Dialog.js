@@ -38,22 +38,22 @@ class TransitionItem extends Component {
     this.setState({
       style: {
         opacity: 1,
-        transform: `translate3d(0, ${spacing.desktopKeylineIncrement}px, 0)`,
+       // transform: `translate3d(0, ${spacing.desktopKeylineIncrement}px, 0)`,
       },
     });
 
-    this.enterTimeout = setTimeout(callback, 450); // matches transition duration
+    this.enterTimeout = setTimeout(callback, 0); // matches transition duration
   }
 
   componentWillLeave(callback) {
     this.setState({
       style: {
         opacity: 0,
-        transform: 'translate3d(0, 0, 0)',
+       // transform: 'translate3d(0, 0, 0)',
       },
     });
 
-    this.leaveTimeout = setTimeout(callback, 450); // matches transition duration
+    this.leaveTimeout = setTimeout(callback, 0); // matches transition duration
   }
 
   render() {
@@ -103,7 +103,7 @@ function getStyles(props, context) {
       height: '100%',
       transition: open ?
         transitions.easeOut('0ms', 'left', '0ms') :
-        transitions.easeOut('0ms', 'left', '450ms'),
+        transitions.easeOut('0ms', 'left', '0ms'),
     },
     content: {
       boxSizing: 'border-box',
@@ -288,6 +288,16 @@ class DialogInline extends Component {
     styles.actionsContainer = Object.assign(styles.actionsContainer, actionsContainerStyle);
     styles.overlay = Object.assign(styles.overlay, overlayStyle);
     styles.title = Object.assign(styles.title, titleStyle);
+    
+    styles.title.backgroundColor = 'black';
+    styles.title.color = 'white';    
+    styles.title.padding = '15px';
+    styles.title.lineHeight = '30px';    
+    styles.title.fontSize = '18px'; 
+    styles.title.display= 'block';
+    styles.title.whiteSpace= 'nowrap';
+    styles.title.textOverflow= 'ellipsis';
+    styles.title.overflow= 'hidden';
 
     const actionsContainer = React.Children.count(actions) > 0 && (
       <div className={actionsContainerClassName} style={prepareStyles(styles.actionsContainer)}>
@@ -303,9 +313,9 @@ class DialogInline extends Component {
       });
     } else if (typeof title === 'string') {
       titleElement = (
-        <h3 className={titleClassName} style={prepareStyles(styles.title)}>
+        <span className={titleClassName} style={prepareStyles(styles.title)}>
           {title}
-        </h3>
+        </span>
       );
     }
 
@@ -322,16 +332,16 @@ class DialogInline extends Component {
           component="div"
           ref="dialogWindow"
           transitionAppear={true}
-          transitionAppearTimeout={450}
+          transitionAppearTimeout={0}
           transitionEnter={true}
-          transitionEnterTimeout={450}
+          transitionEnterTimeout={0}
         >
           {open &&
             <TransitionItem
               className={contentClassName}
               style={styles.content}
             >
-              <Paper zDepth={4}>
+              <Paper zDepth={4} rounded={false}>
                 {titleElement}
                 <div
                   ref="dialogContent"
