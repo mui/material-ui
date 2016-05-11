@@ -65,7 +65,7 @@ implemented in a hierarchical manner.
 ### Predefined themes
 
 We ship two base themes with Material-UI: light and dark. They are located
-under [`material-ui/lib/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
+under [`material-ui/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
 Custom themes may be defined similarly.
 The [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js)
 is the default so you will not need to do anything to use it.
@@ -188,7 +188,7 @@ until another render is triggered for that component leaving your application
 in a moody state.
 
 To see what are the values you can override, use the
-[source](https://github.com/callemall/material-ui/blob/master/src/getMuiTheme.js).
+[source](https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js).
 The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js
