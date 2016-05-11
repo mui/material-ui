@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import TimeDisplay from './TimeDisplay';
 import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
+import FadeIn from '../internal/FadeIn';
+
 
 class Clock extends Component {
   static propTypes = {
@@ -144,7 +146,7 @@ class Clock extends Component {
     if ( this.state.mode === 'hour') {
       clock = (
         <ClockHours
-          key="hours"
+          key={0}
           format={this.props.format}
           onChange={this.handleChangeHours}
           initialHours={this.state.selectedTime.getHours()}
@@ -153,7 +155,7 @@ class Clock extends Component {
     } else {
       clock = (
         <ClockMinutes
-          key="minutes"
+          key={1}
           onChange={this.handleChangeMinutes}
           initialMinutes={this.state.selectedTime.getMinutes()}
         />
@@ -173,7 +175,9 @@ class Clock extends Component {
         />
         <div style={prepareStyles(styles.container)} >
           <div style={prepareStyles(styles.circle)} />
-          {clock}
+          <FadeIn enterDelay={200} >
+            {clock}
+          </FadeIn>
         </div>
       </div>
     );
