@@ -1,6 +1,8 @@
 import warning from 'warning';
 
-const getName = (object) => object.displayName ? `${object.displayName} ` : '';
+const getName = (object) =>
+  object.displayName ? `${object.displayName} ` :
+  object.muiName ? `${object.muiName} ` : '';
 
 function deprecatedExport(object, deprecatedPath, supportedPath) {
   warning(false,

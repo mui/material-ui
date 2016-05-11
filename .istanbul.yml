@@ -1,8 +1,16 @@
 instrumentation:
   root: src
+  default-excludes: true
   excludes:
     - "**/svg-icons/**"
+    - "**/*.spec.js"
   extensions:
-    - .jsx
     - .js
-
+  variable: __coverage__
+  es-modules: true
+  include-all-sources: true
+reporting:
+  print: summary
+  reports:
+    - lcov
+  dir: ./test/coverage

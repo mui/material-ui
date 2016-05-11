@@ -14,6 +14,6 @@ directly as a React component. Any properties supplied are passed to `SvgIcon`.
 
 The import path for each _Material icons_ component includes the category and icon name, with spaces substituted with
 dashes. For example to use the [3d rotation](https://design.google.com/icons/#ic_3d_rotation) icon component, import
-`material-ui/lib/svg-icons/action/3d-rotation`.
+`material-ui/svg-icons/action/3d-rotation`.
 
 ### Examples

@@ -1,3 +1,4 @@
-import DropDownMenu from './DropDownMenu';
+export DropDownMenu from './DropDownMenu';
+export MenuItem from '../MenuItem/MenuItem';
 
-export default DropDownMenu;
+export default from './DropDownMenu';
