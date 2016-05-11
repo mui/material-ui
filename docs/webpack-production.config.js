@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = {
   // Entry point to the project
   entry: [
-    path.join(__dirname, '/src/app/app.js'),
+    path.resolve(__dirname, 'src/app/app.js'),
   ],
   // Webpack config options on how to obtain modules
   resolve: {

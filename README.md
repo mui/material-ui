@@ -153,6 +153,11 @@ check out the [docs folder](https://github.com/callemall/material-ui/tree/master
 We'd greatly appreciate any [contribution](https://github.com/callemall/material-ui/blob/master/CONTRIBUTING.md)
 you make. :)
 
+## Thanks
+
+[<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)  
+Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test `material-ui` in real browsers.
+
 ## License
 This project is licensed under the terms of the
 [MIT license](https://github.com/callemall/material-ui/blob/master/LICENSE)
