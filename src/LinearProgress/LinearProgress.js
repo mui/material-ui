@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
+import {scThemeBasicXLight, scThemeBasicXXLight} from '../styles/colors';
+import {darkenAbs} from '../utils/colorManipulator';
 
 function getRelativeValue(value, min, max) {
     const clampedValue = Math.min(Math.max(min, value), max);
@@ -23,11 +25,10 @@ function getStyles(props, context) {
             height: 18,
             display: 'block',
             width: '100%',
-            backgroundColor: 'red',//palette.primary3Color, //'#969696',
             borderRadius: 6,
             margin: 0,
             overflow: 'hidden',
-            background: 'linear-gradient(red, yellow)'
+            background: 'linear-gradient(' + scThemeBasicXLight + ' 0%, ' + scThemeBasicXXLight + ' 50%)',
         },
         bar: {
             height: '100%',
@@ -56,9 +57,7 @@ function getStyles(props, context) {
         };
     } else {
         styles.bar.backgroundColor = props.color || palette.primary1Color;
-
-        styles.bar.background = 'linear-gradient(pink, purple)';
-
+        styles.bar.background =  'linear-gradient(' + palette.primary1Color + ' 0%, ' + darkenAbs(palette.primary1Color, 0.11) + ' 100%)';
         styles.bar.transition = transitions.create('width', '.3s', null, 'linear');
         styles.bar.width = `${getRelativeValue(value, min, max)}%`;
     }
@@ -161,15 +160,15 @@ const {prepareStyles} = this.context.muiTheme;
 const styles = getStyles(this.props, this.context);
 styles.valueStyle = {
     textAlign: 'center',
-    lineHeight: '18px'
+    lineHeight: '17px'
 }
 
 return (
     <div {...other} style={prepareStyles(Object.assign(styles.root, style)) }>
-        <div style={styles.valueStyle}>{Math.round(this.props.value)}%</div>
         <div style={prepareStyles(styles.bar) }>
             <div ref="bar1" style={prepareStyles(styles.barFragment1) }></div>
             <div ref="bar2" style={prepareStyles(styles.barFragment2) }></div>
+            <div style={styles.valueStyle}>{Math.round(this.props.value)}%</div>
         </div>
     </div>
 );
