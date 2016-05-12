@@ -36,11 +36,15 @@ const Divider = (props, context) => {
   const styles = {
     root: {
       margin: 0,
-      marginTop: -1,
-      marginLeft: inset ? 72 : 0,
-      height: 1,
-      border: 'none',
-      backgroundColor: muiTheme.baseTheme.palette.borderColor,
+      marginTop: 15,
+      marginBottom: 15,
+      marginLeft: 0,
+      height: 1,            
+      borderBottom: '1px solid ' + muiTheme.baseTheme.palette.lightBackground,
+      borderTop: '1px solid ' + muiTheme.baseTheme.palette.borderColor,
+      borderLeft: 0,
+      borderRight: 0,
+
     },
   };
 

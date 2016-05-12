@@ -13,7 +13,7 @@ export default class DialogExampleSimple extends React.Component {
   state = {
     open: false,
   };
-
+  
   handleOpen = () => {
     this.setState({open: true});
   };
@@ -23,17 +23,21 @@ export default class DialogExampleSimple extends React.Component {
   };
 
   render() {
+    const buttonStyle = {    
+      margin: 12,    
+    };
+    
     const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
+      <RaisedButton
+        label="Cancel"        
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
+      <RaisedButton
+        label="Submit"        
+        keyboardFocused={false}
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
     ];
 

@@ -151,24 +151,27 @@ class EnhancedButton extends Component {
     const {isKeyboardFocused} = this.state;
 
     // Focus Ripple
-    const focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
-      <FocusRipple
-        color={focusRippleColor}
-        opacity={focusRippleOpacity}
-        show={isKeyboardFocused}
-      />
-    ) : undefined;
+    const focusRipple = undefined;
+    //isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? (
+    //   <FocusRipple
+    //     color={focusRippleColor}
+    //     //opacity={focusRippleOpacity}
+    //     opacity={focusRippleOpacity}
+    //     show={isKeyboardFocused}
+    //   />
+    // ) : undefined;
 
     // Touch Ripple
-    const touchRipple = !disabled && !disableTouchRipple ? (
-      <TouchRipple
-        centerRipple={centerRipple}
-        color={touchRippleColor}
-        opacity={touchRippleOpacity}
-      >
-        {children}
-      </TouchRipple>
-    ) : undefined;
+    const touchRipple = undefined;
+    // !disabled && !disableTouchRipple ? (
+    //   <TouchRipple
+    //     centerRipple={centerRipple}
+    //     color={touchRippleColor}
+    //     opacity={touchRippleOpacity}
+    //   >
+    //     {children}
+    //   </TouchRipple>
+    // ) : undefined;
 
     return createChildFragment({
       focusRipple,

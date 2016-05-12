@@ -64,7 +64,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     cardMedia: {
       color: darkWhite,
-      overlayContentBackground: lightBlack,
+      overlayContentBackground: palette.backDropColor,
       titleColor: darkWhite,
       subtitleColor: lightWhite,
     },
@@ -88,9 +88,9 @@ export default function getMuiTheme(muiTheme, ...more) {
       calendarYearBackgroundColor: white,
     },
     dialog: {
-      titleFontSize: 22,
+      titleFontSize: 18,
       bodyFontSize: 16,
-      bodyColor: fade(palette.textColor, 0.6),
+      bodyColor: palette.textColor,
     },
     dropDownMenu: {
       accentColor: palette.borderColor,
@@ -156,7 +156,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.primary1Color,
     },
     overlay: {
-      backgroundColor: lightBlack,
+      backgroundColor: palette.backDropColor,
     },
     paper: {
       color: palette.textColor,
