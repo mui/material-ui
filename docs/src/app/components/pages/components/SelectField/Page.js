@@ -17,6 +17,8 @@ import selectFieldExampleFloatingLabelCode from '!raw!./ExampleFloatingLabel';
 import SelectFieldExampleError from './ExampleError';
 import selectFieldExampleErrorCode from '!raw!./ExampleError';
 import selectFieldCode from '!raw!material-ui/SelectField/SelectField';
+import SelectFieldExampleMultiple from './ExampleMultiple';
+import selectFieldExampleMultipleCode from '!raw!./ExampleMultiple';
 
 const descriptions = {
   simple: '`SelectField` is implemented as a controlled component, with the current selection set through the ' +
@@ -29,6 +31,8 @@ const descriptions = {
   'with the `floatingLabelText` property.',
   errorText: 'The `errorText` property displays an error message below the Select Field. This can be customised with ' +
   'the `errorStyle` property.',
+  multiple: '`SelectField` supports selecting multiple values. This can be set ' +
+  'with the `multiple` property.',
 };
 
 const SelectFieldPage = () => (
@@ -69,6 +73,13 @@ const SelectFieldPage = () => (
       code={selectFieldExampleErrorCode}
     >
       <SelectFieldExampleError />
+    </CodeExample>
+    <CodeExample
+      title="Multiple example"
+      description={descriptions.multiple}
+      code={selectFieldExampleMultipleCode}
+    >
+      <SelectFieldExampleMultiple />
     </CodeExample>
     <PropTypeDescription code={selectFieldCode} />
   </div>
