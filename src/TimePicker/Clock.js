@@ -26,12 +26,6 @@ class Clock extends Component {
     mode: 'hour',
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      selectedTime: nextProps.initialTime || new Date(),
-    });
-  }
-
   setMode = (mode) => {
     setTimeout(() => {
       this.setState({
