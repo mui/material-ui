@@ -189,6 +189,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       secondaryTextColor: palette.alternateTextColor,
       disabledColor: darken(palette.alternateTextColor, 0.1),
       disabledTextColor: fade(palette.textColor, 0.3),
+      fontSize: typography.fontStyleButtonFontSize,
       fontWeight: typography.fontWeightMedium,
     },
     refreshIndicator: {
