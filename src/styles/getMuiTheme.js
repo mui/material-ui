@@ -81,7 +81,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       color: palette.primary1Color,
       textColor: palette.alternateTextColor,
       calendarTextColor: palette.textColor,
-      selectColor: palette.primary2Color,
+      selectColor: palette.primary1Color,
       selectTextColor: palette.alternateTextColor,
       calendarYearBackgroundColor: white,
     },
@@ -158,7 +158,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     paper: {
       color: palette.textColor,
-      backgroundColor: palette.canvasColor,
+      backgroundColor: palette.lightBackground,
       zDepthShadows: [
         [1, 6, 0.12, 1, 4, 0.12],
         [3, 10, 0.16, 3, 10, 0.23],
@@ -282,7 +282,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       clockColor: palette.textColor,
       clockCircleColor: palette.clockCircleColor,
       headerColor: palette.pickerHeaderColor || palette.primary1Color,
-      selectColor: palette.primary2Color,
+      selectColor: palette.primary1Color,
       selectTextColor: palette.alternateTextColor,
     },
     toggle: {

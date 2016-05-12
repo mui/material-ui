@@ -89,13 +89,13 @@ class Popover extends Component {
       vertical: 'bottom',
       horizontal: 'left',
     },
-    animated: true,
+    animated: false,
     autoCloseWhenOffScreen: true,
     canAutoPosition: true,
     onRequestClose: () => {},
     open: false,
     style: {
-      overflowY: 'auto',
+      overflowY: 'auto',                     
     },
     targetOrigin: {
       vertical: 'top',
@@ -162,7 +162,7 @@ class Popover extends Component {
       ...other,
     } = this.props;
 
-    let Animation = animation || PopoverAnimationDefault;
+    let Animation = false;//animation || PopoverAnimationDefault;
     let styleRoot = style;
 
     if (!Animation) {
@@ -176,7 +176,7 @@ class Popover extends Component {
     }
 
     return (
-      <Animation {...other} style={styleRoot} open={this.state.open && !this.state.closing}>
+      <Animation {...other} rounded={false} style={styleRoot} open={this.state.open && !this.state.closing}>
         {children}
       </Animation>
     );
@@ -229,6 +229,8 @@ class Popover extends Component {
   }
 
   setPlacement = (scrolling) => {
+    let margin = 5;
+    
     if (!this.state.open) {
       return;
     }
@@ -262,6 +264,22 @@ class Popover extends Component {
       target = this.getTargetPosition(targetEl); // update as height may have changed
       targetPosition = this.applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition);
     }
+
+    if (targetOrigin.horizontal === 'left' && anchorOrigin.horizontal === 'right') {
+      targetPosition.left += 5;
+    }
+    
+    if (targetOrigin.vertical  === 'top' && anchorOrigin.vertical === 'bottom') {
+      targetPosition.top += 5;
+    }  
+    
+     if (targetOrigin.horizontal === 'right' && anchorOrigin.horizontal === 'left') {
+      targetPosition.left -= 5;
+    }
+    
+    if (targetOrigin.vertical  === 'bottom' && anchorOrigin.vertical === 'top') {
+      targetPosition.top -= 5;
+    }            
 
     targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
     targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
