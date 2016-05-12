@@ -12,6 +12,8 @@ import {
   scThemeForeground,
   scThemeBasicDark,
   scThemeBasicWhite,
+  scBackDropColor,
+  scThemeBasicDefault,
 } from '../colors';
 import {fade} from '../../utils/colorManipulator';
 import spacing from '../spacing';
@@ -35,7 +37,7 @@ export default {
     textColor: scThemeForeground,
     alternateTextColor: scThemeBasicWhite,    
     canvasColor: scThemeBackground,
-    borderColor: grey300,
+    borderColor: scThemeBasicDefault,
     disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: cyan500,
     clockCircleColor: fade(darkBlack, 0.07),
@@ -43,6 +45,6 @@ export default {
     inverseColor: scThemeBasicDark,
     lightBackground: scThemeBasicWhite,
     darkBackground: scThemeBasicXXDark,
-    
+    backDropColor: scBackDropColor,        
   },
 };

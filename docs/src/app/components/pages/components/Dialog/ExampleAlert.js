@@ -10,7 +10,7 @@ export default class DialogExampleAlert extends React.Component {
   state = {
     open: false,
   };
-
+    
   handleOpen = () => {
     this.setState({open: true});
   };
@@ -20,16 +20,20 @@ export default class DialogExampleAlert extends React.Component {
   };
 
   render() {
+    const buttonStyle = {    
+      margin: 12,    
+    };
+        
     const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
+      <RaisedButton
+        label="Cancel"        
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
-      <FlatButton
-        label="Discard"
-        primary={true}
+      <RaisedButton
+        label="Discard"        
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
     ];
 

@@ -15,18 +15,23 @@ export default class DialogExampleDialogDatePicker extends React.Component {
   handleOpen = () => {
     this.setState({open: true});
   };
-
+  
   handleClose = () => {
     this.setState({open: false});
   };
 
   render() {
+    const buttonStyle = {    
+      margin: 12,    
+    };
+        
     const actions = [
-      <FlatButton
+      <RaisedButton
         label="Ok"
         primary={true}
         keyboardFocused={true}
         onTouchTap={this.handleClose}
+        style = {buttonStyle}
       />,
     ];
 

@@ -301,6 +301,7 @@ export const scThemeBackground = 'hsla(0, 0%, 94%, 1)';           // F0f0f0
 export const scThemeForeground = scThemeBasicBlack;               // 131313
 export const scThemeBackgroundLighter = scThemeBasicWhite;        // FFFFFF
 export const scThemeInverseForeground = scThemeBasicWhite;        // FFFFFF
+export const scBackDropColor = 'hsla(0, 0%, 94%, 0.5)';
 
 //-- DATA VISUALIZATION
 export const scThemeTomatoDefault = 'hsla(3, 76%, 65%, 1)';       // EA6962
@@ -456,3 +457,4 @@ export const scThemeSteelXLight = lightenAbs(scThemeSteelDefault, scThemeXLight)
 
 export const scThemeSteelXXLight = lightenAbs(scThemeSteelDefault, scThemeXXLight);
 export const scThemeSteelXXXLight = lightenAbs(scThemeSteelDefault, scThemeXXXLight);
+

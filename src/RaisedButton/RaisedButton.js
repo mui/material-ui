@@ -28,9 +28,9 @@ function getStyles(props, context, state) {
     labelPosition,
     primary,
     secondary,
-    style,
-  } = props;
-
+    style
+  } = props;  
+  
   let backgroundColor = 'linear-gradient(' + raisedButton.color + ' 0%, ' + darkenAbs(raisedButton.color, 0.11) + ' 100%)';
 
   if (state.hovered) {
@@ -364,9 +364,11 @@ class RaisedButton extends Component {
       ...other,
     } = this.props;
 
+
+
 const {prepareStyles} = this.context.muiTheme;
 const styles = getStyles(this.props, this.context, this.state);
-const mergedRippleStyles = Object.assign({}, styles.ripple, rippleStyle);
+const mergedRippleStyles = Object.assign({}, styles.ripple, {rippleStyle});
 
 const buttonEventHandlers = disabled ? {} : {
   onMouseDown: this.handleMouseDown,
