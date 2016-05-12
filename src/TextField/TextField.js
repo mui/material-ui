@@ -9,7 +9,6 @@ import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
-import warning from 'warning';
 
 const getStyles = (props, context, state) => {
   const {
@@ -262,6 +261,7 @@ class TextField extends Component {
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
+    uniqueIdGen: PropTypes.func.isRequired,
   };
 
   state = {
@@ -274,10 +274,6 @@ class TextField extends Component {
   componentWillMount() {
     const {
       children,
-      name,
-      hintText,
-      floatingLabelText,
-      id,
     } = this.props;
 
     const propsLeaf = children ? children.props : this.props;
@@ -287,12 +283,7 @@ class TextField extends Component {
       hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
     });
 
-    warning(name || hintText || floatingLabelText || id, `We don't have enough information
-      to build a robust unique id for the TextField component. Please provide an id or a name.`);
-
-    const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
-      Math.floor(Math.random() * 0xFFFF)}`;
-    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
+    this.uniqueId = this.context.uniqueIdGen();
   }
 
   componentWillReceiveProps(nextProps) {

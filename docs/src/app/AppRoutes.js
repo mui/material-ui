@@ -18,6 +18,7 @@ import ServerRendering from './components/pages/get-started/ServerRendering';
 import Colors from './components/pages/customization/Colors';
 import Themes from './components/pages/customization/Themes';
 import InlineStyles from './components/pages/customization/InlineStyles';
+import UsingContext from './components/pages/customization/UsingContext';
 
 import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoCompletePage from './components/pages/components/AutoComplete/Page';
@@ -91,6 +92,7 @@ const AppRoutes = (
       <Route path="colors" component={Colors} />
       <Route path="themes" component={Themes} />
       <Route path="inline-styles" component={InlineStyles} />
+      <Route path="using-context" component={UsingContext} />
     </Route>
     <Redirect from="components" to="/components/app-bar" />
     <Route path="components">
