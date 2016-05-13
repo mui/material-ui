@@ -29,6 +29,7 @@ function getStyles(props, context, state) {
     primary,
     secondary,
     style,
+    buttonStyle,
   } = props;
 
   const amount = (primary || secondary) ? 0.4 : 0.08;
@@ -62,7 +63,7 @@ function getStyles(props, context, state) {
       display: 'inline-block',
       transition: transitions.easeOut(),
     },
-    button: {
+    button: Object.assign({
       position: 'relative',
       minWidth: fullWidth ? '100%' : button.minWidth,
       height: buttonHeight,
@@ -74,7 +75,7 @@ function getStyles(props, context, state) {
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
       textAlign: 'center',
-    },
+    }, buttonStyle),
     label: {
       position: 'relative',
       opacity: 1,
@@ -118,6 +119,10 @@ class RaisedButton extends Component {
      * (use `disabledBackgroundColor` for this).
      */
     backgroundColor: PropTypes.string,
+    /**
+     * Override the inline-styles of the button element.
+     */
+    buttonStyle: PropTypes.object,
     /**
      * The content of the button.
      * If a label is provided via the `label` prop, the text within the label
