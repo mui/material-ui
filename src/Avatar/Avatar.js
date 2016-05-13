@@ -22,6 +22,7 @@ function getStyles(props, context) {
       borderRadius: '50%',
       height: size,
       width: size,
+      boxShadow: src ? `inset 0px 0px 0px 1px ${avatar.borderColor}` : 'none',
     },
     icon: {
       color: color || avatar.color,
@@ -31,17 +32,6 @@ function getStyles(props, context) {
       margin: size * 0.2,
     },
   };
-
-  if (src && avatar.borderColor) {
-    Object.assign(styles.root, {
-      background: `url(${src})`,
-      backgroundSize: size,
-      backgroundOrigin: 'border-box',
-      border: `solid 1px ${avatar.borderColor}`,
-      height: size - 2,
-      width: size - 2,
-    });
-  }
 
   return styles;
 }
@@ -106,8 +96,9 @@ class Avatar extends Component {
 
     if (src) {
       return (
-        <div
+        <img
           {...other}
+          src={src}
           style={prepareStyles(Object.assign(styles.root, style))}
           className={className}
         />
