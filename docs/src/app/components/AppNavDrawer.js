@@ -166,74 +166,264 @@ class AppNavDrawer extends Component {
             primaryText="Components"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="App Bar" value="/components/app-bar" />,
-              <ListItem primaryText="Auto Complete" value="/components/auto-complete" />,
-              <ListItem primaryText="Avatar" value="/components/avatar" />,
-              <ListItem primaryText="Badge" value="/components/badge" />,
+              <ListItem
+                primaryText="App Bar"
+                value="/components/app-bar"
+                linkButton={true}
+                href="/#/components/app-bar"
+              />,
+              <ListItem
+                primaryText="Auto Complete"
+                value="/components/auto-complete"
+                linkButton={true}
+                href="/#/components/auto-complete"
+              />,
+              <ListItem
+                primaryText="Avatar"
+                value="/components/avatar"
+                linkButton={true}
+                href="/#/components/avatar"
+              />,
+              <ListItem
+                primaryText="Badge"
+                value="/components/badge"
+                linkButton={true}
+                href="/#/components/badge"
+              />,
               <ListItem
                 primaryText="Buttons"
                 primaryTogglesNestedList={true}
                 nestedItems={[
-                  <ListItem primaryText="Flat Button" value="/components/flat-button" />,
-                  <ListItem primaryText="Raised Button" value="/components/raised-button" />,
-                  <ListItem primaryText="Floating Action Button" value="/components/floating-action-button" />,
-                  <ListItem primaryText="Icon Button" value="/components/icon-button" />,
+                  <ListItem
+                    primaryText="Flat Button"
+                    value="/components/flat-button"
+                    linkButton={true}
+                    href="/#/components/flat-button"
+                  />,
+                  <ListItem
+                    primaryText="Raised Button"
+                    value="/components/raised-button"
+                    linkButton={true}
+                    href="/#/components/raised-button"
+                  />,
+                  <ListItem
+                    primaryText="Floating Action Button"
+                    value="/components/floating-action-button"
+                    linkButton={true}
+                    href="/#/components/floating-action-button"
+                  />,
+                  <ListItem
+                    primaryText="Icon Button"
+                    value="/components/icon-button"
+                    linkButton={true}
+                    href="/#/components/icon-button"
+                  />,
                 ]}
               />,
-              <ListItem primaryText="Card" value="/components/card" />,
-              <ListItem primaryText="Date Picker" value="/components/date-picker" />,
-              <ListItem primaryText="Dialog" value="/components/dialog" />,
-              <ListItem primaryText="Divider" value="/components/divider" />,
-              <ListItem primaryText="Drawer" value="/components/drawer" />,
-              <ListItem primaryText="Grid List" value="/components/grid-list" />,
+              <ListItem
+                primaryText="Card"
+                value="/components/card"
+                linkButton={true}
+                href="/#/components/card"
+              />,
+              <ListItem
+                primaryText="Date Picker"
+                value="/components/date-picker"
+                linkButton={true}
+                href="/#/components/date-picker"
+              />,
+              <ListItem
+                primaryText="Dialog"
+                value="/components/dialog"
+                linkButton={true}
+                href="/#/components/dialog"
+              />,
+              <ListItem
+                primaryText="Divider"
+                value="/components/divider"
+                linkButton={true}
+                href="/#/components/divider"
+              />,
+              <ListItem
+                primaryText="Drawer"
+                value="/components/drawer"
+                linkButton={true}
+                href="/#/components/drawer"
+              />,
+              <ListItem
+                primaryText="Grid List"
+                value="/components/grid-list"
+                linkButton={true}
+                href="/#/components/grid-list"
+              />,
               <ListItem
                 primaryText="Icons"
                 primaryTogglesNestedList={true}
                 nestedItems={[
-                  <ListItem primaryText="Font Icon" value="/components/font-icon" />,
-                  <ListItem primaryText="SVG Icon" value="/components/svg-icon" />,
+                  <ListItem
+                    primaryText="Font Icon"
+                    value="/components/font-icon"
+                    linkButton={true}
+                    href="/#/components/font-icon"
+                  />,
+                  <ListItem
+                    primaryText="SVG Icon"
+                    value="/components/svg-icon"
+                    linkButton={true}
+                    href="/#/components/svg-icon"
+                  />,
                 ]}
               />,
-              <ListItem primaryText="List" value="/components/list" />,
+              <ListItem
+                primaryText="List"
+                value="/components/list"
+                linkButton={true}
+                href="/#/components/list"
+              />,
               <ListItem
                 primaryText="Menus"
                 primaryTogglesNestedList={true}
                 nestedItems={[
-                  <ListItem primaryText="Menu" value="/components/menu" />,
-                  <ListItem primaryText="Icon Menu" value="/components/icon-menu" />,
-                  <ListItem primaryText="Drop Down Menu" value="/components/dropdown-menu" />,
+                  <ListItem
+                    primaryText="Menu"
+                    value="/components/menu"
+                    linkButton={true}
+                    href="/#/components/menu"
+                  />,
+                  <ListItem
+                    primaryText="Icon Menu"
+                    value="/components/icon-menu"
+                    linkButton={true}
+                    href="/#/components/icon-menu"
+                  />,
+                  <ListItem
+                    primaryText="DropDown Menu"
+                    value="/components/dropdown-menu"
+                    linkButton={true}
+                    href="/#/components/dropdown-menu"
+                  />,
                 ]}
               />,
-              <ListItem primaryText="Paper" value="/components/paper" />,
-              <ListItem primaryText="Popover" value="/components/popover" />,
+              <ListItem
+                primaryText="Paper"
+                value="/components/paper"
+                linkButton={true}
+                href="/#/components/paper"
+              />,
+              <ListItem
+                primaryText="Popover"
+                value="/components/popover"
+                linkButton={true}
+                href="/#/components/popover"
+              />,
               <ListItem
                 primaryText="Progress"
                 primaryTogglesNestedList={true}
                 nestedItems={[
-                  <ListItem primaryText="Circular Progress" value="/components/circular-progress" />,
-                  <ListItem primaryText="Linear Progress" value="/components/linear-progress" />,
-                  <ListItem primaryText="Refresh Indicator" value="/components/refresh-indicator" />,
+                  <ListItem
+                    primaryText="Circular Progress"
+                    value="/components/circular-progress"
+                    linkButton={true}
+                    href="/#/components/circular-progress"
+                  />,
+                  <ListItem
+                    primaryText="Linear Progress"
+                    value="/components/linear-progress"
+                    linkButton={true}
+                    href="/#/components/linear-progress"
+                  />,
+                  <ListItem
+                    primaryText="Refresh Indicator"
+                    value="/components/refresh-indicator"
+                    linkButton={true}
+                    href="/#/components/refresh-indicator"
+                  />,
                 ]}
               />,
-              <ListItem primaryText="Select Field" value="/components/select-field" />,
-              <ListItem primaryText="Slider" value="/components/slider" />,
+              <ListItem
+                primaryText="Select Field"
+                value="/components/select-field"
+                linkButton={true}
+                href="/#/components/select-field"
+              />,
+              <ListItem
+                primaryText="Slider"
+                value="/components/slider"
+                linkButton={true}
+                href="/#/components/slider"
+              />,
               <ListItem
                 primaryText="Switches"
                 primaryTogglesNestedList={true}
                 nestedItems={[
-                  <ListItem primaryText="Checkbox" value="/components/checkbox" />,
-                  <ListItem primaryText="Radio Button" value="/components/radio-button" />,
-                  <ListItem primaryText="Toggle" value="/components/toggle" />,
+                  <ListItem
+                    primaryText="Checkbox"
+                    value="/components/checkbox"
+                    linkButton={true}
+                    href="/#/components/checkbox"
+                  />,
+                  <ListItem
+                    primaryText="Radio Button"
+                    value="/components/radio-button"
+                    linkButton={true}
+                    href="/#/components/radio-button"
+                  />,
+                  <ListItem
+                    primaryText="Toggle"
+                    value="/components/toggle"
+                    linkButton={true}
+                    href="/#/components/toggle"
+                  />,
                 ]}
               />,
-              <ListItem primaryText="Snackbar" value="/components/snackbar" />,
-              <ListItem primaryText="Stepper" value="/components/stepper" />,
-              <ListItem primaryText="Subheader" value="/components/subheader" />,
-              <ListItem primaryText="Table" value="/components/table" />,
-              <ListItem primaryText="Tabs" value="/components/tabs" />,
-              <ListItem primaryText="Text Field" value="/components/text-field" />,
-              <ListItem primaryText="Time Picker" value="/components/time-picker" />,
-              <ListItem primaryText="Toolbar" value="/components/toolbar" />,
+              <ListItem
+                primaryText="Snackbar"
+                value="/components/snackbar"
+                linkButton={true}
+                href="/#/components/snackbar"
+              />,
+              <ListItem
+                primaryText="Stepper"
+                value="/components/stepper"
+                linkButton={true}
+                href="/#/components/stepper"
+              />,
+              <ListItem
+                primaryText="Subheader"
+                value="/components/subheader"
+                linkButton={true}
+                href="/#/components/subheader"
+              />,
+              <ListItem
+                primaryText="Table"
+                value="/components/table"
+                linkButton={true}
+                href="/#/components/table"
+              />,
+              <ListItem
+                primaryText="Tabs"
+                value="/components/tabs"
+                linkButton={true}
+                href="/#/components/auto-complete"
+              />,
+              <ListItem
+                primaryText="Text Field"
+                value="/components/text-field"
+                linkButton={true}
+                href="/#/components/text-field"
+              />,
+              <ListItem
+                primaryText="Time Picker"
+                value="/components/time-picker"
+                linkButton={true}
+                href="/#/components/time-picker"
+              />,
+              <ListItem
+                primaryText="Toolbar"
+                value="/components/toolbar"
+                linkButton={true}
+                href="/#/components/toolbar"
+              />,
             ]}
           />
           <ListItem
