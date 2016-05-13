@@ -228,7 +228,7 @@ class DropDownMenu extends Component {
   handleItemTouchTap = (event, child, index) => {
     this.props.onChange(event, index, child.props.value);
 
-    if(!this.props.multiple) {
+    if (!this.props.multiple) {
       this.setState({
         open: false,
       });
@@ -244,7 +244,6 @@ class DropDownMenu extends Component {
       labelStyle,
       listStyle,
       maxHeight,
-      multiple,
       menuStyle: menuStyleProps,
       style,
       underlineStyle,
@@ -261,7 +260,7 @@ class DropDownMenu extends Component {
     const styles = getStyles(this.props, this.context);
 
     let displayValue = '';
-    let displayValueArray = []
+    const displayValueArray = [];
     React.Children.forEach(children, (child) => {
       if (!this.props.multiple) {
         if (value === child.props.value) {

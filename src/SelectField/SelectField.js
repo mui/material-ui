@@ -27,11 +27,6 @@ class SelectField extends Component {
      */
     autoWidth: PropTypes.bool,
     /**
-     * If true, `value` must be an array and the menu will support
-     * multiple selections.
-     */
-    multiple: PropTypes.bool,
-    /**
      * The `MenuItem` elements to populate the select field with.
      * If the menu items have a `label` prop, that value will
      * represent the selected menu item in the rendered select field.
@@ -81,6 +76,11 @@ class SelectField extends Component {
      * Override the label style when the select field is inactive.
      */
     labelStyle: PropTypes.object,
+    /**
+     * If true, `value` must be an array and the menu will support
+     * multiple selections.
+     */
+    multiple: PropTypes.bool,
     /**
      * Callback function fired when the select field loses focus.
      *
@@ -135,7 +135,7 @@ class SelectField extends Component {
     autoWidth: false,
     disabled: false,
     fullWidth: false,
-    multiple: false
+    multiple: false,
   };
 
   static contextTypes = {
@@ -161,7 +161,6 @@ class SelectField extends Component {
       hintStyle,
       hintText,
       fullWidth,
-      multiple,
       errorText,
       onFocus,
       onBlur,

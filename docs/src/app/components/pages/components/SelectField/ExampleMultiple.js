@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 
 const style = {
   overflow: 'hidden',
-  whiteSpace: 'nowrap'
+  whiteSpace: 'nowrap',
 };
 
 export default class SelectFieldExampleMultiple extends React.Component {
@@ -15,18 +15,23 @@ export default class SelectFieldExampleMultiple extends React.Component {
   }
 
   handleChange = (event, index, value) => {
-    var index = this.state.value.indexOf(value);
-    if (index === -1) {
+    const stateValueIndex = this.state.value.indexOf(value);
+    if (stateValueIndex === -1) {
       this.state.value.push(value);
     } else {
-      this.state.value.splice(index, 1);
+      this.state.value.splice(stateValueIndex, 1);
     }
   }
 
   render() {
     return (
       <div>
-        <SelectField value={this.state.value} onChange={this.handleChange} multiple={true} style={style}>
+        <SelectField
+          value={this.state.value}
+          onChange={this.handleChange}
+          multiple={true}
+          style={style}
+        >
           <MenuItem value={1} primaryText="Never" />
           <MenuItem value={2} primaryText="Every Night" />
           <MenuItem value={3} primaryText="Weeknights" />
