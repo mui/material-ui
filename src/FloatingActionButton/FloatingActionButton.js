@@ -88,7 +88,7 @@ class FloatingActionButton extends Component {
      */
     disabledColor: PropTypes.string,
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
     /**
@@ -103,10 +103,6 @@ class FloatingActionButton extends Component {
      * overriding the inline-styles of the FontIcon component.
      */
     iconStyle: PropTypes.object,
-    /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
-     */
-    linkButton: PropTypes.bool,
     /**
      * If true, the button will be a small floating action button.
      */
