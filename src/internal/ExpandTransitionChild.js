@@ -31,28 +31,37 @@ class ExpandTransitionChild extends Component {
     callback();
   }
 
+  componentDidAppear() {
+    var style = ReactDOM.findDOMNode(this).style;
+    style.height = 'auto';
+  }
+
   componentWillEnter(callback) {
     const {enterDelay} = this.props;
     const {style} = ReactDOM.findDOMNode(this);
     style.height = 0;
 
     if (enterDelay) {
-      this.enterTimer = setTimeout(() => callback(), 450);
+      this.open();
+      this.enterTimer = setTimeout(() => callback(), enterDelay);
       return;
     }
 
+    this.open();
     callback();
   }
 
   componentDidEnter() {
-    this.open();
+    var style = ReactDOM.findDOMNode(this).style;
+    style.height = 'auto';
   }
 
   componentWillLeave(callback) {
+    const {enterDelay} = this.props;
     const style = ReactDOM.findDOMNode(this).style;
     style.height = this.refs.wrapper.clientHeight;
     style.height = 0;
-    this.leaveTimer = setTimeout(() => callback(), 450);
+    this.leaveTimer = setTimeout(() => callback(), enterDelay);
   }
 
   open() {
