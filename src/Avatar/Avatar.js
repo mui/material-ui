@@ -5,19 +5,19 @@ function getStyles(props, context) {
     backgroundColor,
     color,
     size,
-    src,
   } = props;
 
   const {avatar} = context.muiTheme;
 
   const styles = {
     root: {
+      position: 'absolute',
       color: color || avatar.color,
       backgroundColor: backgroundColor || avatar.backgroundColor,
       userSelect: 'none',
-      display: 'inline-block',
-      textAlign: 'center',
-      lineHeight: `${size}px`,
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       fontSize: size / 2,
       borderRadius: '50%',
       height: size,
@@ -31,17 +31,6 @@ function getStyles(props, context) {
       margin: size * 0.2,
     },
   };
-
-  if (src && avatar.borderColor) {
-    Object.assign(styles.root, {
-      background: `url(${src})`,
-      backgroundSize: size,
-      backgroundOrigin: 'border-box',
-      border: `solid 1px ${avatar.borderColor}`,
-      height: size - 2,
-      width: size - 2,
-    });
-  }
 
   return styles;
 }
@@ -106,9 +95,10 @@ class Avatar extends Component {
 
     if (src) {
       return (
-        <div
-          {...other}
+        <img
           style={prepareStyles(Object.assign(styles.root, style))}
+          {...other}
+          src={src}
           className={className}
         />
       );
