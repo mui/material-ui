@@ -5,11 +5,11 @@ function getStyles(props) {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      margin: -7,
+      margin: -props.padding / 2,
     },
     item: {
       boxSizing: 'border-box',
-      padding: 15,
+      padding: props.padding / 2,
     },
   };
 }
@@ -40,8 +40,8 @@ class GridList extends Component {
 
   static defaultProps = {
     cols: 2,
-    padding: 10,
-    cellHeight: 130,
+    padding: 4,
+    cellHeight: 180,
   };
 
   static contextTypes = {
@@ -58,10 +58,6 @@ class GridList extends Component {
       ...other,
     } = this.props;
 
-    const tileSize = 80;
-    const tilePadding = 30;
-    const tileTitleHieght = 20;
-    
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const mergedRootStyles = Object.assign(styles.root, style);
@@ -70,20 +66,18 @@ class GridList extends Component {
       if (React.isValidElement(currentChild) && currentChild.type.muiName === 'Subheader') {
         return currentChild;
       }
-      const childCols = 1;//currentChild.props.cols || 1;
-      const childRows = 1;//currentChild.props.rows || 1;
+      const childCols = currentChild.props.cols || 1;
+      const childRows = currentChild.props.rows || 1;
       const itemStyle = Object.assign({}, styles.item, {
-        //width: `${(100 / cols * childCols)}%`,
-        width: tileSize + tilePadding,
-        //height: cellHeight * childRows + padding,
-        height: tileSize + tilePadding + tileTitleHieght,
+        width: `${(100 / cols * childCols)}%`,
+        height: cellHeight * childRows + padding,
       });
 
       return <div style={prepareStyles(itemStyle)}>{currentChild}</div>;
     });
 
     return (
-      <div  style={prepareStyles(mergedRootStyles)} {...other}>
+      <div style={prepareStyles(mergedRootStyles)} {...other}>
         {wrappedChildren}
       </div>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {GridList, GridTile} from 'material-ui/GridList';
+import GridTileList from 'material-ui/GridTileList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -77,20 +77,10 @@ const tilesData = [
 
 const GridListExampleSimple = () => (
   <div style={styles.root}>
-    <GridList
-      cellHeight={200}
+    <GridTileList
       style={styles.gridList}
-    >    
-      {tilesData.map((tile) => (
-        <GridTile
-          key={tile.id}    
-          url={tile.url}      
-          title={tile.title}          
-        >
-          <img src={tile.img} />
-        </GridTile>
-      ))}
-    </GridList>
+      tilesData={tilesData}>          
+    </GridTileList>
   </div>
 );
 

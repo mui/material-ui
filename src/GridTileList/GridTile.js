@@ -1,57 +1,68 @@
 import React, {Component, PropTypes} from 'react';
 
-function getStyles(props, context) {
+function getStyles(props, context, state) {
   const {
     baseTheme,
     gridTile,
   } = context.muiTheme;
 
   const actionPos = props.actionIcon && props.actionPosition;
-
+  
+  let tileSize = '80px'
+  let imageSize = '48px'
+  let backgroundColor = 'white';
+  let borderColor = '#ccc';
+  if (state.hovered) {
+    backgroundColor = '#e3e3e3';
+  }
+  if (props.selected) {
+    backgroundColor = '#aadbee';
+    borderColor= '#aadbee';
+  }      
+   
   const styles = {
     root: {
       position: 'relative',
       display: 'block',
-      height: '100%',
-      overflow: 'hidden',
+      height: tileSize,
+      width: tileSize,
+      backgroundColor: backgroundColor,
+      border: '1px solid',
+      borderColor: borderColor,
     },
     titleBar: {
       position: 'absolute',
       left: 0,
       right: 0,
+      top: tileSize,
       [props.titlePosition]: 0,
-      height: props.subtitle ? 68 : 48,
-      background: props.titleBackground,
+      height: 20,
       display: 'flex',
       alignItems: 'center',
+      padding: '5px 5px 0',
     },
     titleWrap: {
       flexGrow: 1,
-      marginLeft: actionPos !== 'left' ? baseTheme.spacing.desktopGutterLess : 0,
-      marginRight: actionPos === 'left' ? baseTheme.spacing.desktopGutterLess : 0,
-      color: gridTile.textColor,
-      overflow: 'hidden',
+      marginLeft:  0,
+      marginRight: 0,      
+      overflow: 'hidden',  
+      textAlign: 'center',   
     },
     title: {
-      fontSize: '16px',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-    },
-    subtitle: {
       fontSize: '12px',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
-    },
-    actionIcon: {
-      order: actionPos === 'left' ? -1 : 1,
+           
     },
     childImg: {
-      height: '100%',
-      transform: 'translateX(-50%)',
+      height: imageSize,
+      width: imageSize,
+      border: 0,
+      boxShadow: 'none',
+      margin: 0,
+      padding: 0,
       position: 'relative',
-      left: '50%',
     },
   };
   return styles;
@@ -114,14 +125,25 @@ class GridTile extends Component {
      * Position of the title bar (container of title, subtitle and action icon).
      */
     titlePosition: PropTypes.oneOf(['top', 'bottom']),
+    
+    onItemSelected: PropTypes.func,
+    
+    id: PropTypes.string,
+    
+    selected: PropTypes.bool
   };
-
+  
+  state = {
+    hovered: false
+  };
+  
   static defaultProps = {
     titlePosition: 'bottom',
     titleBackground: 'rgba(0, 0, 0, 0.4)',
     actionPosition: 'right',
     cols: 1,
     rows: 1,
+    selected: false,
     containerElement: 'div',
   };
 
@@ -143,11 +165,13 @@ class GridTile extends Component {
     if (imgEl) {
       const fit = () => {
         if (imgEl.offsetWidth < imgEl.parentNode.offsetWidth) {
-          imgEl.style.height = 'auto';
-          imgEl.style.left = '0';
-          imgEl.style.width = '100%';
-          imgEl.style.top = '50%';
-          imgEl.style.transform = imgEl.style.WebkitTransform = 'translateY(-50%)';
+          imgEl.style.height = '48px';          
+          imgEl.style.width = '48px';          
+          imgEl.style.border= '0';
+          imgEl.style.boxShadow= 'none';
+          imgEl.style.margin= '0';
+          imgEl.style.padding= '0';
+          imgEl.style.margin= '16px';          
         }
         imgEl.removeEventListener('load', fit);
         imgEl = null; // prevent closure memory leak
@@ -160,6 +184,19 @@ class GridTile extends Component {
     }
   }
 
+  handleMouseEnter = (event) => {
+    // Cancel hover styles for touch devices
+    this.setState({hovered: true});
+  };
+
+  handleMouseLeave = (event) => {
+    this.setState({hovered: false});
+  };
+    
+  handleClick = (event) => {    
+    this.props.onItemSelected(event, this.props.id);
+  };
+  
   render() {
     const {
       title,
@@ -171,26 +208,25 @@ class GridTile extends Component {
       style,
       children,
       containerElement,
+      url,
       ...other,
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
     const mergedRootStyles = Object.assign(styles.root, style);
 
     let titleBar = null;
 
-    if (title) {
-      titleBar = (
-        <div key="titlebar" style={prepareStyles(styles.titleBar)}>
+    titleBar = (        
+        <div  
+          key="titlebar" 
+          style={prepareStyles(styles.titleBar)}>
           <div style={prepareStyles(styles.titleWrap)}>
-            <div style={prepareStyles(styles.title)}>{title}</div>
-            {subtitle ? (<div style={prepareStyles(styles.subtitle)}>{subtitle}</div>) : null}
-          </div>
-          {actionIcon ? (<div style={prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null}
-        </div>
-      );
-    }
+            <a style={prepareStyles(styles.title)} href={url}>{title}</a>            
+          </div>            
+        </div>        
+    );
 
     let newChildren = children;
 
@@ -212,6 +248,9 @@ class GridTile extends Component {
 
     const containerProps = {
       style: prepareStyles(mergedRootStyles),
+      onMouseLeave:this.handleMouseLeave,
+      onMouseEnter:this.handleMouseEnter,
+      onClick:this.handleClick,
       ...other,
     };
 
