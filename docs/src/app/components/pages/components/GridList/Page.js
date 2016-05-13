@@ -31,8 +31,8 @@ const GridListPage = () => (
     </CodeExample>
     
     <CodeExample
-      title="Original MAterial-ui GridList"
-      description={descriptions.simple}
+      title="Original Material-ui GridList"
+      description={descriptions.complex}
       code={gridListExampleSimpleCode}
     >
       <GridListExampleComplex />
