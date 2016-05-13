@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import update from 'react-addons-update';
 import shallowEqual from 'recompose/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import autoPrefix from '../utils/autoPrefix';
@@ -412,9 +411,12 @@ class Menu extends Component {
 
     if (multiple) {
       const itemIndex = menuValue.indexOf(itemValue);
-      const newMenuValue = itemIndex === -1 ?
-        update(menuValue, {$push: [itemValue]}) :
-        update(menuValue, {$splice: [[itemIndex, 1]]});
+      const [...newMenuValue] = menuValue;
+      if (itemIndex === -1) {
+        newMenuValue.push(itemValue);
+      } else {
+        newMenuValue.splice(itemIndex, 1);
+      }
 
       valueLink.requestChange(event, newMenuValue);
     } else if (!multiple && itemValue !== menuValue) {
