@@ -57,6 +57,12 @@ class EnhancedButton extends Component {
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onKeyboardFocus: PropTypes.func,
+    onMouseDown: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onMouseUp: PropTypes.func,
+    onTouchEnd: PropTypes.func,
+    onTouchStart: PropTypes.func,
     onTouchTap: PropTypes.func,
     style: PropTypes.object,
     tabIndex: PropTypes.number,
@@ -70,9 +76,15 @@ class EnhancedButton extends Component {
     onBlur: () => {},
     onClick: () => {},
     onFocus: () => {},
-    onKeyboardFocus: () => {},
     onKeyDown: () => {},
     onKeyUp: () => {},
+    onKeyboardFocus: () => {},
+    onMouseDown: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onMouseUp: () => {},
+    onTouchEnd: () => {},
+    onTouchStart: () => {},
     onTouchTap: () => {},
     tabIndex: 0,
     type: 'button',
@@ -182,6 +194,9 @@ class EnhancedButton extends Component {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
         this.handleTouchTap(event);
       }
+      if (keycode(event) === 'esc' && this.state.isKeyboardFocused) {
+        this.removeKeyboardFocus(event);
+      }
     }
     this.props.onKeyDown(event);
   };
@@ -273,6 +288,8 @@ class EnhancedButton extends Component {
       WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
+      margin: 0,
+      padding: 0,
       outline: 'none',
       fontSize: 'inherit',
       fontWeight: 'inherit',
@@ -318,7 +335,7 @@ class EnhancedButton extends Component {
     };
     const buttonChildren = this.createButtonChildren();
 
-    // Provides backward compatibity. Added to support wrapping around <a> element.
+    // Provides backward compatibility. Added to support wrapping around <a> element.
     const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
 
     return React.isValidElement(containerElement) ?

@@ -47,6 +47,8 @@ function getStyles(props, context) {
 }
 
 class Avatar extends Component {
+  static muiName = 'Avatar';
+
   static propTypes = {
     /**
      * The backgroundColor of the avatar. Does not apply to image avatars.
