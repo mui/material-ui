@@ -145,20 +145,24 @@ class Clock extends Component {
 
     if ( this.state.mode === 'hour') {
       clock = (
-        <ClockHours
-          key={0}
-          format={this.props.format}
-          onChange={this.handleChangeHours}
-          initialHours={this.state.selectedTime.getHours()}
-        />
+        <FadeIn enterDelay={200} leaveDelay={500}>
+          <ClockHours
+            key={0}
+            format={this.props.format}
+            onChange={this.handleChangeHours}
+            initialHours={this.state.selectedTime.getHours()}
+          />
+        </FadeIn>
       );
     } else {
       clock = (
-        <ClockMinutes
-          key={1}
-          onChange={this.handleChangeMinutes}
-          initialMinutes={this.state.selectedTime.getMinutes()}
-        />
+        <FadeIn enterDelay={200} leaveDelay={500}>
+          <ClockMinutes
+            key={1}
+            onChange={this.handleChangeMinutes}
+            initialMinutes={this.state.selectedTime.getMinutes()}
+          />
+        </FadeIn>
       );
     }
 
@@ -175,9 +179,7 @@ class Clock extends Component {
         />
         <div style={prepareStyles(styles.container)} >
           <div style={prepareStyles(styles.circle)} />
-          <FadeIn enterDelay={200} >
             {clock}
-          </FadeIn>
         </div>
       </div>
     );

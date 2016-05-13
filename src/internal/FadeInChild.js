@@ -8,6 +8,7 @@ class FadeInChild extends Component {
     children: PropTypes.node,
     direction: PropTypes.string,
     enterDelay: PropTypes.number,
+    leaveDelay: PropTypes.number,
     style: PropTypes.object,
   };
 
@@ -24,25 +25,32 @@ class FadeInChild extends Component {
     clearTimeout(this.leaveTimer);
   }
 
+  componentDidAppear() {
+    const style = ReactDOM.findDOMNode(this).style;
+    style.opacity = '1';
+    autoPrefix.set(style, 'transition', 'opacity 0.5s ease-in');
+  }
+
   componentWillEnter(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '0';
-    autoPrefix.set(style, 'transition', 'opacity ease-out');
-    this.enterTimer = setTimeout(callback, this.props.enterDelay);
+    autoPrefix.set(style, 'transition', 'opacity 0.5s ease-in');
+    setTimeout(callback, this.props.enterDelay);
   }
 
   componentDidEnter() {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '1';
-    autoPrefix.set(style, 'transition', 'opacity 0.5s ease-out');
+    autoPrefix.set(style, 'transition', 'opacity 0.5s ease-in');
   }
 
   componentWillLeave(callback) {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '0';
-    autoPrefix.set(style, 'transition', 'opacity ease-out');
-    this.leaveTimer = setTimeout(callback, 0);
+    autoPrefix.set(style, 'transition', 'opacity 0.5s ease-in');
+    setTimeout(callback, this.props.leaveDelay);
   }
+
 
   render() {
     const {
@@ -54,7 +62,7 @@ class FadeInChild extends Component {
     const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
-      position: 'relative',
+      position: 'absolute',
       height: '100%',
       width: '100%',
       top: 0,

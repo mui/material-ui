@@ -7,11 +7,13 @@ class FadeIn extends Component {
     childStyle: PropTypes.object,
     children: PropTypes.node,
     enterDelay: PropTypes.number,
+    leaveDelay: PropTypes.number,
     style: PropTypes.object,
   };
 
   static defaultProps = {
     enterDelay: 0,
+    leaveDelay: 0,
   };
 
   static contextTypes = {
@@ -23,6 +25,7 @@ class FadeIn extends Component {
       enterDelay,
       children,
       childStyle,
+      leaveDelay,
       style,
       ...other,
     } = this.props;
@@ -40,6 +43,7 @@ class FadeIn extends Component {
         <FadeInChild
           key={child.key}
           enterDelay={enterDelay}
+          leaveDelay={leaveDelay}
           style={childStyle}
         >
           {child}
