@@ -73,7 +73,7 @@
     "coveralls": "^2.11.9",
     "cross-env": "^1.0.7",
     "enzyme": "^2.2.0",
-    "eslint": "^2.8.0",
+    "eslint": "^2.9.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "eslint-plugin-react": "^5.0.1",

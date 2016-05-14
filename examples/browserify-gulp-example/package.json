@@ -1,25 +1,22 @@
 {
   "name": "material-ui-example-browserify",
   "version": "0.15.0",
-  "description": "Sample project that uses material-ui",
+  "description": "Sample project that uses Material-UI",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
   },
   "scripts": {
-    "start": "gulp",
-    "lint": "eslint src && echo \"eslint: no lint errors\""
+    "start": "gulp"
   },
   "private": true,
   "devDependencies": {
     "babel-core": "^6.3.26",
-    "babel-eslint": "^6.0.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "browser-sync": "^2.11.0",
     "browserify": "^13.0.0",
-    "eslint": "^2.5.1",
     "gulp": "^3.9.1",
     "gulp-notify": "^2.2.0",
     "gulp-util": "^3.0.1",
