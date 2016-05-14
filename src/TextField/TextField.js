@@ -287,12 +287,20 @@ class TextField extends Component {
       hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
     });
 
-    warning(name || hintText || floatingLabelText || id, `We don't have enough information
-      to build a robust unique id for the TextField component. Please provide an id or a name.`);
+    if (!id) {
+      let uniqueId;
 
-    const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
-      Math.floor(Math.random() * 0xFFFF)}`;
-    this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
+      if (name || hintText || floatingLabelText) {
+        uniqueId = `${name}-${hintText}-${floatingLabelText}`;
+      } else {
+        warning(false, `We don't have enough information
+          to build a robust unique id for the TextField component. Please provide an id or a name.`);
+
+        uniqueId = Math.floor(Math.random() * 0xFFFF).toString();
+      }
+
+      this.uniqueId = uniqueId.replace(/[^A-Za-z0-9-]/gi, '');
+    }
   }
 
   componentWillReceiveProps(nextProps) {

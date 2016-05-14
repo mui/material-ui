@@ -62,4 +62,48 @@ describe('<TextField />', () => {
     assert.strictEqual(wrapper.state().isClean, false);
     assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, false, 'should not shrink TextFieldLabel');
   });
+
+  // Server side rendering
+  describe('deterministic id', () => {
+    it('should use the id', () => {
+      const wrapper = shallowWithContext(<TextField id="foo" />);
+
+      assert.strictEqual(wrapper.find('input').props().id, 'foo',
+        'It should use the id property'
+      );
+    });
+
+    it('should use the name', () => {
+      const wrapper = shallowWithContext(<TextField name="foo" />);
+
+      assert.strictEqual(wrapper.find('input').props().id, 'foo-undefined-undefined',
+        'It should use the id property'
+      );
+    });
+
+    it('should use the hintText', () => {
+      const wrapper = shallowWithContext(<TextField hintText="foo" />);
+
+      assert.strictEqual(wrapper.find('input').props().id, 'undefined-foo-undefined',
+        'It should use the id property'
+      );
+    });
+
+    it('should use the floatingLabelText', () => {
+      const wrapper = shallowWithContext(<TextField floatingLabelText="foo" />);
+
+      assert.strictEqual(wrapper.find('input').props().id, 'undefined-undefined-foo',
+        'It should use the id property'
+      );
+    });
+
+    it('should use a random hash', () => {
+      const wrapper1 = shallowWithContext(<TextField />);
+      const wrapper2 = shallowWithContext(<TextField />);
+
+      assert.notStrictEqual(wrapper1.find('input').props().id, wrapper2.find('input').props().id,
+        'It should use a random hash'
+      );
+    });
+  });
 });
