@@ -10,7 +10,7 @@ import FlatButton from 'material-ui/FlatButton';
 /**
  * Non-linear steppers allow users to enter a multi-step flow at any point.
  *
- * This example is similiar to the regular horizontal stepper, except steps are no longer
+ * This example is similar to the regular horizontal stepper, except steps are no longer
  * automatically set to `disabled={true}` based on the `activeStep` prop.
  *
  * We've used the `<StepButton>` here to demonstrate clickable step labels.
