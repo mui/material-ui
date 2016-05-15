@@ -116,7 +116,7 @@ class InlineStyles extends React.Component {
         </CodeExample>
         <p>
           If you would like to add additional styling via CSS, pass in the
-          class name via the className prop. The className prop is similiar to
+          class name via the className prop. The className prop is similar to
           the style prop in that it only applies to the root element. Note that
           CSS properties defined inline are given priority over those defined
           in a CSS class. Take a look at a component&#39;s <code>getStyles
