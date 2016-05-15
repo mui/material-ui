@@ -27,7 +27,7 @@ const getStyles = () => {
 };
 
 /**
- * This is similiar to the horizontal non-linear example, except the
+ * This is similar to the horizontal non-linear example, except the
  * `<Step>` components are being controlled manually via individual props.
  *
  * An enhancement made possible by this functionality (shown below),
