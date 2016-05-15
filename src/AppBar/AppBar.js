@@ -5,7 +5,7 @@ import Paper from '../Paper';
 import propTypes from '../utils/propTypes';
 import warning from 'warning';
 
-function getStyles(props, context) {
+export function getStyles(props, context) {
   const {
     appBar,
     button: {
@@ -93,6 +93,10 @@ class AppBar extends Component {
      */
     iconElementRight: PropTypes.element,
     /**
+     * Override the inline-styles of the element displayed on the left side of the app bar.
+     */
+    iconStyleLeft: PropTypes.object,
+    /**
      * Override the inline-styles of the element displayed on the right side of the app bar.
      */
     iconStyleRight: PropTypes.object,
@@ -178,6 +182,7 @@ class AppBar extends Component {
     const {
       title,
       titleStyle,
+      iconStyleLeft,
       iconStyleRight,
       showMenuIconButton,
       iconElementLeft,
@@ -206,6 +211,8 @@ class AppBar extends Component {
       style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
     }, title);
 
+    const iconLeftStyle = Object.assign({}, styles.iconButtonStyle, iconStyleLeft);
+
     if (showMenuIconButton) {
       let iconElementLeftNode = iconElementLeft;
 
@@ -217,7 +224,7 @@ class AppBar extends Component {
         }
 
         menuElementLeft = (
-          <div style={prepareStyles(Object.assign({}, styles.iconButtonStyle))}>
+          <div style={prepareStyles(iconLeftStyle)}>
             {iconElementLeftNode}
           </div>
         );
@@ -225,7 +232,7 @@ class AppBar extends Component {
         const child = iconClassNameLeft ? '' : <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />;
         menuElementLeft = (
           <IconButton
-            style={styles.iconButtonStyle}
+            style={iconLeftStyle}
             iconStyle={styles.iconButtonIconStyle}
             iconClassName={iconClassNameLeft}
             onTouchTap={this.handleTouchTapLeftIconButton}
