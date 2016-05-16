@@ -32,7 +32,7 @@ class ExpandTransitionChild extends Component {
   }
 
   componentDidAppear() {
-    var style = ReactDOM.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     style.height = 'auto';
   }
 
@@ -52,7 +52,7 @@ class ExpandTransitionChild extends Component {
   }
 
   componentDidEnter() {
-    var style = ReactDOM.findDOMNode(this).style;
+    const style = ReactDOM.findDOMNode(this).style;
     style.height = 'auto';
   }
 
