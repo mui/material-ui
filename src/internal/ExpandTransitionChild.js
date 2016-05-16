@@ -27,6 +27,7 @@ class ExpandTransitionChild extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
+    clearTimeout(this.enteredTimer);
     clearTimeout(this.leaveTimer);
   }
 
@@ -35,22 +36,33 @@ class ExpandTransitionChild extends Component {
     callback();
   }
 
+  componentDidAppear() {
+    this.setAutoHeight();
+  }
+
   componentWillEnter(callback) {
-    const {enterDelay} = this.props;
+    const {enterDelay, transitionDelay, transitionDuration} = this.props;
     const {style} = ReactDOM.findDOMNode(this);
     style.height = 0;
-    this.enterTimer = setTimeout(() => callback(), enterDelay);
+    this.enterTimer = setTimeout(() => this.open(), enterDelay);
+    this.enteredTimer = setTimeout(() => callback(), enterDelay + transitionDelay + transitionDuration);
   }
 
   componentDidEnter() {
-    this.open();
+    this.setAutoHeight();
   }
 
   componentWillLeave(callback) {
-    const {transitionDuration} = this.props;
+    const {transitionDelay, transitionDuration} = this.props;
     const {style} = ReactDOM.findDOMNode(this);
+    style.height = `${this.refs.wrapper.clientHeight}px`;
     style.height = 0;
-    this.leaveTimer = setTimeout(() => callback(), transitionDuration);
+    this.leaveTimer = setTimeout(() => callback(), transitionDelay + transitionDuration);
+  }
+
+  setAutoHeight() {
+    const {style} = ReactDOM.findDOMNode(this);
+    style.height = 'auto';
   }
 
   open() {
