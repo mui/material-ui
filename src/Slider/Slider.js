@@ -44,7 +44,7 @@ const getStyles = (props, context, state) => {
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
 
   const styles = {
-    slider: {
+    slider: Object.assign({
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
@@ -52,7 +52,7 @@ const getStyles = (props, context, state) => {
       position: 'relative',
       marginTop: 24,
       marginBottom: 48,
-    },
+    }, props.sliderStyle),
     track: {
       position: 'absolute',
       top: (slider.handleSizeActive - slider.trackSize) / 2,
@@ -221,6 +221,10 @@ class Slider extends Component {
      */
     style: PropTypes.object,
     /**
+     * Override the inline-styles of the inner slider element. 
+     */
+    sliderStyle: PropTypes.object,
+    /**
      * The value of the slider.
      */
     value: valueInRangePropType,
@@ -234,6 +238,7 @@ class Slider extends Component {
     required: true,
     step: 0.01,
     style: {},
+    sliderStyle: {},
   };
 
   static contextTypes = {
