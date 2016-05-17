@@ -6,7 +6,7 @@ import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label && !props.icon) {
+  if (!props.children && (!props.label && props.label !== 0) && !props.icon) {
     return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
   }
 }
