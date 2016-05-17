@@ -36,6 +36,7 @@ class EnhancedTextarea extends Component {
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     onHeightChange: PropTypes.func,
+    onKeyDown: PropTypes.func,
     rows: PropTypes.number,
     rowsMax: PropTypes.number,
     shadowStyle: PropTypes.object,
@@ -122,11 +123,11 @@ class EnhancedTextarea extends Component {
   };
 
   handleKeyDown = (event) => {
-    const shadow = this.refs.shadow
+    const shadow = this.refs.shadow;
 
     if (keycode(event) === 'enter' &&
         shadow.scrollHeight >= this.props.rowsMax * rowsHeight) {
-      event.preventDefault()
+      event.preventDefault();
     }
   }
 
