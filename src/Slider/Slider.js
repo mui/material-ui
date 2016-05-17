@@ -217,13 +217,13 @@ class Slider extends Component {
      */
     step: PropTypes.number,
     /**
+     * Override the inline-styles of the inner slider element.
+     */
+    sliderStyle: PropTypes.object,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    /**
-     * Override the inline-styles of the inner slider element. 
-     */
-    sliderStyle: PropTypes.object,
     /**
      * The value of the slider.
      */
