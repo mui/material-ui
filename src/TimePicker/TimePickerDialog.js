@@ -30,10 +30,6 @@ class TimePickerDialog extends Component {
     open: false,
   };
 
-  getTheme() {
-    return this.context.muiTheme.timePicker;
-  }
-
   show() {
     if (this.props.onShow && !this.state.open) this.props.onShow();
     this.setState({
@@ -85,7 +81,7 @@ class TimePickerDialog extends Component {
     const styles = {
       root: {
         fontSize: 14,
-        color: this.getTheme().clockColor,
+        color: this.context.muiTheme.timePicker.clockColor,
       },
       dialogContent: {
         width: 280,
@@ -116,7 +112,6 @@ class TimePickerDialog extends Component {
     return (
       <Dialog
         {...other}
-        ref="dialogWindow"
         style={styles.root}
         bodyStyle={styles.body}
         actions={actions}
