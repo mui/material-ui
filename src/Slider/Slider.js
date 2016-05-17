@@ -236,9 +236,9 @@ class Slider extends Component {
     max: 1,
     min: 0,
     required: true,
+    sliderStyle: {},
     step: 0.01,
     style: {},
-    sliderStyle: {},
   };
 
   static contextTypes = {
