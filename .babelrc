@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015", "stage-1", "react"],
+  "presets": ["es2015-loose", "stage-1", "react"],
   "plugins": [
     ["transform-replace-object-assign", "simple-assign"],
     "transform-dev-warning"
