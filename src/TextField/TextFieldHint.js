@@ -13,11 +13,12 @@ function getStyles(props) {
 
   return {
     root: {
-      position: 'absolute',
+      //position: 'absolute',
       opacity: show ? 1 : 0,
       color: hintColor,
       transition: transitions.easeOut(),
-      bottom: 12,
+      fontSize: '14px'
+      //bottom: 12,
     },
   };
 }
