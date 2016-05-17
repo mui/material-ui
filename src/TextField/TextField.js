@@ -36,10 +36,12 @@ const getStyles = (props, context, state) => {
       backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
       transition: transitions.easeOut('200ms', 'height'),
+      margin: '10px 0'
     },
     error: {
       position: 'relative',
-      bottom: 2,
+      bottom: 0,
+      margin: '5px 0',
       fontSize: 12,
       lineHeight: '12px',
       color: errorColor,
@@ -47,18 +49,22 @@ const getStyles = (props, context, state) => {
     },
     floatingLabel: {
       color: hintColor,
+      position: 'inherit',
+      top: '5px'
     },
     input: {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      padding: 0,
+      padding: '8px 12px', //overriden
       position: 'relative',
       width: '100%',
-      height: '100%',
-      border: 'none',
+      height: '36px', //overriden
+      border: '1px solid #cccccc', //overriden
       outline: 'none',
-      backgroundColor: 'rgba(0,0,0,0)',
+      backgroundColor: '#fff', //override
+      boxSizing: 'border-box', //override
       color: props.disabled ? disabledTextColor : textColor,
-      font: 'inherit',
+      marginTop: '5px',
+      fontSize: '12px' //override
     },
     textarea: {},
   };
@@ -78,6 +84,9 @@ const getStyles = (props, context, state) => {
 
   if (state.isFocused) {
     styles.floatingLabel.color = focusColor;
+    styles.input.borderColor = "#66afe9";
+  } else {
+    styles.input.borderColor = "#ccc";
   }
 
   if (props.floatingLabelText) {
@@ -256,7 +265,7 @@ class TextField extends Component {
     multiLine: false,
     fullWidth: false,
     type: 'text',
-    underlineShow: true,
+    underlineShow: false,
     rows: 1,
   };
 
@@ -475,16 +484,6 @@ class TextField extends Component {
     return (
       <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         {floatingLabelTextElement}
-        {hintText ?
-          <TextFieldHint
-            muiTheme={this.context.muiTheme}
-            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
-                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
-            style={hintStyle}
-            text={hintText}
-          /> :
-          null
-        }
         {inputElement}
         {underlineShow ?
           <TextFieldUnderline
@@ -496,6 +495,16 @@ class TextField extends Component {
             focusStyle={underlineFocusStyle}
             muiTheme={this.context.muiTheme}
             style={underlineStyle}
+          /> :
+          null
+        }
+        {hintText ?
+          <TextFieldHint
+            muiTheme={this.context.muiTheme}
+            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
+                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
+            style={hintStyle}
+            text={hintText}
           /> :
           null
         }

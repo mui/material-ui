@@ -5,12 +5,13 @@
 @import "github.css";
 
 a {
-  color: #ff4081;
+  color: #2694c0;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  cursor:pointer;  
 }
 
 html {
