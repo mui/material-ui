@@ -213,13 +213,13 @@ class Slider extends Component {
      */
     required: PropTypes.bool,
     /**
-     * The granularity the slider can step through values.
-     */
-    step: PropTypes.number,
-    /**
      * Override the inline-styles of the inner slider element.
      */
     sliderStyle: PropTypes.object,
+    /**
+     * The granularity the slider can step through values.
+     */
+    step: PropTypes.number,
     /**
      * Override the inline-styles of the root element.
      */
