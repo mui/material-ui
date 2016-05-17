@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 
 const rowsHeight = 24;
 
@@ -120,10 +121,20 @@ class EnhancedTextarea extends Component {
     }
   };
 
+  handleKeyDown = (event) => {
+    const shadow = this.refs.shadow
+
+    if (keycode(event) === 'enter' &&
+        shadow.scrollHeight >= this.props.rowsMax * rowsHeight) {
+      event.preventDefault()
+    }
+  }
+
   render() {
     const {
       onChange, // eslint-disable-line no-unused-vars
       onHeightChange, // eslint-disable-line no-unused-vars
+      onKeyDown, // eslint-disable-line no-unused-vars
       rows, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
@@ -161,6 +172,7 @@ class EnhancedTextarea extends Component {
           rows={this.props.rows}
           style={prepareStyles(textareaStyles)}
           onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
         />
       </div>
     );
