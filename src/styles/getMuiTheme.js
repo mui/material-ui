@@ -171,9 +171,9 @@ export default function getMuiTheme(muiTheme, ...more) {
       )),
     },
     radioButton: {
-      borderColor: palette.textColor,
+      borderColor: palette.accent3Color,
       backgroundColor: palette.alternateTextColor,
-      checkedColor: palette.primary1Color,
+      checkedColor: palette.accent3Color,
       requiredColor: palette.primary1Color,
       disabledColor: palette.disabledColor,
       size: 24,
