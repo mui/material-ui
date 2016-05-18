@@ -1,0 +1,14 @@
+.logo {
+    display: block;
+    float:left;
+    margin-top: 8.5px;
+    height: 33px;
+    width: 33px;
+    background: url("./global_logo.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    &:hover{
+        background-position: left bottom;
+    }
+}

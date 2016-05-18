@@ -1,0 +1,32 @@
+.applicationHeader {
+    position: relative;
+    color: #121212;
+    width: 100%;
+    &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: block;
+        background: url("./logo_spiral.png") center right;
+        background-repeat: no-repeat;
+        width: 113px;
+        height: 90px;
+        content: " ";
+    }
+}
+.applicationHeaderContent {
+    height: 90px;
+    background-color: #ca241c;
+    background: url("./breadcrumb_red_bg.png");
+    background-repeat: no-repeat;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px 15px;
+    box-sizing:border-box;
+}
+
+.title {
+    font-size: 2em;
+    color: #ffffff;
+}

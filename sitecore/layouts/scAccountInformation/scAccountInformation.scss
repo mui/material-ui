@@ -1,0 +1,34 @@
+.logout {
+    color: #969696;
+    &:after {
+        content: "|";
+        padding-left: 15px;
+        padding-right: 13px;
+        display: inherit;
+    }
+}
+.accountInfo {
+    float: right;
+    margin: 0;
+    padding: 0 30px;
+    li {
+        list-style: none;
+        display: inline-block;
+        a {
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        img {
+            height: 32px;
+            width: 32px;
+            margin-left: 10px;
+            background-color: #ffffff;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+    }
+}
