@@ -44,7 +44,7 @@ const getStyles = (props, context, state) => {
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
 
   const styles = {
-    slider: Object.assign({
+    slider: {
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
@@ -52,7 +52,7 @@ const getStyles = (props, context, state) => {
       position: 'relative',
       marginTop: 24,
       marginBottom: 48,
-    }, props.sliderStyle),
+    },
     track: {
       position: 'absolute',
       top: (slider.handleSizeActive - slider.trackSize) / 2,
@@ -547,7 +547,7 @@ class Slider extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const sliderStyles = styles.slider;
+    const sliderStyles = Object.assign({}, styles.slider, this.props.sliderStyle);
 
     let handleStyles = {};
     let percent = this.state.percent;
