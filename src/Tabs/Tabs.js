@@ -69,7 +69,8 @@ class Tabs extends Component {
 
   static defaultProps = {
     initialSelectedIndex: 0,
-    onChange: () => {},
+    onChange: () => {
+    },
   };
 
   static contextTypes = {
@@ -86,8 +87,8 @@ class Tabs extends Component {
       selectedIndex: valueLink.value !== undefined ?
         this.getSelectedIndex(this.props) :
         initialIndex < this.getTabCount() ?
-        initialIndex :
-        0,
+          initialIndex :
+          0,
     });
   }
 
@@ -129,9 +130,9 @@ class Tabs extends Component {
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
     return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange,
-    };
+        value: props.value,
+        requestChange: props.onChange,
+      };
   }
 
   getSelectedIndex(props) {
@@ -166,7 +167,7 @@ class Tabs extends Component {
   getSelected(tab, index) {
     const valueLink = this.getValueLink(this.props);
     return valueLink.value ? valueLink.value === tab.props.value :
-      this.state.selectedIndex === index;
+    this.state.selectedIndex === index;
   }
 
   render() {
@@ -207,7 +208,7 @@ class Tabs extends Component {
       return React.cloneElement(tab, {
         key: index,
         selected: this.getSelected(tab, index),
-        tabIndex: <ind></ind>ex,
+        tabIndex: index,
         width: `${width}%`,
         onTouchTap: this.handleTabTouchTap,
       });
@@ -233,7 +234,7 @@ class Tabs extends Component {
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
-         {inkBar}
+          {inkBar}
         </div>
         <div
           style={prepareStyles(Object.assign({}, contentContainerStyle))}
