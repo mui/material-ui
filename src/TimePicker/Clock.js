@@ -2,15 +2,20 @@ import React, {Component, PropTypes} from 'react';
 import TimeDisplay from './TimeDisplay';
 import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
+import TimePickerActionButtons from './TimePickerActionButtons';
 
 class Clock extends Component {
   static propTypes = {
+    cancelLabel: PropTypes.node,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
     isActive: PropTypes.bool,
     mode: PropTypes.oneOf(['hour', 'minute']),
+    okLabel: PropTypes.node,
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
+    onTouchTapCancel: PropTypes.func,
+    onTouchTapOk: PropTypes.func,
   };
 
   static defaultProps = {
@@ -112,6 +117,12 @@ class Clock extends Component {
   }
 
   render() {
+    const {
+      cancelLabel,
+      okLabel,
+      onTouchTapCancel,
+      onTouchTapOk,
+    } = this.props;
     let clock = null;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -127,7 +138,8 @@ class Clock extends Component {
       },
       circle: {
         position: 'absolute',
-        top: 20,
+        left: 15,
+        padding: 10,
         width: 260,
         height: 260,
         borderRadius: '100%',
@@ -168,6 +180,12 @@ class Clock extends Component {
         <div style={prepareStyles(styles.container)} >
           <div style={prepareStyles(styles.circle)} />
           {clock}
+          <TimePickerActionButtons
+            cancelLabel={cancelLabel}
+            okLabel={okLabel}
+            onTouchTapCancel={onTouchTapCancel}
+            onTouchTapOk={onTouchTapOk}
+          />
         </div>
       </div>
     );

@@ -10,6 +10,8 @@ import TimePickerExampleSimple from './ExampleSimple';
 import timePickerExampleSimpleCode from '!raw!./ExampleSimple';
 import TimePickerExampleComplex from './ExampleComplex';
 import timePickerExampleComplexCode from '!raw!./ExampleComplex';
+import TimePickerExampleInline from './ExampleInline';
+import timePickerExampleInlineCode from '!raw!./ExampleInline';
 import TimePickerExampleInternational from './ExampleInternational';
 import timePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import timePickerCode from '!raw!material-ui/TimePicker/TimePicker';
@@ -31,6 +33,13 @@ const TimePickersPage = () => (
       code={timePickerExampleSimpleCode}
     >
       <TimePickerExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Inline TimePicker examples"
+      description={descriptions.inline}
+      code={timePickerExampleInlineCode}
+    >
+      <TimePickerExampleInline />
     </CodeExample>
     <CodeExample
       title="Controlled examples"
