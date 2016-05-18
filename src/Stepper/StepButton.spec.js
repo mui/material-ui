@@ -25,9 +25,9 @@ describe('<StepButton />', () => {
     const wrapper = themedShallow(
       <StepButton>Step One</StepButton>
     );
-    assert.ok(wrapper.is('EnhancedButton'));
+    assert.ok(wrapper.is('EnhancedButton'), 'should be an EnhancedButton');
     const stepLabel = wrapper.find('StepLabel');
-    assert.strictEqual(stepLabel.length, 1);
+    assert.strictEqual(stepLabel.length, 1, 'should have a stepLabel');
     assert.strictEqual(stepLabel.props().children, 'Step One');
   });
 
@@ -43,9 +43,9 @@ describe('<StepButton />', () => {
       </StepButton>
     );
     const stepLabel = wrapper.find('StepLabel');
-    assert.strictEqual(stepLabel.prop('active'), true);
-    assert.strictEqual(stepLabel.prop('completed'), true);
-    assert.strictEqual(stepLabel.prop('disabled'), true);
+    assert.strictEqual(stepLabel.prop('active'), true, 'should be active');
+    assert.strictEqual(stepLabel.prop('completed'), true, 'should be completed');
+    assert.strictEqual(stepLabel.prop('disabled'), true, 'should be disabled');
   });
 
   it('should pass props to EnhancedButton', () => {
@@ -72,11 +72,11 @@ describe('<StepButton />', () => {
       it('should set the hovered state', () => {
         wrapper.simulate('mouseEnter');
         assert.strictEqual(wrapper.state('hovered'), true, 'should be hovered');
-        assert.ok(handleMouseEnter.calledOnce);
+        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
         wrapper.simulate('mouseLeave');
         assert.strictEqual(wrapper.state('hovered'), false, 'should not be hovered');
-        assert.ok(handleMouseEnter.calledOnce);
-        assert.ok(handleMouseLeave.calledOnce);
+        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+        assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
       });
 
       it('should set the EnhancedButton backgroundColor on hover', () => {
@@ -103,13 +103,13 @@ describe('<StepButton />', () => {
         assert.strictEqual(wrapper.state('touched'), false, 'should not be touched');
         wrapper.simulate('touchStart');
         assert.strictEqual(wrapper.state('touched'), true, 'should be touched');
-        assert.ok(handleTouchStart.calledOnce);
+        assert.strictEqual(handleTouchStart.callCount, 1, 'should call handleTouchStart once');
       });
 
       it('should not set the hovered state with touch set', () => {
         wrapper.simulate('mouseEnter');
         assert.strictEqual(wrapper.state('hovered'), false, 'should not be hovered');
-        assert.ok(handleMouseEnter.calledOnce);
+        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
       });
     });
 
@@ -127,19 +127,19 @@ describe('<StepButton />', () => {
         </StepButton>
       );
       wrapper.simulate('mouseEnter');
-      assert.ok(handleMouseEnter.calledOnce);
+      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
       wrapper.simulate('mouseLeave');
-      assert.ok(handleMouseEnter.calledOnce);
-      assert.ok(handleMouseLeave.calledOnce);
+      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
       wrapper.simulate('touchStart');
-      assert.ok(handleMouseEnter.calledOnce);
-      assert.ok(handleMouseLeave.calledOnce);
-      assert.ok(handleTouchStart.calledOnce);
+      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      assert.strictEqual(handleTouchStart.callCount, 1, 'should call handleTouchStart once');
       wrapper.simulate('mouseEnter');
       wrapper.simulate('touchStart');
-      assert.ok(handleMouseEnter.calledTwice);
-      assert.ok(handleMouseLeave.calledOnce);
-      assert.ok(handleTouchStart.calledTwice);
+      assert.strictEqual(handleMouseEnter.callCount, 2, 'should call handleMouseEnter twice');
+      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      assert.strictEqual(handleTouchStart.callCount, 2, 'should call handleTouchStart twice');
     });
   });
 });

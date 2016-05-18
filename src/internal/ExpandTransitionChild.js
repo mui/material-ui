@@ -55,6 +55,7 @@ class ExpandTransitionChild extends Component {
   componentWillLeave(callback) {
     const {transitionDelay, transitionDuration} = this.props;
     const {style} = ReactDOM.findDOMNode(this);
+    // Set fixed height first for animated property value
     style.height = `${this.refs.wrapper.clientHeight}px`;
     style.height = 0;
     this.leaveTimer = setTimeout(() => callback(), transitionDelay + transitionDuration);
