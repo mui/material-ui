@@ -75,10 +75,10 @@ class TableFooter extends Component {
       let newDescendants;
       if (adjustForCheckbox) {
         newDescendants = [
-          <TableRowColumn key={`fpcb${rowNumber}`} style={{width: 24}} />,
-          ...React.Children.toArray(child.props.children),
+          <TableRowColumn key={`fpcb${rowNumber}`} style={{width: 24}} />
         ];
       }
+      newDescendants.push(...React.Children.toArray(child.props.children));
 
       return React.cloneElement(child, newChildProps, newDescendants);
     });
