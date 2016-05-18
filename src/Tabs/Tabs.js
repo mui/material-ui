@@ -207,7 +207,7 @@ class Tabs extends Component {
       return React.cloneElement(tab, {
         key: index,
         selected: this.getSelected(tab, index),
-        tabIndex: index,
+        tabIndex: <ind></ind>ex,
         width: `${width}%`,
         onTouchTap: this.handleTabTouchTap,
       });
