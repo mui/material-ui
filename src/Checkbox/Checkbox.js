@@ -17,28 +17,23 @@ function getStyles(props, context) {
     check: {
       position: 'absolute',
       opacity: 0,
-      transform: 'scale(0)',
-      transitionOrigin: '50% 50%',
-      transition: `${transitions.easeOut('450ms', 'opacity', '0ms')}, ${
-          transitions.easeOut('0ms', 'transform', '450ms')
-        }`,
+      transition: 'initial',
+      transform: 'none',
       fill: checkbox.checkedColor,
     },
     box: {
       position: 'absolute',
       opacity: 1,
       fill: checkbox.boxColor,
-      transition: transitions.easeOut('2s', null, '200ms'),
+      transition: 'initial',
     },
     checkWhenSwitched: {
       opacity: 1,
-      transform: 'scale(1)',
-      transition: `${transitions.easeOut('0ms', 'opacity', '0ms')}, ${
-          transitions.easeOut('800ms', 'transform', '0ms')
-        }`,
+      transition: 'initial',
+      transform: 'none',
     },
     boxWhenSwitched: {
-      transition: transitions.easeOut('100ms', null, '0ms'),
+      transition: 'initial',
       fill: checkbox.checkedColor,
     },
     checkWhenDisabled: {
@@ -204,7 +199,7 @@ class Checkbox extends Component {
       </div>
     );
 
-    const rippleColor = this.state.switched ? checkStyles.fill : boxStyles.fill;
+    const rippleColor = 'transparent';
     const mergedIconStyle = Object.assign(styles.icon, iconStyle);
 
     const labelStyle = Object.assign(

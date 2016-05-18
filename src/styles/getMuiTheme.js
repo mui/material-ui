@@ -72,8 +72,8 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.textColor,
     },
     checkbox: {
-      boxColor: palette.textColor,
-      checkedColor: palette.primary1Color,
+      boxColor: palette.accent3Color,
+      checkedColor: palette.accent3Color,
       requiredColor: palette.primary1Color,
       disabledColor: palette.disabledColor,
       labelColor: palette.textColor,
@@ -173,9 +173,9 @@ export default function getMuiTheme(muiTheme, ...more) {
       )),
     },
     radioButton: {
-      borderColor: palette.textColor,
+      borderColor: palette.accent3Color,
       backgroundColor: palette.alternateTextColor,
-      checkedColor: palette.primary1Color,
+      checkedColor: palette.accent3Color,
       requiredColor: palette.primary1Color,
       disabledColor: palette.disabledColor,
       size: 24,

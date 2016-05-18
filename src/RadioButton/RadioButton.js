@@ -13,7 +13,7 @@ function getStyles(props, context) {
       width: radioButton.size,
     },
     target: {
-      transition: transitions.easeOut(),
+      transition: 'initial',
       position: 'absolute',
       opacity: 1,
       transform: 'scale(1)',
@@ -24,7 +24,7 @@ function getStyles(props, context) {
       opacity: 1,
       transform: 'scale(0)',
       transformOrigin: '50% 50%',
-      transition: transitions.easeOut(),
+      transition: 'initial',
       fill: radioButton.checkedColor,
     },
     targetWhenChecked: {
@@ -45,7 +45,7 @@ function getStyles(props, context) {
       color: props.disabled ? radioButton.labelDisabledColor : radioButton.labelColor,
     },
     ripple: {
-      color: props.checked ? radioButton.checkedColor : radioButton.borderColor,
+      color: 'transparent',
     },
   };
 }
