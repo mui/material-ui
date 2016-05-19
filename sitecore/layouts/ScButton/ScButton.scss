@@ -1,0 +1,42 @@
+.button {
+    background-image: linear-gradient(to bottom, #f0f0f0 0%, #d1d1d1 100%);
+    border-color: #cccccc;
+    background-image: linear-gradient(to bottom, #f0f0f0 0%, #d9d9d9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    box-shadow: inset 0 1px #ffffff;
+    border-color: #bdbdbd;
+    text-decoration: none;
+    text-shadow: none;
+    background-position: 0;
+    position: relative;
+    outline: none;
+    min-width: 80px;
+    height: 36px;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    border-radius: 6px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #474747;
+    background-color: #f0f0f0;
+    border-color: #bdbdbd;
+}
+
+.text {
+    line-height: 19px;
+    display: inline-block;
+    vertical-align: top;
+}

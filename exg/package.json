@@ -1,0 +1,54 @@
+{
+  "name": "material-ui-docs",
+  "version": "0.15.0-beta.2",
+  "description": "Documentation site for material-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "private": true,
+  "scripts": {
+    "start": "npm run browser:development",
+    "browser:development": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
+    "browser:build": "NODE_ENV=docs-production webpack --config webpack-production.config.js --progress --colors --profile",
+    "browser:prd": "NODE_ENV=docs-production webpack-dev-server --config webpack-production.config.js --progress --colors",
+    "gh-pages:build": "node ./gh-pages-build.js",
+    "native:development": "node_modules/react-native/packager/packager.sh --reset-cache",
+    "android:setup-port": "adb reverse tcp:8081 tcp:8081"
+  },
+  "dependencies": {
+    "react-title-component": "^1.0.1",
+    "simple-assign": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.0",
+    "css-loader": "^0.23.0",
+    "doctrine": "^1.1.0",
+    "eslint": "^2.5.1",
+    "eslint-plugin-babel": "^3.1.0",
+    "eslint-plugin-react": "^5.0.1",
+    "highlight.js": "^9.0.0",
+    "history": "^2.0.0",
+    "html-webpack-plugin": "^2.8.1",
+    "intl": "^1.0.1",
+    "intl-locales-supported": "^1.0.0",
+    "json-loader": "^0.5.4",
+    "marked": "^0.3.5",
+    "raw-loader": "^0.5.1",
+    "react-addons-perf": "^15.0.1",
+    "react-docgen": "^2.4.0",
+    "react-hot-loader": "^1.2.8",
+    "react-motion": "^0.4.2",
+    "react-native": "^0.17.0",
+    "react-router": "^2.0.0",
+    "react-swipeable-views": "^0.5.0",
+    "recast": "^0.11.4",
+    "style-loader": "0.13.1",
+    "transfer-webpack-plugin": "^0.1.4",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
+  }
+}
