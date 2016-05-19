@@ -77,7 +77,7 @@ class TimePicker extends Component {
     /**
      * Sets the time for the Time Picker programmatically.
      */
-    value: PropTypes.object,
+    value: PropTypes.any,
 
   };
 
