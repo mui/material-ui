@@ -1,0 +1,14 @@
+.navigationContainer {
+    position: fixed;
+    width: 250px;
+    top: 50px;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: #ffffff;
+    z-index: 1;
+    border-color: #474747;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-color: #474747;
+}

@@ -1,0 +1,19 @@
+.loading {
+    width:32px;
+    height:32px;
+    background: url("./sc-spinner32.gif");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    display: none;
+}
+
+.loadingSmall {
+    width:15px;
+    height:15px;
+    background: url("./sc-spinner32.gif");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    display: none;
+}

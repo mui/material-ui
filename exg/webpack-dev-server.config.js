@@ -17,7 +17,7 @@ const config = {
     alias: {
       // material-ui requires will be searched in src folder, not in node_modules
       'material-ui': path.resolve(__dirname, '../src'),
-      'sitecore-ui': path.resolve(__dirname, '../sitecore')
+      'sitecore-ui': path.resolve(__dirname, '../sitecore'),
     },
   },
   // Configuration for dev server
@@ -52,12 +52,26 @@ const config = {
     // Allow loading of non-es
     loaders: [
       {
+        test: /\.png$/, loader: 'url-loader',
+      },
+      {
+        test: /\.gif$/, loader: 'url-loader',
+      },
+      {
         test: /\.js$/,
         loaders: [
           'react-hot',
           'babel-loader',
         ],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.jsx$/,
+        loaders: [
+          'react-hot', 
+          'babel?presets[]=es2015,presets[]=react,presets[]=stage-1,plugins[]=transform-decorators-legacy,plugins[]=transform-object-rest-spread'
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.json$/,
@@ -75,6 +89,15 @@ const config = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'resolve-url',
+          'sass',
+        ],
       },
     ],
   },

@@ -3,6 +3,8 @@ import Title from 'react-title-component';
 import spacing from 'material-ui/styles/spacing';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tabs, Tab} from 'material-ui';
+import { ScGlobalHeader, ScMainContainer, ScGlobalLogo, ScAccountInformation, ScApplicationHeader } from '../sitecore';
+
 
 class Master extends Component {
   static contextTypes = {
@@ -41,19 +43,28 @@ class Master extends Component {
   render() {    
     return (
       <div>
-        <Title render="Sitecore-UI" />
-        <Tabs>
-          <Tab label="Overview" route="/overview" onActive={this.onActive} />
-          <Tab label="Channels" route="/channels" onActive={this.onActive} />
-          <Tab label="Landing pages" route="/landingpages" onActive={this.onActive} />
-          <Tab label="Ref Urls" route="/refurls" onActive={this.onActive} />
-          <Tab label="Search" route="/search" onActive={this.onActive} />
-          <Tab label="Outcomes" route="/outcomes" onActive={this.onActive} />
-          <Tab label="Campaigns" route="/campaigns" onActive={this.onActive} />
-        </Tabs>
-        <div>
-          {this.props.children}
-        </div>
+         <ScGlobalHeader>
+                <ScGlobalLogo></ScGlobalLogo>
+                <ScAccountInformation username="Administrator"></ScAccountInformation>
+            </ScGlobalHeader>
+        <ScMainContainer noMenu={true}>
+          <ScApplicationHeader title="Experience Generator"></ScApplicationHeader>
+          <div style={{padding:'30px 15px'}}>
+            <Title render="Sitecore-UI" />
+            <Tabs>
+              <Tab label="Overview" route="/overview" onActive={this.onActive} />
+              <Tab label="Channels" route="/channels" onActive={this.onActive} />
+              <Tab label="Landing pages" route="/landingpages" onActive={this.onActive} />
+              <Tab label="Ref Urls" route="/refurls" onActive={this.onActive} />
+              <Tab label="Search" route="/search" onActive={this.onActive} />
+              <Tab label="Outcomes" route="/outcomes" onActive={this.onActive} />
+              <Tab label="Campaigns" route="/campaigns" onActive={this.onActive} />
+            </Tabs>
+            <div>
+              {this.props.children}
+            </div>
+          </div>
+        </ScMainContainer>
       </div>
     );
   }
