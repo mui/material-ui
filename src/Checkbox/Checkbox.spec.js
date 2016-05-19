@@ -22,7 +22,7 @@ describe('<Checkbox />', () => {
     const checkMarkNode = shallow(svgs[1]);
 
     assert.ok(enhancedSwitch.prop('switched'));
-    assert.ok(checkMarkNode.is('ToggleCheckBox'));
+    assert.strictEqual(svgs[1].type.displayName, 'ToggleCheckBox', 'Should use the right icon.');
     assert.strictEqual(checkMarkNode.props().style.opacity, 1);
   });
 
@@ -37,7 +37,7 @@ describe('<Checkbox />', () => {
     const checkMarkNode = shallow(svgs[1]);
 
     assert.notOk(enhancedSwitch.prop('switched'));
-    assert.ok(checkMarkNode.is('ToggleCheckBox'));
+    assert.strictEqual(svgs[1].type.displayName, 'ToggleCheckBox', 'Should use the right icon.');
     assert.strictEqual(checkMarkNode.props().style.opacity, 0);
   });
 
