@@ -30,6 +30,7 @@ class Calendar extends Component {
     DateTimeFormat: PropTypes.func.isRequired,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
+    hideHeader: PropTypes.bool,
     initialDate: PropTypes.object,
     locale: PropTypes.string.isRequired,
     maxDate: PropTypes.object,
@@ -244,7 +245,7 @@ class Calendar extends Component {
         height: weekCount === 5 ? 284 :
           weekCount === 6 ? 324 : 244,
         float: isLandscape ? 'right' : 'none',
-        transition: transitions.easeOut('150ms', 'height'),
+        transition: 'initial',//transitions.easeOut('150ms', 'height'),
         overflow: 'hidden',
       },
       yearContainer: {
@@ -285,6 +286,7 @@ class Calendar extends Component {
       DateTimeFormat,
       locale,
       firstDayOfWeek,
+      hideHeader,
     } = this.props;
 
     return (
@@ -293,18 +295,20 @@ class Calendar extends Component {
           elementName="window"
           onKeyDown={this.handleKeyDown}
         />
-        <DateDisplay
-          DateTimeFormat={DateTimeFormat}
-          locale={locale}
-          disableYearSelection={this.props.disableYearSelection}
-          style={styles.dateDisplay}
-          selectedDate={this.state.selectedDate}
-          onTouchTapMonthDay={this.handleTouchTapMonthDay}
-          onTouchTapYear={this.handleTouchTapClick}
-          monthDaySelected={this.state.displayMonthDay}
-          mode={this.props.mode}
-          weekCount={weekCount}
-        />
+        {!hideHeader &&
+          <DateDisplay
+            DateTimeFormat={DateTimeFormat}
+            locale={locale}
+            disableYearSelection={this.props.disableYearSelection}
+            style={styles.dateDisplay}
+            selectedDate={this.state.selectedDate}
+            onTouchTapMonthDay={this.handleTouchTapMonthDay}
+            onTouchTapYear={this.handleTouchTapClick}
+            monthDaySelected={this.state.displayMonthDay}
+            mode={this.props.mode}
+            weekCount={weekCount}
+          />
+        }
         {this.state.displayMonthDay &&
           <div style={prepareStyles(styles.calendarContainer)}>
             <CalendarToolbar
@@ -325,7 +329,7 @@ class Calendar extends Component {
                 </li>
               ))}
             </ClearFix>
-            <SlideInTransitionGroup direction={this.state.transitionDirection}>
+            
               <CalendarMonth
                 key={this.state.displayDate.toDateString()}
                 ref="calendar"
@@ -337,7 +341,7 @@ class Calendar extends Component {
                 shouldDisableDate={this.props.shouldDisableDate}
                 firstDayOfWeek={this.props.firstDayOfWeek}
               />
-            </SlideInTransitionGroup>
+            
           </div>
         }
         {!this.state.displayMonthDay &&

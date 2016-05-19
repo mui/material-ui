@@ -78,12 +78,14 @@ export default function getMuiTheme(muiTheme, ...more) {
       labelDisabledColor: palette.disabledColor,
     },
     datePicker: {
-      color: palette.primary1Color,
+      color: palette.textColor,
+      borderColor: palette.borderColor,
       textColor: palette.alternateTextColor,
       calendarTextColor: palette.textColor,
-      selectColor: palette.primary1Color,
-      selectTextColor: palette.alternateTextColor,
+      selectColor: palette.scThemeSkyXLight,
+      selectTextColor: palette.textColor,
       calendarYearBackgroundColor: white,
+      hoverBackgroundColor: palette.scThemeBasicXXLight
     },
     dialog: {
       titleFontSize: 18,
@@ -301,7 +303,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       color: fade(palette.textColor, 0.54),
       hoverColor: fade(palette.textColor, 0.87),
       backgroundColor: darken(palette.accent2Color, 0.05),
-      height: 56,
+      height: 48,
       titleFontSize: 20,
       iconColor: fade(palette.textColor, 0.4),
       separatorColor: fade(palette.textColor, 0.175),

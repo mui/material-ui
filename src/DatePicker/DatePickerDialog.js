@@ -16,6 +16,8 @@ class DatePickerDialog extends Component {
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
     initialDate: PropTypes.object,
+    hideFooter: PropTypes.bool,
+    hideHeader: PropTypes.bool,
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
@@ -96,6 +98,8 @@ class DatePickerDialog extends Component {
       container,
       initialDate,
       firstDayOfWeek,
+      hideFooter,
+      hideHeader,
       locale,
       okLabel,
       onAccept, // eslint-disable-line no-unused-vars
@@ -138,14 +142,14 @@ class DatePickerDialog extends Component {
 
     const actions = [
       <FlatButton
-        key={0}
-        label={wordings ? wordings.cancel : cancelLabel}
-        primary={true}
-        style={styles.actions}
-        onTouchTap={this.handleTouchTapCancel}
-      />,
+          key={0}
+          label={wordings ? wordings.cancel : cancelLabel}
+          primary={true}
+          style={styles.actions}
+          onTouchTap={this.handleTouchTapCancel}
+        />
     ];
-
+    
     if (!this.props.autoOk) {
       actions.push(
         <FlatButton
@@ -168,6 +172,7 @@ class DatePickerDialog extends Component {
         style={styles.root}
         contentStyle={styles.dialogContent}
         bodyStyle={styles.dialogBodyContent}
+        hideFooter={hideFooter}
         actions={actions}
         repositionOnUpdate={false}
         open={open}
@@ -184,6 +189,7 @@ class DatePickerDialog extends Component {
             DateTimeFormat={DateTimeFormat}
             firstDayOfWeek={firstDayOfWeek}
             locale={locale}
+            hideHeader={hideHeader}
             ref="calendar"
             onDayTouchTap={this.handleTouchTapDay}
             initialDate={initialDate}

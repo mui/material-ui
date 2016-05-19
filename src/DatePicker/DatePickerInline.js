@@ -16,6 +16,7 @@ class DatePickerInline extends Component {
     children: PropTypes.node,
     onRequestClose: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
+    hideFooter: PropTypes.bool,
     /**
      * Override the inline-styles of the root element.
      */
@@ -45,6 +46,7 @@ class DatePickerInline extends Component {
       style,
       onRequestClose,
       open,
+      hideFooter,
       ...other,
     } = this.props;
 
@@ -60,7 +62,9 @@ class DatePickerInline extends Component {
         >
           {children}
           <div style={styles.actions}>
-            {actions}
+            {!hideFooter &&
+              <span>{actions}</span>
+            }
           </div>
         </Popover>
       </div>

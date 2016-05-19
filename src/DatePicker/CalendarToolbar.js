@@ -6,23 +6,32 @@ import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
-const styles = {
-  root: {
-    position: 'relative',
-    padding: 0,
-    backgroundColor: 'inherit',
-  },
-  title: {
-    position: 'absolute',
-    top: 17,
-    lineHeight: '14px',
-    fontSize: 14,
-    height: 14,
-    width: '100%',
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-};
+function getStyles(props, context) {
+  const {
+    datePicker,
+  } = context.muiTheme;
+
+  return {
+    root: {
+      position: 'relative',
+      padding: 0,
+      backgroundColor: 'inherit',
+      borderBottom: '1px solid',
+      borderBottomColor: datePicker.borderColor,
+      marginBottom: '15px'
+    },
+    title: {
+      position: 'absolute',
+      top: 17,
+      lineHeight: '14px',
+      fontSize: 14,
+      height: 14,
+      width: '100%',
+      fontWeight: '500',
+      textAlign: 'center',
+    },
+  };
+}
 
 class CalendarToolbar extends Component {
   static propTypes = {
@@ -70,6 +79,8 @@ class CalendarToolbar extends Component {
       locale,
       displayDate,
     } = this.props;
+    
+    const styles = getStyles(this.props, this.context);
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
@@ -78,15 +89,10 @@ class CalendarToolbar extends Component {
 
     const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
     const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
-
+    
     return (
       <Toolbar style={styles.root} noGutter={true}>
-        <SlideInTransitionGroup
-          style={styles.title}
-          direction={this.state.transitionDirection}
-        >
-          <div key={dateTimeFormatted}>{dateTimeFormatted}</div>
-        </SlideInTransitionGroup>
+        <div style={styles.title} key={dateTimeFormatted}>{dateTimeFormatted}</div>
         <ToolbarGroup key={0} float="left">
           <IconButton
             style={styles.button}

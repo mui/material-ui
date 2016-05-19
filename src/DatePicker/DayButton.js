@@ -20,6 +20,7 @@ function getStyles(props, context) {
   let labelColor = baseTheme.palette.textColor;
   let buttonStateOpacity = 0;
   let buttonStateTransform = 'scale(0)';
+  let backgroundColor = 'transparent';
 
   if (hover || selected) {
     labelColor = datePicker.selectTextColor;
@@ -27,6 +28,7 @@ function getStyles(props, context) {
     buttonStateTransform = 'scale(1)';
   } else if (isEqualDate(date, new Date())) {
     labelColor = datePicker.color;
+    backgroundColor = datePicker.hoverBackgroundColor;
   }
 
   return {
@@ -39,6 +41,7 @@ function getStyles(props, context) {
       padding: '4px 2px',
       opacity: disabled && '0.6',
       lineHeight: 'inherit',
+      backgroundColor: backgroundColor
     },
     label: {
       position: 'relative',
@@ -50,9 +53,11 @@ function getStyles(props, context) {
       width: 36,
       top: 2,
       opacity: buttonStateOpacity,
-      borderRadius: '50%',
-      transform: buttonStateTransform,
-      transition: Transition.easeOut(),
+      //borderRadius: '50%',
+      //transform: buttonStateTransform,
+      //transition: Transition.easeOut(),
+      transform: 'none',
+      transition: 'initial',
       backgroundColor: datePicker.selectColor,
     },
   };

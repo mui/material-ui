@@ -57,6 +57,14 @@ class DatePicker extends Component {
      */
     formatDate: PropTypes.func,
     /**
+     * If true, automatically hides the entire footer.
+     */
+    hideFooter: PropTypes.bool,
+    /**
+     * If true, automatically hides the entire header.
+     */
+    hideHeader: PropTypes.bool,
+    /**
      * Locale used for formatting the dialog date strings. If you are not using the default value, you
      * have to provide a `DateTimeFormat` that supports it.
      */
@@ -137,7 +145,9 @@ class DatePicker extends Component {
   };
 
   static defaultProps = {
-    autoOk: false,
+    autoOk: true,
+    hideFooter: true,
+    hideHeader: true,
     cancelLabel: 'Cancel',
     container: 'dialog',
     disabled: false,
@@ -261,6 +271,8 @@ class DatePicker extends Component {
       defaultDate, // eslint-disable-line no-unused-vars
       disableYearSelection,
       firstDayOfWeek,
+      hideFooter,
+      hideHeader,
       locale,
       maxDate,
       minDate,
@@ -298,6 +310,8 @@ class DatePicker extends Component {
           container={container}
           disableYearSelection={disableYearSelection}
           firstDayOfWeek={firstDayOfWeek}
+          hideFooter={hideFooter}
+          hideHeader={hideHeader}
           initialDate={this.state.dialogDate}
           locale={locale}
           maxDate={maxDate}
