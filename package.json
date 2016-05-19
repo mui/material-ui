@@ -26,7 +26,7 @@
     "build:babel": "babel ./src --ignore *.spec.js --out-dir ./build",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
-    "lint": "eslint src docs/src test/browser test/unit && echo \"eslint: no lint errors\"",
+    "lint": "eslint src docs/src test/integration && echo \"eslint: no lint errors\"",
     "prebuild": "npm run clean:build",
     "test": "cross-env NODE_ENV=test babel-node test/index.js",
     "test:coverage": "cross-env NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/index.js",
