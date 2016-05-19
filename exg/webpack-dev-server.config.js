@@ -17,7 +17,7 @@ const config = {
     alias: {
       // material-ui requires will be searched in src folder, not in node_modules
       'material-ui': path.resolve(__dirname, '../src'),
-      'sitecore-ui': path.resolve(___dirname, '../sitecore')
+      'sitecore-ui': path.resolve(__dirname, '../sitecore')
     },
   },
   // Configuration for dev server
