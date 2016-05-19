@@ -58,7 +58,7 @@ class VerticalNonLinear extends React.Component {
     const {stepIndex} = this.state;
 
     return (
-      <div style={{width: 380, height: 400, margin: 'auto'}}>
+      <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
         <Stepper
           activeStep={stepIndex}
           linear={false}
