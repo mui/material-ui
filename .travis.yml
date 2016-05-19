@@ -7,8 +7,4 @@ cache:
   directories:
     - node_modules
 script:
-  - npm run lint
-  - npm run test:coverage
-  - cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-  - npm run test:karma
-  - cd packages/material-ui-codemod && npm install && npm test
+  - ./scripts/run-travis-tests.sh
