@@ -1,3 +1,5 @@
+/* eslint-disable react/prefer-es6-class */
+
 // NOTE: all these tests depend on DarkRawTheme, and Colors
 // Modifying any of the above files will break these tests!
 
