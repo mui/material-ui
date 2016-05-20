@@ -450,7 +450,7 @@ class Tabs extends Component {
         onTouchTap={this.handleRightTabPaginatorTap}
         iconClassName={this.props.iconButtonRight}
         svgIcon={this.props.svgIcon}
-      />
+      />,
     ] : null;
 
     return (
