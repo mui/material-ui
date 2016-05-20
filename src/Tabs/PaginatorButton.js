@@ -35,6 +35,9 @@ class PaginatorButton extends Component {
      */
     isLeftPaginatorButton: React.PropTypes.bool.isRequired,
 
+    /**
+     * Icon class name
+     */
     iconClassName: React.PropTypes.string,
 
     /**
@@ -65,11 +68,11 @@ class PaginatorButton extends Component {
       ...other,
     } = this.props;
 
-    let {muiTheme} = this.context;
+    const {muiTheme} = this.context;
 
     // tab paginator button width comes from google's design guide
     // https://www.google.com/design/spec/components/tabs.html#tabs-specs
-    let themeVariables = muiTheme.tabs;
+    const themeVariables = muiTheme.tabs;
     let iconClassName = this.props.iconClassName || "material-icons";
     let materialIcon;
 
@@ -77,7 +80,7 @@ class PaginatorButton extends Component {
       materialIcon = isLeftPaginatorButton ? 'keyboard_arrow_left' : 'keyboard_arrow_right';
     }
 
-    let svgIcon = this.props.svgIcon;
+    const svgIcon = this.props.svgIcon;
 
     if (svgIcon) {
       iconClassName = "";
@@ -100,8 +103,7 @@ class PaginatorButton extends Component {
         color: iconStyle && iconStyle.color ?
           disabled ?
             ColorManipulator.fade(iconStyle.color, 0.3) :
-            iconStyle.color
-          : disabled ?
+            iconStyle.color : disabled ?
           muiTheme.tabs.textColor :
           muiTheme.tabs.selectedTextColor,
       },
@@ -118,15 +120,15 @@ class PaginatorButton extends Component {
         disableTouchRipple={this.props.disableTouchRipple}
         disabled={disabled}
         iconClassName={iconClassName}
-        iconStyle={this._mergeStyles(iconStyle, styles.iconStyle)}
-        style={this._mergeStyles(styles.buttonStyle, style)}
+        iconStyle={this.mergeStyles(iconStyle, styles.iconStyle)}
+        style={this.mergeStyles(styles.buttonStyle, style)}
       >
         {materialIcon}
       </IconButton>
     );
   }
 
-  _mergeStyles(...args) {
+  mergeStyles(...args) {
     return Object.assign({}, ...args);
   }
 }

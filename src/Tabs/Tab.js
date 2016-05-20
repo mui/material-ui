@@ -12,7 +12,7 @@ function getStyles(props, context) {
       width: props.width || 'auto',
       textTransform: 'uppercase',
       paddingLeft: 12,
-      paddingRight: 12
+      paddingRight: 12,
     },
     button: {
       display: 'flex',
@@ -63,14 +63,14 @@ class Tab extends Component {
      */
     style: PropTypes.object,
     /**
+     * Index of tab
+     */
+    tabIndex: React.PropTypes.number,
+    /**
      * If value prop passed to Tabs component, this value prop is also required.
      * It assigns a value to the tab so that it can be selected by the Tabs.
      */
     value: PropTypes.any,
-    /**
-     * Index of tab
-     */
-    tabIndex: React.PropTypes.number,
     /**
      * @ignore
      * This property is overriden by the Tabs component.

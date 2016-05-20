@@ -23,7 +23,7 @@ function getStyles(props, context, state) {
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
       padding: state.shouldPaginate ? `0 ${Constants.TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH}px` : 0,
-      display: 'table'
+      display: 'table',
     },
     tabWrapper: {
       position: 'relative',
@@ -59,6 +59,16 @@ class Tabs extends Component {
      */
     contentContainerStyle: PropTypes.object,
     /**
+     * Tab container fills the width of the window. Tabs will have equal width
+     * as long as the container width is less than the window width.
+     */
+    fillWidth: React.PropTypes.bool,
+    /**
+     * Icon for paginator button
+     */
+    iconButtonLeft: React.PropTypes.string,
+    iconButtonRight: React.PropTypes.string,
+    /**
      * Specify initial visible tab index.
      * Initial selected index is set by default to 0.
      * If initialSelectedIndex is set but larger than the total amount of specified tabs,
@@ -78,19 +88,17 @@ class Tabs extends Component {
      */
     style: PropTypes.object,
     /**
+     * Use svgIcon in material-ui
+     */
+    svgIcon: React.PropTypes.bool,
+    /**
      * Override the inline-styles of the tab-labels container.
      */
     tabItemContainerStyle: PropTypes.object,
     /**
      * Override the default tab template used to wrap the content of each tab element.
      */
-    tabTemplate: PropTypes.func,
-    /**
-     * Makes Tabs controllable and selects the tab whose value prop matches this prop.
-     */
-    value: PropTypes.any,
-
-    /**
+    tabTemplate: PropTypes.func, /**
      * Override the inline-styles of the tab paginator button icon.
      */
     tabPaginatorButtonIconStyle: React.PropTypes.object,
@@ -104,16 +112,10 @@ class Tabs extends Component {
      */
     tabWrapperStyle: React.PropTypes.object,
     /**
-     * Icon for paginator button
+     * Makes Tabs controllable and selects the tab whose value prop matches this prop.
      */
-    iconButtonLeft: React.PropTypes.string,
-    iconButtonRight: React.PropTypes.string,
-    svgIcon: React.PropTypes.bool,
-    /**
-     * Tab container fills the width of the window. Tabs will have equal width
-     * as long as the container width is less than the window width.
-     */
-    fillWidth: React.PropTypes.bool,
+    value: PropTypes.any,
+
   };
 
   static defaultProps = {
@@ -151,9 +153,8 @@ class Tabs extends Component {
   }
 
   componentDidMount() {
-    let self = this;
-    window.requestAnimationFrame(function () {
-      window.setTimeout(self.handleWindowWidthChange, 10);
+    window.requestAnimationFrame(() => {
+      window.setTimeout(this.handleWindowWidthChange, 10);
     });
     Events.on(window, 'resize', this.handleWindowWidthChange);
   }
@@ -287,7 +288,7 @@ class Tabs extends Component {
     let newState = {};
     let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
     let tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
-    let nextShouldPaginate = true; //tabContainerWidth > tabWrapperWidth;
+    let nextShouldPaginate = tabContainerWidth > tabWrapperWidth;
     let tabInfo = [];
     React.Children.forEach(this.props.children, (tab, index) => {
       let tabWidth = this.getDOMNodeWidth(Constants.TAB_ITEM_REF_NAME_PREFIX + index);
