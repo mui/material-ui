@@ -6,6 +6,7 @@
 import React, {Component, PropTypes} from 'react';
 import IconButton from '../IconButton';
 import ColorManipulator from '../utils/colorManipulator';
+import {NavigationChevronLeft, NavigationChevronRight} from '../svg-icons';
 
 class PaginatorButton extends Component {
   static propTypes = {
@@ -40,6 +41,11 @@ class PaginatorButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: React.PropTypes.object,
+
+    /**
+     * Icon
+     */
+    svgIcon: React.PropTypes.bool,
   };
 
   static contextTypes = {
@@ -59,14 +65,23 @@ class PaginatorButton extends Component {
       ...other,
     } = this.props;
 
+    let {muiTheme} = this.context;
+
     // tab paginator button width comes from google's design guide
     // https://www.google.com/design/spec/components/tabs.html#tabs-specs
-    let themeVariables = this.context.muiTheme.tabs;
+    let themeVariables = muiTheme.tabs;
     let iconClassName = this.props.iconClassName || "material-icons";
     let materialIcon;
 
     if (iconClassName === "material-icons") {
       materialIcon = isLeftPaginatorButton ? 'keyboard_arrow_left' : 'keyboard_arrow_right';
+    }
+
+    let svgIcon = this.props.svgIcon;
+
+    if (svgIcon) {
+      iconClassName = "";
+      materialIcon = isLeftPaginatorButton ? <NavigationChevronLeft/> : <NavigationChevronRight/>;
     }
 
     const styles = {
@@ -87,8 +102,8 @@ class PaginatorButton extends Component {
             ColorManipulator.fade(iconStyle.color, 0.3) :
             iconStyle.color
           : disabled ?
-          this.state.muiTheme.tabs.textColor :
-          this.state.muiTheme.tabs.selectedTextColor,
+          muiTheme.tabs.textColor :
+          muiTheme.tabs.selectedTextColor,
       },
     };
 

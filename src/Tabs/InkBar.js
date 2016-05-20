@@ -8,6 +8,7 @@ function getStyles(props, context) {
     root: {
       left: props.left,
       width: props.width,
+      right: props.right,
       bottom: 0,
       display: 'block',
       backgroundColor: props.color || inkBar.backgroundColor,
@@ -22,12 +23,13 @@ function getStyles(props, context) {
 class InkBar extends Component {
   static propTypes = {
     color: PropTypes.string,
-    left: PropTypes.string.isRequired,
+    left: React.PropTypes.number.isRequired,
+    moveBarLeft: React.PropTypes.bool.isRequired,
+    right: React.PropTypes.number.isRequired,
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    width: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
@@ -40,7 +42,7 @@ class InkBar extends Component {
     const styles = getStyles(this.props, this.context);
 
     return (
-      <div style={prepareStyles(Object.assign(styles.root, style))} />
+      <div style={prepareStyles(Object.assign(styles.root, style))}/>
     );
   }
 }

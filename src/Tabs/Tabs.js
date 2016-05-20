@@ -14,7 +14,7 @@ const Constants = {
   TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH: 32,
 };
 
-function getStyles(props, context) {
+function getStyles(props, context, state) {
   const {tabs} = context.muiTheme;
 
   return {
@@ -23,6 +23,7 @@ function getStyles(props, context) {
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
       padding: state.shouldPaginate ? `0 ${Constants.TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH}px` : 0,
+      display: 'table'
     },
     tabWrapper: {
       position: 'relative',
@@ -107,6 +108,7 @@ class Tabs extends Component {
      */
     iconButtonLeft: React.PropTypes.string,
     iconButtonRight: React.PropTypes.string,
+    svgIcon: React.PropTypes.bool,
     /**
      * Tab container fills the width of the window. Tabs will have equal width
      * as long as the container width is less than the window width.
@@ -227,6 +229,7 @@ class Tabs extends Component {
     if ((valueLink.value && valueLink.value !== value) ||
       this.state.selectedIndex !== tabIndex) {
       valueLink.requestChange(value, event, tab);
+
     }
 
     this.setState({selectedIndex: tabIndex});
@@ -236,11 +239,11 @@ class Tabs extends Component {
     }
   };
 
-  getSelected(tab, index) {
+  getSelected = (tab, index) => {
     const valueLink = this.getValueLink(this.props);
     return valueLink.value ? valueLink.value === tab.props.value :
     this.state.selectedIndex === index;
-  }
+  };
 
   getDOMNode(refName) {
     return ReactDOM.findDOMNode(this.refs[refName]);
@@ -265,7 +268,7 @@ class Tabs extends Component {
     return tabLeftOffset;
   }
 
-  handleLeftTabPaginatorTap() {
+  handleLeftTabPaginatorTap = () => {
     let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
     this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft -=
       tabContainerWidth / this.getTabCount();
@@ -275,9 +278,9 @@ class Tabs extends Component {
       disableRightPaginatorButton: this.disableRightPaginatorButton(),
       tabContainerWidth: tabContainerWidth,
     });
-  }
+  };
 
-  handleRightTabPaginatorTap() {
+  handleRightTabPaginatorTap = () => {
     let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
     this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft +=
       tabContainerWidth / this.getTabCount();
@@ -287,7 +290,7 @@ class Tabs extends Component {
       disableRightPaginatorButton: this.disableRightPaginatorButton(),
       tabContainerWidth: tabContainerWidth,
     });
-  }
+  };
 
   disableLeftPaginatorButton() {
     return this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft === 0;
@@ -299,15 +302,15 @@ class Tabs extends Component {
     return this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft === tabContainerWidth - tabWrapperWidth;
   }
 
-  handleWindowWidthChange() {
+  handleWindowWidthChange = () => {
     this.setState(this.getNewState());
-  }
+  };
 
   getNewState() {
     let newState = {};
     let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
     let tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
-    let nextShouldPaginate = tabContainerWidth > tabWrapperWidth;
+    let nextShouldPaginate = true; //tabContainerWidth > tabWrapperWidth;
     let tabInfo = [];
     React.Children.forEach(this.props.children, (tab, index) => {
       let tabWidth = this.getDOMNodeWidth(Constants.TAB_ITEM_REF_NAME_PREFIX + index);
@@ -328,11 +331,14 @@ class Tabs extends Component {
     newState.tabInfo = tabInfo;
     newState.tabWrapperWidth = tabWrapperWidth;
     newState.shouldPaginate = nextShouldPaginate;
-    newState.muiTheme = this.state.muiTheme;
+    newState.muiTheme = this.context.muiTheme;
     newState.selectedIndex = this.state.selectedIndex;
     newState.previousIndex = this.state.previousIndex;
     newState.disableLeftPaginatorButton = this.disableLeftPaginatorButton();
     newState.disableRightPaginatorButton = this.disableRightPaginatorButton();
+
+    console.log('getNewState', newState);
+
     return newState;
   }
 
@@ -387,10 +393,8 @@ class Tabs extends Component {
     let equalTabWidth = fillWidth && !this.state.shouldPaginate;
 
     // calculate selected tab's width and offset, used to animate inl-bar
-
-
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
     const valueLink = this.getValueLink(this.props);
     const tabValue = valueLink.value;
     const tabContent = [];
@@ -399,6 +403,7 @@ class Tabs extends Component {
     let width = 0;
     let left = 0;
     let right = 0;
+
     if (equalTabWidth) {
       width = this.state.tabWrapperWidth / this.getTabCount();
       left = width * this.state.selectedIndex;
@@ -438,6 +443,7 @@ class Tabs extends Component {
     const inkBar = this.state.selectedIndex !== -1 ? (
       <InkBar
         left={left}
+        width={width}
         right={right}
         moveBarLeft={this.state.selectedIndex < this.state.previousIndex}
         style={inkBarStyle}
@@ -455,6 +461,7 @@ class Tabs extends Component {
                           disabled={this.state.disableLeftPaginatorButton}
                           onTouchTap={this.handleLeftTabPaginatorTap}
                           iconClassName={this.props.iconButtonLeft}
+                          svgIcon={this.props.svgIcon}
       />,
       <TabPaginatorButton key={2}
                           isLeftPaginatorButton={false}
@@ -463,6 +470,7 @@ class Tabs extends Component {
                           disabled={this.state.disableRightPaginatorButton}
                           onTouchTap={this.handleRightTabPaginatorTap}
                           iconClassName={this.props.iconButtonRight}
+                          svgIcon={this.props.svgIcon}
       />
     ] : null;
 
@@ -470,17 +478,21 @@ class Tabs extends Component {
       <div
         {...other}
         style={prepareStyles(Object.assign({}, style))}
+        className="tabs-container"
       >
         <div
+          className="tab-wrapper"
           ref={Constants.TAB_WRAPPER_REF_NAME}
           style={prepareStyles(Object.assign(styles.tabWrapper, tabWrapperStyle))}
         >
           {paginatorButtons}
           <div
+            className="tab-scroll-wrapper"
             ref={Constants.TAB_SCROLL_WRAPPER_REF_NAME}
             style={styles.tabScrollWrapper}
           >
             <div
+              className="tab-container"
               ref={Constants.TAB_CONTAINER_REF_NAME}
               style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}
             >
