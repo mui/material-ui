@@ -96,17 +96,17 @@ class Tabs extends Component {
      */
     tabItemContainerStyle: PropTypes.object,
     /**
-     * Override the default tab template used to wrap the content of each tab element.
-     */
-    tabTemplate: PropTypes.func, /**
      * Override the inline-styles of the tab paginator button icon.
      */
     tabPaginatorButtonIconStyle: React.PropTypes.object,
-
     /**
      * Override the inline-styles of the tab paginator buttons.
      */
     tabPaginatorButtonStyle: React.PropTypes.object,
+    /**
+     * Override the default tab template used to wrap the content of each tab element.
+     */
+    tabTemplate: PropTypes.func,
     /**
      * Override the inline-styles of the tab items container.
      */
@@ -196,7 +196,8 @@ class Tabs extends Component {
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
-    return props.valueLink || {
+    return props.valueLink
+      || {
         value: props.value,
         requestChange: props.onChange,
       };
@@ -222,7 +223,6 @@ class Tabs extends Component {
     if ((valueLink.value && valueLink.value !== value) ||
       this.state.selectedIndex !== tabIndex) {
       valueLink.requestChange(value, event, tab);
-
     }
 
     this.setState({selectedIndex: tabIndex});
@@ -247,7 +247,7 @@ class Tabs extends Component {
   }
 
   handleLeftTabPaginatorTap = () => {
-    let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
+    const tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
     this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft -=
       tabContainerWidth / this.getTabCount();
     // tabContainerWidth needed due to that element might not have proper width
@@ -259,7 +259,7 @@ class Tabs extends Component {
   };
 
   handleRightTabPaginatorTap = () => {
-    let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
+    const tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
     this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft +=
       tabContainerWidth / this.getTabCount();
     // tabContainerWidth needed due to that element might not have proper width
@@ -275,8 +275,8 @@ class Tabs extends Component {
   }
 
   disableRightPaginatorButton() {
-    let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
-    let tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
+    const tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
+    const tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
     return this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME).scrollLeft === tabContainerWidth - tabWrapperWidth;
   }
 
@@ -285,16 +285,18 @@ class Tabs extends Component {
   };
 
   getNewState() {
-    let newState = {};
-    let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
-    let tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
-    let nextShouldPaginate = tabContainerWidth > tabWrapperWidth;
-    let tabInfo = [];
+    const newState = {};
+    const tabInfo = [];
+
+    const tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
+    const tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
+    const nextShouldPaginate = tabContainerWidth > tabWrapperWidth;
+
     React.Children.forEach(this.props.children, (tab, index) => {
-      let tabWidth = this.getDOMNodeWidth(Constants.TAB_ITEM_REF_NAME_PREFIX + index);
+      const tabWidth = this.getDOMNodeWidth(Constants.TAB_ITEM_REF_NAME_PREFIX + index);
       let leftOffset = nextShouldPaginate ? Constants.TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH : 0;
       if (tabInfo.length > 0) {
-        let lastAddedTab = tabInfo[tabInfo.length - 1];
+        const lastAddedTab = tabInfo[tabInfo.length - 1];
         leftOffset = lastAddedTab.rightOffset;
       }
       tabInfo[index] = {
@@ -319,24 +321,22 @@ class Tabs extends Component {
 
   updateTabWrapperScrollOffset(tabInfo) {
     // make selected tab visible on either first entry or device orientation change
-    let tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
-    let tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
-    let nextShouldPaginate = tabContainerWidth > tabWrapperWidth;
-    let tabWrapperWidthChange = this.state.tabWrapperWidth !== tabWrapperWidth;
-    let paginationChange = this.state.shouldPaginate !== nextShouldPaginate;
+    const tabContainerWidth = this.getDOMNodeWidth(Constants.TAB_CONTAINER_REF_NAME);
+    const tabWrapperWidth = this.getDOMNodeWidth(Constants.TAB_WRAPPER_REF_NAME);
+    const nextShouldPaginate = tabContainerWidth > tabWrapperWidth;
+    const tabWrapperWidthChange = this.state.tabWrapperWidth !== tabWrapperWidth;
+    const paginationChange = this.state.shouldPaginate !== nextShouldPaginate;
     if (paginationChange || tabContainerWidth !== this.state.tabContainerWidth || tabWrapperWidthChange) {
-      let nextSelectedTab = tabInfo[this.state.selectedIndex];
+      const nextSelectedTab = tabInfo[this.state.selectedIndex];
       if (nextSelectedTab !== undefined) {
-        let tabScrollWrapper = this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME);
-        let tabScrollWrapperLeftScroll = tabScrollWrapper.scrollLeft;
-        let tabScrollWrapperWidth = tabScrollWrapper.offsetWidth;
-        let tabPaginationButtonMargin = nextShouldPaginate ? Constants.TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH : 0;
-        let tabVisible = nextSelectedTab.leftOffset - tabPaginationButtonMargin >= tabScrollWrapperLeftScroll
-          && tabScrollWrapperLeftScroll + tabScrollWrapperWidth - nextSelectedTab.rightOffset
-          - tabPaginationButtonMargin >= 0;
+        const tabScrollWrapper = this.getDOMNode(Constants.TAB_SCROLL_WRAPPER_REF_NAME);
+        const tabScrollWrapperLeftScroll = tabScrollWrapper.scrollLeft;
+        const tabScrollWrapperWidth = tabScrollWrapper.offsetWidth;
+        const tabPaginationButtonMargin = nextShouldPaginate ? Constants.TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH : 0;
+        const tabVisible = nextSelectedTab.leftOffset - tabPaginationButtonMargin >= tabScrollWrapperLeftScroll &&
+          tabScrollWrapperLeftScroll + tabScrollWrapperWidth - nextSelectedTab.rightOffset - tabPaginationButtonMargin >= 0;
         if (!tabVisible) {
-          let shouldScrollRight = tabScrollWrapperLeftScroll + tabScrollWrapperWidth
-            - nextSelectedTab.rightOffset - tabPaginationButtonMargin < 0;
+          const shouldScrollRight = tabScrollWrapperLeftScroll + tabScrollWrapperWidth - nextSelectedTab.rightOffset - tabPaginationButtonMargin < 0;
           // calculate how much to set tag scroll wrapper's scrollLeft to
           if (shouldScrollRight) {
             tabScrollWrapper.scrollLeft = nextSelectedTab.rightOffset + tabPaginationButtonMargin
@@ -373,7 +373,6 @@ class Tabs extends Component {
     const valueLink = this.getValueLink(this.props);
     const tabValue = valueLink.value;
     const tabContent = [];
-    //const width = 100 / this.getTabCount();
 
     let width = 0;
     let left = 0;

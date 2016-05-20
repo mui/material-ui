@@ -26,6 +26,11 @@ class PaginatorButton extends Component {
     disabled: React.PropTypes.bool.isRequired,
 
     /**
+     * Icon class name
+     */
+    iconClassName: React.PropTypes.string,
+
+    /**
      * Override the inline-styles of the icon element.
      */
     iconStyle: React.PropTypes.object,
@@ -35,10 +40,6 @@ class PaginatorButton extends Component {
      */
     isLeftPaginatorButton: React.PropTypes.bool.isRequired,
 
-    /**
-     * Icon class name
-     */
-    iconClassName: React.PropTypes.string,
 
     /**
      * Override the inline-styles of the root element.
@@ -73,18 +74,19 @@ class PaginatorButton extends Component {
     // tab paginator button width comes from google's design guide
     // https://www.google.com/design/spec/components/tabs.html#tabs-specs
     const themeVariables = muiTheme.tabs;
-    let iconClassName = this.props.iconClassName || "material-icons";
+    let iconClassName = this.props.iconClassName || 'material-icons';
     let materialIcon;
 
-    if (iconClassName === "material-icons") {
+    if (iconClassName === 'material-icons') {
       materialIcon = isLeftPaginatorButton ? 'keyboard_arrow_left' : 'keyboard_arrow_right';
     }
 
     const svgIcon = this.props.svgIcon;
 
     if (svgIcon) {
-      iconClassName = "";
-      materialIcon = isLeftPaginatorButton ? <NavigationChevronLeft/> : <NavigationChevronRight/>;
+      // remove IconClass
+      iconClassName = '';
+      materialIcon = isLeftPaginatorButton ? <NavigationChevronLeft /> : <NavigationChevronRight />;
     }
 
     const styles = {
@@ -115,13 +117,16 @@ class PaginatorButton extends Component {
       styles.buttonStyle.right = 0;
     }
 
+    const btnIconStyle = this.mergeStyles(iconStyle, styles.iconStyle);
+    const btnStyle = this.mergeStyles(styles.buttonStyle, style);
+
     return (
       <IconButton {...other}
         disableTouchRipple={this.props.disableTouchRipple}
         disabled={disabled}
         iconClassName={iconClassName}
-        iconStyle={this.mergeStyles(iconStyle, styles.iconStyle)}
-        style={this.mergeStyles(styles.buttonStyle, style)}
+        iconStyle={btnIconStyle}
+        style={btnStyle}
       >
         {materialIcon}
       </IconButton>
