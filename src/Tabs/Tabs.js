@@ -430,8 +430,8 @@ class Tabs extends Component {
     const inkBarContainerWidth = tabItemContainerStyle ?
       tabItemContainerStyle.width : '100%';
 
-    const paginatorButtons = this.state.shouldPaginate ? [
-      <TabPaginatorButton
+    const paginatorButtons = this.state.shouldPaginate ?
+      [<TabPaginatorButton
         key={1}
         isLeftPaginatorButton={true}
         style={tabPaginatorButtonStyle}
@@ -439,17 +439,19 @@ class Tabs extends Component {
         disabled={this.state.disableLeftPaginatorButton}
         onTouchTap={this.handleLeftTabPaginatorTap}
         iconClassName={this.props.iconButtonLeft}
-        svgIcon={this.props.svgIcon} />,
-      <TabPaginatorButton
-        key={2}
-        isLeftPaginatorButton={false}
-        style={tabPaginatorButtonStyle}
-        iconStyle={tabPaginatorButtonIconStyle}
-        disabled={this.state.disableRightPaginatorButton}
-        onTouchTap={this.handleRightTabPaginatorTap}
-        iconClassName={this.props.iconButtonRight}
-        svgIcon={this.props.svgIcon} />
-    ] : null;
+        svgIcon={this.props.svgIcon}
+      />,
+        <TabPaginatorButton
+          key={2}
+          isLeftPaginatorButton={false}
+          style={tabPaginatorButtonStyle}
+          iconStyle={tabPaginatorButtonIconStyle}
+          disabled={this.state.disableRightPaginatorButton}
+          onTouchTap={this.handleRightTabPaginatorTap}
+          iconClassName={this.props.iconButtonRight}
+          svgIcon={this.props.svgIcon}
+        />] :
+      null;
 
     return (
       <div

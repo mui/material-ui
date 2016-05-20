@@ -60,6 +60,11 @@ class PaginatorButton extends Component {
     disableTouchRipple: true,
   };
 
+
+  mergeStyles(...args) {
+    return Object.assign({}, ...args);
+  }
+
   render() {
     const {
       disabled,
@@ -132,10 +137,6 @@ class PaginatorButton extends Component {
         {materialIcon}
       </IconButton>
     );
-  }
-
-  mergeStyles(...args) {
-    return Object.assign({}, ...args);
   }
 }
 
