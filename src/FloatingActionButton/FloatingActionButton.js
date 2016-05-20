@@ -53,7 +53,7 @@ function getStyles(props, context) {
     icon: {
       height: floatingActionButton.buttonSize,
       lineHeight: `${floatingActionButton.buttonSize}px`,
-      fill: floatingActionButton.iconColor,
+      fill: iconColor,
       color: iconColor,
     },
     iconWhenMini: {
