@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-es6-class */
 // "react-stub-context": "^0.3.0",
 
 const React = require('react');
