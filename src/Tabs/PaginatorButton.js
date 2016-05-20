@@ -121,7 +121,8 @@ class PaginatorButton extends Component {
     const btnStyle = this.mergeStyles(styles.buttonStyle, style);
 
     return (
-      <IconButton {...other}
+      <IconButton
+        {...other}
         disableTouchRipple={this.props.disableTouchRipple}
         disabled={disabled}
         iconClassName={iconClassName}

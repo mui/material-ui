@@ -196,7 +196,8 @@ class Tabs extends Component {
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
-    return props.valueLink || {
+    return props.valueLink ||
+      {
         value: props.value,
         requestChange: props.onChange,
       };
@@ -438,8 +439,7 @@ class Tabs extends Component {
         disabled={this.state.disableLeftPaginatorButton}
         onTouchTap={this.handleLeftTabPaginatorTap}
         iconClassName={this.props.iconButtonLeft}
-        svgIcon={this.props.svgIcon}
-      />,
+        svgIcon={this.props.svgIcon} />,
       <TabPaginatorButton
         key={2}
         isLeftPaginatorButton={false}
@@ -448,8 +448,7 @@ class Tabs extends Component {
         disabled={this.state.disableRightPaginatorButton}
         onTouchTap={this.handleRightTabPaginatorTap}
         iconClassName={this.props.iconButtonRight}
-        svgIcon={this.props.svgIcon}
-      />
+        svgIcon={this.props.svgIcon} />
     ] : null;
 
     return (
