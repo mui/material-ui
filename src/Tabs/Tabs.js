@@ -179,14 +179,6 @@ class Tabs extends Component {
     Events.off(window, 'resize', this.handleWindowWidthChange);
   }
 
-  getEvenWidth() {
-    return (
-      parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this))
-        .getPropertyValue('width'), 10)
-    );
-  }
-
   getTabs() {
     const tabs = [];
     React.Children.forEach(this.props.children, (tab) => {
@@ -251,21 +243,6 @@ class Tabs extends Component {
 
   getDOMNodeWidth(refName) {
     return this.getDOMNode(refName).offsetWidth;
-  }
-
-  getSelectedTabWidth(tabIndex) {
-    return this.getDOMNode(Constants.TAB_ITEM_REF_NAME_PREFIX + tabIndex).offsetWidth;
-  }
-
-  getSelectedTabLeftOffset(tabIndex) {
-    let tabLeftOffset = 0;
-    React.Children.forEach(this.props.children, (tab, index) => {
-      let tempWidth = this.getDOMNodeWidth(Constants.TAB_ITEM_REF_NAME_PREFIX + index);
-      if (index < tabIndex) {
-        tabLeftOffset += tempWidth;
-      }
-    });
-    return tabLeftOffset;
   }
 
   handleLeftTabPaginatorTap = () => {
@@ -336,9 +313,6 @@ class Tabs extends Component {
     newState.previousIndex = this.state.previousIndex;
     newState.disableLeftPaginatorButton = this.disableLeftPaginatorButton();
     newState.disableRightPaginatorButton = this.disableRightPaginatorButton();
-
-    console.log('getNewState', newState);
-
     return newState;
   }
 
