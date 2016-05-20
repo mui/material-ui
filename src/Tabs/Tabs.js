@@ -440,17 +440,16 @@ class Tabs extends Component {
         onTouchTap={this.handleLeftTabPaginatorTap}
         iconClassName={this.props.iconButtonLeft}
         svgIcon={this.props.svgIcon}
-      />,
-        <TabPaginatorButton
-          key={2}
-          isLeftPaginatorButton={false}
-          style={tabPaginatorButtonStyle}
-          iconStyle={tabPaginatorButtonIconStyle}
-          disabled={this.state.disableRightPaginatorButton}
-          onTouchTap={this.handleRightTabPaginatorTap}
-          iconClassName={this.props.iconButtonRight}
-          svgIcon={this.props.svgIcon}
-        />] :
+      />, <TabPaginatorButton
+        key={2}
+        isLeftPaginatorButton={false}
+        style={tabPaginatorButtonStyle}
+        iconStyle={tabPaginatorButtonIconStyle}
+        disabled={this.state.disableRightPaginatorButton}
+        onTouchTap={this.handleRightTabPaginatorTap}
+        iconClassName={this.props.iconButtonRight}
+        svgIcon={this.props.svgIcon}
+      />] :
       null;
 
     return (
