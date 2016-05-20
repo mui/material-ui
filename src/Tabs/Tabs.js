@@ -196,8 +196,7 @@ class Tabs extends Component {
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
   getValueLink(props) {
-    return props.valueLink
-      || {
+    return props.valueLink || {
         value: props.value,
         requestChange: props.onChange,
       };
@@ -333,14 +332,17 @@ class Tabs extends Component {
         const tabScrollWrapperLeftScroll = tabScrollWrapper.scrollLeft;
         const tabScrollWrapperWidth = tabScrollWrapper.offsetWidth;
         const tabPaginationButtonMargin = nextShouldPaginate ? Constants.TAB_PAGINATOR_BUTTON_DEFAULT_WIDTH : 0;
-        const tabVisible = nextSelectedTab.leftOffset - tabPaginationButtonMargin >= tabScrollWrapperLeftScroll &&
-          tabScrollWrapperLeftScroll + tabScrollWrapperWidth - nextSelectedTab.rightOffset - tabPaginationButtonMargin >= 0;
+        const tabVisible = nextSelectedTab.leftOffset - tabPaginationButtonMargin >=
+          tabScrollWrapperLeftScroll &&
+          tabScrollWrapperLeftScroll + tabScrollWrapperWidth -
+          nextSelectedTab.rightOffset - tabPaginationButtonMargin >= 0;
         if (!tabVisible) {
-          const shouldScrollRight = tabScrollWrapperLeftScroll + tabScrollWrapperWidth - nextSelectedTab.rightOffset - tabPaginationButtonMargin < 0;
+          const shouldScrollRight = tabScrollWrapperLeftScroll + tabScrollWrapperWidth -
+            nextSelectedTab.rightOffset - tabPaginationButtonMargin < 0;
           // calculate how much to set tag scroll wrapper's scrollLeft to
           if (shouldScrollRight) {
-            tabScrollWrapper.scrollLeft = nextSelectedTab.rightOffset + tabPaginationButtonMargin
-              - tabScrollWrapperWidth;
+            tabScrollWrapper.scrollLeft = nextSelectedTab.rightOffset + tabPaginationButtonMargin -
+              tabScrollWrapperWidth;
           } else {
             tabScrollWrapper.scrollLeft = nextSelectedTab.leftOffset - tabPaginationButtonMargin;
           }
@@ -365,7 +367,7 @@ class Tabs extends Component {
       ...other,
     } = this.props;
 
-    let equalTabWidth = fillWidth && !this.state.shouldPaginate;
+    const equalTabWidth = fillWidth && !this.state.shouldPaginate;
 
     // calculate selected tab's width and offset, used to animate inl-bar
     const {prepareStyles} = this.context.muiTheme;
@@ -428,23 +430,25 @@ class Tabs extends Component {
       tabItemContainerStyle.width : '100%';
 
     const paginatorButtons = this.state.shouldPaginate ? [
-      <TabPaginatorButton key={1}
-                          isLeftPaginatorButton={true}
-                          style={tabPaginatorButtonStyle}
-                          iconStyle={tabPaginatorButtonIconStyle}
-                          disabled={this.state.disableLeftPaginatorButton}
-                          onTouchTap={this.handleLeftTabPaginatorTap}
-                          iconClassName={this.props.iconButtonLeft}
-                          svgIcon={this.props.svgIcon}
+      <TabPaginatorButton
+        key={1}
+        isLeftPaginatorButton={true}
+        style={tabPaginatorButtonStyle}
+        iconStyle={tabPaginatorButtonIconStyle}
+        disabled={this.state.disableLeftPaginatorButton}
+        onTouchTap={this.handleLeftTabPaginatorTap}
+        iconClassName={this.props.iconButtonLeft}
+        svgIcon={this.props.svgIcon}
       />,
-      <TabPaginatorButton key={2}
-                          isLeftPaginatorButton={false}
-                          style={tabPaginatorButtonStyle}
-                          iconStyle={tabPaginatorButtonIconStyle}
-                          disabled={this.state.disableRightPaginatorButton}
-                          onTouchTap={this.handleRightTabPaginatorTap}
-                          iconClassName={this.props.iconButtonRight}
-                          svgIcon={this.props.svgIcon}
+      <TabPaginatorButton
+        key={2}
+        isLeftPaginatorButton={false}
+        style={tabPaginatorButtonStyle}
+        iconStyle={tabPaginatorButtonIconStyle}
+        disabled={this.state.disableRightPaginatorButton}
+        onTouchTap={this.handleRightTabPaginatorTap}
+        iconClassName={this.props.iconButtonRight}
+        svgIcon={this.props.svgIcon}
       />
     ] : null;
 
