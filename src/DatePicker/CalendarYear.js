@@ -76,19 +76,22 @@ class CalendarYear extends Component {
     const years = this.getYears();
     const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
-      backgroundColor: backgroundColor,
-      height: 'inherit',
-      lineHeight: '35px',
-      overflowX: 'hidden',
-      overflowY: 'scroll',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
+      default: {
+        backgroundColor: backgroundColor,
+        height: 'inherit',
+        lineHeight: '35px',
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        position: 'relative',
+      },
+      noOverflow: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      },
     };
-
     return (
-      <div style={styles}>
+      <div style={years.length < 7 ? Object.assign(styles.default, styles.noOverflow) : styles.default}>
         <div>
           {years}
         </div>
