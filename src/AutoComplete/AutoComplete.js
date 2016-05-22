@@ -366,6 +366,7 @@ class AutoComplete extends Component {
       errorStyle,
       floatingLabelText,
       hintText,
+      filter,
       fullWidth,
       menuStyle,
       menuProps,
@@ -394,7 +395,7 @@ class AutoComplete extends Component {
     dataSource.every((item, index) => {
       switch (typeof item) {
         case 'string':
-          if (this.props.filter(searchText, item, item)) {
+          if (filter(searchText, item, item)) {
             requestsList.push({
               text: item,
               value: (
@@ -411,14 +412,14 @@ class AutoComplete extends Component {
 
         case 'object':
           if (item && typeof item.text === 'string') {
-            if (this.props.filter(searchText, item.text, item)) {
+            if (filter(searchText, item.text, item)) {
               if (item.value.type && (item.value.type.muiName === MenuItem.muiName ||
                  item.value.type.muiName === Divider.muiName)) {
                 requestsList.push({
                   text: item.text,
                   value: React.cloneElement(item.value, {
                     key: index,
-                    disableFocusRipple: this.props.disableFocusRipple,
+                    disableFocusRipple: disableFocusRipple,
                   }),
                 });
               } else {
