@@ -10,6 +10,7 @@ class CodeExample extends Component {
     code: PropTypes.string.isRequired,
     component: PropTypes.bool,
     description: PropTypes.string,
+    exampleBlockStyle: React.PropTypes.object,
     layoutSideBySide: PropTypes.bool,
     title: PropTypes.string,
   };
@@ -27,6 +28,7 @@ class CodeExample extends Component {
       children,
       code,
       component,
+      exampleBlockStyle,
       layoutSideBySide,
     } = this.props;
 
@@ -57,7 +59,7 @@ class CodeExample extends Component {
         >
           {code}
         </CodeBlock>
-        <ClearFix style={styles.exampleBlock}>{children}</ClearFix>
+        <ClearFix style={Object.assign(styles.exampleBlock, exampleBlockStyle)}>{children}</ClearFix>
       </Paper>
     );
   }
