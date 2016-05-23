@@ -12,7 +12,7 @@ import listExampleFoldersCode from '!raw!../List/ExampleFolders';
 import ListExampleFolders from '../List/ExampleFolders';
 import gridListExampleSimpleCode from '!raw!../GridList/ExampleSimple';
 import GridListExampleSimple from '../GridList/ExampleSimple';
-import subheaderCode from '!raw!material-ui/lib/Subheader/Subheader';
+import subheaderCode from '!raw!material-ui/Subheader/Subheader';
 
 const descriptions = {
   simpleList: 'Subheader used in a simple [List](/#/components/list).',

@@ -9,5 +9,6 @@ let MapsBeenhere = (props) => (
 );
 MapsBeenhere = pure(MapsBeenhere);
 MapsBeenhere.displayName = 'MapsBeenhere';
+MapsBeenhere.muiName = 'SvgIcon';
 
 export default MapsBeenhere;

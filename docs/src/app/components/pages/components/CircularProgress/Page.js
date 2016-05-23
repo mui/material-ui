@@ -6,7 +6,7 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import circleProgressReadmeText from './README';
-import circleProgressCode from '!raw!material-ui/lib/CircularProgress/CircularProgress';
+import circleProgressCode from '!raw!material-ui/CircularProgress/CircularProgress';
 import CircleProgressExampleSimple from './ExampleSimple';
 import circleProgressExampleSimpleCode from '!raw!./ExampleSimple';
 import CircleProgressExampleDeterminate from './ExampleDeterminate';

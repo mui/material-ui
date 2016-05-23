@@ -9,5 +9,6 @@ let ActionLockOutline = (props) => (
 );
 ActionLockOutline = pure(ActionLockOutline);
 ActionLockOutline.displayName = 'ActionLockOutline';
+ActionLockOutline.muiName = 'SvgIcon';
 
 export default ActionLockOutline;

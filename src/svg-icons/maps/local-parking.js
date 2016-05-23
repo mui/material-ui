@@ -9,5 +9,6 @@ let MapsLocalParking = (props) => (
 );
 MapsLocalParking = pure(MapsLocalParking);
 MapsLocalParking.displayName = 'MapsLocalParking';
+MapsLocalParking.muiName = 'SvgIcon';
 
 export default MapsLocalParking;

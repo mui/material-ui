@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
@@ -23,35 +23,30 @@ function getStyles(props) {
   };
 }
 
-class RefreshIndicator extends React.Component {
+class RefreshIndicator extends Component {
   static propTypes = {
     /**
      * Override the theme's color of the indicator while it's status is
      * "ready" and it's percentage is less than 100.
      */
-    color: React.PropTypes.string,
-
+    color: PropTypes.string,
     /**
      * The absolute left position of the indicator in pixels.
      */
-    left: React.PropTypes.number.isRequired,
-
+    left: PropTypes.number.isRequired,
     /**
      * Override the theme's color of the indicator while
      * it's status is "loading" or when it's percentage is 100.
      */
-    loadingColor: React.PropTypes.string,
-
+    loadingColor: PropTypes.string,
     /**
      * The confirmation progress to fetch data. Max value is 100.
      */
-    percentage: React.PropTypes.number,
-
+    percentage: PropTypes.number,
     /**
      * Size in pixels.
      */
-    size: React.PropTypes.number,
-
+    size: PropTypes.number,
     /**
      * The display status of the indicator. If the status is
      * "ready", the indicator will display the ready state
@@ -59,17 +54,15 @@ class RefreshIndicator extends React.Component {
      * the loading progress indicator. If the status is "hide",
      * the indicator will be hidden.
      */
-    status: React.PropTypes.oneOf(['ready', 'loading', 'hide']),
-
+    status: PropTypes.oneOf(['ready', 'loading', 'hide']),
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * The absolute top position of the indicator in pixels.
      */
-    top: React.PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
@@ -79,14 +72,19 @@ class RefreshIndicator extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
-    this.componentDidUpdate();
+    this.scalePath(this.refs.path, 0);
+    this.rotateWrapper(this.refs.wrapper);
   }
 
   componentDidUpdate() {
+    clearTimeout(this.scalePathTimer);
+    clearTimeout(this.rotateWrapperTimer);
+    clearTimeout(this.rotateWrapperSecondTimer);
+
     this.scalePath(this.refs.path, 0);
     this.rotateWrapper(this.refs.wrapper);
   }
@@ -105,19 +103,23 @@ class RefreshIndicator extends React.Component {
     if (this.props.status !== 'ready') {
       const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp = (
-        <div ref="wrapper" style={prepareStyles({
-          transition: transitions.create('transform', '20s', null, 'linear'),
-          width: '100%',
-          height: '100%',
-        })}
+        <div
+          ref="wrapper"
+          style={prepareStyles({
+            transition: transitions.create('transform', '20s', null, 'linear'),
+            width: '100%',
+            height: '100%',
+          })}
         >
-          <svg style={{
-            width: paperSize,
-            height: paperSize,
-          }}
+          <svg
+            style={{
+              width: paperSize,
+              height: paperSize,
+            }}
             viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
           >
-            <circle ref="path"
+            <circle
+              ref="path"
               style={prepareStyles(Object.assign(circleStyle.style, {
                 transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
               }))}
@@ -130,10 +132,11 @@ class RefreshIndicator extends React.Component {
       const circleStyle = this.getCircleStyle(paperSize);
       const polygonStyle = this.getPolygonStyle(paperSize);
       childrenCmp = (
-        <svg style={{
-          width: paperSize,
-          height: paperSize,
-        }}
+        <svg
+          style={{
+            width: paperSize,
+            height: paperSize,
+          }}
           viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
         >
           <circle

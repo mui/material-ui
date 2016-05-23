@@ -9,5 +9,6 @@ let ActionLabel = (props) => (
 );
 ActionLabel = pure(ActionLabel);
 ActionLabel.displayName = 'ActionLabel';
+ActionLabel.muiName = 'SvgIcon';
 
 export default ActionLabel;

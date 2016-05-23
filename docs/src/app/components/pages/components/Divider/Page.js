@@ -12,13 +12,13 @@ import DividerExampleList from './ExampleList';
 import dividerExampleListCode from '!raw!./ExampleList';
 import DividerExampleMenu from './ExampleMenu';
 import dividerExampleMenuCode from '!raw!./ExampleMenu';
-import dividerCode from '!raw!material-ui/lib/Divider/Divider';
+import dividerCode from '!raw!material-ui/Divider/Divider';
 
 const descriptions = {
   simple: 'Here, `Divider` is used to separate [TextField](/#/components/text-field) components. ' +
   'It defaults to "full-bleed" (full width).',
   inset: 'The `inset` parameter allows the divider to to align with inset content, ' +
-  'such as inset [List](http://localhost:3000/#/components/list) components.',
+  'such as inset [List](/#/components/list) components.',
   menu: '`Divider` can alo be used in [Menus](/#/components/menu).',
 };
 

@@ -9,5 +9,6 @@ let NotificationEventBusy = (props) => (
 );
 NotificationEventBusy = pure(NotificationEventBusy);
 NotificationEventBusy.displayName = 'NotificationEventBusy';
+NotificationEventBusy.muiName = 'SvgIcon';
 
 export default NotificationEventBusy;

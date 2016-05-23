@@ -9,5 +9,6 @@ let AvRepeatOne = (props) => (
 );
 AvRepeatOne = pure(AvRepeatOne);
 AvRepeatOne.displayName = 'AvRepeatOne';
+AvRepeatOne.muiName = 'SvgIcon';
 
 export default AvRepeatOne;

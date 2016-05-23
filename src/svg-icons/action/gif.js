@@ -9,5 +9,6 @@ let ActionGif = (props) => (
 );
 ActionGif = pure(ActionGif);
 ActionGif.displayName = 'ActionGif';
+ActionGif.muiName = 'SvgIcon';
 
 export default ActionGif;

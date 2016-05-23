@@ -9,5 +9,6 @@ let ContentArchive = (props) => (
 );
 ContentArchive = pure(ContentArchive);
 ContentArchive.displayName = 'ContentArchive';
+ContentArchive.muiName = 'SvgIcon';
 
 export default ContentArchive;

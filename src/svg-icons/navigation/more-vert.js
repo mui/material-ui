@@ -9,5 +9,6 @@ let NavigationMoreVert = (props) => (
 );
 NavigationMoreVert = pure(NavigationMoreVert);
 NavigationMoreVert.displayName = 'NavigationMoreVert';
+NavigationMoreVert.muiName = 'SvgIcon';
 
 export default NavigationMoreVert;

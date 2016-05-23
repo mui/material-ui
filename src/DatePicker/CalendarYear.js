@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import YearButton from './YearButton';
 import {cloneDate} from './dateUtils';
 
-class CalendarYear extends React.Component {
+class CalendarYear extends Component {
   static propTypes = {
-    displayDate: React.PropTypes.object.isRequired,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onYearTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
+    displayDate: PropTypes.object.isRequired,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onTouchTapYear: PropTypes.func,
+    selectedDate: PropTypes.object.isRequired,
+    wordings: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -41,9 +42,9 @@ class CalendarYear extends React.Component {
       const yearButton = (
         <YearButton
           key={`yb${year}`}
-          year={year}
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={this.handleTouchTapYear}
           selected={selected}
+          year={year}
           {...selectedProps}
         />
       );
@@ -67,27 +68,30 @@ class CalendarYear extends React.Component {
     container.scrollTop = scrollYOffset;
   }
 
-  handleTouchTap = (event, year) => {
-    if (this.props.onYearTouchTap) this.props.onYearTouchTap(event, year);
+  handleTouchTapYear = (event, year) => {
+    if (this.props.onTouchTapYear) this.props.onTouchTapYear(event, year);
   };
 
   render() {
     const years = this.getYears();
     const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
     const styles = {
-      position: 'relative',
-      height: 'inherit',
-      lineHeight: '36px',
-      textAlign: 'center',
-      padding: '8px 14px 0 14px',
       backgroundColor: backgroundColor,
+      height: 'inherit',
+      lineHeight: '35px',
       overflowX: 'hidden',
       overflowY: 'scroll',
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     };
 
     return (
       <div style={styles}>
-        {years}
+        <div>
+          {years}
+        </div>
       </div>
     );
   }

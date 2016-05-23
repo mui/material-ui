@@ -9,5 +9,6 @@ let ContentBlock = (props) => (
 );
 ContentBlock = pure(ContentBlock);
 ContentBlock.displayName = 'ContentBlock';
+ContentBlock.muiName = 'SvgIcon';
 
 export default ContentBlock;

@@ -9,5 +9,6 @@ let MapsLocalHospital = (props) => (
 );
 MapsLocalHospital = pure(MapsLocalHospital);
 MapsLocalHospital.displayName = 'MapsLocalHospital';
+MapsLocalHospital.muiName = 'SvgIcon';
 
 export default MapsLocalHospital;

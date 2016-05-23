@@ -9,5 +9,6 @@ let FileCloudQueue = (props) => (
 );
 FileCloudQueue = pure(FileCloudQueue);
 FileCloudQueue.displayName = 'FileCloudQueue';
+FileCloudQueue.muiName = 'SvgIcon';
 
 export default FileCloudQueue;

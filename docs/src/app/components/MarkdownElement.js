@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import marked from 'marked';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 require('./mui-github-markdown.css');
 
@@ -12,19 +11,16 @@ const styles = {
   },
 };
 
-const MarkdownElement = React.createClass({
-  propTypes: {
-    style: React.PropTypes.object,
-    text: React.PropTypes.string,
-  },
-  mixins: [
-    PureRenderMixin,
-  ],
-  getDefaultProps() {
-    return {
-      text: '',
-    };
-  },
+class MarkdownElement extends Component {
+
+  static propTypes = {
+    style: PropTypes.object,
+    text: PropTypes.string.isRequired,
+  };
+
+  static defaultProps = {
+    text: '',
+  };
 
   componentWillMount() {
     marked.setOptions({
@@ -39,7 +35,7 @@ const MarkdownElement = React.createClass({
         return require('highlight.js').highlight(lang, code).value;
       },
     });
-  },
+  }
 
   render() {
     const {
@@ -47,7 +43,7 @@ const MarkdownElement = React.createClass({
       text,
     } = this.props;
 
-/* eslint-disable */
+    /* eslint-disable react/no-danger */
     return (
       <div
         style={Object.assign({}, styles.root, style)}
@@ -55,8 +51,8 @@ const MarkdownElement = React.createClass({
         dangerouslySetInnerHTML={{__html: marked(text)}}
       />
     );
-/* eslint-enable */
-  },
-});
+    /* eslint-enable */
+  }
+}
 
 export default MarkdownElement;

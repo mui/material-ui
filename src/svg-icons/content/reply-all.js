@@ -9,5 +9,6 @@ let ContentReplyAll = (props) => (
 );
 ContentReplyAll = pure(ContentReplyAll);
 ContentReplyAll.displayName = 'ContentReplyAll';
+ContentReplyAll.muiName = 'SvgIcon';
 
 export default ContentReplyAll;

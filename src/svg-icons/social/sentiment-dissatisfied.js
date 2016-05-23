@@ -9,5 +9,6 @@ let SocialSentimentDissatisfied = (props) => (
 );
 SocialSentimentDissatisfied = pure(SocialSentimentDissatisfied);
 SocialSentimentDissatisfied.displayName = 'SocialSentimentDissatisfied';
+SocialSentimentDissatisfied.muiName = 'SvgIcon';
 
 export default SocialSentimentDissatisfied;

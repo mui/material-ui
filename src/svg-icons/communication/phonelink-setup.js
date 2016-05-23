@@ -9,5 +9,6 @@ let CommunicationPhonelinkSetup = (props) => (
 );
 CommunicationPhonelinkSetup = pure(CommunicationPhonelinkSetup);
 CommunicationPhonelinkSetup.displayName = 'CommunicationPhonelinkSetup';
+CommunicationPhonelinkSetup.muiName = 'SvgIcon';
 
 export default CommunicationPhonelinkSetup;

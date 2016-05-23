@@ -9,5 +9,6 @@ let ContentContentPaste = (props) => (
 );
 ContentContentPaste = pure(ContentContentPaste);
 ContentContentPaste.displayName = 'ContentContentPaste';
+ContentContentPaste.muiName = 'SvgIcon';
 
 export default ContentContentPaste;

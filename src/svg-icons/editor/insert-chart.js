@@ -9,5 +9,6 @@ let EditorInsertChart = (props) => (
 );
 EditorInsertChart = pure(EditorInsertChart);
 EditorInsertChart.displayName = 'EditorInsertChart';
+EditorInsertChart.muiName = 'SvgIcon';
 
 export default EditorInsertChart;

@@ -9,5 +9,6 @@ let ActionPermPhoneMsg = (props) => (
 );
 ActionPermPhoneMsg = pure(ActionPermPhoneMsg);
 ActionPermPhoneMsg.displayName = 'ActionPermPhoneMsg';
+ActionPermPhoneMsg.muiName = 'SvgIcon';
 
 export default ActionPermPhoneMsg;

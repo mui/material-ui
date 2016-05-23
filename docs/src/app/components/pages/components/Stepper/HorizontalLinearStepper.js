@@ -1,138 +1,105 @@
 import React from 'react';
-import Stepper from 'material-ui/Stepper';
-import Step from 'material-ui/Stepper/HorizontalStep';
-import Paper from 'material-ui/Paper';
-import FontIcon from 'material-ui/FontIcon';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-const HorizontalStepper = React.createClass({
-  getInitialState() {
-    return {
-      activeStep: -1,
-      lastActiveStep: 0,
-    };
-  },
+/**
+ * Horizontal steppers are ideal when the contents of one step depend on an earlier step.
+ * Avoid using long step names in horizontal steppers.
+ *
+ * Linear steppers require users to complete one step in order to move on to the next.
+ */
+class HorizontalLinearStepper extends React.Component {
 
-  handleStepHeaderTouch(currentStep) {
-    const {
-      lastActiveStep,
-      activeStep,
+  state = {
+    finished: false,
+    stepIndex: 0,
+  };
 
-    } = this.state;
-
-    if (currentStep > lastActiveStep) {
-      return;
-    }
-
+  handleNext = () => {
+    const {stepIndex} = this.state;
     this.setState({
-      activeStep: currentStep,
-      lastActiveStep: Math.max(lastActiveStep, activeStep),
+      stepIndex: stepIndex + 1,
+      finished: stepIndex >= 2,
     });
-  },
+  };
 
-  updateCompletedSteps(currentStep) {
-    return currentStep < this.state.lastActiveStep;
-  },
-
-  createIcon(step) {
-    if (step.props.isCompleted) {
-      return (
-        <FontIcon className="material-icons" style={{fontSize: 14}}>
-          done
-        </FontIcon>
-      );
+  handlePrev = () => {
+    const {stepIndex} = this.state;
+    if (stepIndex > 0) {
+      this.setState({stepIndex: stepIndex - 1});
     }
+  };
 
-    return <span>{step.props.orderStepLabel}</span>;
-  },
-
-  handleTouchTap() {
-    const {
-      activeStep,
-      lastActiveStep,
-    } = this.state;
-
-    this.setState({
-      activeStep: activeStep + 1,
-      lastActiveStep: Math.max(lastActiveStep, activeStep + 1),
-    });
-  },
+  getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return 'Select campaign settings...';
+      case 1:
+        return 'What is an ad group anyways?';
+      case 2:
+        return 'This is the bit I really care about!';
+      default:
+        return 'You\'re a long way from home sonny jim!';
+    }
+  }
 
   render() {
-    return (
-      <Paper style={{width: 500, margin: 'auto'}}>
-        <div style={{
-          textAlign: 'center',
-          padding: 10,
-          fontSize: 20,
-        }}
-        >
-          Material-UI User Group Registration
-        </div>
-        <Stepper
-          horizontal={true}
-          activeStep={this.state.activeStep}
-          onStepHeaderTouch={this.handleStepHeaderTouch}
-          updateCompletedStatus={this.updateCompletedSteps}
-          createIcon={this.createIcon}
-        >
-          <Step
-            orderStepLabel="1"
-            stepLabel="User account"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Continue"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-              />,
-              <FlatButton key={1} label="Cancel" />,
-            ]}
-          >
-            <div style={{padding: 20}}>
-              Please create an account, or login with your account details.
-            </div>
-          </Step>
-          <Step
-            orderStepLabel="2"
-            stepLabel="Event registration"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Continue"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-              />,
-              <FlatButton key={1} label="Cancel" />,
-            ]}
-          >
-            <div style={{padding: 20}}>
-              Please sign up for the event you wish to attend.
-            </div>
-          </Step>
+    const {finished, stepIndex} = this.state;
+    const contentStyle = {margin: '0 16px'};
 
-          <Step
-            orderStepLabel="3"
-            stepLabel="Payment"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Finish"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-              />,
-              <FlatButton key={1} label="Cancel" />,
-            ]}
-          >
-            <div style={{padding: 20}}>
-              Please provide your credit card details.
-            </div>
+    return (
+      <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
+        <Stepper activeStep={stepIndex}>
+          <Step>
+            <StepLabel>Select campaign settings</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Create an ad group</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Create an ad</StepLabel>
           </Step>
         </Stepper>
-      </Paper>
+        <div style={contentStyle}>
+          {finished ? (
+            <p>
+              <a
+                href="#"
+                onClick={(event) => {
+                  event.preventDefault();
+                  this.setState({stepIndex: 0, finished: false});
+                }}
+              >
+                Click here
+              </a> to reset the example.
+            </p>
+          ) : (
+            <div>
+              <p>{this.getStepContent(stepIndex)}</p>
+              <div style={{marginTop: 12}}>
+                <FlatButton
+                  label="Back"
+                  disabled={stepIndex === 0}
+                  onTouchTap={this.handlePrev}
+                  style={{marginRight: 12}}
+                />
+                <RaisedButton
+                  label={stepIndex === 2 ? 'Finish' : 'Next'}
+                  primary={true}
+                  onTouchTap={this.handleNext}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     );
-  },
-});
+  }
+}
 
-export default HorizontalStepper;
+export default HorizontalLinearStepper;

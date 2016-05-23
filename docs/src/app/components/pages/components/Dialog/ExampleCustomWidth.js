@@ -8,13 +8,13 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
+/**
+ * The dialog width has been set to occupy the full width of browser through the `contentStyle` property.
+ */
 export default class DialogExampleCustomWidth extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
+  state = {
+    open: false,
+  };
 
   handleOpen = () => {
     this.setState({open: true});

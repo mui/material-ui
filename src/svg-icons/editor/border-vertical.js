@@ -9,5 +9,6 @@ let EditorBorderVertical = (props) => (
 );
 EditorBorderVertical = pure(EditorBorderVertical);
 EditorBorderVertical.displayName = 'EditorBorderVertical';
+EditorBorderVertical.muiName = 'SvgIcon';
 
 export default EditorBorderVertical;

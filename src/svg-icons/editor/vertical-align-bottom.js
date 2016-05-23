@@ -9,5 +9,6 @@ let EditorVerticalAlignBottom = (props) => (
 );
 EditorVerticalAlignBottom = pure(EditorVerticalAlignBottom);
 EditorVerticalAlignBottom.displayName = 'EditorVerticalAlignBottom';
+EditorVerticalAlignBottom.muiName = 'SvgIcon';
 
 export default EditorVerticalAlignBottom;

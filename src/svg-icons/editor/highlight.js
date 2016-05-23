@@ -9,5 +9,6 @@ let EditorHighlight = (props) => (
 );
 EditorHighlight = pure(EditorHighlight);
 EditorHighlight.displayName = 'EditorHighlight';
+EditorHighlight.muiName = 'SvgIcon';
 
 export default EditorHighlight;

@@ -1,16 +1,14 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import TimeDisplay from './TimeDisplay';
 import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
 
-class Clock extends React.Component {
+class Clock extends Component {
   static propTypes = {
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialTime: React.PropTypes.object,
-    isActive: React.PropTypes.bool,
-    mode: React.PropTypes.oneOf(['hour', 'minute']),
-    onChangeHours: React.PropTypes.func,
-    onChangeMinutes: React.PropTypes.func,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: PropTypes.object,
+    onChangeHours: PropTypes.func,
+    onChangeMinutes: PropTypes.func,
   };
 
   static defaultProps = {
@@ -18,19 +16,13 @@ class Clock extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
     selectedTime: this.props.initialTime || new Date(),
     mode: 'hour',
   };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      selectedTime: nextProps.initialTime || new Date(),
-    });
-  }
 
   setMode = (mode) => {
     setTimeout(() => {
@@ -84,14 +76,14 @@ class Clock extends React.Component {
       selectedTime: time,
     });
 
-    const {onChangeHours} = this.props;
-
     if (finished) {
       setTimeout(() => {
         this.setState({
           mode: 'minute',
         });
-        if (typeof (onChangeHours) === 'function') {
+
+        const {onChangeHours} = this.props;
+        if (onChangeHours) {
           onChangeHours(time);
         }
       }, 100);
@@ -106,7 +98,7 @@ class Clock extends React.Component {
     });
 
     const {onChangeMinutes} = this.props;
-    if (typeof (onChangeMinutes) === 'function') {
+    if (onChangeMinutes) {
       setTimeout(() => {
         onChangeMinutes(time);
       }, 0);
@@ -120,10 +112,15 @@ class Clock extends React.Component {
   render() {
     let clock = null;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const {
+      prepareStyles,
+      timePicker,
+    } = this.context.muiTheme;
 
     const styles = {
-      root: {},
+      root: {
+        userSelect: 'none',
+      },
       container: {
         height: 280,
         padding: 10,
@@ -135,13 +132,14 @@ class Clock extends React.Component {
         width: 260,
         height: 260,
         borderRadius: '100%',
-        backgroundColor: this.context.muiTheme.timePicker.clockCircleColor,
+        backgroundColor: timePicker.clockCircleColor,
       },
     };
 
-    if ( this.state.mode === 'hour') {
+    if (this.state.mode === 'hour') {
       clock = (
-        <ClockHours key="hours"
+        <ClockHours
+          key="hours"
           format={this.props.format}
           onChange={this.handleChangeHours}
           initialHours={this.state.selectedTime.getHours()}
@@ -149,7 +147,8 @@ class Clock extends React.Component {
       );
     } else {
       clock = (
-        <ClockMinutes key="minutes"
+        <ClockMinutes
+          key="minutes"
           onChange={this.handleChangeMinutes}
           initialMinutes={this.state.selectedTime.getMinutes()}
         />

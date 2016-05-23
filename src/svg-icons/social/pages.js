@@ -9,5 +9,6 @@ let SocialPages = (props) => (
 );
 SocialPages = pure(SocialPages);
 SocialPages.displayName = 'SocialPages';
+SocialPages.muiName = 'SvgIcon';
 
 export default SocialPages;

@@ -9,5 +9,6 @@ let PlacesFitnessCenter = (props) => (
 );
 PlacesFitnessCenter = pure(PlacesFitnessCenter);
 PlacesFitnessCenter.displayName = 'PlacesFitnessCenter';
+PlacesFitnessCenter.muiName = 'SvgIcon';
 
 export default PlacesFitnessCenter;

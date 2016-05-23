@@ -9,5 +9,6 @@ let ImagePortrait = (props) => (
 );
 ImagePortrait = pure(ImagePortrait);
 ImagePortrait.displayName = 'ImagePortrait';
+ImagePortrait.muiName = 'SvgIcon';
 
 export default ImagePortrait;

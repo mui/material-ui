@@ -9,5 +9,6 @@ let ActionAssignmentTurnedIn = (props) => (
 );
 ActionAssignmentTurnedIn = pure(ActionAssignmentTurnedIn);
 ActionAssignmentTurnedIn.displayName = 'ActionAssignmentTurnedIn';
+ActionAssignmentTurnedIn.muiName = 'SvgIcon';
 
 export default ActionAssignmentTurnedIn;

@@ -9,5 +9,6 @@ let DeviceBluetoothSearching = (props) => (
 );
 DeviceBluetoothSearching = pure(DeviceBluetoothSearching);
 DeviceBluetoothSearching.displayName = 'DeviceBluetoothSearching';
+DeviceBluetoothSearching.muiName = 'SvgIcon';
 
 export default DeviceBluetoothSearching;

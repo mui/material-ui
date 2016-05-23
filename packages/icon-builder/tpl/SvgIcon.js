@@ -9,5 +9,6 @@ let {{className}} = (props) => (
 );
 {{className}} = pure({{className}});
 {{className}}.displayName = '{{className}}';
+{{className}}.muiName = 'SvgIcon';
 
 export default {{className}};

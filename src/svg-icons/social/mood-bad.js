@@ -9,5 +9,6 @@ let SocialMoodBad = (props) => (
 );
 SocialMoodBad = pure(SocialMoodBad);
 SocialMoodBad.displayName = 'SocialMoodBad';
+SocialMoodBad.muiName = 'SvgIcon';
 
 export default SocialMoodBad;

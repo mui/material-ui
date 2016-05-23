@@ -9,5 +9,6 @@ let DeviceAccessTime = (props) => (
 );
 DeviceAccessTime = pure(DeviceAccessTime);
 DeviceAccessTime.displayName = 'DeviceAccessTime';
+DeviceAccessTime.muiName = 'SvgIcon';
 
 export default DeviceAccessTime;

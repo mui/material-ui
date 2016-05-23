@@ -9,5 +9,6 @@ let ActionPermCameraMic = (props) => (
 );
 ActionPermCameraMic = pure(ActionPermCameraMic);
 ActionPermCameraMic.displayName = 'ActionPermCameraMic';
+ActionPermCameraMic.muiName = 'SvgIcon';
 
 export default ActionPermCameraMic;

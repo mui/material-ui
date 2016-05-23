@@ -9,5 +9,6 @@ let NavigationClose = (props) => (
 );
 NavigationClose = pure(NavigationClose);
 NavigationClose.displayName = 'NavigationClose';
+NavigationClose.muiName = 'SvgIcon';
 
 export default NavigationClose;

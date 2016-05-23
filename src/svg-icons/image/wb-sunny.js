@@ -9,5 +9,6 @@ let ImageWbSunny = (props) => (
 );
 ImageWbSunny = pure(ImageWbSunny);
 ImageWbSunny.displayName = 'ImageWbSunny';
+ImageWbSunny.muiName = 'SvgIcon';
 
 export default ImageWbSunny;

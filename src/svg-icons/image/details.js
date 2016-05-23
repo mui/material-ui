@@ -9,5 +9,6 @@ let ImageDetails = (props) => (
 );
 ImageDetails = pure(ImageDetails);
 ImageDetails.displayName = 'ImageDetails';
+ImageDetails.muiName = 'SvgIcon';
 
 export default ImageDetails;

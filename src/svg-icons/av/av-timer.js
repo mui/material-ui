@@ -9,5 +9,6 @@ let AvAvTimer = (props) => (
 );
 AvAvTimer = pure(AvAvTimer);
 AvAvTimer.displayName = 'AvAvTimer';
+AvAvTimer.muiName = 'SvgIcon';
 
 export default AvAvTimer;

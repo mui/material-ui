@@ -9,5 +9,6 @@ let ActionAspectRatio = (props) => (
 );
 ActionAspectRatio = pure(ActionAspectRatio);
 ActionAspectRatio.displayName = 'ActionAspectRatio';
+ActionAspectRatio.muiName = 'SvgIcon';
 
 export default ActionAspectRatio;

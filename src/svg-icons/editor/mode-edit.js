@@ -9,5 +9,6 @@ let EditorModeEdit = (props) => (
 );
 EditorModeEdit = pure(EditorModeEdit);
 EditorModeEdit.displayName = 'EditorModeEdit';
+EditorModeEdit.muiName = 'SvgIcon';
 
 export default EditorModeEdit;

@@ -1,21 +1,19 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
-const MobileTearSheet = React.createClass({
+class MobileTearSheet extends Component {
 
-  propTypes: {
-    children: React.PropTypes.node,
-    height: React.PropTypes.number,
-  },
+  static propTypes = {
+    children: PropTypes.node,
+    height: PropTypes.number.isRequired,
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
+  static defaultProps = {
+    height: 500,
+  };
 
-  getDefaultProps() {
-    return {
-      height: 500,
-    };
-  },
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
 
   render() {
     const {
@@ -51,8 +49,7 @@ const MobileTearSheet = React.createClass({
         <img style={prepareStyles(styles.bottomTear)} src="images/bottom-tear.svg" />
       </div>
     );
-  },
-
-});
+  }
+}
 
 export default MobileTearSheet;

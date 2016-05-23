@@ -9,5 +9,6 @@ let SocialPlusOne = (props) => (
 );
 SocialPlusOne = pure(SocialPlusOne);
 SocialPlusOne.displayName = 'SocialPlusOne';
+SocialPlusOne.muiName = 'SvgIcon';
 
 export default SocialPlusOne;

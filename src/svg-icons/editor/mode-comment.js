@@ -9,5 +9,6 @@ let EditorModeComment = (props) => (
 );
 EditorModeComment = pure(EditorModeComment);
 EditorModeComment.displayName = 'EditorModeComment';
+EditorModeComment.muiName = 'SvgIcon';
 
 export default EditorModeComment;

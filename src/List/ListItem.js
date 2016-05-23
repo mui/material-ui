@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
 import IconButton from '../IconButton';
-import OpenIcon from '../svg-icons/navigation/arrow-drop-up';
-import CloseIcon from '../svg-icons/navigation/arrow-drop-down';
-import NestedList from './NestedIist';
+import OpenIcon from '../svg-icons/navigation/expand-less';
+import CloseIcon from '../svg-icons/navigation/expand-more';
+import NestedList from './NestedList';
 
 function getStyles(props, context, state) {
   const {
@@ -28,7 +28,7 @@ function getStyles(props, context, state) {
   const {listItem} = muiTheme;
 
   const textColor = muiTheme.baseTheme.palette.textColor;
-  const hoverColor = ColorManipulator.fade(textColor, 0.1);
+  const hoverColor = fade(textColor, 0.1);
   const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
   const singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
   const twoLine = secondaryText && secondaryTextLines === 1;
@@ -47,9 +47,9 @@ function getStyles(props, context, state) {
       transition: transitions.easeOut(),
     },
 
-    //This inner div is needed so that ripples will span the entire container
+    // This inner div is needed so that ripples will span the entire container
     innerDiv: {
-      marginLeft: nestedLevel * muiTheme.listItem.nestedLevelDepth,
+      marginLeft: nestedLevel * listItem.nestedLevelDepth,
       paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
       paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
       paddingBottom: singleAvatar ? 20 : 16,
@@ -129,7 +129,7 @@ function getStyles(props, context, state) {
       marginTop: 4,
       color: listItem.secondaryTextColor,
 
-      //needed for 2 and 3 line ellipsis
+      // needed for 2 and 3 line ellipsis
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: threeLine ? null : 'nowrap',
@@ -142,7 +142,7 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-class ListItem extends React.Component {
+class ListItem extends Component {
   static muiName = 'ListItem';
 
   static propTypes = {
@@ -152,138 +152,115 @@ class ListItem extends React.Component {
      * if a `rightIcon` or `rightIconButton` has been provided to
      * the element.
      */
-    autoGenerateNestedIndicator: React.PropTypes.bool,
-
+    autoGenerateNestedIndicator: PropTypes.bool,
     /**
      * Children passed into the `ListItem`.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * If true, the element will not be able to be focused by the keyboard.
      */
-    disableKeyboardFocus: React.PropTypes.bool,
-
+    disableKeyboardFocus: PropTypes.bool,
     /**
      * If true, the element will not be clickable
      * and will not display hover effects.
      * This is automatically disabled if either `leftCheckbox`
      * or `rightToggle` is set.
      */
-    disabled: React.PropTypes.bool,
-
+    disabled: PropTypes.bool,
     /**
      * If true, the nested `ListItem`s are initially displayed.
      */
-    initiallyOpen: React.PropTypes.bool,
-
+    initiallyOpen: PropTypes.bool,
     /**
      * Override the inline-styles of the inner div element.
      */
-    innerDivStyle: React.PropTypes.object,
-
+    innerDivStyle: PropTypes.object,
     /**
      * If true, the children will be indented by 72px.
      * This is useful if there is no left avatar or left icon.
      */
-    insetChildren: React.PropTypes.bool,
-
+    insetChildren: PropTypes.bool,
     /**
      * This is the `Avatar` element to be displayed on the left side.
      */
-    leftAvatar: React.PropTypes.element,
-
+    leftAvatar: PropTypes.element,
     /**
      * This is the `Checkbox` element to be displayed on the left side.
      */
-    leftCheckbox: React.PropTypes.element,
-
+    leftCheckbox: PropTypes.element,
     /**
      * This is the `SvgIcon` or `FontIcon` to be displayed on the left side.
      */
-    leftIcon: React.PropTypes.element,
-
+    leftIcon: PropTypes.element,
     /**
      * An array of `ListItem`s to nest underneath the current `ListItem`.
      */
-    nestedItems: React.PropTypes.arrayOf(React.PropTypes.element),
-
+    nestedItems: PropTypes.arrayOf(PropTypes.element),
     /**
      * Controls how deep a `ListItem` appears.
      * This property is automatically managed, so modify at your own risk.
      */
-    nestedLevel: React.PropTypes.number,
-
+    nestedLevel: PropTypes.number,
     /**
      * Override the inline-styles of the nested items' `NestedList`.
      */
-    nestedListStyle: React.PropTypes.object,
-
+    nestedListStyle: PropTypes.object,
     /**
      * Callback function fired when the `ListItem` is focused or blurred by the keyboard.
      *
      * @param {object} event `focus` or `blur` event targeting the `ListItem`.
      * @param {boolean} isKeyboardFocused If true, the `ListItem` is focused.
      */
-    onKeyboardFocus: React.PropTypes.func,
-
+    onKeyboardFocus: PropTypes.func,
     /**
      * Callback function fired when the mouse enters the `ListItem`.
      *
      * @param {object} event `mouseenter` event targeting the `ListItem`.
      */
-    onMouseEnter: React.PropTypes.func,
-
+    onMouseEnter: PropTypes.func,
     /**
      * Callback function fired when the mouse leaves the `ListItem`.
      *
      * @param {object} event `mouseleave` event targeting the `ListItem`.
      */
-    onMouseLeave: React.PropTypes.func,
-
+    onMouseLeave: PropTypes.func,
     /**
      * Callbak function fired when the `ListItem` toggles its nested list.
      *
      * @param {object} listItem The `ListItem`.
      */
-    onNestedListToggle: React.PropTypes.func,
-
+    onNestedListToggle: PropTypes.func,
     /**
      * Callback function fired when the `ListItem` is touched.
      *
      * @param {object} event `touchstart` event targeting the `ListItem`.
      */
-    onTouchStart: React.PropTypes.func,
-
+    onTouchStart: PropTypes.func,
     /**
      * Callback function fired when the `ListItem` is touch-tapped.
      *
      * @param {object} event TouchTap event targeting the `ListItem`.
      */
-    onTouchTap: React.PropTypes.func,
-
+    onTouchTap: PropTypes.func,
     /**
      * This is the block element that contains the primary text.
      * If a string is passed in, a div tag will be rendered.
      */
-    primaryText: React.PropTypes.node,
-
+    primaryText: PropTypes.node,
     /**
      * If true, clicking or tapping the primary text of the `ListItem`
      * toggles the nested list.
      */
-    primaryTogglesNestedList: React.PropTypes.bool,
-
+    primaryTogglesNestedList: PropTypes.bool,
     /**
      * This is the `Avatar` element to be displayed on the right side.
      */
-    rightAvatar: React.PropTypes.element,
-
+    rightAvatar: PropTypes.element,
     /**
      * This is the `SvgIcon` or `FontIcon` to be displayed on the right side.
      */
-    rightIcon: React.PropTypes.element,
-
+    rightIcon: PropTypes.element,
     /**
      * This is the `IconButton` to be displayed on the right side.
      * Hovering over this button will remove the `ListItem` hover.
@@ -291,29 +268,25 @@ class ListItem extends React.Component {
      * ripple on the `ListItem`; the event will be stopped and prevented
      * from bubbling up to cause a `ListItem` click.
      */
-    rightIconButton: React.PropTypes.element,
-
+    rightIconButton: PropTypes.element,
     /**
      * This is the `Toggle` element to display on the right side.
      */
-    rightToggle: React.PropTypes.element,
-
+    rightToggle: PropTypes.element,
     /**
      * This is the block element that contains the secondary text.
      * If a string is passed in, a div tag will be rendered.
      */
-    secondaryText: React.PropTypes.node,
-
+    secondaryText: PropTypes.node,
     /**
      * Can be 1 or 2. This is the number of secondary
      * text lines before ellipsis will show.
      */
-    secondaryTextLines: React.PropTypes.oneOf([1, 2]),
-
+    secondaryTextLines: PropTypes.oneOf([1, 2]),
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -334,7 +307,7 @@ class ListItem extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -423,17 +396,20 @@ class ListItem extends React.Component {
   }
 
   createTextElement(styles, data, key) {
-    const isAnElement = React.isValidElement(data);
-    const mergedStyles = isAnElement ?
-      Object.assign({}, styles, data.props.style) : null;
-
-    return isAnElement ? (
-      React.cloneElement(data, {
+    const {prepareStyles} = this.context.muiTheme;
+    if (React.isValidElement(data)) {
+      let style = Object.assign({}, styles, data.props.style);
+      if (typeof data.type === 'string') { // if element is a native dom node
+        style = prepareStyles(style);
+      }
+      return React.cloneElement(data, {
         key: key,
-        style: this.context.muiTheme.prepareStyles(mergedStyles),
-      })
-    ) : (
-      <div key={key} style={this.context.muiTheme.prepareStyles(styles)}>
+        style: style,
+      });
+    }
+
+    return (
+      <div key={key} style={prepareStyles(styles)}>
         {data}
       </div>
     );
@@ -494,7 +470,7 @@ class ListItem extends React.Component {
   handleRightIconButtonTouchTap = (event) => {
     const iconButton = this.props.rightIconButton;
 
-    //Stop the event from bubbling up to the list-item
+    // Stop the event from bubbling up to the list-item
     event.stopPropagation();
     if (iconButton && iconButton.props.onTouchTap) iconButton.props.onTouchTap(event);
   };
@@ -592,7 +568,7 @@ class ListItem extends React.Component {
       );
     }
 
-    //RightIconButtonElement
+    // RightIconButtonElement
     const hasNestListItems = nestedItems.length;
     const hasRightElement = rightAvatar || rightIcon || rightIconButton || rightToggle;
     const needsNestedIndicator = hasNestListItems && autoGenerateNestedIndicator && !hasRightElement;
@@ -664,10 +640,10 @@ class ListItem extends React.Component {
           hasCheckbox ? this.createLabelElement(styles, contentChildren, other) :
           disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
+              containerElement={'span'}
               {...other}
               disabled={disabled}
               disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
-              linkButton={true}
               onKeyboardFocus={this.handleKeyboardFocus}
               onMouseLeave={this.handleMouseLeave}
               onMouseEnter={this.handleMouseEnter}

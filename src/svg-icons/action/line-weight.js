@@ -9,5 +9,6 @@ let ActionLineWeight = (props) => (
 );
 ActionLineWeight = pure(ActionLineWeight);
 ActionLineWeight.displayName = 'ActionLineWeight';
+ActionLineWeight.muiName = 'SvgIcon';
 
 export default ActionLineWeight;

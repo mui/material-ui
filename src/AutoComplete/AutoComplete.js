@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import TextField from '../TextField';
@@ -41,38 +41,32 @@ function getStyles(props, context, state) {
   return styles;
 }
 
-class AutoComplete extends React.Component {
+class AutoComplete extends Component {
   static propTypes = {
     /**
      * Location of the anchor for the auto complete.
      */
     anchorOrigin: propTypes.origin,
-
     /**
      * If true, the auto complete is animated as it is toggled.
      */
-    animated: React.PropTypes.bool,
-
+    animated: PropTypes.bool,
     /**
      * Array of strings or nodes used to populate the list.
      */
-    dataSource: React.PropTypes.array.isRequired,
-
+    dataSource: PropTypes.array.isRequired,
     /**
      * Disables focus ripple when true.
      */
-    disableFocusRipple: React.PropTypes.bool,
-
+    disableFocusRipple: PropTypes.bool,
     /**
      * Override style prop for error.
      */
-    errorStyle: React.PropTypes.object,
-
+    errorStyle: PropTypes.object,
     /**
      * The error content to display.
      */
-    errorText: React.PropTypes.string,
-
+    errorText: PropTypes.node,
     /**
      * Callback function used to filter the auto complete.
      *
@@ -80,68 +74,56 @@ class AutoComplete extends React.Component {
      * @param {string} key `dataSource` element, or `text` property on that element if it's not a string.
      * @returns {boolean} `true` indicates the auto complete list will include `key` when the input is `searchText`.
      */
-    filter: React.PropTypes.func,
-
+    filter: PropTypes.func,
     /**
      * The content to use for adding floating label element.
      */
-    floatingLabelText: React.PropTypes.string,
-
+    floatingLabelText: PropTypes.node,
     /**
      * If true, the field receives the property `width: 100%`.
      */
-    fullWidth: React.PropTypes.bool,
-
+    fullWidth: PropTypes.bool,
     /**
      * The hint content to display.
      */
-    hintText: React.PropTypes.string,
-
+    hintText: PropTypes.node,
     /**
      * Override style for list.
      */
-    listStyle: React.PropTypes.object,
-
+    listStyle: PropTypes.object,
     /**
      * The max number of search results to be shown.
      * By default it shows all the items which matches filter.
      */
-    maxSearchResults: React.PropTypes.number,
-
+    maxSearchResults: PropTypes.number,
     /**
      * Delay for closing time of the menu.
      */
-    menuCloseDelay: React.PropTypes.number,
-
+    menuCloseDelay: PropTypes.number,
     /**
      * Props to be passed to menu.
      */
-    menuProps: React.PropTypes.object,
-
+    menuProps: PropTypes.object,
     /**
      * Override style for menu.
      */
-    menuStyle: React.PropTypes.object,
-
+    menuStyle: PropTypes.object,
     /**
      * Callback function that is fired when the `TextField` loses focus.
      *
      * @param {object} event `blur` event targeting the `TextField`.
      */
-    onBlur: React.PropTypes.func,
-
+    onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the `TextField` gains focus.
      *
      * @param {object} event `focus` event targeting the `TextField`.
      */
-    onFocus: React.PropTypes.func,
-
+    onFocus: PropTypes.func,
     /**
      * Callback function that is fired when the `TextField` receives a keydown event.
      */
-    onKeyDown: React.PropTypes.func,
-
+    onKeyDown: PropTypes.func,
     /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
      *
@@ -150,45 +132,38 @@ class AutoComplete extends React.Component {
      * @param {number} index The index in `dataSource` of the list item selected, or `-1` if enter is pressed in the
      * `TextField`.
      */
-    onNewRequest: React.PropTypes.func,
-
+    onNewRequest: PropTypes.func,
     /**
      * Callback function that is fired when the user updates the `TextField`.
      *
      * @param {string} searchText The auto-complete's `searchText` value.
      * @param {array} dataSource The auto-complete's `dataSource` array.
      */
-    onUpdateInput: React.PropTypes.func,
-
+    onUpdateInput: PropTypes.func,
     /**
      * Auto complete menu is open if true.
      */
-    open: React.PropTypes.bool,
-
+    open: PropTypes.bool,
     /**
      * If true, the list item is showed when a focus event triggers.
      */
-    openOnFocus: React.PropTypes.bool,
-
+    openOnFocus: PropTypes.bool,
     /**
      * Text being input to auto complete.
      */
-    searchText: React.PropTypes.string,
-
+    searchText: PropTypes.string,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * Origin for location of target.
      */
     targetOrigin: propTypes.origin,
-
     /**
      * If true, will update when focus event triggers.
      */
-    triggerUpdateOnFocus: deprecated(React.PropTypes.bool, 'Instead, use openOnFocus'),
+    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus'),
   };
 
   static defaultProps = {
@@ -213,7 +188,7 @@ class AutoComplete extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -391,6 +366,7 @@ class AutoComplete extends React.Component {
       errorStyle,
       floatingLabelText,
       hintText,
+      filter,
       fullWidth,
       menuStyle,
       menuProps,
@@ -419,7 +395,7 @@ class AutoComplete extends React.Component {
     dataSource.every((item, index) => {
       switch (typeof item) {
         case 'string':
-          if (this.props.filter(searchText, item, item)) {
+          if (filter(searchText, item, item)) {
             requestsList.push({
               text: item,
               value: (
@@ -436,14 +412,14 @@ class AutoComplete extends React.Component {
 
         case 'object':
           if (item && typeof item.text === 'string') {
-            if (this.props.filter(searchText, item.text, item)) {
+            if (filter(searchText, item.text, item)) {
               if (item.value.type && (item.value.type.muiName === MenuItem.muiName ||
                  item.value.type.muiName === Divider.muiName)) {
                 requestsList.push({
                   text: item.text,
                   value: React.cloneElement(item.value, {
                     key: index,
-                    disableFocusRipple: this.props.disableFocusRipple,
+                    disableFocusRipple: disableFocusRipple,
                   }),
                 });
               } else {
@@ -478,7 +454,7 @@ class AutoComplete extends React.Component {
         autoWidth={false}
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.handleEscKeyDown}
-        initiallyKeyboardFocused={false}
+        initiallyKeyboardFocused={true}
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
@@ -564,14 +540,17 @@ AutoComplete.levenshteinDistanceFilter = (distanceLessThan) => {
 };
 
 AutoComplete.fuzzyFilter = (searchText, key) => {
-  if (searchText.length === 0) {
-    return false;
+  const compareString = key.toLowerCase();
+  searchText = searchText.toLowerCase();
+
+  let searchTextIndex = 0;
+  for (let index = 0; index < key.length; index++) {
+    if (compareString[index] === searchText[searchTextIndex]) {
+      searchTextIndex += 1;
+    }
   }
 
-  const subMatchKey = key.substring(0, searchText.length);
-  const distance = AutoComplete.levenshteinDistance(searchText.toLowerCase(), subMatchKey.toLowerCase());
-
-  return searchText.length > 3 ? distance < 2 : distance === 0;
+  return searchTextIndex === searchText.length;
 };
 
 AutoComplete.Item = MenuItem;

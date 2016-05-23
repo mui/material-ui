@@ -9,5 +9,6 @@ let ImageAdjust = (props) => (
 );
 ImageAdjust = pure(ImageAdjust);
 ImageAdjust.displayName = 'ImageAdjust';
+ImageAdjust.muiName = 'SvgIcon';
 
 export default ImageAdjust;

@@ -8,7 +8,7 @@ import MarkdownElement from '../../../MarkdownElement';
 import floatingButtonReadmeText from './README';
 import floatingButtonExampleSimpleCode from '!raw!./ExampleSimple';
 import FloatingButtonExampleSimple from './ExampleSimple';
-import floatingButtonCode from '!raw!material-ui/lib/FloatingActionButton/FloatingActionButton';
+import floatingButtonCode from '!raw!material-ui/FloatingActionButton/FloatingActionButton';
 
 const descriptions = {
   simple: 'Default size and `mini` FABs, in primary (default), `secondary` and `disabled` colors.',

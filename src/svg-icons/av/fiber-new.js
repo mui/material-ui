@@ -9,5 +9,6 @@ let AvFiberNew = (props) => (
 );
 AvFiberNew = pure(AvFiberNew);
 AvFiberNew.displayName = 'AvFiberNew';
+AvFiberNew.muiName = 'SvgIcon';
 
 export default AvFiberNew;

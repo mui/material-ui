@@ -9,5 +9,6 @@ let ImageWbCloudy = (props) => (
 );
 ImageWbCloudy = pure(ImageWbCloudy);
 ImageWbCloudy.displayName = 'ImageWbCloudy';
+ImageWbCloudy.muiName = 'SvgIcon';
 
 export default ImageWbCloudy;

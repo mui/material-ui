@@ -1,4 +1,12 @@
 import Events from './events';
+import warning from 'warning';
+
+let hasWarned;
+const warn = () => {
+  warning(hasWarned, 'The \'material-ui/utils/styleResizable.js\' mixin has been deprecated.' +
+    ' Please do not use this mixin as it will be removed in an upcoming release.');
+  hasWarned = true;
+};
 
 const Sizes = {
   SMALL: 1,
@@ -21,6 +29,10 @@ export default {
   componentDidMount() {
     this.updateDeviceSize();
     if (!this.manuallyBindResize) this.bindResize();
+  },
+
+  componentWillMount() {
+    warn();
   },
 
   componentWillUnmount() {

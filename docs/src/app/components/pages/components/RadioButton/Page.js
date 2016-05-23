@@ -8,8 +8,8 @@ import MarkdownElement from '../../../MarkdownElement';
 import radioButtonReadmeText from './README';
 import RadioButtonExampleSimple from './ExampleSimple';
 import radioButtonExampleSimpleCode from '!raw!./ExampleSimple';
-import radioButtonCode from '!raw!material-ui/lib/RadioButton/RadioButton';
-import radioButtonGroupCode from '!raw!material-ui/lib/RadioButton/RadioButtonGroup';
+import radioButtonCode from '!raw!material-ui/RadioButton/RadioButton';
+import radioButtonGroupCode from '!raw!material-ui/RadioButton/RadioButtonGroup';
 
 const description = 'The second button is selected by default using the `defaultSelected` property of ' +
   '`RadioButtonGroup`. The third button is disabled using the `disabled` property of `RadioButton`. The final ' +

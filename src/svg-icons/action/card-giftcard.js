@@ -9,5 +9,6 @@ let ActionCardGiftcard = (props) => (
 );
 ActionCardGiftcard = pure(ActionCardGiftcard);
 ActionCardGiftcard.displayName = 'ActionCardGiftcard';
+ActionCardGiftcard.muiName = 'SvgIcon';
 
 export default ActionCardGiftcard;

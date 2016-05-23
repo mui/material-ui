@@ -9,5 +9,6 @@ let AvSubtitles = (props) => (
 );
 AvSubtitles = pure(AvSubtitles);
 AvSubtitles.displayName = 'AvSubtitles';
+AvSubtitles.muiName = 'SvgIcon';
 
 export default AvSubtitles;

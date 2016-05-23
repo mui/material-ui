@@ -9,5 +9,6 @@ let SocialPersonOutline = (props) => (
 );
 SocialPersonOutline = pure(SocialPersonOutline);
 SocialPersonOutline.displayName = 'SocialPersonOutline';
+SocialPersonOutline.muiName = 'SvgIcon';
 
 export default SocialPersonOutline;

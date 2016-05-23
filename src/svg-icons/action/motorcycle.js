@@ -9,5 +9,6 @@ let ActionMotorcycle = (props) => (
 );
 ActionMotorcycle = pure(ActionMotorcycle);
 ActionMotorcycle.displayName = 'ActionMotorcycle';
+ActionMotorcycle.muiName = 'SvgIcon';
 
 export default ActionMotorcycle;

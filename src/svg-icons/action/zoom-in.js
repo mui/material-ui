@@ -9,5 +9,6 @@ let ActionZoomIn = (props) => (
 );
 ActionZoomIn = pure(ActionZoomIn);
 ActionZoomIn.displayName = 'ActionZoomIn';
+ActionZoomIn.muiName = 'SvgIcon';
 
 export default ActionZoomIn;

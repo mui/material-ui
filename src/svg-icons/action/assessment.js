@@ -9,5 +9,6 @@ let ActionAssessment = (props) => (
 );
 ActionAssessment = pure(ActionAssessment);
 ActionAssessment.displayName = 'ActionAssessment';
+ActionAssessment.muiName = 'SvgIcon';
 
 export default ActionAssessment;

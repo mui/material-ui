@@ -9,5 +9,6 @@ let HardwareKeyboardArrowDown = (props) => (
 );
 HardwareKeyboardArrowDown = pure(HardwareKeyboardArrowDown);
 HardwareKeyboardArrowDown.displayName = 'HardwareKeyboardArrowDown';
+HardwareKeyboardArrowDown.muiName = 'SvgIcon';
 
 export default HardwareKeyboardArrowDown;

@@ -9,5 +9,6 @@ let ImageCropDin = (props) => (
 );
 ImageCropDin = pure(ImageCropDin);
 ImageCropDin.displayName = 'ImageCropDin';
+ImageCropDin.muiName = 'SvgIcon';
 
 export default ImageCropDin;

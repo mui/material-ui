@@ -9,5 +9,6 @@ let ContentReport = (props) => (
 );
 ContentReport = pure(ContentReport);
 ContentReport.displayName = 'ContentReport';
+ContentReport.muiName = 'SvgIcon';
 
 export default ContentReport;

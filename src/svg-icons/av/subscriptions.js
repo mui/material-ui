@@ -9,5 +9,6 @@ let AvSubscriptions = (props) => (
 );
 AvSubscriptions = pure(AvSubscriptions);
 AvSubscriptions.displayName = 'AvSubscriptions';
+AvSubscriptions.muiName = 'SvgIcon';
 
 export default AvSubscriptions;

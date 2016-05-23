@@ -9,5 +9,6 @@ let NavigationExpandMore = (props) => (
 );
 NavigationExpandMore = pure(NavigationExpandMore);
 NavigationExpandMore.displayName = 'NavigationExpandMore';
+NavigationExpandMore.muiName = 'SvgIcon';
 
 export default NavigationExpandMore;

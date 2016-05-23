@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
@@ -7,17 +7,17 @@ import ScaleInTransitionGroup from './ScaleIn';
 
 const pulsateDuration = 750;
 
-class FocusRipple extends React.Component {
+class FocusRipple extends Component {
   static propTypes = {
-    color: React.PropTypes.string,
-    innerStyle: React.PropTypes.object,
-    opacity: React.PropTypes.number,
-    show: React.PropTypes.bool,
-    style: React.PropTypes.object,
+    color: PropTypes.string,
+    innerStyle: PropTypes.object,
+    opacity: PropTypes.number,
+    show: PropTypes.bool,
+    style: PropTypes.object,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {

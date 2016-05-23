@@ -9,5 +9,6 @@ let NotificationMore = (props) => (
 );
 NotificationMore = pure(NotificationMore);
 NotificationMore.displayName = 'NotificationMore';
+NotificationMore.muiName = 'SvgIcon';
 
 export default NotificationMore;

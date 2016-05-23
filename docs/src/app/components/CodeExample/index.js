@@ -1,25 +1,34 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
+import {parse} from 'react-docgen';
 import CodeBlock from './CodeBlock';
 import ClearFix from 'material-ui/internal/ClearFix';
 import Paper from 'material-ui/Paper';
 
-class CodeExample extends React.Component {
+class CodeExample extends Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    code: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string,
-    layoutSideBySide: React.PropTypes.bool,
-    title: React.PropTypes.string,
+    children: PropTypes.node,
+    code: PropTypes.string.isRequired,
+    component: PropTypes.bool,
+    description: PropTypes.string,
+    exampleBlockStyle: React.PropTypes.object,
+    layoutSideBySide: PropTypes.bool,
+    title: PropTypes.string,
+  };
+
+  static defaultProps = {
+    component: true,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   };
 
   render() {
     const {
       children,
       code,
+      component,
+      exampleBlockStyle,
       layoutSideBySide,
     } = this.props;
 
@@ -40,10 +49,17 @@ class CodeExample extends React.Component {
       },
     };
 
+    const docs = component ? parse(code) : {};
+
     return (
       <Paper style={styles.root}>
-        <CodeBlock title={this.props.title} description={this.props.description}>{code}</CodeBlock>
-        <ClearFix style={styles.exampleBlock}>{children}</ClearFix>
+        <CodeBlock
+          title={this.props.title}
+          description={this.props.description || docs.description}
+        >
+          {code}
+        </CodeBlock>
+        <ClearFix style={Object.assign(styles.exampleBlock, exampleBlockStyle)}>{children}</ClearFix>
       </Paper>
     );
   }

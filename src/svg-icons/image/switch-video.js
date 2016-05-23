@@ -9,5 +9,6 @@ let ImageSwitchVideo = (props) => (
 );
 ImageSwitchVideo = pure(ImageSwitchVideo);
 ImageSwitchVideo.displayName = 'ImageSwitchVideo';
+ImageSwitchVideo.muiName = 'SvgIcon';
 
 export default ImageSwitchVideo;

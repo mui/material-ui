@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -10,29 +10,43 @@ import {cyan500} from 'material-ui/styles/colors';
 
 const SelectableList = MakeSelectable(List);
 
-const AppNavDrawer = React.createClass({
-
-  propTypes: {
-    docked: React.PropTypes.bool.isRequired,
-    location: React.PropTypes.object.isRequired,
-    onRequestChangeList: React.PropTypes.func.isRequired,
-    onRequestChangeNavDrawer: React.PropTypes.func.isRequired,
-    open: React.PropTypes.bool.isRequired,
-    style: React.PropTypes.object,
+const styles = {
+  logo: {
+    cursor: 'pointer',
+    fontSize: 24,
+    color: typography.textFullWhite,
+    lineHeight: `${spacing.desktopKeylineIncrement}px`,
+    fontWeight: typography.fontWeightLight,
+    backgroundColor: cyan500,
+    paddingLeft: spacing.desktopGutter,
+    marginBottom: 8,
   },
-
-  contextTypes: {
-    muiTheme: React.PropTypes.object.isRequired,
-    router: React.PropTypes.object.isRequired,
+  version: {
+    paddingLeft: spacing.desktopGutterLess,
+    fontSize: 16,
   },
+};
 
-  getInitialState: () => {
-    return ({
-      muiVersions: [],
-    });
-  },
+class AppNavDrawer extends Component {
+  static propTypes = {
+    docked: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
+    onChangeList: PropTypes.func.isRequired,
+    onRequestChangeNavDrawer: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    style: PropTypes.object,
+  };
 
-  componentDidMount: function() {
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
+  };
+
+  state = {
+    muiVersions: [],
+  };
+
+  componentDidMount() {
     const self = this;
     const url = '/versions.json';
     const request = new XMLHttpRequest();
@@ -48,9 +62,9 @@ const AppNavDrawer = React.createClass({
 
     request.open('GET', url, true);
     request.send();
-  },
+  }
 
-  firstNonPreReleaseVersion: function() {
+  firstNonPreReleaseVersion() {
     let version;
     for (let i = 0; i < this.state.muiVersions.length; i++) {
       version = this.state.muiVersions[i];
@@ -60,57 +74,40 @@ const AppNavDrawer = React.createClass({
       }
     }
     return version;
-  },
+  }
 
-  handleVersionChange: function(event, index, value) {
+  handleVersionChange = (event, index, value) => {
     if (value === this.firstNonPreReleaseVersion()) {
       window.location = 'http://www.material-ui.com/';
     } else {
       window.location = `http://www.material-ui.com/${value}`;
     }
-  },
+  };
 
-  currentVersion: function() {
+  currentVersion() {
     if (window.location.hostname === 'localhost') return this.state.muiVersions[0];
     if (window.location.pathname === '/') {
       return this.firstNonPreReleaseVersion();
     } else {
       return window.location.pathname.replace(/\//g, '');
     }
-  },
+  }
 
-  handleRequestChangeLink(event, value) {
+  handleRequestChangeLink = (event, value) => {
     window.location = value;
-  },
+  };
 
-  handleTouchTapHeader() {
+  handleTouchTapHeader = () => {
     this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);
-  },
-
-  styles: {
-    logo: {
-      cursor: 'pointer',
-      fontSize: 24,
-      color: typography.textFullWhite,
-      lineHeight: `${spacing.desktopKeylineIncrement}px`,
-      fontWeight: typography.fontWeightLight,
-      backgroundColor: cyan500,
-      paddingLeft: spacing.desktopGutter,
-      marginBottom: 8,
-    },
-    version: {
-      paddingLeft: spacing.desktopGutterLess,
-      fontSize: 16,
-    },
-  },
+  };
 
   render() {
     const {
       location,
       docked,
       onRequestChangeNavDrawer,
-      onRequestChangeList,
+      onChangeList,
       open,
       style,
     } = this.props;
@@ -121,13 +118,12 @@ const AppNavDrawer = React.createClass({
         docked={docked}
         open={open}
         onRequestChange={onRequestChangeNavDrawer}
-        containerStyle={{zIndex: zIndex.navDrawer - 100}}
+        containerStyle={{zIndex: zIndex.drawer - 100}}
       >
-        <div style={this.styles.logo} onTouchTap={this.handleTouchTapHeader}>
+        <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
         </div>
-
-        <span style={this.styles.version}>Version:</span>
+        <span style={styles.version}>Version:</span>
         <DropDownMenu
           value={this.currentVersion()}
           onChange={this.handleVersionChange}
@@ -142,9 +138,9 @@ const AppNavDrawer = React.createClass({
             />
           ))}
         </DropDownMenu>
-
         <SelectableList
-          valueLink={{value: location.pathname, requestChange: onRequestChangeList}}
+          value={location.pathname}
+          onChange={onChangeList}
         >
           <ListItem
             primaryText="Get Started"
@@ -185,6 +181,7 @@ const AppNavDrawer = React.createClass({
                 ]}
               />,
               <ListItem primaryText="Card" value="/components/card" />,
+              <ListItem primaryText="Chip" value="/components/chip" />,
               <ListItem primaryText="Date Picker" value="/components/date-picker" />,
               <ListItem primaryText="Dialog" value="/components/dialog" />,
               <ListItem primaryText="Divider" value="/components/divider" />,
@@ -253,7 +250,8 @@ const AppNavDrawer = React.createClass({
         </SelectableList>
         <Divider />
         <SelectableList
-          valueLink={{value: '', requestChange: this.handleRequestChangeLink}}
+          value=""
+          onChange={this.handleRequestChangeLink}
         >
           <Subheader>Resources</Subheader>
           <ListItem primaryText="GitHub" value="https://github.com/callemall/material-ui" />
@@ -265,7 +263,7 @@ const AppNavDrawer = React.createClass({
         </SelectableList>
       </Drawer>
     );
-  },
-});
+  }
+}
 
 export default AppNavDrawer;

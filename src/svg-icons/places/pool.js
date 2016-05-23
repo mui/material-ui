@@ -9,5 +9,6 @@ let PlacesPool = (props) => (
 );
 PlacesPool = pure(PlacesPool);
 PlacesPool.displayName = 'PlacesPool';
+PlacesPool.muiName = 'SvgIcon';
 
 export default PlacesPool;

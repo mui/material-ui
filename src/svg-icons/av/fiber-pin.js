@@ -9,5 +9,6 @@ let AvFiberPin = (props) => (
 );
 AvFiberPin = pure(AvFiberPin);
 AvFiberPin.displayName = 'AvFiberPin';
+AvFiberPin.muiName = 'SvgIcon';
 
 export default AvFiberPin;

@@ -12,7 +12,7 @@ import flatButtonExampleComplexCode from '!raw!./ExampleComplex';
 import FlatButtonExampleComplex from './ExampleComplex';
 import flatButtonExampleIconCode from '!raw!./ExampleIcon';
 import FlatButtonExampleIcon from './ExampleIcon';
-import flatButtonCode from '!raw!material-ui/lib/FlatButton/FlatButton';
+import flatButtonCode from '!raw!material-ui/FlatButton/FlatButton';
 
 const descriptions = {
   simple: '`FlatButton` with default color, `primary`, `secondary` and and `disabled` props applied.',

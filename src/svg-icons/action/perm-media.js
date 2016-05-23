@@ -9,5 +9,6 @@ let ActionPermMedia = (props) => (
 );
 ActionPermMedia = pure(ActionPermMedia);
 ActionPermMedia.displayName = 'ActionPermMedia';
+ActionPermMedia.muiName = 'SvgIcon';
 
 export default ActionPermMedia;

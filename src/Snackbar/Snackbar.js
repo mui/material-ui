@@ -1,26 +1,21 @@
-import React from 'react';
+import React, {PropTypes, Component} from 'react';
 import transitions from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import FlatButton from '../FlatButton';
-import StyleResizable from '../utils/styleResizable';
+import SnackbarBody from './SnackbarBody';
 
 function getStyles(props, context, state) {
   const {
     muiTheme: {
-      baseTheme,
-      snackbar,
+      baseTheme: {
+        spacing: {
+          desktopSubheaderHeight,
+        },
+      },
       zIndex,
     },
   } = context;
 
   const {open} = state;
-
-  const {
-    desktopGutter,
-    desktopSubheaderHeight,
-  } = baseTheme.spacing;
-
-  const isSmall = state.deviceSize === StyleResizable.statics.Sizes.SMALL;
 
   const styles = {
     root: {
@@ -31,66 +26,38 @@ function getStyles(props, context, state) {
       bottom: 0,
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
-      transform: open ? 'translate3d(0, 0, 0)' : `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
+      transform: open ?
+        'translate3d(0, 0, 0)' :
+        `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
-    },
-    body: {
-      backgroundColor: snackbar.backgroundColor,
-      padding: `0 ${desktopGutter}px`,
-      height: desktopSubheaderHeight,
-      lineHeight: `${desktopSubheaderHeight}px`,
-      borderRadius: isSmall ? 0 : 2,
-      maxWidth: isSmall ? 'inherit' : 568,
-      minWidth: isSmall ? 'inherit' : 288,
-      flexGrow: isSmall ? 1 : 0,
-      margin: 'auto',
-    },
-    content: {
-      fontSize: 14,
-      color: snackbar.textColor,
-      opacity: open ? 1 : 0,
-      transition: open ? transitions.easeOut('500ms', 'opacity', '100ms') : transitions.easeOut('400ms', 'opacity'),
-    },
-    action: {
-      color: snackbar.actionColor,
-      float: 'right',
-      marginTop: 6,
-      marginRight: -16,
-      marginLeft: desktopGutter,
-      backgroundColor: 'transparent',
     },
   };
 
   return styles;
 }
 
-const Snackbar = React.createClass({
-
-  propTypes: {
+class Snackbar extends Component {
+  static propTypes = {
     /**
      * The label for the action on the snackbar.
      */
-    action: React.PropTypes.string,
-
+    action: PropTypes.string,
     /**
      * The number of milliseconds to wait before automatically dismissing.
      * If no value is specified the snackbar will dismiss normally.
      * If a value is provided the snackbar can still be dismissed normally.
      * If a snackbar is dismissed before the timer expires, the timer will be cleared.
      */
-    autoHideDuration: React.PropTypes.number,
-
+    autoHideDuration: PropTypes.number,
     /**
      * Override the inline-styles of the body element.
      */
-    bodyStyle: React.PropTypes.object,
-
+    bodyStyle: PropTypes.object,
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-
+    className: PropTypes.string,
     /**
      * The message to be displayed.
      *
@@ -98,15 +65,13 @@ const Snackbar = React.createClass({
      * ensure that the same object remains as the `message` property if you want to avoid the `Snackbar` hiding and
      * showing again)
      */
-    message: React.PropTypes.node.isRequired,
-
+    message: PropTypes.node.isRequired,
     /**
      * Fired when the action button is touchtapped.
      *
      * @param {object} event Action button event.
      */
-    onActionTouchTap: React.PropTypes.func,
-
+    onActionTouchTap: PropTypes.func,
     /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
      * `autoHideDuration` timer expires.
@@ -119,41 +84,35 @@ const Snackbar = React.createClass({
      *
      * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
      */
-    onRequestClose: React.PropTypes.func,
-
+    onRequestClose: PropTypes.func,
     /**
      * Controls whether the `Snackbar` is opened or not.
      */
-    open: React.PropTypes.bool.isRequired,
-
+    open: PropTypes.bool.isRequired,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-  },
+    style: PropTypes.object,
+  };
 
-  contextTypes: {
-    muiTheme: React.PropTypes.object.isRequired,
-  },
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
 
-  mixins: [
-    StyleResizable,
-  ],
-
-  getInitialState() {
-    return {
+  componentWillMount() {
+    this.setState({
       open: this.props.open,
       message: this.props.message,
       action: this.props.action,
-    };
-  },
+    });
+  }
 
   componentDidMount() {
     if (this.state.open) {
       this.setAutoHideTimer();
       this.setTransitionTimer();
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.open === this.props.open &&
@@ -179,7 +138,7 @@ const Snackbar = React.createClass({
         action: nextProps.action,
       });
     }
-  },
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.open !== this.state.open) {
@@ -190,23 +149,26 @@ const Snackbar = React.createClass({
         clearTimeout(this.timerAutoHideId);
       }
     }
-  },
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timerAutoHideId);
     clearTimeout(this.timerTransitionId);
     clearTimeout(this.timerOneAtTheTimeId);
-  },
+  }
 
-  componentClickAway() {
-    if (this.timerTransitionId) return; // If transitioning, don't close snackbar
+  componentClickAway = () => {
+    if (this.timerTransitionId) {
+      // If transitioning, don't close the snackbar.
+      return;
+    }
 
     if (this.props.open !== null && this.props.onRequestClose) {
       this.props.onRequestClose('clickaway');
     } else {
       this.setState({open: false});
     }
-  },
+  };
 
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer() {
@@ -222,14 +184,14 @@ const Snackbar = React.createClass({
         }
       }, autoHideDuration);
     }
-  },
+  }
 
   // Timer that controls delay before click-away events are captured (based on when animation completes)
   setTransitionTimer() {
     this.timerTransitionId = setTimeout(() => {
       this.timerTransitionId = undefined;
     }, 400);
-  },
+  }
 
   render() {
     const {
@@ -248,28 +210,20 @@ const Snackbar = React.createClass({
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
-    const actionButton = action && (
-      <FlatButton
-        style={styles.action}
-        label={action}
-        onTouchTap={onActionTouchTap}
-      />
-    );
-
     return (
       <ClickAwayListener onClickAway={open && this.componentClickAway}>
         <div {...others} style={prepareStyles(Object.assign(styles.root, style))}>
-          <div style={prepareStyles(Object.assign(styles.body, bodyStyle))}>
-            <div style={prepareStyles(styles.content)}>
-              <span>{message}</span>
-              {actionButton}
-            </div>
-          </div>
+          <SnackbarBody
+            open={open}
+            message={message}
+            action={action}
+            style={bodyStyle}
+            onActionTouchTap={onActionTouchTap}
+          />
         </div>
       </ClickAwayListener>
     );
-  },
-
-});
+  }
+}
 
 export default Snackbar;

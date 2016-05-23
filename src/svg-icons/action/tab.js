@@ -9,5 +9,6 @@ let ActionTab = (props) => (
 );
 ActionTab = pure(ActionTab);
 ActionTab.displayName = 'ActionTab';
+ActionTab.muiName = 'SvgIcon';
 
 export default ActionTab;

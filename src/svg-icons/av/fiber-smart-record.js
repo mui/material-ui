@@ -9,5 +9,6 @@ let AvFiberSmartRecord = (props) => (
 );
 AvFiberSmartRecord = pure(AvFiberSmartRecord);
 AvFiberSmartRecord.displayName = 'AvFiberSmartRecord';
+AvFiberSmartRecord.muiName = 'SvgIcon';
 
 export default AvFiberSmartRecord;

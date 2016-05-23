@@ -9,5 +9,6 @@ let CommunicationStayPrimaryLandscape = (props) => (
 );
 CommunicationStayPrimaryLandscape = pure(CommunicationStayPrimaryLandscape);
 CommunicationStayPrimaryLandscape.displayName = 'CommunicationStayPrimaryLandscape';
+CommunicationStayPrimaryLandscape.muiName = 'SvgIcon';
 
 export default CommunicationStayPrimaryLandscape;

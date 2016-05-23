@@ -9,5 +9,6 @@ let AvPlaylistPlay = (props) => (
 );
 AvPlaylistPlay = pure(AvPlaylistPlay);
 AvPlaylistPlay.displayName = 'AvPlaylistPlay';
+AvPlaylistPlay.muiName = 'SvgIcon';
 
 export default AvPlaylistPlay;

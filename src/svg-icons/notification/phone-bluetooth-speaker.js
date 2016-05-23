@@ -9,5 +9,6 @@ let NotificationPhoneBluetoothSpeaker = (props) => (
 );
 NotificationPhoneBluetoothSpeaker = pure(NotificationPhoneBluetoothSpeaker);
 NotificationPhoneBluetoothSpeaker.displayName = 'NotificationPhoneBluetoothSpeaker';
+NotificationPhoneBluetoothSpeaker.muiName = 'SvgIcon';
 
 export default NotificationPhoneBluetoothSpeaker;

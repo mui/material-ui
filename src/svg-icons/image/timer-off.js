@@ -9,5 +9,6 @@ let ImageTimerOff = (props) => (
 );
 ImageTimerOff = pure(ImageTimerOff);
 ImageTimerOff.displayName = 'ImageTimerOff';
+ImageTimerOff.muiName = 'SvgIcon';
 
 export default ImageTimerOff;

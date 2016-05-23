@@ -9,5 +9,6 @@ let ActionTimeline = (props) => (
 );
 ActionTimeline = pure(ActionTimeline);
 ActionTimeline.displayName = 'ActionTimeline';
+ActionTimeline.muiName = 'SvgIcon';
 
 export default ActionTimeline;

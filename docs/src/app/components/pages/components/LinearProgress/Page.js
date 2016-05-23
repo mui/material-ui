@@ -10,7 +10,7 @@ import LinearProgressExampleSimple from './ExampleSimple';
 import linearProgressExampleSimpleCode from '!raw!./ExampleSimple';
 import LinearProgressExampleDeterminate from './ExampleDeterminate';
 import linearProgressExampleDeterminateCode from '!raw!./ExampleDeterminate';
-import linearProgressCode from '!raw!material-ui/lib/LinearProgress/LinearProgress';
+import linearProgressCode from '!raw!material-ui/LinearProgress/LinearProgress';
 
 const descriptions = {
   indeterminate: 'By default, the indicator animates continuously.',

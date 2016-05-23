@@ -9,5 +9,6 @@ let ImagePhotoLibrary = (props) => (
 );
 ImagePhotoLibrary = pure(ImagePhotoLibrary);
 ImagePhotoLibrary.displayName = 'ImagePhotoLibrary';
+ImagePhotoLibrary.muiName = 'SvgIcon';
 
 export default ImagePhotoLibrary;

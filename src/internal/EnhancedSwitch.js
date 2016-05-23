@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
@@ -51,6 +51,7 @@ function getStyles(props, context) {
       float: 'left',
       position: 'relative',
       display: 'block',
+      flexShrink: 0,
       width: 60 - baseTheme.spacing.desktopGutterLess,
       marginRight: (props.labelPosition === 'right') ?
         baseTheme.spacing.desktopGutterLess : 0,
@@ -67,42 +68,42 @@ function getStyles(props, context) {
   };
 }
 
-class EnhancedSwitch extends React.Component {
+class EnhancedSwitch extends Component {
   static propTypes = {
-    checked: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    defaultSwitched: React.PropTypes.bool,
-    disableFocusRipple: React.PropTypes.bool,
-    disableTouchRipple: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    iconStyle: React.PropTypes.object,
-    inputStyle: React.PropTypes.object,
-    inputType: React.PropTypes.string.isRequired,
-    label: React.PropTypes.node,
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    labelStyle: React.PropTypes.object,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onMouseDown: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onParentShouldUpdate: React.PropTypes.func,
-    onSwitch: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    rippleColor: React.PropTypes.string,
-    rippleStyle: React.PropTypes.object,
-    style: React.PropTypes.object,
-    switchElement: React.PropTypes.element.isRequired,
-    switched: React.PropTypes.bool.isRequired,
-    thumbStyle: React.PropTypes.object,
-    trackStyle: React.PropTypes.object,
-    value: React.PropTypes.string,
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    defaultChecked: PropTypes.bool,
+    disableFocusRipple: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
+    disabled: PropTypes.bool,
+    iconStyle: PropTypes.object,
+    inputStyle: PropTypes.object,
+    inputType: PropTypes.string.isRequired,
+    label: PropTypes.node,
+    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelStyle: PropTypes.object,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onMouseDown: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onMouseUp: PropTypes.func,
+    onParentShouldUpdate: PropTypes.func,
+    onSwitch: PropTypes.func,
+    onTouchEnd: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    rippleColor: PropTypes.string,
+    rippleStyle: PropTypes.object,
+    style: PropTypes.object,
+    switchElement: PropTypes.element.isRequired,
+    switched: PropTypes.bool.isRequired,
+    thumbStyle: PropTypes.object,
+    trackStyle: PropTypes.object,
+    value: PropTypes.string,
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -121,11 +122,11 @@ class EnhancedSwitch extends React.Component {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
-      (nextProps.hasOwnProperty('defaultSwitched') &&
-      (nextProps.defaultSwitched !== this.props.defaultSwitched));
+      (nextProps.hasOwnProperty('defaultChecked') &&
+      (nextProps.defaultChecked !== this.props.defaultChecked));
 
     if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
-      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultSwitched;
+      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
 
       this.setState({
         switched: switched,
@@ -198,7 +199,7 @@ class EnhancedSwitch extends React.Component {
    * ripple animations manually.
    */
   handleMouseDown = (event) => {
-    //only listen to left clicks
+    // only listen to left clicks
     if (event.button === 0) {
       this.refs.touchRipple.start(event);
     }
@@ -231,9 +232,9 @@ class EnhancedSwitch extends React.Component {
   };
 
   handleFocus = (event) => {
-    //setTimeout is needed becuase the focus event fires first
-    //Wait so that we can capture if this was a keyboard focus
-    //or touch focus
+    // setTimeout is needed becuase the focus event fires first
+    // Wait so that we can capture if this was a keyboard focus
+    // or touch focus
     setTimeout(() => {
       if (this.tabPressed) {
         this.setState({
@@ -258,7 +259,6 @@ class EnhancedSwitch extends React.Component {
       labelStyle,
       labelPosition,
       onSwitch, // eslint-disable-line no-unused-vars
-      defaultSwitched,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onMouseUp, // eslint-disable-line no-unused-vars
@@ -272,6 +272,7 @@ class EnhancedSwitch extends React.Component {
       className,
       rippleStyle,
       style,
+      switched, // eslint-disable-line no-unused-vars
       switchElement,
       thumbStyle,
       trackStyle,
@@ -331,7 +332,6 @@ class EnhancedSwitch extends React.Component {
         style={prepareStyles(Object.assign(styles.input, inputStyle))}
         name={name}
         value={value}
-        defaultChecked={defaultSwitched}
         disabled={disabled}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
@@ -373,7 +373,7 @@ class EnhancedSwitch extends React.Component {
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         <EventListener
-          elementName="window"
+          target="window"
           onKeyDown={this.handleKeyDown}
           onKeyUp={this.handleKeyUp}
         />

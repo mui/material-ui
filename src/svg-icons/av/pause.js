@@ -9,5 +9,6 @@ let AvPause = (props) => (
 );
 AvPause = pure(AvPause);
 AvPause.displayName = 'AvPause';
+AvPause.muiName = 'SvgIcon';
 
 export default AvPause;

@@ -9,5 +9,6 @@ let HardwareDeviceHub = (props) => (
 );
 HardwareDeviceHub = pure(HardwareDeviceHub);
 HardwareDeviceHub.displayName = 'HardwareDeviceHub';
+HardwareDeviceHub.muiName = 'SvgIcon';
 
 export default HardwareDeviceHub;

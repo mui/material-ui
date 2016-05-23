@@ -9,5 +9,6 @@ let ActionTrendingFlat = (props) => (
 );
 ActionTrendingFlat = pure(ActionTrendingFlat);
 ActionTrendingFlat.displayName = 'ActionTrendingFlat';
+ActionTrendingFlat.muiName = 'SvgIcon';
 
 export default ActionTrendingFlat;

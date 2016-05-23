@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
@@ -46,7 +46,7 @@ function getStyles(props, context) {
       width: baseSize,
     },
     path: {
-      strokeDasharray: '89,200',
+      strokeDasharray: '89, 200',
       strokeDashoffset: 0,
       stroke: props.color || palette.primary1Color,
       strokeLinecap: 'round',
@@ -57,54 +57,47 @@ function getStyles(props, context) {
   if (props.mode === 'determinate') {
     const relVal = getRelativeValue(value, min, max);
     styles.path.transition = transitions.create('all', '0.3s', null, 'linear');
-    styles.path.strokeDasharray = `${Math.round(relVal * 1.25)},200`;
+    styles.path.strokeDasharray = `${Math.round(relVal * 1.25)}, 200`;
   }
 
   return styles;
 }
 
-class CircularProgress extends React.Component {
+class CircularProgress extends Component {
   static propTypes = {
     /**
      * Override the progress's color.
      */
-    color: React.PropTypes.string,
-
+    color: PropTypes.string,
     /**
      * Style for inner wrapper div.
      */
-    innerStyle: React.PropTypes.object,
-
+    innerStyle: PropTypes.object,
     /**
      * The max value of progress, only works in determinate mode.
      */
-    max: React.PropTypes.number,
-
+    max: PropTypes.number,
     /**
      * The min value of progress, only works in determinate mode.
      */
-    min: React.PropTypes.number,
-
+    min: PropTypes.number,
     /**
      * The mode of show your progress, indeterminate
      * for when there is no value for progress.
      */
-    mode: React.PropTypes.oneOf(['determinate', 'indeterminate']),
-
+    mode: PropTypes.oneOf(['determinate', 'indeterminate']),
     /**
      * The size of the progress.
      */
-    size: React.PropTypes.number,
-
+    size: PropTypes.number,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * The value of progress, only works in determinate mode.
      */
-    value: React.PropTypes.number,
+    value: PropTypes.number,
   };
 
   static defaultProps = {
@@ -116,7 +109,7 @@ class CircularProgress extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -144,7 +137,7 @@ class CircularProgress extends React.Component {
       path.style.strokeDashoffset = -35;
       path.style.transitionDuration = '750ms';
     } else {
-      path.style.strokeDasharray = '89,200';
+      path.style.strokeDasharray = '89, 200';
       path.style.strokeDashoffset = -124;
       path.style.transitionDuration = '850ms';
     }
@@ -183,9 +176,14 @@ class CircularProgress extends React.Component {
         <div ref="wrapper" style={prepareStyles(Object.assign(styles.wrapper, innerStyle))} >
           <svg style={prepareStyles(styles.svg)} >
             <circle
-              ref="path" style={prepareStyles(styles.path)} cx="25"
-              cy="25" r="20" fill="none"
-              strokeWidth="2.5" strokeMiterlimit="10"
+              ref="path"
+              style={prepareStyles(styles.path)}
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              strokeWidth="2.5"
+              strokeMiterlimit="20"
             />
           </svg>
         </div>

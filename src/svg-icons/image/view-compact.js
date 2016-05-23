@@ -9,5 +9,6 @@ let ImageViewCompact = (props) => (
 );
 ImageViewCompact = pure(ImageViewCompact);
 ImageViewCompact.displayName = 'ImageViewCompact';
+ImageViewCompact.muiName = 'SvgIcon';
 
 export default ImageViewCompact;

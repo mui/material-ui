@@ -9,5 +9,6 @@ let EditorFunctions = (props) => (
 );
 EditorFunctions = pure(EditorFunctions);
 EditorFunctions.displayName = 'EditorFunctions';
+EditorFunctions.muiName = 'SvgIcon';
 
 export default EditorFunctions;

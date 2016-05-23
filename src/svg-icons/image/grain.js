@@ -9,5 +9,6 @@ let ImageGrain = (props) => (
 );
 ImageGrain = pure(ImageGrain);
 ImageGrain.displayName = 'ImageGrain';
+ImageGrain.muiName = 'SvgIcon';
 
 export default ImageGrain;

@@ -9,5 +9,6 @@ let DeviceWidgets = (props) => (
 );
 DeviceWidgets = pure(DeviceWidgets);
 DeviceWidgets.displayName = 'DeviceWidgets';
+DeviceWidgets.muiName = 'SvgIcon';
 
 export default DeviceWidgets;

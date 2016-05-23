@@ -9,5 +9,6 @@ let ImageWbIridescent = (props) => (
 );
 ImageWbIridescent = pure(ImageWbIridescent);
 ImageWbIridescent.displayName = 'ImageWbIridescent';
+ImageWbIridescent.muiName = 'SvgIcon';
 
 export default ImageWbIridescent;

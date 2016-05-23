@@ -9,5 +9,6 @@ let CommunicationPhonelinkRing = (props) => (
 );
 CommunicationPhonelinkRing = pure(CommunicationPhonelinkRing);
 CommunicationPhonelinkRing.displayName = 'CommunicationPhonelinkRing';
+CommunicationPhonelinkRing.muiName = 'SvgIcon';
 
 export default CommunicationPhonelinkRing;

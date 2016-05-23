@@ -9,5 +9,6 @@ let DeviceScreenLockLandscape = (props) => (
 );
 DeviceScreenLockLandscape = pure(DeviceScreenLockLandscape);
 DeviceScreenLockLandscape.displayName = 'DeviceScreenLockLandscape';
+DeviceScreenLockLandscape.muiName = 'SvgIcon';
 
 export default DeviceScreenLockLandscape;

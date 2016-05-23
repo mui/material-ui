@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {isInner} from './timeUtils';
 
 function getStyles(props, context) {
@@ -81,12 +81,12 @@ function getStyles(props, context) {
   return styles;
 }
 
-class ClockNumber extends React.Component {
+class ClockNumber extends Component {
   static propTypes = {
-    isSelected: React.PropTypes.bool,
-    onSelected: React.PropTypes.func,
-    type: React.PropTypes.oneOf(['hour', 'minute']),
-    value: React.PropTypes.number,
+    isSelected: PropTypes.bool,
+    onSelected: PropTypes.func,
+    type: PropTypes.oneOf(['hour', 'minute']),
+    value: PropTypes.number,
   };
 
   static defaultProps = {
@@ -96,7 +96,7 @@ class ClockNumber extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   render() {

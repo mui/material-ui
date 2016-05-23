@@ -9,5 +9,6 @@ let ActionInvertColors = (props) => (
 );
 ActionInvertColors = pure(ActionInvertColors);
 ActionInvertColors.displayName = 'ActionInvertColors';
+ActionInvertColors.muiName = 'SvgIcon';
 
 export default ActionInvertColors;

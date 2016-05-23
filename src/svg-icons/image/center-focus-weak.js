@@ -9,5 +9,6 @@ let ImageCenterFocusWeak = (props) => (
 );
 ImageCenterFocusWeak = pure(ImageCenterFocusWeak);
 ImageCenterFocusWeak.displayName = 'ImageCenterFocusWeak';
+ImageCenterFocusWeak.muiName = 'SvgIcon';
 
 export default ImageCenterFocusWeak;

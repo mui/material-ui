@@ -9,5 +9,6 @@ let ActionRedeem = (props) => (
 );
 ActionRedeem = pure(ActionRedeem);
 ActionRedeem.displayName = 'ActionRedeem';
+ActionRedeem.muiName = 'SvgIcon';
 
 export default ActionRedeem;

@@ -9,5 +9,6 @@ let ImageMonochromePhotos = (props) => (
 );
 ImageMonochromePhotos = pure(ImageMonochromePhotos);
 ImageMonochromePhotos.displayName = 'ImageMonochromePhotos';
+ImageMonochromePhotos.muiName = 'SvgIcon';
 
 export default ImageMonochromePhotos;

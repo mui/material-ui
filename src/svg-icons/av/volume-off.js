@@ -9,5 +9,6 @@ let AvVolumeOff = (props) => (
 );
 AvVolumeOff = pure(AvVolumeOff);
 AvVolumeOff.displayName = 'AvVolumeOff';
+AvVolumeOff.muiName = 'SvgIcon';
 
 export default AvVolumeOff;

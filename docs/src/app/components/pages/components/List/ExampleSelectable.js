@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
 import {List, ListItem, MakeSelectable} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -7,33 +7,42 @@ import Subheader from 'material-ui/Subheader';
 let SelectableList = MakeSelectable(List);
 
 function wrapState(ComposedComponent) {
-  const StateWrapper = React.createClass({
-    getInitialState() {
-      return {selectedIndex: 1};
-    },
-    handleUpdateSelectedIndex(event, index) {
+  return class SelectableList extends Component {
+    static propTypes = {
+      children: PropTypes.node.isRequired,
+      defaultValue: PropTypes.number.isRequired,
+    };
+
+    componentWillMount() {
+      this.setState({
+        selectedIndex: this.props.defaultValue,
+      });
+    }
+
+    handleRequestChange = (event, index) => {
       this.setState({
         selectedIndex: index,
       });
-    },
+    };
+
     render() {
       return (
         <ComposedComponent
-          {...this.props}
-          {...this.state}
-          valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}
-        />
+          value={this.state.selectedIndex}
+          onChange={this.handleRequestChange}
+        >
+          {this.props.children}
+        </ComposedComponent>
       );
-    },
-  });
-  return StateWrapper;
+    }
+  };
 }
 
 SelectableList = wrapState(SelectableList);
 
 const ListExampleSelectable = () => (
   <MobileTearSheet>
-    <SelectableList value={3}>
+    <SelectableList defaultValue={3}>
       <Subheader>Selectable Contacts</Subheader>
       <ListItem
         value={1}

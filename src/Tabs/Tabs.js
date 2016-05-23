@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';
@@ -9,8 +9,6 @@ function getStyles(props, context) {
 
   return {
     tabItemContainer: {
-      margin: 0,
-      padding: 0,
       width: '100%',
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
@@ -18,65 +16,55 @@ function getStyles(props, context) {
   };
 }
 
-class Tabs extends React.Component {
+class Tabs extends Component {
   static propTypes = {
     /**
      * Should be used to pass `Tab` components.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-
+    className: PropTypes.string,
     /**
      * The css class name of the content's container.
      */
-    contentContainerClassName: React.PropTypes.string,
-
+    contentContainerClassName: PropTypes.string,
     /**
      * Override the inline-styles of the content's container.
      */
-    contentContainerStyle: React.PropTypes.object,
-
+    contentContainerStyle: PropTypes.object,
     /**
      * Specify initial visible tab index.
      * Initial selected index is set by default to 0.
      * If initialSelectedIndex is set but larger than the total amount of specified tabs,
      * initialSelectedIndex will revert back to default.
      */
-    initialSelectedIndex: React.PropTypes.number,
-
+    initialSelectedIndex: PropTypes.number,
     /**
      * Override the inline-styles of the InkBar.
      */
-    inkBarStyle: React.PropTypes.object,
-
+    inkBarStyle: PropTypes.object,
     /**
      * Called when the selected value change.
      */
-    onChange: React.PropTypes.func,
-
+    onChange: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * Override the inline-styles of the tab-labels container.
      */
-    tabItemContainerStyle: React.PropTypes.object,
-
+    tabItemContainerStyle: PropTypes.object,
     /**
      * Override the default tab template used to wrap the content of each tab element.
      */
-    tabTemplate: React.PropTypes.func,
-
+    tabTemplate: PropTypes.func,
     /**
      * Makes Tabs controllable and selects the tab whose value prop matches this prop.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
   };
 
   static defaultProps = {
@@ -85,7 +73,7 @@ class Tabs extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {selectedIndex: 0};

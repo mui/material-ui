@@ -9,5 +9,6 @@ let ActionSettingsBluetooth = (props) => (
 );
 ActionSettingsBluetooth = pure(ActionSettingsBluetooth);
 ActionSettingsBluetooth.displayName = 'ActionSettingsBluetooth';
+ActionSettingsBluetooth.muiName = 'SvgIcon';
 
 export default ActionSettingsBluetooth;

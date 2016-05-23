@@ -9,5 +9,6 @@ let AvWebAsset = (props) => (
 );
 AvWebAsset = pure(AvWebAsset);
 AvWebAsset.displayName = 'AvWebAsset';
+AvWebAsset.muiName = 'SvgIcon';
 
 export default AvWebAsset;

@@ -9,5 +9,6 @@ let AvNote = (props) => (
 );
 AvNote = pure(AvNote);
 AvNote.displayName = 'AvNote';
+AvNote.muiName = 'SvgIcon';
 
 export default AvNote;

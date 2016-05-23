@@ -9,5 +9,6 @@ let ActionHelpOutline = (props) => (
 );
 ActionHelpOutline = pure(ActionHelpOutline);
 ActionHelpOutline.displayName = 'ActionHelpOutline';
+ActionHelpOutline.muiName = 'SvgIcon';
 
 export default ActionHelpOutline;

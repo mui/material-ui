@@ -73,7 +73,7 @@ const Showcase = () => (
       {appList.map((app) => (
         <GridTile
           key={app.title}
-          rootClass="a"
+          containerElement="a"
           href={app.link}
           target="_blank"
           title={app.title}

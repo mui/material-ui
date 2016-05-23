@@ -1,49 +1,17 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
-const propTypes = {
-  /**
-   * @ignore
-   * The material-ui theme applied to this component.
-   */
-  muiTheme: React.PropTypes.object.isRequired,
-
-  /**
-   * True if the hint text should be visible.
-   */
-  show: React.PropTypes.bool,
-
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: React.PropTypes.object,
-
-  /**
-   * The hint text displayed.
-   */
-  text: React.PropTypes.node,
-};
-
-const defaultProps = {
-  show: true,
-};
-
-const TextFieldHint = (props) => {
+function getStyles(props) {
   const {
-    muiTheme,
+    muiTheme: {
+      textField: {
+        hintColor,
+      },
+    },
     show,
-    style,
-    text,
   } = props;
 
-  const {
-    prepareStyles,
-    textField: {
-      hintColor,
-    },
-  } = muiTheme;
-
-  const styles = {
+  return {
     root: {
       position: 'absolute',
       opacity: show ? 1 : 0,
@@ -52,15 +20,48 @@ const TextFieldHint = (props) => {
       bottom: 12,
     },
   };
+}
+
+const TextFieldHint = (props) => {
+  const {
+    muiTheme: {
+      prepareStyles,
+    },
+    style,
+    text,
+  } = props;
+
+  const styles = getStyles(props);
 
   return (
-    <div style={prepareStyles(Object.assign({}, styles.root, style))}>
+    <div style={prepareStyles(Object.assign(styles.root, style))}>
       {text}
     </div>
   );
 };
 
-TextFieldHint.propTypes = propTypes;
-TextFieldHint.defaultProps = defaultProps;
+TextFieldHint.propTypes = {
+  /**
+   * @ignore
+   * The material-ui theme applied to this component.
+   */
+  muiTheme: PropTypes.object.isRequired,
+  /**
+   * True if the hint text should be visible.
+   */
+  show: PropTypes.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: PropTypes.object,
+  /**
+   * The hint text displayed.
+   */
+  text: PropTypes.node,
+};
+
+TextFieldHint.defaultProps = {
+  show: true,
+};
 
 export default TextFieldHint;

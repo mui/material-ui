@@ -14,7 +14,7 @@ import IconMenuExampleScrollable from './ExampleScrollable';
 import iconMenuExampleScrollableCode from '!raw!./ExampleScrollable';
 import IconMenuExampleNested from './ExampleNested';
 import iconMenuExampleNestedCode from '!raw!./ExampleNested';
-import iconMenuCode from '!raw!material-ui/lib/IconMenu/IconMenu';
+import iconMenuCode from '!raw!material-ui/IconMenu/IconMenu';
 
 const descriptions = {
   simple: 'Simple Icon Menus demonstrating some of the layouts possible using the `anchorOrigin` and `' +

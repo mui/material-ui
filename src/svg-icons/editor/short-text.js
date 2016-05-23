@@ -9,5 +9,6 @@ let EditorShortText = (props) => (
 );
 EditorShortText = pure(EditorShortText);
 EditorShortText.displayName = 'EditorShortText';
+EditorShortText.muiName = 'SvgIcon';
 
 export default EditorShortText;

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
-class TimeDisplay extends React.Component {
+class TimeDisplay extends Component {
   static propTypes = {
-    affix: React.PropTypes.oneOf(['', 'pm', 'am']),
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    mode: React.PropTypes.oneOf(['hour', 'minute']),
-    onSelectAffix: React.PropTypes.func,
-    onSelectHour: React.PropTypes.func,
-    onSelectMin: React.PropTypes.func,
-    selectedTime: React.PropTypes.object.isRequired,
+    affix: PropTypes.oneOf(['', 'pm', 'am']),
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    mode: PropTypes.oneOf(['hour', 'minute']),
+    onSelectAffix: PropTypes.func,
+    onSelectHour: PropTypes.func,
+    onSelectMin: PropTypes.func,
+    selectedTime: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -17,7 +17,7 @@ class TimeDisplay extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -50,10 +50,6 @@ class TimeDisplay extends React.Component {
     return [hour, min];
   }
 
-  getTheme() {
-    return this.context.muiTheme.timePicker;
-  }
-
   render() {
     const {
       selectedTime, // eslint-disable-line no-unused-vars
@@ -72,7 +68,6 @@ class TimeDisplay extends React.Component {
         backgroundColor: timePicker.headerColor,
         color: 'white',
       },
-
       text: {
         margin: '6px 0',
         lineHeight: '58px',
@@ -82,11 +77,9 @@ class TimeDisplay extends React.Component {
         justifyContent: 'center',
         alignItems: 'baseline',
       },
-
       time: {
         margin: '0 10px',
       },
-
       affix: {
         flex: 1,
         position: 'relative',
@@ -94,17 +87,14 @@ class TimeDisplay extends React.Component {
         height: 17,
         fontSize: 17,
       },
-
       affixTop: {
         position: 'absolute',
         top: -20,
         left: 0,
       },
-
       clickable: {
         cursor: 'pointer',
       },
-
       inactive: {
         opacity: 0.7,
       },

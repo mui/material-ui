@@ -9,5 +9,6 @@ let PlacesHotTub = (props) => (
 );
 PlacesHotTub = pure(PlacesHotTub);
 PlacesHotTub.displayName = 'PlacesHotTub';
+PlacesHotTub.muiName = 'SvgIcon';
 
 export default PlacesHotTub;

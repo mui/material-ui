@@ -9,5 +9,6 @@ let EditorMultilineChart = (props) => (
 );
 EditorMultilineChart = pure(EditorMultilineChart);
 EditorMultilineChart.displayName = 'EditorMultilineChart';
+EditorMultilineChart.muiName = 'SvgIcon';
 
 export default EditorMultilineChart;

@@ -9,5 +9,6 @@ let EditorInsertLink = (props) => (
 );
 EditorInsertLink = pure(EditorInsertLink);
 EditorInsertLink.displayName = 'EditorInsertLink';
+EditorInsertLink.muiName = 'SvgIcon';
 
 export default EditorInsertLink;

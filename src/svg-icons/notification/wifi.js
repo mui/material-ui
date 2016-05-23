@@ -9,5 +9,6 @@ let NotificationWifi = (props) => (
 );
 NotificationWifi = pure(NotificationWifi);
 NotificationWifi.displayName = 'NotificationWifi';
+NotificationWifi.muiName = 'SvgIcon';
 
 export default NotificationWifi;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import Popover from '../Popover/Popover';
@@ -29,16 +29,10 @@ function getStyles(props, context) {
       paddingRight: sidePadding,
       paddingBottom: 0,
       paddingTop: 0,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignContent: 'space-between',
     },
 
     secondaryText: {
-      order: 2,
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      float: 'right',
     },
 
     leftIconDesktop: {
@@ -58,94 +52,80 @@ function getStyles(props, context) {
   return styles;
 }
 
-class MenuItem extends React.Component {
+class MenuItem extends Component {
   static muiName = 'MenuItem';
 
   static propTypes = {
     /**
      * If true, a left check mark will be rendered.
      */
-    checked: React.PropTypes.bool,
-
+    checked: PropTypes.bool,
     /**
      * Elements passed as children to the underlying `ListItem`.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * @ignore
      * If true, the menu item will render with compact desktop
      * styles.
      */
-    desktop: React.PropTypes.bool,
-
+    desktop: PropTypes.bool,
     /**
      * If true, the menu item will be disabled.
      */
-    disabled: React.PropTypes.bool,
-
+    disabled: PropTypes.bool,
     /**
      * The focus state of the menu item. This prop is used to set the focus
      * state of the underlying `ListItem`.
      */
-    focusState: React.PropTypes.oneOf([
+    focusState: PropTypes.oneOf([
       'none',
       'focused',
       'keyboard-focused',
     ]),
-
     /**
      * Override the inline-styles of the inner div.
      */
-    innerDivStyle: React.PropTypes.object,
-
+    innerDivStyle: PropTypes.object,
     /**
      * If true, the children will be indented.
      * This is only needed when there is no `leftIcon`.
      */
-    insetChildren: React.PropTypes.bool,
-
+    insetChildren: PropTypes.bool,
     /**
      * The `SvgIcon` or `FontIcon` to be displayed on the left side.
      */
-    leftIcon: React.PropTypes.element,
-
+    leftIcon: PropTypes.element,
     /**
      * `MenuItem` elements to nest within the menu item.
      */
-    menuItems: React.PropTypes.node,
-
+    menuItems: PropTypes.node,
     /**
      * Callback function fired when the menu item is touch-tapped.
      *
      * @param {object} event TouchTap event targeting the menu item.
      */
-    onTouchTap: React.PropTypes.func,
-
+    onTouchTap: PropTypes.func,
     /**
      * Can be used to render primary text within the menu item.
      */
-    primaryText: React.PropTypes.node,
-
+    primaryText: PropTypes.node,
     /**
      * The `SvgIcon` or `FontIcon` to be displayed on the right side.
      */
-    rightIcon: React.PropTypes.element,
-
+    rightIcon: PropTypes.element,
     /**
      * Can be used to render secondary text within the menu item.
      */
-    secondaryText: React.PropTypes.node,
-
+    secondaryText: PropTypes.node,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * The value of the menu item.
      */
-    value: React.PropTypes.any,
+    value: PropTypes.any,
   };
 
   static defaultProps = {
@@ -157,7 +137,7 @@ class MenuItem extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -255,14 +235,14 @@ class MenuItem extends React.Component {
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedInnerDivStyles = Object.assign(styles.innerDivStyle, innerDivStyle);
 
-    //Left Icon
+    // Left Icon
     let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;
     if (leftIconElement && desktop) {
       const mergedLeftIconStyles = Object.assign(styles.leftIconDesktop, leftIconElement.props.style);
       leftIconElement = React.cloneElement(leftIconElement, {style: mergedLeftIconStyles});
     }
 
-    //Right Icon
+    // Right Icon
     let rightIconElement;
     if (rightIcon) {
       const mergedRightIconStyles = desktop ?
@@ -270,7 +250,7 @@ class MenuItem extends React.Component {
       rightIconElement = React.cloneElement(rightIcon, {style: mergedRightIconStyles});
     }
 
-    //Secondary Text
+    // Secondary Text
     let secondaryTextElement;
     if (secondaryText) {
       const secondaryTextIsAnElement = React.isValidElement(secondaryText);

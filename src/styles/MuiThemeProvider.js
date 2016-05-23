@@ -5,7 +5,7 @@ class MuiThemeProvider extends Component {
 
   static propTypes = {
     children: PropTypes.element,
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: PropTypes.object,
   };
 
   static childContextTypes = {

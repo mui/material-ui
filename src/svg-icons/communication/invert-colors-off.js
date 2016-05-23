@@ -9,5 +9,6 @@ let CommunicationInvertColorsOff = (props) => (
 );
 CommunicationInvertColorsOff = pure(CommunicationInvertColorsOff);
 CommunicationInvertColorsOff.displayName = 'CommunicationInvertColorsOff';
+CommunicationInvertColorsOff.muiName = 'SvgIcon';
 
 export default CommunicationInvertColorsOff;

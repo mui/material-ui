@@ -9,5 +9,6 @@ let ImageNature = (props) => (
 );
 ImageNature = pure(ImageNature);
 ImageNature.displayName = 'ImageNature';
+ImageNature.muiName = 'SvgIcon';
 
 export default ImageNature;

@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prefer-es6-class */
+import React, {PropTypes} from 'react';
 import warning from 'warning';
 
 export default (customTheme) => {
@@ -7,7 +8,7 @@ export default (customTheme) => {
   return function(Component) {
     return React.createClass({
       childContextTypes: {
-        muiTheme: React.PropTypes.object.isRequired,
+        muiTheme: PropTypes.object.isRequired,
       },
 
       getChildContext() {

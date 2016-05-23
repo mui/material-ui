@@ -9,5 +9,6 @@ let ImageVignette = (props) => (
 );
 ImageVignette = pure(ImageVignette);
 ImageVignette.displayName = 'ImageVignette';
+ImageVignette.muiName = 'SvgIcon';
 
 export default ImageVignette;

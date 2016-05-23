@@ -9,5 +9,6 @@ let AvMic = (props) => (
 );
 AvMic = pure(AvMic);
 AvMic.displayName = 'AvMic';
+AvMic.muiName = 'SvgIcon';
 
 export default AvMic;

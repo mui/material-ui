@@ -1,15 +1,12 @@
-import React from 'react';
+import {Component, PropTypes} from 'react';
 
 let originalBodyOverflow = null;
 let lockingCounter = 0;
 
-export default class AutoLockScrolling extends React.Component {
-
-  //force to only lock/unlock once
-  locked = false; // eslint-disable-line react/sort-comp
+export default class AutoLockScrolling extends Component {
 
   static propTypes = {
-    lock: React.PropTypes.bool.isRequired,
+    lock: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
@@ -31,13 +28,16 @@ export default class AutoLockScrolling extends React.Component {
     this.allowScrolling();
   }
 
+  // force to only lock/unlock once
+  locked = false;
+
   preventScrolling() {
     if (this.locked === true)
       return;
     lockingCounter = lockingCounter + 1;
     this.locked = true;
 
-    //only lock the first time the component is mounted.
+    // only lock the first time the component is mounted.
     if (lockingCounter === 1) {
       const body = document.getElementsByTagName('body')[0];
       originalBodyOverflow = body.style.overflow;

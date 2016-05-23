@@ -9,5 +9,6 @@ let NotificationRvHookup = (props) => (
 );
 NotificationRvHookup = pure(NotificationRvHookup);
 NotificationRvHookup.displayName = 'NotificationRvHookup';
+NotificationRvHookup.muiName = 'SvgIcon';
 
 export default NotificationRvHookup;

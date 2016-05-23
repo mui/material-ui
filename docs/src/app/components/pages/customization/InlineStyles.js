@@ -12,7 +12,7 @@ class InlineStyles extends React.Component {
         lineHeight: '32px',
         paddingTop: 16,
         marginBottom: 12,
-        letterSpacing: '0',
+        letterSpacing: 0,
         fontWeight: typography.fontWeightNormal,
         color: typography.textDarkBlack,
       },
@@ -21,7 +21,7 @@ class InlineStyles extends React.Component {
         lineHeight: '28px',
         paddingTop: 19,
         marginBottom: 13,
-        letterSpacing: '0',
+        letterSpacing: 0,
         fontWeight: typography.fontWeightMedium,
         color: typography.textDarkBlack,
       },
@@ -73,7 +73,7 @@ class InlineStyles extends React.Component {
         </p>
 
         <h3 style={styles.title}>Overriding Inline Styles</h3>
-        <CodeExample code={codeOverrideStyles}>
+        <CodeExample code={codeOverrideStyles} component={false}>
           <Checkbox
             id="checkboxId1"
             name="checkboxName1"
@@ -102,7 +102,7 @@ class InlineStyles extends React.Component {
         </p>
 
         <h3 style={styles.title}>Mixing Inline and CSS Styles</h3>
-        <CodeExample code={codeMixStyles}>
+        <CodeExample code={codeMixStyles} component={false}>
           <Checkbox
             id="checkboxId1"
             name="checkboxName1"
@@ -116,7 +116,7 @@ class InlineStyles extends React.Component {
         </CodeExample>
         <p>
           If you would like to add additional styling via CSS, pass in the
-          class name via the className prop. The className prop is similiar to
+          class name via the className prop. The className prop is similar to
           the style prop in that it only applies to the root element. Note that
           CSS properties defined inline are given priority over those defined
           in a CSS class. Take a look at a component&#39;s <code>getStyles

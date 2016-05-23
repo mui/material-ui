@@ -9,5 +9,6 @@ let ImageCollectionsBookmark = (props) => (
 );
 ImageCollectionsBookmark = pure(ImageCollectionsBookmark);
 ImageCollectionsBookmark.displayName = 'ImageCollectionsBookmark';
+ImageCollectionsBookmark.muiName = 'SvgIcon';
 
 export default ImageCollectionsBookmark;

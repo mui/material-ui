@@ -9,5 +9,6 @@ let ActionTrendingDown = (props) => (
 );
 ActionTrendingDown = pure(ActionTrendingDown);
 ActionTrendingDown.displayName = 'ActionTrendingDown';
+ActionTrendingDown.muiName = 'SvgIcon';
 
 export default ActionTrendingDown;

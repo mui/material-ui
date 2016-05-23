@@ -9,5 +9,6 @@ let ImageWbAuto = (props) => (
 );
 ImageWbAuto = pure(ImageWbAuto);
 ImageWbAuto.displayName = 'ImageWbAuto';
+ImageWbAuto.muiName = 'SvgIcon';
 
 export default ImageWbAuto;

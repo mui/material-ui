@@ -9,15 +9,29 @@ describe('<Snackbar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
-  it('renders hidden by default', () => {
-    const wrapper = shallowWithContext(
-      <Snackbar open={false} message="Message" autoHideDuration={4000} />
-    );
+  describe('props: open', () => {
+    it('should be hidden when open is false', () => {
+      const wrapper = shallowWithContext(
+        <Snackbar open={false} message="Message" />
+      );
 
-    assert.equal(
-      wrapper.find('div').at(0).node.props.style.visibility,
-      'hidden',
-      'visibility should be hidden'
-    );
+      assert.strictEqual(
+        wrapper.find('div').at(0).node.props.style.visibility,
+        'hidden',
+        'The element should be hidden.'
+      );
+    });
+
+    it('should be hidden when open is true', () => {
+      const wrapper = shallowWithContext(
+        <Snackbar open={true} message="Message" />
+      );
+
+      assert.strictEqual(
+        wrapper.find('div').at(0).node.props.style.visibility,
+        'visible',
+        'The element should be hidden.'
+      );
+    });
   });
 });

@@ -9,5 +9,6 @@ let AvFiberDvr = (props) => (
 );
 AvFiberDvr = pure(AvFiberDvr);
 AvFiberDvr.displayName = 'AvFiberDvr';
+AvFiberDvr.muiName = 'SvgIcon';
 
 export default AvFiberDvr;

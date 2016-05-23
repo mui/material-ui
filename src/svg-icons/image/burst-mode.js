@@ -9,5 +9,6 @@ let ImageBurstMode = (props) => (
 );
 ImageBurstMode = pure(ImageBurstMode);
 ImageBurstMode.displayName = 'ImageBurstMode';
+ImageBurstMode.muiName = 'SvgIcon';
 
 export default ImageBurstMode;

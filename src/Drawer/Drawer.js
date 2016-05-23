@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
@@ -10,39 +10,33 @@ import propTypes from '../utils/propTypes';
 
 let openNavEventHandler = null;
 
-class Drawer extends React.Component {
+class Drawer extends Component {
   static propTypes = {
     /**
      * The contents of the `Drawer`
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * The CSS class name of the root element.
      */
-    className: React.PropTypes.string,
-
+    className: PropTypes.string,
     /**
      * The CSS class name of the container element.
      */
-    containerClassName: React.PropTypes.string,
-
+    containerClassName: PropTypes.string,
     /**
      * Override the inline-styles of the container element.
      */
-    containerStyle: React.PropTypes.object,
-
+    containerStyle: PropTypes.object,
     /**
      * If true, swiping sideways when the `Drawer` is closed will not open it.
      */
-    disableSwipeToOpen: React.PropTypes.bool,
-
+    disableSwipeToOpen: PropTypes.bool,
     /**
      * If true, the `Drawer` will be docked. In this state, the overlay won't show and
      * clicking on a menu item will not close the `Drawer`.
      */
-    docked: React.PropTypes.bool,
-
+    docked: PropTypes.bool,
     /**
      * Callback function fired when the `open` state of the `Drawer` is requested to be changed.
      *
@@ -51,47 +45,39 @@ class Drawer extends React.Component {
      * 'swipe' for open requests; 'clickaway' (on overlay clicks),
      * 'escape' (on escape key press), and 'swipe' for close requests.
      */
-    onRequestChange: React.PropTypes.func,
-
+    onRequestChange: PropTypes.func,
     /**
      * If true, the `Drawer` is opened.  Providing a value will turn the `Drawer`
      * into a controlled component.
      */
-    open: React.PropTypes.bool,
-
+    open: PropTypes.bool,
     /**
      * If true, the `Drawer` is positioned to open from the opposite side.
      */
-    openSecondary: React.PropTypes.bool,
-
+    openSecondary: PropTypes.bool,
     /**
      * The CSS class name to add to the `Overlay` component that is rendered behind the `Drawer`.
      */
-    overlayClassName: React.PropTypes.string,
-
+    overlayClassName: PropTypes.string,
     /**
      * Override the inline-styles of the `Overlay` component that is rendered behind the `Drawer`.
      */
-    overlayStyle: React.PropTypes.object,
-
+    overlayStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * The width of the left most (or right most) area in pixels where the `Drawer` can be
      * swiped open from. Setting this to `null` spans that area to the entire page
      * (**CAUTION!** Setting this property to `null` might cause issues with sliders and
      * swipeable `Tabs`: use at your own risk).
      */
-    swipeAreaWidth: React.PropTypes.number,
-
+    swipeAreaWidth: PropTypes.number,
     /**
      * The width of the `Drawer` in pixels. Defaults to using the values from theme.
      */
-    width: React.PropTypes.number,
-
+    width: PropTypes.number,
     /**
      * The zDepth of the `Drawer`.
      */
@@ -110,7 +96,7 @@ class Drawer extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   componentWillMount() {
@@ -153,7 +139,7 @@ class Drawer extends React.Component {
 
   getStyles() {
     const muiTheme = this.context.muiTheme;
-    const theme = muiTheme.navDrawer;
+    const theme = muiTheme.drawer;
 
     const x = this.getTranslateMultiplier() * (this.state.open ? 0 : this.getMaxTranslateX());
 
@@ -162,7 +148,7 @@ class Drawer extends React.Component {
         height: '100%',
         width: this.props.width || theme.width,
         position: 'fixed',
-        zIndex: muiTheme.zIndex.navDrawer,
+        zIndex: muiTheme.zIndex.drawer,
         left: 0,
         top: 0,
         transform: `translate3d(${x}px, 0, 0)`,
@@ -212,7 +198,7 @@ class Drawer extends React.Component {
   };
 
   getMaxTranslateX() {
-    const width = this.props.width || this.context.muiTheme.navDrawer.width;
+    const width = this.props.width || this.context.muiTheme.drawer.width;
     return width + 10;
   }
 
@@ -387,7 +373,7 @@ class Drawer extends React.Component {
         className={className}
         style={style}
       >
-        <EventListener elementName="window" onKeyUp={this.handleKeyUp} />
+        <EventListener target="window" onKeyUp={this.handleKeyUp} />
         {overlay}
         <Paper
           ref="clickAwayableElement"

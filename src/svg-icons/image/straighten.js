@@ -9,5 +9,6 @@ let ImageStraighten = (props) => (
 );
 ImageStraighten = pure(ImageStraighten);
 ImageStraighten.displayName = 'ImageStraighten';
+ImageStraighten.muiName = 'SvgIcon';
 
 export default ImageStraighten;

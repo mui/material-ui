@@ -16,7 +16,7 @@ import TextFieldExampleDisabled from './ExampleDisabled';
 import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
 import TextFieldExampleControlled from './ExampleControlled';
 import textFieldExampleControlledCode from '!raw!./ExampleControlled';
-import textFieldCode from '!raw!material-ui/lib/TextField/TextField';
+import textFieldCode from '!raw!material-ui/TextField/TextField';
 
 const descriptions = {
   simple: 'Examples demonstrating key Text Field features.',

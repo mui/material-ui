@@ -9,5 +9,6 @@ let ImageTransform = (props) => (
 );
 ImageTransform = pure(ImageTransform);
 ImageTransform.displayName = 'ImageTransform';
+ImageTransform.muiName = 'SvgIcon';
 
 export default ImageTransform;

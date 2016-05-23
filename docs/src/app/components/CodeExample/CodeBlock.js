@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import MarkdownElement from '../MarkdownElement';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import transitions from 'material-ui/styles/transitions';
 import CodeBlockTitle from './CodeBlockTitle';
 
@@ -31,25 +30,23 @@ const styles = {
   },
 };
 
-const CodeBlock = React.createClass({
-  propTypes: {
-    children: React.PropTypes.string,
-    description: React.PropTypes.string,
-    title: React.PropTypes.string,
-  },
-  mixins: [
-    PureRenderMixin,
-  ],
-  getInitialState: function() {
-    return {
-      expand: false,
-    };
-  },
-  handleTouchTap() {
+class CodeBlock extends Component {
+  static propTypes = {
+    children: PropTypes.string,
+    description: PropTypes.string,
+    title: PropTypes.string,
+  };
+
+  state = {
+    expand: false,
+  };
+
+  handleTouchTap = () => {
     this.setState({
       expand: !this.state.expand,
     });
-  },
+  };
+
   render() {
     const text = `\`\`\`js
 ${this.props.children}
@@ -73,7 +70,7 @@ ${this.props.children}
         <MarkdownElement style={descriptionStyle} text={this.props.description} />
       </div>
     );
-  },
-});
+  }
+}
 
 export default CodeBlock;

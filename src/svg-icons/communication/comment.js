@@ -9,5 +9,6 @@ let CommunicationComment = (props) => (
 );
 CommunicationComment = pure(CommunicationComment);
 CommunicationComment.displayName = 'CommunicationComment';
+CommunicationComment.muiName = 'SvgIcon';
 
 export default CommunicationComment;

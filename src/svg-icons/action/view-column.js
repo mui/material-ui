@@ -9,5 +9,6 @@ let ActionViewColumn = (props) => (
 );
 ActionViewColumn = pure(ActionViewColumn);
 ActionViewColumn.displayName = 'ActionViewColumn';
+ActionViewColumn.muiName = 'SvgIcon';
 
 export default ActionViewColumn;

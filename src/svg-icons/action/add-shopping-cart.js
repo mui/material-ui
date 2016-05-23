@@ -9,5 +9,6 @@ let ActionAddShoppingCart = (props) => (
 );
 ActionAddShoppingCart = pure(ActionAddShoppingCart);
 ActionAddShoppingCart.displayName = 'ActionAddShoppingCart';
+ActionAddShoppingCart.muiName = 'SvgIcon';
 
 export default ActionAddShoppingCart;

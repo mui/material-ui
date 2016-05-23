@@ -9,5 +9,6 @@ let ActionDeleteForever = (props) => (
 );
 ActionDeleteForever = pure(ActionDeleteForever);
 ActionDeleteForever.displayName = 'ActionDeleteForever';
+ActionDeleteForever.muiName = 'SvgIcon';
 
 export default ActionDeleteForever;

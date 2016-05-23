@@ -1,160 +1,122 @@
 import React from 'react';
-import Stepper from 'material-ui/Stepper/Stepper';
-import Step from 'material-ui/Stepper/VerticalStep';
-import Paper from 'material-ui/Paper';
-import FontIcon from 'material-ui/FontIcon';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+  StepContent,
+} from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-const styles = {
-  paper: {
-    width: 500,
-    margin: 'auto',
-  },
-  header: {
-    textAlign: 'center',
-    padding: 10,
-    fontSize: 20,
-  },
-  actionButton: {
-    marginRight: 8,
-  },
-};
+/**
+ * Vertical steppers are designed for narrow screen sizes. They are ideal for mobile.
+ *
+ * To use the vertical stepper with the contained content as seen in spec examples,
+ * you must use the `<StepContent>` component inside the `<Step>`.
+ *
+ * <small>(The vertical stepper can also be used without `<StepContent>` to display a basic stepper.)</small>
+ */
+class VerticalLinearStepper extends React.Component {
 
-const VerticalLinearStepper = React.createClass({
-  getInitialState() {
-    return {
-      activeStep: -1,
-      lastActiveStep: 0,
-    };
-  },
+  state = {
+    finished: false,
+    stepIndex: 0,
+  };
 
-  handleStepHeaderTouch(currentStep) {
-    const {
-      lastActiveStep,
-      activeStep,
-
-    } = this.state;
-
-    if (currentStep > lastActiveStep) {
-      return;
-    }
-
+  handleNext = () => {
+    const {stepIndex} = this.state;
     this.setState({
-      activeStep: currentStep,
-      lastActiveStep: Math.max(lastActiveStep, activeStep),
+      stepIndex: stepIndex + 1,
+      finished: stepIndex >= 2,
     });
-  },
+  };
 
-  updateCompletedSteps(currentStep) {
-    return currentStep < this.state.lastActiveStep;
-  },
-
-  handleTouchTap() {
-    const {
-      activeStep,
-      lastActiveStep,
-    } = this.state;
-
-    this.setState({
-      activeStep: activeStep + 1,
-      lastActiveStep: Math.max(lastActiveStep, activeStep + 1),
-    });
-  },
-
-  createIcon(step) {
-    if (step.props.isCompleted) {
-      return (
-        <FontIcon className="material-icons" style={{fontSize: 14}}>
-          done
-        </FontIcon>
-      );
+  handlePrev = () => {
+    const {stepIndex} = this.state;
+    if (stepIndex > 0) {
+      this.setState({stepIndex: stepIndex - 1});
     }
+  };
 
-    return <span>{step.props.orderStepLabel}</span>;
-  },
+  renderStepActions(step) {
+    const {stepIndex} = this.state;
+
+    return (
+      <div style={{margin: '12px 0'}}>
+        <RaisedButton
+          label={stepIndex === 2 ? 'Finish' : 'Next'}
+          disableTouchRipple={true}
+          disableFocusRipple={true}
+          primary={true}
+          onTouchTap={this.handleNext}
+          style={{marginRight: 12}}
+        />
+        {step > 0 && (
+          <FlatButton
+            label="Back"
+            disabled={stepIndex === 0}
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onTouchTap={this.handlePrev}
+          />
+        )}
+      </div>
+    );
+  }
 
   render() {
-    return (
-      <Paper style={styles.paper}>
-        <div style={styles.header}>
-          Create an Ad Campaign
-        </div>
-        <Stepper
-          activeStep={this.state.activeStep}
-          onStepHeaderTouch={this.handleStepHeaderTouch}
-          updateCompletedStatus={this.updateCompletedSteps}
-          createIcon={this.createIcon}
-        >
-          <Step
-            orderStepLabel="1"
-            stepLabel="Select campaign settings"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Continue"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-                style={styles.actionButton}
-              />,
-              <FlatButton
-                key={1}
-                label="Cancel"
-              />,
-            ]}
-          >
-            <div>
-              Please select the type of campaign you wish to create.
-            </div>
-          </Step>
-          <Step
-            orderStepLabel="2"
-            stepLabel="Create ad group"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Continue"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-                style={styles.actionButton}
-              />,
-              <FlatButton
-                key={1}
-                label="Cancel"
-              />,
-            ]}
-          >
-            <div>
-              Please create an ad group for this campaign.<br /><br />
-              Your campaign may contain multiple ad groups.
-            </div>
-          </Step>
+    const {finished, stepIndex} = this.state;
 
-          <Step
-            orderStepLabel="3"
-            stepLabel="Create an ad"
-            actions={[
-              <RaisedButton
-                key={0}
-                label="Finish"
-                primary={true}
-                onTouchTap={this.handleTouchTap}
-                style={styles.actionButton}
-              />,
-              <FlatButton
-                key={1}
-                label="Cancel"
-              />,
-            ]}
-          >
-            <div style={{height: 50}}>
-              Please create one or more adverts for this ad group.
-            </div>
+    return (
+      <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
+        <Stepper activeStep={stepIndex} orientation="vertical">
+          <Step>
+            <StepLabel>Select campaign settings</StepLabel>
+            <StepContent>
+              <p>
+                For each ad campaign that you create, you can control how much
+                you're willing to spend on clicks and conversions, which networks
+                and geographical locations you want your ads to show on, and more.
+              </p>
+              {this.renderStepActions(0)}
+            </StepContent>
+          </Step>
+          <Step>
+            <StepLabel>Create an ad group</StepLabel>
+            <StepContent>
+              <p>An ad group contains one or more ads which target a shared set of keywords.</p>
+              {this.renderStepActions(1)}
+            </StepContent>
+          </Step>
+          <Step>
+            <StepLabel>Create an ad</StepLabel>
+            <StepContent>
+              <p>
+                Try out different ad text to see what brings in the most customers,
+                and learn how to enhance your ads using features like ad extensions.
+                If you run into any problems with your ads, find out how to tell if
+                they're running and how to resolve approval issues.
+              </p>
+              {this.renderStepActions(2)}
+            </StepContent>
           </Step>
         </Stepper>
-      </Paper>
+        {finished && (
+          <p style={{margin: '20px 0', textAlign: 'center'}}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                this.setState({stepIndex: 0, finished: false});
+              }}
+            >
+              Click here
+            </a> to reset the example.
+          </p>
+        )}
+      </div>
     );
-  },
-});
+  }
+}
 
 export default VerticalLinearStepper;

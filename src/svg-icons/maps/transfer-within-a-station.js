@@ -9,5 +9,6 @@ let MapsTransferWithinAStation = (props) => (
 );
 MapsTransferWithinAStation = pure(MapsTransferWithinAStation);
 MapsTransferWithinAStation.displayName = 'MapsTransferWithinAStation';
+MapsTransferWithinAStation.muiName = 'SvgIcon';
 
 export default MapsTransferWithinAStation;

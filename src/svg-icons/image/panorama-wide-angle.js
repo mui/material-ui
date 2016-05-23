@@ -9,5 +9,6 @@ let ImagePanoramaWideAngle = (props) => (
 );
 ImagePanoramaWideAngle = pure(ImagePanoramaWideAngle);
 ImagePanoramaWideAngle.displayName = 'ImagePanoramaWideAngle';
+ImagePanoramaWideAngle.muiName = 'SvgIcon';
 
 export default ImagePanoramaWideAngle;

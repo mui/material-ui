@@ -9,5 +9,6 @@ let AvSlowMotionVideo = (props) => (
 );
 AvSlowMotionVideo = pure(AvSlowMotionVideo);
 AvSlowMotionVideo.displayName = 'AvSlowMotionVideo';
+AvSlowMotionVideo.muiName = 'SvgIcon';
 
 export default AvSlowMotionVideo;

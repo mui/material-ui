@@ -9,5 +9,6 @@ let CommunicationStayPrimaryPortrait = (props) => (
 );
 CommunicationStayPrimaryPortrait = pure(CommunicationStayPrimaryPortrait);
 CommunicationStayPrimaryPortrait.displayName = 'CommunicationStayPrimaryPortrait';
+CommunicationStayPrimaryPortrait.muiName = 'SvgIcon';
 
 export default CommunicationStayPrimaryPortrait;

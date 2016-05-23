@@ -9,5 +9,6 @@ let HardwarePowerInput = (props) => (
 );
 HardwarePowerInput = pure(HardwarePowerInput);
 HardwarePowerInput.displayName = 'HardwarePowerInput';
+HardwarePowerInput.muiName = 'SvgIcon';
 
 export default HardwarePowerInput;

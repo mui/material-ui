@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Clock from './Clock';
 import Dialog from '../Dialog';
 import FlatButton from '../FlatButton';
 
-class TimePickerDialog extends React.Component {
+class TimePickerDialog extends Component {
   static propTypes = {
-    autoOk: React.PropTypes.bool,
-    cancelLabel: React.PropTypes.node,
-    format: React.PropTypes.oneOf(['ampm', '24hr']),
-    initialTime: React.PropTypes.object,
-    okLabel: React.PropTypes.node,
-    onAccept: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    onShow: React.PropTypes.func,
+    autoOk: PropTypes.bool,
+    cancelLabel: PropTypes.node,
+    format: PropTypes.oneOf(['ampm', '24hr']),
+    initialTime: PropTypes.object,
+    okLabel: PropTypes.node,
+    onAccept: PropTypes.func,
+    onDismiss: PropTypes.func,
+    onShow: PropTypes.func,
   };
 
   static defaultProps = {
@@ -23,16 +23,12 @@ class TimePickerDialog extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
     open: false,
   };
-
-  getTheme() {
-    return this.context.muiTheme.timePicker;
-  }
 
   show() {
     if (this.props.onShow && !this.state.open) this.props.onShow();
@@ -85,7 +81,7 @@ class TimePickerDialog extends React.Component {
     const styles = {
       root: {
         fontSize: 14,
-        color: this.getTheme().clockColor,
+        color: this.context.muiTheme.timePicker.clockColor,
       },
       dialogContent: {
         width: 280,
@@ -116,7 +112,6 @@ class TimePickerDialog extends React.Component {
     return (
       <Dialog
         {...other}
-        ref="dialogWindow"
         style={styles.root}
         bodyStyle={styles.body}
         actions={actions}
@@ -126,7 +121,7 @@ class TimePickerDialog extends React.Component {
         onRequestClose={this.handleRequestClose}
       >
         {open &&
-          <EventListener elementName="window" onKeyUp={this.handleKeyUp} />
+          <EventListener target="window" onKeyUp={this.handleKeyUp} />
         }
         {open &&
           <Clock

@@ -9,5 +9,6 @@ let ActionChromeReaderMode = (props) => (
 );
 ActionChromeReaderMode = pure(ActionChromeReaderMode);
 ActionChromeReaderMode.displayName = 'ActionChromeReaderMode';
+ActionChromeReaderMode.muiName = 'SvgIcon';
 
 export default ActionChromeReaderMode;

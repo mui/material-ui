@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import update from 'react-addons-update';
 import shallowEqual from 'recompose/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import autoPrefix from '../utils/autoPrefix';
@@ -27,8 +26,7 @@ function getStyles(props, context) {
 
   const styles = {
     root: {
-      //Nested div bacause the List scales x faster than
-      //it scales y
+      // Nested div bacause the List scales x faster than it scales y
       transition: animated ? transitions.easeOut('250ms', 'transform') : null,
       zIndex: muiTheme.zIndex.menu,
       top: openDown ? 0 : null,
@@ -64,62 +62,53 @@ function getStyles(props, context) {
   return styles;
 }
 
-class Menu extends React.Component {
+class Menu extends Component {
   static propTypes = {
     /**
      * If true, the menu will apply transitions when it
      * is added to the DOM. In order for transitions to
      * work, wrap the menu inside a `ReactTransitionGroup`.
      */
-    animated: deprecated(React.PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
-
+    animated: deprecated(PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
     /**
      * If true, the width of the menu will be set automatically
      * according to the widths of its children,
      * using proper keyline increments (64px for desktop,
      * 56px otherwise).
      */
-    autoWidth: React.PropTypes.bool,
-
+    autoWidth: PropTypes.bool,
     /**
      * The content of the menu. This is usually used to pass `MenuItem`
      * elements.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * If true, the menu item will render with compact desktop styles.
      */
-    desktop: React.PropTypes.bool,
-
+    desktop: PropTypes.bool,
     /**
      * If true, the menu will not be auto-focused.
      */
-    disableAutoFocus: React.PropTypes.bool,
-
+    disableAutoFocus: PropTypes.bool,
     /**
      * If true, the menu will be keyboard-focused initially.
      */
-    initiallyKeyboardFocused: React.PropTypes.bool,
-
+    initiallyKeyboardFocused: PropTypes.bool,
     /**
      * Override the inline-styles of the underlying `List` element.
      */
-    listStyle: React.PropTypes.object,
-
+    listStyle: PropTypes.object,
     /**
      * The maximum height of the menu in pixels. If specified,
      * the menu will be scrollable if it is taller than the provided
      * height.
      */
-    maxHeight: React.PropTypes.number,
-
+    maxHeight: PropTypes.number,
     /**
      * If true, `value` must be an array and the menu will support
      * multiple selections.
      */
-    multiple: React.PropTypes.bool,
-
+    multiple: PropTypes.bool,
     /**
      * Callback function fired when a menu item with `value` not
      * equal to the current `value` of the menu is touch-tapped.
@@ -130,16 +119,14 @@ class Menu extends React.Component {
      * it wasn't already selected) or omitted (if it was already selected).
      * Otherwise, the `value` of the menu item.
      */
-    onChange: React.PropTypes.func,
-
+    onChange: PropTypes.func,
     /**
      * Callback function fired when the menu is focused and the *Esc* key
      * is pressed.
      *
      * @param {object} event `keydown` event targeting the menu.
      */
-    onEscKeyDown: React.PropTypes.func,
-
+    onEscKeyDown: PropTypes.func,
     /**
      * Callback function fired when a menu item is touch-tapped.
      *
@@ -147,51 +134,43 @@ class Menu extends React.Component {
      * @param {object} menuItem The menu item.
      * @param {number} index The index of the menu item.
      */
-    onItemTouchTap: React.PropTypes.func,
-
+    onItemTouchTap: PropTypes.func,
     /**
      * Callback function fired when the menu is focused and a key
      * is pressed.
      *
      * @param {object} event `keydown` event targeting the menu.
      */
-    onKeyDown: React.PropTypes.func,
-
+    onKeyDown: PropTypes.func,
     /**
      * This is the placement of the menu relative to the `IconButton`.
      */
     openDirection: deprecated(propTypes.corners, 'Instead, use a [Popover](/#/components/popover).'),
-
     /**
      * Override the inline-styles of selected menu items.
      */
-    selectedMenuItemStyle: React.PropTypes.object,
-
+    selectedMenuItemStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * If `multiple` is true, an array of the `value`s of the selected
      * menu items. Otherwise, the `value` of the selected menu item.
      * If provided, the menu will be a controlled component.
      * This component also supports valueLink.
      */
-    value: React.PropTypes.any,
-
+    value: PropTypes.any,
     /**
      * ValueLink for the menu's `value`.
      */
-    valueLink: React.PropTypes.object,
-
+    valueLink: PropTypes.object,
     /**
      * The width of the menu. If not specified, the menu's width
      * will be set according to the widths of its children, using
      * proper keyline increments (64px for desktop, 56px otherwise).
      */
     width: propTypes.stringOrNumber,
-
     /**
      * @ignore
      * Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
@@ -214,7 +193,7 @@ class Menu extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
@@ -354,11 +333,10 @@ class Menu extends React.Component {
     let currentHeight = desktop ? 16 : 8;
     const menuItemHeight = desktop ? 32 : 48;
 
-    //MaxHeight isn't set - cascade all of the children
+    // MaxHeight isn't set - cascade all of the children
     if (!maxHeight) return filteredChildren.length;
 
-    //Count all the children that will fit inside the
-    //max menu height
+    // Count all the children that will fit inside the max menu height
     filteredChildren.forEach((child) => {
       if (currentHeight < maxHeight) {
         const childIsADivider = child.type && child.type.muiName === 'Divider';
@@ -433,9 +411,12 @@ class Menu extends React.Component {
 
     if (multiple) {
       const itemIndex = menuValue.indexOf(itemValue);
-      const newMenuValue = itemIndex === -1 ?
-        update(menuValue, {$push: [itemValue]}) :
-        update(menuValue, {$splice: [[itemIndex, 1]]});
+      const [...newMenuValue] = menuValue;
+      if (itemIndex === -1) {
+        newMenuValue.push(itemValue);
+      } else {
+        newMenuValue.splice(itemIndex, 1);
+      }
 
       valueLink.requestChange(event, newMenuValue);
     } else if (!multiple && itemValue !== menuValue) {
@@ -481,8 +462,7 @@ class Menu extends React.Component {
     if (focusedMenuItem) {
       const selectedOffSet = ReactDOM.findDOMNode(focusedMenuItem).offsetTop;
 
-      //Make the focused item be the 2nd item in the list the
-      //user sees
+      // Make the focused item be the 2nd item in the list the user sees
       let scrollTop = selectedOffSet - menuItemHeight;
       if (scrollTop < menuItemHeight) scrollTop = 0;
 
@@ -542,7 +522,7 @@ class Menu extends React.Component {
     const openDown = openDirection.split('-')[0] === 'bottom';
     const filteredChildren = this.getFilteredChildren(children);
 
-    //Cascade children opacity
+    // Cascade children opacity
     let cumulativeDelay = openDown ? 175 : 325;
     const cascadeChildrenCount = this.getCascadeChildrenCount(filteredChildren);
     const cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
@@ -556,7 +536,7 @@ class Menu extends React.Component {
       if (animated) {
         let transitionDelay = 0;
 
-        //Only cascade the visible menu items
+        // Only cascade the visible menu items
         if ((menuItemIndex >= focusIndex - 1) &&
           (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
           cumulativeDelay = openDown ?

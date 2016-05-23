@@ -9,5 +9,6 @@ let AvSnooze = (props) => (
 );
 AvSnooze = pure(AvSnooze);
 AvSnooze.displayName = 'AvSnooze';
+AvSnooze.muiName = 'SvgIcon';
 
 export default AvSnooze;

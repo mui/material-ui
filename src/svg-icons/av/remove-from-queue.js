@@ -9,5 +9,6 @@ let AvRemoveFromQueue = (props) => (
 );
 AvRemoveFromQueue = pure(AvRemoveFromQueue);
 AvRemoveFromQueue.displayName = 'AvRemoveFromQueue';
+AvRemoveFromQueue.muiName = 'SvgIcon';
 
 export default AvRemoveFromQueue;

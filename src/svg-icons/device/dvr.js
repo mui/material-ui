@@ -9,5 +9,6 @@ let DeviceDvr = (props) => (
 );
 DeviceDvr = pure(DeviceDvr);
 DeviceDvr.displayName = 'DeviceDvr';
+DeviceDvr.muiName = 'SvgIcon';
 
 export default DeviceDvr;

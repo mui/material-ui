@@ -9,5 +9,6 @@ let EditorMoneyOff = (props) => (
 );
 EditorMoneyOff = pure(EditorMoneyOff);
 EditorMoneyOff.displayName = 'EditorMoneyOff';
+EditorMoneyOff.muiName = 'SvgIcon';
 
 export default EditorMoneyOff;

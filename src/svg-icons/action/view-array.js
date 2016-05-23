@@ -9,5 +9,6 @@ let ActionViewArray = (props) => (
 );
 ActionViewArray = pure(ActionViewArray);
 ActionViewArray.displayName = 'ActionViewArray';
+ActionViewArray.muiName = 'SvgIcon';
 
 export default ActionViewArray;

@@ -9,5 +9,6 @@ let ImageNavigateNext = (props) => (
 );
 ImageNavigateNext = pure(ImageNavigateNext);
 ImageNavigateNext.displayName = 'ImageNavigateNext';
+ImageNavigateNext.muiName = 'SvgIcon';
 
 export default ImageNavigateNext;

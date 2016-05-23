@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import styleResizable from 'material-ui/utils/styleResizable';
+import withWidth, {MEDIUM} from 'material-ui/utils/withWidth';
 import typography from 'material-ui/styles/typography';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import themesText from './themes.md';
@@ -39,23 +39,24 @@ You can use the tabs to change the theme. The changes will be applied to the who
 documentation.
 `;
 
-const ThemesPage = React.createClass({
+class ThemesPage extends Component {
+  static propTypes = {
+    muiTheme: PropTypes.object,
+    onChangeMuiTheme: PropTypes.func,
+    width: PropTypes.number.isRequired,
+  };
 
-  propTypes: {
-    muiTheme: React.PropTypes.object,
-    onChangeMuiTheme: React.PropTypes.func,
-  },
+  state = {
+    dialogOpen: false,
+    snackbarOpen: false,
+    drawerOpen: false,
+  };
 
-  mixins: [styleResizable],
-
-  getInitialState() {
-    return {
+  componentWillMount() {
+    this.setState({
       valueTabs: this.props.muiTheme.name || 'light',
-      dialogOpen: false,
-      snackbarOpen: false,
-      drawerOpen: false,
-    };
-  },
+    });
+  }
 
   getStyles() {
     const canvasColor = this.props.muiTheme.baseTheme.palette.canvasColor;
@@ -113,7 +114,7 @@ const ThemesPage = React.createClass({
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM)) {
+    if (this.props.width === MEDIUM) {
       styles.group.width = '33%';
     }
 
@@ -121,7 +122,7 @@ const ThemesPage = React.createClass({
     styles.groupSlider = Object.assign({}, styles.group, styles.groupSlider);
 
     return styles;
-  },
+  }
 
   getComponentGroup() {
     const styles = this.getStyles();
@@ -168,7 +169,6 @@ const ThemesPage = React.createClass({
               <RadioButton
                 value="euro"
                 label="Euro"
-                defaultChecked={true}
               />
               <RadioButton
                 value="mxn"
@@ -180,12 +180,10 @@ const ThemesPage = React.createClass({
           <div style={styles.container}>
             <Toggle
               name="toggleName1"
-              value="toggleValue1"
               label="toggle"
             />
             <Toggle
               name="toggleName2"
-              value="toggleValue2"
               label="disabled toggle"
               defaultToggled={true}
               disabled={true}
@@ -230,7 +228,7 @@ const ThemesPage = React.createClass({
                   label="Cancel"
                   keyboardFocus={true}
                   onTouchTap={this.handleRequestCloseDialog}
-                  secondary={true}
+                  primary={true}
                 />,
                 <FlatButton
                   label="Submit"
@@ -265,20 +263,20 @@ const ThemesPage = React.createClass({
               onTouchTap={this.handleTouchTapSnackbar}
               label="View Snackbar"
             />
-            <Snackbar
-              open={this.state.snackbarOpen}
-              onRequestClose={this.handleRequestCloseSnackbar}
-              message="This is a snackbar"
-              action="Got It!"
-              onActionTouchTap={this.handleRequestCloseSnackbar}
-            />
           </div>
+          <Snackbar
+            open={this.state.snackbarOpen}
+            onRequestClose={this.handleRequestCloseSnackbar}
+            message="This is a snackbar"
+            action="Got It!"
+            onActionTouchTap={this.handleRequestCloseSnackbar}
+          />
         </div>
       </ClearFix>
     );
-  },
+  }
 
-  handleChangeTabs(valueTabs) {
+  handleChangeTabs = (valueTabs) => {
     let newMuiTheme = null;
 
     if (valueTabs === 'light') {
@@ -294,7 +292,7 @@ const ThemesPage = React.createClass({
     });
 
     this.props.onChangeMuiTheme(newMuiTheme);
-  },
+  };
 
   getThemeExamples() {
     return (
@@ -315,43 +313,43 @@ const ThemesPage = React.createClass({
         {this.getComponentGroup()}
       </div>
     );
-  },
+  }
 
-  handleTouchTapDrawer() {
+  handleTouchTapDrawer = () => {
     this.setState({
       drawerOpen: true,
     });
-  },
+  };
 
-  handleRequestChangeDrawer(open) {
+  handleRequestChangeDrawer = (open) => {
     this.setState({
       drawerOpen: open,
     });
-  },
+  };
 
-  handleTouchTapDialog() {
+  handleTouchTapDialog = () => {
     this.setState({
       dialogOpen: true,
     });
-  },
+  };
 
-  handleRequestCloseDialog() {
+  handleRequestCloseDialog = () => {
     this.setState({
       dialogOpen: false,
     });
-  },
+  };
 
-  handleTouchTapSnackbar() {
+  handleTouchTapSnackbar = () => {
     this.setState({
       snackbarOpen: true,
     });
-  },
+  };
 
-  handleRequestCloseSnackbar() {
+  handleRequestCloseSnackbar = () => {
     this.setState({
       snackbarOpen: false,
     });
-  },
+  };
 
   render() {
     const styles = this.getStyles();
@@ -368,8 +366,7 @@ const ThemesPage = React.createClass({
         </div>
       </div>
     );
-  },
+  }
+}
 
-});
-
-export default muiThemeable()(ThemesPage);
+export default muiThemeable()(withWidth()(ThemesPage));

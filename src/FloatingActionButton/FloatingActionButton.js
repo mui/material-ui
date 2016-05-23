@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
-import ColorManipulator from '../utils/colorManipulator';
+import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Paper from '../Paper';
@@ -48,12 +48,12 @@ function getStyles(props, context) {
       top: 0,
     },
     overlayWhenHovered: {
-      backgroundColor: ColorManipulator.fade(iconColor, 0.4),
+      backgroundColor: fade(iconColor, 0.4),
     },
     icon: {
       height: floatingActionButton.buttonSize,
       lineHeight: `${floatingActionButton.buttonSize}px`,
-      fill: floatingActionButton.iconColor,
+      fill: iconColor,
       color: iconColor,
     },
     iconWhenMini: {
@@ -63,116 +63,94 @@ function getStyles(props, context) {
   };
 }
 
-class FloatingActionButton extends React.Component {
+class FloatingActionButton extends Component {
   static propTypes = {
     /**
      * This value will override the default background color for the button.
      * However it will not override the default disabled background color.
      * This has to be set separately using the disabledColor attribute.
      */
-    backgroundColor: React.PropTypes.string,
-
+    backgroundColor: PropTypes.string,
     /**
      * This is what displayed inside the floating action button; for example, a SVG Icon.
      */
-    children: React.PropTypes.node,
-
+    children: PropTypes.node,
     /**
      * The css class name of the root element.
      */
-    className: React.PropTypes.string,
-
+    className: PropTypes.string,
     /**
      * Disables the button if set to true.
      */
-    disabled: React.PropTypes.bool,
-
+    disabled: PropTypes.bool,
     /**
      * This value will override the default background color for the button when it is disabled.
      */
-    disabledColor: React.PropTypes.string,
-
+    disabledColor: PropTypes.string,
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * The URL to link to when the button is clicked.
      */
-    href: React.PropTypes.string,
-
+    href: PropTypes.string,
     /**
      * The icon within the FloatingActionButton is a FontIcon component.
      * This property is the classname of the icon to be displayed inside the button.
      * An alternative to adding an iconClassName would be to manually insert a
      * FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.
      */
-    iconClassName: React.PropTypes.string,
-
+    iconClassName: PropTypes.string,
     /**
      * This is the equivalent to iconClassName except that it is used for
      * overriding the inline-styles of the FontIcon component.
      */
-    iconStyle: React.PropTypes.object,
-
-    /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
-     */
-    linkButton: React.PropTypes.bool,
-
+    iconStyle: PropTypes.object,
     /**
      * If true, the button will be a small floating action button.
      */
-    mini: React.PropTypes.bool,
-
+    mini: PropTypes.bool,
     /**
-     * Callback function fired when a mouse button is pressed down on the elmeent.
+     * Callback function fired when a mouse button is pressed down on the element.
      *
      * @param {object} event `mousedown` event targeting the element.
      */
-    onMouseDown: React.PropTypes.func,
-
+    onMouseDown: PropTypes.func,
     /**
      * Callback function fired when the mouse enters the element.
      *
      * @param {object} event `mouseenter` event targeting the element.
      */
-    onMouseEnter: React.PropTypes.func,
-
+    onMouseEnter: PropTypes.func,
     /**
      * Callback function fired when the mouse leaves the element.
      *
      * @param {object} event `mouseleave` event targeting the element.
      */
-    onMouseLeave: React.PropTypes.func,
-
+    onMouseLeave: PropTypes.func,
     /**
      * Callback function fired when a mouse button is released on the element.
      *
      * @param {object} event `mouseup` event targeting the element.
      */
-    onMouseUp: React.PropTypes.func,
-
+    onMouseUp: PropTypes.func,
     /**
      * Callback function fired when a touch point is removed from the element.
      *
      * @param {object} event `touchend` event targeting the element.
      */
-    onTouchEnd: React.PropTypes.func,
-
+    onTouchEnd: PropTypes.func,
     /**
      * Callback function fired when the element is touched.
      *
      * @param {object} event `touchstart` event targeting the element.
      */
-    onTouchStart: React.PropTypes.func,
-
+    onTouchStart: PropTypes.func,
     /**
      * If true, the button will use the secondary button colors.
      */
-    secondary: React.PropTypes.bool,
-
+    secondary: PropTypes.bool,
     /**
      * Override the inline-styles of the root element.
      */
-    style: React.PropTypes.object,
-
+    style: PropTypes.object,
     /**
      * The zDepth of the underlying `Paper` component.
      */
@@ -187,7 +165,7 @@ class FloatingActionButton extends React.Component {
   };
 
   static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
@@ -218,7 +196,7 @@ class FloatingActionButton extends React.Component {
   }
 
   handleMouseDown = (event) => {
-    //only listen to left clicks
+    // only listen to left clicks
     if (event.button === 0) {
       this.setState({zDepth: this.props.zDepth + 1});
     }
@@ -259,7 +237,7 @@ class FloatingActionButton extends React.Component {
     if (keyboardFocused && !this.props.disabled) {
       this.setState({zDepth: this.props.zDepth + 1});
       this.refs.overlay.style.backgroundColor =
-        ColorManipulator.fade(this.getStyles().icon.color, 0.4);
+        fade(getStyles(this.props, this.context).icon.color, 0.4);
     } else if (!this.state.hovered) {
       this.setState({zDepth: this.props.zDepth});
       this.refs.overlay.style.backgroundColor = 'transparent';

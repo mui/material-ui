@@ -1,66 +1,51 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import spacing from 'material-ui/styles/spacing';
-import styleResizable from 'material-ui/utils/styleResizable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
+import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 
-const githubButton = (
-  <IconButton
-    iconClassName="muidocs-icon-custom-github"
-    href="https://github.com/callemall/material-ui"
-    linkButton={true}
-  />
-);
+class Master extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    location: PropTypes.object,
+    width: PropTypes.number.isRequired,
+  };
 
-const Master = React.createClass({
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
 
-  propTypes: {
-    children: React.PropTypes.node,
-    location: React.PropTypes.object,
-  },
+  static childContextTypes = {
+    muiTheme: PropTypes.object,
+  };
 
-  contextTypes: {
-    router: React.PropTypes.object.isRequired,
-  },
-
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  mixins: [
-    styleResizable,
-  ],
-
-  getInitialState() {
-    return {
-      muiTheme: getMuiTheme(),
-      navDrawerOpen: false,
-    };
-  },
+  state = {
+    navDrawerOpen: false,
+  };
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
     };
-  },
+  }
 
   componentWillMount() {
     this.setState({
-      muiTheme: this.state.muiTheme,
+      muiTheme: getMuiTheme(),
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       muiTheme: newMuiTheme,
     });
-  },
+  }
 
   getStyles() {
     const styles = {
@@ -93,43 +78,55 @@ const Master = React.createClass({
         color: lightWhite,
         maxWidth: 356,
       },
+      browserstack: {
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        margin: '25px 15px 0',
+        padding: 0,
+        color: lightWhite,
+        lineHeight: '25px',
+        fontSize: 12,
+      },
+      browserstackLogo: {
+        margin: '0 3px',
+      },
       iconButton: {
         color: darkWhite,
       },
     };
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.MEDIUM) ||
-        this.isDeviceSize(styleResizable.statics.Sizes.LARGE)) {
+    if (this.props.width === MEDIUM || this.props.width === LARGE) {
       styles.content = Object.assign(styles.content, styles.contentWhenMedium);
     }
 
     return styles;
-  },
+  }
 
-  handleTouchTapLeftIconButton() {
+  handleTouchTapLeftIconButton = () => {
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen,
     });
-  },
+  };
 
-  handleChangeRequestNavDrawer(open) {
+  handleChangeRequestNavDrawer = (open) => {
     this.setState({
       navDrawerOpen: open,
     });
-  },
+  };
 
-  handleRequestChangeList(event, value) {
+  handleChangeList = (event, value) => {
     this.context.router.push(value);
     this.setState({
       navDrawerOpen: false,
     });
-  },
+  };
 
-  handleChangeMuiTheme(muiTheme) {
+  handleChangeMuiTheme = (muiTheme) => {
     this.setState({
       muiTheme: muiTheme,
     });
-  },
+  };
 
   render() {
     const {
@@ -156,7 +153,7 @@ const Master = React.createClass({
     let docked = false;
     let showMenuIconButton = true;
 
-    if (this.isDeviceSize(styleResizable.statics.Sizes.LARGE) && title !== '') {
+    if (this.props.width === LARGE && title !== '') {
       docked = true;
       navDrawerOpen = true;
       showMenuIconButton = false;
@@ -175,7 +172,12 @@ const Master = React.createClass({
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
           zDepth={0}
-          iconElementRight={githubButton}
+          iconElementRight={
+            <IconButton
+              iconClassName="muidocs-icon-custom-github"
+              href="https://github.com/callemall/material-ui"
+            />
+          }
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
@@ -194,7 +196,7 @@ const Master = React.createClass({
           location={location}
           docked={docked}
           onRequestChangeNavDrawer={this.handleChangeRequestNavDrawer}
-          onRequestChangeList={this.handleRequestChangeList}
+          onChangeList={this.handleChangeList}
           open={navDrawerOpen}
         />
         <FullWidthSection style={styles.footer}>
@@ -215,12 +217,18 @@ const Master = React.createClass({
             iconStyle={styles.iconButton}
             iconClassName="muidocs-icon-custom-github"
             href="https://github.com/callemall/material-ui"
-            linkButton={true}
           />
+          <p style={prepareStyles(styles.browserstack)}>
+            {'Thank you to '}
+            <a href="https://www.browserstack.com" style={prepareStyles(styles.browserstackLogo)} target="_blank">
+              <img src="http://www.browserstack.com/images/layout/logo.png" height="25" width="auto" />
+            </a>
+            {' for providing real browser testing infrastructure.'}
+          </p>
         </FullWidthSection>
       </div>
     );
-  },
-});
+  }
+}
 
-export default Master;
+export default withWidth()(Master);

@@ -4,30 +4,28 @@ import CodeExample from '../../../CodeExample';
 import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
-import stepperReadmeText from './README';
-import VerticalLinearStepper from './VerticalLinearStepper';
-import VerticalNonLinearStepper from './VerticalNonLinearStepper';
-import VerticalLinearStepperWithOptionalStep from './VerticalLinearStepperWithOptionalStep';
-import VerticalLinearStepperCode from '!raw!./VerticalLinearStepper';
-import VerticalLinearStepperWithOptionalStepCode from '!raw!./VerticalLinearStepperWithOptionalStep';
-import VerticalNonLinearStepperCode from '!raw!./VerticalNonLinearStepper';
+import stepperReadmeText from './README.md';
+import advancedReadmeText from './Advanced.md';
 import HorizontalLinearStepper from './HorizontalLinearStepper';
 import HorizontalLinearStepperCode from '!raw!./HorizontalLinearStepper';
+import HorizontalNonLinearStepper from './HorizontalNonLinearStepper';
+import HorizontalNonLinearStepperCode from '!raw!./HorizontalNonLinearStepper';
+import VerticalLinearStepper from './VerticalLinearStepper';
+import VerticalLinearStepperCode from '!raw!./VerticalLinearStepper';
+import VerticalNonLinearStepper from './VerticalNonLinearStepper';
+import VerticalNonLinearStepperCode from '!raw!./VerticalNonLinearStepper';
+import GranularControlStepper from './GranularControlStepper';
+import GranularControlStepperCode from '!raw!./GranularControlStepper';
+import CustomIcon from './CustomIcon';
+import CustomIconCode from '!raw!./CustomIcon';
+import HorizontalTransition from './HorizontalTransition';
+import HorizontalTransitionCode from '!raw!./HorizontalTransition';
 
-import stepperCode from '!raw!material-ui/lib/Stepper/Stepper';
-import verticalStepCode from '!raw!material-ui/lib/Stepper/VerticalStep';
-import horizontalStepCode from '!raw!material-ui/lib/Stepper/HorizontalStep';
-
-
-const descriptions = {
-  verticalLinearStepper: 'The vertical linear stepper requires steps be completed in a specific order.',
-  verticalLinearStepperWithOptionalStep: 'Set the `optional` property to `true` for optional steps.' +
-    'Pass a custom label view through `stepLabel` property to indicate an optional step.',
-  verticalNonLinearStepper: 'For the vertical non-linear stepper, steps can be completed in any order.',
-  horizontalLinearStepper: 'The horizontal linear stepper acts the same as the vertical linear stepper. ' +
-  'The horizontal stepper does not support optional or non-linear steps at this time.',
-};
-
+import stepCode from '!raw!material-ui/Stepper/Step';
+import stepperCode from '!raw!material-ui/Stepper/Stepper';
+import stepButtonCode from '!raw!material-ui/Stepper/StepButton';
+import stepLabelCode from '!raw!material-ui/Stepper/StepLabel';
+import stepContentCode from '!raw!material-ui/Stepper/StepContent';
 
 const styles = {
   stepperWrapper: {
@@ -38,39 +36,9 @@ const styles = {
 const StepperPage = () => (
   <div>
     <MarkdownElement text={stepperReadmeText} />
-    <CodeExample
-      title="Vertical linear step example"
-      description={descriptions.verticalLinearStepper}
-      code={VerticalLinearStepperCode}
-    >
-      <div style={styles.stepperWrapper}>
-        <VerticalLinearStepper />
-      </div>
-    </CodeExample>
 
     <CodeExample
-      title="Optional step example"
-      description={descriptions.verticalLinearStepperWithOptionalStep}
-      code={VerticalLinearStepperWithOptionalStepCode}
-    >
-      <div style={styles.stepperWrapper}>
-        <VerticalLinearStepperWithOptionalStep />
-      </div>
-    </CodeExample>
-
-    <CodeExample
-      title="Non linear example"
-      description={descriptions.verticalNonLinearStepper}
-      code={VerticalNonLinearStepperCode}
-    >
-      <div style={styles.stepperWrapper}>
-        <VerticalNonLinearStepper />
-      </div>
-    </CodeExample>
-
-    <CodeExample
-      title="Horizontal linear step example"
-      description={descriptions.horizontalLinearStepper}
+      title="Horizontal linear stepper"
       code={HorizontalLinearStepperCode}
     >
       <div style={styles.stepperWrapper}>
@@ -78,9 +46,69 @@ const StepperPage = () => (
       </div>
     </CodeExample>
 
+    <CodeExample
+      title="Vertical linear stepper"
+      code={VerticalLinearStepperCode}
+      exampleBlockStyle={{padding: '14px 10px 24px'}}
+    >
+      <div style={styles.stepperWrapper}>
+        <VerticalLinearStepper />
+      </div>
+    </CodeExample>
+
+    <CodeExample
+      title="Horizontal non-linear stepper"
+      code={HorizontalNonLinearStepperCode}
+    >
+      <div style={styles.stepperWrapper}>
+        <HorizontalNonLinearStepper />
+      </div>
+    </CodeExample>
+
+    <CodeExample
+      title="Vertical non-linear stepper"
+      code={VerticalNonLinearStepperCode}
+      exampleBlockStyle={{padding: '14px 10px 24px'}}
+    >
+      <div style={styles.stepperWrapper}>
+        <VerticalNonLinearStepper />
+      </div>
+    </CodeExample>
+
+    <MarkdownElement text={advancedReadmeText} />
+
+    <CodeExample
+      title="Granular control"
+      code={GranularControlStepperCode}
+    >
+      <div style={styles.stepperWrapper}>
+        <GranularControlStepper />
+      </div>
+    </CodeExample>
+
+    <CodeExample
+      title="Custom icon"
+      code={CustomIconCode}
+    >
+      <div style={styles.stepperWrapper}>
+        <CustomIcon />
+      </div>
+    </CodeExample>
+
+    <CodeExample
+      title="Horizontal step transition example"
+      code={HorizontalTransitionCode}
+    >
+      <div style={styles.stepperWrapper}>
+        <HorizontalTransition />
+      </div>
+    </CodeExample>
+
     <PropTypeDescription code={stepperCode} header="### Stepper properties" />
-    <PropTypeDescription code={verticalStepCode} header="### VerticalStep properties" />
-    <PropTypeDescription code={horizontalStepCode} header="### HorizontalStep properties" />
+    <PropTypeDescription code={stepCode} header="### Step properties" />
+    <PropTypeDescription code={stepLabelCode} header="### StepLabel properties" />
+    <PropTypeDescription code={stepButtonCode} header="### StepButton properties" />
+    <PropTypeDescription code={stepContentCode} header="### StepContent properties" />
   </div>
 );
 

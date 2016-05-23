@@ -9,5 +9,6 @@ let FileAttachment = (props) => (
 );
 FileAttachment = pure(FileAttachment);
 FileAttachment.displayName = 'FileAttachment';
+FileAttachment.muiName = 'SvgIcon';
 
 export default FileAttachment;

@@ -9,5 +9,6 @@ let ImageAddToPhotos = (props) => (
 );
 ImageAddToPhotos = pure(ImageAddToPhotos);
 ImageAddToPhotos.displayName = 'ImageAddToPhotos';
+ImageAddToPhotos.muiName = 'SvgIcon';
 
 export default ImageAddToPhotos;
