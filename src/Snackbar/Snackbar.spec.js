@@ -34,4 +34,44 @@ describe('<Snackbar />', () => {
       );
     });
   });
+
+  it('should show the next message after an update', (done) => {
+    const wrapper = shallowWithContext(
+      <Snackbar open={true} message="First message" />
+    );
+
+    wrapper.setProps({
+      message: 'Second message',
+    });
+    assert.strictEqual(wrapper.state('message'), 'First message');
+
+    setTimeout(() => {
+      assert.strictEqual(wrapper.state('message'), 'Second message',
+        'Should take into account the next message');
+      done();
+    }, 500);
+  });
+
+  it('should show the latest message of consecutive updates', (done) => {
+    const wrapper = shallowWithContext(
+      <Snackbar open={false} message="First message" />
+    );
+
+    wrapper.setProps({
+      open: true,
+      message: 'Second message',
+    });
+    assert.strictEqual(wrapper.state('message'), 'Second message');
+    wrapper.setProps({
+      open: true,
+      message: 'Third message',
+    });
+    assert.strictEqual(wrapper.state('message'), 'Second message');
+
+    setTimeout(() => {
+      assert.strictEqual(wrapper.state('message'), 'Third message',
+        'Should take into account the latest message');
+      done();
+    }, 500);
+  });
 });
