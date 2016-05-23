@@ -115,13 +115,14 @@ class Snackbar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    clearTimeout(this.timerOneAtTheTimeId);
+
     if (this.state.open && nextProps.open === this.props.open &&
         (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
         open: false,
       });
 
-      clearTimeout(this.timerOneAtTheTimeId);
       this.timerOneAtTheTimeId = setTimeout(() => {
         this.setState({
           message: nextProps.message,
