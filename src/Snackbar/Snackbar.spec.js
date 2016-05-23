@@ -34,4 +34,22 @@ describe('<Snackbar />', () => {
       );
     });
   });
+
+  it('should show the latest message of consecutive updates', (done) => {
+    const wrapper = shallowWithContext(
+      <Snackbar open={true} message="First message"/>
+    );
+
+    wrapper.setProps({open: true, message: 'Second message'});
+    wrapper.setProps({open: true, message: 'Third message'});
+
+    setTimeout(() => {
+      assert.equal(
+        wrapper.state('message'),
+        'Third message'
+      );
+
+      done();
+    }, 500);
+  });
 });
