@@ -37,7 +37,7 @@ describe('<Snackbar />', () => {
 
   it('should show the latest message of consecutive updates', (done) => {
     const wrapper = shallowWithContext(
-      <Snackbar open={true} message="First message"/>
+      <Snackbar open={true} message="First message" />
     );
 
     wrapper.setProps({open: true, message: 'Second message'});
