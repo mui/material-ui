@@ -272,7 +272,7 @@ class Popover extends Component {
     if (anchorPosition.top < 0 ||
       anchorPosition.top > window.innerHeight ||
       anchorPosition.left < 0 ||
-      anchorPosition.left > window.innerWith) {
+      anchorPosition.left > window.innerWidth) {
       this.requestClose('offScreen');
     }
   }
