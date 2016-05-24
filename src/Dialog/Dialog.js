@@ -147,6 +147,8 @@ function getStyles(props, context) {
   };
 }
 
+let topDialog = null; // record the top dialog that should be closed when ESC clicked.
+
 class DialogInline extends Component {
   static propTypes = {
     actions: PropTypes.node,
@@ -249,9 +251,17 @@ class DialogInline extends Component {
     this.requestClose(false);
   };
 
+  handleKeyDown = (event) => {
+    if (keycode(event) === 'esc') {
+      topDialog = this;
+    }
+  };
+
   handleKeyUp = (event) => {
     if (keycode(event) === 'esc') {
-      this.requestClose(false);
+      if (topDialog === this) {
+        this.requestClose(false);
+      }
     }
   };
 
@@ -314,6 +324,7 @@ class DialogInline extends Component {
         {open &&
           <EventListener
             target="window"
+            onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
             onResize={this.handleResize}
           />
