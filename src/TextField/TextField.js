@@ -11,6 +11,9 @@ import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
 import warning from 'warning';
 
+// Input line height
+const fieldLineHeight = 24;
+
 const getStyles = (props, context, state) => {
   const {
     baseTheme,
@@ -28,9 +31,9 @@ const getStyles = (props, context, state) => {
   const styles = {
     root: {
       fontSize: 16,
-      lineHeight: '24px',
+      lineHeight: `${fieldLineHeight}px`,
       width: props.fullWidth ? '100%' : 256,
-      height: (props.rows - 1) * 24 + (props.floatingLabelText ? 72 : 48),
+      height: (props.rows - 1) * fieldLineHeight + (props.floatingLabelText ? 72 : 48),
       display: 'inline-block',
       position: 'relative',
       backgroundColor: backgroundColor,
@@ -74,7 +77,7 @@ const getStyles = (props, context, state) => {
 
   // If rowsMax property exists, calc max height value for textarea
   if (props.rowsMax) {
-    styles.textarea.maxHeight = 24 * props.rowsMax;
+    styles.textarea.maxHeight = fieldLineHeight * props.rowsMax;
   }
 
   if (state.hasValue) {
@@ -375,9 +378,9 @@ class TextField extends Component {
   };
 
   handleHeightChange = (event, height) => {
-    let newHeight = height + 24;
+    let newHeight = height + fieldLineHeight;
     if (this.props.floatingLabelText) {
-      newHeight += 24;
+      newHeight += fieldLineHeight;
     }
     ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
   };
