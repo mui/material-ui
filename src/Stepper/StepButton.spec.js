@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import StepButton from './StepButton';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -13,7 +13,7 @@ describe('<StepButton />', () => {
     return shallow(node, {context});
   };
 
-  it('merges user styles in', () => {
+  it('should merge user styles in', () => {
     const wrapper = themedShallow(
       <StepButton style={{backgroundColor: 'purple'}}>Step One</StepButton>
     );
@@ -21,17 +21,17 @@ describe('<StepButton />', () => {
     assert.strictEqual(wrapper.props().style.backgroundColor, 'purple');
   });
 
-  it('renders an EnhancedButton with a StepLabel', () => {
+  it('should render an EnhancedButton with a StepLabel', () => {
     const wrapper = themedShallow(
       <StepButton>Step One</StepButton>
     );
-    assert.ok(wrapper.is('EnhancedButton'));
+    assert.ok(wrapper.is('EnhancedButton'), 'should be an EnhancedButton');
     const stepLabel = wrapper.find('StepLabel');
-    assert.strictEqual(stepLabel.length, 1);
+    assert.strictEqual(stepLabel.length, 1, 'should have a stepLabel');
     assert.strictEqual(stepLabel.props().children, 'Step One');
   });
 
-  it('passes props to StepLabel', () => {
+  it('should pass props to StepLabel', () => {
     const wrapper = themedShallow(
       <StepButton
         active={true}
@@ -43,12 +43,12 @@ describe('<StepButton />', () => {
       </StepButton>
     );
     const stepLabel = wrapper.find('StepLabel');
-    assert.strictEqual(stepLabel.prop('active'), true);
-    assert.strictEqual(stepLabel.prop('completed'), true);
-    assert.strictEqual(stepLabel.prop('disabled'), true);
+    assert.strictEqual(stepLabel.prop('active'), true, 'should be active');
+    assert.strictEqual(stepLabel.prop('completed'), true, 'should be completed');
+    assert.strictEqual(stepLabel.prop('disabled'), true, 'should be disabled');
   });
 
-  it('passes props to EnhancedButton', () => {
+  it('should pass props to EnhancedButton', () => {
     const wrapper = themedShallow(
       <StepButton disabled={true}>Step One</StepButton>
     );
@@ -56,41 +56,90 @@ describe('<StepButton />', () => {
     assert.strictEqual(stepLabel.prop('disabled'), true);
   });
 
-  it('bubbles callbacks used internally', () => {
-    const handleMouseEnter = sinon.spy();
-    const handleMouseLeave = sinon.spy();
-    const handleTouchStart = sinon.spy();
-    const wrapper = themedShallow(
-      <StepButton
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-      >
-        Step One
-      </StepButton>
-    );
-    wrapper.simulate('mouseEnter');
-    assert.ok(handleMouseEnter.calledOnce);
-    wrapper.simulate('mouseLeave');
-    assert.ok(handleMouseEnter.calledOnce);
-    assert.ok(handleMouseLeave.calledOnce);
-    wrapper.simulate('touchStart');
-    assert.ok(handleMouseEnter.calledOnce);
-    assert.ok(handleMouseLeave.calledOnce);
-    assert.ok(handleTouchStart.calledOnce);
-    wrapper.simulate('mouseEnter');
-    wrapper.simulate('touchStart');
-    assert.ok(handleMouseEnter.calledTwice);
-    assert.ok(handleMouseLeave.calledOnce);
-    assert.ok(handleTouchStart.calledTwice);
-  });
+  describe('event handlers', () => {
+    describe('handleMouseEnter/Leave', () => {
+      const handleMouseEnter = spy();
+      const handleMouseLeave = spy();
+      const wrapper = themedShallow(
+        <StepButton
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          Step One
+        </StepButton>
+      );
 
-  it('sets the EnhancedButton backgroundColor on hover', () => {
-    const wrapper = themedShallow(
-      <StepButton>Step One</StepButton>
-    );
-    assert.strictEqual(wrapper.prop('style').backgroundColor, muiTheme.stepper.backgroundColor);
-    wrapper.setState({hovered: true});
-    assert.strictEqual(wrapper.prop('style').backgroundColor, muiTheme.stepper.hoverBackgroundColor);
+      it('should set the hovered state', () => {
+        wrapper.simulate('mouseEnter');
+        assert.strictEqual(wrapper.state('hovered'), true, 'should be hovered');
+        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+        wrapper.simulate('mouseLeave');
+        assert.strictEqual(wrapper.state('hovered'), false, 'should not be hovered');
+        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+        assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      });
+
+      it('should set the EnhancedButton backgroundColor on hover', () => {
+        wrapper.setState({hovered: false});
+        assert.strictEqual(wrapper.prop('style').backgroundColor, muiTheme.stepper.backgroundColor);
+        wrapper.setState({hovered: true});
+        assert.strictEqual(wrapper.prop('style').backgroundColor, muiTheme.stepper.hoverBackgroundColor);
+      });
+    });
+
+    describe('handleTouchStart', () => {
+      const handleTouchStart = spy();
+      const handleMouseEnter = spy();
+      const wrapper = themedShallow(
+        <StepButton
+          onTouchStart={handleTouchStart}
+          onMouseEnter={handleMouseEnter}
+        >
+          Step One
+        </StepButton>
+      );
+
+      it('should set the touched state', () => {
+        assert.strictEqual(wrapper.state('touched'), false, 'should not be touched');
+        wrapper.simulate('touchStart');
+        assert.strictEqual(wrapper.state('touched'), true, 'should be touched');
+        assert.strictEqual(handleTouchStart.callCount, 1, 'should call handleTouchStart once');
+      });
+
+      it('should not set the hovered state with touch set', () => {
+        wrapper.simulate('mouseEnter');
+        assert.strictEqual(wrapper.state('hovered'), false, 'should not be hovered');
+        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      });
+    });
+
+    it('should bubble callbacks used internally', () => {
+      const handleMouseEnter = spy();
+      const handleMouseLeave = spy();
+      const handleTouchStart = spy();
+      const wrapper = themedShallow(
+        <StepButton
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+        >
+          Step One
+        </StepButton>
+      );
+      wrapper.simulate('mouseEnter');
+      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      wrapper.simulate('mouseLeave');
+      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      wrapper.simulate('touchStart');
+      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      assert.strictEqual(handleTouchStart.callCount, 1, 'should call handleTouchStart once');
+      wrapper.simulate('mouseEnter');
+      wrapper.simulate('touchStart');
+      assert.strictEqual(handleMouseEnter.callCount, 2, 'should call handleMouseEnter twice');
+      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      assert.strictEqual(handleTouchStart.callCount, 2, 'should call handleTouchStart twice');
+    });
   });
 });

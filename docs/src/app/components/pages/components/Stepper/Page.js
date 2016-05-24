@@ -49,6 +49,7 @@ const StepperPage = () => (
     <CodeExample
       title="Vertical linear stepper"
       code={VerticalLinearStepperCode}
+      exampleBlockStyle={{padding: '14px 10px 24px'}}
     >
       <div style={styles.stepperWrapper}>
         <VerticalLinearStepper />
@@ -67,6 +68,7 @@ const StepperPage = () => (
     <CodeExample
       title="Vertical non-linear stepper"
       code={VerticalNonLinearStepperCode}
+      exampleBlockStyle={{padding: '14px 10px 24px'}}
     >
       <div style={styles.stepperWrapper}>
         <VerticalNonLinearStepper />

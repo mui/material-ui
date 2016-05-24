@@ -7,10 +7,14 @@ class ExpandTransitionChild extends Component {
     children: PropTypes.node,
     enterDelay: PropTypes.number,
     style: PropTypes.object,
+    transitionDelay: PropTypes.number,
+    transitionDuration: PropTypes.number,
   };
 
   static defaultProps = {
     enterDelay: 0,
+    transitionDelay: 0,
+    transitionDuration: 450,
   };
 
   static contextTypes = {
@@ -23,6 +27,7 @@ class ExpandTransitionChild extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
+    clearTimeout(this.enteredTimer);
     clearTimeout(this.leaveTimer);
   }
 
@@ -31,32 +36,38 @@ class ExpandTransitionChild extends Component {
     callback();
   }
 
+  componentDidAppear() {
+    this.setAutoHeight();
+  }
+
   componentWillEnter(callback) {
-    const {enterDelay} = this.props;
+    const {enterDelay, transitionDelay, transitionDuration} = this.props;
     const {style} = ReactDOM.findDOMNode(this);
     style.height = 0;
-
-    if (enterDelay) {
-      this.enterTimer = setTimeout(() => callback(), 450);
-      return;
-    }
-
-    callback();
+    this.enterTimer = setTimeout(() => this.open(), enterDelay);
+    this.enteredTimer = setTimeout(() => callback(), enterDelay + transitionDelay + transitionDuration);
   }
 
   componentDidEnter() {
-    this.open();
+    this.setAutoHeight();
   }
 
   componentWillLeave(callback) {
-    const style = ReactDOM.findDOMNode(this).style;
-    style.height = this.refs.wrapper.clientHeight;
+    const {transitionDelay, transitionDuration} = this.props;
+    const {style} = ReactDOM.findDOMNode(this);
+    // Set fixed height first for animated property value
+    style.height = `${this.refs.wrapper.clientHeight}px`;
     style.height = 0;
-    this.leaveTimer = setTimeout(() => callback(), 450);
+    this.leaveTimer = setTimeout(() => callback(), transitionDelay + transitionDuration);
+  }
+
+  setAutoHeight() {
+    const {style} = ReactDOM.findDOMNode(this);
+    style.height = 'auto';
   }
 
   open() {
-    const style = ReactDOM.findDOMNode(this).style;
+    const {style} = ReactDOM.findDOMNode(this);
     style.height = `${this.refs.wrapper.clientHeight}px`;
   }
 
@@ -64,6 +75,8 @@ class ExpandTransitionChild extends Component {
     const {
       children,
       style,
+      transitionDelay, // eslint-disable-line no-unused-vars
+      transitionDuration,
       ...other,
     } = this.props;
 
@@ -76,7 +89,11 @@ class ExpandTransitionChild extends Component {
       top: 0,
       left: 0,
       overflow: 'hidden',
-      transition: transitions.easeOut(null, ['height', 'opacity']),
+      transition: transitions.easeOut(
+        `${transitionDuration}ms`,
+        ['height'],
+        `${transitionDelay}ms`,
+      ),
     }, style);
 
     return (
