@@ -77,6 +77,11 @@ class SelectField extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * If true, `value` must be an array and the menu will support
+     * multiple selections.
+     */
+    multiple: PropTypes.bool,
+    /**
      * Callback function fired when the select field loses focus.
      *
      * @param {object} event `blur` event targeting the select field.
@@ -130,6 +135,7 @@ class SelectField extends Component {
     autoWidth: false,
     disabled: false,
     fullWidth: false,
+    multiple: false,
   };
 
   static contextTypes = {
@@ -191,6 +197,7 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
+          multiple={this.props.multiple}
           {...other}
         >
           {children}
