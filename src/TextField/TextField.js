@@ -72,6 +72,11 @@ const getStyles = (props, context, state) => {
     font: 'inherit',
   });
 
+  // If rowsMax property exists, calc max height value for textarea
+  if (props.rowsMax) {
+    styles.textarea.maxHeight = 24 * props.rowsMax;
+  }
+
   if (state.hasValue) {
     styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
   }
