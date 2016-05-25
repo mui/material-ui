@@ -88,8 +88,8 @@ class CalendarYear extends Component {
         justifyContent: 'center',
       },
       child: {
-        height: 'inherit'
-      }
+        height: 'inherit',
+      },
     };
 
     return (
