@@ -131,7 +131,7 @@ class DatePicker extends Component {
     /**
      * Sets the date for the Date Picker programmatically.
      */
-    value: PropTypes.any,
+    value: PropTypes.object,
     /**
      * Wordings used inside the button of the dialog.
      */
@@ -146,7 +146,6 @@ class DatePicker extends Component {
     firstDayOfWeek: 1,
     style: {},
   };
-
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
@@ -210,21 +209,28 @@ class DatePicker extends Component {
         date: date,
       });
     }
-    if (this.props.onChange) this.props.onChange(null, date);
+    if (this.props.onChange) {
+      this.props.onChange(null, date);
+    }
   };
 
   handleFocus = (event) => {
     event.target.blur();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) this.props.onTouchTap(event);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
 
-    if (!this.props.disabled)
+    if (!this.props.disabled) {
       setTimeout(() => {
         this.openDialog();
       }, 0);
+    }
   };
 
   isControlled() {
