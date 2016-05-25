@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import {mount, shallow} from 'enzyme';
+import {stub} from 'sinon';
 import {assert} from 'chai';
 import RaisedButton from './RaisedButton';
 import ActionAndroid from '../svg-icons/action/android';
@@ -101,5 +102,35 @@ describe('<RaisedButton />', () => {
       wrapper.find('[children="test"]').prop('style').fontSize,
       muiTheme.raisedButton.fontSize
     );
+  });
+
+  describe('propTypes', () => {
+    let consoleStub;
+
+    beforeEach(() => {
+      consoleStub = stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore(); // eslint-disable-line no-console
+    });
+
+    it('should throw when using wrong properties', () => {
+      shallowWithContext(
+        <RaisedButton />
+      );
+      assert.strictEqual(consoleStub.callCount, 1);
+      assert.strictEqual(
+        consoleStub.args[0][0],
+        'Warning: Failed propType: Required prop label or children or icon was not specified in RaisedButton.'
+      );
+    });
+
+    it('should not throw when using a valid properties', () => {
+      shallowWithContext(
+        <RaisedButton label={0} />
+      );
+      assert.strictEqual(consoleStub.callCount, 0);
+    });
   });
 });
