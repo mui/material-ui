@@ -1,12 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
-import Paper from '../Paper';
 
 const VIEWBOX_SIZE = 32;
 
-function getStyles(props) {
+function getStyles(props, context) {
   const padding = props.size * 0.1; // same implementation of `this.getPaddingSize()`
+  const {refreshIndicator} = context.muiTheme;
+
   return {
     root: {
       position: 'absolute',
@@ -19,6 +20,9 @@ function getStyles(props) {
       transform: `translate3d(${10000 + props.left}px, ${10000 + props.top}px, 0)`,
       opacity: props.status === 'hide' ? 0 : 1,
       transition: props.status === 'hide' ? transitions.create('all', '.3s', 'ease-out') : 'none',
+      boxShadow: refreshIndicator.shadow,
+      borderRadius: 90,
+      boxSizing: 'border-box',
     },
   };
 }
@@ -306,13 +310,12 @@ class RefreshIndicator extends Component {
     const styles = getStyles(this.props, this.context);
 
     return (
-      <Paper
-        circle={true}
+      <div
         style={Object.assign(styles.root, style)}
         ref="indicatorCt"
       >
         {this.renderChildren()}
-      </Paper>
+      </div>
     );
   }
 }

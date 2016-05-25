@@ -7,6 +7,7 @@ import callOnce from '../utils/callOnce';
 import rtl from '../utils/rtl';
 import compose from 'recompose/compose';
 import typography from './typography';
+import zDepthShadows from './zDepthShadows';
 import {
   red500, grey400, grey500, grey600, grey700,
   transparent, lightWhite, white, darkWhite, lightBlack, black,
@@ -27,6 +28,7 @@ export default function getMuiTheme(muiTheme, ...more) {
 
   const {spacing, fontFamily, palette} = muiTheme;
   const baseTheme = {spacing, fontFamily, palette};
+  const shadows = zDepthShadows(palette.shadowColor);
 
   muiTheme = merge({
     appBar: {
@@ -83,8 +85,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: fade(palette.textColor, 0.87),
       fontSize: 14,
       fontWeight: typography.fontWeightNormal,
-      shadow: `0 1px 6px ${fade(palette.shadowColor, 0.12)},
-        0 1px 4px ${fade(palette.shadowColor, 0.12)}`,
+      shadow: shadows[1],
     },
     datePicker: {
       color: palette.primary1Color,
@@ -124,6 +125,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       secondaryIconColor: palette.alternateTextColor,
       disabledTextColor: palette.disabledColor,
       disabledColor: emphasize(palette.canvasColor, 0.12),
+      zDepthShadows: shadows,
     },
     gridTile: {
       textColor: white,
@@ -168,16 +170,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     paper: {
       color: palette.textColor,
       backgroundColor: palette.canvasColor,
-      zDepthShadows: [
-        [1, 6, 0.12, 1, 4, 0.12],
-        [3, 10, 0.16, 3, 10, 0.23],
-        [10, 30, 0.19, 6, 10, 0.23],
-        [14, 45, 0.25, 10, 18, 0.22],
-        [19, 60, 0.30, 15, 20, 0.22],
-      ].map((d) => (
-        `0 ${d[0]}px ${d[1]}px ${fade(palette.shadowColor, d[2])},
-         0 ${d[3]}px ${d[4]}px ${fade(palette.shadowColor, d[5])}`
-      )),
+      zDepthShadows: shadows,
     },
     radioButton: {
       borderColor: palette.textColor,
@@ -200,10 +193,12 @@ export default function getMuiTheme(muiTheme, ...more) {
       disabledTextColor: fade(palette.textColor, 0.3),
       fontSize: typography.fontStyleButtonFontSize,
       fontWeight: typography.fontWeightMedium,
+      zDepthShadows: shadows,
     },
     refreshIndicator: {
       strokeColor: palette.borderColor,
       loadingStrokeColor: palette.primary1Color,
+      shadow: shadows[1],
     },
     ripple: {
       color: fade(palette.textColor, 0.87),
@@ -302,6 +297,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       labelColor: palette.textColor,
       labelDisabledColor: palette.disabledColor,
       trackRequiredColor: fade(palette.primary1Color, 0.5),
+      shadow: shadows[1],
     },
     toolbar: {
       color: fade(palette.textColor, 0.54),

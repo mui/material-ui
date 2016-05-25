@@ -84,7 +84,7 @@ describe('<Paper />', () => {
     );
 
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
-    assert.strictEqual(wrapper.prop('style').boxShadow, muiTheme.paper.zDepthShadows[zDepth - 1],
+    assert.strictEqual(wrapper.prop('style').boxShadow, muiTheme.paper.zDepthShadows[zDepth],
       'should have good zDepthShadows');
   });
 });

@@ -3,7 +3,6 @@ import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
-import Paper from '../Paper';
 
 function validateLabel(props, propName, componentName) {
   if (!props.children && !props.label && !props.icon) {
@@ -61,6 +60,7 @@ function getStyles(props, context, state) {
     root: {
       display: 'inline-block',
       transition: transitions.easeOut(),
+      boxShadow: raisedButton.zDepthShadows[state.zDepth],
     },
     button: {
       position: 'relative',
@@ -394,7 +394,7 @@ class RaisedButton extends Component {
     const enhancedButtonChildren = createChildFragment(childrenFragment);
 
     return (
-      <Paper
+      <div
         className={className}
         style={Object.assign(styles.root, this.props.style)}
         zDepth={this.state.zDepth}
@@ -417,7 +417,7 @@ class RaisedButton extends Component {
             {enhancedButtonChildren}
           </div>
         </EnhancedButton>
-      </Paper>
+      </div>
     );
   }
 }

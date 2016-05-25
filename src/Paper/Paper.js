@@ -23,7 +23,7 @@ function getStyles(props, context) {
       boxSizing: 'border-box',
       fontFamily: baseTheme.fontFamily,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      boxShadow: paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
+      boxShadow: paper.zDepthShadows[zDepth],
       borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
     },
   };

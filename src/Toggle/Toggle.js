@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
-import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 
 function getStyles(props, context, state) {
@@ -23,9 +22,6 @@ function getStyles(props, context, state) {
       left: -10,
       color: state.switched ? toggle.thumbOnColor : baseTheme.palette.textColor,
     },
-    toggleElement: {
-      width: toggleTrackWidth,
-    },
     track: {
       transition: transitions.easeOut(),
       width: '100%',
@@ -43,6 +39,7 @@ function getStyles(props, context, state) {
       lineHeight: '24px',
       borderRadius: '50%',
       backgroundColor: toggle.thumbOffColor,
+      boxShadow: toggle.shadow,
     },
     trackWhenSwitched: {
       backgroundColor: toggle.trackOnColor,
@@ -177,7 +174,6 @@ class Toggle extends Component {
       ...other,
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     const trackStyles = Object.assign({},
@@ -198,18 +194,6 @@ class Toggle extends Component {
       thumbStyles.marginLeft = 0 - thumbStyles.width;
     }
 
-    const toggleElementStyles = Object.assign({},
-      styles.toggleElement,
-      this.props.elementStyle
-    );
-
-    const toggleElement = (
-      <div style={prepareStyles(Object.assign({}, toggleElementStyles))}>
-        <div style={prepareStyles(Object.assign({}, trackStyles))} />
-        <Paper style={thumbStyles} circle={true} zDepth={1} />
-      </div>
-    );
-
     const rippleStyle = Object.assign({},
       styles.ripple,
       this.props.rippleStyle
@@ -228,7 +212,7 @@ class Toggle extends Component {
     const enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'checkbox',
-      switchElement: toggleElement,
+      switchElement: <div />,
       rippleStyle: rippleStyle,
       rippleColor: rippleStyle.color,
       iconStyle: iconStyle,
