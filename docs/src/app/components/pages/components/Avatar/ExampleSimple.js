@@ -16,12 +16,16 @@ purple500,
 
 const style = {margin: 5};
 
+/**
+ * Examples of `Avatar` using an image, [Font Icon](/#/components/font-icon), [SVG Icon](/#/components/svg-icon)
+ * and "Letter" (string), with and without custom colors at the default size (`40dp`) and an alternate size (`30dp`).
+ */
 const AvatarExampleSimple = () => (
   <List>
     <ListItem
       disabled={true}
       leftAvatar={
-        <Avatar src="images/uxceo-128.jpg" />
+        <Avatar src="images/kerem-128.jpg" />
       }
     >
       Image Avatar
@@ -30,7 +34,7 @@ const AvatarExampleSimple = () => (
       disabled={true}
       leftAvatar={
         <Avatar
-          src="images/uxceo-128.jpg"
+          src="images/kerem-128.jpg"
           size={30}
           style={style}
         />

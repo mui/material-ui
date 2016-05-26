@@ -5,23 +5,40 @@ function getStyles(props, context) {
     backgroundColor,
     color,
     size,
-    src,
   } = props;
 
   const {avatar} = context.muiTheme;
 
   const styles = {
     root: {
+      position: 'absolute',
       color: color || avatar.color,
       backgroundColor: backgroundColor || avatar.backgroundColor,
       userSelect: 'none',
-      display: 'inline-block',
-      textAlign: 'center',
-      lineHeight: `${size}px`,
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       fontSize: size / 2,
       borderRadius: '50%',
       height: size,
       width: size,
+    },
+    image: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      height: '100%',
+      width: '100%',
+      borderRadius: '50%',
+    },
+    border: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      borderRadius: '50%',
+      boxShadow: `inset 0px 0px 0px 0.5px ${avatar.borderColor}`,
+      height: '100%',
+      width: '100%',
     },
     icon: {
       color: color || avatar.color,
@@ -31,17 +48,6 @@ function getStyles(props, context) {
       margin: size * 0.2,
     },
   };
-
-  if (src && avatar.borderColor) {
-    Object.assign(styles.root, {
-      background: `url(${src})`,
-      backgroundSize: size,
-      backgroundOrigin: 'border-box',
-      border: `solid 1px ${avatar.borderColor}`,
-      height: size - 2,
-      width: size - 2,
-    });
-  }
 
   return styles;
 }
@@ -106,11 +112,15 @@ class Avatar extends Component {
 
     if (src) {
       return (
-        <div
-          {...other}
-          style={prepareStyles(Object.assign(styles.root, style))}
-          className={className}
-        />
+        <div style={prepareStyles(Object.assign(styles.root, style))}>
+          <img
+            style={prepareStyles(styles.image)}
+            {...other}
+            src={src}
+            className={className}
+          />
+          <div style={prepareStyles(styles.border)}></div>
+        </div>
       );
     } else {
       return (
