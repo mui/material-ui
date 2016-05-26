@@ -102,6 +102,11 @@ class DropDownMenu extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * Overrides the styles of left icon element.
+     */
+    leftIconStyle: React.PropTypes.object,
+
+    /**
      * The style object to use to override underlying list style.
      */
     listStyle: PropTypes.object,
@@ -125,6 +130,11 @@ class DropDownMenu extends Component {
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
+    /**
+     * Overrides the styles of right icon element.
+     */
+    rightIconStyle: React.PropTypes.object,
+
     /**
      * Override the inline-styles of the root element.
      */
@@ -235,6 +245,8 @@ class DropDownMenu extends Component {
       children,
       className,
       iconStyle,
+      leftIconStyle,
+      rightIconStyle,
       labelStyle,
       listStyle,
       maxHeight,
@@ -253,11 +265,23 @@ class DropDownMenu extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
+    let displayLeftIcon = '';
+    let displayRightIcon = '';
     let displayValue = '';
     React.Children.forEach(children, (child) => {
       if (value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
+
+        if (child.props.leftIcon) {
+          const mergedLeftIconStyles = Object.assign({}, leftIconStyle, child.props.leftIcon.style);
+          displayLeftIcon = React.cloneElement(child.props.leftIcon, {style: mergedLeftIconStyles});
+        }
+
+        if (child.props.rightIcon) {
+          const mergedRightIconStyles = Object.assign({}, rightIconStyle, child.props.rightIcon.style);
+          displayRightIcon = React.cloneElement(child.props.rightIcon, {style: mergedRightIconStyles});
+        }
       }
     });
 
@@ -281,7 +305,7 @@ class DropDownMenu extends Component {
           <div
             style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
           >
-            {displayValue}
+            {displayLeftIcon}{displayValue}{displayRightIcon}
           </div>
           <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)} />
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
