@@ -40,6 +40,12 @@ class DatePicker extends Component {
      */
     defaultDate: PropTypes.object,
     /**
+     * This is the initial value of the TextField component.
+     * If `value`, `valueLink`, or `defaultDate` is provided they will override
+     * this prop with `value` taking precedence.
+     */
+    defaultTextFieldValue: PropTypes.string,
+    /**
      * Disables the year selection in the date picker.
      */
     disableYearSelection: PropTypes.bool,
@@ -141,6 +147,7 @@ class DatePicker extends Component {
   static defaultProps = {
     autoOk: false,
     container: 'dialog',
+    defaultTextFieldValue: '',
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
@@ -264,6 +271,7 @@ class DatePicker extends Component {
       className,
       container,
       defaultDate, // eslint-disable-line no-unused-vars
+      defaultTextFieldValue,
       disableYearSelection,
       firstDayOfWeek,
       locale,
@@ -293,7 +301,7 @@ class DatePicker extends Component {
           onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : ''}
+          value={this.state.date ? formatDate(this.state.date) : defaultTextFieldValue}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
