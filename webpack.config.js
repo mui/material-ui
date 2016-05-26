@@ -20,12 +20,6 @@ module.exports = {
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom'
-      },
-      'react-tap-event-plugin': {
-        root: 'injectTapEventPlugin',
-        commonjs2: 'react-tap-event-plugin',
-        commonjs: 'react-tap-event-plugin',
-        amd: 'react-tap-event-plugin'
       }
     }
   ],
