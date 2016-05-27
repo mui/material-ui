@@ -78,7 +78,6 @@ class TimePicker extends Component {
      * Sets the time for the Time Picker programmatically.
      */
     value: PropTypes.object,
-
   };
 
   static defaultProps = {
@@ -155,15 +154,21 @@ class TimePicker extends Component {
 
   handleFocusInput = (event) => {
     event.target.blur();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleTouchTapInput = (event) => {
     event.preventDefault();
 
-    if (!this.props.disabled) this.openDialog();
+    if (!this.props.disabled) {
+      this.openDialog();
+    }
 
-    if (this.props.onTouchTap) this.props.onTouchTap(event);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
   };
 
   isControlled() {
