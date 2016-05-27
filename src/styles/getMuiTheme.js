@@ -39,7 +39,6 @@ export default function getMuiTheme(muiTheme, ...more) {
     avatar: {
       color: palette.canvasColor,
       backgroundColor: emphasize(palette.canvasColor, 0.26),
-      borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
       color: palette.alternateTextColor,
