@@ -34,7 +34,7 @@ function getStyles(props, context) {
 
   if (src && avatar.borderColor) {
     Object.assign(styles.root, {
-      background: `url(${src})`,
+      backgroundImage: `url(${src})`,
       backgroundSize: size,
       backgroundOrigin: 'border-box',
       border: `solid 1px ${avatar.borderColor}`,

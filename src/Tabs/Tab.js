@@ -9,9 +9,10 @@ function getStyles(props, context) {
       color: props.selected ? tabs.selectedTextColor : tabs.textColor,
       fontWeight: 500,
       fontSize: 14,
-      width: props.width,
+      width: props.width || 'auto',
       textTransform: 'uppercase',
-      padding: 0,
+      paddingLeft: 12,
+      paddingRight: 12,
     },
     button: {
       display: 'flex',
@@ -62,6 +63,10 @@ class Tab extends Component {
      */
     style: PropTypes.object,
     /**
+     * Index of tab
+     */
+    tabIndex: React.PropTypes.number,
+    /**
      * If value prop passed to Tabs component, this value prop is also required.
      * It assigns a value to the tab so that it can be selected by the Tabs.
      */
@@ -70,7 +75,7 @@ class Tab extends Component {
      * @ignore
      * This property is overriden by the Tabs component.
      */
-    width: PropTypes.string,
+    width: PropTypes.number,
   };
 
   static contextTypes = {
@@ -129,7 +134,7 @@ class Tab extends Component {
         touchRippleOpacity={rippleOpacity}
         onTouchTap={this.handleTouchTap}
       >
-        <div style={styles.button} >
+        <div style={styles.button}>
           {iconElement}
           {label}
         </div>

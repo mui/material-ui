@@ -59,9 +59,10 @@ class Toolbar extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
+    const toolbarStyle = Object.assign({}, styles.root, style);
 
     return (
-      <div {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      <div {...other} className={className} style={prepareStyles(toolbarStyle)}>
         {children}
       </div>
     );

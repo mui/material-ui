@@ -26,11 +26,13 @@ function getStyles(props, context, state) {
       bottom: 0,
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
+      opacity: open ? 1 : 0,
       transform: open ?
         'translate3d(0, 0, 0)' :
         `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
-        transitions.easeOut('400ms', 'visibility')}`,
+        transitions.easeOut('400ms', 'visibility')}, ${
+        transitions.easeOut('400ms', 'opacity')}`,
     },
   };
 
@@ -116,7 +118,7 @@ class Snackbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.state.open && nextProps.open === this.props.open &&
-        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
+      (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
         open: false,
       });
