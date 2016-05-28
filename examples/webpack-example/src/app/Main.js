@@ -2,8 +2,7 @@
  * In this file, we create a React component
  * which incorporates components providedby material-ui.
  */
-
-import React from 'react';
+import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import {deepOrange500} from 'material-ui/styles/colors';
@@ -24,9 +23,10 @@ const muiTheme = getMuiTheme({
   },
 });
 
-class Main extends React.Component {
+class Main extends Component {
   constructor(props, context) {
     super(props, context);
+
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
 
@@ -51,7 +51,7 @@ class Main extends React.Component {
     const standardActions = (
       <FlatButton
         label="Ok"
-        secondary={true}
+        primary={true}
         onTouchTap={this.handleRequestClose}
       />
     );
@@ -67,11 +67,11 @@ class Main extends React.Component {
           >
             1-2-3-4-5
           </Dialog>
-          <h1>material-ui</h1>
+          <h1>Material-UI</h1>
           <h2>example project</h2>
           <RaisedButton
             label="Super Secret Password"
-            primary={true}
+            secondary={true}
             onTouchTap={this.handleTouchTap}
           />
         </div>
