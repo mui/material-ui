@@ -114,6 +114,10 @@ class DropDownMenu extends Component {
      */
     menuStyle: PropTypes.object,
     /**
+     * Callback function fired when a menu is closed with new value selection or just click outside menu.
+     */
+    onClose: PropTypes.func,
+    /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
      * @param {object} event TouchTap event targeting the menu item that was clicked.
@@ -216,6 +220,10 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
@@ -223,6 +231,9 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
