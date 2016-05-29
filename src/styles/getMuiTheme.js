@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
