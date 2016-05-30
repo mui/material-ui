@@ -75,21 +75,27 @@ class CalendarYear extends Component {
   render() {
     const years = this.getYears();
     const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
+    const {prepareStyles} = this.context.muiTheme;
     const styles = {
-      backgroundColor: backgroundColor,
-      height: 'inherit',
-      lineHeight: '35px',
-      overflowX: 'hidden',
-      overflowY: 'scroll',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
+      root: {
+        backgroundColor: backgroundColor,
+        height: 'inherit',
+        lineHeight: '35px',
+        overflowX: 'hidden',
+        overflowY: 'scroll',
+        position: 'relative',
+      },
+      child: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        minHeight: '100%',
+      },
     };
 
     return (
-      <div style={styles}>
-        <div>
+      <div style={prepareStyles(styles.root)}>
+        <div style={prepareStyles(styles.child)}>
           {years}
         </div>
       </div>
