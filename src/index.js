@@ -28,6 +28,7 @@ export ListItem from './List/ListItem';
 export MakeSelectable from './List/MakeSelectable';
 export Menu from './Menu';
 export MenuItem from './MenuItem';
+export MuiThemeProvider from './styles/MuiThemeProvider';
 export Paper from './Paper';
 export Popover from './Popover';
 export RadioButton from './RadioButton';
