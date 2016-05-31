@@ -123,8 +123,8 @@ class RadioButton extends Component {
   };
 
   // Only called when selected, not when unselected.
-  handleSwitch = (event) => {
-    if (this.props.onCheck) this.props.onCheck(event, this.props.value);
+  handleSwitch = (event, isInputChecked) => {
+    if (this.props.onCheck && isInputChecked) this.props.onCheck(event, this.props.value);
   };
 
   isChecked() {
