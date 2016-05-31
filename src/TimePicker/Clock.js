@@ -125,6 +125,7 @@ class Clock extends Component {
         height: 280,
         padding: 10,
         position: 'relative',
+        boxSizing: 'content-box',
       },
       circle: {
         position: 'absolute',
