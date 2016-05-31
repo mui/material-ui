@@ -10,6 +10,10 @@ const items = [
   <MenuItem key={5} value={5} primaryText="Weekly" />,
 ];
 
+/**
+ * The `errorText` property displays an error message below the Select Field. This can be customised with the
+ * `errorStyle` property.
+ */
 export default class SelectFieldExampleError extends React.Component {
 
   constructor(props) {
