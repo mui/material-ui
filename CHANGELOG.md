@@ -1,5 +1,8 @@
 ## HEAD
 
+##### Breaking Changes
+- [SelectField] Move {...other} spread props from DropDownMenu to Textfield as part of (#4392)
+
 ## 0.15.0
 ###### _May 5, 2016_
 

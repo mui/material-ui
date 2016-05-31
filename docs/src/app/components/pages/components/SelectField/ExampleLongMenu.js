@@ -7,6 +7,10 @@ for (let i = 0; i < 100; i++ ) {
   items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
 }
 
+/**
+ * With the `maxHeight` property set, the Select Field will be scrollable if the number of items causes the height to
+ * exceed this limit.
+ */
 export default class DropDownMenuLongMenuExample extends React.Component {
 
   constructor(props) {

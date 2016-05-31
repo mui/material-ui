@@ -45,6 +45,10 @@ class SelectField extends Component {
      */
     errorText: PropTypes.node,
     /**
+     * If true, the floating label will float even when no value is selected.
+     */
+    floatingLabelFixed: PropTypes.bool,
+    /**
      * Override the inline-styles of the floating label.
      */
     floatingLabelStyle: PropTypes.object,
@@ -150,6 +154,7 @@ class SelectField extends Component {
       errorStyle,
       selectFieldRoot,
       disabled,
+      floatingLabelFixed,
       floatingLabelText,
       floatingLabelStyle,
       hintStyle,
@@ -168,6 +173,7 @@ class SelectField extends Component {
     return (
       <TextField
         style={style}
+        floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
         hintStyle={hintStyle}
@@ -181,6 +187,7 @@ class SelectField extends Component {
         id={id}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
+        {...other}
       >
         <DropDownMenu
           disabled={disabled}
@@ -191,7 +198,6 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
-          {...other}
         >
           {children}
         </DropDownMenu>
