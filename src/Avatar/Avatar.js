@@ -11,7 +11,6 @@ function getStyles(props, context) {
 
   const styles = {
     root: {
-      position: 'absolute',
       color: color || avatar.color,
       backgroundColor: backgroundColor || avatar.backgroundColor,
       userSelect: 'none',
