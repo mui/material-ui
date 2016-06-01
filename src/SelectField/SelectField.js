@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
+import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props) {
   return {
@@ -14,6 +15,9 @@ function getStyles(props) {
     },
     hideDropDownUnderline: {
       borderTop: 'none',
+    },
+    dropDownMenu: {
+      display: 'block',
     },
   };
 }
@@ -77,6 +81,10 @@ class SelectField extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * Override the inline-styles of the underlying `DropDownMenu` element.
+     */
+    menuStyle: PropTypes.object,
+    /**
      * Callback function fired when the select field loses focus.
      *
      * @param {object} event `blur` event targeting the select field.
@@ -100,8 +108,8 @@ class SelectField extends Component {
     /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
-    selectFieldRoot: PropTypes.object, // Must be changed!
-
+    selectFieldRoot: deprecated(PropTypes.object,
+      'Instead, use `menuStyle`.'),
     /**
      * Override the inline-styles of the root element.
      */
@@ -156,6 +164,7 @@ class SelectField extends Component {
       hintText,
       fullWidth,
       errorText,
+      menuStyle,
       onFocus,
       onBlur,
       onChange,
@@ -184,7 +193,7 @@ class SelectField extends Component {
       >
         <DropDownMenu
           disabled={disabled}
-          style={selectFieldRoot}
+          style={Object.assign(styles.dropDownMenu, selectFieldRoot, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
           underlineStyle={styles.hideDropDownUnderline}
