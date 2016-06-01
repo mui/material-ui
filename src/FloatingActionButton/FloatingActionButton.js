@@ -3,12 +3,11 @@ import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
-import Paper from '../Paper';
 import {extendChildren} from '../utils/childUtils';
 import warning from 'warning';
 import propTypes from '../utils/propTypes';
 
-function getStyles(props, context) {
+function getStyles(props, context, state) {
   const {floatingActionButton} = context.muiTheme;
 
   let backgroundColor = props.backgroundColor || floatingActionButton.color;
@@ -26,6 +25,8 @@ function getStyles(props, context) {
     root: {
       transition: transitions.easeOut(),
       display: 'inline-block',
+      boxShadow: floatingActionButton.zDepthShadows[state.zDepth],
+      borderRadius: '50%',
     },
     container: {
       backgroundColor,
@@ -255,7 +256,7 @@ class FloatingActionButton extends Component {
       ...other} = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
+    const styles = getStyles(this.props, this.context, this.state);
 
     let iconElement;
     if (iconClassName) {
@@ -288,11 +289,9 @@ class FloatingActionButton extends Component {
     };
 
     return (
-      <Paper
+      <div
         className={className}
         style={Object.assign(styles.root, this.props.style)}
-        zDepth={this.state.zDepth}
-        circle={true}
       >
         <EnhancedButton
           {...other}
@@ -318,7 +317,7 @@ class FloatingActionButton extends Component {
             {children}
           </div>
         </EnhancedButton>
-      </Paper>
+      </div>
     );
   }
 }

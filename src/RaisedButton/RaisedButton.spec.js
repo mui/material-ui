@@ -15,11 +15,11 @@ describe('<RaisedButton />', () => {
   const mountWithContext = (node) => mount(node, {context: {muiTheme}});
   const testChildren = <span className="unique">Hello World</span>;
 
-  it('renders an enhanced button inside paper', () => {
+  it('renders an enhanced button inside a div', () => {
     const wrapper = shallowWithContext(
       <RaisedButton>Button</RaisedButton>
     );
-    assert.ok(wrapper.is('Paper'));
+    assert.ok(wrapper.is('div'));
     assert.ok(wrapper.childAt(0).is('EnhancedButton'));
   });
 

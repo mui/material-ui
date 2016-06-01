@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import RenderToLayer from '../internal/RenderToLayer';
 import propTypes from '../utils/propTypes';
-import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
@@ -164,16 +163,6 @@ class Popover extends Component {
 
     let Animation = animation || PopoverAnimationDefault;
     let styleRoot = style;
-
-    if (!Animation) {
-      Animation = Paper;
-      styleRoot = {
-        position: 'fixed',
-      };
-      if (!this.state.open) {
-        return null;
-      }
-    }
 
     return (
       <Animation {...other} style={styleRoot} open={this.state.open && !this.state.closing}>
