@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import getMuiTheme from '../styles/getMuiTheme';
 import warning from 'warning';
 
