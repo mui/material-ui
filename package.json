@@ -21,9 +21,10 @@
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
-    "build": "npm run build:icon-index && npm run build:babel && npm run build:copy-files",
+    "build": "npm run build:icon-index && npm run build:babel-icons && npm run build:babel-src && npm run build:copy-files",
     "build:icon-index": "babel-node ./scripts/icon-index-generator.js",
-    "build:babel": "babel ./src --ignore *.spec.js --out-dir ./build",
+    "build:babel-icons": "babel ./src --ignore *.spec.js --only svg-icons --out-dir ./build",
+    "build:babel-src": "babel ./src --ignore svg-icons,*.spec.js --out-dir ./build",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
     "lint": "eslint src docs/src test/integration && echo \"eslint: no lint errors\"",
