@@ -30,6 +30,11 @@ class TableBody extends Component {
      */
     displayRowCheckbox: PropTypes.bool,
     /**
+     * Controls if the border is set on a tbody.
+     * Used to override the border when there are multiple tbody elements.
+     */
+    lastTableBody: PropTypes.bool,
+    /**
      * @ignore
      * If true, multiple table rows can be selected.
      * CTRL/CMD+Click and SHIFT+Click are valid actions.
@@ -172,7 +177,7 @@ class TableBody extends Component {
         };
         const checkboxColumn = this.createRowCheckboxColumn(props);
 
-        if (rowNumber === numChildren) {
+        if (rowNumber === numChildren && this.props.lastTableBody) {
           props.displayBorder = false;
         }
 

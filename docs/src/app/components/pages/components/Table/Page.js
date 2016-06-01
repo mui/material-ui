@@ -8,6 +8,9 @@ import MarkdownElement from '../../../MarkdownElement';
 import tableReadmeText from './README';
 import TableExampleSimple from './ExampleSimple';
 import tableExampleSimpleCode from '!raw!./ExampleSimple';
+import TableExampleMulti from './ExampleMulti';
+import tableExampleMultiCode from '!raw!./ExampleMulti';
+
 import TableExampleComplex from './ExampleComplex';
 import tableExampleComplexCode from '!raw!./ExampleComplex';
 
@@ -21,6 +24,8 @@ import tableFooterCode from '!raw!material-ui/Table/TableFooter';
 
 const descriptions = {
   simple: 'A simple table demonstrating the hierarchy of the `Table` component and its sub-components.',
+  multi: 'A table with multiple TBody elements. Multiple TBody elements require a unique `key` be passed to each. ' +
+    'Multi-selection is currently grouped to each tbody.',
   complex: 'A more complex example, allowing the table height to be set, and key boolean properties to be toggled.',
 };
 
@@ -34,6 +39,13 @@ const TablePage = () => (
       code={tableExampleSimpleCode}
     >
       <TableExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Multiple TBody example"
+      description={descriptions.multi}
+      code={tableExampleMultiCode}
+    >
+      <TableExampleMulti />
     </CodeExample>
     <CodeExample
       title="Complex example"

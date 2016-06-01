@@ -160,11 +160,12 @@ class Table extends Component {
     );
   }
 
-  createTableBody(base) {
+  createTableBody(base, lastTableBody) {
     return React.cloneElement(
       base,
       {
         allRowsSelected: this.state.allRowsSelected,
+        lastTableBody: lastTableBody,
         multiSelectable: this.props.multiSelectable,
         onCellClick: this.onCellClick,
         onCellHover: this.onCellHover,
@@ -239,19 +240,28 @@ class Table extends Component {
     let tFoot;
     let tBody;
 
+    const tBodies = React.Children.toArray(children).filter((child) => {
+      if (!React.isValidElement(child)) return;
+
+      return (child.type.muiName === 'TableBody');
+    });
+
+    tBodies.forEach((child, index) => {
+      const lastElement = (index === tBodies.length - 1);
+
+      if (index === 0) {
+        tBody = this.createTableBody(child, lastElement);
+      } else {
+        const singleTBody = this.createTableBody(child, lastElement);
+        tBody = [].concat(tBody, singleTBody);
+      }
+    });
+
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
 
       const {muiName} = child.type;
-      if (muiName === 'TableBody') {
-        tBody = this.createTableBody(child);
-        let singleTBody = this.createTableBody(child);
-        if (tBody) {
-          tBody.push(singleTBody);
-        } else {
-          tBody = [singleTBody];
-        }
-      } else if (muiName === 'TableHeader') {
+      if (muiName === 'TableHeader') {
         tHead = this.createTableHeader(child);
       } else if (muiName === 'TableFooter') {
         tFoot = this.createTableFooter(child);
