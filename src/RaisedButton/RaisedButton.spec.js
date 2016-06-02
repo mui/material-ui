@@ -104,6 +104,17 @@ describe('<RaisedButton />', () => {
     );
   });
 
+  it('if an svg icon is provided, renders the icon with the correct color', () => {
+    const icon = <svg color="red" />;
+    const wrapper = shallowWithContext(
+      <RaisedButton icon={icon} />
+    );
+
+    const svgIcon = wrapper.find('svg');
+    assert.strictEqual(svgIcon.length, 1, 'should have an svg icon');
+    assert.strictEqual(svgIcon.node.props.color, 'red', 'should have color set as the prop');
+  });
+
   describe('propTypes', () => {
     let consoleStub;
 
