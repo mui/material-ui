@@ -7,6 +7,8 @@ export const LARGE = 3;
 
 export default function withWidth(options = {}) {
   const {
+    largeWidth = 992,
+    mediumWidth = 768,
     resizeInterval = 166,
   } = options;
 
@@ -39,9 +41,9 @@ export default function withWidth(options = {}) {
         const innerWidth = window.innerWidth;
         let width;
 
-        if (innerWidth >= 992) {
+        if (innerWidth >= largeWidth) {
           width = LARGE;
-        } else if (innerWidth >= 768) {
+        } else if (innerWidth >= mediumWidth) {
           width = MEDIUM;
         } else { // innerWidth < 768
           width = SMALL;
