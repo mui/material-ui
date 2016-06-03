@@ -47,6 +47,7 @@ const getStyles = (props, context, state) => {
     },
     floatingLabel: {
       color: hintColor,
+      pointerEvents: 'none',
     },
     input: {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
