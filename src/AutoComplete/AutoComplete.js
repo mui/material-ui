@@ -259,13 +259,18 @@ class AutoComplete extends Component {
     const index = parseInt(child.key, 10);
     const chosenRequest = dataSource[index];
     const searchText = typeof chosenRequest === 'string' ? chosenRequest : chosenRequest.text;
+    const prevSearchText = this.props.searchText;
 
     this.props.onNewRequest(chosenRequest, index);
 
     this.timerTouchTapCloseId = setTimeout(() => {
-      this.setState({
-        searchText: searchText,
-      });
+      // Replace 'searchText' only if there were no changes since the item was selected.
+      if (prevSearchText === this.props.searchText) {
+        this.setState({
+          searchText: searchText,
+        });
+      }
+
       this.close();
       this.timerTouchTapCloseId = null;
     }, this.props.menuCloseDelay);
