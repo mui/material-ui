@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     'babel',
     'react',
+    'mocha',
     'material-ui',
   ],
   rules: {
@@ -128,5 +129,11 @@ module.exports = {
 
     // Material-UI
     'material-ui/docgen-ignore-before-comment': 'error',
+
+    'mocha/handle-done-callback': 'error',
+    'mocha/no-exclusive-tests': 'error',
+    'mocha/no-global-tests': 'error',
+    'mocha/no-pending-tests': 'error',
+    'mocha/no-skipped-tests': 'error',
   },
 };
