@@ -1,5 +1,5 @@
 import {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
+import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
 import Dom from '../utils/dom';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
@@ -69,7 +69,7 @@ class RenderToLayer extends Component {
       window.removeEventListener('click', this.onClickAway);
     }
 
-    ReactDOM.unmountComponentAtNode(this.layer);
+    unmountComponentAtNode(this.layer);
     document.body.removeChild(this.layer);
     this.layer = null;
   }
@@ -102,18 +102,15 @@ class RenderToLayer extends Component {
         }
       }
 
-      // By calling this method in componentDidMount() and
-      // componentDidUpdate(), you're effectively creating a "wormhole" that
-      // funnels React's hierarchical updates through to a DOM node on an
-      // entirely different part of the page.
+      /**
+       * By calling this method in componentDidMount() and
+       * componentDidUpdate(), you're effectively creating a "wormhole" that
+       * funnels React's hierarchical updates through to a DOM node on an
+       * entirely different part of the page.
+       */
 
       const layerElement = render();
-
-      if (layerElement === null) {
-        this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, null, this.layer);
-      } else {
-        this.layerElement = ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
-      }
+      this.layerElement = unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
     } else {
       this.unrenderLayer();
     }
