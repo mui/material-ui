@@ -115,7 +115,7 @@ class Snackbar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.open && nextProps.open === this.props.open &&
+    if (this.props.open && nextProps.open &&
         (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
       this.setState({
         open: false,

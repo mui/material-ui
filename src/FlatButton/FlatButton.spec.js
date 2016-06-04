@@ -2,6 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
+import {stub} from 'sinon';
 import FlatButton from './FlatButton';
 import getMuiTheme from '../styles/getMuiTheme';
 import ActionAndroid from '../svg-icons/action/android';
@@ -147,5 +148,35 @@ describe('<FlatButton />', () => {
     );
     assert.strictEqual(wrapper.node.props.focusRippleColor, 'yellow', 'should be yellow');
     assert.strictEqual(wrapper.node.props.touchRippleColor, 'yellow', 'should be yellow');
+  });
+
+  describe('propTypes', () => {
+    let consoleStub;
+
+    beforeEach(() => {
+      consoleStub = stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore(); // eslint-disable-line no-console
+    });
+
+    it('should throw when using wrong properties', () => {
+      shallowWithContext(
+        <FlatButton />
+      );
+      assert.strictEqual(consoleStub.callCount, 1);
+      assert.strictEqual(
+        consoleStub.args[0][0],
+        'Warning: Failed propType: Required prop label or children or icon was not specified in FlatButton.'
+      );
+    });
+
+    it('should not throw when using a valid properties', () => {
+      shallowWithContext(
+        <FlatButton label={0} />
+      );
+      assert.strictEqual(consoleStub.callCount, 0);
+    });
   });
 });

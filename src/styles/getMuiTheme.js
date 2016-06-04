@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
@@ -39,7 +39,6 @@ export default function getMuiTheme(muiTheme, ...more) {
     avatar: {
       color: palette.canvasColor,
       backgroundColor: emphasize(palette.canvasColor, 0.26),
-      borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
       color: palette.alternateTextColor,

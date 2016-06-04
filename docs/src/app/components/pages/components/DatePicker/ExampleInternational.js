@@ -16,14 +16,14 @@ if (areIntlLocalesSupported(['fr'])) {
 }
 
 /**
- *  localised: '`DatePicker` can be localised using the `locale` property. The first example is localised in French.
+ *  `DatePicker` can be localised using the `locale` property. The first example is localised in French.
  *  Note that the buttons must be separately localised using the `cancelLabel` and `okLabel` properties.
  *
  *  The second example shows `firstDayOfWeek` set to `0`, (Sunday), and `locale` to `en-US` which matches the
  *  behavior of the Date Picker prior to 0.15.0. Note that the 'en-US' locale is built in, and so does not require
- *  `DateTimeFormat' to be supplied.
+ *  `DateTimeFormat` to be supplied.
  *
- *  The final example displays the resulting date in a custom format using the `formatDate` property.',
+ *  The final example displays the resulting date in a custom format using the `formatDate` property.
  */
 const DatePickerExampleInternational = () => (
   <div>
