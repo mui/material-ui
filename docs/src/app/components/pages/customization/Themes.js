@@ -3,7 +3,7 @@ import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import withWidth, {MEDIUM} from 'material-ui/utils/withWidth';
+import withWidth, {SMALL} from 'material-ui/utils/withWidth';
 import typography from 'material-ui/styles/typography';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import themesText from './themes.md';
@@ -59,12 +59,17 @@ class ThemesPage extends Component {
   }
 
   getStyles() {
-    const canvasColor = this.props.muiTheme.baseTheme.palette.canvasColor;
-    const borderColor = this.props.muiTheme.baseTheme.palette.borderColor;
+    const {
+      muiTheme,
+      width,
+    } = this.props;
+
+    const canvasColor = muiTheme.baseTheme.palette.canvasColor;
+    const borderColor = muiTheme.baseTheme.palette.borderColor;
     const styles = {
       group: {
         float: 'left',
-        width: '100%',
+        width: width === SMALL ? '100%' : '33%',
         marginTop: '16px',
         padding: '0 50px',
         boxSizing: 'border-box',
@@ -113,10 +118,6 @@ class ThemesPage extends Component {
         paddingBottom: '10px',
       },
     };
-
-    if (this.props.width === MEDIUM) {
-      styles.group.width = '33%';
-    }
 
     styles.containerCentered = Object.assign({}, styles.container, styles.containerCentered);
     styles.groupSlider = Object.assign({}, styles.group, styles.groupSlider);
