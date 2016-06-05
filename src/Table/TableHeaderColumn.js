@@ -36,10 +36,7 @@ class TableHeaderColumn extends Component {
      * is automatically populated when used with TableHeader.
      */
     columnNumber: PropTypes.number,
-    /**
-     * @ignore
-     * Callback function for click event.
-     */
+    /** @ignore */
     onClick: PropTypes.func,
     /**
      * Override the inline-styles of the root element.

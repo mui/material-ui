@@ -182,9 +182,7 @@ class TextField extends Component {
      * Name applied to the input.
      */
     name: PropTypes.string,
-    /**
-     * Callback function that is fired when the textfield loses focus.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the textfield's value changes.
@@ -195,13 +193,9 @@ class TextField extends Component {
      */
     onEnterKeyDown: deprecated(PropTypes.func,
       'Use onKeyDown and check for keycode instead.'),
-    /**
-     * Callback function that is fired when the textfield gains focus.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Callback function fired when key is pressed down.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * Number of rows to display when multiLine option is set to true.

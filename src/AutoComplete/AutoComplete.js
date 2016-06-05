@@ -118,21 +118,11 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Callback function that is fired when the `TextField` loses focus.
-     *
-     * @param {object} event `blur` event targeting the `TextField`.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
-    /**
-     * Callback function that is fired when the `TextField` gains focus.
-     *
-     * @param {object} event `focus` event targeting the `TextField`.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Callback function that is fired when the `TextField` receives a keydown event.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.

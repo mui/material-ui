@@ -19,13 +19,9 @@ class SvgIcon extends Component {
      * This is the icon color when the mouse hovers over the icon.
      */
     hoverColor: PropTypes.string,
-    /**
-     * Function called when mouse enters this element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Function called when mouse leaves this element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
      * Override the inline-styles of the root element.

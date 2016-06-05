@@ -88,11 +88,7 @@ class SelectField extends Component {
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Callback function fired when the select field loses focus.
-     *
-     * @param {object} event `blur` event targeting the select field.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function fired when a menu item is selected.
@@ -103,11 +99,7 @@ class SelectField extends Component {
      * @param {any} payload The `value` prop of the selected menu item.
      */
     onChange: PropTypes.func,
-    /**
-     * Callback function fired when the select field gains focus.
-     *
-     * @param {object} event `focus` event targeting the select field.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
     /**
      * Override the inline-styles of the underlying `DropDownMenu` element.

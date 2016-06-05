@@ -99,8 +99,6 @@ class DatePicker extends Component {
     onDismiss: PropTypes.func,
     /**
      * Callback function that is fired when the Date Picker's `TextField` gains focus.
-     *
-     * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: PropTypes.func,
     /**
