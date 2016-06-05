@@ -151,6 +151,13 @@ class AutoComplete extends Component {
      */
     onUpdateInput: PropTypes.func,
     /**
+     * This function is called to retrieve the text from the `chosenRequest` and should return a string.
+     * By default, if the `chosenRequest` is a string, that will be used.
+     * Otherwise the key specified in `dataSourceConfig.text` will be returned
+     * for the `chosenRequest`.
+     */
+    chosenRequestText: PropTypes.func,
+    /**
      * Auto complete menu is open if true.
      */
     open: PropTypes.bool,
@@ -286,7 +293,9 @@ class AutoComplete extends Component {
   };
 
   chosenRequestText = (chosenRequest) => {
-    if (typeof chosenRequest === 'string') {
+    if (typeof this.props.chosenRequestText === 'function') {
+      return this.props.chosenRequestText(chosenRequest)
+    } else if (typeof chosenRequest === 'string') {
       return chosenRequest;
     } else {
       return chosenRequest[this.props.dataSourceConfig.text];
