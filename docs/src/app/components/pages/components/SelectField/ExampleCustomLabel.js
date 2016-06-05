@@ -2,6 +2,9 @@ import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+/**
+ * With a `label` applied to each `MenuItem`, `SelectField` displays a complementary description of the selected item.
+ */
 export default class SelectFieldExampleCustomLabel extends React.Component {
 
   constructor(props) {
