@@ -41,15 +41,9 @@ class TableRowColumn extends Component {
      * If true, this column responds to hover events.
      */
     hoverable: PropTypes.bool,
-    /**
-     * @ignore
-     * Callback function for click event.
-     */
+    /** @ignore */
     onClick: PropTypes.func,
-    /**
-     * @ignore
-     * Callback function for hover event.
-     */
+    /** @ignore */
     onHover: PropTypes.func,
     /**
      * @ignore

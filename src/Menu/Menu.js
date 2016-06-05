@@ -136,12 +136,7 @@ class Menu extends Component {
      * @param {number} index The index of the menu item.
      */
     onItemTouchTap: PropTypes.func,
-    /**
-     * Callback function fired when the menu is focused and a key
-     * is pressed.
-     *
-     * @param {object} event `keydown` event targeting the menu.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * This is the placement of the menu relative to the `IconButton`.
