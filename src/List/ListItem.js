@@ -213,17 +213,9 @@ class ListItem extends Component {
      * @param {boolean} isKeyboardFocused If true, the `ListItem` is focused.
      */
     onKeyboardFocus: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the `ListItem`.
-     *
-     * @param {object} event `mouseenter` event targeting the `ListItem`.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the `ListItem`.
-     *
-     * @param {object} event `mouseleave` event targeting the `ListItem`.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
      * Callbak function fired when the `ListItem` toggles its nested list.
@@ -231,17 +223,9 @@ class ListItem extends Component {
      * @param {object} listItem The `ListItem`.
      */
     onNestedListToggle: PropTypes.func,
-    /**
-     * Callback function fired when the `ListItem` is touched.
-     *
-     * @param {object} event `touchstart` event targeting the `ListItem`.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
-    /**
-     * Callback function fired when the `ListItem` is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the `ListItem`.
-     */
+    /** @ignore */
     onTouchTap: PropTypes.func,
     /**
      * This is the block element that contains the primary text.
