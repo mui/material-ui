@@ -43,35 +43,40 @@ SelectableList = wrapState(SelectableList);
 
 const ListExampleSelectable = () => (
   <MobileTearSheet>
-    <SelectableList defaultValue={3}>
+    <SelectableList
+      defaultValue={3}
+      traverse={['div']}
+    >
       <Subheader>Selectable Contacts</Subheader>
-      <ListItem
-        value={1}
-        primaryText="Brendan Lim"
-        leftAvatar={<Avatar src="images/ok-128.jpg" />}
-        nestedItems={[
-          <ListItem
-            value={2}
-            primaryText="Grace Ng"
-            leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
-          />,
-        ]}
-      />
-      <ListItem
-        value={3}
-        primaryText="Kerem Suer"
-        leftAvatar={<Avatar src="images/kerem-128.jpg" />}
-      />
-      <ListItem
-        value={4}
-        primaryText="Eric Hoffman"
-        leftAvatar={<Avatar src="images/kolage-128.jpg" />}
-      />
-      <ListItem
-        value={5}
-        primaryText="Raquel Parrado"
-        leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
-      />
+      <div>
+        <ListItem
+          value={1}
+          primaryText="Brendan Lim"
+          leftAvatar={<Avatar src="images/ok-128.jpg" />}
+          nestedItems={[
+            <ListItem
+              value={2}
+              primaryText="Grace Ng"
+              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+            />,
+          ]}
+        />
+        <ListItem
+          value={3}
+          primaryText="Kerem Suer"
+          leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+        />
+        <ListItem
+          value={4}
+          primaryText="Eric Hoffman"
+          leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+        />
+        <ListItem
+          value={5}
+          primaryText="Raquel Parrado"
+          leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+        />
+      </div>
     </SelectableList>
   </MobileTearSheet>
 );
