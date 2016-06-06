@@ -28,6 +28,7 @@ function wrapState(ComposedComponent) {
     render() {
       return (
         <ComposedComponent
+          {...this.props}
           value={this.state.selectedIndex}
           onChange={this.handleRequestChange}
         >
