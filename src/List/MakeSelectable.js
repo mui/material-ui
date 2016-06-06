@@ -8,6 +8,7 @@ export const MakeSelectable = (Component) => {
       children: PropTypes.node,
       onChange: PropTypes.func,
       selectedItemStyle: PropTypes.object,
+      traverse: PropTypes.array,
       value: PropTypes.any,
       valueLink: deprecated(PropTypes.shape({
         value: PropTypes.any,
@@ -50,6 +51,16 @@ export const MakeSelectable = (Component) => {
           nestedItems: child.props.nestedItems.map((child) => this.extendChild(child, styles, selectedItemStyle)),
           initiallyOpen: this.isInitiallyOpen(child),
         });
+      
+      } else if (child && child.type && this.props.traverse &&
+                 this.props.traverse.indexOf(child.type.name || child.type) >= 0) {
+
+        return React.cloneElement(child, undefined,
+          React.Children.map(child.props.children, (child) => (
+            this.extendChild(child, styles, selectedItemStyle)
+          ))
+        );
+
       } else {
         return child;
       }
