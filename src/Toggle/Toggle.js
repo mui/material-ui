@@ -166,7 +166,7 @@ class Toggle extends Component {
   };
 
   handleStateChange = (newSwitched) => {
-    this.setState({switched: newSwitched});
+    setTimeout(() => this.setState({switched: newSwitched}))
   };
 
   render() {
