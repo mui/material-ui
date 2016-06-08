@@ -9,8 +9,8 @@ function getStyles(props, context, state) {
 
   const styles = {
     root: {
-      width: isLandscape ? 125 : 270,
-      height: isLandscape ? 290 : 'auto',
+      width: isLandscape ? 165 : '100%',
+      height: isLandscape ? 330 : 'auto',
       float: isLandscape ? 'left' : 'none',
       fontWeight: 700,
       display: 'inline-block',
@@ -20,6 +20,7 @@ function getStyles(props, context, state) {
       borderBottomLeftRadius: isLandscape ? 2 : 0,
       color: datePicker.textColor,
       padding: 20,
+      boxSizing: 'border-box',
     },
     monthDay: {
       display: 'block',
@@ -119,9 +120,15 @@ class DateDisplay extends Component {
   render() {
     const {
       DateTimeFormat,
+      disableYearSelection, // eslint-disable-line no-unused-vars
       locale,
-      selectedDate,
+      mode, // eslint-disable-line no-unused-vars
+      monthDaySelected, // eslint-disable-line no-unused-vars
+      onTouchTapMonthDay, // eslint-disable-line no-unused-vars
+      onTouchTapYear, // eslint-disable-line no-unused-vars
+      selectedDate, // eslint-disable-line no-unused-vars
       style,
+      weekCount, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
