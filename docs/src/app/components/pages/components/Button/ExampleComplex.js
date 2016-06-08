@@ -40,7 +40,6 @@ const ButtonExampleComplex = () => (
       <ActionAndroid />
     </Button>
     <Button
-      linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}
@@ -66,7 +65,6 @@ const ButtonExampleComplex = () => (
     </Button>
     <Button
       type="flat"
-      linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={styles.button}

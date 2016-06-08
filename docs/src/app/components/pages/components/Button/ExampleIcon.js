@@ -30,7 +30,6 @@ const ButtonExampleIcon = () => (
       <ActionAndroid color={fullWhite} />
     </Button>
     <Button
-      linkButton={true}
       href="https://github.com/callemall/material-ui"
       secondary={true}
       style={style}
