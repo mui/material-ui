@@ -75,6 +75,11 @@ class DropDownMenu extends Component {
   // than just the parent.
   static propTypes = {
     /**
+     * If true, the popover will apply transitions when
+     * it gets added to the DOM.
+     */
+    animated: PropTypes.bool,
+    /**
      * The width will automatically be set according to the items inside the menu.
      * To control this width in css instead, set this prop to `false`.
      */
@@ -140,6 +145,7 @@ class DropDownMenu extends Component {
   };
 
   static defaultProps = {
+    animated: true,
     autoWidth: true,
     disabled: false,
     openImmediately: false,
@@ -229,6 +235,7 @@ class DropDownMenu extends Component {
 
   render() {
     const {
+      animated,
       autoWidth,
       children,
       className,
@@ -289,6 +296,7 @@ class DropDownMenu extends Component {
           anchorEl={anchorEl}
           animation={PopoverAnimationFromTop}
           open={open}
+          animated={animated}
           onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu
