@@ -126,6 +126,7 @@ class DatePickerDialog extends Component {
     };
 
     const Container = (container === 'inline' ? Popover : Dialog);
+
     return (
       <div {...other} ref="root">
         <Container

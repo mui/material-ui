@@ -8,7 +8,6 @@ import CalendarYear from './CalendarYear';
 import CalendarToolbar from './CalendarToolbar';
 import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../internal/SlideIn';
-import ClearFix from '../internal/ClearFix';
 
 import {
   addDays,
@@ -262,7 +261,6 @@ class Calendar extends Component {
         fontWeight: 400,
         padding: '0px 8px',
         transition: transitions.easeOut(),
-        width: isLandscape ? 294 : 'auto',
       },
       yearContainer: {
         display: 'flex',
@@ -272,12 +270,6 @@ class Calendar extends Component {
         marginTop: 10,
         overflow: 'hidden',
         width: 310,
-      },
-      dateDisplay: {
-        width: isLandscape ? 125 : 270,
-        height: isLandscape ? 290 : 'auto',
-        float: isLandscape ? 'left' : 'none',
-        fontWeight: 'bolder',
       },
       weekTitle: {
         display: 'flex',
@@ -297,10 +289,12 @@ class Calendar extends Component {
       },
     };
 
-    const weekTitleDayStyle = prepareStyles(styles.weekTitleDay);
-    const weekTitleStyle = prepareStyles(styles.weekTitle);
-    const calendarContainerStyle = prepareStyles(styles.calendarContainer);
-    const yearContainerStyle = prepareStyles(styles.yearContainer);
+    prepareStyles(styles.root);
+    prepareStyles(styles.calendar);
+    prepareStyles(styles.calendarContainer);
+    prepareStyles(styles.weekTitle);
+    prepareStyles(styles.weekTitleDay);
+    prepareStyles(styles.yearContainer);
 
     const {
       cancelLabel,
@@ -314,7 +308,7 @@ class Calendar extends Component {
     } = this.props;
 
     return (
-      <ClearFix style={styles.root}>
+      <div style={styles.root}>
         <EventListener
           target="window"
           onKeyDown={this.handleWindowKeyDown}
@@ -332,7 +326,7 @@ class Calendar extends Component {
         />
         <div style={styles.calendar}>
           {this.state.displayMonthDay &&
-            <div style={calendarContainerStyle}>
+            <div style={styles.calendarContainer}>
               <CalendarToolbar
                 DateTimeFormat={DateTimeFormat}
                 locale={locale}
@@ -341,9 +335,9 @@ class Calendar extends Component {
                 prevMonth={toolbarInteractions.prevMonth}
                 nextMonth={toolbarInteractions.nextMonth}
               />
-              <div style={weekTitleStyle}>
+              <div style={styles.weekTitle}>
                 {daysArray.map((event, i) => (
-                  <span key={i} style={weekTitleDayStyle}>
+                  <span key={i} style={styles.weekTitleDay}>
                     {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
                   </span>
                 ))}
@@ -364,7 +358,7 @@ class Calendar extends Component {
             </div>
           }
           {!this.state.displayMonthDay &&
-            <div style={yearContainerStyle}>
+            <div style={styles.yearContainer}>
               {this.yearSelector()}
             </div>
           }
@@ -379,7 +373,7 @@ class Calendar extends Component {
             />
           }
         </div>
-      </ClearFix>
+      </div>
     );
   }
 }
