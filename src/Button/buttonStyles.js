@@ -3,7 +3,7 @@ import {darken, fade} from '../utils/colorManipulator';
 
 export default function getStyles(props, context, state) {
   const {disabled, disabledBackgroundColor, fullWidth, primary, secondary, mini, style, type} = props;
-  const {baseTheme, button, flatButton, floatingActionButton, paper, raisedButton} = context.muiTheme;
+  const {button, flatButton, floatingActionButton, paper, raisedButton} = context.muiTheme;
 
   const buttonTheme = (type === 'flat') ? flatButton :
     (type === 'fab') ? floatingActionButton : raisedButton;
@@ -45,13 +45,14 @@ export default function getStyles(props, context, state) {
   const buttonHeight = style && style.height || button.height;
 
   const buttonStyle = {
-    display: 'inline-block',
-    position: 'relative',
-    lineHeight: `${buttonHeight}px`,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0 12px',
     backgroundColor: backgroundColor,
     transition: transitions.easeOut(),
-    textAlign: 'center', // This is the default value for a button but not a link
     boxShadow: (disabled || type === 'flat') ? 0 : paper.zDepthShadows[state.zDepth - 1],
+    lineHeight: `${buttonHeight}px`,
   };
 
   const flatRaisedButtonStyle = {
@@ -71,24 +72,20 @@ export default function getStyles(props, context, state) {
 
   return {
     root: Object.assign(buttonStyle, (type === 'fab') ? fabButtonStyle : flatRaisedButtonStyle),
-    icon: (childInfo) => ({
+    icon: {
       color: labelColor,
       fill: labelColor,
+      margin: '0 4px',
       verticalAlign: 'middle',
-      marginLeft: childInfo.hasLabel && !childInfo.labelBefore ? 12 : 0,
-      marginRight: childInfo.hasLabel && childInfo.labelBefore ? 12 : 0,
-    }),
-    label: (childInfo) => ({
-      position: 'relative',
+    },
+    label: {
       color: labelColor,
-      letterSpacing: 0,
       textTransform: button.textTransform,
       fontWeight: button.fontWeight,
       fontSize: button.fontSize,
-      paddingLeft: childInfo.hasIcon && !childInfo.labelBefore ? 8 : baseTheme.spacing.desktopGutterLess,
-      paddingRight: childInfo.hasIcon && childInfo.labelBefore ? 8 : baseTheme.spacing.desktopGutterLess,
       userSelect: 'none',
-    }),
+      margin: '0 4px',
+    },
     ripple: ripple,
   };
 }
