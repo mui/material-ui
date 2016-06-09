@@ -219,11 +219,11 @@ class FlatButton extends Component {
     if (icon) {
       iconCloned = React.cloneElement(icon, {
         color: icon.props.color || mergedRootStyles.color,
-        style: {
+        style: Object.assign({}, {
           verticalAlign: 'middle',
           marginLeft: label && labelPosition !== 'before' ? 12 : 0,
           marginRight: label && labelPosition === 'before' ? 12 : 0,
-        },
+        }, icon.props.style),
       });
 
       if (labelPosition === 'before') {
