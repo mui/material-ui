@@ -289,6 +289,8 @@ class Calendar extends Component {
       },
     };
 
+    const weekTitleDayStyle = prepareStyles(styles.weekTitleDay);
+
     const {
       cancelLabel,
       DateTimeFormat,
@@ -330,7 +332,7 @@ class Calendar extends Component {
               />
               <div style={prepareStyles(styles.weekTitle)}>
                 {daysArray.map((event, i) => (
-                  <span key={i} style={prepareStyles(styles.weekTitleDay)}>
+                  <span key={i} style={weekTitleDayStyle}>
                     {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
                   </span>
                 ))}
