@@ -289,13 +289,6 @@ class Calendar extends Component {
       },
     };
 
-    prepareStyles(styles.root);
-    prepareStyles(styles.calendar);
-    prepareStyles(styles.calendarContainer);
-    prepareStyles(styles.weekTitle);
-    prepareStyles(styles.weekTitleDay);
-    prepareStyles(styles.yearContainer);
-
     const {
       cancelLabel,
       DateTimeFormat,
@@ -308,7 +301,7 @@ class Calendar extends Component {
     } = this.props;
 
     return (
-      <div style={styles.root}>
+      <div style={prepareStyles(styles.root)}>
         <EventListener
           target="window"
           onKeyDown={this.handleWindowKeyDown}
@@ -324,9 +317,9 @@ class Calendar extends Component {
           selectedDate={this.state.selectedDate}
           weekCount={weekCount}
         />
-        <div style={styles.calendar}>
+        <div style={prepareStyles(styles.calendar)}>
           {this.state.displayMonthDay &&
-            <div style={styles.calendarContainer}>
+            <div style={prepareStyles(styles.calendarContainer)}>
               <CalendarToolbar
                 DateTimeFormat={DateTimeFormat}
                 locale={locale}
@@ -335,9 +328,9 @@ class Calendar extends Component {
                 prevMonth={toolbarInteractions.prevMonth}
                 nextMonth={toolbarInteractions.nextMonth}
               />
-              <div style={styles.weekTitle}>
+              <div style={prepareStyles(styles.weekTitle)}>
                 {daysArray.map((event, i) => (
-                  <span key={i} style={styles.weekTitleDay}>
+                  <span key={i} style={prepareStyles(styles.weekTitleDay)}>
                     {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
                   </span>
                 ))}
@@ -358,7 +351,7 @@ class Calendar extends Component {
             </div>
           }
           {!this.state.displayMonthDay &&
-            <div style={styles.yearContainer}>
+            <div style={prepareStyles(styles.yearContainer)}>
               {this.yearSelector()}
             </div>
           }
