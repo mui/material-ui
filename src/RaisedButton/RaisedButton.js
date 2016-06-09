@@ -378,7 +378,7 @@ class RaisedButton extends Component {
 
     const iconCloned = icon && React.cloneElement(icon, {
       color: icon.props.color || styles.label.color,
-      style: Object.assign({}, styles.icon, icon.props.style)
+      style: Object.assign({}, styles.icon, icon.props.style),
     });
 
     // Place label before or after children.
