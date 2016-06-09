@@ -18,6 +18,10 @@ class IconMenu extends Component {
      */
     anchorOrigin: propTypes.origin,
     /**
+     * If false, disables the `Popover` animation on close.
+     */
+    animated: PropTypes.bool,
+    /**
      * Should be used to pass `MenuItem` components.
      */
     children: PropTypes.node,
@@ -129,6 +133,7 @@ class IconMenu extends Component {
       vertical: 'top',
       horizontal: 'left',
     },
+    animated: true,
     multiple: false,
     open: null,
     onItemTouchTap: () => {},
@@ -233,6 +238,7 @@ class IconMenu extends Component {
   render() {
     const {
       anchorOrigin,
+      animated,
       className,
       iconButtonElement,
       iconStyle,
@@ -303,6 +309,7 @@ class IconMenu extends Component {
         {iconButton}
         <Popover
           anchorOrigin={anchorOrigin}
+          animated={animated}
           targetOrigin={targetOrigin}
           open={open}
           anchorEl={anchorEl}
