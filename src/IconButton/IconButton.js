@@ -201,6 +201,7 @@ class IconButton extends Component {
     const {
       disabled,
       disableTouchRipple,
+      children,
       iconClassName,
       tooltip,
       touch,
@@ -241,7 +242,7 @@ class IconButton extends Component {
           )}
           color={this.context.muiTheme.baseTheme.palette.textColor}
         >
-          {this.props.children}
+          {children}
         </FontIcon>
       );
     }
@@ -265,7 +266,7 @@ class IconButton extends Component {
       >
         {tooltipElement}
         {fonticon}
-        {extendChildren(this.props.children, {
+        {extendChildren(children, {
           style: childrenStyle,
         })}
       </EnhancedButton>

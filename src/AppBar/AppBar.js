@@ -218,8 +218,8 @@ class AppBar extends Component {
 
       if (iconElementLeft) {
         if (iconElementLeft.type.muiName === 'IconButton') {
-          const iconButtonIconStyle = !iconElementLeft.props.children &&
-            iconElementLeft.props.children.props.color ? styles.iconButtonIconStyle : null;
+          const iconButtonIconStyle = !(iconElementLeft.props.children &&
+            iconElementLeft.props.children.props.color) ? styles.iconButtonIconStyle : null;
 
           iconElementLeftNode = React.cloneElement(iconElementLeft, {
             iconStyle: Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle),
