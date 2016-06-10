@@ -266,7 +266,7 @@ class IconButton extends Component {
         {tooltipElement}
         {fonticon}
         {extendChildren(this.props.children, {
-          style: childrenStyle,
+          style: Object.assign({}, childrenStyle, this.props.style),
         })}
       </EnhancedButton>
     );
