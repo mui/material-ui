@@ -238,8 +238,9 @@ class MenuItem extends Component {
 
     // Left Icon
     let leftIconElement = leftIcon ? leftIcon : checked ? <CheckIcon /> : null;
-    if (leftIconElement && desktop) {
-      const mergedLeftIconStyles = Object.assign(styles.leftIconDesktop, leftIconElement.props.style);
+    if (leftIconElement) {
+      const mergedLeftIconStyles = desktop ?
+        Object.assign(styles.leftIconDesktop, leftIconElement.props.style) : leftIconElement.props.style;
       leftIconElement = React.cloneElement(leftIconElement, {style: mergedLeftIconStyles});
     }
 
