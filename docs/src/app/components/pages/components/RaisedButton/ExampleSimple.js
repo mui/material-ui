@@ -11,6 +11,9 @@ const RaisedButtonExampleSimple = () => (
     <RaisedButton label="Primary" primary={true} style={style} />
     <RaisedButton label="Secondary" secondary={true} style={style} />
     <RaisedButton label="Disabled" disabled={true} style={style} />
+    <br />
+    <br />
+    <RaisedButton label="Full width" fullWidth={true} />
   </div>
 );
 
