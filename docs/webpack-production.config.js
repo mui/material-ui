@@ -21,6 +21,8 @@ const config = {
   // Configuration for server
   devServer: {
     contentBase: 'build',
+    // Required for webpack-dev-server
+    outputPath: buildPath,
   },
   // Output file config
   output: {
