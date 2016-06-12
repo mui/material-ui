@@ -2,7 +2,7 @@ import React from 'react';
 import Title from 'react-title-component';
 
 import CodeExample from '../../../CodeExample';
-// import PropTypeDescription from '../../../PropTypeDescription';
+import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import ButtonReadmeText from './README';
@@ -14,7 +14,7 @@ import ButtonExampleIconCode from '!raw!./ExampleIcon';
 import ButtonExampleIcon from './ExampleIcon';
 import ButtonExampleFabCode from '!raw!./ExampleFab';
 import ButtonExampleFab from './ExampleFab';
-// import buttonCode from '!raw!material-ui/Button/Button';
+import buttonCode from '!raw!material-ui/Button/Button';
 
 const ButtonPage = () => (
   <div>
@@ -44,6 +44,7 @@ const ButtonPage = () => (
     >
       <ButtonExampleFab />
     </CodeExample>
+    <PropTypeDescription code={buttonCode} />
   </div>
 );
 
