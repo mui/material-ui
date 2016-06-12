@@ -63,6 +63,7 @@ function getStyles(props, context, state) {
     root: {
       display: 'inline-block',
       transition: transitions.easeOut(),
+      width: fullWidth ? '100%' : 'auto',
     },
     button: {
       position: 'relative',
