@@ -119,7 +119,7 @@ class Button extends Component {
   };
 
   componentWillMount() {
-    const zDepth = (this.props.type === 'fab') ? 2 : 1;
+    const zDepth = this.props.type === 'fab' ? 2 : 1;
     this.setState({
       zDepth: zDepth,
       initialZDepth: zDepth,
