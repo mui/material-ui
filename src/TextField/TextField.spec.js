@@ -48,7 +48,7 @@ describe('<TextField />', () => {
         defaultValue="default value"
         value={null}
       />
-      );
+    );
     assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, true, 'should shrink TextFieldLabel');
 
     // make input change
@@ -61,5 +61,20 @@ describe('<TextField />', () => {
     wrapper.setProps({value: null});
     assert.strictEqual(wrapper.state().isClean, false);
     assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, false, 'should not shrink TextFieldLabel');
+  });
+
+  describe('props: children', () => {
+    it('should forward any property to the root', () => {
+      const wrapper = shallowWithContext(
+        <TextField data-test="hello">
+          <div />
+        </TextField>
+      );
+
+      assert.strictEqual(
+        wrapper.is('[data-test="hello"]'), true,
+        'The root element should receive any additional properties'
+      );
+    });
   });
 });
