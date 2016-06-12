@@ -63,10 +63,10 @@ function getStyles(props, context, state) {
     root: {
       display: 'inline-block',
       transition: transitions.easeOut(),
+      minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
       position: 'relative',
-      minWidth: fullWidth ? '100%' : button.minWidth,
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
