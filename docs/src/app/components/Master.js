@@ -8,6 +8,7 @@ import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
 import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
+import getUniqueIdGenerator from 'material-ui/utils/getUniqueIdGenerator';
 
 class Master extends Component {
   static propTypes = {
@@ -22,15 +23,18 @@ class Master extends Component {
 
   static childContextTypes = {
     muiTheme: PropTypes.object,
+    uniqueIdGen: PropTypes.func.isRequired,
   };
 
   state = {
     navDrawerOpen: false,
+    uniqueIdGen: getUniqueIdGenerator(),
   };
 
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
+      uniqueIdGen: this.state.uniqueIdGen,
     };
   }
 

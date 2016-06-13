@@ -92,57 +92,6 @@ to use props at every level.
 In fact, context is very convenient for concepts like theming, which are usually
 implemented in a hierarchical manner.
 
-### Using context
-
-The `MuiThemeProvider` component simply adds the `muTheme` object to context.
-If you prefer using context directly instead, you can follow this pattern:
-
-Pass theme down the context:
-
-```js
-import React from 'react';
-import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
-
-class Main extends React.Component {
-  getChildContext() {
-    return {muiTheme: getMuiTheme(baseTheme)};
-  }
-
-  render () {
-    return <AppBar title="My AppBar" />;
-  }
-}
-
-Main.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
-
-export default Main;
-```
-
-Get theme whenever you need to use it in your own components:
-
-```js
-import React from 'react';
-
-class DeepDownTheTree extends React.Component {
-  render () {
-    return (
-      <span style={{color: this.context.muiTheme.palette.textColor}}>
-        Hello World!
-      </span>
-    );
-  }
-}
-
-DeepDownTheTree.contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
-
-export default DeepDownTheTree;
-```
 
 ### API
 
@@ -196,6 +145,6 @@ export default {
 
 #### `<MuiThemeProvider />`
 
-This component takes a theme as a property and passes it down with context.
+This component takes a theme object and a uniqueIdGen function as its props and passes it down with context.
 This should preferably be at the root of your component tree. The first
 example demonstrates it's usage.
