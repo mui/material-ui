@@ -173,6 +173,7 @@ class SelectField extends Component {
 
     return (
       <TextField
+        {...other}
         style={style}
         floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
@@ -188,7 +189,6 @@ class SelectField extends Component {
         id={id}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
-        {...other}
       >
         <DropDownMenu
           disabled={disabled}
