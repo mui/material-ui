@@ -1,0 +1,31 @@
+{
+  "name": "material-ui-example-webpack",
+  "version": "0.15.0",
+  "description": "Sample project that uses Material-UI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
+    "build": "webpack --config webpack-production.config.js --progress --colors"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "html-webpack-plugin": "^2.7.2",
+    "react-hot-loader": "^1.3.0",
+    "transfer-webpack-plugin": "^0.1.4",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "material-ui": "^0.15.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-tap-event-plugin": "^1.0.0"
+  }
+}

@@ -1,0 +1,18 @@
+node_modules
+npm-debug.log
+build
+coverage
+
+# Exclude compiled files
+/lib
+icon-builder/js
+icon-builder/jsx
+
+# Exclude IDE project folders
+.idea
+*.sublime-project
+*.sublime-workspace
+jsconfig.json
+
+# OS files
+.DS_STORE

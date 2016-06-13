@@ -1,0 +1,42 @@
+.propTypeDescription table tr:nth-child(2n) {
+  background-color: #fff;
+}
+
+.propTypeDescription table td, .propTypeDescription table th {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 0 none;
+  border-right: 0 none;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.propTypeDescription table th {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+  border-top: 0 none;
+  color: #888;
+  display: table-cell;
+  font-weight: normal;
+  text-align: left;
+}
+
+.propTypeDescription table td {
+  color: #266d90;
+  font-size: 95%;
+}
+
+.propTypeDescription table td + td {
+  color: #bf2a5c;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  font-size: 90%;
+}
+
+.propTypeDescription table td + td + td {
+  color: #666;
+}
+
+.propTypeDescription table td + td + td + td {
+  color: rgba(51, 51, 51, 0.9);
+  font-family: "Roboto", sans-serif;
+  font-size: 95%;
+  min-width: 250px;
+}

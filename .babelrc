@@ -1,0 +1,20 @@
+{
+  "presets": ["es2015", "stage-1", "react"],
+  "plugins": [
+    ["transform-replace-object-assign", "simple-assign"],
+    "transform-dev-warning"
+  ],
+  "env": {
+    "test": {
+      "sourceMaps": "both"
+    },
+    "docs-production": {
+      "plugins": [
+        ["transform-replace-object-assign", "simple-assign"],
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    }
+  }
+}

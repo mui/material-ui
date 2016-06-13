@@ -1,0 +1,10 @@
+---
+language: node_js
+node_js:
+  - "stable"
+sudo: false
+cache:
+  directories:
+    - node_modules
+script:
+  - ./scripts/run-travis-tests.sh
