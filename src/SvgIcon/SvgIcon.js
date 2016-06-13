@@ -81,11 +81,13 @@ class SvgIcon extends Component {
 
     const offColor = color ? color :
       style && style.fill ? style.fill :
-      baseTheme.palette.textColor;
+        'currentColor';
+
     const onColor = hoverColor ? hoverColor : offColor;
 
     const mergedStyles = Object.assign({
       display: 'inline-block',
+      color: baseTheme.palette.textColor,
       fill: this.state.hovered ? onColor : offColor,
       height: 24,
       width: 24,
