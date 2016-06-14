@@ -59,6 +59,7 @@ const getStyles = (props, context, state) => {
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
+      cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
     },
     textarea: {},

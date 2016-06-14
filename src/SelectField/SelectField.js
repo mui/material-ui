@@ -175,6 +175,7 @@ class SelectField extends Component {
       <TextField
         {...other}
         style={style}
+        disabled={disabled}
         floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}

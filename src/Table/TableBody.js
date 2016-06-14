@@ -190,12 +190,13 @@ class TableBody extends Component {
     if (!this.props.displayRowCheckbox) return null;
 
     const key = `${rowProps.rowNumber}-cb`;
+    const disabled = !this.props.selectable;
     const checkbox = (
       <Checkbox
         ref="rowSelectCB"
         name={key}
         value="selected"
-        disabled={!this.props.selectable}
+        disabled={disabled}
         checked={rowProps.selected}
       />
     );
@@ -204,7 +205,10 @@ class TableBody extends Component {
       <TableRowColumn
         key={key}
         columnNumber={0}
-        style={{width: 24}}
+        style={{
+          width: 24,
+          cursor: disabled ? 'not-allowed' : 'inherit',
+        }}
       >
         {checkbox}
       </TableRowColumn>
