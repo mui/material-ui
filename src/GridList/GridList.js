@@ -70,7 +70,7 @@ class GridList extends Component {
       const childRows = currentChild.props.rows || 1;
       const itemStyle = Object.assign({}, styles.item, {
         width: `${(100 / cols * childCols)}%`,
-        height: cellHeight == -1 ? 'auto' : cellHeight * childRows + padding,
+        height: cellHeight === -1 ? 'auto' : cellHeight * childRows + padding,
       });
 
       return <div style={prepareStyles(itemStyle)}>{currentChild}</div>;
