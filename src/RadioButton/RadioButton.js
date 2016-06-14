@@ -37,9 +37,11 @@ function getStyles(props, context) {
     },
     targetWhenDisabled: {
       fill: radioButton.disabledColor,
+      cursor: 'not-allowed',
     },
     fillWhenDisabled: {
       fill: radioButton.disabledColor,
+      cursor: 'not-allowed',
     },
     label: {
       color: props.disabled ? radioButton.labelDisabledColor : radioButton.labelColor,
