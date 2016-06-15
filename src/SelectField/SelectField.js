@@ -45,6 +45,10 @@ class SelectField extends Component {
      */
     errorText: PropTypes.node,
     /**
+     * If true, the floating label will float even when there is no value.
+     */
+    floatingLabelFixed: PropTypes.bool,
+    /**
      * Override the inline-styles of the floating label.
      */
     floatingLabelStyle: PropTypes.object,
@@ -152,6 +156,7 @@ class SelectField extends Component {
       disabled,
       floatingLabelText,
       floatingLabelStyle,
+      floatingLabelFixed,
       hintStyle,
       hintText,
       fullWidth,
@@ -170,6 +175,7 @@ class SelectField extends Component {
         style={style}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
+        floatingLabelFixed={floatingLabelFixed}
         hintStyle={hintStyle}
         hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
         fullWidth={fullWidth}
