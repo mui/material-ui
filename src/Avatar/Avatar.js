@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {mixout, remix, muiMixout} from '../utils/muiMixout';
 
 function getStyles(props) {
@@ -67,6 +67,10 @@ const propTypes = {
    * Override the inline-styles of the root element.
    */
   style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiTheme: PropTypes.object,
 };
 
 const defaultProps = {
@@ -109,7 +113,7 @@ let Avatar = (props) => {
       </div>
     );
   }
-}
+};
 
 Avatar = mixout(muiMixout)(remix('Avatar', Avatar));
 Avatar.propTypes = propTypes;

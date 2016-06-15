@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {mixout, remix, muiMixout} from '../utils/muiMixout';
 
 function getStyles(props) {
-  const {primary, secondary, muiTheme:{badge}} = props;
+  const {primary, secondary, muiTheme: {badge}} = props;
 
   let badgeBackgroundColor;
   let badgeTextColor;
@@ -77,6 +77,10 @@ const propTypes = {
    * Override the inline-styles of the root element.
    */
   style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiTheme: PropTypes.object,
 };
 
 const defaultProps = {
@@ -104,7 +108,7 @@ let Badge = (props) => {
       </span>
     </div>
   );
-}
+};
 
 Badge = mixout(muiMixout)(remix('Badge', Badge));
 Badge.propTypes = propTypes;

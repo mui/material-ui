@@ -14,6 +14,10 @@ const propTypes = {
    * Override the inline-styles of the root element.
    */
   style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiTheme: PropTypes.object,
 };
 
 const defaultProps = {
