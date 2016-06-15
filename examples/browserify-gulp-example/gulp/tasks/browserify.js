@@ -26,7 +26,7 @@ gulp.task('browserify', function(callback) {
       cache: {}, packageCache: {}, fullPaths: false,
       // Specify the entry point of your app
       entries: bundleConfig.entries,
-      // Add file extentions to make optional in your requires
+      // Add file extensions to make optional in your requires
       extensions: config.extensions,
       // Enable source maps!
       debug: config.debug
@@ -41,7 +41,7 @@ gulp.task('browserify', function(callback) {
         // Report compile errors
         .on('error', handleErrors)
         // Use vinyl-source-stream to make the
-        // stream gulp compatible. Specifiy the
+        // stream gulp compatible. Specify the
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         // Specify the output destination

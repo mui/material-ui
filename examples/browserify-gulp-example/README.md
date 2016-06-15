@@ -21,7 +21,7 @@ npm start
 
 Browsers do not allow us to use the require method from Node.js.
 With browserify, we can implement dependency management on the browser.
-It also will bundle the code into one file in an efficient way to not repeat dependiencies that are used more than once.
+It also will bundle the code into one file in an efficient way to not repeat dependencies that are used more than once.
 
 ### [browserSync](http://www.browsersync.io/)
 
