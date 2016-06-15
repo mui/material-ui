@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
+import {mixout, remix, muiMixout} from '../utils/muiMixout';
 
-function getStyles(props, context) {
-  const {primary, secondary} = props;
-  const {badge} = context.muiTheme;
+function getStyles(props) {
+  const {primary, secondary, muiTheme:{badge}} = props;
 
   let badgeBackgroundColor;
   let badgeTextColor;
@@ -48,68 +48,66 @@ function getStyles(props, context) {
   };
 }
 
-class Badge extends Component {
-  static propTypes = {
-    /**
-     * This is the content rendered within the badge.
-     */
-    badgeContent: PropTypes.node.isRequired,
-    /**
-     * Override the inline-styles of the badge element.
-     */
-    badgeStyle: PropTypes.object,
-    /**
-     * The badge will be added relativelty to this node.
-     */
-    children: PropTypes.node,
-    /**
-     * The css class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If true, the badge will use the primary badge colors.
-     */
-    primary: PropTypes.bool,
-    /**
-     * If true, the badge will use the secondary badge colors.
-     */
-    secondary: PropTypes.bool,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-  };
+const propTypes = {
+  /**
+   * This is the content rendered within the badge.
+   */
+  badgeContent: PropTypes.node.isRequired,
+  /**
+   * Override the inline-styles of the badge element.
+   */
+  badgeStyle: PropTypes.object,
+  /**
+   * The badge will be added relativelty to this node.
+   */
+  children: PropTypes.node,
+  /**
+   * The css class name of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * If true, the badge will use the primary badge colors.
+   */
+  primary: PropTypes.bool,
+  /**
+   * If true, the badge will use the secondary badge colors.
+   */
+  secondary: PropTypes.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: PropTypes.object,
+};
 
-  static defaultProps = {
-    primary: false,
-    secondary: false,
-  };
+const defaultProps = {
+  primary: false,
+  secondary: false,
+};
 
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
+let Badge = (props) => {
+  const {
+    style,
+    children,
+    badgeContent,
+    badgeStyle,
+    muiTheme: {prepareStyles},
+    ...other,
+  } = props;
 
-  render() {
-    const {
-      style,
-      children,
-      badgeContent,
-      badgeStyle,
-      ...other,
-    } = this.props;
+  const styles = getStyles(props);
 
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-
-    return (
-      <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
-        {children}
-        <span style={prepareStyles(Object.assign({}, styles.badge, badgeStyle))}>
-          {badgeContent}
-        </span>
-      </div>
-    );
-  }
+  return (
+    <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      {children}
+      <span style={prepareStyles(Object.assign({}, styles.badge, badgeStyle))}>
+        {badgeContent}
+      </span>
+    </div>
+  );
 }
+
+Badge = mixout(muiMixout)(remix('Badge', Badge));
+Badge.propTypes = propTypes;
+Badge.defaultProps = defaultProps;
 
 export default Badge;
