@@ -547,7 +547,7 @@ class Slider extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const sliderStyles = Object.assign({}, styles.slider, this.props.sliderStyle);
+    const sliderStyles = Object.assign(styles.slider, this.props.sliderStyle);
 
     let handleStyles = {};
     let percent = this.state.percent;
