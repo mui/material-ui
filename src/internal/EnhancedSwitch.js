@@ -99,7 +99,7 @@ class EnhancedSwitch extends Component {
     switched: PropTypes.bool.isRequired,
     thumbStyle: PropTypes.object,
     trackStyle: PropTypes.object,
-    value: PropTypes.string,
+    value: PropTypes.any,
   };
 
   static contextTypes = {
