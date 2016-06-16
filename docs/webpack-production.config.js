@@ -46,7 +46,7 @@ const config = {
       },
     }),
 
-    // Allows error warninggs but does not stop compiling. Will remove when eslint is added
+    // Allows error warnings but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
     // Transfer Files
     new CopyWebpackPlugin([

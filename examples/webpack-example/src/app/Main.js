@@ -1,6 +1,6 @@
 /**
  * In this file, we create a React component
- * which incorporates components providedby material-ui.
+ * which incorporates components provided by Material-UI.
  */
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
