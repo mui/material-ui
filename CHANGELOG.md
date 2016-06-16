@@ -8,7 +8,7 @@
 - [SelectField] Move {...other} spread props from DropDownMenu to Textfield as part of (#4392)
 
 ##### New Component
-- [Chip] (#3870)
+- [Chip] First implementation (#3870)
 
 ##### General
 - [Examples] Simplify the examples (#4262)
@@ -167,7 +167,7 @@ The exact import statements for each component can be found in their respective
 documentation page.
 
 Have a ton of imports? almost had a heart attack? worry not, we also made a tool
-to ease your pain. checkout the 
+to ease your pain. checkout the
 [readme](https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod/README.md).
 
 ##### Breaking Changes
@@ -178,7 +178,7 @@ to ease your pain. checkout the
 As of now you will need to provide theme on context, see:
 http://www.material-ui.com/#/customization/themes
 
-- [Core] Removed redundant default export from the main library `index.js`. 
+- [Core] Removed redundant default export from the main library `index.js`.
 
 You will probably need to turn
 
