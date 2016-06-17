@@ -106,7 +106,7 @@ class RadioButton extends Component {
     /**
      * The value of the radio button.
      */
-    value: PropTypes.string,
+    value: PropTypes.any,
   };
 
   static defaultProps = {
