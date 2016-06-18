@@ -533,7 +533,7 @@ class Slider extends Component {
       required,
       step,
       style,
-      ...others,
+      ...other,
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -596,7 +596,7 @@ class Slider extends Component {
     }
 
     return (
-      <div {...others} style={prepareStyles(Object.assign({}, style))}>
+      <div {...other} style={prepareStyles(Object.assign({}, style))}>
         <span>{description}</span>
         <span>{error}</span>
         <div
