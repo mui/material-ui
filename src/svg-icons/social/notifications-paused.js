@@ -9,5 +9,6 @@ let SocialNotificationsPaused = (props) => (
 );
 SocialNotificationsPaused = pure(SocialNotificationsPaused);
 SocialNotificationsPaused.displayName = 'SocialNotificationsPaused';
+SocialNotificationsPaused.muiName = 'SvgIcon';
 
 export default SocialNotificationsPaused;

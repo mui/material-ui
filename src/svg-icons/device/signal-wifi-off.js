@@ -9,5 +9,6 @@ let DeviceSignalWifiOff = (props) => (
 );
 DeviceSignalWifiOff = pure(DeviceSignalWifiOff);
 DeviceSignalWifiOff.displayName = 'DeviceSignalWifiOff';
+DeviceSignalWifiOff.muiName = 'SvgIcon';
 
 export default DeviceSignalWifiOff;

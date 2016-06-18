@@ -9,5 +9,6 @@ let CommunicationClearAll = (props) => (
 );
 CommunicationClearAll = pure(CommunicationClearAll);
 CommunicationClearAll.displayName = 'CommunicationClearAll';
+CommunicationClearAll.muiName = 'SvgIcon';
 
 export default CommunicationClearAll;

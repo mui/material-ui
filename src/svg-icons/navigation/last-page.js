@@ -9,5 +9,6 @@ let NavigationLastPage = (props) => (
 );
 NavigationLastPage = pure(NavigationLastPage);
 NavigationLastPage.displayName = 'NavigationLastPage';
+NavigationLastPage.muiName = 'SvgIcon';
 
 export default NavigationLastPage;

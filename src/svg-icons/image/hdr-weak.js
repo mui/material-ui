@@ -9,5 +9,6 @@ let ImageHdrWeak = (props) => (
 );
 ImageHdrWeak = pure(ImageHdrWeak);
 ImageHdrWeak.displayName = 'ImageHdrWeak';
+ImageHdrWeak.muiName = 'SvgIcon';
 
 export default ImageHdrWeak;

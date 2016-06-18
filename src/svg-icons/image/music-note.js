@@ -9,5 +9,6 @@ let ImageMusicNote = (props) => (
 );
 ImageMusicNote = pure(ImageMusicNote);
 ImageMusicNote.displayName = 'ImageMusicNote';
+ImageMusicNote.muiName = 'SvgIcon';
 
 export default ImageMusicNote;

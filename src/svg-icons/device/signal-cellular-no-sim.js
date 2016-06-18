@@ -9,5 +9,6 @@ let DeviceSignalCellularNoSim = (props) => (
 );
 DeviceSignalCellularNoSim = pure(DeviceSignalCellularNoSim);
 DeviceSignalCellularNoSim.displayName = 'DeviceSignalCellularNoSim';
+DeviceSignalCellularNoSim.muiName = 'SvgIcon';
 
 export default DeviceSignalCellularNoSim;

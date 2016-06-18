@@ -9,5 +9,6 @@ let ContentRedo = (props) => (
 );
 ContentRedo = pure(ContentRedo);
 ContentRedo.displayName = 'ContentRedo';
+ContentRedo.muiName = 'SvgIcon';
 
 export default ContentRedo;

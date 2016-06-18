@@ -9,5 +9,6 @@ let ImageCenterFocusStrong = (props) => (
 );
 ImageCenterFocusStrong = pure(ImageCenterFocusStrong);
 ImageCenterFocusStrong.displayName = 'ImageCenterFocusStrong';
+ImageCenterFocusStrong.muiName = 'SvgIcon';
 
 export default ImageCenterFocusStrong;

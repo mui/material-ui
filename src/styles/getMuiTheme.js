@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
@@ -39,7 +39,6 @@ export default function getMuiTheme(muiTheme, ...more) {
     avatar: {
       color: palette.canvasColor,
       backgroundColor: emphasize(palette.canvasColor, 0.26),
-      borderColor: 'rgba(128, 128, 128, 0.15)',
     },
     badge: {
       color: palette.alternateTextColor,
@@ -76,6 +75,15 @@ export default function getMuiTheme(muiTheme, ...more) {
       disabledColor: palette.disabledColor,
       labelColor: palette.textColor,
       labelDisabledColor: palette.disabledColor,
+    },
+    chip: {
+      backgroundColor: emphasize(palette.canvasColor, 0.12),
+      deleteIconColor: fade(palette.textColor, 0.26),
+      textColor: fade(palette.textColor, 0.87),
+      fontSize: 14,
+      fontWeight: typography.fontWeightNormal,
+      shadow: `0 1px 6px ${fade(palette.shadowColor, 0.12)},
+        0 1px 4px ${fade(palette.shadowColor, 0.12)}`,
     },
     datePicker: {
       color: palette.primary1Color,
@@ -126,7 +134,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     inkBar: {
       backgroundColor: palette.accent1Color,
     },
-    navDrawer: {
+    drawer: {
       width: spacing.desktopKeylineIncrement * 4,
       color: palette.canvasColor,
     },
@@ -189,6 +197,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       secondaryTextColor: palette.alternateTextColor,
       disabledColor: darken(palette.alternateTextColor, 0.1),
       disabledTextColor: fade(palette.textColor, 0.3),
+      fontSize: typography.fontStyleButtonFontSize,
       fontWeight: typography.fontWeightMedium,
     },
     refreshIndicator: {

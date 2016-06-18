@@ -9,5 +9,6 @@ let PlacesBeachAccess = (props) => (
 );
 PlacesBeachAccess = pure(PlacesBeachAccess);
 PlacesBeachAccess.displayName = 'PlacesBeachAccess';
+PlacesBeachAccess.muiName = 'SvgIcon';
 
 export default PlacesBeachAccess;

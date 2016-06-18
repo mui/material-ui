@@ -9,5 +9,6 @@ let FileFolderOpen = (props) => (
 );
 FileFolderOpen = pure(FileFolderOpen);
 FileFolderOpen.displayName = 'FileFolderOpen';
+FileFolderOpen.muiName = 'SvgIcon';
 
 export default FileFolderOpen;

@@ -9,5 +9,6 @@ let HardwareTabletAndroid = (props) => (
 );
 HardwareTabletAndroid = pure(HardwareTabletAndroid);
 HardwareTabletAndroid.displayName = 'HardwareTabletAndroid';
+HardwareTabletAndroid.muiName = 'SvgIcon';
 
 export default HardwareTabletAndroid;

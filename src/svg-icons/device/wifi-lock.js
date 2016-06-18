@@ -9,5 +9,6 @@ let DeviceWifiLock = (props) => (
 );
 DeviceWifiLock = pure(DeviceWifiLock);
 DeviceWifiLock.displayName = 'DeviceWifiLock';
+DeviceWifiLock.muiName = 'SvgIcon';
 
 export default DeviceWifiLock;

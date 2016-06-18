@@ -9,5 +9,6 @@ let ActionCameraEnhance = (props) => (
 );
 ActionCameraEnhance = pure(ActionCameraEnhance);
 ActionCameraEnhance.displayName = 'ActionCameraEnhance';
+ActionCameraEnhance.muiName = 'SvgIcon';
 
 export default ActionCameraEnhance;

@@ -9,5 +9,6 @@ let ContentTextFormat = (props) => (
 );
 ContentTextFormat = pure(ContentTextFormat);
 ContentTextFormat.displayName = 'ContentTextFormat';
+ContentTextFormat.muiName = 'SvgIcon';
 
 export default ContentTextFormat;

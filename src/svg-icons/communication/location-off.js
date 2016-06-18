@@ -9,5 +9,6 @@ let CommunicationLocationOff = (props) => (
 );
 CommunicationLocationOff = pure(CommunicationLocationOff);
 CommunicationLocationOff.displayName = 'CommunicationLocationOff';
+CommunicationLocationOff.muiName = 'SvgIcon';
 
 export default CommunicationLocationOff;

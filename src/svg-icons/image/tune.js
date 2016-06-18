@@ -9,5 +9,6 @@ let ImageTune = (props) => (
 );
 ImageTune = pure(ImageTune);
 ImageTune.displayName = 'ImageTune';
+ImageTune.muiName = 'SvgIcon';
 
 export default ImageTune;

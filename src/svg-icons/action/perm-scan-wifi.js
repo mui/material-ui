@@ -9,5 +9,6 @@ let ActionPermScanWifi = (props) => (
 );
 ActionPermScanWifi = pure(ActionPermScanWifi);
 ActionPermScanWifi.displayName = 'ActionPermScanWifi';
+ActionPermScanWifi.muiName = 'SvgIcon';
 
 export default ActionPermScanWifi;

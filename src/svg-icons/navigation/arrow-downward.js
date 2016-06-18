@@ -9,5 +9,6 @@ let NavigationArrowDownward = (props) => (
 );
 NavigationArrowDownward = pure(NavigationArrowDownward);
 NavigationArrowDownward.displayName = 'NavigationArrowDownward';
+NavigationArrowDownward.muiName = 'SvgIcon';
 
 export default NavigationArrowDownward;

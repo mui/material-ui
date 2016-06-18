@@ -9,5 +9,6 @@ let NotificationConfirmationNumber = (props) => (
 );
 NotificationConfirmationNumber = pure(NotificationConfirmationNumber);
 NotificationConfirmationNumber.displayName = 'NotificationConfirmationNumber';
+NotificationConfirmationNumber.muiName = 'SvgIcon';
 
 export default NotificationConfirmationNumber;

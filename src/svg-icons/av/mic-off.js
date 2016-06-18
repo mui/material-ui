@@ -9,5 +9,6 @@ let AvMicOff = (props) => (
 );
 AvMicOff = pure(AvMicOff);
 AvMicOff.displayName = 'AvMicOff';
+AvMicOff.muiName = 'SvgIcon';
 
 export default AvMicOff;

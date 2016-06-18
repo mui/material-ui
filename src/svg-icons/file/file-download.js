@@ -9,5 +9,6 @@ let FileFileDownload = (props) => (
 );
 FileFileDownload = pure(FileFileDownload);
 FileFileDownload.displayName = 'FileFileDownload';
+FileFileDownload.muiName = 'SvgIcon';
 
 export default FileFileDownload;

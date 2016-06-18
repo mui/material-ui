@@ -9,5 +9,6 @@ let MapsSatellite = (props) => (
 );
 MapsSatellite = pure(MapsSatellite);
 MapsSatellite.displayName = 'MapsSatellite';
+MapsSatellite.muiName = 'SvgIcon';
 
 export default MapsSatellite;

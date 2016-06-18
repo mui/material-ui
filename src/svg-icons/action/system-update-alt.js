@@ -9,5 +9,6 @@ let ActionSystemUpdateAlt = (props) => (
 );
 ActionSystemUpdateAlt = pure(ActionSystemUpdateAlt);
 ActionSystemUpdateAlt.displayName = 'ActionSystemUpdateAlt';
+ActionSystemUpdateAlt.muiName = 'SvgIcon';
 
 export default ActionSystemUpdateAlt;

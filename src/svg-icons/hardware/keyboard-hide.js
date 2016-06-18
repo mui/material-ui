@@ -9,5 +9,6 @@ let HardwareKeyboardHide = (props) => (
 );
 HardwareKeyboardHide = pure(HardwareKeyboardHide);
 HardwareKeyboardHide.displayName = 'HardwareKeyboardHide';
+HardwareKeyboardHide.muiName = 'SvgIcon';
 
 export default HardwareKeyboardHide;

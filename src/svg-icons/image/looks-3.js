@@ -9,5 +9,6 @@ let ImageLooks3 = (props) => (
 );
 ImageLooks3 = pure(ImageLooks3);
 ImageLooks3.displayName = 'ImageLooks3';
+ImageLooks3.muiName = 'SvgIcon';
 
 export default ImageLooks3;

@@ -9,5 +9,6 @@ let ToggleRadioButtonChecked = (props) => (
 );
 ToggleRadioButtonChecked = pure(ToggleRadioButtonChecked);
 ToggleRadioButtonChecked.displayName = 'ToggleRadioButtonChecked';
+ToggleRadioButtonChecked.muiName = 'SvgIcon';
 
 export default ToggleRadioButtonChecked;

@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import {mount, shallow} from 'enzyme';
+import {stub} from 'sinon';
 import {assert} from 'chai';
 import RaisedButton from './RaisedButton';
 import ActionAndroid from '../svg-icons/action/android';
@@ -89,6 +90,59 @@ describe('<RaisedButton />', () => {
         button.clientHeight,
         'overlay height should match the button height'
       );
+    });
+  });
+
+  it('inherits fontSize from theme', () => {
+    const wrapper = shallowWithContext(
+      <RaisedButton label="test" />
+    );
+
+    assert.strictEqual(wrapper.contains('test'), true);
+    assert.equal(
+      wrapper.find('[children="test"]').prop('style').fontSize,
+      muiTheme.raisedButton.fontSize
+    );
+  });
+
+  it('if an svg icon is provided, renders the icon with the correct color', () => {
+    const icon = <svg color="red" />;
+    const wrapper = shallowWithContext(
+      <RaisedButton icon={icon} />
+    );
+
+    const svgIcon = wrapper.find('svg');
+    assert.strictEqual(svgIcon.length, 1, 'should have an svg icon');
+    assert.strictEqual(svgIcon.node.props.color, 'red', 'should have color set as the prop');
+  });
+
+  describe('propTypes', () => {
+    let consoleStub;
+
+    beforeEach(() => {
+      consoleStub = stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore(); // eslint-disable-line no-console
+    });
+
+    it('should throw when using wrong properties', () => {
+      shallowWithContext(
+        <RaisedButton />
+      );
+      assert.strictEqual(consoleStub.callCount, 1);
+      assert.strictEqual(
+        consoleStub.args[0][0],
+        'Warning: Failed propType: Required prop label or children or icon was not specified in RaisedButton.'
+      );
+    });
+
+    it('should not throw when using a valid properties', () => {
+      shallowWithContext(
+        <RaisedButton label={0} />
+      );
+      assert.strictEqual(consoleStub.callCount, 0);
     });
   });
 });

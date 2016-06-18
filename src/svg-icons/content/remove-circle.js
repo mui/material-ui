@@ -9,5 +9,6 @@ let ContentRemoveCircle = (props) => (
 );
 ContentRemoveCircle = pure(ContentRemoveCircle);
 ContentRemoveCircle.displayName = 'ContentRemoveCircle';
+ContentRemoveCircle.muiName = 'SvgIcon';
 
 export default ContentRemoveCircle;

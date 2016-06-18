@@ -9,5 +9,6 @@ let DeviceNetworkWifi = (props) => (
 );
 DeviceNetworkWifi = pure(DeviceNetworkWifi);
 DeviceNetworkWifi.displayName = 'DeviceNetworkWifi';
+DeviceNetworkWifi.muiName = 'SvgIcon';
 
 export default DeviceNetworkWifi;

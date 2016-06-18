@@ -9,5 +9,6 @@ let PlacesAllInclusive = (props) => (
 );
 PlacesAllInclusive = pure(PlacesAllInclusive);
 PlacesAllInclusive.displayName = 'PlacesAllInclusive';
+PlacesAllInclusive.muiName = 'SvgIcon';
 
 export default PlacesAllInclusive;

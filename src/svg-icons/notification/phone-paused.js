@@ -9,5 +9,6 @@ let NotificationPhonePaused = (props) => (
 );
 NotificationPhonePaused = pure(NotificationPhonePaused);
 NotificationPhonePaused.displayName = 'NotificationPhonePaused';
+NotificationPhonePaused.muiName = 'SvgIcon';
 
 export default NotificationPhonePaused;

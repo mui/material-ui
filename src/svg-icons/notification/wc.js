@@ -9,5 +9,6 @@ let NotificationWc = (props) => (
 );
 NotificationWc = pure(NotificationWc);
 NotificationWc.displayName = 'NotificationWc';
+NotificationWc.muiName = 'SvgIcon';
 
 export default NotificationWc;

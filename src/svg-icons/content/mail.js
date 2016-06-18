@@ -9,5 +9,6 @@ let ContentMail = (props) => (
 );
 ContentMail = pure(ContentMail);
 ContentMail.displayName = 'ContentMail';
+ContentMail.muiName = 'SvgIcon';
 
 export default ContentMail;

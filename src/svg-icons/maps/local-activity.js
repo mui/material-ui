@@ -9,5 +9,6 @@ let MapsLocalActivity = (props) => (
 );
 MapsLocalActivity = pure(MapsLocalActivity);
 MapsLocalActivity.displayName = 'MapsLocalActivity';
+MapsLocalActivity.muiName = 'SvgIcon';
 
 export default MapsLocalActivity;

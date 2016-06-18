@@ -9,5 +9,6 @@ let CommunicationPhonelinkLock = (props) => (
 );
 CommunicationPhonelinkLock = pure(CommunicationPhonelinkLock);
 CommunicationPhonelinkLock.displayName = 'CommunicationPhonelinkLock';
+CommunicationPhonelinkLock.muiName = 'SvgIcon';
 
 export default CommunicationPhonelinkLock;

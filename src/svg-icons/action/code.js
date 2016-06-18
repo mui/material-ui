@@ -9,5 +9,6 @@ let ActionCode = (props) => (
 );
 ActionCode = pure(ActionCode);
 ActionCode.displayName = 'ActionCode';
+ActionCode.muiName = 'SvgIcon';
 
 export default ActionCode;

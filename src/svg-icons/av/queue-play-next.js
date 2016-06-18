@@ -9,5 +9,6 @@ let AvQueuePlayNext = (props) => (
 );
 AvQueuePlayNext = pure(AvQueuePlayNext);
 AvQueuePlayNext.displayName = 'AvQueuePlayNext';
+AvQueuePlayNext.muiName = 'SvgIcon';
 
 export default AvQueuePlayNext;

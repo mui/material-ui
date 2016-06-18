@@ -9,5 +9,6 @@ let DeviceNfc = (props) => (
 );
 DeviceNfc = pure(DeviceNfc);
 DeviceNfc.displayName = 'DeviceNfc';
+DeviceNfc.muiName = 'SvgIcon';
 
 export default DeviceNfc;

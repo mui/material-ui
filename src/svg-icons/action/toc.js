@@ -9,5 +9,6 @@ let ActionToc = (props) => (
 );
 ActionToc = pure(ActionToc);
 ActionToc.displayName = 'ActionToc';
+ActionToc.muiName = 'SvgIcon';
 
 export default ActionToc;

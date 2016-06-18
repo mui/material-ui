@@ -9,5 +9,6 @@ let ActionBugReport = (props) => (
 );
 ActionBugReport = pure(ActionBugReport);
 ActionBugReport.displayName = 'ActionBugReport';
+ActionBugReport.muiName = 'SvgIcon';
 
 export default ActionBugReport;

@@ -9,5 +9,6 @@ let ImageExposureZero = (props) => (
 );
 ImageExposureZero = pure(ImageExposureZero);
 ImageExposureZero.displayName = 'ImageExposureZero';
+ImageExposureZero.muiName = 'SvgIcon';
 
 export default ImageExposureZero;

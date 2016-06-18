@@ -9,5 +9,6 @@ let HardwareKeyboardBackspace = (props) => (
 );
 HardwareKeyboardBackspace = pure(HardwareKeyboardBackspace);
 HardwareKeyboardBackspace.displayName = 'HardwareKeyboardBackspace';
+HardwareKeyboardBackspace.muiName = 'SvgIcon';
 
 export default HardwareKeyboardBackspace;

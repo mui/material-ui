@@ -9,5 +9,6 @@ let ContentSave = (props) => (
 );
 ContentSave = pure(ContentSave);
 ContentSave.displayName = 'ContentSave';
+ContentSave.muiName = 'SvgIcon';
 
 export default ContentSave;

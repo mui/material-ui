@@ -9,5 +9,6 @@ let DeviceBattery90 = (props) => (
 );
 DeviceBattery90 = pure(DeviceBattery90);
 DeviceBattery90.displayName = 'DeviceBattery90';
+DeviceBattery90.muiName = 'SvgIcon';
 
 export default DeviceBattery90;

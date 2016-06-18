@@ -9,5 +9,6 @@ let ImageNaturePeople = (props) => (
 );
 ImageNaturePeople = pure(ImageNaturePeople);
 ImageNaturePeople.displayName = 'ImageNaturePeople';
+ImageNaturePeople.muiName = 'SvgIcon';
 
 export default ImageNaturePeople;

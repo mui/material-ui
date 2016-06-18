@@ -9,5 +9,6 @@ let ImageCropFree = (props) => (
 );
 ImageCropFree = pure(ImageCropFree);
 ImageCropFree.displayName = 'ImageCropFree';
+ImageCropFree.muiName = 'SvgIcon';
 
 export default ImageCropFree;

@@ -9,5 +9,6 @@ let ImageBrush = (props) => (
 );
 ImageBrush = pure(ImageBrush);
 ImageBrush.displayName = 'ImageBrush';
+ImageBrush.muiName = 'SvgIcon';
 
 export default ImageBrush;

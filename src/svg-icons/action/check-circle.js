@@ -9,5 +9,6 @@ let ActionCheckCircle = (props) => (
 );
 ActionCheckCircle = pure(ActionCheckCircle);
 ActionCheckCircle.displayName = 'ActionCheckCircle';
+ActionCheckCircle.muiName = 'SvgIcon';
 
 export default ActionCheckCircle;

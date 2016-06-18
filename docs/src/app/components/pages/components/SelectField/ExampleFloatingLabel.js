@@ -10,6 +10,10 @@ const items = [
   <MenuItem key={5} value={5} primaryText="Weekly" />,
 ];
 
+/**
+ * `SelectField` supports a floating label with the `floatingLabelText` property. This can be fixed in place with the
+ * `floatingLabelFixed property, and can be customised with the `floatingLabelText` property.
+ */
 export default class SelectFieldExampleFloatingLabel extends React.Component {
 
   constructor(props) {
@@ -26,6 +30,16 @@ export default class SelectFieldExampleFloatingLabel extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           floatingLabelText="Floating Label Text"
+        >
+          {items}
+        </SelectField>
+        <br />
+        <SelectField
+          value={this.state.value}
+          onChange={this.handleChange}
+          floatingLabelText="Floating Label Text"
+          floatingLabelFixed={true}
+          hintText="Hint text"
         >
           {items}
         </SelectField>

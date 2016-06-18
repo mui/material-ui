@@ -9,5 +9,6 @@ let DeviceWallpaper = (props) => (
 );
 DeviceWallpaper = pure(DeviceWallpaper);
 DeviceWallpaper.displayName = 'DeviceWallpaper';
+DeviceWallpaper.muiName = 'SvgIcon';
 
 export default DeviceWallpaper;

@@ -9,5 +9,6 @@ let ActionSettingsInputAntenna = (props) => (
 );
 ActionSettingsInputAntenna = pure(ActionSettingsInputAntenna);
 ActionSettingsInputAntenna.displayName = 'ActionSettingsInputAntenna';
+ActionSettingsInputAntenna.muiName = 'SvgIcon';
 
 export default ActionSettingsInputAntenna;

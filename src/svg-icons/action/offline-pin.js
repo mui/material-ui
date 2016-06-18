@@ -9,5 +9,6 @@ let ActionOfflinePin = (props) => (
 );
 ActionOfflinePin = pure(ActionOfflinePin);
 ActionOfflinePin.displayName = 'ActionOfflinePin';
+ActionOfflinePin.muiName = 'SvgIcon';
 
 export default ActionOfflinePin;

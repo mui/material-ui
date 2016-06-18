@@ -9,5 +9,6 @@ let ImageFilterHdr = (props) => (
 );
 ImageFilterHdr = pure(ImageFilterHdr);
 ImageFilterHdr.displayName = 'ImageFilterHdr';
+ImageFilterHdr.muiName = 'SvgIcon';
 
 export default ImageFilterHdr;

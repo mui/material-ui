@@ -9,5 +9,6 @@ let AvVideoLibrary = (props) => (
 );
 AvVideoLibrary = pure(AvVideoLibrary);
 AvVideoLibrary.displayName = 'AvVideoLibrary';
+AvVideoLibrary.muiName = 'SvgIcon';
 
 export default AvVideoLibrary;

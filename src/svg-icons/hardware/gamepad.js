@@ -9,5 +9,6 @@ let HardwareGamepad = (props) => (
 );
 HardwareGamepad = pure(HardwareGamepad);
 HardwareGamepad.displayName = 'HardwareGamepad';
+HardwareGamepad.muiName = 'SvgIcon';
 
 export default HardwareGamepad;

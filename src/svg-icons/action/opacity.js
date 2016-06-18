@@ -9,5 +9,6 @@ let ActionOpacity = (props) => (
 );
 ActionOpacity = pure(ActionOpacity);
 ActionOpacity.displayName = 'ActionOpacity';
+ActionOpacity.muiName = 'SvgIcon';
 
 export default ActionOpacity;

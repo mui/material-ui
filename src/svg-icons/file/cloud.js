@@ -9,5 +9,6 @@ let FileCloud = (props) => (
 );
 FileCloud = pure(FileCloud);
 FileCloud.displayName = 'FileCloud';
+FileCloud.muiName = 'SvgIcon';
 
 export default FileCloud;

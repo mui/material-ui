@@ -9,5 +9,6 @@ let MapsZoomOutMap = (props) => (
 );
 MapsZoomOutMap = pure(MapsZoomOutMap);
 MapsZoomOutMap.displayName = 'MapsZoomOutMap';
+MapsZoomOutMap.muiName = 'SvgIcon';
 
 export default MapsZoomOutMap;

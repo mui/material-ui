@@ -9,5 +9,6 @@ let ActionPolymer = (props) => (
 );
 ActionPolymer = pure(ActionPolymer);
 ActionPolymer.displayName = 'ActionPolymer';
+ActionPolymer.muiName = 'SvgIcon';
 
 export default ActionPolymer;

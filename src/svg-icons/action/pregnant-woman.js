@@ -9,5 +9,6 @@ let ActionPregnantWoman = (props) => (
 );
 ActionPregnantWoman = pure(ActionPregnantWoman);
 ActionPregnantWoman.displayName = 'ActionPregnantWoman';
+ActionPregnantWoman.muiName = 'SvgIcon';
 
 export default ActionPregnantWoman;

@@ -53,7 +53,7 @@ function getStyles(props, context) {
     icon: {
       height: floatingActionButton.buttonSize,
       lineHeight: `${floatingActionButton.buttonSize}px`,
-      fill: floatingActionButton.iconColor,
+      fill: iconColor,
       color: iconColor,
     },
     iconWhenMini: {
@@ -112,7 +112,7 @@ class FloatingActionButton extends Component {
      */
     mini: PropTypes.bool,
     /**
-     * Callback function fired when a mouse button is pressed down on the elmeent.
+     * Callback function fired when a mouse button is pressed down on the element.
      *
      * @param {object} event `mousedown` event targeting the element.
      */

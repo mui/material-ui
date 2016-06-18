@@ -9,5 +9,6 @@ let AvGames = (props) => (
 );
 AvGames = pure(AvGames);
 AvGames.displayName = 'AvGames';
+AvGames.muiName = 'SvgIcon';
 
 export default AvGames;

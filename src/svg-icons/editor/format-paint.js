@@ -9,5 +9,6 @@ let EditorFormatPaint = (props) => (
 );
 EditorFormatPaint = pure(EditorFormatPaint);
 EditorFormatPaint.displayName = 'EditorFormatPaint';
+EditorFormatPaint.muiName = 'SvgIcon';
 
 export default EditorFormatPaint;

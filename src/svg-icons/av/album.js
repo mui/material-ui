@@ -9,5 +9,6 @@ let AvAlbum = (props) => (
 );
 AvAlbum = pure(AvAlbum);
 AvAlbum.displayName = 'AvAlbum';
+AvAlbum.muiName = 'SvgIcon';
 
 export default AvAlbum;

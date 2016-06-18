@@ -9,5 +9,6 @@ let MapsDirectionsBoat = (props) => (
 );
 MapsDirectionsBoat = pure(MapsDirectionsBoat);
 MapsDirectionsBoat.displayName = 'MapsDirectionsBoat';
+MapsDirectionsBoat.muiName = 'SvgIcon';
 
 export default MapsDirectionsBoat;

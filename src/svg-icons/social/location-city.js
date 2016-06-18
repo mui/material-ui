@@ -9,5 +9,6 @@ let SocialLocationCity = (props) => (
 );
 SocialLocationCity = pure(SocialLocationCity);
 SocialLocationCity.displayName = 'SocialLocationCity';
+SocialLocationCity.muiName = 'SvgIcon';
 
 export default SocialLocationCity;

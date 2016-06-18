@@ -9,5 +9,6 @@ let AvArtTrack = (props) => (
 );
 AvArtTrack = pure(AvArtTrack);
 AvArtTrack.displayName = 'AvArtTrack';
+AvArtTrack.muiName = 'SvgIcon';
 
 export default AvArtTrack;

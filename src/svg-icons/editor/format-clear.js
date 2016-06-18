@@ -9,5 +9,6 @@ let EditorFormatClear = (props) => (
 );
 EditorFormatClear = pure(EditorFormatClear);
 EditorFormatClear.displayName = 'EditorFormatClear';
+EditorFormatClear.muiName = 'SvgIcon';
 
 export default EditorFormatClear;

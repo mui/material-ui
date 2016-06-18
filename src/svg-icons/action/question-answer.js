@@ -9,5 +9,6 @@ let ActionQuestionAnswer = (props) => (
 );
 ActionQuestionAnswer = pure(ActionQuestionAnswer);
 ActionQuestionAnswer.displayName = 'ActionQuestionAnswer';
+ActionQuestionAnswer.muiName = 'SvgIcon';
 
 export default ActionQuestionAnswer;

@@ -9,5 +9,6 @@ let ImageHdrOn = (props) => (
 );
 ImageHdrOn = pure(ImageHdrOn);
 ImageHdrOn.displayName = 'ImageHdrOn';
+ImageHdrOn.muiName = 'SvgIcon';
 
 export default ImageHdrOn;

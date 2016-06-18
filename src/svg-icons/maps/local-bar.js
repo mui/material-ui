@@ -9,5 +9,6 @@ let MapsLocalBar = (props) => (
 );
 MapsLocalBar = pure(MapsLocalBar);
 MapsLocalBar.displayName = 'MapsLocalBar';
+MapsLocalBar.muiName = 'SvgIcon';
 
 export default MapsLocalBar;

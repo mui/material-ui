@@ -9,5 +9,6 @@ let AlertError = (props) => (
 );
 AlertError = pure(AlertError);
 AlertError.displayName = 'AlertError';
+AlertError.muiName = 'SvgIcon';
 
 export default AlertError;

@@ -9,5 +9,6 @@ let ImageGradient = (props) => (
 );
 ImageGradient = pure(ImageGradient);
 ImageGradient.displayName = 'ImageGradient';
+ImageGradient.muiName = 'SvgIcon';
 
 export default ImageGradient;

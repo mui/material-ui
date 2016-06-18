@@ -9,10 +9,14 @@ class ExpandTransition extends Component {
     loading: PropTypes.bool,
     open: PropTypes.bool,
     style: PropTypes.object,
+    transitionDelay: PropTypes.number,
+    transitionDuration: PropTypes.number,
   };
 
   static defaultProps = {
     enterDelay: 0,
+    transitionDelay: 0,
+    transitionDuration: 450,
     loading: false,
     open: false,
   };
@@ -21,15 +25,14 @@ class ExpandTransition extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  renderChildren(children, loading) {
-    if (loading) {
-      return ([]);
-    }
-
+  renderChildren(children) {
+    const {enterDelay, transitionDelay, transitionDuration} = this.props;
     return React.Children.map(children, (child) => {
       return (
         <ExpandTransitionChild
-          enterDelay={this.props.enterDelay}
+          enterDelay={enterDelay}
+          transitionDelay={transitionDelay}
+          transitionDuration={transitionDuration}
           key={child.key}
         >
           {child}
@@ -41,9 +44,12 @@ class ExpandTransition extends Component {
   render() {
     const {
       children,
+      enterDelay, // eslint-disable-line no-unused-vars
       loading,
       open,
       style,
+      transitionDelay, // eslint-disable-line no-unused-vars
+      transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
@@ -55,7 +61,7 @@ class ExpandTransition extends Component {
       height: '100%',
     }, style);
 
-    const newChildren = this.renderChildren(children, loading);
+    const newChildren = loading ? [] : this.renderChildren(children);
 
     return (
       <ReactTransitionGroup

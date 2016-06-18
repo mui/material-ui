@@ -9,5 +9,6 @@ let AvQueueMusic = (props) => (
 );
 AvQueueMusic = pure(AvQueueMusic);
 AvQueueMusic.displayName = 'AvQueueMusic';
+AvQueueMusic.muiName = 'SvgIcon';
 
 export default AvQueueMusic;

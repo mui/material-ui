@@ -49,7 +49,7 @@ function getStyles(props, context, state) {
 
     // This inner div is needed so that ripples will span the entire container
     innerDiv: {
-      marginLeft: nestedLevel * muiTheme.listItem.nestedLevelDepth,
+      marginLeft: nestedLevel * listItem.nestedLevelDepth,
       paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
       paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
       paddingBottom: singleAvatar ? 20 : 16,
@@ -67,14 +67,10 @@ function getStyles(props, context, state) {
     },
 
     leftIcon: {
-      color: listItem.leftIconColor,
-      fill: listItem.leftIconColor,
       left: 4,
     },
 
     rightIcon: {
-      color: listItem.rightIconColor,
-      fill: listItem.rightIconColor,
       right: 4,
     },
 
@@ -319,10 +315,11 @@ class ListItem extends Component {
     touch: false,
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
       !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.context, nextContext)
     );
   }
 
@@ -529,18 +526,26 @@ class ListItem extends Component {
     const contentChildren = [children];
 
     if (leftIcon) {
+      const additionalProps = {
+        color: leftIcon.props.color || this.context.muiTheme.listItem.leftIconColor,
+      };
       this.pushElement(
         contentChildren,
         leftIcon,
-        Object.assign({}, styles.icons, styles.leftIcon)
+        Object.assign({}, styles.icons, styles.leftIcon),
+        additionalProps,
       );
     }
 
     if (rightIcon) {
+      const additionalProps = {
+        color: rightIcon.props.color || this.context.muiTheme.listItem.rightIconColor,
+      };
       this.pushElement(
         contentChildren,
         rightIcon,
-        Object.assign({}, styles.icons, styles.rightIcon)
+        Object.assign({}, styles.icons, styles.rightIcon),
+        additionalProps,
       );
     }
 

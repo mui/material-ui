@@ -9,5 +9,6 @@ let ActionSettingsCell = (props) => (
 );
 ActionSettingsCell = pure(ActionSettingsCell);
 ActionSettingsCell.displayName = 'ActionSettingsCell';
+ActionSettingsCell.muiName = 'SvgIcon';
 
 export default ActionSettingsCell;

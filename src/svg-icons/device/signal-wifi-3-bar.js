@@ -9,5 +9,6 @@ let DeviceSignalWifi3Bar = (props) => (
 );
 DeviceSignalWifi3Bar = pure(DeviceSignalWifi3Bar);
 DeviceSignalWifi3Bar.displayName = 'DeviceSignalWifi3Bar';
+DeviceSignalWifi3Bar.muiName = 'SvgIcon';
 
 export default DeviceSignalWifi3Bar;

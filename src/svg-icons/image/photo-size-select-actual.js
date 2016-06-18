@@ -9,5 +9,6 @@ let ImagePhotoSizeSelectActual = (props) => (
 );
 ImagePhotoSizeSelectActual = pure(ImagePhotoSizeSelectActual);
 ImagePhotoSizeSelectActual.displayName = 'ImagePhotoSizeSelectActual';
+ImagePhotoSizeSelectActual.muiName = 'SvgIcon';
 
 export default ImagePhotoSizeSelectActual;

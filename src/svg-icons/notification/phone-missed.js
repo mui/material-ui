@@ -9,5 +9,6 @@ let NotificationPhoneMissed = (props) => (
 );
 NotificationPhoneMissed = pure(NotificationPhoneMissed);
 NotificationPhoneMissed.displayName = 'NotificationPhoneMissed';
+NotificationPhoneMissed.muiName = 'SvgIcon';
 
 export default NotificationPhoneMissed;

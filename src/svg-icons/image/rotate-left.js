@@ -9,5 +9,6 @@ let ImageRotateLeft = (props) => (
 );
 ImageRotateLeft = pure(ImageRotateLeft);
 ImageRotateLeft.displayName = 'ImageRotateLeft';
+ImageRotateLeft.muiName = 'SvgIcon';
 
 export default ImageRotateLeft;

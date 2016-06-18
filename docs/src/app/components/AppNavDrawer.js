@@ -118,7 +118,7 @@ class AppNavDrawer extends Component {
         docked={docked}
         open={open}
         onRequestChange={onRequestChangeNavDrawer}
-        containerStyle={{zIndex: zIndex.navDrawer - 100}}
+        containerStyle={{zIndex: zIndex.drawer - 100}}
       >
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
@@ -181,6 +181,7 @@ class AppNavDrawer extends Component {
                 ]}
               />,
               <ListItem primaryText="Card" value="/components/card" />,
+              <ListItem primaryText="Chip" value="/components/chip" />,
               <ListItem primaryText="Date Picker" value="/components/date-picker" />,
               <ListItem primaryText="Dialog" value="/components/dialog" />,
               <ListItem primaryText="Divider" value="/components/divider" />,

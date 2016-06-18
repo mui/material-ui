@@ -25,6 +25,14 @@ class TimePicker extends Component {
      */
     defaultTime: PropTypes.object,
     /**
+     * Override the inline-styles of TimePickerDialog's body element.
+     */
+    dialogBodyStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of TimePickerDialog's root element.
+     */
+    dialogStyle: PropTypes.object,
+    /**
      * If true, the TimePicker is disabled.
      */
     disabled: PropTypes.bool,
@@ -78,7 +86,6 @@ class TimePicker extends Component {
      * Sets the time for the Time Picker programmatically.
      */
     value: PropTypes.object,
-
   };
 
   static defaultProps = {
@@ -155,15 +162,21 @@ class TimePicker extends Component {
 
   handleFocusInput = (event) => {
     event.target.blur();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleTouchTapInput = (event) => {
     event.preventDefault();
 
-    if (!this.props.disabled) this.openDialog();
+    if (!this.props.disabled) {
+      this.openDialog();
+    }
 
-    if (this.props.onTouchTap) this.props.onTouchTap(event);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
   };
 
   isControlled() {
@@ -182,6 +195,8 @@ class TimePicker extends Component {
     const {
       autoOk,
       cancelLabel,
+      dialogBodyStyle,
+      dialogStyle,
       format,
       okLabel,
       onFocus, // eslint-disable-line no-unused-vars
@@ -209,6 +224,7 @@ class TimePicker extends Component {
         />
         <TimePickerDialog
           ref="dialogWindow"
+          bodyStyle={dialogBodyStyle}
           initialTime={this.state.dialogTime}
           onAccept={this.handleAcceptDialog}
           onShow={onShow}
@@ -217,6 +233,7 @@ class TimePicker extends Component {
           okLabel={okLabel}
           cancelLabel={cancelLabel}
           autoOk={autoOk}
+          style={dialogStyle}
         />
       </div>
     );

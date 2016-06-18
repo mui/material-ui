@@ -6,8 +6,10 @@ import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label && !props.icon) {
-    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+  if (process.env.NODE_ENV !== 'production') {
+    if (!props.children && !props.label && !props.icon) {
+      return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+    }
   }
 }
 
@@ -221,7 +223,7 @@ class FlatButton extends Component {
 
     if (icon) {
       iconCloned = React.cloneElement(icon, {
-        color: mergedRootStyles.color,
+        color: icon.props.color || mergedRootStyles.color,
         style: {
           verticalAlign: 'middle',
           marginLeft: label && labelPosition !== 'before' ? 12 : 0,

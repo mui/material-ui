@@ -9,5 +9,6 @@ let ActionGrade = (props) => (
 );
 ActionGrade = pure(ActionGrade);
 ActionGrade.displayName = 'ActionGrade';
+ActionGrade.muiName = 'SvgIcon';
 
 export default ActionGrade;

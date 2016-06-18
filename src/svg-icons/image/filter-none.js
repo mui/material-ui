@@ -9,5 +9,6 @@ let ImageFilterNone = (props) => (
 );
 ImageFilterNone = pure(ImageFilterNone);
 ImageFilterNone.displayName = 'ImageFilterNone';
+ImageFilterNone.muiName = 'SvgIcon';
 
 export default ImageFilterNone;

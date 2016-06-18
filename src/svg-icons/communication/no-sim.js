@@ -9,5 +9,6 @@ let CommunicationNoSim = (props) => (
 );
 CommunicationNoSim = pure(CommunicationNoSim);
 CommunicationNoSim.displayName = 'CommunicationNoSim';
+CommunicationNoSim.muiName = 'SvgIcon';
 
 export default CommunicationNoSim;

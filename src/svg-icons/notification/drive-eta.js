@@ -9,5 +9,6 @@ let NotificationDriveEta = (props) => (
 );
 NotificationDriveEta = pure(NotificationDriveEta);
 NotificationDriveEta.displayName = 'NotificationDriveEta';
+NotificationDriveEta.muiName = 'SvgIcon';
 
 export default NotificationDriveEta;

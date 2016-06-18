@@ -9,5 +9,6 @@ let CommunicationImportContacts = (props) => (
 );
 CommunicationImportContacts = pure(CommunicationImportContacts);
 CommunicationImportContacts.displayName = 'CommunicationImportContacts';
+CommunicationImportContacts.muiName = 'SvgIcon';
 
 export default CommunicationImportContacts;

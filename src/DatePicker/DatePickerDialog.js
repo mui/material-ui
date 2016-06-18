@@ -79,10 +79,12 @@ class DatePickerDialog extends Component {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
 
-    this.dismiss();
+    this.setState({
+      open: false,
+    });
   };
 
-  handleKeyUp = (event) => { // FIXME: Unused function
+  handleWindowKeyUp = (event) => {
     switch (keycode(event)) {
       case 'enter':
         this.handleTouchTapOk();
@@ -124,6 +126,7 @@ class DatePickerDialog extends Component {
     };
 
     const Container = (container === 'inline' ? Popover : Dialog);
+
     return (
       <div {...other} ref="root">
         <Container
@@ -139,7 +142,7 @@ class DatePickerDialog extends Component {
           style={styles.dialogBodyContent}
         >
           <EventListener
-            elementName="window"
+            target="window"
             onKeyUp={this.handleWindowKeyUp}
           />
           <Calendar

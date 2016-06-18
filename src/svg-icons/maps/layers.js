@@ -9,5 +9,6 @@ let MapsLayers = (props) => (
 );
 MapsLayers = pure(MapsLayers);
 MapsLayers.displayName = 'MapsLayers';
+MapsLayers.muiName = 'SvgIcon';
 
 export default MapsLayers;

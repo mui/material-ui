@@ -9,5 +9,6 @@ let ActionFindReplace = (props) => (
 );
 ActionFindReplace = pure(ActionFindReplace);
 ActionFindReplace.displayName = 'ActionFindReplace';
+ActionFindReplace.muiName = 'SvgIcon';
 
 export default ActionFindReplace;

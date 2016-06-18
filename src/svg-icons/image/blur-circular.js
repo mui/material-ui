@@ -9,5 +9,6 @@ let ImageBlurCircular = (props) => (
 );
 ImageBlurCircular = pure(ImageBlurCircular);
 ImageBlurCircular.displayName = 'ImageBlurCircular';
+ImageBlurCircular.muiName = 'SvgIcon';
 
 export default ImageBlurCircular;

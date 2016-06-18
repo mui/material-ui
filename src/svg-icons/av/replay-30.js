@@ -9,5 +9,6 @@ let AvReplay30 = (props) => (
 );
 AvReplay30 = pure(AvReplay30);
 AvReplay30.displayName = 'AvReplay30';
+AvReplay30.muiName = 'SvgIcon';
 
 export default AvReplay30;

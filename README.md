@@ -9,6 +9,7 @@ that you can use to tag your questions.
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
 [![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Coverage Status](https://coveralls.io/repos/github/callemall/material-ui/badge.svg?branch=master)](https://coveralls.io/github/callemall/material-ui?branch=master)
 
 [![PeerDependencies](https://img.shields.io/david/peer/callemall/material-ui.svg?style=flat-square)](https://david-dm.org/callemall/material-ui#info=peerDependencies&view=list)
 [![Dependencies](https://img.shields.io/david/callemall/material-ui.svg?style=flat-square)](https://david-dm.org/callemall/material-ui)
@@ -75,7 +76,7 @@ on how to do so.
 
 ## Usage
 
-Material-UI components are easy to use. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can to use any of the components as demonstrated in our documentation.
+Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can to use any of the components as demonstrated in the documentation.
 
 Here is a quick example to get you started:
 
@@ -83,12 +84,11 @@ Here is a quick example to get you started:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MyAwesomeReactComponent from './MyAwesomeReactComponent';
 
 const App = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme()}>
+  <MuiThemeProvider>
     <MyAwesomeReactComponent />
   </MuiThemeProvider>
 );
@@ -152,6 +152,11 @@ and plan on adding to it and making it better. If you'd like to help,
 check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs).
 We'd greatly appreciate any [contribution](https://github.com/callemall/material-ui/blob/master/CONTRIBUTING.md)
 you make. :)
+
+## Thanks
+
+[<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
+Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test `material-ui` in real browsers.
 
 ## License
 This project is licensed under the terms of the

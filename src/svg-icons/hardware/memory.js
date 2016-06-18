@@ -9,5 +9,6 @@ let HardwareMemory = (props) => (
 );
 HardwareMemory = pure(HardwareMemory);
 HardwareMemory.displayName = 'HardwareMemory';
+HardwareMemory.muiName = 'SvgIcon';
 
 export default HardwareMemory;

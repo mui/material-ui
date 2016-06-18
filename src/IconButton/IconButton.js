@@ -23,10 +23,6 @@ function getStyles(props, context) {
     tooltip: {
       boxSizing: 'border-box',
     },
-    icon: {
-      color: baseTheme.palette.textColor,
-      fill: baseTheme.palette.textColor,
-    },
     overlay: {
       position: 'relative',
       top: 0,
@@ -201,6 +197,7 @@ class IconButton extends Component {
     const {
       disabled,
       disableTouchRipple,
+      children,
       iconClassName,
       tooltip,
       touch,
@@ -235,12 +232,13 @@ class IconButton extends Component {
           className={iconClassName}
           hoverColor={disabled ? null : iconHoverColor}
           style={Object.assign(
-            styles.icon,
+            {},
             disabled && styles.disabled,
             iconStyleFontIcon
           )}
+          color={this.context.muiTheme.baseTheme.palette.textColor}
         >
-          {this.props.children}
+          {children}
         </FontIcon>
       );
     }
@@ -264,7 +262,7 @@ class IconButton extends Component {
       >
         {tooltipElement}
         {fonticon}
-        {extendChildren(this.props.children, {
+        {extendChildren(children, {
           style: childrenStyle,
         })}
       </EnhancedButton>

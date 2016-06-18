@@ -9,5 +9,6 @@ let ImagePanorama = (props) => (
 );
 ImagePanorama = pure(ImagePanorama);
 ImagePanorama.displayName = 'ImagePanorama';
+ImagePanorama.muiName = 'SvgIcon';
 
 export default ImagePanorama;

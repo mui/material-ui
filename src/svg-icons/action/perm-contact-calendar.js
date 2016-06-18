@@ -9,5 +9,6 @@ let ActionPermContactCalendar = (props) => (
 );
 ActionPermContactCalendar = pure(ActionPermContactCalendar);
 ActionPermContactCalendar.displayName = 'ActionPermContactCalendar';
+ActionPermContactCalendar.muiName = 'SvgIcon';
 
 export default ActionPermContactCalendar;

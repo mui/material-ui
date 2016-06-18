@@ -9,5 +9,6 @@ let ActionTheaters = (props) => (
 );
 ActionTheaters = pure(ActionTheaters);
 ActionTheaters.displayName = 'ActionTheaters';
+ActionTheaters.muiName = 'SvgIcon';
 
 export default ActionTheaters;

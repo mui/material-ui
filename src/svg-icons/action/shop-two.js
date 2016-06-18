@@ -9,5 +9,6 @@ let ActionShopTwo = (props) => (
 );
 ActionShopTwo = pure(ActionShopTwo);
 ActionShopTwo.displayName = 'ActionShopTwo';
+ActionShopTwo.muiName = 'SvgIcon';
 
 export default ActionShopTwo;

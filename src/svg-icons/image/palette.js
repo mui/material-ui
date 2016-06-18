@@ -9,5 +9,6 @@ let ImagePalette = (props) => (
 );
 ImagePalette = pure(ImagePalette);
 ImagePalette.displayName = 'ImagePalette';
+ImagePalette.muiName = 'SvgIcon';
 
 export default ImagePalette;

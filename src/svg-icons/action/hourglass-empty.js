@@ -9,5 +9,6 @@ let ActionHourglassEmpty = (props) => (
 );
 ActionHourglassEmpty = pure(ActionHourglassEmpty);
 ActionHourglassEmpty.displayName = 'ActionHourglassEmpty';
+ActionHourglassEmpty.muiName = 'SvgIcon';
 
 export default ActionHourglassEmpty;

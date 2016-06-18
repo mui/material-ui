@@ -9,5 +9,6 @@ let AvForward10 = (props) => (
 );
 AvForward10 = pure(AvForward10);
 AvForward10.displayName = 'AvForward10';
+AvForward10.muiName = 'SvgIcon';
 
 export default AvForward10;

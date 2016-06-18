@@ -9,5 +9,6 @@ let ActionYoutubeSearchedFor = (props) => (
 );
 ActionYoutubeSearchedFor = pure(ActionYoutubeSearchedFor);
 ActionYoutubeSearchedFor.displayName = 'ActionYoutubeSearchedFor';
+ActionYoutubeSearchedFor.muiName = 'SvgIcon';
 
 export default ActionYoutubeSearchedFor;

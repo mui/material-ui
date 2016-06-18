@@ -9,5 +9,6 @@ let ImageColorize = (props) => (
 );
 ImageColorize = pure(ImageColorize);
 ImageColorize.displayName = 'ImageColorize';
+ImageColorize.muiName = 'SvgIcon';
 
 export default ImageColorize;

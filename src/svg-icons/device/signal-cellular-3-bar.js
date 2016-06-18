@@ -9,5 +9,6 @@ let DeviceSignalCellular3Bar = (props) => (
 );
 DeviceSignalCellular3Bar = pure(DeviceSignalCellular3Bar);
 DeviceSignalCellular3Bar.displayName = 'DeviceSignalCellular3Bar';
+DeviceSignalCellular3Bar.muiName = 'SvgIcon';
 
 export default DeviceSignalCellular3Bar;

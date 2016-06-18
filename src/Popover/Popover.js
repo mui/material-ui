@@ -4,7 +4,7 @@ import EventListener from 'react-event-listener';
 import RenderToLayer from '../internal/RenderToLayer';
 import propTypes from '../utils/propTypes';
 import Paper from '../Paper';
-import throttle from 'lodash.throttle';
+import throttle from 'lodash/throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
 class Popover extends Component {
@@ -112,7 +112,7 @@ class Popover extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleResize = throttle(this.setPlacement, 100);
-    this.handleScroll = throttle(this.setPlacement.bind(this, true), 100);
+    this.handleScroll = throttle(this.setPlacement.bind(this, true), 50);
 
     this.state = {
       open: props.open,
@@ -272,7 +272,7 @@ class Popover extends Component {
     if (anchorPosition.top < 0 ||
       anchorPosition.top > window.innerHeight ||
       anchorPosition.left < 0 ||
-      anchorPosition.left > window.innerWith) {
+      anchorPosition.left > window.innerWidth) {
       this.requestClose('offScreen');
     }
   }
@@ -350,7 +350,7 @@ class Popover extends Component {
     return (
       <div style={{display: 'none'}}>
         <EventListener
-          elementName="window"
+          target="window"
           onScroll={this.handleScroll}
           onResize={this.handleResize}
         />

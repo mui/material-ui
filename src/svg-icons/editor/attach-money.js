@@ -9,5 +9,6 @@ let EditorAttachMoney = (props) => (
 );
 EditorAttachMoney = pure(EditorAttachMoney);
 EditorAttachMoney.displayName = 'EditorAttachMoney';
+EditorAttachMoney.muiName = 'SvgIcon';
 
 export default EditorAttachMoney;

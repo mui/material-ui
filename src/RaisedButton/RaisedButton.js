@@ -6,8 +6,10 @@ import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label && !props.icon) {
-    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+  if (process.env.NODE_ENV !== 'production') {
+    if (!props.children && !props.label && !props.icon) {
+      return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+    }
   }
 }
 
@@ -78,7 +80,7 @@ function getStyles(props, context, state) {
     label: {
       position: 'relative',
       opacity: 1,
-      fontSize: '14px',
+      fontSize: raisedButton.fontSize,
       letterSpacing: 0,
       textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
       fontWeight: raisedButton.fontWeight,
@@ -381,7 +383,7 @@ class RaisedButton extends Component {
     );
 
     const iconCloned = icon && React.cloneElement(icon, {
-      color: styles.label.color,
+      color: icon.props.color || styles.label.color,
       style: styles.icon,
     });
 

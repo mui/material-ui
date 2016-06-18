@@ -9,5 +9,6 @@ let HardwareKeyboardVoice = (props) => (
 );
 HardwareKeyboardVoice = pure(HardwareKeyboardVoice);
 HardwareKeyboardVoice.displayName = 'HardwareKeyboardVoice';
+HardwareKeyboardVoice.muiName = 'SvgIcon';
 
 export default HardwareKeyboardVoice;

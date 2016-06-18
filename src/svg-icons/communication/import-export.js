@@ -9,5 +9,6 @@ let CommunicationImportExport = (props) => (
 );
 CommunicationImportExport = pure(CommunicationImportExport);
 CommunicationImportExport.displayName = 'CommunicationImportExport';
+CommunicationImportExport.muiName = 'SvgIcon';
 
 export default CommunicationImportExport;

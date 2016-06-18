@@ -9,5 +9,6 @@ let ContentInbox = (props) => (
 );
 ContentInbox = pure(ContentInbox);
 ContentInbox.displayName = 'ContentInbox';
+ContentInbox.muiName = 'SvgIcon';
 
 export default ContentInbox;

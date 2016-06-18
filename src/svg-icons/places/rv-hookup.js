@@ -9,5 +9,6 @@ let PlacesRvHookup = (props) => (
 );
 PlacesRvHookup = pure(PlacesRvHookup);
 PlacesRvHookup.displayName = 'PlacesRvHookup';
+PlacesRvHookup.muiName = 'SvgIcon';
 
 export default PlacesRvHookup;

@@ -9,5 +9,6 @@ let MapsLocalTaxi = (props) => (
 );
 MapsLocalTaxi = pure(MapsLocalTaxi);
 MapsLocalTaxi.displayName = 'MapsLocalTaxi';
+MapsLocalTaxi.muiName = 'SvgIcon';
 
 export default MapsLocalTaxi;

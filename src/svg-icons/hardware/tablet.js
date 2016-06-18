@@ -9,5 +9,6 @@ let HardwareTablet = (props) => (
 );
 HardwareTablet = pure(HardwareTablet);
 HardwareTablet.displayName = 'HardwareTablet';
+HardwareTablet.muiName = 'SvgIcon';
 
 export default HardwareTablet;

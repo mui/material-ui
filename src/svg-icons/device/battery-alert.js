@@ -9,5 +9,6 @@ let DeviceBatteryAlert = (props) => (
 );
 DeviceBatteryAlert = pure(DeviceBatteryAlert);
 DeviceBatteryAlert.displayName = 'DeviceBatteryAlert';
+DeviceBatteryAlert.muiName = 'SvgIcon';
 
 export default DeviceBatteryAlert;

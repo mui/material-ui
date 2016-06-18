@@ -9,5 +9,6 @@ let MapsLocalCafe = (props) => (
 );
 MapsLocalCafe = pure(MapsLocalCafe);
 MapsLocalCafe.displayName = 'MapsLocalCafe';
+MapsLocalCafe.muiName = 'SvgIcon';
 
 export default MapsLocalCafe;

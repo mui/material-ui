@@ -9,5 +9,6 @@ let ActionLanguage = (props) => (
 );
 ActionLanguage = pure(ActionLanguage);
 ActionLanguage.displayName = 'ActionLanguage';
+ActionLanguage.muiName = 'SvgIcon';
 
 export default ActionLanguage;

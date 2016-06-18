@@ -9,5 +9,6 @@ let NavigationCheck = (props) => (
 );
 NavigationCheck = pure(NavigationCheck);
 NavigationCheck.displayName = 'NavigationCheck';
+NavigationCheck.muiName = 'SvgIcon';
 
 export default NavigationCheck;

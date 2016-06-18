@@ -9,5 +9,6 @@ let PlacesFreeBreakfast = (props) => (
 );
 PlacesFreeBreakfast = pure(PlacesFreeBreakfast);
 PlacesFreeBreakfast.displayName = 'PlacesFreeBreakfast';
+PlacesFreeBreakfast.muiName = 'SvgIcon';
 
 export default PlacesFreeBreakfast;

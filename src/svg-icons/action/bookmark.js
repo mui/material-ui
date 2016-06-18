@@ -9,5 +9,6 @@ let ActionBookmark = (props) => (
 );
 ActionBookmark = pure(ActionBookmark);
 ActionBookmark.displayName = 'ActionBookmark';
+ActionBookmark.muiName = 'SvgIcon';
 
 export default ActionBookmark;

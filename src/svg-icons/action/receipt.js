@@ -9,5 +9,6 @@ let ActionReceipt = (props) => (
 );
 ActionReceipt = pure(ActionReceipt);
 ActionReceipt.displayName = 'ActionReceipt';
+ActionReceipt.muiName = 'SvgIcon';
 
 export default ActionReceipt;

@@ -9,5 +9,6 @@ let ContentBackspace = (props) => (
 );
 ContentBackspace = pure(ContentBackspace);
 ContentBackspace.displayName = 'ContentBackspace';
+ContentBackspace.muiName = 'SvgIcon';
 
 export default ContentBackspace;

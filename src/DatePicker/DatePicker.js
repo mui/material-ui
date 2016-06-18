@@ -24,6 +24,10 @@ class DatePicker extends Component {
      */
     cancelLabel: PropTypes.node,
     /**
+     * The css class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
      * Used to control how the Date Picker will be displayed when the input field is focused.
      * `dialog` (default) displays the DatePicker as a dialog with a modal.
      * `inline` displays the DatePicker below the input field (similar to auto complete).
@@ -127,7 +131,7 @@ class DatePicker extends Component {
     /**
      * Sets the date for the Date Picker programmatically.
      */
-    value: PropTypes.any,
+    value: PropTypes.object,
     /**
      * Wordings used inside the button of the dialog.
      */
@@ -142,7 +146,6 @@ class DatePicker extends Component {
     firstDayOfWeek: 1,
     style: {},
   };
-
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
@@ -206,21 +209,28 @@ class DatePicker extends Component {
         date: date,
       });
     }
-    if (this.props.onChange) this.props.onChange(null, date);
+    if (this.props.onChange) {
+      this.props.onChange(null, date);
+    }
   };
 
   handleFocus = (event) => {
     event.target.blur();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) this.props.onTouchTap(event);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
 
-    if (!this.props.disabled)
+    if (!this.props.disabled) {
       setTimeout(() => {
         this.openDialog();
       }, 0);
+    }
   };
 
   isControlled() {
@@ -251,6 +261,7 @@ class DatePicker extends Component {
       DateTimeFormat,
       autoOk,
       cancelLabel,
+      className,
       container,
       defaultDate, // eslint-disable-line no-unused-vars
       disableYearSelection,
@@ -275,7 +286,7 @@ class DatePicker extends Component {
     const formatDate = this.props.formatDate || this.formatDate;
 
     return (
-      <div style={prepareStyles(Object.assign({}, style))}>
+      <div className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           onFocus={this.handleFocus}

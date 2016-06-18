@@ -9,5 +9,6 @@ let NavigationCancel = (props) => (
 );
 NavigationCancel = pure(NavigationCancel);
 NavigationCancel.displayName = 'NavigationCancel';
+NavigationCancel.muiName = 'SvgIcon';
 
 export default NavigationCancel;

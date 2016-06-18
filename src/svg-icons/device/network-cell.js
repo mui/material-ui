@@ -9,5 +9,6 @@ let DeviceNetworkCell = (props) => (
 );
 DeviceNetworkCell = pure(DeviceNetworkCell);
 DeviceNetworkCell.displayName = 'DeviceNetworkCell';
+DeviceNetworkCell.muiName = 'SvgIcon';
 
 export default DeviceNetworkCell;

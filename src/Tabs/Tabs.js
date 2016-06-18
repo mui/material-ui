@@ -149,14 +149,14 @@ class Tabs extends Component {
 
   handleTabTouchTap = (value, event, tab) => {
     const valueLink = this.getValueLink(this.props);
-    const tabIndex = tab.props.tabIndex;
+    const index = tab.props.index;
 
     if ((valueLink.value && valueLink.value !== value) ||
-      this.state.selectedIndex !== tabIndex) {
+      this.state.selectedIndex !== index) {
       valueLink.requestChange(value, event, tab);
     }
 
-    this.setState({selectedIndex: tabIndex});
+    this.setState({selectedIndex: index});
 
     if (tab.props.onActive) {
       tab.props.onActive(tab);
@@ -206,8 +206,8 @@ class Tabs extends Component {
 
       return React.cloneElement(tab, {
         key: index,
+        index: index,
         selected: this.getSelected(tab, index),
-        tabIndex: index,
         width: `${width}%`,
         onTouchTap: this.handleTabTouchTap,
       });

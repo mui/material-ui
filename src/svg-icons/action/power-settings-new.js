@@ -9,5 +9,6 @@ let ActionPowerSettingsNew = (props) => (
 );
 ActionPowerSettingsNew = pure(ActionPowerSettingsNew);
 ActionPowerSettingsNew.displayName = 'ActionPowerSettingsNew';
+ActionPowerSettingsNew.muiName = 'SvgIcon';
 
 export default ActionPowerSettingsNew;

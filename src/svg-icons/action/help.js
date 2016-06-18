@@ -9,5 +9,6 @@ let ActionHelp = (props) => (
 );
 ActionHelp = pure(ActionHelp);
 ActionHelp.displayName = 'ActionHelp';
+ActionHelp.muiName = 'SvgIcon';
 
 export default ActionHelp;

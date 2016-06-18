@@ -9,5 +9,6 @@ let CommunicationPhonelinkErase = (props) => (
 );
 CommunicationPhonelinkErase = pure(CommunicationPhonelinkErase);
 CommunicationPhonelinkErase.displayName = 'CommunicationPhonelinkErase';
+CommunicationPhonelinkErase.muiName = 'SvgIcon';
 
 export default CommunicationPhonelinkErase;
