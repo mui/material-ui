@@ -52,7 +52,7 @@ describe('<FlatButton />', () => {
     );
     const icon = wrapper.children().at(0);
     const label = wrapper.children().at(1);
-    assert.ok(icon.is('span'), );
+    assert.ok(icon.is('span'));
     assert.ok(icon.hasClass('test-icon'));
     assert.ok(label.is('FlatButtonLabel'));
     assert.strictEqual(label.node.props.label, 'Hello', 'says hello');
@@ -68,7 +68,7 @@ describe('<FlatButton />', () => {
     );
     const icon = wrapper.children().at(1);
     const label = wrapper.children().at(0);
-    assert.ok(icon.is('span'), );
+    assert.ok(icon.is('span'));
     assert.ok(icon.hasClass('test-icon'));
     assert.ok(label.is('FlatButtonLabel'));
     assert.strictEqual(label.node.props.label, 'Hello', 'says hello');

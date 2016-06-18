@@ -525,7 +525,7 @@ class ListItem extends Component {
         contentChildren,
         leftIcon,
         Object.assign({}, styles.icons, styles.leftIcon),
-        additionalProps,
+        additionalProps
       );
     }
 
@@ -537,7 +537,7 @@ class ListItem extends Component {
         contentChildren,
         rightIcon,
         Object.assign({}, styles.icons, styles.rightIcon),
-        additionalProps,
+        additionalProps
       );
     }
 
