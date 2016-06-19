@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, Children} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './SlideInChild';
 
@@ -34,35 +34,35 @@ class SlideIn extends Component {
       ...other,
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const {
+      prepareStyles,
+    } = this.context.muiTheme;
 
-    const mergedRootStyles = Object.assign({}, {
+    const rootStyle = Object.assign({
       position: 'relative',
       overflow: 'hidden',
       height: '100%',
     }, style);
 
-    const newChildren = React.Children.map(children, (child) => {
-      return (
-        <SlideInChild
-          key={child.key}
-          direction={direction}
-          enterDelay={enterDelay}
-          getLeaveDirection={this.getLeaveDirection}
-          style={childStyle}
-        >
-          {child}
-        </SlideInChild>
-      );
-    }, this);
-
     return (
       <ReactTransitionGroup
         {...other}
-        style={prepareStyles(mergedRootStyles)}
+        style={prepareStyles(rootStyle)}
         component="div"
       >
-        {newChildren}
+        {Children.map(children, (child) => {
+          return (
+            <SlideInChild
+              key={child.key}
+              direction={direction}
+              enterDelay={enterDelay}
+              getLeaveDirection={this.getLeaveDirection}
+              style={childStyle}
+            >
+              {child}
+            </SlideInChild>
+          );
+        })}
       </ReactTransitionGroup>
     );
   }

@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import transitions from '../styles/transitions';
+import {createStyleSheet} from 'stylishly/lib/styleSheet';
+
 import CalendarActionButtons from './CalendarActionButtons';
 import CalendarMonth from './CalendarMonth';
 import CalendarYear from './CalendarYear';
@@ -24,6 +25,49 @@ import {
 } from './dateUtils';
 
 const daysArray = [...Array(7)];
+
+const styleSheet = createStyleSheet('Calendar', (theme) => {
+  return {
+    root: {
+      color: theme.datePicker.calendarTextColor,
+    },
+    calendar: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    calendarContainer: {
+      display: 'flex',
+      alignContent: 'space-between',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      fontSize: 12,
+      fontWeight: 400,
+      padding: '0px 8px',
+    },
+    yearContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      height: 272,
+      marginTop: 10,
+      overflow: 'hidden',
+      width: 310,
+    },
+    weekTitle: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      fontWeight: '500',
+      height: 20,
+      lineHeight: '15px',
+      opacity: 0.5,
+      textAlign: 'center',
+    },
+    weekTitleDay: {
+      width: 42,
+    },
+  };
+});
 
 class Calendar extends Component {
   static propTypes = {
@@ -236,63 +280,30 @@ class Calendar extends Component {
   }
 
   render() {
-    const {prepareStyles} = this.context.muiTheme;
+    const {
+      prepareStyles,
+      styleManager,
+    } = this.context.muiTheme;
     const weekCount = getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     const toolbarInteractions = this.getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';
-    const {calendarTextColor} = this.context.muiTheme.datePicker;
+
+    const classes = styleManager.render(styleSheet);
 
     const styles = {
       root: {
-        color: calendarTextColor,
-        userSelect: 'none',
         width: isLandscape ? 479 : 310,
-      },
-      calendar: {
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      calendarContainer: {
-        display: 'flex',
-        alignContent: 'space-between',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        fontSize: 12,
-        fontWeight: 400,
-        padding: '0px 8px',
-        transition: transitions.easeOut(),
-      },
-      yearContainer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        height: 272,
-        marginTop: 10,
-        overflow: 'hidden',
-        width: 310,
-      },
-      weekTitle: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        fontWeight: '500',
-        height: 20,
-        lineHeight: '15px',
-        opacity: '0.5',
-        textAlign: 'center',
-      },
-      weekTitleDay: {
-        width: 42,
+        userSelect: 'none',
       },
       transitionSlide: {
         height: 214,
       },
     };
 
-    const weekTitleDayStyle = prepareStyles(styles.weekTitleDay);
-
     const {
+      autoOk,
       cancelLabel,
+      disableYearSelection,
       DateTimeFormat,
       firstDayOfWeek,
       locale,
@@ -300,66 +311,77 @@ class Calendar extends Component {
       onTouchTapCancel, // eslint-disable-line no-unused-vars
       onTouchTapOk, // eslint-disable-line no-unused-vars
       wordings,
+      maxDate,
+      minDate,
+      mode,
+      shouldDisableDate,
     } = this.props;
 
+    const {
+      displayMonthDay,
+      selectedDate,
+      displayDate,
+      transitionDirection,
+    } = this.state;
+
     return (
-      <div style={prepareStyles(styles.root)}>
+      <div style={prepareStyles(styles.root)} className={classes.root}>
         <EventListener
           target="window"
           onKeyDown={this.handleWindowKeyDown}
         />
         <DateDisplay
           DateTimeFormat={DateTimeFormat}
-          disableYearSelection={this.props.disableYearSelection}
+          disableYearSelection={disableYearSelection}
           onTouchTapMonthDay={this.handleTouchTapDateDisplayMonthDay}
           onTouchTapYear={this.handleTouchTapDateDisplayYear}
           locale={locale}
-          monthDaySelected={this.state.displayMonthDay}
-          mode={this.props.mode}
-          selectedDate={this.state.selectedDate}
+          monthDaySelected={displayMonthDay}
+          mode={mode}
+          selectedDate={selectedDate}
           weekCount={weekCount}
         />
-        <div style={prepareStyles(styles.calendar)}>
+        <div className={classes.calendar}>
           {this.state.displayMonthDay &&
-            <div style={prepareStyles(styles.calendarContainer)}>
+            <div className={classes.calendarContainer}>
               <CalendarToolbar
                 DateTimeFormat={DateTimeFormat}
                 locale={locale}
-                displayDate={this.state.displayDate}
+                displayDate={displayDate}
                 onMonthChange={this.handleMonthChange}
                 prevMonth={toolbarInteractions.prevMonth}
                 nextMonth={toolbarInteractions.nextMonth}
               />
-              <div style={prepareStyles(styles.weekTitle)}>
+              <div className={classes.weekTitle}>
                 {daysArray.map((event, i) => (
-                  <span key={i} style={weekTitleDayStyle}>
+                  <span key={i} className={classes.weekTitleDay}>
                     {localizedWeekday(DateTimeFormat, locale, i, firstDayOfWeek)}
                   </span>
                 ))}
               </div>
-              <SlideInTransitionGroup direction={this.state.transitionDirection} style={styles.transitionSlide}>
+              <SlideInTransitionGroup direction={transitionDirection} style={styles.transitionSlide}>
                 <CalendarMonth
-                  displayDate={this.state.displayDate}
-                  firstDayOfWeek={this.props.firstDayOfWeek}
-                  key={this.state.displayDate.toDateString()}
-                  minDate={this.props.minDate}
-                  maxDate={this.props.maxDate}
+                  displayDate={displayDate}
+                  firstDayOfWeek={firstDayOfWeek}
+                  key={displayDate.toDateString()}
+                  minDate={minDate}
+                  maxDate={maxDate}
                   onTouchTapDay={this.handleTouchTapDay}
                   ref="calendar"
-                  selectedDate={this.state.selectedDate}
-                  shouldDisableDate={this.props.shouldDisableDate}
+                  selectedDate={selectedDate}
+                  shouldDisableDate={shouldDisableDate}
                 />
               </SlideInTransitionGroup>
             </div>
           }
           {!this.state.displayMonthDay &&
-            <div style={prepareStyles(styles.yearContainer)}>
+            <div className={classes.yearContainer}>
               {this.yearSelector()}
             </div>
           }
           {okLabel &&
             <CalendarActionButtons
-              autoOk={this.props.autoOk}
+              autoOk={autoOk}
               cancelLabel={cancelLabel}
               okLabel={okLabel}
               onTouchTapCancel={onTouchTapCancel}

@@ -42,6 +42,7 @@
     "react-tap-event-plugin": "^1.0.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "inline-style-prefixer": "^1.0.3",
     "keycode": "^2.1.1",
     "lodash": "^4.13.1",
@@ -50,6 +51,12 @@
     "react-event-listener": "^0.2.1",
     "recompose": "^0.19.0",
     "simple-assign": "^0.1.0",
+    "stylishly": "^0.2.3",
+    "stylishly-chained": "^0.2.0",
+    "stylishly-descendants": "^0.2.3",
+    "stylishly-pseudo-classes": "^0.2.1",
+    "stylishly-units": "^0.2.0",
+    "stylishly-vendor-prefixer": "^0.2.2",
     "warning": "^2.1.0"
   },
   "devDependencies": {

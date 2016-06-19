@@ -1,27 +1,31 @@
 import React, {Component, PropTypes} from 'react';
+import {createStyleSheet} from 'stylishly/lib/styleSheet';
+
 import IconButton from '../IconButton';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
-import SlideInTransitionGroup from '../internal/SlideIn';
+import SlideIn from '../internal/SlideIn';
 
-const styles = {
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    backgroundColor: 'inherit',
-    height: 48,
-  },
-  titleDiv: {
-    fontSize: 14,
-    fontWeight: '500',
-    textAlign: 'center',
-    width: '100%',
-  },
-  titleText: {
-    height: 'inherit',
-    paddingTop: 12,
-  },
-};
+const styleSheet = createStyleSheet('CalendarToolbar', () => {
+  return {
+    root: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      backgroundColor: 'inherit',
+      height: 48,
+    },
+    titleDiv: {
+      fontWeight: '500',
+      textAlign: 'center',
+      width: '100%',
+    },
+    titleText: {
+      fontSize: 14,
+      height: 'inherit',
+      paddingTop: 12,
+    },
+  };
+});
 
 class CalendarToolbar extends Component {
   static propTypes = {
@@ -64,34 +68,39 @@ class CalendarToolbar extends Component {
   };
 
   render() {
-    const {DateTimeFormat, locale, displayDate} = this.props;
+    const {
+      styleManager,
+      isRtl,
+    } = this.context.muiTheme;
+    const classes = styleManager.render(styleSheet);
+
+    const {
+      DateTimeFormat,
+      locale,
+      displayDate,
+      prevMonth,
+      nextMonth,
+    } = this.props;
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
       year: 'numeric',
     }).format(displayDate);
 
-    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
-    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
+    const nextButtonIcon = isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const prevButtonIcon = isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
 
     return (
-      <div style={styles.root}>
-        <IconButton
-          disabled={!this.props.prevMonth}
-          onTouchTap={this.handleTouchTapPrevMonth}
-        >
+      <div className={classes.root}>
+        <IconButton disabled={!prevMonth} onTouchTap={this.handleTouchTapPrevMonth}>
           {prevButtonIcon}
         </IconButton>
-        <SlideInTransitionGroup
-          direction={this.state.transitionDirection}
-          style={styles.titleDiv}
-        >
-          <div key={dateTimeFormatted} style={styles.titleText}>{dateTimeFormatted}</div>
-        </SlideInTransitionGroup>
-        <IconButton
-          disabled={!this.props.nextMonth}
-          onTouchTap={this.handleTouchTapNextMonth}
-        >
+        <SlideIn direction={this.state.transitionDirection} className={classes.titleDiv}>
+          <div key={dateTimeFormatted} className={classes.titleText}>
+            {dateTimeFormatted}
+          </div>
+        </SlideIn>
+        <IconButton disabled={!nextMonth} onTouchTap={this.handleTouchTapNextMonth}>
           {nextButtonIcon}
         </IconButton>
       </div>

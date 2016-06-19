@@ -7,6 +7,25 @@ import Popover from '../Popover/Popover';
 import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
+function getStyles(props) {
+  const {
+    mode,
+  } = props;
+
+  const styles = {
+    dialogContent: {
+      width: mode === 'landscape' ? 479 : 310,
+    },
+    dialogBodyContent: {
+      padding: 0,
+      minHeight: mode === 'landscape' ? 330 : 434,
+      minWidth: mode === 'landscape' ? 479 : 310,
+    },
+  };
+
+  return styles;
+}
+
 class DatePickerDialog extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func,
@@ -114,20 +133,12 @@ class DatePickerDialog extends Component {
       ...other,
     } = this.props;
 
-    const {open} = this.state;
+    const {
+      open,
+    } = this.state;
 
-    const styles = {
-      dialogContent: {
-        width: mode === 'landscape' ? 479 : 310,
-      },
-      dialogBodyContent: {
-        padding: 0,
-        minHeight: mode === 'landscape' ? 330 : 434,
-        minWidth: mode === 'landscape' ? 479 : 310,
-      },
-    };
-
-    const Container = (container === 'inline' ? Popover : Dialog);
+    const styles = getStyles(this.props, this.state);
+    const Container = container === 'inline' ? Popover : Dialog;
 
     return (
       <div {...other} ref="root">

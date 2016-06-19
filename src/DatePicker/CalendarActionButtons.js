@@ -1,5 +1,24 @@
 import React, {Component, PropTypes} from 'react';
+import {createStyleSheet} from 'stylishly/lib/styleSheet';
+
 import FlatButton from '../FlatButton';
+
+const styleSheet = createStyleSheet('CalendarActionButton', () => {
+  return {
+    root: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+    },
+  };
+});
+
+const styles = {
+  flatButtons: {
+    margin: '4px 8px 8px 0px',
+    minWidth: 64,
+  },
+};
 
 class CalendarActionButton extends Component {
   static propTypes = {
@@ -11,40 +30,34 @@ class CalendarActionButton extends Component {
     wordings: PropTypes.object,
   };
 
-  render() {
-    const {cancelLabel, okLabel, wordings} = this.props;
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
 
-    const styles = {
-      root: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        margin: 0,
-        maxHeight: 48,
-        padding: 0,
-      },
-      flatButtons: {
-        fontsize: 14,
-        margin: '4px 8px 8px 0px',
-        maxHeight: 36,
-        minWidth: 64,
-        padding: 0,
-      },
-    };
+  render() {
+    const {
+      cancelLabel,
+      okLabel,
+      wordings,
+      onTouchTapOk,
+      autoOk,
+    } = this.props;
+
+    const classes = this.context.muiTheme.styleManager.render(styleSheet);
 
     return (
-      <div style={styles.root} >
+      <div className={classes.root} >
         <FlatButton
           label={wordings ? wordings.cancel : cancelLabel}
           onTouchTap={this.props.onTouchTapCancel}
           primary={true}
           style={styles.flatButtons}
         />
-        {!this.props.autoOk &&
+        {!autoOk &&
           <FlatButton
             disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
             label={wordings ? wordings.ok : okLabel}
-            onTouchTap={this.props.onTouchTapOk}
+            onTouchTap={onTouchTapOk}
             primary={true}
             style={styles.flatButtons}
           />

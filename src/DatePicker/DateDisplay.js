@@ -1,39 +1,41 @@
 import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import SlideInTransitionGroup from '../internal/SlideIn';
+import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import classNames from 'classnames';
 
-function getStyles(props, context, state) {
-  const {datePicker} = context.muiTheme;
-  const {selectedYear} = state;
-  const isLandscape = props.mode === 'landscape';
+import SlideIn from '../internal/SlideIn';
 
-  const styles = {
+const styleSheet = createStyleSheet('DateDisplay', (theme) => {
+  const datePicker = theme.datePicker;
+
+  return {
     root: {
-      width: isLandscape ? 165 : '100%',
-      height: isLandscape ? 330 : 'auto',
-      float: isLandscape ? 'left' : 'none',
+      width: '100%',
+      height: 'auto',
       fontWeight: 700,
       display: 'inline-block',
       backgroundColor: datePicker.selectColor,
       borderTopLeftRadius: 2,
-      borderTopRightRadius: isLandscape ? 0 : 2,
-      borderBottomLeftRadius: isLandscape ? 2 : 0,
+      borderTopRightRadius: 2,
+      borderBottomLeftRadius: 0,
       color: datePicker.textColor,
       padding: 20,
       boxSizing: 'border-box',
+    },
+    rootLandscape: {
+      width: 165,
+      height: 330,
+      float: 'left',
+      borderTopRightRadius: 0,
+      borderBottomLeftRadius: 2,
     },
     monthDay: {
       display: 'block',
       fontSize: 36,
       lineHeight: '36px',
-      height: props.mode === 'landscape' ? '100%' : 38,
-      opacity: selectedYear ? 0.7 : 1,
-      transition: transitions.easeOut(),
       width: '100%',
       fontWeight: '500',
     },
     monthDayTitle: {
-      cursor: !selectedYear ? 'default' : 'pointer',
       width: '100%',
       display: 'block',
     },
@@ -42,10 +44,27 @@ function getStyles(props, context, state) {
       fontSize: 16,
       fontWeight: '500',
       lineHeight: '16px',
+      marginBottom: 10,
+    },
+  };
+});
+
+function getStyles(props, state) {
+  const {
+    selectedYear,
+  } = state;
+
+  const styles = {
+    monthDay: {
+      opacity: selectedYear ? 0.7 : 1,
+      height: props.mode === 'landscape' ? '100%' : 38,
+    },
+    monthDayTitle: {
+      cursor: !selectedYear ? 'default' : 'pointer',
+    },
+    year: {
       height: 16,
       opacity: selectedYear ? 1 : 0.7,
-      transition: transitions.easeOut(),
-      marginBottom: 10,
     },
     yearTitle: {
       cursor: (!selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
@@ -119,6 +138,12 @@ class DateDisplay extends Component {
 
   render() {
     const {
+      prepareStyles,
+      styleManager,
+    } = this.context.muiTheme;
+    const classes = styleManager.render(styleSheet);
+
+    const {
       DateTimeFormat,
       disableYearSelection, // eslint-disable-line no-unused-vars
       locale,
@@ -127,13 +152,14 @@ class DateDisplay extends Component {
       onTouchTapMonthDay, // eslint-disable-line no-unused-vars
       onTouchTapYear, // eslint-disable-line no-unused-vars
       selectedDate, // eslint-disable-line no-unused-vars
-      style,
       weekCount, // eslint-disable-line no-unused-vars
-      ...other,
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context, this.state);
+    const {
+      transitionDirection,
+    } = this.state;
+
+    const styles = getStyles(this.props, this.state);
     const year = selectedDate.getFullYear();
 
     const dateTimeFormatted = new DateTimeFormat(locale, {
@@ -142,28 +168,39 @@ class DateDisplay extends Component {
       day: '2-digit',
     }).format(selectedDate);
 
+    const rootClassName = classNames(classes.root, {
+      [classes.rootLandscape]: mode === 'landscape',
+    });
+
     return (
-      <div {...other} style={prepareStyles(styles.root, style)}>
-        <SlideInTransitionGroup
+      <div className={rootClassName}>
+        <SlideIn
+          className={classes.year}
           style={styles.year}
-          direction={this.state.transitionDirection}
+          direction={transitionDirection}
         >
-          <div key={year} style={styles.yearTitle} onTouchTap={this.handleTouchTapYear}>
+          <div
+            key={year}
+            style={styles.yearTitle}
+            onTouchTap={this.handleTouchTapYear}
+          >
             {year}
           </div>
-        </SlideInTransitionGroup>
-        <SlideInTransitionGroup
+        </SlideIn>
+        <SlideIn
+          className={classes.monthDay}
           style={styles.monthDay}
-          direction={this.state.transitionDirection}
+          direction={transitionDirection}
         >
           <div
             key={dateTimeFormatted}
             onTouchTap={this.handleTouchTapMonthDay}
-            style={styles.monthDayTitle}
+            className={styles.monthDayTitle}
+            style={prepareStyles(styles.monthDayTitle)}
           >
             {dateTimeFormatted}
           </div>
-        </SlideInTransitionGroup>
+        </SlideIn>
       </div>
     );
   }
