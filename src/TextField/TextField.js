@@ -9,6 +9,7 @@ import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
+import TextFieldHelper from './TextFieldHelper';
 import warning from 'warning';
 
 const getStyles = (props, context, state) => {
@@ -38,12 +39,7 @@ const getStyles = (props, context, state) => {
       transition: transitions.easeOut('200ms', 'height'),
     },
     error: {
-      position: 'relative',
-      bottom: 2,
-      fontSize: 12,
-      lineHeight: '12px',
       color: errorColor,
-      transition: transitions.easeOut(),
     },
     floatingLabel: {
       color: hintColor,
@@ -86,10 +82,6 @@ const getStyles = (props, context, state) => {
 
     if (!props.multiLine) {
       styles.input.marginTop = 14;
-    }
-
-    if (state.errorText) {
-      styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
     }
   }
 
@@ -410,9 +402,16 @@ class TextField extends Component {
     const styles = getStyles(this.props, this.context, this.state);
     const inputId = id || this.uniqueId;
 
-    const errorTextElement = this.state.errorText && (
-      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
-    );
+    const errorTextElement = this.state.errorText ? (
+      <TextFieldHelper
+        adjustForMultiLine={multiLine}
+        adjustForFloatingLabel={Boolean(floatingLabelText)}
+
+        style={styles.error}
+        muiTheme={this.context.muiTheme}
+        errorText={this.state.errorText}
+      />
+    ) : null;
 
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
