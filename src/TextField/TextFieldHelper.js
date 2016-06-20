@@ -41,12 +41,13 @@ const TextFieldHelperText = (props) => {
     style,
     helperText,
     errorText,
+    ...restProps,
   } = props;
 
   const styles = getStyles(props);
 
   return (
-    <div style={prepareStyles(Object.assign(styles.root, style))}>
+    <div style={prepareStyles(Object.assign(styles.root, style))} {...restProps}>
       {errorText || helperText}
     </div>
   );
