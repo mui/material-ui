@@ -238,10 +238,16 @@ class RaisedButton extends Component {
 
   componentWillReceiveProps(nextProps) {
     const zDepth = nextProps.disabled ? 0 : 1;
-    this.setState({
+    const nextState = {
       zDepth: zDepth,
       initialZDepth: zDepth,
-    });
+    };
+
+    if (nextProps.disabled && this.state.hovered) {
+      nextState.hovered = false;
+    }
+
+    this.setState(nextState);
   }
 
   handleMouseDown = (event) => {
@@ -279,7 +285,9 @@ class RaisedButton extends Component {
 
   handleMouseEnter = (event) => {
     if (!this.state.keyboardFocused && !this.state.touched) {
-      this.setState({hovered: true});
+      this.setState({
+        hovered: true,
+      });
     }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
