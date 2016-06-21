@@ -98,11 +98,11 @@ class ColorsPage extends Component {
   getColorBlock(styles, colorName, colorValue, colorTitle) {
     const bgColorText = colorName + colorValue;
     const bgColor = colors[bgColorText];
-    let fgColor = colors.fullBlack;
-    const contrastRatio = getContrastRatio(bgColor, fgColor);
     let blockTitle;
 
-    if (contrastRatio < 7) fgColor = colors.fullWhite;
+    const fgColor = getContrastRatio(bgColor, colors.fullWhite) > getContrastRatio(bgColor, colors.fullBlack) ?
+      colors.fullWhite : colors.fullBlack;
+
     if (colorTitle) {
       blockTitle = (
         <span style={styles.name}>
