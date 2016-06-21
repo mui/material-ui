@@ -2,9 +2,8 @@
 import Nodemon from 'nodemon';
 
 Nodemon({
-  args: process.argv,
-  script: 'test/index.js',
-  execMap: {js: 'node_modules/.bin/babel-node'},
+  args: process.argv.slice(2),
+  exec: 'npm run -s test --',
   ext: 'js',
   watch: ['src/', 'test/integration'],
 });

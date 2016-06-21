@@ -1,7 +1,7 @@
 {
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
-    ["transform-replace-object-assign", "simple-assign"],
+    "./scripts/babel-transform-object-assign-require",
     "transform-dev-warning"
   ],
   "env": {
@@ -10,7 +10,7 @@
     },
     "docs-production": {
       "plugins": [
-        ["transform-replace-object-assign", "simple-assign"],
+        ["./scripts/babel-transform-object-assign-require""],
         "transform-react-remove-prop-types",
         "transform-react-constant-elements",
         "transform-react-inline-elements"

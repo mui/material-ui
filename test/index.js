@@ -6,15 +6,15 @@ import './utils/dom';
 
 const argv = Minimist(process.argv.slice(2), {
   alias: {
-    c: 'component',
+    m: 'module',
     g: 'grep',
   },
 });
 
 const types = argv._;
 const globPatterns = {
-  unit: `src/**/${argv.component ? argv.component : '*'}.spec.js`,
-  integration: `test/integration/**/${argv.component ? argv.component : '*'}.spec.js`,
+  unit: `src/**/${argv.module ? argv.module : '*'}.spec.js`,
+  integration: `test/integration/**/${argv.module ? argv.module : '*'}.spec.js`,
 };
 
 let pattern;
