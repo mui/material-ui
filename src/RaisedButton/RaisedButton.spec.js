@@ -131,4 +131,19 @@ describe('<RaisedButton />', () => {
       }, 'label', 'RaisedButton'), undefined);
     });
   });
+
+  describe('hover state', () => {
+    it('should reset the hover state when disabled', () => {
+      const wrapper = shallowWithContext(
+        <RaisedButton label="foo" />
+      );
+
+      wrapper.children().simulate('mouseEnter');
+      assert.strictEqual(wrapper.state().hovered, true, 'should respond to the event');
+      wrapper.setProps({
+        disabled: true,
+      });
+      assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
+    });
+  });
 });
