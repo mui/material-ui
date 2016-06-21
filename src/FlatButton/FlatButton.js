@@ -117,6 +117,12 @@ class FlatButton extends Component {
     touch: false,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled && this.state.hovered) {
+      this.setState({hovered: false});
+    }
+  }
+
   handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
