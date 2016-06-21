@@ -8,6 +8,7 @@ const config = {
   entry: [
     'webpack/hot/dev-server',
     'webpack/hot/only-dev-server',
+    './node_modules/babel-polyfill/lib/index.js',
     path.resolve(__dirname, 'src/app/app.js'),
   ],
   // Webpack config options on how to obtain modules
@@ -44,9 +45,6 @@ const config = {
       {from: 'src/www/index.html'},
     ]),
   ],
-  externals: {
-    fs: 'js', // To remove once https://github.com/benjamn/recast/pull/238 is released
-  },
   module: {
     // Allow loading of non-es
     loaders: [
