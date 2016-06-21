@@ -460,6 +460,24 @@ class Dialog extends Component {
     repositionOnUpdate: true,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.open !== nextProps.open) {
+      /**
+      * set open to true immediately and false after a delay of 450 (same as leaveTimeout in TransitionItem)
+      */
+      if (nextProps.open) {
+        this.open = nextProps.open;
+      } else {
+        setTimeout(() => this.open = nextProps.open, 450);
+      }
+    }
+  }
+
+  /**
+  * Open or close state for RenderToLayer, by default true
+  */
+  open = true
+
   renderLayer = () => {
     return (
       <DialogInline {...this.props} />
@@ -468,7 +486,7 @@ class Dialog extends Component {
 
   render() {
     return (
-      <RenderToLayer render={this.renderLayer} open={true} useLayerForClickAway={false} />
+      <RenderToLayer render={this.renderLayer} open={this.open} useLayerForClickAway={false} />
     );
   }
 }
