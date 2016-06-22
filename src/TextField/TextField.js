@@ -90,7 +90,9 @@ const getStyles = (props, context, state) => {
     }
 
     if (state.errorText) {
-      styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
+      if (!styles.error.bottom) {
+        styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
+      }
     }
   }
 
