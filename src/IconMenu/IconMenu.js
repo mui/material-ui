@@ -18,6 +18,11 @@ class IconMenu extends Component {
      */
     anchorOrigin: propTypes.origin,
     /**
+     * If true, the popover will apply transitions when
+     * it gets added to the DOM.
+     */
+    animated: PropTypes.bool,
+    /**
      * Should be used to pass `MenuItem` components.
      */
     children: PropTypes.node,
@@ -55,29 +60,13 @@ class IconMenu extends Component {
      * @param {boolean} keyboardFocused If true, the `IconButton` element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-    /**
-     * Callback function fired when a mouse button is pressed down on the `IconButton` element.
-     *
-     * @param {object} event `mousedown` event targeting the `IconButton` element.
-     */
+    /** @ignore */
     onMouseDown: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the `IconButton` element.
-     *
-     * @param {object} event `mouseenter` event targeting the `IconButton` element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the `IconButton` element.
-     *
-     * @param {object} event `mouseleave` event targeting the `IconButton` element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when a mouse button is released on the `IconButton` element.
-     *
-     * @param {object} event `mouseup` event targeting the `IconButton` element.
-     */
+    /** @ignore */
     onMouseUp: PropTypes.func,
     /**
      * Callback function fired when the `open` state of the menu is requested to be changed.
@@ -129,6 +118,7 @@ class IconMenu extends Component {
       vertical: 'top',
       horizontal: 'left',
     },
+    animated: true,
     multiple: false,
     open: null,
     onItemTouchTap: () => {},
@@ -234,6 +224,7 @@ class IconMenu extends Component {
     const {
       anchorOrigin,
       className,
+      animated,
       iconButtonElement,
       iconStyle,
       onItemTouchTap, // eslint-disable-line no-unused-vars
@@ -309,6 +300,7 @@ class IconMenu extends Component {
           childContextTypes={this.constructor.childContextTypes}
           useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.handleRequestClose}
+          animated={animated}
           context={this.context}
         >
           {menu}

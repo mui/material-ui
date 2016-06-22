@@ -50,10 +50,7 @@ class EnhancedButton extends Component {
     disabled: PropTypes.bool,
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
-    href: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-    ]),
+    href: PropTypes.string,
     keyboardFocused: PropTypes.bool,
     linkButton: deprecated(PropTypes.bool, 'LinkButton is no longer required when the `href` property is provided.'),
     onBlur: PropTypes.func,
@@ -310,7 +307,7 @@ class EnhancedButton extends Component {
        * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
        */
       transform: disableTouchRipple && disableFocusRipple ? null : 'translate3d(0, 0, 0)',
-      verticalAlign: other.hasOwnProperty('href') ? 'middle' : null,
+      verticalAlign: href ? 'middle' : null,
     }, style);
 
 

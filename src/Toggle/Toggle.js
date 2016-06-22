@@ -53,13 +53,16 @@ function getStyles(props, context, state) {
     },
     trackWhenDisabled: {
       backgroundColor: toggle.trackDisabledColor,
+      cursor: 'not-allowed',
     },
     thumbWhenDisabled: {
       backgroundColor: toggle.thumbDisabledColor,
+      cursor: 'not-allowed',
     },
     label: {
       color: disabled ? toggle.labelDisabledColor : toggle.labelColor,
       width: `calc(100% - ${(toggleTrackWidth + 10)}px)`,
+      cursor: disabled ? 'not-allowed' : 'initial',
     },
   };
 

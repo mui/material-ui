@@ -1,17 +1,18 @@
 /* eslint-env mocha */
 import React from 'react';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import AppBar from './AppBar';
+import AppBar, {getStyles} from './AppBar';
 import getMuiTheme from '../styles/getMuiTheme';
+import IconButton from '../IconButton';
 
 describe('<AppBar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
   it('renders children by default', () => {
-    const testChildren = <div className="unique">Hello World</div>;
+    const testChildren = <div />;
     const wrapper = shallowWithContext(
       <AppBar>{testChildren}</AppBar>
     );
@@ -33,7 +34,7 @@ describe('<AppBar />', () => {
       <AppBar iconClassNameLeft={iconClassName} />
     );
 
-    assert.equal(wrapper.find('IconButton').get(0).props.iconClassName, iconClassName,
+    assert.strictEqual(wrapper.find(IconButton).get(0).props.iconClassName, iconClassName,
       'should contain iconClassNameLeft');
   });
 
@@ -43,7 +44,7 @@ describe('<AppBar />', () => {
       <AppBar iconClassNameRight={iconClassName} />
     );
 
-    assert.equal(wrapper.find('IconButton').get(1).props.iconClassName, iconClassName,
+    assert.strictEqual(wrapper.find(IconButton).get(1).props.iconClassName, iconClassName,
       'should contain iconClassNameRight');
   });
 
@@ -54,18 +55,32 @@ describe('<AppBar />', () => {
       <AppBar iconClassNameLeft={iconClassNameLeft} iconClassNameRight={iconClassNameRight} />
     );
 
-    assert.equal(wrapper.find('IconButton').get(0).props.iconClassName, iconClassNameLeft,
+    assert.strictEqual(wrapper.find(IconButton).get(0).props.iconClassName, iconClassNameLeft,
       'should contain iconClassNameLeft');
-    assert.equal(wrapper.find('IconButton').get(1).props.iconClassName, iconClassNameRight,
+    assert.strictEqual(wrapper.find(IconButton).get(1).props.iconClassName, iconClassNameRight,
       'should contain iconClassNameRight');
   });
 
-  it('renders iconElementLeft', () => {
-    const wrapper = shallowWithContext(
-      <AppBar iconElementLeft={<span className="icon" />} />
-    );
+  describe('iconElementLeft', () => {
+    it('renders the node', () => {
+      const wrapper = shallowWithContext(
+        <AppBar iconElementLeft={<span className="icon" />} />
+      );
 
-    assert.equal(wrapper.find('.icon').length, 1, 'should contain iconElementLeft');
+      assert.strictEqual(wrapper.find('.icon').length, 1, 'should contain iconElementLeft');
+    });
+
+    it('renders the IconButton with a correct style', () => {
+      const wrapper = shallowWithContext(
+        <AppBar iconElementLeft={<IconButton><div /></IconButton>} />
+      );
+
+      assert.strictEqual(
+        Object.keys(wrapper.find(IconButton).get(0).props.iconStyle).length > 0,
+        true,
+        'should add some properties to the iconStyle'
+      );
+    });
   });
 
   it('renders iconElementRight', () => {
@@ -73,11 +88,11 @@ describe('<AppBar />', () => {
       <AppBar iconElementRight={<span className="icon" />} />
     );
 
-    assert.equal(wrapper.find('.icon').length, 1, 'should contain iconElementRight');
+    assert.strictEqual(wrapper.find('.icon').length, 1, 'should contain iconElementRight');
   });
 
   it('call onLeftIconButtonTouchTap callback', () => {
-    const onLeftIconButtonTouchTap = sinon.spy();
+    const onLeftIconButtonTouchTap = spy();
     const iconClassNameLeft = 'muidocs-icon-action-home';
     const wrapper = shallowWithContext(
       <AppBar
@@ -86,13 +101,13 @@ describe('<AppBar />', () => {
       />
     );
 
-    wrapper.find('IconButton').simulate('touchTap');
-    assert.equal(onLeftIconButtonTouchTap.calledOnce, true,
+    wrapper.find(IconButton).simulate('touchTap');
+    assert.strictEqual(onLeftIconButtonTouchTap.calledOnce, true,
       'should have called onLeftIconButtonTouchTap callback function');
   });
 
   it('call onRightIconButtonTouchTap callback', () => {
-    const onRightIconButtonTouchTap = sinon.spy();
+    const onRightIconButtonTouchTap = spy();
     const iconClassNameRight = 'muidocs-icon-action-home';
     const wrapper = shallowWithContext(
       <AppBar
@@ -101,34 +116,28 @@ describe('<AppBar />', () => {
       />
     );
 
-    wrapper.find('IconButton').at(1).simulate('touchTap');
-    assert.equal(onRightIconButtonTouchTap.calledOnce, true,
+    wrapper.find(IconButton).at(1).simulate('touchTap');
+    assert.strictEqual(onRightIconButtonTouchTap.calledOnce, true,
       'should have called onRightIconButtonTouchTap callback function');
   });
 
   it('call onTitleTouchTap callback', () => {
-    const onTitleTouchTap = sinon.spy();
+    const onTitleTouchTap = spy();
     const wrapper = shallowWithContext(
-      <AppBar
-        title="Title"
-        onTitleTouchTap={onTitleTouchTap}
-      />
+      <AppBar title="Title" onTitleTouchTap={onTitleTouchTap} />
     );
 
     wrapper.find('h1').simulate('touchTap');
-    assert.equal(onTitleTouchTap.calledOnce, true,
+    assert.strictEqual(onTitleTouchTap.calledOnce, true,
       'should have called onTitleTouchTap callback function');
   });
 
   it('hide menu icon when showMenuIconButton is false', () => {
     const wrapper = shallowWithContext(
-      <AppBar
-        title="Title"
-        showMenuIconButton={false}
-      />
+      <AppBar title="Title" showMenuIconButton={false} />
     );
 
-    assert.equal(wrapper.find('IconButton').length, 0, 'should not have menu icon');
+    assert.strictEqual(wrapper.find(IconButton).length, 0, 'should not have menu icon');
   });
 
   it('renders AppBar and overwrite styles', () => {
@@ -139,7 +148,7 @@ describe('<AppBar />', () => {
       <AppBar title="Title" style={style} />
     );
 
-    assert.equal(wrapper.get(0).props.style.backgroundColor, style.backgroundColor,
+    assert.strictEqual(wrapper.get(0).props.style.backgroundColor, style.backgroundColor,
       'should have backgroundColor to red');
   });
 
@@ -148,7 +157,7 @@ describe('<AppBar />', () => {
       <AppBar title="Title" />
     );
 
-    assert.equal(wrapper.find('h1').length, 1, 'should have title');
+    assert.strictEqual(wrapper.find('h1').length, 1, 'should have title');
   });
 
   it('renders title and overwrite title styles', () => {
@@ -159,8 +168,8 @@ describe('<AppBar />', () => {
       <AppBar title="Title" titleStyle={titleStyle} />
     );
 
-    assert.equal(wrapper.find('h1').length, 1, 'should have title');
-    assert.equal(wrapper.find('h1').get(0).props.style.backgroundColor,
+    assert.strictEqual(wrapper.find('h1').length, 1, 'should have title');
+    assert.strictEqual(wrapper.find('h1').get(0).props.style.backgroundColor,
       titleStyle.backgroundColor, 'should have backgroundColor to red');
   });
 
@@ -169,6 +178,41 @@ describe('<AppBar />', () => {
       <AppBar title="Title" zDepth={2} />
     );
 
-    assert.equal(wrapper.find('Paper').get(0).props.zDepth, 2, 'should have zDepth to 2');
+    assert.strictEqual(wrapper.find('Paper').get(0).props.zDepth, 2, 'should have zDepth to 2');
+  });
+
+  it('menuElementLeft\'s style should be iconButtonStyle', () => {
+    const wrapper = shallowWithContext(
+      <AppBar />
+    );
+
+    const menuElementLeft = wrapper.find(IconButton).get(0);
+    const style = menuElementLeft.props.style;
+    const iconButtonStyle = getStyles(wrapper.props(), wrapper.context()).iconButtonStyle;
+    assert.deepEqual(style, iconButtonStyle, 'style should be iconButtonStyle');
+  });
+
+  it('if pass iconStyleLeft={marginTop}, change the marginTop only', () => {
+    const wrapper = shallowWithContext(
+      <AppBar iconStyleLeft={{marginTop: 99}} />
+    );
+
+    const menuElementLeft = wrapper.find(IconButton).get(0);
+    const style = menuElementLeft.props.style;
+    const iconButtonStyle = getStyles(wrapper.props(), wrapper.context()).iconButtonStyle;
+    const expectedStyle = Object.assign({}, iconButtonStyle, {marginTop: 99});
+    assert.deepEqual(style, expectedStyle, 'should be change style.marginTop only');
+  });
+
+  it('if pass iconElementLeft and iconStyleLeft={marginTop}, change the marginTop/muiPrepared only', () => {
+    const wrapper = shallowWithContext(
+      <AppBar iconElementLeft={<span>foo</span>} iconStyleLeft={{marginTop: 99}} />
+    );
+
+    const menuElementLeft = wrapper.find('div').get(0);
+    const style = menuElementLeft.props.style;
+    const iconButtonStyle = getStyles(wrapper.props(), wrapper.context()).iconButtonStyle;
+    const expectedStyle = Object.assign({}, iconButtonStyle, {marginTop: 99, muiPrepared: true});
+    assert.deepEqual(style, expectedStyle, 'should be change style.marginTop/muiPrepared only');
   });
 });

@@ -65,7 +65,7 @@ class VerticalNonLinear extends React.Component {
           orientation="vertical"
         >
           <Step>
-            <StepButton onClick={() => this.setState({stepIndex: 0})}>
+            <StepButton onTouchTap={() => this.setState({stepIndex: 0})}>
               Select campaign settings
             </StepButton>
             <StepContent>
@@ -78,7 +78,7 @@ class VerticalNonLinear extends React.Component {
             </StepContent>
           </Step>
           <Step>
-            <StepButton onClick={() => this.setState({stepIndex: 1})}>
+            <StepButton onTouchTap={() => this.setState({stepIndex: 1})}>
               Create an ad group
             </StepButton>
             <StepContent>
@@ -87,7 +87,7 @@ class VerticalNonLinear extends React.Component {
             </StepContent>
           </Step>
           <Step>
-            <StepButton onClick={() => this.setState({stepIndex: 2})}>
+            <StepButton onTouchTap={() => this.setState({stepIndex: 2})}>
               Create an ad
             </StepButton>
             <StepContent>

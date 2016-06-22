@@ -19,13 +19,9 @@ class SvgIcon extends Component {
      * This is the icon color when the mouse hovers over the icon.
      */
     hoverColor: PropTypes.string,
-    /**
-     * Function called when mouse enters this element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Function called when mouse leaves this element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
@@ -83,13 +79,12 @@ class SvgIcon extends Component {
       prepareStyles,
     } = this.context.muiTheme;
 
-    const offColor = color ? color :
-      style && style.fill ? style.fill :
-      baseTheme.palette.textColor;
+    const offColor = color ? color : 'currentColor';
     const onColor = hoverColor ? hoverColor : offColor;
 
     const mergedStyles = Object.assign({
       display: 'inline-block',
+      color: baseTheme.palette.textColor,
       fill: this.state.hovered ? onColor : offColor,
       height: 24,
       width: 24,

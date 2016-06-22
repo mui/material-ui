@@ -81,7 +81,7 @@ function addMenuVersion(version) {
   // If not a new HEAD version, splice it in, otherwise only add it if HEAD is not already present
   if (version !== 'HEAD' || (version === 'HEAD' && !position)) {
     versions.splice(position, 0, version);
-  
+
     // Write the file
     fs.writeFileSync(versionsFile, JSON.stringify(versions, null, 2));
 
@@ -100,7 +100,7 @@ function buildDocs() {
   // Checkout the `gh-pages` branch and update from upstream
   execho('git checkout gh-pages && git pull upstream gh-pages');
 
-  // Delete last HEAD commit to keep the history clean, unless we're commiting a new HEAD version
+  // Delete last HEAD commit to keep the history clean, unless we're committing a new HEAD version
   if (lastCommitIsHead() && version !== 'HEAD') {
     execho('git reset --hard HEAD~1');
   }
@@ -128,7 +128,7 @@ function buildDocs() {
 
   // Symbolic link `versions.json` to latest version
   execho('ln -sfh ./' + version + '/versions.json ../versions.json');
-  
+
   // Commit the new version
   if (version === 'HEAD') {
     execho('git commit --amend --no-edit');

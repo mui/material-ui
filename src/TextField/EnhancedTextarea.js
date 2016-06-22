@@ -14,7 +14,7 @@ function getStyles(props, context, state) {
       resize: 'none',
       font: 'inherit',
       padding: 0,
-      cursor: props.disabled ? 'default' : 'initial',
+      cursor: props.disabled ? 'not-allowed' : 'initial',
     },
     shadow: {
       resize: 'none',

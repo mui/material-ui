@@ -188,9 +188,7 @@ class Slider extends Component {
      * of an input element.
      */
     name: PropTypes.string,
-    /**
-     * Callback function that is fired when the focus has left the slider.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the user changes the slider's value.
@@ -204,9 +202,7 @@ class Slider extends Component {
      * Callback function that is fried when the slide has stopped moving.
      */
     onDragStop: PropTypes.func,
-    /**
-     * Callback fired when the user has focused on the slider.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
     /**
      * Whether or not the slider is required in a form.
@@ -537,7 +533,7 @@ class Slider extends Component {
       required,
       step,
       style,
-      ...others,
+      ...other,
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -600,7 +596,7 @@ class Slider extends Component {
     }
 
     return (
-      <div {...others} style={prepareStyles(Object.assign({}, style))}>
+      <div {...other} style={prepareStyles(Object.assign({}, style))}>
         <span>{description}</span>
         <span>{error}</span>
         <div
