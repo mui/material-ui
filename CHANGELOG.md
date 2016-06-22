@@ -39,7 +39,6 @@
 - [DatePicker] Fix layout when used with border-box (#4454)
 - [DatePicker] Fix the issue about onDismiss function will fire by handleTouchTapOk (#4367)
 - [DatePicker] Fix `weekTitleDayStyle` (#4464)
-- [DatePicker] Fix year overflow (#4381)
 - [Drawer] Fix muiTheme key name (#4198)
 - [DropDownMenu] Add an animated property (#4442)
 - [DropDownMenu] Add check if there is onChange prop before calling it (#4328)
