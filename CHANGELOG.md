@@ -1,7 +1,96 @@
 ## HEAD
 
 ##### Breaking Changes
+- [Badge] Swapped primary and accent colors (#4449)
+
+
+##### Component Fixes / Enhancements
+- [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
+- [DatePicker] Fix year overflow (#4381)
+- [EnhancedButton] Fix href style (#4457)
+
+##### Deperecations
+- [Buttons] Deprecate linkButton property (#4197)
+
+## 0.15.1
+###### _Jun 16, 2016_
+
+##### Breaking Changes
+- [Avatar] Now uses `img` instead of `div` (#4365)
+- [DatePicker] `className` prop is now set on the root element instead of being passed down (#4250)
+- [Drawer] Changed muiTheme key name from navDrawer to drawer (#4198)
 - [SelectField] Move {...other} spread props from DropDownMenu to Textfield as part of (#4392)
+
+##### New Component
+- [Chip] (#3870)
+
+##### General
+- [Examples] Simplify the examples (#4262)
+- [Core] Upgrade EventListener dependency (#4162)
+- [Core] Upgrade some npm dependencies (#4306)
+- [Core] Remove react-addons-update dependency (#3946)
+- [Core] Move to the normal lodash (#4380)
+- [Docs] Use `copy-webpack-plugin` for dev (#4201)
+- [Docs] Don't document standard DOM events (#4433)
+- [Icon Builder] Add muiName to generated SvgIcons (#4188, #4206)
+- [Icon Builder] Fix SvgIcon require path to icons generated with --mui-require absolute (#4204)
+- [Themes] Fix MuiThemeProvider default theme (#4229)
+- [withWidth] Accept width optional parameter (#4416)
+- [eslint] Add a mocha plugin to enforce good practices (#4424)
+
+##### Component Fixes / Enhancements
+- [AppBar] Add `iconStyleLeft` prop (#4266)
+- [AppBar] Fix a styling regression (#4471)
+- [AutoComplete] Add text and value field keys for objects list dataSource (#4111)
+- [AutoComplete] Fix filter property leaking (#4209)
+- [AutoComplete] Fix first item selection on keyboard focus (#4193)
+- [AutoComplete] Use sublime text like search instead of Levenshtein Distance for fuzzy search (#4164)
+- [Avatar] Fix a layout regression (#4409)
+- [Avatar] Remove the border (#4365)
+- [Button] Save some bytes on the production build (#4346)
+- [DatePicker] Added className prop to DatePicker (#4250)
+- [DatePicker] Expose dialog container style (#4355)
+- [DatePicker] Fix layout when used with border-box (#4454)
+- [DatePicker] Fix the issue about onDismiss function will fire by handleTouchTapOk (#4367)
+- [DatePicker] Fix `weekTitleDayStyle` (#4464)
+- [Drawer] Fix muiTheme key name (#4198)
+- [DropDownMenu] Add an animated property (#4442)
+- [DropDownMenu] Add check if there is onChange prop before calling it (#4328)
+- [EnhancedButton] Fix not setting focus when keyboardFocused prop set (#4122)
+- [FlatButton] Fix Icon color prop issue (#4160)
+- [FloatingActionButton] Fix SvgIcon fill color (#4311)
+- [FontIcon] Prevent parent components from overriding icon's `color` property (#4025)
+- [IconMenu] Add an animated property (#4442)
+- [ListItem] Fix theme not propagating on update (#4372)
+- [Menu] Add basic hotkey-focusing feature (#4189)
+- [Menu] Fix theme not propagating on update (#4372)
+- [MenuItem] Allow styles on lefticon in non-desktop mode (#4474)
+- [MenuItem] Fix theme not propagating on update (#4372)
+- [Picker] Disable userSelect on TimePicker and DatePicker (#4176)
+- [Pickers] Add some test regarding the expect value property (#4347)
+- [Popover] Fix typo from innerWith to innerWidth (#4332)
+- [RaisedButton] Don't override SvgIcon color prop (#3746)
+- [RaisedButton] Fix the `fullWidth` regression (#4479)
+- [RaisedButton] Respect theme fontSize (#3988)
+- [RenderToLayer] Cleanup (#4423)
+- [SelectField] Add callback signatures to docs and improve other props (#3924)
+- [SelectField] Add support for `floatingLabelFixed` prop (#4392)
+- [SelectField] Fix errorText position when no value selected (#4394)
+- [Snackbar] Add a new test and fix consecutive updates leading to displaying old message (#4329)
+- [Stepper] Add more tests and fix an issue with `StepButton` event handlers (#4203)
+- [Stepper] Fix vertical stepper on mobile (#4299)
+- [SvgIcon] Add support for color attribute (#4487)
+- [SvgIcon] Remove unused style assignment (#4486)
+- [Tabs] Fixes tabindex (#4357)
+- [TextField] Fix `floatingLabelText` intercepting click events (#4418)
+- [TextField] Keep spreading properties when children is set (#4478)
+- [Timepicker] Add explicit box-sizing to Clock component (#4386)
+- [TimePicker] Expose two TimePickerDialog style props (#4356)
+- [TimePicker] Fix auto reset of time on window resize (#4251)
+- [TimePicker] Remove some dead code (#4289)
+
+##### Deperecations
+- [SelectField] Deprecate selectFieldRoot prop and replace with menuStyle (#4394)
 
 ## 0.15.0
 ###### _May 5, 2016_
