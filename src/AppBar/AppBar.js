@@ -218,8 +218,12 @@ class AppBar extends Component {
 
       if (iconElementLeft) {
         if (iconElementLeft.type.muiName === 'IconButton') {
-          const iconButtonIconStyle = !(iconElementLeft.props.children &&
-            iconElementLeft.props.children.props.color) ? styles.iconButtonIconStyle : null;
+          const iconElemLeftChildren = iconElementLeft.props.children;
+          const iconButtonIconStyle = !(
+            iconElemLeftChildren &&
+            iconElemLeftChildren.props &&
+            iconElemLeftChildren.props.color
+          ) ? styles.iconButtonIconStyle : null;
 
           iconElementLeftNode = React.cloneElement(iconElementLeft, {
             iconStyle: Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle),
@@ -258,8 +262,11 @@ class AppBar extends Component {
         case 'IconMenu':
         case 'IconButton':
           const iconElemRightChildren = iconElementRight.props.children;
-          const iconButtonIconStyle = !(iconElemRightChildren && iconElemRightChildren.props &&
-            iconElemRightChildren.props.color) ? styles.iconButtonIconStyle : null;
+          const iconButtonIconStyle = !(
+            iconElemRightChildren &&
+            iconElemRightChildren.props &&
+            iconElemRightChildren.props.color
+          ) ? styles.iconButtonIconStyle : null;
 
           iconElementRightNode = React.cloneElement(iconElementRight, {
             iconStyle: Object.assign({}, iconButtonIconStyle, iconElementRight.props.iconStyle),
