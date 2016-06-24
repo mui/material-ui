@@ -226,6 +226,7 @@ class DropDownMenu extends Component {
   };
 
   handleItemTouchTap = (event, child, index) => {
+    event.persist();
     this.setState({
       open: false,
     }, () => {
