@@ -79,13 +79,13 @@ class SvgIcon extends Component {
     } = this.props;
 
     const {
-      baseTheme,
+      svgIcon,
       prepareStyles,
     } = this.context.muiTheme;
 
     const offColor = color ? color :
       style && style.fill ? style.fill :
-      baseTheme.palette.textColor;
+      svgIcon.color;
     const onColor = hoverColor ? hoverColor : offColor;
 
     const mergedStyles = Object.assign({
