@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import Text from 'material-ui/Text';
+import Button from 'material-ui/Button';
 
 import muiLogo from '../../assets/images/material-ui-logo.svg';
 
@@ -13,11 +14,18 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
     },
     hero: {
       flex: '1 0 100%',
+      paddingTop: 64,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: theme.palette.primary[400],
       color: theme.palette.getContrastText(theme.palette.primary[400]),
+    },
+    content: {
+      textAlign: 'center',
+    },
+    button: {
+      marginTop: 20,
     },
     logo: {
       margin: '20px 0',
@@ -37,10 +45,11 @@ export default class Home extends Component {
         <div className={classes.hero}>
           <div className={classes.content}>
             <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
-            <Text align="center" type="display3">Material-UI</Text>
-            <Text align="center" type="headline">
+            <Text type="display3">Material-UI</Text>
+            <Text type="headline">
               A React component library implementing Google's Material Design
             </Text>
+            <Button className={classes.button} raised={true}>Get Started</Button>
           </div>
         </div>
       </div>

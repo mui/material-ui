@@ -10,6 +10,23 @@ import units from 'stylishly-units';
 import nested from 'stylishly-nested';
 import mediaQueries from 'stylishly-media-queries';
 
+export function createDefaultContext(props = {}) {
+  const theme = props.theme || createMuiTheme();
+  const styleManager = props.styleManager || createStyleManager({
+    theme: theme,
+    pluginRegistry: createPluginRegistry(
+      nested(),
+      mediaQueries(),
+      descendants(),
+      pseudoClasses(),
+      chained(),
+      units(),
+      vendorPrefixer()
+    ),
+  });
+  return {theme, styleManager};
+}
+
 export default class MuiThemeProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -31,19 +48,9 @@ export default class MuiThemeProvider extends Component {
   }
 
   componentWillMount() {
-    this.theme = this.props.theme || createMuiTheme();
-    this.styleManager = this.props.styleManager || createStyleManager({
-      theme: this.theme,
-      pluginRegistry: createPluginRegistry(
-        nested(),
-        mediaQueries(),
-        descendants(),
-        pseudoClasses(),
-        chained(),
-        units(),
-        vendorPrefixer()
-      ),
-    });
+    const {theme, styleManager} = createDefaultContext(this.props);
+    this.theme = theme;
+    this.styleManager = styleManager;
   }
 
   render() {

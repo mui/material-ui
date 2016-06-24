@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
-import Slide from '../Animation/Slide';
+import Slide from '../Transitions/Slide';
 
 export const styleSheet = createStyleSheet('Drawer', () => {
   return {
@@ -30,7 +30,6 @@ class Drawer extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    container: PropTypes.func,
     open: PropTypes.bool,
     /**
      * The CSS class name of the paper element.
@@ -41,7 +40,6 @@ class Drawer extends Component {
   };
 
   static defaultProps = {
-    container: Modal,
     open: false,
     transition: Slide,
     zDepth: 16,
@@ -55,7 +53,6 @@ class Drawer extends Component {
     const {
       children,
       className,
-      container,
       open,
       paperClassName,
       transition,
@@ -81,10 +78,10 @@ class Drawer extends Component {
       ...other,
     };
 
-    return React.createElement(
-      container,
-      containerProps,
-      React.createElement(transition, {active: open}, drawer),
+    return (
+      <Modal {...containerProps}>
+        {React.createElement(transition, {active: open}, drawer)}
+      </Modal>
     );
   }
 }

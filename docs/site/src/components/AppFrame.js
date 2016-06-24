@@ -4,7 +4,11 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar, {ToolbarTitle} from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 
-import AppDrawer from './AppDrawer';
+// import AppDrawer from './AppDrawer';
+// <AppDrawer
+//   onRequestClose={this.handleDrawerClose}
+//   open={this.state.drawerOpen}
+// />
 
 export const styleSheet = createStyleSheet('AppFrame', (theme) => {
   const {palette, typography} = theme;
@@ -67,10 +71,6 @@ export default class AppFrame extends Component {
             <ToolbarTitle>{this.getTitle()}</ToolbarTitle>
           </Toolbar>
         </AppBar>
-        <AppDrawer
-          onRequestClose={this.handleDrawerClose}
-          open={this.state.drawerOpen}
-        />
         {this.props.children}
       </div>
     );

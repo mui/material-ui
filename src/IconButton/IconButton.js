@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
-import {Ripple, createRippleHandler} from '../Animation';
+import {TouchRipple, createRippleHandler} from '../Ripple';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
   const {palette} = theme;
@@ -82,7 +82,7 @@ export default class IconButton extends Component {
         {...other}
       >
         <span className="material-icons">{children}</span>
-        {ripple && <Ripple center={true} ref={(c) => this.ripple = c} />}
+        {ripple && <TouchRipple center={true} ref={(c) => this.ripple = c} />}
       </button>
     );
   }

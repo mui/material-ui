@@ -3,7 +3,7 @@ import createFragment from 'react-addons-create-fragment';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 
-import {Ripple, createRippleHandler} from '../Animation';
+import {TouchRipple, createRippleHandler} from '../Ripple';
 
 function createButtonColorRule(main, contrast, hover) {
   return {
@@ -25,7 +25,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
     base: {
       ...typography.button,
       position: 'relative',
-      display: 'flex',
+      display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       minWidth: 88,
@@ -175,7 +175,7 @@ export default class Button extends Component {
       buttonProps,
       createFragment({
         children: children,
-        ripple: ripple ? <Ripple ref={(c) => this.ripple = c} /> : null,
+        ripple: ripple ? <TouchRipple ref={(c) => this.ripple = c} /> : null,
       })
     );
   }
