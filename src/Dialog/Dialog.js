@@ -349,6 +349,7 @@ class DialogInline extends Component {
           show={open}
           className={overlayClassName}
           style={styles.overlay}
+          onClick={this.requestClose.bind(this)}
           onTouchTap={this.handleTouchTapOverlay}
         />
       </div>
