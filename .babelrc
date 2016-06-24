@@ -7,14 +7,6 @@
   "env": {
     "test": {
       "sourceMaps": "both"
-    },
-    "docs-production": {
-      "plugins": [
-        ["./scripts/babel-transform-object-assign-require""],
-        "transform-react-remove-prop-types",
-        "transform-react-constant-elements",
-        "transform-react-inline-elements"
-      ]
     }
   }
 }

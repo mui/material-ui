@@ -10,7 +10,7 @@ import units from 'stylishly-units';
 import nested from 'stylishly-nested';
 import mediaQueries from 'stylishly-media-queries';
 
-export default class ThemeProvider extends Component {
+export default class MuiThemeProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     styleManager: PropTypes.object,

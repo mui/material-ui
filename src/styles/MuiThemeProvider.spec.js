@@ -4,20 +4,20 @@ import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import {createMuiTheme} from '../styles/theme';
 import {createStyleManager} from '../styles/styleManager';
-import ThemeProvider from './ThemeProvider';
+import MuiThemeProvider from './MuiThemeProvider';
 
-describe('<ThemeProvider />', () => {
+describe('<MuiThemeProvider />', () => {
   describe('defaults', () => {
     it('should create a new theme and styleManager', () => {
       const wrapper = shallow(
-        <ThemeProvider>
+        <MuiThemeProvider>
           <h1>Hello World</h1>
-        </ThemeProvider>
+        </MuiThemeProvider>
       );
       const wrapper2 = shallow(
-        <ThemeProvider>
+        <MuiThemeProvider>
           <h1>Hello World</h1>
-        </ThemeProvider>
+        </MuiThemeProvider>
       );
       assert.strictEqual(
         typeof wrapper.instance().theme,
@@ -48,9 +48,9 @@ describe('<ThemeProvider />', () => {
 
     it('should use the custom theme and styleManager', () => {
       const wrapper = shallow(
-        <ThemeProvider theme={theme} styleManager={styleManager}>
+        <MuiThemeProvider theme={theme} styleManager={styleManager}>
           <h1>Hello World</h1>
-        </ThemeProvider>
+        </MuiThemeProvider>
       );
       assert.strictEqual(
         wrapper.instance().theme, theme, 'should store the custom theme as an instance property'

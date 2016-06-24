@@ -1,0 +1,1 @@
+export SvgIcon from './SvgIcon';
