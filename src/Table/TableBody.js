@@ -165,9 +165,12 @@ class TableBody extends Component {
       if (React.isValidElement(child)) {
         const props = {
           displayRowCheckbox: this.props.displayRowCheckbox,
-          hoverable: this.props.showRowHover,
-          selected: this.isRowSelected(rowNumber),
-          striped: this.props.stripedRows && (rowNumber % 2 === 0),
+          hoverable: (typeof child.props.hoverable !== 'undefined') ?
+            child.props.hoverable : this.props.showRowHover,
+          selected: (typeof child.props.selected !== 'undefined') ?
+            child.props.selected : this.isRowSelected(rowNumber),
+          striped: (typeof child.props.striped !== 'undefined') ?
+            child.props.striped : this.props.stripedRows && rowNumber % 2 === 0,
           rowNumber: rowNumber++,
         };
         const checkboxColumn = this.createRowCheckboxColumn(props);
