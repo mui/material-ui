@@ -37,33 +37,100 @@ const valueInRangePropType = (props, propName, componentName) => {
   }
 };
 
+const crossAxisProperty = {
+  x: 'height',
+  'x-reverse': 'height',
+  y: 'width',
+  'y-reverse': 'width',
+};
+
+const crossAxisOffsetProperty = {
+  x: 'top',
+  'x-reverse': 'top',
+  y: 'left',
+  'y-reverse': 'left',
+};
+
+const mainAxisProperty = {
+  x: 'width',
+  'x-reverse': 'width',
+  y: 'height',
+  'y-reverse': 'height',
+};
+
+const mainAxisMarginFromEnd = {
+  x: 'marginRight',
+  'x-reverse': 'marginLeft',
+  y: 'marginTop',
+  'y-reverse': 'marginBottom',
+};
+
+const mainAxisMarginFromStart = {
+  x: 'marginLeft',
+  'x-reverse': 'marginRight',
+  y: 'marginBottom',
+  'y-reverse': 'marginTop',
+};
+
+const mainAxisOffsetProperty = {
+  x: 'left',
+  'x-reverse': 'right',
+  y: 'bottom',
+  'y-reverse': 'top',
+};
+
+const mainAxisClientProperty = {
+  x: 'clientWidth',
+  'x-reverse': 'clientWidth',
+  y: 'clientHeight',
+  'y-reverse': 'clientHeight',
+};
+
+const mainAxisClientOffsetProperty = {
+  x: 'clientX',
+  'x-reverse': 'clientX',
+  y: 'clientY',
+  'y-reverse': 'clientY',
+};
+
+const reverseMainAxisOffsetProperty = {
+  x: 'right',
+  'x-reverse': 'left',
+  y: 'top',
+  'y-reverse': 'bottom',
+};
+
+const isMouseControlInverted = (axis) => axis === 'x-reverse' || axis === 'y';
+
 const getStyles = (props, context, state) => {
   const {slider} = context.muiTheme;
   const fillGutter = slider.handleSize / 2;
   const disabledGutter = slider.trackSize + slider.handleSizeDisabled / 2;
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
+  const axis = props.axis;
 
   const styles = {
     slider: {
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
-      height: slider.handleSizeActive,
+      [crossAxisProperty[axis]]: slider.handleSizeActive,
+      [mainAxisProperty[axis]]: '100%',
       position: 'relative',
       marginTop: 24,
       marginBottom: 48,
     },
     track: {
       position: 'absolute',
-      top: (slider.handleSizeActive - slider.trackSize) / 2,
-      left: 0,
-      width: '100%',
-      height: slider.trackSize,
+      [crossAxisOffsetProperty[axis]]: (slider.handleSizeActive - slider.trackSize) / 2,
+      [mainAxisOffsetProperty[axis]]: 0,
+      [mainAxisProperty[axis]]: '100%',
+      [crossAxisProperty[axis]]: slider.trackSize,
     },
     filledAndRemaining: {
       position: 'absolute',
-      top: 0,
-      height: '100%',
+      [crossAxisOffsetProperty]: 0,
+      [crossAxisProperty[axis]]: '100%',
       transition: transitions.easeOut(null, 'margin'),
     },
     handle: {
@@ -71,17 +138,27 @@ const getStyles = (props, context, state) => {
       position: 'absolute',
       cursor: 'pointer',
       pointerEvents: 'inherit',
-      top: 0,
-      left: state.percent === 0 ? '0%' : `${(state.percent * 100)}%`,
+      [crossAxisOffsetProperty[axis]]: 0,
+      [mainAxisOffsetProperty[axis]]: state.percent === 0 ? '0%' : `${(state.percent * 100)}%`,
       zIndex: 1,
-      margin: `${(slider.trackSize / 2)}px 0 0 0`,
+      margin: ({
+        x: `${(slider.trackSize / 2)}px 0 0 0`,
+        'x-reverse': `${(slider.trackSize / 2)}px 0 0 0`,
+        y: `0 0 0 ${(slider.trackSize / 2)}px`,
+        'y-reverse': `0 0 0 ${(slider.trackSize / 2)}px`,
+      })[props.axis],
       width: slider.handleSize,
       height: slider.handleSize,
       backgroundColor: slider.selectionColor,
       backgroundClip: 'padding-box',
       border: '0px solid transparent',
       borderRadius: '50%',
-      transform: 'translate(-50%, -50%)',
+      transform: ({
+        x: 'translate(-50%, -50%)',
+        'x-reverse': 'translate(50%, -50%)',
+        y: 'translate(-50%, 50%)',
+        'y-reverse': 'translate(-50%, -50%)',
+      })[props.axis],
       transition:
         `${transitions.easeOut('450ms', 'background')}, ${
         transitions.easeOut('450ms', 'border-color')}, ${
@@ -135,17 +212,17 @@ const getStyles = (props, context, state) => {
     },
   };
   styles.filled = Object.assign({}, styles.filledAndRemaining, {
-    left: 0,
+    [mainAxisOffsetProperty[axis]]: 0,
     backgroundColor: (props.disabled) ? slider.trackColor : slider.selectionColor,
-    marginRight: fillGutter,
-    width: `calc(${(state.percent * 100)}%${calcDisabledSpacing})`,
+    [mainAxisMarginFromEnd[axis]]: fillGutter,
+    [mainAxisProperty[axis]]: `calc(${(state.percent * 100)}%${calcDisabledSpacing})`,
   });
   styles.remaining = Object.assign({}, styles.filledAndRemaining, {
-    right: 0,
+    [reverseMainAxisOffsetProperty[axis]]: 0,
     backgroundColor: (state.hovered || state.focused) &&
       !props.disabled ? slider.trackColorSelected : slider.trackColor,
-    marginLeft: fillGutter,
-    width: `calc(${((1 - state.percent) * 100)}%${calcDisabledSpacing})`,
+    [mainAxisMarginFromStart[axis]]: fillGutter,
+    [mainAxisProperty[axis]]: `calc(${((1 - state.percent) * 100)}%${calcDisabledSpacing})`,
   });
 
   return styles;
@@ -153,6 +230,10 @@ const getStyles = (props, context, state) => {
 
 class Slider extends Component {
   static propTypes = {
+    /**
+     * The axis on which the slider will slide.
+     */
+    axis: PropTypes.oneOf(['x', 'x-reverse', 'y', 'y-reverse']),
     /**
      * The default value of the slider.
      */
@@ -223,6 +304,7 @@ class Slider extends Component {
   };
 
   static defaultProps = {
+    axis: 'x',
     disabled: false,
     disableFocusRipple: false,
     max: 1,
@@ -293,19 +375,39 @@ class Slider extends Component {
   };
 
   onHandleKeyDown = (event) => {
-    const {min, max, step} = this.props;
+    const {axis, min, max, step} = this.props;
     let action;
 
     switch (keycode(event)) {
       case 'page down':
-      case 'left':
       case 'down':
-        action = 'decrease';
+        if (axis === 'y-reverse') {
+          action = 'increase';
+        } else {
+          action = 'decrease';
+        }
+        break;
+      case 'left':
+        if (axis === 'x-reverse') {
+          action = 'increase';
+        } else {
+          action = 'decrease';
+        }
         break;
       case 'page up':
-      case 'right':
       case 'up':
-        action = 'increase';
+        if (axis === 'y-reverse') {
+          action = 'decrease';
+        } else {
+          action = 'increase';
+        }
+        break;
+      case 'right':
+        if (axis === 'x-reverse') {
+          action = 'decrease';
+        } else {
+          action = 'increase';
+        }
         break;
       case 'home':
         action = 'home';
@@ -362,7 +464,13 @@ class Slider extends Component {
     }
     this.dragRunning = true;
     requestAnimationFrame(() => {
-      this.onDragUpdate(event, event.clientX - this.getTrackLeft());
+      let pos;
+      if (isMouseControlInverted(this.props.axis)) {
+        pos = this.getTrackOffset() - event[mainAxisClientOffsetProperty[this.props.axis]];
+      } else {
+        pos = event[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      }
+      this.onDragUpdate(event, pos);
       this.dragRunning = false;
     });
   };
@@ -373,7 +481,13 @@ class Slider extends Component {
     }
     this.dragRunning = true;
     requestAnimationFrame(() => {
-      this.onDragUpdate(event, event.touches[0].clientX - this.getTrackLeft());
+      let pos;
+      if (isMouseControlInverted(this.props.axis)) {
+        pos = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
+      } else {
+        pos = event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      }
+      this.onDragUpdate(event, pos);
       this.dragRunning = false;
     });
   };
@@ -438,8 +552,13 @@ class Slider extends Component {
 
   handleTouchStart = (event) => {
     if (!this.props.disabled && !this.state.dragging) {
-      const pos = event.touches[0].clientX - this.getTrackLeft();
-      this.dragX(event, pos);
+      let pos;
+      if (isMouseControlInverted(this.props.axis)) {
+        pos = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
+      } else {
+        pos = event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      }
+      this.dragTo(event, pos);
 
       // Since the touch event fired for the track and handle is child of
       // track, we need to manually propagate the event to the handle.
@@ -459,8 +578,13 @@ class Slider extends Component {
 
   handleMouseDown = (event) => {
     if (!this.props.disabled && !this.state.dragging) {
-      const pos = event.clientX - this.getTrackLeft();
-      this.dragX(event, pos);
+      let pos;
+      if (isMouseControlInverted(this.props.axis)) {
+        pos = this.getTrackOffset() - event[mainAxisClientOffsetProperty[this.props.axis]];
+      } else {
+        pos = event[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      }
+      this.dragTo(event, pos);
 
       // Since the click event fired for the track and handle is child of
       // track, we need to manually propagate the event to the handle.
@@ -480,8 +604,8 @@ class Slider extends Component {
     this.setState({hovered: false});
   };
 
-  getTrackLeft() {
-    return this.refs.track.getBoundingClientRect().left;
+  getTrackOffset() {
+    return this.refs.track.getBoundingClientRect()[mainAxisOffsetProperty[this.props.axis]];
   }
 
   onDragStart(event) {
@@ -502,11 +626,11 @@ class Slider extends Component {
 
   onDragUpdate(event, pos) {
     if (!this.state.dragging) return;
-    if (!this.props.disabled) this.dragX(event, pos);
+    if (!this.props.disabled) this.dragTo(event, pos);
   }
 
-  dragX(event, pos) {
-    const max = this.refs.track.clientWidth;
+  dragTo(event, pos) {
+    const max = this.refs.track[mainAxisClientProperty[this.props.axis]];
     if (pos < 0) pos = 0; else if (pos > max) pos = max;
     this.updateWithChangeEvent(event, pos / max);
   }
