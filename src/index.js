@@ -9,6 +9,7 @@ export CardMedia from './Card/CardMedia';
 export CardTitle from './Card/CardTitle';
 export CardText from './Card/CardText';
 export Checkbox from './Checkbox';
+export Chip from './Chip';
 export CircularProgress from './CircularProgress';
 export DatePicker from './DatePicker';
 export Dialog from './Dialog';
