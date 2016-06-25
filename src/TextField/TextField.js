@@ -86,7 +86,12 @@ const getStyles = (props, context, state) => {
     styles.input.boxSizing = 'border-box';
 
     if (!props.multiLine) {
-      styles.input.paddingTop = 14;
+      if(state.hasValue || state.errorText || state.isFocused || props.hintText){
+        styles.input.marginTop = 14;
+      }
+      else{
+        styles.input.paddingTop = 14;
+      }
     }
 
     if (state.errorText) {
