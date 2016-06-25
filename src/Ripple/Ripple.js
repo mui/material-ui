@@ -23,7 +23,6 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
     position: 'absolute',
     borderRadius: '50%',
     background: 'currentColor',
-    pointerEvents: 'none',
   },
   animating: {
     transition: theme.transitions.multi(
@@ -53,17 +52,13 @@ export default class Ripple extends Component {
     rippleVisible: false,
   };
 
-  componentWillEnter(callback) {
-    // console.log('componentWillEnter');
-    callback();
+  componentDidEnter() {
     this.start();
   }
 
   componentWillLeave(callback) {
-    // console.log('componentWillLeave');
     this.stop();
     this.leaveTimer = setTimeout(() => {
-      // console.log('leaving');
       callback();
     }, 550);
   }
@@ -89,7 +84,7 @@ export default class Ripple extends Component {
     const {rippleStart} = this.state;
     const {rippleSize, rippleX, rippleY} = this.props;
 
-    const scale = rippleStart ? 'scale(0, 0)' : 'scale(1, 1)';
+    const scale = rippleStart ? 'scale(0.00001, 0.00001)' : 'scale(1, 1)';
     const offset = `translate(${rippleX}px, ${rippleY}px)`;
     const transformString = `translate(-50%, -50%) ${offset} ${scale}`;
 

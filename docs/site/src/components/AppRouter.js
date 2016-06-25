@@ -12,7 +12,7 @@ export default class AppRouter extends Component {
           <Route
             path="home"
             component={Home}
-            title="Home"
+            title={null}
           />
         </Route>
       </Router>

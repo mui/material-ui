@@ -2,15 +2,16 @@ import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
-export const styleSheet = createStyleSheet('ListItem', () => {
+export const styleSheet = createStyleSheet('ListItem', (theme) => {
   return {
-    root: {
+    root: theme.mixins.gutters({
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
-      padding: '8px 16px',
+      paddingTop: 8,
+      paddingBottom: 8,
       textDecoration: 'none',
-    },
+    }),
   };
 });
 

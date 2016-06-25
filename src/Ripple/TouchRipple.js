@@ -9,10 +9,14 @@ export const styleSheet = createStyleSheet('TouchRipple', () => ({
   root: {
     display: 'block',
     position: 'absolute',
+    overflow: 'hidden',
+    borderRadius: 'inherit',
+    WebkitMaskImage: 'url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC\')', // eslint-disable-line max-len
     width: '100%',
     height: '100%',
     left: 0,
     top: 0,
+    pointerEvents: 'none',
     zIndex: 0,
   },
 }));

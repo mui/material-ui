@@ -15,14 +15,14 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
       top: 0,
       left: 0,
       zIndex: theme.zIndex.appBar,
-      '& primary': {
-        backgroundColor: palette.primary[500],
-        color: palette.getContrastText(palette.primary[500]),
-      },
-      '& accent': {
-        backgroundColor: palette.accent.A200,
-        color: palette.getContrastText(palette.accent.A200),
-      },
+    },
+    primary: {
+      backgroundColor: palette.primary[500],
+      color: palette.getContrastText(palette.primary[500]),
+    },
+    accent: {
+      backgroundColor: palette.accent.A200,
+      color: palette.getContrastText(palette.accent.A200),
     },
   };
 });
@@ -52,7 +52,7 @@ export default class AppBar extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const classNames = ClassNames({
       [classes.root]: true,

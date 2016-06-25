@@ -17,6 +17,7 @@ export function createMuiTheme(
   ...more
 ) {
   const properties = merge({
+    dir: 'rtl',
     palette,
     typography,
     shadows,

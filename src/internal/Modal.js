@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import ReactOverlaysModal from 'react-overlays/lib/Modal';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
+import Overlay from './Overlay';
+import Portal from './Portal';
 import Fade from '../Animation/Fade';
-import {lightBlack} from '../styles/colors';
 
 export const styleSheet = createStyleSheet('Modal', (theme) => {
   return {
@@ -15,15 +15,6 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
       zIndex: theme.zIndex.dialog,
       top: 0,
       left: 0,
-    },
-    overlay: {
-      zIndex: -1,
-      width: '100%',
-      height: '100%',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      backgroundColor: lightBlack,
     },
   };
 });
@@ -39,40 +30,90 @@ export default class Modal extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Callback fired after the Modal finishes transitioning out
+     */
+    onExited: React.PropTypes.func,
     onRequestClose: PropTypes.func,
-    open: PropTypes.bool,
+    show: PropTypes.bool,
   };
 
   static defaultProps = {
-    open: false,
+    show: false,
+    overlay: true,
   };
 
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
+  state = {
+    exited: false,
+  };
+
+  // componentDidMount() {
+  //   if (this.props.show === true) {
+  //     this.onShow();
+  //   }
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.show && this.state.exited) {
+      this.setState({exited: false});
+    }
+  }
+
+  handleOverlayClick = (event) => {
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+
+    // if (this.props.onOverlayClick) {
+    //   this.props.onOverlayClick(event);
+    // }
+
+    return this.props.onRequestClose(event);
+  };
+
+  handleOverlayExited = (...args) => {
+    this.setState({exited: true});
+    if (this.props.onExited) {
+      this.props.onExited(...args);
+    }
+  };
+
   render() {
     const {
       children,
       className,
-      onRequestClose,
-      open,
+      onRequestClose, // eslint-disable-line no-unused-vars
+      show,
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const mount = show || !this.state.exited;
+
+    if (!mount) {
+      return null;
+    }
 
     return (
-      <ReactOverlaysModal
-        className={ClassNames(classes.modal, className)}
-        backdropClassName={classes.overlay}
-        onHide={onRequestClose}
-        show={open}
-        transition={Fade}
-        {...other}
-      >
-        {children}
-      </ReactOverlaysModal>
+      <Portal open={true}>
+        <div
+          className={ClassNames(classes.modal, className)}
+          {...other}
+        >
+          <Fade
+            in={show}
+            transitionAppear={true}
+            onExited={this.handleOverlayExited}
+          >
+            <Overlay onClick={this.handleOverlayClick} />
+          </Fade>
+          {children}
+        </div>
+      </Portal>
     );
   }
 }

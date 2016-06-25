@@ -4,11 +4,8 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar, {ToolbarTitle} from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 
-// import AppDrawer from './AppDrawer';
-// <AppDrawer
-//   onRequestClose={this.handleDrawerClose}
-//   open={this.state.drawerOpen}
-// />
+import AppDrawer from './AppDrawer';
+
 
 export const styleSheet = createStyleSheet('AppFrame', (theme) => {
   const {palette, typography} = theme;
@@ -28,6 +25,10 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
       alignItems: 'stretch',
       minHeight: '100vh',
       width: '100vw',
+      appBar: {
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+      },
     },
   };
 });
@@ -43,7 +44,7 @@ export default class AppFrame extends Component {
   };
 
   state = {
-    drawerOpen: false,
+    drawerOpen: true,
   };
 
   handleDrawerOpen = () => this.setState({drawerOpen: true});
@@ -53,7 +54,7 @@ export default class AppFrame extends Component {
   getTitle() {
     const {routes} = this.props;
     for (let i = routes.length - 1; i >= 0; i--) {
-      if (routes[i].title) {
+      if (routes[i].hasOwnProperty('title')) {
         return routes[i].title;
       }
     }
@@ -62,15 +63,20 @@ export default class AppFrame extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
+    const title = this.getTitle();
 
     return (
       <div className={classes.root}>
-        <AppBar>
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton onClick={this.handleDrawerToggle}>menu</IconButton>
-            <ToolbarTitle>{this.getTitle()}</ToolbarTitle>
+            <ToolbarTitle>{title}</ToolbarTitle>
           </Toolbar>
         </AppBar>
+        <AppDrawer
+          onRequestClose={this.handleDrawerClose}
+          open={this.state.drawerOpen}
+        />
         {this.props.children}
       </div>
     );

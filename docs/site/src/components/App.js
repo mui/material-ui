@@ -1,11 +1,11 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {createMuiTheme, createPalette} from 'material-ui/styles/theme';
-import {indigo, pink} from 'material-ui/styles/colors';
+import {blue, pink} from 'material-ui/styles/colors';
 import AppRouter from './AppRouter';
 
 const theme = createMuiTheme(createPalette({
-  primary: indigo,
+  primary: blue,
   accent: pink,
 }));
 

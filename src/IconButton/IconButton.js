@@ -63,6 +63,7 @@ export default class IconButton extends Component {
 
   handleMouseDown = createRippleHandler(this, 'MouseDown', 'start');
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
+  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop');
   handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
   handleBlur = createRippleHandler(this, 'Blur', 'stop');

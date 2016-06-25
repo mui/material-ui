@@ -1,20 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import Transition from 'react-overlays/lib/Transition';
 
+const reflow = (elem) => elem.offsetHeight;
+
 export default class Fade extends Component {
   static propTypes = {
-    /**
-     * Used to control the transition. Set to true to reveal the component.
-     */
-    active: PropTypes.bool,
     /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
     children: PropTypes.node,
-  };
-
-  static defaultProps = {
-    active: false,
   };
 
   static contextTypes = {
@@ -23,11 +17,13 @@ export default class Fade extends Component {
 
   handleEnter = (element) => {
     element.style.opacity = 0;
-    element.style.transition = this.context.theme.transitions.create();
+    element.style.transition = this.context.theme.transitions.create('opacity');
   };
 
   handleEntering = (element) => {
+    reflow(element);
     element.style.opacity = 1;
+    // console.log(element.offsetHeight);
   };
 
   handleExiting = (element) => {
@@ -35,17 +31,14 @@ export default class Fade extends Component {
   };
 
   render() {
-    const {active, children, ...other} = this.props;
-
+    const {children, ...other} = this.props;
 
     return (
       <Transition
-        in={active}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExiting={this.handleExiting}
-        timeout={500}
-        transitionAppear={true}
+        timeout={2000}
         {...other}
       >
         {children}

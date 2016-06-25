@@ -26,6 +26,7 @@
     "file-loader": "^0.9.0",
     "object-assign": "^4.1.0",
     "react": "^15.1.0",
+    "react-a11y": "^0.3.3",
     "react-addons-perf": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-hot-loader": "^3.0.0-beta.2",

@@ -35,7 +35,6 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       border: 10,
       borderRadius: 2,
       cursor: 'pointer',
-      overflow: 'hidden',
       color: palette.text.primary,
       backgroundColor: 'transparent',
       transition: transitions.multi(['background-color', 'box-shadow']),
@@ -45,6 +44,12 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       '&:hover': {
         backgroundColor: palette.text.divider,
       },
+    },
+    label: {
+      width: '100%',
+      display: 'inherit',
+      alignItems: 'inherit',
+      justifyContent: 'inherit',
     },
     raised: {
       color: palette.getContrastText(palette.grey[300]),
@@ -115,6 +120,7 @@ export default class Button extends Component {
 
   handleMouseDown = createRippleHandler(this, 'MouseDown', 'start');
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
+  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop');
   handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
   handleBlur = createRippleHandler(this, 'Blur', 'stop');
@@ -174,7 +180,7 @@ export default class Button extends Component {
       element,
       buttonProps,
       createFragment({
-        children: children,
+        children: <span className={classes.label}>{children}</span>,
         ripple: ripple ? <TouchRipple ref={(c) => this.ripple = c} /> : null,
       })
     );

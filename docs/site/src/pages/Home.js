@@ -6,6 +6,8 @@ import Button from 'material-ui/Button';
 import muiLogo from '../../assets/images/material-ui-logo.svg';
 
 export const styleSheet = createStyleSheet('Home', (theme) => {
+  const {palette, breakpoints} = theme;
+
   return {
     root: {
       display: 'flex',
@@ -13,22 +15,26 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
       flex: '1 0 100%',
     },
     hero: {
-      flex: '1 0 100%',
-      paddingTop: 64,
+      flex: '0 0 auto',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: theme.palette.primary[400],
-      color: theme.palette.getContrastText(theme.palette.primary[400]),
+      backgroundColor: palette.primary[500],
+      color: palette.getContrastText(palette.primary[500]),
     },
     content: {
+      padding: '60px 30px',
       textAlign: 'center',
+      [breakpoints.up('sm')]: {
+        padding: '120px 30px',
+      },
     },
     button: {
       marginTop: 20,
     },
     logo: {
-      margin: '20px 0',
+      maxWidth: '180%',
+      margin: '20px -40%',
     },
   };
 });
@@ -45,8 +51,8 @@ export default class Home extends Component {
         <div className={classes.hero}>
           <div className={classes.content}>
             <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
-            <Text type="display3">Material-UI</Text>
-            <Text type="headline">
+            <Text type="display2">Material-UI</Text>
+            <Text type="subheading">
               A React component library implementing Google's Material Design
             </Text>
             <Button className={classes.button} raised={true}>Get Started</Button>

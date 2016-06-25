@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
-import Slide from '../Transitions/Slide';
+import Slide from '../Animation/Slide';
 
 export const styleSheet = createStyleSheet('Drawer', () => {
   return {
@@ -55,32 +55,30 @@ class Drawer extends Component {
       className,
       open,
       paperClassName,
-      transition,
+      transition, // eslint-disable-line no-unused-vars
       zDepth,
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const drawer = (
-      <Paper
-        zDepth={zDepth}
-        rounded={false}
-        className={ClassNames(classes.paper, paperClassName)}
-      >
-        {children}
-      </Paper>
+      <Slide in={open}>
+        <Paper
+          zDepth={zDepth}
+          rounded={false}
+          className={ClassNames(classes.paper, paperClassName)}
+        >
+          {children}
+        </Paper>
+      </Slide>
     );
 
-    const containerProps = {
-      className,
-      open,
-      ...other,
-    };
+    const containerProps = {className, show: open, ...other};
 
     return (
       <Modal {...containerProps}>
-        {React.createElement(transition, {active: open}, drawer)}
+        {drawer}
       </Modal>
     );
   }
