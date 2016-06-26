@@ -1,9 +1,9 @@
-## Server Rendering
+# Server Rendering
 
 When using Material-UI with server rendering, we must use the same environment for the server and the client.
 This has two technical implications.
 
-### Autoprefixer
+## Autoprefixer
 
 First, Material-UI has to use the same user agent for the auto prefixer.
 On the client side, the default value is `navigator.userAgent`.
@@ -49,7 +49,7 @@ class Main extends React.Component {
 export default Main;
 ```
 
-### process.env.NODE_ENV
+## process.env.NODE_ENV
 
 You also need to use the same `process.env.NODE_ENV` value for the client side and server side.
 Otherwise, the checksums won't match.

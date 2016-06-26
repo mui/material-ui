@@ -10,7 +10,8 @@ export const styleSheet = createStyleSheet('List', () => {
       padding: 0,
     },
     padding: {
-      padding: '8px 0',
+      paddingTop: 8,
+      paddingBottom: 8,
     },
   };
 });
@@ -19,12 +20,12 @@ export default class List extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    el: PropTypes.string,
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     padding: PropTypes.bool,
   };
 
   static defaultProps = {
-    el: 'div',
+    component: 'div',
     padding: true,
   };
 
@@ -33,11 +34,11 @@ export default class List extends Component {
   };
 
   render() {
-    const {className, el, padding, ...other} = this.props;
+    const {className, component, padding, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     const classNames = ClassNames(classes.root, {
       [classes.padding]: padding,
     }, className);
-    return React.createElement(el, {className: classNames, ...other});
+    return React.createElement(component, {className: classNames, ...other});
   }
 }

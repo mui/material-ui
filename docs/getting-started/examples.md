@@ -1,4 +1,4 @@
-## Examples
+# Examples
 
 There are 2 projects that you can look at to get started. They can be found
 in the [examples folder](https://github.com/callemall/material-ui/tree/master/examples).

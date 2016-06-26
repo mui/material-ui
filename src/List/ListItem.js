@@ -4,14 +4,15 @@ import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('ListItem', (theme) => {
   return {
-    root: theme.mixins.gutters({
+    root: {
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
       paddingTop: 8,
       paddingBottom: 8,
       textDecoration: 'none',
-    }),
+    },
+    gutters: theme.mixins.gutters({}),
   };
 });
 
@@ -19,11 +20,13 @@ export default class ListItem extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    el: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    gutters: PropTypes.bool,
   };
 
   static defaultProps = {
-    el: 'div',
+    component: 'div',
+    gutters: true,
   };
 
   static contextTypes = {
@@ -31,9 +34,11 @@ export default class ListItem extends Component {
   };
 
   render() {
-    const {className, el, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    const classNames = ClassNames(classes.root, className);
-    return React.createElement(el, {className: classNames, ...other});
+    const {className, component, gutters, ...other} = this.props;
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classNames = ClassNames(classes.root, {
+      [classes.gutters]: gutters,
+    }, className);
+    return React.createElement(component, {className: classNames, ...other});
   }
 }

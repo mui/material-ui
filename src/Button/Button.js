@@ -86,12 +86,15 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
   };
 });
 
+/**
+ * Short button description goes here
+ */
 export default class Button extends Component {
   static propTypes = {
     accent: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
-    el: PropTypes.string,
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     fab: PropTypes.bool,
     onBlur: PropTypes.func,
     onMouseDown: PropTypes.func,
@@ -106,7 +109,7 @@ export default class Button extends Component {
   };
 
   static defaultProps = {
-    el: 'button',
+    component: 'button',
     ripple: true,
     raised: false,
     type: 'button',
@@ -130,7 +133,7 @@ export default class Button extends Component {
       accent,
       children,
       className,
-      el,
+      component,
       fab,
       onBlur, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars
@@ -145,7 +148,7 @@ export default class Button extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const classNames = ClassNames({
       [classes.root]: true,
@@ -166,7 +169,7 @@ export default class Button extends Component {
       ...other,
     };
 
-    let element = el;
+    let element = component;
 
     if (other.href) {
       element = 'a';

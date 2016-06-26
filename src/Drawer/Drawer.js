@@ -20,7 +20,10 @@ export const styleSheet = createStyleSheet('Drawer', () => {
   };
 });
 
-class Drawer extends Component {
+/**
+ * This is a drawer
+ */
+export default class Drawer extends Component {
   static propTypes = {
     /**
      * The contents of the `Drawer`
@@ -35,13 +38,11 @@ class Drawer extends Component {
      * The CSS class name of the paper element.
      */
     paperClassName: PropTypes.string,
-    transition: PropTypes.any,
     zDepth: PropTypes.number,
   };
 
   static defaultProps = {
     open: false,
-    transition: Slide,
     zDepth: 16,
   };
 
@@ -55,7 +56,6 @@ class Drawer extends Component {
       className,
       open,
       paperClassName,
-      transition, // eslint-disable-line no-unused-vars
       zDepth,
       ...other,
     } = this.props;
@@ -63,7 +63,7 @@ class Drawer extends Component {
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const drawer = (
-      <Slide in={open}>
+      <Slide in={open} transitionAppear={true}>
         <Paper
           zDepth={zDepth}
           rounded={false}
@@ -83,5 +83,3 @@ class Drawer extends Component {
     );
   }
 }
-
-export default Drawer;

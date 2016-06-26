@@ -30,10 +30,15 @@ module.exports = {
         loader: 'file',
         include: /assets\/images/,
       },
+      {
+        test: /\.md$/,
+        loader: 'raw',
+      },
     ],
   },
   resolve: {
     alias: {
+      'docs': path.resolve(__dirname, '../../docs'),
       'material-ui': path.resolve(__dirname, '../../src'),
       react: path.resolve('./node_modules/react'),
     },

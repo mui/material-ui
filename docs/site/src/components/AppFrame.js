@@ -7,7 +7,6 @@ import IconButton from 'material-ui/IconButton';
 
 import AppDrawer from './AppDrawer';
 
-
 export const styleSheet = createStyleSheet('AppFrame', (theme) => {
   const {palette, typography} = theme;
   return {
@@ -21,15 +20,28 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
       lineHeight: '1.2',
       overflowX: 'hidden',
     },
+    '@raw a': {
+      color: palette.accent.A400,
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
     root: {
       display: 'flex',
       alignItems: 'stretch',
       minHeight: '100vh',
       width: '100vw',
-      appBar: {
+      appBarHome: {
         backgroundColor: 'transparent',
         boxShadow: 'none',
       },
+    },
+    navIcon: {
+      marginLeft: -12,
+    },
+    title: {
+      marginLeft: 36,
     },
   };
 });
@@ -37,6 +49,7 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
 export default class AppFrame extends Component {
   static propTypes = {
     children: PropTypes.node,
+    route: PropTypes.object,
     routes: PropTypes.array,
   };
 
@@ -66,17 +79,21 @@ export default class AppFrame extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const title = this.getTitle();
 
+    const currentRoute = this.props.routes[this.props.routes.length - 1];
+    const appBarClassname = currentRoute.path === '/' ? classes.appBarHome : '';
+
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
+        <AppBar className={appBarClassname}>
           <Toolbar>
-            <IconButton onClick={this.handleDrawerToggle}>menu</IconButton>
-            <Text type="title">{title}</Text>
+            <IconButton onClick={this.handleDrawerToggle} className={classes.navIcon}>menu</IconButton>
+            <Text className={classes.title} type="title">{title}</Text>
           </Toolbar>
         </AppBar>
         <AppDrawer
           onRequestClose={this.handleDrawerClose}
           open={this.state.drawerOpen}
+          navRoot={this.props.routes[0]}
         />
         {this.props.children}
       </div>

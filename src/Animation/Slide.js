@@ -4,10 +4,6 @@ import Transition from 'react-overlays/lib/Transition';
 export default class Slide extends Component {
   static propTypes = {
     /**
-     * Used to control the transition. Set to true to reveal the component.
-     */
-    active: PropTypes.bool,
-    /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
     children: PropTypes.node,
@@ -17,11 +13,9 @@ export default class Slide extends Component {
     className: PropTypes.string,
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
     duration: PropTypes.number,
-    fade: PropTypes.bool,
   };
 
   static defaultProps = {
-    active: false,
     direction: 'right',
     duration: 300,
   };
@@ -39,33 +33,22 @@ export default class Slide extends Component {
   }
 
   handleEnter = (element) => {
-    if (this.props.fade) {
-      element.style.opacity = 0;
-    }
     element.style.transform = this.getTranslateValue();
-    element.style.transition = this.context.theme.transitions.create('all', `${this.props.duration}ms`);
+    element.style.transition = this.context.theme.transitions.create('transform', `${this.props.duration}ms`);
   };
 
   handleEntering = (element) => {
-    if (this.props.fade) {
-      element.style.opacity = 1;
-    }
     element.style.transform = 'translate3d(0, 0, 0)';
   };
 
   handleExiting = (element) => {
-    if (this.props.fade) {
-      element.style.opacity = 0;
-    }
     element.style.transform = this.getTranslateValue();
   };
 
   render() {
-    const {active, children, ...other} = this.props;
-
+    const {children, ...other} = this.props;
     return (
       <Transition
-        in={active}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExiting={this.handleExiting}

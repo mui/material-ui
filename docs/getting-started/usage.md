@@ -1,4 +1,4 @@
-## Usage
+# Usage
 
 Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can use any of the components as demonstrated in our documentation.
 
@@ -51,7 +51,7 @@ This will make your build process faster and your build output smaller.
 For a complete mapping of Material-UI components to `import`,
 see `/index.js` inside the Material-UI npm package root directory.
 
-### Customization
+## Customization
 
 We have implemented a default theme to render all Material-UI components.
 Styling components to your liking is simple and hassle-free.

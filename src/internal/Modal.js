@@ -57,9 +57,17 @@ export default class Modal extends Component {
   //   }
   // }
 
+  componentWillMount() {
+    if (!this.props.show) {
+      this.setState({exited: true});
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
+    } else {
+      this.setState({exited: true});
     }
   }
 
@@ -72,7 +80,9 @@ export default class Modal extends Component {
     //   this.props.onOverlayClick(event);
     // }
 
-    return this.props.onRequestClose(event);
+    if (this.props.onRequestClose) {
+      this.props.onRequestClose(event);
+    }
   };
 
   handleOverlayExited = (...args) => {

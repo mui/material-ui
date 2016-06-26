@@ -1,4 +1,4 @@
-## Prerequisites
+# Prerequisites
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
 before diving into Material-UI.
@@ -15,7 +15,7 @@ with web development,
 or if your experience only consists of "traditional" websites built using
 HTML, CSS and some JavaScript.
 
-### Single Page Applications
+## Single Page Applications
 
 A long(?) time ago, websites were built using static pages in HTML, with CSS used for styling,
 and JavaScript used to support user interactions or for animations.
@@ -53,7 +53,7 @@ modules (similar to breaking down an object-oriented application into different 
 and interfaces) that can be bundled together later.
 This is where Node comes into play.
 
-### Node
+## Node
 
 At its core, [Node](https://nodejs.org) is a program written in C that allows us
 to run JavaScript in the shell (yes, your terminal, not the browser).
