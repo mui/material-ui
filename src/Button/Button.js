@@ -22,7 +22,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
   const {palette, shadows, transitions, typography} = theme;
 
   return {
-    base: {
+    root: {
       ...typography.button,
       position: 'relative',
       display: 'inline-flex',
@@ -148,7 +148,7 @@ export default class Button extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     const classNames = ClassNames({
-      [classes.base]: true,
+      [classes.root]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
       [classes.primary]: primary,

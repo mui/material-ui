@@ -3,7 +3,10 @@ import {shallow as enzymeShallow} from 'enzyme';
 
 export default function createShallowWithContext(shallow = enzymeShallow, props = {}) {
   const {theme, styleManager} = createDefaultContext(props);
-  return function shallowWithContext(node) {
-    return shallow(node, {context: {theme, styleManager}});
+  const context = {theme, styleManager};
+  const shallowWithContext = function shallowWithContext(node) {
+    return shallow(node, {context});
   };
+  shallowWithContext.context = context;
+  return shallowWithContext;
 }

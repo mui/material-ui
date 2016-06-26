@@ -4,7 +4,7 @@ import {assert} from 'chai';
 import TouchRipple from './TouchRipple';
 import {createShallowWithContext} from 'test/utils';
 
-describe('<TouchRipple />', () => {
+describe('<TouchRipple>', () => {
   let shallow;
 
   before(() => shallow = createShallowWithContext());

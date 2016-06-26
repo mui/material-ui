@@ -1,1 +1,0 @@
-export SvgIcon from './SvgIcon';

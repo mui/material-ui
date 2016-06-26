@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
+import Text from 'material-ui/Text';
 import AppBar from 'material-ui/AppBar';
-import Toolbar, {ToolbarTitle} from 'material-ui/Toolbar';
+import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 
 import AppDrawer from './AppDrawer';
@@ -70,7 +71,7 @@ export default class AppFrame extends Component {
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton onClick={this.handleDrawerToggle}>menu</IconButton>
-            <ToolbarTitle>{title}</ToolbarTitle>
+            <Text type="title">{title}</Text>
           </Toolbar>
         </AppBar>
         <AppDrawer
