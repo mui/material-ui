@@ -13,7 +13,7 @@ describe('<AppBar>', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a <Paper> component', () => {
+  it('should render a Paper component', () => {
     const wrapper = shallow(
       <AppBar>Hello World</AppBar>
     );

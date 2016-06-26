@@ -45,7 +45,7 @@ export default class AppFrame extends Component {
   };
 
   state = {
-    drawerOpen: true,
+    drawerOpen: false,
   };
 
   handleDrawerOpen = () => this.setState({drawerOpen: true});

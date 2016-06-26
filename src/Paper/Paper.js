@@ -7,7 +7,7 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
-    shadows[`dp-${index}`] = {
+    shadows[`dp${index}`] = {
       boxShadow: shadow,
     };
   });
@@ -29,7 +29,7 @@ export default function Paper(props, context) {
 
   const classNames = ClassNames(classes.root, {
     [classes.rounded]: rounded,
-    [classes[`dp-${zDepth >= 0 ? zDepth : 0}`]]: true,
+    [classes[`dp${zDepth >= 0 ? zDepth : 0}`]]: true,
   }, className);
 
   return (

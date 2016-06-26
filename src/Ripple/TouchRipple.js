@@ -51,7 +51,7 @@ export default class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     const elem = ReactDOM.findDOMNode(this);
-    const rect = elem.getBoundingClientRect();
+    const rect = elem ? elem.getBoundingClientRect() : {width: 0, height: 0};
 
     // Get the size of the ripple
     let rippleX;
@@ -72,8 +72,8 @@ export default class TouchRipple extends Component {
     if (this.props.center) {
       rippleSize = (rect.width + rect.height) / 2;
     } else {
-      const sizeX = Math.max(Math.abs(elem.clientWidth - rippleX), rippleX) * 2 + 2;
-      const sizeY = Math.max(Math.abs(elem.clientHeight - rippleY), rippleY) * 2 + 2;
+      const sizeX = Math.max(Math.abs((elem ? elem.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
+      const sizeY = Math.max(Math.abs((elem ? elem.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
       rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
     }
 
