@@ -56,7 +56,7 @@ export default class AppBar extends Component {
 
     const classNames = ClassNames({
       [classes.root]: true,
-      [classes.primary]: primary,
+      [classes.primary]: primary && !accent,
       [classes.accent]: accent,
     }, className);
 
