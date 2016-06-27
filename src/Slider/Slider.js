@@ -44,14 +44,16 @@ const getStyles = (props, context, state) => {
   const calcDisabledSpacing = props.disabled ? ` - ${disabledGutter}px` : '';
 
   const styles = {
+    root: {
+      marginTop: 24,
+      marginBottom: 48,
+    },
     slider: {
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
       height: slider.handleSizeActive,
       position: 'relative',
-      marginTop: 24,
-      marginBottom: 48,
     },
     track: {
       position: 'absolute',
@@ -596,7 +598,7 @@ class Slider extends Component {
     }
 
     return (
-      <div {...other} style={prepareStyles(Object.assign({}, style))}>
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         <span>{description}</span>
         <span>{error}</span>
         <div
