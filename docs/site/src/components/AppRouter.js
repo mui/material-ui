@@ -5,11 +5,27 @@ import AppContent from './AppContent';
 import Home from '../pages/Home';
 import MarkdownDocs from './MarkdownDocs';
 
+/**
+ * This lets us eager load the docs ahead of time
+ * and require them dynamically with webpack's context feature
+ */
 const requireDocs = require.context(
   './../../../../docs',
   true,
   /^((?![\\/]site|node_modules[\\/]).)*\.md$/
 );
+
+const docFiles = requireDocs.keys();
+
+const apiDocs = docFiles.reduce((res, n) => {
+  if (/^\.\/api\//.test(n)) {
+    res.push({
+      path: n,
+      name: n.replace(/.*\//, '').replace('.md', ''),
+    });
+  }
+  return res;
+}, []);
 
 export default class AppRouter extends Component {
   render() {
@@ -76,6 +92,27 @@ export default class AppRouter extends Component {
               component={MarkdownDocs}
               nav={true}
             />
+          </Route>
+
+          <Route
+            title="Component API"
+            path="/component-api"
+            nav={true}
+            component={AppContent}
+          >
+            {apiDocs.map(((n, i) => {
+              return (
+                <Route
+                  key={i}
+                  title={n.name}
+                  path={`/components/${n.name}`}
+                  content={requireDocs(n.path)}
+                  component={MarkdownDocs}
+                  nav={true}
+                />
+              );
+            }))}
+
           </Route>
 
           <Route

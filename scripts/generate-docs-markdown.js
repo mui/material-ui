@@ -13,7 +13,7 @@ function stringOfLength(string, length) {
 }
 
 function generateTitle(name) {
-  const title = `\`<${name}>\``;
+  const title = `${name}`;
   return title + '\n' + stringOfLength('=', title.length) + '\n';
 }
 

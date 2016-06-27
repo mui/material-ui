@@ -5,18 +5,22 @@ import MarkdownElement from './MarkdownElement';
 export const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
   return {
     content: {
-      '@raw h1': {
-        ...theme.typography.display2,
-        color: theme.palette.text.secondary,
-        margin: '1em 0 0.7em',
+      '@raw pre': {
+        margin: '25px 0',
+        padding: '12px 18px',
+        backgroundColor: '#fff',
+        boxShadow: theme.shadows[4],
+        borderRadius: 3,
       },
-      '@raw h2': {
-        ...theme.typography.display1,
-        color: theme.palette.text.secondary,
-        margin: '1em 0 0.7em',
+      '@raw code': {
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
+        padding: '3px 6px',
+        color: '#333',
+        backgroundColor: '#fff',
       },
-      '@raw p, @raw ul': {
-        lineHeight: '1.6',
+      '@raw pre > code': {
+        padding: 0,
+        fontSize: 14,
       },
     },
   };

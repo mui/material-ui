@@ -1,5 +1,5 @@
-`<TouchRipple>`
-===============
+TouchRipple
+===========
 
 
 

@@ -27,22 +27,6 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
         textDecoration: 'underline',
       },
     },
-    '@raw pre': {
-      padding: '12px 18px',
-      backgroundColor: '#fff',
-      boxShadow: theme.shadows[4],
-      borderRadius: 3,
-    },
-    '@raw code': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-      fontSize: 12,
-      padding: '3px 6px',
-      color: '#333',
-      backgroundColor: '#fff',
-    },
-    '@raw pre > code': {
-      padding: 0,
-    },
     root: {
       display: 'flex',
       alignItems: 'stretch',

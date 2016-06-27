@@ -1,5 +1,5 @@
-`<Button>`
-==========
+Button
+======
 
 Short button description goes here
 
@@ -12,7 +12,7 @@ Props
 | accent | bool |  |   |
 | children | node |  |   |
 | className | string |  |   |
-| el | string | 'button' |   |
+| component | union | 'button' |   |
 | fab | bool |  |   |
 | onBlur | function |  |   |
 | onMouseDown | function |  |   |

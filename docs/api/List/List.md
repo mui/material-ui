@@ -1,5 +1,5 @@
-`<List>`
-========
+List
+====
 
 
 
@@ -11,5 +11,5 @@ Props
 |:-----|:-----|:-----|:-----|
 | children | node |  |   |
 | className | string |  |   |
-| el | string | 'div' |   |
+| component | union | 'div' |   |
 | padding | bool | true |   |

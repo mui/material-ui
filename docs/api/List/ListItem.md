@@ -1,5 +1,5 @@
-`<ListItem>`
-============
+ListItem
+========
 
 
 
@@ -11,4 +11,5 @@ Props
 |:-----|:-----|:-----|:-----|
 | children | node |  |   |
 | className | string |  |   |
-| el | union | 'div' |   |
+| component | union | 'div' |   |
+| gutters | bool | true |   |

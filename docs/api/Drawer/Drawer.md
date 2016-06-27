@@ -1,5 +1,5 @@
-`<Drawer>`
-==========
+Drawer
+======
 
 This is a drawer
 
