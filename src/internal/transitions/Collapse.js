@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import Transition from 'react-overlays/lib/Transition';
 
-// const reflow = (elem) => elem.offsetHeight;
+const reflow = (elem) => elem.offsetHeight;
 
 export const styleSheet = createStyleSheet('Collapse', (theme) => {
   return {
@@ -45,12 +45,11 @@ export default class Collapse extends Component {
 
   handleExit = (element) => {
     element.style.height = `${this.wrapper.clientHeight}px`;
+    reflow(element);
   };
 
   handleExiting = (element) => {
-    window.requestAnimationFrame(() => {
-      element.style.height = 0;
-    });
+    element.style.height = 0;
   };
 
   render() {
