@@ -10,6 +10,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
 
   return {
     root: {
+      display: 'flex',
       position: 'relative',
       marginTop: 16,
       // Expanding underline
@@ -30,6 +31,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
         ),
       },
       input: {
+        display: 'block',
         marginTop: 10,
         marginBottom: 10,
         zIndex: 1,
