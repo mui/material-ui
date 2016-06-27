@@ -41,6 +41,10 @@ export default class Ripple extends Component {
     rippleVisible: false,
   };
 
+  componentWillUnmount() {
+    clearTimeout(this.leaveTimer);
+  }
+
   componentDidEnter() {
     this.start();
   }

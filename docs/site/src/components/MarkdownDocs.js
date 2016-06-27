@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
         color: theme.palette.text.secondary,
         margin: '1em 0 0.7em',
       },
-      '@raw p': {
+      '@raw p, @raw ul': {
         lineHeight: '1.6',
       },
     },
@@ -40,6 +40,11 @@ export default class MarkdownDocs extends Component {
 
   componentWillMount() {
     const path = this.props.route.path;
+    this.setState({text: requireDocs(`.${path}.md`)});
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const path = nextProps.route.path;
     this.setState({text: requireDocs(`.${path}.md`)});
   }
 

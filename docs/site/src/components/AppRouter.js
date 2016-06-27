@@ -50,6 +50,48 @@ export default class AppRouter extends Component {
               nav={true}
             />
           </Route>
+
+          <Route
+            title="Customization"
+            path="/customization"
+            nav={true}
+            component={AppContent}
+          >
+            <IndexRedirect to="themes" />
+            <Route
+              title="Themes"
+              path="/customization/themes"
+              component={MarkdownDocs}
+              nav={true}
+            />
+          </Route>
+
+          <Route
+            title="Discover More"
+            path="/discover-more"
+            nav={true}
+            component={AppContent}
+          >
+            <IndexRedirect to="community" />
+            <Route
+              title="Community"
+              path="/discover-more/community"
+              component={MarkdownDocs}
+              nav={true}
+            />
+            <Route
+              title="Showcase"
+              path="/discover-more/showcase"
+              component={MarkdownDocs}
+              nav={true}
+            />
+            <Route
+              title="Related Projects"
+              path="/discover-more/related-projects"
+              component={MarkdownDocs}
+              nav={true}
+            />
+          </Route>
         </Route>
       </Router>
     );

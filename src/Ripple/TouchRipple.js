@@ -116,6 +116,8 @@ export default class TouchRipple extends Component {
     return (
       <ReactTransitionGroup
         component="span"
+        transitionEnterTimeout={550}
+        transitionLeaveTimeout={550}
         className={ClassNames(classes.root, className)}
         {...other}
       >

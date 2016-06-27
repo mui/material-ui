@@ -41,7 +41,7 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
       marginLeft: -12,
     },
     title: {
-      marginLeft: 36,
+      marginLeft: 24,
     },
   };
 });
@@ -49,7 +49,6 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
 export default class AppFrame extends Component {
   static propTypes = {
     children: PropTypes.node,
-    route: PropTypes.object,
     routes: PropTypes.array,
   };
 
@@ -58,7 +57,7 @@ export default class AppFrame extends Component {
   };
 
   state = {
-    drawerOpen: false,
+    drawerOpen: true,
   };
 
   handleDrawerOpen = () => this.setState({drawerOpen: true});
@@ -75,12 +74,20 @@ export default class AppFrame extends Component {
     return null;
   }
 
+  getCurrentPath() {
+    const {routes} = this.props;
+    for (let i = routes.length - 1; i >= 0; i--) {
+      if (routes[i].hasOwnProperty('path')) {
+        return routes[i].path;
+      }
+    }
+    return null;
+  }
+
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     const title = this.getTitle();
-
-    const currentRoute = this.props.routes[this.props.routes.length - 1];
-    const appBarClassname = currentRoute.path === '/' ? classes.appBarHome : '';
+    const appBarClassname = this.getCurrentPath() === '/' ? classes.appBarHome : '';
 
     return (
       <div className={classes.root}>
@@ -91,9 +98,9 @@ export default class AppFrame extends Component {
           </Toolbar>
         </AppBar>
         <AppDrawer
+          routes={this.props.routes}
           onRequestClose={this.handleDrawerClose}
           open={this.state.drawerOpen}
-          navRoot={this.props.routes[0]}
         />
         {this.props.children}
       </div>

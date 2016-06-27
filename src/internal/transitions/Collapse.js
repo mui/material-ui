@@ -1,7 +1,21 @@
 import React, {Component, PropTypes} from 'react';
+import {createStyleSheet} from 'stylishly';
 import Transition from 'react-overlays/lib/Transition';
 
-// const reflow = (elem) => elem.offsetHeight;
+const reflow = (elem) => elem.offsetHeight;
+
+export const styleSheet = createStyleSheet('Collapse', (theme) => {
+  return {
+    container: {
+      height: 0,
+      overflow: 'hidden',
+      transition: theme.transitions.create('height'),
+    },
+    entered: {
+      height: 'auto',
+    },
+  };
+});
 
 export default class Collapse extends Component {
   static propTypes = {
@@ -12,44 +26,45 @@ export default class Collapse extends Component {
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
 
   handleEnter = (element) => {
     element.style.height = 0;
-    element.style.transition = this.context.theme.transitions.create('height');
   };
 
   handleEntering = (element) => {
-    this.open(element);
-    element.style.height = 1;
+    element.style.height = `${this.wrapper.clientHeight}px`;
   };
 
   handleEntered = (element) => {
-    this.setAutoHeight(element);
+    element.style.height = 'auto';
+  };
+
+  handleExit = (element) => {
+    element.style.height = `${this.wrapper.clientHeight}px`;
   };
 
   handleExiting = (element) => {
+    reflow(element);
     element.style.height = 0;
   };
 
-  open(element) {
-    element.style.height = `${this.refs.wrapper.clientHeight}px`;
-  }
-
   render() {
     const {children, ...other} = this.props;
+    const classes = this.context.styleManager.render(styleSheet);
 
     return (
       <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onEntered={this.handleEntered}
+        onExit={this.handleExit}
         onExiting={this.handleExiting}
         timeout={300}
         {...other}
       >
-        <div>
+        <div className={classes.container}>
           <div ref={(c) => this.wrapper = c}>
             {children}
           </div>
