@@ -66,8 +66,6 @@ export default class Modal extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
-    } else {
-      this.setState({exited: true});
     }
   }
 

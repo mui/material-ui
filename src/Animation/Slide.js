@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Transition from 'react-overlays/lib/Transition';
 
+const reflow = (elem) => elem.offsetHeight;
+
 export default class Slide extends Component {
   static propTypes = {
     /**

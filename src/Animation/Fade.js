@@ -9,6 +9,7 @@ export default class Fade extends Component {
      * Can be used, for instance, to render a letter inside the avatar.
      */
     children: PropTypes.node,
+    onExited: PropTypes.func,
   };
 
   static contextTypes = {
@@ -24,7 +25,7 @@ export default class Fade extends Component {
     element.style.opacity = 1;
   };
 
-  handleExiting = (element) => {
+  handleExit = (element) => {
     element.style.opacity = 0;
   };
 
@@ -35,7 +36,7 @@ export default class Fade extends Component {
       <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
-        onExiting={this.handleExiting}
+        onExit={this.handleExit}
         timeout={2000}
         {...other}
       >

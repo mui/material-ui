@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
+import ClassNames from 'classnames';
 import Transition from 'react-overlays/lib/Transition';
 
-const reflow = (elem) => elem.offsetHeight;
+// const reflow = (elem) => elem.offsetHeight;
 
 export const styleSheet = createStyleSheet('Collapse', (theme) => {
   return {
@@ -23,6 +24,7 @@ export default class Collapse extends Component {
      * Can be used, for instance, to render a letter inside the avatar.
      */
     children: PropTypes.node,
+    in: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -46,13 +48,19 @@ export default class Collapse extends Component {
   };
 
   handleExiting = (element) => {
-    reflow(element);
-    element.style.height = 0;
+    window.requestAnimationFrame(() => {
+      element.style.height = 0;
+    });
   };
 
   render() {
     const {children, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet);
+
+    const containerClassname = ClassNames({
+      [classes.container]: true,
+      [classes.entered]: this.props.in,
+    });
 
     return (
       <Transition
@@ -64,7 +72,7 @@ export default class Collapse extends Component {
         timeout={300}
         {...other}
       >
-        <div className={classes.container}>
+        <div className={containerClassname}>
           <div ref={(c) => this.wrapper = c}>
             {children}
           </div>
