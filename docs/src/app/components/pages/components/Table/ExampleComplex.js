@@ -110,7 +110,7 @@ export default class TableExampleComplex extends React.Component {
             stripedRows={this.state.stripedRows}
           >
             {tableData.map( (row, index) => (
-              <TableRow key={index} selected={row.selected}>
+              <TableRow key={index} selected={row.selected} selectable={row.selectable}>
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{row.name}</TableRowColumn>
                 <TableRowColumn>{row.status}</TableRowColumn>

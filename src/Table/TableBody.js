@@ -166,7 +166,8 @@ class TableBody extends Component {
         const props = {
           displayRowCheckbox: this.props.displayRowCheckbox,
           hoverable: this.props.showRowHover,
-          selected: this.isRowSelected(rowNumber),
+          selected: this.isRowSelected(rowNumber, child.props),
+          selectable: this.isRowSelectable(this.props, child.props),
           striped: this.props.stripedRows && (rowNumber % 2 === 0),
           rowNumber: rowNumber++,
         };
@@ -190,7 +191,7 @@ class TableBody extends Component {
     if (!this.props.displayRowCheckbox) return null;
 
     const key = `${rowProps.rowNumber}-cb`;
-    const disabled = !this.props.selectable;
+    const disabled = !rowProps.selectable;
     const checkbox = (
       <Checkbox
         ref="rowSelectCB"
@@ -235,8 +236,10 @@ class TableBody extends Component {
     return preSelectedRows;
   }
 
-  isRowSelected(rowNumber) {
+  isRowSelected(rowNumber, childProps) {
     if (this.props.allRowsSelected) {
+      if (typeof childProps.selectable !== 'undefined' && !childProps.selectable) return false;
+
       return true;
     }
 
@@ -248,6 +251,16 @@ class TableBody extends Component {
       } else {
         if (selection === rowNumber) return true;
       }
+    }
+
+    return false;
+  }
+
+  isRowSelectable(tableProps, rowProps) {
+    if (tableProps.selectable) {
+      if (typeof rowProps.selectable !== 'undefined' && !rowProps.selectable) return false;
+
+      return true;
     }
 
     return false;
