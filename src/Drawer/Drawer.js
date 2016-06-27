@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
-import Slide from '../Animation/Slide';
+import Slide from '../internal/transitions/Slide';
 
 export const styleSheet = createStyleSheet('Drawer', () => {
   return {

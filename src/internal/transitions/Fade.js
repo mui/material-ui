@@ -1,8 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Transition from 'react-overlays/lib/Transition';
 
-// const reflow = (elem) => elem.offsetHeight;
-
 export default class Fade extends Component {
   static propTypes = {
     /**

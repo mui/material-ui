@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Overlay from './Overlay';
 import Portal from './Portal';
-import Fade from '../Animation/Fade';
+import Fade from '../internal/transitions/Fade';
 
 export const styleSheet = createStyleSheet('Modal', (theme) => {
   return {

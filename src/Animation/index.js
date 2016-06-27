@@ -1,1 +1,0 @@
-export Slide from './Slide';
