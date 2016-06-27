@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import marked from 'marked';
 
+import 'highlight.js/styles/github.css';
+
 const styles = {
   root: {
     marginTop: 20,

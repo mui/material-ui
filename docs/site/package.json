@@ -20,6 +20,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "cross-env": "^1.0.7",
+    "css-loader": "^0.23.1",
     "eslint": "^2.8.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.0.1",
@@ -35,6 +36,7 @@
     "react-hot-loader": "^3.0.0-beta.2",
     "react-router": "^2.4.1",
     "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
   }

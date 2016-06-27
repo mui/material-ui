@@ -1,5 +1,6 @@
+# Themes
 
-### Predefined themes
+## Predefined themes
 
 We ship two base themes with Material-UI: light and dark. They are located
 under [`material-ui/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
@@ -28,7 +29,7 @@ class Main extends React.Component {
 export default Main;
 ```
 
-### How it works
+## How it works
 
 To achieve the level of customizability that you can see in the example above,
 Material-UI is using a single JS object called `muiTheme`.
@@ -46,7 +47,7 @@ The `muiTheme` object contains the following keys:
   - `avatar`
   - ...
 
-### Customizing the theme
+## Customizing the theme
 
 To customize the `muiTheme` you must use `getMuiTheme()` to compute a valid `muiTheme` object,
 and providing an object containing the keys you wish to customize.
@@ -92,7 +93,7 @@ to use props at every level.
 In fact, context is very convenient for concepts like theming, which are usually
 implemented in a hierarchical manner.
 
-### Using context
+## Using context
 
 The `MuiThemeProvider` component simply adds the `muTheme` object to context.
 If you prefer using context directly instead, you can follow this pattern:
@@ -144,11 +145,11 @@ DeepDownTheTree.contextTypes = {
 export default DeepDownTheTree;
 ```
 
-### API
+## API
 
 The items listed below are everything related to how Material-UI's theme work.
 
-#### `getMuiTheme(muiTheme) => muiTheme`
+### `getMuiTheme(muiTheme) => muiTheme`
 
 This function takes in a `muiTheme`, it will use this parameter to computes the right keys.
 
@@ -194,7 +195,7 @@ export default {
 };
 ```
 
-#### `<MuiThemeProvider />`
+### `<MuiThemeProvider />`
 
 This component takes a theme as a property and passes it down with context.
 This should preferably be at the root of your component tree. The first
