@@ -1,9 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import createFragment from 'react-addons-create-fragment';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-
-import {TouchRipple, createRippleHandler} from '../Ripple';
+import ButtonBase from '../internal/ButtonBase';
 
 function createButtonColorRule(main, contrast, hover) {
   return {
@@ -24,23 +22,16 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
   return {
     root: {
       ...typography.button,
-      position: 'relative',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       minWidth: 88,
       height: 36,
       padding: '0px 16px',
-      outline: 'none',
-      border: 10,
       borderRadius: 2,
-      cursor: 'pointer',
       color: palette.text.primary,
       backgroundColor: 'transparent',
       transition: transitions.multi(['background-color', 'box-shadow']),
-      userSelect: 'none',
-      appearance: 'none',
-      textDecoration: 'none',
       '&:hover': {
         backgroundColor: palette.text.divider,
       },
@@ -87,7 +78,18 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
 });
 
 /**
- * Short button description goes here
+ * Buttons communicate the action that will occur when the user
+ * touches them.
+ *
+ * Material buttons trigger an ink reaction on press. They may display
+ * text, imagery, or both. Flat buttons and raised buttons are the
+ * most commonly used types.
+ *
+ * ```js
+ * import Button from 'material-ui/Button';
+ *
+ * const Component = () => <Button>Hello World</Button>;
+ * ```
  */
 export default class Button extends Component {
   static propTypes = {
@@ -96,12 +98,6 @@ export default class Button extends Component {
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     fab: PropTypes.bool,
-    onBlur: PropTypes.func,
-    onMouseDown: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    onMouseUp: PropTypes.func,
-    onTouchEnd: PropTypes.func,
-    onTouchStart: PropTypes.func,
     primary: PropTypes.bool,
     raised: PropTypes.bool,
     ripple: PropTypes.bool,
@@ -119,32 +115,14 @@ export default class Button extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  ripple = undefined;
-
-  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start');
-  handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
-  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop');
-  handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
-  handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
-  handleBlur = createRippleHandler(this, 'Blur', 'stop');
-
   render() {
     const {
       accent,
       children,
       className,
-      component,
       fab,
-      onBlur, // eslint-disable-line no-unused-vars
-      onMouseDown, // eslint-disable-line no-unused-vars
-      onMouseLeave, // eslint-disable-line no-unused-vars
-      onMouseUp, // eslint-disable-line no-unused-vars
-      onTouchEnd, // eslint-disable-line no-unused-vars
-      onTouchStart, // eslint-disable-line no-unused-vars
       primary,
       raised,
-      ripple,
-      type,
       ...other,
     } = this.props;
 
@@ -158,34 +136,10 @@ export default class Button extends Component {
       [classes.accent]: accent,
     }, className);
 
-    const buttonProps = {
-      onBlur: this.handleBlur,
-      onMouseDown: this.handleMouseDown,
-      onMouseLeave: this.handleMouseLeave,
-      onMouseUp: this.handleMouseUp,
-      onTouchEnd: this.handleTouchEnd,
-      onTouchStart: this.handleTouchStart,
-      className: classNames,
-      ...other,
-    };
-
-    let element = component;
-
-    if (other.href) {
-      element = 'a';
-    }
-
-    if (element === 'button') {
-      buttonProps.type = type;
-    }
-
-    return React.createElement(
-      element,
-      buttonProps,
-      createFragment({
-        children: <span className={classes.label}>{children}</span>,
-        ripple: ripple ? <TouchRipple ref={(c) => this.ripple = c} /> : null,
-      })
+    return (
+      <ButtonBase className={classNames} {...other}>
+        <span className={classes.label}>{children}</span>
+      </ButtonBase>
     );
   }
 }
