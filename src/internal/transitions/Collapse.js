@@ -21,10 +21,6 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
 export default class Collapse extends Component {
   static propTypes = {
     /**
-     * Set to true to automatically calculate transition time based on height
-     */
-    autoDuration: PropTypes.bool,
-    /**
      * The content node to be collapsed.
      */
     children: PropTypes.node,
@@ -32,6 +28,10 @@ export default class Collapse extends Component {
      * Set to true to transition in
      */
     in: PropTypes.bool,
+    /**
+     * Set to 'auto' to automatically calculate transition time based on height
+     */
+    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   static defaultProps = {
@@ -48,11 +48,19 @@ export default class Collapse extends Component {
   };
 
   handleEntering = (element) => {
-    const {autoDuration} = this.props;
+    const {transitionDuration} = this.props;
     const wrapperHeight = this.wrapper.clientHeight;
-    if (autoDuration) {
-      element.style.transitionDuration = `${this.getTransitionDuration(wrapperHeight)}ms`;
+
+    if (transitionDuration) {
+      if (transitionDuration === 'auto') {
+        element.style.transitionDuration = `${this.getTransitionDuration(wrapperHeight)}ms`;
+      } else if (typeof transitionDuration === 'number') {
+        element.style.transitionDuration = `${transitionDuration}ms`;
+      } else {
+        element.style.transitionDuration = transitionDuration;
+      }
     }
+
     element.style.height = `${wrapperHeight}px`;
   };
 
