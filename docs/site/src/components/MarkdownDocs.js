@@ -11,16 +11,16 @@ export const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
         backgroundColor: '#fff',
         boxShadow: theme.shadows[4],
         borderRadius: 3,
+        '@raw code': {
+          padding: 0,
+          fontSize: 14,
+        },
       },
       '@raw code': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
         padding: '3px 6px',
         color: '#333',
         backgroundColor: '#fff',
-      },
-      '@raw pre > code': {
-        padding: 0,
-        fontSize: 14,
       },
     },
   };
