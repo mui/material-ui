@@ -56,7 +56,7 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const {children, className, ripple, ...other} = this.props;
+    const {children, className, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     return (
       <ButtonBase className={ClassNames(classes.root, className)} {...other}>
