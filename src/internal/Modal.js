@@ -1,9 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
+import {createModalManager} from './modalManager';
 import Overlay from './Overlay';
 import Portal from './Portal';
 import Fade from '../internal/transitions/Fade';
+
+// Modals don't open on the server
+// so this won't break concurrency
+// ...........Could also put this on context....
+const modalManager = createModalManager();
 
 export const styleSheet = createStyleSheet('Modal', (theme) => {
   return {
@@ -51,15 +57,15 @@ export default class Modal extends Component {
     exited: false,
   };
 
-  // componentDidMount() {
-  //   if (this.props.show === true) {
-  //     this.onShow();
-  //   }
-  // }
-
   componentWillMount() {
     if (!this.props.show) {
       this.setState({exited: true});
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.show === true) {
+      this.handleShow();
     }
   }
 
@@ -67,6 +73,26 @@ export default class Modal extends Component {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.show && this.props.show) {
+      this.handleShow();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.show || !this.state.exited) {
+      this.handleHide();
+    }
+  }
+
+  handleShow() {
+    modalManager.add(this);
+  }
+
+  handleHide() {
+    modalManager.remove(this);
   }
 
   handleOverlayClick = (event) => {
@@ -85,6 +111,7 @@ export default class Modal extends Component {
 
   handleOverlayExited = (...args) => {
     this.setState({exited: true});
+    this.handleHide();
     if (this.props.onExited) {
       this.props.onExited(...args);
     }

@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "dom-helpers": "^2.4.0",
     "keycode": "^2.1.1",
     "lodash": "^4.13.1",
     "object-assign": "^4.1.0",

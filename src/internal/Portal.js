@@ -61,7 +61,6 @@ export default class Portal extends Component {
       this.layerElement = unstable_renderSubtreeIntoContainer(
         this, layerElement, this.layer
       );
-      reflow(this.layer);
     } else {
       this.unrenderLayer();
     }
