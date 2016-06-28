@@ -8,6 +8,7 @@ import Slide from '../internal/transitions/Slide';
 export const styleSheet = createStyleSheet('Drawer', () => {
   return {
     paper: {
+      overflowY: 'auto',
       display: 'flex',
       flexDirection: 'column',
       position: 'fixed',
