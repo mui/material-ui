@@ -75,12 +75,12 @@ export default class AppDrawer extends Component {
     open: [],
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
-    );
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     !shallowEqual(this.props, nextProps) ||
+  //     !shallowEqual(this.state, nextState)
+  //   );
+  // }
 
   renderNav(navRoot, props = {}) {
     return (
@@ -121,7 +121,7 @@ export default class AppDrawer extends Component {
             >
               {childRoute.title}
             </Button>
-            <Collapse in={open}>{this.renderNav(childRoute)}</Collapse>
+            <Collapse in={open} autoDuration={true}>{this.renderNav(childRoute)}</Collapse>
           </ListItem>
         );
       } else {

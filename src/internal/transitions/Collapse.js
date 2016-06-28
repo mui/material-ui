@@ -21,10 +21,22 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
 export default class Collapse extends Component {
   static propTypes = {
     /**
-     * Can be used, for instance, to render a letter inside the avatar.
+     * Set to true to automatically calculate transition time based on height
+     */
+    autoDuration: PropTypes.bool,
+    /**
+     * The content node to be collapsed.
      */
     children: PropTypes.node,
+    /**
+     * Set to true to transition in
+     */
     in: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    autoDuration: false,
+    in: false,
   };
 
   static contextTypes = {
@@ -36,7 +48,12 @@ export default class Collapse extends Component {
   };
 
   handleEntering = (element) => {
-    element.style.height = `${this.wrapper.clientHeight}px`;
+    const {autoDuration} = this.props;
+    const wrapperHeight = this.wrapper.clientHeight;
+    if (autoDuration) {
+      element.style.transitionDuration = `${this.getTransitionDuration(wrapperHeight)}ms`;
+    }
+    element.style.height = `${wrapperHeight}px`;
   };
 
   handleEntered = (element) => {
@@ -51,6 +68,14 @@ export default class Collapse extends Component {
   handleExiting = (element) => {
     element.style.height = 0;
   };
+
+  getTransitionDuration(wrapperHeight) {
+    if (!wrapperHeight) {
+      return 0;
+    }
+    const constant = wrapperHeight / 36;
+    return Math.round(175 / constant + 25) * constant;
+  }
 
   render() {
     const {children, ...other} = this.props;

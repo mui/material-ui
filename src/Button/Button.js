@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from './ButtonBase';
 
 function createButtonColorRule(main, contrast, hover) {
   return {
