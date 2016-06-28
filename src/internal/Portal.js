@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
-// import Dom from '../utils/dom';
 
-const reflow = (elem) => elem.offsetHeight;
+// const reflow = (elem) => elem.offsetHeight;
 
 export default class Portal extends Component {
   static propTypes = {
@@ -61,6 +60,7 @@ export default class Portal extends Component {
       this.layerElement = unstable_renderSubtreeIntoContainer(
         this, layerElement, this.layer
       );
+      // reflow(this.layer);
     } else {
       this.unrenderLayer();
     }

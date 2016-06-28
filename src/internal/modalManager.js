@@ -2,6 +2,7 @@ import css from 'dom-helpers/style';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import {hideSiblings, showSiblings, ariaHidden} from '../utils/manageAriaHidden';
 
 /**
  * State managment helper for modals/layers.
@@ -11,11 +12,13 @@ import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
  */
 export function createModalManager({
   container = window.document.body,
+  hideSiblingNodes = true,
 } = {}) {
   const modals = [];
   const modalManager = {add, remove, isTopModal};
 
   let prevOverflow;
+  let prevPadding;
 
   function add(modal) {
     let modalIdx = modals.indexOf(modal);
@@ -27,6 +30,10 @@ export function createModalManager({
     modalIdx = modals.length;
     modals.push(modal);
 
+    if (hideSiblingNodes) {
+      hideSiblings(container, modal.mountNode);
+    }
+
     const containerStyle = {overflow: 'hidden'};
 
     // Save our current overflow so we can revert
@@ -34,6 +41,7 @@ export function createModalManager({
     prevOverflow = container.style.overflow;
 
     if (bodyIsOverflowing((container))) {
+      prevPadding = container.style.paddingRight;
       containerStyle.paddingRight = `${getScrollbarSize()}px`;
     }
 
@@ -53,7 +61,15 @@ export function createModalManager({
 
     if (modals.length === 0) {
       container.style.overflow = prevOverflow;
+      container.style.paddingRight = prevPadding;
       prevOverflow = undefined;
+      prevPadding = undefined;
+      if (hideSiblingNodes) {
+        showSiblings(container, modal.mountNode);
+      }
+    } else if (hideSiblingNodes) {
+      // otherwise make sure the next top modal is visible to a SR
+      ariaHidden(false, modals[modals.length - 1].mountNode);
     }
 
     return modalIdx;

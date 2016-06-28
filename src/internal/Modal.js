@@ -1,10 +1,17 @@
 import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import ReactDOM from 'react-dom';
+import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
+import warning from 'warning';
+import canUseDom from 'dom-helpers/util/inDOM';
+import contains from 'dom-helpers/query/contains';
+import activeElement from 'dom-helpers/activeElement';
+import ownerDocument from 'dom-helpers/ownerDocument';
 import {createModalManager} from './modalManager';
 import Overlay from './Overlay';
 import Portal from './Portal';
 import Fade from '../internal/transitions/Fade';
+import addEventListener from '../utils/addEventListener';
 
 // Modals don't open on the server
 // so this won't break concurrency
@@ -40,6 +47,7 @@ export default class Modal extends Component {
      * Callback fired after the Modal finishes transitioning out
      */
     onExited: React.PropTypes.func,
+    onOverlayClick: PropTypes.func,
     onRequestClose: PropTypes.func,
     show: PropTypes.bool,
   };
@@ -64,6 +72,7 @@ export default class Modal extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     if (this.props.show === true) {
       this.handleShow();
     }
@@ -72,6 +81,12 @@ export default class Modal extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    if (!this.props.show && nextProps.show) {
+      this.checkForFocus();
     }
   }
 
@@ -85,15 +100,77 @@ export default class Modal extends Component {
     if (this.props.show || !this.state.exited) {
       this.handleHide();
     }
+    this.mounted = false;
+  }
+
+  checkForFocus() {
+    if (canUseDom) {
+      this.lastFocus = activeElement();
+    }
+  }
+
+  focus() {
+    const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
+    const modalContent = this.modal && this.modal.lastChild;
+    const focusInModal = currentFocus && contains(modalContent, currentFocus);
+
+    if (modalContent && !focusInModal) {
+      this.lastFocus = currentFocus;
+
+      if (!modalContent.hasAttribute('tabIndex')) {
+        modalContent.setAttribute('tabIndex', -1);
+        warning(false,
+          'The modal content node does not accept focus. ' +
+          'For the benefit of assistive technologies, the tabIndex of the node is being set to "-1".');
+      }
+
+      modalContent.focus();
+    }
+  }
+
+  restoreLastFocus() {
+    if (this.lastFocus && this.lastFocus.focus) {
+      this.lastFocus.focus();
+      this.lastFocus = undefined;
+    }
   }
 
   handleShow() {
+    const doc = ownerDocument(ReactDOM.findDOMNode(this));
     modalManager.add(this);
+    this.onDocumentKeyUpListener = addEventListener(doc, 'keyup', this.handleDocumentKeyUp);
+    this.onFocusListener = addEventListener(doc, 'focus', this.handleFocusListener, true);
+    this.focus();
   }
 
   handleHide() {
     modalManager.remove(this);
+    this.onDocumentKeyUpListener.remove();
+    this.onFocusListener.remove();
+    this.restoreLastFocus();
   }
+
+  handleFocusListener = () => {
+    if (!this.mounted || !modalManager.isTopModal(this)) {
+      return;
+    }
+
+    const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
+    const modalContent = this.modal && this.modal.lastChild;
+
+    if (modalContent && modalContent !== currentFocus && !contains(modalContent, currentFocus)) {
+      modalContent.focus();
+    }
+  };
+
+  handleDocumentKeyUp = () => {
+    // if (this.props.keyboard && event.keyCode === 27 && modalManager.isTopModal(this)) {
+    //   if (this.props.onEscapeKeyUp) {
+    //     this.props.onEscapeKeyUp(event);
+    //   }
+    //   this.props.onHide();
+    // }
+  };
 
   handleOverlayClick = (event) => {
     if (event.target !== event.currentTarget) {
@@ -133,10 +210,23 @@ export default class Modal extends Component {
       return null;
     }
 
+    let modalChild = React.Children.only(children);
+
+    const {role, tabIndex} = modalChild.props;
+
+    if (role === undefined || tabIndex === undefined) {
+      modalChild = React.cloneElement(modalChild, {
+        role: role === undefined ? 'document' : role,
+        tabIndex: tabIndex == null ? '-1' : tabIndex,
+      });
+    }
+
     return (
-      <Portal open={true}>
+      <Portal open={true} ref={(c) => this.mountNode = c ? c.getLayer() : c}>
         <div
           className={ClassNames(classes.modal, className)}
+          ref={(c) => this.modal = c}
+          role="dialog"
           {...other}
         >
           <Fade
@@ -146,7 +236,7 @@ export default class Modal extends Component {
           >
             <Overlay onClick={this.handleOverlayClick} />
           </Fade>
-          {children}
+          {modalChild}
         </div>
       </Portal>
     );
