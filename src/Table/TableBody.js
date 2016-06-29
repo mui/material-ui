@@ -125,7 +125,11 @@ class TableBody extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
+    if (!this.props.allRowsSelected && nextProps.allRowsSelected) {
+      this.setState({
+        selectedRows: [],
+      });
+    } else if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
       this.setState({
         selectedRows: this.state.selectedRows.length > 0 ?
           [this.state.selectedRows[this.state.selectedRows.length - 1]] : [],
@@ -139,7 +143,7 @@ class TableBody extends Component {
   }
 
   handleClickAway = () => {
-    if (this.props.deselectOnClickaway && this.state.selectedRows.length) {
+    if (this.props.deselectOnClickaway && (this.state.selectedRows.length || this.props.allRowsSelected)) {
       this.setState({
         selectedRows: [],
       });
