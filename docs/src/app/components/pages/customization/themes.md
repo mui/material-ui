@@ -94,7 +94,7 @@ implemented in a hierarchical manner.
 
 ### Using context
 
-The `MuiThemeProvider` component simply adds the `muTheme` object to context.
+The `MuiThemeProvider` component simply adds the `muiTheme` object to context.
 If you prefer using context directly instead, you can follow this pattern:
 
 Pass theme down the context:
