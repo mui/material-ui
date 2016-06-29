@@ -12,6 +12,7 @@ icon-builder/jsx
 .idea
 *.sublime-project
 *.sublime-workspace
+jsconfig.json
 
 # OS files
 .DS_STORE

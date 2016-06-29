@@ -1,14 +1,14 @@
 import {
-cyan700,
-grey600,
-pinkA100, pinkA200, pinkA400,
-fullWhite,
+  cyan700,
+  grey600,
+  pinkA100, pinkA200, pinkA400,
+  fullWhite,
 } from '../colors';
-import ColorManipulator from '../../utils/color-manipulator';
-import Spacing from '../spacing';
+import {fade} from '../../utils/colorManipulator';
+import spacing from '../spacing';
 
 export default {
-  spacing: Spacing,
+  spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: cyan700,
@@ -20,9 +20,9 @@ export default {
     textColor: fullWhite,
     alternateTextColor: '#303030',
     canvasColor: '#303030',
-    borderColor: ColorManipulator.fade(fullWhite, 0.3),
-    disabledColor: ColorManipulator.fade(fullWhite, 0.3),
-    pickerHeaderColor: ColorManipulator.fade(fullWhite, 0.12),
-    clockCircleColor: ColorManipulator.fade(fullWhite, 0.12),
+    borderColor: fade(fullWhite, 0.3),
+    disabledColor: fade(fullWhite, 0.3),
+    pickerHeaderColor: fade(fullWhite, 0.12),
+    clockCircleColor: fade(fullWhite, 0.12),
   },
 };
