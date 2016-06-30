@@ -293,11 +293,17 @@ class ListItem extends Component {
   state = {
     hovered: false,
     isKeyboardFocused: false,
-    open: this.props.initiallyOpen,
+    open: false,
     rightIconButtonHovered: false,
     rightIconButtonKeyboardFocused: false,
     touch: false,
   };
+
+  componentWillMount() {
+    if (this.props.initiallyOpen) {
+      this.setState({open: true});
+    }
+  }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
