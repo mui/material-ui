@@ -295,14 +295,18 @@ class ListItem extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {
-    hovered: false,
-    isKeyboardFocused: false,
-    open: false,
-    rightIconButtonHovered: false,
-    rightIconButtonKeyboardFocused: false,
-    touch: false,
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      hovered: false,
+      isKeyboardFocused: false,
+      open: props.initiallyOpen,
+      rightIconButtonHovered: false,
+      rightIconButtonKeyboardFocused: false,
+      touch: false,
+    };
+  }
 
   componentWillMount() {
     this.setState({
