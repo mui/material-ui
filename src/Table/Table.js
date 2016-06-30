@@ -142,6 +142,15 @@ class Table extends Component {
     allRowsSelected: this.props.allRowsSelected,
   };
 
+  componentWillReceiveProps(nextProps) {
+    const {allRowsSelected} = nextProps;
+    const {allRowsSelected: prevAllRowsSelected} = this.props;
+
+    if (allRowsSelected !== prevAllRowsSelected) {
+      this.setState({allRowsSelected});
+    }
+  }
+
   isScrollbarVisible() {
     const tableDivHeight = this.refs.tableDiv.clientHeight;
     const tableBodyHeight = this.refs.tableBody.clientHeight;
