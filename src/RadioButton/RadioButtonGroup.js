@@ -55,10 +55,14 @@ class RadioButtonGroup extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {
-    numberCheckedRadioButtons: 0,
-    selected: this.props.valueSelected || this.props.defaultSelected || '',
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      numberCheckedRadioButtons: 0,
+      selected: props.valueSelected || props.defaultSelected || '',
+    };
+  }
 
   componentWillMount() {
     let cnt = 0;
