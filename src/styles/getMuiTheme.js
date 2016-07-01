@@ -7,6 +7,7 @@ import callOnce from '../utils/callOnce';
 import rtl from '../utils/rtl';
 import compose from 'recompose/compose';
 import typography from './typography';
+import createStyleManager from './createStyleManager';
 import {
   red500, grey400, grey500, grey600, grey700,
   transparent, lightWhite, white, darkWhite, lightBlack, black,
@@ -324,6 +325,8 @@ export default function getMuiTheme(muiTheme, ...more) {
   const transformers = [autoprefixer, rtl, callOnce].map((t) => t(muiTheme))
     .filter((t) => t);
   muiTheme.prepareStyles = compose(...transformers);
+
+  muiTheme.styleManager = createStyleManager(muiTheme);
 
   return muiTheme;
 }

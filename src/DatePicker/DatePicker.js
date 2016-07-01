@@ -146,7 +146,6 @@ class DatePicker extends Component {
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
-    style: {},
   };
 
   static contextTypes = {

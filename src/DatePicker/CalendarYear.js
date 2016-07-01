@@ -1,7 +1,28 @@
 import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
+import {findDOMNode} from 'react-dom';
+import {createStyleSheet} from 'stylishly/lib/styleSheet';
+
 import YearButton from './YearButton';
 import {cloneDate} from './dateUtils';
+
+const styleSheet = createStyleSheet('CalendarYear', (theme) => {
+  return {
+    root: {
+      backgroundColor: theme.datePicker.calendarYearBackgroundColor,
+      height: 'inherit',
+      lineHeight: '35px',
+      overflowX: 'hidden',
+      overflowY: 'scroll',
+      position: 'relative',
+    },
+    child: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      minHeight: '100%',
+    },
+  };
+});
 
 class CalendarYear extends Component {
   static propTypes = {
@@ -34,9 +55,12 @@ class CalendarYear extends Component {
     for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
       const selected = this.props.selectedDate.getFullYear() === year;
+
       let selectedProps = {};
       if (selected) {
-        selectedProps = {ref: 'selectedYearButton'};
+        selectedProps = {
+          ref: 'selectedYearButton',
+        };
       }
 
       const yearButton = (
@@ -56,10 +80,12 @@ class CalendarYear extends Component {
   }
 
   scrollToSelectedYear() {
-    if (this.refs.selectedYearButton === undefined) return;
+    if (this.refs.selectedYearButton === undefined) {
+      return;
+    }
 
-    const container = ReactDOM.findDOMNode(this);
-    const yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
+    const container = findDOMNode(this);
+    const yearButtonNode = findDOMNode(this.refs.selectedYearButton);
 
     const containerHeight = container.clientHeight;
     const yearButtonNodeHeight = yearButtonNode.clientHeight || 32;
@@ -69,34 +95,18 @@ class CalendarYear extends Component {
   }
 
   handleTouchTapYear = (event, year) => {
-    if (this.props.onTouchTapYear) this.props.onTouchTapYear(event, year);
+    if (this.props.onTouchTapYear) {
+      this.props.onTouchTapYear(event, year);
+    }
   };
 
   render() {
-    const years = this.getYears();
-    const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = {
-      root: {
-        backgroundColor: backgroundColor,
-        height: 'inherit',
-        lineHeight: '35px',
-        overflowX: 'hidden',
-        overflowY: 'scroll',
-        position: 'relative',
-      },
-      child: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        minHeight: '100%',
-      },
-    };
+    const classes = this.context.muiTheme.styleManager.render(styleSheet);
 
     return (
-      <div style={prepareStyles(styles.root)}>
-        <div style={prepareStyles(styles.child)}>
-          {years}
+      <div className={classes.root}>
+        <div className={classes.child}>
+          {this.getYears()}
         </div>
       </div>
     );
