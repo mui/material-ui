@@ -125,6 +125,7 @@ class EnhancedTextarea extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onHeightChange, // eslint-disable-line no-unused-vars
       rows, // eslint-disable-line no-unused-vars
+      rowsMax, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
       textareaStyle,

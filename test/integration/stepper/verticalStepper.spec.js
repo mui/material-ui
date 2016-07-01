@@ -27,9 +27,9 @@ describe('Vertical Stepper', () => {
       });
 
       it('should have an active 1st step', () => {
-        assert.strictEqual(wrapper.find({testContent: 0}).length, 1, 'step 1 content should be visible');
-        assert.strictEqual(wrapper.find({testContent: 1}).length, 0, 'step 2 content should not be visible');
-        assert.strictEqual(wrapper.find({testContent: 2}).length, 0, 'step 3 content should not be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 0}).length, 1, 'step 1 content should be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 1}).length, 0, 'step 2 content should not be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 2}).length, 0, 'step 3 content should not be visible');
       });
     });
   });
@@ -39,9 +39,9 @@ describe('Vertical Stepper', () => {
       wrapper.setState({stepIndex: 1});
 
       setTimeout(() => {
-        assert.strictEqual(wrapper.find({testContent: 0}).length, 0, 'step 1 content should not be visible');
-        assert.strictEqual(wrapper.find({testContent: 1}).length, 1, 'step 2 content should be visible');
-        assert.strictEqual(wrapper.find({testContent: 2}).length, 0, 'step 3 content should not be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 0}).length, 0, 'step 1 content should not be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 1}).length, 1, 'step 2 content should be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 2}).length, 0, 'step 3 content should not be visible');
         done();
       }, 30);
     });
@@ -50,9 +50,9 @@ describe('Vertical Stepper', () => {
       wrapper.setState({stepIndex: 2});
 
       setTimeout(() => {
-        assert.strictEqual(wrapper.find({testContent: 0}).length, 0, 'step 1 content should not be visible');
-        assert.strictEqual(wrapper.find({testContent: 1}).length, 0, 'step 2 content should not be visible');
-        assert.strictEqual(wrapper.find({testContent: 2}).length, 1, 'step 3 content should be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 0}).length, 0, 'step 1 content should not be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 1}).length, 0, 'step 2 content should not be visible');
+        assert.strictEqual(wrapper.find({'data-test-content': 2}).length, 1, 'step 3 content should be visible');
         done();
       }, 30);
     });

@@ -124,8 +124,7 @@ class ToolbarGroup extends Component {
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, styles.dropDownMenu.root, currentChild.props.style),
-            styleControlBg: styles.dropDownMenu.controlBg,
-            styleUnderline: styles.dropDownMenu.underline,
+            underlineStyle: styles.dropDownMenu.underline,
           });
         case 'RaisedButton' :
         case 'FlatButton' :
