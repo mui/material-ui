@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, isValidElement} from 'react';
 import Avatar from '../Avatar';
 
 function getStyles(props, context) {
@@ -103,36 +103,45 @@ class CardHeader extends Component {
   };
 
   render() {
+    const {
+      actAsExpander, // eslint-disable-line no-unused-vars
+      avatar: avatarProps,
+      children,
+      showExpandableButton, // eslint-disable-line no-unused-vars
+      style,
+      subtitle,
+      subtitleStyle,
+      textStyle,
+      title,
+      titleStyle,
+      ...other,
+    } = this.props;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign(styles.root, this.props.style);
-    const textStyle = Object.assign(styles.text, this.props.textStyle);
-    const titleStyle = Object.assign(styles.title, this.props.titleStyle);
-    const subtitleStyle = Object.assign(styles.subtitle, this.props.subtitleStyle);
 
-    let avatar = this.props.avatar;
-    if (React.isValidElement(this.props.avatar)) {
+    let avatar = avatarProps;
+
+    if (isValidElement(avatarProps)) {
       avatar = React.cloneElement(avatar, {
         style: Object.assign(styles.avatar, avatar.props.style),
       });
     } else if (avatar !== null) {
-      avatar = <Avatar src={this.props.avatar} style={styles.avatar} />;
+      avatar = <Avatar src={avatarProps} style={styles.avatar} />;
     }
 
-    const {
-      title,
-      subtitle,
-      ...other,
-    } = this.props;
-
     return (
-      <div {...other} style={prepareStyles(rootStyle)}>
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         {avatar}
-        <div style={prepareStyles(textStyle)}>
-          <span style={prepareStyles(titleStyle)}>{title}</span>
-          <span style={prepareStyles(subtitleStyle)}>{subtitle}</span>
+        <div style={prepareStyles(Object.assign(styles.text, textStyle))}>
+          <span style={prepareStyles(Object.assign(styles.title, titleStyle))}>
+            {title}
+          </span>
+          <span style={prepareStyles(Object.assign(styles.subtitle, subtitleStyle))}>
+            {subtitle}
+          </span>
         </div>
-        {this.props.children}
+        {children}
       </div>
     );
   }

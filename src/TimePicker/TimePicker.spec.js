@@ -2,6 +2,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
+import {stub} from 'sinon';
+
 import TimePicker from './TimePicker';
 import {addHours, formatTime} from './timeUtils';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -50,5 +52,39 @@ describe('<TimePicker />', () => {
     );
 
     assert.strictEqual(wrapper.find('TextField').prop('value'), formatTime(valueTime));
+  });
+
+  describe('propTypes', () => {
+    let consoleStub;
+
+    beforeEach(() => {
+      consoleStub = stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore(); // eslint-disable-line no-console
+    });
+
+    it('should throw when using wrong properties', () => {
+      shallowWithContext(
+        <TimePicker value="2016-03-21" />
+      );
+      assert.strictEqual(consoleStub.callCount, 1);
+      assert.deepEqual(
+        consoleStub.args[0][0].split('\n'),
+        [
+          'Warning: Failed prop type: Invalid prop `value` of type `string`' +
+          ' supplied to `TimePicker`, expected `object`.',
+          '    in TimePicker',
+        ]
+      );
+    });
+
+    it('should not throw when using a valid properties', () => {
+      shallowWithContext(
+        <TimePicker value={new Date()} />
+      );
+      assert.strictEqual(consoleStub.callCount, 0);
+    });
   });
 });

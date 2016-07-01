@@ -61,8 +61,9 @@ class FontIcon extends Component {
 
   handleMouseLeave = (event) => {
     // hover is needed only when a hoverColor is defined
-    if (this.props.hoverColor !== undefined)
+    if (this.props.hoverColor !== undefined) {
       this.setState({hovered: false});
+    }
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
@@ -70,8 +71,9 @@ class FontIcon extends Component {
 
   handleMouseEnter = (event) => {
     // hover is needed only when a hoverColor is defined
-    if (this.props.hoverColor !== undefined)
+    if (this.props.hoverColor !== undefined) {
       this.setState({hovered: true});
+    }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
@@ -79,6 +81,7 @@ class FontIcon extends Component {
 
   render() {
     const {
+      hoverColor, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
       style,

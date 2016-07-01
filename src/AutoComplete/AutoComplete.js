@@ -374,21 +374,26 @@ class AutoComplete extends Component {
     const {
       anchorOrigin,
       animated,
-      style,
+      dataSource,
+      dataSourceConfig, // eslint-disable-line no-unused-vars
+      disableFocusRipple,
       errorStyle,
       floatingLabelText,
-      hintText,
       filter,
       fullWidth,
+      style,
+      hintText,
+      maxSearchResults,
+      menuCloseDelay, // eslint-disable-line no-unused-vars
       menuStyle,
       menuProps,
       listStyle,
       targetOrigin,
-      disableFocusRipple,
       triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
+      onNewRequest, // eslint-disable-line no-unused-vars
+      onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
-      maxSearchResults,
-      dataSource,
+      searchText: searchTextProps, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

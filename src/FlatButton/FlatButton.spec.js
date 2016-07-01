@@ -166,9 +166,13 @@ describe('<FlatButton />', () => {
         <FlatButton />
       );
       assert.strictEqual(consoleStub.callCount, 1);
-      assert.strictEqual(
-        consoleStub.args[0][0],
-        'Warning: Failed propType: Required prop label or children or icon was not specified in FlatButton.'
+      assert.deepEqual(
+        consoleStub.args[0][0].split('\n'),
+        [
+          'Warning: Failed prop type: Required prop label or children or ' +
+          'icon was not specified in FlatButton.',
+          '    in FlatButton',
+        ]
       );
     });
 
