@@ -36,6 +36,10 @@ class Tab extends Component {
      */
     icon: PropTypes.node,
     /**
+     * @ignore
+     */
+    index: PropTypes.any,
+    /**
      * Sets the text value of the tab item to the string specified.
      */
     label: PropTypes.node,
@@ -85,16 +89,15 @@ class Tab extends Component {
 
   render() {
     const {
-      /* eslint-disable no-unused-vars */
-      onActive,
-      onTouchTap,
-      selected,
-      value,
-      width,
-      /* eslint-enable no-unused-vars */
+      icon,
+      index, // eslint-disable-line no-unused-vars
+      onActive, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
+      selected, // eslint-disable-line no-unused-vars
       label,
       style,
-      icon,
+      value, // eslint-disable-line no-unused-vars
+      width, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

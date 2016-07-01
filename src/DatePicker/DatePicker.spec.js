@@ -26,9 +26,13 @@ describe('<DatePicker />', () => {
         <DatePicker value="2016-03-21" />
       );
       assert.strictEqual(consoleStub.callCount, 1);
-      assert.strictEqual(
-        consoleStub.args[0][0],
-        'Warning: Failed propType: Invalid prop `value` of type `string` supplied to `DatePicker`, expected `object`.'
+      assert.deepEqual(
+        consoleStub.args[0][0].split('\n'),
+        [
+          'Warning: Failed prop type: Invalid prop `value` of type `string` ' +
+          'supplied to `DatePicker`, expected `object`.',
+          '    in DatePicker',
+        ]
       );
     });
 

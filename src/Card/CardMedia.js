@@ -81,6 +81,11 @@ class CardMedia extends Component {
   };
 
   render() {
+    const {
+      overlay,
+      ...other,
+    } = this.props;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const rootStyle = Object.assign(styles.root, this.props.style);
@@ -114,11 +119,11 @@ class CardMedia extends Component {
     });
 
     return (
-      <div {...this.props} style={prepareStyles(rootStyle)}>
+      <div {...other} style={prepareStyles(rootStyle)}>
         <div style={prepareStyles(mediaStyle)}>
           {children}
         </div>
-        {(this.props.overlay) ?
+        {overlay ?
           <div style={prepareStyles(overlayContainerStyle)}>
             <div style={prepareStyles(overlayStyle)}>
               <div style={prepareStyles(overlayContentStyle)}>

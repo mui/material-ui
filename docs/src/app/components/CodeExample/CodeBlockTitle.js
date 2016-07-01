@@ -5,10 +5,10 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 
 const CodeBlockTitle = (props) => (
   <Toolbar>
-    <ToolbarGroup float="left">
+    <ToolbarGroup>
       <ToolbarTitle text={props.title || 'Example'} />
     </ToolbarGroup>
-    <ToolbarGroup float="right">
+    <ToolbarGroup>
       <IconButton touch={true} tooltip={props.tooltip}>
         <CodeIcon />
       </IconButton>
