@@ -275,6 +275,7 @@ class EnhancedButton extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       tabIndex,
