@@ -54,6 +54,8 @@ class StepButton extends Component {
       PropTypes.number,
     ]),
     /** @ignore */
+    last: PropTypes.bool,
+    /** @ignore */
     onMouseEnter: PropTypes.func,
     /** @ignore */
     onMouseLeave: PropTypes.func,
@@ -111,6 +113,7 @@ class StepButton extends Component {
       completed,
       disabled,
       icon,
+      last, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
