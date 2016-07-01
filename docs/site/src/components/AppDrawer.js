@@ -121,7 +121,7 @@ export default class AppDrawer extends Component {
             >
               {childRoute.title}
             </Button>
-            <Collapse in={open} autoDuration={true}>{this.renderNav(childRoute)}</Collapse>
+            <Collapse in={open} transitionDuration="auto">{this.renderNav(childRoute)}</Collapse>
           </ListItem>
         );
       } else {

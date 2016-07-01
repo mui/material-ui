@@ -12,12 +12,12 @@ export default class Slide extends Component {
      */
     className: PropTypes.string,
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
-    duration: PropTypes.number,
+    transitionDuration: PropTypes.number,
   };
 
   static defaultProps = {
     direction: 'right',
-    duration: 300,
+    transitionDuration: 300,
   };
 
   static contextTypes = {
@@ -34,7 +34,7 @@ export default class Slide extends Component {
 
   handleEnter = (element) => {
     element.style.transform = this.getTranslateValue();
-    element.style.transition = this.context.theme.transitions.create('transform', `${this.props.duration}ms`);
+    element.style.transition = this.context.theme.transitions.create('transform', `${this.props.transitionDuration}ms`);
   };
 
   handleEntering = (element) => {
@@ -48,7 +48,7 @@ export default class Slide extends Component {
   render() {
     const {
       children,
-      duration, // eslint-disable-line no-unused-vars
+      transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
