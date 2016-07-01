@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {mixout, remix, muiMixout} from '../utils/muiMixout';
 
 const propTypes = {
   /**
@@ -13,25 +14,24 @@ const propTypes = {
    * Override the inline-styles of the root element.
    */
   style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiTheme: PropTypes.object,
 };
 
 const defaultProps = {
   inset: false,
 };
 
-const contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
-
-const Divider = (props, context) => {
+let Divider = (props) => {
   const {
     inset,
     style,
+    muiTheme,
+    muiTheme: {prepareStyles},
     ...other,
   } = props;
-
-  const {muiTheme} = context;
-  const {prepareStyles} = muiTheme;
 
   const styles = {
     root: {
@@ -49,9 +49,8 @@ const Divider = (props, context) => {
   );
 };
 
-Divider.muiName = 'Divider';
+Divider = mixout(muiMixout)(remix('Divider', Divider));
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-Divider.contextTypes = contextTypes;
 
 export default Divider;

@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {mixout, remix, muiMixout} from '../utils/muiMixout';
 
 const propTypes = {
   /**
@@ -13,25 +14,24 @@ const propTypes = {
    * Override the inline-styles of the root element.
    */
   style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiTheme: PropTypes.object,
 };
 
 const defaultProps = {
   inset: false,
 };
 
-const contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
-
-const Subheader = (props, context) => {
+let Subheader = (props) => {
   const {
     children,
     inset,
     style,
+    muiTheme: {prepareStyles, subheader},
     ...other,
   } = props;
-
-  const {prepareStyles, subheader} = context.muiTheme;
 
   const styles = {
     root: {
@@ -52,9 +52,8 @@ const Subheader = (props, context) => {
   );
 };
 
-Subheader.muiName = 'Subheader';
+Subheader = mixout(muiMixout)(remix('Subheader', Subheader));
 Subheader.propTypes = propTypes;
 Subheader.defaultProps = defaultProps;
-Subheader.contextTypes = contextTypes;
 
 export default Subheader;

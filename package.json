@@ -48,6 +48,9 @@
     "react-addons-create-fragment": "^15.0.1",
     "react-addons-transition-group": "^15.0.1",
     "react-event-listener": "^0.2.1",
+    "react-mixout": "^0.3.1",
+    "react-mixout-forward-context": "^0.3.0",
+    "react-mixout-pure": "^0.3.0",
     "recompose": "^0.19.0",
     "simple-assign": "^0.1.0",
     "warning": "^2.1.0"
