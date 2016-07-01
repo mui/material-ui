@@ -46,7 +46,12 @@ export default class Slide extends Component {
   };
 
   render() {
-    const {children, ...other} = this.props;
+    const {
+      children,
+      duration, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
+
     return (
       <Transition
         onEnter={this.handleEnter}
