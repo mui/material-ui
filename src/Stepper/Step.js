@@ -78,6 +78,11 @@ export default class Step extends Component {
 
   render() {
     const {
+      active, // eslint-disable-line no-unused-vars
+      completed, // eslint-disable-line no-unused-vars
+      disabled, // eslint-disable-line no-unused-vars
+      index, // eslint-disable-line no-unused-vars
+      last, // eslint-disable-line no-unused-vars
       children,
       style,
       ...other,

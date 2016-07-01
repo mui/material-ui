@@ -385,6 +385,8 @@ class TextField extends Component {
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
+      floatingLabelFocusStyle, // eslint-disable-line no-unused-vars
+      floatingLabelStyle, // eslint-disable-line no-unused-vars
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
       hintText,
