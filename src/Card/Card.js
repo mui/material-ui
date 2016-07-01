@@ -5,10 +5,6 @@ import CardExpandable from './CardExpandable';
 class Card extends Component {
   static propTypes = {
     /**
-     * If true, a click on this card component expands the card. Can be set on any child of the `Card` component.
-     */
-    actAsExpander: PropTypes.bool,
-    /**
      * Can be used to render elements inside the Card.
      */
     children: PropTypes.node,
@@ -50,13 +46,14 @@ class Card extends Component {
   };
 
   static defaultProps = {
-    expanded: null,
     expandable: false,
+    expanded: null,
     initiallyExpanded: false,
-    actAsExpander: false,
   };
 
-  state = {expanded: null};
+  state = {
+    expanded: null,
+  };
 
   componentWillMount() {
     this.setState({
@@ -77,14 +74,26 @@ class Card extends Component {
     if (this.props.expanded === null) {
       this.setState({expanded: newExpandedState});
     }
-    if (this.props.onExpandChange)
+    if (this.props.onExpandChange) {
       this.props.onExpandChange(newExpandedState);
+    }
   };
 
   render() {
+    const {
+      style,
+      containerStyle,
+      children,
+      expandable, // eslint-disable-line no-unused-vars
+      expanded: expandedProps, // eslint-disable-line no-unused-vars
+      initiallyExpanded, // eslint-disable-line no-unused-vars
+      onExpandChange, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
+
     let lastElement;
     const expanded = this.state.expanded;
-    const newChildren = React.Children.map(this.props.children, (currentChild) => {
+    const newChildren = React.Children.map(children, (currentChild) => {
       let doClone = false;
       let newChild = undefined;
       const newProps = {};
@@ -113,11 +122,6 @@ class Card extends Component {
     // 8px padding to the bottom of the card
     const addBottomPadding = (lastElement && (lastElement.type.muiName === 'CardText' ||
       lastElement.type.muiName === 'CardTitle'));
-    const {
-      style,
-      containerStyle,
-      ...other,
-    } = this.props;
 
     const mergedStyles = Object.assign({
       zIndex: 1,

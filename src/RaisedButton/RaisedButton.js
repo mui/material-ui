@@ -327,6 +327,7 @@ class RaisedButton extends Component {
       children,
       className,
       disabled,
+      fullWidth, // eslint-disable-line no-unused-vars
       icon,
       label,
       labelPosition,

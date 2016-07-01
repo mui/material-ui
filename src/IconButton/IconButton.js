@@ -172,7 +172,9 @@ class IconButton extends Component {
       if (this.props.onBlur) this.props.onBlur(event);
     }
 
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(event, keyboardFocused);
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event, keyboardFocused);
+    }
   };
 
   render() {
@@ -181,7 +183,9 @@ class IconButton extends Component {
       disableTouchRipple,
       children,
       iconClassName,
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       tooltip,
+      tooltipPosition: tooltipPositionProps,
       touch,
       iconStyle,
       ...other,
@@ -189,7 +193,7 @@ class IconButton extends Component {
     let fonticon;
 
     const styles = getStyles(this.props, this.context);
-    const tooltipPosition = this.props.tooltipPosition.split('-');
+    const tooltipPosition = tooltipPositionProps.split('-');
 
     const tooltipElement = tooltip ? (
       <Tooltip
