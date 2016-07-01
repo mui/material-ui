@@ -32,12 +32,9 @@
     "lint": "eslint src docs/site/src test/integration && echo \"eslint: no lint errors\"",
     "prebuild": "npm run clean:build",
     "test": "cross-env NODE_ENV=test babel-node test/index.js",
+    "test:watch": "cross-env NODE_ENV=test babel-node test/watch.js",
     "test:coverage": "cross-env NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/index.js",
-    "test:karma": "karma start test/karma.conf.js --single-run",
-    "test:integration": "cross-env NODE_ENV=test babel-node test/index.js integration",
-    "test:integration:watch": "cross-env NODE_ENV=test babel-node test/watch.js integration",
-    "test:unit": "cross-env NODE_ENV=test babel-node test/index.js unit",
-    "test:unit:watch": "cross-env NODE_ENV=test babel-node test/watch.js unit"
+    "test:karma": "karma start test/karma.conf.js --single-run"
   },
   "peerDependencies": {
     "react": "^15.0.0",

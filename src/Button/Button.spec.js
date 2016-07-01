@@ -4,7 +4,7 @@ import {assert} from 'chai';
 import Button, {styleSheet} from './Button';
 import {createShallowWithContext} from 'test/utils';
 
-describe('<Button>', () => {
+describe.only('<Button>', () => {
   let shallow;
   let classes;
 
