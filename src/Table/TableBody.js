@@ -165,7 +165,6 @@ class TableBody extends Component {
       if (React.isValidElement(child)) {
         const props = {
           displayRowCheckbox: this.props.displayRowCheckbox,
-          hoverable: this.props.showRowHover,
           selected: this.isRowSelected(rowNumber),
           striped: this.props.stripedRows && (rowNumber % 2 === 0),
           rowNumber: rowNumber++,
@@ -174,6 +173,10 @@ class TableBody extends Component {
 
         if (rowNumber === numChildren) {
           props.displayBorder = false;
+        }
+
+        if (this.props.showRowHover) {
+          props.hoverable = true;
         }
 
         const children = [checkboxColumn];
