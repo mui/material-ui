@@ -107,7 +107,6 @@ class DayButton extends Component {
         disabled={this.props.disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
-        hoverStyle={styles.hover}
         onKeyboardFocus={this.handleKeyboardFocus}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}

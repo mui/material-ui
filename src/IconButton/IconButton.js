@@ -189,7 +189,7 @@ class IconButton extends Component {
       iconClassName,
       onKeyboardFocus, // eslint-disable-line no-unused-vars
       tooltip,
-      tooltipPosition: tooltipPositionProps,
+      tooltipPosition: tooltipPositionProp,
       touch,
       iconStyle,
       ...other,
@@ -197,7 +197,7 @@ class IconButton extends Component {
     let fonticon;
 
     const styles = getStyles(this.props, this.context);
-    const tooltipPosition = tooltipPositionProps.split('-');
+    const tooltipPosition = tooltipPositionProp.split('-');
 
     const tooltipElement = tooltip ? (
       <Tooltip
