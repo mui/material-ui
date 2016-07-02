@@ -9,7 +9,6 @@ export const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
         margin: '25px 0',
         padding: '12px 18px',
         backgroundColor: '#fff',
-        boxShadow: theme.shadows[4],
         borderRadius: 3,
         '@raw code': {
           padding: 0,

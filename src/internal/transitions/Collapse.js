@@ -35,7 +35,6 @@ export default class Collapse extends Component {
   };
 
   static defaultProps = {
-    autoDuration: false,
     in: false,
   };
 
@@ -86,7 +85,12 @@ export default class Collapse extends Component {
   }
 
   render() {
-    const {children, ...other} = this.props;
+    const {
+      children,
+      transitionDuration, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
+
     const classes = this.context.styleManager.render(styleSheet);
 
     const containerClassname = ClassNames({
