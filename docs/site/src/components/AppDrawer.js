@@ -9,7 +9,6 @@ import Text from 'material-ui/Text';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/internal/transitions/Collapse';
-import shallowEqual from 'recompose/shallowEqual';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
