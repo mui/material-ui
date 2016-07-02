@@ -25,6 +25,41 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
       '@raw p code, @raw ul code': {
         fontSize: 14,
       },
+      '@raw table': {
+        width: '100%',
+        borderCollapse: 'collapse',
+        borderSpacing: 0,
+        overflow: 'hidden',
+      },
+      '@raw thead': {
+        fontSize: 12,
+        fontWeight: 500,
+        color: theme.palette.text.secondary,
+      },
+      '@raw tbody': {
+        fontSize: 13,
+        color: theme.palette.text.primary,
+      },
+      '@raw td, @raw th': {
+        borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+        padding: '0 56px 0 24px',
+        '&:last-child': {
+          paddingRight: 24,
+        },
+        '& compact': {
+          paddingRight: 24,
+        },
+        textAlign: 'left',
+      },
+      '@raw th': {
+        whiteSpace: 'pre',
+      },
+      '@raw tr': {
+        height: 48,
+      },
+      '@raw thead tr': {
+        height: 64,
+      },
     }),
   };
 });
