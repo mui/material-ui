@@ -36,7 +36,7 @@ describe('<EnhancedButton />', () => {
 
   it('renders children', () => {
     const wrapper = shallowWithContext(
-      <EnhancedButton backgroundColor="red">{testChildren}</EnhancedButton>
+      <EnhancedButton>{testChildren}</EnhancedButton>
     );
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
   });

@@ -519,11 +519,14 @@ class Menu extends Component {
       autoWidth, // eslint-disable-line no-unused-vars
       children,
       desktop,
+      disableAutoFocus, // eslint-disable-line no-unused-vars
       initiallyKeyboardFocused, // eslint-disable-line no-unused-vars
       listStyle,
       maxHeight, // eslint-disable-line no-unused-vars
       multiple, // eslint-disable-line no-unused-vars
       openDirection = 'bottom-left',
+      onItemTouchTap, // eslint-disable-line no-unused-vars
+      onEscKeyDown, // eslint-disable-line no-unused-vars
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars

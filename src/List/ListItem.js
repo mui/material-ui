@@ -293,11 +293,17 @@ class ListItem extends Component {
   state = {
     hovered: false,
     isKeyboardFocused: false,
-    open: this.props.initiallyOpen,
+    open: false,
     rightIconButtonHovered: false,
     rightIconButtonKeyboardFocused: false,
     touch: false,
   };
+
+  componentWillMount() {
+    if (this.props.initiallyOpen) {
+      this.setState({open: true});
+    }
+  }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
@@ -480,6 +486,7 @@ class ListItem extends Component {
       children,
       disabled,
       disableKeyboardFocus,
+      initiallyOpen, // eslint-disable-line no-unused-vars
       innerDivStyle,
       insetChildren, // eslint-disable-line no-unused-vars
       leftAvatar,
@@ -489,8 +496,9 @@ class ListItem extends Component {
       nestedLevel,
       nestedListStyle,
       onKeyboardFocus, // eslint-disable-line no-unused-vars
-      onMouseLeave, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onNestedListToggle, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchTap,
       rightAvatar,

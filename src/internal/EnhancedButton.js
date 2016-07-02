@@ -267,6 +267,7 @@ class EnhancedButton extends Component {
       focusRippleColor, // eslint-disable-line no-unused-vars
       focusRippleOpacity, // eslint-disable-line no-unused-vars
       href,
+      keyboardFocused, // eslint-disable-line no-unused-vars
       linkButton, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       touchRippleOpacity, // eslint-disable-line no-unused-vars
@@ -275,6 +276,7 @@ class EnhancedButton extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       tabIndex,
@@ -336,17 +338,19 @@ class EnhancedButton extends Component {
       onBlur: this.handleBlur,
       onClick: this.handleClick,
       onFocus: this.handleFocus,
-      onTouchTap: this.handleTouchTap,
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
+      onTouchTap: this.handleTouchTap,
       tabIndex: tabIndex,
       type: type,
     };
     const buttonChildren = this.createButtonChildren();
 
-    return React.isValidElement(containerElement) ?
-      React.cloneElement(containerElement, buttonProps, buttonChildren) :
-      React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
+    if (React.isValidElement(containerElement)) {
+      return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
+
+    return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
   }
 }
 

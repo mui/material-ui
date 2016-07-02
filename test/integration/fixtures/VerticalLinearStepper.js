@@ -61,7 +61,7 @@ class VerticalLinearStepper extends Component {
         <Step>
           <StepLabel>Select campaign settings</StepLabel>
           <StepContent transitionDuration={10}>
-            <p testContent={0}>
+            <p data-test-content={0}>
               For each ad campaign that you create, you can control how much
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.
@@ -72,14 +72,14 @@ class VerticalLinearStepper extends Component {
         <Step>
           <StepLabel>Create an ad group</StepLabel>
           <StepContent transitionDuration={10}>
-            <p testContent={1}>An ad group contains one or more ads which target a shared set of keywords.</p>
+            <p data-test-content={1}>An ad group contains one or more ads which target a shared set of keywords.</p>
             {this.renderStepActions(1)}
           </StepContent>
         </Step>
         <Step>
           <StepLabel>Create an ad</StepLabel>
           <StepContent transitionDuration={10}>
-            <p testContent={2}>
+            <p data-test-content={2}>
               Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if

@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = {
   // Entry point to the project
   entry: [
+    './node_modules/babel-polyfill/lib/index.js',
     path.resolve(__dirname, 'src/app/app.js'),
   ],
   // Webpack config options on how to obtain modules
@@ -56,9 +57,6 @@ const config = {
       {from: 'src/www/versions.json'},
     ]),
   ],
-  externals: {
-    fs: 'fs', // To remove once https://github.com/benjamn/recast/pull/238 is released
-  },
   module: {
     // Allow loading of non-es5 js files.
     loaders: [

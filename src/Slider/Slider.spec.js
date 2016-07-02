@@ -174,107 +174,334 @@ describe('<Slider />', () => {
     assert.isFalse(wrapper.state().hovered);
   });
 
-  it('simulates keydown event with a non tracked key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <Slider name="slider" onChange={handleChange} />
-    );
-    const event = {
-      keyCode: keycode('enter'),
-      preventDefault: sinon.spy(),
-    };
+  describe('keydown', () => {
+    it('simulates keydown event with a non tracked key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('enter'),
+        preventDefault: sinon.spy(),
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.notCalled(event.preventDefault);
-  });
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(event.preventDefault);
+    });
 
-  it('simulates keydown event for the end key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <Slider name="slider" onChange={handleChange} />
-    );
-    const event = {
-      keyCode: keycode('end'),
-      preventDefault: function() {},
-    };
+    it('simulates the end key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('end'),
+        preventDefault: function() {},
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.calledOnce(handleChange);
-    assert.strictEqual(wrapper.state().percent, 1);
-  });
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.strictEqual(wrapper.state().percent, 1);
+    });
 
-  it('simulates keydown event for the up arrow key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(<Slider name="slider" onChange={handleChange} />);
-    const previousPercent = wrapper.state().percent;
-    const event = {
-      keyCode: keycode('up'),
-      preventDefault: function() {},
-    };
+    it('simulates the up arrow key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(<Slider name="slider" onChange={handleChange} />);
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('up'),
+        preventDefault: function() {},
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.calledOnce(handleChange);
-    assert.isAbove(wrapper.state().percent, previousPercent);
-  });
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
 
-  it('simulates keydown event for the right arrow key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <Slider name="slider" onChange={handleChange} />
-    );
-    const previousPercent = wrapper.state().percent;
-    const event = {
-      keyCode: keycode('right'),
-      preventDefault: function() {},
-    };
+    it('simulates the up arrow key on an x-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(<Slider name="slider" axis="x-reverse" onChange={handleChange} />);
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('up'),
+        preventDefault: function() {},
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.calledOnce(handleChange);
-    assert.isAbove(wrapper.state().percent, previousPercent);
-  });
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
 
-  it('simulates keydown event for the home key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <Slider name="slider" onChange={handleChange} />
-    );
-    const event = {
-      keyCode: keycode('home'),
-      preventDefault: function() {},
-    };
+    it('simulates the up arrow key on a y axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(<Slider name="slider" axis="y" onChange={handleChange} />);
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('up'),
+        preventDefault: function() {},
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.notCalled(handleChange);
-    assert.strictEqual(wrapper.state().percent, 0);
-  });
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
 
-  it('simulates keydown event for the down arrow key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <Slider name="slider" onChange={handleChange} />
-    );
-    const event = {
-      keyCode: keycode('down'),
-      preventDefault: function() {},
-    };
+    it('simulates the up arrow key on a y-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(<Slider name="slider" axis="y-reverse" onChange={handleChange} />);
+      const event = {
+        keyCode: keycode('up'),
+        preventDefault: function() {},
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.notCalled(handleChange);
-    assert.strictEqual(wrapper.state().percent, 0);
-  });
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
 
-  it('simulates keydown event for the left arrow key', () => {
-    const handleChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <Slider name="slider" onChange={handleChange} />
-    );
-    const event = {
-      keyCode: keycode('left'),
-      preventDefault: function() {},
-    };
+    it('simulates the right arrow key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('right'),
+        preventDefault: function() {},
+      };
 
-    getThumbElement(wrapper).simulate('keydown', event);
-    assert.notCalled(handleChange);
-    assert.strictEqual(wrapper.state().percent, 0);
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
+
+    it('simulates the right arrow key on an x-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('right'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the right arrow key on an y axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y" onChange={handleChange} />
+      );
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('right'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
+
+    it('simulates the right arrow key on an y-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y-reverse" onChange={handleChange} />
+      );
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('right'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
+
+    it('simulates the home key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('home'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the home key on a x-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('home'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the home key on a y axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('home'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the home key on a y-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('home'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the down arrow key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('down'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the down arrow key on a x-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('down'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the down arrow key on a y axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('down'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the down arrow key on a y-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y-reverse" onChange={handleChange} />
+      );
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('down'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
+
+    it('simulates the left arrow key', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('left'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the left arrow key for an x-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+      const previousPercent = wrapper.state().percent;
+      const event = {
+        keyCode: keycode('left'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.calledOnce(handleChange);
+      assert.isAbove(wrapper.state().percent, previousPercent);
+    });
+
+    it('simulates the left arrow key for a y axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('left'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
+
+    it('simulates the left arrow key for a y-reverse axis slider', () => {
+      const handleChange = sinon.spy();
+      const wrapper = shallowWithContext(
+        <Slider name="slider" axis="y-reverse" onChange={handleChange} />
+      );
+      const event = {
+        keyCode: keycode('left'),
+        preventDefault: function() {},
+      };
+
+      getThumbElement(wrapper).simulate('keydown', event);
+      assert.notCalled(handleChange);
+      assert.strictEqual(wrapper.state().percent, 0);
+    });
   });
 });

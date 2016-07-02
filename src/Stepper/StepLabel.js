@@ -82,6 +82,10 @@ class StepLabel extends Component {
       PropTypes.number,
     ]),
     /**
+     * @ignore
+     */
+    last: PropTypes.bool,
+    /**
      * Override the inline-style of the root element.
      */
     style: PropTypes.object,
@@ -126,9 +130,11 @@ class StepLabel extends Component {
 
   render() {
     const {
+      active, // eslint-disable-line no-unused-vars
       children,
       completed,
       icon: userIcon,
+      last, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
