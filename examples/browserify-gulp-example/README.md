@@ -14,11 +14,14 @@ Now you can run your local server:
 ```sh
 npm start
 ```
+
 ## Description of [Gulp](https://github.com/gulpjs/gulp) Plugins
 
 ### [browserify](https://github.com/substack/node-browserify)
 
-Browsers do not allow us to use the require method from Node.js. With browserify, we can implement dependency management on the browser. It also will bundle the code into one file in an efficient way to not repeat dependiencies that are used more than once.
+Browsers do not allow us to use the require method from Node.js.
+With browserify, we can implement dependency management on the browser.
+It also will bundle the code into one file in an efficient way to not repeat dependencies that are used more than once.
 
 ### [browserSync](http://www.browsersync.io/)
 

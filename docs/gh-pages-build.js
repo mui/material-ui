@@ -66,21 +66,46 @@ function lastCommitIsHead() {
 }
 
 /**
+ * Add new version number to versions.js
+ * The checks for HEAD can be removed once HEAD builds are automated, as the first entry will always be HEAD.
+ */
+function addMenuVersion(version) {
+  var versions = JSON.parse(fs.readFileSync(versionsFile, 'utf8'));
+  var position = 0;
+
+  // If the first version in the array is HEAD, set the insert position to 1
+  if (versions[0] === 'HEAD') {
+    position = 1;
+  }
+
+  // If not a new HEAD version, splice it in, otherwise only add it if HEAD is not already present
+  if (version !== 'HEAD' || (version === 'HEAD' && !position)) {
+    versions.splice(position, 0, version);
+
+    // Write the file
+    fs.writeFileSync(versionsFile, JSON.stringify(versions, null, 2));
+
+  // Commit it (on master branch)
+    execho('git add ' + versionsFile + ' && git commit -m ' + '\'[Docs] Add ' + version + ' to versions.json\'');
+  }
+}
+
+/**
  * Build the docs site on a detached branch, commit it on gh-pages branch.
  */
 function buildDocs() {
   // Ensure we're starting in the docs dir
   process.chdir(__dirname);
 
-  // Checkout the tag 'version'
-  execho('git checkout gh-pages');
+  // Checkout the `gh-pages` branch and update from upstream
+  execho('git checkout gh-pages && git pull upstream gh-pages');
 
-  // Delete last HEAD commit to keep the history clean
-  if (lastCommitIsHead()) {
+  // Delete last HEAD commit to keep the history clean, unless we're committing a new HEAD version
+  if (lastCommitIsHead() && version !== 'HEAD') {
     execho('git reset --hard HEAD~1');
   }
 
-  // Checkout the tag 'version'
+  // Checkout the tag `version` or master for HEAD
   if (version === 'HEAD') {
     execho('git checkout --detach master');
   } else {
@@ -96,50 +121,25 @@ function buildDocs() {
   // Move to the gh-pages branch
   execho('git checkout gh-pages');
 
-  // Symbolic link 'release' to latest version
+  // Symbolic link `release` to latest version
   if (!preRelease(version)) {
-    execho('ln -sfh ../' + version + ' ../release');
+    execho('ln -sfh ./' + version + ' ../release');
   }
 
+  // Symbolic link `versions.json` to latest version
+  execho('ln -sfh ./' + version + '/versions.json ../versions.json');
+
   // Commit the new version
-  execho('git add .. && git commit -m \'' + version + '\'');
+  if (version === 'HEAD') {
+    execho('git commit --amend --no-edit');
+  } else {
+    execho('git add .. && git commit -m \'' + version + '\'');
+  }
 
   if (args[3] === '-p') {
     execho('git push -f');
   }
 }
 
-/**
- * Add new version number to versions.js
- * The checks for HEAD can be removed once HEAD builds are automated, as the first entry will always be HEAD.
- */
-function addMenuVersion(version) {
-  // Return to master
-  execho('git checkout master');
-
-  var versions = JSON.parse(fs.readFileSync(versionsFile, 'utf8'));
-  var head;
-
-  // If HEAD is first in the array, shift it off.
-  if (versions[0] === 'HEAD') {
-    head = versions.shift()
-  }
-
-  // Add the new version
-  versions.unshift(version);
-
-  // If the array had a HEAD version, and we didn't just add one, put it back.
-  if (head && version !== 'HEAD') {
-    versions.unshift('HEAD');
-  }
-
-  fs.writeFileSync(versionsFile, JSON.stringify(versions, null, 2));
-
-  // If we're adding a new version, or first instance of 'HEAD', commit it (on master branch)
-  if (version !=='HEAD' || (version === 'HEAD' && !head)) {
-    execho('git add ' + versionsFile + ' && git commit -m ' + '\'Add ' + version + ' to versions.json\'');
-  }
-}
-
-buildDocs(version);
 addMenuVersion(version);
+buildDocs(version);

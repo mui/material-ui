@@ -19,8 +19,8 @@ const _ = require('lodash');
 const glob = require('glob');
 const mkdirp = require('mkdirp');
 
-const SVG_ICON_RELATIVE_REQUIRE = '../../svg-icon';
-const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/lib/svg-icon';
+const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
+const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/SvgIcon';
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
 
@@ -52,10 +52,7 @@ function parseArgs() {
     describe: `Load material-ui dependencies (SvgIcon) relatively or absolutely.
       (absolute|relative).
       For material-ui distributions, relative, for anything else, you probably want absolute.`,
-  })
-  .describe('mui-icons-opts', 'Shortcut to use MUI icons options')
-  .boolean('mui-icons-opts')
-  .argv;
+  }).argv;
 }
 
 function main(options, cb) {
@@ -100,7 +97,7 @@ function main(options, cb) {
   }
 }
 
-/*
+/**
  * @param {string} svgPath
  * Absolute path to svg file to process.
  *
@@ -130,7 +127,7 @@ function processFile(svgPath, destPath, options) {
 function pascalCase(destPath) {
   const splitregex = new RegExp('[' + path.sep + '-]+');
 
-  let parts = destPath.replace('.jsx', '').split(splitregex);
+  let parts = destPath.replace('.js', '').split(splitregex);
   parts = _.map(parts, function(part) {
     return part.charAt(0).toUpperCase() + part.substring(1);
   });
@@ -152,17 +149,16 @@ function getJsxString(svgPath, destPath, options) {
     encoding: 'utf8',
   });
 
-  //Extract the paths from the svg string
+  // Extract the paths from the svg string
   let paths = data.slice(data.indexOf('>') + 1);
   paths = paths.slice(0, -6);
-  //clean xml paths
+  // Clean xml paths
   paths = paths.replace(/xlink:href="#a"/g, '');
   paths = paths.replace(/xlink:href="#c"/g, '');
   paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
   paths = paths.replace(/\s?fill=".*?"/g, '');
 
-  // Node acts wierd if we put this directly into string concatenation
-
+  // Node acts weird if we put this directly into string concatenation
   const muiRequireStmt = options.muiRequire === 'relative' ? SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
 
   return Mustache.render(
