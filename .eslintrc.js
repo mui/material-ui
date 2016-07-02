@@ -17,6 +17,8 @@ module.exports = {
     }
   },
   plugins: [
+    'flowtype',
+    'flow-vars',
     'babel',
     'react',
     'mocha',
@@ -83,6 +85,11 @@ module.exports = {
     // Disabled
     'strict': 'off',
     'no-case-declarations': 'off',
+
+    // Flow
+    'flow-vars/define-flow-type': 'error',
+    'flow-vars/use-flow-type': 'error',
+    'flowtype/space-after-type-colon': ['error', 'always'],
 
     // Babel
     'babel/object-curly-spacing': ['error', 'never'],

@@ -1,0 +1,2 @@
+Add shared flow declarations in this folder.  It is included by .flowconfig, and can be included by
+users so this should be included in any npm package.
