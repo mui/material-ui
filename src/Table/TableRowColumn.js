@@ -69,20 +69,26 @@ class TableRowColumn extends Component {
   };
 
   onClick = (event) => {
-    if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
+    if (this.props.onClick) {
+      this.props.onClick(event, this.props.columnNumber);
+    }
   };
 
   onMouseEnter = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
-      if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
+      if (this.props.onHover) {
+        this.props.onHover(event, this.props.columnNumber);
+      }
     }
   };
 
   onMouseLeave = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
-      if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
+      if (this.props.onHoverExit) {
+        this.props.onHoverExit(event, this.props.columnNumber);
+      }
     }
   };
 

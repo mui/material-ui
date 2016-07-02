@@ -50,7 +50,8 @@ class EnhancedButton extends Component {
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
     keyboardFocused: PropTypes.bool,
-    linkButton: PropTypes.bool,
+    linkButton: deprecated(PropTypes.bool, `LinkButton is no longer required when the \`href\` property is provided.
+      It will be removed with v0.16.0.`),
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
