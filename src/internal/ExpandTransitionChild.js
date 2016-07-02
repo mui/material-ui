@@ -74,6 +74,7 @@ class ExpandTransitionChild extends Component {
   render() {
     const {
       children,
+      enterDelay,  // eslint-disable-line no-unused-vars
       style,
       transitionDelay, // eslint-disable-line no-unused-vars
       transitionDuration,

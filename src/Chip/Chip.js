@@ -232,7 +232,16 @@ class Chip extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
-    let {children, style, className, labelStyle, ...other} = this.props;
+    let {
+      children,
+      style,
+      className,
+      labelStyle,
+      backgroundColor, // eslint-disable-line no-unused-vars,prefer-const
+      onRequestDelete, // eslint-disable-line no-unused-vars,prefer-const
+      ...other,
+    } = this.props;
+
     const deletable = this.props.onRequestDelete;
     let avatar = null;
 
