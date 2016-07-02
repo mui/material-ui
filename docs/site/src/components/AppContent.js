@@ -30,14 +30,17 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
 });
 
 export default function AppContent(props, context) {
-  const {className, ...other} = props;
+  const {className, children} = props;
   const classes = context.styleManager.render(styleSheet);
   return (
-    <div className={ClassNames(classes.content, className)} {...other} />
+    <div className={ClassNames(classes.content, className)}>
+      {children}
+    </div>
   );
 }
 
 AppContent.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 

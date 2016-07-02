@@ -93,14 +93,50 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
  */
 export default class Button extends Component {
   static propTypes = {
+    /**
+     * If true, the button will use the theme's accent color.
+     */
     accent: PropTypes.bool,
+    /**
+     * The content of the button.
+     */
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
+    /**
+     * The element or component used for the root node.
+     */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    /**
+     * If true, the button will be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * If true, well use floating action button styling.
+     */
     fab: PropTypes.bool,
+    /**
+     * The URL to link to when the button is clicked.
+     * If set, an `a` element will be used as the root node.
+     */
+    href: PropTypes.string,
+    /**
+     * If true, the button will use the theme's primary color.
+     */
     primary: PropTypes.bool,
+    /**
+     * If true, the button will use raised styling.
+     */
     raised: PropTypes.bool,
+    /**
+     * If true, the button will have a ripple.
+     */
     ripple: PropTypes.bool,
+    /**
+     * @ignore
+     */
     type: PropTypes.string,
   };
 

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import MarkdownElement from './MarkdownElement';
 
-export const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
+export const styleSheet = createStyleSheet('MarkdownDocs', () => {
   return {
     content: {
       '@raw pre': {
