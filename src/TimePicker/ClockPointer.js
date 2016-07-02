@@ -49,9 +49,9 @@ class ClockPointer extends Component {
   };
 
   static defaultProps = {
+    hasSelected: false,
     value: null,
     type: 'minute',
-    hasSelected: false,
   };
 
   static contextTypes = {
