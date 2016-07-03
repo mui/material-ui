@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import {mount, shallow} from 'enzyme';
-import {stub} from 'sinon';
 import {assert} from 'chai';
+
 import RaisedButton from './RaisedButton';
 import ActionAndroid from '../svg-icons/action/android';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -115,37 +115,20 @@ describe('<RaisedButton />', () => {
     assert.strictEqual(svgIcon.node.props.color, 'red', 'should have color set as the prop');
   });
 
-  describe('propTypes', () => {
-    let consoleStub;
+  describe('validateLabel', () => {
+    const validateLabel = RaisedButton.propTypes.label;
 
-    beforeEach(() => {
-      consoleStub = stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore(); // eslint-disable-line no-console
-    });
-
-    it('should throw when using wrong properties', () => {
-      shallowWithContext(
-        <RaisedButton />
-      );
-      assert.strictEqual(consoleStub.callCount, 1);
-      assert.deepEqual(
-        consoleStub.args[0][0].split('\n'),
-        [
-          'Warning: Failed prop type: Required prop label or children or ' +
-          'icon was not specified in RaisedButton.',
-          '    in RaisedButton',
-        ]
+    it('should throw when using wrong label', () => {
+      assert.strictEqual(validateLabel({}, 'label', 'RaisedButton').message,
+        'Required prop label or children or icon was not specified in RaisedButton.',
+        'should return an error'
       );
     });
 
-    it('should not throw when using a valid properties', () => {
-      shallowWithContext(
-        <RaisedButton label={0} />
-      );
-      assert.strictEqual(consoleStub.callCount, 0);
+    it('should not throw when using a valid label', () => {
+      assert.strictEqual(validateLabel({
+        label: 0,
+      }, 'label', 'RaisedButton'), undefined);
     });
   });
 });

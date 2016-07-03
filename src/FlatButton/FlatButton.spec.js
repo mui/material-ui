@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import {stub} from 'sinon';
+
 import FlatButton from './FlatButton';
 import getMuiTheme from '../styles/getMuiTheme';
 import ActionAndroid from '../svg-icons/action/android';
@@ -150,37 +150,20 @@ describe('<FlatButton />', () => {
     assert.strictEqual(wrapper.node.props.touchRippleColor, 'yellow', 'should be yellow');
   });
 
-  describe('propTypes', () => {
-    let consoleStub;
+  describe('validateLabel', () => {
+    const validateLabel = FlatButton.propTypes.label;
 
-    beforeEach(() => {
-      consoleStub = stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore(); // eslint-disable-line no-console
-    });
-
-    it('should throw when using wrong properties', () => {
-      shallowWithContext(
-        <FlatButton />
-      );
-      assert.strictEqual(consoleStub.callCount, 1);
-      assert.deepEqual(
-        consoleStub.args[0][0].split('\n'),
-        [
-          'Warning: Failed prop type: Required prop label or children or ' +
-          'icon was not specified in FlatButton.',
-          '    in FlatButton',
-        ]
+    it('should throw when using wrong label', () => {
+      assert.strictEqual(validateLabel({}, 'label', 'FlatButton').message,
+        'Required prop label or children or icon was not specified in FlatButton.',
+        'should return an error'
       );
     });
 
-    it('should not throw when using a valid properties', () => {
-      shallowWithContext(
-        <FlatButton label={0} />
-      );
-      assert.strictEqual(consoleStub.callCount, 0);
+    it('should not throw when using a valid label', () => {
+      assert.strictEqual(validateLabel({
+        label: 0,
+      }, 'label', 'FlatButton'), undefined);
     });
   });
 });
