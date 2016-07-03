@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly';
 import MarkdownElement from './MarkdownElement';
 import Demo from './Demo';
 
-export const styleSheet = createStyleSheet('MarkdownDocs', () => {
+const styleSheet = createStyleSheet('MarkdownDocs', () => {
   return {
     content: {
       '@raw pre': {

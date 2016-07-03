@@ -1,21 +1,27 @@
 import React, {Component, PropTypes} from 'react';
+import {createStyleSheet} from 'stylishly';
+import ClassNames from 'classnames';
 import marked from 'marked';
 
 import 'highlight.js/styles/github.css';
 
-const styles = {
+const styleSheet = createStyleSheet('MarkdownElement', () => ({
   root: {
     marginTop: 20,
     marginBottom: 20,
     padding: '0 10px',
   },
-};
+}));
 
 class MarkdownElement extends Component {
 
   static propTypes = {
-    style: PropTypes.object,
+    className: PropTypes.string,
     text: PropTypes.string.isRequired,
+  };
+
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -39,15 +45,16 @@ class MarkdownElement extends Component {
 
   render() {
     const {
-      style,
+      className,
       text,
     } = this.props;
+
+    const classes = this.context.styleManager.render(styleSheet);
 
     /* eslint-disable react/no-danger */
     return (
       <div
-        style={Object.assign({}, styles.root, style)}
-        className="markdown-body"
+        className={ClassNames(classes.root, 'markdown-body', className)}
         dangerouslySetInnerHTML={{__html: marked(text)}}
       />
     );

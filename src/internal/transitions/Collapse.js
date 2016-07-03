@@ -24,6 +24,7 @@ export default class Collapse extends Component {
      * The content node to be collapsed.
      */
     children: PropTypes.node,
+    containerClassName: PropTypes.string,
     /**
      * Set to true to transition in
      */
@@ -87,16 +88,16 @@ export default class Collapse extends Component {
   render() {
     const {
       children,
+      containerClassName,
       transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
 
-    const containerClassname = ClassNames({
-      [classes.container]: true,
+    const containerClasses = ClassNames(classes.container, {
       [classes.entered]: this.props.in,
-    });
+    }, containerClassName);
 
     return (
       <Transition
@@ -108,7 +109,7 @@ export default class Collapse extends Component {
         timeout={300}
         {...other}
       >
-        <div className={containerClassname}>
+        <div className={containerClasses}>
           <div ref={(c) => this.wrapper = c}>
             {children}
           </div>
