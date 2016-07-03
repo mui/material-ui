@@ -12,6 +12,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
     root: {
       position: 'relative',
       backgroundColor: '#eee',
+      marginBottom: 40,
     },
     demo: theme.mixins.gutters({
       display: 'flex',

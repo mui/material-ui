@@ -15,8 +15,8 @@ export default function FlatButtons(props, context) {
   return (
     <div>
       <Button className={classes.button}>Default</Button>
-      <Button className={classes.button} primary={true}>Primary</Button>
-      <Button className={classes.button} accent={true}>Accent</Button>
+      <Button primary={true} className={classes.button}>Primary</Button>
+      <Button accent={true} className={classes.button}>Accent</Button>
     </div>
   );
 }

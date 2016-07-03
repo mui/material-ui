@@ -6,6 +6,7 @@ import Demo from './Demo';
 const styleSheet = createStyleSheet('MarkdownDocs', () => {
   return {
     content: {
+      marginBottom: 100,
       '@raw pre': {
         margin: '25px 0',
         padding: '12px 18px',
