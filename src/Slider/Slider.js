@@ -333,7 +333,9 @@ class Slider extends Component {
       value = this.props.defaultValue !== undefined ? this.props.defaultValue : this.props.min;
     }
     let percent = (value - this.props.min) / (this.props.max - this.props.min);
-    if (isNaN(percent)) percent = 0;
+    if (isNaN(percent)) {
+      percent = 0;
+    }
 
     this.setState({
       percent: percent,
@@ -516,13 +518,13 @@ class Slider extends Component {
     return this.state.value;
   }
 
-  setValue(i) {
+  setValue(value) {
     // calculate percentage
-    let percent = (i - this.props.min) / (this.props.max - this.props.min);
+    let percent = (value - this.props.min) / (this.props.max - this.props.min);
     if (isNaN(percent)) percent = 0;
     // update state
     this.setState({
-      value: i,
+      value: value,
       percent: percent,
     });
   }
@@ -568,12 +570,21 @@ class Slider extends Component {
 
   handleFocus = (event) => {
     this.setState({focused: true});
-    if (this.props.onFocus) this.props.onFocus(event);
+
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleBlur = (event) => {
-    this.setState({focused: false, active: false});
-    if (this.props.onBlur) this.props.onBlur(event);
+    this.setState({
+      focused: false,
+      active: false,
+    });
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
   };
 
   handleMouseDown = (event) => {
@@ -593,7 +604,9 @@ class Slider extends Component {
   };
 
   handleMouseUp = () => {
-    if (!this.props.disabled) this.setState({active: false});
+    if (!this.props.disabled) {
+      this.setState({active: false});
+    }
   };
 
   handleMouseEnter = () => {
@@ -613,7 +626,10 @@ class Slider extends Component {
       dragging: true,
       active: true,
     });
-    if (this.props.onDragStart) this.props.onDragStart(event);
+
+    if (this.props.onDragStart) {
+      this.props.onDragStart(event);
+    }
   }
 
   onDragStop(event) {
@@ -621,23 +637,36 @@ class Slider extends Component {
       dragging: false,
       active: false,
     });
-    if (this.props.onDragStop) this.props.onDragStop(event);
+
+    if (this.props.onDragStop) {
+      this.props.onDragStop(event);
+    }
   }
 
   onDragUpdate(event, pos) {
-    if (!this.state.dragging) return;
-    if (!this.props.disabled) this.dragTo(event, pos);
+    if (!this.state.dragging) {
+      return;
+    }
+    if (!this.props.disabled) {
+      this.dragTo(event, pos);
+    }
   }
 
   dragTo(event, pos) {
     const max = this.refs.track[mainAxisClientProperty[this.props.axis]];
-    if (pos < 0) pos = 0; else if (pos > max) pos = max;
+    if (pos < 0) {
+      pos = 0;
+    } else if (pos > max) {
+      pos = max;
+    }
     this.updateWithChangeEvent(event, pos / max);
   }
 
   updateWithChangeEvent(event, percent) {
     this.setPercent(percent, () => {
-      if (this.props.onChange) this.props.onChange(event, this.state.value);
+      if (this.props.onChange) {
+        this.props.onChange(event, this.state.value);
+      }
     });
   }
 
@@ -647,6 +676,7 @@ class Slider extends Component {
 
   render() {
     const {
+      axis, // eslint-disable-line no-unused-vars
       description,
       disabled,
       disableFocusRipple,
@@ -654,6 +684,11 @@ class Slider extends Component {
       max,
       min,
       name,
+      onBlur, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
+      onDragStart, // eslint-disable-line no-unused-vars
+      onDragStop, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
       required,
       step,
       style,
@@ -666,7 +701,11 @@ class Slider extends Component {
 
     let handleStyles = {};
     let percent = this.state.percent;
-    if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
+    if (percent > 1) {
+      percent = 1;
+    } else if (percent < 0) {
+      percent = 0;
+    }
 
     if (percent === 0) {
       handleStyles = Object.assign(

@@ -109,7 +109,7 @@ class Checkbox extends Component {
      * This is useful to create icon toggles.
      */
     unCheckedIcon: deprecated(PropTypes.element,
-      'Use uncheckedIcon instead.'),
+      'Use uncheckedIcon instead. It will be removed with v0.16.0.'),
     /**
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.

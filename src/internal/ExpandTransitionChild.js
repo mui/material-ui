@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 
+const reflow = (elem) => elem.offsetHeight;
+
 class ExpandTransitionChild extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -21,10 +23,6 @@ class ExpandTransitionChild extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  componentDidUpdate() {
-    this.open();
-  }
-
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.enteredTimer);
@@ -42,10 +40,13 @@ class ExpandTransitionChild extends Component {
 
   componentWillEnter(callback) {
     const {enterDelay, transitionDelay, transitionDuration} = this.props;
-    const {style} = ReactDOM.findDOMNode(this);
-    style.height = 0;
+    const element = ReactDOM.findDOMNode(this);
+    element.style.height = 0;
     this.enterTimer = setTimeout(() => this.open(), enterDelay);
-    this.enteredTimer = setTimeout(() => callback(), enterDelay + transitionDelay + transitionDuration);
+    this.enteredTimer = setTimeout(
+      () => callback(),
+      enterDelay + transitionDelay + transitionDuration
+    );
   }
 
   componentDidEnter() {
@@ -54,21 +55,24 @@ class ExpandTransitionChild extends Component {
 
   componentWillLeave(callback) {
     const {transitionDelay, transitionDuration} = this.props;
-    const {style} = ReactDOM.findDOMNode(this);
+    const element = ReactDOM.findDOMNode(this);
     // Set fixed height first for animated property value
-    style.height = `${this.refs.wrapper.clientHeight}px`;
-    style.height = 0;
+    element.style.height = `${this.refs.wrapper.clientHeight}px`;
+    reflow(element);
+    element.style.transitionDuration = `${transitionDuration}ms`;
+    element.style.height = 0;
     this.leaveTimer = setTimeout(() => callback(), transitionDelay + transitionDuration);
   }
 
   setAutoHeight() {
     const {style} = ReactDOM.findDOMNode(this);
+    style.transitionDuration = 0;
     style.height = 'auto';
   }
 
   open() {
-    const {style} = ReactDOM.findDOMNode(this);
-    style.height = `${this.refs.wrapper.clientHeight}px`;
+    const element = ReactDOM.findDOMNode(this);
+    element.style.height = `${this.refs.wrapper.clientHeight}px`;
   }
 
   render() {

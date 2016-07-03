@@ -46,7 +46,9 @@ class ClockMinutes extends Component {
 
   handleMove = (event) => {
     event.preventDefault();
-    if (this.isMousePressed(event) !== 1 ) return;
+    if (this.isMousePressed(event) !== 1 ) {
+      return;
+    }
     this.setClock(event.nativeEvent, false);
   };
 
@@ -96,10 +98,14 @@ class ClockMinutes extends Component {
 
     const numbers = minutes.map((minute) => {
       const isSelected = selectedMinutes === minute;
-      if (isSelected) hasSelected = true;
+      if (isSelected) {
+        hasSelected = true;
+      }
       return (
         <ClockNumber
-          key={minute} isSelected={isSelected} type="minute"
+          key={minute}
+          isSelected={isSelected}
+          type="minute"
           value={minute}
         />
       );
@@ -135,12 +141,11 @@ class ClockMinutes extends Component {
 
     return (
       <div ref="clock" style={prepareStyles(styles.root)} >
-        <ClockPointer value={minutes.selected} type="minute" />
+        <ClockPointer value={minutes.selected} type="minute" hasSelected={minutes.hasSelected} />
         {minutes.numbers}
         <div
           ref="mask"
           style={prepareStyles(styles.hitMask)}
-          hasSelected={minutes.hasSelected}
           onTouchMove={this.handleTouch}
           onTouchEnd={this.handleTouch}
           onMouseUp={this.handleUp}

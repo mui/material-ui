@@ -42,7 +42,7 @@
     "react-tap-event-plugin": "^1.0.0"
   },
   "dependencies": {
-    "inline-style-prefixer": "^1.0.3",
+    "inline-style-prefixer": "^2.0.0",
     "keycode": "^2.1.1",
     "lodash": "^4.13.1",
     "react-addons-create-fragment": "^15.2.0",
