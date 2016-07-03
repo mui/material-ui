@@ -6,3 +6,13 @@ export function kebabCase(string) {
     return a;
   }).join('').toLowerCase();
 }
+
+export function titleize(string) {
+  return string.split('-')
+    .map((word) => word.split(''))
+    .map((letters) => {
+      const first = letters.shift();
+      return [first.toUpperCase(), ...letters].join('');
+    })
+    .join(' ');
+}

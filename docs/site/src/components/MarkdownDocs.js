@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import MarkdownElement from './MarkdownElement';
+import Demo from './Demo';
 
 export const styleSheet = createStyleSheet('MarkdownDocs', () => {
   return {
@@ -25,6 +26,8 @@ export const styleSheet = createStyleSheet('MarkdownDocs', () => {
   };
 });
 
+const demoRegexp = /^demo='(.*)'$/;
+
 export default class MarkdownDocs extends Component {
 
   static propTypes = {
@@ -35,11 +38,22 @@ export default class MarkdownDocs extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  renderContent(content) {
+    const contents = content.split(/(?:^{{)|(?:}}$)/gm);
+
+    return contents.map((n, i) => {
+      if (demoRegexp.test(n)) {
+        return <Demo key={i} demo={n.match(demoRegexp)[1]} />;
+      }
+      return <MarkdownElement key={i} text={n} />;
+    });
+  }
+
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     return (
       <div className={classes.content}>
-        <MarkdownElement text={this.props.route.content} />
+        {this.renderContent(this.props.route.content)}
       </div>
     );
   }

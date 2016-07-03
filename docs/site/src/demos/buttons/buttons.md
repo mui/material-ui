@@ -7,3 +7,9 @@ Material buttons trigger an ink reaction on press. They may display text, imager
 ## Flat Buttons
 
 Flat buttons are text-only buttons. They may be used in dialogs, toolbars, or inline. They do not lift, but fill with color on press.
+
+{{demo='buttons/FlatButtons.js'}}
+
+## Raised Buttons
+
+Raised buttons are rectangular-shaped buttons. They may be used inline. They lift and display ink reactions on press.

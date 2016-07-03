@@ -4,7 +4,7 @@ import AppFrame from './AppFrame';
 import AppContent from './AppContent';
 import Home from '../pages/Home';
 import MarkdownDocs from './MarkdownDocs';
-import {kebabCase} from '../utils/helpers';
+import {kebabCase, titleize} from '../utils/helpers';
 
 /**
  * This lets us eager load the files ahead of time
@@ -113,8 +113,8 @@ export default class AppRouter extends Component {
               return (
                 <Route
                   key={i}
-                  title={n.name}
-                  path={`/component-demos/${kebabCase(n.name)}`}
+                  title={titleize(n.name)}
+                  path={`/component-demos/${n.name}`}
                   content={requireDemos(n.path)}
                   component={MarkdownDocs}
                   nav={true}
