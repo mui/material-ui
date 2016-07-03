@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import Transition from 'react-overlays/lib/Transition';
+import Transition from '../Transition';
 
 const reflow = (elem) => elem.offsetHeight;
 
@@ -95,15 +95,14 @@ export default class Collapse extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
 
-    const containerClasses = ClassNames(classes.container, {
-      [classes.entered]: this.props.in,
-    }, containerClassName);
+    const containerClasses = ClassNames(classes.container, containerClassName);
 
     return (
       <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onEntered={this.handleEntered}
+        enteredClassName={classes.entered}
         onExit={this.handleExit}
         onExiting={this.handleExiting}
         timeout={300}

@@ -50,7 +50,6 @@
     "react-addons-create-fragment": "^15.2.0",
     "react-addons-transition-group": "^15.2.0",
     "react-event-listener": "^0.2.1",
-    "react-overlays": "^0.6.3",
     "recompose": "^0.19.0",
     "stylishly": "^0.5.0",
     "stylishly-chained": "^0.5.0",

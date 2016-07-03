@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import Transition from 'react-overlays/lib/Transition';
+import Transition from '../Transition';
 
 export default class Fade extends Component {
   static propTypes = {
