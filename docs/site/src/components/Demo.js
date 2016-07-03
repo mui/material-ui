@@ -32,22 +32,21 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       overflow: 'auto',
       '@raw pre': {
         margin: 0,
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
+        borderRadius: 0,
       },
     },
     codeContainer: {
       position: 'relative',
-      '&:after': {
-        content: '\'\'',
-        display: 'block',
-        position: 'absolute',
-        left: 0,
-        bottom: 0,
-        width: '100%',
-        height: 50,
-        background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)',
-      },
+      // '&:after': {
+      //   content: '\'\'',
+      //   display: 'block',
+      //   position: 'absolute',
+      //   left: 0,
+      //   bottom: 0,
+      //   width: '100%',
+      //   height: 50,
+      //   background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)',
+      // },
     },
   };
 });
