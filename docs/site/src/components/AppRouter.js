@@ -4,9 +4,10 @@ import AppFrame from './AppFrame';
 import AppContent from './AppContent';
 import Home from '../pages/Home';
 import MarkdownDocs from './MarkdownDocs';
+import {kebabCase} from '../utils/helpers';
 
 /**
- * This lets us eager load the docs ahead of time
+ * This lets us eager load the files ahead of time
  * and require them dynamically with webpack's context feature
  */
 const requireDocs = require.context(
@@ -14,9 +15,7 @@ const requireDocs = require.context(
   true,
   /^((?![\\/]site|node_modules[\\/]).)*\.md$/
 );
-
 const docFiles = requireDocs.keys();
-
 const apiDocs = docFiles.reduce((res, n) => {
   if (/^\.\/api\//.test(n)) {
     res.push({
@@ -24,6 +23,16 @@ const apiDocs = docFiles.reduce((res, n) => {
       name: n.replace(/.*\//, '').replace('.md', ''),
     });
   }
+  return res;
+}, []);
+
+const requireDemos = require.context('../demos', true, /\.md$/);
+const demoFiles = requireDemos.keys();
+const demos = demoFiles.reduce((res, n) => {
+  res.push({
+    path: n,
+    name: n.replace(/.*\//, '').replace('.md', ''),
+  });
   return res;
 }, []);
 
@@ -95,6 +104,26 @@ export default class AppRouter extends Component {
           </Route>
 
           <Route
+            title="Component Demos"
+            path="/component-demos"
+            nav={true}
+            component={AppContent}
+          >
+            {demos.map(((n, i) => {
+              return (
+                <Route
+                  key={i}
+                  title={n.name}
+                  path={`/component-demos/${kebabCase(n.name)}`}
+                  content={requireDemos(n.path)}
+                  component={MarkdownDocs}
+                  nav={true}
+                />
+              );
+            }))}
+          </Route>
+
+          <Route
             title="Component API"
             path="/component-api"
             nav={true}
@@ -105,14 +134,13 @@ export default class AppRouter extends Component {
                 <Route
                   key={i}
                   title={n.name}
-                  path={`/components/${n.name}`}
+                  path={`/component-api/${kebabCase(n.name)}`}
                   content={requireDocs(n.path)}
                   component={MarkdownDocs}
                   nav={true}
                 />
               );
             }))}
-
           </Route>
 
           <Route

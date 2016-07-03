@@ -75,12 +75,12 @@ export default class AppDrawer extends Component {
     open: [],
   };
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return (
-  //     !shallowEqual(this.props, nextProps) ||
-  //     !shallowEqual(this.state, nextState)
-  //   );
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   renderNav(navRoot, props = {}) {
     return (

@@ -81,9 +81,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
  * Buttons communicate the action that will occur when the user
  * touches them.
  *
- * Material buttons trigger an ink reaction on press. They may display
- * text, imagery, or both. Flat buttons and raised buttons are the
- * most commonly used types.
+ * @see https://material.google.com/components/buttons.html
  *
  * ```js
  * import Button from 'material-ui/Button';
