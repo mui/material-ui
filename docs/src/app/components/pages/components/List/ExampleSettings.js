@@ -6,14 +6,8 @@ import Divider from 'material-ui/Divider';
 import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
 
-const styles = {
-  root: {
-    display: 'flex',
-  },
-};
-
 const ListExampleSettings = () => (
-  <div style={styles.root}>
+  <div>
     <MobileTearSheet>
       <List>
         <Subheader>General</Subheader>
