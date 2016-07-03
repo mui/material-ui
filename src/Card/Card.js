@@ -85,7 +85,7 @@ class Card extends Component {
       containerStyle,
       children,
       expandable, // eslint-disable-line no-unused-vars
-      expanded: expandedProps, // eslint-disable-line no-unused-vars
+      expanded: expandedProp, // eslint-disable-line no-unused-vars
       initiallyExpanded, // eslint-disable-line no-unused-vars
       onExpandChange, // eslint-disable-line no-unused-vars
       ...other,

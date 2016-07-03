@@ -105,7 +105,7 @@ class CardHeader extends Component {
   render() {
     const {
       actAsExpander, // eslint-disable-line no-unused-vars
-      avatar: avatarProps,
+      avatar: avatarProp,
       children,
       showExpandableButton, // eslint-disable-line no-unused-vars
       style,
@@ -120,14 +120,14 @@ class CardHeader extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    let avatar = avatarProps;
+    let avatar = avatarProp;
 
-    if (isValidElement(avatarProps)) {
+    if (isValidElement(avatarProp)) {
       avatar = React.cloneElement(avatar, {
         style: Object.assign(styles.avatar, avatar.props.style),
       });
     } else if (avatar !== null) {
-      avatar = <Avatar src={avatarProps} style={styles.avatar} />;
+      avatar = <Avatar src={avatarProp} style={styles.avatar} />;
     }
 
     return (

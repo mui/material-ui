@@ -2,8 +2,8 @@ import warning from 'warning';
 
 let hasWarned;
 const warn = () => {
-  warning(hasWarned, 'The \'material-ui/lib/utils/styles.js\' utility module has been deprecated.' +
-    ' Please do not use this utility module as it will be removed in an upcoming release.');
+  warning(hasWarned, `The 'material-ui/lib/utils/styles.js' utility module has been deprecated.
+    It will be removed with v0.16.0.`);
   hasWarned = true;
 };
 

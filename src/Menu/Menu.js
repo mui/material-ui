@@ -70,7 +70,8 @@ class Menu extends Component {
      * is added to the DOM. In order for transitions to
      * work, wrap the menu inside a `ReactTransitionGroup`.
      */
-    animated: deprecated(PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
+    animated: deprecated(PropTypes.bool, `Instead, use a [Popover](/#/components/popover).
+      It will be removed with v0.16.0.`),
     /**
      * If true, the width of the menu will be set automatically
      * according to the widths of its children,
@@ -141,7 +142,8 @@ class Menu extends Component {
     /**
      * This is the placement of the menu relative to the `IconButton`.
      */
-    openDirection: deprecated(propTypes.corners, 'Instead, use a [Popover](/#/components/popover).'),
+    openDirection: deprecated(propTypes.corners, `Instead, use a [Popover](/#/components/popover).
+      It will be removed with v0.16.0.`),
     /**
      * Override the inline-styles of selected menu items.
      */
@@ -207,8 +209,12 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    if (this.props.autoWidth) this.setWidth();
-    if (!this.props.animated) this.animateOpen();
+    if (this.props.autoWidth) {
+      this.setWidth();
+    }
+    if (!this.props.animated) {
+      this.animateOpen();
+    }
     this.setScollPosition();
   }
 
@@ -537,7 +543,7 @@ class Menu extends Component {
     } = this.props;
 
     warning((typeof zDepth === 'undefined'), 'Menu no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
-      'or another component that provides `zDepth`.');
+      'or another component that provides `zDepth`. It will be removed with v0.16.0.');
 
     const {focusIndex} = this.state;
 

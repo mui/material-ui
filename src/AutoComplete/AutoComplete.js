@@ -163,7 +163,7 @@ class AutoComplete extends Component {
     /**
      * If true, will update when focus event triggers.
      */
-    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus'),
+    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
   };
 
   static defaultProps = {
@@ -239,7 +239,8 @@ class AutoComplete extends Component {
   };
 
   setValue(textValue) {
-    warning(false, 'setValue() is deprecated, use the searchText property.');
+    warning(false, `setValue() is deprecated, use the searchText property.
+      It will be removed with v0.16.0.`);
 
     this.setState({
       searchText: textValue,
@@ -247,7 +248,7 @@ class AutoComplete extends Component {
   }
 
   getValue() {
-    warning(false, 'getValue() is deprecated.');
+    warning(false, 'getValue() is deprecated. It will be removed with v0.16.0.');
 
     return this.state.searchText;
   }
@@ -393,7 +394,7 @@ class AutoComplete extends Component {
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
-      searchText: searchTextProps, // eslint-disable-line no-unused-vars
+      searchText: searchTextProp, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

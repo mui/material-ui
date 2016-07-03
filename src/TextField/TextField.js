@@ -50,7 +50,7 @@ const getStyles = (props, context, state) => {
       pointerEvents: 'none',
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style)
       padding: 0,
       position: 'relative',
       width: '100%',
@@ -193,7 +193,7 @@ class TextField extends Component {
      * The function to call when the user presses the Enter key.
      */
     onEnterKeyDown: deprecated(PropTypes.func,
-      'Use onKeyDown and check for keycode instead.'),
+      'Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.'),
     /** @ignore */
     onFocus: PropTypes.func,
     /** @ignore */
