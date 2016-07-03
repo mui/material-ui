@@ -14,6 +14,7 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
     },
     entered: {
       height: 'auto',
+      transitionDuration: 0,
     },
   };
 });
@@ -62,10 +63,6 @@ export default class Collapse extends Component {
     }
 
     element.style.height = `${wrapperHeight}px`;
-  };
-
-  handleEntered = (element) => {
-    element.style.height = 'auto';
   };
 
   handleExit = (element) => {
