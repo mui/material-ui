@@ -21,6 +21,7 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
 
 export default class ButtonBase extends Component {
   static propTypes = {
+    centerRipple: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -30,11 +31,12 @@ export default class ButtonBase extends Component {
     onMouseUp: PropTypes.func,
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
-    ripple: PropTypes.bool,
+    ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     type: PropTypes.string,
   };
 
   static defaultProps = {
+    centerRipple: false,
     component: 'button',
     ripple: true,
     type: 'button',
@@ -53,8 +55,17 @@ export default class ButtonBase extends Component {
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
   handleBlur = createRippleHandler(this, 'Blur', 'stop');
 
+  renderRipple(ripple, center) {
+    if (ripple === true) {
+      return <TouchRipple ref={(c) => this.ripple = c} center={center} />;
+    }
+
+    return null;
+  }
+
   render() {
     const {
+      centerRipple,
       children,
       className,
       component,
@@ -99,7 +110,7 @@ export default class ButtonBase extends Component {
       buttonProps,
       createFragment({
         children: children,
-        ripple: ripple ? <TouchRipple ref={(c) => this.ripple = c} /> : null,
+        ripple: this.renderRipple(ripple, centerRipple),
       })
     );
   }

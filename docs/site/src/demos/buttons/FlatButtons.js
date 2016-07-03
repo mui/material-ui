@@ -1,15 +1,27 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
+import {createStyleSheet} from 'stylishly';
 import Button from 'material-ui/Button';
 
-export default class FlatButtons extends Component {
-
-  static propTypes = {
-    children: PropTypes.any,
+const styleSheet = createStyleSheet('FlatButtons', () => {
+  return {
+    button: {
+      margin: '0 10px',
+    },
   };
+});
 
-  render() {
-    return (
-      <Button>Default</Button>
-    );
-  }
+export default function FlatButtons(props, context) {
+  const classes = context.styleManager.render(styleSheet);
+  return (
+    <div>
+      <Button className={classes.button}>Default</Button>
+      <Button className={classes.button} primary={true}>Primary</Button>
+      <Button className={classes.button} accent={true}>Accent</Button>
+    </div>
+  );
 }
+
+FlatButtons.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};
+

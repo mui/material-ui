@@ -59,7 +59,11 @@ export default class IconButton extends Component {
     const {children, className, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     return (
-      <ButtonBase className={ClassNames(classes.root, className)} {...other}>
+      <ButtonBase
+        className={ClassNames(classes.root, className)}
+        centerRipple={true}
+        {...other}
+      >
         {typeof children === 'string' ? <span className="material-icons">{children}</span> : children}
       </ButtonBase>
     );
