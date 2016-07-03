@@ -253,8 +253,8 @@ class ThemesPage extends Component {
               open={this.state.drawerOpen} docked={false}
               onRequestChange={this.handleRequestChangeDrawer}
             >
-              <MenuItem index={0}>Menu Item</MenuItem>
-              <MenuItem index={1}>Menu Item 2</MenuItem>
+              <MenuItem>Menu Item</MenuItem>
+              <MenuItem>Menu Item 2</MenuItem>
             </Drawer>
           </div>
         </div>

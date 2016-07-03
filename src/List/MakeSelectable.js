@@ -12,7 +12,8 @@ export const MakeSelectable = (Component) => {
       valueLink: deprecated(PropTypes.shape({
         value: PropTypes.any,
         requestChange: PropTypes.func,
-      }), 'This property is deprecated due to his low popularity. Use the value and onChange property.'),
+      }), `This property is deprecated due to his low popularity. Use the value and onChange property.
+        It will be removed with v0.16.0.`),
     };
 
     static contextTypes = {
