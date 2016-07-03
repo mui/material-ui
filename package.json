@@ -29,6 +29,7 @@
     "clean": "npm run clean:build",
     "clean:docs": "rimraf docs/api/*",
     "clean:build": "rimraf build",
+    "docs:start": "(cd docs/site; npm start)",
     "lint": "eslint src docs/site/src test/integration && echo \"eslint: no lint errors\"",
     "prebuild": "npm run clean:build",
     "test": "cross-env NODE_ENV=test babel-node test/index.js",
