@@ -22,6 +22,7 @@ class Master extends Component {
 
   static childContextTypes = {
     muiTheme: PropTypes.object,
+    width: PropTypes.number,
   };
 
   state = {
@@ -31,6 +32,7 @@ class Master extends Component {
   getChildContext() {
     return {
       muiTheme: this.state.muiTheme,
+      width: this.props.width,
     };
   }
 
