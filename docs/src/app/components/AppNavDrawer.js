@@ -369,7 +369,7 @@ class AppNavDrawer extends Component {
               <ListItem
                 primaryText="Tabs"
                 value="/components/tabs"
-                href="/#/components/auto-complete"
+                href="/#/components/tabs"
               />,
               <ListItem
                 primaryText="Text Field"
