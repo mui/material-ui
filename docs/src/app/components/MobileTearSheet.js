@@ -25,6 +25,7 @@ class MobileTearSheet extends Component {
         marginBottom: 24,
         marginRight: 24,
         maxWidth: 360,
+        width: '100%',
       },
       container: {
         border: 'solid 1px #d9d9d9',
