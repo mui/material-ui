@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {SMALL} from 'material-ui/utils/withWidth';
 
 class MobileTearSheet extends Component {
 
@@ -14,7 +13,6 @@ class MobileTearSheet extends Component {
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
-    width: PropTypes.number,
   };
 
   render() {
@@ -24,10 +22,10 @@ class MobileTearSheet extends Component {
 
     const styles = {
       root: {
-        float: 'left',
         marginBottom: 24,
         marginRight: 24,
-        width: 360,
+        width: '100%',
+        maxWidth: 360,
       },
       container: {
         border: 'solid 1px #d9d9d9',
@@ -41,11 +39,6 @@ class MobileTearSheet extends Component {
         marginTop: -10,
       },
     };
-
-    if (this.context.width === SMALL) {
-      styles.root.width = '100%';
-      styles.root.marginRight = 0;
-    }
 
     return (
       <div style={prepareStyles(styles.root)}>
