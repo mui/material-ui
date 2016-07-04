@@ -80,9 +80,15 @@ class DateDisplay extends Component {
   };
 
   state = {
-    selectedYear: !this.props.monthDaySelected,
+    selectedYear: false,
     transitionDirection: 'up',
   };
+
+  componentWillMount() {
+    if (!this.props.monthDaySelected) {
+      this.setState({selectedYear: true});
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDate !== this.props.selectedDate) {
