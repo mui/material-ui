@@ -290,6 +290,10 @@ class Slider extends Component {
      */
     required: PropTypes.bool,
     /**
+     * Override the inline-styles of the inner slider element.
+     */
+    sliderStyle: PropTypes.object,
+    /**
      * The granularity the slider can step through values.
      */
     step: PropTypes.number,
@@ -310,6 +314,7 @@ class Slider extends Component {
     max: 1,
     min: 0,
     required: true,
+    sliderStyle: {},
     step: 0.01,
     style: {},
   };
@@ -697,7 +702,7 @@ class Slider extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const sliderStyles = styles.slider;
+    const sliderStyles = Object.assign(styles.slider, this.props.sliderStyle);
 
     let handleStyles = {};
     let percent = this.state.percent;
