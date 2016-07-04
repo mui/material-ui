@@ -3,13 +3,12 @@ import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
 
-function getStyles(props, context, state) {
+function getStyles(props) {
   return {
     root: {
       position: 'relative', // because the shadow has position: 'absolute'
     },
     textarea: {
-      height: state.height,
       width: '100%',
       resize: 'none',
       font: 'inherit',
@@ -134,9 +133,11 @@ class EnhancedTextarea extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context, this.state);
+    const styles = getStyles(this.props);
     const rootStyles = Object.assign({}, styles.root, style);
-    const textareaStyles = Object.assign({}, styles.textarea, textareaStyle);
+    const textareaStyles = Object.assign({}, styles.textarea, textareaStyle, {
+      height: this.state.height,
+    });
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 
     if (this.props.hasOwnProperty('valueLink')) {
