@@ -43,6 +43,7 @@ export default class Modal extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    modalManager: PropTypes.object,
     /**
      * Callback fired after the Modal finishes transitioning out
      */
@@ -53,6 +54,7 @@ export default class Modal extends Component {
   };
 
   static defaultProps = {
+    modalManager: modalManager,
     show: false,
   };
 
@@ -136,21 +138,21 @@ export default class Modal extends Component {
 
   handleShow() {
     const doc = ownerDocument(ReactDOM.findDOMNode(this));
-    modalManager.add(this);
+    this.props.modalManager.add(this);
     this.onDocumentKeyUpListener = addEventListener(doc, 'keyup', this.handleDocumentKeyUp);
     this.onFocusListener = addEventListener(doc, 'focus', this.handleFocusListener, true);
     this.focus();
   }
 
   handleHide() {
-    modalManager.remove(this);
+    this.props.modalManager.remove(this);
     this.onDocumentKeyUpListener.remove();
     this.onFocusListener.remove();
     this.restoreLastFocus();
   }
 
   handleFocusListener = () => {
-    if (!this.mounted || !modalManager.isTopModal(this)) {
+    if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
 
@@ -163,7 +165,7 @@ export default class Modal extends Component {
   };
 
   handleDocumentKeyUp = () => {
-    // if (this.props.keyboard && event.keyCode === 27 && modalManager.isTopModal(this)) {
+    // if (this.props.keyboard && event.keyCode === 27 && this.props.modalManager.isTopModal(this)) {
     //   if (this.props.onEscapeKeyUp) {
     //     this.props.onEscapeKeyUp(event);
     //   }
@@ -225,7 +227,6 @@ export default class Modal extends Component {
         <div
           className={ClassNames(classes.modal, className)}
           ref={(c) => this.modal = c}
-          role="dialog"
           {...other}
         >
           <Fade
