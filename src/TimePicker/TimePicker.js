@@ -105,9 +105,15 @@ class TimePicker extends Component {
   };
 
   state = {
-    time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    time: null,
     dialogTime: new Date(),
   };
+
+  componentWillMount() {
+    this.setState({
+      time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
