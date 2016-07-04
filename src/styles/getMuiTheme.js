@@ -238,9 +238,6 @@ export default function getMuiTheme(muiTheme, ...more) {
       disabledTextColor: fade(black, 0.26),
       connectorLineColor: grey400,
     },
-    svgIcon: {
-      color: palette.textColor,
-    },
     table: {
       backgroundColor: palette.canvasColor,
     },
