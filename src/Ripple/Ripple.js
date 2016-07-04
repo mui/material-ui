@@ -27,9 +27,14 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
 export default class Ripple extends Component {
   static propTypes = {
     className: PropTypes.string,
+    pulsate: PropTypes.bool,
     rippleSize: PropTypes.number,
     rippleX: PropTypes.number,
     rippleY: PropTypes.number,
+  };
+
+  static defaultProps = {
+    pulsate: false,
   };
 
   static contextTypes = {
@@ -63,6 +68,18 @@ export default class Ripple extends Component {
     }, () => {
       window.requestAnimationFrame(() => {
         this.setState({rippleStart: false});
+      });
+    });
+  };
+
+  pulsate = () => {
+    this.setState({
+      rippleVisible: true,
+      rippleStart: true,
+      ripplePulsate: true,
+    }, () => {
+      window.requestAnimationFrame(() => {
+        this.setState({rippleStart: false, ripplePulsate: false});
       });
     });
   };

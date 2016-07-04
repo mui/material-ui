@@ -38,7 +38,14 @@ export default class TouchRipple extends Component {
 
   ignoringMouseDown = false;
 
-  start = (event) => {
+  pulsate = () => {
+    this.start({}, {pulsate: true});
+  };
+
+  start = (event = {}, {
+    pulsate = false,
+    center = this.props.center || pulsate,
+  }) => {
     if (event.type === 'mousedown' && this.ignoringMouseDown) {
       this.ignoringMouseDown = false;
       return;
@@ -59,7 +66,7 @@ export default class TouchRipple extends Component {
     let rippleSize;
 
     // Check if we are handling a keyboard click.
-    if (event.clientX === 0 && event.clientY === 0 || this.props.center) {
+    if (event.clientX === 0 && event.clientY === 0 || center) {
       rippleX = Math.round(rect.width / 2);
       rippleY = Math.round(rect.height / 2);
     } else {
@@ -69,7 +76,7 @@ export default class TouchRipple extends Component {
       rippleY = Math.round(clientY - rect.top);
     }
 
-    if (this.props.center) {
+    if (center) {
       rippleSize = (rect.width + rect.height) / 2;
     } else {
       const sizeX = Math.max(Math.abs((elem ? elem.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
@@ -81,8 +88,9 @@ export default class TouchRipple extends Component {
     ripples = [...ripples, (
       <Ripple
         key={this.state.nextKey}
-        center={this.props.center}
+        center={center}
         event={event}
+        pulsate={pulsate}
         rippleX={rippleX}
         rippleY={rippleY}
         rippleSize={rippleSize}
