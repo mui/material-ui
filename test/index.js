@@ -14,7 +14,7 @@ const argv = Minimist(process.argv.slice(2), {
 const types = argv._;
 const globPatterns = {
   unit: `src/**/${argv.module ? argv.module : '*'}.spec.js`,
-  integration: `test/integration/**/${argv.module ? argv.module : '*'}.spec.js`,
+  integration: `test/integration/**/${argv.module ? argv.module : '*'}.{spec|test}.js`,
 };
 
 let pattern;
