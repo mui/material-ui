@@ -24,17 +24,104 @@ export const EXITING = 4;
  * the transitioning now at each step of the way.
  */
 class Transition extends Component {
-  constructor(props, context) {
-    super(props, context);
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    /**
+     * CSS class or classes applied when the component is entered
+     */
+    enteredClassName: PropTypes.string,
+    /**
+     * CSS class or classes applied while the component is entering
+     */
+    enteringClassName: PropTypes.string,
+    /**
+     * CSS class or classes applied when the component is exited
+     */
+    exitedClassName: PropTypes.string,
+    /**
+     * CSS class or classes applied while the component is exiting
+     */
+    exitingClassName: PropTypes.string,
+    /**
+     * Show the component; triggers the enter or exit animation
+     */
+    in: PropTypes.bool,
+    /**
+     * Callback fired before the "entering" classes are applied
+     */
+    onEnter: PropTypes.func,
+    /**
+     * Callback fired after the "enter" classes are applied
+     */
+    onEntered: PropTypes.func,
+    /**
+     * Callback fired after the "entering" classes are applied
+     */
+    onEntering: PropTypes.func,
+    /**
+     * Callback fired before the "exiting" classes are applied
+     */
+    onExit: PropTypes.func,
+    /**
+     * Callback fired after the "exited" classes are applied
+     */
+    onExited: PropTypes.func,
+    /**
+     * Callback fired after the "exiting" classes are applied
+     */
+    onExiting: PropTypes.func,
+    /**
+     * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
+     * transition indefinately if the browser transitionEnd events are
+     * canceled or interrupted.
+     *
+     * By default this is set to a high number (5 seconds) as a failsafe. You should consider
+     * setting this to the duration of your animation (or a bit above it).
+     */
+    timeout: PropTypes.number,
+    /**
+     * Run the enter animation when the component mounts, if it is initially
+     * shown
+     */
+    transitionAppear: PropTypes.bool,
+    /**
+     * Unmount the component (remove it from the DOM) when it is not shown
+     */
+    unmountOnExit: PropTypes.bool,
+  };
 
-    let initialStatus;
-    if (props.in) {
+  static defaultProps = {
+    in: false,
+    unmountOnExit: false,
+    transitionAppear: false,
+
+    timeout: 5000,
+
+    onEnter: noop,
+    onEntering: noop,
+    onEntered: noop,
+
+    onExit: noop,
+    onExiting: noop,
+    onExited: noop,
+  };
+
+  state = {
+    status: UNMOUNTED,
+  };
+
+  componentWillMount() {
+    let status;
+
+    if (this.props.in) {
       // Start enter transition in componentDidMount.
-      initialStatus = props.transitionAppear ? EXITED : ENTERED;
+      status = this.props.transitionAppear ? EXITED : ENTERED;
     } else {
-      initialStatus = props.unmountOnExit ? UNMOUNTED : EXITED;
+      status = this.props.unmountOnExit ? UNMOUNTED : EXITED;
     }
-    this.state = {status: initialStatus};
+
+    this.setState({status});
 
     this.nextCallback = null;
   }
@@ -210,92 +297,7 @@ class Transition extends Component {
   }
 }
 
-Transition.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  /**
-   * CSS class or classes applied when the component is entered
-   */
-  enteredClassName: PropTypes.string,
-  /**
-   * CSS class or classes applied while the component is entering
-   */
-  enteringClassName: PropTypes.string,
-  /**
-   * CSS class or classes applied when the component is exited
-   */
-  exitedClassName: PropTypes.string,
-  /**
-   * CSS class or classes applied while the component is exiting
-   */
-  exitingClassName: PropTypes.string,
-  /**
-   * Show the component; triggers the enter or exit animation
-   */
-  in: PropTypes.bool,
-  /**
-   * Callback fired before the "entering" classes are applied
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired after the "enter" classes are applied
-   */
-  onEntered: PropTypes.func,
-  /**
-   * Callback fired after the "entering" classes are applied
-   */
-  onEntering: PropTypes.func,
-  /**
-   * Callback fired before the "exiting" classes are applied
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired after the "exited" classes are applied
-   */
-  onExited: PropTypes.func,
-  /**
-   * Callback fired after the "exiting" classes are applied
-   */
-  onExiting: PropTypes.func,
-  /**
-   * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
-   * transition indefinately if the browser transitionEnd events are
-   * canceled or interrupted.
-   *
-   * By default this is set to a high number (5 seconds) as a failsafe. You should consider
-   * setting this to the duration of your animation (or a bit above it).
-   */
-  timeout: PropTypes.number,
-  /**
-   * Run the enter animation when the component mounts, if it is initially
-   * shown
-   */
-  transitionAppear: PropTypes.bool,
-  /**
-   * Unmount the component (remove it from the DOM) when it is not shown
-   */
-  unmountOnExit: PropTypes.bool,
-};
-
 // Name the function so it is clearer in the documentation
 function noop() {}
-
-Transition.displayName = 'Transition';
-
-Transition.defaultProps = {
-  in: false,
-  unmountOnExit: false,
-  transitionAppear: false,
-
-  timeout: 5000,
-
-  onEnter: noop,
-  onEntering: noop,
-  onEntered: noop,
-
-  onExit: noop,
-  onExiting: noop,
-  onExited: noop,
-};
 
 export default Transition;

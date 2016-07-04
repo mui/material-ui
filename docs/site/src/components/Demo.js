@@ -21,6 +21,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       paddingBottom: 20,
     }),
     codeButton: {
+      zIndex: 10,
       position: 'absolute',
       top: 2,
       right: 7,
@@ -28,25 +29,10 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
     code: {
       padding: 0,
       margin: 0,
-      maxHeight: 400,
-      overflow: 'auto',
       '@raw pre': {
         margin: 0,
         borderRadius: 0,
       },
-    },
-    codeContainer: {
-      position: 'relative',
-      // '&:after': {
-      //   content: '\'\'',
-      //   display: 'block',
-      //   position: 'absolute',
-      //   left: 0,
-      //   bottom: 0,
-      //   width: '100%',
-      //   height: 50,
-      //   background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)',
-      // },
     },
   };
 });
@@ -85,18 +71,18 @@ export default class Demo extends Component {
 
     return (
       <div className={classes.root}>
-        <Collapse containerClassName={classes.codeContainer} in={this.state.codeOpen}>
-          <MarkdownElement className={classes.code} text={code} />
-        </Collapse>
-        <div className={classes.demo}>
-          <DemoComponent />
-        </div>
         <IconButton
           onClick={this.handleCodeButtonClick}
           className={classes.codeButton}
         >
           code
         </IconButton>
+        <Collapse in={this.state.codeOpen}>
+          <MarkdownElement className={classes.code} text={code} />
+        </Collapse>
+        <div className={classes.demo}>
+          <DemoComponent />
+        </div>
       </div>
     );
   }
