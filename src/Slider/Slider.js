@@ -290,6 +290,10 @@ class Slider extends Component {
      */
     required: PropTypes.bool,
     /**
+     * Override the inline-styles of the inner slider element.
+     */
+    sliderStyle: PropTypes.object,
+    /**
      * The granularity the slider can step through values.
      */
     step: PropTypes.number,
@@ -690,6 +694,7 @@ class Slider extends Component {
       onDragStop, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       required,
+      sliderStyle,
       step,
       style,
       ...other,
@@ -697,7 +702,6 @@ class Slider extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const sliderStyles = styles.slider;
 
     let handleStyles = {};
     let percent = this.state.percent;
@@ -763,7 +767,7 @@ class Slider extends Component {
         <span>{description}</span>
         <span>{error}</span>
         <div
-          style={prepareStyles(sliderStyles)}
+          style={prepareStyles(Object.assign(styles.slider, sliderStyle))}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onMouseDown={this.handleMouseDown}
