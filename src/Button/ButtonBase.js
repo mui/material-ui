@@ -30,6 +30,9 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
       appearance: 'none',
       textDecoration: 'none',
     },
+    disabled: {
+      cursor: 'not-allowed',
+    },
   };
 });
 
@@ -185,6 +188,7 @@ export default class ButtonBase extends Component {
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const classNames = ClassNames(classes.root, className, {
+      [classes.disabled]: disabled,
       [keyboardFocusedClassName]: this.state.keyboardFocused,
     });
 
