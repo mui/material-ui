@@ -6,11 +6,14 @@ import ButtonBase from './ButtonBase';
 function createButtonColorRule(main, contrast, hover) {
   return {
     color: main,
-    '& raised': {
+    '&raised': {
       color: contrast,
       backgroundColor: main,
       '&:hover': {
         backgroundColor: hover,
+      },
+      '&disabled': {
+        backgroundColor: main,
       },
     },
   };
@@ -33,8 +36,15 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       backgroundColor: 'transparent',
       transition: transitions.multi(['background-color', 'box-shadow']),
       '&:hover': {
+        textDecoration: 'none',
         backgroundColor: palette.text.divider,
       },
+      '&disabled': {
+        backgroundColor: 'transparent',
+      },
+    },
+    disabled: {
+      opacity: 0.4,
     },
     label: {
       width: '100%',
@@ -54,6 +64,10 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       },
       '&:active': {
         boxShadow: shadows[8],
+      },
+      '&disabled': {
+        boxShadow: shadows[0],
+        backgroundColor: palette.grey[300],
       },
     },
     fab: {
@@ -163,6 +177,7 @@ export default class Button extends Component {
       accent,
       children,
       className,
+      disabled,
       fab,
       primary,
       raised,
@@ -177,11 +192,13 @@ export default class Button extends Component {
       [classes.fab]: fab,
       [classes.primary]: primary,
       [classes.accent]: accent,
+      [classes.disabled]: disabled,
     }, className);
 
     return (
       <ButtonBase
         className={classNames}
+        disabled={disabled}
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >
