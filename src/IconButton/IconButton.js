@@ -17,6 +17,10 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       borderRadius: '50%',
       backgroundColor: 'transparent',
       color: 'inherit',
+      transition: theme.transitions.create('background-color'),
+    },
+    keyboardFocused: {
+      backgroundColor: theme.palette.text.divider,
     },
     primary: {
       color: palette.primary[500],
@@ -62,6 +66,7 @@ export default class IconButton extends Component {
       <ButtonBase
         className={ClassNames(classes.root, className)}
         centerRipple={true}
+        keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >
         {typeof children === 'string' ? <span className="material-icons">{children}</span> : children}
