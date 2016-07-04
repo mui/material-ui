@@ -4,7 +4,7 @@ import {assert} from 'chai';
 import Modal, {styleSheet} from './Modal';
 import {
   createShallowWithContext,
-  createMountWithContext
+  // createMountWithContext
 } from 'test/utils';
 
 describe('<Modal>', () => {

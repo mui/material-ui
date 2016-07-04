@@ -17,7 +17,14 @@ export default function RaisedButtons(props, context) {
       <Button raised={true} className={classes.button}>Default</Button>
       <Button raised={true} primary={true} className={classes.button}>Primary</Button>
       <Button raised={true} accent={true} className={classes.button}>Accent</Button>
-      <Button raised={true} disabled={true} accent={true} className={classes.button}>Disabled</Button>
+      <Button
+        raised={true}
+        disabled={true}
+        accent={true}
+        className={classes.button}
+      >
+        Disabled
+      </Button>
     </div>
   );
 }
