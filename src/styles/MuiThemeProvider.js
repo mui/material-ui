@@ -9,6 +9,7 @@ import chained from 'stylishly-chained';
 import units from 'stylishly-units';
 import nested from 'stylishly-nested';
 import mediaQueries from 'stylishly-media-queries';
+import keyframes from 'stylishly-keyframes';
 
 export function createDefaultContext(props = {}) {
   const theme = props.theme || createMuiTheme();
@@ -17,6 +18,7 @@ export function createDefaultContext(props = {}) {
     pluginRegistry: createPluginRegistry(
       nested(),
       mediaQueries(),
+      keyframes(),
       descendants(),
       pseudoClasses(),
       chained(),

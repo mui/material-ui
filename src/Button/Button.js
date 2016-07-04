@@ -46,6 +46,9 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       color: palette.getContrastText(palette.grey[300]),
       backgroundColor: palette.grey[300],
       boxShadow: shadows[2],
+      '&keyboardFocused': {
+        boxShadow: shadows[6],
+      },
       '&:hover': {
         backgroundColor: palette.grey.A100,
       },
@@ -116,6 +119,11 @@ export default class Button extends Component {
      */
     fab: PropTypes.bool,
     /**
+     * If true, the button will have a keyboard focus ripple.
+     * Ripple must also be true.
+     */
+    focusRipple: PropTypes.bool,
+    /**
      * The URL to link to when the button is clicked.
      * If set, an `a` element will be used as the root node.
      */
@@ -141,6 +149,7 @@ export default class Button extends Component {
   static defaultProps = {
     component: 'button',
     ripple: true,
+    focusRipple: true,
     raised: false,
     type: 'button',
   };
@@ -171,7 +180,11 @@ export default class Button extends Component {
     }, className);
 
     return (
-      <ButtonBase className={classNames} {...other}>
+      <ButtonBase
+        className={classNames}
+        keyboardFocusedClassName={classes.keyboardFocused}
+        {...other}
+      >
         <span className={classes.label}>{children}</span>
       </ButtonBase>
     );

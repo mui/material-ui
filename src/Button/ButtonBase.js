@@ -1,9 +1,23 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-
+import addEventListener from '../utils/addEventListener';
+import keycode from 'keycode';
 import {TouchRipple, createRippleHandler} from '../Ripple';
+
+let listening = false;
+let tabPressed = false;
+
+function listenForTabPresses() {
+  if (!listening) {
+    addEventListener(window, 'keydown', (event) => {
+      tabPressed = keycode(event) === 'tab';
+    });
+    listening = true;
+  }
+}
 
 export const styleSheet = createStyleSheet('ButtonBase', () => {
   return {
@@ -25,7 +39,13 @@ export default class ButtonBase extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    disabled: PropTypes.bool,
+    focusRipple: PropTypes.bool,
+    keyboardFocusedClassName: PropTypes.string,
     onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
     onMouseDown: PropTypes.func,
     onMouseLeave: PropTypes.func,
     onMouseUp: PropTypes.func,
@@ -38,6 +58,7 @@ export default class ButtonBase extends Component {
   static defaultProps = {
     centerRipple: false,
     component: 'button',
+    focusRipple: false,
     ripple: true,
     type: 'button',
   };
@@ -46,14 +67,90 @@ export default class ButtonBase extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  ripple = undefined;
+  state = {
+    keyboardFocused: false,
+  };
 
-  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start');
+  componentDidMount() {
+    listenForTabPresses();
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.props.focusRipple) {
+      if (nextState.keyboardFocused && !this.state.keyboardFocused) {
+        this.ripple.pulsate();
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.keyboardFocusTimeout);
+  }
+
+  ripple = undefined;
+  keyDown = false; // Used to help track keyboard activation keyDown
+
+  handleKeyDown = (event) => {
+    // Check if key is already down to avoid repeats being counted as multiple activations
+    if (this.props.focusRipple && !this.keyDown && this.state.keyboardFocused && keycode(event) === 'space') {
+      this.keyDown = true;
+      event.persist();
+      this.ripple.stop(event, () => {
+        this.ripple.start(event);
+      });
+    }
+  };
+
+  handleKeyUp = (event) => {
+    if (this.props.focusRipple && keycode(event) === 'space' && this.state.keyboardFocused) {
+      this.keyDown = false;
+      event.persist();
+      this.ripple.stop(event, () => this.ripple.pulsate(event));
+    }
+  };
+
+  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
+    clearTimeout(this.keyboardFocusTimeout);
+    tabPressed = false;
+    if (this.state.keyboardFocused) {
+      this.setState({keyboardFocused: false});
+    }
+  });
+
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
-  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop');
+
+  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', (event) => {
+    if (this.state.keyboardFocused) {
+      event.preventDefault();
+    }
+  });
+
   handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
-  handleBlur = createRippleHandler(this, 'Blur', 'stop');
+
+  handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
+    this.setState({keyboardFocused: false});
+  });
+
+  handleFocus = (event) => {
+    if (event) event.persist();
+    if (!this.props.disabled) {
+      // setTimeout is needed because the focus event fires first
+      // Wait so that we can capture if this was a keyboard focus
+      // or touch focus
+      this.keyboardFocusTimeout = setTimeout(() => {
+        if (tabPressed && document.activeElement === ReactDOM.findDOMNode(this.button)) {
+          this.keyDown = false;
+          tabPressed = false;
+          this.setState({keyboardFocused: true});
+        }
+      }, 150);
+
+      if (this.props.onFocus) {
+        this.props.onFocus(event);
+      }
+    }
+  };
 
   renderRipple(ripple, center) {
     if (ripple === true) {
@@ -69,7 +166,12 @@ export default class ButtonBase extends Component {
       children,
       className,
       component,
+      disabled,
+      focusRipple, // eslint-disable-line no-unused-vars
+      keyboardFocusedClassName,
       onBlur, // eslint-disable-line no-unused-vars
+      onKeyDown, // eslint-disable-line no-unused-vars
+      onKeyUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       onMouseUp, // eslint-disable-line no-unused-vars
@@ -82,10 +184,17 @@ export default class ButtonBase extends Component {
 
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
-    const classNames = ClassNames(classes.root, className);
+    const classNames = ClassNames(classes.root, className, {
+      [keyboardFocusedClassName]: this.state.keyboardFocused,
+    });
 
     const buttonProps = {
+      ref: (c) => this.button = c,
+      onClick: this.handleClick,
       onBlur: this.handleBlur,
+      onFocus: this.handleFocus,
+      onKeyDown: this.handleKeyDown,
+      onKeyUp: this.handleKeyUp,
       onMouseDown: this.handleMouseDown,
       onMouseLeave: this.handleMouseLeave,
       onMouseUp: this.handleMouseUp,
@@ -103,6 +212,7 @@ export default class ButtonBase extends Component {
 
     if (element === 'button') {
       buttonProps.type = type;
+      buttonProps.disabled = disabled;
     }
 
     return React.createElement(

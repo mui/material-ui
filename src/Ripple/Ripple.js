@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
+import {easing} from '../styles/transitions';
 
 export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   ripple: {
@@ -14,13 +15,36 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
     background: 'currentColor',
   },
   animating: {
-    transition: theme.transitions.multi(
-      ['transform', 'opacity'],
-      '550ms',
-    ),
+    transition: theme.transitions.multi(['transform', 'opacity'], '550ms'),
+    '&fast': {
+      transitionDuration: '200ms',
+    },
+  },
+  pulsating: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    animation: `ripple-pulsate 1500ms ${easing.easeInOut} 200ms infinite`,
+    visible: {
+      opacity: 0.2,
+    },
   },
   visible: {
     opacity: 0.3,
+  },
+  '@keyframes ripple-pulsate': {
+    '0%': {
+      transform: 'scale(1)',
+    },
+    '50%': {
+      transform: 'scale(0.9)',
+    },
+    '100%': {
+      transform: 'scale(1)',
+    },
   },
 }));
 
@@ -108,15 +132,24 @@ export default class Ripple extends Component {
   }
 
   render() {
-    const {className} = this.props;
+    const {className, pulsate} = this.props;
     const {rippleStart, rippleVisible} = this.state;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const rippleClassName = ClassNames(classes.ripple, {
       [classes.visible]: rippleVisible,
       [classes.animating]: !rippleStart,
+      [classes.fast]: pulsate,
     }, className);
 
-    return <span className={rippleClassName} style={this.getRippleStyles()}></span>;
+    const rippleStyles = this.getRippleStyles();
+
+    const ripple = <span className={rippleClassName} style={rippleStyles}></span>;
+
+    if (pulsate) {
+      return <span className={classes.pulsating}>{ripple}</span>;
+    }
+
+    return ripple;
   }
 }

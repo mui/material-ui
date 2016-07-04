@@ -199,6 +199,7 @@ export default class Modal extends Component {
     const {
       children,
       className,
+      modalManager, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       show,
       ...other,
