@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import shallowEqual from 'recompose/shallowEqual';
+import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import Ripple from './Ripple';
 
@@ -34,6 +35,13 @@ export default class TouchRipple extends Component {
     nextKey: 0,
     ripples: [],
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   ignoringMouseDown = false;
 
