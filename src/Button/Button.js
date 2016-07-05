@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import ButtonBase from './ButtonBase';
@@ -95,6 +95,14 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
   };
 });
 
+type DefaultProps = {
+  component: string,
+  ripple: boolean,
+  focusRipple: boolean,
+  raised: boolean,
+  type: string,
+};
+
 type Props = {
   /**
    * If true, the button will use the theme's accent color.
@@ -103,7 +111,7 @@ type Props = {
   /**
    * The content of the button.
    */
-  children?: Object,
+  children?: Object|string,
   /**
    * The CSS class name of the root element.
    */
@@ -111,7 +119,7 @@ type Props = {
   /**
    * The element or component used for the root node.
    */
-  component: string|Object,
+  component?: string|Object,
   /**
    * If true, the button will be disabled.
    */
@@ -124,7 +132,7 @@ type Props = {
    * If true, the button will have a keyboard focus ripple.
    * Ripple must also be true.
    */
-  focusRipple: boolean,
+  focusRipple?: boolean,
   /**
    * The URL to link to when the button is clicked.
    * If set, an `a` element will be used as the root node.
@@ -137,15 +145,15 @@ type Props = {
   /**
    * If true, the button will use raised styling.
    */
-  raised: boolean,
+  raised?: boolean,
   /**
    * If true, the button will have a ripple.
    */
-  ripple: boolean,
+  ripple?: boolean,
   /**
    * @ignore
    */
-  type: string,
+  type?: string,
 };
 
 /**
@@ -160,18 +168,20 @@ type Props = {
  * const Component = () => <Button>Hello World</Button>;
  * ```
  */
-export default class Button extends Component<void, Props, void> {
+export default class Button extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     component: 'button',
     ripple: true,
     focusRipple: true,
     raised: false,
     type: 'button',
   };
+
+  props:Props;
 
   render():Element {
     const {

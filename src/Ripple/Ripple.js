@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import {easing} from '../styles/transitions';
@@ -53,6 +53,10 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
 
 declare function LeaveTimer(fn:Object, delay:number):void;
 
+type DefaultProps = {
+  pulsate: boolean,
+};
+
 type Props = {
   className?: string,
   pulsate?: boolean,
@@ -67,9 +71,13 @@ type State = {
   ripplePulsate: boolean,
 }
 
-export default class Ripple extends Component<void, Props, State> {
+export default class Ripple extends Component<DefaultProps, Props, State> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
+  };
+
+  static defaultProps:DefaultProps = {
+    pulsate: false,
   };
 
   state:State = {
@@ -82,9 +90,7 @@ export default class Ripple extends Component<void, Props, State> {
     clearTimeout(this.leaveTimer);
   }
 
-  props:Props = {
-    pulsate: false,
-  };
+  props:Props;
   leaveTimer:LeaveTimer;
 
   componentDidEnter() {

@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
@@ -71,7 +71,7 @@ type State = {
 
 export default class Modal extends Component<DefaultProps, Props, State> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
   static defaultProps = {

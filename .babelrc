@@ -2,7 +2,6 @@
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
     "flow-react-proptypes",
-    "transform-flow-strip-types",
     "./scripts/babel-transform-object-assign-require",
     "transform-dev-warning"
   ],

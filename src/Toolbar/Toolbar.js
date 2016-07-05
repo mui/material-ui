@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -20,6 +20,10 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   };
 });
 
+type DefaultProps = {
+  gutters: boolean,
+};
+
 type Props = {
   /**
    * Can be a `ToolbarGroup` to render a group of related items.
@@ -29,16 +33,18 @@ type Props = {
    * The css class name of the root element.
    */
   className?: string,
-  gutters: boolean,
+  gutters?: boolean,
 };
-export default class Toolbar extends Component<void, Props, void> {
+export default class Toolbar extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     gutters: true,
   };
+
+  props:Props;
 
   render():Element {
     const {

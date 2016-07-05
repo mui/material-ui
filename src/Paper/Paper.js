@@ -1,5 +1,5 @@
 // @flow
-import React, {Element} from 'react';
+import React, {Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -50,5 +50,5 @@ Paper.defaultProps = {
 };
 
 Paper.contextTypes = {
-  styleManager: Object,
+  styleManager: PropTypes.object.isRequired,
 };

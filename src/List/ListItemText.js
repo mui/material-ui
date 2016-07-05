@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import shallowEqual from 'recompose/shallowEqual';
@@ -25,7 +25,7 @@ type Props = {
 
 export default class ListItemText extends Component<void, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
   shouldComponentUpdate(nextProps:Props, nextState:any, nextContext:{styleManager: Object}) {

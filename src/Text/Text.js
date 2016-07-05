@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -29,24 +29,31 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
   };
 });
 
+type DefaultProps = {
+  el: string,
+  type: string,
+};
+
 type Props = {
   align?: string,
   children?: Object,
   className?: string,
   el: string,
   noWrap?: boolean,
-  type: string,
+  type?: string,
 };
 
-export default class Text extends Component<void, Props, void> {
+export default class Text extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     el: 'span',
     type: 'body1',
   };
+
+  props:Props;
 
   render():Element {
     const {align, className, el, noWrap, type, ...other} = this.props;

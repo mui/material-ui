@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import Transition from '../Transition';
@@ -20,6 +20,10 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
   };
 });
 
+type DefaultProps = {
+  in: boolean,
+};
+
 type Props = {
   /**
    * The content node to be collapsed.
@@ -29,22 +33,24 @@ type Props = {
   /**
    * Set to true to transition in
    */
-  in: boolean,
+  in?: boolean,
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
   transitionDuration?: number|string,
 };
 
-export default class Collapse extends Component<void, Props, void> {
+export default class Collapse extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
+  };
+
+  static defaultProps:DefaultProps = {
+    in: false,
   };
 
   wrapper:HTMLElement;
-  props:Props = {
-    in: false,
-  };
+  props:Props;
 
   handleEnter:TransitionHandler = (element) => {
     element.style.height = 0;

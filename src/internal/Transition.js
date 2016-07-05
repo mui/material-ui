@@ -12,6 +12,20 @@ export const ENTERING = 2;
 export const ENTERED = 3;
 export const EXITING = 4;
 
+type DefaultProps = {
+  in: boolean,
+  onExiting: TransitionHandler,
+  timeout: number,
+  transitionAppear: boolean,
+  unmountOnExit: boolean,
+  onEnter: TransitionHandler,
+  onEntered: TransitionHandler,
+  onEntering: TransitionHandler,
+  onExit: TransitionHandler,
+  onExiting: TransitionHandler,
+  onExited: TransitionHandler,
+};
+
 type Props = {
   children?: Object,
   className?: string,
@@ -94,7 +108,23 @@ type State = {
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends Component<void, Props, State> {
+class Transition extends Component<DefaultProps, Props, State> {
+  static defaultProps:DefaultProps = {
+    in: false,
+    unmountOnExit: false,
+    transitionAppear: false,
+
+    timeout: 5000,
+
+    onEnter: noop,
+    onEntering: noop,
+    onEntered: noop,
+
+    onExit: noop,
+    onExiting: noop,
+    onExited: noop,
+  };
+
   state:State = {
     status: UNMOUNTED,
   };
@@ -170,21 +200,7 @@ class Transition extends Component<void, Props, State> {
     this.cancelNextCallback();
   }
 
-  props:Props = {
-    in: false,
-    unmountOnExit: false,
-    transitionAppear: false,
-
-    timeout: 5000,
-
-    onEnter: noop,
-    onEntering: noop,
-    onEntered: noop,
-
-    onExit: noop,
-    onExiting: noop,
-    onExited: noop,
-  };
+  props:Props;
 
   performEnter(props) {
     this.cancelNextCallback();

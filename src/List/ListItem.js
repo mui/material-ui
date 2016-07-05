@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -17,22 +17,29 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
   };
 });
 
+type DefaultProps = {
+  component: string,
+  gutters: boolean,
+};
+
 type Props = {
   children?: Object,
   className?: string,
   component: string|Object,
-  gutters: boolean,
+  gutters?: boolean,
 };
 
-export default class ListItem extends Component<void, Props, void> {
+export default class ListItem extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     component: 'div',
     gutters: true,
   };
+
+  props:Props;
 
   render():Element {
     const {className, component, gutters, ...other} = this.props;

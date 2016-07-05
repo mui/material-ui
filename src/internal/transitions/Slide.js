@@ -2,6 +2,11 @@
 import React, {Component, Element} from 'react';
 import Transition from '../Transition';
 
+type DefaultProps = {
+  direction: 'left' | 'right' | 'up' | 'down',
+  transitionDuration: number,
+};
+
 type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
@@ -15,16 +20,17 @@ type Props = {
   transitionDuration?: number,
 };
 
-
-export default class Slide extends Component<void, Props, void> {
+export default class Slide extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     theme: Object,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     direction: 'right',
     transitionDuration: 300,
   };
+
+  props:Props;
 
   getTranslateValue() {
     const x = this.props.direction === 'left' ? '100%' :

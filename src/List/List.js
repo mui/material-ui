@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -17,22 +17,29 @@ export const styleSheet = createStyleSheet('List', () => {
   };
 });
 
+type DefaultProps = {
+  component: string,
+  padding: boolean,
+};
+
 type Props = {
   children?: Object,
   className?: string,
   component: string|Object,
-  padding: boolean,
+  padding?: boolean,
 };
 
-export default class List extends Component<void, Props, void> {
+export default class List extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     component: 'div',
     padding: true,
   };
+
+  props:Props;
 
   render():Element {
     const {className, component, padding, ...other} = this.props;
