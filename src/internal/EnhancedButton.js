@@ -50,8 +50,7 @@ class EnhancedButton extends Component {
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
     keyboardFocused: PropTypes.bool,
-    linkButton: deprecated(PropTypes.bool, `LinkButton is no longer required when the \`href\` property is provided.
-      It will be removed with v0.16.0.`),
+    linkButton: PropTypes.bool,
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
@@ -265,7 +264,6 @@ class EnhancedButton extends Component {
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
       focusRippleOpacity, // eslint-disable-line no-unused-vars
-      href,
       keyboardFocused, // eslint-disable-line no-unused-vars
       linkButton, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
