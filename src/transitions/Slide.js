@@ -1,30 +1,37 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element, PropTypes} from 'react';
 import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
 
-export default class Slide extends Component {
-  static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
-    transitionDuration: PropTypes.number,
-  };
+type DefaultProps = {
+  direction: 'left' | 'right' | 'up' | 'down',
+  transitionDuration: number,
+};
 
-  static defaultProps = {
-    direction: 'right',
-    transitionDuration: 300,
-  };
+type Props = {
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Element<any>,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  direction: 'left' | 'right' | 'up' | 'down',
+  transitionDuration: number,
+};
 
+
+export default class Slide extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     theme: PropTypes.object.isRequired,
   };
 
+  static defaultProps:DefaultProps = {
+    direction: 'right',
+    transitionDuration: 300,
+  };
+ 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       !shallowEqual(this.props, nextProps) ||
@@ -32,16 +39,16 @@ export default class Slide extends Component {
     );
   }
 
-  handleEnter = (element) => {
+  handleEnter:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
     element.style.transition = this.context.theme.transitions.create('transform', `${this.props.transitionDuration}ms`);
   };
 
-  handleEntering = (element) => {
+  handleEntering:TransitionHandler = (element) => {
     element.style.transform = 'translate3d(0, 0, 0)';
   };
 
-  handleExiting = (element) => {
+  handleExiting:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
   };
 
@@ -53,7 +60,7 @@ export default class Slide extends Component {
     return `translate3d(${x}, ${y}, 0)`;
   }
 
-  render() {
+  render(): Element<any> {
     const {
       children,
       transitionDuration, // eslint-disable-line no-unused-vars

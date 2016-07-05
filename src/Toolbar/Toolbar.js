@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+// @flow
+import React, {Component, PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -19,7 +20,22 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   };
 });
 
-export default function Toolbar(props, context) {
+type Props = {
+  /**
+   * Can be a `ToolbarGroup` to render a group of related items.
+   */
+  children?: Element<any>,
+  /**
+   * The css class name of the root element.
+   */
+  className?: string,
+  /**
+   * If set to true, enables gutter padding
+   */
+  gutters: bool,
+};
+
+export default function Toolbar(props: Props, context) {
   const {
     children,
     className,
@@ -38,21 +54,6 @@ export default function Toolbar(props, context) {
     </div>
   );
 }
-
-Toolbar.propTypes = {
-  /**
-   * Can be a `ToolbarGroup` to render a group of related items.
-   */
-  children: PropTypes.node,
-  /**
-   * The css class name of the root element.
-   */
-  className: PropTypes.string,
-  /**
-   * If set to true, enables gutter padding
-   */
-  gutters: PropTypes.bool,
-};
 
 Toolbar.defaultProps = {
   gutters: true,

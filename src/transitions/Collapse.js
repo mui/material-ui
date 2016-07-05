@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import shallowEqual from 'recompose/shallowEqual';
@@ -20,59 +21,67 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
   };
 });
 
-export default class Collapse extends Component {
-  static propTypes = {
-    /**
-     * The content node to be collapsed.
-     */
-    children: PropTypes.node,
-    /**
-     * Class name passed to the wrapping container
-     * required for holding+measuring the expanding content
-     */
-    containerClassName: PropTypes.string,
-    /**
-     * Set to true to transition in
-     */
-    in: PropTypes.bool,
-    /**
-     * Callback fired before the component is entering
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component is exiting
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Set to 'auto' to automatically calculate transition time based on height
-     */
-    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  };
+type DefaultProps = {
+  in: boolean,
+  transitionDuration: number|string,
+}
 
-  static defaultProps = {
-    in: false,
-    transitionDuration: 300,
-  };
+type Props = {
+  /**
+   * The content node to be collapsed.
+   */
+  children?: Element<any>,
+  /**
+   * Class name passed to the wrapping container
+   * required for holding+measuring the expanding content
+   */
+  containerClassName?: string,
+  /**
+   * Set to true to transition in
+   */
+  in: boolean,
+  /**
+   * Callback fired before the component is entering
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the component is entering
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the component has entered
+   */
+  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component is exiting
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the component is exiting
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the component has exited
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height
+   */
+  transitionDuration: number|string,
+};
 
+export default class Collapse extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
+
+  static defaultProps:DefaultProps = {
+    in: false,
+    transitionDuration: 300,
+  };
+  
+  wrapper:HTMLElement;
+  props:Props;
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
@@ -81,14 +90,14 @@ export default class Collapse extends Component {
     );
   }
 
-  handleEnter = (element) => {
+  handleEnter:TransitionHandler = (element) => {
     element.style.height = '0px';
     if (this.props.onEnter) {
       this.props.onEnter();
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering:TransitionHandler = (element) => {
     const {transitionDuration} = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -109,7 +118,7 @@ export default class Collapse extends Component {
     }
   };
 
-  handleExit = (element) => {
+  handleExit:TransitionHandler = (element) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     element.style.height = `${wrapperHeight}px`;
     reflow(element);
@@ -118,14 +127,14 @@ export default class Collapse extends Component {
     }
   };
 
-  handleExiting = (element) => {
+  handleExiting:TransitionHandler = (element) => {
     element.style.height = '0px';
     if (this.props.onExiting) {
       this.props.onExiting();
     }
   };
 
-  getTransitionDuration(wrapperHeight) {
+  getTransitionDuration(wrapperHeight:number):number {
     if (!wrapperHeight) {
       return 0;
     }
@@ -133,7 +142,7 @@ export default class Collapse extends Component {
     return Math.round(175 / constant + 25) * constant;
   }
 
-  render() {
+  render():Element<any> {
     const {
       children,
       containerClassName,

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 
@@ -16,24 +17,31 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
   };
 });
 
-export default class ListItem extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    gutters: PropTypes.bool,
+type DefaultProps = {
+  component: string|Function,
+  gutters: boolean,
+};
+
+type Props = {
+  children?: Element<any>,
+  className?: string,
+  component: string|Function,
+  gutters: boolean,
+};
+
+export default class ListItem extends Component<DefaultProps, Props, void> {
+  static contextTypes = {
+    styleManager: Object,
   };
 
-  static defaultProps = {
+  defaultProps:DefaultProps = {
     component: 'div',
     gutters: true,
   };
+  
+  props:Props;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
+  render():Element<any> {
     const {className, component, gutters, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.root, {

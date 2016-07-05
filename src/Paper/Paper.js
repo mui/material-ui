@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+// @flow
+import React, {Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -23,7 +24,13 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
   };
 });
 
-export default function Paper(props, context) {
+type Props = {
+  className?: string,
+  rounded: boolean,
+  zDepth: number,
+};
+
+export default function Paper(props:Props, context:{styleManager: Object}):Element {
   const {className, rounded, zDepth, ...other} = props;
   const classes = context.styleManager.render(styleSheet, {group: 'mui'});
 
@@ -37,17 +44,11 @@ export default function Paper(props, context) {
   );
 }
 
-Paper.propTypes = {
-  className: PropTypes.string,
-  rounded: PropTypes.bool,
-  zDepth: PropTypes.number,
-};
-
 Paper.defaultProps = {
   rounded: true,
   zDepth: 2,
 };
 
 Paper.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: Object,
 };

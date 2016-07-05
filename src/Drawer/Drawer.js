@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
@@ -29,42 +30,42 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
   };
 });
 
+type Props = {
+  /**
+   * The contents of the `Drawer`
+   */
+  children?: Element<any>,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  /**
+   * If set to true, the drawer will dock itself
+   * and will no longer slide in with an overlay
+   */
+  docked?: boolean,
+  open: boolean,
+  /**
+   * The CSS class name of the paper element.
+   */
+  paperClassName?: string,
+  zDepth: number,
+};
+
 /**
  * This is a drawer
  */
 export default class Drawer extends Component {
-  static propTypes = {
-    /**
-     * The contents of the `Drawer`
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If set to true, the drawer will dock itself
-     * and will no longer slide in with an overlay
-     */
-    docked: PropTypes.bool,
-    open: PropTypes.bool,
-    /**
-     * The CSS class name of the paper element.
-     */
-    paperClassName: PropTypes.string,
-    zDepth: PropTypes.number,
+  static contextTypes = {
+    styleManager: Object,
   };
 
-  static defaultProps = {
+  props:Props = {
     open: false,
     zDepth: 16,
   };
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
+  render():Element<any> {
     const {
       children,
       className,
