@@ -84,11 +84,11 @@ export default class AppDrawer extends Component {
 
   componentWillMount() {
     this.resizeListener = addEventListener(window, 'resize', this.handleResize);
-    this.checkWindowSize();
   }
 
   componentDidMount() {
     this.mounted = true;
+    this.checkWindowSize();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
