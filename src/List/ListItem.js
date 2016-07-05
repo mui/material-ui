@@ -31,7 +31,7 @@ type Props = {
 
 export default class ListItem extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
   defaultProps:DefaultProps = {

@@ -1,5 +1,5 @@
 // @flow
-import React, {Element} from 'react';
+import React, {Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -40,5 +40,5 @@ export default function Divider(props:Props, context:{styleManager: Object}):Ele
 }
 
 Divider.contextTypes = {
-  styleManager: Object,
+  styleManager: PropTypes.object.isRequired,
 };

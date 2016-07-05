@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -95,6 +95,14 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
   };
 });
 
+type DefaultProps = {
+  component: string,
+  ripple: boolean,
+  focusRipple: boolean,
+  raised: boolean,
+  type: string,
+};
+
 type Props = {
   /**
    * If true, the button will use the theme's accent color.
@@ -124,8 +132,8 @@ type Props = {
    * If true, the button will have a keyboard focus ripple.
    * Ripple must also be true.
    */
-  focusRipple?: boolean,
-    /**
+  focusRipple: boolean,
+  /**
    * The URL to link to when the button is clicked.
    * If set, an `a` element will be used as the root node.
    */
@@ -152,9 +160,7 @@ type Props = {
  * Buttons communicate the action that will occur when the user
  * touches them.
  *
- * Material buttons trigger an ink reaction on press. They may display
- * text, imagery, or both. Flat buttons and raised buttons are the
- * most commonly used types.
+ * @see https://material.google.com/components/buttons.html
  *
  * ```js
  * import Button from 'material-ui/Button';
@@ -162,12 +168,12 @@ type Props = {
  * const Component = () => <Button>Hello World</Button>;
  * ```
  */
-export default class Button extends Component<void, Props, void> {
+export default class Button extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     component: 'button',
     ripple: true,
     focusRipple: true,
@@ -175,7 +181,9 @@ export default class Button extends Component<void, Props, void> {
     type: 'button',
   };
 
-  render():Element {
+  props:Props;
+
+  render() :Element<any> {
     const {
       accent,
       children,

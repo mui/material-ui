@@ -79,16 +79,16 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     in: false,
     transitionDuration: 300,
   };
-  
-  wrapper:HTMLElement;
-  props:Props;
-
+ 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState)
     );
   }
+
+  wrapper:HTMLElement;
+  props:Props;
 
   handleEnter:TransitionHandler = (element) => {
     element.style.height = '0px';

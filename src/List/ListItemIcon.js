@@ -1,5 +1,5 @@
 // @flow
-import React, {Element} from 'react';
+import React, {Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 

@@ -32,7 +32,7 @@ type Props = {
   /**
    * If set to true, enables gutter padding
    */
-  gutters: bool,
+  gutters: boolean,
 };
 
 export default function Toolbar(props: Props, context) {

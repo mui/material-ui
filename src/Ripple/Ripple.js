@@ -78,8 +78,8 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
 
   static defaultProps:DefaultProps = {
     puslate: false,
-  }
-  
+  };
+ 
   state:State = {
     rippleStart: false,
     rippleVisible: false,

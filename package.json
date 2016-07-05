@@ -73,7 +73,6 @@
     "babel-loader": "^6.2.4",
     "babel-plugin-flow-react-proptypes": "^0.7.4",
     "babel-plugin-transform-dev-warning": "^0.1.0",
-    "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-plugin-transform-react-constant-elements": "^6.5.0",
     "babel-plugin-transform-react-inline-elements": "^6.6.5",
     "babel-plugin-transform-react-remove-prop-types": "^0.2.6",

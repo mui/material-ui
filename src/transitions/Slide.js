@@ -21,7 +21,6 @@ type Props = {
   transitionDuration: number,
 };
 
-
 export default class Slide extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     theme: PropTypes.object.isRequired,
@@ -31,13 +30,15 @@ export default class Slide extends Component<DefaultProps, Props, void> {
     direction: 'right',
     transitionDuration: 300,
   };
- 
+
   shouldComponentUpdate(nextProps, nextState) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState)
     );
   }
+ 
+  props:Props;
 
   handleEnter:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();

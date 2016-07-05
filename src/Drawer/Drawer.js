@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
@@ -30,6 +30,11 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
   };
 });
 
+type DefaultProps = {
+  open: boolean,
+  zDepth: number,
+};
+
 type Props = {
   /**
    * The contents of the `Drawer`
@@ -55,15 +60,17 @@ type Props = {
 /**
  * This is a drawer
  */
-export default class Drawer extends Component {
+export default class Drawer extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    styleManager: Object,
+    styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props = {
+  static defaultProps:DefaultProps = {
     open: false,
     zDepth: 16,
   };
+
+  props:Props;
 
   render():Element<any> {
     const {
