@@ -7,11 +7,14 @@ import ButtonBase from './ButtonBase';
 function createButtonColorRule(main, contrast, hover) {
   return {
     color: main,
-    '& raised': {
+    '&raised': {
       color: contrast,
       backgroundColor: main,
       '&:hover': {
         backgroundColor: hover,
+      },
+      '&disabled': {
+        backgroundColor: main,
       },
     },
   };
@@ -34,8 +37,15 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       backgroundColor: 'transparent',
       transition: transitions.multi(['background-color', 'box-shadow']),
       '&:hover': {
+        textDecoration: 'none',
         backgroundColor: palette.text.divider,
       },
+      '&disabled': {
+        backgroundColor: 'transparent',
+      },
+    },
+    disabled: {
+      opacity: 0.4,
     },
     label: {
       width: '100%',
@@ -47,11 +57,18 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       color: palette.getContrastText(palette.grey[300]),
       backgroundColor: palette.grey[300],
       boxShadow: shadows[2],
+      '&keyboardFocused': {
+        boxShadow: shadows[6],
+      },
       '&:hover': {
         backgroundColor: palette.grey.A100,
       },
       '&:active': {
         boxShadow: shadows[8],
+      },
+      '&disabled': {
+        boxShadow: shadows[0],
+        backgroundColor: palette.grey[300],
       },
     },
     fab: {
@@ -104,6 +121,11 @@ type Props = {
    */
   fab?: boolean,
   /**
+   * If true, the button will have a keyboard focus ripple.
+   * Ripple must also be true.
+   */
+  focusRipple: boolean,
+  /**
    * The URL to link to when the button is clicked.
    * If set, an `a` element will be used as the root node.
    */
@@ -130,9 +152,7 @@ type Props = {
  * Buttons communicate the action that will occur when the user
  * touches them.
  *
- * Material buttons trigger an ink reaction on press. They may display
- * text, imagery, or both. Flat buttons and raised buttons are the
- * most commonly used types.
+ * @see https://material.google.com/components/buttons.html
  *
  * ```js
  * import Button from 'material-ui/Button';
@@ -148,6 +168,7 @@ export default class Button extends Component<void, Props, void> {
   props:Props = {
     component: 'button',
     ripple: true,
+    focusRipple: true,
     raised: false,
     type: 'button',
   };
@@ -157,6 +178,7 @@ export default class Button extends Component<void, Props, void> {
       accent,
       children,
       className,
+      disabled,
       fab,
       primary,
       raised,
@@ -171,10 +193,16 @@ export default class Button extends Component<void, Props, void> {
       [classes.fab]: fab,
       [classes.primary]: primary,
       [classes.accent]: accent,
+      [classes.disabled]: disabled,
     }, className);
 
     return (
-      <ButtonBase className={classNames} {...other}>
+      <ButtonBase
+        className={classNames}
+        disabled={disabled}
+        keyboardFocusedClassName={classes.keyboardFocused}
+        {...other}
+      >
         <span className={classes.label}>{children}</span>
       </ButtonBase>
     );

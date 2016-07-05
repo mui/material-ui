@@ -18,7 +18,14 @@ import coerce from '../utils/coerce';
 // Modals don't open on the server
 // so this won't break concurrency
 // ...........Could also put this on context....
-const modalManager = createModalManager();
+// TODO: refactor #createModalManager into a type-checked class
+declare class ModalManager{
+  add(modal:Modal):void;
+  remove(modal:Modal):void;
+  isTopModal(modal:Modal):boolean;
+}
+
+const modalManager:ModalManager = createModalManager();
 
 export const styleSheet = createStyleSheet('Modal', (theme) => {
   return {
@@ -34,6 +41,11 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
   };
 });
 
+type DefaultProps = {
+  modalManager: ModalManager,
+  show: boolean,
+}
+
 type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
@@ -43,6 +55,7 @@ type Props = {
    * The CSS class name of the root element.
    */
   className?: string,
+  modalManager: ModalManager,
   /**
    * Callback fired after the Modal finishes transitioning out
    */
@@ -56,10 +69,15 @@ type State = {
   exited: boolean,
 }
 
-export default class Modal extends Component<void, Props, State> {
+export default class Modal extends Component<DefaultProps, Props, State> {
   static contextTypes = {
     styleManager: Object,
   };
+
+  static defaultProps = {
+    modalManager: modalManager,
+    show: false,
+  }
 
   state:State = {
     exited: false,
@@ -109,9 +127,7 @@ export default class Modal extends Component<void, Props, State> {
   mountNode:Portal|HTMLElement;
   onDocumentKeyUpListener:RemoveEventListener;
   onFocusListener:RemoveEventListener;
-  props:Props = {
-    show: false,
-  };
+  props:Props;
 
   checkForFocus() {
     if (canUseDom) {
@@ -147,21 +163,21 @@ export default class Modal extends Component<void, Props, State> {
 
   handleShow() {
     const doc = ownerDocument(ReactDOM.findDOMNode(this));
-    modalManager.add(this);
+    this.props.modalManager.add(this);
     this.onDocumentKeyUpListener = addEventListener(doc, 'keyup', this.handleDocumentKeyUp);
     this.onFocusListener = addEventListener(doc, 'focus', this.handleFocusListener, true);
     this.focus();
   }
 
   handleHide() {
-    modalManager.remove(this);
+    this.props.modalManager.remove(this);
     this.onDocumentKeyUpListener.remove();
     this.onFocusListener.remove();
     this.restoreLastFocus();
   }
 
   handleFocusListener:Callback = () => {
-    if (!this.mounted || !modalManager.isTopModal(this)) {
+    if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
 
@@ -174,7 +190,7 @@ export default class Modal extends Component<void, Props, State> {
   };
 
   handleDocumentKeyUp:EventListener = () => {
-    // if (this.props.keyboard && event.keyCode === 27 && modalManager.isTopModal(this)) {
+    // if (this.props.keyboard && event.keyCode === 27 && this.props.modalManager.isTopModal(this)) {
     //   if (this.props.onEscapeKeyUp) {
     //     this.props.onEscapeKeyUp(event);
     //   }
@@ -208,6 +224,7 @@ export default class Modal extends Component<void, Props, State> {
     const {
       children,
       className,
+      modalManager, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       show,
       ...other,
@@ -236,7 +253,6 @@ export default class Modal extends Component<void, Props, State> {
         <div
           className={ClassNames(classes.modal, className)}
           ref={(c) => this.modal = c}
-          role="dialog"
           {...other}
         >
           <Fade

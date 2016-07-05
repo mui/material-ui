@@ -1,6 +1,14 @@
 
-export function createRippleHandler(instance, eventName, action) {
+export function createRippleHandler(instance, eventName, action, cb) {
   return function handleEvent(event) {
+    if (cb) {
+      cb.call(instance, event);
+    }
+
+    if (event.defaultPrevented) {
+      return false;
+    }
+
     if (instance.ripple) {
       instance.ripple[action](event);
     }

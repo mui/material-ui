@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import AppDrawer from './AppDrawer';
 
 export const styleSheet = createStyleSheet('AppFrame', (theme) => {
-  const {palette, typography} = theme;
+  const {palette, transitions, typography} = theme;
   return {
     '@raw html': {boxSizing: 'border-box'},
     '@raw *, @raw *:before, @raw *:after': {boxSizing: 'inherit'},
@@ -42,6 +42,19 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
     },
     title: {
       marginLeft: 24,
+    },
+    appBar: {
+      left: 'auto',
+      right: 0,
+      transition: transitions.create('width'),
+    },
+    [theme.breakpoints.up('lg')]: {
+      appBar: {
+        width: 'calc(100% - 250px)',
+      },
+      navIcon: {
+        display: 'none',
+      },
     },
   };
 });
@@ -87,11 +100,10 @@ export default class AppFrame extends Component {
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     const title = this.getTitle();
-    const appBarClassname = this.getCurrentPath() === '/' ? classes.appBarHome : '';
 
     return (
       <div className={classes.root}>
-        <AppBar className={appBarClassname}>
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton onClick={this.handleDrawerToggle} className={classes.navIcon}>menu</IconButton>
             <Text className={classes.title} type="title">{title}</Text>

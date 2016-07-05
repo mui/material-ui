@@ -50,7 +50,7 @@ export default class Text extends Component<void, Props, void> {
 
   render():Element {
     const {align, className, el, noWrap, type, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.text, {
       [classes[type]]: true,
       [classes.noWrap]: noWrap,

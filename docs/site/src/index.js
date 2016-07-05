@@ -2,8 +2,6 @@ import {AppContainer} from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-
-
 // import a11y from 'react-a11y';
 
 // if (process.env.NODE_ENV !== 'production') {

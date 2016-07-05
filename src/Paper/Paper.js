@@ -32,7 +32,7 @@ type Props = {
 
 export default function Paper(props:Props, context:{styleManager: Object}):Element {
   const {className, rounded, zDepth, ...other} = props;
-  const classes = context.styleManager.render(styleSheet);
+  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
 
   const classNames = ClassNames(classes.root, {
     [classes.rounded]: rounded,

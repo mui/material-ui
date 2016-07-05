@@ -43,7 +43,7 @@ export default class Overlay extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     return (
       <div

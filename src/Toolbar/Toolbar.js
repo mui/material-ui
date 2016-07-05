@@ -48,7 +48,7 @@ export default class Toolbar extends Component<void, Props, void> {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     return (
       <div className={ClassNames(classes.root, {[classes.gutters]: gutters}, className)} {...other} >

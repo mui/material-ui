@@ -14,7 +14,7 @@ export function find(arr, pred) {
 export function findIndex(arr, pred) {
   const predType = typeof pred;
   for (let i = 0; i < arr.length; i++) {
-    if (predType === 'function' && pred(arr[i], i, arr) === true) {
+    if (predType === 'function' && !!pred(arr[i], i, arr) === true) {
       return i;
     }
     if (predType === 'object' && contains(arr[i], pred)) {
@@ -34,4 +34,17 @@ export function contains(obj, pred) {
     }
   }
   return true;
+}
+
+export function throttle(fn, limit) {
+  let wait = false;
+  return function() {
+    if (!wait) {
+      fn.call();
+      wait = true;
+      return setTimeout(() => {
+        wait = false;
+      }, limit);
+    }
+  };
 }

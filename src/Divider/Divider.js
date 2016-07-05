@@ -30,7 +30,7 @@ type Props = {
 
 export default function Divider(props:Props, context:{styleManager: Object}):Element {
   const {absolute, className, ...other} = props;
-  const classes = context.styleManager.render(styleSheet);
+  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
   const classNames = ClassNames(classes.root, {
     [classes.absolute]: absolute,
   }, className);

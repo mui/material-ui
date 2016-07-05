@@ -2,6 +2,9 @@
 import React, {Component, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
+import {easing} from '../styles/transitions';
+
+// const reflow = (elem) => elem.offsetHeight;
 
 export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   ripple: {
@@ -15,13 +18,36 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
     background: 'currentColor',
   },
   animating: {
-    transition: theme.transitions.multi(
-      ['transform', 'opacity'],
-      '550ms',
-    ),
+    transition: theme.transitions.multi(['transform', 'opacity'], '550ms'),
+    '&fast': {
+      transitionDuration: '200ms',
+    },
+  },
+  pulsating: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    animation: `ripple-pulsate 1500ms ${easing.easeInOut} 200ms infinite`,
+    visible: {
+      opacity: 0.2,
+    },
   },
   visible: {
     opacity: 0.3,
+  },
+  '@keyframes ripple-pulsate': {
+    '0%': {
+      transform: 'scale(1)',
+    },
+    '50%': {
+      transform: 'scale(0.9)',
+    },
+    '100%': {
+      transform: 'scale(1)',
+    },
   },
 }));
 
@@ -29,6 +55,7 @@ declare function LeaveTimer(fn:Object, delay:number):void;
 
 type Props = {
   className?: string,
+  pulsate?: boolean,
   rippleSize?: number,
   rippleX?: number,
   rippleY?: number,
@@ -37,6 +64,7 @@ type Props = {
 type State = {
   rippleStart: boolean,
   rippleVisible: boolean,
+  ripplePulsate: boolean,
 }
 
 export default class Ripple extends Component<void, Props, State> {
@@ -47,13 +75,16 @@ export default class Ripple extends Component<void, Props, State> {
   state:State = {
     rippleStart: false,
     rippleVisible: false,
+    ripplePulsate: false,
   };
 
   componentWillUnmount() {
     clearTimeout(this.leaveTimer);
   }
 
-  props:Props;
+  props:Props = {
+    pulsate: false,
+  };
   leaveTimer:LeaveTimer;
 
   componentDidEnter() {
@@ -61,6 +92,7 @@ export default class Ripple extends Component<void, Props, State> {
   }
 
   componentWillLeave(callback:Callback) {
+    // reflow(ReactDOM.findDOMNode(this));
     this.stop();
     this.leaveTimer = setTimeout(() => {
       callback();
@@ -74,6 +106,18 @@ export default class Ripple extends Component<void, Props, State> {
     }, () => {
       window.requestAnimationFrame(() => {
         this.setState({rippleStart: false});
+      });
+    });
+  };
+
+  pulsate:Callback = () => {
+    this.setState({
+      rippleVisible: true,
+      rippleStart: true,
+      ripplePulsate: true,
+    }, () => {
+      window.requestAnimationFrame(() => {
+        this.setState({rippleStart: false, ripplePulsate: false});
       });
     });
   };
@@ -102,15 +146,24 @@ export default class Ripple extends Component<void, Props, State> {
   }
 
   render():Element {
-    const {className} = this.props;
+    const {className, pulsate} = this.props;
     const {rippleStart, rippleVisible} = this.state;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const rippleClassName = ClassNames(classes.ripple, {
       [classes.visible]: rippleVisible,
       [classes.animating]: !rippleStart,
+      [classes.fast]: pulsate,
     }, className);
 
-    return <span className={rippleClassName} style={this.getRippleStyles()}></span>;
+    const rippleStyles = this.getRippleStyles();
+
+    const ripple = <span className={rippleClassName} style={rippleStyles}></span>;
+
+    if (pulsate) {
+      return <span className={classes.pulsating}>{ripple}</span>;
+    }
+
+    return ripple;
   }
 }

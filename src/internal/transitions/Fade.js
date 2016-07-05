@@ -1,6 +1,6 @@
 // @flow
 import React, {Component, Element} from 'react';
-import Transition from 'react-overlays/lib/Transition';
+import Transition from '../Transition';
 
 type Props = {
   /**

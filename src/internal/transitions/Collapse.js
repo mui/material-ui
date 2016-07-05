@@ -2,7 +2,7 @@
 import React, {Component, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import Transition from 'react-overlays/lib/Transition';
+import Transition from '../Transition';
 
 const reflow = (elem) => elem.offsetHeight;
 
@@ -15,6 +15,7 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
     },
     entered: {
       height: 'auto',
+      transitionDuration: 0,
     },
   };
 });
@@ -24,6 +25,7 @@ type Props = {
    * The content node to be collapsed.
    */
   children?: Object,
+  containerClassName?: string,
   /**
    * Set to true to transition in
    */
@@ -65,10 +67,6 @@ export default class Collapse extends Component<void, Props, void> {
     element.style.height = `${wrapperHeight}px`;
   };
 
-  handleEntered:TransitionHandler = (element) => {
-    element.style.height = 'auto';
-  };
-
   handleExit:TransitionHandler = (element) => {
     element.style.height = `${this.wrapper.clientHeight}px`;
     reflow(element);
@@ -89,28 +87,26 @@ export default class Collapse extends Component<void, Props, void> {
   render():Element {
     const {
       children,
+      containerClassName,
       transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
-    const containerClassname = ClassNames({
-      [classes.container]: true,
-      [classes.entered]: this.props.in,
-    });
+    const containerClasses = ClassNames(classes.container, containerClassName);
 
     return (
       <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
-        onEntered={this.handleEntered}
+        enteredClassName={classes.entered}
         onExit={this.handleExit}
         onExiting={this.handleExiting}
         timeout={300}
         {...other}
       >
-        <div className={containerClassname}>
+        <div className={containerClasses}>
           <div ref={(c) => this.wrapper = c}>
             {children}
           </div>
