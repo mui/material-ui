@@ -10,7 +10,7 @@ describe('<Button>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
   });
 
   it('should render a <ButtonBase> element', () => {

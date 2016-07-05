@@ -35,7 +35,7 @@ export default class List extends Component {
 
   render() {
     const {className, component, padding, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.root, {
       [classes.padding]: padding,
     }, className);

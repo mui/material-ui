@@ -13,7 +13,7 @@ describe('<Modal>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
   });
 
   it('should not show by default', () => {

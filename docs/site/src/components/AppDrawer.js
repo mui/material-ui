@@ -10,11 +10,16 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/internal/transitions/Collapse';
 import shallowEqual from 'recompose/shallowEqual';
+import {throttle} from 'material-ui/utils/helpers';
+import addEventListener from 'material-ui/utils/addEventListener';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
+    drawer: {
+      width: '250px',
+    },
     paper: {
-      width: '275px',
+      width: '250px',
       backgroundColor: theme.palette.background.paper,
     },
     button: theme.mixins.gutters({
@@ -67,13 +72,24 @@ export default class AppDrawer extends Component {
   };
 
   static contextTypes = {
+    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 
   state = {
+    docked: false,
     nav: null,
     open: [],
   };
+
+  componentWillMount() {
+    this.resizeListener = addEventListener(window, 'resize', this.handleResize);
+    this.checkWindowSize();
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
@@ -81,6 +97,30 @@ export default class AppDrawer extends Component {
       !shallowEqual(this.state, nextState)
     );
   }
+
+  componentWillUnmount() {
+    this.mounted = false;
+
+    if (this.resizeListener) {
+      this.resizeListener.remove();
+    }
+  }
+
+  checkWindowSize = () => {
+    if (!this.mounted) {
+      return;
+    }
+
+    const breakpoint = this.context.theme.breakpoints.getWidth('lg');
+
+    if (this.state.docked && window.innerWidth < breakpoint) {
+      this.setState({docked: false});
+    } else if (!this.state.docked && window.innerWidth >= breakpoint) {
+      this.setState({docked: true});
+    }
+  };
+
+  handleResize = throttle(this.checkWindowSize, 100);
 
   renderNav(navRoot, props = {}) {
     return (
@@ -154,6 +194,8 @@ export default class AppDrawer extends Component {
 
     return (
       <Drawer
+        docked={this.state.docked}
+        className={this.classes.drawer}
         paperClassName={this.classes.paper}
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}

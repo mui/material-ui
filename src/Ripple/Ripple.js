@@ -1,7 +1,10 @@
 import React, {Component, PropTypes} from 'react';
+// import ReactDOM from 'react-dom';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import {easing} from '../styles/transitions';
+
+// const reflow = (elem) => elem.offsetHeight;
 
 export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   ripple: {
@@ -79,6 +82,7 @@ export default class Ripple extends Component {
   }
 
   componentWillLeave(callback) {
+      // reflow(ReactDOM.findDOMNode(this));
     this.stop();
     this.leaveTimer = setTimeout(() => {
       callback();

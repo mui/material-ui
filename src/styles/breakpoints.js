@@ -38,5 +38,9 @@ export default function createBreakpoints(
     return `@media (min-width:${values[startIndex]}${unit}) and (max-width:${values[endIndex + 1] - step}${unit})`;
   }
 
-  return {keys, values, up, down, only};
+  function getWidth(name) {
+    return breakpoints[name];
+  }
+
+  return {keys, values, up, down, only, getWidth};
 }

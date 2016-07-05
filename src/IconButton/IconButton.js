@@ -10,6 +10,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      textAlign: 'center',
       fontSize: 24,
       width: 48,
       height: 48,
@@ -18,6 +19,12 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       backgroundColor: 'transparent',
       color: 'inherit',
       transition: theme.transitions.create('background-color'),
+    },
+    label: {
+      width: '100%',
+      display: 'inherit',
+      alignItems: 'inherit',
+      justifyContent: 'inherit',
     },
     keyboardFocused: {
       backgroundColor: theme.palette.text.divider,
@@ -61,7 +68,7 @@ export default class IconButton extends Component {
 
   render() {
     const {children, className, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     return (
       <ButtonBase
         className={ClassNames(classes.root, className)}
@@ -69,7 +76,9 @@ export default class IconButton extends Component {
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >
-        {typeof children === 'string' ? <span className="material-icons">{children}</span> : children}
+        <span className={classes.label}>
+          {typeof children === 'string' ? <span className="material-icons">{children}</span> : children}
+        </span>
       </ButtonBase>
     );
   }

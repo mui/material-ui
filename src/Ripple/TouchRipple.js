@@ -11,7 +11,6 @@ export const styleSheet = createStyleSheet('TouchRipple', () => ({
     position: 'absolute',
     overflow: 'hidden',
     borderRadius: 'inherit',
-    WebkitMaskImage: 'url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC\')', // eslint-disable-line max-len
     width: '100%',
     height: '100%',
     left: 0,
@@ -124,7 +123,7 @@ export default class TouchRipple extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     return (
       <ReactTransitionGroup

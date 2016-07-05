@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
 
 export default function Divider(props, context) {
   const {absolute, className, ...other} = props;
-  const classes = context.styleManager.render(styleSheet);
+  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
   const classNames = ClassNames(classes.root, {
     [classes.absolute]: absolute,
   }, className);

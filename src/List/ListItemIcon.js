@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
 
 export default function ListItemIcon(props, context) {
   const {children, className} = props;
-  const classes = context.styleManager.render(styleSheet);
+  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
   const classNames = ClassNames(classes.root, className);
   return (
     <div className={classNames}>

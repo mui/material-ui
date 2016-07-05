@@ -136,7 +136,6 @@ export default class ButtonBase extends Component {
   });
 
   handleFocus = (event) => {
-    if (event) event.persist();
     if (!this.props.disabled) {
       // setTimeout is needed because the focus event fires first
       // Wait so that we can capture if this was a keyboard focus

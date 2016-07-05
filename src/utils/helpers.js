@@ -35,3 +35,16 @@ export function contains(obj, pred) {
   }
   return true;
 }
+
+export function throttle(fn, limit) {
+  let wait = false;
+  return function() {
+    if (!wait) {
+      fn.call();
+      wait = true;
+      return setTimeout(() => {
+        wait = false;
+      }, limit);
+    }
+  };
+}

@@ -90,7 +90,7 @@ export default class Collapse extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
 
     const containerClasses = ClassNames(classes.container, containerClassName);
 
