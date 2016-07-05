@@ -99,7 +99,7 @@ class EnhancedSwitch extends Component {
     switched: PropTypes.bool.isRequired,
     thumbStyle: PropTypes.object,
     trackStyle: PropTypes.object,
-    value: PropTypes.string,
+    value: PropTypes.any,
   };
 
   static contextTypes = {
@@ -266,10 +266,12 @@ class EnhancedSwitch extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchEnd, // eslint-disable-line no-unused-vars
+      onParentShouldUpdate, // eslint-disable-line no-unused-vars
       disabled,
       disableTouchRipple,
       disableFocusRipple,
       className,
+      rippleColor, // eslint-disable-line no-unused-vars
       rippleStyle,
       style,
       switched, // eslint-disable-line no-unused-vars

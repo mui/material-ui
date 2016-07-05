@@ -264,7 +264,8 @@ class EnhancedButton extends Component {
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
       focusRippleOpacity, // eslint-disable-line no-unused-vars
-      linkButton,
+      keyboardFocused, // eslint-disable-line no-unused-vars
+      linkButton, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       touchRippleOpacity, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
@@ -272,6 +273,7 @@ class EnhancedButton extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       tabIndex,
@@ -332,9 +334,9 @@ class EnhancedButton extends Component {
       onBlur: this.handleBlur,
       onClick: this.handleClick,
       onFocus: this.handleFocus,
-      onTouchTap: this.handleTouchTap,
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
+      onTouchTap: this.handleTouchTap,
       tabIndex: tabIndex,
       type: type,
     };

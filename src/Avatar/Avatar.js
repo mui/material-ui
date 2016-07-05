@@ -82,6 +82,7 @@ class Avatar extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       icon,
       src,
       style,

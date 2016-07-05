@@ -51,8 +51,8 @@ class Overlay extends Component {
 
   static defaultProps = {
     autoLockScrolling: true,
-    transitionEnabled: true,
     style: {},
+    transitionEnabled: true,
   };
 
   static contextTypes = {
@@ -68,6 +68,7 @@ class Overlay extends Component {
       autoLockScrolling,
       show,
       style,
+      transitionEnabled, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

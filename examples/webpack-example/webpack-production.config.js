@@ -17,7 +17,7 @@ const config = {
     // Minify the bundle
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        // supresses warnings, usually from module minification
+        // suppresses warnings, usually from module minification
         warnings: false,
       },
     }),

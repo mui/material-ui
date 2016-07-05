@@ -50,7 +50,7 @@ const getStyles = (props, context, state) => {
       pointerEvents: 'none',
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style)
       padding: 0,
       position: 'relative',
       width: '100%',
@@ -59,6 +59,7 @@ const getStyles = (props, context, state) => {
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
+      cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
     },
     textarea: {},
@@ -182,9 +183,7 @@ class TextField extends Component {
      * Name applied to the input.
      */
     name: PropTypes.string,
-    /**
-     * Callback function that is fired when the textfield loses focus.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the textfield's value changes.
@@ -194,14 +193,10 @@ class TextField extends Component {
      * The function to call when the user presses the Enter key.
      */
     onEnterKeyDown: deprecated(PropTypes.func,
-      'Use onKeyDown and check for keycode instead.'),
-    /**
-     * Callback function that is fired when the textfield gains focus.
-     */
+      'Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.'),
+    /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Callback function fired when key is pressed down.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * Number of rows to display when multiLine option is set to true.
@@ -384,11 +379,14 @@ class TextField extends Component {
 
   render() {
     const {
+      children,
       className,
       disabled,
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
+      floatingLabelFocusStyle, // eslint-disable-line no-unused-vars
+      floatingLabelStyle, // eslint-disable-line no-unused-vars
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
       hintText,
@@ -445,12 +443,12 @@ class TextField extends Component {
     const inputStyleMerged = Object.assign(styles.input, inputStyle);
 
     let inputElement;
-    if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children,
+    if (children) {
+      inputElement = React.cloneElement(children,
         {
           ...inputProps,
-          ...this.props.children.props,
-          style: Object.assign(inputStyleMerged, this.props.children.props.style),
+          ...children.props,
+          style: Object.assign(inputStyleMerged, children.props.style),
         });
     } else {
       inputElement = multiLine ? (
@@ -473,8 +471,18 @@ class TextField extends Component {
       );
     }
 
+    let rootProps = {};
+
+    if (children) {
+      rootProps = other;
+    }
+
     return (
-      <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+      <div
+        {...rootProps}
+        className={className}
+        style={prepareStyles(Object.assign(styles.root, style))}
+      >
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint

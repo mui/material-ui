@@ -7,7 +7,7 @@ import Paper from '../Paper';
 
 function validateLabel(props, propName, componentName) {
   if (process.env.NODE_ENV !== 'production') {
-    if (!props.children && !props.label && !props.icon) {
+    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
       return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
     }
   }
@@ -63,10 +63,10 @@ function getStyles(props, context, state) {
     root: {
       display: 'inline-block',
       transition: transitions.easeOut(),
+      minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
       position: 'relative',
-      minWidth: fullWidth ? '100%' : button.minWidth,
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
@@ -182,42 +182,17 @@ class RaisedButton extends Component {
      * a URL to link to.
      */
     linkButton: PropTypes.bool,
-    /**
-     * Callback function fired when a mouse button is pressed down on
-     * the element.
-     *
-     * @param {object} event `mousedown` event targeting the element.
-     */
+    /** @ignore */
     onMouseDown: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when a mouse button is released on the element.
-     *
-     * @param {object} event `mouseup` event targeting the element.
-     */
+    /** @ignore */
     onMouseUp: PropTypes.func,
-    /**
-     * Callback function fired when a touch point is removed from the element.
-     *
-     * @param {object} event `touchend` event targeting the element.
-     */
+    /** @ignore */
     onTouchEnd: PropTypes.func,
-    /**
-     * Callback function fired when the element is touched.
-     *
-     * @param {object} event `touchstart` event targeting the element.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
     /**
      * If true, the button will use the theme's primary color.
@@ -269,10 +244,16 @@ class RaisedButton extends Component {
 
   componentWillReceiveProps(nextProps) {
     const zDepth = nextProps.disabled ? 0 : 1;
-    this.setState({
+    const nextState = {
       zDepth: zDepth,
       initialZDepth: zDepth,
-    });
+    };
+
+    if (nextProps.disabled && this.state.hovered) {
+      nextState.hovered = false;
+    }
+
+    this.setState(nextState);
   }
 
   handleMouseDown = (event) => {
@@ -310,7 +291,9 @@ class RaisedButton extends Component {
 
   handleMouseEnter = (event) => {
     if (!this.state.keyboardFocused && !this.state.touched) {
-      this.setState({hovered: true});
+      this.setState({
+        hovered: true,
+      });
     }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
@@ -349,9 +332,11 @@ class RaisedButton extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       children,
       className,
       disabled,
+      fullWidth, // eslint-disable-line no-unused-vars
       icon,
       label,
       labelPosition,
