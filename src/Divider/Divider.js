@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+// @flow
+import React, {Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -22,7 +23,12 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
   };
 });
 
-export default function Divider(props, context) {
+type Props = {
+  absolute?: boolean,
+  className?: string,
+};
+
+export default function Divider(props:Props, context:{styleManager: Object}):Element {
   const {absolute, className, ...other} = props;
   const classes = context.styleManager.render(styleSheet);
   const classNames = ClassNames(classes.root, {
@@ -33,11 +39,6 @@ export default function Divider(props, context) {
   );
 }
 
-Divider.propTypes = {
-  absolute: PropTypes.bool,
-  className: PropTypes.string,
-};
-
 Divider.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: Object,
 };

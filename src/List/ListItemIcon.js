@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+// @flow
+import React, {Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -17,7 +18,14 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
   };
 });
 
-export default function ListItemIcon(props, context) {
+type Props = {
+  children?: Object,
+  className?: string,
+  primary?: Object,
+  secondary?: Object,
+};
+
+export default function ListItemIcon(props:Props, context:{styleManager: Object}):Element {
   const {children, className} = props;
   const classes = context.styleManager.render(styleSheet);
   const classNames = ClassNames(classes.root, className);
@@ -28,13 +36,6 @@ export default function ListItemIcon(props, context) {
   );
 }
 
-ListItemIcon.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  primary: PropTypes.node,
-  secondary: PropTypes.node,
-};
-
 ListItemIcon.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: Object,
 };

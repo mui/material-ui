@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -24,19 +25,26 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   },
 }));
 
-export default class Ripple extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    rippleSize: PropTypes.number,
-    rippleX: PropTypes.number,
-    rippleY: PropTypes.number,
-  };
+declare function LeaveTimer(fn:Object, delay:number):void;
 
+type Props = {
+  className?: string,
+  rippleSize?: number,
+  rippleX?: number,
+  rippleY?: number,
+};
+
+type State = {
+  rippleStart: boolean,
+  rippleVisible: boolean,
+}
+
+export default class Ripple extends Component<void, Props, State> {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: Object,
   };
 
-  state = {
+  state:State = {
     rippleStart: false,
     rippleVisible: false,
   };
@@ -45,18 +53,21 @@ export default class Ripple extends Component {
     clearTimeout(this.leaveTimer);
   }
 
+  props:Props;
+  leaveTimer:LeaveTimer;
+
   componentDidEnter() {
     this.start();
   }
 
-  componentWillLeave(callback) {
+  componentWillLeave(callback:Callback) {
     this.stop();
     this.leaveTimer = setTimeout(() => {
       callback();
     }, 550);
   }
 
-  start = () => {
+  start:Callback = () => {
     this.setState({
       rippleVisible: true,
       rippleStart: true,
@@ -67,7 +78,7 @@ export default class Ripple extends Component {
     });
   };
 
-  stop = () => {
+  stop:Callback = () => {
     this.setState({
       rippleVisible: false,
     });
@@ -90,7 +101,7 @@ export default class Ripple extends Component {
     return rippleStyles;
   }
 
-  render() {
+  render():Element {
     const {className} = this.props;
     const {rippleStart, rippleVisible} = this.state;
     const classes = this.context.styleManager.render(styleSheet);

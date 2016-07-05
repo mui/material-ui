@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import Transition from 'react-overlays/lib/Transition';
@@ -18,35 +19,36 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
   };
 });
 
-export default class Collapse extends Component {
-  static propTypes = {
-    /**
-     * The content node to be collapsed.
-     */
-    children: PropTypes.node,
-    /**
-     * Set to true to transition in
-     */
-    in: PropTypes.bool,
-    /**
-     * Set to 'auto' to automatically calculate transition time based on height
-     */
-    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+type Props = {
+  /**
+   * The content node to be collapsed.
+   */
+  children?: Object,
+  /**
+   * Set to true to transition in
+   */
+  in: boolean,
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height
+   */
+  transitionDuration?: number|string,
+};
+
+export default class Collapse extends Component<void, Props, void> {
+  static contextTypes = {
+    styleManager: Object,
   };
 
-  static defaultProps = {
+  wrapper:HTMLElement;
+  props:Props = {
     in: false,
   };
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  handleEnter = (element) => {
+  handleEnter:TransitionHandler = (element) => {
     element.style.height = 0;
   };
 
-  handleEntering = (element) => {
+  handleEntering:TransitionHandler = (element) => {
     const {transitionDuration} = this.props;
     const wrapperHeight = this.wrapper.clientHeight;
 
@@ -63,20 +65,20 @@ export default class Collapse extends Component {
     element.style.height = `${wrapperHeight}px`;
   };
 
-  handleEntered = (element) => {
+  handleEntered:TransitionHandler = (element) => {
     element.style.height = 'auto';
   };
 
-  handleExit = (element) => {
+  handleExit:TransitionHandler = (element) => {
     element.style.height = `${this.wrapper.clientHeight}px`;
     reflow(element);
   };
 
-  handleExiting = (element) => {
+  handleExiting:TransitionHandler = (element) => {
     element.style.height = 0;
   };
 
-  getTransitionDuration(wrapperHeight) {
+  getTransitionDuration(wrapperHeight:number):number {
     if (!wrapperHeight) {
       return 0;
     }
@@ -84,7 +86,7 @@ export default class Collapse extends Component {
     return Math.round(175 / constant + 25) * constant;
   }
 
-  render() {
+  render():Element {
     const {
       children,
       transitionDuration, // eslint-disable-line no-unused-vars

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import shallowEqual from 'recompose/shallowEqual';
@@ -16,25 +17,27 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
   };
 });
 
-export default class ListItemText extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    primary: PropTypes.node,
-    secondary: PropTypes.node,
-  };
+type Props = {
+  className?: string,
+  primary?: Object,
+  secondary?: Object,
+};
 
+export default class ListItemText extends Component<void, Props, void> {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: Object,
   };
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
+  shouldComponentUpdate(nextProps:Props, nextState:any, nextContext:{styleManager: Object}) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.context, nextContext)
     );
   }
 
-  render() {
+  props:Props;
+
+  render():Element {
     const {className, primary, secondary, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     const classNames = ClassNames(classes.root, className);

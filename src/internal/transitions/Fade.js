@@ -1,33 +1,36 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import Transition from 'react-overlays/lib/Transition';
 
-export default class Fade extends Component {
-  static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.node,
-    onExited: PropTypes.func,
-  };
+type Props = {
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Object,
+  onExited?: TransitionHandler,
+};
 
+export default class Fade extends Component<void, Props, void> {
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
+    theme: Object,
   };
 
-  handleEnter = (element) => {
+  props:Props
+
+  handleEnter:TransitionHandler = (element) => {
     element.style.opacity = 0;
     element.style.transition = this.context.theme.transitions.create('opacity');
   };
 
-  handleEntering = (element) => {
+  handleEntering:TransitionHandler = (element) => {
     element.style.opacity = 1;
   };
 
-  handleExit = (element) => {
+  handleExit:TransitionHandler = (element) => {
     element.style.opacity = 0;
   };
 
-  render() {
+  render():Element {
     const {children, ...other} = this.props;
 
     return (

@@ -1,27 +1,29 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import Transition from 'react-overlays/lib/Transition';
 
-export default class Slide extends Component {
-  static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
-    transitionDuration: PropTypes.number,
+type Props = {
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Object,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  direction?: 'left' | 'right' | 'up' | 'down',
+  transitionDuration?: number,
+};
+
+
+export default class Slide extends Component<void, Props, void> {
+  static contextTypes = {
+    theme: Object,
   };
 
-  static defaultProps = {
+  props:Props = {
     direction: 'right',
     transitionDuration: 300,
-  };
-
-  static contextTypes = {
-    theme: PropTypes.object.isRequired,
   };
 
   getTranslateValue() {
@@ -32,20 +34,20 @@ export default class Slide extends Component {
     return `translate3d(${x}, ${y}, 0)`;
   }
 
-  handleEnter = (element) => {
+  handleEnter:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
     element.style.transition = this.context.theme.transitions.create('transform', `${this.props.transitionDuration}ms`);
   };
 
-  handleEntering = (element) => {
+  handleEntering:TransitionHandler = (element) => {
     element.style.transform = 'translate3d(0, 0, 0)';
   };
 
-  handleExiting = (element) => {
+  handleExiting:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
   };
 
-  render() {
+  render():Element {
     const {
       children,
       transitionDuration, // eslint-disable-line no-unused-vars

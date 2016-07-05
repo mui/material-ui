@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import ReactDOM from 'react-dom';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
@@ -12,6 +13,7 @@ import Overlay from './Overlay';
 import Portal from './Portal';
 import Fade from '../internal/transitions/Fade';
 import addEventListener from '../utils/addEventListener';
+import coerce from '../utils/coerce';
 
 // Modals don't open on the server
 // so this won't break concurrency
@@ -32,35 +34,34 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
   };
 });
 
-export default class Modal extends Component {
+type Props = {
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Object,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  /**
+   * Callback fired after the Modal finishes transitioning out
+   */
+  onExited?: TransitionHandler,
+  onOverlayClick?: TransitionHandler,
+  onRequestClose?: TransitionHandler,
+  show: boolean,
+};
 
-  static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * Callback fired after the Modal finishes transitioning out
-     */
-    onExited: React.PropTypes.func,
-    onOverlayClick: PropTypes.func,
-    onRequestClose: PropTypes.func,
-    show: PropTypes.bool,
-  };
+type State = {
+  exited: boolean,
+}
 
-  static defaultProps = {
-    show: false,
-  };
-
+export default class Modal extends Component<void, Props, State> {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: Object,
   };
 
-  state = {
+  state:State = {
     exited: false,
   };
 
@@ -77,19 +78,19 @@ export default class Modal extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps:Props) {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
     }
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps:Props) {
     if (!this.props.show && nextProps.show) {
       this.checkForFocus();
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps:Props) {
     if (!prevProps.show && this.props.show) {
       this.handleShow();
     }
@@ -102,6 +103,16 @@ export default class Modal extends Component {
     this.mounted = false;
   }
 
+  lastFocus:?HTMLElement;
+  mounted:boolean
+  modal:HTMLElement;
+  mountNode:Portal|HTMLElement;
+  onDocumentKeyUpListener:RemoveEventListener;
+  onFocusListener:RemoveEventListener;
+  props:Props = {
+    show: false,
+  };
+
   checkForFocus() {
     if (canUseDom) {
       this.lastFocus = activeElement();
@@ -110,7 +121,7 @@ export default class Modal extends Component {
 
   focus() {
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && this.modal.lastChild;
+    const modalContent = coerce(this.modal && this.modal.lastChild, Element);
     const focusInModal = currentFocus && contains(modalContent, currentFocus);
 
     if (modalContent && !focusInModal) {
@@ -149,20 +160,20 @@ export default class Modal extends Component {
     this.restoreLastFocus();
   }
 
-  handleFocusListener = () => {
+  handleFocusListener:Callback = () => {
     if (!this.mounted || !modalManager.isTopModal(this)) {
       return;
     }
 
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && this.modal.lastChild;
+    const modalContent = coerce(this.modal && this.modal.lastChild, Element);
 
     if (modalContent && modalContent !== currentFocus && !contains(modalContent, currentFocus)) {
       modalContent.focus();
     }
   };
 
-  handleDocumentKeyUp = () => {
+  handleDocumentKeyUp:EventListener = () => {
     // if (this.props.keyboard && event.keyCode === 27 && modalManager.isTopModal(this)) {
     //   if (this.props.onEscapeKeyUp) {
     //     this.props.onEscapeKeyUp(event);
@@ -171,7 +182,7 @@ export default class Modal extends Component {
     // }
   };
 
-  handleOverlayClick = (event) => {
+  handleOverlayClick:EventListener = (event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
@@ -185,15 +196,15 @@ export default class Modal extends Component {
     }
   };
 
-  handleOverlayExited = (...args) => {
+  handleOverlayExited:TransitionHandler = (element) => {
     this.setState({exited: true});
     this.handleHide();
     if (this.props.onExited) {
-      this.props.onExited(...args);
+      this.props.onExited(element);
     }
   };
 
-  render() {
+  render():?Element {
     const {
       children,
       className,
