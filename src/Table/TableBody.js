@@ -121,8 +121,12 @@ class TableBody extends Component {
   };
 
   state = {
-    selectedRows: this.calculatePreselectedRows(this.props),
+    selectedRows: [],
   };
+
+  componentWillMount() {
+    this.setState({selectedRows: this.calculatePreselectedRows(this.props)});
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {

@@ -56,8 +56,14 @@ class EnhancedTextarea extends Component {
   };
 
   state = {
-    height: this.props.rows * rowsHeight,
+    height: null,
   };
+
+  componentWillMount() {
+    this.setState({
+      height: this.props.rows * rowsHeight,
+    });
+  }
 
   componentDidMount() {
     this.syncHeightWithShadow();
