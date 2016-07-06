@@ -28,7 +28,7 @@ class SvgIcon extends Component {
      */
     style: PropTypes.object,
     /**
-     * Allows you to redifine what the coordinates
+     * Allows you to redefine what the coordinates
      * without units mean inside an svg element. For example,
      * if the SVG element is 500 (width) by 200 (height), and you
      * pass viewBox="0 0 50 20", this means that the coordinates inside
