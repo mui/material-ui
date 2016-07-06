@@ -28,7 +28,7 @@ export default class ListItemText extends Component<void, Props, void> {
     styleManager: PropTypes.object.isRequired,
   };
 
-  shouldComponentUpdate(nextProps:Props, nextState:any, nextContext:{styleManager: Object}) {
+  shouldComponentUpdate(nextProps:Props, nextState:void, nextContext:{styleManager: Object}) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.context, nextContext)

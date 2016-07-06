@@ -119,7 +119,7 @@ type Props = {
   /**
    * The element or component used for the root node.
    */
-  component?: string|Object,
+  component?: string|Function,
   /**
    * If true, the button will be disabled.
    */

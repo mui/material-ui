@@ -25,7 +25,7 @@ type DefaultProps = {
 type Props = {
   children?: Element,
   className?: string,
-  component: string|Object,
+  component: string|Function,
   gutters?: boolean,
 };
 
