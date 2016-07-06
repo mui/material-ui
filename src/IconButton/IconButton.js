@@ -43,7 +43,7 @@ type Props = {
   /**
    * Can be used to pass a `FontIcon` element as the icon for the button.
    */
-  children?: Object,
+  children?: Element,
   /**
    * The CSS class name of the root element.
    */

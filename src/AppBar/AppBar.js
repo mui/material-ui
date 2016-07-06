@@ -34,7 +34,7 @@ type DefaultProps = {
 
 type Props = {
   accent?: boolean,
-  children?: Object|string,
+  children?: Element,
   className?: string,
   primary?: boolean,
 };

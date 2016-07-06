@@ -34,7 +34,7 @@ export default class ListItem extends Component<DefaultProps, Props, void> {
     styleManager: PropTypes.object.isRequired,
   };
 
-  defaultProps:DefaultProps = {
+  static defaultProps:DefaultProps = {
     component: 'div',
     gutters: true,
   };

@@ -28,7 +28,7 @@ type DefaultProps = {
 };
 
 type Props = {
-  children?: Object,
+  children?: Element,
   className?: string,
   /**
    * CSS class or classes applied when the component is entered

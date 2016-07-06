@@ -36,7 +36,7 @@ type DefaultProps = {
 
 type Props = {
   align?: string,
-  children?: Object,
+  children?: Element,
   className?: string,
   component: string,
   noWrap?: boolean,
