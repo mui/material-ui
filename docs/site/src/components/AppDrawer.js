@@ -10,8 +10,6 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/internal/transitions/Collapse';
 import shallowEqual from 'recompose/shallowEqual';
-import {throttle} from 'material-ui/utils/helpers';
-import addEventListener from 'material-ui/utils/addEventListener';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
@@ -66,30 +64,20 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
 
 export default class AppDrawer extends Component {
   static propTypes = {
+    docked: PropTypes.bool,
     onRequestClose: PropTypes.func,
     open: PropTypes.bool,
     routes: PropTypes.array,
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 
   state = {
-    docked: false,
     nav: null,
     open: [],
   };
-
-  componentWillMount() {
-    this.resizeListener = addEventListener(window, 'resize', this.handleResize);
-  }
-
-  componentDidMount() {
-    this.mounted = true;
-    this.checkWindowSize();
-  }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
@@ -97,30 +85,6 @@ export default class AppDrawer extends Component {
       !shallowEqual(this.state, nextState)
     );
   }
-
-  componentWillUnmount() {
-    this.mounted = false;
-
-    if (this.resizeListener) {
-      this.resizeListener.remove();
-    }
-  }
-
-  checkWindowSize = () => {
-    if (!this.mounted) {
-      return;
-    }
-
-    const breakpoint = this.context.theme.breakpoints.getWidth('lg');
-
-    if (this.state.docked && window.innerWidth < breakpoint) {
-      this.setState({docked: false});
-    } else if (!this.state.docked && window.innerWidth >= breakpoint) {
-      this.setState({docked: true});
-    }
-  };
-
-  handleResize = throttle(this.checkWindowSize, 100);
 
   renderNav(navRoot, props = {}) {
     return (
@@ -191,14 +155,13 @@ export default class AppDrawer extends Component {
   render() {
     this.classes = this.context.styleManager.render(styleSheet);
     this.classes.activeNavLink = ClassNames(this.classes.navLink, this.classes.activeLink);
-
     return (
       <Drawer
-        docked={this.state.docked}
         className={this.classes.drawer}
         paperClassName={this.classes.paper}
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}
+        docked={this.props.docked}
       >
         <div className={this.classes.nav}>
           <Toolbar>

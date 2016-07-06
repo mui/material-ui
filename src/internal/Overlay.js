@@ -48,6 +48,7 @@ export default class Overlay extends Component {
     return (
       <div
         className={ClassNames(classes.root, className)}
+        aria-hidden="true"
         {...other}
       >
         {children}
