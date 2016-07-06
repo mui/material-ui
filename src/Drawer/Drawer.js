@@ -38,7 +38,7 @@ type Props = {
   /**
    * The contents of the `Drawer`
    */
-  children?: Object,
+  children?: Element,
   /**
    * The CSS class name of the root element.
    */

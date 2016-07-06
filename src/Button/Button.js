@@ -111,7 +111,7 @@ type Props = {
   /**
    * The content of the button.
    */
-  children?: Object|string,
+  children?: Element,
   /**
    * The CSS class name of the root element.
    */

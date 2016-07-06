@@ -11,7 +11,7 @@ type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: Object,
+  children?: Element,
   /**
    * The CSS class name of the root element.
    */

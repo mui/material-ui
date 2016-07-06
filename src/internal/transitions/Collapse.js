@@ -28,7 +28,7 @@ type Props = {
   /**
    * The content node to be collapsed.
    */
-  children?: Object,
+  children?: Element,
   containerClassName?: string,
   /**
    * Set to true to transition in

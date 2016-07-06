@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
 });
 
 type Props = {
-  children?: Object,
+  children?: Element,
   className?: string,
   primary?: Object,
   secondary?: Object,

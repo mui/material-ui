@@ -6,7 +6,7 @@ type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: Object,
+  children?: Element,
   onExited?: TransitionHandler,
 };
 

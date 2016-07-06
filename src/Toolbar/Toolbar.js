@@ -28,7 +28,7 @@ type Props = {
   /**
    * Can be a `ToolbarGroup` to render a group of related items.
    */
-  children?: Object,
+  children?: Element,
   /**
    * The css class name of the root element.
    */

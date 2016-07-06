@@ -23,7 +23,7 @@ type DefaultProps = {
 };
 
 type Props = {
-  children?: Object,
+  children?: Element,
   className?: string,
   component: string|Object,
   gutters?: boolean,
