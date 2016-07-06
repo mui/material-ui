@@ -101,10 +101,10 @@ export default class AppFrame extends Component {
 
     const breakpoint = this.context.theme.breakpoints.getWidth('lg');
 
-    if (this.state.docked && window.innerWidth < breakpoint) {
-      this.setState({docked: false});
-    } else if (!this.state.docked && window.innerWidth >= breakpoint) {
-      this.setState({docked: true});
+    if (this.state.drawerDocked && window.innerWidth < breakpoint) {
+      this.setState({drawerDocked: false});
+    } else if (!this.state.drawerDocked && window.innerWidth >= breakpoint) {
+      this.setState({drawerDocked: true});
     }
   };
 

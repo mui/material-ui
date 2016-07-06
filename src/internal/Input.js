@@ -1,9 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import Input from '../internal/Input';
 
-export const styleSheet = createStyleSheet('TextField', () => {
+export const styleSheet = createStyleSheet('Input', () => {
   return {
     root: {
     },
@@ -11,22 +10,18 @@ export const styleSheet = createStyleSheet('TextField', () => {
 });
 
 /**
- * TextField
- *
- * @see https://material.google.com/components/text-fields.html
- *
- * ```js
- * import TextField from 'material-ui/TextField';
- *
- * const Component = () => <TextField value="Hello World">;
- * ```
+ * Input
  */
-export default class TextField extends Component {
+export default class Input extends Component {
   static propTypes = {
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * The element or component used for the root node.
+     */
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /**
      * Input type
      */
@@ -34,6 +29,7 @@ export default class TextField extends Component {
   };
 
   static defaultProps = {
+    component: 'input',
     type: 'text',
   };
 
@@ -44,6 +40,8 @@ export default class TextField extends Component {
   render() {
     const {
       className,
+      component,
+      type,
       ...other,
     } = this.props;
 
@@ -53,11 +51,16 @@ export default class TextField extends Component {
       [classes.root]: true,
     }, className);
 
-    return (
-      <Input
-        className={classNames}
-        {...other}
-      />
-    );
+    const inputProps = {
+      ref: (c) => this.input = c,
+      className: classNames,
+      ...other,
+    };
+
+    if (component === 'input' || typeof component === 'function') {
+      inputProps.type = type;
+    }
+
+    return React.createElement(component, inputProps);
   }
 }
