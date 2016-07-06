@@ -30,6 +30,7 @@ class Calendar extends Component {
     DateTimeFormat: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
+    clearSelection: PropTypes.bool,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
     initialDate: PropTypes.object,
@@ -361,6 +362,7 @@ class Calendar extends Component {
             <CalendarActionButtons
               autoOk={this.props.autoOk}
               cancelLabel={cancelLabel}
+              clearSelection={this.props.clearSelection}
               okLabel={okLabel}
               onTouchTapCancel={onTouchTapCancel}
               onTouchTapOk={onTouchTapOk}

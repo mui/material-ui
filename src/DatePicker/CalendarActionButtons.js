@@ -5,6 +5,8 @@ class CalendarActionButton extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
+    clearSelection: PropTypes.bool,
+    handleCancelLabel: PropTypes.func,
     okLabel: PropTypes.node,
     onTouchTapCancel: PropTypes.func,
     onTouchTapOk: PropTypes.func,
@@ -35,7 +37,7 @@ class CalendarActionButton extends Component {
     return (
       <div style={styles.root} >
         <FlatButton
-          label={wordings ? wordings.cancel : cancelLabel}
+          label={(this.props.clearSelection && this.props.cancelLabel === 'Cancel') ? 'Clear' : cancelLabel}
           onTouchTap={this.props.onTouchTapCancel}
           primary={true}
           style={styles.flatButtons}

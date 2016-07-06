@@ -12,6 +12,7 @@ class DatePickerDialog extends Component {
     DateTimeFormat: PropTypes.func,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
+    clearSelection: PropTypes.bool,
     container: PropTypes.oneOf(['dialog', 'inline']),
     containerStyle: PropTypes.object,
     disableYearSelection: PropTypes.bool,
@@ -44,6 +45,7 @@ class DatePickerDialog extends Component {
   };
 
   state = {
+    clearSelection: this.props.clearSelection,
     open: false,
   };
 
@@ -74,6 +76,9 @@ class DatePickerDialog extends Component {
   };
 
   handleTouchTapCancel = () => {
+    if (this.state.clearSelection) {
+      this.props.onAccept(undefined);
+    }
     this.dismiss();
   };
 
@@ -104,6 +109,7 @@ class DatePickerDialog extends Component {
       DateTimeFormat,
       autoOk,
       cancelLabel,
+      clearSelection,
       container,
       containerStyle,
       disableYearSelection,
@@ -159,6 +165,7 @@ class DatePickerDialog extends Component {
             autoOk={autoOk}
             DateTimeFormat={DateTimeFormat}
             cancelLabel={cancelLabel}
+            clearSelection={clearSelection}
             disableYearSelection={disableYearSelection}
             firstDayOfWeek={firstDayOfWeek}
             initialDate={initialDate}
