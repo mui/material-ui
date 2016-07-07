@@ -1,3 +1,4 @@
+// @flow
 import merge from 'lodash/merge';
 import hashObject from '../utils/hashObject';
 import {getContrastRatio} from './colorManipulator';
@@ -10,11 +11,11 @@ import zIndex from './zIndex';
 import createMixins from './mixins';
 
 export function createMuiTheme(
-  palette = createPalette(),
-  typography = createTypography(palette),
-  breakpoints = createBreakpoints(),
-  mixins = createMixins(breakpoints),
-  ...more
+  palette:Palette = createPalette(),
+  typography:Typography = createTypography(palette),
+  breakpoints:Breakpoints = createBreakpoints(),
+  mixins:Mixins = createMixins(breakpoints),
+  ...more:any
 ) {
   const properties = merge({
     dir: 'ltr',
@@ -36,12 +37,27 @@ export function createMuiTheme(
   return muiTheme;
 }
 
+type Palette = {
+  type: 'dark' | 'light',
+  text: TextScheme,
+  background: BackgroundScheme,
+  shades: Shades,
+  primary: string,
+  accent: string,
+  grey: Object, // cannot use ColorRange yet
+  getContrastText: (color:string) => string,
+}
+
 export function createPalette({
   primary = indigo,
   accent = pink,
   error = red,
   dark = false,
-} = {}) {
+}:{
+  primary: string,
+  accent: string,
+  dark: boolean,
+} = {}):Palette {
   const type = dark ? 'dark' : 'light';
 
   return {
@@ -58,7 +74,33 @@ export function createPalette({
   };
 }
 
-export const light = {
+type TextScheme = {
+  primary: string,
+  secondary: string,
+  disabled: string,
+  hint: string,
+  icon: string,
+  divider: string
+}
+
+type BackgroundScheme = {
+  default: string,
+  paper: string,
+  appBar: string,
+  status: string,
+}
+
+type ColorScheme = {
+  text: TextScheme,
+  background: BackgroundScheme
+}
+
+type Shades = {
+  dark: ColorScheme,
+  light: ColorScheme
+}
+
+export const light:ColorScheme = {
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
@@ -77,7 +119,7 @@ export const light = {
   },
 };
 
-export const dark = {
+export const dark:ColorScheme = {
   text: {
     primary: 'rgba(255, 255, 255, 1)',
     secondary: 'rgba(255, 255, 255, 0.70)',
@@ -95,9 +137,9 @@ export const dark = {
   },
 };
 
-export const shades = {dark, light};
+export const shades:Shades = {dark, light};
 
-function getContrastText(color) {
+function getContrastText(color:string):string {
   if (getContrastRatio(color, black) < 7) {
     return dark.text.primary;
   }
