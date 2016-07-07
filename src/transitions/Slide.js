@@ -40,6 +40,14 @@ export default class Slide extends Component<DefaultProps, Props, void> {
  
   props:Props;
 
+  getTranslateValue() {
+    const x = this.props.direction === 'left' ? '100%' :
+      this.props.direction === 'right' ? '-100%' : '0';
+    const y = this.props.direction === 'up' ? '100%' :
+      this.props.direction === 'down' ? '-100%' : '0';
+    return `translate3d(${x}, ${y}, 0)`;
+  }
+
   handleEnter:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
     element.style.transition = this.context.theme.transitions.create('transform', `${this.props.transitionDuration}ms`);
