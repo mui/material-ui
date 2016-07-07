@@ -127,8 +127,8 @@ class IconMenu extends Component {
     onMouseLeave: () => {},
     onMouseEnter: () => {},
     onMouseUp: () => {},
-    onTouchTap: () => {},
     onRequestChange: () => {},
+    onTouchTap: () => {},
     targetOrigin: {
       vertical: 'top',
       horizontal: 'left',
@@ -233,10 +233,12 @@ class IconMenu extends Component {
       onMouseLeave,
       onMouseEnter,
       onMouseUp,
+      onRequestChange, // eslint-disable-line no-unused-vars
       onTouchTap,
       menuStyle,
       style,
       targetOrigin,
+      touchTapCloseDelay, // eslint-disable-line no-unused-vars
       useLayerForClickAway,
       ...other,
     } = this.props;
@@ -270,7 +272,6 @@ class IconMenu extends Component {
     const menu = (
       <Menu
         {...other}
-        animateOpen={true}
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
         onEscKeyDown={this.handleEscKeyDownMenu}
         onItemTouchTap={this.handleItemTouchTap}
