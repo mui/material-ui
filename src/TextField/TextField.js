@@ -46,7 +46,7 @@ const getStyles = (props, context, state) => {
       pointerEvents: 'none',
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style)
       padding: 0,
       position: 'relative',
       width: '100%',
@@ -55,6 +55,7 @@ const getStyles = (props, context, state) => {
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
+      cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
     },
     textarea: {},
@@ -184,7 +185,7 @@ class TextField extends Component {
      * The function to call when the user presses the Enter key.
      */
     onEnterKeyDown: deprecated(PropTypes.func,
-      'Use onKeyDown and check for keycode instead.'),
+      'Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.'),
     /** @ignore */
     onFocus: PropTypes.func,
     /** @ignore */
@@ -376,6 +377,8 @@ class TextField extends Component {
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
+      floatingLabelFocusStyle, // eslint-disable-line no-unused-vars
+      floatingLabelStyle, // eslint-disable-line no-unused-vars
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
       hintText,

@@ -33,6 +33,7 @@ function getStyles(props, context) {
     disabled: {
       color: baseTheme.palette.disabledColor,
       fill: baseTheme.palette.disabledColor,
+      cursor: 'not-allowed',
     },
   };
 }
@@ -175,7 +176,9 @@ class IconButton extends Component {
       if (this.props.onBlur) this.props.onBlur(event);
     }
 
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(event, keyboardFocused);
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event, keyboardFocused);
+    }
   };
 
   render() {
@@ -184,7 +187,9 @@ class IconButton extends Component {
       disableTouchRipple,
       children,
       iconClassName,
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       tooltip,
+      tooltipPosition: tooltipPositionProp,
       touch,
       iconStyle,
       ...other,
@@ -192,7 +197,7 @@ class IconButton extends Component {
     let fonticon;
 
     const styles = getStyles(this.props, this.context);
-    const tooltipPosition = this.props.tooltipPosition.split('-');
+    const tooltipPosition = tooltipPositionProp.split('-');
 
     const tooltipElement = tooltip ? (
       <Tooltip

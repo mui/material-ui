@@ -11,7 +11,9 @@ describe('<StepLabel />', () => {
     return shallow(node, {
       context: {
         muiTheme,
-        stepper: {orientation: 'horizontal'},
+        stepper: {
+          orientation: 'horizontal',
+        },
         ...context,
       },
     });
@@ -21,14 +23,14 @@ describe('<StepLabel />', () => {
     const wrapper = shallowWithContext(
       <StepLabel
         style={{paddingRight: 200, color: 'purple', border: '1px solid tomato'}}
-        myProp="hello"
+        data-myProp="hello"
       />
     );
-    const {style, myProp} = wrapper.props();
-    assert.strictEqual(style.paddingRight, 200);
-    assert.strictEqual(style.color, 'purple');
-    assert.strictEqual(style.border, '1px solid tomato');
-    assert.strictEqual(myProp, 'hello');
+    const props = wrapper.props();
+    assert.strictEqual(props.style.paddingRight, 200);
+    assert.strictEqual(props.style.color, 'purple');
+    assert.strictEqual(props.style.border, '1px solid tomato');
+    assert.strictEqual(props['data-myProp'], 'hello');
   });
 
   describe('label content', () => {

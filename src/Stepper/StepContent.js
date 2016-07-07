@@ -37,6 +37,10 @@ class StepContent extends Component {
     /**
      * @ignore
      */
+    completed: PropTypes.bool,
+    /**
+     * @ignore
+     */
     last: PropTypes.bool,
     /**
      * Override the inline-style of the root element.
@@ -66,6 +70,7 @@ class StepContent extends Component {
     const {
       active,
       children,
+      completed, // eslint-disable-line no-unused-vars
       last, // eslint-disable-line no-unused-vars
       style,
       transition,

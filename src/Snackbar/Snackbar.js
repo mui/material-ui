@@ -195,6 +195,9 @@ class Snackbar extends Component {
 
   render() {
     const {
+      autoHideDuration, // eslint-disable-line no-unused-vars
+      message: messageProp, // eslint-disable-line no-unused-vars
+      onRequestClose, // eslint-disable-line no-unused-vars
       onActionTouchTap,
       style,
       bodyStyle,

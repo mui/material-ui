@@ -7,7 +7,7 @@ import FlatButtonLabel from './FlatButtonLabel';
 
 function validateLabel(props, propName, componentName) {
   if (process.env.NODE_ENV !== 'production') {
-    if (!props.children && !props.label && !props.icon) {
+    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
       return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
     }
   }
@@ -116,6 +116,14 @@ class FlatButton extends Component {
     isKeyboardFocused: false,
     touch: false,
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled && this.state.hovered) {
+      this.setState({
+        hovered: false,
+      });
+    }
+  }
 
   handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});

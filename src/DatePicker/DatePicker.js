@@ -137,7 +137,8 @@ class DatePicker extends Component {
     /**
      * Wordings used inside the button of the dialog.
      */
-    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
+    wordings: deprecated(PropTypes.object, `Instead, use \`cancelLabel\` and \`okLabel\`.
+      It will be removed with v0.16.0.`),
   };
 
   static defaultProps = {
@@ -269,6 +270,7 @@ class DatePicker extends Component {
       dialogContainerStyle,
       disableYearSelection,
       firstDayOfWeek,
+      formatDate: formatDateProp,
       locale,
       maxDate,
       minDate,
@@ -286,7 +288,7 @@ class DatePicker extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const formatDate = this.props.formatDate || this.formatDate;
+    const formatDate = formatDateProp || this.formatDate;
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>

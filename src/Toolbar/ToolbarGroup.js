@@ -74,10 +74,6 @@ class ToolbarGroup extends Component {
      */
     firstChild: PropTypes.bool,
     /**
-     * Determines the side the `ToolbarGroup` will snap to. Either 'left' or 'right'.
-     */
-    float: PropTypes.oneOf(['left', 'right']),
-    /**
      * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
      * to prevent setting the right gap.
      */
@@ -108,6 +104,8 @@ class ToolbarGroup extends Component {
     const {
       children,
       className,
+      firstChild, // eslint-disable-line no-unused-vars
+      lastChild, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
@@ -126,8 +124,7 @@ class ToolbarGroup extends Component {
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, styles.dropDownMenu.root, currentChild.props.style),
-            styleControlBg: styles.dropDownMenu.controlBg,
-            styleUnderline: styles.dropDownMenu.underline,
+            underlineStyle: styles.dropDownMenu.underline,
           });
         case 'RaisedButton' :
         case 'FlatButton' :

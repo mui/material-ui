@@ -48,7 +48,7 @@ function getStyles(props, context, state) {
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: (!selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
+      cursor: props.disableYearSelection ? 'not-allowed' : (!selectedYear ? 'pointer' : 'default'),
     },
   };
 
@@ -80,9 +80,15 @@ class DateDisplay extends Component {
   };
 
   state = {
-    selectedYear: !this.props.monthDaySelected,
+    selectedYear: false,
     transitionDirection: 'up',
   };
+
+  componentWillMount() {
+    if (!this.props.monthDaySelected) {
+      this.setState({selectedYear: true});
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDate !== this.props.selectedDate) {

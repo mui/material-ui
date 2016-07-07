@@ -121,8 +121,12 @@ class TableBody extends Component {
   };
 
   state = {
-    selectedRows: this.calculatePreselectedRows(this.props),
+    selectedRows: [],
   };
+
+  componentWillMount() {
+    this.setState({selectedRows: this.calculatePreselectedRows(this.props)});
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
@@ -164,19 +168,20 @@ class TableBody extends Component {
     return React.Children.map(this.props.children, (child) => {
       if (React.isValidElement(child)) {
         const props = {
-          displayRowCheckbox: this.props.displayRowCheckbox,
           hoverable: this.props.showRowHover,
           selected: this.isRowSelected(rowNumber),
           striped: this.props.stripedRows && (rowNumber % 2 === 0),
           rowNumber: rowNumber++,
         };
-        const checkboxColumn = this.createRowCheckboxColumn(props);
 
         if (rowNumber === numChildren) {
           props.displayBorder = false;
         }
 
-        const children = [checkboxColumn];
+        const children = [
+          this.createRowCheckboxColumn(props),
+        ];
+
         React.Children.forEach(child.props.children, (child) => {
           children.push(child);
         });
@@ -187,15 +192,18 @@ class TableBody extends Component {
   }
 
   createRowCheckboxColumn(rowProps) {
-    if (!this.props.displayRowCheckbox) return null;
+    if (!this.props.displayRowCheckbox) {
+      return null;
+    }
 
     const key = `${rowProps.rowNumber}-cb`;
+    const disabled = !this.props.selectable;
     const checkbox = (
       <Checkbox
         ref="rowSelectCB"
         name={key}
         value="selected"
-        disabled={!this.props.selectable}
+        disabled={disabled}
         checked={rowProps.selected}
       />
     );
@@ -204,7 +212,10 @@ class TableBody extends Component {
       <TableRowColumn
         key={key}
         columnNumber={0}
-        style={{width: 24}}
+        style={{
+          width: 24,
+          cursor: disabled ? 'not-allowed' : 'inherit',
+        }}
       >
         {checkbox}
       </TableRowColumn>
@@ -353,30 +364,42 @@ class TableBody extends Component {
 
   onCellClick = (event, rowNumber, columnNumber) => {
     event.stopPropagation();
-    if (this.props.onCellClick) this.props.onCellClick(rowNumber, this.getColumnId(columnNumber), event);
+    if (this.props.onCellClick) {
+      this.props.onCellClick(rowNumber, this.getColumnId(columnNumber), event);
+    }
   };
 
   onCellHover = (event, rowNumber, columnNumber) => {
-    if (this.props.onCellHover) this.props.onCellHover(rowNumber, this.getColumnId(columnNumber), event);
+    if (this.props.onCellHover) {
+      this.props.onCellHover(rowNumber, this.getColumnId(columnNumber), event);
+    }
     this.onRowHover(event, rowNumber);
   };
 
   onCellHoverExit = (event, rowNumber, columnNumber) => {
-    if (this.props.onCellHoverExit) this.props.onCellHoverExit(rowNumber, this.getColumnId(columnNumber), event);
+    if (this.props.onCellHoverExit) {
+      this.props.onCellHoverExit(rowNumber, this.getColumnId(columnNumber), event);
+    }
     this.onRowHoverExit(event, rowNumber);
   };
 
   onRowHover = (event, rowNumber) => {
-    if (this.props.onRowHover) this.props.onRowHover(rowNumber);
+    if (this.props.onRowHover) {
+      this.props.onRowHover(rowNumber);
+    }
   };
 
   onRowHoverExit = (event, rowNumber) => {
-    if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
+    if (this.props.onRowHoverExit) {
+      this.props.onRowHoverExit(rowNumber);
+    }
   };
 
   getColumnId(columnNumber) {
     let columnId = columnNumber;
-    if (this.props.displayRowCheckbox) columnId--;
+    if (this.props.displayRowCheckbox) {
+      columnId--;
+    }
 
     return columnId;
   }
@@ -388,12 +411,11 @@ class TableBody extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const rows = this.createRows();
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
         <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
-          {rows}
+          {this.createRows()}
         </tbody>
       </ClickAwayListener>
     );

@@ -20,9 +20,15 @@ class Clock extends Component {
   };
 
   state = {
-    selectedTime: this.props.initialTime || new Date(),
+    selectedTime: null,
     mode: 'hour',
   };
+
+  componentWillMount() {
+    this.setState({
+      selectedTime: this.props.initialTime || new Date(),
+    });
+  }
 
   setMode = (mode) => {
     setTimeout(() => {

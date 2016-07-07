@@ -226,6 +226,7 @@ class DropDownMenu extends Component {
   };
 
   handleItemTouchTap = (event, child, index) => {
+    event.persist();
     this.setState({
       open: false,
     }, () => {
@@ -245,7 +246,8 @@ class DropDownMenu extends Component {
       labelStyle,
       listStyle,
       maxHeight,
-      menuStyle: menuStyleProps,
+      menuStyle: menuStyleProp,
+      openImmediately, // eslint-disable-line no-unused-vars
       style,
       underlineStyle,
       value,
@@ -272,9 +274,9 @@ class DropDownMenu extends Component {
     if (anchorEl && !autoWidth) {
       menuStyle = Object.assign({
         width: anchorEl.clientWidth,
-      }, menuStyleProps);
+      }, menuStyleProp);
     } else {
-      menuStyle = menuStyleProps;
+      menuStyle = menuStyleProp;
     }
 
     return (

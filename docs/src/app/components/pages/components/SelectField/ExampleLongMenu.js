@@ -22,7 +22,7 @@ export default class DropDownMenuLongMenuExample extends React.Component {
 
   render() {
     return (
-      <SelectField maxHeight={300} value={this.state.value} onChange={this.handleChange}>
+      <SelectField value={this.state.value} onChange={this.handleChange}>
         {items}
       </SelectField>
     );

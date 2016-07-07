@@ -105,7 +105,7 @@ class SelectField extends Component {
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     selectFieldRoot: deprecated(PropTypes.object,
-      'Instead, use `menuStyle`.'),
+      'Instead, use `menuStyle`. It will be removed with v0.16.0.'),
     /**
      * Override the inline-styles of the root element.
      */
@@ -175,6 +175,7 @@ class SelectField extends Component {
       <TextField
         {...other}
         style={style}
+        disabled={disabled}
         floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
