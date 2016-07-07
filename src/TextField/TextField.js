@@ -54,7 +54,6 @@ const getStyles = (props, context, state) => {
       padding: 0,
       position: 'relative',
       width: '100%',
-      height: '100%',
       border: 'none',
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
@@ -62,7 +61,8 @@ const getStyles = (props, context, state) => {
       cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
     },
-    textarea: {},
+    textarea: {
+    },
   };
 
   Object.assign(styles.error, props.errorStyle);
@@ -73,6 +73,9 @@ const getStyles = (props, context, state) => {
     boxSizing: 'border-box',
     font: 'inherit',
   });
+
+  // Do not assign a height to the textarea as he handles it on his own.
+  styles.input.height = '100%';
 
   if (state.hasValue) {
     styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
