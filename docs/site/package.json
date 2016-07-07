@@ -35,6 +35,7 @@
     "react-dom": "^15.2.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-router": "^2.4.1",
+    "redbox-react": "^1.2.10",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
