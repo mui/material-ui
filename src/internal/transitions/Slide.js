@@ -17,7 +17,7 @@ type Props = {
    */
   className?: string,
   direction?: 'left' | 'right' | 'up' | 'down',
-  transitionDuration?: number,
+  transitionDuration: number,
 };
 
 export default class Slide extends Component<DefaultProps, Props, void> {
