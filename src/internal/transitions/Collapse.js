@@ -28,7 +28,7 @@ type Props = {
   /**
    * The content node to be collapsed.
    */
-  children?: Element,
+  children?: Element<any>,
   containerClassName?: string,
   /**
    * Set to true to transition in
@@ -90,7 +90,7 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     return Math.round(175 / constant + 25) * constant;
   }
 
-  render():Element {
+  render():Element<any> {
     const {
       children,
       containerClassName,

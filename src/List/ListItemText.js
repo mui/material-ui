@@ -37,7 +37,7 @@ export default class ListItemText extends Component<void, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {className, primary, secondary, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.root, className);

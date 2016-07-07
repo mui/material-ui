@@ -36,7 +36,7 @@ type DefaultProps = {
 
 type Props = {
   align?: string,
-  children?: Element,
+  children?: Element<any>,
   className?: string,
   el: string,
   noWrap?: boolean,
@@ -55,7 +55,7 @@ export default class Text extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {align, className, el, noWrap, type, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.text, {

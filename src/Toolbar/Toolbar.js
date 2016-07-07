@@ -28,7 +28,7 @@ type Props = {
   /**
    * Can be a `ToolbarGroup` to render a group of related items.
    */
-  children?: Element,
+  children?: Element<any>,
   /**
    * The css class name of the root element.
    */
@@ -46,7 +46,7 @@ export default class Toolbar extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {
       children,
       className,

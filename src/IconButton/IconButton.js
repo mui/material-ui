@@ -47,7 +47,7 @@ type Props = {
   /**
    * Can be used to pass a `FontIcon` element as the icon for the button.
    */
-  children?: Element,
+  children?: Element<any>,
   /**
    * The CSS class name of the root element.
    */
@@ -73,7 +73,7 @@ export default class IconButton extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {children, className, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     return (

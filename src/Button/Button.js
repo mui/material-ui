@@ -111,7 +111,7 @@ type Props = {
   /**
    * The content of the button.
    */
-  children?: Element,
+  children?: Element<any>,
   /**
    * The CSS class name of the root element.
    */
@@ -183,7 +183,7 @@ export default class Button extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {
       accent,
       children,

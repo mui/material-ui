@@ -6,7 +6,7 @@ type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: Element,
+  children?: Element<any>,
   onExited?: TransitionHandler,
 };
 
@@ -30,7 +30,7 @@ export default class Fade extends Component<void, Props, void> {
     element.style.opacity = 0;
   };
 
-  render():Element {
+  render():Element<any> {
     const {children, ...other} = this.props;
 
     return (

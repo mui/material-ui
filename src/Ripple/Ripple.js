@@ -60,9 +60,9 @@ type DefaultProps = {
 type Props = {
   className?: string,
   pulsate?: boolean,
-  rippleSize?: number,
-  rippleX?: number,
-  rippleY?: number,
+  rippleSize: number,
+  rippleX: number,
+  rippleY: number,
 };
 
 type State = {
@@ -151,7 +151,7 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
     return rippleStyles;
   }
 
-  render():Element {
+  render():Element<any> {
     const {className, pulsate} = this.props;
     const {rippleStart, rippleVisible} = this.state;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});

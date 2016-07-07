@@ -38,7 +38,7 @@ type Props = {
   /**
    * The contents of the `Drawer`
    */
-  children?: Element,
+  children?: Element<any>,
   /**
    * The CSS class name of the root element.
    */
@@ -71,7 +71,7 @@ export default class Drawer extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {
       children,
       className,

@@ -11,7 +11,7 @@ type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: Element,
+  children?: Element<any>,
   /**
    * The CSS class name of the root element.
    */
@@ -53,7 +53,7 @@ export default class Slide extends Component<DefaultProps, Props, void> {
     element.style.transform = this.getTranslateValue();
   };
 
-  render():Element {
+  render():Element<any> {
     const {
       children,
       transitionDuration, // eslint-disable-line no-unused-vars

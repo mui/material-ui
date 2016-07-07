@@ -50,7 +50,7 @@ type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: Element,
+  children?: Element<any>,
   /**
    * The CSS class name of the root element.
    */
@@ -220,7 +220,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  render():?Element {
+  render():?Element<any> {
     const {
       children,
       className,

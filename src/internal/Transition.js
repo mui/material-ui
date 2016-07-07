@@ -27,7 +27,7 @@ type DefaultProps = {
 };
 
 type Props = {
-  children?: Element,
+  children?: Element<any>,
   className?: string,
   /**
    * CSS class or classes applied when the component is entered
@@ -282,7 +282,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     }
   }
 
-  render():Element {
+  render():Element<any> {
     const status = this.state.status;
     if (status === UNMOUNTED) {
       return null;
