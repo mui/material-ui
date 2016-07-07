@@ -43,9 +43,10 @@ export default class MuiThemeProvider extends Component<void, Props, void> {
   };
 
   getChildContext() {
+    const {theme, styleManager} = this;
     return {
-      theme: this,
-      styleManager: this,
+      theme: theme,
+      styleManager: styleManager,
     };
   }
 

@@ -2,7 +2,8 @@ import {AppContainer} from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import Redbox from 'redbox-react';  // workaround https://github.com/gaearon/react-hot-loader/issues/312#issuecomment-231061904
+// workaround https://github.com/gaearon/react-hot-loader/issues/312#issuecomment-231061904
+import Redbox from 'redbox-react';
 // import a11y from 'react-a11y';
 
 // if (process.env.NODE_ENV !== 'production') {
