@@ -9,5 +9,5 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| absolute | bool |  |   |
+| absolute | boolean |  |   |
 | className | string |  |   |

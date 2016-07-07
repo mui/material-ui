@@ -9,7 +9,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| children | node |  |   |
+| children | Element |  |   |
 | className | string |  |   |
-| component | union | 'div' |   |
-| gutters | bool | true |   |
+| <span style="color: #31a148">component *</span> | union | 'div' |   |
+| gutters | boolean | true |   |

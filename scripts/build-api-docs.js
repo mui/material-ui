@@ -48,7 +48,7 @@ function buildDocs(componentPath) {
       markdown = generateMarkdown(relativePath.name, componentInfo);
     } catch (err) {
       console.log('Error generating markdown for', relativePath.name);
-      console.log(err);
+      console.log(err.stack);
       return false;
     }
 
@@ -60,6 +60,7 @@ function buildDocs(componentPath) {
       fs.writeFile(path.resolve(outputDir, `${relativePath.name}.md`), markdown, (err) => {
         if (err) {
           console.log('Error writing markdown file', path.format(relativePath));
+          throw err;
         }
         console.log('Built markdown docs for', path.format(relativePath));
       });

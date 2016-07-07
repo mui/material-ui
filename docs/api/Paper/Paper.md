@@ -10,5 +10,5 @@ Props
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
 | className | string |  |   |
-| rounded | bool | true |   |
-| zDepth | number | 2 |   |
+| <span style="color: #31a148">rounded *</span> | boolean | true |   |
+| <span style="color: #31a148">zDepth *</span> | number | 2 |   |
