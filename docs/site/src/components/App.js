@@ -7,7 +7,6 @@ import AppRouter from './AppRouter';
 const theme = createMuiTheme(createPalette({
   primary: blue,
   accent: pink,
-  dark: true,
 }));
 
 export default function App() {
