@@ -26,6 +26,7 @@ function getStyles(props, context, state) {
       bottom: 0,
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
+      textAlign: 'center',
       transform: open ?
         'translate3d(0, 0, 0)' :
         `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
