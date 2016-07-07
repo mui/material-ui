@@ -85,6 +85,10 @@ class SelectField extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * Override the default max-height of the underlying `DropDownMenu` element.
+     */
+    maxHeight: PropTypes.number,
+    /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     menuStyle: PropTypes.object,
@@ -169,6 +173,7 @@ class SelectField extends Component {
       hintText,
       fullWidth,
       errorText,
+      maxHeight,
       menuStyle,
       onFocus,
       onBlur,
@@ -207,6 +212,7 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
+          maxHeight={maxHeight}
         >
           {children}
         </DropDownMenu>
