@@ -2,6 +2,7 @@ export AppBar from './AppBar';
 export AutoComplete from './AutoComplete';
 export Avatar from './Avatar';
 export Badge from './Badge';
+export BottomSheet from './BottomSheet';
 export Card from './Card';
 export CardActions from './Card/CardActions';
 export CardHeader from './Card/CardHeader';

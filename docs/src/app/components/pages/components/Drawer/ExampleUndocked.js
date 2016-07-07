@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class DrawerUndockedExample extends React.Component {
+/**
+ * An undocked controlled `Drawer` with custom width. The Drawer can be cancelled by
+ * clicking the overlay or pressing the Esc key. It closes when an item is selected,
+ * handled by controlling the `open` prop.
+ */
 
-  constructor(props) {
-    super(props);
+export default class DrawerExampleUndocked extends Component {
+
+  constructor() {
+    super();
     this.state = {open: false};
   }
 

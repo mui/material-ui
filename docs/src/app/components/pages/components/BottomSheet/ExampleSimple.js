@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import Drawer from 'material-ui/Drawer';
+import BottomSheet from 'material-ui/BottomSheet';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
 /**
- * A simple controlled `Drawer`. The Drawer is `docked` by default, remaining open
- * unless closed through the `open` prop.
+ * A simple persistent `BottomSheet`, controlled through the `open` prop.
  */
 
-export default class DrawerExampleSimple extends Component {
+export default class BottomSheetExampleSimple extends Component {
 
   constructor() {
     super();
@@ -21,13 +20,13 @@ export default class DrawerExampleSimple extends Component {
     return (
       <div>
         <RaisedButton
-          label="Toggle Drawer"
+          label="Toggle BottomSheet"
           onTouchTap={this.handleToggle}
         />
-        <Drawer open={this.state.open}>
-          <MenuItem>Menu Item</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
-        </Drawer>
+        <BottomSheet open={this.state.open}>
+          <MenuItem>Menu item 1</MenuItem>
+          <MenuItem>Menu item 2</MenuItem>
+        </BottomSheet>
       </div>
     );
   }
