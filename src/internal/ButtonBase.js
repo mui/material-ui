@@ -46,7 +46,7 @@ type DefaultProps = {
 
 type Props = {
   centerRipple?: boolean,
-  children?: Element,
+  children?: Element<any>,
   className?: string,
   component?: string|Function,
   disabled?: boolean,

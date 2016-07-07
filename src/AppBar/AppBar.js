@@ -34,7 +34,7 @@ type DefaultProps = {
 
 type Props = {
   accent?: boolean,
-  children?: Element,
+  children?: Element<any>,
   className?: string,
   primary?: boolean,
 };
@@ -50,7 +50,7 @@ export default class AppBar extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element {
+  render():Element<any> {
     const {
       accent,
       children,

@@ -23,7 +23,7 @@ type Props = {
   className?: string,
 };
 
-export default function ListItemIcon(props:Props, context:{styleManager: Object}):Element {
+export default function ListItemIcon(props:Props, context:{styleManager: Object}):Element<any> {
   const {children, className} = props;
   const classes = context.styleManager.render(styleSheet, {group: 'mui'});
   const classNames = ClassNames(classes.root, className);
