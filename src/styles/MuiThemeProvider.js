@@ -1,4 +1,5 @@
-import {Component, PropTypes} from 'react';
+// @flow
+import {Component, PropTypes, Element} from 'react';
 import {createMuiTheme} from './theme';
 import {createStyleManager} from 'stylishly/lib/styleManager';
 import {createPluginRegistry} from 'stylishly/lib/pluginRegistry';
@@ -11,7 +12,7 @@ import nested from 'stylishly-nested';
 import mediaQueries from 'stylishly-media-queries';
 import keyframes from 'stylishly-keyframes';
 
-export function createDefaultContext(props = {}) {
+export function createDefaultContext(props:{styleManager?: Object, theme?: Object} = {}) {
   const theme = props.theme || createMuiTheme();
   const styleManager = props.styleManager || createStyleManager({
     theme: theme,
@@ -29,23 +30,22 @@ export function createDefaultContext(props = {}) {
   return {theme, styleManager};
 }
 
-export default class MuiThemeProvider extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    styleManager: PropTypes.object,
-    theme: PropTypes.object,
-  };
+type Props = {
+  children: Element<any>,
+  styleManager?: Object,
+  theme?: Object,
+}
 
+export default class MuiThemeProvider extends Component<void, Props, void> {
   static childContextTypes = {
     styleManager: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
   };
 
   getChildContext() {
-    const {theme, styleManager} = this;
     return {
-      theme: theme,
-      styleManager: styleManager,
+      theme: this,
+      styleManager: this,
     };
   }
 
@@ -54,6 +54,10 @@ export default class MuiThemeProvider extends Component {
     this.theme = theme;
     this.styleManager = styleManager;
   }
+
+  props:Props;
+  theme:Object;
+  styleManager:Object;
 
   render() {
     return this.props.children;

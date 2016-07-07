@@ -1,15 +1,36 @@
-export const black = '#000000';
-export const white = '#ffffff';
+// Cannot flow check this until issue is resolved: https://github.com/facebook/flow/issues/380
+export const black:string = '#000000';
+export const white:string = '#ffffff';
 
-export const transparent = 'rgba(0, 0, 0, 0)';
-export const fullBlack = 'rgba(0, 0, 0, 1)';
-export const darkBlack = 'rgba(0, 0, 0, 0.87)';
-export const lightBlack = 'rgba(0, 0, 0, 0.54)';
-export const minBlack = 'rgba(0, 0, 0, 0.26)';
-export const faintBlack = 'rgba(0, 0, 0, 0.12)';
-export const fullWhite = 'rgba(255, 255, 255, 1)';
-export const darkWhite = 'rgba(255, 255, 255, 0.87)';
-export const lightWhite = 'rgba(255, 255, 255, 0.54)';
+export const transparent:string = 'rgba(0, 0, 0, 0)';
+export const fullBlack:string = 'rgba(0, 0, 0, 1)';
+export const darkBlack:string = 'rgba(0, 0, 0, 0.87)';
+export const lightBlack:string = 'rgba(0, 0, 0, 0.54)';
+export const minBlack:string = 'rgba(0, 0, 0, 0.26)';
+export const faintBlack:string = 'rgba(0, 0, 0, 0.12)';
+export const fullWhite:string = 'rgba(255, 255, 255, 1)';
+export const darkWhite:string = 'rgba(255, 255, 255, 0.87)';
+export const lightWhite:string = 'rgba(255, 255, 255, 0.54)';
+
+/* Cannot be used until issue is resolved: https://github.com/facebook/flow/issues/380
+type ColorRange = {
+  50: string,
+  100: string,
+  200: string,
+  300: string,
+  400: string,
+  500: string,
+  600: string,
+  700: string,
+  800: string,
+  900: string,
+  A100: string,
+  A200: string,
+  A400: string,
+  A700: string,
+  contrastDefaultColor: 'light' | 'dark',
+}
+*/
 
 export const red = {
   50: '#ffebee',
