@@ -1,18 +1,41 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
+import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
 
-export const styleSheet = createStyleSheet('Input', () => {
+export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
+  const {palette} = theme;
   return {
     root: {
+      font: 'inherit',
+      margin: '8px 0',
+      padding: '6px 0',
+      border: 0,
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      whiteSpace: 'normal',
+      background: 'none',
+      lineHeight: 1,
+      '&:focus': {
+        outline: 0,
+      },
+    },
+    disabled: {
+      cursor: 'not-allowed',
+    },
+    underline: {
+      borderBottom: `1px solid ${palette.text.divider}`,
+      '&disabled': {
+        borderBottomStyle: 'dotted',
+      },
     },
   };
 });
 
 /**
- * Input
+ * TextFieldInput
  */
-export default class Input extends Component {
+export default class TextFieldInput extends Component {
   static propTypes = {
     /**
      * The CSS class name of the root element.
@@ -22,26 +45,38 @@ export default class Input extends Component {
      * The element or component used for the root node.
      */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    disabled: PropTypes.bool,
     /**
-     * Input type
+     * TextFieldInput type
      */
     type: PropTypes.string,
+    /**
+     * If set to true, the input will have an underline
+     */
+    underline: PropTypes.bool,
   };
 
   static defaultProps = {
     component: 'input',
     type: 'text',
+    underline: true,
   };
 
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
+  shouldComponentUpdate(nextProps) {
+    return !shallowEqual(this.props, nextProps);
+  }
+
   render() {
     const {
       className,
       component,
+      disabled,
       type,
+      underline,
       ...other,
     } = this.props;
 
@@ -49,11 +84,14 @@ export default class Input extends Component {
 
     const classNames = ClassNames({
       [classes.root]: true,
+      [classes.underline]: underline,
+      [classes.disabled]: disabled,
     }, className);
 
     const inputProps = {
       ref: (c) => this.input = c,
       className: classNames,
+      disabled,
       ...other,
     };
 

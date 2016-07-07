@@ -11,7 +11,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
   return {
     root: {
       position: 'relative',
-      backgroundColor: '#eee',
+      backgroundColor: theme.palette.background.contentFrame,
       marginBottom: 40,
     },
     demo: theme.mixins.gutters({

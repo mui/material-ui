@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import Input from '../internal/Input';
 
 export const styleSheet = createStyleSheet('TextField', () => {
   return {
     root: {
+      position: 'relative',
     },
   };
 });
@@ -27,14 +27,6 @@ export default class TextField extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    /**
-     * Input type
-     */
-    type: PropTypes.string,
-  };
-
-  static defaultProps = {
-    type: 'text',
   };
 
   static contextTypes = {
@@ -54,10 +46,7 @@ export default class TextField extends Component {
     }, className);
 
     return (
-      <Input
-        className={classNames}
-        {...other}
-      />
+      <div className={classNames} {...other} />
     );
   }
 }

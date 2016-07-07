@@ -2,10 +2,14 @@
 
 Text fields allow users to input text and usually appear in forms. Users may enter text, numbers, or mixed-format types of input.
 
-## Basic text field
+## Complete text field
 
-Basic text fields implement the functionality of a regular `<input>` and automatically scroll their content to the left as the text input cursor reaches the right edge of the input field.
+The `<TextField>` wrapper component is a complete form control including an label, underline and help text. This component is made up of the smaller text field parts that you can also leverage yourself to significantly customize your input.
 
-In its simplist form, the `<TextField>` component is a complete form control including a label, underline and help text.
+{{demo='text-fields/CompleteTextField.js'}}
 
-{{demo='text-fields/BasicTextField.js'}}
+## Basic Input
+
+The most basic component available is `<TextFieldInput>`, which implements the functionality of a regular `<input>` with basic material styling.
+
+{{demo='text-fields/BasicTextFieldInput.js'}}

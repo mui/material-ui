@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import hashObject from '../utils/hashObject';
 import {getContrastRatio} from './colorManipulator';
-import {indigo, pink, grey, black, white} from './colors';
+import {indigo, pink, grey, red, black, white} from './colors';
 import shadows from './shadows';
 import transitions from './transitions';
 import createTypography from './typography';
@@ -17,7 +17,7 @@ export function createMuiTheme(
   ...more
 ) {
   const properties = merge({
-    dir: 'rtl',
+    dir: 'ltr',
     palette,
     typography,
     shadows,
@@ -39,6 +39,7 @@ export function createMuiTheme(
 export function createPalette({
   primary = indigo,
   accent = pink,
+  error = red,
   dark = false,
 } = {}) {
   const type = dark ? 'dark' : 'light';
@@ -50,6 +51,7 @@ export function createPalette({
     shades,
     primary,
     accent,
+    error,
     grey,
     // functions
     getContrastText,
@@ -70,6 +72,7 @@ export const light = {
     default: grey[50],
     paper: white,
     appBar: grey[100],
+    contentFrame: grey[200],
     status: grey[300],
   },
 };
@@ -87,6 +90,7 @@ export const dark = {
     default: '#303030',
     paper: grey[800],
     appBar: grey[900],
+    contentFrame: grey[900],
     status: black,
   },
 };

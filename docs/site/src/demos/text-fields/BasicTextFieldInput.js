@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
-import TextField from 'material-ui/TextField';
+import {TextFieldInput} from 'material-ui/TextField';
 
 const styleSheet = createStyleSheet('BasicTextField', () => {
   return {
-    button: {
+    input: {
       margin: '0 10px',
     },
   };
@@ -14,7 +14,9 @@ export default function BasicTextField(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div>
-      <TextField />
+      <TextFieldInput defaultValue="Hello world" className={classes.input} />
+      <TextFieldInput placeholder="Placeholder text" className={classes.input} />
+      <TextFieldInput defaultValue="Disabled" disabled={true} className={classes.input} />
     </div>
   );
 }
