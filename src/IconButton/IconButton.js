@@ -39,6 +39,10 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
   };
 });
 
+type DefaultProps = {
+  ripple: boolean,
+}
+
 type Props = {
   /**
    * Can be used to pass a `FontIcon` element as the icon for the button.
@@ -55,17 +59,19 @@ type Props = {
   /**
    * If false, the element's ripple effect will be disabled.
    */
-  ripple: boolean,
+  ripple?: boolean,
 };
 
-export default class IconButton extends Component<void, Props, void> {
+export default class IconButton extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  props:Props ={
+  static defaultProps:DefaultProps = {
     ripple: true,
   };
+
+  props:Props;
 
   render():Element {
     const {children, className, ...other} = this.props;
