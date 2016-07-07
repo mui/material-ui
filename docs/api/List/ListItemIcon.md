@@ -9,7 +9,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| children | node |  |   |
+| children | Element |  |   |
 | className | string |  |   |
-| primary | node |  |   |
-| secondary | node |  |   |
+| primary | Object |  |   |
+| secondary | Object |  |   |

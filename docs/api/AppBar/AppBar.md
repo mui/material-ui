@@ -9,7 +9,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| accent | bool |  |   |
-| children | node |  |   |
+| accent | boolean |  |   |
+| children | Element |  |   |
 | className | string |  |   |
-| primary | bool | true |   |
+| primary | boolean | true |   |

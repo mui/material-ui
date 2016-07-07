@@ -59,8 +59,7 @@ function generateProps(props) {
 
   for (let key in props) {
     const prop = props[key];
-
-    const description = generatePropDescription(prop.required, prop.description, prop.type);
+    const description = generatePropDescription(prop.required, prop.description, prop.flowType);
 
     if (description === null) continue;
 
@@ -74,13 +73,13 @@ function generateProps(props) {
       key = `<span style="color: #31a148">${key} \*</span>`;
     }
 
-    if (prop.type.name === 'custom') {
-      if (getDeprecatedInfo(prop.type)) {
+    if (prop.flowType.name === 'custom') {
+      if (getDeprecatedInfo(prop.flowType)) {
         key = `~~${key}~~`;
       }
     }
 
-    text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
+    text += `| ${key} | ${generatePropType(prop.flowType)} | ${defaultValue} | ${description} |\n`;
   }
 
   return text;
