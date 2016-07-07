@@ -140,7 +140,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     listItem: {
       nestedLevelDepth: 18,
-      secondaryTextColor: lightBlack,
+      secondaryTextColor: palette.secondaryTextColor,
       leftIconColor: grey600,
       rightIconColor: grey600,
     },
