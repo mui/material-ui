@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, PropTypes, Element} from 'react';
 import Transition from '../Transition';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 export default class Fade extends Component<void, Props, void> {
   static contextTypes = {
-    theme: Object,
+    theme: PropTypes.object.isRequired,
   };
 
   props:Props

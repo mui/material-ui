@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element} from 'react';
+import React, {Component, PropTypes, Element} from 'react';
 import Transition from '../Transition';
 
 type DefaultProps = {
@@ -22,7 +22,7 @@ type Props = {
 
 export default class Slide extends Component<DefaultProps, Props, void> {
   static contextTypes = {
-    theme: Object,
+    theme: PropTypes.object.isRequired,
   };
 
   static defaultProps:DefaultProps = {
