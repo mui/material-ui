@@ -184,11 +184,13 @@ class AppBar extends Component {
       titleStyle,
       iconStyleLeft,
       iconStyleRight,
+      onTitleTouchTap, // eslint-disable-line no-unused-vars
       showMenuIconButton,
       iconElementLeft,
       iconElementRight,
       iconClassNameLeft,
       iconClassNameRight,
+      onLeftIconButtonTouchTap, // eslint-disable-line no-unused-vars
       className,
       style,
       zDepth,

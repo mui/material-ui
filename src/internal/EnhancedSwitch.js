@@ -266,10 +266,12 @@ class EnhancedSwitch extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchEnd, // eslint-disable-line no-unused-vars
+      onParentShouldUpdate, // eslint-disable-line no-unused-vars
       disabled,
       disableTouchRipple,
       disableFocusRipple,
       className,
+      rippleColor, // eslint-disable-line no-unused-vars
       rippleStyle,
       style,
       switched, // eslint-disable-line no-unused-vars

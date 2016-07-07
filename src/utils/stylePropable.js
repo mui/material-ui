@@ -3,8 +3,8 @@ import warning from 'warning';
 
 let hasWarned;
 const warn = () => {
-  warning(hasWarned, 'The \'material-ui/lib/mixins/style-propable.js\' mixin has been deprecated.' +
-    ' Please do not use this mixin as it will be removed in an upcoming release.');
+  warning(hasWarned, `The 'material-ui/lib/mixins/style-propable.js' mixin has been deprecated.
+    It will be removed with v0.16.0.`);
   hasWarned = true;
 };
 

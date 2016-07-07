@@ -181,19 +181,27 @@ class FloatingActionButton extends Component {
 
   handleMouseUp = (event) => {
     this.setState({zDepth: this.props.zDepth});
-    if (this.props.onMouseUp) this.props.onMouseUp(event);
+    if (this.props.onMouseUp) {
+      this.props.onMouseUp(event);
+    }
   };
 
   handleMouseLeave = (event) => {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.props.zDepth, hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
+    if (!this.refs.container.isKeyboardFocused()) {
+      this.setState({zDepth: this.props.zDepth, hovered: false});
+    }
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(event);
+    }
   };
 
   handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
-    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(event);
+    }
   };
 
   handleTouchStart = (event) => {
@@ -201,12 +209,16 @@ class FloatingActionButton extends Component {
       touch: true,
       zDepth: this.props.zDepth + 1,
     });
-    if (this.props.onTouchStart) this.props.onTouchStart(event);
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(event);
+    }
   };
 
   handleTouchEnd = (event) => {
     this.setState({zDepth: this.props.zDepth});
-    if (this.props.onTouchEnd) this.props.onTouchEnd(event);
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(event);
+    }
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
@@ -228,7 +240,9 @@ class FloatingActionButton extends Component {
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,
       iconClassName,
-      ...other} = this.props;
+      zDepth, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);

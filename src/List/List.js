@@ -15,7 +15,7 @@ class List extends Component {
      * If true, the subheader will be indented by 72px.
      */
     insetSubheader: deprecated(PropTypes.bool,
-      'Refer to the `subheader` property.'),
+      'Refer to the `subheader` property. It will be removed with v0.16.0.'),
     /**
      * Override the inline-styles of the root element.
      */
@@ -24,12 +24,12 @@ class List extends Component {
      * The subheader string that will be displayed at the top of the list.
      */
     subheader: deprecated(PropTypes.node,
-      'Instead, nest the `Subheader` component directly inside the `List`.'),
+      'Instead, nest the `Subheader` component directly inside the `List`. It will be removed with v0.16.0.'),
     /**
      * Override the inline-styles of the subheader element.
      */
     subheaderStyle: deprecated(PropTypes.object,
-      'Refer to the `subheader` property.'),
+      'Refer to the `subheader` property. It will be removed with v0.16.0.'),
     /**
      * @ignore
      * ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
@@ -54,7 +54,7 @@ class List extends Component {
     } = this.props;
 
     warning((typeof zDepth === 'undefined'), 'List no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
-        'or another component that provides zDepth.');
+        'or another component that provides zDepth. It will be removed with v0.16.0.');
 
     let hasSubheader = false;
 

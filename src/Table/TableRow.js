@@ -172,6 +172,7 @@ class TableRow extends Component {
       className,
       displayBorder, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
+      hovered, // eslint-disable-line no-unused-vars
       onCellClick, // eslint-disable-line no-unused-vars
       onCellHover, // eslint-disable-line no-unused-vars
       onCellHoverExit, // eslint-disable-line no-unused-vars

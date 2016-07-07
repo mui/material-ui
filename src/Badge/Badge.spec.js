@@ -35,7 +35,7 @@ describe('<Badge />', () => {
 
   it('renders children by default', () => {
     const wrapper = shallowWithContext(
-      <Badge>{testChildren}</Badge>
+      <Badge badgeContent={10}>{testChildren}</Badge>
     );
 
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
@@ -43,7 +43,7 @@ describe('<Badge />', () => {
 
   it('renders children and className', () => {
     const wrapper = shallowWithContext(
-      <Badge className="testClassName">{testChildren}</Badge>
+      <Badge badgeContent={10} className="testClassName">{testChildren}</Badge>
     );
 
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
@@ -79,7 +79,7 @@ describe('<Badge />', () => {
       backgroundColor: 'red',
     };
     const wrapper = shallowWithContext(
-      <Badge style={style}>{testChildren}</Badge>
+      <Badge badgeContent={10} style={style}>{testChildren}</Badge>
     );
 
     assert.ok(wrapper.contains(testChildren), 'should contain the children');

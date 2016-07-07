@@ -7,7 +7,7 @@ import Paper from '../Paper';
 
 function validateLabel(props, propName, componentName) {
   if (process.env.NODE_ENV !== 'production') {
-    if (!props.children && !props.label && !props.icon) {
+    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
       return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
     }
   }
@@ -238,10 +238,16 @@ class RaisedButton extends Component {
 
   componentWillReceiveProps(nextProps) {
     const zDepth = nextProps.disabled ? 0 : 1;
-    this.setState({
+    const nextState = {
       zDepth: zDepth,
       initialZDepth: zDepth,
-    });
+    };
+
+    if (nextProps.disabled && this.state.hovered) {
+      nextState.hovered = false;
+    }
+
+    this.setState(nextState);
   }
 
   handleMouseDown = (event) => {
@@ -279,7 +285,9 @@ class RaisedButton extends Component {
 
   handleMouseEnter = (event) => {
     if (!this.state.keyboardFocused && !this.state.touched) {
-      this.setState({hovered: true});
+      this.setState({
+        hovered: true,
+      });
     }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
@@ -318,9 +326,11 @@ class RaisedButton extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       children,
       className,
       disabled,
+      fullWidth, // eslint-disable-line no-unused-vars
       icon,
       label,
       labelPosition,
