@@ -9,14 +9,14 @@ function getStyles(props) {
     transition: transitions.easeOut(),
     zIndex: 1, // Needed to display label above Chrome's autocomplete field background
     cursor: props.disabled ? 'not-allowed' : 'text',
-    transform: 'scale(1) translate3d(0, 0, 0)',
+    transform: 'scale(1) translate(0, 0)',
     transformOrigin: 'left top',
     pointerEvents: 'auto',
     userSelect: 'none',
   };
 
   const shrinkStyles = props.shrink ? Object.assign({
-    transform: 'perspective(1px) scale(0.75) translate3d(0, -28px, 0)',
+    transform: 'scale(0.75) translate(0, -28px)',
     pointerEvents: 'none',
   }, props.shrinkStyle) : null;
 

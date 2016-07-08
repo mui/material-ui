@@ -16,7 +16,7 @@ function getStyles(props) {
       padding: padding,
       top: -10000,
       left: -10000,
-      transform: `translate3d(${10000 + props.left}px, ${10000 + props.top}px, 0)`,
+      transform: `translate(${10000 + props.left}px, ${10000 + props.top}px)`,
       opacity: props.status === 'hide' ? 0 : 1,
       transition: props.status === 'hide' ? transitions.create('all', '.3s', 'ease-out') : 'none',
     },

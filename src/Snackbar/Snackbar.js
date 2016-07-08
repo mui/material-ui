@@ -27,8 +27,8 @@ function getStyles(props, context, state) {
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
       transform: open ?
-        'translate3d(0, 0, 0)' :
-        `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
+        'translate(0, 0)' :
+        `translate(0, ${desktopSubheaderHeight}px)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
     },

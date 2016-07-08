@@ -34,7 +34,7 @@ class SlideInChild extends Component {
       this.props.direction === 'down' ? '-100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`);
+    autoPrefix.set(style, 'transform', `translate(${x}, ${y})`);
 
     this.enterTimer = setTimeout(callback, this.props.enterDelay);
   }
@@ -42,7 +42,7 @@ class SlideInChild extends Component {
   componentDidEnter() {
     const style = ReactDOM.findDOMNode(this).style;
     style.opacity = '1';
-    autoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
+    autoPrefix.set(style, 'transform', 'translate(0,0)');
   }
 
   componentWillLeave(callback) {
@@ -54,7 +54,7 @@ class SlideInChild extends Component {
       direction === 'down' ? '100%' : '0';
 
     style.opacity = '0';
-    autoPrefix.set(style, 'transform', `translate3d(${x}, ${y}, 0)`);
+    autoPrefix.set(style, 'transform', `translate(${x}, ${y})`);
 
     this.leaveTimer = setTimeout(callback, 450);
   }
