@@ -18,14 +18,7 @@ import coerce from '../utils/coerce';
 // Modals don't open on the server
 // so this won't break concurrency
 // ...........Could also put this on context....
-// TODO: refactor #createModalManager into a type-checked class
-declare class ModalManager{
-  add(modal:Modal):void;
-  remove(modal:Modal):void;
-  isTopModal(modal:Modal):boolean;
-}
-
-const modalManager:ModalManager = createModalManager();
+const modalManager = createModalManager();
 
 export const styleSheet = createStyleSheet('Modal', (theme) => {
   return {
@@ -42,9 +35,9 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
 });
 
 type DefaultProps = {
-  modalManager: ModalManager,
+  modalManager: typeof modalManager,
   show: boolean,
-}
+};
 
 type Props = {
   /**
@@ -55,7 +48,7 @@ type Props = {
    * The CSS class name of the root element.
    */
   className?: string,
-  modalManager: ModalManager,
+  modalManager: typeof modalManager,
   /**
    * Callback fired after the Modal finishes transitioning out
    */
@@ -67,7 +60,7 @@ type Props = {
 
 type State = {
   exited: boolean,
-}
+};
 
 export default class Modal extends Component<DefaultProps, Props, State> {
   static contextTypes = {
