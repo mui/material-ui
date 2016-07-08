@@ -131,7 +131,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
 
   focus() {
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = coerce(this.modal && this.modal.lastChild, Element);
+    const modalContent = this.modal && coerce(this.modal.lastChild, HTMLElement);
     const focusInModal = currentFocus && contains(modalContent, currentFocus);
 
     if (modalContent && !focusInModal) {
@@ -176,7 +176,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
 
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = coerce(this.modal && this.modal.lastChild, Element);
+    const modalContent = this.modal && coerce(this.modal.lastChild, HTMLElement);
 
     if (modalContent && modalContent !== currentFocus && !contains(modalContent, currentFocus)) {
       modalContent.focus();
