@@ -41,7 +41,7 @@ export default class ListItem extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element<any> {
+  render(): Element<any> {
     const {className, component, gutters, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.root, {

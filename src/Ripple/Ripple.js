@@ -51,7 +51,7 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   },
 }));
 
-declare function LeaveTimer(fn:Object, delay:number):void;
+declare function LeaveTimer(fn: Object, delay: number): void;
 
 type DefaultProps = {
   pulsate: boolean,
@@ -97,7 +97,7 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
     this.start();
   }
 
-  componentWillLeave(callback:Callback) {
+  componentWillLeave(callback: Callback) {
     // reflow(ReactDOM.findDOMNode(this));
     this.stop();
     this.leaveTimer = setTimeout(() => {
@@ -151,7 +151,7 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
     return rippleStyles;
   }
 
-  render():Element<any> {
+  render(): Element<any> {
     const {className, pulsate} = this.props;
     const {rippleStart, rippleVisible} = this.state;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});

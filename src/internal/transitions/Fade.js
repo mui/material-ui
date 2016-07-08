@@ -30,7 +30,7 @@ export default class Fade extends Component<void, Props, void> {
     element.style.opacity = 0;
   };
 
-  render():Element<any> {
+  render(): Element<any> {
     const {children, ...other} = this.props;
 
     return (

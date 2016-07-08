@@ -12,7 +12,7 @@ import nested from 'stylishly-nested';
 import mediaQueries from 'stylishly-media-queries';
 import keyframes from 'stylishly-keyframes';
 
-export function createDefaultContext(props:{styleManager?: Object, theme?: Object} = {}) {
+export function createDefaultContext(props: {styleManager?: Object, theme?: Object} = {}) {
   const theme = props.theme || createMuiTheme();
   const styleManager = props.styleManager || createStyleManager({
     theme: theme,

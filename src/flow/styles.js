@@ -1,14 +1,14 @@
 type Breakpoints = {  // eslint-disable-line no-unused-vars
   keys: Array<string>,
   values: Array<number>,
-  up: (name:string) => string,
-  down: (name:string) => ?string,
-  only: (name:string) => string,
-  getWidth: (name:string) => number,
+  up: (name: string) => string,
+  down: (name: string) => ?string,
+  only: (name: string) => string,
+  getWidth: (name: string) => number,
 }
 
 type Mixins = { // eslint-disable-line no-unused-vars
-  gutters: (styles:Object) => Object
+  gutters: (styles: Object) => Object
 }
 
 type TypeScheme = {
