@@ -93,7 +93,7 @@ type Props = {
 
 type State = {
   exited: boolean,
-}
+};
 
 export default class Modal extends Component<DefaultProps, Props, State> {
   static contextTypes = {

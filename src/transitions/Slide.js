@@ -50,7 +50,11 @@ export default class Slide extends Component<DefaultProps, Props, void> {
 
   handleEnter:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
-    element.style.transition = this.context.theme.transitions.create('transform', `${this.props.transitionDuration}ms`);
+    const duration = this.props.transitionDuration ? this.props.transitionDuration.toString() : '0';
+    element.style.transition = this.context.theme.transitions.create(
+      'transform',
+      `${duration}ms`
+    );
   };
 
   handleEntering:TransitionHandler = (element) => {
