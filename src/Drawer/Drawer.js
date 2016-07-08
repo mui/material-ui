@@ -72,7 +72,7 @@ export default class Drawer extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element<any> {
+  render(): Element<any> {
     const {
       children,
       className,

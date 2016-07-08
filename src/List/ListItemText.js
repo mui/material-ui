@@ -28,7 +28,7 @@ export default class ListItemText extends Component<void, Props, void> {
     styleManager: PropTypes.object.isRequired,
   };
 
-  shouldComponentUpdate(nextProps:Props, nextState:void, nextContext:{styleManager: Object}) {
+  shouldComponentUpdate(nextProps: Props, nextState: void, nextContext: {styleManager: Object}) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.context, nextContext)
@@ -37,7 +37,7 @@ export default class ListItemText extends Component<void, Props, void> {
 
   props:Props;
 
-  render():Element<any> {
+  render(): Element<any> {
     const {className, primary, secondary, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.root, className);

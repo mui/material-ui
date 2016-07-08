@@ -11,11 +11,11 @@ import zIndex from './zIndex';
 import createMixins from './mixins';
 
 export function createMuiTheme(
-  palette:Palette = createPalette(),
-  typography:Typography = createTypography(palette),
-  breakpoints:Breakpoints = createBreakpoints(),
-  mixins:Mixins = createMixins(breakpoints),
-  ...more:any
+  palette: Palette = createPalette(),
+  typography: Typography = createTypography(palette),
+  breakpoints: Breakpoints = createBreakpoints(),
+  mixins: Mixins = createMixins(breakpoints),
+  ...more: any
 ) {
   const properties = merge({
     dir: 'ltr',
@@ -45,7 +45,7 @@ type Palette = {
   primary: string,
   accent: string,
   grey: Object, // cannot use ColorRange yet
-  getContrastText: (color:string) => string,
+  getContrastText: (color: string) => string,
 }
 
 export function createPalette({
@@ -53,11 +53,11 @@ export function createPalette({
   accent = pink,
   error = red,
   dark = false,
-}:{
+}: {
   primary: string,
   accent: string,
   dark: boolean,
-} = {}):Palette {
+} = {}): Palette {
   const type = dark ? 'dark' : 'light';
 
   return {
@@ -139,7 +139,7 @@ export const dark:ColorScheme = {
 
 export const shades:Shades = {dark, light};
 
-function getContrastText(color:string):string {
+function getContrastText(color: string): string {
   if (getContrastRatio(color, black) < 7) {
     return dark.text.primary;
   }

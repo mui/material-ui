@@ -73,7 +73,7 @@ export default class IconButton extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render():Element<any> {
+  render(): Element<any> {
     const {children, className, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     return (

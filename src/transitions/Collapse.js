@@ -134,7 +134,7 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     }
   };
 
-  getTransitionDuration(wrapperHeight:number):number {
+  getTransitionDuration(wrapperHeight: number): number {
     if (!wrapperHeight) {
       return 0;
     }
@@ -142,7 +142,7 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     return Math.round(175 / constant + 25) * constant;
   }
 
-  render():Element<any> {
+  render(): Element<any> {
     const {
       children,
       containerClassName,

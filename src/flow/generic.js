@@ -1,2 +1,2 @@
 // Overly generic types here:
-declare function Callback():void;
+declare function Callback(): void;

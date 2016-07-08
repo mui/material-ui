@@ -30,7 +30,7 @@ type Props = {
   zDepth: number,
 };
 
-export default function Paper(props:Props, context:{styleManager: Object}):Element<any> {
+export default function Paper(props: Props, context: {styleManager: Object}): Element<any> {
   const {className, rounded, zDepth, ...other} = props;
   const classes = context.styleManager.render(styleSheet, {group: 'mui'});
 

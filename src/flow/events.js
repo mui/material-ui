@@ -1,1 +1,1 @@
-declare function RemoveEventListener():void;
+declare function RemoveEventListener(): void;

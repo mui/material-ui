@@ -124,19 +124,19 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps:Props) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
     }
   }
 
-  componentWillUpdate(nextProps:Props) {
+  componentWillUpdate(nextProps: Props) {
     if (!this.props.show && nextProps.show) {
       this.checkForFocus();
     }
   }
 
-  componentDidUpdate(prevProps:Props) {
+  componentDidUpdate(prevProps: Props) {
     if (!prevProps.show && this.props.show) {
       this.handleShow();
     }
