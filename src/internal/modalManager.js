@@ -5,9 +5,15 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import {hideSiblings, showSiblings, ariaHidden} from '../utils/manageAriaHidden';
 
-type modalManagerArg = {
+type ModalManagerArg = {
   container: HTMLElement,
   hideSiblingNodes: boolean,
+};
+
+export type ModalManager = {
+  add(modal: Object): number,
+  remove(modal: Object): number,
+  isTopModal(modal: Object): boolean,
 };
 
 /**
@@ -19,9 +25,9 @@ type modalManagerArg = {
 export function createModalManager({
   container = window.document.body,
   hideSiblingNodes = true,
-}: modalManagerArg = {}) {
+}: ModalManagerArg = {}): ModalManager {
   const modals = [];
-  const modalManager = {add, remove, isTopModal};
+  const modalManager: ModalManager = {add, remove, isTopModal};
 
   let prevOverflow;
   let prevPadding;

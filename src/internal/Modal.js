@@ -9,6 +9,7 @@ import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import {createModalManager} from './modalManager';
+import type {ModalManager} from './modalManager';
 import Overlay from './Overlay';
 import Portal from './Portal';
 import Fade from '../internal/transitions/Fade';
@@ -35,7 +36,7 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
 });
 
 type DefaultProps = {
-  modalManager: typeof modalManager,
+  modalManager: ModalManager,
   show: boolean,
 };
 
@@ -48,7 +49,7 @@ type Props = {
    * The CSS class name of the root element.
    */
   className?: string,
-  modalManager: typeof modalManager,
+  modalManager: ModalManager,
   /**
    * Callback fired after the Modal finishes transitioning out
    */
