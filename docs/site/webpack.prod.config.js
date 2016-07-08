@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -11,14 +10,38 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/dist/',
+    publicPath: '/build/',
   },
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel'],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'file',
+        include: /assets\/images/,
+      },
+      {
+        test: /\.md$/,
+        loader: 'raw',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css',
+      },
     ],
+  },
+  resolve: {
+    alias: {
+      'docs': path.resolve(__dirname, '../../docs'),
+      'material-ui': path.resolve(__dirname, '../../src'),
+      react: path.resolve('./node_modules/react'),
+    },
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
