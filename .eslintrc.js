@@ -94,6 +94,11 @@ module.exports = {
     // Babel
     'babel/object-curly-spacing': ['error', 'never'],
 
+    // Flow
+    'flow-vars/define-flow-type': 'error',
+    'flow-vars/use-flow-type': 'error',
+    'flowtype/space-after-type-colon': ['error', 'always'],
+
     // React
     'react/display-name': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
