@@ -17,17 +17,14 @@ module.exports = {
     }
   },
   plugins: [
-    "flow-vars",
+    'flowtype',
+    'flow-vars',
     'babel',
     'react',
     'mocha',
     'material-ui',
   ],
   rules: {
-    // Flow
-    "flow-vars/define-flow-type": 1,
-    "flow-vars/use-flow-type": 1,
-
     // Errors
     'array-bracket-spacing': ['error', 'never'],
     'arrow-spacing': 'error',
@@ -91,6 +88,11 @@ module.exports = {
 
     // Babel
     'babel/object-curly-spacing': ['error', 'never'],
+
+    // Flow
+    'flow-vars/define-flow-type': 'error',
+    'flow-vars/use-flow-type': 'error',
+    'flowtype/space-after-type-colon': ['error', 'always'],
 
     // React
     'react/display-name': 'error',
