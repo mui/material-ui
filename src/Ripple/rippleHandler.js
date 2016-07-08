@@ -1,5 +1,5 @@
 // @flow
-export function createRippleHandler(instance:Object, eventName:string, action:string, cb:any):EventListener {
+export function createRippleHandler(instance: Object, eventName: string, action: string, cb: any): EventListener {
   return function handleEvent(event) {
     if (cb) {
       cb.call(instance, event);

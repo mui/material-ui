@@ -1,4 +1,4 @@
-export default function coerce<E>(o:any, t:E):E {
+export default function coerce<E>(o: any, t: E): E {
   if (o instanceof t) {
     return o;
   } else {

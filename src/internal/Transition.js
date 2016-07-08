@@ -282,7 +282,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     }
   }
 
-  render():Element<any> {
+  render(): Element<any> {
     const status = this.state.status;
     if (status === UNMOUNTED) {
       return null;

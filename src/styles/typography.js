@@ -6,7 +6,7 @@ const defaultConstants = {
   fontWeightMedium: 500,
 };
 
-export default function createTypography(palette, constants = defaultConstants):Typography {
+export default function createTypography(palette, constants = defaultConstants): Typography {
   return {
     ...constants,
     display4: {

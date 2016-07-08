@@ -57,7 +57,7 @@ export default class Slide extends Component<DefaultProps, Props, void> {
     element.style.transform = this.getTranslateValue();
   };
 
-  render():Element<any> {
+  render(): Element<any> {
     const {
       children,
       transitionDuration, // eslint-disable-line no-unused-vars
