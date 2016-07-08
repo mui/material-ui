@@ -56,7 +56,7 @@ function getStyles(props, context, state) {
       top: verticalPosition === 'top' ?
         touchOffsetTop : 36,
       opacity: 0.9,
-      transform: `translate3d(0px, ${offset}px, 0px)`,
+      transform: `translate(0px, ${offset}px)`,
       transition: `${transitions.easeOut('0ms', 'top', '0ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
         transitions.easeOut('450ms', 'opacity', '0ms')}`,

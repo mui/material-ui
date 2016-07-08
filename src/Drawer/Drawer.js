@@ -151,7 +151,7 @@ class Drawer extends Component {
         zIndex: muiTheme.zIndex.drawer,
         left: 0,
         top: 0,
-        transform: `translate3d(${x}px, 0, 0)`,
+        transform: `translate(${x}px, 0)`,
         transition: !this.state.swiping && transitions.easeOut(null, 'transform', null),
         backgroundColor: theme.color,
         overflow: 'auto',
@@ -259,7 +259,7 @@ class Drawer extends Component {
 
   setPosition(translateX) {
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    const transformCSS = `translate3d(${(this.getTranslateMultiplier() * translateX)}px, 0, 0)`;
+    const transformCSS = `translate(${(this.getTranslateMultiplier() * translateX)}px, 0)`;
     this.refs.overlay.setOpacity(1 - translateX / this.getMaxTranslateX());
     autoPrefix.set(drawer.style, 'transform', transformCSS);
   }
