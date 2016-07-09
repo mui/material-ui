@@ -169,6 +169,7 @@ class EnhancedSwitch extends Component {
     if (!this.props.hasOwnProperty('checked') && this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(isInputChecked);
     }
+
     if (this.props.onSwitch) {
       this.props.onSwitch(event, isInputChecked);
     }
