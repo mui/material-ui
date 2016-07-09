@@ -42,7 +42,7 @@ export function createModalManager({
 
     if (bodyIsOverflowing((container))) {
       prevPadding = container.style.paddingRight;
-      containerStyle.paddingRight = `${getScrollbarSize()}px`;
+      containerStyle.paddingRight = `${parseInt(prevPadding || 0, 10) + getScrollbarSize()}px`;
     }
 
     css(container, containerStyle);
