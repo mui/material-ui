@@ -41,15 +41,9 @@ class TableRowColumn extends Component {
      * If true, this column responds to hover events.
      */
     hoverable: PropTypes.bool,
-    /**
-     * @ignore
-     * Callback function for click event.
-     */
+    /** @ignore */
     onClick: PropTypes.func,
-    /**
-     * @ignore
-     * Callback function for hover event.
-     */
+    /** @ignore */
     onHover: PropTypes.func,
     /**
      * @ignore
@@ -75,20 +69,26 @@ class TableRowColumn extends Component {
   };
 
   onClick = (event) => {
-    if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
+    if (this.props.onClick) {
+      this.props.onClick(event, this.props.columnNumber);
+    }
   };
 
   onMouseEnter = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: true});
-      if (this.props.onHover) this.props.onHover(event, this.props.columnNumber);
+      if (this.props.onHover) {
+        this.props.onHover(event, this.props.columnNumber);
+      }
     }
   };
 
   onMouseLeave = (event) => {
     if (this.props.hoverable) {
       this.setState({hovered: false});
-      if (this.props.onHoverExit) this.props.onHoverExit(event, this.props.columnNumber);
+      if (this.props.onHoverExit) {
+        this.props.onHoverExit(event, this.props.columnNumber);
+      }
     }
   };
 

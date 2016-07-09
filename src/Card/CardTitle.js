@@ -84,8 +84,10 @@ class CardTitle extends Component {
     const subtitleStyle = Object.assign({}, styles.subtitle, this.props.subtitleStyle);
 
     const {
-      title,
       subtitle,
+      subtitleColor, // eslint-disable-line no-unused-vars
+      title,
+      titleColor, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

@@ -22,10 +22,10 @@ class MobileTearSheet extends Component {
 
     const styles = {
       root: {
-        float: 'left',
         marginBottom: 24,
         marginRight: 24,
-        width: 360,
+        maxWidth: 360,
+        width: '100%',
       },
       container: {
         border: 'solid 1px #d9d9d9',
@@ -37,7 +37,7 @@ class MobileTearSheet extends Component {
         display: 'block',
         position: 'relative',
         marginTop: -10,
-        width: 360,
+        maxWidth: 360,
       },
     };
 

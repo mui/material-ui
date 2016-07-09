@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import {stub} from 'sinon';
+
 import FlatButton from './FlatButton';
 import getMuiTheme from '../styles/getMuiTheme';
 import ActionAndroid from '../svg-icons/action/android';
@@ -32,7 +32,6 @@ describe('<FlatButton />', () => {
       ariaLabel: 'Say hello world',
       disabled: true,
       href: 'http://google.com',
-      linkButton: true,
       name: 'Hello World',
     };
 
@@ -151,33 +150,35 @@ describe('<FlatButton />', () => {
     assert.strictEqual(wrapper.node.props.touchRippleColor, 'yellow', 'should be yellow');
   });
 
-  describe('propTypes', () => {
-    let consoleStub;
+  describe('validateLabel', () => {
+    const validateLabel = FlatButton.propTypes.label;
 
-    beforeEach(() => {
-      consoleStub = stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore(); // eslint-disable-line no-console
-    });
-
-    it('should throw when using wrong properties', () => {
-      shallowWithContext(
-        <FlatButton />
-      );
-      assert.strictEqual(consoleStub.callCount, 1);
-      assert.strictEqual(
-        consoleStub.args[0][0],
-        'Warning: Failed propType: Required prop label or children or icon was not specified in FlatButton.'
+    it('should throw when using wrong label', () => {
+      assert.strictEqual(validateLabel({}, 'label', 'FlatButton').message,
+        'Required prop label or children or icon was not specified in FlatButton.',
+        'should return an error'
       );
     });
 
-    it('should not throw when using a valid properties', () => {
-      shallowWithContext(
-        <FlatButton label={0} />
+    it('should not throw when using a valid label', () => {
+      assert.strictEqual(validateLabel({
+        label: 0,
+      }, 'label', 'FlatButton'), undefined);
+    });
+  });
+
+  describe('hover state', () => {
+    it('should reset the hover state when disabled', () => {
+      const wrapper = shallowWithContext(
+        <FlatButton label="foo" />
       );
-      assert.strictEqual(consoleStub.callCount, 0);
+
+      wrapper.simulate('mouseEnter');
+      assert.strictEqual(wrapper.state().hovered, true, 'should respond to the event');
+      wrapper.setProps({
+        disabled: true,
+      });
+      assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
     });
   });
 });

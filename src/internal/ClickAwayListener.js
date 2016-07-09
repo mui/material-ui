@@ -21,6 +21,7 @@ export default class ClickAwayListener extends Component {
   };
 
   componentDidMount() {
+    this.isCurrentlyMounted = true;
     if (this.props.onClickAway) {
       bind(this.handleClickAway);
     }
@@ -36,6 +37,7 @@ export default class ClickAwayListener extends Component {
   }
 
   componentWillUnmount() {
+    this.isCurrentlyMounted = false;
     unbind(this.handleClickAway);
   }
 
@@ -44,10 +46,13 @@ export default class ClickAwayListener extends Component {
       return;
     }
 
-    const el = ReactDOM.findDOMNode(this);
+    // IE11 support, which trigger the handleClickAway even after the unbind
+    if (this.isCurrentlyMounted) {
+      const el = ReactDOM.findDOMNode(this);
 
-    if (document.documentElement.contains(event.target) && !isDescendant(el, event.target)) {
-      this.props.onClickAway(event);
+      if (document.documentElement.contains(event.target) && !isDescendant(el, event.target)) {
+        this.props.onClickAway(event);
+      }
     }
   };
 

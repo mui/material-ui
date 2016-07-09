@@ -12,7 +12,7 @@ const styles = {
 };
 
 function handleActive(tab) {
-  alert(`A tab with this route property ${tab.props.route} was activated.`);
+  alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
 }
 
 const TabsExampleSimple = () => (
@@ -39,7 +39,7 @@ const TabsExampleSimple = () => (
     </Tab>
     <Tab
       label="onActive"
-      route="/home"
+      data-route="/home"
       onActive={handleActive}
     >
       <div>

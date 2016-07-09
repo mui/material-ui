@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import {mount, shallow} from 'enzyme';
-import {stub} from 'sinon';
 import {assert} from 'chai';
+
 import RaisedButton from './RaisedButton';
 import ActionAndroid from '../svg-icons/action/android';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -35,7 +35,6 @@ describe('<RaisedButton />', () => {
       ariaLabel: 'Say hello world',
       disabled: true,
       href: 'http://google.com',
-      linkButton: true,
       name: 'Hello World',
     };
 
@@ -116,33 +115,35 @@ describe('<RaisedButton />', () => {
     assert.strictEqual(svgIcon.node.props.color, 'red', 'should have color set as the prop');
   });
 
-  describe('propTypes', () => {
-    let consoleStub;
+  describe('validateLabel', () => {
+    const validateLabel = RaisedButton.propTypes.label;
 
-    beforeEach(() => {
-      consoleStub = stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore(); // eslint-disable-line no-console
-    });
-
-    it('should throw when using wrong properties', () => {
-      shallowWithContext(
-        <RaisedButton />
-      );
-      assert.strictEqual(consoleStub.callCount, 1);
-      assert.strictEqual(
-        consoleStub.args[0][0],
-        'Warning: Failed propType: Required prop label or children or icon was not specified in RaisedButton.'
+    it('should throw when using wrong label', () => {
+      assert.strictEqual(validateLabel({}, 'label', 'RaisedButton').message,
+        'Required prop label or children or icon was not specified in RaisedButton.',
+        'should return an error'
       );
     });
 
-    it('should not throw when using a valid properties', () => {
-      shallowWithContext(
-        <RaisedButton label={0} />
+    it('should not throw when using a valid label', () => {
+      assert.strictEqual(validateLabel({
+        label: 0,
+      }, 'label', 'RaisedButton'), undefined);
+    });
+  });
+
+  describe('hover state', () => {
+    it('should reset the hover state when disabled', () => {
+      const wrapper = shallowWithContext(
+        <RaisedButton label="foo" />
       );
-      assert.strictEqual(consoleStub.callCount, 0);
+
+      wrapper.children().simulate('mouseEnter');
+      assert.strictEqual(wrapper.state().hovered, true, 'should respond to the event');
+      wrapper.setProps({
+        disabled: true,
+      });
+      assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
     });
   });
 });

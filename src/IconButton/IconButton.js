@@ -33,6 +33,7 @@ function getStyles(props, context) {
     disabled: {
       color: baseTheme.palette.disabledColor,
       fill: baseTheme.palette.disabledColor,
+      cursor: 'not-allowed',
     },
   };
 }
@@ -58,6 +59,10 @@ class IconButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * The URL to link to when the button is clicked.
+     */
+    href: PropTypes.string,
+    /**
      * The CSS class name of the icon. Used for setting the icon with a stylesheet.
      */
     iconClassName: PropTypes.string,
@@ -65,15 +70,9 @@ class IconButton extends Component {
      * Override the inline-styles of the icon element.
      */
     iconStyle: PropTypes.object,
-    /**
-     * Callback function fired when the element loses focus.
-     * @param {object} event `blur` event targeting the element.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
-    /**
-     * Callback function fired when the element gains focus.
-     * @param {object} event `focus` event targeting the element.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
     /**
      * Callback function fired when the element is focused or blurred by the keyboard.
@@ -82,24 +81,11 @@ class IconButton extends Component {
      * @param {boolean} keyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element. Unlike `onMouseLeave`,
-     * this callback will fire on disabled icon buttons.
-     *
-     * @param {object} event `mouseout` event targeting the element.
-     */
+    /** @ignore */
     onMouseOut: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
@@ -190,7 +176,9 @@ class IconButton extends Component {
       if (this.props.onBlur) this.props.onBlur(event);
     }
 
-    if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(event, keyboardFocused);
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event, keyboardFocused);
+    }
   };
 
   render() {
@@ -199,7 +187,9 @@ class IconButton extends Component {
       disableTouchRipple,
       children,
       iconClassName,
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       tooltip,
+      tooltipPosition: tooltipPositionProp,
       touch,
       iconStyle,
       ...other,
@@ -207,7 +197,7 @@ class IconButton extends Component {
     let fonticon;
 
     const styles = getStyles(this.props, this.context);
-    const tooltipPosition = this.props.tooltipPosition.split('-');
+    const tooltipPosition = tooltipPositionProp.split('-');
 
     const tooltipElement = tooltip ? (
       <Tooltip

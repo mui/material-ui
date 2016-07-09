@@ -4,6 +4,7 @@ import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
+import deprecated from '../utils/deprecatedPropType';
 
 let styleInjected = false;
 let listening = false;
@@ -49,8 +50,10 @@ class EnhancedButton extends Component {
     disabled: PropTypes.bool,
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
+    href: PropTypes.string,
     keyboardFocused: PropTypes.bool,
-    linkButton: PropTypes.bool,
+    linkButton: deprecated(PropTypes.bool, `LinkButton is no longer required when the \`href\` property is provided.
+      It will be removed with v0.16.0.`),
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
@@ -264,7 +267,9 @@ class EnhancedButton extends Component {
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
       focusRippleOpacity, // eslint-disable-line no-unused-vars
-      linkButton,
+      href,
+      keyboardFocused, // eslint-disable-line no-unused-vars
+      linkButton, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       touchRippleOpacity, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
@@ -272,6 +277,7 @@ class EnhancedButton extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       tabIndex,
@@ -304,7 +310,7 @@ class EnhancedButton extends Component {
        * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
        */
       transform: disableTouchRipple && disableFocusRipple ? null : 'translate3d(0, 0, 0)',
-      verticalAlign: other.hasOwnProperty('href') ? 'middle' : null,
+      verticalAlign: href ? 'middle' : null,
     }, style);
 
 
@@ -313,7 +319,7 @@ class EnhancedButton extends Component {
       mergedStyles.background = 'none';
     }
 
-    if (disabled && linkButton) {
+    if (disabled && href) {
       return (
         <span
           {...other}
@@ -329,23 +335,23 @@ class EnhancedButton extends Component {
       style: prepareStyles(mergedStyles),
       ref: 'enhancedButton',
       disabled: disabled,
+      href: href,
       onBlur: this.handleBlur,
       onClick: this.handleClick,
       onFocus: this.handleFocus,
-      onTouchTap: this.handleTouchTap,
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
+      onTouchTap: this.handleTouchTap,
       tabIndex: tabIndex,
       type: type,
     };
     const buttonChildren = this.createButtonChildren();
 
-    // Provides backward compatibility. Added to support wrapping around <a> element.
-    const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
+    if (React.isValidElement(containerElement)) {
+      return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
 
-    return React.isValidElement(containerElement) ?
-      React.cloneElement(containerElement, buttonProps, buttonChildren) :
-      React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
+    return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
   }
 }
 

@@ -35,14 +35,14 @@ describe('<StepContent />', () => {
     const wrapper = shallowWithContext(
       <StepContent
         style={{paddingRight: 200, color: 'purple', border: '1px solid tomato'}}
-        myProp="hello"
+        role="hello"
       />
     );
-    const {style, myProp} = wrapper.props();
+    const {style, role} = wrapper.props();
     assert.strictEqual(style.paddingRight, 200);
     assert.strictEqual(style.color, 'purple');
     assert.strictEqual(style.border, '1px solid tomato');
-    assert.strictEqual(myProp, 'hello');
+    assert.strictEqual(role, 'hello');
   });
 
   it('renders children inside an ExpandTransition group', () => {

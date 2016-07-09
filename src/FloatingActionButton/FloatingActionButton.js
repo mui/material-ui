@@ -88,7 +88,7 @@ class FloatingActionButton extends Component {
      */
     disabledColor: PropTypes.string,
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
     /**
@@ -104,48 +104,20 @@ class FloatingActionButton extends Component {
      */
     iconStyle: PropTypes.object,
     /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
-     */
-    linkButton: PropTypes.bool,
-    /**
      * If true, the button will be a small floating action button.
      */
     mini: PropTypes.bool,
-    /**
-     * Callback function fired when a mouse button is pressed down on the element.
-     *
-     * @param {object} event `mousedown` event targeting the element.
-     */
+    /** @ignore */
     onMouseDown: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when a mouse button is released on the element.
-     *
-     * @param {object} event `mouseup` event targeting the element.
-     */
+    /** @ignore */
     onMouseUp: PropTypes.func,
-    /**
-     * Callback function fired when a touch point is removed from the element.
-     *
-     * @param {object} event `touchend` event targeting the element.
-     */
+    /** @ignore */
     onTouchEnd: PropTypes.func,
-    /**
-     * Callback function fired when the element is touched.
-     *
-     * @param {object} event `touchstart` event targeting the element.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
     /**
      * If true, the button will use the secondary button colors.
@@ -209,19 +181,27 @@ class FloatingActionButton extends Component {
 
   handleMouseUp = (event) => {
     this.setState({zDepth: this.props.zDepth});
-    if (this.props.onMouseUp) this.props.onMouseUp(event);
+    if (this.props.onMouseUp) {
+      this.props.onMouseUp(event);
+    }
   };
 
   handleMouseLeave = (event) => {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.props.zDepth, hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
+    if (!this.refs.container.isKeyboardFocused()) {
+      this.setState({zDepth: this.props.zDepth, hovered: false});
+    }
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(event);
+    }
   };
 
   handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
-    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(event);
+    }
   };
 
   handleTouchStart = (event) => {
@@ -229,12 +209,16 @@ class FloatingActionButton extends Component {
       touch: true,
       zDepth: this.props.zDepth + 1,
     });
-    if (this.props.onTouchStart) this.props.onTouchStart(event);
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(event);
+    }
   };
 
   handleTouchEnd = (event) => {
     this.setState({zDepth: this.props.zDepth});
-    if (this.props.onTouchEnd) this.props.onTouchEnd(event);
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(event);
+    }
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
@@ -256,7 +240,9 @@ class FloatingActionButton extends Component {
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,
       iconClassName,
-      ...other} = this.props;
+      zDepth, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);

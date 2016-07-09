@@ -12,8 +12,8 @@ class TimeDisplay extends Component {
   };
 
   static defaultProps = {
-    mode: 'hour',
     affix: '',
+    mode: 'hour',
   };
 
   static contextTypes = {
@@ -52,9 +52,13 @@ class TimeDisplay extends Component {
 
   render() {
     const {
-      selectedTime, // eslint-disable-line no-unused-vars
-      mode,
       affix,
+      format,
+      mode,
+      onSelectAffix,
+      onSelectHour,
+      onSelectMin,
+      selectedTime, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
@@ -103,22 +107,22 @@ class TimeDisplay extends Component {
     const [hour, min] = this.sanitizeTime();
 
     let buttons = [];
-    if (this.props.format === 'ampm') {
+    if (format === 'ampm') {
       buttons = [
         <div
           key="pm"
           style={prepareStyles(Object.assign({}, styles.clickable, affix === 'pm' ? {} : styles.inactive))}
-          onTouchTap={() => this.props.onSelectAffix('pm')}
+          onTouchTap={() => onSelectAffix('pm')}
         >
-          {"PM"}
+          {'PM'}
         </div>,
         <div
           key="am"
           style={prepareStyles(Object.assign({},
             styles.affixTop, styles.clickable, affix === 'am' ? {} : styles.inactive))}
-          onTouchTap={() => this.props.onSelectAffix('am')}
+          onTouchTap={() => onSelectAffix('am')}
         >
-          {"AM"}
+          {'AM'}
         </div>,
       ];
     }
@@ -130,7 +134,7 @@ class TimeDisplay extends Component {
           <div style={prepareStyles(styles.time)}>
             <span
               style={prepareStyles(Object.assign({}, styles.clickable, mode === 'hour' ? {} : styles.inactive))}
-              onTouchTap={this.props.onSelectHour}
+              onTouchTap={onSelectHour}
             >
               {hour}
             </span>
@@ -138,7 +142,7 @@ class TimeDisplay extends Component {
             <span
               style={prepareStyles(Object.assign({},
                 styles.clickable, mode === 'minute' ? {} : styles.inactive))}
-              onTouchTap={this.props.onSelectMin}
+              onTouchTap={onSelectMin}
             >
               {min}
             </span>

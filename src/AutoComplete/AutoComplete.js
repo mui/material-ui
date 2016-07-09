@@ -118,21 +118,11 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Callback function that is fired when the `TextField` loses focus.
-     *
-     * @param {object} event `blur` event targeting the `TextField`.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
-    /**
-     * Callback function that is fired when the `TextField` gains focus.
-     *
-     * @param {object} event `focus` event targeting the `TextField`.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Callback function that is fired when the `TextField` receives a keydown event.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
@@ -173,7 +163,7 @@ class AutoComplete extends Component {
     /**
      * If true, will update when focus event triggers.
      */
-    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus'),
+    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
   };
 
   static defaultProps = {
@@ -249,7 +239,8 @@ class AutoComplete extends Component {
   };
 
   setValue(textValue) {
-    warning(false, 'setValue() is deprecated, use the searchText property.');
+    warning(false, `setValue() is deprecated, use the searchText property.
+      It will be removed with v0.16.0.`);
 
     this.setState({
       searchText: textValue,
@@ -257,7 +248,7 @@ class AutoComplete extends Component {
   }
 
   getValue() {
-    warning(false, 'getValue() is deprecated.');
+    warning(false, 'getValue() is deprecated. It will be removed with v0.16.0.');
 
     return this.state.searchText;
   }
@@ -384,21 +375,26 @@ class AutoComplete extends Component {
     const {
       anchorOrigin,
       animated,
-      style,
+      dataSource,
+      dataSourceConfig, // eslint-disable-line no-unused-vars
+      disableFocusRipple,
       errorStyle,
       floatingLabelText,
-      hintText,
       filter,
       fullWidth,
+      style,
+      hintText,
+      maxSearchResults,
+      menuCloseDelay, // eslint-disable-line no-unused-vars
       menuStyle,
       menuProps,
       listStyle,
       targetOrigin,
-      disableFocusRipple,
       triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
+      onNewRequest, // eslint-disable-line no-unused-vars
+      onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
-      maxSearchResults,
-      dataSource,
+      searchText: searchTextProp, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
@@ -453,7 +449,7 @@ class AutoComplete extends Component {
                 value: (
                   <MenuItem
                     innerDivStyle={styles.innerDiv}
-                    primaryText={itemValue}
+                    primaryText={itemText}
                     disableFocusRipple={disableFocusRipple}
                     key={index}
                   />),

@@ -7,7 +7,7 @@ import FlatButtonLabel from './FlatButtonLabel';
 
 function validateLabel(props, propName, componentName) {
   if (process.env.NODE_ENV !== 'production') {
-    if (!props.children && !props.label && !props.icon) {
+    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
       return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
     }
   }
@@ -40,7 +40,7 @@ class FlatButton extends Component {
      */
     hoverColor: PropTypes.string,
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
     /**
@@ -63,33 +63,17 @@ class FlatButton extends Component {
      */
     labelStyle: PropTypes.object,
     /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
-     */
-    linkButton: PropTypes.bool,
-    /**
      * Callback function fired when the element is focused or blurred by the keyboard.
      *
      * @param {object} event `focus` or `blur` event targeting the element.
      * @param {boolean} isKeyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when the element is touched.
-     *
-     * @param {object} event `touchstart` event targeting the element.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
     /**
      * If true, colors button according to
@@ -133,6 +117,14 @@ class FlatButton extends Component {
     touch: false,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled && this.state.hovered) {
+      this.setState({
+        hovered: false,
+      });
+    }
+  }
+
   handleKeyboardFocus = (event, isKeyboardFocused) => {
     this.setState({isKeyboardFocused: isKeyboardFocused});
     this.props.onKeyboardFocus(event, isKeyboardFocused);
@@ -164,7 +156,6 @@ class FlatButton extends Component {
       label,
       labelStyle,
       labelPosition,
-      linkButton,
       primary,
       rippleColor,
       secondary,
@@ -270,7 +261,6 @@ class FlatButton extends Component {
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
-        linkButton={linkButton}
         onKeyboardFocus={this.handleKeyboardFocus}
         onMouseLeave={this.handleMouseLeave}
         onMouseEnter={this.handleMouseEnter}

@@ -195,10 +195,13 @@ class Snackbar extends Component {
 
   render() {
     const {
+      autoHideDuration, // eslint-disable-line no-unused-vars
+      message: messageProp, // eslint-disable-line no-unused-vars
+      onRequestClose, // eslint-disable-line no-unused-vars
       onActionTouchTap,
       style,
       bodyStyle,
-      ...others,
+      ...other,
     } = this.props;
 
     const {
@@ -212,7 +215,7 @@ class Snackbar extends Component {
 
     return (
       <ClickAwayListener onClickAway={open && this.componentClickAway}>
-        <div {...others} style={prepareStyles(Object.assign(styles.root, style))}>
+        <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
           <SnackbarBody
             open={open}
             message={message}

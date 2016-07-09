@@ -85,14 +85,14 @@ class SelectField extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * Override the default max-height of the underlying `DropDownMenu` element.
+     */
+    maxHeight: PropTypes.number,
+    /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Callback function fired when the select field loses focus.
-     *
-     * @param {object} event `blur` event targeting the select field.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function fired when a menu item is selected.
@@ -103,17 +103,13 @@ class SelectField extends Component {
      * @param {any} payload The `value` prop of the selected menu item.
      */
     onChange: PropTypes.func,
-    /**
-     * Callback function fired when the select field gains focus.
-     *
-     * @param {object} event `focus` event targeting the select field.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
     /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     selectFieldRoot: deprecated(PropTypes.object,
-      'Instead, use `menuStyle`.'),
+      'Instead, use `menuStyle`. It will be removed with v0.16.0.'),
     /**
      * Override the inline-styles of the root element.
      */
@@ -169,6 +165,7 @@ class SelectField extends Component {
       hintText,
       fullWidth,
       errorText,
+      maxHeight,
       menuStyle,
       onFocus,
       onBlur,
@@ -181,7 +178,9 @@ class SelectField extends Component {
 
     return (
       <TextField
+        {...other}
         style={style}
+        disabled={disabled}
         floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
@@ -196,7 +195,6 @@ class SelectField extends Component {
         id={id}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
-        {...other}
       >
         <DropDownMenu
           disabled={disabled}
@@ -207,6 +205,7 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
+          maxHeight={maxHeight}
         >
           {children}
         </DropDownMenu>

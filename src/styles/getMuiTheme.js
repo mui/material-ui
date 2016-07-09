@@ -140,7 +140,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     listItem: {
       nestedLevelDepth: 18,
-      secondaryTextColor: lightBlack,
+      secondaryTextColor: palette.secondaryTextColor,
       leftIconColor: grey600,
       rightIconColor: grey600,
     },
@@ -237,6 +237,9 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: fade(black, 0.87),
       disabledTextColor: fade(black, 0.26),
       connectorLineColor: grey400,
+    },
+    svgIcon: {
+      color: palette.textColor,
     },
     table: {
       backgroundColor: palette.canvasColor,

@@ -4,7 +4,7 @@ import transitions from '../styles/transitions';
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
   const rangeValue = max - min;
-  const relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+  const relValue = Math.round((clampedValue - min) / rangeValue * 10000) / 10000;
   return relValue * 100;
 }
 
