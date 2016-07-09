@@ -48,16 +48,25 @@ export default class TextField extends Component {
 
   renderChild = (child) => {
     const {muiName} = child.type;
-
     if (muiName === 'TextFieldInput') {
-      return React.cloneElement(child, {
-        onFocus: createChainedFunction(this.handleFocus, child.onFocus),
-        onBlur: createChainedFunction(this.handleBlur, child.onBlur),
-      });
+      return this.renderInput(child);
+    } else if (muiName === 'TextFieldLabel') {
+      return this.renderLabel(child);
     }
-
     return child;
-  }
+  };
+
+  renderInput = (input) =>
+    React.cloneElement(input, {
+      onFocus: createChainedFunction(this.handleFocus, input.onFocus),
+      onBlur: createChainedFunction(this.handleBlur, input.onBlur),
+    });
+
+  renderLabel = (label) =>
+    React.cloneElement(label, {
+      shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
+        label.props.shrink : (this.state.dirty || this.state.focused),
+    });
 
   render() {
     const {
@@ -71,8 +80,6 @@ export default class TextField extends Component {
     const classNames = ClassNames({
       [this.classes.root]: true,
     }, className);
-
-    console.log(this.state);
 
     return (
       <div className={classNames} {...other}>

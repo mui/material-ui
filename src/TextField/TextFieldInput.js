@@ -57,6 +57,10 @@ export default class TextFieldInput extends Component {
      * If set to true, the input will have an underline
      */
     underline: PropTypes.bool,
+    /**
+     * The input value, required for a controlled component
+     */
+    value: PropTypes.string,
   };
 
   static defaultProps = {
@@ -69,8 +73,16 @@ export default class TextFieldInput extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  componentWillMount() {
+
+  }
+
   shouldComponentUpdate(nextProps) {
     return !shallowEqual(this.props, nextProps);
+  }
+
+  isControlled() {
+    return typeof this.props.value === 'string';
   }
 
   render() {
