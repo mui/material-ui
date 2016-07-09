@@ -10,16 +10,16 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
       position: 'absolute',
       left: 0,
       top: 0,
-      zIndex: 0,
-      transform: 'translate(0, 14px) scale(1)',
+      lineHeight: 1,
+      transform: 'translate(0, 18px) scale(1)',
       transformOrigin: 'top left',
+    },
+    shrink: {
+      transform: 'translate(0, 0px) scale(0.75)',
     },
     animated: {
       transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
       willChange: 'transform',
-    },
-    shrink: {
-      transform: 'translate(0, 0px) scale(0.75)',
     },
   };
 });

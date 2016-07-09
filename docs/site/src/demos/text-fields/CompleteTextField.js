@@ -5,14 +5,8 @@ import TextField, {TextFieldInput, TextFieldLabel} from 'material-ui/TextField';
 const styleSheet = createStyleSheet('CompleteTextField', () => {
   return {
     textField: {
-      display: 'flex',
-      margin: '0 10px',
-    },
-    label: {
-      order: 1,
-    },
-    input: {
-      order: 0,
+      marginLeft: 10,
+      marginRight: 10,
     },
   };
 });
@@ -37,6 +31,8 @@ export default class CompleteTextField extends Component {
           <TextFieldInput
             className={classes.input}
             id="name"
+            value={this.state.value}
+            onChange={(event) => this.setState({value: event.target.value})}
           />
         </TextField>
       </div>
@@ -44,6 +40,3 @@ export default class CompleteTextField extends Component {
   }
 }
 
-
-            // value={this.state.value}
-            // onChange={(event) => this.setState({value: event.target.value})}

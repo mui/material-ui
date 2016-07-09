@@ -8,7 +8,6 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
   return {
     root: {
       font: 'inherit',
-      margin: '8px 0',
       padding: '6px 0',
       border: 0,
       display: 'inline-block',
@@ -52,6 +51,10 @@ export default class TextFieldInput extends Component {
     /**
      * @ignore
      */
+    onChange: PropTypes.func,
+    /**
+     * @ignore
+     */
     onClean: PropTypes.func,
     /**
      * @ignore
@@ -82,23 +85,43 @@ export default class TextFieldInput extends Component {
   };
 
   componentWillMount() {
-
+    this.checkDirty(this.props);
   }
 
   shouldComponentUpdate(nextProps) {
     return !shallowEqual(this.props, nextProps);
   }
 
+  componentWillUpdate(nextProps) {
+    this.checkDirty(nextProps);
+  }
+
   // Holds the input reference
   input = undefined;
+
+  handleChange = (event) => {
+    if (!this.isControlled()) {
+      this.checkDirty(this.input);
+    }
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
+  };
 
   isControlled() {
     return typeof this.props.value === 'string';
   }
 
-  isDirty() {
-    const obj = this.isControlled() ? this.props : this.input;
+  isDirty(obj = this.isControlled() ? this.props : this.input) {
     return obj && obj.value && obj.value.length > 0;
+  }
+
+  checkDirty(obj) {
+    if (this.props.onDirty && this.isDirty(obj)) {
+      this.props.onDirty();
+    } else if (this.props.onClean) {
+      this.props.onClean();
+    }
   }
 
   render() {
@@ -106,6 +129,7 @@ export default class TextFieldInput extends Component {
       className,
       component,
       disabled,
+      onChange, // eslint-disable-line no-unused-vars
       onDirty, // eslint-disable-line no-unused-vars
       onClean, // eslint-disable-line no-unused-vars
       type,
@@ -124,6 +148,7 @@ export default class TextFieldInput extends Component {
     const inputProps = {
       ref: (c) => this.input = c,
       className: classNames,
+      onChange: this.handleChange,
       disabled,
       ...other,
     };
