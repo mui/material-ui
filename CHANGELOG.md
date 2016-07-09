@@ -6,11 +6,47 @@
 
 ##### Component Fixes / Enhancements
 - [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
-- [DatePicker] Fix year overflow (#4381)
 - [EnhancedButton] Fix href style (#4457)
 
 ##### Deperecations
 - [Buttons] Deprecate linkButton property (#4197)
+
+## 0.15.2
+###### _Jun 26, 2016_
+
+During the release of 0.15.1 something went teribly wrong :sweat_smile: and some
+commits were left out even though they were mentioned in the changelog. This release
+includes the missing commits and some extra.
+
+##### General
+- [Docs] Don't document standard DOM events (#4433)
+- [Styles] Check for nulls for RTL (#4496)
+- [Form Components] Set `cursor:not-allowed` style when disabled (#4170)
+- [React] Upgrade React to `v15.2.0` (#4603, #4605, #4607)
+
+##### Component Fixes / Enhancements
+- [AppBar] Improve props checking to be more resilient (#4557)
+- [Button] Never allow a disabled button to be in a hovered state (#4626)
+- [Chip] Add to index (#4570)
+- [ClickAwayListener] Add better support for IE11 (#4537)
+- [DatePicker] Expose dialog container style (#4355)
+- [DatePicker] Fix year overflow (#4381)
+- [DropDownMenu] Remove Synthetic Event from pooling when used asynchronously (#4564)
+- [FlatButton] Add a condition to check for zero in the label warning (#4618)
+- [LinearProgress] Fix calculating of getRelativeValue (#4624)
+- [ListItem] Fix error with props access in state assignment for ie9/10 (#4596)
+- [MenuItem] Allow styles on lefticon in non-desktop mode (#4474)
+- [RadioButton] Changed the value type to any (#4510)
+- [RadioButtonGroup] Fix error with props access in state assignment for ie9/10 (#4596)
+- [RaisedButton] Fix the `fullWidth` regression (#4479)
+- [RenderToLayer] Fix an internal issue with React (#4548)
+- [Slider] Add a sliderStyle property (#4617)
+- [Slider] Add support for vertical/reversible sliders (#4571)
+- [Stepper] Fix transition bug in safari (#4616)
+- [SvgIcon] Add support for color attribute (#4487)
+- [SvgIcon] Add themeable color (#4621)
+- [SvgIcon] Remove unused style assignment (#4486)
+- [TextField] Keep spreading properties when children is set (#4478)
 
 ## 0.15.1
 ###### _Jun 16, 2016_
@@ -31,7 +67,6 @@
 - [Core] Remove react-addons-update dependency (#3946)
 - [Core] Move to the normal lodash (#4380)
 - [Docs] Use `copy-webpack-plugin` for dev (#4201)
-- [Docs] Don't document standard DOM events (#4433)
 - [Icon Builder] Add muiName to generated SvgIcons (#4188, #4206)
 - [Icon Builder] Fix SvgIcon require path to icons generated with --mui-require absolute (#4204)
 - [Themes] Fix MuiThemeProvider default theme (#4229)
@@ -49,7 +84,6 @@
 - [Avatar] Remove the border (#4365)
 - [Button] Save some bytes on the production build (#4346)
 - [DatePicker] Added className prop to DatePicker (#4250)
-- [DatePicker] Expose dialog container style (#4355)
 - [DatePicker] Fix layout when used with border-box (#4454)
 - [DatePicker] Fix the issue about onDismiss function will fire by handleTouchTapOk (#4367)
 - [DatePicker] Fix `weekTitleDayStyle` (#4464)
@@ -64,13 +98,11 @@
 - [ListItem] Fix theme not propagating on update (#4372)
 - [Menu] Add basic hotkey-focusing feature (#4189)
 - [Menu] Fix theme not propagating on update (#4372)
-- [MenuItem] Allow styles on lefticon in non-desktop mode (#4474)
 - [MenuItem] Fix theme not propagating on update (#4372)
 - [Picker] Disable userSelect on TimePicker and DatePicker (#4176)
 - [Pickers] Add some test regarding the expect value property (#4347)
 - [Popover] Fix typo from innerWith to innerWidth (#4332)
 - [RaisedButton] Don't override SvgIcon color prop (#3746)
-- [RaisedButton] Fix the `fullWidth` regression (#4479)
 - [RaisedButton] Respect theme fontSize (#3988)
 - [RenderToLayer] Cleanup (#4423)
 - [SelectField] Add callback signatures to docs and improve other props (#3924)
@@ -79,11 +111,8 @@
 - [Snackbar] Add a new test and fix consecutive updates leading to displaying old message (#4329)
 - [Stepper] Add more tests and fix an issue with `StepButton` event handlers (#4203)
 - [Stepper] Fix vertical stepper on mobile (#4299)
-- [SvgIcon] Add support for color attribute (#4487)
-- [SvgIcon] Remove unused style assignment (#4486)
 - [Tabs] Fixes tabindex (#4357)
 - [TextField] Fix `floatingLabelText` intercepting click events (#4418)
-- [TextField] Keep spreading properties when children is set (#4478)
 - [Timepicker] Add explicit box-sizing to Clock component (#4386)
 - [TimePicker] Expose two TimePickerDialog style props (#4356)
 - [TimePicker] Fix auto reset of time on window resize (#4251)
