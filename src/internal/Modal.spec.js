@@ -46,12 +46,12 @@ describe('<Modal>', () => {
       assert.strictEqual(modal.hasClass(classes.modal), true, 'should have the modal class');
     });
 
-    it('should render an overlay wrapped in a fade transition', () => {
+    it('should render a backdrop wrapped in a fade transition', () => {
       const transition = wrapper.childAt(0).childAt(0);
       assert.strictEqual(transition.is('Fade'), true, 'should be the fade transition');
       assert.strictEqual(transition.prop('in'), true, 'should set the transition to in');
-      const overlay = transition.childAt(0);
-      assert.strictEqual(overlay.is('Overlay'), true, 'should be the overlay component');
+      const backdrop = transition.childAt(0);
+      assert.strictEqual(backdrop.is('Backdrop'), true, 'should be the backdrop component');
     });
   });
 

@@ -3,7 +3,7 @@ import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import {lightBlack} from '../styles/colors';
 
-export const styleSheet = createStyleSheet('Overlay', (theme) => {
+export const styleSheet = createStyleSheet('Backdrop', (theme) => {
   return {
     root: {
       zIndex: -1,
@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('Overlay', (theme) => {
   };
 });
 
-export default class Overlay extends Component {
+export default class Backdrop extends Component {
 
   static propTypes = {
     /**

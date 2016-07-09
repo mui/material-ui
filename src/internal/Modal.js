@@ -8,7 +8,7 @@ import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import {createModalManager} from './modalManager';
-import Overlay from './Overlay';
+import Backdrop from './Backdrop';
 import Portal from './Portal';
 import Fade from '../internal/transitions/Fade';
 import addEventListener from '../utils/addEventListener';
@@ -44,11 +44,11 @@ export default class Modal extends Component {
      */
     className: PropTypes.string,
     modalManager: PropTypes.object,
+    onBackdropClick: PropTypes.func,
     /**
      * Callback fired after the Modal finishes transitioning out
      */
     onExited: React.PropTypes.func,
-    onOverlayClick: PropTypes.func,
     onRequestClose: PropTypes.func,
     show: PropTypes.bool,
   };
@@ -173,13 +173,13 @@ export default class Modal extends Component {
     // }
   };
 
-  handleOverlayClick = (event) => {
+  handleBackdropClick = (event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
 
-    // if (this.props.onOverlayClick) {
-    //   this.props.onOverlayClick(event);
+    // if (this.props.onBackdropClick) {
+    //   this.props.onBackdropClick(event);
     // }
 
     if (this.props.onRequestClose) {
@@ -187,7 +187,7 @@ export default class Modal extends Component {
     }
   };
 
-  handleOverlayExited = (...args) => {
+  handleBackdropExited = (...args) => {
     this.setState({exited: true});
     this.handleHide();
     if (this.props.onExited) {
@@ -233,9 +233,9 @@ export default class Modal extends Component {
           <Fade
             in={show}
             transitionAppear={true}
-            onExited={this.handleOverlayExited}
+            onExited={this.handleBackdropExited}
           >
-            <Overlay onClick={this.handleOverlayClick} />
+            <Backdrop onClick={this.handleBackdropClick} />
           </Fade>
           {modalChild}
         </div>
