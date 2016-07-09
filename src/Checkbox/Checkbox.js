@@ -130,22 +130,26 @@ class Checkbox extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {switched: false};
+  state = {
+    switched: false,
+  };
 
   componentWillMount() {
     const {checked, defaultChecked, valueLink} = this.props;
 
     if (checked || defaultChecked || (valueLink && valueLink.value)) {
-      this.setState({switched: true});
+      this.setState({
+        switched: true,
+      });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      switched: this.props.checked !== nextProps.checked ?
-        nextProps.checked :
-        this.state.switched,
-    });
+    if (this.props.checked !== nextProps.checked) {
+      this.setState({
+        switched: nextProps.checked,
+      });
+    }
   }
 
   isChecked() {
@@ -156,12 +160,16 @@ class Checkbox extends Component {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   }
 
-  handleCheck = (event, isInputChecked) => {
-    if (this.props.onCheck) this.props.onCheck(event, isInputChecked);
+  handleStateChange = (newSwitched) => {
+    this.setState({
+      switched: newSwitched,
+    });
   };
 
-  handleStateChange = (newSwitched) => {
-    this.setState({switched: newSwitched});
+  handleCheck = (event, isInputChecked) => {
+    if (this.props.onCheck) {
+      this.props.onCheck(event, isInputChecked);
+    }
   };
 
   render() {
