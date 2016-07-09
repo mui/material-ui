@@ -28,6 +28,22 @@ describe('<TextFieldInput>', () => {
     assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
   });
 
+  it('should fire event callbacks', () => {
+    const events = ['onChange', 'onFocus', 'onBlur', 'onKeyUp', 'onKeyDown'];
+    const handlers = events.reduce((result, n) => {
+      result[n] = spy();
+      return result;
+    }, {});
+
+    const wrapper = shallow(<TextFieldInput {...handlers} />);
+
+    events.forEach((n) => {
+      const event = n.charAt(2).toUpperCase() + n.slice(3);
+      wrapper.simulate(event);
+      assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+    });
+  });
+
   describe('controlled', () => {
     let wrapper;
     let handleDirty;
