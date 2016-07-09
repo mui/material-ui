@@ -2,8 +2,12 @@ import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import marked from 'marked';
-
+import hljs from 'highlight.js/lib/highlight';
 import 'highlight.js/styles/github.css';
+
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
 
 const styleSheet = createStyleSheet('MarkdownElement', () => ({
   root: {
@@ -38,7 +42,7 @@ class MarkdownElement extends Component {
       smartLists: true,
       smartypants: false,
       highlight: function(code, lang) {
-        return require('highlight.js').highlight(lang, code).value;
+        return hljs(lang, code).value;
       },
     });
   }

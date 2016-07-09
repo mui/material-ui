@@ -50,6 +50,14 @@ export default class TextFieldInput extends Component {
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     disabled: PropTypes.bool,
     /**
+     * @ignore
+     */
+    onClean: PropTypes.func,
+    /**
+     * @ignore
+     */
+    onDirty: PropTypes.func,
+    /**
      * TextFieldInput type
      */
     type: PropTypes.string,
@@ -73,16 +81,20 @@ export default class TextFieldInput extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  componentWillMount() {
-
-  }
-
   shouldComponentUpdate(nextProps) {
     return !shallowEqual(this.props, nextProps);
   }
 
+  // Holds the input reference
+  input = undefined;
+
   isControlled() {
     return typeof this.props.value === 'string';
+  }
+
+  isDirty() {
+    const obj = this.isControlled() ? this.props : this.input;
+    return obj && obj.value && obj.value.length > 0;
   }
 
   render() {
@@ -90,6 +102,8 @@ export default class TextFieldInput extends Component {
       className,
       component,
       disabled,
+      onDirty, // eslint-disable-line no-unused-vars
+      onClean, // eslint-disable-line no-unused-vars
       type,
       underline,
       ...other,

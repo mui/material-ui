@@ -13,8 +13,9 @@ export const styleSheet = createStyleSheet('Overlay', (theme) => {
       top: 0,
       left: 0,
       opacity: 0,
-      transition: theme.transitions.create('opacity'),
       backgroundColor: lightBlack,
+      transition: theme.transitions.create('opacity'),
+      willChange: 'opacity',
     },
   };
 });

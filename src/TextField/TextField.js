@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
+import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
 import {createChainedFunction} from '../utils/helpers';
 
@@ -43,21 +44,44 @@ export default class TextField extends Component {
     focused: false,
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
+
   handleFocus = () => this.setState({focused: true});
   handleBlur = () => this.setState({focused: false});
 
+  handleDirty = () => {
+    if (!this.state.dirty) {
+      this.setState({dirty: true});
+    }
+  };
+
+  handleClean = () => {
+    if (this.state.dirty) {
+      this.setState({dirty: false});
+    }
+  };
+
   renderChild = (child) => {
     const {muiName} = child.type;
+
     if (muiName === 'TextFieldInput') {
       return this.renderInput(child);
     } else if (muiName === 'TextFieldLabel') {
       return this.renderLabel(child);
     }
+
     return child;
   };
 
   renderInput = (input) =>
     React.cloneElement(input, {
+      onDirty: () => this.handleDirty,
+      onClean: () => this.handleClean,
       onFocus: createChainedFunction(this.handleFocus, input.onFocus),
       onBlur: createChainedFunction(this.handleBlur, input.onBlur),
     });

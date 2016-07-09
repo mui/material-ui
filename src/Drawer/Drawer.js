@@ -15,6 +15,7 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
       height: '100vh',
       flex: '1 0 auto',
       zIndex: theme.zIndex.navDrawer,
+      willChange: 'transform',
       '&:focus': {
         outline: 'none',
       },
