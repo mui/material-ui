@@ -88,7 +88,7 @@ module.exports = {
     'babel/object-curly-spacing': ['error', 'never'],
 
     // React
-    'react/display-name': 'error',
+    'react/display-name': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
     'react/jsx-closing-bracket-location': 'error',
     'react/jsx-curly-spacing': 'error',
