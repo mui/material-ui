@@ -85,7 +85,9 @@ export default class TextFieldInput extends Component {
   };
 
   componentWillMount() {
-    this.checkDirty(this.props);
+    if (this.isControlled()) {
+      this.checkDirty(this.props);
+    }
   }
 
   shouldComponentUpdate(nextProps) {
