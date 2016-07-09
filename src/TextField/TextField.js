@@ -115,16 +115,16 @@ export default class TextField extends Component {
 
   renderInput = (input) =>
     React.cloneElement(input, {
-      className: ClassNames(this.classes.input, input.className),
+      className: ClassNames(this.classes.input, input.props.className),
       onDirty: this.handleDirty,
       onClean: this.handleClean,
-      onFocus: createChainedFunction(this.handleFocus, input.onFocus),
-      onBlur: createChainedFunction(this.handleBlur, input.onBlur),
+      onFocus: createChainedFunction(this.handleFocus, input.props.onFocus),
+      onBlur: createChainedFunction(this.handleBlur, input.props.onBlur),
     });
 
   renderLabel = (label) =>
     React.cloneElement(label, {
-      className: ClassNames(this.classes.label, label.className),
+      className: ClassNames(this.classes.label, label.props.className),
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
     });
