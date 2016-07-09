@@ -4,17 +4,20 @@ import {assert} from 'chai';
 import Modal, {styleSheet} from './Modal';
 import {
   createShallowWithContext,
-  // createMountWithContext
+  createMountWithContext,
 } from 'test/utils';
 
 describe('<Modal>', () => {
   let shallow;
+  let mount;
   let classes;
 
   before(() => {
     shallow = createShallowWithContext();
     classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    mount = createMountWithContext();
   });
+  after(() => mount.cleanUp());
 
   it('should not show by default', () => {
     assert.strictEqual(Modal.defaultProps.show, false, 'should be false by default');
