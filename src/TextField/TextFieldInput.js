@@ -21,6 +21,7 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       },
     },
     disabled: {
+      color: palette.text.disabled,
       cursor: 'not-allowed',
     },
     underline: {
@@ -36,6 +37,8 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
  * TextFieldInput
  */
 export default class TextFieldInput extends Component {
+  static muiName = 'TextFieldInput';
+
   static propTypes = {
     /**
      * The CSS class name of the root element.

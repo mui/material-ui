@@ -22,6 +22,10 @@ export default class CompleteTextField extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  state = {
+    value: '',
+  };
+
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     return (
@@ -33,7 +37,6 @@ export default class CompleteTextField extends Component {
           <TextFieldInput
             className={classes.input}
             id="name"
-            defaultValue="Nathan Marks"
           />
         </TextField>
       </div>
@@ -41,3 +44,6 @@ export default class CompleteTextField extends Component {
   }
 }
 
+
+            // value={this.state.value}
+            // onChange={(event) => this.setState({value: event.target.value})}
