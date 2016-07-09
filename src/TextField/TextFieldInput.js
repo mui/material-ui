@@ -81,6 +81,10 @@ export default class TextFieldInput extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  componentWillMount() {
+
+  }
+
   shouldComponentUpdate(nextProps) {
     return !shallowEqual(this.props, nextProps);
   }

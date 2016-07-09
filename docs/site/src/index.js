@@ -1,4 +1,5 @@
 import {AppContainer} from 'react-hot-loader';
+import RedBox from 'redbox-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
@@ -11,7 +12,7 @@ import App from './components/App';
 const rootEl = document.getElementById('app');
 
 ReactDOM.render(
-  <AppContainer>
+  <AppContainer errorReporter={RedBox}>
     <App />
   </AppContainer>,
   rootEl
@@ -21,7 +22,7 @@ if (module.hot) {
   module.hot.accept('./components/App', () => {
     const NextApp = require('./components/App').default;
     ReactDOM.render(
-      <AppContainer>
+      <AppContainer errorReporter={RedBox}>
         <NextApp />
       </AppContainer>,
       rootEl

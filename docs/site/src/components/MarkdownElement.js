@@ -42,7 +42,7 @@ class MarkdownElement extends Component {
       smartLists: true,
       smartypants: false,
       highlight: function(code, lang) {
-        return hljs(lang, code).value;
+        return hljs.highlight(lang, code).value;
       },
     });
   }
