@@ -266,8 +266,8 @@ describe('<ButtonBase>', () => {
     });
   });
 
-  describe('mounted tab press listener', (done) => {
-    it('should listen for tab presses and set keyboard focus', () => {
+  describe('mounted tab press listener', () => {
+    it('should listen for tab presses and set keyboard focus', (done) => {
       const wrapper = mount(
         <ButtonBase id="test-button">Hello</ButtonBase>
       );
@@ -275,11 +275,16 @@ describe('<ButtonBase>', () => {
       const button = document.getElementById('test-button');
       button.focus();
 
-      const event = new window.Event('keydown', {keyCode: 32});
-      document.dispatchEvent(event);
+      const event = new window.Event('keydown');
+      event.keyCode = 9;
+      window.dispatchEvent(event);
 
       setTimeout(() => {
-        assert.strictEqual(wrapper.state('keyboardFocused'), true, 'should be keyboardFocused');
+        assert.strictEqual(
+          wrapper.state('keyboardFocused'),
+          true,
+          'should be keyboardFocused'
+        );
         done();
       }, 200);
     });
