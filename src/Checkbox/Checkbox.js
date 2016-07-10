@@ -141,11 +141,13 @@ class Checkbox extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      switched: this.props.checked !== nextProps.checked ?
-        nextProps.checked :
-        this.state.switched,
-    });
+    if (nextProps.checked !== undefined) {
+      this.setState({
+        switched: this.props.checked !== nextProps.checked ?
+          nextProps.checked :
+          this.state.switched,
+      });
+    }
   }
 
   isChecked() {
