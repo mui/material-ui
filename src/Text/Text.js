@@ -33,13 +33,13 @@ export default class Text extends Component {
     align: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
-    el: PropTypes.string,
+    component: PropTypes.string,
     noWrap: PropTypes.bool,
     type: PropTypes.string,
   };
 
   static defaultProps = {
-    el: 'span',
+    component: 'span',
     type: 'body1',
   };
 
@@ -48,13 +48,13 @@ export default class Text extends Component {
   };
 
   render() {
-    const {align, className, el, noWrap, type, ...other} = this.props;
+    const {align, className, component, noWrap, type, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     const classNames = ClassNames(classes.text, {
       [classes[type]]: true,
       [classes.noWrap]: noWrap,
       [classes.center]: align === 'center',
     }, className);
-    return React.createElement(el, {className: classNames, ...other});
+    return React.createElement(component, {className: classNames, ...other});
   }
 }
