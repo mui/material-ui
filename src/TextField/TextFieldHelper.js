@@ -41,10 +41,8 @@ const TextFieldHelperText = (props) => {
     style,
     helperText,
     errorText,
-
     adjustForMultiLine, // eslint-disable-line no-unused-vars
     adjustForFloatingLabel, // eslint-disable-line no-unused-vars
-
     ...restProps,
   } = props;
 
