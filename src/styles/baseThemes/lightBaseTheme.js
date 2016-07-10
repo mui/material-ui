@@ -27,6 +27,7 @@ export default {
     accent2Color: grey100,
     accent3Color: grey500,
     textColor: darkBlack,
+    secondaryTextColor: fade(darkBlack, 0.54),
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
