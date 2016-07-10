@@ -31,8 +31,6 @@ export default function ListItemIcon(props, context) {
 ListItemIcon.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  primary: PropTypes.node,
-  secondary: PropTypes.node,
 };
 
 ListItemIcon.contextTypes = {
