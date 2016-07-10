@@ -41,6 +41,15 @@ describe('<Drawer>', () => {
       true,
       'Slide child should be Paper'
     );
+
+    assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
+  });
+
+  it('should set the Paper className', () => {
+    const wrapper = shallow(<Drawer paperClassName="woof"><h1>Hello</h1></Drawer>);
+    const paper = wrapper.find('Paper');
+    assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
+    assert.strictEqual(paper.hasClass('woof'), true, 'should have the woof class');
   });
 
   it('should be closed by default', () => {
@@ -83,6 +92,7 @@ describe('<Drawer>', () => {
 
     it('should render a div instead of a Modal when docked', () => {
       assert.strictEqual(wrapper.is('div'), true, 'should be a div element');
+      assert.strictEqual(wrapper.hasClass(classes.docked), true, 'should have the docked class');
     });
 
     it('should render Slide > Paper inside the div', () => {

@@ -48,7 +48,7 @@ module.exports = {
     'new-cap': ['off', {capIsNew: true, newIsCap: true}], // Wishlist, one day
     'no-unused-expressions': 'error',
     'no-unused-vars': 'error',
-    'no-shadow': 'off', // Wishlist, one day
+    'no-shadow': 'error',
     'no-spaced-func': 'error',
     'no-multiple-empty-lines': 'error',
     'no-multi-spaces': 'error',

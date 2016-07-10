@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-// import ReactDOM from 'react-dom';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
+import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
 import {easing} from '../styles/transitions';
 
 // const reflow = (elem) => elem.offsetHeight;
@@ -82,7 +82,7 @@ export default class Ripple extends Component {
   }
 
   componentWillLeave(callback) {
-      // reflow(ReactDOM.findDOMNode(this));
+      // reflow(ReactDOM.findDOMNode(this.ripple));
     this.stop();
     this.leaveTimer = setTimeout(() => {
       callback();
@@ -94,20 +94,8 @@ export default class Ripple extends Component {
       rippleVisible: true,
       rippleStart: true,
     }, () => {
-      window.requestAnimationFrame(() => {
+      requestAnimFrame(() => {
         this.setState({rippleStart: false});
-      });
-    });
-  };
-
-  pulsate = () => {
-    this.setState({
-      rippleVisible: true,
-      rippleStart: true,
-      ripplePulsate: true,
-    }, () => {
-      window.requestAnimationFrame(() => {
-        this.setState({rippleStart: false, ripplePulsate: false});
       });
     });
   };
@@ -148,7 +136,7 @@ export default class Ripple extends Component {
 
     const rippleStyles = this.getRippleStyles();
 
-    const ripple = <span className={rippleClassName} style={rippleStyles}></span>;
+    const ripple = <span ref={(c) => this.ripple = c} className={rippleClassName} style={rippleStyles}></span>;
 
     if (pulsate) {
       return <span className={classes.pulsating}>{ripple}</span>;

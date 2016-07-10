@@ -259,7 +259,7 @@ export default class Modal extends Component {
       backdropComponent,
       children,
       className,
-      modalManager, // eslint-disable-line no-unused-vars
+      modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       show,
       ...other,
