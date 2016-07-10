@@ -20,7 +20,7 @@ module.exports = {
         'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY,
         'browserstack.debug': true,
         'browserstack.local': true,
-        'resolution': '1280x800',
+        'resolution': '1280x1024',
       },
     },
     chrome_51: {
