@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  colors: true,
+  progress: true,
   devtool: 'source-map',
   context: path.resolve(__dirname),
   entry: {

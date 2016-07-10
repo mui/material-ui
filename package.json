@@ -36,7 +36,7 @@
     "test:watch": "cross-env NODE_ENV=test babel-node test/watch.js",
     "test:coverage": "cross-env NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/index.js",
     "test:karma": "karma start test/karma.conf.js --single-run",
-    "test:e2e": "babel-node ./scripts/run-e2e-tests.js"
+    "test:e2e": "node ./scripts/run-e2e-tests.js"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -93,6 +93,7 @@
     "eslint-plugin-react": "^5.0.1",
     "fs-extra": "^0.30.0",
     "glob": "^7.0.3",
+    "http-server": "^0.9.0",
     "istanbul": "^1.0.0-alpha.2",
     "jsdom": "^9.1.0",
     "json-loader": "^0.5.4",

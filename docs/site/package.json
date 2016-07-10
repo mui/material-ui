@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node webpack.dev.server.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js --progress --colors"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js"
   },
   "devDependencies": {
     "babel-cli": "^6.7.7",

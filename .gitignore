@@ -4,7 +4,7 @@ local.log
 dist
 build
 coverage
-tests_output
+e2e-output
 
 # Exclude compiled files
 /lib
