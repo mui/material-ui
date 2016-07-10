@@ -32,13 +32,24 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
   };
 });
 
+/**
+ * Still a WIP
+ */
 export default class Modal extends Component {
 
   static propTypes = {
     /**
+     * Set to false to disable the backdrop, or true to enable it.
+     */
+    backdrop: PropTypes.bool,
+    /**
+     * Pass a component class to use as the backdrop.
+     */
+    backdropComponent: PropTypes.func,
+    /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
-    children: PropTypes.node,
+    children: PropTypes.element,
     /**
      * The CSS class name of the root element.
      */
@@ -46,14 +57,39 @@ export default class Modal extends Component {
     modalManager: PropTypes.object,
     onBackdropClick: PropTypes.func,
     /**
-     * Callback fired after the Modal finishes transitioning out
+     * Callback fired before the modal is entering
      */
-    onExited: React.PropTypes.func,
+    onEnter: PropTypes.func,
+    /**
+     * Callback fired when the modal is entering
+     */
+    onEntering: PropTypes.func,
+    /**
+     * Callback fired when the modal has entered
+     */
+    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    /**
+     * Callback fired before the modal is exiting
+     */
+    onExit: PropTypes.func,
+    /**
+     * Callback fired when the modal is exiting
+     */
+    onExiting: PropTypes.func,
+    /**
+     * Callback fired when the modal has exited
+     */
+    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    /**
+     * Callback fired when the modal requests to be closed
+     */
     onRequestClose: PropTypes.func,
     show: PropTypes.bool,
   };
 
   static defaultProps = {
+    backdrop: true,
+    backdropComponent: Backdrop,
     modalManager: modalManager,
     show: false,
   };
@@ -120,9 +156,10 @@ export default class Modal extends Component {
 
       if (!modalContent.hasAttribute('tabIndex')) {
         modalContent.setAttribute('tabIndex', -1);
-        warning(false,
+        warning(false, (
           'The modal content node does not accept focus. ' +
-          'For the benefit of assistive technologies, the tabIndex of the node is being set to "-1".');
+          'For the benefit of assistive technologies, the tabIndex of the node is being set to "-1".'
+        ));
       }
 
       modalContent.focus();
@@ -178,11 +215,11 @@ export default class Modal extends Component {
       return;
     }
 
-    // if (this.props.onBackdropClick) {
-    //   this.props.onBackdropClick(event);
-    // }
+    if (this.props.onBackdropClick) {
+      this.props.onBackdropClick(event);
+    }
 
-    if (this.props.onRequestClose) {
+    if (this.props.onRequestClose && !event.isPropagationStopped()) {
       this.props.onRequestClose(event);
     }
   };
@@ -195,8 +232,31 @@ export default class Modal extends Component {
     }
   };
 
+  renderBackdrop(backdrop, backdropComponent, show) {
+    if (!backdrop) {
+      return null;
+    }
+
+    return (
+      <Fade
+        in={show}
+        transitionAppear={true}
+        onEnter={this.props.onEnter}
+        onEntering={this.props.onEntering}
+        onEntered={this.props.onEntered}
+        onExit={this.props.onExit}
+        onExiting={this.props.onExiting}
+        onExited={this.handleBackdropExited}
+      >
+        {React.createElement(backdropComponent, {onClick: this.handleBackdropClick})}
+      </Fade>
+    );
+  }
+
   render() {
     const {
+      backdrop,
+      backdropComponent,
       children,
       className,
       modalManager, // eslint-disable-line no-unused-vars
@@ -230,13 +290,7 @@ export default class Modal extends Component {
           ref={(c) => this.modal = c}
           {...other}
         >
-          <Fade
-            in={show}
-            transitionAppear={true}
-            onExited={this.handleBackdropExited}
-          >
-            <Backdrop onClick={this.handleBackdropClick} />
-          </Fade>
+          {this.renderBackdrop(backdrop, backdropComponent, show)}
           {modalChild}
         </div>
       </Portal>

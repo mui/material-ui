@@ -52,25 +52,25 @@ class Transition extends Component {
      */
     onEnter: PropTypes.func,
     /**
-     * Callback fired after the "enter" classes are applied
-     */
-    onEntered: PropTypes.func,
-    /**
      * Callback fired after the "entering" classes are applied
      */
     onEntering: PropTypes.func,
+    /**
+     * Callback fired after the "enter" classes are applied
+     */
+    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
      * Callback fired before the "exiting" classes are applied
      */
     onExit: PropTypes.func,
     /**
-     * Callback fired after the "exited" classes are applied
-     */
-    onExited: PropTypes.func,
-    /**
      * Callback fired after the "exiting" classes are applied
      */
     onExiting: PropTypes.func,
+    /**
+     * Callback fired after the "exited" classes are applied
+     */
+    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
      * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
      * transition indefinately if the browser transitionEnd events are

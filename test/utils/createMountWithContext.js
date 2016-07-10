@@ -6,7 +6,6 @@ export default function createMountWithContext(mount = enzymeMount, props = {}) 
   cleanStyles();
 
   const attachTo = window.document.createElement('div');
-
   attachTo.className = 'app';
   window.document.body.insertBefore(attachTo, window.document.body.firstChild);
 
@@ -26,6 +25,10 @@ export default function createMountWithContext(mount = enzymeMount, props = {}) 
   mountWithContext.cleanUp = () => {
     cleanStyles();
     attachTo.parentNode.removeChild(attachTo);
+  };
+
+  mountWithContext.reset = () => {
+    attachTo.innerHTML = '';
   };
 
   return mountWithContext;
