@@ -16,6 +16,9 @@ export const styleSheet = createStyleSheet('List', () => {
   };
 });
 
+/**
+ * A simple list component.
+ */
 export default class List extends Component {
   static propTypes = {
     children: PropTypes.node,
