@@ -19,41 +19,45 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   };
 });
 
-export default class Toolbar extends Component {
-  static propTypes = {
-    /**
-     * Can be a `ToolbarGroup` to render a group of related items.
-     */
-    children: PropTypes.node,
-    /**
-     * The css class name of the root element.
-     */
-    className: PropTypes.string,
-    gutters: PropTypes.bool,
-  };
+export default function Toolbar(props, context) {
+  const {
+    children,
+    className,
+    gutters,
+    ...other,
+  } = props;
 
-  static defaultProps = {
-    gutters: true,
-  };
+  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const classNames = ClassNames(classes.root, {
+    [classes.gutters]: gutters,
+  }, className);
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      gutters,
-      ...other,
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
-
-    return (
-      <div className={ClassNames(classes.root, {[classes.gutters]: gutters}, className)} {...other} >
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={classNames} {...other} >
+      {children}
+    </div>
+  );
 }
+
+Toolbar.propTypes = {
+  /**
+   * Can be a `ToolbarGroup` to render a group of related items.
+   */
+  children: PropTypes.node,
+  /**
+   * The css class name of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * If set to true, enables gutter padding
+   */
+  gutters: PropTypes.bool,
+};
+
+Toolbar.defaultProps = {
+  gutters: true,
+};
+
+Toolbar.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

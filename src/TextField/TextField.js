@@ -21,7 +21,6 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
         height: 2,
         position: 'absolute',
         width: '100%',
-        willChange: 'transform',
         transform: 'scaleX(0)',
         transition: theme.transitions.create(
           'transform',
