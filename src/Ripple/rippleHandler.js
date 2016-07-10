@@ -12,7 +12,7 @@ export function createRippleHandler(instance, eventName, action, cb) {
     if (instance.ripple) {
       instance.ripple[action](event);
     }
-    if (instance.props && typeof instance.props[`handle${eventName}`] === 'function') {
+    if (instance.props && typeof instance.props[`on${eventName}`] === 'function') {
       instance.props[`on${eventName}`](event);
     }
   };

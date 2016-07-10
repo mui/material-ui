@@ -21,14 +21,6 @@ describe('<Button>', () => {
     assert.strictEqual(wrapper.prop('type'), 'button', 'should render with the button type attribute');
   });
 
-  // it('should render a <a> element when `href` is passed', () => {
-  //   const wrapper = shallow(
-  //     <Button href="#">Hello World</Button>
-  //   );
-  //   assert.strictEqual(wrapper.is('a'), true, 'should be a <a>');
-  //   assert.strictEqual(wrapper.prop('type'), undefined, 'should not have a type attribute');
-  // });
-
   it('should render with the root class but no others', () => {
     const wrapper = shallow(
       <Button>Hello World</Button>

@@ -102,6 +102,9 @@ export default class ButtonBase extends Component {
         this.ripple.start(event);
       });
     }
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(event);
+    }
   };
 
   handleKeyUp = (event) => {
@@ -109,6 +112,9 @@ export default class ButtonBase extends Component {
       this.keyDown = false;
       event.persist();
       this.ripple.stop(event, () => this.ripple.pulsate(event));
+    }
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(event);
     }
   };
 
@@ -172,6 +178,7 @@ export default class ButtonBase extends Component {
       focusRipple, // eslint-disable-line no-unused-vars
       keyboardFocusedClassName,
       onBlur, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars
@@ -216,6 +223,8 @@ export default class ButtonBase extends Component {
     if (element === 'button') {
       buttonProps.type = type;
       buttonProps.disabled = disabled;
+    } else if (element !== 'a') {
+      buttonProps.role = 'button';
     }
 
     return React.createElement(
