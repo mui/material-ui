@@ -146,13 +146,17 @@ class Toggle extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {switched: false};
+  state = {
+    switched: false,
+  };
 
   componentWillMount() {
     const {toggled, defaultToggled, valueLink} = this.props;
 
     if (toggled || defaultToggled || (valueLink && valueLink.value)) {
-      this.setState({switched: true});
+      this.setState({
+        switched: true,
+      });
     }
   }
 
@@ -164,12 +168,16 @@ class Toggle extends Component {
     this.refs.enhancedSwitch.setSwitched(newToggledValue);
   }
 
-  handleToggle = (event, isInputChecked) => {
-    if (this.props.onToggle) this.props.onToggle(event, isInputChecked);
+  handleStateChange = (newSwitched) => {
+    this.setState({
+      switched: newSwitched,
+    });
   };
 
-  handleStateChange = (newSwitched) => {
-    this.setState({switched: newSwitched});
+  handleToggle = (event, isInputChecked) => {
+    if (this.props.onToggle) {
+      this.props.onToggle(event, isInputChecked);
+    }
   };
 
   render() {
