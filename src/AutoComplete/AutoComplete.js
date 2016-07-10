@@ -449,7 +449,7 @@ class AutoComplete extends Component {
                 value: (
                   <MenuItem
                     innerDivStyle={styles.innerDiv}
-                    primaryText={itemValue}
+                    primaryText={itemText}
                     disableFocusRipple={disableFocusRipple}
                     key={index}
                   />),

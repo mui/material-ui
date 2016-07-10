@@ -169,22 +169,22 @@ class AppNavDrawer extends Component {
               <ListItem
                 primaryText="App Bar"
                 value="/components/app-bar"
-                href="/#/components/app-bar"
+                href="#/components/app-bar"
               />,
               <ListItem
                 primaryText="Auto Complete"
                 value="/components/auto-complete"
-                href="/#/components/auto-complete"
+                href="#/components/auto-complete"
               />,
               <ListItem
                 primaryText="Avatar"
                 value="/components/avatar"
-                href="/#/components/avatar"
+                href="#/components/avatar"
               />,
               <ListItem
                 primaryText="Badge"
                 value="/components/badge"
-                href="/#/components/badge"
+                href="#/components/badge"
               />,
               <ListItem
                 primaryText="Buttons"
@@ -193,54 +193,59 @@ class AppNavDrawer extends Component {
                   <ListItem
                     primaryText="Flat Button"
                     value="/components/flat-button"
-                    href="/#/components/flat-button"
+                    href="#/components/flat-button"
                   />,
                   <ListItem
                     primaryText="Raised Button"
                     value="/components/raised-button"
-                    href="/#/components/raised-button"
+                    href="#/components/raised-button"
                   />,
                   <ListItem
                     primaryText="Floating Action Button"
                     value="/components/floating-action-button"
-                    href="/#/components/floating-action-button"
+                    href="#/components/floating-action-button"
                   />,
                   <ListItem
                     primaryText="Icon Button"
                     value="/components/icon-button"
-                    href="/#/components/icon-button"
+                    href="#/components/icon-button"
                   />,
                 ]}
               />,
               <ListItem
                 primaryText="Card"
                 value="/components/card"
-                href="/#/components/card"
+                href="#/components/card"
+              />,
+              <ListItem
+                primaryText="Chip"
+                value="/components/chip"
+                href="#/components/chip"
               />,
               <ListItem
                 primaryText="Date Picker"
                 value="/components/date-picker"
-                href="/#/components/date-picker"
+                href="#/components/date-picker"
               />,
               <ListItem
                 primaryText="Dialog"
                 value="/components/dialog"
-                href="/#/components/dialog"
+                href="#/components/dialog"
               />,
               <ListItem
                 primaryText="Divider"
                 value="/components/divider"
-                href="/#/components/divider"
+                href="#/components/divider"
               />,
               <ListItem
                 primaryText="Drawer"
                 value="/components/drawer"
-                href="/#/components/drawer"
+                href="#/components/drawer"
               />,
               <ListItem
                 primaryText="Grid List"
                 value="/components/grid-list"
-                href="/#/components/grid-list"
+                href="#/components/grid-list"
               />,
               <ListItem
                 primaryText="Icons"
@@ -249,19 +254,19 @@ class AppNavDrawer extends Component {
                   <ListItem
                     primaryText="Font Icon"
                     value="/components/font-icon"
-                    href="/#/components/font-icon"
+                    href="#/components/font-icon"
                   />,
                   <ListItem
                     primaryText="SVG Icon"
                     value="/components/svg-icon"
-                    href="/#/components/svg-icon"
+                    href="#/components/svg-icon"
                   />,
                 ]}
               />,
               <ListItem
                 primaryText="List"
                 value="/components/list"
-                href="/#/components/list"
+                href="#/components/list"
               />,
               <ListItem
                 primaryText="Menus"
@@ -270,29 +275,29 @@ class AppNavDrawer extends Component {
                   <ListItem
                     primaryText="Menu"
                     value="/components/menu"
-                    href="/#/components/menu"
+                    href="#/components/menu"
                   />,
                   <ListItem
                     primaryText="Icon Menu"
                     value="/components/icon-menu"
-                    href="/#/components/icon-menu"
+                    href="#/components/icon-menu"
                   />,
                   <ListItem
                     primaryText="DropDown Menu"
                     value="/components/dropdown-menu"
-                    href="/#/components/dropdown-menu"
+                    href="#/components/dropdown-menu"
                   />,
                 ]}
               />,
               <ListItem
                 primaryText="Paper"
                 value="/components/paper"
-                href="/#/components/paper"
+                href="#/components/paper"
               />,
               <ListItem
                 primaryText="Popover"
                 value="/components/popover"
-                href="/#/components/popover"
+                href="#/components/popover"
               />,
               <ListItem
                 primaryText="Progress"
@@ -301,29 +306,29 @@ class AppNavDrawer extends Component {
                   <ListItem
                     primaryText="Circular Progress"
                     value="/components/circular-progress"
-                    href="/#/components/circular-progress"
+                    href="#/components/circular-progress"
                   />,
                   <ListItem
                     primaryText="Linear Progress"
                     value="/components/linear-progress"
-                    href="/#/components/linear-progress"
+                    href="#/components/linear-progress"
                   />,
                   <ListItem
                     primaryText="Refresh Indicator"
                     value="/components/refresh-indicator"
-                    href="/#/components/refresh-indicator"
+                    href="#/components/refresh-indicator"
                   />,
                 ]}
               />,
               <ListItem
                 primaryText="Select Field"
                 value="/components/select-field"
-                href="/#/components/select-field"
+                href="#/components/select-field"
               />,
               <ListItem
                 primaryText="Slider"
                 value="/components/slider"
-                href="/#/components/slider"
+                href="#/components/slider"
               />,
               <ListItem
                 primaryText="Switches"
@@ -332,59 +337,59 @@ class AppNavDrawer extends Component {
                   <ListItem
                     primaryText="Checkbox"
                     value="/components/checkbox"
-                    href="/#/components/checkbox"
+                    href="#/components/checkbox"
                   />,
                   <ListItem
                     primaryText="Radio Button"
                     value="/components/radio-button"
-                    href="/#/components/radio-button"
+                    href="#/components/radio-button"
                   />,
                   <ListItem
                     primaryText="Toggle"
                     value="/components/toggle"
-                    href="/#/components/toggle"
+                    href="#/components/toggle"
                   />,
                 ]}
               />,
               <ListItem
                 primaryText="Snackbar"
                 value="/components/snackbar"
-                href="/#/components/snackbar"
+                href="#/components/snackbar"
               />,
               <ListItem
                 primaryText="Stepper"
                 value="/components/stepper"
-                href="/#/components/stepper"
+                href="#/components/stepper"
               />,
               <ListItem
                 primaryText="Subheader"
                 value="/components/subheader"
-                href="/#/components/subheader"
+                href="#/components/subheader"
               />,
               <ListItem
                 primaryText="Table"
                 value="/components/table"
-                href="/#/components/table"
+                href="#/components/table"
               />,
               <ListItem
                 primaryText="Tabs"
                 value="/components/tabs"
-                href="/#/components/tabs"
+                href="#/components/tabs"
               />,
               <ListItem
                 primaryText="Text Field"
                 value="/components/text-field"
-                href="/#/components/text-field"
+                href="#/components/text-field"
               />,
               <ListItem
                 primaryText="Time Picker"
                 value="/components/time-picker"
-                href="/#/components/time-picker"
+                href="#/components/time-picker"
               />,
               <ListItem
                 primaryText="Toolbar"
                 value="/components/toolbar"
-                href="/#/components/toolbar"
+                href="#/components/toolbar"
               />,
             ]}
           />
