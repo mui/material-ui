@@ -1,8 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {assert} from 'chai';
-import {spy} from 'sinon';
 import Portal from './Portal';
 import {createMountWithContext} from 'test/utils';
 
