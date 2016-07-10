@@ -94,7 +94,7 @@
     "fs-extra": "^0.30.0",
     "glob": "^7.0.3",
     "http-server": "^0.9.0",
-    "istanbul": "^1.0.0-alpha.2",
+    "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^9.1.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
