@@ -1,8 +1,10 @@
 node_modules
 npm-debug.log
+local.log
 dist
 build
 coverage
+tests_output
 
 # Exclude compiled files
 /lib
