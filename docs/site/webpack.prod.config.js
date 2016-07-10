@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  colors: true,
-  progress: true,
   devtool: 'source-map',
   context: path.resolve(__dirname),
   entry: {
@@ -42,7 +40,7 @@ module.exports = {
     alias: {
       'docs': path.resolve(__dirname, '../../docs'),
       'material-ui': path.resolve(__dirname, '../../src'),
-      react: path.resolve('./node_modules/react'),
+      react: path.resolve(__dirname, 'node_modules/react'),
       lodash: path.resolve(__dirname, '../../node_modules/lodash'),
     },
   },

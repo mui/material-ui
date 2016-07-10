@@ -44,7 +44,7 @@ module.exports = {
     alias: {
       'docs': path.resolve(__dirname, '../../docs'),
       'material-ui': path.resolve(__dirname, '../../src'),
-      react: path.resolve('./node_modules/react'),
+      react: path.resolve(__dirname, 'node_modules/react'),
       lodash: path.resolve(__dirname, '../../node_modules/lodash'),
     },
   },
