@@ -41,7 +41,7 @@ export default class AppRouter extends Component {
     return (
       <Router history={hashHistory} {...this.props}>
         <Route title="Material UI" path="/" component={AppFrame}>
-          <IndexRoute component={Home} title={null} />
+          <IndexRoute dockDrawer={true} component={Home} title={null} />
 
           <Route
             title="Getting Started"

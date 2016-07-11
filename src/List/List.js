@@ -26,7 +26,7 @@ type Props = {
   children?: Element<any>,
   className?: string,
   component: string|Function,
-  padding?: boolean,
+  padding: boolean,
 };
 
 export default class List extends Component<DefaultProps, Props, void> {

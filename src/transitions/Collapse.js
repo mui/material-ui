@@ -1,8 +1,9 @@
 // @flow
-import React, {Component, Element, PropTypes} from 'react';
+import React, {Component, PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import Transition from '../Transition';
+import shallowEqual from 'recompose/shallowEqual';
+import Transition from '../internal/Transition';
 
 const reflow = (elem) => elem.offsetHeight;
 
@@ -15,29 +16,58 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
     },
     entered: {
       height: 'auto',
-      transitionDuration: 0,
+      transitionDuration: '0ms',
     },
   };
 });
 
 type DefaultProps = {
   in: boolean,
-};
+  transitionDuration: number|string,
+}
 
 type Props = {
   /**
    * The content node to be collapsed.
    */
   children?: Element<any>,
+  /**
+   * Class name passed to the wrapping container
+   * required for holding+measuring the expanding content
+   */
   containerClassName?: string,
   /**
    * Set to true to transition in
    */
-  in?: boolean,
+  in: boolean,
+  /**
+   * Callback fired before the component is entering
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the component is entering
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the component has entered
+   */
+  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component is exiting
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the component is exiting
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the component has exited
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
-  transitionDuration?: number|string,
+  transitionDuration: number|string,
 };
 
 export default class Collapse extends Component<DefaultProps, Props, void> {
@@ -47,18 +77,29 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
 
   static defaultProps:DefaultProps = {
     in: false,
+    transitionDuration: 300,
   };
+ 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
 
   wrapper:HTMLElement;
   props:Props;
 
   handleEnter:TransitionHandler = (element) => {
-    element.style.height = 0;
+    element.style.height = '0px';
+    if (this.props.onEnter) {
+      this.props.onEnter();
+    }
   };
 
   handleEntering:TransitionHandler = (element) => {
     const {transitionDuration} = this.props;
-    const wrapperHeight = this.wrapper.clientHeight;
+    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (transitionDuration) {
       if (transitionDuration === 'auto') {
@@ -71,15 +112,26 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     }
 
     element.style.height = `${wrapperHeight}px`;
+
+    if (this.props.onEntering) {
+      this.props.onEntering();
+    }
   };
 
   handleExit:TransitionHandler = (element) => {
-    element.style.height = `${this.wrapper.clientHeight}px`;
+    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
+    element.style.height = `${wrapperHeight}px`;
     reflow(element);
+    if (this.props.onExit) {
+      this.props.onExit();
+    }
   };
 
   handleExiting:TransitionHandler = (element) => {
-    element.style.height = 0;
+    element.style.height = '0px';
+    if (this.props.onExiting) {
+      this.props.onExiting();
+    }
   };
 
   getTransitionDuration(wrapperHeight: number): number {
@@ -94,6 +146,10 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     const {
       children,
       containerClassName,
+      onEnter, // eslint-disable-line no-unused-vars
+      onEntering, // eslint-disable-line no-unused-vars
+      onExit, // eslint-disable-line no-unused-vars
+      onExiting, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -104,12 +160,13 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
 
     return (
       <Transition
-        onEnter={this.handleEnter}
+        transitionAppear={true}
         onEntering={this.handleEntering}
+        onEnter={this.handleEnter}
+        onEntered={this.handleEntered}
         enteredClassName={classes.entered}
-        onExit={this.handleExit}
         onExiting={this.handleExiting}
-        timeout={300}
+        onExit={this.handleExit}
         {...other}
       >
         <div className={containerClasses}>

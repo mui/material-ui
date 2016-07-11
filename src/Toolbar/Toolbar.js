@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Element, PropTypes} from 'react';
+import React, {Component, PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -20,10 +20,6 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   };
 });
 
-type DefaultProps = {
-  gutters: boolean,
-};
-
 type Props = {
   /**
    * Can be a `ToolbarGroup` to render a group of related items.
@@ -33,33 +29,36 @@ type Props = {
    * The css class name of the root element.
    */
   className?: string,
-  gutters?: boolean,
+  /**
+   * If set to true, enables gutter padding
+   */
+  gutters: boolean,
 };
-export default class Toolbar extends Component<DefaultProps, Props, void> {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
 
-  static defaultProps:DefaultProps = {
-    gutters: true,
-  };
+export default function Toolbar(props: Props, context) {
+  const {
+    children,
+    className,
+    gutters,
+    ...other,
+  } = props;
 
-  props:Props;
+  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const classNames = ClassNames(classes.root, {
+    [classes.gutters]: gutters,
+  }, className);
 
-  render(): Element<any> {
-    const {
-      children,
-      className,
-      gutters,
-      ...other,
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
-
-    return (
-      <div className={ClassNames(classes.root, {[classes.gutters]: gutters}, className)} {...other} >
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={classNames} {...other} >
+      {children}
+    </div>
+  );
 }
+
+Toolbar.defaultProps = {
+  gutters: true,
+};
+
+Toolbar.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

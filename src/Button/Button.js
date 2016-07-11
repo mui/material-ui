@@ -2,7 +2,7 @@
 import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import ButtonBase from './ButtonBase';
+import ButtonBase from '../internal/ButtonBase';
 
 function createButtonColorRule(main, contrast, hover) {
   return {
@@ -119,7 +119,7 @@ type Props = {
   /**
    * The element or component used for the root node.
    */
-  component?: string|Function,
+  component: string|Function,
   /**
    * If true, the button will be disabled.
    */
@@ -132,7 +132,7 @@ type Props = {
    * If true, the button will have a keyboard focus ripple.
    * Ripple must also be true.
    */
-  focusRipple?: boolean,
+  focusRipple: boolean,
   /**
    * The URL to link to when the button is clicked.
    * If set, an `a` element will be used as the root node.
@@ -145,15 +145,15 @@ type Props = {
   /**
    * If true, the button will use raised styling.
    */
-  raised?: boolean,
+  raised: boolean,
   /**
    * If true, the button will have a ripple.
    */
-  ripple?: boolean,
+  ripple: boolean,
   /**
    * @ignore
    */
-  type?: string,
+  type: string,
 };
 
 /**
@@ -183,7 +183,7 @@ export default class Button extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render(): Element<any> {
+  render() :Element<any> {
     const {
       accent,
       children,

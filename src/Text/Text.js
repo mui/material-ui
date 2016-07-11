@@ -30,17 +30,17 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
 });
 
 type DefaultProps = {
-  el: string,
+  component: string,
   type: string,
 };
 
 type Props = {
   align?: string,
-  children?: Element<any>,
+  children?: Element,
   className?: string,
-  el: string,
+  component: string,
   noWrap?: boolean,
-  type?: string,
+  type: string,
 };
 
 export default class Text extends Component<DefaultProps, Props, void> {
@@ -48,8 +48,8 @@ export default class Text extends Component<DefaultProps, Props, void> {
     styleManager: PropTypes.object.isRequired,
   };
 
-  static defaultProps:DefaultProps = {
-    el: 'span',
+  defaultProps:DefaultProps = {
+    component: 'span',
     type: 'body1',
   };
 
@@ -57,12 +57,12 @@ export default class Text extends Component<DefaultProps, Props, void> {
 
   render(): Element<any> {
     const {align, className, el, noWrap, type, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet);
     const classNames = ClassNames(classes.text, {
       [classes[type]]: true,
       [classes.noWrap]: noWrap,
       [classes.center]: align === 'center',
     }, className);
-    return React.createElement(el, {className: classNames, ...other});
+    return React.createElement(component, {className: classNames, ...other});
   }
 }

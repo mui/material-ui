@@ -1,7 +1,8 @@
 // @flow
-import React, {Component, Element, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, {Component, PropTypes, Element} from 'react';
+import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
+import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
 import {easing} from '../styles/transitions';
 
 // const reflow = (elem) => elem.offsetHeight;
@@ -55,20 +56,19 @@ declare function LeaveTimer(fn: Object, delay: number): void;
 
 type DefaultProps = {
   pulsate: boolean,
-};
+}
 
 type Props = {
   className?: string,
-  pulsate?: boolean,
-  rippleSize: number,
-  rippleX: number,
-  rippleY: number,
+  pulsate: boolean,
+  rippleSize?: number,
+  rippleX?: number,
+  rippleY?: number,
 };
 
 type State = {
   rippleStart: boolean,
   rippleVisible: boolean,
-  ripplePulsate: boolean,
 }
 
 export default class Ripple extends Component<DefaultProps, Props, State> {
@@ -77,13 +77,12 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
   };
 
   static defaultProps:DefaultProps = {
-    pulsate: false,
+    puslate: false,
   };
-
+ 
   state:State = {
     rippleStart: false,
     rippleVisible: false,
-    ripplePulsate: false,
   };
 
   componentWillUnmount() {
@@ -110,20 +109,8 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
       rippleVisible: true,
       rippleStart: true,
     }, () => {
-      window.requestAnimationFrame(() => {
+      requestAnimFrame(() => {
         this.setState({rippleStart: false});
-      });
-    });
-  };
-
-  pulsate:Callback = () => {
-    this.setState({
-      rippleVisible: true,
-      rippleStart: true,
-      ripplePulsate: true,
-    }, () => {
-      window.requestAnimationFrame(() => {
-        this.setState({rippleStart: false, ripplePulsate: false});
       });
     });
   };

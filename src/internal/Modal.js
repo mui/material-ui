@@ -9,10 +9,9 @@ import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import {createModalManager} from './modalManager';
-import type {ModalManager} from './modalManager';
-import Overlay from './Overlay';
+import Backdrop from './Backdrop';
 import Portal from './Portal';
-import Fade from '../internal/transitions/Fade';
+import Fade from '../transitions/Fade';
 import addEventListener from '../utils/addEventListener';
 import coerce from '../utils/coerce';
 
@@ -36,11 +35,21 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
 });
 
 type DefaultProps = {
-  modalManager: ModalManager,
+  backdrop: boolean,
+  backdropComponent: Function,
+  modalManager: Object,
   show: boolean,
 };
 
 type Props = {
+  /**
+   * Set to false to disable the backdrop, or true to enable it.
+   */
+  backdrop: boolean,
+  /**
+   * Pass a component class to use as the backdrop.
+   */
+  backdropComponent: Function,
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
@@ -49,13 +58,36 @@ type Props = {
    * The CSS class name of the root element.
    */
   className?: string,
-  modalManager: ModalManager,
+  modalManager: Object,
+  onBackdropClick?: Function,
   /**
-   * Callback fired after the Modal finishes transitioning out
+   * Callback fired before the modal is entering
    */
-  onExited?: TransitionHandler,
-  onOverlayClick?: TransitionHandler,
-  onRequestClose?: TransitionHandler,
+  onEnter?: Function,
+  /**
+   * Callback fired when the modal is entering
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the modal has entered
+   */
+  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the modal is exiting
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the modal is exiting
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the modal has exited
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired when the modal requests to be closed
+   */
+  onRequestClose?: Function,
   show: boolean,
 };
 
@@ -68,11 +100,13 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     styleManager: PropTypes.object.isRequired,
   };
 
-  static defaultProps = {
+  static defaultProps:DefaultProps = {
+    backdrop: true,
+    backdropComponent: Backdrop,
     modalManager: modalManager,
     show: false,
-  }
-
+  };
+ 
   state:State = {
     exited: false,
   };
@@ -131,7 +165,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
 
   focus() {
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && coerce(this.modal.lastChild, HTMLElement);
+    const modalContent = this.modal && coerce(this.modal.lastChild, Element);
     const focusInModal = currentFocus && contains(modalContent, currentFocus);
 
     if (modalContent && !focusInModal) {
@@ -139,9 +173,10 @@ export default class Modal extends Component<DefaultProps, Props, State> {
 
       if (!modalContent.hasAttribute('tabIndex')) {
         modalContent.setAttribute('tabIndex', -1);
-        warning(false,
+        warning(false, (
           'The modal content node does not accept focus. ' +
-          'For the benefit of assistive technologies, the tabIndex of the node is being set to "-1".');
+          'For the benefit of assistive technologies, the tabIndex of the node is being set to "-1".'
+        ));
       }
 
       modalContent.focus();
@@ -176,7 +211,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
 
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && coerce(this.modal.lastChild, HTMLElement);
+    const modalContent = this.modal && coerce(this.modal.lastChild, Element);
 
     if (modalContent && modalContent !== currentFocus && !contains(modalContent, currentFocus)) {
       modalContent.focus();
@@ -192,21 +227,21 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     // }
   };
 
-  handleOverlayClick:EventListener = (event) => {
+  handleBackdropClick:EventListener = (event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
 
-    // if (this.props.onOverlayClick) {
-    //   this.props.onOverlayClick(event);
-    // }
+    if (this.props.onBackdropClick) {
+      this.props.onBackdropClick(event);
+    }
 
-    if (this.props.onRequestClose) {
+    if (this.props.onRequestClose && !event.isPropagationStopped()) {
       this.props.onRequestClose(event);
     }
   };
 
-  handleOverlayExited:TransitionHandler = (element) => {
+  handleBackdropExited:TransitionHandler = (...args) => {
     this.setState({exited: true});
     this.handleHide();
     if (this.props.onExited) {
@@ -214,11 +249,34 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  render(): ?Element<any> {
+  renderBackdrop(backdrop, backdropComponent, show): Element<any> {
+    if (!backdrop) {
+      return null;
+    }
+
+    return (
+      <Fade
+        in={show}
+        transitionAppear={true}
+        onEnter={this.props.onEnter}
+        onEntering={this.props.onEntering}
+        onEntered={this.props.onEntered}
+        onExit={this.props.onExit}
+        onExiting={this.props.onExiting}
+        onExited={this.handleBackdropExited}
+      >
+        {React.createElement(backdropComponent, {onClick: this.handleBackdropClick})}
+      </Fade>
+    );
+  }
+
+  render(): Element<any> {
     const {
+      backdrop,
+      backdropComponent,
       children,
       className,
-      modalManager, // eslint-disable-line no-unused-vars
+      modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       show,
       ...other,
@@ -249,13 +307,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
           ref={(c) => this.modal = c}
           {...other}
         >
-          <Fade
-            in={show}
-            transitionAppear={true}
-            onExited={this.handleOverlayExited}
-          >
-            <Overlay onClick={this.handleOverlayClick} />
-          </Fade>
+          {this.renderBackdrop(backdrop, backdropComponent, show)}
           {modalChild}
         </div>
       </Portal>

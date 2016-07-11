@@ -10,8 +10,8 @@ Props
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
 | align | string |  |   |
-| children | Element |  |   |
+| children | node |  |   |
 | className | string |  |   |
-| <span style="color: #31a148">el *</span> | string | 'span' |   |
-| noWrap | boolean |  |   |
+| component | string | 'span' |   |
+| noWrap | bool |  |   |
 | type | string | 'body1' |   |

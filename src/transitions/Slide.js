@@ -1,6 +1,7 @@
 // @flow
-import React, {Component, PropTypes, Element} from 'react';
-import Transition from '../Transition';
+import React, {Component, Element, PropTypes} from 'react';
+import shallowEqual from 'recompose/shallowEqual';
+import Transition from '../internal/Transition';
 
 type DefaultProps = {
   direction: 'left' | 'right' | 'up' | 'down',
@@ -16,7 +17,7 @@ type Props = {
    * The CSS class name of the root element.
    */
   className?: string,
-  direction?: 'left' | 'right' | 'up' | 'down',
+  direction: 'left' | 'right' | 'up' | 'down',
   transitionDuration: number,
 };
 
@@ -30,6 +31,13 @@ export default class Slide extends Component<DefaultProps, Props, void> {
     transitionDuration: 300,
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
+ 
   props:Props;
 
   getTranslateValue() {
@@ -56,6 +64,14 @@ export default class Slide extends Component<DefaultProps, Props, void> {
   handleExiting:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();
   };
+
+  getTranslateValue() {
+    const x = this.props.direction === 'left' ? '100%' :
+      this.props.direction === 'right' ? '-100%' : '0';
+    const y = this.props.direction === 'up' ? '100%' :
+      this.props.direction === 'down' ? '-100%' : '0';
+    return `translate3d(${x}, ${y}, 0)`;
+  }
 
   render(): Element<any> {
     const {

@@ -1,9 +1,12 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {createStyleSheet} from 'stylishly';
 import Text from 'material-ui/Text';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
+import {throttle} from 'material-ui/utils/helpers';
+import addEventListener from 'material-ui/utils/addEventListener';
 
 import AppDrawer from './AppDrawer';
 
@@ -40,8 +43,15 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
     navIcon: {
       marginLeft: -12,
     },
+    grow: {
+      flex: '1 1 100%',
+    },
+    toggleShade: {
+      marginRight: -12,
+    },
     title: {
       marginLeft: 24,
+      flex: '0 0 auto',
     },
     appBar: {
       left: 'auto',
@@ -49,33 +59,71 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
       transition: transitions.create('width'),
     },
     [theme.breakpoints.up('lg')]: {
-      appBar: {
+      appBarShift: {
         width: 'calc(100% - 250px)',
       },
-      navIcon: {
+      navIconHide: {
         display: 'none',
       },
     },
   };
 });
 
-export default class AppFrame extends Component {
+class AppFrame extends Component {
   static propTypes = {
     children: PropTypes.node,
+    dispatch: PropTypes.func,
     routes: PropTypes.array,
   };
 
   static contextTypes = {
+    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 
   state = {
+    drawerDocked: false,
     drawerOpen: false,
   };
+
+  componentWillMount() {
+    this.resizeListener = addEventListener(window, 'resize', this.handleResize);
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+    this.checkWindowSize();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+
+    if (this.resizeListener) {
+      this.resizeListener.remove();
+    }
+  }
+
+  checkWindowSize = () => {
+    if (!this.mounted) {
+      return;
+    }
+
+    const breakpoint = this.context.theme.breakpoints.getWidth('lg');
+
+    if (this.state.drawerDocked && window.innerWidth < breakpoint) {
+      this.setState({drawerDocked: false});
+    } else if (!this.state.drawerDocked && window.innerWidth >= breakpoint) {
+      this.setState({drawerDocked: true});
+    }
+  };
+
+  handleResize = throttle(this.checkWindowSize, 100);
 
   handleDrawerOpen = () => this.setState({drawerOpen: true});
   handleDrawerClose = () => this.setState({drawerOpen: false});
   handleDrawerToggle = () => this.setState({drawerOpen: !this.state.drawerOpen});
+
+  handleToggleShade = () => this.props.dispatch({type: 'TOGGLE_THEME_SHADE'});
 
   getTitle() {
     const {routes} = this.props;
@@ -101,15 +149,34 @@ export default class AppFrame extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const title = this.getTitle();
 
+    let drawerDocked = this.state.drawerDocked;
+    let navIconClassName = classes.navIcon;
+    let appBarClassName = classes.appBar;
+
+    if (title === null) { // home route, don't shift app bar or dock drawer
+      drawerDocked = false;
+      appBarClassName += ` ${classes.appBarHome}`;
+    } else {
+      navIconClassName += ` ${classes.navIconHide}`;
+      appBarClassName += ` ${classes.appBarShift}`;
+    }
+
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
+        <AppBar className={appBarClassName}>
           <Toolbar>
-            <IconButton onClick={this.handleDrawerToggle} className={classes.navIcon}>menu</IconButton>
+            <IconButton onClick={this.handleDrawerToggle} className={navIconClassName}>
+              menu
+            </IconButton>
             <Text className={classes.title} type="title">{title}</Text>
+            <div className={classes.grow}></div>
+            <IconButton onClick={this.handleToggleShade} className={classes.toggleShade}>
+              lightbulb_outline
+            </IconButton>
           </Toolbar>
         </AppBar>
         <AppDrawer
+          docked={drawerDocked}
           routes={this.props.routes}
           onRequestClose={this.handleDrawerClose}
           open={this.state.drawerOpen}
@@ -119,3 +186,11 @@ export default class AppFrame extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    dark: state.dark,
+  };
+}
+
+export default connect(mapStateToProps)(AppFrame);

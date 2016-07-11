@@ -21,8 +21,6 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
 type Props = {
   children?: Element<any>,
   className?: string,
-  primary?: Object,
-  secondary?: Object,
 };
 
 export default function ListItemIcon(props: Props, context: {styleManager: Object}): Element<any> {

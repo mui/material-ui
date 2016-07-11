@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import IconButton from 'material-ui/IconButton';
-import Collapse from 'material-ui/internal/transitions/Collapse';
+import Collapse from 'material-ui/transitions/Collapse';
 import MarkdownElement from './MarkdownElement';
 
 const requireDemos = require.context('../demos', true, /\.js$/);
@@ -11,7 +11,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
   return {
     root: {
       position: 'relative',
-      backgroundColor: '#eee',
+      backgroundColor: theme.palette.background.contentFrame,
       marginBottom: 40,
     },
     demo: theme.mixins.gutters({

@@ -45,7 +45,7 @@ export default class ListItemText extends Component<void, Props, void> {
       <div className={classNames} {...other}>
         {primary && (
           typeof primary === 'string' ? (
-            <Text className={classes.primary} type="subheading">{primary}</Text>
+            <Text type="subheading">{primary}</Text>
           ) : {primary}
         )}
         {secondary && (
