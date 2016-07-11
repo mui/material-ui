@@ -89,7 +89,6 @@ class EnhancedButton extends Component {
     onTouchEnd: () => {},
     onTouchStart: () => {},
     onTouchTap: () => {},
-    tabIndex: 0,
     type: 'button',
   };
 
