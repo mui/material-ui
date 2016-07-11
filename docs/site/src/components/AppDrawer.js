@@ -8,8 +8,9 @@ import Drawer from 'material-ui/Drawer';
 import Text from 'material-ui/Text';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
-import Collapse from 'material-ui/transitions/Collapse';
 import shallowEqual from 'recompose/shallowEqual';
+
+import AppDrawerNavItem from './AppDrawerNavItem';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
@@ -19,38 +20,6 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
     paper: {
       width: '250px',
       backgroundColor: theme.palette.background.paper,
-    },
-    button: theme.mixins.gutters({
-      borderRadius: 0,
-      justifyContent: 'flex-start',
-      textTransform: 'none',
-      width: '100%',
-      '&:hover': {
-        textDecoration: 'none',
-      },
-    }),
-    nav: {
-      flex: '1 0 auto',
-      navItem: {
-        ...theme.typography.body2,
-        display: 'block',
-        paddingTop: 0,
-        paddingBottom: 0,
-      },
-      navLink: {
-        fontWeight: 400,
-        display: 'flex',
-        paddingTop: 0,
-        paddingBottom: 0,
-        button: {
-          color: theme.palette.text.secondary,
-          textIndent: 24,
-          fontSize: 13,
-        },
-        activeButton: {
-          color: theme.palette.text.primary,
-        },
-      },
     },
     title: {
       color: theme.palette.text.secondary,
@@ -74,11 +43,6 @@ export default class AppDrawer extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  state = {
-    nav: null,
-    open: [],
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       !shallowEqual(this.props, nextProps) ||
@@ -100,52 +64,24 @@ export default class AppDrawer extends Component {
     }
   }
 
-  handleNavParentClick = (id) => {
-    const index = this.state.open.indexOf(id);
-    const open = [...this.state.open];
-
-    if (index !== -1) {
-      open.splice(index, 1);
-    } else {
-      open.push(id);
-    }
-
-    return this.setState({open});
-  };
-
   reduceChildRoutes = (items, childRoute, index) => {
     if (childRoute.nav) {
       if (childRoute.childRoutes && childRoute.childRoutes.length) {
-        const open = this.state.open.indexOf(childRoute.path) !== -1;
         items.push(
-          <ListItem className={this.classes.navItem} key={index} gutters={false}>
-            <Button
-              className={this.classes.button}
-              onClick={() => this.handleNavParentClick(childRoute.path)}
-            >
-              {childRoute.title}
-            </Button>
-            <Collapse in={open} transitionDuration="auto">{this.renderNav(childRoute)}</Collapse>
-          </ListItem>
+          <AppDrawerNavItem
+            key={index}
+            title={childRoute.title}
+          >
+           {this.renderNav(childRoute)}
+          </AppDrawerNavItem>
         );
       } else {
         items.push(
-          <ListItem
-            className={this.classes.navLink}
+          <AppDrawerNavItem
             key={index}
-            gutters={false}
-          >
-            <Button
-              component={Link}
-              onClick={this.props.onRequestClose}
-              to={childRoute.path}
-              className={this.classes.button}
-              activeClassName={this.classes.activeButton}
-              ripple={false}
-            >
-              {childRoute.title}
-            </Button>
-          </ListItem>
+            title={childRoute.title}
+            to={childRoute.path}
+          />
         );
       }
     }

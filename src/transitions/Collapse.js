@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
+import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
 
 const reflow = (elem) => elem.offsetHeight;
@@ -14,7 +15,7 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
     },
     entered: {
       height: 'auto',
-      transitionDuration: 0,
+      transitionDuration: '0ms',
     },
   };
 });
@@ -73,8 +74,15 @@ export default class Collapse extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
+  }
+
   handleEnter = (element) => {
-    element.style.height = 0;
+    element.style.height = '0px';
     if (this.props.onEnter) {
       this.props.onEnter();
     }
@@ -94,7 +102,7 @@ export default class Collapse extends Component {
       }
     }
 
-    element.style.height = wrapperHeight;
+    element.style.height = `${wrapperHeight}px`;
 
     if (this.props.onEntering) {
       this.props.onEntering();
@@ -103,7 +111,7 @@ export default class Collapse extends Component {
 
   handleExit = (element) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
-    element.style.height = wrapperHeight;
+    element.style.height = `${wrapperHeight}px`;
     reflow(element);
     if (this.props.onExit) {
       this.props.onExit();
@@ -111,7 +119,7 @@ export default class Collapse extends Component {
   };
 
   handleExiting = (element) => {
-    element.style.height = 0;
+    element.style.height = '0px';
     if (this.props.onExiting) {
       this.props.onExiting();
     }
@@ -143,6 +151,7 @@ export default class Collapse extends Component {
 
     return (
       <Transition
+        transitionAppear={true}
         onEntering={this.handleEntering}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}

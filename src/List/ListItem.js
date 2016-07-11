@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('ListItem', (theme) => {

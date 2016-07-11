@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
 
 export default class Slide extends Component {
@@ -24,12 +25,11 @@ export default class Slide extends Component {
     theme: PropTypes.object.isRequired,
   };
 
-  getTranslateValue() {
-    const x = this.props.direction === 'left' ? '100%' :
-      this.props.direction === 'right' ? '-100%' : '0';
-    const y = this.props.direction === 'up' ? '100%' :
-      this.props.direction === 'down' ? '-100%' : '0';
-    return `translate3d(${x}, ${y}, 0)`;
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState)
+    );
   }
 
   handleEnter = (element) => {
@@ -44,6 +44,14 @@ export default class Slide extends Component {
   handleExiting = (element) => {
     element.style.transform = this.getTranslateValue();
   };
+
+  getTranslateValue() {
+    const x = this.props.direction === 'left' ? '100%' :
+      this.props.direction === 'right' ? '-100%' : '0';
+    const y = this.props.direction === 'up' ? '100%' :
+      this.props.direction === 'down' ? '-100%' : '0';
+    return `translate3d(${x}, ${y}, 0)`;
+  }
 
   render() {
     const {

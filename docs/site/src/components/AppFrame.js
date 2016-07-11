@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {createStyleSheet} from 'stylishly';
 import Text from 'material-ui/Text';
 import AppBar from 'material-ui/AppBar';
@@ -42,8 +43,15 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
     navIcon: {
       marginLeft: -12,
     },
+    grow: {
+      flex: '1 1 100%',
+    },
+    toggleShade: {
+      marginRight: -12,
+    },
     title: {
       marginLeft: 24,
+      flex: '0 0 auto',
     },
     appBar: {
       left: 'auto',
@@ -61,9 +69,10 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
   };
 });
 
-export default class AppFrame extends Component {
+class AppFrame extends Component {
   static propTypes = {
     children: PropTypes.node,
+    dispatch: PropTypes.func,
     routes: PropTypes.array,
   };
 
@@ -114,6 +123,8 @@ export default class AppFrame extends Component {
   handleDrawerClose = () => this.setState({drawerOpen: false});
   handleDrawerToggle = () => this.setState({drawerOpen: !this.state.drawerOpen});
 
+  handleToggleShade = () => this.props.dispatch({type: 'TOGGLE_THEME_SHADE'});
+
   getTitle() {
     const {routes} = this.props;
     for (let i = routes.length - 1; i >= 0; i--) {
@@ -154,8 +165,14 @@ export default class AppFrame extends Component {
       <div className={classes.root}>
         <AppBar className={appBarClassName}>
           <Toolbar>
-            <IconButton onClick={this.handleDrawerToggle} className={navIconClassName}>menu</IconButton>
+            <IconButton onClick={this.handleDrawerToggle} className={navIconClassName}>
+              menu
+            </IconButton>
             <Text className={classes.title} type="title">{title}</Text>
+            <div className={classes.grow}></div>
+            <IconButton onClick={this.handleToggleShade} className={classes.toggleShade}>
+              lightbulb_outline
+            </IconButton>
           </Toolbar>
         </AppBar>
         <AppDrawer
@@ -169,3 +186,11 @@ export default class AppFrame extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    dark: state.dark,
+  };
+}
+
+export default connect(mapStateToProps)(AppFrame);
