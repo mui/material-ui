@@ -2,12 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import ClassNames from 'classnames';
 import {createStyleSheet} from 'stylishly';
-import {List, ListItem} from 'material-ui/List';
+import {List} from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Text from 'material-ui/Text';
 import Divider from 'material-ui/Divider';
-import Button from 'material-ui/Button';
 import shallowEqual from 'recompose/shallowEqual';
 
 import AppDrawerNavItem from './AppDrawerNavItem';

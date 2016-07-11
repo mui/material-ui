@@ -77,7 +77,7 @@ describe('<Collapse>', () => {
       });
 
       it('should set element height to 0 initially', () => {
-        assert.strictEqual(element.style.height, 0, 'should set the height to 0');
+        assert.strictEqual(element.style.height, '0px', 'should set the height to 0');
       });
     });
 
@@ -95,7 +95,7 @@ describe('<Collapse>', () => {
       });
 
       it('should set height to the wrapper height', () => {
-        assert.strictEqual(element.style.height, 666, 'should have 666px height');
+        assert.strictEqual(element.style.height, '666px', 'should have 666px height');
       });
     });
 
@@ -109,7 +109,7 @@ describe('<Collapse>', () => {
       });
 
       it('should set height to the wrapper height', () => {
-        assert.strictEqual(element.style.height, 666, 'should have 666px height');
+        assert.strictEqual(element.style.height, '666px', 'should have 666px height');
       });
     });
 
@@ -122,7 +122,7 @@ describe('<Collapse>', () => {
       });
 
       it('should set height to the 0', () => {
-        assert.strictEqual(element.style.height, 0, 'should have 0px height');
+        assert.strictEqual(element.style.height, '0px', 'should have 0px height');
       });
     });
   });

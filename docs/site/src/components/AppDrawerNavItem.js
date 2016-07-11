@@ -1,10 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import ClassNames from 'classnames';
 import {createStyleSheet} from 'stylishly';
 import {ListItem} from 'material-ui/List';
 import Button from 'material-ui/Button';
-import shallowEqual from 'recompose/shallowEqual';
 import Collapse from 'material-ui/transitions/Collapse';
 
 export const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => {
