@@ -234,6 +234,7 @@ class FloatingActionButton extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       className,
       disabled,
       mini,
