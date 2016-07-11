@@ -234,6 +234,7 @@ class FloatingActionButton extends Component {
 
   render() {
     const {
+      backgroundColor,
       className,
       disabled,
       mini,
