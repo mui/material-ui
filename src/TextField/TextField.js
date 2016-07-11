@@ -1,9 +1,12 @@
+// @flow
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
 import {easing} from '../styles/transitions';
 import {createChainedFunction} from '../utils/helpers';
+import TextFieldInput from './TextFieldInput';
+import TextFieldLabel from './TextFieldLabel';
 
 export const styleSheet = createStyleSheet('TextField', (theme) => {
   const focusColor = theme.palette.accent.A200;
@@ -46,6 +49,23 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
   };
 });
 
+
+type Props = {
+  /**
+   * The contents of the `TextField`
+   */
+  children?: Element<any>,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+};
+
+type State = {
+  dirty: boolean,
+  focused: boolean
+}
+
 /**
  * TextField
  *
@@ -57,33 +77,25 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
  * const Component = () => <TextField value="Hello World">;
  * ```
  */
-export default class TextField extends Component {
-  static propTypes = {
-    /**
-     * The contents of the `TextField`
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-  };
-
+export default class TextField extends Component<void, Props, State> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  state = {
+  state:State = {
     dirty: false,
     focused: false,
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState)
     );
   }
+
+  props: Props;
+  classes: Object;
 
   handleFocus = () => this.setState({focused: true});
   handleBlur = () => this.setState({focused: false});
@@ -100,7 +112,7 @@ export default class TextField extends Component {
     }
   };
 
-  renderChild = (child) => {
+  renderChild = (child: TextFieldInput|TextFieldLabel) => {
     const {muiName} = child.type;
 
     if (muiName === 'TextFieldInput') {
@@ -112,7 +124,7 @@ export default class TextField extends Component {
     return child;
   };
 
-  renderInput = (input) =>
+  renderInput = (input: TextFieldInput) =>
     React.cloneElement(input, {
       className: ClassNames(this.classes.input, input.props.className),
       onDirty: this.handleDirty,
@@ -121,7 +133,7 @@ export default class TextField extends Component {
       onBlur: createChainedFunction(this.handleBlur, input.props.onBlur),
     });
 
-  renderLabel = (label) =>
+  renderLabel = (label: TextFieldLabel) =>
     React.cloneElement(label, {
       className: ClassNames(this.classes.label, label.props.className),
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused

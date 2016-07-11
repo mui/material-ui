@@ -16,7 +16,6 @@ export const EXITING = 4;
 
 type DefaultProps = {
   in: boolean,
-  onExiting: TransitionHandler,
   timeout: number,
   transitionAppear: boolean,
   unmountOnExit: boolean,
@@ -50,31 +49,31 @@ type Props = {
   /**
    * Show the component; triggers the enter or exit animation
    */
-  in?: boolean,
+  in: boolean,
   /**
    * Callback fired before the "entering" classes are applied
    */
-  onEnter?: TransitionHandler,
+  onEnter: TransitionHandler,
   /**
    * Callback fired after the "enter" classes are applied
    */
-  onEntered?: TransitionHandler,
+  onEntered: TransitionHandler,
   /**
    * Callback fired after the "entering" classes are applied
    */
-  onEntering?: TransitionHandler,
+  onEntering: TransitionHandler,
   /**
    * Callback fired before the "exiting" classes are applied
    */
-  onExit?: TransitionHandler,
+  onExit: TransitionHandler,
   /**
    * Callback fired after the "exited" classes are applied
    */
-  onExited?: TransitionHandler,
+  onExited: TransitionHandler,
   /**
    * Callback fired after the "exiting" classes are applied
    */
-  onExiting?: TransitionHandler,
+  onExiting: TransitionHandler,
   /**
    * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
    * transition indefinately if the browser transitionEnd events are
@@ -83,16 +82,16 @@ type Props = {
    * By default this is set to a high number (5 seconds) as a failsafe. You should consider
    * setting this to the duration of your animation (or a bit above it).
    */
-  timeout?: number,
+  timeout: number,
   /**
    * Run the enter animation when the component mounts, if it is initially
    * shown
    */
-  transitionAppear?: boolean,
+  transitionAppear: boolean,
   /**
    * Unmount the component (remove it from the DOM) when it is not shown
    */
-  unmountOnExit?: boolean,
+  unmountOnExit: boolean,
 };
 
 type State = {
@@ -152,7 +151,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.in && this.props.unmountOnExit) {
       if (this.state.status === UNMOUNTED) {
         // Start enter transition in componentDidUpdate.
@@ -203,7 +202,8 @@ class Transition extends Component<DefaultProps, Props, State> {
   }
 
   props: Props;
-  nextCallback: ?EventListener;
+  nextCallback: ?EventHandler;
+  needsUpdate: boolean;
 
   performEnter(props: Props) {
     this.cancelNextCallback();
@@ -255,7 +255,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     this.setState(nextState, this.setNextCallback(callback));
   }
 
-  setNextCallback(callback: EventListener): Callback {
+  setNextCallback(callback: EventHandler): Callback {
     let active = true;
 
     this.nextCallback = (event: Event) => {

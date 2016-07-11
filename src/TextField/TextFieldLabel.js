@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+// @flow
+import React, {PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import {easing} from '../styles/transitions';
@@ -23,7 +24,13 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
   };
 });
 
-export default function TextFieldLabel(props, context) {
+type Props = {
+  animated?: boolean,
+  className?: string,
+  shrink?: boolean,
+};
+
+export default function TextFieldLabel(props: Props, context: {styleManager: Object}): Element<any> {
   const {animated, className, shrink, ...other} = props;
   const classes = context.styleManager.render(styleSheet, {group: 'mui'});
 
@@ -36,12 +43,6 @@ export default function TextFieldLabel(props, context) {
     <label className={classNames} {...other} />
   );
 }
-
-TextFieldLabel.propTypes = {
-  animated: PropTypes.bool,
-  className: PropTypes.string,
-  shrink: PropTypes.bool,
-};
 
 TextFieldLabel.defaultProps = {
   animated: true,
