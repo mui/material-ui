@@ -97,7 +97,7 @@ class ExpandTransitionChild extends Component {
       transition: transitions.easeOut(
         `${transitionDuration}ms`,
         ['height'],
-        `${transitionDelay}ms`,
+        `${transitionDelay}ms`
       ),
     }, style);
 

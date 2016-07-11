@@ -72,7 +72,7 @@ export default class Step extends Component {
 
     return React.cloneElement(child, Object.assign(
       {active, completed, disabled, icon, last},
-      child.props,
+      child.props
     ));
   }
 
