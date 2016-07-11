@@ -261,6 +261,7 @@ class EnhancedButton extends Component {
       centerRipple, // eslint-disable-line no-unused-vars
       children,
       containerElement,
+      labelColor, // eslint-disable-line no-unused-vars
       disabled,
       disableFocusRipple,
       disableKeyboardFocus, // eslint-disable-line no-unused-vars
