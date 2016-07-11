@@ -10,7 +10,7 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import {createModalManager} from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
-import Fade from '../internal/transitions/Fade';
+import Fade from '../transitions/Fade';
 import addEventListener from '../utils/addEventListener';
 
 // Modals don't open on the server

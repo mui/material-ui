@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
-import Transition from '../Transition';
+import Transition from '../internal/Transition';
 
 const reflow = (elem) => elem.offsetHeight;
 
@@ -94,7 +94,7 @@ export default class Collapse extends Component {
       }
     }
 
-    element.style.height = `${wrapperHeight}px`;
+    element.style.height = wrapperHeight;
 
     if (this.props.onEntering) {
       this.props.onEntering();
@@ -103,7 +103,7 @@ export default class Collapse extends Component {
 
   handleExit = (element) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
-    element.style.height = `${wrapperHeight}px`;
+    element.style.height = wrapperHeight;
     reflow(element);
     if (this.props.onExit) {
       this.props.onExit();

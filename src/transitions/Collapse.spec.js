@@ -95,7 +95,34 @@ describe('<Collapse>', () => {
       });
 
       it('should set height to the wrapper height', () => {
-        assert.strictEqual(element.style.height, '666px', 'should have 666px height');
+        assert.strictEqual(element.style.height, 666, 'should have 666px height');
+      });
+    });
+
+    describe('handleExit()', () => {
+      let element;
+
+      before(() => {
+        element = {style: {height: 'auto'}};
+        instance.wrapper = {clientHeight: 666};
+        instance.handleExit(element);
+      });
+
+      it('should set height to the wrapper height', () => {
+        assert.strictEqual(element.style.height, 666, 'should have 666px height');
+      });
+    });
+
+    describe('handleExiting()', () => {
+      let element;
+
+      before(() => {
+        element = {style: {height: 666}};
+        instance.handleExiting(element);
+      });
+
+      it('should set height to the 0', () => {
+        assert.strictEqual(element.style.height, 0, 'should have 0px height');
       });
     });
   });
