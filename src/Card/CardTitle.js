@@ -77,29 +77,36 @@ class CardTitle extends Component {
   };
 
   render() {
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign({}, styles.root, this.props.style);
-    const titleStyle = Object.assign({}, styles.title, this.props.titleStyle);
-    const subtitleStyle = Object.assign({}, styles.subtitle, this.props.subtitleStyle);
-
     const {
+      actAsExpander, // eslint-disable-line no-unused-vars
+      children,
+      expandable, // eslint-disable-line no-unused-vars
+      showExpandableButton, // eslint-disable-line no-unused-vars
+      style,
       subtitle,
       subtitleColor, // eslint-disable-line no-unused-vars
+      subtitleStyle,
       title,
       titleColor, // eslint-disable-line no-unused-vars
+      titleStyle,
       ...other,
     } = this.props;
 
+    const {prepareStyles} = this.context.muiTheme;
+    const styles = getStyles(this.props, this.context);
+    const rootStyle = Object.assign({}, styles.root, style);
+    const extendedTitleStyle = Object.assign({}, styles.title, titleStyle);
+    const extendedSubtitleStyle = Object.assign({}, styles.subtitle, subtitleStyle);
+
     return (
       <div {...other} style={prepareStyles(rootStyle)}>
-        <span style={prepareStyles(titleStyle)}>
+        <span style={prepareStyles(extendedTitleStyle)}>
           {title}
         </span>
-        <span style={prepareStyles(subtitleStyle)}>
+        <span style={prepareStyles(extendedSubtitleStyle)}>
           {subtitle}
         </span>
-        {this.props.children}
+        {children}
       </div>
     );
   }

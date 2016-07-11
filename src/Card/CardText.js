@@ -43,13 +43,22 @@ class CardText extends Component {
   };
 
   render() {
+    const {
+      actAsExpander, // eslint-disable-line no-unused-vars
+      children,
+      color, // eslint-disable-line no-unused-vars
+      expandable, // eslint-disable-line no-unused-vars
+      style,
+      ...other,
+    } = this.props;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign(styles.root, this.props.style);
+    const rootStyle = Object.assign(styles.root, style);
 
     return (
-      <div {...this.props} style={prepareStyles(rootStyle)}>
-        {this.props.children}
+      <div {...other} style={prepareStyles(rootStyle)}>
+        {children}
       </div>
     );
   }
