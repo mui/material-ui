@@ -29,7 +29,6 @@
     "clean": "npm run clean:build",
     "clean:docs": "rimraf docs/api/*",
     "clean:build": "rimraf build",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "docs:start": "(cd docs/site; npm start)",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint": "eslint src docs/site/src test/integration && echo \"eslint: no lint errors\"",
