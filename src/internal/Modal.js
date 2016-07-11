@@ -165,7 +165,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
 
   focus() {
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && coerce(this.modal.lastChild, Element);
+    const modalContent = this.modal && coerce(this.modal.lastChild, HTMLElement);
     const focusInModal = currentFocus && contains(modalContent, currentFocus);
 
     if (modalContent && !focusInModal) {
