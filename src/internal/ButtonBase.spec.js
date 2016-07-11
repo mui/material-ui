@@ -81,7 +81,7 @@ describe('<ButtonBase>', () => {
       const wrapper = shallow(<ButtonBase {...handlers} />);
 
       events.forEach((n) => {
-        const event = n.charAt(2).toUpperCase() + n.slice(3);
+        const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, {});
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });

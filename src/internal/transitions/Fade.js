@@ -3,11 +3,35 @@ import Transition from '../Transition';
 
 export default class Fade extends Component {
   static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
     children: PropTypes.node,
-    onExited: PropTypes.func,
+    /**
+     * Set to true to transition in
+     */
+    in: PropTypes.bool,
+    /**
+     * Callback fired before the component is entering
+     */
+    onEnter: PropTypes.func,
+    /**
+     * Callback fired when the component is entering
+     */
+    onEntering: PropTypes.func,
+    /**
+     * Callback fired when the component has entered
+     */
+    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    /**
+     * Callback fired before the component is exiting
+     */
+    onExit: PropTypes.func,
+    /**
+     * Callback fired when the component is exiting
+     */
+    onExiting: PropTypes.func,
+    /**
+     * Callback fired when the component has exited
+     */
+    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
   };
 
   static contextTypes = {
@@ -17,25 +41,39 @@ export default class Fade extends Component {
   handleEnter = (element) => {
     element.style.opacity = 0;
     element.style.transition = this.context.theme.transitions.create('opacity');
+    if (this.props.onEnter) {
+      this.props.onEnter();
+    }
   };
 
   handleEntering = (element) => {
     element.style.opacity = 1;
+    if (this.props.onEntering) {
+      this.props.onEntering();
+    }
   };
 
   handleExit = (element) => {
     element.style.opacity = 0;
+    if (this.props.onExit) {
+      this.props.onExit();
+    }
   };
 
   render() {
-    const {children, ...other} = this.props;
+    const {
+      children,
+      onEnter, // eslint-disable-line no-unused-vars
+      onEntering, // eslint-disable-line no-unused-vars
+      onExit, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
 
     return (
       <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        timeout={2000}
         {...other}
       >
         {children}

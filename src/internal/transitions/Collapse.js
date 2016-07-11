@@ -25,11 +25,39 @@ export default class Collapse extends Component {
      * The content node to be collapsed.
      */
     children: PropTypes.node,
+    /**
+     * Class name passed to the wrapping container
+     * required for holding+measuring the expanding content
+     */
     containerClassName: PropTypes.string,
     /**
      * Set to true to transition in
      */
     in: PropTypes.bool,
+    /**
+     * Callback fired before the component is entering
+     */
+    onEnter: PropTypes.func,
+    /**
+     * Callback fired when the component is entering
+     */
+    onEntering: PropTypes.func,
+    /**
+     * Callback fired when the component has entered
+     */
+    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    /**
+     * Callback fired before the component is exiting
+     */
+    onExit: PropTypes.func,
+    /**
+     * Callback fired when the component is exiting
+     */
+    onExiting: PropTypes.func,
+    /**
+     * Callback fired when the component has exited
+     */
+    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
      * Set to 'auto' to automatically calculate transition time based on height
      */
@@ -38,6 +66,7 @@ export default class Collapse extends Component {
 
   static defaultProps = {
     in: false,
+    transitionDuration: 300,
   };
 
   static contextTypes = {
@@ -46,11 +75,14 @@ export default class Collapse extends Component {
 
   handleEnter = (element) => {
     element.style.height = 0;
+    if (this.props.onEnter) {
+      this.props.onEnter();
+    }
   };
 
   handleEntering = (element) => {
     const {transitionDuration} = this.props;
-    const wrapperHeight = this.wrapper.clientHeight;
+    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (transitionDuration) {
       if (transitionDuration === 'auto') {
@@ -63,15 +95,26 @@ export default class Collapse extends Component {
     }
 
     element.style.height = `${wrapperHeight}px`;
+
+    if (this.props.onEntering) {
+      this.props.onEntering();
+    }
   };
 
   handleExit = (element) => {
-    element.style.height = `${this.wrapper.clientHeight}px`;
+    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
+    element.style.height = `${wrapperHeight}px`;
     reflow(element);
+    if (this.props.onExit) {
+      this.props.onExit();
+    }
   };
 
   handleExiting = (element) => {
     element.style.height = 0;
+    if (this.props.onExiting) {
+      this.props.onExiting();
+    }
   };
 
   getTransitionDuration(wrapperHeight) {
@@ -86,6 +129,10 @@ export default class Collapse extends Component {
     const {
       children,
       containerClassName,
+      onEnter, // eslint-disable-line no-unused-vars
+      onEntering, // eslint-disable-line no-unused-vars
+      onExit, // eslint-disable-line no-unused-vars
+      onExiting, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -96,13 +143,12 @@ export default class Collapse extends Component {
 
     return (
       <Transition
-        onEnter={this.handleEnter}
         onEntering={this.handleEntering}
+        onEnter={this.handleEnter}
         onEntered={this.handleEntered}
         enteredClassName={classes.entered}
-        onExit={this.handleExit}
         onExiting={this.handleExiting}
-        timeout={300}
+        onExit={this.handleExit}
         {...other}
       >
         <div className={containerClasses}>
