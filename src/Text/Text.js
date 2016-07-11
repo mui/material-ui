@@ -36,7 +36,7 @@ type DefaultProps = {
 
 type Props = {
   align?: string,
-  children?: Element,
+  children?: Element<any>,
   className?: string,
   component: string,
   noWrap?: boolean,
@@ -48,7 +48,7 @@ export default class Text extends Component<DefaultProps, Props, void> {
     styleManager: PropTypes.object.isRequired,
   };
 
-  defaultProps:DefaultProps = {
+  static defaultProps:DefaultProps = {
     component: 'span',
     type: 'body1',
   };
@@ -56,7 +56,7 @@ export default class Text extends Component<DefaultProps, Props, void> {
   props:Props;
 
   render(): Element<any> {
-    const {align, className, el, noWrap, type, ...other} = this.props;
+    const {align, className, component, noWrap, type, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     const classNames = ClassNames(classes.text, {
       [classes[type]]: true,

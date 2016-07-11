@@ -183,7 +183,7 @@ export default class Button extends Component<DefaultProps, Props, void> {
 
   props:Props;
 
-  render() :Element<any> {
+  render(): Element<any> {
     const {
       accent,
       children,

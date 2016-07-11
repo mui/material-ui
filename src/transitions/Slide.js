@@ -31,22 +31,14 @@ export default class Slide extends Component<DefaultProps, Props, void> {
     transitionDuration: 300,
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Props, nextState: void) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState)
     );
   }
- 
-  props:Props;
 
-  getTranslateValue() {
-    const x = this.props.direction === 'left' ? '100%' :
-      this.props.direction === 'right' ? '-100%' : '0';
-    const y = this.props.direction === 'up' ? '100%' :
-      this.props.direction === 'down' ? '-100%' : '0';
-    return `translate3d(${x}, ${y}, 0)`;
-  }
+  props:Props;
 
   handleEnter:TransitionHandler = (element) => {
     element.style.transform = this.getTranslateValue();

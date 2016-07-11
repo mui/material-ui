@@ -61,9 +61,9 @@ type DefaultProps = {
 type Props = {
   className?: string,
   pulsate: boolean,
-  rippleSize?: number,
-  rippleX?: number,
-  rippleY?: number,
+  rippleSize: number,
+  rippleX: number,
+  rippleY: number,
 };
 
 type State = {
@@ -77,9 +77,9 @@ export default class Ripple extends Component<DefaultProps, Props, State> {
   };
 
   static defaultProps:DefaultProps = {
-    puslate: false,
+    pulsate: false,
   };
- 
+
   state:State = {
     rippleStart: false,
     rippleVisible: false,

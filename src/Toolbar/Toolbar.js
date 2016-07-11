@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, PropTypes, Element} from 'react';
+import React, {PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -35,7 +35,7 @@ type Props = {
   gutters: boolean,
 };
 
-export default function Toolbar(props: Props, context) {
+export default function Toolbar(props: Props, context: {styleManager: Object}) {
   const {
     children,
     className,

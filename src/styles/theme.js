@@ -56,6 +56,7 @@ export function createPalette({
 }: {
   primary: string,
   accent: string,
+  error: string,
   dark: boolean,
 } = {}): Palette {
   const type = dark ? 'dark' : 'light';

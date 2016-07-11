@@ -1,9 +1,10 @@
 // @flow
-import React, {PropTypes, Component, Element} from 'react';
+import React, {Component, Element} from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
-import addEventListener from 'dom-helpers/events/on';
+import addEventListener from '../utils/addEventListener';
 import ClassNames from 'classnames';
+import coerce from '../utils/coerce';
 
 const transitionEndEvent = transitionInfo.end;
 
@@ -95,7 +96,7 @@ type Props = {
 };
 
 type State = {
-  status: UNMOUNTED | EXITED | ENTERING | ENTERED | EXITING;
+  status: number;
 
 }
 /**
@@ -201,11 +202,12 @@ class Transition extends Component<DefaultProps, Props, State> {
     this.cancelNextCallback();
   }
 
-  props:Props;
+  props: Props;
+  nextCallback: ?EventListener;
 
-  performEnter(props) {
+  performEnter(props: Props) {
     this.cancelNextCallback();
-    const node = ReactDOM.findDOMNode(this);
+    const node = coerce(ReactDOM.findDOMNode(this), HTMLElement);
 
     // Not this.props, because we might be about to receive new props.
     props.onEnter(node);
@@ -221,9 +223,9 @@ class Transition extends Component<DefaultProps, Props, State> {
     });
   }
 
-  performExit(props) {
+  performExit(props: Props) {
     this.cancelNextCallback();
-    const node = ReactDOM.findDOMNode(this);
+    const node = coerce(ReactDOM.findDOMNode(this), HTMLElement);
 
     // Not this.props, because we might be about to receive new props.
     props.onExit(node);
@@ -246,17 +248,17 @@ class Transition extends Component<DefaultProps, Props, State> {
     }
   }
 
-  safeSetState(nextState, callback) {
+  safeSetState(nextState: State, callback: EventListener) {
     // This shouldn't be necessary, but there are weird race conditions with
     // setState callbacks and unmounting in testing, so always make sure that
     // we can cancel any pending setState callbacks after we unmount.
     this.setState(nextState, this.setNextCallback(callback));
   }
 
-  setNextCallback(callback) {
+  setNextCallback(callback: EventListener): Callback {
     let active = true;
 
-    this.nextCallback = (event) => {
+    this.nextCallback = (event: Event) => {
       if (active) {
         active = false;
         this.nextCallback = null;
@@ -272,7 +274,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     return this.nextCallback;
   }
 
-  onTransitionEnd(node, handler) {
+  onTransitionEnd(node: Node, handler: EventListener) {
     this.setNextCallback(handler);
 
     if (node) {
@@ -283,7 +285,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     }
   }
 
-  render(): Element<any> {
+  render(): ?Element<any> {
     const status = this.state.status;
     if (status === UNMOUNTED) {
       return null;

@@ -38,7 +38,7 @@ export default class ListItem extends Component<DefaultProps, Props, void> {
     component: 'div',
     gutters: true,
   };
-  
+
   props:Props;
 
   render(): Element<any> {

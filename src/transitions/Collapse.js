@@ -43,27 +43,27 @@ type Props = {
   /**
    * Callback fired before the component is entering
    */
-  onEnter?: Function,
+  onEnter?: TransitionHandler,
   /**
    * Callback fired when the component is entering
    */
-  onEntering?: Function,
+  onEntering?: TransitionHandler,
   /**
    * Callback fired when the component has entered
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionHandler, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component is exiting
    */
-  onExit?: Function,
+  onExit?: TransitionHandler,
   /**
    * Callback fired when the component is exiting
    */
-  onExiting?: Function,
+  onExiting?: TransitionHandler,
   /**
    * Callback fired when the component has exited
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionHandler, // eslint-disable-line react/sort-prop-types
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
@@ -79,8 +79,8 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     in: false,
     transitionDuration: 300,
   };
- 
-  shouldComponentUpdate(nextProps, nextState) {
+
+  shouldComponentUpdate(nextProps: Props, nextState: void) {
     return (
       !shallowEqual(this.props, nextProps) ||
       !shallowEqual(this.state, nextState)
@@ -94,6 +94,12 @@ export default class Collapse extends Component<DefaultProps, Props, void> {
     element.style.height = '0px';
     if (this.props.onEnter) {
       this.props.onEnter();
+    }
+  };
+
+  handleEntered:TransitionHandler = () => {
+    if (this.props.onEntered) {
+      this.props.onEntered();
     }
   };
 

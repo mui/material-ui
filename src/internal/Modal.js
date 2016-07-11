@@ -106,7 +106,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     modalManager: modalManager,
     show: false,
   };
- 
+
   state:State = {
     exited: false,
   };
@@ -241,7 +241,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  handleBackdropExited:TransitionHandler = (...args) => {
+  handleBackdropExited:TransitionHandler = (element) => {
     this.setState({exited: true});
     this.handleHide();
     if (this.props.onExited) {
@@ -249,7 +249,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  renderBackdrop(backdrop, backdropComponent, show): Element<any> {
+  renderBackdrop(backdrop: boolean, backdropComponent: Function, show: boolean): ?Element<any> {
     if (!backdrop) {
       return null;
     }
@@ -270,7 +270,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     );
   }
 
-  render(): Element<any> {
+  render(): ?Element<any> {
     const {
       backdrop,
       backdropComponent,
