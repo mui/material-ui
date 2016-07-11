@@ -11,5 +11,3 @@ Props
 |:-----|:-----|:-----|:-----|
 | children | node |  |   |
 | className | string |  |   |
-| primary | node |  |   |
-| secondary | node |  |   |

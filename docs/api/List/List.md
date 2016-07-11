@@ -1,7 +1,7 @@
 List
 ====
 
-
+A simple list component.
 
 Props
 -----

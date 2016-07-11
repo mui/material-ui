@@ -12,6 +12,6 @@ Props
 | align | string |  |   |
 | children | node |  |   |
 | className | string |  |   |
-| el | string | 'span' |   |
+| component | string | 'span' |   |
 | noWrap | bool |  |   |
 | type | string | 'body1' |   |
