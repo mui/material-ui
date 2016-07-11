@@ -107,6 +107,7 @@ class CardHeader extends Component {
       actAsExpander, // eslint-disable-line no-unused-vars
       avatar: avatarProp,
       children,
+      expandable, // eslint-disable-line no-unused-vars
       showExpandableButton, // eslint-disable-line no-unused-vars
       style,
       subtitle,
