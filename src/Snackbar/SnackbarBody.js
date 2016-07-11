@@ -40,6 +40,9 @@ function getStyles(props, context) {
       margin: 'auto',
     },
     content: {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
       fontSize: 14,
       color: textColor,
       opacity: open ? 1 : 0,
@@ -84,8 +87,8 @@ export const SnackbarBody = (props, context) => {
   return (
     <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
       <div style={prepareStyles(styles.content)}>
-        <span>{message}</span>
         {actionButton}
+        <span>{message}</span>
       </div>
     </div>
   );
