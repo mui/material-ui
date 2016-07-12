@@ -61,9 +61,9 @@ type DefaultProps = {
 type Props = {
   className?: string,
   pulsate: boolean,
-  rippleSize: number,
-  rippleX: number,
-  rippleY: number,
+  rippleSize?: number,
+  rippleX?: number,
+  rippleY?: number,
 };
 
 type State = {

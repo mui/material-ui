@@ -207,7 +207,7 @@ class Transition extends Component<DefaultProps, Props, State> {
 
   performEnter(props: Props) {
     this.cancelNextCallback();
-    const node = coerce(ReactDOM.findDOMNode(this), HTMLElement);
+    const node = coerce(ReactDOM.findDOMNode(this), window.HTMLElement);
 
     // Not this.props, because we might be about to receive new props.
     props.onEnter(node);
@@ -225,7 +225,7 @@ class Transition extends Component<DefaultProps, Props, State> {
 
   performExit(props: Props) {
     this.cancelNextCallback();
-    const node = coerce(ReactDOM.findDOMNode(this), HTMLElement);
+    const node = coerce(ReactDOM.findDOMNode(this), window.HTMLElement);
 
     // Not this.props, because we might be about to receive new props.
     props.onExit(node);

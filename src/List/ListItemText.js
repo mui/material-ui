@@ -19,8 +19,8 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
 
 type Props = {
   className?: string,
-  primary?: Object,
-  secondary?: Object,
+  primary?: Element<any>,
+  secondary?: Element<any>,
 };
 
 export default class ListItemText extends Component<void, Props, void> {
