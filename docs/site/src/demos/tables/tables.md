@@ -16,6 +16,6 @@ A simple example with no frills.
 
 ## Selectable Table
 
-This example demonstrates the use of checkboxes and clickable rows for selection.
+This example demonstrates the use of checkboxes and clickable rows for selection with a toolbar.
 
 {{demo='tables/SelectableTable.js'}}

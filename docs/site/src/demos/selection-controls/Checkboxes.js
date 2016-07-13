@@ -14,19 +14,29 @@ export default class Checkboxes extends Component {
   };
 
   state = {
-    checked: false,
+    checkedA: true,
+    checkedB: false,
+    checkedC: false,
   };
-
-  handleChange = (event, checked) => this.setState({checked: checked});
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     return (
-      <div className={classes.container}>
+      <div>
         <Checkbox
-          checked={this.state.checked}
+          checked={this.state.checkedA}
           className={classes.checkbox}
-          onChange={this.handleChange}
+          onChange={(event, checked) => this.setState({checkedA: checked})}
+        />
+        <Checkbox
+          checked={this.state.checkedB}
+          className={classes.checkbox}
+          onChange={(event, checked) => this.setState({checkedB: checked})}
+        />
+        <Checkbox
+          checked={this.state.checkedB}
+          className={classes.checkbox}
+          onChange={(event, checked) => this.setState({checkedC: checked})}
         />
       </div>
     );
