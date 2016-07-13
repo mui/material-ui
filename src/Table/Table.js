@@ -150,10 +150,11 @@ class Table extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {allRowsSelected} = nextProps;
-    const {allRowsSelected: prevAllRowsSelected} = this.props;
 
-    if (allRowsSelected !== prevAllRowsSelected) {
-      this.setState({allRowsSelected});
+    if (typeof allRowsSelected !== 'undefined') {
+      if (this.state.allRowsSelected !== allRowsSelected || this.props.allRowsSelected !== allRowsSelected) {
+        this.setState({allRowsSelected});
+      }
     }
   }
 
