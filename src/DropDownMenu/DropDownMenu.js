@@ -4,7 +4,7 @@ import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import Popover from '../Popover/Popover';
-import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 
 const anchorOrigin = {
   vertical: 'top',
@@ -303,7 +303,7 @@ class DropDownMenu extends Component {
         <Popover
           anchorOrigin={anchorOrigin}
           anchorEl={anchorEl}
-          animation={animation || PopoverAnimationFromTop}
+          animation={animation || PopoverAnimationVertical}
           open={open}
           animated={animated}
           onRequestClose={this.handleRequestCloseMenu}
