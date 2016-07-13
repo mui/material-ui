@@ -41,6 +41,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "prismjs": "^1.5.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2"
   }

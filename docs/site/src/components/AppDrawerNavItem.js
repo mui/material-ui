@@ -78,6 +78,7 @@ export default class AppDrawerNavItem extends Component {
             className={classes.button}
             activeClassName={classes.activeButton}
             ripple={false}
+            onClick={this.props.onClick}
           >
             {title}
           </Button>

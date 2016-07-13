@@ -2,18 +2,49 @@ import React, {Component, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import marked from 'marked';
-import hljs from 'highlight.js/lib/highlight';
-import 'highlight.js/styles/github.css';
 
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+import prism from '../utils/prism';
 
-const styleSheet = createStyleSheet('MarkdownElement', () => ({
+const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   root: {
     marginTop: 20,
     marginBottom: 20,
     padding: '0 10px',
+    '@raw table': {
+      width: '100%',
+      borderCollapse: 'collapse',
+      borderSpacing: 0,
+      overflow: 'hidden',
+    },
+    '@raw thead': {
+      fontSize: 12,
+      fontWeight: 500,
+      color: theme.palette.text.secondary,
+    },
+    '@raw tbody': {
+      fontSize: 13,
+      color: theme.palette.text.primary,
+    },
+    '@raw td, @raw th': {
+      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+      padding: '0 56px 0 24px',
+      '&:last-child': {
+        paddingRight: 24,
+      },
+      '& compact': {
+        paddingRight: 24,
+      },
+      textAlign: 'left',
+    },
+    '@raw th': {
+      whiteSpace: 'pre',
+    },
+    '@raw tr': {
+      height: 48,
+    },
+    '@raw thead tr': {
+      height: 64,
+    },
   },
 }));
 
@@ -41,8 +72,8 @@ class MarkdownElement extends Component {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: function(code, lang) {
-        return hljs.highlight(lang, code).value;
+      highlight: function(code) {
+        return prism.highlight(code, prism.languages.jsx);
       },
     });
   }

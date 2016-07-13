@@ -8,7 +8,6 @@ export const styleSheet = createStyleSheet('Table', () => {
       width: '100%',
       borderCollapse: 'collapse',
       borderSpacing: 0,
-      tableLayout: 'fixed',
       overflow: 'hidden',
     },
   };

@@ -29,9 +29,10 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
     code: {
       padding: 0,
       margin: 0,
-      '@raw pre': {
-        margin: 0,
-        borderRadius: 0,
+      '@raw pre': { // override prism styles
+        backgroundColor: '#fff !important',
+        margin: '0px !important',
+        borderRadius: '0px !important',
       },
     },
   };

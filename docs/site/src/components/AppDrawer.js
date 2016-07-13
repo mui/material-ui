@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import ClassNames from 'classnames';
 import {createStyleSheet} from 'stylishly';
 import {List} from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
@@ -85,6 +84,7 @@ export default class AppDrawer extends Component {
             key={index}
             title={childRoute.title}
             to={childRoute.path}
+            onClick={this.props.onRequestClose}
           />
         );
       }

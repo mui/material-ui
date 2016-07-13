@@ -10,19 +10,19 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       padding: '0 56px 0 24px',
+      textAlign: 'left',
       '&:last-child': {
         paddingRight: 24,
       },
       '& compact': {
         paddingRight: 24,
       },
-      textAlign: 'left',
-    },
-    numeric: {
-      textAlign: 'right',
-    },
-    head: {
-      whiteSpace: 'pre',
+      '& numeric': {
+        textAlign: 'right',
+      },
+      '& head': {
+        whiteSpace: 'pre',
+      },
     },
     footer: {},
   };
