@@ -55,6 +55,7 @@ export default class ButtonBase extends Component {
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
     ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+    role: PropTypes.string,
     type: PropTypes.string,
   };
 
@@ -223,7 +224,7 @@ export default class ButtonBase extends Component {
     if (element === 'button') {
       buttonProps.type = type;
       buttonProps.disabled = disabled;
-    } else if (element !== 'a') {
+    } else if (element !== 'a' && !this.props.role) {
       buttonProps.role = 'button';
     }
 
