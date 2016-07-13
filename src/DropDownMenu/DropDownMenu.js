@@ -119,10 +119,6 @@ class DropDownMenu extends Component {
      */
     menuStyle: PropTypes.object,
     /**
-     * Callback function fired when a menu is closed with new value selection or just click outside menu.
-     */
-    onClose: PropTypes.func,
-    /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
      * @param {object} event TouchTap event targeting the menu item that was clicked.
@@ -130,6 +126,10 @@ class DropDownMenu extends Component {
      * @param {any} payload The `value` prop of the clicked menu item.
      */
     onChange: PropTypes.func,
+    /**
+     * Callback function fired when a menu is closed with new value selection or just click outside menu.
+     */
+    onClose: PropTypes.func,
     /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
