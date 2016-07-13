@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
+import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props) {
   return {
@@ -14,6 +15,9 @@ function getStyles(props) {
     },
     hideDropDownUnderline: {
       borderTop: 'none',
+    },
+    dropDownMenu: {
+      display: 'block',
     },
   };
 }
@@ -44,6 +48,10 @@ class SelectField extends Component {
      * The error content to display.
      */
     errorText: PropTypes.node,
+    /**
+     * If true, the floating label will float even when no value is selected.
+     */
+    floatingLabelFixed: PropTypes.bool,
     /**
      * Override the inline-styles of the floating label.
      */
@@ -77,10 +85,14 @@ class SelectField extends Component {
      */
     labelStyle: PropTypes.object,
     /**
-     * Callback function fired when the select field loses focus.
-     *
-     * @param {object} event `blur` event targeting the select field.
+     * Override the default max-height of the underlying `DropDownMenu` element.
      */
+    maxHeight: PropTypes.number,
+    /**
+     * Override the inline-styles of the underlying `DropDownMenu` element.
+     */
+    menuStyle: PropTypes.object,
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function fired when a menu item is selected.
@@ -91,17 +103,13 @@ class SelectField extends Component {
      * @param {any} payload The `value` prop of the selected menu item.
      */
     onChange: PropTypes.func,
-    /**
-     * Callback function fired when the select field gains focus.
-     *
-     * @param {object} event `focus` event targeting the select field.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
     /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
-    selectFieldRoot: PropTypes.object, // Must be changed!
-
+    selectFieldRoot: deprecated(PropTypes.object,
+      'Instead, use `menuStyle`. It will be removed with v0.16.0.'),
     /**
      * Override the inline-styles of the root element.
      */
@@ -150,12 +158,15 @@ class SelectField extends Component {
       errorStyle,
       selectFieldRoot,
       disabled,
+      floatingLabelFixed,
       floatingLabelText,
       floatingLabelStyle,
       hintStyle,
       hintText,
       fullWidth,
       errorText,
+      maxHeight,
+      menuStyle,
       onFocus,
       onBlur,
       onChange,
@@ -167,7 +178,10 @@ class SelectField extends Component {
 
     return (
       <TextField
+        {...other}
         style={style}
+        disabled={disabled}
+        floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
         floatingLabelStyle={floatingLabelStyle}
         hintStyle={hintStyle}
@@ -184,14 +198,14 @@ class SelectField extends Component {
       >
         <DropDownMenu
           disabled={disabled}
-          style={selectFieldRoot}
+          style={Object.assign(styles.dropDownMenu, selectFieldRoot, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
           underlineStyle={styles.hideDropDownUnderline}
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
-          {...other}
+          maxHeight={maxHeight}
         >
           {children}
         </DropDownMenu>

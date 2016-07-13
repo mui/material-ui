@@ -43,9 +43,11 @@ function getStyles(props, context) {
     },
     checkWhenDisabled: {
       fill: checkbox.disabledColor,
+      cursor: 'not-allowed',
     },
     boxWhenDisabled: {
       fill: props.checked ? 'transparent' : checkbox.disabledColor,
+      cursor: 'not-allowed',
     },
     label: {
       color: props.disabled ? checkbox.labelDisabledColor : checkbox.labelColor,
@@ -107,7 +109,7 @@ class Checkbox extends Component {
      * This is useful to create icon toggles.
      */
     unCheckedIcon: deprecated(PropTypes.element,
-      'Use uncheckedIcon instead.'),
+      'Use uncheckedIcon instead. It will be removed with v0.16.0.'),
     /**
      * The SvgIcon to use for the unchecked state.
      * This is useful to create icon toggles.
@@ -128,22 +130,26 @@ class Checkbox extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {switched: false};
+  state = {
+    switched: false,
+  };
 
   componentWillMount() {
     const {checked, defaultChecked, valueLink} = this.props;
 
     if (checked || defaultChecked || (valueLink && valueLink.value)) {
-      this.setState({switched: true});
+      this.setState({
+        switched: true,
+      });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      switched: this.props.checked !== nextProps.checked ?
-        nextProps.checked :
-        this.state.switched,
-    });
+    if (this.props.checked !== nextProps.checked) {
+      this.setState({
+        switched: nextProps.checked,
+      });
+    }
   }
 
   isChecked() {
@@ -154,12 +160,16 @@ class Checkbox extends Component {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
   }
 
-  handleCheck = (event, isInputChecked) => {
-    if (this.props.onCheck) this.props.onCheck(event, isInputChecked);
+  handleStateChange = (newSwitched) => {
+    this.setState({
+      switched: newSwitched,
+    });
   };
 
-  handleStateChange = (newSwitched) => {
-    this.setState({switched: newSwitched});
+  handleCheck = (event, isInputChecked) => {
+    if (this.props.onCheck) {
+      this.props.onCheck(event, isInputChecked);
+    }
   };
 
   render() {

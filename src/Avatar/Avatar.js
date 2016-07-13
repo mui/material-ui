@@ -11,7 +11,6 @@ function getStyles(props, context) {
 
   const styles = {
     root: {
-      position: 'absolute',
       color: color || avatar.color,
       backgroundColor: backgroundColor || avatar.backgroundColor,
       userSelect: 'none',
@@ -83,6 +82,7 @@ class Avatar extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       icon,
       src,
       style,

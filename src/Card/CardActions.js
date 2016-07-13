@@ -41,10 +41,18 @@ class CardActions extends Component {
   };
 
   render() {
+    const {
+      actAsExpander, // eslint-disable-line no-unused-vars
+      children,
+      expandable, // eslint-disable-line no-unused-vars
+      style,
+      ...other,
+    } = this.props;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    const children = React.Children.map(this.props.children, (child) => {
+    const styledChildren = React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
           style: Object.assign({}, styles.action, child.props.style),
@@ -53,8 +61,8 @@ class CardActions extends Component {
     });
 
     return (
-      <div {...this.props} style={prepareStyles(Object.assign(styles.root, this.props.style))}>
-        {children}
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+        {styledChildren}
       </div>
     );
   }

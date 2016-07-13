@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import {darken, fade, emphasize, lighten} from '../utils/colorManipulator';
 import lightBaseTheme from './baseThemes/lightBaseTheme';
 import zIndex from './zIndex';
@@ -43,9 +43,9 @@ export default function getMuiTheme(muiTheme, ...more) {
     badge: {
       color: palette.alternateTextColor,
       textColor: palette.textColor,
-      primaryColor: palette.accent1Color,
+      primaryColor: palette.primary1Color,
       primaryTextColor: palette.alternateTextColor,
-      secondaryColor: palette.primary1Color,
+      secondaryColor: palette.accent1Color,
       secondaryTextColor: palette.alternateTextColor,
       fontWeight: typography.fontWeightMedium,
     },
@@ -140,7 +140,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     listItem: {
       nestedLevelDepth: 18,
-      secondaryTextColor: lightBlack,
+      secondaryTextColor: palette.secondaryTextColor,
       leftIconColor: grey600,
       rightIconColor: grey600,
     },
@@ -237,6 +237,9 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: fade(black, 0.87),
       disabledTextColor: fade(black, 0.26),
       connectorLineColor: grey400,
+    },
+    svgIcon: {
+      color: palette.textColor,
     },
     table: {
       backgroundColor: palette.canvasColor,

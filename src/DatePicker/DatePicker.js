@@ -40,6 +40,10 @@ class DatePicker extends Component {
      */
     defaultDate: PropTypes.object,
     /**
+     * Override the inline-styles of DatePickerDialog's Container element.
+     */
+    dialogContainerStyle: PropTypes.object,
+    /**
      * Disables the year selection in the date picker.
      */
     disableYearSelection: PropTypes.bool,
@@ -99,8 +103,6 @@ class DatePicker extends Component {
     onDismiss: PropTypes.func,
     /**
      * Callback function that is fired when the Date Picker's `TextField` gains focus.
-     *
-     * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: PropTypes.func,
     /**
@@ -135,7 +137,8 @@ class DatePicker extends Component {
     /**
      * Wordings used inside the button of the dialog.
      */
-    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
+    wordings: deprecated(PropTypes.object, `Instead, use \`cancelLabel\` and \`okLabel\`.
+      It will be removed with v0.16.0.`),
   };
 
   static defaultProps = {
@@ -264,8 +267,10 @@ class DatePicker extends Component {
       className,
       container,
       defaultDate, // eslint-disable-line no-unused-vars
+      dialogContainerStyle,
       disableYearSelection,
       firstDayOfWeek,
+      formatDate: formatDateProp,
       locale,
       maxDate,
       minDate,
@@ -283,7 +288,7 @@ class DatePicker extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const formatDate = this.props.formatDate || this.formatDate;
+    const formatDate = formatDateProp || this.formatDate;
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>
@@ -300,6 +305,7 @@ class DatePicker extends Component {
           autoOk={autoOk}
           cancelLabel={cancelLabel}
           container={container}
+          containerStyle={dialogContainerStyle}
           disableYearSelection={disableYearSelection}
           firstDayOfWeek={firstDayOfWeek}
           initialDate={this.state.dialogDate}

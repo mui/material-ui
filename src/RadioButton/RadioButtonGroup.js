@@ -57,7 +57,7 @@ class RadioButtonGroup extends Component {
 
   state = {
     numberCheckedRadioButtons: 0,
-    selected: this.props.valueSelected || this.props.defaultSelected || '',
+    selected: '',
   };
 
   componentWillMount() {
@@ -67,7 +67,10 @@ class RadioButtonGroup extends Component {
       if (this.hasCheckAttribute(option)) cnt++;
     }, this);
 
-    this.setState({numberCheckedRadioButtons: cnt});
+    this.setState({
+      numberCheckedRadioButtons: cnt,
+      selected: this.props.valueSelected || this.props.defaultSelected || '',
+    });
   }
 
   componentWillReceiveProps(nextProps) {

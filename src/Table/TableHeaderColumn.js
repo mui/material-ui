@@ -38,9 +38,21 @@ class TableHeaderColumn extends Component {
     columnNumber: PropTypes.number,
     /**
      * @ignore
-     * Callback function for click event.
+     * Not used here but we need to remove it from the root element.
      */
+    hoverable: PropTypes.bool,
+    /** @ignore */
     onClick: PropTypes.func,
+    /**
+     * @ignore
+     * Not used here but we need to remove it from the root element.
+     */
+    onHover: PropTypes.func,
+    /**
+     * @ignore
+     * Not used here but we need to remove it from the root element.
+     */
+    onHoverExit: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -65,15 +77,21 @@ class TableHeaderColumn extends Component {
   };
 
   onMouseEnter = () => {
-    if (this.props.tooltip !== undefined) this.setState({hovered: true});
+    if (this.props.tooltip !== undefined) {
+      this.setState({hovered: true});
+    }
   };
 
   onMouseLeave = () => {
-    if (this.props.tooltip !== undefined) this.setState({hovered: false});
+    if (this.props.tooltip !== undefined) {
+      this.setState({hovered: false});
+    }
   };
 
   onClick = (event) => {
-    if (this.props.onClick) this.props.onClick(event, this.props.columnNumber);
+    if (this.props.onClick) {
+      this.props.onClick(event, this.props.columnNumber);
+    }
   };
 
   render() {
@@ -81,7 +99,10 @@ class TableHeaderColumn extends Component {
       children,
       className,
       columnNumber, // eslint-disable-line no-unused-vars
+      hoverable, // eslint-disable-line no-unused-vars
       onClick, // eslint-disable-line no-unused-vars
+      onHover, // eslint-disable-line no-unused-vars
+      onHoverExit, // eslint-disable-line no-unused-vars
       style,
       tooltip,
       tooltipStyle,

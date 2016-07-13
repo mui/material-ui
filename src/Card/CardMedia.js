@@ -81,24 +81,37 @@ class CardMedia extends Component {
   };
 
   render() {
+    const {
+      actAsExpander, // eslint-disable-line no-unused-vars
+      children,
+      expandable, // eslint-disable-line no-unused-vars
+      mediaStyle,
+      overlay,
+      overlayContainerStyle,
+      overlayContentStyle,
+      overlayStyle,
+      style,
+      ...other,
+    } = this.props;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign(styles.root, this.props.style);
-    const mediaStyle = Object.assign(styles.media, this.props.mediaStyle);
-    const overlayContainerStyle = Object.assign(styles.overlayContainer, this.props.overlayContainerStyle);
-    const overlayContentStyle = Object.assign(styles.overlayContent, this.props.overlayContentStyle);
-    const overlayStyle = Object.assign(styles.overlay, this.props.overlayStyle);
+    const rootStyle = Object.assign(styles.root, style);
+    const extendedMediaStyle = Object.assign(styles.media, mediaStyle);
+    const extendedOverlayContainerStyle = Object.assign(styles.overlayContainer, overlayContainerStyle);
+    const extendedOverlayContentStyle = Object.assign(styles.overlayContent, overlayContentStyle);
+    const extendedOverlayStyle = Object.assign(styles.overlay, overlayStyle);
     const titleColor = this.context.muiTheme.cardMedia.titleColor;
     const subtitleColor = this.context.muiTheme.cardMedia.subtitleColor;
     const color = this.context.muiTheme.cardMedia.color;
 
-    const children = React.Children.map(this.props.children, (child) => {
+    const styledChildren = React.Children.map(children, (child) => {
       return React.cloneElement(child, {
         style: prepareStyles(Object.assign({}, styles.mediaChild, child.props.style)),
       });
     });
 
-    const overlayChildren = React.Children.map(this.props.overlay, (child) => {
+    const overlayChildren = React.Children.map(overlay, (child) => {
       if (child.type.muiName === 'CardHeader' || child.type.muiName === 'CardTitle') {
         return React.cloneElement(child, {
           titleColor: titleColor,
@@ -114,14 +127,14 @@ class CardMedia extends Component {
     });
 
     return (
-      <div {...this.props} style={prepareStyles(rootStyle)}>
-        <div style={prepareStyles(mediaStyle)}>
-          {children}
+      <div {...other} style={prepareStyles(rootStyle)}>
+        <div style={prepareStyles(extendedMediaStyle)}>
+          {styledChildren}
         </div>
-        {(this.props.overlay) ?
-          <div style={prepareStyles(overlayContainerStyle)}>
-            <div style={prepareStyles(overlayStyle)}>
-              <div style={prepareStyles(overlayContentStyle)}>
+        {overlay ?
+          <div style={prepareStyles(extendedOverlayContainerStyle)}>
+            <div style={prepareStyles(extendedOverlayStyle)}>
+              <div style={prepareStyles(extendedOverlayContentStyle)}>
                 {overlayChildren}
               </div>
             </div>

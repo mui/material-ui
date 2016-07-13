@@ -1,6 +1,10 @@
 import React from 'react';
 import Slider from 'material-ui/Slider';
 
+/**
+ * The slider bar can have a set minimum and maximum, and the value can be
+ * obtained through the value parameter fired on an onChange event.
+ */
 export default class SliderExampleControlled extends React.Component {
 
   state = {

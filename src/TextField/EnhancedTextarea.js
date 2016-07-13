@@ -14,7 +14,7 @@ function getStyles(props, context, state) {
       resize: 'none',
       font: 'inherit',
       padding: 0,
-      cursor: props.disabled ? 'default' : 'initial',
+      cursor: props.disabled ? 'not-allowed' : 'initial',
     },
     shadow: {
       resize: 'none',
@@ -56,8 +56,14 @@ class EnhancedTextarea extends Component {
   };
 
   state = {
-    height: this.props.rows * rowsHeight,
+    height: null,
   };
+
+  componentWillMount() {
+    this.setState({
+      height: this.props.rows * rowsHeight,
+    });
+  }
 
   componentDidMount() {
     this.syncHeightWithShadow();
@@ -125,6 +131,7 @@ class EnhancedTextarea extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onHeightChange, // eslint-disable-line no-unused-vars
       rows, // eslint-disable-line no-unused-vars
+      rowsMax, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
       textareaStyle,
@@ -134,8 +141,8 @@ class EnhancedTextarea extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const rootStyles = Object.assign({}, styles.root, style);
-    const textareaStyles = Object.assign({}, styles.textarea, textareaStyle);
+    const rootStyles = Object.assign(styles.root, style);
+    const textareaStyles = Object.assign(styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 
     if (this.props.hasOwnProperty('valueLink')) {

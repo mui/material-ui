@@ -4,6 +4,7 @@
 
 - [formsy-material-ui](https://github.com/mbrookes/formsy-material-ui)
 A Formsy compatibility wrapper for Material-UI form components.
+- [react-materialui-notifications](https://github.com/puranjayjain/react-materialui-notifications) Spec compliant notifications for react and material ui users.
 
 ### Complementary Projects
 

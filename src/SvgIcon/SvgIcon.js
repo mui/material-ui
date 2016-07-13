@@ -19,20 +19,16 @@ class SvgIcon extends Component {
      * This is the icon color when the mouse hovers over the icon.
      */
     hoverColor: PropTypes.string,
-    /**
-     * Function called when mouse enters this element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Function called when mouse leaves this element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
     /**
-     * Allows you to redifine what the coordinates
+     * Allows you to redefine what the coordinates
      * without units mean inside an svg element. For example,
      * if the SVG element is 500 (width) by 200 (height), and you
      * pass viewBox="0 0 50 20", this means that the coordinates inside
@@ -79,17 +75,16 @@ class SvgIcon extends Component {
     } = this.props;
 
     const {
-      baseTheme,
+      svgIcon,
       prepareStyles,
     } = this.context.muiTheme;
 
-    const offColor = color ? color :
-      style && style.fill ? style.fill :
-      baseTheme.palette.textColor;
+    const offColor = color ? color : 'currentColor';
     const onColor = hoverColor ? hoverColor : offColor;
 
     const mergedStyles = Object.assign({
       display: 'inline-block',
+      color: svgIcon.color,
       fill: this.state.hovered ? onColor : offColor,
       height: 24,
       width: 24,

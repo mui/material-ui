@@ -26,9 +26,13 @@ const dataSource1 = [
 const dataSource2 = ['12345', '23456', '34567'];
 
 const dataSource3 = [
-  {text: 'Some Text', value: 'someFirstValue'},
-  {text: 'Some Text', value: 'someSecondValue'},
+  {textKey: 'Some Text', valueKey: 'someFirstValue'},
+  {textKey: 'Some Text', valueKey: 'someSecondValue'},
 ];
+const dataSourceConfig = {
+  text: 'textKey',
+  value: 'valueKey',
+};
 
 const AutoCompleteExampleNoFilter = () => (
   <div>
@@ -48,6 +52,7 @@ const AutoCompleteExampleNoFilter = () => (
       filter={AutoComplete.noFilter}
       openOnFocus={true}
       dataSource={dataSource3}
+      dataSourceConfig={dataSourceConfig}
     />
   </div>
 );

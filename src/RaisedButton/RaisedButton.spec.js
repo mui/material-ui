@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import {mount, shallow} from 'enzyme';
-import {stub} from 'sinon';
 import {assert} from 'chai';
+
 import RaisedButton from './RaisedButton';
 import ActionAndroid from '../svg-icons/action/android';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -104,33 +104,46 @@ describe('<RaisedButton />', () => {
     );
   });
 
-  describe('propTypes', () => {
-    let consoleStub;
+  it('if an svg icon is provided, renders the icon with the correct color', () => {
+    const icon = <svg color="red" />;
+    const wrapper = shallowWithContext(
+      <RaisedButton icon={icon} />
+    );
 
-    beforeEach(() => {
-      consoleStub = stub(console, 'error');
+    const svgIcon = wrapper.find('svg');
+    assert.strictEqual(svgIcon.length, 1, 'should have an svg icon');
+    assert.strictEqual(svgIcon.node.props.color, 'red', 'should have color set as the prop');
+  });
+
+  describe('validateLabel', () => {
+    const validateLabel = RaisedButton.propTypes.label;
+
+    it('should throw when using wrong label', () => {
+      assert.strictEqual(validateLabel({}, 'label', 'RaisedButton').message,
+        'Required prop label or children or icon was not specified in RaisedButton.',
+        'should return an error'
+      );
     });
 
-    afterEach(() => {
-      console.error.restore(); // eslint-disable-line no-console
+    it('should not throw when using a valid label', () => {
+      assert.strictEqual(validateLabel({
+        label: 0,
+      }, 'label', 'RaisedButton'), undefined);
     });
+  });
 
-    it('should throw when using wrong properties', () => {
-      shallowWithContext(
-        <RaisedButton />
+  describe('hover state', () => {
+    it('should reset the hover state when disabled', () => {
+      const wrapper = shallowWithContext(
+        <RaisedButton label="foo" />
       );
-      assert.strictEqual(consoleStub.callCount, 1);
-      assert.strictEqual(
-        consoleStub.args[0][0],
-        'Warning: Failed propType: Required prop label or children or icon was not specified in RaisedButton.'
-      );
-    });
 
-    it('should not throw when using a valid properties', () => {
-      shallowWithContext(
-        <RaisedButton label={0} />
-      );
-      assert.strictEqual(consoleStub.callCount, 0);
+      wrapper.children().simulate('mouseEnter');
+      assert.strictEqual(wrapper.state().hovered, true, 'should respond to the event');
+      wrapper.setProps({
+        disabled: true,
+      });
+      assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
     });
   });
 });

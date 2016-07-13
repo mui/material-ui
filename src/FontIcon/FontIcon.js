@@ -36,17 +36,9 @@ class FontIcon extends Component {
      * This is the icon color when the mouse hovers over the icon.
      */
     hoverColor: PropTypes.string,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
@@ -69,8 +61,9 @@ class FontIcon extends Component {
 
   handleMouseLeave = (event) => {
     // hover is needed only when a hoverColor is defined
-    if (this.props.hoverColor !== undefined)
+    if (this.props.hoverColor !== undefined) {
       this.setState({hovered: false});
+    }
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
@@ -78,8 +71,9 @@ class FontIcon extends Component {
 
   handleMouseEnter = (event) => {
     // hover is needed only when a hoverColor is defined
-    if (this.props.hoverColor !== undefined)
+    if (this.props.hoverColor !== undefined) {
       this.setState({hovered: true});
+    }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
@@ -87,6 +81,7 @@ class FontIcon extends Component {
 
   render() {
     const {
+      hoverColor, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
       style,

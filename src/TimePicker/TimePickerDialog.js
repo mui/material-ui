@@ -8,6 +8,7 @@ import FlatButton from '../FlatButton';
 class TimePickerDialog extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
+    bodyStyle: PropTypes.object,
     cancelLabel: PropTypes.node,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
@@ -15,6 +16,7 @@ class TimePickerDialog extends Component {
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -69,12 +71,14 @@ class TimePickerDialog extends Component {
 
   render() {
     const {
+      bodyStyle,
       initialTime,
       onAccept, // eslint-disable-line no-unused-vars
       format,
       autoOk,
       okLabel,
       cancelLabel,
+      style,
       ...other,
     } = this.props;
 
@@ -112,8 +116,8 @@ class TimePickerDialog extends Component {
     return (
       <Dialog
         {...other}
-        style={styles.root}
-        bodyStyle={styles.body}
+        style={Object.assign(styles.root, style)}
+        bodyStyle={Object.assign(styles.body, bodyStyle)}
         actions={actions}
         contentStyle={styles.dialogContent}
         repositionOnUpdate={false}

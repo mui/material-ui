@@ -67,14 +67,10 @@ function getStyles(props, context, state) {
     },
 
     leftIcon: {
-      color: listItem.leftIconColor,
-      fill: listItem.leftIconColor,
       left: 4,
     },
 
     rightIcon: {
-      color: listItem.rightIconColor,
-      fill: listItem.rightIconColor,
       right: 4,
     },
 
@@ -213,17 +209,9 @@ class ListItem extends Component {
      * @param {boolean} isKeyboardFocused If true, the `ListItem` is focused.
      */
     onKeyboardFocus: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the `ListItem`.
-     *
-     * @param {object} event `mouseenter` event targeting the `ListItem`.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the `ListItem`.
-     *
-     * @param {object} event `mouseleave` event targeting the `ListItem`.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
      * Callbak function fired when the `ListItem` toggles its nested list.
@@ -231,17 +219,9 @@ class ListItem extends Component {
      * @param {object} listItem The `ListItem`.
      */
     onNestedListToggle: PropTypes.func,
-    /**
-     * Callback function fired when the `ListItem` is touched.
-     *
-     * @param {object} event `touchstart` event targeting the `ListItem`.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
-    /**
-     * Callback function fired when the `ListItem` is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the `ListItem`.
-     */
+    /** @ignore */
     onTouchTap: PropTypes.func,
     /**
      * This is the block element that contains the primary text.
@@ -313,11 +293,17 @@ class ListItem extends Component {
   state = {
     hovered: false,
     isKeyboardFocused: false,
-    open: this.props.initiallyOpen,
+    open: false,
     rightIconButtonHovered: false,
     rightIconButtonKeyboardFocused: false,
     touch: false,
   };
+
+  componentWillMount() {
+    if (this.props.initiallyOpen) {
+      this.setState({open: true});
+    }
+  }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
@@ -500,6 +486,7 @@ class ListItem extends Component {
       children,
       disabled,
       disableKeyboardFocus,
+      initiallyOpen, // eslint-disable-line no-unused-vars
       innerDivStyle,
       insetChildren, // eslint-disable-line no-unused-vars
       leftAvatar,
@@ -509,8 +496,9 @@ class ListItem extends Component {
       nestedLevel,
       nestedListStyle,
       onKeyboardFocus, // eslint-disable-line no-unused-vars
-      onMouseLeave, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
+      onMouseLeave, // eslint-disable-line no-unused-vars
+      onNestedListToggle, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchTap,
       rightAvatar,
@@ -530,18 +518,26 @@ class ListItem extends Component {
     const contentChildren = [children];
 
     if (leftIcon) {
+      const additionalProps = {
+        color: leftIcon.props.color || this.context.muiTheme.listItem.leftIconColor,
+      };
       this.pushElement(
         contentChildren,
         leftIcon,
-        Object.assign({}, styles.icons, styles.leftIcon)
+        Object.assign({}, styles.icons, styles.leftIcon),
+        additionalProps
       );
     }
 
     if (rightIcon) {
+      const additionalProps = {
+        color: rightIcon.props.color || this.context.muiTheme.listItem.rightIconColor,
+      };
       this.pushElement(
         contentChildren,
         rightIcon,
-        Object.assign({}, styles.icons, styles.rightIcon)
+        Object.assign({}, styles.icons, styles.rightIcon),
+        additionalProps
       );
     }
 
