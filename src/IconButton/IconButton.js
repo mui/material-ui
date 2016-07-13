@@ -49,11 +49,11 @@ export default class IconButton extends Component {
      */
     className: PropTypes.string,
     /**
-     * If true, the element will be disabled.
+     * If true, the button will be disabled.
      */
     disabled: PropTypes.bool,
     /**
-     * If false, the element's ripple effect will be disabled.
+     * If false, the ripple effect will be disabled.
      */
     ripple: PropTypes.bool,
   };

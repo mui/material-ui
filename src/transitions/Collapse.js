@@ -109,6 +109,14 @@ export default class Collapse extends Component {
     }
   };
 
+  handleEntered = (element) => {
+    element.style.height = 'auto';
+    reflow(element);
+    if (this.props.onEntered) {
+      this.props.onEntered();
+    }
+  };
+
   handleExit = (element) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     element.style.height = `${wrapperHeight}px`;
@@ -151,7 +159,6 @@ export default class Collapse extends Component {
 
     return (
       <Transition
-        transitionAppear={true}
         onEntering={this.handleEntering}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}

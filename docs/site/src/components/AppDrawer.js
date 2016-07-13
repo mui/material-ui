@@ -49,6 +49,8 @@ export default class AppDrawer extends Component {
     );
   }
 
+  activeParent = undefined;
+
   renderNav(navRoot, props = {}) {
     return (
       <List {...props}>
@@ -58,6 +60,7 @@ export default class AppDrawer extends Component {
   }
 
   renderNavItems(navRoot) {
+    this.activeParent = undefined;
     if (navRoot.childRoutes && navRoot.childRoutes.length) {
       return navRoot.childRoutes.reduce(this.reduceChildRoutes, []);
     }
@@ -66,9 +69,11 @@ export default class AppDrawer extends Component {
   reduceChildRoutes = (items, childRoute, index) => {
     if (childRoute.nav) {
       if (childRoute.childRoutes && childRoute.childRoutes.length) {
+        let openImmediately = this.props.routes.indexOf(childRoute) !== -1 || false;
         items.push(
           <AppDrawerNavItem
             key={index}
+            openImmediately={openImmediately}
             title={childRoute.title}
           >
            {this.renderNav(childRoute)}
@@ -89,7 +94,6 @@ export default class AppDrawer extends Component {
 
   render() {
     this.classes = this.context.styleManager.render(styleSheet);
-    this.classes.activeNavLink = ClassNames(this.classes.navLink, this.classes.activeLink);
     return (
       <Drawer
         className={this.classes.drawer}

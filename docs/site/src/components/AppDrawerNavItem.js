@@ -43,6 +43,7 @@ export default class AppDrawerNavItem extends Component {
   static propTypes = {
     children: PropTypes.node,
     onClick: PropTypes.func,
+    openImmediately: PropTypes.bool,
     title: PropTypes.string,
     to: PropTypes.string,
   };
@@ -54,6 +55,12 @@ export default class AppDrawerNavItem extends Component {
   state = {
     open: false,
   };
+
+  componentWillMount() {
+    if (this.props.openImmediately) {
+      this.setState({open: true});
+    }
+  }
 
   render() {
     const {children, title, to} = this.props;
