@@ -4,7 +4,7 @@ import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
 import Popover from '../Popover/Popover';
-import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
@@ -144,7 +144,7 @@ class DatePickerDialog extends Component {
       <div {...other} ref="root">
         <Container
           anchorEl={this.refs.root} // For Popover
-          animation={animation || PopoverAnimationFromTop} // For Popover
+          animation={animation || PopoverAnimationVertical} // For Popover
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
           ref="dialog"
