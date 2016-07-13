@@ -4,9 +4,11 @@ import transitions from '../styles/transitions';
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
-  const rangeValue = max - min;
-  const relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
-  return relValue * 100;
+  return clampedValue / (max - min);
+}
+
+function getArcLength(fraction, props) {
+  return fraction * Math.PI * (props.size - props.thickness);
 }
 
 function getStyles(props, context) {
@@ -18,36 +20,27 @@ function getStyles(props, context) {
   } = props;
 
   const {baseTheme: {palette}} = context.muiTheme;
-  const zoom = size * 1.4 ;
-  const baseSize = 50;
-  let margin = Math.round( ((50 * zoom) - 50) / 2 );
-
-  if (margin < 0) margin = 0;
 
   const styles = {
     root: {
       position: 'relative',
-      margin: margin,
       display: 'inline-block',
-      width: baseSize,
-      height: baseSize,
+      width: size,
+      height: size,
     },
     wrapper: {
-      width: baseSize,
-      height: baseSize,
+      width: size,
+      height: size,
       display: 'inline-block',
       transition: transitions.create('transform', '20s', null, 'linear'),
       transitionTimingFunction: 'linear',
     },
     svg: {
-      height: baseSize,
+      width: size,
+      height: size,
       position: 'relative',
-      transform: `scale(${zoom})`,
-      width: baseSize,
     },
     path: {
-      strokeDasharray: '89, 200',
-      strokeDashoffset: 0,
       stroke: props.color || palette.primary1Color,
       strokeLinecap: 'round',
       transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
@@ -57,7 +50,7 @@ function getStyles(props, context) {
   if (props.mode === 'determinate') {
     const relVal = getRelativeValue(value, min, max);
     styles.path.transition = transitions.create('all', '0.3s', null, 'linear');
-    styles.path.strokeDasharray = `${Math.round(relVal * 1.25)}, 200`;
+    styles.path.strokeDasharray = `${getArcLength(relVal, props)}, ${getArcLength(1, props)}`;
   }
 
   return styles;
@@ -87,13 +80,17 @@ class CircularProgress extends Component {
      */
     mode: PropTypes.oneOf(['determinate', 'indeterminate']),
     /**
-     * The size of the progress.
+     * The diameter of the progress in pixels.
      */
     size: PropTypes.number,
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+    /**
+     * Stroke width in pixels.
+     */
+    thickness: PropTypes.number,
     /**
      * The value of progress, only works in determinate mode.
      */
@@ -105,7 +102,8 @@ class CircularProgress extends Component {
     value: 0,
     min: 0,
     max: 100,
-    size: 1,
+    size: 50,
+    thickness: 2.5,
   };
 
   static contextTypes = {
@@ -122,23 +120,22 @@ class CircularProgress extends Component {
     clearTimeout(this.rotateWrapperTimer);
   }
 
-  scalePath(path, step) {
+  scalePath(path, step = 0) {
     if (this.props.mode !== 'indeterminate') return;
 
-    step = step || 0;
     step %= 3;
 
     if (step === 0) {
-      path.style.strokeDasharray = '1, 200';
+      path.style.strokeDasharray = `${getArcLength(0, this.props)}, ${getArcLength(1, this.props)}`;
       path.style.strokeDashoffset = 0;
       path.style.transitionDuration = '0ms';
     } else if (step === 1) {
-      path.style.strokeDasharray = '89, 200';
-      path.style.strokeDashoffset = -35;
+      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(1, this.props)}`;
+      path.style.strokeDashoffset = getArcLength(-0.3, this.props);
       path.style.transitionDuration = '750ms';
     } else {
-      path.style.strokeDasharray = '89, 200';
-      path.style.strokeDashoffset = -124;
+      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(1, this.props)}`;
+      path.style.strokeDashoffset = getArcLength(-1, this.props);
       path.style.transitionDuration = '850ms';
     }
 
@@ -164,7 +161,8 @@ class CircularProgress extends Component {
     const {
       style,
       innerStyle,
-      size, // eslint-disable-line no-unused-vars
+      size,
+      thickness,
       ...other,
     } = this.props;
 
@@ -174,15 +172,18 @@ class CircularProgress extends Component {
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))} >
         <div ref="wrapper" style={prepareStyles(Object.assign(styles.wrapper, innerStyle))} >
-          <svg style={prepareStyles(styles.svg)} >
+          <svg
+            viewBox={`0 0 ${size} ${size}`}
+            style={prepareStyles(styles.svg)}
+          >
             <circle
               ref="path"
               style={prepareStyles(styles.path)}
-              cx="25"
-              cy="25"
-              r="20"
+              cx={size / 2}
+              cy={size / 2}
+              r={(size - thickness) / 2}
               fill="none"
-              strokeWidth="2.5"
+              strokeWidth={thickness}
               strokeMiterlimit="20"
             />
           </svg>

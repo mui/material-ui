@@ -4,8 +4,8 @@ import CircularProgress from 'material-ui/CircularProgress';
 const CircularProgressExampleSimple = () => (
   <div>
     <CircularProgress />
-    <CircularProgress size={1.5} />
-    <CircularProgress size={2} />
+    <CircularProgress size={75} thickness={7} />
+    <CircularProgress size={100} thickness={5} />
   </div>
 );
 
