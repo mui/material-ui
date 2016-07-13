@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
@@ -12,6 +13,7 @@ import Backdrop from './Backdrop';
 import Portal from './Portal';
 import Fade from '../transitions/Fade';
 import addEventListener from '../utils/addEventListener';
+import coerce from '../utils/coerce';
 
 // Modals don't open on the server
 // so this won't break concurrency
@@ -32,73 +34,80 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
   };
 });
 
-/**
- * Still a WIP
- */
-export default class Modal extends Component {
+type DefaultProps = {
+  backdrop: boolean,
+  backdropComponent: Function,
+  modalManager: Object,
+  show: boolean,
+};
 
-  static propTypes = {
-    /**
-     * Set to false to disable the backdrop, or true to enable it.
-     */
-    backdrop: PropTypes.bool,
-    /**
-     * Pass a component class to use as the backdrop.
-     */
-    backdropComponent: PropTypes.func,
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.element,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    modalManager: PropTypes.object,
-    onBackdropClick: PropTypes.func,
-    /**
-     * Callback fired before the modal is entering
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the modal is entering
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the modal has entered
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the modal is exiting
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the modal is exiting
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the modal has exited
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired when the modal requests to be closed
-     */
-    onRequestClose: PropTypes.func,
-    show: PropTypes.bool,
+type Props = {
+  /**
+   * Set to false to disable the backdrop, or true to enable it.
+   */
+  backdrop: boolean,
+  /**
+   * Pass a component class to use as the backdrop.
+   */
+  backdropComponent: Function,
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Element<any>,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  modalManager: Object,
+  onBackdropClick?: Function,
+  /**
+   * Callback fired before the modal is entering
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the modal is entering
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the modal has entered
+   */
+  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the modal is exiting
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the modal is exiting
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the modal has exited
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired when the modal requests to be closed
+   */
+  onRequestClose?: Function,
+  show: boolean,
+};
+
+type State = {
+  exited: boolean,
+};
+
+export default class Modal extends Component<DefaultProps, Props, State> {
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
   };
 
-  static defaultProps = {
+  static defaultProps:DefaultProps = {
     backdrop: true,
     backdropComponent: Backdrop,
     modalManager: modalManager,
     show: false,
   };
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  state = {
+  state:State = {
     exited: false,
   };
 
@@ -115,19 +124,19 @@ export default class Modal extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.show && this.state.exited) {
       this.setState({exited: false});
     }
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps: Props) {
     if (!this.props.show && nextProps.show) {
       this.checkForFocus();
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (!prevProps.show && this.props.show) {
       this.handleShow();
     }
@@ -140,6 +149,14 @@ export default class Modal extends Component {
     this.mounted = false;
   }
 
+  lastFocus:?HTMLElement;
+  mounted:boolean
+  modal:HTMLElement;
+  mountNode:Portal|HTMLElement;
+  onDocumentKeyUpListener:RemoveEventListener;
+  onFocusListener:RemoveEventListener;
+  props:Props;
+
   checkForFocus() {
     if (canUseDom) {
       this.lastFocus = activeElement();
@@ -148,7 +165,7 @@ export default class Modal extends Component {
 
   focus() {
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && this.modal.lastChild;
+    const modalContent = this.modal && coerce(this.modal.lastChild, window.HTMLElement);
     const focusInModal = currentFocus && contains(modalContent, currentFocus);
 
     if (modalContent && !focusInModal) {
@@ -188,20 +205,20 @@ export default class Modal extends Component {
     this.restoreLastFocus();
   }
 
-  handleFocusListener = () => {
+  handleFocusListener:Callback = () => {
     if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
 
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && this.modal.lastChild;
+    const modalContent = this.modal && coerce(this.modal.lastChild, window.HTMLElement);
 
     if (modalContent && modalContent !== currentFocus && !contains(modalContent, currentFocus)) {
       modalContent.focus();
     }
   };
 
-  handleDocumentKeyUp = () => {
+  handleDocumentKeyUp:EventListener = () => {
     // if (this.props.keyboard && event.keyCode === 27 && this.props.modalManager.isTopModal(this)) {
     //   if (this.props.onEscapeKeyUp) {
     //     this.props.onEscapeKeyUp(event);
@@ -210,7 +227,7 @@ export default class Modal extends Component {
     // }
   };
 
-  handleBackdropClick = (event) => {
+  handleBackdropClick:EventListener = (event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
@@ -224,15 +241,15 @@ export default class Modal extends Component {
     }
   };
 
-  handleBackdropExited = (...args) => {
+  handleBackdropExited:TransitionHandler = (element) => {
     this.setState({exited: true});
     this.handleHide();
     if (this.props.onExited) {
-      this.props.onExited(...args);
+      this.props.onExited(element);
     }
   };
 
-  renderBackdrop(backdrop, backdropComponent, show) {
+  renderBackdrop(backdrop: boolean, backdropComponent: Function, show: boolean): ?Element<any> {
     if (!backdrop) {
       return null;
     }
@@ -253,7 +270,7 @@ export default class Modal extends Component {
     );
   }
 
-  render() {
+  render(): ?Element<any> {
     const {
       backdrop,
       backdropComponent,

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -28,28 +29,35 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
   };
 });
 
-export default class Text extends Component {
-  static propTypes = {
-    align: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    component: PropTypes.string,
-    noWrap: PropTypes.bool,
-    type: PropTypes.string,
-  };
+type DefaultProps = {
+  component: string,
+  type: string,
+};
 
-  static defaultProps = {
-    component: 'span',
-    type: 'body1',
-  };
+type Props = {
+  align?: string,
+  children?: Element<any>,
+  className?: string,
+  component: string,
+  noWrap?: boolean,
+  type: string,
+};
 
+export default class Text extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  render() {
+  static defaultProps:DefaultProps = {
+    component: 'span',
+    type: 'body1',
+  };
+
+  props:Props;
+
+  render(): Element<any> {
     const {align, className, component, noWrap, type, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet);
     const classNames = ClassNames(classes.text, {
       [classes[type]]: true,
       [classes.noWrap]: noWrap,

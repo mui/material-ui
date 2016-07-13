@@ -1,8 +1,10 @@
-import React, {PropTypes, Component} from 'react';
+// @flow
+import React, {Component, Element} from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
-import addEventListener from 'dom-helpers/events/on';
+import addEventListener from '../utils/addEventListener';
 import ClassNames from 'classnames';
+import coerce from '../utils/coerce';
 
 const transitionEndEvent = transitionInfo.end;
 
@@ -12,6 +14,90 @@ export const ENTERING = 2;
 export const ENTERED = 3;
 export const EXITING = 4;
 
+type DefaultProps = {
+  in: boolean,
+  timeout: number,
+  transitionAppear: boolean,
+  unmountOnExit: boolean,
+  onEnter: TransitionHandler,
+  onEntered: TransitionHandler,
+  onEntering: TransitionHandler,
+  onExit: TransitionHandler,
+  onExiting: TransitionHandler,
+  onExited: TransitionHandler,
+};
+
+type Props = {
+  children?: Element<any>,
+  className?: string,
+  /**
+   * CSS class or classes applied when the component is entered
+   */
+  enteredClassName?: string,
+  /**
+   * CSS class or classes applied while the component is entering
+   */
+  enteringClassName?: string,
+  /**
+   * CSS class or classes applied when the component is exited
+   */
+  exitedClassName?: string,
+  /**
+   * CSS class or classes applied while the component is exiting
+   */
+  exitingClassName?: string,
+  /**
+   * Show the component; triggers the enter or exit animation
+   */
+  in: boolean,
+  /**
+   * Callback fired before the "entering" classes are applied
+   */
+  onEnter: TransitionHandler,
+  /**
+   * Callback fired after the "enter" classes are applied
+   */
+  onEntered: TransitionHandler,
+  /**
+   * Callback fired after the "entering" classes are applied
+   */
+  onEntering: TransitionHandler,
+  /**
+   * Callback fired before the "exiting" classes are applied
+   */
+  onExit: TransitionHandler,
+  /**
+   * Callback fired after the "exited" classes are applied
+   */
+  onExited: TransitionHandler,
+  /**
+   * Callback fired after the "exiting" classes are applied
+   */
+  onExiting: TransitionHandler,
+  /**
+   * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
+   * transition indefinately if the browser transitionEnd events are
+   * canceled or interrupted.
+   *
+   * By default this is set to a high number (5 seconds) as a failsafe. You should consider
+   * setting this to the duration of your animation (or a bit above it).
+   */
+  timeout: number,
+  /**
+   * Run the enter animation when the component mounts, if it is initially
+   * shown
+   */
+  transitionAppear: boolean,
+  /**
+   * Unmount the component (remove it from the DOM) when it is not shown
+   */
+  unmountOnExit: boolean,
+};
+
+type State = {
+  status: number;
+
+}
 /**
  * Drawn from https://raw.githubusercontent.com/react-bootstrap/react-overlays/master/src/Transition.js
  *
@@ -23,75 +109,8 @@ export const EXITING = 4;
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    /**
-     * CSS class or classes applied when the component is entered
-     */
-    enteredClassName: PropTypes.string,
-    /**
-     * CSS class or classes applied while the component is entering
-     */
-    enteringClassName: PropTypes.string,
-    /**
-     * CSS class or classes applied when the component is exited
-     */
-    exitedClassName: PropTypes.string,
-    /**
-     * CSS class or classes applied while the component is exiting
-     */
-    exitingClassName: PropTypes.string,
-    /**
-     * Show the component; triggers the enter or exit animation
-     */
-    in: PropTypes.bool,
-    /**
-     * Callback fired before the "entering" classes are applied
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired after the "entering" classes are applied
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired after the "enter" classes are applied
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the "exiting" classes are applied
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired after the "exiting" classes are applied
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired after the "exited" classes are applied
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
-     * transition indefinately if the browser transitionEnd events are
-     * canceled or interrupted.
-     *
-     * By default this is set to a high number (5 seconds) as a failsafe. You should consider
-     * setting this to the duration of your animation (or a bit above it).
-     */
-    timeout: PropTypes.number,
-    /**
-     * Run the enter animation when the component mounts, if it is initially
-     * shown
-     */
-    transitionAppear: PropTypes.bool,
-    /**
-     * Unmount the component (remove it from the DOM) when it is not shown
-     */
-    unmountOnExit: PropTypes.bool,
-  };
-
-  static defaultProps = {
+class Transition extends Component<DefaultProps, Props, State> {
+  static defaultProps:DefaultProps = {
     in: false,
     unmountOnExit: false,
     transitionAppear: false,
@@ -107,7 +126,7 @@ class Transition extends Component {
     onExited: noop,
   };
 
-  state = {
+  state:State = {
     status: UNMOUNTED,
   };
 
@@ -132,7 +151,7 @@ class Transition extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.in && this.props.unmountOnExit) {
       if (this.state.status === UNMOUNTED) {
         // Start enter transition in componentDidUpdate.
@@ -182,9 +201,13 @@ class Transition extends Component {
     this.cancelNextCallback();
   }
 
-  performEnter(props) {
+  props: Props;
+  nextCallback: ?EventHandler;
+  needsUpdate: boolean;
+
+  performEnter(props: Props) {
     this.cancelNextCallback();
-    const node = ReactDOM.findDOMNode(this);
+    const node = coerce(ReactDOM.findDOMNode(this), window.HTMLElement);
 
     // Not this.props, because we might be about to receive new props.
     props.onEnter(node);
@@ -200,9 +223,9 @@ class Transition extends Component {
     });
   }
 
-  performExit(props) {
+  performExit(props: Props) {
     this.cancelNextCallback();
-    const node = ReactDOM.findDOMNode(this);
+    const node = coerce(ReactDOM.findDOMNode(this), window.HTMLElement);
 
     // Not this.props, because we might be about to receive new props.
     props.onExit(node);
@@ -225,17 +248,17 @@ class Transition extends Component {
     }
   }
 
-  safeSetState(nextState, callback) {
+  safeSetState(nextState: State, callback: EventListener) {
     // This shouldn't be necessary, but there are weird race conditions with
     // setState callbacks and unmounting in testing, so always make sure that
     // we can cancel any pending setState callbacks after we unmount.
     this.setState(nextState, this.setNextCallback(callback));
   }
 
-  setNextCallback(callback) {
+  setNextCallback(callback: EventHandler): Callback {
     let active = true;
 
-    this.nextCallback = (event) => {
+    this.nextCallback = (event: Event) => {
       if (active) {
         active = false;
         this.nextCallback = null;
@@ -251,7 +274,7 @@ class Transition extends Component {
     return this.nextCallback;
   }
 
-  onTransitionEnd(node, handler) {
+  onTransitionEnd(node: Node, handler: EventListener) {
     this.setNextCallback(handler);
 
     if (node) {
@@ -262,7 +285,7 @@ class Transition extends Component {
     }
   }
 
-  render() {
+  render(): ?Element<any> {
     const status = this.state.status;
     if (status === UNMOUNTED) {
       return null;

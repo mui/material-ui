@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
@@ -51,24 +52,35 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   },
 }));
 
-export default class Ripple extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    pulsate: PropTypes.bool,
-    rippleSize: PropTypes.number,
-    rippleX: PropTypes.number,
-    rippleY: PropTypes.number,
-  };
+declare function LeaveTimer(fn: Object, delay: number): void;
 
-  static defaultProps = {
-    pulsate: false,
-  };
+type DefaultProps = {
+  pulsate: boolean,
+}
 
+type Props = {
+  className?: string,
+  pulsate: boolean,
+  rippleSize?: number,
+  rippleX?: number,
+  rippleY?: number,
+};
+
+type State = {
+  rippleStart: boolean,
+  rippleVisible: boolean,
+}
+
+export default class Ripple extends Component<DefaultProps, Props, State> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  state = {
+  static defaultProps:DefaultProps = {
+    pulsate: false,
+  };
+
+  state:State = {
     rippleStart: false,
     rippleVisible: false,
   };
@@ -77,19 +89,22 @@ export default class Ripple extends Component {
     clearTimeout(this.leaveTimer);
   }
 
+  props:Props;
+  leaveTimer:LeaveTimer;
+
   componentDidEnter() {
     this.start();
   }
 
-  componentWillLeave(callback) {
-      // reflow(ReactDOM.findDOMNode(this.ripple));
+  componentWillLeave(callback: Callback) {
+    // reflow(ReactDOM.findDOMNode(this));
     this.stop();
     this.leaveTimer = setTimeout(() => {
       callback();
     }, 550);
   }
 
-  start = () => {
+  start:Callback = () => {
     this.setState({
       rippleVisible: true,
       rippleStart: true,
@@ -100,7 +115,7 @@ export default class Ripple extends Component {
     });
   };
 
-  stop = () => {
+  stop:Callback = () => {
     this.setState({
       rippleVisible: false,
     });
@@ -123,7 +138,7 @@ export default class Ripple extends Component {
     return rippleStyles;
   }
 
-  render() {
+  render(): Element<any> {
     const {className, pulsate} = this.props;
     const {rippleStart, rippleVisible} = this.state;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
@@ -136,7 +151,7 @@ export default class Ripple extends Component {
 
     const rippleStyles = this.getRippleStyles();
 
-    const ripple = <span ref={(c) => this.ripple = c} className={rippleClassName} style={rippleStyles}></span>;
+    const ripple = <span className={rippleClassName} style={rippleStyles}></span>;
 
     if (pulsate) {
       return <span className={classes.pulsating}>{ripple}</span>;

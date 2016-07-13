@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+// @flow
+import React, {Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
@@ -17,7 +18,12 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
   };
 });
 
-export default function ListItemIcon(props, context) {
+type Props = {
+  children?: Element<any>,
+  className?: string,
+};
+
+export default function ListItemIcon(props: Props, context: {styleManager: Object}): Element<any> {
   const {children, className} = props;
   const classes = context.styleManager.render(styleSheet, {group: 'mui'});
   const classNames = ClassNames(classes.root, className);
@@ -27,11 +33,6 @@ export default function ListItemIcon(props, context) {
     </div>
   );
 }
-
-ListItemIcon.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
 
 ListItemIcon.contextTypes = {
   styleManager: PropTypes.object.isRequired,

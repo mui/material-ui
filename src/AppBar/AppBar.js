@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
@@ -27,23 +28,29 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
   };
 });
 
-export default class AppBar extends Component {
-  static propTypes = {
-    accent: PropTypes.bool,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    primary: PropTypes.bool,
-  };
+type DefaultProps = {
+  primary: boolean,
+};
 
-  static defaultProps = {
-    primary: true,
-  };
+type Props = {
+  accent?: boolean,
+  children?: Element<any>,
+  className?: string,
+  primary?: boolean,
+};
 
+export default class AppBar extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  render() {
+  static defaultProps:DefaultProps = {
+    primary: true,
+  };
+
+  props:Props;
+
+  render(): Element<any> {
     const {
       accent,
       children,

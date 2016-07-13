@@ -1,0 +1,19 @@
+[ignore]
+
+# prefix with .* to get nested ignores
+.*/node_modules/react-tap-event-plugin
+.*/node_modules/fbjs
+.*/node_modules/editions
+
+[include]
+
+[libs]
+./src/flow
+
+
+[options]
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+
+# ignore warnings
+esproposal.decorators=ignore

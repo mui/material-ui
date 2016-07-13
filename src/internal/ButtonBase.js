@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, Element, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
 import {createStyleSheet} from 'stylishly';
@@ -36,29 +36,41 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
   };
 });
 
-export default class ButtonBase extends Component {
-  static propTypes = {
-    centerRipple: PropTypes.bool,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    disabled: PropTypes.bool,
-    focusRipple: PropTypes.bool,
-    keyboardFocusedClassName: PropTypes.string,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    onKeyUp: PropTypes.func,
-    onMouseDown: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    onMouseUp: PropTypes.func,
-    onTouchEnd: PropTypes.func,
-    onTouchStart: PropTypes.func,
-    ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-    type: PropTypes.string,
-  };
+type DefaultProps = {
+  centerRipple: boolean,
+  component: string,
+  focusRipple: boolean,
+  ripple: boolean,
+  type: string,
+}
 
-  static defaultProps = {
+type Props = {
+  centerRipple?: boolean,
+  children?: Element<any>,
+  className?: string,
+  component?: string|Function,
+  disabled?: boolean,
+  focusRipple?: boolean,
+  keyboardFocusedClassName?: string,
+  onBlur?: EventListener,
+  onFocus?: EventListener,
+  onKeyDown?: EventListener,
+  onKeyUp?: EventListener,
+  onMouseDown?: EventListener,
+  onMouseLeave?: EventListener,
+  onMouseUp?: EventListener,
+  onTouchEnd?: EventListener,
+  onTouchStart?: EventListener,
+  ripple?: boolean|Function,
+  type?: string,
+};
+
+type State = {
+  keyboardFocused: boolean,
+}
+
+export default class ButtonBase extends Component<DefaultProps, Props, State> {
+  static defaultProps:DefaultProps = {
     centerRipple: false,
     component: 'button',
     focusRipple: false,
@@ -70,7 +82,7 @@ export default class ButtonBase extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  state = {
+  state:State = {
     keyboardFocused: false,
   };
 
@@ -90,6 +102,7 @@ export default class ButtonBase extends Component {
     clearTimeout(this.keyboardFocusTimeout);
   }
 
+  props:Props;
   ripple = undefined;
   keyDown = false; // Used to help track keyboard activation keyDown
 

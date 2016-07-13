@@ -1,8 +1,20 @@
+// @flow
 import css from 'dom-helpers/style';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import {hideSiblings, showSiblings, ariaHidden} from '../utils/manageAriaHidden';
+
+type ModalManagerArg = {
+  container: HTMLElement,
+  hideSiblingNodes: boolean,
+};
+
+export type ModalManager = {
+  add(modal: Object): number,
+  remove(modal: Object): number,
+  isTopModal(modal: Object): boolean,
+};
 
 /**
  * State managment helper for modals/layers.
@@ -13,14 +25,14 @@ import {hideSiblings, showSiblings, ariaHidden} from '../utils/manageAriaHidden'
 export function createModalManager({
   container = window.document.body,
   hideSiblingNodes = true,
-} = {}) {
+}: ModalManagerArg = {}): ModalManager {
   const modals = [];
-  const modalManager = {add, remove, isTopModal};
+  const modalManager: ModalManager = {add, remove, isTopModal};
 
   let prevOverflow;
   let prevPadding;
 
-  function add(modal) {
+  function add(modal: Object): number {
     let modalIdx = modals.indexOf(modal);
 
     if (modalIdx !== -1) {
@@ -34,7 +46,9 @@ export function createModalManager({
       hideSiblings(container, modal.mountNode);
     }
 
-    const containerStyle = {overflow: 'hidden'};
+    const containerStyle = {};
+
+    containerStyle.overflow = 'hidden';
 
     // Save our current overflow so we can revert
     // back to it when all modals are closed!
@@ -50,7 +64,7 @@ export function createModalManager({
     return modalIdx;
   }
 
-  function remove(modal) {
+  function remove(modal: Object): number {
     const modalIdx = modals.indexOf(modal);
 
     if (modalIdx === -1) {
@@ -60,8 +74,8 @@ export function createModalManager({
     modals.splice(modalIdx, 1);
 
     if (modals.length === 0) {
-      container.style.overflow = prevOverflow;
-      container.style.paddingRight = prevPadding;
+      container.style.overflow = typeof prevOverflow === 'string' ? prevOverflow : '';
+      container.style.paddingRight = typeof prevPadding === 'string' ? prevPadding : '';
       prevOverflow = undefined;
       prevPadding = undefined;
       if (hideSiblingNodes) {
@@ -75,7 +89,7 @@ export function createModalManager({
     return modalIdx;
   }
 
-  function isTopModal(modal) {
+  function isTopModal(modal: Object): boolean {
     return !!modals.length && modals[modals.length - 1] === modal;
   }
 

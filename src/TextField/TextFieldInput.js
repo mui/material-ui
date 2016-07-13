@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, PropTypes, Element} from 'react';
 import {createStyleSheet} from 'stylishly';
 import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
@@ -32,49 +33,55 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
   };
 });
 
+type DefaultProps = {
+  component: string|Function,
+  type: string,
+  underline: boolean,
+};
+
+type Props = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  /**
+   * The element or component used for the root node.
+   */
+  component: string|Function,
+  disabled?: boolean,
+  /**
+   * @ignore
+   */
+  onChange?: EventHandler,
+  /**
+   * @ignore
+   */
+  onClean?: Callback,
+  /**
+   * @ignore
+   */
+  onDirty?: Callback,
+  /**
+   * TextFieldInput type
+   */
+  type: string,
+  /**
+   * If set to true, the input will have an underline
+   */
+  underline: boolean,
+  /**
+   * The input value, required for a controlled component
+   */
+  value?: string,
+};
+
 /**
  * TextFieldInput
  */
-export default class TextFieldInput extends Component {
-  static muiName = 'TextFieldInput';
+export default class TextFieldInput extends Component<DefaultProps, Props, void> {
+  static muiName:string = 'TextFieldInput';
 
-  static propTypes = {
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * The element or component used for the root node.
-     */
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    disabled: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    onChange: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onClean: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onDirty: PropTypes.func,
-    /**
-     * TextFieldInput type
-     */
-    type: PropTypes.string,
-    /**
-     * If set to true, the input will have an underline
-     */
-    underline: PropTypes.bool,
-    /**
-     * The input value, required for a controlled component
-     */
-    value: PropTypes.string,
-  };
-
-  static defaultProps = {
+  static defaultProps:DefaultProps = {
     component: 'input',
     type: 'text',
     underline: true,
@@ -90,18 +97,19 @@ export default class TextFieldInput extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps: Props) {
     return !shallowEqual(this.props, nextProps);
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps: Props) {
     this.checkDirty(nextProps);
   }
 
   // Holds the input reference
-  input = undefined;
+  input: ?Element<any> = undefined;
+  props: Props;
 
-  handleChange = (event) => {
+  handleChange: EventListener = (event: Event) => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
     }
@@ -114,11 +122,11 @@ export default class TextFieldInput extends Component {
     return typeof this.props.value === 'string';
   }
 
-  isDirty(obj = this.isControlled() ? this.props : this.input) {
+  isDirty(obj: Props|Element<any>) {
     return obj && obj.value && obj.value.length > 0;
   }
 
-  checkDirty(obj) {
+  checkDirty(obj: Props|Element<any>) {
     if (this.props.onDirty && this.isDirty(obj)) {
       this.props.onDirty();
     } else if (this.props.onClean) {
@@ -126,7 +134,7 @@ export default class TextFieldInput extends Component {
     }
   }
 
-  render() {
+  render(): Element<any> {
     const {
       className,
       component,

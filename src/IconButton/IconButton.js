@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+// @flow
+import React, {Component, Element, PropTypes} from 'react';
 import {createStyleSheet} from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -38,35 +39,41 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
   };
 });
 
-export default class IconButton extends Component {
-  static propTypes = {
-    /**
-     * Can be used to pass a `FontIcon` element as the icon for the button.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If true, the element will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If false, the element's ripple effect will be disabled.
-     */
-    ripple: PropTypes.bool,
-  };
+type DefaultProps = {
+  ripple: boolean,
+}
 
-  static defaultProps = {
-    ripple: true,
-  };
+type Props = {
+  /**
+   * Can be used to pass a `FontIcon` element as the icon for the button.
+   */
+  children?: Element<any>,
+  /**
+   * The CSS class name of the root element.
+   */
+  className?: string,
+  /**
+   * If true, the element will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * If false, the element's ripple effect will be disabled.
+   */
+  ripple?: boolean,
+};
 
+export default class IconButton extends Component<DefaultProps, Props, void> {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  render() {
+  static defaultProps:DefaultProps = {
+    ripple: true,
+  };
+
+  props:Props;
+
+  render(): Element<any> {
     const {children, className, ...other} = this.props;
     const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
     return (

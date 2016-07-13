@@ -1,6 +1,7 @@
 {
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
+    "flow-react-proptypes",
     "./scripts/babel-transform-object-assign-require",
     "transform-dev-warning"
   ],
