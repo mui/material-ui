@@ -3,7 +3,6 @@ import {createStyleSheet} from 'stylishly';
 import ClassNames from 'classnames';
 import IconButton from '../IconButton';
 import shallowEqual from 'recompose/shallowEqual';
-// import {TouchRipple, createRippleHandler} from '../Ripple';
 
 export const styleSheet = createStyleSheet('Checkbox', (theme) => {
   return {
