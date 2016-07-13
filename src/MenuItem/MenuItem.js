@@ -58,6 +58,10 @@ class MenuItem extends Component {
 
   static propTypes = {
     /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
+    /**
      * If true, a left check mark will be rendered.
      */
     checked: PropTypes.bool,
@@ -228,6 +232,7 @@ class MenuItem extends Component {
       rightIcon,
       secondaryText,
       style,
+      animation,
       value, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -268,6 +273,7 @@ class MenuItem extends Component {
     if (menuItems) {
       childMenuPopover = (
         <Popover
+          animation={animation}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorEl={this.state.anchorEl}
           open={this.state.open}

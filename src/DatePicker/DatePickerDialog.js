@@ -10,6 +10,7 @@ import {dateTimeFormat} from './dateUtils';
 class DatePickerDialog extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func,
+    animation: PropTypes.func,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
     container: PropTypes.oneOf(['dialog', 'inline']),
@@ -120,6 +121,7 @@ class DatePickerDialog extends Component {
       shouldDisableDate,
       style, // eslint-disable-line no-unused-vars
       wordings,
+      animation,
       ...other,
     } = this.props;
 
@@ -142,7 +144,7 @@ class DatePickerDialog extends Component {
       <div {...other} ref="root">
         <Container
           anchorEl={this.refs.root} // For Popover
-          animation={PopoverAnimationFromTop} // For Popover
+          animation={animation || PopoverAnimationFromTop} // For Popover
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
           ref="dialog"
