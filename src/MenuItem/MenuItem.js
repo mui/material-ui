@@ -19,7 +19,7 @@ function getStyles(props, context) {
   const styles = {
     root: {
       color: props.disabled ? disabledColor : textColor,
-      cursor: props.disabled ? 'not-allowed' : 'inherit',
+      cursor: props.disabled ? 'not-allowed' : 'pointer',
       lineHeight: props.desktop ? '32px' : '48px',
       fontSize: props.desktop ? 15 : 16,
       whiteSpace: 'nowrap',
