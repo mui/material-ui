@@ -95,7 +95,7 @@ SnackbarBody.propTypes = {
   /**
    * The label for the action on the snackbar.
    */
-  action: PropTypes.string,
+  action: PropTypes.node,
   /**
    * The message to be displayed.
    *
