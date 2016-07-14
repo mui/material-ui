@@ -42,7 +42,7 @@ class Snackbar extends Component {
     /**
      * The label for the action on the snackbar.
      */
-    action: PropTypes.string,
+    action: PropTypes.node,
     /**
      * The number of milliseconds to wait before automatically dismissing.
      * If no value is specified the snackbar will dismiss normally.
