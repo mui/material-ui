@@ -632,7 +632,7 @@ class Slider extends Component {
     });
 
     if (this.props.onDragStart) {
-      this.props.onDragStart(event);
+      this.props.onDragStart(event, this.state.value);
     }
   }
 
@@ -643,7 +643,7 @@ class Slider extends Component {
     });
 
     if (this.props.onDragStop) {
-      this.props.onDragStop(event);
+      this.props.onDragStop(event, this.state.value);
     }
   }
 
