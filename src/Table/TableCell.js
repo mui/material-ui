@@ -12,6 +12,7 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
       textAlign: 'left',
       '& numeric': {
         textAlign: 'right',
+        flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
       },
       '& head': {
         whiteSpace: 'pre',
@@ -39,7 +40,7 @@ export default function TableCell(props, context) {
   const {table, styleManager} = context;
   const classes = styleManager.render(styleSheet);
 
-  const el = table && table.head ? 'th' : 'td';
+  const component = table && table.head ? 'th' : 'td';
 
   const classNames = ClassNames(classes.root, {
     [classes.numeric]: numeric,
@@ -50,7 +51,7 @@ export default function TableCell(props, context) {
     [classes.footer]: table && table.footer,
   }, className);
 
-  return React.createElement(el, {
+  return React.createElement(component, {
     className: classNames,
     ...other,
   }, children);

@@ -14,8 +14,10 @@ A simple example with no frills.
 
 {{demo='tables/BasicTable.js'}}
 
-## Selectable Table
+## Sorting & Selecting
 
-This example demonstrates the use of checkboxes and clickable rows for selection with a toolbar.
+This example demonstrates the use `Checkbox` and clickable rows for selection with a `Toolbar`.
 
-{{demo='tables/SelectableTable.js'}}
+It uses the `TableSortLabel` component to help style column headings.
+
+{{demo='tables/EnhancedTable.js'}}

@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
+      flex: '0 0 auto',
       fontSize: 24,
       width: 48,
       height: 48,
