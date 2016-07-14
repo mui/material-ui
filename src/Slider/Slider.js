@@ -280,7 +280,7 @@ class Slider extends Component {
      */
     onDragStart: PropTypes.func,
     /**
-     * Callback function that is fried when the slide has stopped moving.
+     * Callback function that is fired when the slide has stopped moving.
      */
     onDragStop: PropTypes.func,
     /** @ignore */
