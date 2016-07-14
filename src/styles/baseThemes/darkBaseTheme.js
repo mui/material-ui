@@ -17,6 +17,8 @@ export default {
     accent1Color: pinkA200,
     accent2Color: pinkA400,
     accent3Color: pinkA100,
+    accent4Color: cyan700,
+    accent5Color: grey600,
     textColor: fullWhite,
     secondaryTextColor: fade(fullWhite, 0.7),
     alternateTextColor: '#303030',
