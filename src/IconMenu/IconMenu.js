@@ -23,6 +23,10 @@ class IconMenu extends Component {
      */
     animated: PropTypes.bool,
     /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
+    /**
      * Should be used to pass `MenuItem` components.
      */
     children: PropTypes.node,
@@ -225,6 +229,7 @@ class IconMenu extends Component {
       anchorOrigin,
       className,
       animated,
+      animation,
       iconButtonElement,
       iconStyle,
       onItemTouchTap, // eslint-disable-line no-unused-vars
@@ -302,6 +307,7 @@ class IconMenu extends Component {
           useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
           context={this.context}
         >
           {menu}

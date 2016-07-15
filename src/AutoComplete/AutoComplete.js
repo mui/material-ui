@@ -52,6 +52,10 @@ class AutoComplete extends Component {
      */
     animated: PropTypes.bool,
     /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
+    /**
      * Array of strings or nodes used to populate the list.
      */
     dataSource: PropTypes.array.isRequired,
@@ -375,6 +379,7 @@ class AutoComplete extends Component {
     const {
       anchorOrigin,
       animated,
+      animation,
       dataSource,
       dataSourceConfig, // eslint-disable-line no-unused-vars
       disableFocusRipple,
@@ -511,6 +516,7 @@ class AutoComplete extends Component {
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
         >
           {menu}
         </Popover>
