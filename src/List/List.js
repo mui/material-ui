@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, Children, isValidElement} from 'react';
 import propTypes from '../utils/propTypes';
 import Subheader from '../Subheader';
 import deprecated from '../utils/deprecatedPropType';
@@ -53,16 +53,18 @@ class List extends Component {
       ...other,
     } = this.props;
 
+    const {prepareStyles} = this.context.muiTheme;
+
     warning((typeof zDepth === 'undefined'), 'List no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
-        'or another component that provides zDepth. It will be removed with v0.16.0.');
+      'or another component that provides zDepth. It will be removed with v0.16.0.');
 
     let hasSubheader = false;
 
     if (subheader) {
       hasSubheader = true;
     } else {
-      const firstChild = React.Children.toArray(children)[0];
-      if (React.isValidElement(firstChild) && firstChild.type === Subheader) {
+      const firstChild = Children.toArray(children)[0];
+      if (isValidElement(firstChild) && firstChild.type === Subheader) {
         hasSubheader = true;
       }
     }
@@ -76,11 +78,12 @@ class List extends Component {
     };
 
     return (
-      <div
-        {...other}
-        style={Object.assign(styles.root, style)}
-      >
-        {subheader && <Subheader inset={insetSubheader} style={subheaderStyle}>{subheader}</Subheader>}
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+        {subheader && (
+          <Subheader inset={insetSubheader} style={subheaderStyle}>
+            {subheader}
+          </Subheader>
+        )}
         {children}
       </div>
     );
