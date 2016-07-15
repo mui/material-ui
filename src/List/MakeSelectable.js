@@ -87,7 +87,7 @@ export const MakeSelectable = (Component) => {
       const {
         children,
         selectedItemStyle,
-        ...componentProps,
+        ...other,
       } = this.props;
 
       this.keyIndex = 0;
@@ -99,7 +99,7 @@ export const MakeSelectable = (Component) => {
       }
 
       return (
-        <Component {...componentProps} {...this.state}>
+        <Component {...other} {...this.state}>
           {React.Children.map(children, (child) => (
             this.extendChild(child, styles, selectedItemStyle))
           )}

@@ -194,7 +194,6 @@ class MenuItem extends Component {
           item.props.onTouchTap(event);
         }
       },
-      onRequestClose: this.handleRequestClose,
     });
   };
 

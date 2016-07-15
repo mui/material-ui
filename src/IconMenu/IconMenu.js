@@ -269,7 +269,9 @@ class IconMenu extends Component {
       iconStyle: Object.assign({}, iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
-        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(event);
+        if (iconButtonElement.props.onTouchTap) {
+          iconButtonElement.props.onTouchTap(event);
+        }
       },
       ref: 'iconButton',
     });
