@@ -183,6 +183,7 @@ class Toggle extends Component {
   render() {
     const {
       defaultToggled,
+      elementStyle,
       onToggle, // eslint-disable-line no-unused-vars
       toggled,
       ...other,
@@ -209,10 +210,7 @@ class Toggle extends Component {
       thumbStyles.marginLeft = 0 - thumbStyles.width;
     }
 
-    const toggleElementStyles = Object.assign({},
-      styles.toggleElement,
-      this.props.elementStyle
-    );
+    const toggleElementStyles = Object.assign({}, styles.toggleElement, elementStyle);
 
     const toggleElement = (
       <div style={prepareStyles(Object.assign({}, toggleElementStyles))}>
