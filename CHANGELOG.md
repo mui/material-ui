@@ -2,6 +2,25 @@
 
 ##### Breaking Changes
 - [Badge] Swapped primary and accent colors (#4449)
+- [CircularProgress] The API has become more flexible and straightforward. `size` attribute now means the outer diameter in pixels. Line thickness is variable and should be defined via the `thickness` attribute. Default margins are eliminated. If you'd like to upgrade your existing app without changing the actual sizes of your `CircularProgress` components, here are the formulas:
+```js
+newSize = 59.5 * oldSize;
+thickness = 3.5 * oldSize;
+margin = (oldSize < 0.71) ?
+  ((50 - 59.5 * oldSize) / 2) :
+  (5.25 * oldSize);
+```
+
+Examples:
+```
+// Before:
+<CircularProgress />
+<CircularProgress size={2} />
+
+// After:
+<CircularProgress size={59.5} style={{margin: 5.25}} /> // Thickness is 3.5 by default
+<CircularProgress size={119} thickness={7} style={{margin: 10.5}} />
+```
 
 ## 0.15.2
 ###### _Jul 7, 2016_
