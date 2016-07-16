@@ -13,7 +13,7 @@ let openNavEventHandler = null;
 class SlidingSheet extends Component {
   static propTypes = {
     /**
-     * The contents of the `SlidingSheet`
+     * The contents of the `SlidingSheet`.
      */
     children: PropTypes.node,
     /**
@@ -85,7 +85,6 @@ class SlidingSheet extends Component {
      * The zDepth of the `SlidingSheet`.
      */
     zDepth: propTypes.zDepth,
-
   };
 
   static defaultProps = {
@@ -101,15 +100,13 @@ class SlidingSheet extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
+  state = {
+    swiping: null,
+  };
+
   componentWillMount() {
     this.maybeSwiping = false;
-    this.touchStartX = null;
-    this.touchStartY = null;
     this.swipeStartPrimary = null;
-
-    this.setState({
-      swiping: null,
-    });
   }
 
   componentDidMount() {
@@ -125,21 +122,32 @@ class SlidingSheet extends Component {
   }
 
   getStyles() {
-    const muiTheme = this.context.muiTheme;
+    const {
+      zIndex,
+      spacing,
+    } = this.context.muiTheme;
     const vertical = this.isVertical();
 
-    const x = this.getTranslateMultiplier() * ((this.props.open || vertical) ? 0 : this.getMaxTranslatePrimary());
-    const y = this.getTranslateMultiplier() * ((this.props.open || !vertical) ? 0 : this.getMaxTranslatePrimary());
+    let x = 0;
+    let y = 0;
+
+    if (!this.props.open) {
+      if (vertical) {
+        y = this.getTranslateMultiplier() * this.getMaxTranslatePrimary();
+      } else {
+        x = this.getTranslateMultiplier() * this.getMaxTranslatePrimary();
+      }
+    }
 
     const height = vertical ? this.props.primaryDimension : '100%';
     const width = vertical ? '100%' : this.props.primaryDimension;
 
     const styles = {
-      root: {
+      paper: {
         height: height,
         width: width,
         position: 'fixed',
-        zIndex: muiTheme.zIndex.slidingSheet,
+        zIndex: zIndex.slidingSheet,
         // Make sure a closed sheet whose dimension we don't know yet stays hidden
         visibility: this.props.open || this.props.primaryDimension ? 'visible' : 'hidden',
         transform: `translate3d(${x}px, ${y}px, 0)`,
@@ -148,7 +156,7 @@ class SlidingSheet extends Component {
         WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
       },
       overlay: {
-        zIndex: muiTheme.zIndex.slidingSheetOverlay,
+        zIndex: zIndex.slidingSheetOverlay,
         pointerEvents: this.props.open ? 'auto' : 'none', // Bypass mouse events when sheet is closing.
       },
       // Styles that depend on the direction set for the sheet
@@ -164,13 +172,13 @@ class SlidingSheet extends Component {
         left: 0,
         top: 0,
         right: 0,
-        maxHeight: `calc(100% - ${muiTheme.spacing.desktopKeylineIncrement + muiTheme.spacing.desktopGutterMini}px)`,
+        maxHeight: `calc(100% - ${spacing.desktopKeylineIncrement + spacing.desktopGutterMini}px)`,
       },
       bottom: {
         left: 0,
         bottom: 0,
         right: 0,
-        maxHeight: `calc(100% - ${muiTheme.spacing.desktopKeylineIncrement + muiTheme.spacing.desktopGutterMini}px)`,
+        maxHeight: `calc(100% - ${spacing.desktopKeylineIncrement + spacing.desktopGutterMini}px)`,
       },
     };
 
@@ -182,23 +190,23 @@ class SlidingSheet extends Component {
     return direction === 'top' || direction === 'bottom';
   }
 
-  shouldShow() {
-    return this.props.open || !!this.state.swiping;  // component is swiping
-  }
-
   close(reason) {
-    if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
-    return this;
+    if (this.props.onRequestChange) {
+      this.props.onRequestChange(false, reason);
+    }
   }
 
   open(reason) {
-    if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
-    return this;
+    if (this.props.onRequestChange) {
+      this.props.onRequestChange(true, reason);
+    }
   }
 
   handleTouchTapOverlay = (event) => {
     event.preventDefault();
-    if (this.props.closeable) this.close('clickaway');
+    if (this.props.closeable) {
+      this.close('clickaway');
+    }
   };
 
   handleKeyUp = (event) => {
@@ -252,17 +260,19 @@ class SlidingSheet extends Component {
     if (swipeAreaWidth !== null && !this.props.open) {
       if (direction === 'right' || direction === 'bottom') {
         // Calculate from the bottom/right side
-        if (touchStartPrimary < bodyPrimaryDimension - swipeAreaWidth) return;
+        if (touchStartPrimary < bodyPrimaryDimension - swipeAreaWidth) {
+          return;
+        }
       } else {
         // Calculate from the top/left side
-        if (touchStartPrimary > swipeAreaWidth) return;
+        if (touchStartPrimary > swipeAreaWidth) {
+          return;
+        }
       }
     }
 
-    if (!this.props.open &&
-         (openNavEventHandler !== this.onBodyTouchStart ||
-          !this.props.swipeToOpen) ||
-         this.props.open && !this.props.closeable) {
+    if (!this.props.open && (openNavEventHandler !== this.onBodyTouchStart ||
+      !this.props.swipeToOpen) || this.props.open && !this.props.closeable) {
       return;
     }
 
@@ -276,7 +286,9 @@ class SlidingSheet extends Component {
       if (windowTouchStartY >= sheetEdge - 30 && windowTouchStartY <= sheetEdge + 30) {
         // We can start swiping down right away, rather than setting this.maybeSwiping
         this.swipeStartPrimary = touchStartPrimary;
-        this.setState({swiping: 'closing'});
+        this.setState({
+          swiping: 'closing',
+        });
       } else {
         return;
       }
@@ -294,40 +306,46 @@ class SlidingSheet extends Component {
 
   setPosition(translatePrimary) {
     const slidingSheet = findDOMNode(this.refs.clickAwayableElement);
-    const vertical = this.isVertical();
-    const translateX = vertical ? 0 : translatePrimary;
-    const translateY = vertical ? translatePrimary : 0;
-    const transformCSS = `translate3d(${(this.getTranslateMultiplier() * translateX)}px, ` +
-                          `${(this.getTranslateMultiplier() * translateY)}px, 0)`;
-    if (this.props.modal) this.refs.overlay.setOpacity(1 - translatePrimary / this.getMaxTranslatePrimary());
+    let transformCSS;
+
+    if (this.isVertical()) {
+      transformCSS = `translate3d(0, ${(this.getTranslateMultiplier() * translatePrimary)}px, 0)`;
+    } else {
+      transformCSS = `translate3d(${(this.getTranslateMultiplier() * translatePrimary)}px, 0, 0)`;
+    }
+
     autoPrefix.set(slidingSheet.style, 'transform', transformCSS);
+
+    if (this.props.modal) {
+      this.refs.overlay.setOpacity(1 - translatePrimary / this.getMaxTranslatePrimary());
+    }
   }
 
   getTranslatePrimary(currentPrimary) {
     return Math.min(
-             Math.max(
-               this.state.swiping === 'closing' ?
-                 this.getTranslateMultiplier() * (currentPrimary - this.swipeStartPrimary) :
-                 this.getMaxTranslatePrimary() -
-                  this.getTranslateMultiplier() * (this.swipeStartPrimary - currentPrimary),
-               0
-             ),
-             this.getMaxTranslatePrimary()
-           );
+      Math.max(
+        this.state.swiping === 'closing' ?
+        this.getTranslateMultiplier() * (currentPrimary - this.swipeStartPrimary) :
+        this.getMaxTranslatePrimary() -
+        this.getTranslateMultiplier() * (this.swipeStartPrimary - currentPrimary),
+        0
+      ),
+      this.getMaxTranslatePrimary()
+    );
   }
 
   onBodyTouchMove = (event) => {
-    const currentX = event.touches[0].pageX;
-    const currentY = event.touches[0].pageY;
+    const pageX = event.touches[0].pageX;
+    const pageY = event.touches[0].pageY;
     const vertical = this.isVertical();
 
-    const currentPrimary = vertical ? currentY : currentX;
-    const currentSecondary = vertical ? currentX : currentY;
+    const currentPrimary = vertical ? pageY : pageX;
 
     if (this.state.swiping) {
       event.preventDefault();
       this.setPosition(this.getTranslatePrimary(currentPrimary));
     } else if (this.maybeSwiping) {
+      const currentSecondary = vertical ? pageX : pageY;
       const dPrimaryAbs = Math.abs(currentPrimary - this.touchStartPrimary);
       const dSecondaryAbs = Math.abs(currentSecondary - this.touchStartSecondary);
       // If the user has moved his thumb ten pixels in either direction,
@@ -405,7 +423,7 @@ class SlidingSheet extends Component {
       overlay = (
         <Overlay
           ref="overlay"
-          show={this.shouldShow()}
+          show={this.props.open || !!this.state.swiping}
           className={overlayClassName}
           style={Object.assign(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}
@@ -415,10 +433,7 @@ class SlidingSheet extends Component {
     }
 
     return (
-      <div
-        className={className}
-        style={Object.assign({width: '100%'}, style)}
-      >
+      <div className={className} style={style}>
         <EventListener target="window" onKeyUp={this.handleKeyUp} />
         {overlay}
         <Paper
@@ -427,7 +442,7 @@ class SlidingSheet extends Component {
           rounded={false}
           transitionEnabled={!this.state.swiping}
           className={containerClassName}
-          style={Object.assign(styles.root, styles[direction], containerStyle)}
+          style={Object.assign(styles.paper, styles[direction], containerStyle)}
         >
           {children}
         </Paper>

@@ -3,8 +3,6 @@ import transitions from '../styles/transitions';
 import AutoLockScrolling from './AutoLockScrolling';
 
 function getStyles(props, context) {
-  const {overlay} = context.muiTheme;
-
   const style = {
     root: {
       position: 'fixed',
@@ -13,16 +11,14 @@ function getStyles(props, context) {
       top: 0,
       left: '-100%',
       opacity: 0,
-      backgroundColor: overlay.backgroundColor,
+      backgroundColor: context.muiTheme.overlay.backgroundColor,
       WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)', // Remove mobile color flashing (deprecated)
-
+      transition: props.transitionEnabled && `${
+        transitions.easeOut('0ms', 'left', '400ms')}, ${
+        transitions.easeOut('400ms', 'opacity')}`,
       // Two ways to promote overlay to its own render layer
-      willChange: 'opacity',
-      transform: 'translateZ(0)',
-
-      transition:
-        props.transitionEnabled && `${transitions.easeOut('0ms', 'left', '400ms')}, ${
-          transitions.easeOut('400ms', 'opacity')}`,
+      willChange: props.transitionEnabled && 'opacity',
+      transform: props.transitionEnabled && 'translateZ(0)',
     },
   };
 
@@ -30,7 +26,8 @@ function getStyles(props, context) {
     Object.assign(style.root, {
       left: 0,
       opacity: 1,
-      transition: `${transitions.easeOut('0ms', 'left')}, ${
+      transition: `${
+        transitions.easeOut('0ms', 'left')}, ${
         transitions.easeOut('400ms', 'opacity')}`,
     });
   }

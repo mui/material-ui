@@ -92,7 +92,7 @@ class Drawer extends Component {
 
   componentWillMount() {
     this.setState({
-      open: (this.props.open !== null ) ? this.props.open : this.props.docked,
+      open: this.props.open !== null ? this.props.open : this.props.docked,
     });
   }
 
@@ -102,7 +102,7 @@ class Drawer extends Component {
       this.setState({
         open: nextProps.open,
       });
-      // Otherwise, if docked is changed, change the open state for when uncontrolled.
+    // Otherwise, if docked is changed, change the open state for when uncontrolled.
     } else if (this.props.docked !== nextProps.docked) {
       this.setState({
         open: nextProps.docked,
@@ -110,23 +110,15 @@ class Drawer extends Component {
     }
   }
 
-  close(reason) {
-    if (this.props.open === null) this.setState({open: false});
-    if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
-    return this;
-  }
-
-  open(reason) {
-    if (this.props.open === null) this.setState({open: true});
-    if (this.props.onRequestChange) this.props.onRequestChange(true, reason);
-    return this;
-  }
-
   handleRequestChange = (open, reason) => {
-    if (open) {
-      this.open(reason);
-    } else {
-      this.close(reason);
+    if (this.props.open === null) {
+      this.setState({
+        open: open,
+      });
+    }
+
+    if (this.props.onRequestChange) {
+      this.props.onRequestChange(open, reason);
     }
   };
 
@@ -150,10 +142,13 @@ class Drawer extends Component {
 
     return (
       <SlidingSheet
+        {...other}
         className={className}
         closeable={!docked}
         containerClassName={containerClassName}
-        containerStyle={Object.assign({backgroundColor: this.context.muiTheme.drawer.color}, containerStyle)}
+        containerStyle={Object.assign({
+          backgroundColor: this.context.muiTheme.drawer.color,
+        }, containerStyle)}
         direction={openSecondary ? 'right' : 'left'}
         modal={!docked}
         onRequestChange={this.handleRequestChange}
@@ -165,7 +160,6 @@ class Drawer extends Component {
         swipeAreaWidth={swipeAreaWidth}
         swipeToOpen={!docked && !disableSwipeToOpen}
         zDepth={zDepth}
-        {...other}
       >
         {children}
       </SlidingSheet>

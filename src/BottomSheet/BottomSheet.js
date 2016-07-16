@@ -48,7 +48,7 @@ class BottomSheet extends Component {
      */
     overlayStyle: PropTypes.object,
     /**
-     * The minimum interval between resize events. Defaults to 166.
+     * The minimum interval between resize events.
      */
     resizeInterval: PropTypes.number,
     /**
@@ -65,7 +65,7 @@ class BottomSheet extends Component {
   static defaultProps = {
     modal: false,
     open: false,
-    resizeInterval: 166,
+    resizeInterval: 166, // 10 frames at 60 Hz.
     width: '100%',
   };
 
@@ -92,24 +92,26 @@ class BottomSheet extends Component {
   }
 
   handleResize = () => {
+    // Debounce the resize.
     clearTimeout(this.deferTimer);
     this.deferTimer = setTimeout(() => {
       this.updateHeight();
     }, this.props.resizeInterval);
   };
 
-  close(reason) {
-    if (this.props.onRequestClose) this.props.onRequestClose(reason);
-  }
-
   updateHeight = () => {
-    this.setState({height: findDOMNode(this.sheet.refs.clickAwayableElement).offsetHeight});
+    this.setState({
+      height: findDOMNode(this.sheet.refs.clickAwayableElement).offsetHeight,
+    });
   };
 
   handleRequestChange = (open, reason) => {
     // Bottom sheets can't request open
     this.updateHeight();
-    if (!open) this.close(reason);
+
+    if (!open && this.props.onRequestClose) {
+      this.props.onRequestClose(reason);
+    }
   };
 
   render() {
@@ -127,19 +129,19 @@ class BottomSheet extends Component {
       ...other,
     } = this.props;
 
-    const fullContainerStyle = Object.assign({
-      backgroundColor: this.context.muiTheme.bottomSheet.color,
-      width: width, margin: '0 auto',
-    }, containerStyle);
-
     return (
       <EventListener target="window" onResize={this.handleResize}>
         <SlidingSheet
+          {...other}
           ref={(sheet) => this.sheet = sheet}
           className={className}
           closeable={!!this.props.onRequestClose}
           containerClassName={containerClassName}
-          containerStyle={fullContainerStyle}
+          containerStyle={Object.assign({
+            backgroundColor: this.context.muiTheme.bottomSheet.color,
+            width: width,
+            margin: '0 auto',
+          }, containerStyle)}
           direction="bottom"
           modal={modal}
           onRequestChange={this.handleRequestChange}
@@ -149,7 +151,6 @@ class BottomSheet extends Component {
           primaryDimension={this.state.height}
           style={style}
           zDepth={modal ? 2 : 1}
-          {...other}
         >
           {children}
         </SlidingSheet>
