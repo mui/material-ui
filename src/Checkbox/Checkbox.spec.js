@@ -13,11 +13,11 @@ describe('<Checkbox>', () => {
     classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
   });
 
-  it('should render an input', () => {
+  it('should render an IconButton', () => {
     const wrapper = shallow(
       <Checkbox />
     );
-    assert.strictEqual(wrapper.is('input'), true, 'should be an input');
+    assert.strictEqual(wrapper.is('IconButton'), true, 'should be an IconButton');
   });
 
   it('should spread custom props on the root node', () => {
