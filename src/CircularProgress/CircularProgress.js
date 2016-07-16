@@ -102,8 +102,8 @@ class CircularProgress extends Component {
     value: 0,
     min: 0,
     max: 100,
-    size: 50,
-    thickness: 2.5,
+    size: 40,
+    thickness: 3.5,
   };
 
   static contextTypes = {

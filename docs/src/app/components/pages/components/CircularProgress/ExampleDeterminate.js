@@ -39,13 +39,13 @@ export default class CircularProgressExampleDeterminate extends React.Component 
         <CircularProgress
           mode="determinate"
           value={this.state.completed}
-          size={75}
+          size={60}
           thickness={7}
         />
         <CircularProgress
           mode="determinate"
           value={this.state.completed}
-          size={100}
+          size={80}
           thickness={5}
         />
       </div>
