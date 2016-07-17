@@ -402,7 +402,7 @@ class Menu extends Component {
         this.decrementKeyboardFocusIndex();
         break;
       default:
-        if (key.length === 1) {
+        if (key && key.length === 1) {
           const hotKeys = this.hotKeyHolder.append(key);
           if (this.setFocusIndexStartsWith(hotKeys)) {
             event.preventDefault();
