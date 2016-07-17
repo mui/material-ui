@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import TableCell, {styleSheet} from './TableCell';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import TableCell, { styleSheet } from './TableCell';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<TableCell>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<TableCell>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a td', () => {
@@ -39,7 +39,7 @@ describe('<TableCell>', () => {
     const wrapper = shallow(
       <TableCell />
     );
-    wrapper.setContext({...wrapper.options.context, table: {head: true}});
+    wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
     assert.strictEqual(wrapper.is('th'), true, 'should be a th');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
@@ -49,14 +49,14 @@ describe('<TableCell>', () => {
     const wrapper = shallow(
       <TableCell />
     );
-    wrapper.setContext({...wrapper.options.context, table: {footer: true}});
+    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });
 
   it('should render with the numeric class', () => {
     const wrapper = shallow(
-      <TableCell numeric={true} />
+      <TableCell numeric />
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.numeric), true, 'should have the numeric class');

@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import shallowEqual from 'recompose/shallowEqual';
 import Text from '../Text';
@@ -35,20 +35,20 @@ export default class ListItemText extends Component {
   }
 
   render() {
-    const {className, primary, secondary, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const { className, primary, secondary, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const classNames = ClassNames(classes.root, className);
     return (
       <div className={classNames} {...other}>
         {primary && (
           typeof primary === 'string' ? (
             <Text type="subheading">{primary}</Text>
-          ) : {primary}
+          ) : { primary }
         )}
         {secondary && (
           typeof secondary === 'string' ? (
             <Text className={classes.secondary} type="body1">{secondary}</Text>
-          ) : {secondary}
+          ) : { secondary }
         )}
       </div>
     );

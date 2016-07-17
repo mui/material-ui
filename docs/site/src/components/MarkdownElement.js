@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import marked from 'marked';
 
@@ -72,7 +72,7 @@ class MarkdownElement extends Component {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: function(code) {
+      highlight(code) {
         return prism.highlight(code, prism.languages.jsx);
       },
     });
@@ -90,7 +90,7 @@ class MarkdownElement extends Component {
     return (
       <div
         className={ClassNames(classes.root, 'markdown-body', className)}
-        dangerouslySetInnerHTML={{__html: marked(text)}}
+        dangerouslySetInnerHTML={{ __html: marked(text) }}
       />
     );
     /* eslint-enable */

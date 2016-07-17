@@ -1,5 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
+import React, { Component, PropTypes } from 'react';
+import {
+  unstable_renderSubtreeIntoContainer, // eslint-disable-line camelcase
+  unmountComponentAtNode,
+} from 'react-dom';
 
 // const reflow = (elem) => elem.offsetHeight;
 
@@ -40,7 +43,7 @@ export default class Portal extends Component {
   }
 
   renderLayer() {
-    const {children, open} = this.props;
+    const { children, open } = this.props;
 
     if (open) {
       if (!this.layer) {

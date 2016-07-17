@@ -1,7 +1,7 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
-import {easing} from '../styles/transitions';
+import { easing } from '../styles/transitions';
 
 export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
   return {
@@ -24,8 +24,8 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
 });
 
 export default function TextFieldLabel(props, context) {
-  const {animated, className, shrink, ...other} = props;
-  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const { animated, className, shrink, ...other } = props;
+  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
 
   const classNames = ClassNames(classes.root, {
     [classes.animated]: animated,

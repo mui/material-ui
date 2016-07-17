@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import Drawer, {styleSheet} from './Drawer';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import Drawer, { styleSheet } from './Drawer';
+import { createShallowWithContext } from 'test/utils';
 
 /**
  * An item that goes in lists.
@@ -13,7 +13,7 @@ describe('<Drawer>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a Modal', () => {
@@ -73,13 +73,13 @@ describe('<Drawer>', () => {
     });
 
     it('should open', () => {
-      wrapper.setProps({open: true});
+      wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.prop('show'), true, 'should show the modal');
       assert.strictEqual(wrapper.find('Slide').prop('in'), true, 'should transition in');
     });
 
     it('should close', () => {
-      wrapper.setProps({open: false});
+      wrapper.setProps({ open: false });
       assert.strictEqual(wrapper.prop('show'), false, 'should not show the modal');
       assert.strictEqual(wrapper.find('Slide').prop('in'), false, 'should not transition in');
     });
@@ -88,7 +88,7 @@ describe('<Drawer>', () => {
   describe('docked', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Drawer docked={true}><h1>Hello</h1></Drawer>));
+    before(() => wrapper = shallow(<Drawer docked><h1>Hello</h1></Drawer>));
 
     it('should render a div instead of a Modal when docked', () => {
       assert.strictEqual(wrapper.is('div'), true, 'should be a div element');

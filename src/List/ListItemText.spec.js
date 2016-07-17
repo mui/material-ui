@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import ListItemText, {styleSheet} from './ListItemText';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import ListItemText, { styleSheet } from './ListItemText';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<ListItemText>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<ListItemText>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a div', () => {

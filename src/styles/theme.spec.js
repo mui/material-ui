@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-import {assert} from 'chai';
-import {createMuiTheme, createPalette, dark, light} from './theme';
+import { assert } from 'chai';
+import { createMuiTheme, createPalette, dark, light } from './theme';
 import {
   indigo,
   pink,
@@ -34,7 +34,7 @@ describe('styles/theme', () => {
 
   describe('custom muiTheme', () => {
     const muiTheme = createMuiTheme(
-      createPalette({primary: deepOrange, accent: green})
+      createPalette({ primary: deepOrange, accent: green })
     );
 
     it('should have the custom palette', () => {
@@ -72,7 +72,7 @@ describe('styles/theme', () => {
     });
 
     it('should create a palette with custom colours', () => {
-      const palette = createPalette({primary: deepOrange, accent: green});
+      const palette = createPalette({ primary: deepOrange, accent: green });
       assert.strictEqual(
         palette.primary,
         deepOrange,
@@ -91,7 +91,7 @@ describe('styles/theme', () => {
     });
 
     it('should create a dark palette', () => {
-      const palette = createPalette({dark: true});
+      const palette = createPalette({ dark: true });
       assert.strictEqual(
         palette.primary,
         indigo,

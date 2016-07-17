@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
@@ -38,8 +38,8 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
 });
 
 export default function TableSortLabel(props, context) {
-  const {active, className, children, direction, ...other} = props;
-  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const { active, className, children, direction, ...other } = props;
+  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
   const classNames = ClassNames(classes.root, {
     [classes.active]: active,
   }, className);

@@ -1,5 +1,5 @@
 module.exports = {
-  'Docs Test': function(browser) {
+  'Docs Test'(browser) {
     browser
       .url('http://localhost:8080')
       .waitForElementVisible('[data-reactroot]', 6000)

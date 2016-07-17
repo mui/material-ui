@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
-  const {palette} = theme;
+  const { palette } = theme;
   return {
     root: {
       display: 'flex',
@@ -68,12 +68,12 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const {children, className, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const { children, className, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     return (
       <ButtonBase
         className={ClassNames(classes.root, className)}
-        centerRipple={true}
+        centerRipple
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >

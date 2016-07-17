@@ -12,7 +12,7 @@ argv.forEach((arg) => {
 });
 
 // Karma configuration
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     autoWatch: false,
     basePath: '../',
@@ -90,6 +90,6 @@ module.exports = function(config) {
     },
     webpackServer: {
       noInfo: true,
-    }
+    },
   });
 };

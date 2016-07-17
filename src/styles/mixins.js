@@ -10,5 +10,5 @@ export default function createMixins(breakpoints) {
     return styles;
   }
 
-  return {gutters};
+  return { gutters };
 }

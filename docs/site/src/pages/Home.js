@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import Text from 'material-ui/Text';
 import Button from 'material-ui/Button';
 
 import muiLogo from '../../assets/images/material-ui-logo.svg';
 
 export const styleSheet = createStyleSheet('Home', (theme) => {
-  const {palette, breakpoints} = theme;
+  const { palette, breakpoints } = theme;
 
   return {
     root: {
@@ -55,7 +55,7 @@ export default class Home extends Component {
             <Text type="subheading">
               A React component library implementing Google's Material Design
             </Text>
-            <Button className={classes.button} raised={true}>Get Started</Button>
+            <Button className={classes.button} raised>Get Started</Button>
           </div>
         </div>
       </div>

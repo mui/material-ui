@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import TextFieldLabel, {styleSheet} from './TextFieldLabel';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import TextFieldLabel, { styleSheet } from './TextFieldLabel';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<TextFieldLabel>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<TextFieldLabel>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a <label>', () => {
@@ -36,7 +36,7 @@ describe('<TextFieldLabel>', () => {
   });
 
   it('should shrink', () => {
-    const wrapper = shallow(<TextFieldLabel shrink={true} />);
+    const wrapper = shallow(<TextFieldLabel shrink />);
     assert.strictEqual(wrapper.hasClass(classes.shrink), true, 'should have the shrink class');
   });
 });

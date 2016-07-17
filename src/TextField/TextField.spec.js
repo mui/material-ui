@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import {spy} from 'sinon';
-import TextField, {styleSheet} from './TextField';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import TextField, { styleSheet } from './TextField';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<TextField>', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<TextField>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render an <div> root element and pass the child through', () => {
@@ -162,7 +162,7 @@ describe('<TextField>', () => {
         'should be false by default'
       );
 
-      wrapper.setState({focused: true});
+      wrapper.setState({ focused: true });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -170,7 +170,7 @@ describe('<TextField>', () => {
         'should be true when the TextField is focused and not dirty'
       );
 
-      wrapper.setState({focused: false});
+      wrapper.setState({ focused: false });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -178,7 +178,7 @@ describe('<TextField>', () => {
         'should be false when the TextField is not focused and not dirty'
       );
 
-      wrapper.setState({dirty: true});
+      wrapper.setState({ dirty: true });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -186,7 +186,7 @@ describe('<TextField>', () => {
         'should be true when the TextField is dirty but not focused'
       );
 
-      wrapper.setState({dirty: false});
+      wrapper.setState({ dirty: false });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -198,7 +198,7 @@ describe('<TextField>', () => {
     it('should not change the shrink pop based on dirty/focused state if there is an override', () => {
       const wrapper = shallow(
         <TextField>
-          <TextFieldLabel shrink={true}>Label</TextFieldLabel>
+          <TextFieldLabel shrink>Label</TextFieldLabel>
         </TextField>
       );
 
@@ -208,7 +208,7 @@ describe('<TextField>', () => {
         'should be true by default'
       );
 
-      wrapper.setState({focused: true});
+      wrapper.setState({ focused: true });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -216,7 +216,7 @@ describe('<TextField>', () => {
         'should be true when the TextField is focused and not dirty'
       );
 
-      wrapper.setState({focused: false});
+      wrapper.setState({ focused: false });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -224,7 +224,7 @@ describe('<TextField>', () => {
         'should be true when the TextField is not focused and not dirty'
       );
 
-      wrapper.setState({dirty: true});
+      wrapper.setState({ dirty: true });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
@@ -232,7 +232,7 @@ describe('<TextField>', () => {
         'should be true when the TextField is dirty but not focused'
       );
 
-      wrapper.setState({dirty: false});
+      wrapper.setState({ dirty: false });
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),

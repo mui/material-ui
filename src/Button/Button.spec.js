@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import Button, {styleSheet} from './Button';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import Button, { styleSheet } from './Button';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Button>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<Button>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a <ButtonBase> element', () => {
@@ -42,7 +42,7 @@ describe('<Button>', () => {
 
   it('should render a primary button', () => {
     const wrapper = shallow(
-      <Button primary={true}>Hello World</Button>
+      <Button primary>Hello World</Button>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should have the raised class');
@@ -53,7 +53,7 @@ describe('<Button>', () => {
 
   it('should render an accent button', () => {
     const wrapper = shallow(
-      <Button accent={true}>Hello World</Button>
+      <Button accent>Hello World</Button>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should have the raised class');
@@ -64,7 +64,7 @@ describe('<Button>', () => {
 
   it('should render a raised button', () => {
     const wrapper = shallow(
-      <Button raised={true}>Hello World</Button>
+      <Button raised>Hello World</Button>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -75,7 +75,7 @@ describe('<Button>', () => {
 
   it('should render a raised primary button', () => {
     const wrapper = shallow(
-      <Button raised={true} primary={true}>Hello World</Button>
+      <Button raised primary>Hello World</Button>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -86,7 +86,7 @@ describe('<Button>', () => {
 
   it('should render a raised accent button', () => {
     const wrapper = shallow(
-      <Button raised={true} accent={true}>Hello World</Button>
+      <Button raised accent>Hello World</Button>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -97,7 +97,7 @@ describe('<Button>', () => {
 
   it('should render a floating action button', () => {
     const wrapper = shallow(
-      <Button fab={true} />
+      <Button fab />
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -108,7 +108,7 @@ describe('<Button>', () => {
 
   it('should render a primary floating action button', () => {
     const wrapper = shallow(
-      <Button fab={true} primary={true} />
+      <Button fab primary />
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -119,7 +119,7 @@ describe('<Button>', () => {
 
   it('should render an accent floating action button', () => {
     const wrapper = shallow(
-      <Button fab={true} accent={true} />
+      <Button fab accent />
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');

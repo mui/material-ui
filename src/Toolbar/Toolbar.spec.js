@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import Toolbar, {styleSheet} from './Toolbar';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import Toolbar, { styleSheet } from './Toolbar';
+import { createShallowWithContext } from 'test/utils';
 
 /**
  * An item that goes in lists.
@@ -13,7 +13,7 @@ describe('<Toolbar>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a div', () => {

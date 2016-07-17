@@ -1,4 +1,4 @@
-import {jsdom} from 'jsdom';
+import { jsdom } from 'jsdom';
 
 /**
  * Bootstrap the DOM environment in node

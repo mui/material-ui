@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import TableRow, {styleSheet} from './TableRow';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import TableRow, { styleSheet } from './TableRow';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<TableRow>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<TableRow>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a tr', () => {
@@ -39,7 +39,7 @@ describe('<TableRow>', () => {
     const wrapper = shallow(
       <TableRow />
     );
-    wrapper.setContext({...wrapper.options.context, table: {head: true}});
+    wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
   });
@@ -48,7 +48,7 @@ describe('<TableRow>', () => {
     const wrapper = shallow(
       <TableRow />
     );
-    wrapper.setContext({...wrapper.options.context, table: {footer: true}});
+    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });

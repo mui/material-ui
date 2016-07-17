@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import DialogContent, {styleSheet} from './DialogContent';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import DialogContent, { styleSheet } from './DialogContent';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<DialogContent>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<DialogContent>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a div', () => {

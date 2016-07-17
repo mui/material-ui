@@ -1,20 +1,20 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { createStyleSheet } from 'stylishly';
 import Text from 'material-ui/Text';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import {throttle} from 'material-ui/utils/helpers';
+import { throttle } from 'material-ui/utils/helpers';
 import addEventListener from 'material-ui/utils/addEventListener';
 
 import AppDrawer from './AppDrawer';
 
 export const styleSheet = createStyleSheet('AppFrame', (theme) => {
-  const {palette, transitions, typography} = theme;
+  const { palette, transitions, typography } = theme;
   return {
-    '@raw html': {boxSizing: 'border-box'},
-    '@raw *, @raw *:before, @raw *:after': {boxSizing: 'inherit'},
+    '@raw html': { boxSizing: 'border-box' },
+    '@raw *, @raw *:before, @raw *:after': { boxSizing: 'inherit' },
     '@raw body': {
       margin: 0,
       background: palette.background.default,
@@ -111,22 +111,22 @@ class AppFrame extends Component {
     const breakpoint = this.context.theme.breakpoints.getWidth('lg');
 
     if (this.state.drawerDocked && window.innerWidth < breakpoint) {
-      this.setState({drawerDocked: false});
+      this.setState({ drawerDocked: false });
     } else if (!this.state.drawerDocked && window.innerWidth >= breakpoint) {
-      this.setState({drawerDocked: true});
+      this.setState({ drawerDocked: true });
     }
   };
 
   handleResize = throttle(this.checkWindowSize, 100);
 
-  handleDrawerOpen = () => this.setState({drawerOpen: true});
-  handleDrawerClose = () => this.setState({drawerOpen: false});
-  handleDrawerToggle = () => this.setState({drawerOpen: !this.state.drawerOpen});
+  handleDrawerOpen = () => this.setState({ drawerOpen: true });
+  handleDrawerClose = () => this.setState({ drawerOpen: false });
+  handleDrawerToggle = () => this.setState({ drawerOpen: !this.state.drawerOpen });
 
-  handleToggleShade = () => this.props.dispatch({type: 'TOGGLE_THEME_SHADE'});
+  handleToggleShade = () => this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
 
   getTitle() {
-    const {routes} = this.props;
+    const { routes } = this.props;
     for (let i = routes.length - 1; i >= 0; i--) {
       if (routes[i].hasOwnProperty('title')) {
         return routes[i].title;
@@ -136,7 +136,7 @@ class AppFrame extends Component {
   }
 
   getCurrentPath() {
-    const {routes} = this.props;
+    const { routes } = this.props;
     for (let i = routes.length - 1; i >= 0; i--) {
       if (routes[i].hasOwnProperty('path')) {
         return routes[i].path;

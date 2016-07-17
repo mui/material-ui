@@ -1,9 +1,9 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Divider', (theme) => {
-  const {palette} = theme;
+  const { palette } = theme;
 
   return {
     root: {
@@ -23,8 +23,8 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
 });
 
 export default function Divider(props, context) {
-  const {absolute, className, ...other} = props;
-  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const { absolute, className, ...other } = props;
+  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
   const classNames = ClassNames(classes.root, {
     [classes.absolute]: absolute,
   }, className);

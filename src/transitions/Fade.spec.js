@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import {spy} from 'sinon';
+import { assert } from 'chai';
+import { spy } from 'sinon';
 import Fade from './Fade';
-import {createShallowWithContext} from 'test/utils';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Fade>', () => {
   let shallow;
@@ -37,7 +37,7 @@ describe('<Fade>', () => {
 
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, {style: {}});
+        wrapper.simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -56,7 +56,7 @@ describe('<Fade>', () => {
       let element;
 
       before(() => {
-        element = {style: {opacity: 1}};
+        element = { style: { opacity: 1 } };
         instance.handleEnter(element);
       });
 
@@ -69,7 +69,7 @@ describe('<Fade>', () => {
       let element;
 
       before(() => {
-        element = {style: {opacity: 0}};
+        element = { style: { opacity: 0 } };
         instance.handleEntering(element);
       });
 
@@ -82,7 +82,7 @@ describe('<Fade>', () => {
       let element;
 
       before(() => {
-        element = {style: {opacity: 1}};
+        element = { style: { opacity: 1 } };
         instance.handleExit(element);
       });
 

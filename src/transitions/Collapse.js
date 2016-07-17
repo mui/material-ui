@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
@@ -89,7 +89,7 @@ export default class Collapse extends Component {
   };
 
   handleEntering = (element) => {
-    const {transitionDuration} = this.props;
+    const { transitionDuration } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (transitionDuration) {
@@ -153,7 +153,7 @@ export default class Collapse extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const containerClasses = ClassNames(classes.container, containerClassName);
 

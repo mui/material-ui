@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Toolbar', (theme) => {
@@ -27,7 +27,7 @@ export default function Toolbar(props, context) {
     ...other,
   } = props;
 
-  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
   const classNames = ClassNames(classes.root, {
     [classes.gutters]: gutters,
   }, className);

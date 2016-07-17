@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import MarkdownElement from './MarkdownElement';
 import Demo from './Demo';
 

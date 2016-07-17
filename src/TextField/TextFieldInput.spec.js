@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import {spy} from 'sinon';
-import TextFieldInput, {styleSheet} from './TextFieldInput';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import TextFieldInput, { styleSheet } from './TextFieldInput';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<TextFieldInput>', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<TextFieldInput>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render an <input>', () => {
@@ -22,7 +22,7 @@ describe('<TextFieldInput>', () => {
   });
 
   it('should render a disabled <input>', () => {
-    const wrapper = shallow(<TextFieldInput disabled={true} />);
+    const wrapper = shallow(<TextFieldInput disabled />);
     assert.strictEqual(wrapper.is('input'), true, 'should be a <input>');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
@@ -68,13 +68,13 @@ describe('<TextFieldInput>', () => {
 
     it('should fire the onDirty callback when dirtied', () => {
       assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
-      wrapper.setProps({value: 'hello'});
+      wrapper.setProps({ value: 'hello' });
       assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
     });
 
     it('should fire the onClean callback when dirtied', () => {
       assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb once already');
-      wrapper.setProps({value: ''});
+      wrapper.setProps({ value: '' });
       assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
     });
   });
@@ -96,7 +96,7 @@ describe('<TextFieldInput>', () => {
       );
 
       // Mock the input ref
-      wrapper.instance().input = {value: ''};
+      wrapper.instance().input = { value: '' };
     });
 
     it('should check that the component is uncontrolled', () => {

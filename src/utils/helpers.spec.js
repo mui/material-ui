@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import {assert} from 'chai';
+import { assert } from 'chai';
 import {
   transform,
   contains,
@@ -28,11 +28,15 @@ describe('utils//helpers.js', () => {
 
   describe('find(arr, pred)', () => {
     it('should search for an item in an array containing the predicate', () => {
-      const array = ['woof', 'meow', {foo: 'bar'}, {woof: 'meow'}];
+      const array = ['woof', 'meow', { foo: 'bar' }, { woof: 'meow' }];
       assert.strictEqual(find(array, 'lol'), undefined, 'should work for primitives');
       assert.strictEqual(find(array, 'woof'), array[0], 'should work for primitives');
-      assert.strictEqual(find(array, {foo: 'bar'}), array[2], 'should work for objects');
-      assert.strictEqual(find(array, (n) => n && n.woof === 'meow'), array[3], 'should work for functions');
+      assert.strictEqual(find(array, { foo: 'bar' }), array[2], 'should work for objects');
+      assert.strictEqual(
+        find(array, (n) => n && n.woof === 'meow'),
+        array[3],
+        'should work for functions'
+      );
     });
   });
 
@@ -42,8 +46,8 @@ describe('utils//helpers.js', () => {
         woof: 'meow',
         cat: 'dog',
       };
-      const pred = {cat: 'dog'};
-      const failPred = {cat: 'meow'};
+      const pred = { cat: 'dog' };
+      const failPred = { cat: 'meow' };
       assert.strictEqual(contains(obj, pred), true);
       assert.strictEqual(contains(obj, failPred), false);
     });

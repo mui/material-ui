@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import {spy} from 'sinon';
-import ButtonBase, {styleSheet} from './ButtonBase';
-import {createShallowWithContext, createMountWithContext} from 'test/utils';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import ButtonBase, { styleSheet } from './ButtonBase';
+import { createShallowWithContext, createMountWithContext } from 'test/utils';
 
 describe('<ButtonBase>', () => {
   let mount;
@@ -13,7 +13,7 @@ describe('<ButtonBase>', () => {
   before(() => {
     shallow = createShallowWithContext();
     mount = createMountWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
   after(() => mount.cleanUp());
 
@@ -105,8 +105,8 @@ describe('<ButtonBase>', () => {
     });
 
     it('should not have a focus ripple by default', () => {
-      wrapper.instance().ripple = {pulsate: spy()};
-      wrapper.setState({keyboardFocused: true});
+      wrapper.instance().ripple = { pulsate: spy() };
+      wrapper.setState({ keyboardFocused: true });
 
       assert.strictEqual(
         wrapper.instance().ripple.pulsate.callCount,
@@ -116,7 +116,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should start the ripple when the mouse is pressed', () => {
-      wrapper.instance().ripple = {start: spy()};
+      wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
       assert.strictEqual(
@@ -127,7 +127,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should stop the ripple when the mouse is released', () => {
-      wrapper.instance().ripple = {stop: spy()};
+      wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseUp', {});
 
       assert.strictEqual(
@@ -138,7 +138,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should start the ripple when the mouse is pressed', () => {
-      wrapper.instance().ripple = {start: spy()};
+      wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
       assert.strictEqual(
@@ -149,7 +149,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should stop the ripple when the button blurs', () => {
-      wrapper.instance().ripple = {stop: spy()};
+      wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
 
       assert.strictEqual(
@@ -160,7 +160,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should start the ripple when the mouse is pressed', () => {
-      wrapper.instance().ripple = {start: spy()};
+      wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
       assert.strictEqual(
@@ -171,7 +171,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should stop the ripple when the mouse leaves', () => {
-      wrapper.instance().ripple = {stop: spy()};
+      wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseLeave', {});
 
       assert.strictEqual(
@@ -183,7 +183,7 @@ describe('<ButtonBase>', () => {
 
     it('should center the ripple', () => {
       assert.strictEqual(wrapper.find('TouchRipple').prop('center'), false, 'should not be centered by default');
-      wrapper.setProps({centerRipple: true});
+      wrapper.setProps({ centerRipple: true });
       assert.strictEqual(wrapper.find('TouchRipple').prop('center'), true, 'should be centered');
     });
   });
@@ -191,7 +191,7 @@ describe('<ButtonBase>', () => {
   describe('focusRipple', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<ButtonBase focusRipple={true}>Hello</ButtonBase>));
+    before(() => wrapper = shallow(<ButtonBase focusRipple>Hello</ButtonBase>));
 
     it('should be enabled by default', () => {
       const ripple = wrapper.find('TouchRipple');
@@ -199,8 +199,8 @@ describe('<ButtonBase>', () => {
     });
 
     it('should pulsate the ripple when keyboardFocused', () => {
-      wrapper.instance().ripple = {pulsate: spy()};
-      wrapper.setState({keyboardFocused: true});
+      wrapper.instance().ripple = { pulsate: spy() };
+      wrapper.setState({ keyboardFocused: true });
 
       assert.strictEqual(
         wrapper.instance().ripple.pulsate.callCount,
@@ -210,7 +210,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should not stop the ripple when the mouse leaves', () => {
-      wrapper.instance().ripple = {stop: spy()};
+      wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseLeave', {
         defaultPrevented: false,
         preventDefault() {
@@ -226,8 +226,8 @@ describe('<ButtonBase>', () => {
     });
 
     it('should stop pulsate and start a ripple when the space (activation) button is pressed', () => {
-      wrapper.instance().ripple = {stop: spy((event, cb) => cb()), start: spy()};
-      wrapper.simulate('keyDown', {which: 32, keyCode: 32, key: ' ', persist: () => {}});
+      wrapper.instance().ripple = { stop: spy((event, cb) => cb()), start: spy() };
+      wrapper.simulate('keyDown', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
 
       assert.strictEqual(
         wrapper.instance().ripple.stop.callCount,
@@ -243,8 +243,8 @@ describe('<ButtonBase>', () => {
     });
 
     it('should stop and re-pulsate when space bar is released', () => {
-      wrapper.instance().ripple = {stop: spy((event, cb) => cb()), pulsate: spy()};
-      wrapper.simulate('keyUp', {which: 32, keyCode: 32, key: ' ', persist: () => {}});
+      wrapper.instance().ripple = { stop: spy((event, cb) => cb()), pulsate: spy() };
+      wrapper.simulate('keyUp', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
 
       assert.strictEqual(
         wrapper.instance().ripple.stop.callCount,
@@ -260,7 +260,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should stop on blur and set keyboardFocused to false', () => {
-      wrapper.instance().ripple = {stop: spy()};
+      wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
 
       assert.strictEqual(

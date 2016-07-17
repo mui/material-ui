@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableCell', (theme) => {
@@ -36,8 +36,8 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
 });
 
 export default function TableCell(props, context) {
-  const {className, children, compact, checkbox, numeric, padding, ...other} = props;
-  const {table, styleManager} = context;
+  const { className, children, compact, checkbox, numeric, padding, ...other } = props;
+  const { table, styleManager } = context;
   const classes = styleManager.render(styleSheet);
 
   const component = table && table.head ? 'th' : 'td';

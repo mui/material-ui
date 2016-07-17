@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
-import {easing} from '../styles/transitions';
-import {createChainedFunction} from '../utils/helpers';
+import { easing } from '../styles/transitions';
+import { createChainedFunction } from '../utils/helpers';
 
 export const styleSheet = createStyleSheet('TextField', (theme) => {
   const focusColor = theme.palette.accent.A200;
@@ -87,23 +87,23 @@ export default class TextField extends Component {
     );
   }
 
-  handleFocus = () => this.setState({focused: true});
-  handleBlur = () => this.setState({focused: false});
+  handleFocus = () => this.setState({ focused: true });
+  handleBlur = () => this.setState({ focused: false });
 
   handleDirty = () => {
     if (!this.state.dirty) {
-      this.setState({dirty: true});
+      this.setState({ dirty: true });
     }
   };
 
   handleClean = () => {
     if (this.state.dirty) {
-      this.setState({dirty: false});
+      this.setState({ dirty: false });
     }
   };
 
   renderChild = (child) => {
-    const {muiName} = child.type;
+    const { muiName } = child.type;
 
     if (muiName === 'TextFieldInput') {
       return this.renderInput(child);
@@ -137,7 +137,7 @@ export default class TextField extends Component {
       ...other,
     } = this.props;
 
-    this.classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    this.classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const classNames = ClassNames({
       [this.classes.root]: true,

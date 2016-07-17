@@ -1,10 +1,10 @@
-import {hashHistory, Router, Route, IndexRoute, IndexRedirect} from 'react-router';
-import React, {Component} from 'react';
+import { hashHistory, Router, Route, IndexRoute, IndexRedirect } from 'react-router';
+import React, { Component } from 'react';
 import AppFrame from './AppFrame';
 import AppContent from './AppContent';
 import Home from '../pages/Home';
 import MarkdownDocs from './MarkdownDocs';
-import {kebabCase, titleize} from '../utils/helpers';
+import { kebabCase, titleize } from '../utils/helpers';
 
 /**
  * This lets us eager load the files ahead of time
@@ -41,12 +41,12 @@ export default class AppRouter extends Component {
     return (
       <Router history={hashHistory} {...this.props}>
         <Route title="Material UI" path="/" component={AppFrame}>
-          <IndexRoute dockDrawer={true} component={Home} title={null} />
+          <IndexRoute dockDrawer component={Home} title={null} />
 
           <Route
             title="Getting Started"
             path="/getting-started"
-            nav={true}
+            nav
             component={AppContent}
           >
             <IndexRedirect to="prerequisites" />
@@ -55,42 +55,42 @@ export default class AppRouter extends Component {
               path="/getting-started/prerequisites"
               content={requireDocs('./getting-started/prerequisites.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
             <Route
               title="Installation"
               path="/getting-started/installation"
               content={requireDocs('./getting-started/installation.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
             <Route
               title="Usage"
               path="/getting-started/usage"
               content={requireDocs('./getting-started/usage.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
             <Route
               title="Server Rendering"
               path="/getting-started/server-rendering"
               content={requireDocs('./getting-started/server-rendering.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
             <Route
               title="Examples"
               path="/getting-started/examples"
               content={requireDocs('./getting-started/examples.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
           </Route>
 
           <Route
             title="Customization"
             path="/customization"
-            nav={true}
+            nav
             component={AppContent}
           >
             <IndexRedirect to="themes" />
@@ -99,14 +99,14 @@ export default class AppRouter extends Component {
               path="/customization/themes"
               content={requireDocs('./customization/themes.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
           </Route>
 
           <Route
             title="Component Demos"
             path="/component-demos"
-            nav={true}
+            nav
             component={AppContent}
           >
             {demos.map(((n, i) => {
@@ -117,7 +117,7 @@ export default class AppRouter extends Component {
                   path={`/component-demos/${n.name}`}
                   content={requireDemos(n.path)}
                   component={MarkdownDocs}
-                  nav={true}
+                  nav
                 />
               );
             }))}
@@ -126,7 +126,7 @@ export default class AppRouter extends Component {
           <Route
             title="Component API"
             path="/component-api"
-            nav={true}
+            nav
             component={AppContent}
           >
             {apiDocs.map(((n, i) => {
@@ -137,7 +137,7 @@ export default class AppRouter extends Component {
                   path={`/component-api/${kebabCase(n.name)}`}
                   content={requireDocs(n.path)}
                   component={MarkdownDocs}
-                  nav={true}
+                  nav
                 />
               );
             }))}
@@ -146,7 +146,7 @@ export default class AppRouter extends Component {
           <Route
             title="Discover More"
             path="/discover-more"
-            nav={true}
+            nav
             component={AppContent}
           >
             <IndexRedirect to="community" />
@@ -155,21 +155,21 @@ export default class AppRouter extends Component {
               path="/discover-more/community"
               content={requireDocs('./discover-more/community.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
             <Route
               title="Showcase"
               path="/discover-more/showcase"
               content={requireDocs('./discover-more/showcase.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
             <Route
               title="Related Projects"
               path="/discover-more/related-projects"
               content={requireDocs('./discover-more/related-projects.md')}
               component={MarkdownDocs}
-              nav={true}
+              nav
             />
           </Route>
         </Route>

@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
@@ -20,7 +20,7 @@ function createButtonColorRule(main, contrast, hover) {
 }
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
-  const {palette, shadows, transitions, typography} = theme;
+  const { palette, shadows, transitions, typography } = theme;
 
   return {
     root: {
@@ -184,7 +184,7 @@ export default class Button extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const classNames = ClassNames({
       [classes.root]: true,

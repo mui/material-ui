@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
-import {TextFieldInput} from 'material-ui/TextField';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
+import { TextFieldInput } from 'material-ui/TextField';
 
 const styleSheet = createStyleSheet('BasicTextField', () => {
   return {
@@ -16,7 +16,7 @@ export default function BasicTextField(props, context) {
     <div>
       <TextFieldInput defaultValue="Hello world" className={classes.input} />
       <TextFieldInput placeholder="Placeholder text" className={classes.input} />
-      <TextFieldInput defaultValue="Disabled" disabled={true} className={classes.input} />
+      <TextFieldInput defaultValue="Disabled" disabled className={classes.input} />
     </div>
   );
 }

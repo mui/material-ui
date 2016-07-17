@@ -6,9 +6,13 @@ export function transform(obj, cb, accumulator) {
   return accumulator;
 }
 
-export function find(arr, pred) {
-  const index = findIndex(arr, pred);
-  return index > -1 ? arr[index] : undefined;
+export function contains(obj, pred) {
+  for (const key in pred) {
+    if (!obj.hasOwnProperty(key) || obj[key] !== pred[key]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 export function findIndex(arr, pred) {
@@ -27,18 +31,14 @@ export function findIndex(arr, pred) {
   return -1;
 }
 
-export function contains(obj, pred) {
-  for (const key in pred) {
-    if (!obj.hasOwnProperty(key) || obj[key] !== pred[key]) {
-      return false;
-    }
-  }
-  return true;
+export function find(arr, pred) {
+  const index = findIndex(arr, pred);
+  return index > -1 ? arr[index] : undefined;
 }
 
 export function throttle(fn, limit) {
   let wait = false;
-  return function() {
+  return function throttledFn() {
     if (!wait) {
       fn.call();
       wait = true;
@@ -46,6 +46,7 @@ export function throttle(fn, limit) {
         wait = false;
       }, limit);
     }
+    return null;
   };
 }
 

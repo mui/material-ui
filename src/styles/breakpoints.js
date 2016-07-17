@@ -42,5 +42,5 @@ export default function createBreakpoints(
     return breakpoints[name];
   }
 
-  return {keys, values, up, down, only, getWidth};
+  return { keys, values, up, down, only, getWidth };
 }

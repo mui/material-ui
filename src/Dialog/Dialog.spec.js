@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import Dialog, {styleSheet} from './Dialog';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import Dialog, { styleSheet } from './Dialog';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Dialog>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<Dialog>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a Modal', () => {
@@ -65,7 +65,7 @@ describe('<Dialog>', () => {
   });
 
   it('should be open by default', () => {
-    const wrapper = shallow(<Dialog open={true} />);
+    const wrapper = shallow(<Dialog open />);
     assert.strictEqual(wrapper.prop('show'), true, 'should pass show=true to the Modal');
     assert.strictEqual(wrapper.find('Slide').prop('in'), true, 'should pass in=true to the Slide');
   });

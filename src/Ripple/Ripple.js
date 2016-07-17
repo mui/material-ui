@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
-import {easing} from '../styles/transitions';
+import { easing } from '../styles/transitions';
 
 // const reflow = (elem) => elem.offsetHeight;
 
@@ -95,7 +95,7 @@ export default class Ripple extends Component {
       rippleStart: true,
     }, () => {
       requestAnimFrame(() => {
-        this.setState({rippleStart: false});
+        this.setState({ rippleStart: false });
       });
     });
   };
@@ -107,8 +107,8 @@ export default class Ripple extends Component {
   };
 
   getRippleStyles() {
-    const {rippleStart} = this.state;
-    const {rippleSize, rippleX, rippleY} = this.props;
+    const { rippleStart } = this.state;
+    const { rippleSize, rippleX, rippleY } = this.props;
 
     const scale = rippleStart ? 'scale(0.00001, 0.00001)' : 'scale(1, 1)';
     const offset = `translate(${rippleX}px, ${rippleY}px)`;
@@ -124,9 +124,9 @@ export default class Ripple extends Component {
   }
 
   render() {
-    const {className, pulsate} = this.props;
-    const {rippleStart, rippleVisible} = this.state;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const { className, pulsate } = this.props;
+    const { rippleStart, rippleVisible } = this.state;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const rippleClassName = ClassNames(classes.ripple, {
       [classes.visible]: rippleVisible,

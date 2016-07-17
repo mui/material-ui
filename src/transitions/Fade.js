@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Transition from '../internal/Transition';
 
 export default class Fade extends Component {

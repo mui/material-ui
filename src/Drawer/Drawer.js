@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
@@ -75,10 +75,10 @@ export default class Drawer extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const drawer = (
-      <Slide in={open} transitionAppear={true}>
+      <Slide in={open} transitionAppear>
         <Paper
           zDepth={docked ? 0 : zDepth}
           rounded={false}
@@ -89,7 +89,7 @@ export default class Drawer extends Component {
       </Slide>
     );
 
-    const containerProps = {className, ...other};
+    const containerProps = { className, ...other };
 
     if (docked) {
       return (

@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import {spy} from 'sinon';
+import { assert } from 'chai';
+import { spy } from 'sinon';
 import contains from 'dom-helpers/query/contains';
-import Modal, {styleSheet} from './Modal';
+import Modal, { styleSheet } from './Modal';
 import {
   createShallowWithContext,
   createMountWithContext,
@@ -16,7 +16,7 @@ describe('<Modal>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
     mount = createMountWithContext();
   });
   after(() => mount.cleanUp());
@@ -37,7 +37,7 @@ describe('<Modal>', () => {
 
     before(() => {
       wrapper = shallow(
-        <Modal show={true} data-my-prop="woof"><p>Hello World</p></Modal>
+        <Modal show data-my-prop="woof"><p>Hello World</p></Modal>
       );
     });
 
@@ -56,7 +56,7 @@ describe('<Modal>', () => {
     let wrapper;
 
     before(() => wrapper = shallow(
-      <Modal show={true} id="modal">
+      <Modal show id="modal">
         <div id="container">
           <h1 id="heading">Hello</h1>
         </div>
@@ -73,16 +73,16 @@ describe('<Modal>', () => {
 
     it('should attach a handler to the backdrop that fires onRequestClose', () => {
       const onRequestClose = spy();
-      wrapper.setProps({onRequestClose});
+      wrapper.setProps({ onRequestClose });
 
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find('Backdrop');
       assert.strictEqual(backdrop.prop('onClick'), handler, 'should attach the handleBackdropClick handler');
 
-      handler({isPropagationStopped: () => false});
+      handler({ isPropagationStopped: () => false });
       assert.strictEqual(onRequestClose.callCount, 1, 'should fire the onRequestClose callback');
 
-      handler({isPropagationStopped: () => true});
+      handler({ isPropagationStopped: () => true });
       assert.strictEqual(
         onRequestClose.callCount,
         1,
@@ -93,7 +93,7 @@ describe('<Modal>', () => {
     it('should let the user block event propagation to the click handler', () => {
       const onRequestClose = spy();
       const onBackdropClick = (event) => event.stopPropagation();
-      wrapper.setProps({onBackdropClick, onRequestClose});
+      wrapper.setProps({ onBackdropClick, onRequestClose });
 
       const handler = wrapper.instance().handleBackdropClick;
 
@@ -121,7 +121,7 @@ describe('<Modal>', () => {
           </div>
         </Modal>
       ));
-      after(() => wrapper.setProps({open: false}));
+      after(() => wrapper.setProps({ open: false }));
 
       it('should not render the content', () => {
         assert.strictEqual(document.getElementById('container'), null, 'should not have the element in the DOM');
@@ -129,7 +129,7 @@ describe('<Modal>', () => {
       });
 
       it('should render the content into the portal', () => {
-        wrapper.setProps({show: true});
+        wrapper.setProps({ show: true });
         const portalLayer = wrapper.find('Portal').node.layer;
         const container = document.getElementById('container');
         const heading = document.getElementById('heading');
@@ -150,13 +150,13 @@ describe('<Modal>', () => {
       let wrapper;
 
       before(() => wrapper = mount(
-        <Modal show={true} id="modal">
+        <Modal show id="modal">
           <div id="container">
             <h1 id="heading">Hello</h1>
           </div>
         </Modal>
       ));
-      after(() => wrapper.setProps({open: false}));
+      after(() => wrapper.setProps({ open: false }));
 
       it('should render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
@@ -171,13 +171,13 @@ describe('<Modal>', () => {
       let wrapper;
 
       before(() => wrapper = mount(
-        <Modal show={true} backdrop={false} id="modal">
+        <Modal show backdrop={false} id="modal">
           <div id="container">
             <h1 id="heading">Hello</h1>
           </div>
         </Modal>
       ));
-      after(() => wrapper.setProps({open: false}));
+      after(() => wrapper.setProps({ open: false }));
 
       it('should not render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');

@@ -2,7 +2,7 @@ import css from 'dom-helpers/style';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
-import {hideSiblings, showSiblings, ariaHidden} from '../utils/manageAriaHidden';
+import { hideSiblings, showSiblings, ariaHidden } from '../utils/manageAriaHidden';
 
 /**
  * State managment helper for modals/layers.
@@ -15,7 +15,7 @@ export function createModalManager({
   hideSiblingNodes = true,
 } = {}) {
   const modals = [];
-  const modalManager = {add, remove, isTopModal};
+  const modalManager = { add, remove, isTopModal };
 
   let prevOverflow;
   let prevPadding;
@@ -34,7 +34,7 @@ export function createModalManager({
       hideSiblings(container, modal.mountNode);
     }
 
-    const containerStyle = {overflow: 'hidden'};
+    const containerStyle = { overflow: 'hidden' };
 
     // Save our current overflow so we can revert
     // back to it when all modals are closed!

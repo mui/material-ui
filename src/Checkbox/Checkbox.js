@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import shallowEqual from 'recompose/shallowEqual';
 import warning from 'warning';
@@ -52,7 +52,7 @@ export default class Checkbox extends Component {
   };
 
   componentWillMount() {
-    const {props} = this;
+    const { props } = this;
 
     this.isControlled = props.checked !== undefined;
 
@@ -74,7 +74,7 @@ export default class Checkbox extends Component {
     }
 
     if (!this.isControlled) { // not controlled, use internal state
-      this.setState({checked: props.defaultChecked});
+      this.setState({ checked: props.defaultChecked });
     }
   }
 
@@ -124,7 +124,7 @@ export default class Checkbox extends Component {
       newChecked = !this.props.checked;
     } else {
       newChecked = !this.state.checked;
-      this.setState({checked: !this.state.checked});
+      this.setState({ checked: !this.state.checked });
     }
 
     if (this.props.onChange) {

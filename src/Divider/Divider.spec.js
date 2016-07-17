@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import Divider, {styleSheet} from './Divider';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import Divider, { styleSheet } from './Divider';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Divider>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<Divider>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a hr', () => {
@@ -26,7 +26,7 @@ describe('<Divider>', () => {
   });
 
   it('should set the absolute class', () => {
-    const wrapper = shallow(<Divider absolute={true} />);
+    const wrapper = shallow(<Divider absolute />);
     assert.strictEqual(wrapper.hasClass(classes.absolute), true, 'should be absolute');
   });
 });

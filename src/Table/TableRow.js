@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableRow', (theme) => {
@@ -25,8 +25,8 @@ export const styleSheet = createStyleSheet('TableRow', (theme) => {
 });
 
 export default function TableRow(props, context) {
-  const {className, children, hover, selected, ...other} = props;
-  const {table, styleManager} = context;
+  const { className, children, hover, selected, ...other } = props;
+  const { table, styleManager } = context;
   const classes = styleManager.render(styleSheet);
 
   const classNames = ClassNames(classes.root, {

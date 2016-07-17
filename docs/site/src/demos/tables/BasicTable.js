@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import {
   Table,
   TableHead,
@@ -21,7 +21,7 @@ const styleSheet = createStyleSheet('BasicTable', () => {
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
   id++;
-  return {id, name, calories, fat, carbs, protein};
+  return { id, name, calories, fat, carbs, protein };
 }
 
 const data = [
@@ -46,10 +46,10 @@ export default class BasicTable extends Component {
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell numeric={true}>Calories</TableCell>
-              <TableCell numeric={true}>Fat (g)</TableCell>
-              <TableCell numeric={true}>Carbs (g)</TableCell>
-              <TableCell numeric={true}>Protein (g)</TableCell>
+              <TableCell numeric>Calories</TableCell>
+              <TableCell numeric>Fat (g)</TableCell>
+              <TableCell numeric>Carbs (g)</TableCell>
+              <TableCell numeric>Protein (g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,10 +57,10 @@ export default class BasicTable extends Component {
               return (
                 <TableRow key={n.id}>
                   <TableCell>{n.name}</TableCell>
-                  <TableCell numeric={true}>{n.calories}</TableCell>
-                  <TableCell numeric={true}>{n.fat}</TableCell>
-                  <TableCell numeric={true}>{n.carbs}</TableCell>
-                  <TableCell numeric={true}>{n.protein}</TableCell>
+                  <TableCell numeric>{n.calories}</TableCell>
+                  <TableCell numeric>{n.fat}</TableCell>
+                  <TableCell numeric>{n.carbs}</TableCell>
+                  <TableCell numeric>{n.protein}</TableCell>
                 </TableRow>
               );
             })}

@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('DialogActions', () => {
@@ -33,7 +33,7 @@ export default class DialogActions extends Component {
     <div className={this.classes.action}>
       {React.cloneElement(
         button,
-        {className: ClassNames(this.classes.button, button.props.className)}
+        { className: ClassNames(this.classes.button, button.props.className) }
       )}
     </div>
   );

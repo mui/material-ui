@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import {assert} from 'chai';
+import { assert } from 'chai';
 import {
   convertColorToString,
   convertHexToRGB,
@@ -19,28 +19,28 @@ describe('utils/colorManipulator', () => {
   describe('convertColorToString', () => {
     it('converts a decomposed rgb color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({type: 'rgb', values: [255, 255, 255]}),
+        convertColorToString({ type: 'rgb', values: [255, 255, 255] }),
         'rgb(255, 255, 255)'
       );
     });
 
     it('converts a decomposed rgba color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({type: 'rgba', values: [255, 255, 255, 0.5]}),
+        convertColorToString({ type: 'rgba', values: [255, 255, 255, 0.5] }),
         'rgba(255, 255, 255, 0.5)'
       );
     });
 
     it('converts a decomposed hsl color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({type: 'hsl', values: [100, 50, 25]}),
+        convertColorToString({ type: 'hsl', values: [100, 50, 25] }),
         'hsl(100, 50%, 25%)'
       );
     });
 
     it('converts a decomposed hsla color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({type: 'hsla', values: [100, 50, 25, 0.5]}),
+        convertColorToString({ type: 'hsla', values: [100, 50, 25, 0.5] }),
         'hsla(100, 50%, 25%, 0.5)'
       );
     });
@@ -70,25 +70,25 @@ describe('utils/colorManipulator', () => {
    */
   describe('decomposeColor', () => {
     it('converts an rgb color string to an object with `type` and `value` keys', () => {
-      const {type, values} = decomposeColor('rgb(255, 255, 255)');
+      const { type, values } = decomposeColor('rgb(255, 255, 255)');
       assert.strictEqual(type, 'rgb');
       assert.deepEqual(values, [255, 255, 255]);
     });
 
     it('converts an rgba color string to an object with `type` and `value` keys', () => {
-      const {type, values} = decomposeColor('rgba(255, 255, 255, 0.5)');
+      const { type, values } = decomposeColor('rgba(255, 255, 255, 0.5)');
       assert.strictEqual(type, 'rgba');
       assert.deepEqual(values, [255, 255, 255, 0.5]);
     });
 
     it('converts an hsl color string to an object with `type` and `value` keys', () => {
-      const {type, values} = decomposeColor('hsl(100, 50%, 25%)');
+      const { type, values } = decomposeColor('hsl(100, 50%, 25%)');
       assert.strictEqual(type, 'hsl');
       assert.deepEqual(values, [100, 50, 25]);
     });
 
     it('converts an hsla color string to an object with `type` and `value` keys', () => {
-      const {type, values} = decomposeColor('hsla(100, 50%, 25%, 0.5)');
+      const { type, values } = decomposeColor('hsla(100, 50%, 25%, 0.5)');
       assert.strictEqual(type, 'hsla');
       assert.deepEqual(values, [100, 50, 25, 0.5]);
     });

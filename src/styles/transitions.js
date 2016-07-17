@@ -8,7 +8,6 @@ export const easing = {
 };
 
 export default {
-
   multi(property, duration, delay, easeFunction) {
     easeFunction = easeFunction || easing.easeInOut;
 
@@ -20,9 +19,9 @@ export default {
       }
 
       return transitions;
-    } else {
-      return this.create(duration, property, delay, easeFunction);
     }
+
+    return this.create(duration, property, delay, easeFunction);
   },
 
   create(property, duration, delay, easeFunction) {

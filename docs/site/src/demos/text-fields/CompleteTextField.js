@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
-import TextField, {TextFieldInput, TextFieldLabel} from 'material-ui/TextField';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
+import TextField, { TextFieldInput, TextFieldLabel } from 'material-ui/TextField';
 
 const styleSheet = createStyleSheet('CompleteTextField', () => {
   return {
@@ -32,7 +32,7 @@ export default class CompleteTextField extends Component {
             className={classes.input}
             id="name"
             value={this.state.value}
-            onChange={(event) => this.setState({value: event.target.value})}
+            onChange={(event) => this.setState({ value: event.target.value })}
           />
         </TextField>
       </div>

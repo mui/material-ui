@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Text', (theme) => {
-  const {typography} = theme;
+  const { typography } = theme;
   return {
-    text: {display: 'block'},
+    text: { display: 'block' },
     display4: typography.display4,
     display3: typography.display3,
     display2: typography.display2,
@@ -48,13 +48,13 @@ export default class Text extends Component {
   };
 
   render() {
-    const {align, className, component, noWrap, type, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const { align, className, component, noWrap, type, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const classNames = ClassNames(classes.text, {
       [classes[type]]: true,
       [classes.noWrap]: noWrap,
       [classes.center]: align === 'center',
     }, className);
-    return React.createElement(component, {className: classNames, ...other});
+    return React.createElement(component, { className: classNames, ...other });
   }
 }

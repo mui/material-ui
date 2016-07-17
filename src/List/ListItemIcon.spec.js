@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import ListItemIcon, {styleSheet} from './ListItemIcon';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import ListItemIcon, { styleSheet } from './ListItemIcon';
+import { createShallowWithContext } from 'test/utils';
 
 /**
  * An item that goes in lists.
@@ -13,7 +13,7 @@ describe('<ListItemIcon>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a div', () => {

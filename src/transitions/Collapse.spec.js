@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import {spy} from 'sinon';
-import Collapse, {styleSheet} from './Collapse';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import Collapse, { styleSheet } from './Collapse';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Collapse>', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Collapse>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a Transition', () => {
@@ -53,7 +53,7 @@ describe('<Collapse>', () => {
 
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, {style: {}});
+        wrapper.simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -72,7 +72,7 @@ describe('<Collapse>', () => {
       let element;
 
       before(() => {
-        element = {style: {height: 32}};
+        element = { style: { height: 32 } };
         instance.handleEnter(element);
       });
 
@@ -85,8 +85,8 @@ describe('<Collapse>', () => {
       let element;
 
       before(() => {
-        element = {style: {height: 0}};
-        instance.wrapper = {clientHeight: 666};
+        element = { style: { height: 0 } };
+        instance.wrapper = { clientHeight: 666 };
         instance.handleEntering(element);
       });
 
@@ -103,8 +103,8 @@ describe('<Collapse>', () => {
       let element;
 
       before(() => {
-        element = {style: {height: 'auto'}};
-        instance.wrapper = {clientHeight: 666};
+        element = { style: { height: 'auto' } };
+        instance.wrapper = { clientHeight: 666 };
         instance.handleExit(element);
       });
 
@@ -117,7 +117,7 @@ describe('<Collapse>', () => {
       let element;
 
       before(() => {
-        element = {style: {height: 666}};
+        element = { style: { height: 666 } };
         instance.handleExiting(element);
       });
 

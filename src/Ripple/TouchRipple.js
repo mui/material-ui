@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import shallowEqual from 'recompose/shallowEqual';
-import {createStyleSheet} from 'stylishly';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import Ripple from './Ripple';
 
@@ -46,7 +46,7 @@ export default class TouchRipple extends Component {
   ignoringMouseDown = false;
 
   pulsate = () => {
-    this.start({}, {pulsate: true});
+    this.start({}, { pulsate: true });
   };
 
   start = (event = {}, {
@@ -65,7 +65,7 @@ export default class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     const elem = ReactDOM.findDOMNode(this);
-    const rect = elem ? elem.getBoundingClientRect() : {width: 0, height: 0};
+    const rect = elem ? elem.getBoundingClientRect() : { width: 0, height: 0 };
 
     // Get the size of the ripple
     let rippleX;
@@ -111,12 +111,12 @@ export default class TouchRipple extends Component {
 
     this.setState({
       nextKey: this.state.nextKey + 1,
-      ripples: ripples,
+      ripples,
     }, cb);
   };
 
   stop = (event, cb) => {
-    const {ripples} = this.state;
+    const { ripples } = this.state;
     if (ripples && ripples.length) {
       this.setState({
         ripples: ripples.slice(1),
@@ -131,7 +131,7 @@ export default class TouchRipple extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     return (
       <ReactTransitionGroup

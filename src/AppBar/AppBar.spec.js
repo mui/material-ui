@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import AppBar, {styleSheet} from './AppBar';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import AppBar, { styleSheet } from './AppBar';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<AppBar>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<AppBar>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a Paper component', () => {
@@ -41,7 +41,7 @@ describe('<AppBar>', () => {
 
   it('should render a primary app bar', () => {
     const wrapper = shallow(
-      <AppBar primary={true}>Hello World</AppBar>
+      <AppBar primary>Hello World</AppBar>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.primary), true, 'should not have the primary class');
@@ -50,7 +50,7 @@ describe('<AppBar>', () => {
 
   it('should render an accent app bar', () => {
     const wrapper = shallow(
-      <AppBar accent={true}>Hello World</AppBar>
+      <AppBar accent>Hello World</AppBar>
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.primary), false, 'should not have the primary class');

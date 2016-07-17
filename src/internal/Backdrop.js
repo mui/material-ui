@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
-import {lightBlack} from '../styles/colors';
+import { lightBlack } from '../styles/colors';
 
 export const styleSheet = createStyleSheet('Backdrop', (theme) => {
   return {
@@ -44,7 +44,7 @@ export default class Backdrop extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     return (
       <div

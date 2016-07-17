@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+/* eslint-disable react/no-multi-comp */
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import {
   Table,
   TableHead,
@@ -26,7 +27,7 @@ const styleSheet = createStyleSheet('BasicTable', () => {
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
   counter++;
-  return {id: counter, name, calories, fat, carbs, protein};
+  return { id: counter, name, calories, fat, carbs, protein };
 }
 
 class EnhancedTableHead extends Component {
@@ -42,12 +43,12 @@ class EnhancedTableHead extends Component {
   };
 
   render() {
-    const {order, orderBy} = this.props;
+    const { order, orderBy } = this.props;
 
     return (
       <TableHead>
         <TableRow>
-          <TableCell checkbox={true}>
+          <TableCell checkbox>
             <Checkbox onChange={this.props.onSelectAllClick} />
           </TableCell>
           <TableCell padding={false}>
@@ -59,7 +60,7 @@ class EnhancedTableHead extends Component {
               Dessert (100g serving)
             </TableSortLabel>
           </TableCell>
-          <TableCell numeric={true}>
+          <TableCell numeric>
             <TableSortLabel
               active={orderBy === 'calories'}
               direction={order}
@@ -68,7 +69,7 @@ class EnhancedTableHead extends Component {
               Calories
             </TableSortLabel>
           </TableCell>
-          <TableCell numeric={true}>
+          <TableCell numeric>
             <TableSortLabel
               active={orderBy === 'fat'}
               direction={order}
@@ -77,7 +78,7 @@ class EnhancedTableHead extends Component {
               Fat (g)
             </TableSortLabel>
           </TableCell>
-          <TableCell numeric={true}>
+          <TableCell numeric>
             <TableSortLabel
               active={orderBy === 'carbs'}
               direction={order}
@@ -86,7 +87,7 @@ class EnhancedTableHead extends Component {
               Carbs (g)
             </TableSortLabel>
           </TableCell>
-          <TableCell numeric={true}>
+          <TableCell numeric>
             <TableSortLabel
               active={orderBy === 'protein'}
               direction={order}
@@ -103,14 +104,14 @@ class EnhancedTableHead extends Component {
 
 const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => {
   return {
-    root: {paddingRight: 12},
+    root: { paddingRight: 12 },
     highlight: {
       color: theme.palette.accent[800],
       backgroundColor: theme.palette.accent[50],
     },
-    spacer: {flex: '1 1 100%'},
-    actions: {color: theme.palette.text.secondary},
-    title: {flex: '0 0 auto'},
+    spacer: { flex: '1 1 100%' },
+    actions: { color: theme.palette.text.secondary },
+    title: { flex: '0 0 auto' },
   };
 });
 
@@ -124,7 +125,7 @@ class EnhancedTableToolbar extends Component {
   };
 
   render() {
-    const {numSelected} = this.props;
+    const { numSelected } = this.props;
     const classes = this.context.styleManager.render(toolbarStyleSheet);
     let classNames = classes.root;
 
@@ -179,21 +180,23 @@ export default class EnhancedTable extends Component {
     }
 
     const data = this.state.data.sort(
-       (a, b) => order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]
+      (a, b) => (
+        order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]
+      )
     );
 
-    this.setState({data, order, orderBy});
+    this.setState({ data, order, orderBy });
   };
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      return this.setState({selected: this.state.data.map((n) => n.id)});
+      return this.setState({ selected: this.state.data.map((n) => n.id) });
     }
-    return this.setState({selected: []});
+    return this.setState({ selected: [] });
   };
 
   handleClick = (event, id) => {
-    const {selected} = this.state;
+    const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -210,7 +213,7 @@ export default class EnhancedTable extends Component {
       );
     }
 
-    this.setState({selected: newSelected});
+    this.setState({ selected: newSelected });
   };
 
   isSelected = (id) => {
@@ -219,7 +222,7 @@ export default class EnhancedTable extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
-    const {data, order, orderBy, selected} = this.state;
+    const { data, order, orderBy, selected } = this.state;
 
     return (
       <Paper zDepth={2} className={classes.paper}>
@@ -236,19 +239,19 @@ export default class EnhancedTable extends Component {
               const isSelected = this.isSelected(n.id);
               return (
                 <TableRow
-                  hover={true}
+                  hover
                   onClick={(event) => this.handleClick(event, n.id)}
                   key={n.id}
                   selected={isSelected}
                 >
-                  <TableCell checkbox={true}>
+                  <TableCell checkbox>
                     <Checkbox checked={isSelected} />
                   </TableCell>
                   <TableCell padding={false}>{n.name}</TableCell>
-                  <TableCell numeric={true}>{n.calories}</TableCell>
-                  <TableCell numeric={true}>{n.fat}</TableCell>
-                  <TableCell numeric={true}>{n.carbs}</TableCell>
-                  <TableCell numeric={true}>{n.protein}</TableCell>
+                  <TableCell numeric>{n.calories}</TableCell>
+                  <TableCell numeric>{n.fat}</TableCell>
+                  <TableCell numeric>{n.carbs}</TableCell>
+                  <TableCell numeric>{n.protein}</TableCell>
                 </TableRow>
               );
             })}

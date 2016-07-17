@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import List, {styleSheet} from './List';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import List, { styleSheet } from './List';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<List>', () => {
   let shallow;

@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('AppContent', (theme) => {
@@ -30,7 +30,7 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
 });
 
 export default function AppContent(props, context) {
-  const {className, children} = props;
+  const { className, children } = props;
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={ClassNames(classes.content, className)}>

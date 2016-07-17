@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
-import {createStyleSheet} from 'stylishly';
-import {List} from 'material-ui/List';
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { createStyleSheet } from 'stylishly';
+import { List } from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Text from 'material-ui/Text';
@@ -50,21 +50,6 @@ export default class AppDrawer extends Component {
 
   activeParent = undefined;
 
-  renderNav(navRoot, props = {}) {
-    return (
-      <List {...props}>
-        {this.renderNavItems(navRoot)}
-      </List>
-    );
-  }
-
-  renderNavItems(navRoot) {
-    this.activeParent = undefined;
-    if (navRoot.childRoutes && navRoot.childRoutes.length) {
-      return navRoot.childRoutes.reduce(this.reduceChildRoutes, []);
-    }
-  }
-
   reduceChildRoutes = (items, childRoute, index) => {
     if (childRoute.nav) {
       if (childRoute.childRoutes && childRoute.childRoutes.length) {
@@ -92,6 +77,22 @@ export default class AppDrawer extends Component {
     return items;
   };
 
+  renderNav(navRoot, props = {}) {
+    return (
+      <List {...props}>
+        {this.renderNavItems(navRoot)}
+      </List>
+    );
+  }
+
+  renderNavItems(navRoot) {
+    this.activeParent = undefined;
+    if (navRoot.childRoutes && navRoot.childRoutes.length) {
+      return navRoot.childRoutes.reduce(this.reduceChildRoutes, []);
+    }
+    return null;
+  }
+
   render() {
     this.classes = this.context.styleManager.render(styleSheet);
     return (
@@ -107,7 +108,7 @@ export default class AppDrawer extends Component {
             <Link className={this.classes.title} to="/" onClick={this.props.onRequestClose}>
               <Text type="title">Material UI</Text>
             </Link>
-            <Divider absolute={true} />
+            <Divider absolute />
           </Toolbar>
           {this.renderNav(this.props.routes[0])}
         </div>

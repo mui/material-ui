@@ -1,9 +1,9 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Paper', (theme) => {
-  const {palette} = theme;
+  const { palette } = theme;
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
@@ -24,8 +24,8 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
 });
 
 export default function Paper(props, context) {
-  const {className, rounded, zDepth, ...other} = props;
-  const classes = context.styleManager.render(styleSheet, {group: 'mui'});
+  const { className, rounded, zDepth, ...other } = props;
+  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
 
   const classNames = ClassNames(classes.root, {
     [classes.rounded]: rounded,

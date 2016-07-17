@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
+import { assert } from 'chai';
 import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
-import Ripple, {styleSheet} from './Ripple';
-import {createShallowWithContext} from 'test/utils';
+import Ripple, { styleSheet } from './Ripple';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Ripple>', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Ripple>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a span', () => {
@@ -69,7 +69,7 @@ describe('<Ripple>', () => {
   describe('pulsating and stopping', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Ripple pulsate={true} />));
+    before(() => wrapper = shallow(<Ripple pulsate />));
 
     it('should render the ripple inside an extra pulsating span', () => {
       assert.strictEqual(wrapper.is('span'), true, 'should be a span');

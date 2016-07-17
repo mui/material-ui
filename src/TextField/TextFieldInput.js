@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
-  const {palette} = theme;
+  const { palette } = theme;
   return {
     root: {
       font: 'inherit',
@@ -139,7 +139,7 @@ export default class TextFieldInput extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const classNames = ClassNames({
       [classes.root]: true,

@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
-import {createStyleSheet} from 'stylishly';
-import {ListItem} from 'material-ui/List';
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { createStyleSheet } from 'stylishly';
+import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 
@@ -58,12 +58,12 @@ export default class AppDrawerNavItem extends Component {
 
   componentWillMount() {
     if (this.props.openImmediately) {
-      this.setState({open: true});
+      this.setState({ open: true });
     }
   }
 
   render() {
-    const {children, title, to} = this.props;
+    const { children, title, to } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
 
     if (to) {
@@ -90,7 +90,7 @@ export default class AppDrawerNavItem extends Component {
       <ListItem className={classes.navItem} gutters={false}>
         <Button
           className={classes.button}
-          onClick={() => this.setState({open: !this.state.open})}
+          onClick={() => this.setState({ open: !this.state.open })}
         >
           {title}
         </Button>

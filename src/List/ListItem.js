@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('ListItem', (theme) => {
@@ -34,11 +34,11 @@ export default class ListItem extends Component {
   };
 
   render() {
-    const {className, component, gutters, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const { className, component, gutters, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const classNames = ClassNames(classes.root, {
       [classes.gutters]: gutters,
     }, className);
-    return React.createElement(component, {className: classNames, ...other});
+    return React.createElement(component, { className: classNames, ...other });
   }
 }

@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly/lib/styleSheet';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableBody', (theme) => {
@@ -22,15 +22,15 @@ export default class TableBody extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  static childContextTypes = {table: PropTypes.object};
+  static childContextTypes = { table: PropTypes.object };
 
   getChildContext() {
-    return {table: {body: true}};
+    return { table: { body: true } };
   }
 
   render() {
-    const {className, children, ...other} = this.props;
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const { className, children, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const classNames = ClassNames(classes.root, className);
 
     return (

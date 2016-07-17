@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import Paper, {styleSheet} from './Paper';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import Paper, { styleSheet } from './Paper';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<Paper>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<Paper>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a div', () => {
@@ -34,9 +34,9 @@ describe('<Paper>', () => {
   it('should set the zDepth shadow class', () => {
     const wrapper = shallow(<Paper zDepth={16}>Hello World</Paper>);
     assert.strictEqual(wrapper.hasClass(classes.dp16), true, 'should have the dp16 shadow class');
-    wrapper.setProps({zDepth: 24});
+    wrapper.setProps({ zDepth: 24 });
     assert.strictEqual(wrapper.hasClass(classes.dp24), true, 'should have the dp24 shadow class');
-    wrapper.setProps({zDepth: 2});
+    wrapper.setProps({ zDepth: 2 });
     assert.strictEqual(wrapper.hasClass(classes.dp2), true, 'should have the dp2 shadow class');
   });
 });

@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import hashObject from '../utils/hashObject';
-import {getContrastRatio} from './colorManipulator';
-import {indigo, pink, grey, red, black, white} from './colors';
+import { getContrastRatio } from './colorManipulator';
+import { indigo, pink, grey, red, black, white } from './colors';
 import shadows from './shadows';
 import transitions from './transitions';
 import createTypography from './typography';
@@ -31,31 +31,9 @@ export function createMuiTheme(
     properties.id = hashObject(properties);
   }
 
-  const muiTheme = {...properties};
+  const muiTheme = { ...properties };
 
   return muiTheme;
-}
-
-export function createPalette({
-  primary = indigo,
-  accent = pink,
-  error = red,
-  dark = false,
-} = {}) {
-  const type = dark ? 'dark' : 'light';
-
-  return {
-    type,
-    text: shades[type].text,
-    background: shades[type].background,
-    shades,
-    primary,
-    accent,
-    error,
-    grey,
-    // functions
-    getContrastText,
-  };
 }
 
 export const light = {
@@ -95,7 +73,27 @@ export const dark = {
   },
 };
 
-export const shades = {dark, light};
+export const shades = { dark, light };
+
+export function createPalette({
+  primary = indigo,
+  accent = pink,
+  error = red,
+  type = 'light',
+} = {}) {
+  return {
+    type,
+    text: shades[type].text,
+    background: shades[type].background,
+    shades,
+    primary,
+    accent,
+    error,
+    grey,
+    // functions
+    getContrastText,
+  };
+}
 
 function getContrastText(color) {
   if (getContrastRatio(color, black) < 7) {

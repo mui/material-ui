@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import Button from 'material-ui/Button';
 
 const styleSheet = createStyleSheet('FloatingActionButtons', () => {
@@ -14,10 +14,10 @@ export default function FloatingActionButtons(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div>
-      <Button fab={true} primary={true} className={classes.button}>
+      <Button fab primary className={classes.button}>
         <span className="material-icons">add</span>
       </Button>
-      <Button fab={true} accent={true} className={classes.button}>
+      <Button fab accent className={classes.button}>
         <span className="material-icons">mode_edit</span>
       </Button>
     </div>

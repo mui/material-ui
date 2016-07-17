@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
-import TouchRipple, {styleSheet} from './TouchRipple';
-import {createShallowWithContext} from 'test/utils';
+import { assert } from 'chai';
+import TouchRipple, { styleSheet } from './TouchRipple';
+import { createShallowWithContext } from 'test/utils';
 
 describe('<TouchRipple>', () => {
   let shallow;
@@ -10,7 +10,7 @@ describe('<TouchRipple>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, {group: 'mui'});
+    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
 
   it('should render a <ReactTransitionGroup> component', () => {
@@ -45,17 +45,17 @@ describe('<TouchRipple>', () => {
     });
 
     it('should create a ripple', () => {
-      instance.start({clientX: 0, clientY: 0});
+      instance.start({ clientX: 0, clientY: 0 });
       assert.strictEqual(wrapper.state('ripples').length, 1);
     });
 
     it('should create another ripple', () => {
-      instance.start({clientX: 0, clientY: 0});
+      instance.start({ clientX: 0, clientY: 0 });
       assert.strictEqual(wrapper.state('ripples').length, 2);
     });
 
     it('should create another ripple', () => {
-      instance.start({clientX: 0, clientY: 0});
+      instance.start({ clientX: 0, clientY: 0 });
       assert.strictEqual(wrapper.state('ripples').length, 3);
     });
 

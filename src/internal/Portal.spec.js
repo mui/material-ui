@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
-import {assert} from 'chai';
+import { assert } from 'chai';
 import Portal from './Portal';
-import {createMountWithContext} from 'test/utils';
+import { createMountWithContext } from 'test/utils';
 
 describe('<Portal>', () => {
   let mount;
@@ -28,7 +28,7 @@ describe('<Portal>', () => {
     let portal;
 
     before(() => {
-      wrapper = mount(<Portal open={true}><h1 id="woof">Hello</h1></Portal>);
+      wrapper = mount(<Portal open><h1 id="woof">Hello</h1></Portal>);
       instance = wrapper.instance();
       portal = instance.layer;
     });
@@ -44,7 +44,7 @@ describe('<Portal>', () => {
     });
 
     it('should unrender the contents and remove the layer', () => {
-      wrapper.setProps({open: false});
+      wrapper.setProps({ open: false });
       assert.strictEqual(document.getElementById('meow'), null, 'should not have the portal in the DOM');
       assert.strictEqual(document.getElementById('woof'), null, 'should not have the heading in the DOM');
     });

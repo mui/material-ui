@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
-import {createStyleSheet} from 'stylishly';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import addEventListener from '../utils/addEventListener';
 import keycode from 'keycode';
-import {TouchRipple, createRippleHandler} from '../Ripple';
+import { TouchRipple, createRippleHandler } from '../Ripple';
 
 let listening = false;
 let tabPressed = false;
@@ -123,7 +123,7 @@ export default class ButtonBase extends Component {
     clearTimeout(this.keyboardFocusTimeout);
     tabPressed = false;
     if (this.state.keyboardFocused) {
-      this.setState({keyboardFocused: false});
+      this.setState({ keyboardFocused: false });
     }
   });
 
@@ -139,7 +139,7 @@ export default class ButtonBase extends Component {
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
-    this.setState({keyboardFocused: false});
+    this.setState({ keyboardFocused: false });
   });
 
   handleFocus = (event) => {
@@ -151,7 +151,7 @@ export default class ButtonBase extends Component {
         if (tabPressed && document.activeElement === ReactDOM.findDOMNode(this.button)) {
           this.keyDown = false;
           tabPressed = false;
-          this.setState({keyboardFocused: true});
+          this.setState({ keyboardFocused: true });
         }
       }, 150);
 
@@ -192,7 +192,7 @@ export default class ButtonBase extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const classNames = ClassNames(classes.root, className, {
       [classes.disabled]: disabled,
@@ -232,7 +232,7 @@ export default class ButtonBase extends Component {
       element,
       buttonProps,
       createFragment({
-        children: children,
+        children,
         ripple: this.renderRipple(ripple, centerRipple),
       })
     );

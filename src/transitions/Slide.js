@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
 
@@ -66,7 +66,7 @@ export default class Slide extends Component {
         onEntering={this.handleEntering}
         onExiting={this.handleExiting}
         timeout={500}
-        transitionAppear={true}
+        transitionAppear
         {...other}
       >
         {children}

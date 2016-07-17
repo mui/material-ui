@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Perf from 'react-addons-perf';
-import {find} from 'src/utils/helpers';
+import { find } from 'src/utils/helpers';
 import RandomWords from 'random-words';
 
 /**
@@ -32,7 +32,7 @@ export default class TimeWaster extends Component {
   }
 
   setTestProp(cb = () => {}) {
-    const {testProp, testFn} = this.props;
+    const { testProp, testFn } = this.props;
     this.setState({
       [testProp]: testFn(),
     }, cb);
@@ -63,7 +63,7 @@ export default class TimeWaster extends Component {
 
     const summary = {};
 
-    summary.hasWastedTime = function(component) {
+    summary.hasWastedTime = (component) => {
       const result = find(wasted, (n) => n.key.indexOf(`> ${component}`));
       if (result) {
         return `${result.key} wasted ${result.inclusiveRenderDuration}ms across ${result.renderCount} renders`;
@@ -75,7 +75,7 @@ export default class TimeWaster extends Component {
   }
 
   render() {
-    const {children, testProp} = this.props;
+    const { children, testProp } = this.props;
     const testValue = this.state[testProp];
 
     return React.cloneElement(React.Children.only(children), {

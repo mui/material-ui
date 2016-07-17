@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import React from 'react';
-import {shallow} from 'enzyme';
-import {assert} from 'chai';
-import {createMuiTheme} from './theme';
-import {createStyleManager} from 'stylishly';
+import { shallow } from 'enzyme';
+import { assert } from 'chai';
+import { createMuiTheme } from './theme';
+import { createStyleManager } from 'stylishly';
 import MuiThemeProvider from './MuiThemeProvider';
 
 describe('<MuiThemeProvider>', () => {
@@ -44,7 +44,7 @@ describe('<MuiThemeProvider>', () => {
 
   describe('custom theme', () => {
     const theme = createMuiTheme();
-    const styleManager = createStyleManager({theme});
+    const styleManager = createStyleManager({ theme });
 
     it('should use the custom theme and styleManager', () => {
       const wrapper = shallow(

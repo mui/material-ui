@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
@@ -121,7 +121,7 @@ class Transition extends Component {
       status = this.props.unmountOnExit ? UNMOUNTED : EXITED;
     }
 
-    this.setState({status});
+    this.setState({ status });
 
     this.nextCallback = null;
   }
@@ -136,7 +136,7 @@ class Transition extends Component {
     if (nextProps.in && this.props.unmountOnExit) {
       if (this.state.status === UNMOUNTED) {
         // Start enter transition in componentDidUpdate.
-        this.setState({status: EXITED});
+        this.setState({ status: EXITED });
       }
     } else {
       this.needsUpdate = true;
@@ -152,7 +152,7 @@ class Transition extends Component {
       if (this.props.in) {
         this.performEnter(this.props);
       } else {
-        this.setState({status: UNMOUNTED}); // eslint-disable-line react/no-did-update-set-state
+        this.setState({ status: UNMOUNTED }); // eslint-disable-line react/no-did-update-set-state
       }
 
       return;
@@ -189,11 +189,11 @@ class Transition extends Component {
     // Not this.props, because we might be about to receive new props.
     props.onEnter(node);
 
-    this.safeSetState({status: ENTERING}, () => {
+    this.safeSetState({ status: ENTERING }, () => {
       this.props.onEntering(node);
 
       this.onTransitionEnd(node, () => {
-        this.safeSetState({status: ENTERED}, () => {
+        this.safeSetState({ status: ENTERED }, () => {
           this.props.onEntered(node);
         });
       });
@@ -207,11 +207,11 @@ class Transition extends Component {
     // Not this.props, because we might be about to receive new props.
     props.onExit(node);
 
-    this.safeSetState({status: EXITING}, () => {
+    this.safeSetState({ status: EXITING }, () => {
       this.props.onExiting(node);
 
       this.onTransitionEnd(node, () => {
-        this.safeSetState({status: EXITED}, () => {
+        this.safeSetState({ status: EXITED }, () => {
           this.props.onExited(node);
         });
       });
@@ -268,7 +268,7 @@ class Transition extends Component {
       return null;
     }
 
-    const {children, className, ...childProps} = this.props;
+    const { children, className, ...childProps } = this.props;
     Object.keys(Transition.propTypes).forEach((key) => delete childProps[key]);
 
     let transitionClassName;

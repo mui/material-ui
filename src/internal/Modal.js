@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import {createStyleSheet} from 'stylishly';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import warning from 'warning';
 import canUseDom from 'dom-helpers/util/inDOM';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import {createModalManager} from './modalManager';
+import { createModalManager } from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
 import Fade from '../transitions/Fade';
@@ -90,7 +90,7 @@ export default class Modal extends Component {
   static defaultProps = {
     backdrop: true,
     backdropComponent: Backdrop,
-    modalManager: modalManager,
+    modalManager,
     show: false,
   };
 
@@ -104,7 +104,7 @@ export default class Modal extends Component {
 
   componentWillMount() {
     if (!this.props.show) {
-      this.setState({exited: true});
+      this.setState({ exited: true });
     }
   }
 
@@ -117,7 +117,7 @@ export default class Modal extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.show && this.state.exited) {
-      this.setState({exited: false});
+      this.setState({ exited: false });
     }
   }
 
@@ -225,7 +225,7 @@ export default class Modal extends Component {
   };
 
   handleBackdropExited = (...args) => {
-    this.setState({exited: true});
+    this.setState({ exited: true });
     this.handleHide();
     if (this.props.onExited) {
       this.props.onExited(...args);
@@ -240,7 +240,7 @@ export default class Modal extends Component {
     return (
       <Fade
         in={show}
-        transitionAppear={true}
+        transitionAppear
         onEnter={this.props.onEnter}
         onEntering={this.props.onEntering}
         onEntered={this.props.onEntered}
@@ -248,7 +248,7 @@ export default class Modal extends Component {
         onExiting={this.props.onExiting}
         onExited={this.handleBackdropExited}
       >
-        {React.createElement(backdropComponent, {onClick: this.handleBackdropClick})}
+        {React.createElement(backdropComponent, { onClick: this.handleBackdropClick })}
       </Fade>
     );
   }
@@ -265,7 +265,7 @@ export default class Modal extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, {group: 'mui'});
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const mount = show || !this.state.exited;
 
     if (!mount) {
@@ -274,7 +274,7 @@ export default class Modal extends Component {
 
     let modalChild = React.Children.only(children);
 
-    const {role, tabIndex} = modalChild.props;
+    const { role, tabIndex } = modalChild.props;
 
     if (role === undefined || tabIndex === undefined) {
       modalChild = React.cloneElement(modalChild, {
@@ -284,7 +284,7 @@ export default class Modal extends Component {
     }
 
     return (
-      <Portal open={true} ref={(c) => this.mountNode = c ? c.getLayer() : c}>
+      <Portal open ref={(c) => this.mountNode = c ? c.getLayer() : c}>
         <div
           className={ClassNames(classes.modal, className)}
           ref={(c) => this.modal = c}

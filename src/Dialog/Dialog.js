@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createStyleSheet} from 'stylishly';
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
 import Slide from '../transitions/Slide';
@@ -89,7 +89,7 @@ export default class Dialog extends Component {
         <Slide
           in={open}
           direction="down"
-          transitionAppear={true}
+          transitionAppear
         >
           <div className={classes.container}>
             <Paper zDepth={24} className={classes.dialog}>

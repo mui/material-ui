@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-import {assert} from 'chai';
-import {createModalManager} from './modalManager';
+import { assert } from 'chai';
+import { createModalManager } from './modalManager';
 
 describe('internal/modalManager', () => {
   let modalManager;

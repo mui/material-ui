@@ -27,7 +27,7 @@ export default hashObject;
  * @param {string} str ASCII only
  * @return {string} Base 36 encoded hash result
  */
-function murmurhash2_32_gc(str) {
+function murmurhash2_32_gc(str) { // eslint-disable-line camelcase
   let l = str.length;
   let h = l;
   let i = 0;
@@ -49,7 +49,7 @@ function murmurhash2_32_gc(str) {
     ++i;
   }
 
-  switch (l) {
+  switch (l) { // eslint-disable-line default-case
     case 3: h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
     case 2: h ^= (str.charCodeAt(i + 1) & 0xff) << 8; // eslint-disable-line no-fallthrough
     case 1: h ^= (str.charCodeAt(i) & 0xff); // eslint-disable-line no-fallthrough

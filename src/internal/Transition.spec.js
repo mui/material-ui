@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {assert} from 'chai';
-import {spy} from 'sinon';
-import Transition, {UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING} from './Transition';
-import {createMountWithContext} from 'test/utils';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
+import { createMountWithContext } from 'test/utils';
 
 describe('<Transition>', () => {
   let mount;
@@ -14,7 +14,7 @@ describe('<Transition>', () => {
 
   it('should not transition on mount', () => {
     const wrapper = mount(
-      <Transition in={true} timeout={0} onEnter={() => assert.fail()}>
+      <Transition in timeout={0} onEnter={() => assert.fail()}>
         <div></div>
       </Transition>
     );
@@ -23,7 +23,7 @@ describe('<Transition>', () => {
 
   it('should start exited with transitionAppear', () => {
     const wrapper = mount(
-      <Transition transitionAppear={true}>
+      <Transition transitionAppear>
         <div></div>
       </Transition>
     );
@@ -32,7 +32,7 @@ describe('<Transition>', () => {
 
   it('should transition on mount with transitionAppear', () => {
     const wrapper = mount(
-      <Transition in={true} transitionAppear={true} timeout={0}>
+      <Transition in transitionAppear timeout={0}>
         <div></div>
       </Transition>
     );
@@ -65,7 +65,7 @@ describe('<Transition>', () => {
 
     assert.strictEqual(wrapper.hasClass('test-class'), false, 'should not have the test-class yet');
 
-    wrapper.setProps({in: true, className: 'test-class'});
+    wrapper.setProps({ in: true, className: 'test-class' });
   });
 
   describe('entering', () => {
@@ -152,10 +152,10 @@ describe('<Transition>', () => {
   describe('exiting', () => {
     let wrapper;
 
-    beforeEach(function() {
+    beforeEach(() => {
       wrapper = mount(
         <Transition
-          in={true}
+          in
           timeout={10}
           exitedClassName="test-exit"
           exitingClassName="test-exiting"
@@ -244,7 +244,7 @@ describe('<Transition>', () => {
     class UnmountTransition extends React.Component {
       constructor(props) {
         super(props);
-        this.state = {in: props.initialIn}; // eslint-disable-line react/prop-types
+        this.state = { in: props.initialIn }; // eslint-disable-line react/prop-types
       }
 
       getStatus() {
@@ -260,7 +260,7 @@ describe('<Transition>', () => {
         return (
           <Transition
             ref="transition"
-            unmountOnExit={true}
+            unmountOnExit
             in={this.state.in}
             timeout={10}
             {...other}
@@ -286,13 +286,13 @@ describe('<Transition>', () => {
       assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
       assert.notOk(ReactDOM.findDOMNode(wrapper.instance()));
 
-      wrapper.setState({in: true});
+      wrapper.setState({ in: true });
     });
 
     it('should unmount after exiting', (done) => {
       const wrapper = mount(
         <UnmountTransition
-          initialIn={true}
+          initialIn
           onExited={() => {
             assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
             assert.notOk(ReactDOM.findDOMNode(wrapper.instance()));
@@ -304,7 +304,7 @@ describe('<Transition>', () => {
       assert.strictEqual(wrapper.instance().getStatus(), ENTERED);
       assert.ok(ReactDOM.findDOMNode(wrapper.instance()));
 
-      wrapper.setState({in: false});
+      wrapper.setState({ in: false });
     });
   });
 });
