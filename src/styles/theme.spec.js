@@ -91,7 +91,7 @@ describe('styles/theme', () => {
     });
 
     it('should create a dark palette', () => {
-      const palette = createPalette({ dark: true });
+      const palette = createPalette({ type: 'dark' });
       assert.strictEqual(
         palette.primary,
         indigo,
