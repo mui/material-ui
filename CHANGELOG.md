@@ -10,7 +10,6 @@ margin = (oldSize < 0.71) ?
   ((50 - 59.5 * oldSize) / 2) :
   (5.25 * oldSize);
 ```
-
 Examples:
 ```
 // Before:
@@ -21,6 +20,11 @@ Examples:
 <CircularProgress size={59.5} style={{margin: 5.25}} /> // Thickness is 3.5 by default
 <CircularProgress size={119} thickness={7} style={{margin: 10.5}} />
 ```
+(#4705)
+
+- Remove a workaround regarding the context propagation as it was fixed in the React Core.
+Upgrade to React v15.2.1 if you are affected. (#4729)
+
 
 ## 0.15.2
 ###### _Jul 7, 2016_
