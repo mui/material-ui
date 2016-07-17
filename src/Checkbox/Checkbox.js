@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
-import shallowEqual from 'recompose/shallowEqual';
 import warning from 'warning';
 import IconButton from '../IconButton';
 
@@ -76,13 +75,6 @@ export default class Checkbox extends Component {
     if (!this.isControlled) { // not controlled, use internal state
       this.setState({ checked: props.defaultChecked });
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      (!this.isControlled && this.state.checked !== nextState.checked)
-    );
   }
 
   componentWillUpdate(nextProps) {

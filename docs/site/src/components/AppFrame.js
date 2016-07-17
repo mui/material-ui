@@ -30,6 +30,9 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
         textDecoration: 'underline',
       },
     },
+    '@raw p': {
+      lineHeight: '1.6',
+    },
     root: {
       display: 'flex',
       alignItems: 'stretch',

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
-import shallowEqual from 'recompose/shallowEqual';
 import Text from '../Text';
 
 export const styleSheet = createStyleSheet('ListItemText', (theme) => {
@@ -26,13 +25,6 @@ export default class ListItemText extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.context, nextContext)
-    );
-  }
 
   render() {
     const { className, primary, secondary, ...other } = this.props;

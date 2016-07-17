@@ -3,14 +3,14 @@ import { createStyleSheet } from 'stylishly';
 import MarkdownElement from './MarkdownElement';
 import Demo from './Demo';
 
-const styleSheet = createStyleSheet('MarkdownDocs', () => {
+const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
   return {
     content: {
       marginBottom: 100,
       '@raw pre': {
         margin: '25px 0',
         padding: '12px 18px',
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.background.contentFrame,
         borderRadius: 3,
         '@raw code': {
           padding: 0,
@@ -20,8 +20,9 @@ const styleSheet = createStyleSheet('MarkdownDocs', () => {
       '@raw code': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
         padding: '3px 6px',
-        color: '#333',
-        backgroundColor: '#fff',
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.background.contentFrame,
+        fontSize: 14,
       },
     },
   };
@@ -41,7 +42,6 @@ export default class MarkdownDocs extends Component {
 
   renderContent(content) {
     const contents = content.split(/(?:^{{)|(?:}}$)/gm);
-
     return contents.map((n, i) => {
       if (demoRegexp.test(n)) {
         return <Demo key={i} demo={n.match(demoRegexp)[1]} />;

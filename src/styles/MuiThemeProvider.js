@@ -49,6 +49,14 @@ export default class MuiThemeProvider extends Component {
     this.styleManager = styleManager;
   }
 
+  componentWillUpdate(nextProps) {
+    if (this.theme && nextProps.theme !== this.theme) {
+      this.theme = nextProps.theme;
+      this.styleManager.replaceTheme(nextProps.theme);
+      this.styleManager.empty();
+    }
+  }
+
   render() {
     return this.props.children;
   }

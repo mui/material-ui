@@ -11,10 +11,8 @@ function App(props) {
   const muiTheme = createMuiTheme(createPalette({
     primary: blue,
     accent: pink,
-    dark,
+    type: dark ? 'dark' : 'light',
   }));
-
-  // console.log(muiTheme);
 
   return (
     <MuiThemeProvider theme={muiTheme} {...other}>

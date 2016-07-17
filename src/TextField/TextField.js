@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import shallowEqual from 'recompose/shallowEqual';
 import ClassNames from 'classnames';
 import { easing } from '../styles/transitions';
 import { createChainedFunction } from '../utils/helpers';
@@ -79,13 +78,6 @@ export default class TextField extends Component {
     dirty: false,
     focused: false,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
-    );
-  }
 
   handleFocus = () => this.setState({ focused: true });
   handleBlur = () => this.setState({ focused: false });

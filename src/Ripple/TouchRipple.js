@@ -28,6 +28,7 @@ export default class TouchRipple extends Component {
   };
 
   static contextTypes = {
+    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 
@@ -36,10 +37,11 @@ export default class TouchRipple extends Component {
     ripples: [],
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
       !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.context.theme, nextContext.theme)
     );
   }
 

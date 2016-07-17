@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
-import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
 
 const reflow = (elem) => elem.offsetHeight;
@@ -73,13 +72,6 @@ export default class Collapse extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
-    );
-  }
 
   handleEnter = (element) => {
     element.style.height = '0px';

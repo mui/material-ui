@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
+import shallowEqual from 'recompose/shallowEqual';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import MarkdownElement from './MarkdownElement';
@@ -30,7 +31,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       padding: 0,
       margin: 0,
       '@raw pre': { // override prism styles
-        backgroundColor: '#fff !important',
+        backgroundColor: `${theme.palette.background.contentFrame} !important`,
         margin: '0px !important',
         borderRadius: '0px !important',
       },
@@ -44,6 +45,7 @@ export default class Demo extends Component {
   };
 
   static contextTypes = {
+    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 
@@ -51,10 +53,11 @@ export default class Demo extends Component {
     codeOpen: false,
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
       nextProps.demo !== this.props.demo ||
-      nextState.codeOpen !== this.state.codeOpen
+      nextState.codeOpen !== this.state.codeOpen ||
+      !shallowEqual(this.context, nextContext)
     );
   }
 

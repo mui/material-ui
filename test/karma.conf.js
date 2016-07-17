@@ -12,7 +12,7 @@ argv.forEach((arg) => {
 });
 
 // Karma configuration
-module.exports = function (config) {
+module.exports = function setKarmaConfig(config) {
   config.set({
     autoWatch: false,
     basePath: '../',
@@ -81,7 +81,7 @@ module.exports = function (config) {
         ],
       },
       externals: {
-        'jsdom': 'window',
+        jsdom: 'window',
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': 'window',
         'text-encoding': 'window',

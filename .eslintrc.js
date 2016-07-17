@@ -26,6 +26,7 @@ module.exports = {
     'max-len': ['error', 120, 4], // airbnb use 100
     'new-cap': ['off', {capIsNew: true, newIsCap: true}], // Wishlist, one day
     'newline-per-chained-call': 'off',
+    'no-console': 'error', // airbnb have on warning
     'no-nested-ternary': 'off',
     'no-param-reassign': 'off', // wishlist, one day
     'no-restricted-syntax': 'off',

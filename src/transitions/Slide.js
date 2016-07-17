@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import shallowEqual from 'recompose/shallowEqual';
 import Transition from '../internal/Transition';
 
 export default class Slide extends Component {
@@ -24,13 +23,6 @@ export default class Slide extends Component {
   static contextTypes = {
     theme: PropTypes.object.isRequired,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
-    );
-  }
 
   handleEnter = (element) => {
     element.style.transform = this.getTranslateValue();

@@ -90,8 +90,11 @@ export default class TextFieldInput extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(this.props, nextProps);
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.context, nextContext)
+    );
   }
 
   componentWillUpdate(nextProps) {
