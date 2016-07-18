@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
   const { palette, transitions, typography } = theme;
   return {
     '@raw html': { boxSizing: 'border-box' },
-    '@raw *, @raw *:before, @raw *:after': { boxSizing: 'inherit' },
+    '@raw *, *:before, *:after': { boxSizing: 'inherit' },
     '@raw body': {
       margin: 0,
       background: palette.background.default,
