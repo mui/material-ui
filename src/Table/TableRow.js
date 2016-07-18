@@ -6,6 +6,10 @@ export const styleSheet = createStyleSheet('TableRow', (theme) => {
   return {
     root: {
       height: 48,
+      '&:focus': {
+        outline: 'none',
+        background: theme.palette.background.contentFrame,
+      },
     },
     head: {
       height: 64,

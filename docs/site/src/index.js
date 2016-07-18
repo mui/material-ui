@@ -9,7 +9,7 @@ import App from './components/App';
 import a11y from 'react-a11y';
 
 if (process.env.NODE_ENV !== 'production') {
-  a11y(React, {includeSrcNode: true});
+  a11y(React, { includeSrcNode: true, ReactDOM });
 }
 
 

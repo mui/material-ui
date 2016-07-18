@@ -46,6 +46,7 @@ export default class ButtonBase extends Component {
     focusRipple: PropTypes.bool,
     keyboardFocusedClassName: PropTypes.string,
     onBlur: PropTypes.func,
+    onClick: PropTypes.func,
     onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
@@ -56,6 +57,7 @@ export default class ButtonBase extends Component {
     onTouchStart: PropTypes.func,
     ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     role: PropTypes.string,
+    tabIndex: PropTypes.string,
     type: PropTypes.string,
   };
 
@@ -95,16 +97,23 @@ export default class ButtonBase extends Component {
   keyDown = false; // Used to help track keyboard activation keyDown
 
   handleKeyDown = (event) => {
+    const { component, focusRipple, onKeyDown, onClick } = this.props;
+    const key = keycode(event);
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (this.props.focusRipple && !this.keyDown && this.state.keyboardFocused && keycode(event) === 'space') {
+    if (focusRipple && !this.keyDown && this.state.keyboardFocused && key === 'space') {
       this.keyDown = true;
       event.persist();
       this.ripple.stop(event, () => {
         this.ripple.start(event);
       });
     }
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(event);
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+    // Keyboard accessibility
+    if (onClick && component !== 'a' && component !== 'button' && key === 'space') {
+      event.preventDefault();
+      onClick(event);
     }
   };
 

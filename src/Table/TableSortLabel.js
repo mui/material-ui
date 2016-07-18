@@ -15,6 +15,9 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
       '&:hover': {
         color: theme.palette.text.primary,
       },
+      '&:focus': {
+        color: theme.palette.text.primary,
+      },
       '& active': {
         color: theme.palette.text.primary,
         icon: {

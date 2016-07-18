@@ -1,6 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
+import keycode from 'keycode';
 import {
   Table,
   TableHead,
@@ -41,6 +42,8 @@ class EnhancedTableHead extends Component {
   createSortHandler = (property) => {
     return (event) => this.props.onRequestSort(event, property);
   };
+
+  handleKeyDown
 
   render() {
     const { order, orderBy } = this.props;
@@ -195,6 +198,12 @@ export default class EnhancedTable extends Component {
     return this.setState({ selected: [] });
   };
 
+  handleKeyDown = (event, id) => {
+    if (keycode(event) === 'space') {
+      this.handleClick(event, id);
+    }
+  }
+
   handleClick = (event, id) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
@@ -241,6 +250,10 @@ export default class EnhancedTable extends Component {
                 <TableRow
                   hover
                   onClick={(event) => this.handleClick(event, n.id)}
+                  onKeyDown={(event) => this.handleKeyDown(event, n.id)}
+                  role="checkbox"
+                  aria-checked={isSelected}
+                  tabIndex="-1"
                   key={n.id}
                   selected={isSelected}
                 >

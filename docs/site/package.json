@@ -30,7 +30,6 @@
     "object-assign": "^4.1.0",
     "raw-loader": "^0.5.1",
     "react": "^15.2.0",
-    "react-a11y": "^0.3.3",
     "react-addons-perf": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-hot-loader": "^3.0.0-beta.2",
