@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
+import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
   return {
@@ -10,6 +11,7 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
       justifyContent: 'flex-start',
       flexDirection: 'inherit',
       alignItems: 'center',
+      background: 'transparent',
       '&:hover': {
         color: theme.palette.text.primary,
       },
@@ -40,17 +42,22 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
 export default function TableSortLabel(props, context) {
   const { active, className, children, direction, ...other } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
-  const classNames = ClassNames(classes.root, {
+  const rootClasses = ClassNames(classes.root, {
     [classes.active]: active,
   }, className);
   const iconClasses = ClassNames(classes.icon, {
     [classes[direction]]: !!direction,
   }, 'material-icons');
   return (
-    <span className={classNames} {...other} role="button">
+    <ButtonBase
+      className={rootClasses}
+      component="span"
+      ripple={false}
+      {...other}
+    >
       {children}
       <span className={iconClasses}>arrow_downward</span>
-    </span>
+    </ButtonBase>
   );
 }
 

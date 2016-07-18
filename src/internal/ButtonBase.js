@@ -224,8 +224,9 @@ export default class ButtonBase extends Component {
     if (element === 'button') {
       buttonProps.type = type;
       buttonProps.disabled = disabled;
-    } else if (element !== 'a' && !this.props.role) {
-      buttonProps.role = 'button';
+    } else if (element !== 'a') {
+      buttonProps.role = this.props.hasOwnProperty('role') ? this.props.role : 'button';
+      buttonProps.tabIndex = this.props.hasOwnProperty('tabIndex') ? this.props.tabIndex : '0';
     }
 
     return React.createElement(

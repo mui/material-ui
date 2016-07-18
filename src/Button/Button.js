@@ -3,22 +3,6 @@ import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
-function createButtonColorRule(main, contrast, hover) {
-  return {
-    color: main,
-    '&raised': {
-      color: contrast,
-      backgroundColor: main,
-      '&:hover': {
-        backgroundColor: hover,
-      },
-      '&disabled': {
-        backgroundColor: main,
-      },
-    },
-  };
-}
-
 export const styleSheet = createStyleSheet('Button', (theme) => {
   const { palette, shadows, transitions, typography } = theme;
 
@@ -39,9 +23,6 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         textDecoration: 'none',
         backgroundColor: palette.text.divider,
       },
-      '&disabled': {
-        backgroundColor: 'transparent',
-      },
     },
     disabled: {
       opacity: 0.4,
@@ -51,6 +32,12 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       display: 'inherit',
       alignItems: 'inherit',
       justifyContent: 'inherit',
+    },
+    primary: {
+      color: palette.primary[500],
+    },
+    accent: {
+      color: palette.accent.A200,
     },
     raised: {
       color: palette.getContrastText(palette.grey[300]),
@@ -67,7 +54,20 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       },
       '&disabled': {
         boxShadow: shadows[0],
-        backgroundColor: palette.grey[300],
+      },
+    },
+    raisedPrimary: {
+      color: palette.getContrastText(palette.primary[500]),
+      backgroundColor: palette.primary[500],
+      '&:hover': {
+        backgroundColor: palette.primary[700],
+      },
+    },
+    raisedAccent: {
+      color: palette.getContrastText(palette.accent.A200),
+      backgroundColor: palette.accent.A200,
+      '&:hover': {
+        backgroundColor: palette.accent.A400,
       },
     },
     fab: {
@@ -81,16 +81,6 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         boxShadow: shadows[12],
       },
     },
-    primary: createButtonColorRule(
-      palette.primary[500],
-      palette.getContrastText(palette.primary[500]),
-      palette.primary[700]
-    ),
-    accent: createButtonColorRule(
-      palette.accent.A200,
-      palette.getContrastText(palette.accent.A200),
-      palette.accent.A400
-    ),
   };
 });
 
@@ -190,8 +180,10 @@ export default class Button extends Component {
       [classes.root]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
-      [classes.primary]: primary,
-      [classes.accent]: accent,
+      [classes.primary]: !raised && primary,
+      [classes.accent]: !raised && accent,
+      [classes.raisedPrimary]: (raised || fab) && primary,
+      [classes.raisedAccent]: (raised || fab) && accent,
       [classes.disabled]: disabled,
     }, className);
 

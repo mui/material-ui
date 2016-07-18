@@ -34,7 +34,7 @@ export default class Checkboxes extends Component {
           onChange={(event, checked) => this.setState({ checkedB: checked })}
         />
         <Checkbox
-          checked={this.state.checkedB}
+          checked={this.state.checkedC}
           className={classes.checkbox}
           onChange={(event, checked) => this.setState({ checkedC: checked })}
         />

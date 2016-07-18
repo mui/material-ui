@@ -31,10 +31,11 @@ describe('<ButtonBase>', () => {
       assert.strictEqual(wrapper.prop('type'), 'submit', 'should be type submit');
     });
 
-    it('should change the button component and role', () => {
+    it('should change the button component and add accessibility requirements', () => {
       const wrapper = shallow(<ButtonBase component="span" role="checkbox" />);
       assert.strictEqual(wrapper.is('span'), true, 'should be a span');
       assert.strictEqual(wrapper.prop('role'), 'checkbox', 'should be role checkbox');
+      assert.strictEqual(wrapper.prop('tabIndex'), '0', 'should be 0');
     });
 
     it('should spread props on button', () => {

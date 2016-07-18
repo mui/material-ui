@@ -4,7 +4,7 @@ import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('CircularFab', () => {
+const styleSheet = createStyleSheet('CircularFab', (theme) => {
   return {
     wrapper: {
       position: 'relative',
@@ -36,6 +36,7 @@ export default class CircularFab extends Component {
   handleButtonClick = () => {
     if (!this.state.loading) {
       this.setState({
+        success: false,
         loading: true,
       }, () => {
         setTimeout(() => {

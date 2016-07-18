@@ -15,7 +15,7 @@ import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 
-const styleSheet = createStyleSheet('BasicTable', () => {
+const styleSheet = createStyleSheet('EnhancedTable', () => {
   return {
     paper: {
       width: '100%',
