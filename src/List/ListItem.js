@@ -419,8 +419,9 @@ class ListItem extends Component {
 
   handleNestedListToggle = (event) => {
     event.stopPropagation();
-    this.setState({open: !this.state.open});
-    this.props.onNestedListToggle(this);
+    this.setState({open: !this.state.open}, () => {
+      this.props.onNestedListToggle(this);
+    });
   };
 
   handleRightIconButtonKeyboardFocus = (event, isKeyboardFocused) => {
