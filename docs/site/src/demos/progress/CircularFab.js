@@ -4,7 +4,7 @@ import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('CircularFab', (theme) => {
+const styleSheet = createStyleSheet('CircularFab', () => {
   return {
     wrapper: {
       position: 'relative',
