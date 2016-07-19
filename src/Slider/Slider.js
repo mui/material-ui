@@ -465,11 +465,15 @@ class Slider extends Component {
   };
 
   dragHandler = (event) => {
-    if (this.dragRunning) {
+    // Browsers stack all the repeated rAF requests
+    if (this.dragTicking) {
       return;
     }
-    this.dragRunning = true;
-    requestAnimationFrame(() => {
+    this.dragTicking = true;
+
+    window.requestAnimationFrame(() => {
+      this.dragTicking = false;
+
       let pos;
       if (isMouseControlInverted(this.props.axis)) {
         pos = this.getTrackOffset() - event[mainAxisClientOffsetProperty[this.props.axis]];
@@ -477,16 +481,19 @@ class Slider extends Component {
         pos = event[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
       }
       this.onDragUpdate(event, pos);
-      this.dragRunning = false;
     });
   };
 
   dragTouchHandler = (event) => {
-    if (this.dragRunning) {
+    // Browsers stack all the repeated rAF requests
+    if (this.dragTicking) {
       return;
     }
-    this.dragRunning = true;
-    requestAnimationFrame(() => {
+    this.dragTicking = true;
+
+    window.requestAnimationFrame(() => {
+      this.dragTicking = false;
+
       let pos;
       if (isMouseControlInverted(this.props.axis)) {
         pos = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
@@ -494,7 +501,6 @@ class Slider extends Component {
         pos = event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
       }
       this.onDragUpdate(event, pos);
-      this.dragRunning = false;
     });
   };
 
