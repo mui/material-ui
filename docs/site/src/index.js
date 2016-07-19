@@ -6,11 +6,12 @@ import React from 'react';
 import ReactPerf from 'react-addons-perf';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import a11y from 'react-a11y';
 
-if (process.env.NODE_ENV !== 'production') {
-  a11y(React, { includeSrcNode: true, ReactDOM });
-}
+// import a11y from 'react-a11y';
+
+// if (process.env.NODE_ENV !== 'production') {
+//   a11y(React, { includeSrcNode: true, ReactDOM });
+// }
 
 
 window.Perf = ReactPerf;

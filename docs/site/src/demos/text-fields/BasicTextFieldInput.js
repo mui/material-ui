@@ -14,9 +14,22 @@ export default function BasicTextField(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div>
-      <TextFieldInput defaultValue="Hello world" className={classes.input} />
-      <TextFieldInput placeholder="Placeholder text" className={classes.input} />
-      <TextFieldInput defaultValue="Disabled" disabled className={classes.input} />
+      <TextFieldInput
+        aria-label="label"
+        defaultValue="Hello world"
+        className={classes.input}
+      />
+      <TextFieldInput
+        aria-label="label"
+        placeholder="Placeholder text"
+        className={classes.input}
+      />
+      <TextFieldInput
+        aria-label="label"
+        defaultValue="Disabled"
+        disabled
+        className={classes.input}
+      />
     </div>
   );
 }
