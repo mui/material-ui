@@ -6,22 +6,13 @@ import PropTypeDescription from '../../../PropTypeDescription';
 import MarkdownElement from '../../../MarkdownElement';
 
 import drawerReadmeText from './README';
-import DrawerSimpleExample from './ExampleSimple';
-import drawerSimpleExampleCode from '!raw!./ExampleSimple';
-import DrawerUndockedExample from './ExampleUndocked';
-import drawerUndockedExampleCode from '!raw!./ExampleUndocked';
-import DrawerOpenSecondaryExample from './ExampleOpenSecondary';
-import drawerOpenSecondaryExampleCode from '!raw!./ExampleOpenSecondary';
+import DrawerExampleSimple from './ExampleSimple';
+import drawerExampleSimpleCode from '!raw!./ExampleSimple';
+import DrawerExampleUndocked from './ExampleUndocked';
+import drawerExampleUndockedCode from '!raw!./ExampleUndocked';
+import DrawerExampleOpenSecondary from './ExampleOpenSecondary';
+import drawerExampleOpenSecondaryCode from '!raw!./ExampleOpenSecondary';
 import drawerCode from '!raw!material-ui/Drawer/Drawer';
-
-const descriptions = {
-  simple: 'A simple controlled `Drawer`. The Drawer is `docked` by default, ' +
-  'remaining open unless closed through the `open` prop.',
-  undocked: 'An undocked controlled `Drawer` with custom width. ' +
-  'The Drawer can be cancelled by clicking the overlay or pressing the Esc key. ' +
-  'It closes when an item is selected, handled by controlling the `open` prop.',
-  right: 'The `openSecondary` prop allows the Drawer to open on the opposite side.',
-};
 
 const DrawerPage = () => (
   <div>
@@ -29,24 +20,21 @@ const DrawerPage = () => (
     <MarkdownElement text={drawerReadmeText} />
     <CodeExample
       title="Docked example"
-      description={descriptions.simple}
-      code={drawerSimpleExampleCode}
+      code={drawerExampleSimpleCode}
     >
-      <DrawerSimpleExample />
+      <DrawerExampleSimple />
     </CodeExample>
     <CodeExample
       title="Undocked example"
-      description={descriptions.undocked}
-      code={drawerUndockedExampleCode}
+      code={drawerExampleUndockedCode}
     >
-      <DrawerUndockedExample />
+      <DrawerExampleUndocked />
     </CodeExample>
     <CodeExample
       title="Open secondary example"
-      description={descriptions.right}
-      code={drawerOpenSecondaryExampleCode}
+      code={drawerExampleOpenSecondaryCode}
     >
-      <DrawerOpenSecondaryExample />
+      <DrawerExampleOpenSecondary />
     </CodeExample>
     <PropTypeDescription code={drawerCode} />
   </div>

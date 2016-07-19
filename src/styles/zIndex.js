@@ -3,6 +3,8 @@ export default {
   appBar: 1100,
   drawerOverlay: 1200,
   drawer: 1300,
+  slidingSheetOverlay: 1200,
+  slidingSheet: 1300,
   dialogOverlay: 1400,
   dialog: 1500,
   layer: 2000,

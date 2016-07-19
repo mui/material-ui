@@ -49,6 +49,9 @@ export default function getMuiTheme(muiTheme, ...more) {
       secondaryTextColor: palette.alternateTextColor,
       fontWeight: typography.fontWeightMedium,
     },
+    bottomSheet: {
+      color: palette.canvasColor,
+    },
     button: {
       height: 36,
       minWidth: 88,

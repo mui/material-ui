@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class DrawerOpenRightExample extends React.Component {
+/**
+ * The `openSecondary` prop allows the Drawer to open on the opposite side.
+ */
 
-  constructor(props) {
-    super(props);
+export default class DrawerExampleOpenSecondary extends Component {
+
+  constructor() {
+    super();
     this.state = {open: false};
   }
 
