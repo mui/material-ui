@@ -16,7 +16,6 @@ function getStyles(props, context) {
       display: 'inline-block',
       verticalAlign: 'top',
       whiteSpace: 'normal',
-      paddingRight: '90px',
     },
     avatar: {
       marginRight: 16,
