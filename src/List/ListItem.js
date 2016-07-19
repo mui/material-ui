@@ -624,7 +624,7 @@ class ListItem extends Component {
     }
 
     const nestedList = nestedItems.length ? (
-      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open} style={nestedListStyle}>
+      <NestedList nestedLevel={nestedLevel} open={this.state.open} style={nestedListStyle}>
         {nestedItems}
       </NestedList>
     ) : undefined;
