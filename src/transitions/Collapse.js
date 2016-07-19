@@ -76,7 +76,7 @@ export default class Collapse extends Component {
   handleEnter = (element) => {
     element.style.height = '0px';
     if (this.props.onEnter) {
-      this.props.onEnter();
+      this.props.onEnter(element);
     }
   };
 
@@ -97,7 +97,7 @@ export default class Collapse extends Component {
     element.style.height = `${wrapperHeight}px`;
 
     if (this.props.onEntering) {
-      this.props.onEntering();
+      this.props.onEntering(element);
     }
   };
 
@@ -105,7 +105,7 @@ export default class Collapse extends Component {
     element.style.height = 'auto';
     reflow(element);
     if (this.props.onEntered) {
-      this.props.onEntered();
+      this.props.onEntered(element);
     }
   };
 
@@ -114,14 +114,14 @@ export default class Collapse extends Component {
     element.style.height = `${wrapperHeight}px`;
     reflow(element);
     if (this.props.onExit) {
-      this.props.onExit();
+      this.props.onExit(element);
     }
   };
 
   handleExiting = (element) => {
     element.style.height = '0px';
     if (this.props.onExiting) {
-      this.props.onExiting();
+      this.props.onExiting(element);
     }
   };
 

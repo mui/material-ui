@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createMuiTheme, createPalette } from 'material-ui/styles/theme';
 import { blue, pink } from 'material-ui/styles/colors';
 import AppRouter from './AppRouter';
+import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism';
 
 function App(props) {
   const { dark, ...other } = props;
@@ -13,6 +14,12 @@ function App(props) {
     accent: pink,
     type: dark ? 'dark' : 'light',
   }));
+
+  if (dark) {
+    setPrismTheme(darkTheme);
+  } else {
+    setPrismTheme(lightTheme);
+  }
 
   return (
     <MuiThemeProvider theme={muiTheme} {...other}>

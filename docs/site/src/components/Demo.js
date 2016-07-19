@@ -9,13 +9,14 @@ const requireDemos = require.context('../demos', true, /\.js$/);
 const requireDemoSource = require.context('!raw!../demos', true, /\.js$/);
 
 const styleSheet = createStyleSheet('Demo', (theme) => {
+  const { palette, mixins } = theme;
   return {
     root: {
       position: 'relative',
-      backgroundColor: theme.palette.background.contentFrame,
+      backgroundColor: palette.background.contentFrame,
       marginBottom: 40,
     },
-    demo: theme.mixins.gutters({
+    demo: mixins.gutters({
       display: 'flex',
       justifyContent: 'center',
       paddingTop: 20,
@@ -30,8 +31,9 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
     code: {
       padding: 0,
       margin: 0,
-      '@raw pre': { // override prism styles
-        backgroundColor: `${theme.palette.background.contentFrame} !important`,
+      '@raw pre': {
+        color: `${theme.palette.text.primary} !important`,
+        backgroundColor: `${palette.background.paper} !important`,
         margin: '0px !important',
         borderRadius: '0px !important',
       },
