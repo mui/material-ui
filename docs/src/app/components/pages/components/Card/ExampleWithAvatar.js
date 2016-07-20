@@ -7,12 +7,12 @@ const CardExampleWithAvatar = () => (
     <CardHeader
       title="URL Avatar"
       subtitle="Subtitle"
-      avatar="http://lorempixel.com/100/100/nature/"
+      avatar="images/jsa-128.jpg"
     />
     <CardMedia
       overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
     >
-      <img src="http://lorempixel.com/600/337/nature/" />
+      <img src="images/nature-600-337.jpg" />
     </CardMedia>
     <CardTitle title="Card title" subtitle="Card subtitle" />
     <CardText>
