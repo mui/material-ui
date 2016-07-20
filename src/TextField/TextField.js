@@ -92,7 +92,7 @@ const getStyles = (props, context, state) => {
       styles.input.marginTop = 14;
     }
 
-    if (state.errorText) {
+    if (state.errorText && !(props.errorStyle && props.errorStyle.bottom)) {
       styles.error.bottom = !props.multiLine ? styles.error.fontSize + 3 : 3;
     }
   }
