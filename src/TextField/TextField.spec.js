@@ -141,4 +141,23 @@ describe('<TextField />', () => {
       assert.strictEqual(wrapper.find(TextFieldLabel).props().style.color, 'blue');
     });
   });
+
+  describe('prop: errorStyle', () => {
+    it('should override the errorText', () => {
+      const wrapper = shallowWithContext(
+        <TextField
+          id="foo"
+          floatingLabelText="password"
+          errorStyle={{
+            color: 'red',
+            bottom: 10,
+          }}
+          errorText="error message"
+        />
+      );
+
+      const errorWrapper = wrapper.children().last();
+      assert.strictEqual(errorWrapper.props().style.bottom, 10, 'Users should have the higher priority');
+    });
+  });
 });
