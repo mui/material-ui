@@ -4,7 +4,7 @@ import List from './List';
 class NestedList extends Component {
   static propTypes = {
     children: PropTypes.node,
-    nestedLevel: PropTypes.number,
+    nestedLevel: PropTypes.number.isRequired,
     open: PropTypes.bool,
     /**
      * Override the inline-styles of the root element.
@@ -13,7 +13,6 @@ class NestedList extends Component {
   };
 
   static defaultProps = {
-    nestedLevel: 1,
     open: false,
   };
 
