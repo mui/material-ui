@@ -25,6 +25,24 @@ Examples:
 - Remove a workaround regarding the context propagation as it was fixed in the React Core.
 Upgrade to React v15.2.1 if you are affected. (#4729)
 
+##### Component Fixes / Enhancements
+- [React] For more invalid props warning (#4667, #4675, #4685, #4725)
+- [Dependencies] Update to the latest release version (#4669)
+- [Popover] Forward the animation proporty to this component (#4702)
+- [MenuItem] Add cursor pointer back to the menu items (#4715)
+- [Snackbar] change the action's PropType to node (#4716)
+- [List] Prefix the style properties (#1cb0617)
+- [TextField] False should be a valid value (#4728)
+- [Menu] TypeError: key is undefined (#4734)
+- [ListItem] Trigger onNestedListToggle callback after state update (#4743)
+- [ListItem] Fix incorrect nestedLevel (#4744)
+
+##### Core
+- [eslint] Find new rules with ease (#4521)
+
+##### Docs
+- [ROADMAP] Remove addressed issues (#4745)
+- [Docs] Replaces images on Card page with hosted images (#4748)
 
 ## 0.15.2
 ###### _Jul 7, 2016_
