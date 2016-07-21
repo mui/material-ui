@@ -382,6 +382,11 @@ class AppNavDrawer extends Component {
                 href="#/components/text-field"
               />,
               <ListItem
+                primaryText="Text Field Flat"
+                value="/components/text-field-flat"
+                href="#/components/text-field-flat"
+              />,
+              <ListItem
                 primaryText="Time Picker"
                 value="/components/time-picker"
                 href="#/components/time-picker"
