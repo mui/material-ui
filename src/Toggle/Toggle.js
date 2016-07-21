@@ -59,6 +59,14 @@ function getStyles(props, context, state) {
       backgroundColor: toggle.thumbDisabledColor,
       cursor: 'not-allowed',
     },
+    trackWhenDisabledAndSwitched: {
+      backgroundColor: toggle.trackDisabledAndSwitchedColor,
+      cursor: 'not-allowed'
+    },
+    thumbWhenDisabledAndSwitched: {
+      backgroundColor: toggle.thumbDisabledAndSwitchedColor,
+      cursor: 'not-allowed'
+    },
     label: {
       color: disabled ? toggle.labelDisabledColor : toggle.labelColor,
       width: `calc(100% - ${(toggleTrackWidth + 10)}px)`,
@@ -196,14 +204,16 @@ class Toggle extends Component {
       styles.track,
       this.props.trackStyle,
       this.state.switched && styles.trackWhenSwitched,
-      this.props.disabled && styles.trackWhenDisabled
+      this.props.disabled && styles.trackWhenDisabled,
+      this.state.switched && this.props.disabled && styles.trackWhenDisabledAndSwitched
     );
 
     const thumbStyles = Object.assign({},
       styles.thumb,
       this.props.thumbStyle,
       this.state.switched && styles.thumbWhenSwitched,
-      this.props.disabled && styles.thumbWhenDisabled
+      this.props.disabled && styles.thumbWhenDisabled,
+      this.state.switched && this.props.disabled && styles.thumbWhenDisabledAndSwitched
     );
 
     if (this.state.switched) {
