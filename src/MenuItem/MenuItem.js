@@ -13,7 +13,7 @@ const nestedMenuStyle = {
 function getStyles(props, context) {
   const disabledColor = context.muiTheme.baseTheme.palette.disabledColor;
   const textColor = context.muiTheme.baseTheme.palette.textColor;
-  const leftIndent = props.desktop ? 64 : 72;
+  const indent = props.desktop ? 64 : 72;
   const sidePadding = props.desktop ? 24 : 16;
 
   const styles = {
@@ -26,8 +26,8 @@ function getStyles(props, context) {
     },
 
     innerDivStyle: {
-      paddingLeft: props.leftIcon || props.insetChildren || props.checked ? leftIndent : sidePadding,
-      paddingRight: sidePadding,
+      paddingLeft: props.leftIcon || props.insetChildren || props.checked ? indent : sidePadding,
+      paddingRight: props.rightIcon ? indent : sidePadding,
       paddingBottom: 0,
       paddingTop: 0,
     },
