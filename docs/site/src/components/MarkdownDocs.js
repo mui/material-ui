@@ -10,7 +10,7 @@ const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
       '@raw pre': {
         margin: '25px 0',
         padding: '12px 18px',
-        backgroundColor: theme.palette.background.contentFrame,
+        backgroundColor: theme.palette.background.paper,
         borderRadius: 3,
         '@raw code': {
           padding: 0,
@@ -21,7 +21,7 @@ const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
         padding: '3px 6px',
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.background.contentFrame,
+        backgroundColor: theme.palette.background.paper,
         fontSize: 14,
       },
     },
