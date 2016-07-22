@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet('FlatButtons', (theme) => {
+const styleSheet = createStyleSheet('PaperSheet', (theme) => {
   return {
     root: theme.mixins.gutters({
       paddingTop: 5,
