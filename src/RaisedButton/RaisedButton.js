@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, cloneElement, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
@@ -362,9 +362,9 @@ class RaisedButton extends Component {
       </span>
     );
 
-    const iconCloned = icon && React.cloneElement(icon, {
+    const iconCloned = icon && cloneElement(icon, {
       color: icon.props.color || styles.label.color,
-      style: styles.icon,
+      style: Object.assign(styles.icon, icon.props.style),
     });
 
     // Place label before or after children.
