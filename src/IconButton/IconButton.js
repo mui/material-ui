@@ -51,7 +51,8 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
 export default class IconButton extends Component {
   static propTypes = {
     /**
-     * Can be used to pass a `FontIcon` element as the icon for the button.
+     * The icon element. If a string is passed,
+     * it will be used as a material icon font ligature
      */
     children: PropTypes.node,
     /**
