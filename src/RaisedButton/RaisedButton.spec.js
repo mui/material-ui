@@ -146,4 +146,14 @@ describe('<RaisedButton />', () => {
       assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
     });
   });
+
+  describe('props: icon', () => {
+    it('should keep the style set on the icon', () => {
+      const wrapper = shallowWithContext(
+        <RaisedButton icon={<ActionAndroid style={{foo: 'bar'}} />} />
+      );
+
+      assert.strictEqual(wrapper.find(ActionAndroid).props().style.foo, 'bar');
+    });
+  });
 });
