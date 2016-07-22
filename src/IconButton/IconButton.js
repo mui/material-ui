@@ -7,7 +7,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
   const { palette } = theme;
   return {
     root: {
-      display: 'flex',
+      display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
@@ -39,6 +39,15 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
   };
 });
 
+/**
+ * @see https://material.google.com/components/buttons.html
+ *
+ * ```js
+ * import IconButton from 'material-ui/IconButton';
+ *
+ * const Component = () => <IconButton>delete</IconButton>;
+ * ```
+ */
 export default class IconButton extends Component {
   static propTypes = {
     /**
