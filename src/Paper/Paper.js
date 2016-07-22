@@ -23,6 +23,15 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
   };
 });
 
+/**
+ * A piece of material paper.
+ *
+ * ```js
+ * import Paper from 'material-ui/Paper';
+ *
+ * const Component = () => <Paper zDepth={8}>Hello World</Paper>;
+ * ```
+ */
 export default function Paper(props, context) {
   const { className, rounded, zDepth, ...other } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
@@ -38,8 +47,17 @@ export default function Paper(props, context) {
 }
 
 Paper.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * Set to false to disable rounded corners
+   */
   rounded: PropTypes.bool,
+  /**
+   * Shadow depth, corresponds to `dp` in the spec
+   */
   zDepth: PropTypes.number,
 };
 
