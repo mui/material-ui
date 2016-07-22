@@ -12,9 +12,24 @@ export const styleSheet = createStyleSheet('TableHead', (theme) => {
   };
 });
 
+/**
+ * A material table head.
+ *
+ * ```jsx
+ * <TableHead>
+ *   <TableRow>....</TableRow>
+ * </TableHead>
+ * ```
+ */
 export default class TableHead extends Component {
   static propTypes = {
+    /**
+     * Should be valid `<thead>` children such as `TableRow`.
+     */
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
   };
 

@@ -90,10 +90,8 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
  *
  * @see https://material.google.com/components/buttons.html
  *
- * ```js
- * import Button from 'material-ui/Button';
- *
- * const Component = () => <Button>Hello World</Button>;
+ * ```jsx
+ * <Button>Hello World</Button>
  * ```
  */
 export default class Button extends Component {

@@ -63,6 +63,7 @@ export const dark = {
     hint: 'rgba(255, 255, 255, 0.50)',
     icon: 'rgba(255, 255, 255, 0.50)',
     divider: 'rgba(255, 255, 255, 0.12)',
+    lightDivider: 'rgba(255, 255, 255, 0.075)',
   },
   background: {
     default: '#303030',

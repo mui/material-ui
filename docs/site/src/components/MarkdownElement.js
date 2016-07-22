@@ -25,7 +25,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       fontSize: 13,
       color: theme.palette.text.primary,
     },
-    '@raw td, th': {
+    '@raw td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
       padding: '0 56px 0 24px',
       '&:last-child': {
@@ -36,8 +36,20 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       },
       textAlign: 'left',
     },
+    '@raw td code': {
+      fontSize: 13,
+    },
     '@raw th': {
       whiteSpace: 'pre',
+      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+      padding: '0 56px 0 24px',
+      '&:last-child': {
+        paddingRight: 24,
+      },
+      '& compact': {
+        paddingRight: 24,
+      },
+      textAlign: 'left',
     },
     '@raw tr': {
       height: 48,

@@ -42,6 +42,9 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
   };
 });
 
+/**
+ * A button based label for placing inside `TableCell` for column sorting.
+ */
 export default function TableSortLabel(props, context) {
   const { active, className, children, direction, ...other } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
@@ -65,10 +68,22 @@ export default function TableSortLabel(props, context) {
 }
 
 TableSortLabel.propTypes = {
+  /**
+   * If set to true, will have the active styling (should be true for the sorted column)
+   */
   active: PropTypes.bool,
-  children: PropTypes.any,
+  /**
+   * Label contents, the arrow will be appended automatically and aligned using flexbox
+   */
+  children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
-  direction: PropTypes.string.isRequired,
+  /**
+   * The current sort direction
+   */
+  direction: PropTypes.oneOf(['asc, desc']),
 };
 
 TableSortLabel.defaultProps = {

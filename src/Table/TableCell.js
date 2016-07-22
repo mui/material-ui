@@ -35,6 +35,15 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
   };
 });
 
+/**
+ * A material table cell.
+ *
+ * When placed in a `TableHead`, this will automatically render a `th` element.
+ *
+ * ```jsx
+ * <TableCell>Hello</TableCell>
+ * ```
+ */
 export default function TableCell(props, context) {
   const { className, children, compact, checkbox, numeric, padding, ...other } = props;
   const { table, styleManager } = context;
@@ -58,11 +67,29 @@ export default function TableCell(props, context) {
 }
 
 TableCell.propTypes = {
+  /**
+   * If true, the cell padding will be adjusted to better accomodate a checkbox
+   */
   checkbox: PropTypes.bool,
+  /**
+   * The table cell contents
+   */
   children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * If set to true, will use more compact cell padding to accomodate more content
+   */
   compact: PropTypes.bool,
+  /**
+   * If set to true, will align content to the right hand side
+   */
   numeric: PropTypes.bool,
+  /**
+   * If set to false, will disable left/right cell padding
+   */
   padding: PropTypes.bool,
 };
 

@@ -13,9 +13,26 @@ export const styleSheet = createStyleSheet('Table', () => {
   };
 });
 
+/**
+ * A material table root element.
+ *
+ * ```jsx
+ * <Table>
+ *   <TableHeader>....</TableHeader>
+ *   <TableBody>....</TableBody>
+ * </Table>
+ * ```
+ */
 export default class Table extends Component {
   static propTypes = {
+    /**
+     * Should be valid `<table>` children such as
+     * `TableHeader` and `TableBody`.
+     */
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
   };
 
