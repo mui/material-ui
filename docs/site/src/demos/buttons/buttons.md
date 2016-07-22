@@ -23,3 +23,11 @@ A floating action button represents the primary action in an application. Shaped
 Only one floating action button is recommended per screen to represent the most common action.
 
 {{demo='buttons/FloatingActionButtons.js'}}
+
+## Icon Buttons
+
+Icon buttons are commonly found in app bars and toolbars.
+
+Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+
+{{demo='buttons/IconButtons.js'}}

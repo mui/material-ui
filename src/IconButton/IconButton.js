@@ -7,7 +7,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
   const { palette } = theme;
   return {
     root: {
-      display: 'flex',
+      display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
