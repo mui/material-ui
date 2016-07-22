@@ -1,3 +1,29 @@
+## next 
+
+Changes. Changes everywhere!
+
+##### General
+- [Docs] New documentation site!
+- [Docs] Markdown API doc generation from components
+- [Docs] Docs literature markdown files re-organized 
+- [Core] Theming revamped
+- [Core] Internal components refactored
+- [Core] Replaced inline styling with [`stylishly`](https://github.com/nathanmarks/stylishly)
+  - CSS stylesheets in JS
+  - `className` based approach
+
+##### Components
+
+All components have had API changes ranging from a couple of properties to complete makeovers, please review the documentation for more information. Below is a summary of major changes.
+
+- [Dialog] Rewritten from the ground up. Multiple major issues addressed such as accessibility and proper tab scoping. More composable.
+- [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
+- [Button] Raised/flat/fab are now combined into a single component. 
+
+---
+@nathanmarks MAKE SURE THIS IS PROPERLY REBASED WHEN YOU REBASE NEXT AGAINST MASTER BEFORE THE BIG MERGE
+---
+
 ## HEAD
 
 ##### Breaking Changes
