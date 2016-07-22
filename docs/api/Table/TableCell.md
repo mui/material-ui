@@ -1,7 +1,13 @@
 TableCell
 =========
 
+A material table cell.
 
+When placed in a `TableHead`, this will automatically render a `th` element.
+
+```jsx
+<TableCell>Hello</TableCell>
+```
 
 Props
 -----
@@ -9,9 +15,9 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| checkbox | bool |  |   |
-| children | node |  |   |
-| className | string |  |   |
-| compact | bool |  |   |
-| numeric | bool |  |   |
-| padding | bool | true |   |
+| checkbox | bool |  |  If true, the cell padding will be adjusted to better accomodate a checkbox |
+| children | node |  |  The table cell contents |
+| className | string |  |  The CSS class name of the root element. |
+| compact | bool |  |  If set to true, will use more compact cell padding to accomodate more content |
+| numeric | bool |  |  If set to true, will align content to the right hand side |
+| padding | bool | true |  If set to false, will disable left/right cell padding |

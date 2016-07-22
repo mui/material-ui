@@ -39,7 +39,7 @@ function generatePropType(type) {
 
     case 'enum':
       const values = type.value.map((v) => v.value).join('<br>&nbsp;');
-      return `enum:<br>&nbsp;${values}<br>`;
+      return `enum:&nbsp;${values}<br>`;
 
     default:
       return type.name;
@@ -125,7 +125,7 @@ function generatePropDescription(required, description, type) {
       parsedReturns = parsed.tags[parsedLength - 1];
     } else {
       parsedArgs = parsed.tags;
-      parsedReturns = {type: {name: 'void'}};
+      parsedReturns = { type: { name: 'void' } };
     }
 
     signature += '<br><br>**Signature:**<br>`function(';

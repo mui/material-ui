@@ -6,10 +6,8 @@ touches them.
 
 @see https://material.google.com/components/buttons.html
 
-```js
-import Button from 'material-ui/Button';
-
-const Component = () => <Button>Hello World</Button>;
+```jsx
+<Button>Hello World</Button>
 ```
 
 Props

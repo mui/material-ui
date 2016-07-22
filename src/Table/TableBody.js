@@ -11,9 +11,24 @@ export const styleSheet = createStyleSheet('TableBody', (theme) => {
   };
 });
 
+/**
+ * A material table body.
+ *
+ * ```jsx
+ * <TableBody>
+ *   <TableRow>....</TableRow>
+ * </TableBody>
+ * ```
+ */
 export default class TableBody extends Component {
   static propTypes = {
+    /**
+     * Should be valid `<tbody>` children such as `TableRow`.
+     */
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
   };
 

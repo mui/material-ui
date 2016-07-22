@@ -28,6 +28,18 @@ export const styleSheet = createStyleSheet('TableRow', (theme) => {
   };
 });
 
+/**
+ * A material table row.
+ *
+ * Will automatically set dynamic row height
+ * based on the material table element parent (head, body, etc)
+ *
+ * ```jsx
+ * <TableRow>
+ *   <TableCell>....</TableCell>
+ * </TableRow>
+ * ```
+ */
 export default function TableRow(props, context) {
   const { className, children, hover, selected, ...other } = props;
   const { table, styleManager } = context;
@@ -48,9 +60,21 @@ export default function TableRow(props, context) {
 }
 
 TableRow.propTypes = {
+  /**
+   * Should be valid `<tr>` children such as `TableCell`.
+   */
   children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * If set to true, the table row will shade on hover.
+   */
   hover: PropTypes.bool,
+  /**
+   * If set to true, the table row will have the selected shading.
+   */
   selected: PropTypes.bool,
 };
 

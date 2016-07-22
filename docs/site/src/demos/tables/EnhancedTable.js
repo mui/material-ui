@@ -108,10 +108,15 @@ class EnhancedTableHead extends Component {
 const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => {
   return {
     root: { paddingRight: 12 },
-    highlight: {
-      color: theme.palette.accent[800],
-      backgroundColor: theme.palette.accent[50],
-    },
+    highlight: (
+      theme.palette.type === 'light' ? {
+        color: theme.palette.accent[800],
+        backgroundColor: theme.palette.accent[50],
+      } : {
+        color: theme.palette.accent[50],
+        backgroundColor: theme.palette.accent[800],
+      }
+    ),
     spacer: { flex: '1 1 100%' },
     actions: { color: theme.palette.text.secondary },
     title: { flex: '0 0 auto' },
