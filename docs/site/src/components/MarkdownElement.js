@@ -25,7 +25,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       fontSize: 13,
       color: theme.palette.text.primary,
     },
-    '@raw td, @raw th': {
+    '@raw td, th': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
       padding: '0 56px 0 24px',
       '&:last-child': {
