@@ -39,6 +39,15 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
   };
 });
 
+/**
+ * @see https://material.google.com/components/buttons.html
+ *
+ * ```js
+ * import IconButton from 'material-ui/IconButton';
+ *
+ * const Component = () => <IconButton>delete</IconButton>;
+ * ```
+ */
 export default class IconButton extends Component {
   static propTypes = {
     /**
