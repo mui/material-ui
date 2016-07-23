@@ -29,16 +29,17 @@ export default class Checkboxes extends Component {
           checked={this.state.checkedA}
           className={classes.checkbox}
           onChange={(event, checked) => this.setState({ checkedA: checked })}
+          aria-label="checkedA"
         />
         <Checkbox
           checked={this.state.checkedB}
           className={classes.checkbox}
           onChange={(event, checked) => this.setState({ checkedB: checked })}
+          aria-label="checkedB"
         />
         <Checkbox
-          checked={this.state.checkedC}
           className={classes.checkbox}
-          onChange={(event, checked) => this.setState({ checkedC: checked })}
+          aria-label="checkedC"
         />
       </div>
     );

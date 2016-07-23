@@ -1,9 +1,8 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow weak
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
-import warning from 'warning';
 import IconButton from '../IconButton';
 
 export const styleSheet = createStyleSheet('Checkbox', (theme) => {
@@ -11,22 +10,34 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
     root: {
       display: 'inline-flex',
       alignItems: 'center',
-      cursor: 'pointer',
       color: theme.palette.text.secondary,
     },
     checked: {
       color: theme.palette.accent[500],
     },
+    checkbox: {
+      cursor: 'pointer',
+      position: 'absolute',
+      opacity: 0,
+      width: '100%',
+      height: '100%',
+      top: 0,
+      left: 0,
+      margin: 0,
+      padding: 0,
+    },
   };
 });
 
-let didWarnCheckedDefaultChecked = false;
-let didWarnControlledToUncontrolled = false;
-let didWarnUncontrolledToControlled = false;
-
 export default class Checkbox extends Component {
   static propTypes = {
+    /**
+     * Checkbox is checked if true.
+     */
     checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     /**
      * @ignore
@@ -37,11 +48,12 @@ export default class Checkbox extends Component {
      */
     disabled: PropTypes.bool,
     /**
-     * @ignore
+     * Callback function that is fired when the checkbox is changed.
+     *
+     * @param {object} event `change` event
+     * @param {boolean} checked The `checked` value of the checkbox
      */
-    id: PropTypes.string,
     onChange: PropTypes.func,
-    onClick: PropTypes.func,
     /**
      * If false, the ripple effect will be disabled.
      */
@@ -59,76 +71,29 @@ export default class Checkbox extends Component {
 
     this.isControlled = props.checked !== undefined;
 
-    if (
-      process.env.NODE_ENV !== 'production' &&
-      props.checked !== undefined &&
-      props.defaultChecked !== undefined &&
-      !didWarnCheckedDefaultChecked
-    ) {
-      warning(
-        false,
-        'Input elements must be either controlled or uncontrolled ' +
-        '(specify either the checked prop, or the defaultChecked prop, but not ' +
-        'both). Decide between using a controlled or uncontrolled input ' +
-        'element and remove one of these props. More info: ' +
-        'https://fb.me/react-controlled-components'
-      );
-      didWarnCheckedDefaultChecked = true;
-    }
-
     if (!this.isControlled) { // not controlled, use internal state
-      this.setState({ checked: props.defaultChecked });
+      this.setState({ checked: props.defaultChecked !== undefined ? props.defaultChecked : false });
     }
   }
 
-  componentWillUpdate(nextProps) {
-    if (
-      process.env.NODE_ENV !== 'production' &&
-      this.isControlled !== (nextProps.checked !== undefined)
-    ) {
-      const owner = this._reactInternalInstance._currentElement._owner; // eslint-disable-line no-underscore-dangle
-      if (this.isControlled && !didWarnControlledToUncontrolled) {
-        warning(
-          false,
-          '%s is changing a controlled Checkbox to be uncontrolled. ' +
-          'Input elements should not switch from controlled to uncontrolled (or viceversa). ' +
-          'Decide between using a controlled or uncontrolled input ' +
-          'element for the lifetime of the component. More info: https://fb.me/react-controlled-components',
-          owner && owner.getName() || 'A component',
-        );
-        didWarnControlledToUncontrolled = true;
-      } else if (!didWarnUncontrolledToControlled) {
-        warning(
-          false,
-          '%s is changing an uncontrolled Checkbox to be controlled. ' +
-          'Input elements should not switch from uncontrolled to controlled (or viceversa). ' +
-          'Decide between using an uncontrolled or controlled input ' +
-          'element for the lifetime of the component. More info: https://fb.me/react-controlled-components',
-          owner && owner.getName() || 'A component',
-        );
-        didWarnUncontrolledToControlled = true;
-      }
-    }
-  }
-
+  input = undefined;
   isControlled = undefined;
 
-  handleClick = (event) => {
+  handleChange = (event) => {
     let newChecked;
 
     if (this.isControlled) {
       newChecked = !this.props.checked;
     } else {
       newChecked = !this.state.checked;
+      if (this.input && this.input.checked !== newChecked) {
+        this.input.checked = newChecked;
+      }
       this.setState({ checked: !this.state.checked });
     }
 
     if (this.props.onChange) {
       this.props.onChange(event, newChecked);
-    }
-
-    if (this.props.onClick) {
-      this.props.onClick(event);
     }
   };
 
@@ -137,14 +102,13 @@ export default class Checkbox extends Component {
       checked: checkedProp,
       className,
       disabled,
-      id,
+      onChange, // eslint-disable-line no-unused-vars
+      ripple,
       ...other,
     } = this.props;
 
-    let checked = this.isControlled ? checkedProp : this.state.checked;
-
     const classes = this.context.styleManager.render(styleSheet);
-
+    const checked = this.isControlled ? checkedProp : this.state.checked;
     const classNames = ClassNames(classes.root, {
       [classes.disabled]: disabled,
       [classes.checked]: checked,
@@ -152,17 +116,27 @@ export default class Checkbox extends Component {
 
     return (
       <IconButton
-        id={id}
         component="span"
         className={classNames}
         disabled={disabled}
-        aria-checked={checked}
-        onClick={this.handleClick}
-        tabIndex="0"
+        ripple={ripple}
+        onClick={this.handleChange}
         role="checkbox"
-        {...other}
+        aria-checked={checked}
       >
-        {checked ? 'check_box' : 'check_box_outline_blank'}
+        <span className="material-icons" aria-hidden="true">
+          {checked ? 'check_box' : 'check_box_outline_blank'}
+        </span>
+        <input
+          tabIndex="-1"
+          ref={(c) => this.input = c}
+          type="checkbox"
+          checked={this.isControlled ? checkedProp : undefined}
+          onChange={this.handleChange}
+          className={classes.checkbox}
+          disabled={disabled}
+          {...other}
+        />
       </IconButton>
     );
   }

@@ -6,5 +6,6 @@ sudo: false
 cache:
   directories:
     - node_modules
+    - docs/site/node_modules
 script:
   - ./scripts/run-travis-tests.sh
