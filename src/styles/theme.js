@@ -1,3 +1,5 @@
+// @flow weak
+
 import merge from 'lodash/merge';
 import hashObject from '../utils/hashObject';
 import { getContrastRatio } from './colorManipulator';

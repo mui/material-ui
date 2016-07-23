@@ -1,3 +1,5 @@
+// @flow weak
+
 export default {
   menu: 1000,
   appBar: 1100,

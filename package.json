@@ -36,7 +36,8 @@
     "test:watch": "cross-env NODE_ENV=test babel-node test/watch.js",
     "test:coverage": "cross-env NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/index.js",
     "test:karma": "karma start test/karma.conf.js --single-run",
-    "test:e2e": "node ./scripts/run-e2e-tests.js"
+    "test:e2e": "node ./scripts/run-e2e-tests.js",
+    "flow": "flow"
   },
   "peerDependencies": {
     "react": "^15.0.0",
@@ -88,11 +89,13 @@
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-flowtype": "^2.3.1",
     "eslint-plugin-import": "^1.10.3",
     "eslint-plugin-jsx-a11y": "^2.0.1",
     "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^4.1.0",
     "eslint-plugin-react": "^5.2.2",
+    "flow-bin": "^0.29.0",
     "fs-extra": "^0.30.0",
     "glob": "^7.0.3",
     "http-server": "^0.9.0",

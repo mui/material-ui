@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import shallowEqual from 'recompose/shallowEqual';
@@ -117,7 +119,7 @@ export default class TextFieldInput extends Component {
     return typeof this.props.value === 'string';
   }
 
-  isDirty(obj = this.isControlled() ? this.props : this.input) {
+  isDirty(obj) {
     return obj && obj.value && obj.value.length > 0;
   }
 

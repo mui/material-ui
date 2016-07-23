@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
@@ -95,6 +97,8 @@ export default class ButtonBase extends Component {
 
   ripple = undefined;
   keyDown = false; // Used to help track keyboard activation keyDown
+  button = null;
+  keyboardFocusTimeout = undefined;
 
   handleKeyDown = (event) => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;

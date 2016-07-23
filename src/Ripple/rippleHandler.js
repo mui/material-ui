@@ -1,3 +1,4 @@
+// @flow weak
 
 export function createRippleHandler(instance, eventName, action, cb) {
   return function handleEvent(event) {

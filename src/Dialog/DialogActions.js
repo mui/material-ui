@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
@@ -28,6 +30,8 @@ export default class DialogActions extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
+
+  classes = {};
 
   renderButton = (button) => (
     <div className={this.classes.action}>

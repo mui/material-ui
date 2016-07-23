@@ -15,10 +15,10 @@ module.exports = {
   plugins: [
     'babel',
     'mocha',
+    'flowtype',
     'material-ui',
   ],
   rules: {
-    // Errors
     'array-bracket-spacing': 'off', // use babel plugin rule
     'arrow-body-style': 'off',
     'arrow-parens': 'error',
@@ -36,20 +36,13 @@ module.exports = {
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'],
     'quotes': ['error', 'single', 'avoid-escape'],
-
-    // Babel
     'babel/object-curly-spacing': ['error', 'always'],
     'babel/array-bracket-spacing': ['error', 'never'],
-
-    // Misc
     'import/no-unresolved': 'off',
-
-    // React
     'react/jsx-handler-names': ['error', {
       eventHandlerPrefix: 'handle',
       eventHandlerPropPrefix: 'on',
     }],
-
     'react/jsx-max-props-per-line': ['error', {maximum: 3}],
     'react/jsx-no-duplicate-props': 'error',
     'react/no-danger': 'error',
@@ -67,18 +60,18 @@ module.exports = {
         'render'
       ],
     }],
-
-    // React Disabled
-    // 'react/jsx-no-bind': 'off',
     'react/no-set-state': 'off',
-
-    // Material-UI
     'material-ui/docgen-ignore-before-comment': 'error',
-
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
     'mocha/no-global-tests': 'error',
     'mocha/no-pending-tests': 'error',
     'mocha/no-skipped-tests': 'error',
+    'flowtype/require-valid-file-annotation': ['error', 'always'],
+    'flowtype/require-parameter-type': 'off',
+    'flowtype/require-return-type': 'off',
+    'flowtype/space-after-type-colon': 'off',
+    'flowtype/space-before-type-colon': 'off',
+    'flowtype/type-id-match': 'off',
   },
 };

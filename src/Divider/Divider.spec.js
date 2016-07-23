@@ -1,4 +1,6 @@
+// @flow weak
 /* eslint-env mocha */
+
 import React from 'react';
 import { assert } from 'chai';
 import Divider, { styleSheet } from './Divider';

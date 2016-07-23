@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import IconButton from 'material-ui/IconButton';

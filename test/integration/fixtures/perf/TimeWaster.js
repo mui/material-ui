@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import Perf from 'react-addons-perf';
 import { find } from 'src/utils/helpers';
@@ -22,6 +24,8 @@ export default class TimeWaster extends Component {
     testFn: () => RandomWords(1)[0],
     testProp: 'data-test-prop',
   };
+
+  state = {};
 
   componentWillMount() {
     this.setTestProp();

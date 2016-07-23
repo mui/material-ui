@@ -1,3 +1,6 @@
+// Wait https://github.com/facebook/flow/issues/380 to be fixed
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 export const black = '#000000';
 export const white = '#ffffff';
 

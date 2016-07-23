@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';

@@ -1,4 +1,6 @@
+// @flow weak
 /* eslint-env mocha */
+
 import React from 'react';
 import { assert } from 'chai';
 import Portal from './Portal';
@@ -19,7 +21,7 @@ describe('<Portal>', () => {
     const wrapper = mount(<Portal><h1 className="woof">Hello</h1></Portal>);
     const instance = wrapper.instance();
     assert.strictEqual(wrapper.prop('open'), false, 'should be false by default');
-    assert.strictEqual(instance.layer, undefined, 'should not have a layer');
+    assert.strictEqual(instance.layer, null, 'should not have a layer');
   });
 
   describe('rendering and unrendering', () => {

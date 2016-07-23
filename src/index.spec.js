@@ -1,5 +1,6 @@
-
+// @flow weak
 /* eslint-env mocha */
+
 /**
  * Important: This test also serves as a point to
  * import the entire lib for coverage reporting

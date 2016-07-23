@@ -1,3 +1,5 @@
+// @flow weak
+
 import { PropTypes } from 'react';
 import { mount as enzymeMount } from 'enzyme';
 import { createDefaultContext } from 'src/styles/MuiThemeProvider';

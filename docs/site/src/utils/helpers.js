@@ -1,3 +1,5 @@
+// @flow weak
+
 export function kebabCase(string) {
   return string.split(/ |_|-/).join('-').split('').map((a, i) => {
     if (a.toUpperCase() === a && a !== '-') {

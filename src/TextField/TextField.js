@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+// @flow weak
+
+import React, { Component, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 import { easing } from '../styles/transitions';
@@ -79,6 +81,8 @@ export default class TextField extends Component {
     focused: false,
   };
 
+  classes = {};
+
   handleFocus = () => this.setState({ focused: true });
   handleBlur = () => this.setState({ focused: false });
 
@@ -107,7 +111,7 @@ export default class TextField extends Component {
   };
 
   renderInput = (input) =>
-    React.cloneElement(input, {
+    cloneElement(input, {
       className: ClassNames(this.classes.input, input.props.className),
       onDirty: this.handleDirty,
       onClean: this.handleClean,
@@ -116,7 +120,7 @@ export default class TextField extends Component {
     });
 
   renderLabel = (label) =>
-    React.cloneElement(label, {
+    cloneElement(label, {
       className: ClassNames(this.classes.label, label.props.className),
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),

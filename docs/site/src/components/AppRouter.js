@@ -1,3 +1,5 @@
+// @flow weak
+
 import { hashHistory, Router, Route, IndexRoute, IndexRedirect } from 'react-router';
 import React, { Component } from 'react';
 import AppFrame from './AppFrame';

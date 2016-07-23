@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import {
   unstable_renderSubtreeIntoContainer, // eslint-disable-line camelcase
@@ -29,6 +31,8 @@ export default class Portal extends Component {
     this.unrenderLayer();
   }
 
+  layer = null;
+
   getLayer() {
     return this.layer;
   }
@@ -58,11 +62,8 @@ export default class Portal extends Component {
        * entirely different part of the page.
        */
 
-      const layerElement = !children ? null : React.Children.only(children);
-
-      this.layerElement = unstable_renderSubtreeIntoContainer(
-        this, layerElement, this.layer
-      );
+      const layerElement = React.Children.only(children);
+      unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
       // reflow(this.layer);
     } else {
       this.unrenderLayer();

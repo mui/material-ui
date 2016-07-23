@@ -1,4 +1,6 @@
+// @flow weak
 /* eslint-disable react/no-multi-comp */
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import keycode from 'keycode';
@@ -42,8 +44,6 @@ class EnhancedTableHead extends Component {
   createSortHandler = (property) => {
     return (event) => this.props.onRequestSort(event, property);
   };
-
-  handleKeyDown
 
   render() {
     const { order, orderBy } = this.props;
