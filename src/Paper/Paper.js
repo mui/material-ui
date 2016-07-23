@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Paper', (theme) => {
@@ -15,9 +15,9 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
   return {
     root: {
       backgroundColor: palette.background.paper,
-      '& rounded': {
-        borderRadius: '2px',
-      },
+    },
+    rounded: {
+      borderRadius: '2px',
     },
     ...shadows,
   };

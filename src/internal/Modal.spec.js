@@ -71,6 +71,12 @@ describe('<Modal>', () => {
       assert.strictEqual(backdrop.is('Backdrop'), true, 'should be the backdrop component');
     });
 
+    it('should pass a transitionDuration prop to the transition component', () => {
+      wrapper.setProps({ backdropTransitionDuration: 200 });
+      const transition = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(transition.prop('transitionDuration'), 200);
+    });
+
     it('should attach a handler to the backdrop that fires onRequestClose', () => {
       const onRequestClose = spy();
       wrapper.setProps({ onRequestClose });
@@ -79,33 +85,17 @@ describe('<Modal>', () => {
       const backdrop = wrapper.find('Backdrop');
       assert.strictEqual(backdrop.prop('onClick'), handler, 'should attach the handleBackdropClick handler');
 
-      handler({ isPropagationStopped: () => false });
+      handler({});
       assert.strictEqual(onRequestClose.callCount, 1, 'should fire the onRequestClose callback');
-
-      handler({ isPropagationStopped: () => true });
-      assert.strictEqual(
-        onRequestClose.callCount,
-        1,
-        'should not fire the onRequestClose callback if the event stops propagation'
-      );
     });
 
-    it('should let the user block event propagation to the click handler', () => {
+    it('should let the user disable backdrop click triggering onRequestClose', () => {
       const onRequestClose = spy();
-      const onBackdropClick = (event) => event.stopPropagation();
-      wrapper.setProps({ onBackdropClick, onRequestClose });
+      wrapper.setProps({ onRequestClose, hideOnBackdropClick: false });
 
       const handler = wrapper.instance().handleBackdropClick;
 
-      handler({
-        propagationStopped: false,
-        stopPropagation() {
-          this.propagationStopped = true;
-        },
-        isPropagationStopped() {
-          return this.propagationStopped;
-        },
-      });
+      handler({});
       assert.strictEqual(onRequestClose.callCount, 0, 'should not fire the onRequestClose callback');
     });
   });

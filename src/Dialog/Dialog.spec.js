@@ -18,17 +18,41 @@ describe('<Dialog>', () => {
     assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
   });
 
-  it('should spread custom props on the root node', () => {
+  it('should put Modal specific props on the root Modal node', () => {
+    const onBackdropClick = () => {};
+    const onEscapeKeyUp = () => {};
+    const onRequestClose = () => {};
+    const wrapper = shallow(
+      <Dialog
+        open
+        transitionDuration={100}
+        onBackdropClick={onBackdropClick}
+        onEscapeKeyUp={onEscapeKeyUp}
+        onRequestClose={onRequestClose}
+        hideOnBackdropClick={false}
+        hideOnEscapeKeyUp={false}
+      />
+    );
+    assert.strictEqual(wrapper.prop('show'), true);
+    assert.strictEqual(wrapper.prop('backdropTransitionDuration'), 100);
+    assert.strictEqual(wrapper.prop('onBackdropClick'), onBackdropClick);
+    assert.strictEqual(wrapper.prop('onEscapeKeyUp'), onEscapeKeyUp);
+    assert.strictEqual(wrapper.prop('onRequestClose'), onRequestClose);
+    assert.strictEqual(wrapper.prop('hideOnBackdropClick'), false);
+    assert.strictEqual(wrapper.prop('hideOnEscapeKeyUp'), false);
+  });
+
+  it('should spread custom props on the paper (dialog "root") node', () => {
     const wrapper = shallow(<Dialog data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    assert.strictEqual(wrapper.find('Paper').prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 
-  it('should render with the user classes', () => {
+  it('should render with the user classes on the paper (dialog "root") node', () => {
     const wrapper = shallow(<Dialog className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
+    assert.strictEqual(wrapper.find('Paper').hasClass('woof'), true, 'should have the "woof" class');
   });
 
-  it('should render Slide > div > Paper > children inside the Modal', () => {
+  it('should render Slide > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
     const wrapper = shallow(<Dialog>{children}</Dialog>);
 
@@ -39,20 +63,11 @@ describe('<Dialog>', () => {
       'immediate wrapper child should be Slide'
     );
 
-    const container = slide.childAt(0);
-    assert.strictEqual(
-      container.length === 1 && container.is('div'),
-      true,
-      'Slide child should be div'
-    );
-
-    assert.strictEqual(container.hasClass(classes.container), true, 'should have the container class');
-
-    const paper = container.childAt(0);
+    const paper = slide.childAt(0);
     assert.strictEqual(
       paper.length === 1 && paper.is('Paper'),
       true,
-      'container child should be Paper'
+      'slide child should be Paper'
     );
 
     assert.strictEqual(paper.hasClass(classes.dialog), true, 'should have the dialog class');

@@ -4,8 +4,6 @@ Button
 Buttons communicate the action that will occur when the user
 touches them.
 
-@see https://material.google.com/components/buttons.html
-
 ```jsx
 <Button>Hello World</Button>
 ```

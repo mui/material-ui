@@ -1,16 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
 import ClassNames from 'classnames';
+import Text from '../Text';
 
-export const styleSheet = createStyleSheet('DialogTitle', (theme) => {
+export const styleSheet = createStyleSheet('DialogTitle', () => {
   const gutter = 24;
   return {
     root: {
       margin: 0,
       padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
-      fontSize: theme.typography.title.fontSize,
-      lineHeight: '32px',
-      fontWeight: 400,
     },
   };
 });
@@ -35,7 +33,11 @@ export default class DialogTitle extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     return (
-      <div className={ClassNames(classes.root, className)} {...other}>{children}</div>
+      <div data-mui-test="DialogTitle" className={ClassNames(classes.root, className)} {...other}>
+        {typeof children === 'string' ? (
+          <Text type="title">{children}</Text>
+        ) : children}
+      </div>
     );
   }
 }

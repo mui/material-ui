@@ -23,6 +23,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'arrow-parens': 'error',
     'consistent-this': ['error', 'self'],
+    'func-names': 'off',
     'max-len': ['error', 120, 4], // airbnb use 100
     'new-cap': ['off', {capIsNew: true, newIsCap: true}], // Wishlist, one day
     'newline-per-chained-call': 'off',

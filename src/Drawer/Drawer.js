@@ -11,9 +11,11 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
       overflowY: 'auto',
       display: 'flex',
       flexDirection: 'column',
-      position: 'fixed',
       height: '100vh',
       flex: '1 0 auto',
+      position: 'fixed',
+      top: 0,
+      left: 0,
       zIndex: theme.zIndex.navDrawer,
       willChange: 'transform',
       '&:focus': {

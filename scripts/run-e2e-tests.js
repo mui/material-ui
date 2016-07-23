@@ -52,6 +52,8 @@ function execTests() {
     } else {
       console.log('Connected. Now testing...');
 
+      const other = process.argv.slice(2);
+
       const child = child_process.spawn(
         './node_modules/.bin/nightwatch',
         [
@@ -59,7 +61,7 @@ function execTests() {
           'test/nightwatch.conf.js',
           '-e',
           'chrome_51,safari_9,firefox_46,ie_edge,ie_11,ie_10',
-        ],
+        ].concat(other),
         {
           stdio: [0, 0, 0],
         }
