@@ -17,3 +17,4 @@ Props
 | onExit | function |  |  Callback fired before the component is exiting |
 | onExiting | function |  |  Callback fired when the component is exiting |
 | onExited | function |  |  Callback fired when the component has exited |
+| transitionDuration | number | 300 |   |

@@ -83,7 +83,7 @@ TableSortLabel.propTypes = {
   /**
    * The current sort direction
    */
-  direction: PropTypes.oneOf(['asc, desc']),
+  direction: PropTypes.oneOf(['asc', 'desc']),
 };
 
 TableSortLabel.defaultProps = {

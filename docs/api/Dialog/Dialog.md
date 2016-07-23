@@ -1,7 +1,14 @@
 Dialog
 ======
 
+Dialogs are overlayed modal paper based components with a backdrop.
 
+```jsx
+<Dialog>
+  <DialogContent>...</DialogContent>
+  <DialogActions>...</DialogActions>
+</Dialog>
+```
 
 Props
 -----
@@ -9,13 +16,20 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| children | any |  |   |
-| onBackdropClick | function |  |   |
-| onEnter | function |  |  Callback fired before the modal is entering |
-| onEntering | function |  |  Callback fired when the modal is entering |
-| onEntered | function |  |  Callback fired when the modal has entered |
-| onExit | function |  |  Callback fired before the modal is exiting |
-| onExiting | function |  |  Callback fired when the modal is exiting |
-| onExited | function |  |  Callback fired when the modal has exited |
-| onRequestClose | function |  |  Callback fired when the modal requests to be closed |
-| open | bool | false |   |
+| children | node |  |  Dialog children, usually the included sub-components. |
+| className | string |  |  The CSS class name of the **dialog** root paper element. |
+| hideOnBackdropClick | bool | true |  If true, clicking the backdrop will fire the `onRequestClose` callback |
+| hideOnEscapeKeyUp | bool | true |  If true, hitting escape will fire the `onRequestClose` callback |
+| onBackdropClick | function |  |  Callback fires when the backdrop is clicked on |
+| onEscapeKeyUp | function |  |  Callback fires when the escape key is pressed and the modal is in focus |
+| onEnter | function |  |  Callback fired before the dialog is entering |
+| onEntering | function |  |  Callback fired when the dialog is entering |
+| onEntered | function |  |  Callback fired when the dialog has entered |
+| onExit | function |  |  Callback fired before the dialog is exiting |
+| onExiting | function |  |  Callback fired when the dialog is exiting |
+| onExited | function |  |  Callback fired when the dialog has exited |
+| onRequestClose | function |  |  Callback fired when the dialog requests to be closed |
+| open | bool | false |  Set to true to open the Dialog |
+| transition | function | Slide |  Transition component |
+| transitionDirection | enum:&nbsp;'up'<br>&nbsp;'down'<br>&nbsp;'left'<br>&nbsp;'right'<br> | 'down' |  Slide transition direction |
+| transitionDuration | number | 300 |  Length of the transition in ms |

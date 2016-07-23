@@ -50,7 +50,7 @@ module.exports = {
     ie_edge: {
       desiredCapabilities: {
         'browserName': 'Edge',
-        'browser_version': '13.0',
+        'browser_version': '14.0',
         'os': 'Windows',
         'os_version': '10',
       },

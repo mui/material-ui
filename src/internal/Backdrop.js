@@ -48,6 +48,7 @@ export default class Backdrop extends Component {
 
     return (
       <div
+        data-mui-test="Backdrop"
         className={ClassNames(classes.root, className)}
         aria-hidden="true"
         {...other}

@@ -86,7 +86,7 @@ export default class Demo extends Component {
         <Collapse in={this.state.codeOpen}>
           <MarkdownElement className={classes.code} text={code} />
         </Collapse>
-        <div className={classes.demo}>
+        <div className={classes.demo} data-mui-demo={this.props.demo}>
           <DemoComponent />
         </div>
       </div>

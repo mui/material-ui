@@ -32,6 +32,11 @@ export default class Fade extends Component {
      * Callback fired when the component has exited
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    transitionDuration: PropTypes.number,
+  };
+
+  static defaultProps = {
+    transitionDuration: 300,
   };
 
   static contextTypes = {
@@ -40,7 +45,7 @@ export default class Fade extends Component {
 
   handleEnter = (element) => {
     element.style.opacity = 0;
-    element.style.transition = this.context.theme.transitions.create('opacity');
+    element.style.transition = this.context.theme.transitions.create('opacity', `${this.props.transitionDuration}ms`);
     if (this.props.onEnter) {
       this.props.onEnter();
     }
@@ -66,6 +71,7 @@ export default class Fade extends Component {
       onEnter, // eslint-disable-line no-unused-vars
       onEntering, // eslint-disable-line no-unused-vars
       onExit, // eslint-disable-line no-unused-vars
+      transitionDuration, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 

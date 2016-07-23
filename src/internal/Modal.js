@@ -22,6 +22,8 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
   return {
     modal: {
       display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       width: '100%',
       height: '100%',
       position: 'fixed',
@@ -46,6 +48,7 @@ export default class Modal extends Component {
      * Pass a component class to use as the backdrop.
      */
     backdropComponent: PropTypes.func,
+    backdropTransitionDuration: PropTypes.number,
     /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
@@ -54,8 +57,26 @@ export default class Modal extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * If true, clicking the backdrop will fire the `onRequestClose` callback
+     */
+    hideOnBackdropClick: PropTypes.bool,
+    /**
+     * If true, hitting escape will fire the `onRequestClose` callback
+     */
+    hideOnEscapeKeyUp: PropTypes.bool,
+    /**
+     * @ignore
+     */
     modalManager: PropTypes.object,
+    /**
+     * Callback fires when the backdrop is clicked on
+     */
     onBackdropClick: PropTypes.func,
+    /**
+     * Callback fires when the escape key is pressed and the modal is in focus
+     */
+    onEscapeKeyUp: PropTypes.func,
     /**
      * Callback fired before the modal is entering
      */
@@ -90,6 +111,9 @@ export default class Modal extends Component {
   static defaultProps = {
     backdrop: true,
     backdropComponent: Backdrop,
+    backdropTransitionDuration: 300,
+    hideOnBackdropClick: true,
+    hideOnEscapeKeyUp: true,
     modalManager,
     show: false,
   };
@@ -202,12 +226,23 @@ export default class Modal extends Component {
   };
 
   handleDocumentKeyUp = () => {
-    // if (this.props.keyboard && event.keyCode === 27 && this.props.modalManager.isTopModal(this)) {
-    //   if (this.props.onEscapeKeyUp) {
-    //     this.props.onEscapeKeyUp(event);
-    //   }
-    //   this.props.onHide();
-    // }
+    if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
+      return;
+    }
+
+    const {
+      onEscapeKeyUp,
+      onRequestClose,
+      hideOnEscapeKeyUp,
+    } = this.props;
+
+    if (onEscapeKeyUp) {
+      onEscapeKeyUp(event);
+    }
+
+    if (onRequestClose && hideOnEscapeKeyUp) {
+      onRequestClose(event);
+    }
   };
 
   handleBackdropClick = (event) => {
@@ -215,12 +250,18 @@ export default class Modal extends Component {
       return;
     }
 
-    if (this.props.onBackdropClick) {
-      this.props.onBackdropClick(event);
+    const {
+      onBackdropClick,
+      onRequestClose,
+      hideOnBackdropClick,
+    } = this.props;
+
+    if (onBackdropClick) {
+      onBackdropClick(event);
     }
 
-    if (this.props.onRequestClose && !event.isPropagationStopped()) {
-      this.props.onRequestClose(event);
+    if (onRequestClose && hideOnBackdropClick) {
+      onRequestClose(event);
     }
   };
 
@@ -241,6 +282,7 @@ export default class Modal extends Component {
       <Fade
         in={show}
         transitionAppear
+        transitionDuration={this.props.backdropTransitionDuration}
         onEnter={this.props.onEnter}
         onEntering={this.props.onEntering}
         onEntered={this.props.onEntered}
@@ -257,9 +299,14 @@ export default class Modal extends Component {
     const {
       backdrop,
       backdropComponent,
+      backdropTransitionDuration, // eslint-disable-line no-unused-vars
+      hideOnBackdropClick, // eslint-disable-line no-unused-vars
+      hideOnEscapeKeyUp, // eslint-disable-line no-unused-vars
       children,
       className,
       modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
+      onBackdropClick, // eslint-disable-line no-unused-vars
+      onEscapeKeyUp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       show,
       ...other,
@@ -286,6 +333,7 @@ export default class Modal extends Component {
     return (
       <Portal open ref={(c) => this.mountNode = c ? c.getLayer() : c}>
         <div
+          data-mui-test="Modal"
           className={ClassNames(classes.modal, className)}
           ref={(c) => this.modal = c}
           {...other}

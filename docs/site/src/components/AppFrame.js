@@ -22,6 +22,7 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
       color: palette.text.primary,
       lineHeight: '1.2',
       overflowX: 'hidden',
+      WebkitFontSmoothing: 'antialiased',
     },
     '@raw a': {
       color: palette.accent.A400,
