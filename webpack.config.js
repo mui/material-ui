@@ -20,6 +20,18 @@ module.exports = {
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom'
+      },
+      'react-addons-transition-group': {
+        root: ['React', 'addons', 'TransitionGroup'],
+        commonjs2: 'react-addons-transition-group',
+        commonjs: 'react-addons-transition-group',
+        amd: 'react-addons-transition-group',
+      },
+      'react-addons-create-fragment': {
+        root: ['React', 'addons', 'createFragment'],
+        commonjs2: 'react-addons-create-fragment',
+        commonjs: 'react-addons-create-fragment',
+        amd: 'react-addons-create-fragment',
       }
     }
   ],
