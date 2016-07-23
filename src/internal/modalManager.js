@@ -1,3 +1,5 @@
+// @flow weak
+
 import css from 'dom-helpers/style';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
@@ -34,7 +36,10 @@ export function createModalManager({
       hideSiblings(container, modal.mountNode);
     }
 
-    const containerStyle = { overflow: 'hidden' };
+    const containerStyle = {
+      overflow: 'hidden',
+      paddingRight: undefined,
+    };
 
     // Save our current overflow so we can revert
     // back to it when all modals are closed!

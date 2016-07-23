@@ -1,3 +1,4 @@
+// @flow weak
 
 export default function createBreakpoints(
   breakpoints = {

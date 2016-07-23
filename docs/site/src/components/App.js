@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

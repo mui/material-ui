@@ -1,3 +1,5 @@
+// @flow weak
+
 import addEventListener from 'dom-helpers/events/on';
 import removeEventListener from 'dom-helpers/events/off';
 

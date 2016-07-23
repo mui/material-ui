@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
@@ -181,6 +183,9 @@ class Transition extends Component {
   componentWillUnmount() {
     this.cancelNextCallback();
   }
+
+  nextCallback = null;
+  needsUpdate = false;
 
   performEnter(props) {
     this.cancelNextCallback();

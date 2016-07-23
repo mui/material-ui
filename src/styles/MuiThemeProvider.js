@@ -1,3 +1,5 @@
+// @flow weak
+
 import { Component, PropTypes } from 'react';
 import { createMuiTheme } from './theme';
 import { createStyleManager } from 'stylishly/lib/styleManager';
@@ -56,6 +58,9 @@ export default class MuiThemeProvider extends Component {
       this.styleManager.empty();
     }
   }
+
+  theme = undefined;
+  styleManager = undefined;
 
   render() {
     return this.props.children;

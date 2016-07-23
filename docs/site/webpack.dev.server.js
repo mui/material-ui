@@ -1,3 +1,5 @@
+// @flow weak
+
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.dev.config');

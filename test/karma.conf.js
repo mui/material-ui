@@ -1,7 +1,10 @@
+// @flow weak
+
 const path = require('path');
 const argv = process.argv.slice(2);
 const opts = {
   grep: undefined,
+  coverage: true,
 };
 
 argv.forEach((arg) => {

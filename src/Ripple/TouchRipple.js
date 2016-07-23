@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
@@ -45,16 +47,19 @@ export default class TouchRipple extends Component {
     );
   }
 
+  lastRipple = null;
   ignoringMouseDown = false;
 
   pulsate = () => {
     this.start({}, { pulsate: true });
   };
 
-  start = (event = {}, {
-    pulsate = false,
-    center = this.props.center || pulsate,
-  } = {}, cb) => {
+  start = (event = {}, options = {}, cb) => {
+    const {
+      pulsate = false,
+      center = this.props.center || options.pulsate,
+    } = options;
+
     if (event.type === 'mousedown' && this.ignoringMouseDown) {
       this.ignoringMouseDown = false;
       return;
@@ -67,7 +72,12 @@ export default class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     const elem = ReactDOM.findDOMNode(this);
-    const rect = elem ? elem.getBoundingClientRect() : { width: 0, height: 0 };
+    const rect = elem ? elem.getBoundingClientRect() : {
+      width: 0,
+      height: 0,
+      left: 0,
+      top: 0,
+    };
 
     // Get the size of the ripple
     let rippleX;

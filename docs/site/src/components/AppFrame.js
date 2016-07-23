@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStyleSheet } from 'stylishly';
@@ -106,6 +108,9 @@ class AppFrame extends Component {
       this.resizeListener.remove();
     }
   }
+
+  mounted = false;
+  resizeListener = undefined;
 
   checkWindowSize = () => {
     if (!this.mounted) {

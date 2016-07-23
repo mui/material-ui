@@ -1,3 +1,5 @@
+// @flow weak
+
 import { createDefaultContext } from 'src/styles/MuiThemeProvider';
 import { shallow as enzymeShallow } from 'enzyme';
 

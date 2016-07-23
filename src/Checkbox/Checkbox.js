@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
@@ -49,6 +51,8 @@ export default class Checkbox extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
+
+  state = {};
 
   componentWillMount() {
     const { props } = this;

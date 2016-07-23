@@ -1,3 +1,4 @@
+// @flow weak
 
 const defaultConstants = {
   fontFamily: '"Roboto","Helvetica","Arial",sans-serif',

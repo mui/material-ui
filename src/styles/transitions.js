@@ -1,3 +1,4 @@
+// @flow weak
 /* eslint-disable no-param-reassign */
 
 export const easing = {

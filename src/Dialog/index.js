@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 export default from './Dialog';
 export Dialog from './Dialog';
 export DialogActions from './DialogActions';

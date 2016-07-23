@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
@@ -88,6 +90,9 @@ export default class Ripple extends Component {
       callback();
     }, 550);
   }
+
+  ripple = null;
+  leaveTimer = undefined;
 
   start = () => {
     this.setState({

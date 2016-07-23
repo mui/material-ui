@@ -1,3 +1,5 @@
+// @flow weak
+
 const integrationContext = require.context('./integration', true, /\.(js|jsx)$/);
 integrationContext.keys().forEach(integrationContext);
 

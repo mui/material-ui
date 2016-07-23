@@ -1,3 +1,4 @@
+// @flow weak
 
 const BLACKLIST = ['template', 'script', 'style'];
 

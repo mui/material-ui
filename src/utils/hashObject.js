@@ -1,3 +1,4 @@
+// @flow weak
 /**
  * From https://github.com/Khan/aphrodite/blob/master/src/util.js
  *

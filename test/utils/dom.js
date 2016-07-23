@@ -1,3 +1,5 @@
+// @flow weak
+
 import { jsdom } from 'jsdom';
 
 /**

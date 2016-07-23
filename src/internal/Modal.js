@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'stylishly';
@@ -163,6 +165,13 @@ export default class Modal extends Component {
     }
     this.mounted = false;
   }
+
+  mounted = false;
+  lastFocus = undefined;
+  modal = null;
+  mountNode = null;
+  onDocumentKeyUpListener = undefined;
+  onFocusListener = undefined;
 
   checkForFocus() {
     if (canUseDom) {

@@ -1,3 +1,4 @@
+// @flow weak
 
 export function transform(obj, cb, accumulator) {
   Object.keys(obj).forEach((key) => {

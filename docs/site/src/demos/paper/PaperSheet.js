@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Paper from 'material-ui/Paper';

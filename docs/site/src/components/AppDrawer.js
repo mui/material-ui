@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { createStyleSheet } from 'stylishly';
@@ -96,18 +98,19 @@ export default class AppDrawer extends Component {
   }
 
   render() {
-    this.classes = this.context.styleManager.render(styleSheet);
+    const classes = this.context.styleManager.render(styleSheet);
+
     return (
       <Drawer
-        className={this.classes.drawer}
-        paperClassName={this.classes.paper}
+        className={classes.drawer}
+        paperClassName={classes.paper}
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}
         docked={this.props.docked}
       >
-        <div className={this.classes.nav}>
+        <div className={classes.nav}>
           <Toolbar>
-            <Link className={this.classes.title} to="/" onClick={this.props.onRequestClose}>
+            <Link className={classes.title} to="/" onClick={this.props.onRequestClose}>
               <Text type="title">Material UI</Text>
             </Link>
             <Divider absolute />

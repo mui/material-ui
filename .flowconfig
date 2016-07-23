@@ -1,0 +1,17 @@
+[ignore]
+
+.*/node_modules/fbjs/*
+
+[libs]
+flow/interfaces
+
+[options]
+
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+
+module.name_mapper='.*\.\(html\|css\|svg\|png\|jpg\|gif\)$' -> '<PROJECT_ROOT>/flow/stubs/url-loader.js'
+module.name_mapper='^material-ui\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=.

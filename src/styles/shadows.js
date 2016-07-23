@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 const shadowKeyUmbraOpacity = 0.2;
 const shadowKeyPenumbraOpacity = 0.14;
 const shadowAmbientShadowOpacity = 0.12;

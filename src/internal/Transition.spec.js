@@ -1,6 +1,8 @@
+// @flow weak
 /* eslint-env mocha */
-import React from 'react';
-import ReactDOM from 'react-dom';
+
+import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
@@ -241,10 +243,13 @@ describe('<Transition>', () => {
   });
 
   describe('unmountOnExit', () => {
-    class UnmountTransition extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = { in: props.initialIn }; // eslint-disable-line react/prop-types
+    class UnmountTransition extends Component {
+      state = {};
+
+      componentWillMount() {
+        this.setState({
+          in: this.props.initialIn, // eslint-disable-line react/prop-types
+        });
       }
 
       getStatus() {
@@ -277,14 +282,14 @@ describe('<Transition>', () => {
           initialIn={false}
           onEnter={() => {
             assert.strictEqual(wrapper.instance().getStatus(), EXITED);
-            assert.ok(ReactDOM.findDOMNode(wrapper.instance()));
+            assert.ok(findDOMNode(wrapper.instance()));
             done();
           }}
         />
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-      assert.notOk(ReactDOM.findDOMNode(wrapper.instance()));
+      assert.notOk(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: true });
     });
@@ -295,14 +300,14 @@ describe('<Transition>', () => {
           initialIn
           onExited={() => {
             assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-            assert.notOk(ReactDOM.findDOMNode(wrapper.instance()));
+            assert.notOk(findDOMNode(wrapper.instance()));
             done();
           }}
         />
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), ENTERED);
-      assert.ok(ReactDOM.findDOMNode(wrapper.instance()));
+      assert.ok(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: false });
     });

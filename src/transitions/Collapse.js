@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import ClassNames from 'classnames';
@@ -73,6 +75,8 @@ export default class Collapse extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  wrapper = null;
+
   handleEnter = (element) => {
     element.style.height = '0px';
     if (this.props.onEnter) {
@@ -146,7 +150,6 @@ export default class Collapse extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-
     const containerClasses = ClassNames(classes.container, containerClassName);
 
     return (

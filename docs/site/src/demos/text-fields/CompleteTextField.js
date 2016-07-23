@@ -1,3 +1,5 @@
+// @flow weak
+
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import TextField, { TextFieldInput, TextFieldLabel } from 'material-ui/TextField';
