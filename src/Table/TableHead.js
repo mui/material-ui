@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableHead', (theme) => {
   return {
@@ -47,12 +47,16 @@ export default class TableHead extends Component {
   }
 
   render() {
-    const { className, children, ...other } = this.props;
+    const {
+      className: classNameProp,
+      children,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
-    const classNames = ClassNames(classes.root, className);
+    const className = classNames(classes.root, classNameProp);
 
     return (
-      <thead className={classNames} {...other}>
+      <thead className={className} {...other}>
         {children}
       </thead>
     );

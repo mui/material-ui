@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import shallowEqual from 'recompose/shallowEqual';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
   const { palette } = theme;
@@ -133,7 +133,7 @@ export default class TextFieldInput extends Component {
 
   render() {
     const {
-      className,
+      className: classNameProp,
       component,
       disabled,
       onChange, // eslint-disable-line no-unused-vars
@@ -146,15 +146,15 @@ export default class TextFieldInput extends Component {
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
-    const classNames = ClassNames({
+    const className = classNames({
       [classes.root]: true,
       [classes.underline]: underline,
       [classes.disabled]: disabled,
-    }, className);
+    }, classNameProp);
 
     const inputProps = {
       ref: (c) => this.input = c,
-      className: classNames,
+      className,
       onChange: this.handleChange,
       disabled,
       ...other,

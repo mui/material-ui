@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('DialogActions', () => {
   return {
@@ -37,7 +37,7 @@ export default class DialogActions extends Component {
     <div className={this.classes.action}>
       {React.cloneElement(
         button,
-        { className: ClassNames(this.classes.button, button.props.className) }
+        { className: classNames(this.classes.button, button.props.className) }
       )}
     </div>
   );
@@ -52,7 +52,7 @@ export default class DialogActions extends Component {
     this.classes = this.context.styleManager.render(styleSheet);
 
     return (
-      <div data-mui-test="DialogActions" className={ClassNames(this.classes.root, className)} {...other}>
+      <div data-mui-test="DialogActions" className={classNames(this.classes.root, className)} {...other}>
         {React.Children.map(children, this.renderButton)}
       </div>
     );

@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('AppBar', (theme) => {
@@ -49,24 +49,24 @@ export default class AppBar extends Component {
     const {
       accent,
       children,
-      className,
+      className: classNameProp,
       primary,
       ...other,
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
-    const classNames = ClassNames({
+    const className = classNames({
       [classes.root]: true,
       [classes.primary]: primary && !accent,
       [classes.accent]: accent,
-    }, className);
+    }, classNameProp);
 
     return (
       <Paper
         rounded={false}
         zDepth={4}
-        className={classNames}
+        className={className}
         {...other}
       >
         {children}

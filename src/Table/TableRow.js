@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableRow', (theme) => {
   return {
@@ -43,19 +43,25 @@ export const styleSheet = createStyleSheet('TableRow', (theme) => {
  * ```
  */
 export default function TableRow(props, context) {
-  const { className, children, hover, selected, ...other } = props;
+  const {
+    className: classNameProp,
+    children,
+    hover,
+    selected,
+    ...other,
+  } = props;
   const { table, styleManager } = context;
   const classes = styleManager.render(styleSheet);
 
-  const classNames = ClassNames(classes.root, {
+  const className = classNames(classes.root, {
     [classes.head]: table && table.head,
     [classes.footer]: table && table.footer,
     [classes.hover]: table && hover,
     [classes.selected]: table && selected,
-  }, className);
+  }, classNameProp);
 
   return (
-    <tr className={classNames} {...other}>
+    <tr className={className} {...other}>
       {children}
     </tr>
   );

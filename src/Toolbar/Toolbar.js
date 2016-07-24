@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   return {
@@ -24,18 +24,18 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
 export default function Toolbar(props, context) {
   const {
     children,
-    className,
+    className: classNameProp,
     gutters,
     ...other,
   } = props;
 
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
-  const classNames = ClassNames(classes.root, {
+  const className = classNames(classes.root, {
     [classes.gutters]: gutters,
-  }, className);
+  }, classNameProp);
 
   return (
-    <div className={classNames} {...other} >
+    <div className={className} {...other} >
       {children}
     </div>
   );

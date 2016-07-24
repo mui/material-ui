@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import IconButton from '../IconButton';
 
 export const styleSheet = createStyleSheet('Checkbox', (theme) => {
@@ -100,7 +100,7 @@ export default class Checkbox extends Component {
   render() {
     const {
       checked: checkedProp,
-      className,
+      className: classNameProp,
       disabled,
       onChange, // eslint-disable-line no-unused-vars
       ripple,
@@ -109,15 +109,15 @@ export default class Checkbox extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
     const checked = this.isControlled ? checkedProp : this.state.checked;
-    const classNames = ClassNames(classes.root, {
+    const className = classNames(classes.root, {
       [classes.disabled]: disabled,
       [classes.checked]: checked,
-    }, className);
+    }, classNameProp);
 
     return (
       <IconButton
         component="span"
-        className={classNames}
+        className={className}
         disabled={disabled}
         ripple={ripple}
         onClick={this.handleChange}

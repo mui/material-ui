@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('ListItemIcon', () => {
   return {
@@ -20,11 +20,15 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
 });
 
 export default function ListItemIcon(props, context) {
-  const { children, className } = props;
+  const {
+    children,
+    className: classNameProp,
+  } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
-  const classNames = ClassNames(classes.root, className);
+  const className = classNames(classes.root, classNameProp);
+
   return (
-    <div className={classNames}>
+    <div className={className}>
       {children}
     </div>
   );

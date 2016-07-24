@@ -5,7 +5,7 @@ import { createStyleSheet } from 'stylishly';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
 import Slide from '../transitions/Slide';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Dialog', () => {
   return {
@@ -169,7 +169,7 @@ export default class Dialog extends Component {
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
-            className={ClassNames(classes.dialog, className)}
+            className={classNames(classes.dialog, className)}
             {...other}
           >
             {children}

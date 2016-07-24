@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import Transition from '../internal/Transition';
 
 const reflow = (elem) => elem.offsetHeight;
@@ -150,7 +150,7 @@ export default class Collapse extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-    const containerClasses = ClassNames(classes.container, containerClassName);
+    const containerClasses = classNames(classes.container, containerClassName);
 
     return (
       <Transition

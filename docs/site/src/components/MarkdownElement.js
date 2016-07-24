@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import marked from 'marked';
 
 import prism from '../utils/prism';
@@ -103,7 +103,7 @@ class MarkdownElement extends Component {
     /* eslint-disable react/no-danger */
     return (
       <div
-        className={ClassNames(classes.root, 'markdown-body', className)}
+        className={classNames(classes.root, 'markdown-body', className)}
         dangerouslySetInnerHTML={{ __html: marked(text) }}
       />
     );

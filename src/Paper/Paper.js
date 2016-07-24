@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Paper', (theme) => {
   const { palette } = theme;
@@ -35,16 +35,21 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
  * ```
  */
 export default function Paper(props, context) {
-  const { className, rounded, zDepth, ...other } = props;
+  const {
+    className: classNameProp,
+    rounded,
+    zDepth,
+    ...other,
+  } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
 
-  const classNames = ClassNames(classes.root, {
+  const className = classNames(classes.root, {
     [classes.rounded]: rounded,
     [classes[`dp${zDepth >= 0 ? zDepth : 0}`]]: true,
-  }, className);
+  }, classNameProp);
 
   return (
-    <div className={classNames} {...other} />
+    <div className={className} {...other} />
   );
 }
 

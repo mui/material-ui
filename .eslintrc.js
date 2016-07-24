@@ -25,7 +25,6 @@ module.exports = {
     'consistent-this': ['error', 'self'],
     'func-names': 'off',
     'max-len': ['error', 120, 4], // airbnb use 100
-    'new-cap': ['off', {capIsNew: true, newIsCap: true}], // Wishlist, one day
     'newline-per-chained-call': 'off',
     'no-console': 'error', // airbnb have on warning
     'no-nested-ternary': 'off',

@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import Perf from 'react-addons-perf';
 import { find } from 'src/utils/helpers';
-import RandomWords from 'random-words';
+import randomWords from 'random-words';
 
 /**
  * TimeWaster
@@ -21,7 +21,7 @@ export default class TimeWaster extends Component {
 
   static defaultProps = {
     loops: 100,
-    testFn: () => RandomWords(1)[0],
+    testFn: () => randomWords(1)[0],
     testProp: 'data-test-prop',
   };
 

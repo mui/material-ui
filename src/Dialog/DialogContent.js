@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('DialogContent', () => {
   const gutter = 24;
@@ -36,7 +36,7 @@ export default class DialogContent extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     return (
-      <div className={ClassNames(classes.root, className)} {...other}>{children}</div>
+      <div className={classNames(classes.root, className)} {...other}>{children}</div>
     );
   }
 }

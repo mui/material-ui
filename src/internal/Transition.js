@@ -4,7 +4,7 @@ import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 const transitionEndEvent = transitionInfo.end;
 
@@ -292,7 +292,7 @@ class Transition extends Component {
       child,
       {
         ...childProps,
-        className: ClassNames(
+        className: classNames(
           child.props.className,
           className,
           transitionClassName

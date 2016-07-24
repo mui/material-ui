@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import addEventListener from '../utils/addEventListener';
 import keycode from 'keycode';
 import { TouchRipple, createRippleHandler } from '../Ripple';
@@ -186,7 +186,7 @@ export default class ButtonBase extends Component {
     const {
       centerRipple,
       children,
-      className,
+      className: classNameProp,
       component,
       disabled,
       focusRipple, // eslint-disable-line no-unused-vars
@@ -207,10 +207,10 @@ export default class ButtonBase extends Component {
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
-    const classNames = ClassNames(classes.root, className, {
+    const className = classNames(classes.root, {
       [classes.disabled]: disabled,
       [keyboardFocusedClassName]: this.state.keyboardFocused,
-    });
+    }, classNameProp);
 
     const buttonProps = {
       ref: (c) => this.button = c,
@@ -224,7 +224,7 @@ export default class ButtonBase extends Component {
       onMouseUp: this.handleMouseUp,
       onTouchEnd: this.handleTouchEnd,
       onTouchStart: this.handleTouchStart,
-      className: classNames,
+      className,
       ...other,
     };
 

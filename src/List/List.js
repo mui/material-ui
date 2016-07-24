@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('List', () => {
   return {
@@ -39,11 +39,17 @@ export default class List extends Component {
   };
 
   render() {
-    const { className, component, padding, ...other } = this.props;
+    const {
+      className: classNameProp,
+      component,
+      padding,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-    const classNames = ClassNames(classes.root, {
+    const className = classNames(classes.root, {
       [classes.padding]: padding,
-    }, className);
-    return React.createElement(component, { className: classNames, ...other });
+    }, classNameProp);
+
+    return React.createElement(component, { className, ...other });
   }
 }

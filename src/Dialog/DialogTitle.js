@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import Text from '../Text';
 
 export const styleSheet = createStyleSheet('DialogTitle', () => {
@@ -35,7 +35,7 @@ export default class DialogTitle extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     return (
-      <div data-mui-test="DialogTitle" className={ClassNames(classes.root, className)} {...other}>
+      <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
         {typeof children === 'string' ? (
           <Text type="title">{children}</Text>
         ) : children}

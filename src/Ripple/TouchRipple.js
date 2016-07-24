@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import shallowEqual from 'recompose/shallowEqual';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import Ripple from './Ripple';
 
 export const styleSheet = createStyleSheet('TouchRipple', () => ({
@@ -150,7 +150,7 @@ export default class TouchRipple extends Component {
         component="span"
         transitionEnterTimeout={550}
         transitionLeaveTimeout={550}
-        className={ClassNames(classes.root, className)}
+        className={classNames(classes.root, className)}
         {...other}
       >
         {this.state.ripples}

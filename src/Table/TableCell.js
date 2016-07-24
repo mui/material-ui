@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableCell', (theme) => {
   return {
@@ -47,23 +47,31 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
  * ```
  */
 export default function TableCell(props, context) {
-  const { className, children, compact, checkbox, numeric, padding, ...other } = props;
+  const {
+    className: classNameProp,
+    children,
+    compact,
+    checkbox,
+    numeric,
+    padding,
+    ...other,
+  } = props;
   const { table, styleManager } = context;
   const classes = styleManager.render(styleSheet);
 
   const component = table && table.head ? 'th' : 'td';
 
-  const classNames = ClassNames(classes.root, {
+  const className = classNames(classes.root, {
     [classes.numeric]: numeric,
     [classes.compact]: compact,
     [classes.checkbox]: checkbox,
     [classes.padding]: padding,
     [classes.head]: table && table.head,
     [classes.footer]: table && table.footer,
-  }, className);
+  }, classNameProp);
 
   return React.createElement(component, {
-    className: classNames,
+    className,
     ...other,
   }, children);
 }
