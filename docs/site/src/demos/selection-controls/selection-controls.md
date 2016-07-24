@@ -1,6 +1,6 @@
 # Selection Controls
 
-Selection controls allow the user to select options.
+[Selection controls](https://material.google.com/components/selection-controls.html) allow the user to select options.
 
 Three types of selection controls are covered in this guidance:
 

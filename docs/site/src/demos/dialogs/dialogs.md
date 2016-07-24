@@ -1,18 +1,22 @@
 # Dialogs
 
-Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
+[Dialogs](https://material.google.com/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
 
-Dialogs contain text and UI controls. They retain focus until dismissed or a required action has been taken. Use dialogs sparingly because they are interruptive.
+Dialogs contain text and UI controls.
+They retain focus until dismissed or a required action has been taken.
+Use dialogs sparingly because they are interruptive.
 
 ## Alerts
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Most alerts don't need titles.
+They summarize a decision in a sentence or two by either:
 - Asking a question (e.g. "Delete this conversation?")
 - Making a statement related to the action buttons
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+Use title bar alerts only for high-risk situations, such as the potential loss of connectivity.
+Users should be able to understand the choices based on the title and button text alone.
 
 If a title is required:
 

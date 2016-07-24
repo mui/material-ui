@@ -1,6 +1,7 @@
 # Tables
 
-Data tables display sets of raw data. They usually appear in desktop enterprise products.
+[Data tables](https://material.google.com/components/data-tables.html) display sets of raw data.
+They usually appear in desktop enterprise products.
 
 ## Structure
 
