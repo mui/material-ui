@@ -269,15 +269,13 @@ class AutoComplete extends Component {
     const chosenRequest = dataSource[index];
     const searchText = this.chosenRequestText(chosenRequest);
 
-    this.props.onNewRequest(chosenRequest, index);
-
     this.timerTouchTapCloseId = setTimeout(() => {
-      this.setState({
-        searchText: searchText,
-      });
       this.close();
       this.timerTouchTapCloseId = null;
     }, this.props.menuCloseDelay);
+
+    this.setState({searchText: searchText});
+    this.props.onNewRequest(chosenRequest, index);
   };
 
   chosenRequestText = (chosenRequest) => {
