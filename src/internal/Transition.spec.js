@@ -252,8 +252,10 @@ describe('<Transition>', () => {
         });
       }
 
+      transition = null;
+
       getStatus() {
-        return this.refs.transition.state.status;
+        return this.transition.state.status;
       }
 
       render() {
@@ -264,7 +266,11 @@ describe('<Transition>', () => {
 
         return (
           <Transition
-            ref="transition"
+            ref={(c) => {
+              if (c !== null) {
+                this.transition = c;
+              }
+            }}
             unmountOnExit
             in={this.state.in}
             timeout={10}
