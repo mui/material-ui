@@ -273,8 +273,12 @@ class Transition extends Component {
       return null;
     }
 
-    const { children, className, ...childProps } = this.props;
-    Object.keys(Transition.propTypes).forEach((key) => delete childProps[key]);
+    const {
+      children,
+      className,
+      ...other,
+    } = this.props;
+    Object.keys(Transition.propTypes).forEach((key) => delete other[key]);
 
     let transitionClassName;
     if (status === EXITED) {
@@ -291,7 +295,7 @@ class Transition extends Component {
     return React.cloneElement(
       child,
       {
-        ...childProps,
+        ...other,
         className: classNames(
           child.props.className,
           className,

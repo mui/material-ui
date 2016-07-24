@@ -46,6 +46,8 @@ module.exports = {
     'react/jsx-no-duplicate-props': 'error',
     'react/no-danger': 'error',
     'react/no-direct-mutation-state': 'error',
+    'react/no-set-state': 'off',
+    'react/no-string-refs': 'error',
     'react/prefer-stateless-function': 'off', // wishlist, one day
     'react/sort-comp': [2, {
       order: [
@@ -59,7 +61,6 @@ module.exports = {
         'render'
       ],
     }],
-    'react/no-set-state': 'off',
     'material-ui/docgen-ignore-before-comment': 'error',
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
