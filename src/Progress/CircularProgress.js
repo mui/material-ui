@@ -5,18 +5,17 @@ import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
-export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
-  const baseSize = 50;
+const THICKNESS = 3.5;
+const PI = 3.1415;
 
+export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
   return {
     root: {
-      color: theme.palette.accent.A200,
+      color: theme.palette.primary[500],
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      width: baseSize,
-      height: baseSize,
     },
     wrapper: {
       display: 'inline-block',
@@ -34,7 +33,7 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
       strokeDasharray: '1, calc((100% - 3px) * 3.141)',
       strokeDashoffset: '0%',
       stroke: 'currentColor',
-      strokeLinecap: 'round',
+      strokeLinecap: 'square',
       transition: theme.transitions.create('all', '1.25s'),
       animation: `scale-progress-circle 1250ms ${easing.easeInOut} infinite`,
     },
@@ -48,16 +47,16 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
     },
     '@keyframes scale-progress-circle': {
       '10%': {
-        strokeDasharray: '1, calc((100% - 3px) * 3.141)',
+        strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
         strokeDashoffset: 0,
       },
       '55%': {
-        strokeDasharray: 'calc((65% - 3px) * 3.141), calc((100% - 3px) * 3.141)',
-        strokeDashoffset: 'calc((25% - 3px) * -3.141)',
+        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
+        strokeDashoffset: `calc((25% - ${THICKNESS}px) * -${PI})`,
       },
       '100%': {
-        strokeDasharray: 'calc((65% - 3px) * 3.141), calc((100% - 3px) * 3.141)',
-        strokeDashoffset: 'calc((99% - 3px) * -3.141)',
+        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
+        strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
       },
     },
   };
@@ -82,7 +81,8 @@ export default class CircularProgress extends Component {
   };
 
   static defaultProps = {
-    size: 50,
+    mode: 'indeterminate',
+    size: 40,
   };
 
   static contextTypes = {
@@ -90,24 +90,30 @@ export default class CircularProgress extends Component {
   };
 
   render() {
-    const { className, size, ...other } = this.props;
+    const {
+      className,
+      mode, // eslint-disable-line no-unused-vars
+      size,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
-
     const radius = size / 2;
-    const rootClass = classNames(classes.root, className);
-    const rootStyle = { width: size, height: size };
 
     return (
-      <div className={rootClass} style={rootStyle} {...other}>
+      <div
+        className={classNames(classes.root, className)}
+        style={{ width: size, height: size }}
+        {...other}
+      >
         <div className={classes.wrapper}>
           <svg className={classes.svg} viewBox={`0 0 ${size} ${size}`}>
             <circle
               className={classes.circle}
               cx={radius}
               cy={radius}
-              r={radius - 1.5}
+              r={radius - THICKNESS / 2}
               fill="none"
-              strokeWidth="3"
+              strokeWidth={THICKNESS}
               strokeMiterlimit="20"
             />
           </svg>

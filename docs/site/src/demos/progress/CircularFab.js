@@ -18,6 +18,7 @@ const styleSheet = createStyleSheet('CircularFab', () => {
       },
     },
     progress: {
+      color: green[500],
       position: 'absolute',
       top: -2,
       left: -2,
