@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import warning from 'warning';
 import canUseDom from 'dom-helpers/util/inDOM';
 import contains from 'dom-helpers/query/contains';
@@ -343,7 +343,7 @@ export default class Modal extends Component {
       <Portal open ref={(c) => this.mountNode = c ? c.getLayer() : c}>
         <div
           data-mui-test="Modal"
-          className={ClassNames(classes.modal, className)}
+          className={classNames(classes.modal, className)}
           ref={(c) => this.modal = c}
           {...other}
         >

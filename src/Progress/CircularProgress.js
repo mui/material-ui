@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
 export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
@@ -94,7 +94,7 @@ export default class CircularProgress extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     const radius = size / 2;
-    const rootClass = ClassNames(classes.root, className);
+    const rootClass = classNames(classes.root, className);
     const rootStyle = { width: size, height: size };
 
     return (

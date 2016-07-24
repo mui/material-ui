@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Text', (theme) => {
   const { typography } = theme;
@@ -50,13 +50,21 @@ export default class Text extends Component {
   };
 
   render() {
-    const { align, className, component, noWrap, type, ...other } = this.props;
+    const {
+      align,
+      className: classNameProp,
+      component,
+      noWrap,
+      type,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-    const classNames = ClassNames(classes.text, {
+    const className = classNames(classes.text, {
       [classes[type]]: true,
       [classes.noWrap]: noWrap,
       [classes.center]: align === 'center',
-    }, className);
-    return React.createElement(component, { className: classNames, ...other });
+    }, classNameProp);
+
+    return React.createElement(component, { className, ...other });
   }
 }

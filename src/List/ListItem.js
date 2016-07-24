@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('ListItem', (theme) => {
   return {
@@ -36,11 +36,17 @@ export default class ListItem extends Component {
   };
 
   render() {
-    const { className, component, gutters, ...other } = this.props;
+    const {
+      className: classNameProp,
+      component,
+      gutters,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-    const classNames = ClassNames(classes.root, {
+    const className = classNames(classes.root, {
       [classes.gutters]: gutters,
-    }, className);
-    return React.createElement(component, { className: classNames, ...other });
+    }, classNameProp);
+
+    return React.createElement(component, { className, ...other });
   }
 }

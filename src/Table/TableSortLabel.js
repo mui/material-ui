@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
@@ -50,10 +50,10 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
 export default function TableSortLabel(props, context) {
   const { active, className, children, direction, ...other } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
-  const rootClasses = ClassNames(classes.root, {
+  const rootClasses = classNames(classes.root, {
     [classes.active]: active,
   }, className);
-  const iconClasses = ClassNames(classes.icon, {
+  const iconClasses = classNames(classes.icon, {
     [classes[direction]]: !!direction,
   }, 'material-icons');
   return (

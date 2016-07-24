@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import { lightBlack } from '../styles/colors';
 
 export const styleSheet = createStyleSheet('Backdrop', (theme) => {
@@ -51,7 +51,7 @@ export default class Backdrop extends Component {
     return (
       <div
         data-mui-test="Backdrop"
-        className={ClassNames(classes.root, className)}
+        className={classNames(classes.root, className)}
         aria-hidden="true"
         {...other}
       >

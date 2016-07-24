@@ -2,7 +2,7 @@
 
 import React, { Component, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 import { createChainedFunction } from '../utils/helpers';
 
@@ -112,7 +112,7 @@ export default class TextField extends Component {
 
   renderInput = (input) =>
     cloneElement(input, {
-      className: ClassNames(this.classes.input, input.props.className),
+      className: classNames(this.classes.input, input.props.className),
       onDirty: this.handleDirty,
       onClean: this.handleClean,
       onFocus: createChainedFunction(this.handleFocus, input.props.onFocus),
@@ -121,7 +121,7 @@ export default class TextField extends Component {
 
   renderLabel = (label) =>
     cloneElement(label, {
-      className: ClassNames(this.classes.label, label.props.className),
+      className: classNames(this.classes.label, label.props.className),
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
     });
@@ -129,19 +129,19 @@ export default class TextField extends Component {
   render() {
     const {
       children,
-      className,
+      className: classNameProp,
       ...other,
     } = this.props;
 
     this.classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
-    const classNames = ClassNames({
+    const className = classNames({
       [this.classes.root]: true,
       [this.classes.focused]: this.state.focused,
-    }, className);
+    }, classNameProp);
 
     return (
-      <div className={classNames} {...other}>
+      <div className={className} {...other}>
         {React.Children.map(children, this.renderChild)}
       </div>
     );

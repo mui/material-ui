@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
 import { easing } from '../styles/transitions';
 
@@ -133,7 +133,7 @@ export default class Ripple extends Component {
     const { rippleStart, rippleVisible } = this.state;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
-    const rippleClassName = ClassNames(classes.ripple, {
+    const rippleClassName = classNames(classes.ripple, {
       [classes.visible]: rippleVisible,
       [classes.animating]: !rippleStart,
       [classes.fast]: pulsate,

@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
@@ -164,7 +164,7 @@ export default class Button extends Component {
     const {
       accent,
       children,
-      className,
+      className: classNameProp,
       disabled,
       fab,
       primary,
@@ -174,7 +174,7 @@ export default class Button extends Component {
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
-    const classNames = ClassNames({
+    const className = classNames({
       [classes.root]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
@@ -183,11 +183,11 @@ export default class Button extends Component {
       [classes.raisedPrimary]: (raised || fab) && primary,
       [classes.raisedAccent]: (raised || fab) && accent,
       [classes.disabled]: disabled,
-    }, className);
+    }, classNameProp);
 
     return (
       <ButtonBase
-        className={classNames}
+        className={className}
         disabled={disabled}
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}

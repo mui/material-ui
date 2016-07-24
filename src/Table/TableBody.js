@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableBody', (theme) => {
   return {
@@ -46,12 +46,16 @@ export default class TableBody extends Component {
   }
 
   render() {
-    const { className, children, ...other } = this.props;
+    const {
+      className: classNameProp,
+      children,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-    const classNames = ClassNames(classes.root, className);
+    const className = classNames(classes.root, classNameProp);
 
     return (
-      <tbody className={classNames} {...other}>
+      <tbody className={className} {...other}>
         {children}
       </tbody>
     );

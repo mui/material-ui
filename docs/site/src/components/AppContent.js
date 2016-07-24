@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('AppContent', (theme) => {
   return {
@@ -35,7 +35,7 @@ export default function AppContent(props, context) {
   const { className, children } = props;
   const classes = context.styleManager.render(styleSheet);
   return (
-    <div className={ClassNames(classes.content, className)}>
+    <div className={classNames(classes.content, className)}>
       {children}
     </div>
   );

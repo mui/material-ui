@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
 export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
@@ -26,16 +26,16 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
 });
 
 export default function TextFieldLabel(props, context) {
-  const { animated, className, shrink, ...other } = props;
+  const { animated, className: classNameProp, shrink, ...other } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
 
-  const classNames = ClassNames(classes.root, {
+  const className = classNames(classes.root, {
     [classes.animated]: animated,
     [classes.shrink]: shrink,
-  }, className);
+  }, classNameProp);
 
   return (
-    <label className={classNames} {...other} />
+    <label className={className} {...other} />
   );
 }
 

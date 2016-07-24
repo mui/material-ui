@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import Text from '../Text';
 
 export const styleSheet = createStyleSheet('ListItemText', (theme) => {
@@ -29,11 +29,17 @@ export default class ListItemText extends Component {
   };
 
   render() {
-    const { className, primary, secondary, ...other } = this.props;
+    const {
+      className: classNameProp,
+      primary,
+      secondary,
+      ...other,
+    } = this.props;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-    const classNames = ClassNames(classes.root, className);
+    const className = classNames(classes.root, classNameProp);
+
     return (
-      <div className={classNames} {...other}>
+      <div className={className} {...other}>
         {primary && (
           typeof primary === 'string' ? (
             <Text type="subheading">{primary}</Text>

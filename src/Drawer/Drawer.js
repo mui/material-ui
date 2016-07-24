@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly/lib/styleSheet';
-import ClassNames from 'classnames';
+import classNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
 import Slide from '../transitions/Slide';
@@ -86,7 +86,7 @@ export default class Drawer extends Component {
         <Paper
           zDepth={docked ? 0 : zDepth}
           rounded={false}
-          className={ClassNames(classes.paper, paperClassName)}
+          className={classNames(classes.paper, paperClassName)}
         >
           {children}
         </Paper>
@@ -97,7 +97,7 @@ export default class Drawer extends Component {
 
     if (docked) {
       return (
-        <div className={ClassNames(classes.docked, className)}>
+        <div className={classNames(classes.docked, className)}>
           {drawer}
         </div>
       );
