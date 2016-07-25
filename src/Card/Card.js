@@ -115,6 +115,7 @@ class Card extends Component {
       if (doClone) {
         element = React.cloneElement(currentChild, newProps, currentChild.props.children, newChild);
       }
+      lastElement = element;
       return element;
     }, this);
 
