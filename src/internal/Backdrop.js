@@ -14,10 +14,13 @@ export const styleSheet = createStyleSheet('Backdrop', (theme) => {
       position: 'fixed',
       top: 0,
       left: 0,
-      opacity: 0,
       backgroundColor: lightBlack,
       transition: theme.transitions.create('opacity'),
       willChange: 'opacity',
+      opacity: 0,
+    },
+    invisible: {
+      backgroundColor: 'rgba(0, 0, 0, 0)',
     },
   };
 });
@@ -33,6 +36,11 @@ export default class Backdrop extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    visible: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    visible: true,
   };
 
   static contextTypes = {
@@ -43,15 +51,18 @@ export default class Backdrop extends Component {
     const {
       children,
       className,
+      visible,
       ...other,
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-
+    const backdropClass = classNames(classes.root, {
+      [classes.invisible]: !visible,
+    }, className);
     return (
       <div
         data-mui-test="Backdrop"
-        className={classNames(classes.root, className)}
+        className={backdropClass}
         aria-hidden="true"
         {...other}
       >

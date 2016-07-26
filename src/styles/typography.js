@@ -67,5 +67,14 @@ export default function createTypography(palette, constants = defaultConstants) 
       fontFamily: constants.fontFamily,
       textTransform: 'uppercase',
     },
+    materialIcon: {
+      fontFamily: 'Material Icons',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      fontSize: 24,
+      display: 'inline-block',
+      lineHeight: 1,
+      textTransform: 'none',
+    },
   };
 }

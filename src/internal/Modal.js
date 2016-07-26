@@ -47,11 +47,13 @@ export default class Modal extends Component {
      * Set to false to disable the backdrop, or true to enable it.
      */
     backdrop: PropTypes.bool,
+    backdropClassName: PropTypes.string,
     /**
      * Pass a component class to use as the backdrop.
      */
     backdropComponent: PropTypes.func,
     backdropTransitionDuration: PropTypes.number,
+    backdropVisible: PropTypes.bool,
     /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
@@ -285,24 +287,37 @@ export default class Modal extends Component {
     }
   };
 
-  renderBackdrop(backdrop, backdropComponent, show) {
-    if (!backdrop) {
-      return null;
-    }
+  renderBackdrop() {
+    const {
+      backdropComponent,
+      backdropClassName,
+      backdropTransitionDuration,
+      backdropVisible,
+      show,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+    } = this.props;
 
     return (
       <Fade
         in={show}
         transitionAppear
-        transitionDuration={this.props.backdropTransitionDuration}
-        onEnter={this.props.onEnter}
-        onEntering={this.props.onEntering}
-        onEntered={this.props.onEntered}
-        onExit={this.props.onExit}
-        onExiting={this.props.onExiting}
+        transitionDuration={backdropTransitionDuration}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={onExit}
+        onExiting={onExiting}
         onExited={this.handleBackdropExited}
       >
-        {React.createElement(backdropComponent, { onClick: this.handleBackdropClick })}
+        {React.createElement(backdropComponent, {
+          visible: backdropVisible,
+          className: backdropClassName,
+          onClick: this.handleBackdropClick,
+        })}
       </Fade>
     );
   }
@@ -310,8 +325,10 @@ export default class Modal extends Component {
   render() {
     const {
       backdrop,
-      backdropComponent,
+      backdropComponent, // eslint-disable-line no-unused-vars
+      backdropClassName, // eslint-disable-line no-unused-vars
       backdropTransitionDuration, // eslint-disable-line no-unused-vars
+      backdropVisible, // eslint-disable-line no-unused-vars
       hideOnBackdropClick, // eslint-disable-line no-unused-vars
       hideOnEscapeKeyUp, // eslint-disable-line no-unused-vars
       children,
@@ -320,6 +337,12 @@ export default class Modal extends Component {
       onBackdropClick, // eslint-disable-line no-unused-vars
       onEscapeKeyUp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
+      onEnter, // eslint-disable-line no-unused-vars
+      onEntering, // eslint-disable-line no-unused-vars
+      onEntered, // eslint-disable-line no-unused-vars
+      onExit, // eslint-disable-line no-unused-vars
+      onExiting, // eslint-disable-line no-unused-vars
+      onExited, // eslint-disable-line no-unused-vars
       show,
       ...other,
     } = this.props;
@@ -350,7 +373,7 @@ export default class Modal extends Component {
           ref={(c) => this.modal = c}
           {...other}
         >
-          {this.renderBackdrop(backdrop, backdropComponent, show)}
+          {backdrop && this.renderBackdrop()}
           {modalChild}
         </div>
       </Portal>

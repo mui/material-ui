@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       borderRadius: 2,
       color: palette.text.primary,
       backgroundColor: 'transparent',
-      transition: transitions.multi(['background-color', 'box-shadow']),
+      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: palette.text.divider,

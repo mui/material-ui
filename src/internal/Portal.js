@@ -52,6 +52,7 @@ export default class Portal extends Component {
     if (open) {
       if (!this.layer) {
         this.layer = document.createElement('div');
+        this.layer.setAttribute('data-mui-portal', 'true');
         document.body.appendChild(this.layer);
       }
 

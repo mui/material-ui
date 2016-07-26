@@ -33,4 +33,12 @@ export default {
 
     return `${property} ${duration} ${easeFunction} ${delay}`;
   },
+
+  getAutoHeightDuration(height) {
+    if (!height) {
+      return 0;
+    }
+    const constant = height / 36;
+    return Math.round(175 / constant + 25) * constant;
+  },
 };
