@@ -8,8 +8,8 @@ import MarkdownElement from '../../../MarkdownElement';
 import cardReadmeText from './README';
 import cardExampleWithAvatarCode from '!raw!./ExampleWithAvatar';
 import CardExampleWithAvatar from './ExampleWithAvatar';
-import cardExampleWithoutAvatarCode from '!raw!./ExampleWithoutAvatar';
-import CardExampleWithoutAvatar from './ExampleWithoutAvatar';
+import cardExampleExpandableCode from '!raw!./ExampleExpandable';
+import CardExampleExpandable from './ExampleExpandable';
 import cardExampleControlledCode from '!raw!./ExampleControlled';
 import CardExampleControlled from './ExampleControlled';
 
@@ -43,9 +43,9 @@ const CardPage = () => (
     <CodeExample
       title="Expandable example"
       description={descriptions.simple}
-      code={cardExampleWithoutAvatarCode}
+      code={cardExampleExpandableCode}
     >
-      <CardExampleWithoutAvatar />
+      <CardExampleExpandable />
     </CodeExample>
     <CodeExample
       title="Controlled example"
