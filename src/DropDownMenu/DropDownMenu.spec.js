@@ -11,7 +11,19 @@ describe('<DropDownMenu />', () => {
 
   it('displays the text field of menuItems prop at index x when value prop is x', () => {
     const wrapper = shallowWithContext(
-      <DropDownMenu value={1}>
+      <DropDownMenu value={2}>
+        <div value={1} primaryText="Never" />
+        <div value={2} primaryText="Every Night" />
+        <div value={3} primaryText="Weeknights" />
+      </DropDownMenu>
+    );
+
+    assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Every Night');
+  });
+
+  it('displays the text field of the first menuItems prop when value prop isn\'t found', () => {
+    const wrapper = shallowWithContext(
+      <DropDownMenu value={4}>
         <div value={1} primaryText="Never" />
         <div value={2} primaryText="Every Night" />
         <div value={3} primaryText="Weeknights" />
