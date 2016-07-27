@@ -143,8 +143,13 @@ class GridTile extends Component {
     if (imgEl) {
       const fit = () => {
         if (imgEl.offsetWidth < imgEl.parentNode.offsetWidth) {
+          const {isRtl} = this.context.muiTheme;
           imgEl.style.height = 'auto';
-          imgEl.style.left = '0';
+          if (isRtl) {
+            imgEl.style.right = '0';
+          } else {
+            imgEl.style.left = '0';
+          }
           imgEl.style.width = '100%';
           imgEl.style.top = '50%';
           imgEl.style.transform = imgEl.style.WebkitTransform = 'translateY(-50%)';
