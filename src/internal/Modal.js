@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 import warning from 'warning';
+import keycode from 'keycode';
 import canUseDom from 'dom-helpers/util/inDOM';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
@@ -234,23 +235,25 @@ export default class Modal extends Component {
     }
   };
 
-  handleDocumentKeyUp = () => {
+  handleDocumentKeyUp = (event) => {
     if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
 
-    const {
-      onEscapeKeyUp,
-      onRequestClose,
-      hideOnEscapeKeyUp,
-    } = this.props;
+    if (keycode(event) === 'esc') {
+      const {
+        onEscapeKeyUp,
+        onRequestClose,
+        hideOnEscapeKeyUp,
+      } = this.props;
 
-    if (onEscapeKeyUp) {
-      onEscapeKeyUp(event);
-    }
+      if (onEscapeKeyUp) {
+        onEscapeKeyUp(event);
+      }
 
-    if (onRequestClose && hideOnEscapeKeyUp) {
-      onRequestClose(event);
+      if (onRequestClose && hideOnEscapeKeyUp) {
+        onRequestClose(event);
+      }
     }
   };
 
