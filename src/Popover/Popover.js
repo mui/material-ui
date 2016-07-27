@@ -120,6 +120,10 @@ class Popover extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setPlacement();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.open !== this.state.open) {
       if (nextProps.open) {
@@ -146,10 +150,6 @@ class Popover extends Component {
   }
 
   componentDidUpdate() {
-    this.setPlacement();
-  }
-  
-  componentDidMount() {
     this.setPlacement();
   }
 
