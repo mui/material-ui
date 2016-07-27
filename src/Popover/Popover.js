@@ -148,6 +148,10 @@ class Popover extends Component {
   componentDidUpdate() {
     this.setPlacement();
   }
+  
+  componentDidMount() {
+    this.setPlacement();
+  }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
