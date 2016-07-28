@@ -12,6 +12,8 @@ import tabsExampleControlledCode from '!raw!./ExampleControlled';
 import TabsExampleControlled from './ExampleControlled';
 import tabsExampleSwipeableCode from '!raw!./ExampleSwipeable';
 import TabsExampleSwipeable from './ExampleSwipeable';
+import tabsExampleCustomStyleCode from '!raw!./ExampleCustomStyle';
+import TabsExampleCustomStyle from './ExampleCustomStyle';
 import tabsExampleIconCode from '!raw!./ExampleIcon';
 import TabsExampleIcon from './ExampleIcon';
 import tabsExampleIconTextCode from '!raw!./ExampleIconText';
@@ -28,6 +30,7 @@ const descriptions = {
   'and allowing tabs to be swiped on touch devices.',
   icon: 'An example of tabs with icon.',
   iconText: 'An example of tabs with icon and text.',
+  customStyle: 'An example to customize the tab style',
 };
 
 const TabsPage = () => (
@@ -68,6 +71,13 @@ const TabsPage = () => (
       code={tabsExampleIconTextCode}
     >
       <TabsExampleIconText />
+    </CodeExample>
+    <CodeExample
+      title="Custom style"
+      description={descriptions.customStyle}
+      code={tabsExampleCustomStyleCode}
+    >
+      <TabsExampleCustomStyle />
     </CodeExample>
     <PropTypeDescription code={tabsCode} header="### Tabs Properties" />
     <PropTypeDescription code={tabCode} header="### Tab Properties" />

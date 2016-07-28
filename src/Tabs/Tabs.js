@@ -19,6 +19,10 @@ function getStyles(props, context) {
 class Tabs extends Component {
   static propTypes = {
     /**
+     * The css class name of the active tab.
+     */
+    activeClassName: PropTypes.string,
+    /**
      * Should be used to pass `Tab` components.
      */
     children: PropTypes.node,
@@ -171,6 +175,7 @@ class Tabs extends Component {
 
   render() {
     const {
+      activeClassName,
       contentContainerClassName,
       contentContainerStyle,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
@@ -205,6 +210,7 @@ class Tabs extends Component {
         }, tab.props.children) : undefined);
 
       return React.cloneElement(tab, {
+        activeClassName: activeClassName,
         key: index,
         index: index,
         selected: this.getSelected(tab, index),
