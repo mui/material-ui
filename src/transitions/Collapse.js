@@ -90,7 +90,7 @@ export default class Collapse extends Component {
 
     if (transitionDuration) {
       if (transitionDuration === 'auto') {
-        element.style.transitionDuration = `${this.getTransitionDuration(wrapperHeight)}ms`;
+        element.style.transitionDuration = `${this.getAutoTransitionDuration(wrapperHeight)}ms`;
       } else if (typeof transitionDuration === 'number') {
         element.style.transitionDuration = `${transitionDuration}ms`;
       } else {
@@ -106,6 +106,7 @@ export default class Collapse extends Component {
   };
 
   handleEntered = (element) => {
+    element.style.transitionDuration = '0ms'; // safari fix
     element.style.height = 'auto';
     reflow(element);
     if (this.props.onEntered) {
@@ -116,20 +117,32 @@ export default class Collapse extends Component {
   handleExit = (element) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     element.style.height = `${wrapperHeight}px`;
-    reflow(element);
     if (this.props.onExit) {
       this.props.onExit(element);
     }
   };
 
   handleExiting = (element) => {
+    const { transitionDuration } = this.props;
+    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
+
+    if (transitionDuration) {
+      if (transitionDuration === 'auto') {
+        element.style.transitionDuration = `${this.getAutoTransitionDuration(wrapperHeight)}ms`;
+      } else if (typeof transitionDuration === 'number') {
+        element.style.transitionDuration = `${transitionDuration}ms`;
+      } else {
+        element.style.transitionDuration = transitionDuration;
+      }
+    }
+
     element.style.height = '0px';
     if (this.props.onExiting) {
       this.props.onExiting(element);
     }
   };
 
-  getTransitionDuration(wrapperHeight) {
+  getAutoTransitionDuration(wrapperHeight) {
     if (!wrapperHeight) {
       return 0;
     }

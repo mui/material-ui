@@ -101,6 +101,23 @@ describe('<Collapse>', () => {
       });
     });
 
+    describe('handleEntered()', () => {
+      let element;
+
+      before(() => {
+        element = { style: { height: 666, transitionDuration: '500ms' } };
+        instance.handleEntered(element);
+      });
+
+      it('should set element transition duration to 0 to fix a safari bug', () => {
+        assert.strictEqual(element.style.transitionDuration, '0ms', 'should have 0ms duration');
+      });
+
+      it('should set height to auto', () => {
+        assert.strictEqual(element.style.height, 'auto', 'should have auto height');
+      });
+    });
+
     describe('handleExit()', () => {
       let element;
 
