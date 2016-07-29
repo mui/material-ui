@@ -224,6 +224,10 @@ class ListItem extends Component {
     /** @ignore */
     onTouchTap: PropTypes.func,
     /**
+     * Control toggle state of nested list.
+     */
+    open: PropTypes.bool,
+    /**
      * This is the block element that contains the primary text.
      * If a string is passed in, a div tag will be rendered.
      */
@@ -302,6 +306,12 @@ class ListItem extends Component {
   componentWillMount() {
     if (this.props.initiallyOpen) {
       this.setState({open: true});
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.open !== nextProps.open) {
+      this.setState({open: nextProps.open});
     }
   }
 
