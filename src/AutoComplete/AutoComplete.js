@@ -122,6 +122,10 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
+    /**
+     * Override style for TextField
+     */
+    textFieldStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
     /** @ignore */
@@ -391,6 +395,7 @@ class AutoComplete extends Component {
       hintText,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
+      textFieldStyle,
       menuStyle,
       menuProps,
       listStyle,
@@ -505,6 +510,7 @@ class AutoComplete extends Component {
           fullWidth={fullWidth}
           multiLine={false}
           errorStyle={errorStyle}
+          style={textFieldStyle}
         />
         <Popover
           style={styles.popover}
