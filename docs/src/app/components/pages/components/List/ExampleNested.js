@@ -1,28 +1,28 @@
 import React from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import { List, ListItem } from 'material-ui/List';
+import {List, ListItem} from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import Subheader from 'material-ui/Subheader';
-import Toggle from 'material-ui/Toggle'
+import Toggle from 'material-ui/Toggle';
 
 export default class ListExampleNested extends React.Component {
 
   state = {
-    open: false
+    open: false,
   };
 
   handleToggle = () => {
     this.setState({
-      open: !this.state.open
+      open: !this.state.open,
     });
   };
 
-  syncState = (item) => {
+  handleNestedListToggle = (item) => {
     this.setState({
-      open: item.state.open
+      open: item.state.open,
     });
   };
 
@@ -34,7 +34,8 @@ export default class ListExampleNested extends React.Component {
           onToggle={this.handleToggle}
           labelPosition="right"
           label="This toggle controls the expanded state of the submenu item."
-        /><br/>
+        />
+        <br />
         <MobileTearSheet>
           <List>
             <Subheader>Nested List Items</Subheader>
@@ -65,11 +66,11 @@ export default class ListExampleNested extends React.Component {
                   primaryText="Inbox"
                   leftIcon={<ContentInbox />}
                   open={this.state.open}
-                  onNestedListToggle={this.syncState}
+                  onNestedListToggle={this.handleNestedListToggle}
                   nestedItems={[
                     <ListItem key={1} primaryText="Drafts" leftIcon={<ContentDrafts />} />,
                   ]}
-                />
+                />,
               ]}
             />
           </List>
