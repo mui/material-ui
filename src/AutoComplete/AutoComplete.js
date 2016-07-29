@@ -165,7 +165,7 @@ class AutoComplete extends Component {
      */
     targetOrigin: propTypes.origin,
     /**
-     * Override style for TextField
+     * Override the inline-styles of AutoComplete's TextField element.
      */
     textFieldStyle: PropTypes.object,
     /**
