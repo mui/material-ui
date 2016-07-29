@@ -5,6 +5,7 @@ import DayButton from './DayButton';
 class CalendarMonth extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
+    clearSelection: PropTypes.bool,
     displayDate: PropTypes.object.isRequired,
     firstDayOfWeek: PropTypes.number,
     maxDate: PropTypes.object,

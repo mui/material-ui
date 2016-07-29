@@ -20,13 +20,18 @@ class DatePicker extends Component {
      */
     autoOk: PropTypes.bool,
     /**
-     * Override the default text of the 'Cancel' button.
+     * Override the default text of the 'Cancel' / 'Clear' button.
      */
     cancelLabel: PropTypes.node,
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * If true, will replace the cancel button with clear button. This button will clear the selected value
+     * upon clicking.
+     */
+    clearSelection: PropTypes.bool,
     /**
      * Used to control how the Date Picker will be displayed when the input field is focused.
      * `dialog` (default) displays the DatePicker as a dialog with a modal.
@@ -143,6 +148,7 @@ class DatePicker extends Component {
 
   static defaultProps = {
     autoOk: false,
+    clearSelection: false,
     container: 'dialog',
     disabled: false,
     disableYearSelection: false,
@@ -265,6 +271,7 @@ class DatePicker extends Component {
       autoOk,
       cancelLabel,
       className,
+      clearSelection,
       container,
       defaultDate, // eslint-disable-line no-unused-vars
       dialogContainerStyle,
@@ -304,6 +311,7 @@ class DatePicker extends Component {
           DateTimeFormat={DateTimeFormat}
           autoOk={autoOk}
           cancelLabel={cancelLabel}
+          clearSelection={clearSelection}
           container={container}
           containerStyle={dialogContainerStyle}
           disableYearSelection={disableYearSelection}
