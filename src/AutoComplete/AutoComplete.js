@@ -122,10 +122,6 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Override style for TextField
-     */
-    textFieldStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
     /** @ignore */
@@ -168,6 +164,10 @@ class AutoComplete extends Component {
      * Origin for location of target.
      */
     targetOrigin: propTypes.origin,
+    /**
+     * Override style for TextField
+     */
+    textFieldStyle: PropTypes.object,
     /**
      * If true, will update when focus event triggers.
      */
