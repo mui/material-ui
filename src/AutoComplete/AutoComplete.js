@@ -165,6 +165,10 @@ class AutoComplete extends Component {
      */
     targetOrigin: propTypes.origin,
     /**
+     * Override the inline-styles of AutoComplete's TextField element.
+     */
+    textFieldStyle: PropTypes.object,
+    /**
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
@@ -391,6 +395,7 @@ class AutoComplete extends Component {
       hintText,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
+      textFieldStyle,
       menuStyle,
       menuProps,
       listStyle,
@@ -505,6 +510,7 @@ class AutoComplete extends Component {
           fullWidth={fullWidth}
           multiLine={false}
           errorStyle={errorStyle}
+          style={textFieldStyle}
         />
         <Popover
           style={styles.popover}
