@@ -26,23 +26,35 @@ Examples:
 Upgrade to React v15.2.1 if you are affected. (#4729)
 
 ##### Component Fixes / Enhancements
-- [React] For more invalid props warning (#4667, #4675, #4685, #4725)
-- [Dependencies] Update to the latest release version (#4669)
-- [Popover] Forward the animation proporty to this component (#4702)
-- [MenuItem] Add cursor pointer back to the menu items (#4715)
-- [Snackbar] change the action's PropType to node (#4716)
+- [AutoComplete] Add a textFieldStyle property (#4853)
+- [AutoComplete] Call onNewRequest once the animation is done (#4817)
+- [Card] Fix bottom padding (#4820)
+- [Chip] Fix invalid `labelColor` being passed (#4766)
+- [DropDownMenu] Display the first item in case there's no one with the corresponding value (#4822)
+- [FlatButton] Merge styles prop for FontIcon node (#4754)
+- [GridList] Fix RTL alignment (#4833)
 - [List] Prefix the style properties (#1cb0617)
-- [TextField] False should be a valid value (#4728)
-- [Menu] TypeError: key is undefined (#4734)
 - [ListItem] Trigger onNestedListToggle callback after state update (#4743)
 - [ListItem] Fix incorrect nestedLevel (#4744)
+- [Menu] TypeError: key is undefined (#4734)
+- [MenuItem] Add cursor pointer back to the menu items (#4715)
+- [Popover] Forward the animation proporty to this component (#4702)
+- [RadioButtonGroup] Fix propTypes to accept anything (#4807)
+- [RaisedButton] Fix the icon style override (#4f2fd22)
+- [React] Fix more invalid props warning (#4667, #4675, #4685, #4725)
+- [Snackbar] Change the action's PropType to node (#4716)
+- [TextField] False should be a valid value (#4728)
 
 ##### Core
+- [dependencies] Update to the latest release version (#4669)
 - [eslint] Find new rules with ease (#4521)
+- [react] Fix the warnings of the latest release v15.3.0 (#4856)
 
 ##### Docs
-- [ROADMAP] Remove addressed issues (#4745)
-- [Docs] Replaces images on Card page with hosted images (#4748)
+- [ROADMAP] Remove old addressed issues (#4745)
+- [ROADMAP] Update to what the core team is working on (#4829)
+- [docs] Replaces images on Card page with hosted images (#4748)
+- [showcase] Add https://www.spouti.com (#4806)
 
 ## 0.15.2
 ###### _Jul 7, 2016_
