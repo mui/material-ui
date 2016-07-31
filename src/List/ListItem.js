@@ -286,6 +286,7 @@ class ListItem extends Component {
     onMouseLeave: () => {},
     onNestedListToggle: () => {},
     onTouchStart: () => {},
+    open: null,
     primaryTogglesNestedList: false,
     secondaryTextLines: 1,
   };
@@ -304,15 +305,15 @@ class ListItem extends Component {
   };
 
   componentWillMount() {
-    if (this.props.initiallyOpen) {
-      this.setState({open: true});
-    }
+    this.setState({
+      open: this.props.open === null ? this.props.initiallyOpen === true : this.props.open,
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.open !== nextProps.open) {
+    // update the state when the component is controlled.
+    if (nextProps.open !== null)
       this.setState({open: nextProps.open});
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {

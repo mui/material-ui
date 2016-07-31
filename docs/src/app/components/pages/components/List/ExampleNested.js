@@ -64,6 +64,7 @@ export default class ListExampleNested extends React.Component {
                 <ListItem
                   key={3}
                   primaryText="Inbox"
+                  className="TESTTESTT"
                   leftIcon={<ContentInbox />}
                   open={this.state.open}
                   onNestedListToggle={this.handleNestedListToggle}
