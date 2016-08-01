@@ -29,6 +29,7 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
   return {
     root: {
       position: 'relative',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0.0)',
       outline: 'none',
       border: 0,
       cursor: 'pointer',

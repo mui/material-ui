@@ -1,12 +1,12 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
-import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
 import { easing } from '../styles/transitions';
 
-// const reflow = (elem) => elem.offsetHeight;
+const reflow = (elem) => elem && elem.offsetHeight;
 
 export const styleSheet = createStyleSheet('Ripple', (theme) => ({
   ripple: {
@@ -84,7 +84,6 @@ export default class Ripple extends Component {
   }
 
   componentWillLeave(callback) {
-      // reflow(ReactDOM.findDOMNode(this.ripple));
     this.stop();
     this.leaveTimer = setTimeout(() => {
       callback();
@@ -94,14 +93,16 @@ export default class Ripple extends Component {
   ripple = null;
   leaveTimer = undefined;
 
-  start = () => {
+  start = (cb) => {
     this.setState({
       rippleVisible: true,
       rippleStart: true,
     }, () => {
-      requestAnimFrame(() => {
-        this.setState({ rippleStart: false });
-      });
+      if (cb) {
+        cb();
+      }
+      reflow(findDOMNode(this.ripple));
+      this.setState({ rippleStart: false });
     });
   };
 
