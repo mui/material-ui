@@ -36,17 +36,18 @@ describe('<Ripple>', () => {
       assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
       assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
 
-      wrapper.instance().start(() => {
-        // This happens extremely quickly due to a forced reflow in the same tick
-        assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
-      });
+      wrapper.instance().componentWillEnter();
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
       assert.strictEqual(wrapper.hasClass(classes.visible), true, 'should have the visible class');
+      assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
     });
 
     it('should stop starting immediately', () => {
+      wrapper.instance().componentDidEnter();
+      wrapper.update();
+
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
       assert.strictEqual(wrapper.hasClass(classes.visible), true, 'should have the visible class');
       assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
@@ -84,10 +85,7 @@ describe('<Ripple>', () => {
       assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
       assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
 
-      wrapper.instance().start(() => {
-        // This happens extremely quickly due to a forced reflow in the same tick
-        assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
-      });
+      wrapper.instance().componentWillEnter();
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
@@ -96,6 +94,9 @@ describe('<Ripple>', () => {
     });
 
     it('should stop starting immediately', () => {
+      wrapper.instance().componentDidEnter();
+      wrapper.update();
+
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
       assert.strictEqual(wrapper.hasClass(classes.pulsating), true, 'should have the pulsating class');
       assert.strictEqual(wrapper.childAt(0).hasClass(classes.visible), true, 'should have the visible class');
