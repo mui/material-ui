@@ -88,14 +88,13 @@ export default class Collapse extends Component {
     const { transitionDuration } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
-    if (transitionDuration) {
-      if (transitionDuration === 'auto') {
-        element.style.transitionDuration = `${this.getAutoTransitionDuration(wrapperHeight)}ms`;
-      } else if (typeof transitionDuration === 'number') {
-        element.style.transitionDuration = `${transitionDuration}ms`;
-      } else {
-        element.style.transitionDuration = transitionDuration;
-      }
+    if (transitionDuration === 'auto') {
+      const { getAutoHeightDuration } = this.context.styleManager.theme.transitions;
+      element.style.transitionDuration = `${getAutoHeightDuration(wrapperHeight)}ms`;
+    } else if (typeof transitionDuration === 'number') {
+      element.style.transitionDuration = `${transitionDuration}ms`;
+    } else {
+      element.style.transitionDuration = transitionDuration;
     }
 
     element.style.height = `${wrapperHeight}px`;

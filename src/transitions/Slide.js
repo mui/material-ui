@@ -53,13 +53,14 @@ export default class Slide extends Component {
 
   handleEnter = (element) => {
     element.style.transform = this.getTranslateValue(this.props);
-    element.style.transition = this.context.theme.transitions.create('transform', `${this.props.transitionDuration}ms`);
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
   };
 
   handleEntering = (element) => {
+    const { transitions } = this.context.theme;
+    element.style.transition = transitions.create('transform', `${this.props.transitionDuration}ms`);
     element.style.transform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
       this.props.onEntering(element);

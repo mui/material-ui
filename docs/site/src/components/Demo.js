@@ -17,6 +17,8 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       position: 'relative',
       backgroundColor: palette.background.contentFrame,
       marginBottom: 40,
+      marginLeft: -16,
+      marginRight: -16,
     },
     demo: mixins.gutters({
       display: 'flex',
@@ -25,12 +27,14 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       paddingBottom: 20,
     }),
     codeButton: {
+      display: 'none',
       zIndex: 10,
       position: 'absolute',
       top: 2,
       right: 7,
     },
     code: {
+      display: 'none',
       padding: 0,
       margin: 0,
       '@raw pre': {
@@ -38,6 +42,14 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
         backgroundColor: `${palette.background.paper} !important`,
         margin: '0px !important',
         borderRadius: '0px !important',
+      },
+    },
+    [theme.breakpoints.up('md')]: {
+      codeButton: { display: 'block' },
+      code: { display: 'block' },
+      root: {
+        marginLeft: 0,
+        marginRight: 0,
       },
     },
   };
@@ -74,7 +86,6 @@ export default class Demo extends Component {
     const DemoComponent = requireDemos(`./${this.props.demo}`).default;
     const demoSource = requireDemoSource(`./${this.props.demo}`);
     const classes = this.context.styleManager.render(styleSheet);
-
     const code = `\`\`\`js\n${demoSource}\n\`\`\``;
 
     return (

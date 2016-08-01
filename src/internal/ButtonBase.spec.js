@@ -2,6 +2,7 @@
 /* eslint-env mocha */
 
 import React from 'react';
+import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import ButtonBase, { styleSheet } from './ButtonBase';
@@ -91,7 +92,7 @@ describe('<ButtonBase>', () => {
 
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, {});
+        wrapper.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -285,7 +286,7 @@ describe('<ButtonBase>', () => {
       button.focus();
 
       const event = new window.Event('keydown');
-      event.keyCode = 9;
+      event.which = keycode('tab');
       window.dispatchEvent(event);
 
       setTimeout(() => {

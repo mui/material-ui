@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: [
     'babel',
+    'jsx-a11y',
     'mocha',
     'flowtype',
     'material-ui',
@@ -61,6 +62,11 @@ module.exports = {
         'render'
       ],
     }],
+    'jsx-a11y/aria-props': 'error',
+    'jsx-a11y/aria-proptypes': 'error',
+    'jsx-a11y/aria-role': 'error',
+    'jsx-a11y/img-has-alt': ['error', ['Avatar']],
+    'jsx-a11y/role-supports-aria-props': 'error',
     'material-ui/docgen-ignore-before-comment': 'error',
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',

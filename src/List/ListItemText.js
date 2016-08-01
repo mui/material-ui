@@ -10,6 +10,9 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
     root: {
       flex: '1 1 auto',
       padding: '0 16px',
+      '&:first-child': {
+        paddingLeft: 0,
+      },
     },
     secondary: {
       color: theme.palette.text.secondary,

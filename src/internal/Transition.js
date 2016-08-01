@@ -145,6 +145,18 @@ class Transition extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      this.props.in &&
+      this.state.status === EXITED &&
+      this.state.status === nextState.status
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
   componentDidUpdate() {
     const status = this.state.status;
 
@@ -192,8 +204,15 @@ class Transition extends Component {
     const node = ReactDOM.findDOMNode(this);
 
     // Not this.props, because we might be about to receive new props.
-    props.onEnter(node);
+    if (props.onEnter.length === 2) {
+      return props.onEnter(node, () => this.performEntering(node));
+    }
 
+    props.onEnter(node);
+    return this.performEntering(node);
+  }
+
+  performEntering(node) {
     this.safeSetState({ status: ENTERING }, () => {
       this.props.onEntering(node);
 

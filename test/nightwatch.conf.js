@@ -28,6 +28,9 @@ module.exports = {
         browser_version: '51.0',
         os: 'OS X',
         os_version: 'El Capitan',
+        chromeOptions: {
+          args: ['--start-maximized'],
+        },
       },
     },
     safari_9: {
@@ -49,7 +52,7 @@ module.exports = {
     ie_edge: {
       desiredCapabilities: {
         browserName: 'Edge',
-        browser_version: '14.0',
+        browser_version: '13.0',
         os: 'Windows',
         os_version: '10',
       },

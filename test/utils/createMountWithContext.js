@@ -4,11 +4,21 @@ import { PropTypes } from 'react';
 import { mount as enzymeMount } from 'enzyme';
 import { createDefaultContext } from 'src/styles/MuiThemeProvider';
 
+// ReactWrapper.prototype.findModal = function () {
+//   const wrapper = this.find(Modal);
+//   if (wrapper.length && wrapper.node._modal) {
+//     const modal = wrapper.node._modal;
+//     return new ReactWrapper(modal, modal);
+//   }
+//   return undefined;
+// };
+
 export default function createMountWithContext(mount = enzymeMount, props = {}) {
   cleanStyles();
 
   const attachTo = window.document.createElement('div');
   attachTo.className = 'app';
+  attachTo.setAttribute('id', 'app');
   window.document.body.insertBefore(attachTo, window.document.body.firstChild);
 
   const { theme, styleManager } = createDefaultContext(props);
@@ -23,10 +33,13 @@ export default function createMountWithContext(mount = enzymeMount, props = {}) 
   };
 
   mountWithContext.context = context;
+  mountWithContext.attachTo = attachTo;
 
   mountWithContext.cleanUp = () => {
     cleanStyles();
     attachTo.parentNode.removeChild(attachTo);
+    const portals = document.querySelectorAll('[data-mui-portal]');
+    Array.prototype.forEach.call(portals, (el) => el.parentNode.removeChild(el));
   };
 
   mountWithContext.reset = () => {

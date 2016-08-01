@@ -1,6 +1,8 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable no-console */
+
 const path = require('path');
-const child_process = require('child_process');
+const childProcess = require('child_process');
 const browserstack = require('browserstack-local');
 const webpack = require('webpack');
 const httpServer = require('http-server');
@@ -19,7 +21,7 @@ buildDocs();
 function buildDocs() {
   console.log('Building webpack bundle');
 
-  compiler.run(function(err) {
+  compiler.run((err) => {
     if (err) {
       throw err;
     }
@@ -33,7 +35,7 @@ function bootServer() {
   server.listen(8080, () => {
     console.log('Server listening on port 8080');
 
-    child_process.exec('git rev-parse --short HEAD', function(err, stdout) {
+    childProcess.exec('git rev-parse --short HEAD', (err, stdout) => {
       process.env.MUI_HASH = stdout;
       execTests();
     });
@@ -46,7 +48,7 @@ function execTests() {
     forcelocal: true,
   };
 
-  bsLocal.start(bsLocalArgs, function(err) {
+  bsLocal.start(bsLocalArgs, (err) => {
     if (err) {
       throw err;
     } else {
@@ -54,26 +56,26 @@ function execTests() {
 
       const other = process.argv.slice(2);
 
-      const child = child_process.spawn(
+      const child = childProcess.spawn(
         './node_modules/.bin/nightwatch',
-        [
-          '-c',
-          'test/nightwatch.conf.js',
-          '-e',
-          'chrome_51,safari_9,firefox_46,ie_edge,ie_11,ie_10',
-        ].concat(other),
+      [
+        '-c',
+        'test/nightwatch.conf.js',
+        '-e',
+        'chrome_51,safari_9,firefox_46,ie_edge,ie_11,ie_10',
+      ].concat(other),
         {
           stdio: [0, 0, 0],
         }
       );
 
-      child.on('close', function() {
+      child.on('close', () => {
         console.log('closed!');
         process.exit(0);
       });
 
-      child.on('error', function(err) {
-        throw err;
+      child.on('error', (childErr) => {
+        throw childErr;
       });
     }
   });

@@ -4,20 +4,23 @@ const path = require('path');
 const argv = process.argv.slice(2);
 const opts = {
   grep: undefined,
-  coverage: true,
+  watch: false,
 };
 
 argv.forEach((arg) => {
   if (/^--grep=/.test(arg)) {
     opts.grep = arg.replace('--grep=', '').trim();
-    opts.coverage = false; // disable if grepping
+  }
+
+  if (/^--watch/.test(arg)) {
+    opts.watch = true;
   }
 });
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   config.set({
-    autoWatch: false,
+    autoWatch: opts.watch,
     basePath: '../',
     browsers: ['PhantomJS'],
     client: {
@@ -31,13 +34,14 @@ module.exports = function setKarmaConfig(config) {
       'node_modules/babel-polyfill/dist/polyfill.js',
       {
         pattern: 'test/karma.tests.js',
-        watched: false,
+        watched: opts.watch,
         served: true,
         included: true,
       },
     ],
     plugins: [
       'karma-phantomjs-launcher',
+      'karma-firefox-launcher',
       'karma-mocha',
       'karma-sourcemap-loader',
       'karma-webpack',
@@ -50,7 +54,7 @@ module.exports = function setKarmaConfig(config) {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
     },
     reporters: ['mocha'],
-    singleRun: false,
+    singleRun: !opts.watch,
     webpack: {
       devtool: 'inline-source-map',
       module: {
