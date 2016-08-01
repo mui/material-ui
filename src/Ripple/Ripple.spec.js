@@ -3,7 +3,6 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
 import Ripple, { styleSheet } from './Ripple';
 import { createShallowWithContext } from 'test/utils';
 
@@ -37,21 +36,20 @@ describe('<Ripple>', () => {
       assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
       assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
 
-      wrapper.instance().start();
+      wrapper.instance().start(() => {
+        // This happens extremely quickly due to a forced reflow in the same tick
+        assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
+      });
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
       assert.strictEqual(wrapper.hasClass(classes.visible), true, 'should have the visible class');
-      assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
     });
 
-    it('should stop starting on the next animation frame', (done) => {
-      requestAnimFrame(() => {
-        assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
-        assert.strictEqual(wrapper.hasClass(classes.visible), true, 'should have the visible class');
-        assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
-        done();
-      });
+    it('should stop starting immediately', () => {
+      assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
+      assert.strictEqual(wrapper.hasClass(classes.visible), true, 'should have the visible class');
+      assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
     });
 
     it('should stop the ripple', () => {
@@ -86,23 +84,22 @@ describe('<Ripple>', () => {
       assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
       assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
 
-      wrapper.instance().start();
+      wrapper.instance().start(() => {
+        // This happens extremely quickly due to a forced reflow in the same tick
+        assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
+      });
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
       assert.strictEqual(wrapper.hasClass(classes.pulsating), true, 'should have the pulsating class');
       assert.strictEqual(wrapper.childAt(0).hasClass(classes.visible), true, 'should have the visible class');
-      assert.strictEqual(wrapper.state('rippleStart'), true, 'should be starting');
     });
 
-    it('should stop starting on the next animation frame', (done) => {
-      requestAnimFrame(() => {
-        assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
-        assert.strictEqual(wrapper.hasClass(classes.pulsating), true, 'should have the pulsating class');
-        assert.strictEqual(wrapper.childAt(0).hasClass(classes.visible), true, 'should have the visible class');
-        assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
-        done();
-      });
+    it('should stop starting immediately', () => {
+      assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
+      assert.strictEqual(wrapper.hasClass(classes.pulsating), true, 'should have the pulsating class');
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.visible), true, 'should have the visible class');
+      assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
     });
 
     it('should stop the ripple', () => {

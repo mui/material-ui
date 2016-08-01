@@ -6,7 +6,7 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import shallowEqual from 'recompose/shallowEqual';
 import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
-import Ripple from './Ripple';
+import Ripple, { styleSheet as rippleStyleSheet } from './Ripple';
 
 export const styleSheet = createStyleSheet('TouchRipple', () => ({
   root: {
@@ -38,6 +38,11 @@ export default class TouchRipple extends Component {
     nextKey: 0,
     ripples: [],
   };
+
+  componentWillMount() {
+    // Pre-render the ripple styles
+    this.context.styleManager.render(rippleStyleSheet, { group: 'mui' });
+  }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
