@@ -232,7 +232,6 @@ export default class ButtonBase extends Component {
 
     const buttonProps = {
       ref: (c) => this.button = c,
-      onClick: this.handleClick,
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
       onKeyDown: this.handleKeyDown,

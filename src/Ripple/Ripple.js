@@ -79,8 +79,13 @@ export default class Ripple extends Component {
     clearTimeout(this.leaveTimer);
   }
 
+  componentWillEnter(callback) {
+    this.start(callback);
+  }
+
   componentDidEnter() {
-    this.start();
+    reflow(findDOMNode(this.ripple));
+    this.setState({ rippleStart: false });
   }
 
   componentWillLeave(callback) {
@@ -93,17 +98,11 @@ export default class Ripple extends Component {
   ripple = null;
   leaveTimer = undefined;
 
-  start = (cb) => {
+  start = (callback) => {
     this.setState({
       rippleVisible: true,
       rippleStart: true,
-    }, () => {
-      if (cb) {
-        cb();
-      }
-      reflow(findDOMNode(this.ripple));
-      this.setState({ rippleStart: false });
-    });
+    }, callback);
   };
 
   stop = () => {
