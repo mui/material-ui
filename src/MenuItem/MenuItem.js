@@ -19,7 +19,7 @@ function getStyles(props, context) {
   const styles = {
     root: {
       color: props.disabled ? disabledColor : textColor,
-      cursor: props.disabled ? 'not-allowed' : 'inherit',
+      cursor: props.disabled ? 'not-allowed' : 'pointer',
       lineHeight: props.desktop ? '32px' : '48px',
       fontSize: props.desktop ? 15 : 16,
       whiteSpace: 'nowrap',
@@ -57,6 +57,10 @@ class MenuItem extends Component {
   static muiName = 'MenuItem';
 
   static propTypes = {
+    /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
     /**
      * If true, a left check mark will be rendered.
      */
@@ -190,7 +194,6 @@ class MenuItem extends Component {
           item.props.onTouchTap(event);
         }
       },
-      onRequestClose: this.handleRequestClose,
     });
   };
 
@@ -228,6 +231,7 @@ class MenuItem extends Component {
       rightIcon,
       secondaryText,
       style,
+      animation,
       value, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -268,6 +272,7 @@ class MenuItem extends Component {
     if (menuItems) {
       childMenuPopover = (
         <Popover
+          animation={animation}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
           anchorEl={this.state.anchorEl}
           open={this.state.open}

@@ -59,6 +59,12 @@ const appList = [
     img: 'images/showcase/smaftv.png',
     link: 'http://www.smaf.tv/',
   },
+  {
+    title: 'Spouti - An events search engine',
+    author: 'Magino Marveaux-Cochet',
+    img: 'images/showcase/spouti.png',
+    link: 'https://www.spouti.com/',
+  },
 ];
 
 const Showcase = () => (

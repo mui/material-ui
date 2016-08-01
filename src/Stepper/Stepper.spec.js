@@ -23,7 +23,7 @@ describe('<Stepper />', () => {
       />
     );
 
-    assert.strictEqual(wrapper.props().style.backgroundColor, 'purple', );
+    assert.strictEqual(wrapper.props().style.backgroundColor, 'purple');
   });
 
   describe('rendering children', () => {

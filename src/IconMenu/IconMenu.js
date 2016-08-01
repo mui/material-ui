@@ -23,6 +23,10 @@ class IconMenu extends Component {
      */
     animated: PropTypes.bool,
     /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
+    /**
      * Should be used to pass `MenuItem` components.
      */
     children: PropTypes.node,
@@ -225,6 +229,7 @@ class IconMenu extends Component {
       anchorOrigin,
       className,
       animated,
+      animation,
       iconButtonElement,
       iconStyle,
       onItemTouchTap, // eslint-disable-line no-unused-vars
@@ -264,7 +269,9 @@ class IconMenu extends Component {
       iconStyle: Object.assign({}, iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
-        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(event);
+        if (iconButtonElement.props.onTouchTap) {
+          iconButtonElement.props.onTouchTap(event);
+        }
       },
       ref: 'iconButton',
     });
@@ -302,6 +309,7 @@ class IconMenu extends Component {
           useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
           context={this.context}
         >
           {menu}

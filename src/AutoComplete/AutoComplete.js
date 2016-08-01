@@ -52,6 +52,10 @@ class AutoComplete extends Component {
      */
     animated: PropTypes.bool,
     /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
+    /**
      * Array of strings or nodes used to populate the list.
      */
     dataSource: PropTypes.array.isRequired,
@@ -161,6 +165,10 @@ class AutoComplete extends Component {
      */
     targetOrigin: propTypes.origin,
     /**
+     * Override the inline-styles of AutoComplete's TextField element.
+     */
+    textFieldStyle: PropTypes.object,
+    /**
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
@@ -265,14 +273,14 @@ class AutoComplete extends Component {
     const chosenRequest = dataSource[index];
     const searchText = this.chosenRequestText(chosenRequest);
 
-    this.props.onNewRequest(chosenRequest, index);
-
     this.timerTouchTapCloseId = setTimeout(() => {
+      this.timerTouchTapCloseId = null;
+
       this.setState({
         searchText: searchText,
       });
       this.close();
-      this.timerTouchTapCloseId = null;
+      this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
   };
 
@@ -375,6 +383,7 @@ class AutoComplete extends Component {
     const {
       anchorOrigin,
       animated,
+      animation,
       dataSource,
       dataSourceConfig, // eslint-disable-line no-unused-vars
       disableFocusRipple,
@@ -386,6 +395,7 @@ class AutoComplete extends Component {
       hintText,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
+      textFieldStyle,
       menuStyle,
       menuProps,
       listStyle,
@@ -500,6 +510,7 @@ class AutoComplete extends Component {
           fullWidth={fullWidth}
           multiLine={false}
           errorStyle={errorStyle}
+          style={textFieldStyle}
         />
         <Popover
           style={styles.popover}
@@ -511,6 +522,7 @@ class AutoComplete extends Component {
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
         >
           {menu}
         </Popover>

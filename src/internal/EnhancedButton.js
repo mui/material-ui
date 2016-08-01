@@ -309,7 +309,7 @@ class EnhancedButton extends Component {
        * See: http://stackoverflow.com/questions/17298739/
        * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
        */
-      transform: disableTouchRipple && disableFocusRipple ? null : 'translate3d(0, 0, 0)',
+      transform: disableTouchRipple && disableFocusRipple ? null : 'translate(0, 0)',
       verticalAlign: href ? 'middle' : null,
     }, style);
 

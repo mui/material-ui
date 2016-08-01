@@ -113,7 +113,7 @@ const getStyles = (props, context, state) => {
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return Boolean(value || value === 0);
+  return value !== '' && value !== undefined && value !== null;
 }
 
 class TextField extends Component {

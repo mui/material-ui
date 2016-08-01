@@ -37,7 +37,7 @@ const config = {
     filename: 'app.js', // Name of output file
   },
   plugins: [
-    // Allows for sync with browser while developing (like BorwserSync)
+    // Allows for sync with browser while developing (like BrowserSync)
     new webpack.HotModuleReplacementPlugin(),
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),

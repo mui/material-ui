@@ -4,7 +4,7 @@ import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import Popover from '../Popover/Popover';
-import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 
 const anchorOrigin = {
   vertical: 'top',
@@ -79,6 +79,10 @@ class DropDownMenu extends Component {
      * it gets added to the DOM.
      */
     animated: PropTypes.bool,
+    /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
     /**
      * The width will automatically be set according to the items inside the menu.
      * To control this width in css instead, set this prop to `false`.
@@ -239,6 +243,7 @@ class DropDownMenu extends Component {
   render() {
     const {
       animated,
+      animation,
       autoWidth,
       children,
       className,
@@ -262,9 +267,9 @@ class DropDownMenu extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    let displayValue = '';
+    let displayValue;
     React.Children.forEach(children, (child) => {
-      if (value === child.props.value) {
+      if (!displayValue || value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
       }
@@ -298,7 +303,7 @@ class DropDownMenu extends Component {
         <Popover
           anchorOrigin={anchorOrigin}
           anchorEl={anchorEl}
-          animation={PopoverAnimationFromTop}
+          animation={animation || PopoverAnimationVertical}
           open={open}
           animated={animated}
           onRequestClose={this.handleRequestCloseMenu}

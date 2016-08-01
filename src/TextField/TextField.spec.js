@@ -77,4 +77,40 @@ describe('<TextField />', () => {
       );
     });
   });
+
+  describe('isValid', () => {
+    it('should consider the input as empty', () => {
+      const values = [
+        undefined,
+        null,
+        '',
+      ];
+
+      values.forEach((value) => {
+        const wrapper = shallowWithContext(
+          <TextField id="isValid" value={value} />
+        );
+
+        assert.strictEqual(wrapper.state().hasValue, false,
+          `Should consider '${value}' as empty`);
+      });
+    });
+
+    it('should consider the input as not empty', () => {
+      const values = [
+        ' ',
+        0,
+        false,
+      ];
+
+      values.forEach((value) => {
+        const wrapper = shallowWithContext(
+          <TextField id="isValid" value={value} />
+        );
+
+        assert.strictEqual(wrapper.state().hasValue, true,
+          `Should consider '${value}' as not empty`);
+      });
+    });
+  });
 });

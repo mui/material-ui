@@ -419,8 +419,9 @@ class ListItem extends Component {
 
   handleNestedListToggle = (event) => {
     event.stopPropagation();
-    this.setState({open: !this.state.open});
-    this.props.onNestedListToggle(this);
+    this.setState({open: !this.state.open}, () => {
+      this.props.onNestedListToggle(this);
+    });
   };
 
   handleRightIconButtonKeyboardFocus = (event, isKeyboardFocused) => {
@@ -525,7 +526,7 @@ class ListItem extends Component {
         contentChildren,
         leftIcon,
         Object.assign({}, styles.icons, styles.leftIcon),
-        additionalProps,
+        additionalProps
       );
     }
 
@@ -537,7 +538,7 @@ class ListItem extends Component {
         contentChildren,
         rightIcon,
         Object.assign({}, styles.icons, styles.rightIcon),
-        additionalProps,
+        additionalProps
       );
     }
 
@@ -624,7 +625,7 @@ class ListItem extends Component {
     }
 
     const nestedList = nestedItems.length ? (
-      <NestedList nestedLevel={nestedLevel + 1} open={this.state.open} style={nestedListStyle}>
+      <NestedList nestedLevel={nestedLevel} open={this.state.open} style={nestedListStyle}>
         {nestedItems}
       </NestedList>
     ) : undefined;

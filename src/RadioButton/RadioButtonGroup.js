@@ -13,11 +13,11 @@ class RadioButtonGroup extends Component {
      */
     className: PropTypes.string,
     /**
-     * The `value` property (case-sensitive) of the radio button that will be
+     * The `value` property of the radio button that will be
      * selected by default. This takes precedence over the `checked` property
      * of the `RadioButton` elements.
      */
-    defaultSelected: PropTypes.string,
+    defaultSelected: PropTypes.any,
     /**
      * Where the label will be placed for all child radio buttons.
      * This takes precedence over the `labelPosition` property of the
@@ -34,7 +34,7 @@ class RadioButtonGroup extends Component {
      *
      * @param {object} event `change` event targeting the selected
      * radio button.
-     * @param {string} value The `value` of the selected radio button.
+     * @param {*} value The `value` of the selected radio button.
      */
     onChange: PropTypes.func,
     /**
@@ -44,7 +44,7 @@ class RadioButtonGroup extends Component {
     /**
      * The `value` of the currently selected radio button.
      */
-    valueSelected: PropTypes.string,
+    valueSelected: PropTypes.any,
   };
 
   static defaultProps = {

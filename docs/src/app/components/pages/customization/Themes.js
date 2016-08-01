@@ -227,7 +227,7 @@ class ThemesPage extends Component {
               actions={[
                 <FlatButton
                   label="Cancel"
-                  keyboardFocus={true}
+                  keyboardFocused={true}
                   onTouchTap={this.handleRequestCloseDialog}
                   primary={true}
                 />,
