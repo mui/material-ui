@@ -20,14 +20,8 @@ function getStyles(props) {
     dropDownMenu: {
       display: 'block',
     },
-    input: {
-      height: 1,
-      width: 1,
-      clip: 'rect(1px, 1px, 1px, 1px)',
-      border: 0,
-      overflow: 'hidden',
+    rootNode: {
       outline: 'none',
-      position: 'absolute',
     },
   };
 }
@@ -154,6 +148,29 @@ class SelectField extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleFocus(event) {
+    this.TextField.handleInputFocus(event);
+  }
+
+  handleBlur(event) {
+    this.TextField.handleInputBlur(event);
+  }
+
+  handleKeyDown(event) {
+    if (keycode(event) === 'down') {
+      event.preventDefault();
+      this.TextField.focus();
+    }
+  }
+
+
   render() {
     const {
       autoWidth,
@@ -188,32 +205,13 @@ class SelectField extends Component {
 
     return (
       <div
-        onFocus={
-          function(event) {
-            this.TextField.handleInputFocus(event);
-          }.bind(this)
-        }
-        onBlur={
-          function(event) {
-            this.TextField.handleInputBlur(event);
-          }.bind(this)
-        }
-        onKeyDown={
-          function(event) {
-            if (keycode(event) === 'down') {
-              event.preventDefault();
-              this.TextField.focus();
-            }
-          }.bind(this)
-        }
+        tabIndex={disabled ? -1 : 0}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        onKeyDown={this.handleKeyDown}
         ref={(component) => this.RootNode = component}
+        style={styles.rootNode}
       >
-        {!disabled &&
-          <input
-            style={styles.input}
-            ref={(component) => this.InputNode = component}
-          />
-        }
         <TextField
           {...other}
           style={style}
@@ -244,12 +242,9 @@ class SelectField extends Component {
             value={value}
             onChange={onChange}
             onClose={function() {
-              this.InputNode.focus();
+              this.RootNode.focus();
             }.bind(this)}
             maxHeight={maxHeight}
-            ref={function(component) {
-              this.DropdownMenu = component;
-            }}
           >
             {children}
           </DropDownMenu>
