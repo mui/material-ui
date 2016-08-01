@@ -21,6 +21,7 @@ Examples:
 <CircularProgress size={119} thickness={7} style={{margin: 10.5}} />
 ```
 (#4705)
+- [core] Wrap the `propTypes` definitions so they can be removed in production (#4872)
 
 ## 0.15.3
 ###### _Jul 31, 2016_
