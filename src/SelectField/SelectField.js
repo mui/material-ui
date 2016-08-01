@@ -28,7 +28,7 @@ function getStyles(props) {
       overflow: 'hidden',
       outline: 'none',
       position: 'absolute',
-    }
+    },
   };
 }
 
