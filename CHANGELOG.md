@@ -22,6 +22,14 @@ Examples:
 ```
 (#4705)
 
+## 0.15.3
+###### _Jul 31, 2016_
+
+This release is mostly about bug fixes. All the new warnings introduced by React
+v15.2.1 and v15.3.0 should be addressed in this version.
+
+##### Breaking Changes
+
 - Remove a workaround regarding the context propagation as it was fixed in the React Core.
 Upgrade to React v15.2.1 if you are affected. (#4729)
 
