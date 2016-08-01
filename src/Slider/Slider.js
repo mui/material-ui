@@ -10,8 +10,8 @@ import FocusRipple from '../internal/FocusRipple';
  * @param   {String} componentName Name of the component whose property is being validated.
  * @returns {Object} Returns an Error if min >= max otherwise null.
  */
-const minMaxPropType = (props, propName, componentName) => {
-  const error = PropTypes.number(props, propName, componentName);
+const minMaxPropType = (props, propName, componentName, ...rest) => {
+  const error = PropTypes.number(props, propName, componentName, ...rest);
   if (error !== null) return error;
 
   if (props.min >= props.max) {
@@ -27,8 +27,8 @@ const minMaxPropType = (props, propName, componentName) => {
  * @param   {String} componentName Name of the component whose property is being validated.
  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
  */
-const valueInRangePropType = (props, propName, componentName) => {
-  const error = PropTypes.number(props, propName, componentName);
+const valueInRangePropType = (props, propName, componentName, ...rest) => {
+  const error = PropTypes.number(props, propName, componentName, ...rest);
   if (error !== null) return error;
 
   const value = props[propName];
