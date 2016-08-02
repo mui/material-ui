@@ -1,14 +1,11 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
-const reflow = (elem) => elem && elem.offsetHeight;
-
-export const styleSheet = createStyleSheet('Ripple', (theme) => ({
+export const styleSheet = createStyleSheet('Ripple', () => ({
   ripple: {
     width: 50,
     height: 50,
@@ -19,11 +16,17 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
     borderRadius: '50%',
     background: 'currentColor',
   },
-  animating: {
-    transition: theme.transitions.multi(['transform', 'opacity'], '550ms'),
+  visible: {
+    opacity: 0.3,
+    transform: 'scale(1, 1)',
+    animation: `ripple-enter 550ms ${easing.easeInOut}`,
     '&fast': {
-      transitionDuration: '200ms',
+      animationDuration: '200ms',
     },
+  },
+  leaving: {
+    opacity: 0,
+    animation: `ripple-exit 550ms ${easing.easeInOut}`,
   },
   pulsating: {
     position: 'absolute',
@@ -37,8 +40,21 @@ export const styleSheet = createStyleSheet('Ripple', (theme) => ({
       opacity: 0.2,
     },
   },
-  visible: {
-    opacity: 0.3,
+  '@keyframes ripple-enter': {
+    '0%': {
+      transform: 'scale(0.00001, 0.00001)',
+    },
+    '100%': {
+      transform: 'scale(1, 1)',
+    },
+  },
+  '@keyframes ripple-exit': {
+    '0%': {
+      opacity: 1,
+    },
+    '100%': {
+      opacity: 0,
+    },
   },
   '@keyframes ripple-pulsate': {
     '0%': {
@@ -83,11 +99,6 @@ export default class Ripple extends Component {
     this.start(callback);
   }
 
-  componentDidEnter() {
-    reflow(findDOMNode(this.ripple));
-    this.setState({ rippleStart: false });
-  }
-
   componentWillLeave(callback) {
     this.stop();
     this.leaveTimer = setTimeout(() => {
@@ -101,28 +112,23 @@ export default class Ripple extends Component {
   start = (callback) => {
     this.setState({
       rippleVisible: true,
-      rippleStart: true,
     }, callback);
   };
 
   stop = () => {
     this.setState({
-      rippleVisible: false,
+      rippleLeaving: true,
     });
   };
 
   getRippleStyles() {
-    const { rippleStart } = this.state;
     const { rippleSize, rippleX, rippleY } = this.props;
-
-    const scale = rippleStart ? 'scale(0.00001, 0.00001)' : 'scale(1, 1)';
-    const offset = `translate(${rippleX}px, ${rippleY}px)`;
-    const transformString = `translate(-50%, -50%) ${offset} ${scale}`;
 
     const rippleStyles = {
       width: `${rippleSize}px`,
       height: `${rippleSize}px`,
-      transform: transformString,
+      top: `${-(rippleSize / 2) + rippleY}px`,
+      left: `${-(rippleSize / 2) + rippleX}px`,
     };
 
     return rippleStyles;
@@ -130,7 +136,7 @@ export default class Ripple extends Component {
 
   render() {
     const { className, pulsate } = this.props;
-    const { rippleStart, rippleVisible } = this.state;
+    const { rippleStart, rippleVisible, rippleLeaving } = this.state;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
     const rippleClassName = classNames(classes.ripple, {
@@ -143,10 +149,13 @@ export default class Ripple extends Component {
 
     const ripple = <span ref={(c) => this.ripple = c} className={rippleClassName} style={rippleStyles}></span>;
 
-    if (pulsate) {
-      return <span className={classes.pulsating}>{ripple}</span>;
-    }
+    const containerClasses = classNames({
+      [classes.leaving]: rippleLeaving,
+      [classes.pulsating]: pulsate,
+    });
 
-    return ripple;
+    return (
+      <span className={containerClasses}>{ripple}</span>
+    );
   }
 }
