@@ -65,6 +65,9 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
       transition: transitions.create('width'),
     },
     [theme.breakpoints.up('lg')]: {
+      drawer: {
+        width: '250px',
+      },
       appBarShift: {
         width: 'calc(100% - 250px)',
       },
@@ -185,6 +188,7 @@ class AppFrame extends Component {
           </Toolbar>
         </AppBar>
         <AppDrawer
+          className={classes.drawer}
           docked={drawerDocked}
           routes={this.props.routes}
           onRequestClose={this.handleDrawerClose}

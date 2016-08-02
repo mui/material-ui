@@ -11,11 +11,13 @@ import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism';
 function App(props) {
   const { dark, ...other } = props;
 
-  const muiTheme = createMuiTheme(createPalette({
+  const palette = createPalette({
     primary: blue,
     accent: pink,
     type: dark ? 'dark' : 'light',
-  }));
+  });
+
+  const muiTheme = createMuiTheme({ palette });
 
   if (dark) {
     setPrismTheme(darkTheme);

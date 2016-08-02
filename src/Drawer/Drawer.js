@@ -17,7 +17,6 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
       flex: '1 0 auto',
       position: 'fixed',
       top: 0,
-      left: 0,
       zIndex: theme.zIndex.navDrawer,
       willChange: 'transform',
       '&:focus': {
@@ -30,6 +29,9 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
     },
+    modal: {
+
+    },
   };
 });
 
@@ -38,6 +40,7 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
  */
 export default class Drawer extends Component {
   static propTypes = {
+    anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
      * The contents of the `Drawer`
      */
@@ -68,8 +71,33 @@ export default class Drawer extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  getAnchor(anchorProp, rtl) {
+    if (!anchorProp) {
+      if (rtl) {
+        return 'right';
+      }
+      return 'left';
+    }
+    return anchorProp;
+  }
+
+  getSlideDirection(anchor) {
+    if (anchor === 'left') {
+      return 'right';
+    } else if (anchor === 'right') {
+      return 'left';
+    } else if (anchor === 'top') {
+      return 'down';
+    } else if (anchor === 'bottom') {
+      return 'up';
+    }
+
+    return 'left';
+  }
+
   render() {
     const {
+      anchor: anchorProp,
       children,
       className,
       docked,
@@ -79,10 +107,15 @@ export default class Drawer extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const { theme: { dir }, render } = this.context.styleManager;
+    const classes = render(styleSheet, { group: 'mui' });
+    const rtl = dir === 'rtl';
+
+    const anchor = this.getAnchor(anchorProp, rtl);
+    const slideDirection = this.getSlideDirection(anchor);
 
     const drawer = (
-      <Slide in={open} transitionAppear>
+      <Slide in={open} direction={slideDirection} transitionAppear>
         <Paper
           zDepth={docked ? 0 : zDepth}
           rounded={false}
@@ -93,7 +126,10 @@ export default class Drawer extends Component {
       </Slide>
     );
 
-    const containerProps = { className, ...other };
+    const containerProps = {
+      className: classNames(classes.modal, className),
+      ...other,
+    };
 
     if (docked) {
       return (

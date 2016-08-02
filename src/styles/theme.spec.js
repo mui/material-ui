@@ -35,9 +35,9 @@ describe('styles/theme', () => {
   });
 
   describe('custom muiTheme', () => {
-    const muiTheme = createMuiTheme(
-      createPalette({ primary: deepOrange, accent: green })
-    );
+    const muiTheme = createMuiTheme({
+      palette: createPalette({ primary: deepOrange, accent: green }),
+    });
 
     it('should have the custom palette', () => {
       assert.strictEqual(muiTheme.palette.primary, deepOrange, 'should have a palette');
