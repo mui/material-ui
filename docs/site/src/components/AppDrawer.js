@@ -14,9 +14,6 @@ import AppDrawerNavItem from './AppDrawerNavItem';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
-    drawer: {
-      width: '250px',
-    },
     paper: {
       width: '250px',
       backgroundColor: theme.palette.background.paper,
@@ -33,6 +30,7 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
 
 export default class AppDrawer extends Component {
   static propTypes = {
+    className: PropTypes.string,
     docked: PropTypes.bool,
     onRequestClose: PropTypes.func,
     open: PropTypes.bool,
@@ -102,7 +100,7 @@ export default class AppDrawer extends Component {
 
     return (
       <Drawer
-        className={classes.drawer}
+        className={this.props.className}
         paperClassName={classes.paper}
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}

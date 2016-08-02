@@ -1,6 +1,5 @@
 // @flow weak
 
-import merge from 'lodash/merge';
 import hashObject from '../utils/hashObject';
 import { getContrastRatio } from './colorManipulator';
 import { indigo, pink, grey, red, black, white } from './colors';
@@ -11,14 +10,16 @@ import createBreakpoints from './breakpoints';
 import zIndex from './zIndex';
 import createMixins from './mixins';
 
-export function createMuiTheme(
-  palette = createPalette(),
-  typography = createTypography(palette),
-  breakpoints = createBreakpoints(),
-  mixins = createMixins(breakpoints),
-  ...more
-) {
-  const properties = merge({
+export function createMuiTheme(options = {}) {
+  const {
+    palette = createPalette(),
+    typography = createTypography(palette),
+    breakpoints = createBreakpoints(),
+    mixins = createMixins(breakpoints),
+    ...more,
+  } = options;
+
+  const properties = {
     dir: 'ltr',
     palette,
     typography,
@@ -27,7 +28,8 @@ export function createMuiTheme(
     mixins,
     breakpoints,
     zIndex,
-  }, ...more);
+    ...more,
+  };
 
   if (!properties.hasOwnProperty('id')) {
     properties.id = hashObject(properties);
