@@ -23,6 +23,10 @@ module.exports = function setKarmaConfig(config) {
     autoWatch: opts.watch,
     basePath: '../',
     browsers: ['PhantomJS'],
+    // to avoid DISCONNECTED messages on travis
+    browserDisconnectTimeout: 10000, // default 2000
+    browserDisconnectTolerance: 1, // default 0
+    browserNoActivityTimeout: 60000, // default 10000
     client: {
       mocha: {
         grep: opts.grep,
