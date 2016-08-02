@@ -15,6 +15,7 @@ const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
         backgroundColor: theme.palette.background.paper,
         borderRadius: 3,
         '@raw code': {
+          lineHeight: 1.6,
           padding: 0,
           fontSize: 14,
         },
