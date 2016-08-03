@@ -349,7 +349,7 @@ class Slider extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
-      this.setValue(nextProps.value);
+      this.setValue(nextProps.value, nextProps.min, nextProps.max);
     }
   }
 
@@ -522,9 +522,9 @@ class Slider extends Component {
     return this.state.value;
   }
 
-  setValue(value) {
+  setValue(value, min, max) {
     // calculate percentage
-    let percent = (value - this.props.min) / (this.props.max - this.props.min);
+    let percent = (value - min) / (max - min);
     if (isNaN(percent)) percent = 0;
     // update state
     this.setState({
@@ -547,7 +547,7 @@ class Slider extends Component {
   }
 
   clearValue() {
-    this.setValue(this.props.min);
+    this.setValue(this.props.min, this.props.min, this.props.max);
   }
 
   alignValue(val) {
