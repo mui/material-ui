@@ -141,6 +141,8 @@ export default class Popover extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  autoTransitionDuration = undefined;
+
   handleEnter = (element, callback) => {
     element.style.opacity = 0;
     element.style.transform = this.getScale(0.75);
@@ -164,13 +166,12 @@ export default class Popover extends Component {
 
       if (transitionDuration === 'auto') {
         transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
+        this.autoTransitionDuration = transitionDuration;
       }
 
-      const test = transitionDuration / 3;
-
       element.style.transition = [
-        transitions.create('opacity', `${test * 3}ms`),
-        transitions.create('transform', `${test * 2}ms`),
+        transitions.create('opacity', `${transitionDuration}ms`),
+        transitions.create('transform', `${transitionDuration * 0.666}ms`),
       ].join(',');
 
       callback();
@@ -193,6 +194,13 @@ export default class Popover extends Component {
     if (this.props.onExit) {
       this.props.onExit();
     }
+  };
+
+  handleRequestTimeout = () => {
+    if (this.props.transitionDuration === 'auto') {
+      return (this.autoTransitionDuration || 0) + 20;
+    }
+    return this.props.transitionDuration + 20;
   };
 
   getScale(value) {
@@ -382,6 +390,7 @@ export default class Popover extends Component {
           onExiting={onExiting}
           onExited={onExited}
           role={role}
+          onRequestTimeout={this.handleRequestTimeout}
           transitionAppear
         >
           <Paper

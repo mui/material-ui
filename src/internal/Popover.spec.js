@@ -18,7 +18,9 @@ describe('<Popover>', () => {
     mount = createMountWithContext();
     classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
-  after(() => mount.cleanUp());
+  after(() => {
+    mount.cleanUp();
+  });
 
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
@@ -223,7 +225,10 @@ describe('<Popover>', () => {
     before(() => {
       openPopover = (anchorOrigin) => {
         return new Promise((resolve) => {
-          anchorEl = window.document.createElement('div');
+          if (!anchorEl) {
+            anchorEl = window.document.createElement('div');
+          }
+
           css(anchorEl, {
             width: '50px',
             height: '50px',
@@ -237,7 +242,7 @@ describe('<Popover>', () => {
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              onEntering={() => {
+              onEntered={() => {
                 popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
                 resolve();
               }}
@@ -259,7 +264,12 @@ describe('<Popover>', () => {
           `${left}px`,
           'should position at the correct left offset'
         );
+        wrapper.unmount();
       };
+    });
+
+    after(() => {
+      window.document.body.removeChild(anchorEl);
     });
 
     it('should be positioned over the top left of the anchor', () => {

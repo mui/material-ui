@@ -9,6 +9,10 @@ import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Dialog', () => {
   return {
+    modal: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     dialog: {
       flex: '0 1 auto',
       position: 'relative',
@@ -157,6 +161,7 @@ export default class Dialog extends Component {
 
     return (
       <Modal
+        className={classes.modal}
         backdropTransitionDuration={transitionDuration}
         hideOnBackdropClick={hideOnBackdropClick}
         hideOnEscapeKeyUp={hideOnEscapeKeyUp}

@@ -113,4 +113,17 @@ describe('<Drawer>', () => {
       );
     });
   });
+
+  describe('getSlideDirection', () => {
+    let wrapper;
+
+    before(() => wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>));
+
+    it('should return the opposing slide direction', () => {
+      assert.strictEqual(wrapper.instance().getSlideDirection('left'), 'right');
+      assert.strictEqual(wrapper.instance().getSlideDirection('right'), 'left');
+      assert.strictEqual(wrapper.instance().getSlideDirection('top'), 'down');
+      assert.strictEqual(wrapper.instance().getSlideDirection('bottom'), 'up');
+    });
+  });
 });

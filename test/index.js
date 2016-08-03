@@ -1,22 +1,32 @@
 // @flow weak
 
 require('app-module-path').addPath(`${__dirname}'./../`);
-import Minimist from 'minimist';
+import minimist from 'minimist';
 import Mocha from 'mocha';
-import Glob from 'glob';
+import glob from 'glob';
 import './utils/dom';
 
-const argv = Minimist(process.argv.slice(2), {
+const argv = minimist(process.argv.slice(2), {
   alias: {
     m: 'module',
     g: 'grep',
   },
 });
 
+function parseModuleArg(value) {
+  if (value) {
+    if (value.indexOf(',') !== -1) {
+      return `+(${value.split(',').join('|')})`;
+    }
+    return value;
+  }
+  return '*';
+}
+
 const types = argv._;
 const globPatterns = {
-  unit: `src/**/${argv.module ? argv.module : '*'}.spec.js`,
-  integration: `test/integration/**/${argv.module ? argv.module : '*'}.test.js`,
+  unit: `src/**/${parseModuleArg(argv.module)}.spec.js`,
+  integration: `test/integration/**/${parseModuleArg(argv.module)}.test.js`,
 };
 
 let pattern;
@@ -31,7 +41,7 @@ const mocha = new Mocha({
   grep: argv.grep ? argv.grep : undefined,
 });
 
-Glob(
+glob(
   pattern.length > 1 ? `{${pattern.join(',')}}` : pattern[0],
   {},
   (err, files) => {

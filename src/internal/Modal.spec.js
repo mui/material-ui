@@ -21,7 +21,9 @@ describe('<Modal>', () => {
     classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
     mount = createMountWithContext();
   });
-  after(() => mount.cleanUp());
+  after(() => {
+    mount.cleanUp();
+  });
 
   it('should not show by default', () => {
     assert.strictEqual(Modal.defaultProps.show, false, 'should be false by default');
@@ -113,7 +115,7 @@ describe('<Modal>', () => {
           </div>
         </Modal>
       ));
-      after(() => wrapper.setProps({ open: false }));
+      after(() => wrapper.unmount());
 
       it('should not render the content', () => {
         assert.strictEqual(document.getElementById('container'), null, 'should not have the element in the DOM');
@@ -148,7 +150,7 @@ describe('<Modal>', () => {
           </div>
         </Modal>
       ));
-      after(() => wrapper.setProps({ open: false }));
+      after(() => wrapper.unmount());
 
       it('should render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
@@ -169,7 +171,7 @@ describe('<Modal>', () => {
           </div>
         </Modal>
       ));
-      after(() => wrapper.setProps({ open: false }));
+      after(() => wrapper.unmount());
 
       it('should not render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');

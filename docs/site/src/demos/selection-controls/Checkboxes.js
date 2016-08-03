@@ -1,20 +1,9 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import React, { Component } from 'react';
 import Checkbox from 'material-ui/Checkbox';
 
-const styleSheet = createStyleSheet('Checkboxes', () => {
-  return {
-    checkbox: {},
-  };
-});
-
 export default class Checkboxes extends Component {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
   state = {
     checkedA: true,
     checkedB: false,
@@ -22,24 +11,30 @@ export default class Checkboxes extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
     return (
       <div>
         <Checkbox
           checked={this.state.checkedA}
-          className={classes.checkbox}
           onChange={(event, checked) => this.setState({ checkedA: checked })}
-          aria-label="checkedA"
+          aria-label="Option A"
+          value="checkedA"
         />
         <Checkbox
           checked={this.state.checkedB}
-          className={classes.checkbox}
           onChange={(event, checked) => this.setState({ checkedB: checked })}
-          aria-label="checkedB"
+          aria-label="Option B"
+          value="checkedB"
         />
         <Checkbox
-          className={classes.checkbox}
-          aria-label="checkedC"
+          disabled
+          checked={this.state.checkedC}
+          onChange={(event, checked) => this.setState({ checkedC: checked })}
+          aria-label="Option C"
+          value="checkedC"
+        />
+        <Checkbox
+          aria-label="Option D"
+          value="checkedD"
         />
       </div>
     );

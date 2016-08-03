@@ -11,9 +11,7 @@ import { createMountWithContext } from 'test/utils';
 describe('<Menu> integration', () => {
   let mount;
 
-  before(() => {
-    mount = createMountWithContext();
-  });
+  before(() => mount = createMountWithContext());
   after(() => mount.cleanUp());
 
   describe('mounted open', () => {
@@ -33,8 +31,8 @@ describe('<Menu> integration', () => {
 
     it('should open', (done) => {
       wrapper.setProps({
-        onEntering() {
-          assert.ok(true, 'should have fired the onEntering callback');
+        onEntered() {
+          assert.ok(true, 'should have fired the onEntered callback');
           const portal = wrapper.find('Modal').node.mountNode.firstChild;
           const portalWrapper = new ReactWrapper(portal, portal);
           list = portalWrapper.find('List');
@@ -204,7 +202,13 @@ describe('<Menu> integration', () => {
       backdrop = portalWrapper.find('Backdrop');
     });
 
-    it('should close the menu with tab', () => {
+    it('should close the menu with tab', (done) => {
+      wrapper.setProps({
+        onExited() {
+          assert.strictEqual(document.getElementById('[data-mui-test="Menu"]'), null);
+          done();
+        },
+      });
       assert.strictEqual(wrapper.state('open'), true, 'should start open');
       list.simulate('keyDown', {
         which: keycode('tab'),
@@ -212,7 +216,13 @@ describe('<Menu> integration', () => {
       assert.strictEqual(wrapper.state('open'), false, 'should be closed');
     });
 
-    it('should close the menu using the backdrop', () => {
+    it('should close the menu using the backdrop', (done) => {
+      wrapper.setProps({
+        onExited() {
+          assert.strictEqual(document.getElementById('[data-mui-test="Menu"]'), null);
+          done();
+        },
+      });
       assert.strictEqual(wrapper.state('open'), true, 'should start open');
       backdrop.simulate('click');
       assert.strictEqual(wrapper.state('open'), false, 'should be closed');

@@ -15,6 +15,7 @@ import Backdrop from './Backdrop';
 import Portal from './Portal';
 import Fade from '../transitions/Fade';
 import addEventListener from '../utils/addEventListener';
+import { createChainedFunction } from '../utils/helpers';
 
 // Modals don't open on the server
 // so this won't break concurrency
@@ -277,7 +278,7 @@ export default class Modal extends Component {
     }
   };
 
-  handleBackdropExited = (...args) => {
+  handleTransitionExited = (...args) => {
     this.setState({ exited: true });
     this.handleHide();
     if (this.props.onExited) {
@@ -285,18 +286,13 @@ export default class Modal extends Component {
     }
   };
 
-  renderBackdrop() {
+  renderBackdrop(other = {}) {
     const {
       backdropComponent,
       backdropClassName,
       backdropTransitionDuration,
       backdropVisible,
       show,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
     } = this.props;
 
     return (
@@ -304,12 +300,8 @@ export default class Modal extends Component {
         in={show}
         transitionAppear
         transitionDuration={backdropTransitionDuration}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={this.handleBackdropExited}
+        timeout={backdropTransitionDuration + 20}
+        {...other}
       >
         {React.createElement(backdropComponent, {
           visible: backdropVisible,
@@ -335,11 +327,11 @@ export default class Modal extends Component {
       onBackdropClick, // eslint-disable-line no-unused-vars
       onEscapeKeyUp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
-      onEntered, // eslint-disable-line no-unused-vars
-      onExit, // eslint-disable-line no-unused-vars
-      onExiting, // eslint-disable-line no-unused-vars
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
       onExited, // eslint-disable-line no-unused-vars
       show,
       ...other,
@@ -352,15 +344,40 @@ export default class Modal extends Component {
       return null;
     }
 
+    const transitionCallbacks = {
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited: this.handleTransitionExited,
+    };
+
     let modalChild = React.Children.only(children);
 
     const { role, tabIndex } = modalChild.props;
 
-    if (role === undefined || tabIndex === undefined) {
-      modalChild = React.cloneElement(modalChild, {
-        role: role === undefined ? 'document' : role,
-        tabIndex: tabIndex == null ? '-1' : tabIndex,
+    const childProps = {};
+    let backdropProps;
+
+    if (role === undefined) {
+      childProps.role = role === undefined ? 'document' : role;
+    }
+
+    if (tabIndex === undefined) {
+      childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
+    }
+
+    if (modalChild.props.hasOwnProperty('in')) {
+      Object.keys(transitionCallbacks).forEach((key) => {
+        childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });
+    } else {
+      backdropProps = transitionCallbacks;
+    }
+
+    if (Object.keys(childProps).length) {
+      modalChild = React.cloneElement(modalChild, childProps);
     }
 
     return (
@@ -371,7 +388,7 @@ export default class Modal extends Component {
           ref={(c) => this.modal = c}
           {...other}
         >
-          {backdrop && this.renderBackdrop()}
+          {backdrop && this.renderBackdrop(backdropProps)}
           {modalChild}
         </div>
       </Portal>

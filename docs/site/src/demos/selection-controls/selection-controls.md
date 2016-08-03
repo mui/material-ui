@@ -17,3 +17,23 @@ If you have multiple options appearing in a list, you can preserve space by usin
 If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
 {{demo='selection-controls/Checkboxes.js'}}
+
+## Radio Buttons
+
+Radio buttons allow the user to select one option from a set. Use radio buttons for exclusive selection if you think that the user needs to see all available options side-by-side.
+
+Otherwise, consider a dropdown, which uses less space than displaying all options.
+
+`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
+
+{{demo='selection-controls/RadioButtonsGroup.js'}}
+
+`Radio` can also be used standalone, without the wrapper.
+
+{{demo='selection-controls/RadioButtons.js'}}
+
+## Switches
+
+On/off switches toggle the state of a single settings option. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+
+{{demo='selection-controls/Switches.js'}}
