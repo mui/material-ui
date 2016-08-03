@@ -1,10 +1,15 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import Popover from '../Popover/Popover';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
+import keycode from 'keycode';
+import Events from '../utils/events';
+import EnhancedButton from '../internal/EnhancedButton';
+import IconButton from 'material-ui/IconButton/IconButton';
 
 const anchorOrigin = {
   vertical: 'top',
@@ -186,25 +191,6 @@ class DropDownMenu extends Component {
     }
   }
 
-  /**
-   * This method is deprecated but still here because the TextField
-   * need it in order to work. TODO: That will be addressed later.
-   */
-  getInputNode() {
-    const root = this.refs.root;
-
-    root.focus = () => {
-      if (!this.props.disabled) {
-        this.setState({
-          open: !this.state.open,
-          anchorEl: this.refs.root,
-        });
-      }
-    };
-
-    return root;
-  }
-
   setWidth() {
     const el = this.refs.root;
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
@@ -222,23 +208,51 @@ class DropDownMenu extends Component {
     }
   };
 
-  handleRequestCloseMenu = () => {
-    this.setState({
-      open: false,
-      anchorEl: null,
-    });
+  handleRequestCloseMenu = (event) => {
+    this.close(false);
+  };
+
+  handleEscKeyDownMenu = (event) => {
+    event.preventDefault();
+    this.close(true);
+  };
+
+  handleKeyDown = (event) => {
+    const key = keycode(event);
+    switch (key) {
+      case 'space':
+        event.preventDefault();
+          this.setState({
+          open: true,
+          anchorEl: this.refs.root,
+        });
+        break;
+    }
   };
 
   handleItemTouchTap = (event, child, index) => {
     event.persist();
+    event.preventDefault();
     this.setState({
       open: false,
     }, () => {
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
+      this.close(Events.isKeyboard(event));
     });
   };
+
+  close = (isKeyboard) => {
+    this.setState({open: false}, () => {
+      if(isKeyboard) {
+        const dropArrow = this.refs.dropArrow;
+        const dropNode = ReactDOM.findDOMNode(dropArrow);
+        dropNode.focus();
+        dropArrow.setKeyboardFocus(true);
+      }
+    });
+  }
 
   render() {
     const {
@@ -284,6 +298,9 @@ class DropDownMenu extends Component {
       menuStyle = menuStyleProp;
     }
 
+    const iconSize = this.context.muiTheme.spacing.iconSize;
+    const iconStyleOverride = { top: 0 }
+
     return (
       <div
         {...other}
@@ -292,12 +309,17 @@ class DropDownMenu extends Component {
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
         <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>
-          <div
-            style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
-          >
+          <div style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}>
             {displayValue}
           </div>
-          <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)} />
+          <IconButton 
+            centerRipple={true} 
+            tabIndex={this.props.disabled ? -1 : 0} 
+            onKeyDown={this.handleKeyDown}
+            ref="dropArrow" 
+            style={Object.assign({}, styles.icon, iconStyle, iconStyleOverride)}>
+            <DropDownArrow  />
+          </IconButton>
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
         </ClearFix>
         <Popover
@@ -312,6 +334,7 @@ class DropDownMenu extends Component {
             maxHeight={maxHeight}
             desktop={true}
             value={value}
+            onEscKeyDown={this.handleEscKeyDownMenu}
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}
