@@ -99,6 +99,10 @@ class DropDownMenu extends Component {
      */
     className: PropTypes.string,
     /**
+     * Default text to be shown when there's no item with the corresponding value.
+     */
+    defaultText: PropTypes.string,
+    /**
      * Disables the menu.
      */
     disabled: PropTypes.bool,
@@ -151,6 +155,7 @@ class DropDownMenu extends Component {
   static defaultProps = {
     animated: true,
     autoWidth: true,
+    defaultText: '',
     disabled: false,
     openImmediately: false,
     maxHeight: 500,
@@ -247,6 +252,7 @@ class DropDownMenu extends Component {
       autoWidth,
       children,
       className,
+      defaultText,
       iconStyle,
       labelStyle,
       listStyle,
@@ -267,9 +273,9 @@ class DropDownMenu extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
-    let displayValue;
+    let displayValue = defaultText;
     React.Children.forEach(children, (child) => {
-      if (!displayValue || value === child.props.value) {
+      if (value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
       }
