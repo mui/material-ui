@@ -1,6 +1,6 @@
-import React from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import classes from './MobileTableStyles.scss';
+import React from 'react'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import classes from './MobileTableStyles.scss'
 
 
 class MobileTable extends React.Component {
@@ -59,4 +59,4 @@ class MobileTable extends React.Component {
 }
 
 
-export default MobileTable;
+export default MobileTable
