@@ -37,6 +37,10 @@ class SelectField extends Component {
      */
     children: PropTypes.node,
     /**
+     * Default text to be shown when there's no item with the corresponding value.
+     */
+    defaultText: PropTypes.string,
+    /**
      * If true, the select field will be disabled.
      */
     disabled: PropTypes.bool,
@@ -157,6 +161,7 @@ class SelectField extends Component {
       underlineStyle,
       errorStyle,
       selectFieldRoot,
+      defaultText,
       disabled,
       floatingLabelFixed,
       floatingLabelText,
@@ -180,6 +185,7 @@ class SelectField extends Component {
       <TextField
         {...other}
         style={style}
+        defaultText={hintText || floatingLabelText ? '' : defaultText}
         disabled={disabled}
         floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
@@ -197,6 +203,7 @@ class SelectField extends Component {
         underlineFocusStyle={underlineFocusStyle}
       >
         <DropDownMenu
+          defaultText={defaultText}
           disabled={disabled}
           style={Object.assign(styles.dropDownMenu, selectFieldRoot, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
