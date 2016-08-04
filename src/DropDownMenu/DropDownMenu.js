@@ -184,6 +184,25 @@ class DropDownMenu extends Component {
       /* eslint-enable react/no-did-mount-set-state */
     }
   }
+  
+   /*		
+    * This method is deprecated but still here because the TextField		
+    * need it in order to work. TODO: That will be addressed later.		
+    */		
+  getInputNode() {		
+     const root = this.refs.root;		
+ 		
+     root.focus = () => {		
+       if (!this.props.disabled) {		
+         this.setState({		
+           open: !this.state.open,		
+           anchorEl: this.refs.root,		
+         });		
+       }		
+     };		
+ 		
+     return root;		
+   }
 
   componentWillReceiveProps() {
     if (this.props.autoWidth) {
