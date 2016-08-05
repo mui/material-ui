@@ -317,9 +317,6 @@ class DropDownMenu extends Component {
       menuStyle = menuStyleProp;
     }
 
-    const iconSize = this.context.muiTheme.spacing.iconSize;
-    const iconStyleOverride = { top: 0 }
-
     return (
       <div
         {...other}
@@ -336,7 +333,7 @@ class DropDownMenu extends Component {
             tabIndex={this.props.disabled ? -1 : 0} 
             onKeyDown={this.handleKeyDown}
             ref="dropArrow" 
-            style={Object.assign({}, styles.icon, iconStyle, iconStyleOverride)}>
+            style={Object.assign({}, styles.icon, iconStyle)}>
             <DropDownArrow  />
           </IconButton>
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
