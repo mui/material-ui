@@ -116,6 +116,7 @@ export default class Modal extends Component {
     backdrop: true,
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
+    backdropVisible: true,
     hideOnBackdropClick: true,
     hideOnEscapeKeyUp: true,
     modalManager,
@@ -318,7 +319,7 @@ export default class Modal extends Component {
       backdropComponent, // eslint-disable-line no-unused-vars
       backdropClassName, // eslint-disable-line no-unused-vars
       backdropTransitionDuration, // eslint-disable-line no-unused-vars
-      backdropVisible, // eslint-disable-line no-unused-vars
+      backdropVisible,
       hideOnBackdropClick, // eslint-disable-line no-unused-vars
       hideOnEscapeKeyUp, // eslint-disable-line no-unused-vars
       children,
@@ -368,7 +369,7 @@ export default class Modal extends Component {
       childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
     }
 
-    if (modalChild.props.hasOwnProperty('in')) {
+    if (!backdropVisible && modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach((key) => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });
