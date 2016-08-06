@@ -2,9 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
+import Link from 'react-router/lib/Link';
 import Text from 'material-ui/Text';
 import Button from 'material-ui/Button';
-
 import muiLogo from '../../assets/images/material-ui-logo.svg';
 
 export const styleSheet = createStyleSheet('Home', (theme) => {
@@ -57,7 +57,14 @@ export default class Home extends Component {
             <Text type="subheading">
               A React component library implementing Google's Material Design
             </Text>
-            <Button className={classes.button} raised>Get Started</Button>
+            <Button
+              component={Link}
+              className={classes.button}
+              raised
+              to="/getting-started/installation"
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </div>
