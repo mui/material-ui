@@ -18,7 +18,9 @@ describe('<ButtonBase>', () => {
     mount = createMountWithContext();
     classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
-  after(() => mount.cleanUp());
+  after(() => {
+    mount.cleanUp();
+  });
 
   describe('root node', () => {
     it('should render a button with type="button" by default', () => {
@@ -285,7 +287,7 @@ describe('<ButtonBase>', () => {
       const button = document.getElementById('test-button');
       button.focus();
 
-      const event = new window.Event('keydown');
+      const event = new window.Event('keyup');
       event.which = keycode('tab');
       window.dispatchEvent(event);
 

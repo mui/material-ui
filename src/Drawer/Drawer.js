@@ -71,16 +71,6 @@ export default class Drawer extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  getAnchor(anchorProp, rtl) {
-    if (!anchorProp) {
-      if (rtl) {
-        return 'right';
-      }
-      return 'left';
-    }
-    return anchorProp;
-  }
-
   getSlideDirection(anchor) {
     if (anchor === 'left') {
       return 'right';
@@ -110,8 +100,7 @@ export default class Drawer extends Component {
     const { theme: { dir }, render } = this.context.styleManager;
     const classes = render(styleSheet, { group: 'mui' });
     const rtl = dir === 'rtl';
-
-    const anchor = this.getAnchor(anchorProp, rtl);
+    const anchor = anchorProp && anchorProp || rtl ? 'right' : 'left';
     const slideDirection = this.getSlideDirection(anchor);
 
     const drawer = (

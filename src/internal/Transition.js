@@ -74,6 +74,10 @@ class Transition extends Component {
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
+     * @ignore
+     */
+    onRequestTimeout: PropTypes.func,
+    /**
      * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
      * transition indefinately if the browser transitionEnd events are
      * canceled or interrupted.
@@ -280,10 +284,24 @@ class Transition extends Component {
 
     if (node) {
       addEventListener(node, transitionEndEvent, this.nextCallback);
-      setTimeout(this.nextCallback, this.props.timeout);
+      setTimeout(this.nextCallback, this.getTimeout(node));
     } else {
       setTimeout(this.nextCallback, 0);
     }
+  }
+
+  getTimeout(node) {
+    let timeout;
+
+    if (this.props.onRequestTimeout) {
+      timeout = this.props.onRequestTimeout(node);
+    }
+
+    if (typeof timeout !== 'number') {
+      timeout = this.props.timeout;
+    }
+
+    return timeout;
   }
 
   render() {

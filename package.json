@@ -57,7 +57,7 @@
     "recompose": "^0.20.2",
     "stylishly": "^0.8.0",
     "stylishly-at-rules": "^0.8.0",
-    "stylishly-nested": "^0.8.0",
+    "stylishly-nested": "^0.8.1",
     "stylishly-pseudo-classes": "^0.8.0",
     "stylishly-units": "^0.8.0",
     "stylishly-vendor-prefixer": "^0.8.1",

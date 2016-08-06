@@ -10,19 +10,21 @@ import keycode from 'keycode';
 import { TouchRipple, createRippleHandler } from '../Ripple';
 
 let listening = false;
-let tabPressed = false;
+let focusKeyPressed = false;
 
-function listenForTabPresses() {
+function listenForFocusKeys() {
   if (!listening) {
-    addEventListener(window, 'keydown', (event) => {
-      if (['tab', 'enter', 'space', 'esc'].indexOf(keycode(event)) !== -1) {
-        tabPressed = true;
-      } else {
-        tabPressed = false;
+    addEventListener(window, 'keyup', (event) => {
+      if (isFocusKey(event)) {
+        focusKeyPressed = true;
       }
     });
     listening = true;
   }
+}
+
+function isFocusKey(event) {
+  return ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'].indexOf(keycode(event)) !== -1;
 }
 
 export const styleSheet = createStyleSheet('ButtonBase', () => {
@@ -74,6 +76,7 @@ export default class ButtonBase extends Component {
     component: 'button',
     focusRipple: false,
     ripple: true,
+    tabIndex: '0',
     type: 'button',
   };
 
@@ -86,7 +89,7 @@ export default class ButtonBase extends Component {
   };
 
   componentDidMount() {
-    listenForTabPresses();
+    listenForFocusKeys();
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -148,7 +151,7 @@ export default class ButtonBase extends Component {
 
   handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
     clearTimeout(this.keyboardFocusTimeout);
-    tabPressed = false;
+    focusKeyPressed = false;
     if (this.state.keyboardFocused) {
       this.setState({ keyboardFocused: false });
     }
@@ -171,14 +174,13 @@ export default class ButtonBase extends Component {
 
   handleFocus = (event) => {
     if (!this.props.disabled) {
-      // setTimeout is needed because the focus event fires first
-      // Wait so that we can capture if this was a keyboard focus
-      // or touch focus
+      // setTimeout is needed because the focus event fires
+      // first if focus was called programatically inside a keydown handler
       event.persist();
-      this.keyboardFocusTimeout = setTimeout(() => {
-        if (tabPressed && document.activeElement === ReactDOM.findDOMNode(this.button)) {
+      setTimeout(() => {
+        if (focusKeyPressed && document.activeElement === ReactDOM.findDOMNode(this.button)) {
           this.keyDown = false;
-          tabPressed = false;
+          focusKeyPressed = false;
           this.setState({ keyboardFocused: true });
           if (this.props.onKeyboardFocus) {
             this.props.onKeyboardFocus(event);
@@ -241,6 +243,7 @@ export default class ButtonBase extends Component {
       onMouseUp: this.handleMouseUp,
       onTouchEnd: this.handleTouchEnd,
       onTouchStart: this.handleTouchStart,
+      tabIndex: this.props.tabIndex,
       className,
       ...other,
     };
@@ -256,7 +259,6 @@ export default class ButtonBase extends Component {
       buttonProps.disabled = disabled;
     } else if (element !== 'a') {
       buttonProps.role = this.props.hasOwnProperty('role') ? this.props.role : 'button';
-      buttonProps.tabIndex = this.props.hasOwnProperty('tabIndex') ? this.props.tabIndex : '0';
     }
 
     return React.createElement(
