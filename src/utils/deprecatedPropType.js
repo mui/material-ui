@@ -19,7 +19,7 @@ export default function deprecated(validator, reason) {
 
       warning(warned[messageKey],
         `The ${location} \`${propFullNameSafe}\` of ` +
-        `\`${componentNameSafe}\` is deprecated. ${reason}.`
+        `\`${componentNameSafe}\` is deprecated. ${reason}`
       );
 
       warned[messageKey] = true;
