@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import IconButton, { styleSheet } from './IconButton';
 import { createShallowWithContext } from 'test/utils';
+import IconButton, { styleSheet } from './IconButton';
 
 describe('<IconButton>', () => {
   let shallow;

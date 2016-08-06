@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
 import { createMountWithContext } from 'test/utils';
+import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
 
 describe('<Transition>', () => {
   let mount;
@@ -17,7 +17,7 @@ describe('<Transition>', () => {
   it('should not transition on mount', () => {
     const wrapper = mount(
       <Transition in timeout={0} onEnter={() => assert.fail()}>
-        <div></div>
+        <div />
       </Transition>
     );
     assert.strictEqual(wrapper.state('status'), ENTERED);
@@ -26,7 +26,7 @@ describe('<Transition>', () => {
   it('should start exited with transitionAppear', () => {
     const wrapper = mount(
       <Transition transitionAppear>
-        <div></div>
+        <div />
       </Transition>
     );
     assert.strictEqual(wrapper.state('status'), EXITED);
@@ -35,7 +35,7 @@ describe('<Transition>', () => {
   it('should transition on mount with transitionAppear', () => {
     const wrapper = mount(
       <Transition in transitionAppear timeout={0}>
-        <div></div>
+        <div />
       </Transition>
     );
     assert.strictEqual(wrapper.state('status'), ENTERING);
@@ -61,7 +61,7 @@ describe('<Transition>', () => {
           done();
         }}
       >
-        <div></div>
+        <div />
       </Transition>
     );
 

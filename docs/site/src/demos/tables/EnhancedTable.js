@@ -149,7 +149,7 @@ class EnhancedTableToolbar extends Component {
             <Text type="title">Nutrition</Text>
           }
         </div>
-        <div className={classes.spacer}></div>
+        <div className={classes.spacer} />
         <div className={classes.actions}>
           {numSelected > 0 ?
             <IconButton>delete</IconButton> :

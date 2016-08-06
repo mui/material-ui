@@ -111,7 +111,7 @@ export default class CircularProgress extends Component {
               className={classes.circle}
               cx={radius}
               cy={radius}
-              r={radius - THICKNESS / 2}
+              r={radius - (THICKNESS / 2)}
               fill="none"
               strokeWidth={THICKNESS}
               strokeMiterlimit="20"

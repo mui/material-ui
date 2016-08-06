@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import SwitchBase, { styleSheet } from './SwitchBase';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import SwitchBase, { styleSheet } from './SwitchBase';
 
 describe('<SwitchBase>', () => {
   let shallow;

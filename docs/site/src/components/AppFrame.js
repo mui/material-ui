@@ -181,7 +181,7 @@ class AppFrame extends Component {
               menu
             </IconButton>
             <Text className={classes.title} type="title">{title}</Text>
-            <div className={classes.grow}></div>
+            <div className={classes.grow} />
             <IconButton onClick={this.handleToggleShade} className={classes.toggleShade}>
               lightbulb_outline
             </IconButton>

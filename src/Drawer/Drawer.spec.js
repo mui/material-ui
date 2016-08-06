@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Drawer, { styleSheet } from './Drawer';
 import { createShallowWithContext } from 'test/utils';
+import Drawer, { styleSheet } from './Drawer';
 
 /**
  * An item that goes in lists.

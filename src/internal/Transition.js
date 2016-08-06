@@ -187,12 +187,10 @@ class Transition extends Component {
           this.performEnter(this.props);
         }
         // Otherwise we're already entering or entered.
-      } else {
-        if (status === ENTERING || status === ENTERED) {
-          this.performExit(this.props);
-        }
-        // Otherwise we're already exited or exiting.
+      } else if (status === ENTERING || status === ENTERED) {
+        this.performExit(this.props);
       }
+      // Otherwise we're already exited or exiting.
     }
   }
 

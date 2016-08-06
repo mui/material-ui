@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import AppBar, { styleSheet } from './AppBar';
 import { createShallowWithContext } from 'test/utils';
+import AppBar, { styleSheet } from './AppBar';
 
 describe('<AppBar>', () => {
   let shallow;

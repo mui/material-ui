@@ -5,8 +5,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import css from 'dom-helpers/style';
-import Popover, { styleSheet } from './Popover';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import Popover, { styleSheet } from './Popover';
 
 describe('<Popover>', () => {
   let shallow;

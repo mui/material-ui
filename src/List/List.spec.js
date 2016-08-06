@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import List, { styleSheet } from './List';
 import { createShallowWithContext } from 'test/utils';
+import List, { styleSheet } from './List';
 
 describe('<List>', () => {
   let shallow;

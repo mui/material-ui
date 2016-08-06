@@ -2,10 +2,10 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
+import classNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
 import Slide from '../transitions/Slide';
-import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Dialog', () => {
   return {

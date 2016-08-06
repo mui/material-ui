@@ -5,11 +5,11 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import contains from 'dom-helpers/query/contains';
-import Modal, { styleSheet } from './Modal';
 import {
   createShallowWithContext,
   createMountWithContext,
 } from 'test/utils';
+import Modal, { styleSheet } from './Modal';
 
 describe('<Modal>', () => {
   let shallow;

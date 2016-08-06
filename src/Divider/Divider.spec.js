@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Divider, { styleSheet } from './Divider';
 import { createShallowWithContext } from 'test/utils';
+import Divider, { styleSheet } from './Divider';
 
 describe('<Divider>', () => {
   let shallow;

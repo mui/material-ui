@@ -100,7 +100,7 @@ export default class Drawer extends Component {
     const { theme: { dir }, render } = this.context.styleManager;
     const classes = render(styleSheet, { group: 'mui' });
     const rtl = dir === 'rtl';
-    const anchor = anchorProp && anchorProp || rtl ? 'right' : 'left';
+    const anchor = anchorProp || rtl ? 'right' : 'left';
     const slideDirection = this.getSlideDirection(anchor);
 
     const drawer = (

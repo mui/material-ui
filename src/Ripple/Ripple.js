@@ -125,10 +125,10 @@ export default class Ripple extends Component {
     const { rippleSize, rippleX, rippleY } = this.props;
 
     const rippleStyles = {
-      width: `${rippleSize}px`,
-      height: `${rippleSize}px`,
-      top: `${-(rippleSize / 2) + rippleY}px`,
-      left: `${-(rippleSize / 2) + rippleX}px`,
+      width: rippleSize,
+      height: rippleSize,
+      top: -(rippleSize / 2) + rippleY,
+      left: -(rippleSize / 2) + rippleX,
     };
 
     return rippleStyles;
@@ -145,17 +145,17 @@ export default class Ripple extends Component {
       [classes.fast]: pulsate,
     }, className);
 
-    const rippleStyles = this.getRippleStyles();
-
-    const ripple = <span ref={(c) => this.ripple = c} className={rippleClassName} style={rippleStyles}></span>;
-
     const containerClasses = classNames({
       [classes.leaving]: rippleLeaving,
       [classes.pulsating]: pulsate,
     });
 
+    const rippleStyles = this.getRippleStyles();
+
     return (
-      <span className={containerClasses}>{ripple}</span>
+      <span className={containerClasses}>
+        <span ref={(c) => this.ripple = c} className={rippleClassName} style={rippleStyles} />
+      </span>
     );
   }
 }

@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import TouchRipple, { styleSheet } from './TouchRipple';
 import { createShallowWithContext } from 'test/utils';
+import TouchRipple, { styleSheet } from './TouchRipple';
 
 describe('<TouchRipple>', () => {
   let shallow;

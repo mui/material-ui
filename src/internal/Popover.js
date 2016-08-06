@@ -234,23 +234,23 @@ export default class Popover extends Component {
     // Check if the vertical axis needs shifting
     if (top < marginThreshold) {
       const diff = top - marginThreshold;
-      top = top - diff;
-      transformOrigin.vertical = transformOrigin.vertical + diff;
+      top -= diff;
+      transformOrigin.vertical += diff;
     } else if (bottom > heightThreshold) {
       const diff = bottom - heightThreshold;
-      top = top - diff;
-      transformOrigin.vertical = transformOrigin.vertical + diff;
+      top -= diff;
+      transformOrigin.vertical += diff;
     }
 
     // Check if the horizontal axis needs shifting
     if (left < marginThreshold) {
       const diff = left - marginThreshold;
-      left = left - diff;
-      transformOrigin.horizontal = transformOrigin.horizontal + diff;
+      left -= diff;
+      transformOrigin.horizontal += diff;
     } else if (right > widthThreshold) {
       const diff = right - widthThreshold;
-      left = left - diff;
-      transformOrigin.horizontal = transformOrigin.horizontal + diff;
+      left -= diff;
+      transformOrigin.horizontal += diff;
     }
 
     return {

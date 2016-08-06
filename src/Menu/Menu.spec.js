@@ -4,8 +4,8 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import Menu, { styleSheet } from './Menu';
 import { createShallowWithContext } from 'test/utils';
+import Menu, { styleSheet } from './Menu';
 
 describe('<Menu>', () => {
   let shallow;

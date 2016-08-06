@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Switch, { styleSheet } from './Switch';
 import { createShallowWithContext } from 'test/utils';
+import Switch, { styleSheet } from './Switch';
 
 describe('<Switch>', () => {
   let shallow;

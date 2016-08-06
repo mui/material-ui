@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Portal from './Portal';
 import { createMountWithContext } from 'test/utils';
+import Portal from './Portal';
 
 describe('<Portal>', () => {
   let mount;

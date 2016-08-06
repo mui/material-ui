@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
 import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
-import addEventListener from '../utils/addEventListener';
 import keycode from 'keycode';
+import addEventListener from '../utils/addEventListener';
 import { TouchRipple, createRippleHandler } from '../Ripple';
 
 let listening = false;

@@ -39,6 +39,6 @@ export default {
       return 0;
     }
     const constant = height / 36;
-    return Math.round(175 / constant + 25) * constant;
+    return Math.round((175 / constant) + 25) * constant;
   },
 };

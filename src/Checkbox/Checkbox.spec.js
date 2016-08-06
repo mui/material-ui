@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Checkbox, { styleSheet } from './Checkbox';
 import { createShallowWithContext } from 'test/utils';
+import Checkbox, { styleSheet } from './Checkbox';
 
 describe('<Checkbox>', () => {
   let shallow;

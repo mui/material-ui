@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import TextFieldLabel, { styleSheet } from './TextFieldLabel';
 import { createShallowWithContext } from 'test/utils';
+import TextFieldLabel, { styleSheet } from './TextFieldLabel';
 
 describe('<TextFieldLabel>', () => {
   let shallow;

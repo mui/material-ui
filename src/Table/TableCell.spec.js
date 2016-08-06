@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import TableCell, { styleSheet } from './TableCell';
 import { createShallowWithContext } from 'test/utils';
+import TableCell, { styleSheet } from './TableCell';
 
 describe('<TableCell>', () => {
   let shallow;

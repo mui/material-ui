@@ -5,8 +5,8 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import ButtonBase, { styleSheet } from './ButtonBase';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import ButtonBase, { styleSheet } from './ButtonBase';
 
 describe('<ButtonBase>', () => {
   let mount;
@@ -37,7 +37,7 @@ describe('<ButtonBase>', () => {
     });
 
     it('should change the button component and add accessibility requirements', () => {
-      const wrapper = shallow(<ButtonBase component="span" role="checkbox" />);
+      const wrapper = shallow(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
       assert.strictEqual(wrapper.is('span'), true, 'should be a span');
       assert.strictEqual(wrapper.prop('role'), 'checkbox', 'should be role checkbox');
       assert.strictEqual(wrapper.prop('tabIndex'), '0', 'should be 0');

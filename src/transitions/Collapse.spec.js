@@ -4,8 +4,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import Collapse, { styleSheet } from './Collapse';
 import { createShallowWithContext } from 'test/utils';
+import Collapse, { styleSheet } from './Collapse';
 
 describe('<Collapse>', () => {
   let shallow;

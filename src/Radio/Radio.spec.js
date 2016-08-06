@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Radio, { styleSheet } from './Radio';
 import { createShallowWithContext } from 'test/utils';
+import Radio, { styleSheet } from './Radio';
 
 describe('<Radio>', () => {
   let shallow;

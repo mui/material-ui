@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import TableRow, { styleSheet } from './TableRow';
 import { createShallowWithContext } from 'test/utils';
+import TableRow, { styleSheet } from './TableRow';
 
 describe('<TableRow>', () => {
   let shallow;
@@ -32,7 +32,7 @@ describe('<TableRow>', () => {
   });
 
   it('should render children', () => {
-    const children = <td className="test"></td>;
+    const children = <td className="test" />;
     const wrapper = shallow(<TableRow>{children}</TableRow>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });

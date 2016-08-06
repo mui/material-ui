@@ -146,7 +146,7 @@ export default class Collapse extends Component {
       return 0;
     }
     const constant = wrapperHeight / 36;
-    return Math.round(175 / constant + 25) * constant;
+    return Math.round((175 / constant) + 25) * constant;
   }
 
   render() {
