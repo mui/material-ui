@@ -5,8 +5,8 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import SimpleMenu from './fixtures/menus/SimpleMenu';
 import { createMountWithContext } from 'test/utils';
+import SimpleMenu from './fixtures/menus/SimpleMenu';
 
 describe('<Menu> integration', () => {
   let mount;

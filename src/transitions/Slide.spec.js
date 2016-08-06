@@ -4,8 +4,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import Slide from './Slide';
 import { createShallowWithContext } from 'test/utils';
+import Slide from './Slide';
 
 describe('<Slide>', () => {
   let shallow;

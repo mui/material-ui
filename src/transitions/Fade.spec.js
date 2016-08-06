@@ -4,8 +4,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import Fade from './Fade';
 import { createShallowWithContext } from 'test/utils';
+import Fade from './Fade';
 
 describe('<Fade>', () => {
   let shallow;

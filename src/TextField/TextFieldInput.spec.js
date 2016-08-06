@@ -4,8 +4,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import TextFieldInput, { styleSheet } from './TextFieldInput';
 import { createShallowWithContext } from 'test/utils';
+import TextFieldInput, { styleSheet } from './TextFieldInput';
 
 describe('<TextFieldInput>', () => {
   let shallow;

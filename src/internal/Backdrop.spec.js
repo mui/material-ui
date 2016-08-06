@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Backdrop, { styleSheet } from './Backdrop';
 import { createShallowWithContext } from 'test/utils';
+import Backdrop, { styleSheet } from './Backdrop';
 
 describe('<Backdrop>', () => {
   let shallow;

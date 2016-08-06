@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import ListItemIcon, { styleSheet } from './ListItemIcon';
 import { createShallowWithContext } from 'test/utils';
+import ListItemIcon, { styleSheet } from './ListItemIcon';
 
 /**
  * An item that goes in lists.

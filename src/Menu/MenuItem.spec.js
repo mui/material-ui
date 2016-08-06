@@ -3,8 +3,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import MenuItem, { styleSheet } from './MenuItem';
 import { createShallowWithContext } from 'test/utils';
+import MenuItem, { styleSheet } from './MenuItem';
 
 describe('<MenuItem>', () => {
   let shallow;

@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import CircularProgress, { styleSheet } from './CircularProgress';
 import { createShallowWithContext } from 'test/utils';
+import CircularProgress, { styleSheet } from './CircularProgress';
 
 describe('<CircularProgress>', () => {
   let shallow;

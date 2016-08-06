@@ -69,7 +69,7 @@ export default function Switch(props, context) {
         type="checkbox"
         {...other}
       />
-      <div className={classes.bar}></div>
+      <div className={classes.bar} />
     </div>
   );
 }

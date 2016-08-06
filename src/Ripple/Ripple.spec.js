@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import Ripple, { styleSheet } from './Ripple';
 import { createShallowWithContext } from 'test/utils';
+import Ripple, { styleSheet } from './Ripple';
 
 describe('<Ripple>', () => {
   let shallow;

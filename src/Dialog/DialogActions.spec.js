@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import DialogActions, { styleSheet } from './DialogActions';
 import { createShallowWithContext } from 'test/utils';
+import DialogActions, { styleSheet } from './DialogActions';
 
 describe('<DialogActions>', () => {
   let shallow;

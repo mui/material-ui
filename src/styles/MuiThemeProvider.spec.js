@@ -4,8 +4,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
-import { createMuiTheme } from './theme';
 import { createStyleManager } from 'stylishly';
+import { createMuiTheme } from './theme';
 import MuiThemeProvider from './MuiThemeProvider';
 
 describe('<MuiThemeProvider>', () => {

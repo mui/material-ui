@@ -4,8 +4,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import RadioGroup from './RadioGroup';
 import { createShallowWithContext } from 'test/utils';
+import RadioGroup from './RadioGroup';
 
 describe('<RadioGroup>', () => {
   let shallow;

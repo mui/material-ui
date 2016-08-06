@@ -3,8 +3,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import DialogTitle, { styleSheet } from './DialogTitle';
 import { createShallowWithContext } from 'test/utils';
+import DialogTitle, { styleSheet } from './DialogTitle';
 
 describe('<DialogTitle>', () => {
   let shallow;

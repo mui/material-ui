@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import RedBox from 'redbox-react';
 import React from 'react';
 import ReactPerf from 'react-addons-perf';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import App from './components/App';
 
 // import a11y from 'react-a11y';
@@ -15,9 +15,7 @@ import App from './components/App';
 //   a11y(React, { includeSrcNode: true, ReactDOM });
 // }
 
-
 window.Perf = ReactPerf;
-
 
 const docs = (state = { dark: false }, action) => {
   if (action.type === 'TOGGLE_THEME_SHADE') {
@@ -30,7 +28,7 @@ export const store = createStore(docs);
 
 const rootEl = document.getElementById('app');
 
-ReactDOM.render(
+render(
   <AppContainer errorReporter={RedBox}>
     <Provider store={store}>
       <App />
@@ -42,7 +40,8 @@ ReactDOM.render(
 if (module.hot) {
   module.hot.accept('./components/App', () => {
     const NextApp = require('./components/App').default; // eslint-disable-line global-require
-    ReactDOM.render(
+
+    render(
       <AppContainer errorReporter={RedBox}>
         <Provider store={store}>
           <NextApp />
