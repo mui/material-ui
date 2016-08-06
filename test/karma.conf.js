@@ -1,44 +1,22 @@
 // @flow weak
-
 const path = require('path');
-const argv = process.argv.slice(2);
-const opts = {
-  grep: undefined,
-  watch: false,
-};
-
-argv.forEach((arg) => {
-  if (/^--grep=/.test(arg)) {
-    opts.grep = arg.replace('--grep=', '').trim();
-  }
-
-  if (/^--watch/.test(arg)) {
-    opts.watch = true;
-  }
-});
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   config.set({
-    autoWatch: opts.watch,
     basePath: '../',
     browsers: ['PhantomJS'],
     // to avoid DISCONNECTED messages on travis
     browserDisconnectTimeout: 10000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 60000, // default 10000
-    client: {
-      mocha: {
-        grep: opts.grep,
-      },
-    },
     colors: true,
     frameworks: ['mocha'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
       {
         pattern: 'test/karma.tests.js',
-        watched: opts.watch,
+        watched: true,
         served: true,
         included: true,
       },
@@ -58,7 +36,6 @@ module.exports = function setKarmaConfig(config) {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
     },
     reporters: ['mocha'],
-    singleRun: !opts.watch,
     webpack: {
       devtool: 'inline-source-map',
       module: {

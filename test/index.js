@@ -1,55 +1,77 @@
 // @flow weak
-
+require('babel-register');
 require('app-module-path').addPath(`${__dirname}'./../`);
-import minimist from 'minimist';
-import Mocha from 'mocha';
-import glob from 'glob';
-import './utils/dom';
+const program = require('commander');
+const runE2ETests = require('./e2e');
+const runKarmaTests = require('./karma');
+const runMochaTests = require('./mocha');
+const watchMochaTests = require('./mocha.watch');
 
-const argv = minimist(process.argv.slice(2), {
-  alias: {
-    m: 'module',
-    g: 'grep',
-  },
-});
+process.env.NODE_ENV = 'test';
 
-function parseModuleArg(value) {
-  if (value) {
-    if (value.indexOf(',') !== -1) {
-      return `+(${value.split(',').join('|')})`;
+program
+  .version('0.1.0')
+  .description('See help for specific commands using [command] --help');
+
+program
+  .command('mocha')
+  .description('Run the core mocha unit/integration test suite.')
+  .option('-w, --watch', 'Watch source and test files for changes')
+  .option('-g, --grep <pattern>', 'Passed through to mocha')
+  .option(
+    '-m, --module <name>',
+    'Require tests for a specific module, or comma separated modules',
+    (value) => {
+      if (value) {
+        if (value.indexOf(',') !== -1) {
+          return `+(${value.split(',').join('|')})`;
+        }
+        return value;
+      }
+      return '*';
     }
-    return value;
-  }
-  return '*';
-}
+  )
+  .action((command) => {
+    const { module, grep, watch } = command;
+    if (watch) {
+      return watchMochaTests(
+        process.argv.slice(3).reduce((args, n) => {
+          if (n !== '-w' && n !== '--watch') {
+            args.push(n);
+          }
+          return args;
+        }, [])
+      );
+    }
+    return runMochaTests({ module, grep });
+  });
 
-const types = argv._;
-const globPatterns = {
-  unit: `src/**/${parseModuleArg(argv.module)}.spec.js`,
-  integration: `test/integration/**/${parseModuleArg(argv.module)}.test.js`,
-};
+program
+  .command('karma')
+  .description('Run the mocha test suite using the karmer runner.')
+  .option('-w, --watch', 'Watch source and test files for changes')
+  .option('-g, --grep <pattern>', 'Passed through to mocha')
+  .action((command) => {
+    const { grep, watch } = command;
+    return runKarmaTests({ grep, watch });
+  });
 
-let pattern;
+program
+  .command('e2e')
+  .description('Run the e2e selenium tests')
+  .option('-l, --local', 'Use nightwatch.local.conf.js')
+  .option('-e, --environment', 'Comma separated string of browser test environment names')
+  .action((command) => {
+    const { local, browsers } = command;
+    return runE2ETests({ local, browsers });
+  });
 
-if (types.indexOf('unit') + types.indexOf('integration') === -2) {
-  pattern = Object.keys(globPatterns).map((n) => globPatterns[n]);
+program
+  .command('visual-regression')
+  .description('Run the visual regression tests');
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
 } else {
-  pattern = types.map((n) => globPatterns[n]);
+  program.parse(process.argv);
 }
-
-const mocha = new Mocha({
-  grep: argv.grep ? argv.grep : undefined,
-});
-
-glob(
-  pattern.length > 1 ? `{${pattern.join(',')}}` : pattern[0],
-  {},
-  (err, files) => {
-    files.forEach((file) => mocha.addFile(file));
-    mocha.run((failures) => {
-      process.on('exit', () => {
-        process.exit(failures);
-      });
-    });
-  }
-);

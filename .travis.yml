@@ -7,5 +7,8 @@ cache:
   directories:
     - node_modules
     - docs/site/node_modules
+install:
+  - npm install
+  - cd docs/site && npm install && cd ../../
 script:
   - ./scripts/run-travis-tests.sh
