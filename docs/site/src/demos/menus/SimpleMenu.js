@@ -5,14 +5,12 @@ import { createStyleSheet } from 'stylishly';
 import Button from 'material-ui/Button';
 import { Menu, MenuItem } from 'material-ui/Menu';
 
-const styleSheet = createStyleSheet('SimpleMenu', () => {
-  return {
-    menu: {},
-    content: {
-      margin: 0,
-    },
-  };
-});
+const styleSheet = createStyleSheet('SimpleMenu', () => ({
+  menu: {},
+  content: {
+    margin: 0,
+  },
+}));
 
 export default class SimpleMenu extends Component {
   static contextTypes = {

@@ -4,13 +4,11 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import IconButton from 'material-ui/IconButton';
 
-const styleSheet = createStyleSheet('IconButtons', () => {
-  return {
-    button: {
-      margin: '0 10px',
-    },
-  };
-});
+const styleSheet = createStyleSheet('IconButtons', () => ({
+  button: {
+    margin: '0 10px',
+  },
+}));
 
 export default function IconButtons(props, context) {
   const classes = context.styleManager.render(styleSheet);

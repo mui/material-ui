@@ -5,15 +5,13 @@ import { createStyleSheet } from 'stylishly';
 import { List, ListItem, ListItemText } from 'material-ui/List';
 import { Menu, MenuItem } from 'material-ui/Menu';
 
-const styleSheet = createStyleSheet('SimpleListMenu', (theme) => {
-  return {
-    root: {
-      width: '100%',
-      maxWidth: '360px',
-      background: theme.palette.background.paper,
-    },
-  };
-});
+const styleSheet = createStyleSheet('SimpleListMenu', (theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: '360px',
+    background: theme.palette.background.paper,
+  },
+}));
 
 const options = [
   'Show all notification content',

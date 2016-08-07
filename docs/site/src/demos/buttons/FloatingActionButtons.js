@@ -4,13 +4,11 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('FloatingActionButtons', () => {
-  return {
-    button: {
-      margin: '0 10px',
-    },
-  };
-});
+const styleSheet = createStyleSheet('FloatingActionButtons', () => ({
+  button: {
+    margin: '0 10px',
+  },
+}));
 
 export default function FloatingActionButtons(props, context) {
   const classes = context.styleManager.render(styleSheet);

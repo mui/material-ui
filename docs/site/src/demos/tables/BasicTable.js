@@ -11,14 +11,12 @@ import {
 } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet('BasicTable', () => {
-  return {
-    paper: {
-      width: '100%',
-      marginTop: 30,
-    },
-  };
-});
+const styleSheet = createStyleSheet('BasicTable', () => ({
+  paper: {
+    width: '100%',
+    marginTop: 30,
+  },
+}));
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {

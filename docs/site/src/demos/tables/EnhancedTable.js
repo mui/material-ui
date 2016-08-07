@@ -18,14 +18,12 @@ import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 
-const styleSheet = createStyleSheet('EnhancedTable', () => {
-  return {
-    paper: {
-      width: '100%',
-      marginTop: 30,
-    },
-  };
-});
+const styleSheet = createStyleSheet('EnhancedTable', () => ({
+  paper: {
+    width: '100%',
+    marginTop: 30,
+  },
+}));
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {

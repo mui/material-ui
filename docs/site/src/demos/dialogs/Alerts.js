@@ -10,16 +10,14 @@ import {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-const styleSheet = createStyleSheet('Alerts', () => {
-  return {
-    alert: {
-      maxWidth: 400,
-    },
-    content: {
-      margin: 0,
-    },
-  };
-});
+const styleSheet = createStyleSheet('Alerts', () => ({
+  alert: {
+    maxWidth: 400,
+  },
+  content: {
+    margin: 0,
+  },
+}));
 
 export default class Alerts extends Component {
   static contextTypes = {

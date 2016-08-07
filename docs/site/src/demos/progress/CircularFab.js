@@ -6,25 +6,23 @@ import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('CircularFab', () => {
-  return {
-    wrapper: {
-      position: 'relative',
-      successButton: {
-        backgroundColor: green[500],
-        '&:hover': {
-          backgroundColor: green[700],
-        },
+const styleSheet = createStyleSheet('CircularFab', () => ({
+  wrapper: {
+    position: 'relative',
+    successButton: {
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700],
       },
     },
-    progress: {
-      color: green[500],
-      position: 'absolute',
-      top: -2,
-      left: -2,
-    },
-  };
-});
+  },
+  progress: {
+    color: green[500],
+    position: 'absolute',
+    top: -2,
+    left: -2,
+  },
+}));
 
 export default class CircularFab extends Component {
   static contextTypes = {

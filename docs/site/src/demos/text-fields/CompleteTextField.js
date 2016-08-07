@@ -4,14 +4,12 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import TextField, { TextFieldInput, TextFieldLabel } from 'material-ui/TextField';
 
-const styleSheet = createStyleSheet('CompleteTextField', () => {
-  return {
-    textField: {
-      marginLeft: 10,
-      marginRight: 10,
-    },
-  };
-});
+const styleSheet = createStyleSheet('CompleteTextField', () => ({
+  textField: {
+    marginLeft: 10,
+    marginRight: 10,
+  },
+}));
 
 export default class CompleteTextField extends Component {
   static contextTypes = {

@@ -4,13 +4,11 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('RaisedButtons', () => {
-  return {
-    button: {
-      margin: '0 10px',
-    },
-  };
-});
+const styleSheet = createStyleSheet('RaisedButtons', () => ({
+  button: {
+    margin: '0 10px',
+  },
+}));
 
 export default function RaisedButtons(props, context) {
   const classes = context.styleManager.render(styleSheet);
@@ -34,4 +32,3 @@ export default function RaisedButtons(props, context) {
 RaisedButtons.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
-

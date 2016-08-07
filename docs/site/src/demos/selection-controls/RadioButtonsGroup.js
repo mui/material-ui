@@ -5,13 +5,11 @@ import { createStyleSheet } from 'stylishly';
 import { Radio, RadioGroup } from 'material-ui/Radio';
 import Text from 'material-ui/Text';
 
-const styleSheet = createStyleSheet('RadioButtonsGroup', () => {
-  return {
-    group: {
-      margin: '8px 0',
-    },
-  };
-});
+const styleSheet = createStyleSheet('RadioButtonsGroup', () => ({
+  group: {
+    margin: '8px 0',
+  },
+}));
 
 export default class RadioButtonsGroup extends Component {
   static contextTypes = {

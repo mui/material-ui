@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Link from 'react-router/lib/Link';
 import Text from 'material-ui/Text';
@@ -41,33 +41,34 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
   };
 });
 
-export default class Home extends Component {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+const Home = (props, context) => {
+  const classes = context.styleManager.render(styleSheet);
 
-  render() {
-    const classes = this.context.styleManager.render(styleSheet);
-    return (
-      <div className={classes.root}>
-        <div className={classes.hero}>
-          <div className={classes.content}>
-            <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
-            <Text type="display2">Material-UI</Text>
-            <Text type="subheading">
-              A React component library implementing Google's Material Design
-            </Text>
-            <Button
-              component={Link}
-              className={classes.button}
-              raised
-              to="/getting-started/installation"
-            >
-              Get Started
-            </Button>
-          </div>
+  return (
+    <div className={classes.root}>
+      <div className={classes.hero}>
+        <div className={classes.content}>
+          <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
+          <Text type="display2">Material-UI</Text>
+          <Text type="subheading">
+            A React component library implementing Google's Material Design
+          </Text>
+          <Button
+            component={Link}
+            className={classes.button}
+            raised
+            to="/getting-started/installation"
+          >
+            Get Started
+          </Button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+Home.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};
+
+export default Home;

@@ -4,14 +4,12 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet('PaperSheet', (theme) => {
-  return {
-    root: theme.mixins.gutters({
-      paddingTop: 5,
-      paddingBottom: 5,
-    }),
-  };
-});
+const styleSheet = createStyleSheet('PaperSheet', (theme) => ({
+  root: theme.mixins.gutters({
+    paddingTop: 5,
+    paddingBottom: 5,
+  }),
+}));
 
 export default function PaperSheet(props, context) {
   const classes = context.styleManager.render(styleSheet);
