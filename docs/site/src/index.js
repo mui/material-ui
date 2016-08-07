@@ -37,7 +37,7 @@ render(
   rootEl
 );
 
-if (module.hot) {
+if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept('./components/App', () => {
     const NextApp = require('./components/App').default; // eslint-disable-line global-require
 

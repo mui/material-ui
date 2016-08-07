@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'source-map',
   context: path.resolve(__dirname),
   entry: {
-    'main': [
+    main: [
       './src/index',
     ],
   },
@@ -40,7 +40,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'docs': path.resolve(__dirname, '../../docs'),
+      docs: path.resolve(__dirname, '../../docs'),
       'material-ui': path.resolve(__dirname, '../../src'),
       react: path.resolve(__dirname, 'node_modules/react'),
       lodash: path.resolve(__dirname, '../../node_modules/lodash'),
