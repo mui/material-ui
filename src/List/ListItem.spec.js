@@ -73,4 +73,43 @@ describe('<ListItem />', () => {
     assert.ok(wrapper.find('.test-checkbox').length);
     assert.strictEqual(wrapper.find(`.${testClass}`).length, 1, 'should have a div with the test class');
   });
+
+  it('should initially open nested list', () => {
+    const testClass = 'test-class';
+    const wrapper = shallowWithContext(
+      <ListItem
+        className={testClass}
+        initiallyOpen={true}
+        nestedItems={[
+          <ListItem
+            key={1}
+          />,
+        ]}
+      />
+    );
+
+    assert.ok(wrapper.find('NestedList').length);
+    assert.ok(wrapper.find('.test-class').parent().children().nodes[1].props.open === true);
+  });
+
+  it('should toggle nested list', () => {
+    const testClass = 'test-class';
+    const wrapper = shallowWithContext(
+      <ListItem
+        className={testClass}
+        open={false}
+        nestedItems={[
+          <ListItem
+            key={1}
+          />,
+        ]}
+      />
+    );
+
+    assert.ok(wrapper.find('.test-class').parent().children().nodes[1].props.open === false);
+    wrapper.setProps({
+      open: true,
+    });
+    assert.ok(wrapper.find('.test-class').parent().children().nodes[1].props.open === true);
+  });
 });
