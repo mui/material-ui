@@ -84,6 +84,8 @@ class Avatar extends Component {
     const {
       backgroundColor, // eslint-disable-line no-unused-vars
       icon,
+      iconStyle,
+      onKeyboardFocus,
       src,
       style,
       className,
