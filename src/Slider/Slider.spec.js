@@ -112,6 +112,23 @@ describe('<Slider />', () => {
     assert.strictEqual(wrapper.state().percent, 1, 'state.percent should be equal 1');
   });
 
+  it('checks that value and percent are updated correctly when max prop changes', () => {
+    const wrapper = shallowWithContext(
+      <Slider
+        name="slider"
+        value={2}
+        min={0}
+        max={10}
+      />
+    );
+
+    assert.strictEqual(wrapper.state().value, 2, 'state.value should be equal 2');
+    assert.strictEqual(wrapper.state().percent, 0.20, 'state.percent should be equal 0.20');
+    wrapper.setProps({max: 4});
+    assert.strictEqual(wrapper.state().value, 2, 'state.value should be equal 2');
+    assert.strictEqual(wrapper.state().percent, 0.50, 'state.percent should be equal 0.50');
+  });
+
   it('checks events do not fire on the handle when the slider is disabled', () => {
     const handleDragStart = sinon.spy();
     const handleChange = sinon.spy();
