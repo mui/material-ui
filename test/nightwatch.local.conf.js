@@ -1,8 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 module.exports = {
-  src_folders: ['test/e2e'],
-  output_folder: 'test/e2e-output',
+  output_folder: 'test/selenium-output',
   selenium: {
     start_process: false,
     host: process.env.SELENIUM_LOCAL_HOST,

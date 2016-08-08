@@ -4,7 +4,8 @@ local.log
 dist
 build
 coverage
-e2e-output
+selenium-output
+test/regressions/screenshots/output
 
 # Exclude compiled files
 /lib

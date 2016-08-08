@@ -1,0 +1,17 @@
+{
+  "name": "material-ui-regressions-tests",
+  "version": "0.16.0",
+  "description": "",
+  "scripts": {
+    "start": "node webpack.dev.server.js",
+    "build": "webpack --config webpack.prod.config.js"
+  },
+  "devDependencies": {
+    "react-hot-loader": "^3.0.0-beta.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "react-router": "^2.4.1"
+  }
+}
