@@ -3,6 +3,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import ListItem from './ListItem';
+import NestedList from './NestedList';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<ListItem />', () => {
@@ -74,42 +75,36 @@ describe('<ListItem />', () => {
     assert.strictEqual(wrapper.find(`.${testClass}`).length, 1, 'should have a div with the test class');
   });
 
-  it('should initially open nested list', () => {
-    const testClass = 'test-class';
-    const wrapper = shallowWithContext(
-      <ListItem
-        className={testClass}
-        initiallyOpen={true}
-        nestedItems={[
-          <ListItem
-            key={1}
-          />,
-        ]}
-      />
-    );
+  describe('props: open', () => {
+    it('should initially open nested list', () => {
+      const wrapper = shallowWithContext(
+        <ListItem
+          initiallyOpen={true}
+          nestedItems={[
+            <ListItem key={1} />,
+          ]}
+        />
+      );
 
-    assert.ok(wrapper.find('NestedList').length);
-    assert.ok(wrapper.find('.test-class').parent().children().nodes[1].props.open === true);
-  });
-
-  it('should toggle nested list', () => {
-    const testClass = 'test-class';
-    const wrapper = shallowWithContext(
-      <ListItem
-        className={testClass}
-        open={false}
-        nestedItems={[
-          <ListItem
-            key={1}
-          />,
-        ]}
-      />
-    );
-
-    assert.ok(wrapper.find('.test-class').parent().children().nodes[1].props.open === false);
-    wrapper.setProps({
-      open: true,
+      assert.strictEqual(wrapper.find(NestedList).length > 0, true);
+      assert.strictEqual(wrapper.find(NestedList).props().open, true);
     });
-    assert.ok(wrapper.find('.test-class').parent().children().nodes[1].props.open === true);
+
+    it('should toggle nested list', () => {
+      const wrapper = shallowWithContext(
+        <ListItem
+          open={false}
+          nestedItems={[
+            <ListItem key={1} />,
+          ]}
+        />
+      );
+
+      assert.strictEqual(wrapper.find(NestedList).props().open, false);
+      wrapper.setProps({
+        open: true,
+      });
+      assert.strictEqual(wrapper.find(NestedList).props().open, true);
+    });
   });
 });
