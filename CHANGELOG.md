@@ -22,6 +22,9 @@ Examples:
 ```
 (#4705)
 
+##### Component Fixes / Enhancements
+- [BottomNavigation] Initial implementation (#4846)
+
 ## 0.15.3
 ###### _Jul 31, 2016_
 
