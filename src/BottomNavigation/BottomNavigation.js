@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes, Children, cloneElement} from 'react';
 
 function getStyles(props, context) {
   const {
@@ -22,58 +22,49 @@ function getStyles(props, context) {
   return styles;
 }
 
-class BottomNavigation extends React.Component {
-  static propTypes = {
-    /**
-     * The `BottomNavigationItem`s to populate the `BottomNavigation` with.
-     */
-    children: React.PropTypes.node,
-    /**
-     * Applied to the bottom navigation's root element.
-     */
-    className: React.PropTypes.string,
-    /**
-     * The index of the currently selected navigation item.
-     */
-    selectedIndex: React.PropTypes.number,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: React.PropTypes.object,
-  };
+const BottomNavigation = (props, context) => {
+  const {
+    children,
+    style,
+    selectedIndex,
+    ...other,
+  } = props;
 
-  static contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
-  };
+  const {prepareStyles} = context.muiTheme;
+  const styles = getStyles(props, context);
 
-  render() {
-    const {
-      className,
-      children,
-      style,
-      selectedIndex,
-      ...other,
-    } = this.props;
-
-    const styles = getStyles(this.props, this.context);
-
-    const preparedChildren = React.Children.map(children, (child, index) => {
-      return React.cloneElement(child, {
-        style: Object.assign({}, styles.item, child.props.style),
-        selected: index === selectedIndex,
-      });
+  const preparedChildren = Children.map(children, (child, index) => {
+    return cloneElement(child, {
+      style: Object.assign({}, styles.item, child.props.style),
+      selected: index === selectedIndex,
     });
+  });
 
-    return (
-      <div
-        {...other}
-        className={className}
-        style={Object.assign({}, styles.root, style)}
-      >
-        {preparedChildren}
-      </div>
-    );
-  }
-}
+  return (
+    <div {...other} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      {preparedChildren}
+    </div>
+  );
+};
+
+BottomNavigation.propTypes = {
+  /**
+   * The `BottomNavigationItem`s to populate the element with.
+   */
+  children: PropTypes.node,
+  /**
+   * The index of the currently selected navigation item.
+   */
+  selectedIndex: PropTypes.number,
+  /**
+   * @ignore
+   * Override the inline-styles of the root element.
+   */
+  style: PropTypes.object,
+};
+
+BottomNavigation.contextTypes = {
+  muiTheme: PropTypes.object.isRequired,
+};
 
 export default BottomNavigation;

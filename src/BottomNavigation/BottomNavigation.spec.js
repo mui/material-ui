@@ -10,30 +10,50 @@ describe('<BottomNavigation />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
-  it('determines which BottomNavigationItem is selected', () => {
-    const wrapper = shallowWithContext(
-      <BottomNavigation selectedIndex={0}>
-        <BottomNavigationItem />
-        <BottomNavigationItem />
-        <BottomNavigationItem />
-      </BottomNavigation>
-    );
-    assert.strictEqual(wrapper.childAt(0).node.props.selected, true, 'index 0 should be selected');
-    assert.notStrictEqual(wrapper.childAt(1).node.props.selected, true, 'index 1 should not be selected');
-    assert.notStrictEqual(wrapper.childAt(2).node.props.selected, true, 'index 2 should not be selected');
-  });
+  describe('prop: selectedIndex', () => {
+    it('determines which BottomNavigationItem is selected', () => {
+      const wrapper = shallowWithContext(
+        <BottomNavigation selectedIndex={0}>
+          <BottomNavigationItem />
+          <BottomNavigationItem />
+          <BottomNavigationItem />
+        </BottomNavigation>
+      );
 
-  it('changes the selected BottomNavigationItem', () => {
-    const wrapper = shallowWithContext(
-      <BottomNavigation selectedIndex={0}>
-        <BottomNavigationItem />
-        <BottomNavigationItem />
-        <BottomNavigationItem />
-      </BottomNavigation>
-    );
-    wrapper.setProps({selectedIndex: 1});
-    assert.notStrictEqual(wrapper.childAt(0).node.props.selected, true, 'index 0 should not be selected');
-    assert.strictEqual(wrapper.childAt(1).node.props.selected, true, 'index 1 should be selected');
-    assert.notStrictEqual(wrapper.childAt(2).node.props.selected, true, 'index 2 should not be selected');
+      const bottomNavigationItems = wrapper.find(BottomNavigationItem);
+
+      assert.strictEqual(bottomNavigationItems.at(0).props().selected, true,
+        'index 0 should be selected'
+      );
+      assert.notStrictEqual(bottomNavigationItems.at(1).props().selected, true,
+        'index 1 should not be selected'
+      );
+      assert.notStrictEqual(bottomNavigationItems.at(2).props().selected, true,
+        'index 2 should not be selected'
+      );
+    });
+
+    it('changes the selected BottomNavigationItem', () => {
+      const wrapper = shallowWithContext(
+        <BottomNavigation selectedIndex={0}>
+          <BottomNavigationItem />
+          <BottomNavigationItem />
+          <BottomNavigationItem />
+        </BottomNavigation>
+      );
+
+      wrapper.setProps({selectedIndex: 1});
+
+      const bottomNavigationItems = wrapper.find(BottomNavigationItem);
+      assert.notStrictEqual(bottomNavigationItems.at(0).props().selected, true,
+        'index 0 should not be selected'
+      );
+      assert.strictEqual(bottomNavigationItems.at(1).props().selected, true,
+        'index 1 should be selected'
+      );
+      assert.notStrictEqual(bottomNavigationItems.at(2).props().selected, true,
+        'index 2 should not be selected'
+      );
+    });
   });
 });
