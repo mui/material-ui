@@ -3,6 +3,8 @@ import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
 import deprecated from '../utils/deprecatedPropType';
+import keycode from 'keycode';
+
 
 class DatePicker extends Component {
   static propTypes = {
@@ -156,6 +158,7 @@ class DatePicker extends Component {
 
   state = {
     date: undefined,
+    keyboardActivated: false,
   };
 
   componentWillMount() {
@@ -176,7 +179,7 @@ class DatePicker extends Component {
   }
 
   getDate() {
-    return this.state.date;
+    return this.state.date instanceof Date ? this.state.date : undefined;
   }
 
   /**
@@ -204,6 +207,12 @@ class DatePicker extends Component {
    */
   focus() {
     this.openDialog();
+    if(this.shouldHandleKeyboard)
+      this.refs.input.focus();
+  }
+
+  shouldHandleKeyboard = () => {
+    return !this.props.disabled && this.props.container == 'inline' && !this.isControlled();
   }
 
   handleAccept = (date) => {
@@ -217,12 +226,61 @@ class DatePicker extends Component {
     }
   };
 
-  handleFocus = (event) => {
-    event.target.blur();
+  handleInputFocus = (event) => {
+    if (!this.shouldHandleKeyboard()) {
+      event.target.blur();
+    }
+    else {
+      this.setState({ keyboardActivated: true }, this.focus);
+    }
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   };
+
+  handleInputBlur = (event) => {
+    if(this.state.keyboardActivated)
+      this.setState({ 
+        keyboardActivated: false,
+        date: this.state.date instanceof Date ? this.state.date : undefined
+      });
+  }
+
+  handleKeyDown = (event) => {
+    if(!this.shouldHandleKeyboard)
+      return;
+
+    const key = keycode(event);
+    switch (key) {
+      case 'tab':
+        if(this.state.keyboardActivated)
+          this.setState({ keyboardActivated: false }, this.refs.dialogWindow.dismiss);
+        break;
+      case 'right':
+      case 'left':
+      case 'up':
+      case 'down':
+        event.stopPropagation();
+        break;
+    }
+  }
+
+  handleInputChange = (event) => {
+    const filtered = event.target.value.replace(/[^0-9\-\/]/gi, '').replace('/', '-');
+    var dt = undefined;
+    if (filtered.length == 10) {
+      // we split this manually as Date.parse is implementation specific
+      // and also because it doesn't use the browser's timezone.
+      var parts = filtered.split('-');
+      if (parts.length == 3)
+        dt = new Date(parts[0], parts[1]-1, parts[2]); //Note: months are 0 based
+    }
+    
+    this.setState({
+        date: !dt || isNaN(dt.getTime()) ? filtered : dt
+    });
+  }
 
   handleTouchTap = (event) => {
     if (this.props.onTouchTap) {
@@ -289,16 +347,25 @@ class DatePicker extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const formatDate = formatDateProp || this.formatDate;
+    const rawDate = this.state.date instanceof Date ? formatDate(this.state.date) : this.state.date;
+    const inputError = rawDate != undefined && !(this.state.date instanceof Date) ? 'Enter a valid date' : this.props.errorText;
+    const hintText = this.state.keyboardActivated ? "yyyy-mm-dd" : this.props.hintText;
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
-          onFocus={this.handleFocus}
+          onFocus={this.handleInputFocus}
+          onBlur={this.handleInputBlur}
+          onKeyDown={this.handleKeyDown}
           onTouchTap={this.handleTouchTap}
+          tabIndex={this.shouldHandleKeyboard() ? 0 : 1}
+          onChange={this.handleInputChange}
           ref="input"
           style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : ''}
+          value={rawDate ? rawDate : ''}
+          errorText={inputError}
+          hintText={hintText}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
