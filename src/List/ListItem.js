@@ -28,7 +28,7 @@ function getStyles(props, context, state) {
   const {listItem} = muiTheme;
 
   const textColor = muiTheme.baseTheme.palette.textColor;
-  const hoverColor = fade(textColor, 0.1);
+  const hoverColor = props.hoverColor || fade(context.muiTheme.baseTheme.palette.textColor, 0.1);
   const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
   const singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
   const twoLine = secondaryText && secondaryTextLines === 1;
@@ -271,6 +271,10 @@ class ListItem extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+    /**
+     * Override hoverColor.
+     */
+    hoverColor: PropTypes.string
   };
 
   static defaultProps = {
