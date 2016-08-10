@@ -10,6 +10,7 @@ module.exports = {
   },
   test_settings: {
     default: {
+      launch_url: process.env.SELENIUM_LAUNCH_URL,
       selenium_host: 'hub.browserstack.com',
       selenium_port: 80,
       silent: true,
@@ -17,8 +18,9 @@ module.exports = {
         build: `Material-UI ${process.env.MUI_HASH}`,
         'browserstack.user': process.env.BROWSERSTACK_USERNAME,
         'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY,
-        'browserstack.debug': true,
-        'browserstack.local': true,
+        'browserstack.debug': false,
+        'browserstack.local': false,
+        'browserstack.video': false,
         resolution: '1280x1024',
       },
     },

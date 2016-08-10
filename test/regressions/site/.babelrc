@@ -1,0 +1,21 @@
+{
+  "presets": ["es2015", "stage-1", "react"],
+  "plugins": [
+    "../../../scripts/babel-transform-object-assign-require"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "../../../scripts/babel-transform-object-assign-require",
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    }
+  }
+}

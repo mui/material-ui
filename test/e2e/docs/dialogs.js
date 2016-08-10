@@ -3,7 +3,7 @@ module.exports = {
   'Alert Dialog'(browser) {
     browser
       .maximizeWindow()
-      .url('http://localhost:8080/#/component-demos/dialogs')
+      .url(`${browser.launch_url}/#/component-demos/dialogs`)
       .waitForElementVisible('[data-reactroot]', 6000)
       .assert.visible('[data-mui-demo="dialogs/Alerts.js"]')
       .assert.elementNotPresent('[data-mui-test="Modal"]')

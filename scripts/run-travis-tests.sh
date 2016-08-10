@@ -2,12 +2,13 @@
 set -ev
 
 npm run lint
+npm run flow
 npm run test:coverage
 npm run test:karma
-cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+npm run test:regressions
+
 if git log ${TRAVIS_COMMIT_RANGE} | grep -Ei '\[codemod\]'; then
   cd packages/material-ui-codemod && npm install && npm test
 fi
 
-cd docs/site && npm install && cd ../../
-npm run flow
+cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
