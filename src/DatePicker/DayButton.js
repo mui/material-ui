@@ -51,6 +51,8 @@ function getStyles(props, context, state) {
 }
 
 class DayButton extends Component {
+  static displayName = 'DayButton';
+
   static propTypes = {
     date: PropTypes.object,
     disabled: PropTypes.bool,

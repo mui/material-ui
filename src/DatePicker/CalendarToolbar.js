@@ -24,6 +24,8 @@ const styles = {
 };
 
 class CalendarToolbar extends Component {
+  static displayName = 'CalendarToolbar';
+
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
     displayDate: PropTypes.object.isRequired,

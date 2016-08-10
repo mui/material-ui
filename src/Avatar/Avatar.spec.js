@@ -11,6 +11,10 @@ describe('<Avatar />', () => {
 
   const testChildren = <div className="unique">Hello World</div>;
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Avatar.displayName, 'Avatar');
+  });
+
   it('renders children by default', () => {
     const wrapper = shallowWithContext(
       <Avatar>{testChildren}</Avatar>

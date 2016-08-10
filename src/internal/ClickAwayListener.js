@@ -14,6 +14,7 @@ const bind = (callback) => clickAwayEvents.forEach((event) => events.on(document
 const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(document, event, callback));
 
 export default class ClickAwayListener extends Component {
+  static displayName = 'ClickAwayListener';
 
   static propTypes = {
     children: PropTypes.node,

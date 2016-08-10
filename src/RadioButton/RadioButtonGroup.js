@@ -3,6 +3,8 @@ import RadioButton from '../RadioButton';
 import warning from 'warning';
 
 class RadioButtonGroup extends Component {
+  static displayName = 'RadioButtonGroup';
+
   static propTypes = {
     /**
      * Should be used to pass `RadioButton` components.

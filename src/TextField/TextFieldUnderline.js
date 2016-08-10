@@ -114,6 +114,7 @@ const TextFieldUnderline = (props) => {
   );
 };
 
+TextFieldUnderline.displayName = 'TextFieldUnderline';
 TextFieldUnderline.propTypes = propTypes;
 TextFieldUnderline.defaultProps = defaultProps;
 

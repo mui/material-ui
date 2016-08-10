@@ -56,6 +56,8 @@ function getStyles(props, context) {
 }
 
 class Checkbox extends Component {
+  static displayName = 'Checkbox';
+
   static propTypes = {
     /**
      * Checkbox is checked if true.

@@ -43,6 +43,7 @@ function getStyles(props, context, state) {
 }
 
 class Chip extends Component {
+  static displayName = 'Chip';
 
   static propTypes = {
     /**

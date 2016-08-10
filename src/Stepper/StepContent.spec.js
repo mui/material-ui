@@ -17,6 +17,10 @@ describe('<StepContent />', () => {
     });
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(StepContent.displayName, 'StepContent');
+  });
+
   it('renders a div', () => {
     const wrapper = shallowWithContext(
       <StepContent />

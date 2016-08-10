@@ -20,6 +20,8 @@ function getStyles(props, context) {
 }
 
 class ToolbarTitle extends Component {
+  static displayName = 'ToolbarTitle';
+
   static muiName = 'ToolbarTitle';
 
   static propTypes = {

@@ -10,6 +10,8 @@ import Paper from '../Paper';
 import ReactTransitionGroup from 'react-addons-transition-group';
 
 class TransitionItem extends Component {
+  static displayName = 'TransitionItem';
+
   static propTypes = {
     children: PropTypes.node,
     style: PropTypes.object,
@@ -148,6 +150,8 @@ function getStyles(props, context) {
 }
 
 class DialogInline extends Component {
+  static displayName = 'DialogInline';
+
   static propTypes = {
     actions: PropTypes.node,
     actionsContainerClassName: PropTypes.string,
@@ -357,6 +361,8 @@ class DialogInline extends Component {
 }
 
 class Dialog extends Component {
+  static displayName = 'Dialog';
+
   static propTypes = {
     /**
      * Action buttons to display below the Dialog content (`children`).

@@ -139,6 +139,8 @@ function getStyles(props, context, state) {
 }
 
 class ListItem extends Component {
+  static displayName = 'ListItem';
+
   static muiName = 'ListItem';
 
   static propTypes = {

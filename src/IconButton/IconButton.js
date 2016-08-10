@@ -39,6 +39,8 @@ function getStyles(props, context) {
 }
 
 class IconButton extends Component {
+  static displayName = 'IconButton';
+
   static muiName = 'IconButton';
 
   static propTypes = {

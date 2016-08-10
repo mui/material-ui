@@ -25,6 +25,8 @@ function getStyles(props, context) {
 }
 
 class TableHeaderColumn extends Component {
+  static displayName = 'TableHeaderColumn';
+
   static propTypes = {
     children: PropTypes.node,
     /**

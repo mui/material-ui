@@ -3,6 +3,8 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import ScaleInChild from './ScaleInChild';
 
 class ScaleIn extends Component {
+  static displayName = 'ScaleIn';
+
   static propTypes = {
     childStyle: PropTypes.object,
     children: PropTypes.node,

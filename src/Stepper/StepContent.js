@@ -25,6 +25,8 @@ const getStyles = (props, context) => {
 };
 
 class StepContent extends Component {
+  static displayName = 'StepContent';
+
   static propTypes = {
     /**
      * Expands the content

@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import List from './List';
 
 class NestedList extends Component {
+  static displayName = 'NestedList';
+
   static propTypes = {
     children: PropTypes.node,
     nestedLevel: PropTypes.number.isRequired,

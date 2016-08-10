@@ -111,6 +111,8 @@ function getStyles(props, context, state) {
 }
 
 class RaisedButton extends Component {
+  static displayName = 'RaisedButton';
+
   static muiName = 'RaisedButton';
 
   static propTypes = {

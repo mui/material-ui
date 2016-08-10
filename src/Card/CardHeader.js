@@ -35,6 +35,8 @@ function getStyles(props, context) {
 }
 
 class CardHeader extends Component {
+  static displayName = 'CardHeader';
+
   static muiName = 'CardHeader';
 
   static propTypes = {

@@ -13,6 +13,10 @@ describe('<StepButton />', () => {
     return shallow(node, {context});
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(StepButton.displayName, 'StepButton');
+  });
+
   it('should merge user styles in', () => {
     const wrapper = themedShallow(
       <StepButton style={{backgroundColor: 'purple'}}>Step One</StepButton>

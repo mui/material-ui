@@ -27,6 +27,7 @@ const getStyles = (props, context, state) => {
 };
 
 class StepButton extends Component {
+  static displayName = 'StepButton';
 
   static propTypes = {
     /**

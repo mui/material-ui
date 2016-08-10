@@ -15,6 +15,8 @@ function getStyles(props) {
 }
 
 class GridList extends Component {
+  static displayName = 'GridList';
+
   static propTypes = {
     /**
      * Number of px for one cell height.

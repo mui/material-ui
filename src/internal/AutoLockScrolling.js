@@ -4,6 +4,7 @@ let originalBodyOverflow = null;
 let lockingCounter = 0;
 
 export default class AutoLockScrolling extends Component {
+  static displayName = 'AutoLockScrolling';
 
   static propTypes = {
     lock: PropTypes.bool.isRequired,

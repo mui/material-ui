@@ -6,6 +6,8 @@ import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 
 class IconMenu extends Component {
+  static displayName = 'IconMenu';
+
   static muiName = 'IconMenu';
 
   static propTypes = {

@@ -49,6 +49,7 @@ const StepConnector = (props, context) => {
   );
 };
 
+StepConnector.displayName = 'StepConnector';
 StepConnector.propTypes = propTypes;
 StepConnector.contextTypes = contextTypes;
 

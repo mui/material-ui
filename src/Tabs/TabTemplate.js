@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
 class TabTemplate extends Component {
+  static displayName = 'TabTemplate';
+
   static propTypes = {
     children: PropTypes.node,
     selected: PropTypes.bool,

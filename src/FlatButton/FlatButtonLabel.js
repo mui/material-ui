@@ -14,6 +14,8 @@ function getStyles(props, context) {
 }
 
 class FlatButtonLabel extends Component {
+  static displayName = 'FlatButtonLabel';
+
   static propTypes = {
     label: PropTypes.node,
     style: PropTypes.object,

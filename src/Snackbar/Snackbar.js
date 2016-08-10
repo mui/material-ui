@@ -38,6 +38,8 @@ function getStyles(props, context, state) {
 }
 
 class Snackbar extends Component {
+  static displayName = 'Snackbar';
+
   static propTypes = {
     /**
      * The label for the action on the snackbar.

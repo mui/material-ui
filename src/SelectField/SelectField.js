@@ -23,6 +23,8 @@ function getStyles(props) {
 }
 
 class SelectField extends Component {
+  static displayName = 'SelectField';
+
   static propTypes = {
     /**
      * If true, the width will automatically be set according to the

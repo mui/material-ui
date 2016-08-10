@@ -52,6 +52,7 @@ const Subheader = (props, context) => {
   );
 };
 
+Subheader.displayName = 'Subheader';
 Subheader.muiName = 'Subheader';
 Subheader.propTypes = propTypes;
 Subheader.defaultProps = defaultProps;

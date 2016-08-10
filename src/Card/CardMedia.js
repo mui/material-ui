@@ -37,6 +37,8 @@ function getStyles(props, context) {
 }
 
 class CardMedia extends Component {
+  static displayName = 'CardMedia';
+
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.

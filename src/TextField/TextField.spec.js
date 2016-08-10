@@ -10,6 +10,10 @@ describe('<TextField />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(TextField.displayName, 'TextField');
+  });
+
   it('passes event and value to the onChange callback', (done) => {
     const wrapper = shallowWithContext(
       <TextField

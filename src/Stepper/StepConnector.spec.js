@@ -12,6 +12,10 @@ describe('<StepConnector />', () => {
     return shallow(node, {context});
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(StepConnector.displayName, 'StepConnector');
+  });
+
   describe('rendering', () => {
     const wrapper = themedShallow(
       <StepConnector />

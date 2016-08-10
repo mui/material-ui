@@ -4,6 +4,8 @@ import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
 class ScaleInChild extends Component {
+  static displayName = 'ScaleInChild';
+
   static propTypes = {
     children: PropTypes.node,
     enterDelay: PropTypes.number,

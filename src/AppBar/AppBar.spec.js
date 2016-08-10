@@ -11,6 +11,10 @@ describe('<AppBar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(AppBar.displayName, 'AppBar');
+  });
+
   it('renders children by default', () => {
     const testChildren = <div />;
     const wrapper = shallowWithContext(

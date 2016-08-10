@@ -49,6 +49,8 @@ const TextFieldLabel = (props) => {
   );
 };
 
+TextFieldLabel.displayName = 'TextFieldLabel';
+
 TextFieldLabel.propTypes = {
   /**
    * The label contents.

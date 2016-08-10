@@ -16,6 +16,10 @@ describe('<Stepper />', () => {
     });
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Stepper.displayName, 'Stepper');
+  });
+
   it('merges user styles into the root node', () => {
     const wrapper = shallowWithContext(
       <Stepper

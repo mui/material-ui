@@ -69,6 +69,8 @@ function getStyles(props, context) {
 }
 
 class EnhancedSwitch extends Component {
+  static displayName = 'EnhancedSwitch';
+
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,

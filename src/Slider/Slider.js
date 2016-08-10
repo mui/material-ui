@@ -229,6 +229,8 @@ const getStyles = (props, context, state) => {
 };
 
 class Slider extends Component {
+  static displayName = 'Slider';
+
   static propTypes = {
     /**
      * The axis on which the slider will slide.

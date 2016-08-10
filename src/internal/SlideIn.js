@@ -3,6 +3,8 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import SlideInChild from './SlideInChild';
 
 class SlideIn extends Component {
+  static displayName = 'SlideIn';
+
   static propTypes = {
     childStyle: PropTypes.object,
     children: PropTypes.node,

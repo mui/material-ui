@@ -24,6 +24,8 @@ function getStyles(props) {
 }
 
 class RefreshIndicator extends Component {
+  static displayName = 'RefreshIndicator';
+
   static propTypes = {
     /**
      * Override the theme's color of the indicator while it's status is

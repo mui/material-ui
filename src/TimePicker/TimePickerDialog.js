@@ -6,6 +6,8 @@ import Dialog from '../Dialog';
 import FlatButton from '../FlatButton';
 
 class TimePickerDialog extends Component {
+  static displayName = 'TimePickerDialog';
+
   static propTypes = {
     autoOk: PropTypes.bool,
     bodyStyle: PropTypes.object,

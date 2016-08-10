@@ -10,6 +10,10 @@ describe('<ListItem />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(ListItem.displayName, 'ListItem');
+  });
+
   it('should render an EnhancedButton', () => {
     const wrapper = shallowWithContext(
       <ListItem />

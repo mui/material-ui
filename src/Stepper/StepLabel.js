@@ -54,6 +54,8 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
 };
 
 class StepLabel extends Component {
+  static displayName = 'StepLabel';
+
   static muiName = 'StepLabel';
 
   static propTypes = {

@@ -4,6 +4,8 @@ import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
 
 class Clock extends Component {
+  static displayName = 'Clock';
+
   static propTypes = {
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,

@@ -8,6 +8,8 @@ import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
+  static displayName = 'DatePickerDialog';
+
   static propTypes = {
     DateTimeFormat: PropTypes.func,
     animation: PropTypes.func,

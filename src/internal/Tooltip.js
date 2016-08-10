@@ -78,6 +78,8 @@ function getStyles(props, context, state) {
 }
 
 class Tooltip extends Component {
+  static displayName = 'Tooltip';
+
   static propTypes = {
     /**
      * The css class name of the root element.

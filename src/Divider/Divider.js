@@ -49,6 +49,7 @@ const Divider = (props, context) => {
   );
 };
 
+Divider.displayName = 'Divider';
 Divider.muiName = 'Divider';
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;

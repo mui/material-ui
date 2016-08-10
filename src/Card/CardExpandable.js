@@ -16,6 +16,8 @@ function getStyles() {
 }
 
 class CardExpandable extends Component {
+  static displayName = 'CardExpandable';
+
   static propTypes = {
     expanded: PropTypes.bool,
     onExpanding: PropTypes.func.isRequired,

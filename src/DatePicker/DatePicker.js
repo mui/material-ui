@@ -5,6 +5,8 @@ import TextField from '../TextField';
 import deprecated from '../utils/deprecatedPropType';
 
 class DatePicker extends Component {
+  static displayName = 'DatePicker';
+
   static propTypes = {
     /**
      * Constructor for date formatting for the specified `locale`.

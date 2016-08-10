@@ -21,6 +21,10 @@ describe('<Slider />', () => {
     return shallowWrapper.children().at(2);
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Slider.displayName, 'Slider');
+  });
+
   it('renders slider and the hidden input', () => {
     const wrapper = shallowWithContext(
       <Slider name="slider" />

@@ -54,6 +54,8 @@ function getStyles(props, context) {
 }
 
 class MenuItem extends Component {
+  static displayName = 'MenuItem';
+
   static muiName = 'MenuItem';
 
   static propTypes = {

@@ -11,6 +11,10 @@ describe('<Dialog />', () => {
   const muiTheme = getMuiTheme();
   const mountWithContext = (node) => mount(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Dialog.displayName, 'Dialog');
+  });
+
   it('appends a dialog to the document body', () => {
     const testClass = 'test-dialog-class';
     mountWithContext(

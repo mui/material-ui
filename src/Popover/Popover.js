@@ -8,6 +8,8 @@ import throttle from 'lodash/throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
 class Popover extends Component {
+  static displayName = 'Popover';
+
   static propTypes = {
     /**
      * This is the DOM element that will be used to set the position of the

@@ -20,6 +20,8 @@ function getStyles(props, context) {
 }
 
 class InkBar extends Component {
+  static displayName = 'InkBar';
+
   static propTypes = {
     color: PropTypes.string,
     left: PropTypes.string.isRequired,

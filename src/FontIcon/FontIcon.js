@@ -24,6 +24,8 @@ function getStyles(props, context, state) {
 }
 
 class FontIcon extends Component {
+  static displayName = 'FontIcon';
+
   static muiName = 'FontIcon';
 
   static propTypes = {

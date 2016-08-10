@@ -35,6 +35,8 @@ function getStyles(props, context) {
 }
 
 class Avatar extends Component {
+  static displayName = 'Avatar';
+
   static muiName = 'Avatar';
 
   static propTypes = {

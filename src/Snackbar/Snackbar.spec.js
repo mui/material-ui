@@ -9,6 +9,10 @@ describe('<Snackbar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Snackbar.displayName, 'Snackbar');
+  });
+
   describe('props: open', () => {
     it('should be hidden when open is false', () => {
       const wrapper = shallowWithContext(

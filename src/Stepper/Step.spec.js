@@ -17,6 +17,10 @@ describe('<Step />', () => {
     });
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Step.displayName, 'Step');
+  });
+
   it('merges styles and other props into the root node', () => {
     const wrapper = shallowWithContext(
       <Step

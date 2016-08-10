@@ -22,6 +22,10 @@ describe('<GridList />', () => {
     },
   ];
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(GridList.displayName, 'GridList');
+  });
+
   it('renders children and change cellHeight', () => {
     const cellHeight = 250;
     const wrapper = shallowWithContext(

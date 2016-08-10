@@ -22,6 +22,8 @@ function getStyles(props, context) {
 }
 
 class Toolbar extends Component {
+  static displayName = 'Toolbar';
+
   static propTypes = {
     /**
      * Can be a `ToolbarGroup` to render a group of related items.

@@ -24,6 +24,8 @@ function getStyles(props, context) {
 }
 
 class Tab extends Component {
+  static displayName = 'Tab';
+
   static muiName = 'Tab';
 
   static propTypes = {

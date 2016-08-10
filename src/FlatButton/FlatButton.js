@@ -14,6 +14,8 @@ function validateLabel(props, propName, componentName) {
 }
 
 class FlatButton extends Component {
+  static displayName = 'FlatButton';
+
   static muiName = 'FlatButton';
 
   static propTypes = {

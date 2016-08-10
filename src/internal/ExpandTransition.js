@@ -3,6 +3,8 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import ExpandTransitionChild from './ExpandTransitionChild';
 
 class ExpandTransition extends Component {
+  static displayName = 'ExpandTransition';
+
   static propTypes = {
     children: PropTypes.node,
     enterDelay: PropTypes.number,

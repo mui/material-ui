@@ -53,6 +53,8 @@ function getStyles(props, context) {
 }
 
 class RadioButton extends Component {
+  static displayName = 'RadioButton';
+
   static propTypes = {
     /**
      * @ignore

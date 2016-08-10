@@ -49,6 +49,8 @@ function getStyles(props, context) {
 }
 
 class Badge extends Component {
+  static displayName = 'Badge';
+
   static propTypes = {
     /**
      * This is the content rendered within the badge.

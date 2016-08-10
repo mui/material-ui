@@ -40,6 +40,8 @@ const TextFieldHint = (props) => {
   );
 };
 
+TextFieldHint.displayName = 'TextFieldHint';
+
 TextFieldHint.propTypes = {
   /**
    * @ignore

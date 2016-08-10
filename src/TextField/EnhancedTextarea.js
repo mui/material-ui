@@ -30,6 +30,8 @@ function getStyles(props, context, state) {
 }
 
 class EnhancedTextarea extends Component {
+  static displayName = 'EnhancedTextarea';
+
   static propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,

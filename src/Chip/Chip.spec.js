@@ -16,6 +16,10 @@ describe('<Chip />', () => {
     return shallow(node, {context});
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Chip.displayName, 'Chip');
+  });
+
   describe('state', () => {
     const wrapper = themedShallow(
       <Chip onTouchTap={() => {}}>Label</Chip>

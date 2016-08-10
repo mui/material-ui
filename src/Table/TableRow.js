@@ -25,6 +25,8 @@ function getStyles(props, context, state) {
 }
 
 class TableRow extends Component {
+  static displayName = 'TableRow';
+
   static propTypes = {
     /**
      * Children passed to table row.

@@ -12,6 +12,10 @@ describe('<TimePicker />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(TimePicker.displayName, 'TimePicker');
+  });
+
   it('has to give value prop precedence over defaultTime', () => {
     const initialTime = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
     const valueTime = addHours(initialTime, 2);

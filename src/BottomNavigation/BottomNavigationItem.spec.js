@@ -10,6 +10,10 @@ describe('<BottomNavigationItem />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(BottomNavigationItem.displayName, 'BottomNavigationItem');
+  });
+
   describe('prop: icon', () => {
     it('should be able to customize the icon', () => {
       const wrapper = shallowWithContext(

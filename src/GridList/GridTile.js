@@ -58,6 +58,8 @@ function getStyles(props, context) {
 }
 
 class GridTile extends Component {
+  static displayName = 'GridTile';
+
   static propTypes = {
     /**
      * An IconButton element to be used as secondary action target

@@ -13,6 +13,8 @@ function getStyles(props, context) {
 }
 
 class CardText extends Component {
+  static displayName = 'CardText';
+
   static muiName = 'CardText';
 
   static propTypes = {

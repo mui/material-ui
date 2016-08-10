@@ -10,6 +10,10 @@ describe('<BottomNavigation />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(BottomNavigation.displayName, 'BottomNavigation');
+  });
+
   describe('prop: selectedIndex', () => {
     it('determines which BottomNavigationItem is selected', () => {
       const wrapper = shallowWithContext(

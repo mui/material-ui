@@ -8,6 +8,8 @@ import CircleRipple from './CircleRipple';
 const shift = ([, ...newArray]) => newArray;
 
 class TouchRipple extends Component {
+  static displayName = 'TouchRipple';
+
   static propTypes = {
     abortOnScroll: PropTypes.bool,
     centerRipple: PropTypes.bool,

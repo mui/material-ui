@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
 class SvgIcon extends Component {
+  static displayName = 'SvgIcon';
+
   static muiName = 'SvgIcon';
 
   static propTypes = {

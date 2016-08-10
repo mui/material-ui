@@ -64,6 +64,8 @@ function getStyles(props, context) {
 }
 
 class Menu extends Component {
+  static displayName = 'Menu';
+
   static propTypes = {
     /**
      * If true, the menu will apply transitions when it

@@ -59,6 +59,8 @@ function getStyles(props, context) {
 }
 
 class ToolbarGroup extends Component {
+  static displayName = 'ToolbarGroup';
+
   static propTypes = {
     /**
      * Can be any node or number of nodes.
