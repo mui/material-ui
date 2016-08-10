@@ -31,7 +31,7 @@ function getStyles(props, context) {
       fill: accentColor,
       position: 'absolute',
       right: spacing.desktopGutterLess,
-      top: ((spacing.desktopToolbarHeight - 24) / 2),
+      top: ((spacing.iconSize - 24) / 2) + spacing.desktopGutterMini / 2,
     },
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
@@ -39,9 +39,7 @@ function getStyles(props, context) {
       opacity: 1,
       position: 'relative',
       paddingLeft: spacing.desktopGutter,
-      paddingRight: spacing.iconSize +
-      spacing.desktopGutterLess +
-      spacing.desktopGutterMini,
+      paddingRight: (spacing.iconSize * 2) + spacing.desktopGutterMini,
       top: 0,
     },
     labelWhenOpen: {
