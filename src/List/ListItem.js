@@ -430,9 +430,15 @@ class ListItem extends Component {
 
   handleNestedListToggle = (event) => {
     event.stopPropagation();
-    this.setState({open: !this.state.open}, () => {
-      this.props.onNestedListToggle(this);
-    });
+
+    if (event.target.type === 'checkbox')
+      this.setState({open: this.state.open}, () => {
+        this.props.onNestedListToggle(this);
+      });
+    else
+      this.setState({open: !this.state.open}, () => {
+        this.props.onNestedListToggle(this);
+      });
   };
 
   handleRightIconButtonKeyboardFocus = (event, isKeyboardFocused) => {
@@ -646,7 +652,7 @@ class ListItem extends Component {
     return (
       <div>
         {
-          hasCheckbox ? this.createLabelElement(styles, contentChildren, other) :
+          hasCheckbox && !primaryTogglesNestedList ? this.createLabelElement(styles, contentChildren, other) :
           disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
               containerElement={'span'}
