@@ -12,7 +12,7 @@ const items = [
 
 /**
  * `SelectField` supports a floating label with the `floatingLabelText` property. This can be fixed in place with the
- * `floatingLabelFixed property, and can be customised with the `floatingLabelText` property.
+ * `floatingLabelFixed` property, and can be customised with the `floatingLabelText` property.
  */
 export default class SelectFieldExampleFloatingLabel extends React.Component {
 

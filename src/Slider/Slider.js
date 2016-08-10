@@ -10,8 +10,8 @@ import FocusRipple from '../internal/FocusRipple';
  * @param   {String} componentName Name of the component whose property is being validated.
  * @returns {Object} Returns an Error if min >= max otherwise null.
  */
-const minMaxPropType = (props, propName, componentName) => {
-  const error = PropTypes.number(props, propName, componentName);
+const minMaxPropType = (props, propName, componentName, ...rest) => {
+  const error = PropTypes.number(props, propName, componentName, ...rest);
   if (error !== null) return error;
 
   if (props.min >= props.max) {
@@ -27,8 +27,8 @@ const minMaxPropType = (props, propName, componentName) => {
  * @param   {String} componentName Name of the component whose property is being validated.
  * @returns {Object} Returns an Error if the value is not within the range otherwise null.
  */
-const valueInRangePropType = (props, propName, componentName) => {
-  const error = PropTypes.number(props, propName, componentName);
+const valueInRangePropType = (props, propName, componentName, ...rest) => {
+  const error = PropTypes.number(props, propName, componentName, ...rest);
   if (error !== null) return error;
 
   const value = props[propName];
@@ -349,7 +349,7 @@ class Slider extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
-      this.setValue(nextProps.value);
+      this.setValue(nextProps.value, nextProps.min, nextProps.max);
     }
   }
 
@@ -522,9 +522,9 @@ class Slider extends Component {
     return this.state.value;
   }
 
-  setValue(value) {
+  setValue(value, min, max) {
     // calculate percentage
-    let percent = (value - this.props.min) / (this.props.max - this.props.min);
+    let percent = (value - min) / (max - min);
     if (isNaN(percent)) percent = 0;
     // update state
     this.setState({
@@ -547,7 +547,7 @@ class Slider extends Component {
   }
 
   clearValue() {
-    this.setValue(this.props.min);
+    this.setValue(this.props.min, this.props.min, this.props.max);
   }
 
   alignValue(val) {
