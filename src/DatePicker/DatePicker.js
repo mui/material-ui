@@ -69,6 +69,10 @@ class DatePicker extends Component {
      */
     formatDate: PropTypes.func,
     /**
+     * Tells the datepicker to handle keyboard input. The container must also be set to inline for this to take effect.
+     */
+    keyboardEnabled: PropTypes.bool,
+    /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
      */
@@ -212,7 +216,7 @@ class DatePicker extends Component {
   }
 
   shouldHandleKeyboard = () => {
-    return !this.props.disabled && this.props.container == 'inline' && !this.isControlled();
+    return this.props.keyboardEnabled && !this.props.disabled && this.props.container == 'inline' && !this.isControlled();
   }
 
   handleAccept = (date) => {
@@ -329,6 +333,7 @@ class DatePicker extends Component {
       disableYearSelection,
       firstDayOfWeek,
       formatDate: formatDateProp,
+      keyboardEnabled,
       locale,
       maxDate,
       minDate,
