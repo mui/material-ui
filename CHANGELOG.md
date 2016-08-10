@@ -23,7 +23,20 @@ Examples:
 (#4705)
 
 ##### Component Fixes / Enhancements
+
+## 0.15.4
+###### _Aug 11, 2016_
+
+##### Component Fixes / Enhancements
 - [BottomNavigation] Initial implementation (#4846)
+- [DropDownMenu] Revert the commit causing a regression in 0.15.3 (#f76302e)
+- [Snackbar] Add the material fontFamily (#4892)
+- [ListItem] New property open to toggle nested list (#4850)
+- [Slider] Fix an issue where not updating when max prop changes (#4895)
+- [Slider] Fix more warnings introduced by React v15.3.0 (#4869)
+
+##### Docs
+- [js] Explain the ECMAScript `stage-1` dependencies of the examples (#4877)
 
 ## 0.15.3
 ###### _Jul 31, 2016_
