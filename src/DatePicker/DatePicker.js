@@ -54,6 +54,10 @@ class DatePicker extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * The error content to display
+     */
+    errorText: PropTypes.string,
+    /**
      * Used to change the first day of week. It varies from
      * Saturday to Monday between different locales.
      * The allowed range is 0 (Sunday) to 6 (Saturday).
@@ -68,6 +72,10 @@ class DatePicker extends Component {
      * @returns {any} The formatted date.
      */
     formatDate: PropTypes.func,
+    /**
+     * The hint content to display
+     */
+    hintText: PropTypes.string,
     /**
      * Tells the datepicker to handle keyboard input. The container must also be set to inline for this to take effect.
      */
@@ -211,12 +219,15 @@ class DatePicker extends Component {
    */
   focus() {
     this.openDialog();
-    if(this.shouldHandleKeyboard)
+    if (this.shouldHandleKeyboard)
       this.refs.input.focus();
   }
 
   shouldHandleKeyboard = () => {
-    return this.props.keyboardEnabled && !this.props.disabled && this.props.container == 'inline' && !this.isControlled();
+    return this.props.keyboardEnabled &&
+      !this.props.disabled &&
+      this.props.container === 'inline' &&
+      !this.isControlled();
   }
 
   handleAccept = (date) => {
@@ -231,11 +242,10 @@ class DatePicker extends Component {
   };
 
   handleInputFocus = (event) => {
-    if (!this.shouldHandleKeyboard()) {
+    if (this.shouldHandleKeyboard()) {
+      this.setState({keyboardActivated: true}, this.focus);
+    } else {
       event.target.blur();
-    }
-    else {
-      this.setState({ keyboardActivated: true }, this.focus);
     }
 
     if (this.props.onFocus) {
@@ -243,23 +253,23 @@ class DatePicker extends Component {
     }
   };
 
-  handleInputBlur = (event) => {
-    if(this.state.keyboardActivated)
-      this.setState({ 
+  handleInputBlur = () => {
+    if (this.state.keyboardActivated)
+      this.setState({
         keyboardActivated: false,
-        date: this.state.date instanceof Date ? this.state.date : undefined
+        date: this.state.date instanceof Date ? this.state.date : undefined,
       });
   }
 
   handleKeyDown = (event) => {
-    if(!this.shouldHandleKeyboard)
+    if (!this.shouldHandleKeyboard)
       return;
 
     const key = keycode(event);
     switch (key) {
       case 'tab':
-        if(this.state.keyboardActivated)
-          this.setState({ keyboardActivated: false }, this.refs.dialogWindow.dismiss);
+        if (this.state.keyboardActivated)
+          this.setState({keyboardActivated: false}, this.refs.dialogWindow.dismiss);
         break;
       case 'right':
       case 'left':
@@ -272,17 +282,17 @@ class DatePicker extends Component {
 
   handleInputChange = (event) => {
     const filtered = event.target.value.replace(/[^0-9\-\/]/gi, '').replace('/', '-');
-    var dt = undefined;
-    if (filtered.length == 10) {
+    let dt = undefined;
+    if (filtered.length === 10) {
       // we split this manually as Date.parse is implementation specific
       // and also because it doesn't use the browser's timezone.
-      var parts = filtered.split('-');
-      if (parts.length == 3)
-        dt = new Date(parts[0], parts[1]-1, parts[2]); //Note: months are 0 based
+      const parts = filtered.split('-');
+      if (parts.length === 3)
+        dt = new Date(parts[0], parts[1] - 1, parts[2]); // Note: months are 0 based
     }
-    
+
     this.setState({
-        date: !dt || isNaN(dt.getTime()) ? filtered : dt
+      date: !dt || isNaN(dt.getTime()) ? filtered : dt,
     });
   }
 
@@ -352,9 +362,13 @@ class DatePicker extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const formatDate = formatDateProp || this.formatDate;
-    const rawDate = this.state.date instanceof Date ? formatDate(this.state.date) : this.state.date;
-    const inputError = rawDate != undefined && !(this.state.date instanceof Date) ? 'Enter a valid date' : this.props.errorText;
-    const hintText = this.state.keyboardActivated ? "yyyy-mm-dd" : this.props.hintText;
+    const rawDate = this.state.date instanceof Date ?
+      formatDate(this.state.date) :
+      this.state.date;
+    const inputError = rawDate !== undefined && !(this.state.date instanceof Date) ?
+      'Enter a valid date' :
+      this.props.errorText;
+    const hintText = keyboardEnabled && this.state.keyboardActivated ? 'yyyy-mm-dd' : this.props.hintText;
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>
