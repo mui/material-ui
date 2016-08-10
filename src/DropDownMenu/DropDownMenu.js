@@ -8,7 +8,6 @@ import Popover from '../Popover/Popover';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import keycode from 'keycode';
 import Events from '../utils/events';
-import EnhancedButton from '../internal/EnhancedButton';
 import IconButton from 'material-ui/IconButton/IconButton';
 
 const anchorOrigin = {
@@ -184,30 +183,30 @@ class DropDownMenu extends Component {
       /* eslint-enable react/no-did-mount-set-state */
     }
   }
-  
-   /*		
-    * This method is deprecated but still here because the TextField		
-    * need it in order to work. TODO: That will be addressed later.		
-    */		
-  getInputNode() {		
-     const root = this.refs.root;		
- 		
-     root.focus = () => {		
-       if (!this.props.disabled) {		
-         this.setState({		
-           open: !this.state.open,		
-           anchorEl: this.refs.root,		
-         });		
-       }		
-     };		
- 		
-     return root;		
-   }
 
   componentWillReceiveProps() {
     if (this.props.autoWidth) {
       this.setWidth();
     }
+  }
+
+  /**
+   * This method is deprecated but still here because the TextField
+   * need it in order to work. TODO: That will be addressed later.
+   */
+  getInputNode() {
+    const root = this.refs.root;
+
+    root.focus = () => {
+      if (!this.props.disabled) {
+        this.setState({
+          open: !this.state.open,
+          anchorEl: this.refs.root,
+        });
+      }
+    };
+
+    return root;
   }
 
   setWidth() {
@@ -227,15 +226,17 @@ class DropDownMenu extends Component {
     }
   };
 
-  handleRequestCloseMenu = (event) => {
+  handleRequestCloseMenu = () => {
     this.close(false);
   };
 
-  handeFocus = (event) => {
+  handleFocus = (event) => {
+    // this is a work-around for SelectField losing keyboard focus
+    // because the containing TextField re-renders
     event.stopPropagation();
   }
 
-  handeBlur = (event) => {
+  handleBlur = (event) => {
     event.stopPropagation();
   }
 
@@ -249,7 +250,7 @@ class DropDownMenu extends Component {
     switch (key) {
       case 'space':
         event.preventDefault();
-          this.setState({
+        this.setState({
           open: true,
           anchorEl: this.refs.root,
         });
@@ -272,7 +273,7 @@ class DropDownMenu extends Component {
 
   close = (isKeyboard) => {
     this.setState({open: false}, () => {
-      if(isKeyboard) {
+      if (isKeyboard) {
         const dropArrow = this.refs.dropArrow;
         const dropNode = ReactDOM.findDOMNode(dropArrow);
         dropNode.focus();
@@ -336,15 +337,16 @@ class DropDownMenu extends Component {
           <div style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}>
             {displayValue}
           </div>
-          <IconButton 
-            centerRipple={true} 
-            tabIndex={this.props.disabled ? -1 : 0} 
+          <IconButton
+            centerRipple={true}
+            tabIndex={this.props.disabled ? -1 : 0}
             onKeyDown={this.handleKeyDown}
-            onFocus={this.handeFocus}
+            onFocus={this.handleFocus}
             onBlur={this.handleBlur}
-            ref="dropArrow" 
-            style={Object.assign({}, styles.icon, iconStyle)}>
-            <DropDownArrow  />
+            ref="dropArrow"
+            style={Object.assign({}, styles.icon, iconStyle)}
+          >
+            <DropDownArrow />
           </IconButton>
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
         </ClearFix>
