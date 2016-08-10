@@ -526,6 +526,7 @@ class ListItem extends Component {
       secondaryText,
       secondaryTextLines, // eslint-disable-line no-unused-vars
       style,
+      hoverColor,
       ...other,
     } = this.props;
 
