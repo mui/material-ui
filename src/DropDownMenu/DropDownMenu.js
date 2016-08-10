@@ -231,6 +231,14 @@ class DropDownMenu extends Component {
     this.close(false);
   };
 
+  handeFocus = (event) => {
+    event.stopPropagation();
+  }
+
+  handeBlur = (event) => {
+    event.stopPropagation();
+  }
+
   handleEscKeyDownMenu = (event) => {
     event.preventDefault();
     this.close(true);
@@ -332,6 +340,8 @@ class DropDownMenu extends Component {
             centerRipple={true} 
             tabIndex={this.props.disabled ? -1 : 0} 
             onKeyDown={this.handleKeyDown}
+            onFocus={this.handeFocus}
+            onBlur={this.handleBlur}
             ref="dropArrow" 
             style={Object.assign({}, styles.icon, iconStyle)}>
             <DropDownArrow  />
