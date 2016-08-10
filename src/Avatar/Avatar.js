@@ -90,6 +90,10 @@ class Avatar extends Component {
       ...other,
     } = this.props;
 
+    // Unused, but passed when Avatar is an iconButtonElement on an IconMenu
+    delete other.iconStyle;
+    delete other.onKeyboardFocus;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
