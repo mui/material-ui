@@ -231,11 +231,11 @@ class DropDownMenu extends Component {
   handleFocus = (event) => {
     // this is a work-around for SelectField losing keyboard focus
     // because the containing TextField re-renders
-    if(event) event.stopPropagation();
+    if (event) event.stopPropagation();
   }
 
   handleBlur = (event) => {
-    if(event) event.stopPropagation();
+    if (event) event.stopPropagation();
   }
 
   handleEscKeyDownMenu = (event) => {
