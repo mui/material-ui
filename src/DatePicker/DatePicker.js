@@ -116,11 +116,16 @@ class DatePicker extends Component {
      */
     onTouchTap: PropTypes.func,
     /**
+     * Set to true to have the `DatePicker` automatically open on mount.
+     */
+    openImmediately: PropTypes.bool,
+    /**
      * Callback function used to determine if a day's entry should be disabled on the calendar.
      *
      * @param {object} day Date object of a day.
      * @returns {boolean} Indicates whether the day should be disabled.
      */
+
     shouldDisableDate: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
@@ -147,6 +152,7 @@ class DatePicker extends Component {
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
+    openImmediately: false,
     style: {},
   };
 
@@ -162,6 +168,12 @@ class DatePicker extends Component {
     this.setState({
       date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
     });
+  }
+
+  componentDidMount() {
+    if (this.props.openImmediately) {
+      this.openDialog();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -280,6 +292,7 @@ class DatePicker extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
+      openImmediately, // eslint-disable-line no-unused-vars
       shouldDisableDate,
       style,
       textFieldStyle,
