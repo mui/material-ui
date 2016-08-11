@@ -2,15 +2,23 @@
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-## v0.15.x
+## v0.16.0
 
-We are mainly focusing on **bug fixes** :boom:.
+We are mainly focusing on
+ - **bug fixes** :boom:.
+ - Providing a smoother update path to `next`
 
-New features have low priority and might not be reviewed nor merged.
+:warning: New features have low priority and might not be reviewed nor merged.
 
-## [v0.16.0](https://github.com/callemall/material-ui/milestone/14) (expected in the next couple months)
+We have **shifted goals** for `v0.16.0`.
+Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
+Those improvement are comming with the `next` branch.
+We are switching in goal so we can release changes more **often**.
 
-The next release is going to be huge :sparkles:
+## [next](https://github.com/callemall/material-ui/milestone/14) (expected in the next couple months)
+
+
+The `next` release is going to be huge :sparkles:
 
 Material-UI was started [2 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
