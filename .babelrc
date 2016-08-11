@@ -15,6 +15,11 @@
         "transform-react-constant-elements",
         "transform-react-inline-elements"
       ]
+    },
+    "release": {
+      "plugins": [
+        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+      ],
     }
   }
 }
