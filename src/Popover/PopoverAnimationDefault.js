@@ -36,7 +36,7 @@ function getStyles(props, context, state) {
   };
 }
 
-class PopoverAnimationDefault extends Component {
+class PopoverDefaultAnimation extends Component {
   static displayName = 'PopoverAnimationDefault';
 
   static propTypes = {
@@ -103,4 +103,4 @@ class PopoverAnimationDefault extends Component {
   }
 }
 
-export default PopoverAnimationDefault;
+export default PopoverDefaultAnimation;
