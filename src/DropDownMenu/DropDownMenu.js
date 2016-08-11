@@ -131,6 +131,10 @@ class DropDownMenu extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function fired when a menu is closed with new value selection or just click outside menu.
+     */
+    onClose: PropTypes.func,
+    /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
@@ -226,6 +230,10 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
@@ -234,6 +242,9 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
