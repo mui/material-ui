@@ -280,7 +280,27 @@ class DatePicker extends Component {
     }
   }
 
+  handleKeyUp = (event) => {
+    if (!this.shouldHandleKeyboard)
+      return;
+
+    const key = keycode(event);
+    switch (key) {
+      case 'enter':
+        if (this.refs.dialogWindow.state.open) {
+          event.stopPropagation();
+          event.preventDefault();
+          this.refs.dialogWindow.dismiss();
+        }
+        break;
+    }
+  }
+
   handleInputChange = (event) => {
+    if (!this.refs.dialogWindow.state.open) {
+      this.refs.dialogWindow.show();
+    }
+
     const filtered = event.target.value.replace(/[^0-9\-\/]/gi, '').replace('/', '-');
     let dt = undefined;
     if (filtered.length === 10) {
@@ -377,6 +397,7 @@ class DatePicker extends Component {
           onFocus={this.handleInputFocus}
           onBlur={this.handleInputBlur}
           onKeyDown={this.handleKeyDown}
+          onKeyUp={this.handleKeyUp}
           onTouchTap={this.handleTouchTap}
           tabIndex={this.shouldHandleKeyboard() ? 0 : 1}
           onChange={this.handleInputChange}
