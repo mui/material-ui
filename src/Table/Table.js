@@ -29,6 +29,8 @@ function getStyles(props, context) {
 }
 
 class Table extends Component {
+  static displayName = 'Table';
+
   static propTypes = {
     /**
      * Set to true to indicate that all rows should be selected.

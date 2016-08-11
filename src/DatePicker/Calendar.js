@@ -26,6 +26,8 @@ import {
 const daysArray = [...Array(7)];
 
 class Calendar extends Component {
+  static displayName = 'Calendar';
+
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,

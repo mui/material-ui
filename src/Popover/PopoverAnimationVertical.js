@@ -23,6 +23,8 @@ function getStyles(props, context, state) {
 }
 
 class PopoverAnimationVertical extends Component {
+  static displayName = 'PopoverAnimationVertical';
+
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

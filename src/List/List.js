@@ -5,6 +5,8 @@ import deprecated from '../utils/deprecatedPropType';
 import warning from 'warning';
 
 class List extends Component {
+  static displayName = 'List';
+
   static propTypes = {
     /**
      * These are usually `ListItem`s that are passed to

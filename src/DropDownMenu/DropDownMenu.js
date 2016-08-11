@@ -68,6 +68,8 @@ function getStyles(props, context) {
 }
 
 class DropDownMenu extends Component {
+  static displayName = 'DropDownMenu';
+
   static muiName = 'DropDownMenu';
 
   // The nested styles for drop-down-menu are modified by toolbar and possibly

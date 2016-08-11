@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import FlatButton from '../FlatButton';
 
 class CalendarActionButton extends Component {
+  static displayName = 'CalendarActionButtons';
+
   static propTypes = {
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,

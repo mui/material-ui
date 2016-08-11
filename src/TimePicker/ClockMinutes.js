@@ -4,6 +4,8 @@ import ClockPointer from './ClockPointer';
 import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
 class ClockMinutes extends Component {
+  static displayName = 'ClockMinutes';
+
   static propTypes = {
     initialMinutes: PropTypes.number,
     onChange: PropTypes.func,

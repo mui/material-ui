@@ -117,6 +117,8 @@ function isValid(value) {
 }
 
 class TextField extends Component {
+  static displayName = 'TextField';
+
   static propTypes = {
     children: PropTypes.node,
     /**

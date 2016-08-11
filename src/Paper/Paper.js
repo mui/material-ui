@@ -30,6 +30,8 @@ function getStyles(props, context) {
 }
 
 class Paper extends Component {
+  static displayName = 'Paper';
+
   static propTypes = {
     /**
      * Children passed into the paper element.

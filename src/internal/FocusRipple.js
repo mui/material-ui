@@ -8,6 +8,8 @@ import ScaleInTransitionGroup from './ScaleIn';
 const pulsateDuration = 750;
 
 class FocusRipple extends Component {
+  static displayName = 'FocusRipple';
+
   static propTypes = {
     color: PropTypes.string,
     innerStyle: PropTypes.object,

@@ -20,6 +20,7 @@ const getStyles = ({index}, {stepper}) => {
 };
 
 export default class Step extends Component {
+  static displayName = 'Step';
 
   static propTypes = {
     /**

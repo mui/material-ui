@@ -13,6 +13,10 @@ describe('<Checkbox />', () => {
     childContextTypes: {muiTheme: PropTypes.object},
   });
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Checkbox.displayName, 'Checkbox');
+  });
+
   describe('props: defaultChecked', () => {
     it('should display checkmark when checked by default', () => {
       const wrapper = shallowWithContext(
@@ -97,4 +101,3 @@ describe('<Checkbox />', () => {
     });
   });
 });
-

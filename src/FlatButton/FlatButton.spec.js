@@ -13,6 +13,10 @@ describe('<FlatButton />', () => {
   const flatButtonTheme = muiTheme.flatButton;
   const testChildren = <div className="unique">Hello World</div>;
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(FlatButton.displayName, 'FlatButton');
+  });
+
   it('renders an enhanced button', () => {
     const wrapper = shallowWithContext(
       <FlatButton>Button</FlatButton>

@@ -3,6 +3,8 @@ import Paper from '../Paper';
 import CardExpandable from './CardExpandable';
 
 class Card extends Component {
+  static displayName = 'Card';
+
   static propTypes = {
     /**
      * Can be used to render elements inside the Card.

@@ -47,6 +47,8 @@ const BottomNavigation = (props, context) => {
   );
 };
 
+BottomNavigation.displayName = 'BottomNavigation';
+
 BottomNavigation.propTypes = {
   /**
    * The `BottomNavigationItem`s to populate the element with.

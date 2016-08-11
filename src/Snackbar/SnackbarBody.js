@@ -93,6 +93,8 @@ export const SnackbarBody = (props, context) => {
   );
 };
 
+SnackbarBody.displayName = 'SnackbarBody';
+
 SnackbarBody.propTypes = {
   /**
    * The label for the action on the snackbar.

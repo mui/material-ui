@@ -66,6 +66,8 @@ const BottomNavigationItem = (props, context) => {
   );
 };
 
+BottomNavigationItem.displayName = 'BottomNavigationItem';
+
 BottomNavigationItem.propTypes = {
   /**
    * Set the icon representing the view for this item.

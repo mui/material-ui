@@ -5,6 +5,8 @@ import transitions from '../styles/transitions';
 const reflow = (elem) => elem.offsetHeight;
 
 class ExpandTransitionChild extends Component {
+  static displayName = 'ExpandTransitionChild';
+
   static propTypes = {
     children: PropTypes.node,
     enterDelay: PropTypes.number,

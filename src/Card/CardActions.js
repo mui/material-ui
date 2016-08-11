@@ -13,6 +13,8 @@ function getStyles() {
 }
 
 class CardActions extends Component {
+  static displayName = 'CardActions';
+
   static propTypes = {
     /**
      * If true, a click on this card component expands the card.

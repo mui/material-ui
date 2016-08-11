@@ -62,6 +62,8 @@ export function getStyles(props, context) {
 }
 
 class AppBar extends Component {
+  static displayName = 'AppBar';
+
   static muiName = 'AppBar';
 
   static propTypes = {

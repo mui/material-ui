@@ -4,6 +4,8 @@ import YearButton from './YearButton';
 import {cloneDate} from './dateUtils';
 
 class CalendarYear extends Component {
+  static displayName = 'CalendarYear';
+
   static propTypes = {
     displayDate: PropTypes.object.isRequired,
     maxDate: PropTypes.object,

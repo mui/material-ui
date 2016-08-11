@@ -10,6 +10,10 @@ describe('<FontIcon />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(FontIcon.displayName, 'FontIcon');
+  });
+
   it('renders className', () => {
     const wrapper = shallowWithContext(
       <FontIcon

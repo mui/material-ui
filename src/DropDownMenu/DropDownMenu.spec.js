@@ -9,6 +9,10 @@ describe('<DropDownMenu />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(DropDownMenu.displayName, 'DropDownMenu');
+  });
+
   it('displays the text field of menuItems prop at index x when value prop is x', () => {
     const wrapper = shallowWithContext(
       <DropDownMenu value={1}>

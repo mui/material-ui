@@ -17,6 +17,8 @@ function getStyles(props, context) {
 }
 
 class Tabs extends Component {
+  static displayName = 'Tabs';
+
   static propTypes = {
     /**
      * Should be used to pass `Tab` components.

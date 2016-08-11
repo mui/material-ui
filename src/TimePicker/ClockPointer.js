@@ -42,6 +42,8 @@ function getStyles(props, context, state) {
 }
 
 class ClockPointer extends Component {
+  static displayName = 'ClockPointer';
+
   static propTypes = {
     hasSelected: PropTypes.bool,
     type: PropTypes.oneOf(['hour', 'minute']),

@@ -11,6 +11,10 @@ describe('<Badge />', () => {
   const badgeTheme = muiTheme.badge;
   const testChildren = <div className="unique">Hello World</div>;
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Badge.displayName, 'Badge');
+  });
+
   it('renders children and badgeContent', () => {
     const wrapper = shallowWithContext(
       <Badge badgeContent={10}>{testChildren}</Badge>

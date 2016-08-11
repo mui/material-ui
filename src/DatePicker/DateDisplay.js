@@ -56,6 +56,8 @@ function getStyles(props, context, state) {
 }
 
 class DateDisplay extends Component {
+  static displayName = 'DateDisplay';
+
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
     disableYearSelection: PropTypes.bool,

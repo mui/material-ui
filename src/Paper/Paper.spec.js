@@ -10,6 +10,10 @@ describe('<Paper />', () => {
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
   const testChildren = <div className="unique">Hello World</div>;
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Paper.displayName, 'Paper');
+  });
+
   it('renders children by default', () => {
     const wrapper = shallowWithContext(
       <Paper>{testChildren}</Paper>

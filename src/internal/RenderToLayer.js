@@ -5,6 +5,8 @@ import Dom from '../utils/dom';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 class RenderToLayer extends Component {
+  static displayName = 'RenderToLayer';
+
   static propTypes = {
     componentClickAway: PropTypes.func,
     open: PropTypes.bool.isRequired,

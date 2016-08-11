@@ -10,6 +10,10 @@ describe('<EnhancedButton />', () => {
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
   const testChildren = <div className="unique">Hello World</div>;
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(EnhancedButton.displayName, 'EnhancedButton');
+  });
+
   it('renders a button', () => {
     const wrapper = shallowWithContext(
       <EnhancedButton>Button</EnhancedButton>

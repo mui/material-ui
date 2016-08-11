@@ -20,6 +20,8 @@ function getStyles(props, context) {
 }
 
 class ToolbarSeparator extends Component {
+  static displayName = 'ToolbarSeparator';
+
   static muiName = 'ToolbarSeparator';
 
   static propTypes = {

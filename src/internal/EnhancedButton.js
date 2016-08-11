@@ -37,6 +37,8 @@ function listenForTabPresses() {
 }
 
 class EnhancedButton extends Component {
+  static displayName = 'EnhancedButton';
+
   static propTypes = {
     centerRipple: PropTypes.bool,
     children: PropTypes.node,

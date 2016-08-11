@@ -41,6 +41,8 @@ const styles = {
 };
 
 class BeforeAfterWrapper extends Component {
+  static displayName = 'BeforeAfterWrapper';
+
   static propTypes = {
     afterElementType: PropTypes.string,
     afterStyle: PropTypes.object,

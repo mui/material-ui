@@ -9,6 +9,10 @@ describe('<Divider />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Divider.displayName, 'Divider');
+  });
+
   it('renders className', () => {
     const wrapper = shallowWithContext(
       <Divider

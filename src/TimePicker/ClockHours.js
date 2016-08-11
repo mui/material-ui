@@ -5,6 +5,8 @@ import ClockPointer from './ClockPointer';
 import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
 
 class ClockHours extends Component {
+  static displayName = 'ClockHours';
+
   static propTypes = {
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialHours: PropTypes.number,

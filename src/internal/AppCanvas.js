@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
 class AppCanvas extends Component {
+  static displayName = 'AppCanvas';
+
   static propTypes = {
     children: PropTypes.node,
   };

@@ -24,6 +24,8 @@ const ClearFix = ({style, children, ...other}) => (
   </BeforeAfterWrapper>
 );
 
+ClearFix.displayName = 'ClearFix';
+
 ClearFix.muiName = 'ClearFix';
 
 ClearFix.propTypes = {

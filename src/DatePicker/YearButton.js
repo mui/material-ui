@@ -30,6 +30,8 @@ function getStyles(props, context, state) {
 }
 
 class YearButton extends Component {
+  static displayName = 'YearButton';
+
   static propTypes = {
     /**
      * The css class name of the root element.

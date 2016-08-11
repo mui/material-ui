@@ -15,6 +15,7 @@ const getStyles = (props) => {
 };
 
 class Stepper extends Component {
+  static displayName = 'Stepper';
 
   static propTypes = {
     /**

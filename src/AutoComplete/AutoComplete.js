@@ -42,6 +42,8 @@ function getStyles(props, context, state) {
 }
 
 class AutoComplete extends Component {
+  static displayName = 'AutoComplete';
+
   static propTypes = {
     /**
      * Location of the anchor for the auto complete.

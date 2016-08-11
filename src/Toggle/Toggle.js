@@ -70,6 +70,8 @@ function getStyles(props, context, state) {
 }
 
 class Toggle extends Component {
+  static displayName = 'Toggle';
+
   static propTypes = {
     /**
      * Determines whether the Toggle is initially turned on.

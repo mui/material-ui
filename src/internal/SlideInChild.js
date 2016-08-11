@@ -4,6 +4,8 @@ import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
 class SlideInChild extends Component {
+  static displayName = 'SlideInChild';
+
   static propTypes = {
     children: PropTypes.node,
     direction: PropTypes.string,

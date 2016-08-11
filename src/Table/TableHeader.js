@@ -13,6 +13,8 @@ function getStyles(props, context) {
 }
 
 class TableHeader extends Component {
+  static displayName = 'TableHeader';
+
   static muiName = 'TableHeader';
 
   static propTypes = {

@@ -64,6 +64,8 @@ function getStyles(props, context) {
 }
 
 class FloatingActionButton extends Component {
+  static displayName = 'FloatingActionButton';
+
   static propTypes = {
     /**
      * This value will override the default background color for the button.

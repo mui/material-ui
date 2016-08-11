@@ -12,6 +12,10 @@ describe('<AutoComplete />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(AutoComplete.displayName, 'AutoComplete');
+  });
+
   describe('filter', () => {
     it('search using fuzzy filter', () => {
       assert.strictEqual(AutoComplete.fuzzyFilter('ea', 'Peach'), true, 'should match Peach with ea');

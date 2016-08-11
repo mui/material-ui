@@ -10,6 +10,10 @@ describe('<Calendar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(Calendar.displayName, 'Calendar');
+  });
+
   describe('Next Month Button', () => {
     it('should initially be disabled if the current month is the same as the month in the maxDate prop', () => {
       const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT

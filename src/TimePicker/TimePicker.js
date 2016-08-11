@@ -11,6 +11,8 @@ emptyTime.setSeconds(0);
 emptyTime.setMilliseconds(0);
 
 class TimePicker extends Component {
+  static displayName = 'TimePicker';
+
   static propTypes = {
     /**
      * If true, automatically accept and close the picker on set minutes.

@@ -5,6 +5,8 @@ import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
 class CircleRipple extends Component {
+  static displayName = 'CircleRipple';
+
   static propTypes = {
     aborted: PropTypes.bool,
     color: PropTypes.string,

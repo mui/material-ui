@@ -3,6 +3,8 @@ import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
 import DayButton from './DayButton';
 
 class CalendarMonth extends Component {
+  static displayName = 'CalendarMonth';
+
   static propTypes = {
     autoOk: PropTypes.bool,
     displayDate: PropTypes.object.isRequired,

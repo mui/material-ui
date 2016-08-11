@@ -82,6 +82,8 @@ function getStyles(props, context) {
 }
 
 class ClockNumber extends Component {
+  static displayName = 'ClockNumber';
+
   static propTypes = {
     isSelected: PropTypes.bool,
     onSelected: PropTypes.func,

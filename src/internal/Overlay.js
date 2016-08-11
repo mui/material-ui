@@ -39,6 +39,8 @@ function getStyles(props, context) {
 }
 
 class Overlay extends Component {
+  static displayName = 'Overlay';
+
   static propTypes = {
     autoLockScrolling: PropTypes.bool,
     show: PropTypes.bool.isRequired,

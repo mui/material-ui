@@ -57,6 +57,8 @@ function getStyles(props, context) {
 }
 
 class CircularProgress extends Component {
+  static displayName = 'CircularProgress';
+
   static propTypes = {
     /**
      * Override the progress's color.

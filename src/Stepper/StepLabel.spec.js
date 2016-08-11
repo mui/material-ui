@@ -19,6 +19,10 @@ describe('<StepLabel />', () => {
     });
   };
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(StepLabel.displayName, 'StepLabel');
+  });
+
   it('merges styles and other props into the root node', () => {
     const wrapper = shallowWithContext(
       <StepLabel

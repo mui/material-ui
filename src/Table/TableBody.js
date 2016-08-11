@@ -4,6 +4,8 @@ import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
 
 class TableBody extends Component {
+  static displayName = 'TableBody';
+
   static muiName = 'TableBody';
 
   static propTypes = {

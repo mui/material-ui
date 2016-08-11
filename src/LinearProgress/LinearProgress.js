@@ -63,6 +63,8 @@ function getStyles(props, context) {
 }
 
 class LinearProgress extends Component {
+  static displayName = 'LinearProgress';
+
   static propTypes = {
     /**
      * The mode of show your progress, indeterminate for

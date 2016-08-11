@@ -11,6 +11,8 @@ import propTypes from '../utils/propTypes';
 let openNavEventHandler = null;
 
 class Drawer extends Component {
+  static displayName = 'Drawer';
+
   static propTypes = {
     /**
      * The contents of the `Drawer`

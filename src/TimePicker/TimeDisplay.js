@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
 class TimeDisplay extends Component {
+  static displayName = 'TimeDisplay';
+
   static propTypes = {
     affix: PropTypes.oneOf(['', 'pm', 'am']),
     format: PropTypes.oneOf(['ampm', '24hr']),

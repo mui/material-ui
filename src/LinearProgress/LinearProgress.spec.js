@@ -9,6 +9,10 @@ describe('<LinearProgress />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('should have the correct displayName', () => {
+    assert.strictEqual(LinearProgress.displayName, 'LinearProgress');
+  });
+
   describe('props: min', () => {
     it('should work when min equal zero', () => {
       const wrapper = shallowWithContext(
