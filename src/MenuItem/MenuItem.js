@@ -297,6 +297,7 @@ class MenuItem extends Component {
         ref="listItem"
         rightIcon={rightIconElement}
         style={mergedRootStyles}
+        hoverColor={this.context.muiTheme.menuItem.hoverColor}
       >
         {children}
         {secondaryTextElement}
