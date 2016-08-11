@@ -391,7 +391,7 @@ class DatePicker extends Component {
     const hintText = keyboardEnabled && this.state.keyboardActivated ? 'yyyy-mm-dd' : this.props.hintText;
 
     return (
-      <div className={className} style={prepareStyles(Object.assign({}, style))}>
+      <div ref="root" className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           onFocus={this.handleInputFocus}
@@ -410,6 +410,7 @@ class DatePicker extends Component {
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
           autoOk={autoOk}
+          anchorEl={this.refs.root}
           cancelLabel={cancelLabel}
           container={container}
           containerStyle={dialogContainerStyle}
