@@ -165,6 +165,10 @@ class ListItem extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Override hoverColor.
+     */
+    hoverColor: PropTypes.string,
+    /**
      * If true, the nested `ListItem`s are initially displayed.
      */
     initiallyOpen: PropTypes.bool,
@@ -271,10 +275,6 @@ class ListItem extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    /**
-     * Override hoverColor.
-     */
-    hoverColor: PropTypes.string
   };
 
   static defaultProps = {
@@ -502,6 +502,7 @@ class ListItem extends Component {
       children,
       disabled,
       disableKeyboardFocus,
+      hoverColor, // eslint-disable-line no-unused-vars
       initiallyOpen, // eslint-disable-line no-unused-vars
       innerDivStyle,
       insetChildren, // eslint-disable-line no-unused-vars
@@ -526,7 +527,6 @@ class ListItem extends Component {
       secondaryText,
       secondaryTextLines, // eslint-disable-line no-unused-vars
       style,
-      hoverColor,
       ...other,
     } = this.props;
 
