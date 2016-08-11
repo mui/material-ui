@@ -99,7 +99,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       calendarTextColor: palette.textColor,
       selectColor: palette.primary2Color,
       selectTextColor: palette.alternateTextColor,
-      calendarYearBackgroundColor: white,
+      calendarYearBackgroundColor: palette.canvasColor,
     },
     dialog: {
       titleFontSize: 22,
