@@ -17,6 +17,7 @@ function getStyles(props, context) {
       width: '100%',
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
+      display: 'flex',
     },
   };
 }
