@@ -246,6 +246,7 @@ class DropDownMenu extends Component {
   handleKeyDown = (event) => {
     const key = keycode(event);
     switch (key) {
+      case 'down':
       case 'space':
         event.preventDefault();
         this.setState({
