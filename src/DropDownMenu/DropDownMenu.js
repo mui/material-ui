@@ -8,7 +8,7 @@ import Popover from '../Popover/Popover';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import keycode from 'keycode';
 import Events from '../utils/events';
-import IconButton from 'material-ui/IconButton/IconButton';
+import IconButton from '../IconButton/IconButton';
 
 const anchorOrigin = {
   vertical: 'top',
