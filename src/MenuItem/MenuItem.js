@@ -291,13 +291,13 @@ class MenuItem extends Component {
       <ListItem
         {...other}
         disabled={disabled}
+        hoverColor={this.context.muiTheme.menuItem.hoverColor}
         innerDivStyle={mergedInnerDivStyles}
         insetChildren={insetChildren}
         leftIcon={leftIconElement}
         ref="listItem"
         rightIcon={rightIconElement}
         style={mergedRootStyles}
-        hoverColor={this.context.muiTheme.menuItem.hoverColor}
       >
         {children}
         {secondaryTextElement}
