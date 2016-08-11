@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import keycode from 'keycode';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
 import deprecated from '../utils/deprecatedPropType';
@@ -18,6 +19,9 @@ function getStyles(props) {
     },
     dropDownMenu: {
       display: 'block',
+    },
+    rootNode: {
+      outline: 'none',
     },
   };
 }
@@ -144,6 +148,29 @@ class SelectField extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleFocus(event) {
+    this.TextField.handleInputFocus(event);
+  }
+
+  handleBlur(event) {
+    this.TextField.handleInputBlur(event);
+  }
+
+  handleKeyDown(event) {
+    if (keycode(event) === 'down') {
+      event.preventDefault();
+      this.TextField.focus();
+    }
+  }
+
+
   render() {
     const {
       autoWidth,
@@ -177,39 +204,52 @@ class SelectField extends Component {
     const styles = getStyles(this.props, this.context);
 
     return (
-      <TextField
-        {...other}
-        style={style}
-        disabled={disabled}
-        floatingLabelFixed={floatingLabelFixed}
-        floatingLabelText={floatingLabelText}
-        floatingLabelStyle={floatingLabelStyle}
-        hintStyle={hintStyle}
-        hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
-        fullWidth={fullWidth}
-        errorText={errorText}
-        underlineStyle={underlineStyle}
-        errorStyle={errorStyle}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        id={id}
-        underlineDisabledStyle={underlineDisabledStyle}
-        underlineFocusStyle={underlineFocusStyle}
+      <div
+        tabIndex={disabled ? -1 : 0}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        onKeyDown={this.handleKeyDown}
+        ref={(component) => this.RootNode = component}
+        style={styles.rootNode}
       >
-        <DropDownMenu
+        <TextField
+          {...other}
+          style={style}
           disabled={disabled}
-          style={Object.assign(styles.dropDownMenu, selectFieldRoot, menuStyle)}
-          labelStyle={Object.assign(styles.label, labelStyle)}
-          iconStyle={Object.assign(styles.icon, iconStyle)}
-          underlineStyle={styles.hideDropDownUnderline}
-          autoWidth={autoWidth}
-          value={value}
-          onChange={onChange}
-          maxHeight={maxHeight}
+          floatingLabelFixed={floatingLabelFixed}
+          floatingLabelText={floatingLabelText}
+          floatingLabelStyle={floatingLabelStyle}
+          hintStyle={hintStyle}
+          hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
+          fullWidth={fullWidth}
+          errorText={errorText}
+          underlineStyle={underlineStyle}
+          errorStyle={errorStyle}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          id={id}
+          underlineDisabledStyle={underlineDisabledStyle}
+          underlineFocusStyle={underlineFocusStyle}
+          ref={(component) => this.TextField = component}
         >
-          {children}
-        </DropDownMenu>
-      </TextField>
+          <DropDownMenu
+            disabled={disabled}
+            style={Object.assign(styles.dropDownMenu, selectFieldRoot, menuStyle)}
+            labelStyle={Object.assign(styles.label, labelStyle)}
+            iconStyle={Object.assign(styles.icon, iconStyle)}
+            underlineStyle={styles.hideDropDownUnderline}
+            autoWidth={autoWidth}
+            value={value}
+            onChange={onChange}
+            onClose={function() {
+              this.RootNode.focus();
+            }.bind(this)}
+            maxHeight={maxHeight}
+          >
+            {children}
+          </DropDownMenu>
+        </TextField>
+      </div>
     );
   }
 }

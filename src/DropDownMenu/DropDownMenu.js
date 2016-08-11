@@ -130,6 +130,11 @@ class DropDownMenu extends Component {
      * @param {any} payload The `value` prop of the clicked menu item.
      */
     onChange: PropTypes.func,
+
+    /**
+     * Callback function fired when menu is closed.
+     */
+    onClose: PropTypes.func,
     /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
@@ -227,6 +232,9 @@ class DropDownMenu extends Component {
       open: false,
       anchorEl: null,
     });
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   };
 
   handleItemTouchTap = (event, child, index) => {
@@ -236,6 +244,9 @@ class DropDownMenu extends Component {
     }, () => {
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
+      }
+      if (this.props.onClose) {
+        this.props.onClose();
       }
     });
   };
@@ -252,6 +263,7 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       style,
       underlineStyle,
@@ -308,16 +320,18 @@ class DropDownMenu extends Component {
           animated={animated}
           onRequestClose={this.handleRequestCloseMenu}
         >
-          <Menu
-            maxHeight={maxHeight}
-            desktop={true}
-            value={value}
-            style={menuStyle}
-            listStyle={listStyle}
-            onItemTouchTap={this.handleItemTouchTap}
-          >
-            {children}
-          </Menu>
+          {open &&
+            <Menu
+              maxHeight={maxHeight}
+              desktop={true}
+              value={value}
+              style={menuStyle}
+              listStyle={listStyle}
+              onItemTouchTap={this.handleItemTouchTap}
+            >
+              {children}
+            </Menu>
+          }
         </Popover>
       </div>
     );
