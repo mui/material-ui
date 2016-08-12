@@ -5,29 +5,17 @@ import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
-const THICKNESS = 3.5;
-const PI = 3.1415;
+const DEFAULT_THICKNESS = 3.5;
+const PI = 3.1415; // Simple version of Math.PI for the css generated.
 
 export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
   return {
     root: {
-      color: theme.palette.primary[500],
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-    },
-    wrapper: {
       display: 'inline-block',
-      position: 'relative',
-      animation: 'rotate-progress-circle 10000ms linear infinite',
-      width: '100%',
-      height: '100%',
+      color: theme.palette.primary[500],
     },
     svg: {
-      position: 'relative',
-      width: '100%',
-      height: '100%',
+      animation: 'rotate-progress-circle 10000ms linear infinite',
     },
     circle: {
       strokeDasharray: '1, calc((100% - 3px) * 3.141)',
@@ -47,16 +35,16 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
     },
     '@keyframes scale-progress-circle': {
       '10%': {
-        strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
+        strokeDasharray: `1, calc((100% - ${DEFAULT_THICKNESS}px) * ${PI})`,
         strokeDashoffset: 0,
       },
       '55%': {
-        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
-        strokeDashoffset: `calc((25% - ${THICKNESS}px) * -${PI})`,
+        strokeDasharray: `calc((65% - ${DEFAULT_THICKNESS}px) * ${PI}), calc((100% - ${DEFAULT_THICKNESS}px) * ${PI})`,
+        strokeDashoffset: `calc((25% - ${DEFAULT_THICKNESS}px) * -${PI})`,
       },
       '100%': {
-        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
-        strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
+        strokeDasharray: `calc((65% - ${DEFAULT_THICKNESS}px) * ${PI}), calc((100% - ${DEFAULT_THICKNESS}px) * ${PI})`,
+        strokeDashoffset: `calc((99% - ${DEFAULT_THICKNESS}px) * -${PI})`,
       },
     },
   };
@@ -75,6 +63,10 @@ export default class CircularProgress extends Component {
      */
     size: PropTypes.number,
     /**
+     * Stroke width in pixels.
+     */
+    thickness: PropTypes.number,
+    /**
      * The value of progress, only works in determinate mode.
      */
     value: PropTypes.number,
@@ -82,6 +74,7 @@ export default class CircularProgress extends Component {
 
   static defaultProps = {
     mode: 'indeterminate',
+    thickness: DEFAULT_THICKNESS,
     size: 40,
   };
 
@@ -93,6 +86,7 @@ export default class CircularProgress extends Component {
     const {
       className,
       mode, // eslint-disable-line no-unused-vars
+      thickness,
       size,
       ...other,
     } = this.props;
@@ -105,19 +99,17 @@ export default class CircularProgress extends Component {
         style={{ width: size, height: size }}
         {...other}
       >
-        <div className={classes.wrapper}>
-          <svg className={classes.svg} viewBox={`0 0 ${size} ${size}`}>
-            <circle
-              className={classes.circle}
-              cx={radius}
-              cy={radius}
-              r={radius - (THICKNESS / 2)}
-              fill="none"
-              strokeWidth={THICKNESS}
-              strokeMiterlimit="20"
-            />
-          </svg>
-        </div>
+        <svg className={classes.svg} viewBox={`0 0 ${size} ${size}`}>
+          <circle
+            className={classes.circle}
+            cx={radius}
+            cy={radius}
+            r={radius - (thickness / 2)}
+            fill="none"
+            strokeWidth={thickness}
+            strokeMiterlimit="20"
+          />
+        </svg>
       </div>
     );
   }
