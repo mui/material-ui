@@ -1,44 +1,48 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import keycode from 'keycode';
-import TextField from '../TextField';
-import Menu from '../Menu';
-import MenuItem from '../MenuItem';
-import Divider from '../Divider';
-import Popover from '../Popover/Popover';
-import propTypes from '../utils/propTypes';
-import warning from 'warning';
-import deprecated from '../utils/deprecatedPropType';
+import React, { Component, PropTypes } from 'react'
+import ReactDOM from 'react-dom'
+import keycode from 'keycode'
+import warning from 'warning'
+import TextField from 'material-ui/TextField'
+import Menu from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
+import Checkbox from 'material-ui/Checkbox'
+import Divider from 'material-ui/Divider'
+import Popover from 'material-ui/Popover/Popover'
+import propTypes from 'material-ui/utils/propTypes'
+import deprecated from 'material-ui/utils/deprecatedPropType'
 
-function getStyles(props, context, state) {
-  const {anchorEl} = state;
-  const {fullWidth} = props;
+function getStyles (props, context, state) {
+  const {anchorEl} = state
+  const {fullWidth} = props
 
   const styles = {
     root: {
       display: 'inline-block',
       position: 'relative',
-      width: fullWidth ? '100%' : 256,
+      width: fullWidth ? '100%' : 256
     },
     menu: {
-      width: '100%',
+      width: '100%'
     },
     list: {
       display: 'block',
-      width: fullWidth ? '100%' : 256,
+      width: fullWidth ? '100%' : 256
     },
     innerDiv: {
-      overflow: 'hidden',
+      overflow: 'hidden'
     },
-  };
+    checkbox: {
+      padding: '10px 0'
+    }
+  }
 
   if (anchorEl && fullWidth) {
     styles.popover = {
-      width: anchorEl.clientWidth,
-    };
+      width: anchorEl.clientWidth
+    }
   }
 
-  return styles;
+  return styles
 }
 
 class AutoComplete extends Component {
@@ -122,6 +126,10 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
+    /**
+     * Allows for multiple selections.
+     */
+    multiple: PropTypes.bool,
     /** @ignore */
     onBlur: PropTypes.func,
     /** @ignore */
@@ -172,214 +180,204 @@ class AutoComplete extends Component {
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
-  };
+    /**
+     * when multiple is defined/true, the component return value changes from String to Array.
+     */
+    values: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string,
+      value: PropTypes.number})),
+    /** @ignore (not implemented)
+     * Default: true. If multiple is set to true, MenuItems will use checkboxes.
+     * If this option is set to false, MenuItems will not display checkboxes,
+     * but will disappear/appear depending on their selection status.
+     */
+    withCheckboxes: PropTypes.bool
+  }
 
   static defaultProps = {
     anchorOrigin: {
       vertical: 'bottom',
-      horizontal: 'left',
+      horizontal: 'left'
     },
     animated: true,
     dataSourceConfig: {
       text: 'text',
-      value: 'value',
+      value: 'value'
     },
     disableFocusRipple: true,
-    filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
+    filter: (searchText, key) => searchText !== '' && key.includes(searchText),
     fullWidth: false,
+    multiple: false,
     open: false,
-    openOnFocus: false,
+    openOnFocus: true,
     onUpdateInput: () => {},
     onNewRequest: () => {},
     searchText: '',
     menuCloseDelay: 300,
     targetOrigin: {
       vertical: 'top',
-      horizontal: 'left',
+      horizontal: 'left'
     },
-  };
+    values: [],
+    withCheckboxes: true
+  }
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
+    muiTheme: PropTypes.object.isRequired
+  }
 
   state = {
     anchorEl: null,
     focusTextField: true,
     open: false,
-    searchText: undefined,
-  };
-
-  componentWillMount() {
-    this.requestsList = [];
-    this.setState({
-      open: this.props.open,
-      searchText: this.props.searchText,
-    });
-    this.timerTouchTapCloseId = null;
+    searchText: undefined
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillMount () {
+    this.requestsList = []
+    this.setState({
+      open: this.props.open,
+      searchText: this.props.searchText
+    })
+    this.timerTouchTapCloseId = null
+  }
+
+  componentWillReceiveProps (nextProps) {
     if (this.props.searchText !== nextProps.searchText) {
-      this.setState({
-        searchText: nextProps.searchText,
-      });
+      this.setState({ searchText: nextProps.searchText })
     }
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timerTouchTapCloseId);
+  componentWillUnmount () {
+    clearTimeout(this.timerTouchTapCloseId)
   }
 
-  close() {
+  close () {
     this.setState({
       open: false,
-      anchorEl: null,
-    });
+      anchorEl: null
+    })
   }
 
   handleRequestClose = () => {
     // Only take into account the Popover clickAway when we are
     // not focusing the TextField.
-    if (!this.state.focusTextField) {
-      this.close();
-    }
-  };
+    this.close()
+  }
 
-  setValue(textValue) {
+  setValue (textValue) {
     warning(false, `setValue() is deprecated, use the searchText property.
-      It will be removed with v0.16.0.`);
+      It will be removed with v0.16.0.`)
 
-    this.setState({
-      searchText: textValue,
-    });
+    this.setState({ searchText: textValue })
   }
 
-  getValue() {
-    warning(false, 'getValue() is deprecated. It will be removed with v0.16.0.');
-
-    return this.state.searchText;
+  getValue () {
+    warning(false, 'getValue() is deprecated. It will be removed with v0.16.0.')
+    return this.state.searchText
   }
 
-  handleMouseDown = (event) => {
-    // Keep the TextField focused
-    event.preventDefault();
-  };
+  handleMouseDown = (event) => event.preventDefault() // Keep the TextField focused
 
   handleItemTouchTap = (event, child) => {
-    const dataSource = this.props.dataSource;
+    console.log('calling handleItemTouchTap')
+    const dataSource = this.props.dataSource
 
-    const index = parseInt(child.key, 10);
-    const chosenRequest = dataSource[index];
-    const searchText = this.chosenRequestText(chosenRequest);
+    const index = parseInt(child.key, 10)
+    const chosenRequest = dataSource[index]
+    const searchText = typeof chosenRequest === 'string'
+      ? chosenRequest
+      : chosenRequest[this.props.dataSourceConfig.text]
 
     this.timerTouchTapCloseId = setTimeout(() => {
-      this.timerTouchTapCloseId = null;
+      this.timerTouchTapCloseId = null
 
-      this.setState({
-        searchText: searchText,
-      });
-      this.close();
-      this.props.onNewRequest(chosenRequest, index);
-    }, this.props.menuCloseDelay);
-  };
+      if (!this.props.multiple) {
+        console.log('not multiselect !')
+        this.setState({ searchText })
+        this.close()
+        this.props.onNewRequest(chosenRequest, index)
+      } else {
+        console.log('multiselect !')
+        if (this.props.values.includes(chosenRequest)) {
+          console.log('removing selected option from values !')
+          const idx = this.props.values.indexOf(chosenRequest)
+          this.props.values.splice(idx, 1)
+        } else this.props.values.push(chosenRequest)
+        this.setState({ searchText: '' })
+        this.props.onNewRequest(this.props.values)
+      }
+    }, this.props.menuCloseDelay)
+  }
 
-  chosenRequestText = (chosenRequest) => {
-    if (typeof chosenRequest === 'string') {
-      return chosenRequest;
-    } else {
-      return chosenRequest[this.props.dataSourceConfig.text];
-    }
-  };
-
-  handleEscKeyDown = () => {
-    this.close();
-  };
+  handleEscKeyDown = () => this.close()
 
   handleKeyDown = (event) => {
-    if (this.props.onKeyDown) this.props.onKeyDown(event);
+    if (this.props.onKeyDown) this.props.onKeyDown(event)
 
     switch (keycode(event)) {
       case 'enter':
-        this.close();
-        const searchText = this.state.searchText;
-        if (searchText !== '') {
-          this.props.onNewRequest(searchText, -1);
-        }
-        break;
+        this.close()
+        const searchText = this.state.searchText
+        if (searchText !== '') this.props.onNewRequest(searchText, -1)
+        break
 
       case 'esc':
-        this.close();
-        break;
+        this.close()
+        break
 
       case 'down':
-        event.preventDefault();
+        event.preventDefault()
         this.setState({
           open: true,
           focusTextField: false,
-          anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
-        });
-        break;
+          anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+        })
+        break
 
-      default:
-        break;
+      default: break
     }
-  };
+  }
 
   handleChange = (event) => {
-    const searchText = event.target.value;
+    const searchText = event.target.value
 
     // Make sure that we have a new searchText.
     // Fix an issue with a Cordova Webview
-    if (searchText === this.state.searchText) {
-      return;
-    }
+    if (searchText === this.state.searchText) return
 
     this.setState({
-      searchText: searchText,
+      searchText,
       open: true,
-      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
-    }, () => {
-      this.props.onUpdateInput(searchText, this.props.dataSource);
-    });
-  };
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+    }, () => this.props.onUpdateInput(searchText, this.props.dataSource))
+  }
 
   handleBlur = (event) => {
-    if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
-      this.close();
-    }
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
-  };
+    if (this.state.focusTextField && this.timerTouchTapCloseId === null) this.close()
+    if (this.props.onBlur) this.props.onBlur(event)
+  }
 
   handleFocus = (event) => {
     if (!this.state.open && (this.props.triggerUpdateOnFocus || this.props.openOnFocus)) {
       this.setState({
         open: true,
-        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
-      });
+        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+      })
     }
-
-    this.setState({
-      focusTextField: true,
-    });
-
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-  };
-
-  blur() {
-    this.refs.searchTextField.blur();
+    this.setState({ focusTextField: true })
+    if (this.props.onFocus) this.props.onFocus(event)
   }
 
-  focus() {
-    this.refs.searchTextField.focus();
+  blur () {
+    this.refs.searchTextField.blur()
   }
 
-  render() {
+  focus () {
+    this.refs.searchTextField.focus()
+  }
+
+  render () {
     const {
       anchorOrigin,
       animated,
@@ -395,6 +393,7 @@ class AutoComplete extends Component {
       hintText,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
+      multiple,
       textFieldStyle,
       menuStyle,
       menuProps,
@@ -405,22 +404,27 @@ class AutoComplete extends Component {
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
-      ...other,
-    } = this.props;
+      values,
+      withCheckboxes,
+      ...other
+    } = this.props
 
     const {
       open,
       anchorEl,
       searchText,
-      focusTextField,
-    } = this.state;
+      focusTextField
+    } = this.state
 
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context, this.state);
+    const {prepareStyles} = this.context.muiTheme
+    const styles = getStyles(this.props, this.context, this.state)
 
-    const requestsList = [];
+    const requestsList = []
+
+    this.requestsList = requestsList
 
     dataSource.every((item, index) => {
+      const checked = multiple && withCheckboxes && values.includes(item)
       switch (typeof item) {
         case 'string':
           if (filter(searchText, item, item)) {
@@ -430,76 +434,76 @@ class AutoComplete extends Component {
                 <MenuItem
                   innerDivStyle={styles.innerDiv}
                   value={item}
-                  primaryText={item}
+                  primaryText={(multiple && withCheckboxes) ? '' : item}
                   disableFocusRipple={disableFocusRipple}
                   key={index}
-                />),
-            });
+                >
+                  {multiple && withCheckboxes && <Checkbox label={item} checked={checked} style={styles.checkbox} />}
+                </MenuItem>)
+            })
           }
-          break;
+          break
 
         case 'object':
           if (item && typeof item[this.props.dataSourceConfig.text] === 'string') {
-            const itemText = item[this.props.dataSourceConfig.text];
-            if (!this.props.filter(searchText, itemText, item)) break;
+            const itemText = item[this.props.dataSourceConfig.text]
+            if (!this.props.filter(searchText, itemText, item)) break
 
-            const itemValue = item[this.props.dataSourceConfig.value];
+            const itemValue = item[this.props.dataSourceConfig.value]
             if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
-               itemValue.type.muiName === Divider.muiName)) {
+              itemValue.type.muiName === Divider.muiName)) {
               requestsList.push({
                 text: itemText,
                 value: React.cloneElement(itemValue, {
                   key: index,
-                  disableFocusRipple: disableFocusRipple,
-                }),
-              });
+                  disableFocusRipple
+                })
+              })
             } else {
               requestsList.push({
                 text: itemText,
                 value: (
                   <MenuItem
                     innerDivStyle={styles.innerDiv}
-                    primaryText={itemText}
+                    primaryText={(multiple && withCheckboxes) ? '' : itemText}
                     disableFocusRipple={disableFocusRipple}
                     key={index}
-                  />),
-              });
+                  >
+                    {multiple && withCheckboxes && <Checkbox label={itemText} checked={checked} style={styles.checkbox} />}
+                  </MenuItem>)
+              })
             }
           }
-          break;
+          break
 
-        default:
-          // Do nothing
+        default: break // Do nothing
       }
 
-      return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults);
-    });
-
-    this.requestsList = requestsList;
+      return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults)
+    })
 
     const menu = open && requestsList.length > 0 && (
       <Menu
         {...menuProps}
-        ref="menu"
-        autoWidth={false}
+        ref='menu'
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.handleEscKeyDown}
-        initiallyKeyboardFocused={true}
+        initiallyKeyboardFocused
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}
-        style={Object.assign(styles.menu, menuStyle)}
-        listStyle={Object.assign(styles.list, listStyle)}
+        style={{...styles.menu, ...menuStyle}}
+        listStyle={{...styles.list, ...listStyle}}
       >
         {requestsList.map((i) => i.value)}
       </Menu>
-    );
+    )
 
     return (
-      <div style={prepareStyles(Object.assign(styles.root, style))} >
+      <div style={prepareStyles({...styles.root, ...style})} >
         <TextField
           {...other}
-          ref="searchTextField"
-          autoComplete="off"
+          ref='searchTextField'
+          autoComplete='off'
           value={searchText}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
@@ -508,13 +512,11 @@ class AutoComplete extends Component {
           floatingLabelText={floatingLabelText}
           hintText={hintText}
           fullWidth={fullWidth}
-          multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
         />
         <Popover
           style={styles.popover}
-          canAutoPosition={false}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
           open={open}
@@ -527,65 +529,61 @@ class AutoComplete extends Component {
           {menu}
         </Popover>
       </div>
-    );
+    )
   }
 }
 
 AutoComplete.levenshteinDistance = (searchText, key) => {
-  const current = [];
-  let prev;
-  let value;
+  const current = []
+  let prev
+  let value
 
   for (let i = 0; i <= key.length; i++) {
     for (let j = 0; j <= searchText.length; j++) {
       if (i && j) {
-        if (searchText.charAt(j - 1) === key.charAt(i - 1)) value = prev;
-        else value = Math.min(current[j], current[j - 1], prev) + 1;
-      } else {
-        value = i + j;
-      }
-      prev = current[j];
-      current[j] = value;
+        if (searchText.charAt(j - 1) === key.charAt(i - 1)) value = prev
+        else value = Math.min(current[j], current[j - 1], prev) + 1
+      } else value = i + j
+      prev = current[j]
+      current[j] = value
     }
   }
-  return current.pop();
-};
+  return current.pop()
+}
 
-AutoComplete.noFilter = () => true;
+AutoComplete.noFilter = () => true
 
 AutoComplete.defaultFilter = AutoComplete.caseSensitiveFilter = (searchText, key) => {
-  return searchText !== '' && key.indexOf(searchText) !== -1;
-};
+  return searchText !== '' && key.includes(searchText)
+}
 
 AutoComplete.caseInsensitiveFilter = (searchText, key) => {
-  return key.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;
-};
+  return key.toLowerCase().includes(searchText.toLowerCase())
+}
 
 AutoComplete.levenshteinDistanceFilter = (distanceLessThan) => {
   if (distanceLessThan === undefined) {
-    return AutoComplete.levenshteinDistance;
+    return AutoComplete.levenshteinDistance
   } else if (typeof distanceLessThan !== 'number') {
-    throw 'Error: AutoComplete.levenshteinDistanceFilter is a filter generator, not a filter!';
+    throw new Error('Error: AutoComplete.levenshteinDistanceFilter is a filter generator, not a filter!')
   }
 
-  return (s, k) => AutoComplete.levenshteinDistance(s, k) < distanceLessThan;
-};
+  return (s, k) => AutoComplete.levenshteinDistance(s, k) < distanceLessThan
+}
 
 AutoComplete.fuzzyFilter = (searchText, key) => {
-  const compareString = key.toLowerCase();
-  searchText = searchText.toLowerCase();
+  const compareString = key.toLowerCase()
+  searchText = searchText.toLowerCase()
 
-  let searchTextIndex = 0;
+  let searchTextIndex = 0
   for (let index = 0; index < key.length; index++) {
-    if (compareString[index] === searchText[searchTextIndex]) {
-      searchTextIndex += 1;
-    }
+    if (compareString[index] === searchText[searchTextIndex]) searchTextIndex += 1
   }
 
-  return searchTextIndex === searchText.length;
-};
+  return searchTextIndex === searchText.length
+}
 
-AutoComplete.Item = MenuItem;
-AutoComplete.Divider = Divider;
+AutoComplete.Item = MenuItem
+AutoComplete.Divider = Divider
 
-export default AutoComplete;
+export default AutoComplete
