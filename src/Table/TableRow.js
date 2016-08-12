@@ -27,6 +27,11 @@ function getStyles(props, context, state) {
 class TableRow extends Component {
   static propTypes = {
     /**
+     * Enable ctrl/comd key behaviour like in desktop systems, with ctrl/cmd key - select separate columns
+     * But for mobile device leave default behaviour with selecting rows
+     */
+    alternativeCtrlKeyBehaviour: PropTypes.bool,
+    /**
      * Children passed to table row.
      */
     children: PropTypes.node,
@@ -121,6 +126,7 @@ class TableRow extends Component {
     selectable: true,
     selected: false,
     striped: false,
+    alternativeCtrlKeyBehaviour: false,
   };
 
   static contextTypes = {
@@ -147,7 +153,10 @@ class TableRow extends Component {
     if (this.props.selectable && this.props.onCellClick) {
       this.props.onCellClick(event, this.props.rowNumber, columnIndex);
     }
-    event.ctrlKey = true;
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (!this.props.alternativeCtrlKeyBehaviour || isMobileDevice) {
+      event.ctrlKey = true;
+    }
     this.onRowClick(event);
   };
 
@@ -183,6 +192,7 @@ class TableRow extends Component {
       selectable, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       striped, // eslint-disable-line no-unused-vars
+      alternativeCtrlKeyBehaviour, // eslint-disable-line no-unused-vars
       style,
       ...other,
     } = this.props;
