@@ -166,8 +166,12 @@ class FloatingActionButton extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.disabled !== this.props.disabled) {
       this.setState({
-        hovered: nextProps.disabled ? false : this.state.hovered,
         zDepth: nextProps.disabled ? 0 : this.props.zDepth,
+      });
+    }
+    if (nextProps.disabled && this.state.hovered) {
+      this.setState({
+        hovered: false,
       });
     }
   }
