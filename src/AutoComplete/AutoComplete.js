@@ -165,6 +165,16 @@ class AutoComplete extends Component {
      */
     searchText: PropTypes.string,
     /**
+     * When multiple is defined/true, the returned value changes from String to Array of strings/nodes.
+     */
+    selectedOptions: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        text: PropTypes.string,
+        value: PropTypes.number
+      })
+    ])),
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -180,12 +190,6 @@ class AutoComplete extends Component {
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
-    /**
-     * when multiple is defined/true, the component return value changes from String to Array.
-     */
-    selectedOptions: PropTypes.arrayOf(PropTypes.shape({
-      text: PropTypes.string,
-      value: PropTypes.number})),
     /** @ignore (not implemented)
      * Default: true. If multiple is set to true, MenuItems will use checkboxes.
      * If this option is set to false, MenuItems will not display checkboxes,
