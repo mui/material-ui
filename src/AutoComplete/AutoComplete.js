@@ -2,14 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import keycode from 'keycode'
 import warning from 'warning'
-import TextField from 'material-ui/TextField'
-import Menu from 'material-ui/Menu'
-import MenuItem from 'material-ui/MenuItem'
-import Checkbox from 'material-ui/Checkbox'
-import Divider from 'material-ui/Divider'
-import Popover from 'material-ui/Popover/Popover'
-import propTypes from 'material-ui/utils/propTypes'
-import deprecated from 'material-ui/utils/deprecatedPropType'
+import TextField from '../TextField'
+import Menu from '../Menu'
+import MenuItem from '../MenuItem'
+import Checkbox from '../Checkbox'
+import Divider from '../Divider'
+import Popover from '../Popover/Popover'
+import propTypes from '../utils/propTypes'
+import deprecated from '../utils/deprecatedPropType'
 
 function getStyles (props, context, state) {
   const {anchorEl} = state
@@ -183,7 +183,7 @@ class AutoComplete extends Component {
     /**
      * when multiple is defined/true, the component return value changes from String to Array.
      */
-    values: PropTypes.arrayOf(PropTypes.shape({
+    selectedOptions: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string,
       value: PropTypes.number})),
     /** @ignore (not implemented)
@@ -218,7 +218,7 @@ class AutoComplete extends Component {
       vertical: 'top',
       horizontal: 'left'
     },
-    values: [],
+    selectedOptions: [],
     withCheckboxes: true
   }
 
@@ -299,13 +299,13 @@ class AutoComplete extends Component {
         this.props.onNewRequest(chosenRequest, index)
       } else {
         console.log('multiselect !')
-        if (this.props.values.includes(chosenRequest)) {
-          console.log('removing selected option from values !')
-          const idx = this.props.values.indexOf(chosenRequest)
-          this.props.values.splice(idx, 1)
-        } else this.props.values.push(chosenRequest)
+        if (this.props.selectedOptions.includes(chosenRequest)) {
+          console.log('removing selected option from selectedOptions !')
+          const idx = this.props.selectedOptions.indexOf(chosenRequest)
+          this.props.selectedOptions.splice(idx, 1)
+        } else this.props.selectedOptions.push(chosenRequest)
         this.setState({ searchText: '' })
-        this.props.onNewRequest(this.props.values)
+        this.props.onNewRequest(this.props.selectedOptions)
       }
     }, this.props.menuCloseDelay)
   }
@@ -404,7 +404,7 @@ class AutoComplete extends Component {
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
-      values,
+      selectedOptions,
       withCheckboxes,
       ...other
     } = this.props
@@ -424,7 +424,7 @@ class AutoComplete extends Component {
     this.requestsList = requestsList
 
     dataSource.every((item, index) => {
-      const checked = multiple && withCheckboxes && values.includes(item)
+      const checked = multiple && withCheckboxes && selectedOptions.includes(item)
       switch (typeof item) {
         case 'string':
           if (filter(searchText, item, item)) {
