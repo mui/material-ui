@@ -21,7 +21,6 @@ describe('<FloatingActionButton />', () => {
       wrapper.setState({
         hovered: true,
       });
-      assert.strictEqual(wrapper.state().hovered, true, 'should be hovered');
       wrapper.setProps({
         disabled: true,
       });
