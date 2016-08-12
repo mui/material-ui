@@ -54,7 +54,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       '&:active': {
         boxShadow: shadows[8],
       },
-      '&disabled': {
+      '&:disabled': {
         boxShadow: shadows[0],
       },
     },
