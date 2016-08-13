@@ -71,7 +71,7 @@ module.exports = {
     'jsx-a11y/aria-props': 'error',
     'jsx-a11y/aria-proptypes': 'error',
     'jsx-a11y/aria-role': 'error',
-    'jsx-a11y/img-has-alt': ['error', ['Avatar']],
+    'jsx-a11y/img-has-alt': ['error'],
     'jsx-a11y/role-supports-aria-props': 'error',
     'jsx-a11y/label-has-for': 'off',
     'material-ui/docgen-ignore-before-comment': 'error',

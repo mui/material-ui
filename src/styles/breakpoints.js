@@ -15,14 +15,13 @@ export default function createBreakpoints(
   const values = keys.map((n) => breakpoints[n]);
 
   function up(name) {
-    return `@media (min-width:${breakpoints[name]}${unit})`;
+    const value = breakpoints[name] || name;
+    return `@media (min-width:${value}${unit})`;
   }
 
   function down(name) {
-    if (keys.indexOf(name) === values.length - 1) {
-      return undefined;
-    }
-    return `@media (max-width:${breakpoints[name]}${unit})`;
+    const value = breakpoints[name] || name;
+    return `@media (max-width:${value}${unit})`;
   }
 
   function only(name) {
