@@ -5,7 +5,6 @@ import {
   hashHistory,
   Router as ReactRouter,
   Route,
-  IndexRedirect,
 } from 'react-router';
 import TestViewer from './TestViewer';
 
@@ -29,7 +28,6 @@ export default function Router() {
         component={TestViewer}
         numTests={tests.length}
       >
-        <IndexRedirect to={tests[0].routePath} />
         {tests.map(((n, i) => {
           return (
             <Route
