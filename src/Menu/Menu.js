@@ -3,21 +3,15 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { createStyleSheet } from 'stylishly';
-import keycode from 'keycode';
-import classNames from 'classnames';
-import contains from 'dom-helpers/query/contains';
-import activeElement from 'dom-helpers/activeElement';
-import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
-import { List } from '../List';
+import MenuList from './MenuList';
 
 export const styleSheet = createStyleSheet('Menu', () => {
   return {
     popover: {
       maxHeight: 250,
     },
-    menu: {},
   };
 });
 
@@ -84,14 +78,13 @@ export default class Menu extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  list = undefined;
-  selectedItem = undefined;
+  menuList = undefined;
 
   handleEnter = (element) => {
-    const list = findDOMNode(this.list);
+    const list = findDOMNode(this.menuList);
 
-    if (this.selectedItem) {
-      findDOMNode(this.selectedItem).focus();
+    if (this.menuList && this.menuList.selectedItem) {
+      findDOMNode(this.menuList.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
     } else if (list) {
       list.firstChild.focus();
     }
@@ -107,31 +100,8 @@ export default class Menu extends Component {
     }
   };
 
-  handleListKeyDown = (event) => {
-    const list = findDOMNode(this.list);
-    const currentFocus = activeElement(ownerDocument(list));
-    const key = keycode(event);
-
-    if (
-      (key === 'up' || key === 'down') &&
-      (
-        !currentFocus ||
-        (currentFocus && !contains(list, currentFocus))
-      )
-    ) {
-      if (this.selectedItem) {
-        return findDOMNode(this.selectedItem).focus();
-      }
-      return list.firstChild.focus();
-    }
-
-    if (key === 'down') {
-      event.preventDefault();
-      return currentFocus.nextElementSibling && currentFocus.nextElementSibling.focus();
-    } else if (key === 'up') {
-      event.preventDefault();
-      return currentFocus.previousElementSibling && currentFocus.previousElementSibling.focus();
-    } else if (key === 'tab') {
+  handleListKeyDown = (event, key) => {
+    if (key === 'tab') {
       event.preventDefault();
       return this.props.onRequestClose();
     }
@@ -140,11 +110,11 @@ export default class Menu extends Component {
   };
 
   getContentAnchorEl = () => {
-    if (!this.selectedItem) {
-      return findDOMNode(this.list).firstChild;
+    if (!this.menuList || !this.menuList.selectedItem) {
+      return findDOMNode(this.menuList).firstChild;
     }
 
-    return findDOMNode(this.selectedItem);
+    return findDOMNode(this.menuList.selectedItem);
   };
 
   render() {
@@ -182,21 +152,16 @@ export default class Menu extends Component {
         onRequestClose={onRequestClose}
         transitionDuration={transitionDuration}
       >
-        <List
+        <MenuList
           data-mui-test="Menu"
           role="menu"
-          ref={(c) => this.list = c}
-          className={classNames(classes.menu, className)}
+          ref={(c) => this.menuList = c}
+          className={className}
           onKeyDown={this.handleListKeyDown}
           {...other}
         >
-          {React.Children.map(children, (child) => {
-            if (child.props.selected) {
-              return React.cloneElement(child, { ref: (c) => this.selectedItem = c });
-            }
-            return child;
-          })}
-        </List>
+          {children}
+        </MenuList>
       </Popover>
     );
   }

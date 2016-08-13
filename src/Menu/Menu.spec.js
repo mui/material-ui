@@ -96,17 +96,16 @@ describe('<Menu>', () => {
       list = wrapper.childAt(0);
     });
 
-    it('should render a List inside the Popover', () => {
-      assert.strictEqual(list.is('List'), true, 'should have a list as the immediate child');
+    it('should render a MenuList inside the Popover', () => {
+      assert.strictEqual(list.is('MenuList'), true, 'should have a MenuList as the immediate child');
     });
 
     it('should spread other props on the list', () => {
       assert.strictEqual(list.prop('data-test'), 'hi', 'should have the custom prop');
     });
 
-    it('should have the menu class and user classes', () => {
+    it('should have the user classes', () => {
       assert.strictEqual(list.hasClass('test-class'), true, 'should have the user class');
-      assert.strictEqual(list.hasClass(classes.menu), true, 'should have the menu class');
     });
   });
 });
