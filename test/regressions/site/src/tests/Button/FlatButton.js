@@ -3,6 +3,6 @@
 import React from 'react';
 import Button from 'material-ui/Button';
 
-export default function FlatButtonDefault() {
+export default function FlatButton() {
   return <Button>Hello World</Button>;
 }

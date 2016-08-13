@@ -7,7 +7,7 @@ const httpServer = require('http-server');
 
 module.exports = runSeleniumTests;
 
-function runSeleniumTests({ local = false, browsers = 'chrome', tests = 'test/e2e', webpackConfig, serverRoot }) {
+function runSeleniumTests({ local = false, environment = 'chrome', tests = 'test/e2e', webpackConfig, serverRoot }) {
   const compiler = webpack(webpackConfig);
 
   const server = httpServer.createServer({ root: serverRoot });
@@ -58,7 +58,7 @@ function runSeleniumTests({ local = false, browsers = 'chrome', tests = 'test/e2
         '-c',
         local ? 'test/nightwatch.local.conf.js' : 'test/nightwatch.conf.js',
         '-e',
-        browsers,
+        environment,
         tests,
       ],
       {
