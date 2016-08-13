@@ -21,57 +21,128 @@ export default class MenuList extends Component {
     /**
      * @ignore
      */
+    onBlur: PropTypes.func,
+    /**
+     * @ignore
+     */
     onKeyDown: PropTypes.func,
   };
 
+  state = {
+    currentTabIndex: undefined,
+  };
+
+  componentDidMount() {
+    this.resetTabIndex();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.blurTimer);
+  }
+
   list = undefined;
   selectedItem = undefined;
+  blurTimer = undefined;
+
+  handleBlur = (event) => {
+    this.blurTimer = setTimeout(() => {
+      if (this.list) {
+        const list = findDOMNode(this.list);
+        const currentFocus = activeElement(ownerDocument(list));
+        if (!contains(list, currentFocus)) {
+          this.resetTabIndex();
+        }
+      }
+    }, 30);
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  };
 
   handleKeyDown = (event) => {
     const list = findDOMNode(this.list);
-    const currentFocus = activeElement(ownerDocument(list));
     const key = keycode(event);
+    const currentFocus = activeElement(ownerDocument(list));
 
     if (
       (key === 'up' || key === 'down') &&
-      (
-        !currentFocus ||
-        (currentFocus && !contains(list, currentFocus))
-      )
+      (!currentFocus || (currentFocus && !contains(list, currentFocus)))
     ) {
       if (this.selectedItem) {
-        return findDOMNode(this.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+        findDOMNode(this.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+      } else {
+        list.firstChild.focus();
       }
-      return list.firstChild.focus();
-    }
-
-    if (key === 'down') {
+    } else if (key === 'down') {
       event.preventDefault();
-      return currentFocus.nextElementSibling && currentFocus.nextElementSibling.focus();
+      if (currentFocus.nextElementSibling) {
+        currentFocus.nextElementSibling.focus();
+      }
     } else if (key === 'up') {
       event.preventDefault();
-      return currentFocus.previousElementSibling && currentFocus.previousElementSibling.focus();
+      if (currentFocus.previousElementSibling) {
+        currentFocus.previousElementSibling.focus();
+      }
     }
 
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event, key);
     }
-
-    return true;
   };
 
-  getContentAnchorEl = () => {
-    if (!this.selectedItem) {
-      return findDOMNode(this.list).firstChild;
+  handleItemFocus = (event) => {
+    const list = findDOMNode(this.list);
+    if (list) {
+      for (let i = 0; i < list.children.length; i++) {
+        if (list.children[i] === event.currentTarget) {
+          this.setTabIndex(i);
+          break;
+        }
+      }
+    }
+  };
+
+  focus() {
+    const { currentTabIndex } = this.state;
+    const list = findDOMNode(this.list);
+    if (!list || !list.children) {
+      return;
     }
 
-    return findDOMNode(this.selectedItem);
-  };
+    if (currentTabIndex && currentTabIndex >= 0) {
+      list.children[currentTabIndex].focus();
+    } else {
+      list.firstChild.focus();
+    }
+  }
+
+  resetTabIndex() {
+    const list = findDOMNode(this.list);
+    const currentFocus = activeElement(ownerDocument(list));
+    const items = [...list.children];
+    const currentFocusIndex = items.indexOf(currentFocus);
+
+    if (currentFocusIndex !== -1) {
+      return this.setTabIndex(currentFocusIndex);
+    }
+
+    if (this.selectedItem) {
+      return this.setTabIndex(items.indexOf(findDOMNode(this.selectedItem)));
+    }
+
+    return this.setTabIndex(0);
+  }
+
+  setTabIndex(n) {
+    this.setState({ currentTabIndex: n });
+  }
 
   render() {
     const {
       children,
       className,
+      onBlur, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -83,14 +154,16 @@ export default class MenuList extends Component {
         ref={(c) => this.list = c}
         className={className}
         onKeyDown={this.handleKeyDown}
+        onBlur={this.handleBlur}
         {...other}
       >
-        {React.Children.map(children, (child) => {
-          if (child.props.selected) {
-            return React.cloneElement(child, { ref: (c) => this.selectedItem = c });
-          }
-          return child;
-        })}
+        {React.Children.map(children, (child, index) =>
+          React.cloneElement(child, {
+            tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
+            ref: child.props.selected ? ((c) => this.selectedItem = c) : undefined,
+            onFocus: this.handleItemFocus,
+          })
+        )}
       </List>
     );
   }

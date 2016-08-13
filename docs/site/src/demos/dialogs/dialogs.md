@@ -23,6 +23,12 @@ If a title is required:
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
 - Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
-{{demo='dialogs/Alerts.js'}}
+{{demo='dialogs/AlertDialog.js'}}
 
-### More demos coming shortly... waiting for a couple more components
+## Confirmation dialogs
+
+Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK.”
+
+Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+
+{{demo='dialogs/ConfirmationDialog.js'}}

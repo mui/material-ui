@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('DialogActions', () => {
       justifyContent: 'flex-end',
       alignItems: 'center',
       margin: '8px 4px',
+      flex: '0 0 auto',
     },
     action: {
       margin: '0 4px',

@@ -1,12 +1,23 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'stylishly';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import querySelectorAll from 'dom-helpers/query/querySelectorAll';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
+
+export const styleSheet = createStyleSheet('RadioGroup', () => {
+  return {
+    root: {
+      flex: '1 1 auto',
+      margin: 0,
+      padding: 0,
+    },
+  };
+});
 
 export default class RadioGroup extends Component {
   static propTypes = {
@@ -26,6 +37,10 @@ export default class RadioGroup extends Component {
 
   static defaultProps = {
     component: 'div',
+  };
+
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
   };
 
   static childContextTypes = {
@@ -122,6 +137,17 @@ export default class RadioGroup extends Component {
     }
   };
 
+  focus() {
+    const { currentTabIndex } = this.state;
+    if (currentTabIndex && currentTabIndex >= 0) {
+      const group = findDOMNode(this.group);
+      const radios = querySelectorAll(group, '[role="radio"]');
+      if (radios && radios[currentTabIndex]) {
+        radios[currentTabIndex].focus();
+      }
+    }
+  }
+
   changeFocus(currentFocusIndex = 0, event, radios) {
     const key = keycode(event);
 
@@ -176,7 +202,9 @@ export default class RadioGroup extends Component {
     } = this.props;
 
     const selectedValue = this.isControlled ? selectedValueProp : this.state.selectedValue;
+    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
 
+    groupProps.className = classes.root;
     groupProps['data-mui-test'] = 'RadioGroup';
     groupProps.ref = (c) => this.group = c;
     groupProps.role = 'radiogroup';

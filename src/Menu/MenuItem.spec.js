@@ -45,12 +45,8 @@ describe('<MenuItem>', () => {
     assert.strictEqual(wrapper.prop('role'), 'option', 'should have the option role');
   });
 
-  it('should have a tabIndex of 0 when focused, -1 when blurred', () => {
+  it('should have a tabIndex of -1 by default', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.prop('tabIndex'), '-1', 'should have a -1 tabIndex');
-    wrapper.simulate('focus');
-    assert.strictEqual(wrapper.prop('tabIndex'), '0', 'should have a 0 tabIndex');
-    wrapper.simulate('blur');
     assert.strictEqual(wrapper.prop('tabIndex'), '-1', 'should have a -1 tabIndex');
   });
 

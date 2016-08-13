@@ -42,14 +42,6 @@ export default class MenuItem extends Component {
     /**
      * @ignore
      */
-    onBlur: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onFocus: PropTypes.func,
-    /**
-     * @ignore
-     */
     role: PropTypes.string,
     /**
      * Use to apply selected styling
@@ -65,27 +57,9 @@ export default class MenuItem extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
-  state = { focused: false };
-
-  handleBlur = (event) => {
-    this.setState({ focused: false });
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
-  };
-
-  handleFocus = (event) => {
-    this.setState({ focused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-  };
-
   render() {
     const {
       className: classNameProp,
-      onBlur, // eslint-disable-line no-unused-vars
-      onFocus, // eslint-disable-line no-unused-vars
       selected,
       role,
       ...other,
@@ -100,11 +74,9 @@ export default class MenuItem extends Component {
       <ListItem
         button
         role={role}
-        tabIndex={this.state.focused ? '0' : '-1'}
+        tabIndex="-1"
         className={className}
         ripple={false}
-        onBlur={this.handleBlur}
-        onFocus={this.handleFocus}
         {...other}
       />
     );

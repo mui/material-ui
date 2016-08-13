@@ -1,12 +1,14 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('List', () => {
   return {
     root: {
+      flex: '1 1 auto',
+      overflow: 'auto',
       listStyle: 'none',
       margin: 0,
       padding: 0,
