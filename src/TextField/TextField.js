@@ -50,7 +50,6 @@ const getStyles = (props, context, state) => {
       pointerEvents: 'none',
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style)
       padding: 0,
       position: 'relative',
       width: '100%',
@@ -60,6 +59,8 @@ const getStyles = (props, context, state) => {
       color: props.disabled ? disabledTextColor : textColor,
       cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
+      appearance: 'textfield', // Improve type search style.
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
     textarea: {
     },
