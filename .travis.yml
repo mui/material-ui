@@ -24,3 +24,5 @@ install:
   - cd test/regressions/site && npm install && cd ../../../
 script:
   - ./scripts/run-travis-tests.sh
+after_success:
+  - cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
