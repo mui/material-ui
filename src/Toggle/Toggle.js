@@ -123,6 +123,10 @@ class Toggle extends Component {
      */
     thumbStyle: PropTypes.object,
     /**
+    * Override the inline styles for thumb when the toggle switch is toggled on.
+    */
+    thumbSwitchedStyle: PropTypes.object,
+    /**
      * Toggled if set to true.
      */
     toggled: PropTypes.bool,
@@ -130,6 +134,10 @@ class Toggle extends Component {
      * Override style for track.
      */
     trackStyle: PropTypes.object,
+    /**
+    * Override the inline styles for track when the toggle switch is toggled on.
+    */
+    trackSwitchedStyle: PropTypes.object,
     /**
      * ValueLink prop for when using controlled toggle.
      */
@@ -186,6 +194,8 @@ class Toggle extends Component {
       elementStyle,
       onToggle, // eslint-disable-line no-unused-vars
       toggled,
+      trackSwitchedStyle,
+      thumbSwitchedStyle,
       ...other,
     } = this.props;
 
@@ -196,6 +206,7 @@ class Toggle extends Component {
       styles.track,
       this.props.trackStyle,
       this.state.switched && styles.trackWhenSwitched,
+      this.state.switched && trackSwitchedStyle,
       this.props.disabled && styles.trackWhenDisabled
     );
 
@@ -203,6 +214,7 @@ class Toggle extends Component {
       styles.thumb,
       this.props.thumbStyle,
       this.state.switched && styles.thumbWhenSwitched,
+      this.state.switched && thumbSwitchedStyle,
       this.props.disabled && styles.thumbWhenDisabled
     );
 
