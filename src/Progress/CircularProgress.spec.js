@@ -26,15 +26,9 @@ describe('<CircularProgress>', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
-  it('should contain a div with the wrapper class', () => {
-    const wrapper = shallow(<CircularProgress />);
-    assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.wrapper), true, 'should have the wrapper class');
-  });
-
   it('should contain an SVG with the svg class, and a circle with the circle class', () => {
     const wrapper = shallow(<CircularProgress />);
-    const svg = wrapper.childAt(0).childAt(0);
+    const svg = wrapper.childAt(0);
     assert.strictEqual(svg.is('svg'), true, 'should be a svg');
     assert.strictEqual(svg.hasClass(classes.svg), true, 'should have the svg class');
     assert.strictEqual(svg.childAt(0).is('circle'), true, 'should be a circle');

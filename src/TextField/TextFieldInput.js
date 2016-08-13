@@ -17,6 +17,7 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       whiteSpace: 'normal',
       background: 'none',
       lineHeight: 1,
+      appearance: 'textfield', // Improve type search style.
       '&:focus': {
         outline: 0,
       },
