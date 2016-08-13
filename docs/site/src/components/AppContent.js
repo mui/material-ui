@@ -9,7 +9,7 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
     content: theme.mixins.gutters({
       paddingTop: 80,
       flex: '1 1 100%',
-      maxWidth: 900,
+      maxWidth: '100%',
       margin: '0 auto',
       '@raw h1': {
         ...theme.typography.display2,
@@ -28,6 +28,11 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
         fontSize: 14,
       },
     }),
+    [theme.breakpoints.up(948)]: {
+      content: {
+        maxWidth: 900,
+      },
+    },
   };
 });
 

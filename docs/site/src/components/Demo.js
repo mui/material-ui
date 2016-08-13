@@ -38,13 +38,14 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       padding: 0,
       margin: 0,
       '@raw pre': {
+        overflow: 'auto',
         color: `${theme.palette.text.primary} !important`,
         backgroundColor: `${palette.background.paper} !important`,
         margin: '0px !important',
         borderRadius: '0px !important',
       },
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up(600)]: {
       codeButton: { display: 'block' },
       code: { display: 'block' },
       root: {
