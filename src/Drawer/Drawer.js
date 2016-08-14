@@ -22,6 +22,7 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
       '&:focus': {
         outline: 'none',
       },
+      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     },
     docked: {
       flex: '0 0 auto',
@@ -30,13 +31,12 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
       },
     },
     modal: {
-
     },
   };
 });
 
 /**
- * This is a drawer
+ * This is a drawer.
  */
 export default class Drawer extends Component {
   static propTypes = {

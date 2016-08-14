@@ -15,7 +15,7 @@ export default function Circular(props, context) {
   return (
     <div>
       <CircularProgress className={classes.progress} />
-      <CircularProgress className={classes.progress} size={50} thickness={5} />
+      <CircularProgress className={classes.progress} size={50} />
     </div>
   );
 }
