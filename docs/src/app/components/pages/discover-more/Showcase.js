@@ -65,6 +65,12 @@ const appList = [
     img: 'images/showcase/spouti.png',
     link: 'https://www.spouti.com/',
   },
+  {
+    title: 'Dearborn Denim - American made jeans',
+    author: 'Alexander Tanton',
+    img: 'images/showcase/dearborn-denim.png',
+    link: 'http://dearborndenim.us/get-my-size',
+  },
 ];
 
 const Showcase = () => (
