@@ -4,7 +4,6 @@ import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
-import deprecated from '../utils/deprecatedPropType';
 
 let styleInjected = false;
 let listening = false;
@@ -52,8 +51,6 @@ class EnhancedButton extends Component {
     focusRippleOpacity: PropTypes.number,
     href: PropTypes.string,
     keyboardFocused: PropTypes.bool,
-    linkButton: deprecated(PropTypes.bool, `LinkButton is no longer required when the \`href\` property is provided.
-      It will be removed with v0.16.0.`),
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
@@ -269,7 +266,6 @@ class EnhancedButton extends Component {
       focusRippleOpacity, // eslint-disable-line no-unused-vars
       href,
       keyboardFocused, // eslint-disable-line no-unused-vars
-      linkButton, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       touchRippleOpacity, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
