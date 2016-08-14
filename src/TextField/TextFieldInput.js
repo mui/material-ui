@@ -21,6 +21,9 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       '&:focus': {
         outline: 0,
       },
+      '&::-webkit-search-decoration': { // Remove the padding when type=search.
+        appearance: 'none',
+      },
     },
     disabled: {
       color: palette.text.disabled,

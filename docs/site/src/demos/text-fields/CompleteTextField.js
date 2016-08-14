@@ -31,6 +31,7 @@ export default class CompleteTextField extends Component {
           <TextFieldInput
             className={classes.input}
             id="name"
+            type="search"
             value={this.state.value}
             onChange={(event) => this.setState({ value: event.target.value })}
           />

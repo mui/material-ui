@@ -28,14 +28,14 @@ export default function Router() {
         component={TestViewer}
         numTests={tests.length}
       >
-        {tests.map(((n, i) => {
+        {tests.map(((test, index) => {
           return (
             <Route
-              key={i}
-              title={n.name}
-              testIndex={i}
-              path={`${n.routePath}`}
-              component={requireTest(n.path).default}
+              key={index}
+              title={test.name}
+              testIndex={index}
+              path={test.routePath}
+              component={requireTest(test.path).default}
             />
           );
         }))}
