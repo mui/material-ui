@@ -28,9 +28,14 @@ class Tab extends Component {
 
   static propTypes = {
     /**
+     * The css class name of the active tab.
+     */
+    activeClassName: PropTypes.string,
+    /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
+
     /**
      * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
      */
@@ -89,6 +94,7 @@ class Tab extends Component {
 
   render() {
     const {
+      activeClassName,
       icon,
       index, // eslint-disable-line no-unused-vars
       onActive, // eslint-disable-line no-unused-vars
@@ -132,7 +138,7 @@ class Tab extends Component {
         touchRippleOpacity={rippleOpacity}
         onTouchTap={this.handleTouchTap}
       >
-        <div style={styles.button} >
+        <div style={styles.button} className={this.props.selected ? activeClassName : ''}>
           {iconElement}
           {label}
         </div>
