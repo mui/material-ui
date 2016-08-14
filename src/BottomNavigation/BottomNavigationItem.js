@@ -29,10 +29,13 @@ function getStyles(props, context) {
         bottomNavigation.unselectedFontSize,
       transition: 'color 0.3s, font-size 0.3s',
       color: color,
-      margin: 'auto',
     },
     icon: {
       display: 'block',
+      /**
+       * Used to ensure SVG icons are centered
+       */
+      width: '100%',
     },
     iconColor: color,
   };
