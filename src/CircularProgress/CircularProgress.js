@@ -2,13 +2,15 @@ import React, {Component, PropTypes} from 'react';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
+const THICKNESS = 3.5;
+
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
   return clampedValue / (max - min);
 }
 
 function getArcLength(fraction, props) {
-  return fraction * Math.PI * (props.size - props.thickness);
+  return fraction * Math.PI * (props.size - THICKNESS);
 }
 
 function getStyles(props, context) {
@@ -42,7 +44,7 @@ function getStyles(props, context) {
     },
     path: {
       stroke: props.color || palette.primary1Color,
-      strokeLinecap: 'round',
+      strokeLinecap: 'square',
       transition: transitions.create('all', '1.5s', null, 'ease-in-out'),
     },
   };
@@ -88,10 +90,6 @@ class CircularProgress extends Component {
      */
     style: PropTypes.object,
     /**
-     * Stroke width in pixels.
-     */
-    thickness: PropTypes.number,
-    /**
      * The value of progress, only works in determinate mode.
      */
     value: PropTypes.number,
@@ -103,7 +101,6 @@ class CircularProgress extends Component {
     min: 0,
     max: 100,
     size: 40,
-    thickness: 3.5,
   };
 
   static contextTypes = {
@@ -162,7 +159,6 @@ class CircularProgress extends Component {
       style,
       innerStyle,
       size,
-      thickness,
       ...other,
     } = this.props;
 
@@ -181,9 +177,9 @@ class CircularProgress extends Component {
               style={prepareStyles(styles.path)}
               cx={size / 2}
               cy={size / 2}
-              r={(size - thickness) / 2}
+              r={(size - THICKNESS) / 2}
               fill="none"
-              strokeWidth={thickness}
+              strokeWidth={THICKNESS}
               strokeMiterlimit="20"
             />
           </svg>
