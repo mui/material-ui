@@ -243,7 +243,7 @@ class RaisedButton extends Component {
       initialZDepth: zDepth,
     };
 
-    if (nextProps.disabled && this.state.hovered) {
+    if (nextProps.disabled) {
       nextState.hovered = false;
     }
 
