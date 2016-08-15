@@ -24,13 +24,6 @@ describe('<StepContent />', () => {
     assert.ok(wrapper.is('div'));
   });
 
-  it('renders null when used in a horizontal stepper', () => {
-    const wrapper = shallowWithContext(
-      <StepContent />
-    , {stepper: {orientation: 'horizontal'}});
-    assert.strictEqual(wrapper.node, null);
-  });
-
   it('merges styles and other props into the root node', () => {
     const wrapper = shallowWithContext(
       <StepContent
