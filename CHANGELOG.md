@@ -1,4 +1,9 @@
-## HEAD
+## HEAD (v0.16.0)
+
+We have **shifted goals** for `v0.16.0`.
+Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
+Those improvement are comming with the `next` branch.
+We are switching in goal so we can release changes more **often**.
 
 ##### Breaking Changes
 - [Badge] Swapped primary and accent colors (#4449)
@@ -21,6 +26,23 @@ Examples:
 <CircularProgress size={119} thickness={7} style={{margin: 10.5}} />
 ```
 (#4705)
+- [core] Wrap the `propTypes` definitions so they can be removed in production (#4872)
+
+##### Component Fixes / Enhancements
+
+## 0.15.4
+###### _Aug 11, 2016_
+
+##### Component Fixes / Enhancements
+- [BottomNavigation] Initial implementation (#4846)
+- [DropDownMenu] Revert the commit causing a regression in 0.15.3 (#f76302e)
+- [Snackbar] Add the material fontFamily (#4892)
+- [ListItem] New property open to toggle nested list (#4850)
+- [Slider] Fix an issue where not updating when max prop changes (#4895)
+- [Slider] Fix more warnings introduced by React v15.3.0 (#4869)
+
+##### Docs
+- [js] Explain the ECMAScript `stage-1` dependencies of the examples (#4877)
 
 ## 0.15.3
 ###### _Jul 31, 2016_

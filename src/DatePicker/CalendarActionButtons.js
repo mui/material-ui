@@ -8,11 +8,10 @@ class CalendarActionButton extends Component {
     okLabel: PropTypes.node,
     onTouchTapCancel: PropTypes.func,
     onTouchTapOk: PropTypes.func,
-    wordings: PropTypes.object,
   };
 
   render() {
-    const {cancelLabel, okLabel, wordings} = this.props;
+    const {cancelLabel, okLabel} = this.props;
 
     const styles = {
       root: {
@@ -35,7 +34,7 @@ class CalendarActionButton extends Component {
     return (
       <div style={styles.root} >
         <FlatButton
-          label={wordings ? wordings.cancel : cancelLabel}
+          label={cancelLabel}
           onTouchTap={this.props.onTouchTapCancel}
           primary={true}
           style={styles.flatButtons}
@@ -43,7 +42,7 @@ class CalendarActionButton extends Component {
         {!this.props.autoOk &&
           <FlatButton
             disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
-            label={wordings ? wordings.ok : okLabel}
+            label={okLabel}
             onTouchTap={this.props.onTouchTapOk}
             primary={true}
             style={styles.flatButtons}

@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import {fade} from '../utils/colorManipulator';
-import deprecated from '../utils/deprecatedPropType';
 
 export const MakeSelectable = (Component) => {
   return class extends Component {
@@ -9,23 +8,11 @@ export const MakeSelectable = (Component) => {
       onChange: PropTypes.func,
       selectedItemStyle: PropTypes.object,
       value: PropTypes.any,
-      valueLink: deprecated(PropTypes.shape({
-        value: PropTypes.any,
-        requestChange: PropTypes.func,
-      }), `This property is deprecated due to his low popularity. Use the value and onChange property.
-        It will be removed with v0.16.0.`),
     };
 
     static contextTypes = {
       muiTheme: PropTypes.object.isRequired,
     };
-
-    getValueLink(props) {
-      return props.valueLink || {
-        value: props.value,
-        requestChange: props.onChange,
-      };
-    }
 
     extendChild(child, styles, selectedItemStyle) {
       if (child && child.type && child.type.muiName === 'ListItem') {
@@ -71,15 +58,14 @@ export const MakeSelectable = (Component) => {
     };
 
     isChildSelected(child, props) {
-      return this.getValueLink(props).value === child.props.value;
+      return props.value === child.props.value;
     }
 
     handleItemTouchTap = (event, item) => {
-      const valueLink = this.getValueLink(this.props);
       const itemValue = item.props.value;
 
-      if (itemValue !== valueLink.value) {
-        valueLink.requestChange(event, itemValue);
+      if (itemValue !== this.props.value) {
+        this.props.onChange(event, itemValue);
       }
     };
 
