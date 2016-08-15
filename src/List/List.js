@@ -31,6 +31,11 @@ class List extends Component {
     subheaderStyle: deprecated(PropTypes.object,
       'Refer to the `subheader` property. It will be removed with v0.16.0.'),
     /**
+     * For selectable lists, this array specifies component
+     * type names that are searched for nested ListItem components.
+     */
+    traverse: PropTypes.array,
+    /**
      * @ignore
      * ** Breaking change ** List no longer supports `zDepth`. Instead, wrap it in `Paper`
      * or another component that provides zDepth.
