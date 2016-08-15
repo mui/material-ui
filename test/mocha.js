@@ -21,7 +21,10 @@ function runMochaTests({ module = '*', grep, types = ['unit', 'integration'] }) 
     pattern = types.map((n) => globPatterns[n]);
   }
 
-  const mocha = new Mocha({ grep });
+  const mocha = new Mocha({
+    grep,
+    reporter: 'dot',
+  });
 
   glob(
     pattern.length > 1 ? `{${pattern.join(',')}}` : pattern[0],
