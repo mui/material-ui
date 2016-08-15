@@ -43,7 +43,6 @@ class Calendar extends Component {
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
-    wordings: PropTypes.object,
   };
 
   static defaultProps = {
@@ -299,7 +298,6 @@ class Calendar extends Component {
       okLabel,
       onTouchTapCancel, // eslint-disable-line no-unused-vars
       onTouchTapOk, // eslint-disable-line no-unused-vars
-      wordings,
     } = this.props;
 
     return (
@@ -364,7 +362,6 @@ class Calendar extends Component {
               okLabel={okLabel}
               onTouchTapCancel={onTouchTapCancel}
               onTouchTapOk={onTouchTapOk}
-              wordings={wordings}
             />
           }
         </div>
