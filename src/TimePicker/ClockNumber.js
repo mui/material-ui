@@ -30,7 +30,7 @@ function getStyles(props, context) {
     pos = pos / 5;
   }
 
-  const positions = [
+  const originalPositions = [
     [0, 5],
     [54.5, 16.6],
     [94.4, 59.5],
@@ -44,6 +44,8 @@ function getStyles(props, context) {
     [-94.4, 59.5],
     [-54.5, 19.6],
   ];
+
+  const positions = muiTheme.isRtl ? originalPositions.map(([x, y]) => [-x, y]) : originalPositions;
 
   const innerPositions = [
     [0, 40],
