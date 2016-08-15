@@ -75,6 +75,45 @@ describe('<ListItem />', () => {
     assert.strictEqual(wrapper.find(`.${testClass}`).length, 1, 'should have a div with the test class');
   });
 
+  describe('props: primaryTogglesNestedList', () => {
+    it('should toggle nested list when true', () => {
+      const wrapper = shallowWithContext(
+        <ListItem
+          leftCheckbox={<div />}
+          primaryText="Item text"
+          primaryTogglesNestedList={true}
+          nestedItems={[
+            <ListItem key={1} primaryText="Nested item text" />,
+          ]}
+        />
+      );
+      const primaryTextButton = wrapper.find('EnhancedButton');
+
+      assert.strictEqual(wrapper.find(NestedList).props().open, false);
+
+      primaryTextButton.simulate('touchTap', {stopPropagation: () => {}});
+      assert.strictEqual(wrapper.find(NestedList).props().open, true);
+
+      primaryTextButton.simulate('touchTap', {stopPropagation: () => {}});
+      assert.strictEqual(wrapper.find(NestedList).props().open, false);
+    });
+
+    it('should not render primary text button when false', () => {
+      const wrapper = shallowWithContext(
+        <ListItem
+          leftCheckbox={<div />}
+          primaryText="Item text"
+          primaryTogglesNestedList={false}
+          nestedItems={[
+            <ListItem key={1} primaryText="Nested item text" />,
+          ]}
+        />
+      );
+
+      assert.strictEqual(wrapper.filter('EnhancedButton').length, 0);
+    });
+  });
+
   describe('props: open', () => {
     it('should initially open nested list', () => {
       const wrapper = shallowWithContext(
