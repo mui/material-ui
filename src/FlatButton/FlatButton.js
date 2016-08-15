@@ -118,7 +118,7 @@ class FlatButton extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.disabled && this.state.hovered) {
+    if (nextProps.disabled) {
       this.setState({
         hovered: false,
       });
