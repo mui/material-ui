@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('DialogTitle', () => {
     root: {
       margin: 0,
       padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
+      flex: '0 0 auto',
     },
   };
 });

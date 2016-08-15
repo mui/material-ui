@@ -12,7 +12,12 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
       height: 1,
       margin: '0 -1px 0 0',
       border: 'none',
+    },
+    default: {
       backgroundColor: palette.text.divider,
+    },
+    light: {
+      backgroundColor: palette.text.lightDivider,
     },
     absolute: {
       margin: 0,
@@ -28,11 +33,13 @@ export default function Divider(props, context) {
   const {
     absolute,
     className: classNameProp,
+    light,
     ...other,
   } = props;
   const classes = context.styleManager.render(styleSheet, { group: 'mui' });
   const className = classNames(classes.root, {
     [classes.absolute]: absolute,
+    [light ? classes.light : classes.default]: true,
   }, classNameProp);
 
   return (
@@ -43,6 +50,7 @@ export default function Divider(props, context) {
 Divider.propTypes = {
   absolute: PropTypes.bool,
   className: PropTypes.string,
+  light: PropTypes.bool,
 };
 
 Divider.contextTypes = {

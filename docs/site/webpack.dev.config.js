@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   debug: true,
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   context: path.resolve(__dirname),
   entry: {
     main: [

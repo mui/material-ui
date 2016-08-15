@@ -5,7 +5,7 @@ import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
-import Slide from '../transitions/Slide';
+import Fade from '../transitions/Fade';
 
 export const styleSheet = createStyleSheet('Dialog', () => {
   return {
@@ -14,10 +14,13 @@ export const styleSheet = createStyleSheet('Dialog', () => {
       alignItems: 'center',
     },
     dialog: {
+      display: 'flex',
+      flexDirection: 'column',
       flex: '0 1 auto',
       position: 'relative',
       width: '75%',
       maxWidth: 960,
+      maxHeight: '90vh',
       '&:focus': {
         outline: 'none',
       },
@@ -99,10 +102,6 @@ export default class Dialog extends Component {
      */
     transition: PropTypes.func,
     /**
-     * Slide transition direction
-     */
-    transitionDirection: PropTypes.oneOf(['up', 'down', 'left', 'right']),
-    /**
      * Length of the transition in ms
      */
     transitionDuration: PropTypes.number,
@@ -112,8 +111,7 @@ export default class Dialog extends Component {
     hideOnBackdropClick: true,
     hideOnEscapeKeyUp: true,
     open: false,
-    transition: Slide,
-    transitionDirection: 'down',
+    transition: Fade,
     transitionDuration: 300,
   };
 
@@ -138,7 +136,6 @@ export default class Dialog extends Component {
       onExited,
       onRequestClose,
       transition,
-      transitionDirection,
       transitionDuration,
       ...other,
     } = this.props;
@@ -147,8 +144,6 @@ export default class Dialog extends Component {
 
     const transitionProps = {
       in: open,
-      centered: true,
-      direction: transitionDirection,
       transitionAppear: true,
       transitionDuration,
       onEnter,

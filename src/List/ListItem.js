@@ -11,12 +11,24 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
-      paddingTop: 8,
-      paddingBottom: 8,
       textDecoration: 'none',
-      '&keyboardFocused': {
+      '& keyboardFocused': {
         background: theme.palette.text.divider,
       },
+    },
+    default: {
+      paddingTop: 19,
+      paddingBottom: 19,
+    },
+    dense: {
+      paddingTop: 8,
+      paddingBottom: 8,
+    },
+    disabled: {
+      opacity: 0.5,
+    },
+    divider: {
+      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     },
     gutters: theme.mixins.gutters({}),
   };
@@ -28,6 +40,12 @@ export default class ListItem extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    /**
+     * @ignore
+     */
+    disabled: PropTypes.bool,
+    dense: PropTypes.bool,
+    divider: PropTypes.bool,
     gutters: PropTypes.bool,
   };
 
@@ -45,6 +63,9 @@ export default class ListItem extends Component {
       button,
       className: classNameProp,
       component: componentProp,
+      dense,
+      disabled,
+      divider,
       gutters,
       ...other,
     } = this.props;
@@ -52,9 +73,12 @@ export default class ListItem extends Component {
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const className = classNames(classes.root, {
       [classes.gutters]: gutters,
+      [classes.divider]: divider,
+      [classes.disabled]: disabled,
+      [dense ? classes.dense : classes.default]: true,
     }, classNameProp);
 
-    const listItemProps = { className, ...other };
+    const listItemProps = { className, disabled, ...other };
     let component = componentProp;
 
     if (button) {

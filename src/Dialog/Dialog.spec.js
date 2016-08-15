@@ -54,22 +54,22 @@ describe('<Dialog>', () => {
     assert.strictEqual(wrapper.find('Paper').hasClass('woof'), true, 'should have the "woof" class');
   });
 
-  it('should render Slide > Paper > children inside the Modal', () => {
+  it('should render Fade > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
     const wrapper = shallow(<Dialog>{children}</Dialog>);
 
-    const slide = wrapper.childAt(0);
+    const fade = wrapper.childAt(0);
     assert.strictEqual(
-      slide.length === 1 && slide.is('Slide'),
+      fade.length === 1 && fade.is('Fade'),
       true,
-      'immediate wrapper child should be Slide'
+      'immediate wrapper child should be Fade'
     );
 
-    const paper = slide.childAt(0);
+    const paper = fade.childAt(0);
     assert.strictEqual(
       paper.length === 1 && paper.is('Paper'),
       true,
-      'slide child should be Paper'
+      'fade child should be Paper'
     );
 
     assert.strictEqual(paper.hasClass(classes.dialog), true, 'should have the dialog class');
@@ -78,26 +78,21 @@ describe('<Dialog>', () => {
   it('should not be open by default', () => {
     const wrapper = shallow(<Dialog />);
     assert.strictEqual(wrapper.prop('show'), false, 'should pass show=false to the Modal');
-    assert.strictEqual(wrapper.find('Slide').prop('in'), false, 'should pass in=false to the Slide');
+    assert.strictEqual(wrapper.find('Fade').prop('in'), false, 'should pass in=false to the Fade');
   });
 
   it('should be open by default', () => {
     const wrapper = shallow(<Dialog open />);
     assert.strictEqual(wrapper.prop('show'), true, 'should pass show=true to the Modal');
-    assert.strictEqual(wrapper.find('Slide').prop('in'), true, 'should pass in=true to the Slide');
+    assert.strictEqual(wrapper.find('Fade').prop('in'), true, 'should pass in=true to the Fade');
   });
 
-  it('should slide down and make the transition appear on first mount', () => {
+  it('should fade down and make the transition appear on first mount', () => {
     const wrapper = shallow(<Dialog />);
     assert.strictEqual(
-      wrapper.find('Slide').prop('transitionAppear'),
+      wrapper.find('Fade').prop('transitionAppear'),
       true,
-      'should pass transitionAppear=true to the Slide'
-    );
-    assert.strictEqual(
-      wrapper.find('Slide').prop('direction'),
-      'down',
-      'should pass direction=down to the Slide'
+      'should pass transitionAppear=true to the Fade'
     );
   });
 });

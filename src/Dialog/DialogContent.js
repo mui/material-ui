@@ -8,6 +8,8 @@ export const styleSheet = createStyleSheet('DialogContent', () => {
   const gutter = 24;
   return {
     root: {
+      flex: '1 1 auto',
+      overflowY: 'auto',
       padding: `0 ${gutter}px ${gutter}px ${gutter}px`,
       '&:first-child': {
         paddingTop: gutter,
