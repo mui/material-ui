@@ -67,7 +67,7 @@ import RelatedProjects from './components/pages/discover-more/RelatedProjects';
 import StepperPage from './components/pages/components/Stepper/Page';
 
 /**
- * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
+ * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
  *
  * Routes are used to declare your view hierarchy.
  *
