@@ -5,7 +5,6 @@ import Transition from '../internal/Transition';
 
 export default class Slide extends Component {
   static propTypes = {
-    centered: PropTypes.bool,
     /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
@@ -15,6 +14,10 @@ export default class Slide extends Component {
      */
     className: PropTypes.string,
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    /**
+     * Set to slide in by a fixed number of pixels or %
+     */
+    offset: PropTypes.string,
     /**
      * Callback fired before the component is entering
      */
@@ -43,7 +46,7 @@ export default class Slide extends Component {
   };
 
   static defaultProps = {
-    direction: 'right',
+    direction: 'down',
     transitionDuration: 300,
   };
 
@@ -52,7 +55,7 @@ export default class Slide extends Component {
   };
 
   handleEnter = (element) => {
-    element.style.transform = this.getTranslateValue(this.props);
+    element.style.transform = this.getTranslateValue(this.props, element);
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
@@ -68,35 +71,24 @@ export default class Slide extends Component {
   };
 
   handleExiting = (element) => {
-    element.style.transform = this.getTranslateValue(this.props);
+    element.style.transform = this.getTranslateValue(this.props, element);
     if (this.props.onExiting) {
       this.props.onExiting(element);
     }
   };
 
-  getTranslateValue(props) {
-    const { centered, direction } = props;
-
-    if (centered) {
-      if (direction === 'left') {
-        return 'translate3d(calc(50vw + 50%), 0, 0)';
-      } else if (direction === 'right') {
-        return 'translate3d(calc(-50vw - 50%), 0, 0)';
-      } else if (direction === 'up') {
-        return 'translate3d(0, calc(50vw + 50%), 0)';
-      } else if (direction === 'down') {
-        return 'translate3d(0, calc(-50vw - 50%), 0)';
-      }
-    }
+  getTranslateValue(props, element) {
+    const { direction } = props;
+    const rect = element.getBoundingClientRect();
 
     if (direction === 'left') {
-      return 'translate3d(100%, 0, 0)';
+      return `translate3d(${rect.right + rect.width}px, 0, 0)`;
     } else if (direction === 'right') {
-      return 'translate3d(-100%, 0, 0)';
+      return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
     } else if (direction === 'up') {
-      return 'translate3d(0, 100%, 0)';
+      return `translate3d(0, ${rect.bottom + rect.height}px, 0)`;
     } else if (direction === 'down') {
-      return 'translate3d(0, -100%, 0)';
+      return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
     }
 
     return 'translate3d(0, 0, 0)';
@@ -104,8 +96,8 @@ export default class Slide extends Component {
 
   render() {
     const {
-      centered, // eslint-disable-line no-unused-vars
       children,
+      offset, // eslint-disable-line no-unused-vars
       onEnter, // eslint-disable-line no-unused-vars
       onEntering, // eslint-disable-line no-unused-vars
       onExiting, // eslint-disable-line no-unused-vars

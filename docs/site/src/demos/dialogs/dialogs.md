@@ -25,6 +25,10 @@ If a title is required:
 
 {{demo='dialogs/AlertDialog.js'}}
 
+You can also swap out the transition, the next example uses `Slide`.
+
+{{demo='dialogs/AlertDialogSlide.js'}}
+
 ## Confirmation dialogs
 
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK.”

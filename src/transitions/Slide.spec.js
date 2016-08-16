@@ -39,7 +39,7 @@ describe('<Slide>', () => {
 
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { style: {} });
+        wrapper.simulate(event, { style: {}, getBoundingClientRect: () => ({}) });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -58,38 +58,32 @@ describe('<Slide>', () => {
       let element;
 
       before(() => {
-        element = { style: {} };
+        element = {
+          getBoundingClientRect: () => ({
+            width: 500,
+            height: 300,
+            left: 300,
+            right: 500,
+            top: 200,
+            bottom: 100,
+          }),
+          style: {},
+        };
       });
 
       it('should set element transform and transition according to the direction', () => {
         wrapper.setProps({ direction: 'left' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(100%, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(1000px, 0, 0)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-100%, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(-800px, 0, 0)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, 100%, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(0, 400px, 0)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, -100%, 0)');
-      });
-
-      it('should set different values if working with a centered element', () => {
-        wrapper.setProps({ centered: true });
-        wrapper.setProps({ direction: 'left' });
-        instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(calc(50vw + 50%), 0, 0)');
-        wrapper.setProps({ direction: 'right' });
-        instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(calc(-50vw - 50%), 0, 0)');
-        wrapper.setProps({ direction: 'up' });
-        instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, calc(50vw + 50%), 0)');
-        wrapper.setProps({ direction: 'down' });
-        instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, calc(-50vw - 50%), 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
       });
     });
 
@@ -110,39 +104,32 @@ describe('<Slide>', () => {
       let element;
 
       before(() => {
-        element = { style: {} };
+        element = {
+          getBoundingClientRect: () => ({
+            width: 500,
+            height: 300,
+            left: 300,
+            right: 500,
+            top: 200,
+            bottom: 100,
+          }),
+          style: {},
+        };
       });
 
       it('should set element transform and transition according to the direction', () => {
-        wrapper.setProps({ centered: false });
         wrapper.setProps({ direction: 'left' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(100%, 0, 0)');
+        instance.handleEnter(element);
+        assert.strictEqual(element.style.transform, 'translate3d(1000px, 0, 0)');
         wrapper.setProps({ direction: 'right' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-100%, 0, 0)');
+        instance.handleEnter(element);
+        assert.strictEqual(element.style.transform, 'translate3d(-800px, 0, 0)');
         wrapper.setProps({ direction: 'up' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, 100%, 0)');
+        instance.handleEnter(element);
+        assert.strictEqual(element.style.transform, 'translate3d(0, 400px, 0)');
         wrapper.setProps({ direction: 'down' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, -100%, 0)');
-      });
-
-      it('should set different values if working with a centered element', () => {
-        wrapper.setProps({ centered: true });
-        wrapper.setProps({ direction: 'left' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(calc(50vw + 50%), 0, 0)');
-        wrapper.setProps({ direction: 'right' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(calc(-50vw - 50%), 0, 0)');
-        wrapper.setProps({ direction: 'up' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, calc(50vw + 50%), 0)');
-        wrapper.setProps({ direction: 'down' });
-        instance.handleExiting(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, calc(-50vw - 50%), 0)');
+        instance.handleEnter(element);
+        assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
       });
     });
   });

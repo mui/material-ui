@@ -100,7 +100,7 @@ export default class Dialog extends Component {
     /**
      * Transition component
      */
-    transition: PropTypes.func,
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
     /**
      * Length of the transition in ms
      */
@@ -154,6 +154,14 @@ export default class Dialog extends Component {
       onExited,
     };
 
+    let createTransitionFn;
+
+    if (typeof transition === 'function') {
+      createTransitionFn = React.createElement;
+    } else {
+      createTransitionFn = React.cloneElement;
+    }
+
     return (
       <Modal
         className={classes.modal}
@@ -165,7 +173,7 @@ export default class Dialog extends Component {
         onRequestClose={onRequestClose}
         show={open}
       >
-        {React.createElement(transition, transitionProps, (
+        {createTransitionFn(transition, transitionProps, (
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
