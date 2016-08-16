@@ -27,6 +27,7 @@ function getStyles(props, context) {
       position: 'absolute',
       opacity: 1,
       fill: checkbox.boxColor,
+      transition: transitions.easeOut('2s', null, '200ms'),
     },
     checkWhenSwitched: {
       opacity: 1,
@@ -38,6 +39,7 @@ function getStyles(props, context) {
     boxWhenSwitched: {
       opacity: 0,
       fill: checkbox.checkedColor,
+      transition: transitions.easeOut('100ms', null, '0ms'),
     },
     checkWhenDisabled: {
       fill: checkbox.disabledColor,
