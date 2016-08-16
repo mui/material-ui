@@ -89,6 +89,10 @@ class MenuItem extends Component {
       'keyboard-focused',
     ]),
     /**
+     * Override the hover color of MenuItem.
+     */
+    hoverColor: PropTypes.string,
+    /**
      * Override the inline-styles of the inner div.
      */
     innerDivStyle: PropTypes.object,
@@ -224,6 +228,7 @@ class MenuItem extends Component {
       desktop,
       disabled,
       focusState, // eslint-disable-line no-unused-vars
+      hoverColor,
       innerDivStyle,
       insetChildren,
       leftIcon,
@@ -291,6 +296,7 @@ class MenuItem extends Component {
       <ListItem
         {...other}
         disabled={disabled}
+        hoverColor={hoverColor}
         innerDivStyle={mergedInnerDivStyles}
         insetChildren={insetChildren}
         leftIcon={leftIconElement}
