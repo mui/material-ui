@@ -51,6 +51,12 @@ class DatePicker extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Used to control which view the Date Picker should show.
+     * `month` (default) displays the DatePicker's month view
+     * `year` displays the DatePicker's year view
+     */
+    displayMode: PropTypes.oneOf(['month', 'year']),
+    /**
      * Used to change the first day of week. It varies from
      * Saturday to Monday between different locales.
      * The allowed range is 0 (Sunday) to 6 (Saturday).
@@ -140,6 +146,7 @@ class DatePicker extends Component {
     container: 'dialog',
     disabled: false,
     disableYearSelection: false,
+    displayMode: 'month',
     firstDayOfWeek: 1,
     style: {},
   };
@@ -263,6 +270,7 @@ class DatePicker extends Component {
       defaultDate, // eslint-disable-line no-unused-vars
       dialogContainerStyle,
       disableYearSelection,
+      displayMode,
       firstDayOfWeek,
       formatDate: formatDateProp,
       locale,
@@ -300,6 +308,7 @@ class DatePicker extends Component {
           container={container}
           containerStyle={dialogContainerStyle}
           disableYearSelection={disableYearSelection}
+          displayMode={displayMode}
           firstDayOfWeek={firstDayOfWeek}
           initialDate={this.state.dialogDate}
           locale={locale}

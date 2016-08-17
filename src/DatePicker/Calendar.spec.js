@@ -3,6 +3,8 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import Calendar from './Calendar';
+import CalendarYear from './CalendarYear';
+import CalendarMonth from './CalendarMonth';
 import {addMonths, dateTimeFormat} from './dateUtils';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -191,6 +193,24 @@ describe('<Calendar />', () => {
       wrapper.update();
 
       assert.notOk(wrapper.find('CalendarToolbar').prop('prevMonth'));
+    });
+  });
+
+  describe('Calendar property displayMode', () => {
+    it('should consider displayMode as a parameter which part of the calendar should be displayed', () => {
+      const wrapper = shallowWithContext(
+        <Calendar displayMode="year" />
+      );
+
+      assert.ok(wrapper.find(CalendarYear).length === 1);
+      assert.ok(wrapper.find(CalendarMonth).length === 0);
+
+      wrapper.setProps({
+        displayMode: 'month',
+      });
+
+      assert.ok(wrapper.find(CalendarYear).length === 0);
+      assert.ok(wrapper.find(CalendarMonth).length === 1);
     });
   });
 });

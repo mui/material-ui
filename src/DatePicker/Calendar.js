@@ -31,6 +31,7 @@ class Calendar extends Component {
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
     disableYearSelection: PropTypes.bool,
+    displayMode: PropTypes.oneOf(['month', 'year']),
     firstDayOfWeek: PropTypes.number,
     initialDate: PropTypes.object,
     locale: PropTypes.string.isRequired,
@@ -47,6 +48,7 @@ class Calendar extends Component {
 
   static defaultProps = {
     DateTimeFormat: dateTimeFormat,
+    displayMode: 'month',
     disableYearSelection: false,
     initialDate: new Date(),
     locale: 'en-US',
@@ -70,6 +72,7 @@ class Calendar extends Component {
     this.setState({
       displayDate: getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
+      displayMonthDay: this.props.displayMode === 'month',
     });
   }
 
@@ -79,6 +82,11 @@ class Calendar extends Component {
       this.setState({
         displayDate: getFirstDayOfMonth(date),
         selectedDate: date,
+      });
+    }
+    if (nextProps.displayMode !== this.props.displayMode) {
+      this.setState({
+        displayMonthDay: nextProps.displayMode === 'month',
       });
     }
   }

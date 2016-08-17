@@ -16,6 +16,7 @@ class DatePickerDialog extends Component {
     container: PropTypes.oneOf(['dialog', 'inline']),
     containerStyle: PropTypes.object,
     disableYearSelection: PropTypes.bool,
+    displayMode: PropTypes.oneOf(['month', 'year']),
     firstDayOfWeek: PropTypes.number,
     initialDate: PropTypes.object,
     locale: PropTypes.string,
@@ -107,6 +108,7 @@ class DatePickerDialog extends Component {
       container,
       containerStyle,
       disableYearSelection,
+      displayMode,
       initialDate,
       firstDayOfWeek,
       locale,
@@ -160,6 +162,7 @@ class DatePickerDialog extends Component {
             DateTimeFormat={DateTimeFormat}
             cancelLabel={cancelLabel}
             disableYearSelection={disableYearSelection}
+            displayMode={displayMode}
             firstDayOfWeek={firstDayOfWeek}
             initialDate={initialDate}
             locale={locale}
