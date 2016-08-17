@@ -48,8 +48,8 @@ class Calendar extends Component {
 
   static defaultProps = {
     DateTimeFormat: dateTimeFormat,
-    displayMode: 'month',
     disableYearSelection: false,
+    displayMode: 'month',
     initialDate: new Date(),
     locale: 'en-US',
     minDate: addYears(new Date(), -100),
@@ -62,7 +62,6 @@ class Calendar extends Component {
 
   state = {
     displayDate: undefined,
-    displayMonthDay: true,
     selectedDate: undefined,
     transitionDirection: 'left',
     transitionEnter: true,
@@ -72,7 +71,7 @@ class Calendar extends Component {
     this.setState({
       displayDate: getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
-      displayMonthDay: this.props.displayMode === 'month',
+      displayMode: this.props.displayMode,
     });
   }
 
@@ -86,7 +85,7 @@ class Calendar extends Component {
     }
     if (nextProps.displayMode !== this.props.displayMode) {
       this.setState({
-        displayMonthDay: nextProps.displayMode === 'month',
+        displayMode: nextProps.displayMode,
       });
     }
   }
@@ -96,7 +95,7 @@ class Calendar extends Component {
   }
 
   isSelectedDateDisabled() {
-    if (!this.state.displayMonthDay) {
+    if (this.state.displayMode === 'year') {
       return false;
     }
 
@@ -173,13 +172,13 @@ class Calendar extends Component {
 
   handleTouchTapDateDisplayMonthDay = () => {
     this.setState({
-      displayMonthDay: true,
+      displayMode: 'month',
     });
   };
 
   handleTouchTapDateDisplayYear = () => {
     this.setState({
-      displayMonthDay: false,
+      displayMode: 'year',
     });
   };
 
@@ -320,13 +319,13 @@ class Calendar extends Component {
           onTouchTapMonthDay={this.handleTouchTapDateDisplayMonthDay}
           onTouchTapYear={this.handleTouchTapDateDisplayYear}
           locale={locale}
-          monthDaySelected={this.state.displayMonthDay}
+          monthDaySelected={this.state.displayMode === 'month'}
           mode={this.props.mode}
           selectedDate={this.state.selectedDate}
           weekCount={weekCount}
         />
         <div style={prepareStyles(styles.calendar)}>
-          {this.state.displayMonthDay &&
+          {this.state.displayMode === 'month' &&
             <div style={prepareStyles(styles.calendarContainer)}>
               <CalendarToolbar
                 DateTimeFormat={DateTimeFormat}
@@ -358,7 +357,7 @@ class Calendar extends Component {
               </SlideInTransitionGroup>
             </div>
           }
-          {!this.state.displayMonthDay &&
+          {this.state.displayMode === 'year' &&
             <div style={prepareStyles(styles.yearContainer)}>
               {this.yearSelector()}
             </div>
