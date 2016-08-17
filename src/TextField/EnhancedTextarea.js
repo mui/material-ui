@@ -97,6 +97,10 @@ class EnhancedTextarea extends Component {
 
     let newHeight = shadow.scrollHeight;
 
+    // Guarding for jsdom, where scrollHeight isn't present.
+    // See https://github.com/tmpvar/jsdom/issues/1013
+    if (newHeight === undefined) return;
+
     if (this.props.rowsMax >= this.props.rows) {
       newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
     }
