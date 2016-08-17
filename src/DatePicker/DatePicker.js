@@ -234,6 +234,7 @@ class DatePicker extends Component {
     if (!this.isControlled()) {
       this.setState({
         date: date,
+        keyboardActivated: false
       });
     }
     if (this.props.onChange) {
@@ -254,10 +255,8 @@ class DatePicker extends Component {
   };
 
   handleInputBlur = () => {
-    this.setState({
-      keyboardActivated: false,
-      date: this.state.date instanceof Date ? this.state.date : undefined,
-    });
+    var tmpDate = this.state.date instanceof Date ? this.state.date : undefined;
+    this.handleAccept(tmpDate);
   }
 
   handleKeyDown = (event) => {
