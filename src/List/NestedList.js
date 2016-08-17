@@ -24,8 +24,8 @@ class NestedList extends Component {
       style,
     } = this.props;
     
-    if (!open && !this._hasOpened) return null;
-    this._hasOpened = true;
+    if (!open && !this.hasOpened) return null;
+    this.hasOpened = true;
 
     return (
       <List style={Object.assign({}, style)}>
