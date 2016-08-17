@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
@@ -174,9 +175,22 @@ class DatePicker extends Component {
   };
 
   componentWillMount() {
+
     this.setState({
       date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
     });
+  }
+
+  componentDidMount() {
+    var node = ReactDOM.findDOMNode(this.refs.input);
+    node.addEventListener('touchstart', this.handleClick);
+    node.addEventListener('click', this.handleClick);
+  }
+
+  componentWillUnmount() {
+    var node = ReactDOM.findDOMNode(this.refs.input);
+    node.removeEventListener('touchstart', this.handleClick);
+    node.removeEventListener('click', this.handleClick);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -203,7 +217,7 @@ class DatePicker extends Component {
      * (get the current system date while doing so)
      * else set it to the currently selected date
      */
-    if (this.shouldHandleKeyboard)
+    if (this.shouldHandleKeyboard())
       this.refs.input.focus();
 
     if (this.state.date !== undefined) {
@@ -314,7 +328,21 @@ class DatePicker extends Component {
     });
   }
 
+  handleClick = (event) => {
+    if (this.shouldHandleKeyboard() && this.refs.dialogWindow.state.open) {
+      event.stopPropagation();
+      event.preventDefault();
+      return;
+    } 
+  }
+
   handleTouchTap = (event) => {
+    if (this.shouldHandleKeyboard() && this.refs.dialogWindow.state.open) {
+      event.stopPropagation();
+      event.preventDefault();
+      return;
+    } 
+
     if (this.props.onTouchTap) {
       this.props.onTouchTap(event);
     }
@@ -324,6 +352,7 @@ class DatePicker extends Component {
         this.openDialog();
       }, 0);
     }
+    
   };
 
   isControlled() {
@@ -407,6 +436,7 @@ class DatePicker extends Component {
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
           autoOk={autoOk}
+          useLayerForClickAway={!this.shouldHandleKeyboard()}
           anchorEl={this.refs.root}
           cancelLabel={cancelLabel}
           container={container}
