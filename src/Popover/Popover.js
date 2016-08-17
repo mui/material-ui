@@ -118,6 +118,8 @@ class Popover extends Component {
       open: props.open,
       closing: false,
     };
+
+    this.timeout = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -130,10 +132,13 @@ class Popover extends Component {
         });
       } else {
         if (nextProps.animated) {
+          if (this.timeout !== null) return;
           this.setState({closing: true});
           this.timeout = setTimeout(() => {
             this.setState({
               open: false,
+            }, () => {
+              this.timeout = null;
             });
           }, 500);
         } else {
@@ -150,7 +155,10 @@ class Popover extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timeout);
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
   }
 
   renderLayer = () => {
