@@ -27,6 +27,7 @@ Examples:
 ```
 (#4705)
 - [core] Wrap the `propTypes` definitions so they can be removed in production (#4872)
+- [core] Remove the deprecated code (#4987)
 
 ##### Component Fixes / Enhancements
 
