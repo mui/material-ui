@@ -23,15 +23,12 @@ class NestedList extends Component {
       nestedLevel,
       style,
     } = this.props;
-
-    const styles = {
-      root: {
-        display: open ? null : 'none',
-      },
-    };
+    
+    if (!open && !this._hasOpened) return null;
+    this._hasOpened = true;
 
     return (
-      <List style={Object.assign({}, styles.root, style)}>
+      <List style={Object.assign({}, style)}>
         {
           React.Children.map(children, (child) => {
             return React.isValidElement(child) ? (
