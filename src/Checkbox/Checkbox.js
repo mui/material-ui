@@ -23,12 +23,6 @@ function getStyles(props, context) {
         }`,
       fill: checkbox.checkedColor,
     },
-    box: {
-      position: 'absolute',
-      opacity: 1,
-      fill: checkbox.boxColor,
-      transition: transitions.easeOut('2s', null, '200ms'),
-    },
     checkWhenSwitched: {
       opacity: 1,
       transform: 'scale(1)',
@@ -36,13 +30,20 @@ function getStyles(props, context) {
           transitions.easeOut('800ms', 'transform', '0ms')
         }`,
     },
-    boxWhenSwitched: {
-      transition: transitions.easeOut('100ms', null, '0ms'),
-      fill: checkbox.checkedColor,
-    },
     checkWhenDisabled: {
       fill: checkbox.disabledColor,
       cursor: 'not-allowed',
+    },
+    box: {
+      position: 'absolute',
+      opacity: 1,
+      fill: checkbox.boxColor,
+      transition: transitions.easeOut('1000ms', 'opacity', '200ms'),
+    },
+    boxWhenSwitched: {
+      opacity: 0,
+      transition: transitions.easeOut('650ms', 'opacity', '150ms'),
+      fill: checkbox.checkedColor,
     },
     boxWhenDisabled: {
       fill: props.checked ? 'transparent' : checkbox.disabledColor,
