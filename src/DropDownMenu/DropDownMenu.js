@@ -228,16 +228,6 @@ class DropDownMenu extends Component {
     this.close(false);
   };
 
-  handleFocus = (event) => {
-    // this is a work-around for SelectField losing keyboard focus
-    // because the containing TextField re-renders
-    if (event) event.stopPropagation();
-  }
-
-  handleBlur = (event) => {
-    if (event) event.stopPropagation();
-  }
-
   handleEscKeyDownMenu = (event) => {
     event.preventDefault();
     this.close(true);
@@ -340,8 +330,6 @@ class DropDownMenu extends Component {
             centerRipple={true}
             tabIndex={this.props.disabled ? -1 : 0}
             onKeyDown={this.handleKeyDown}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
             ref="dropArrow"
             style={Object.assign({}, styles.icon, iconStyle)}
           >
@@ -357,17 +345,19 @@ class DropDownMenu extends Component {
           animated={animated}
           onRequestClose={this.handleRequestCloseMenu}
         >
-          <Menu
-            maxHeight={maxHeight}
-            desktop={true}
-            value={value}
-            onEscKeyDown={this.handleEscKeyDownMenu}
-            style={menuStyle}
-            listStyle={listStyle}
-            onItemTouchTap={this.handleItemTouchTap}
-          >
-            {children}
-          </Menu>
+          {open &&
+            <Menu
+              maxHeight={maxHeight}
+              desktop={true}
+              value={value}
+              onEscKeyDown={this.handleEscKeyDownMenu}
+              style={menuStyle}
+              listStyle={listStyle}
+              onItemTouchTap={this.handleItemTouchTap}
+            >
+              {children}
+            </Menu>
+          }
         </Popover>
       </div>
     );
