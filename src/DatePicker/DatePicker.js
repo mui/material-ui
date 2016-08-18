@@ -331,7 +331,6 @@ class DatePicker extends Component {
   handleClick = (event) => {
     if (this.shouldHandleKeyboard() && this.refs.dialogWindow.state.open) {
       event.stopPropagation();
-      event.preventDefault();
       return;
     } 
   }
