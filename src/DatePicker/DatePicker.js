@@ -388,6 +388,7 @@ class DatePicker extends Component {
       defaultDate, // eslint-disable-line no-unused-vars
       dialogContainerStyle,
       disableYearSelection,
+      keyboardEnabled,
       firstDayOfWeek,
       formatDate: formatDateProp,
       locale,
