@@ -151,10 +151,6 @@ class AutoComplete extends Component {
      */
     openOnFocus: PropTypes.bool,
     /**
-     * Text being input to auto complete.
-     */
-    searchText: PropTypes.string,
-    /**
      * Provides preselected options.
      * /!\ Must have same format as dataSource
      */
@@ -165,6 +161,10 @@ class AutoComplete extends Component {
         value: PropTypes.node
       })
     ])),
+    /**
+     * Text being input to auto complete.
+     */
+    searchText: PropTypes.string,
     /**
      * Override the inline-styles of the root element.
      */
@@ -373,6 +373,7 @@ class AutoComplete extends Component {
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
+      preSelectedOptions, // eslint-disable-line no-unused-vars
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
       style,
       targetOrigin,
