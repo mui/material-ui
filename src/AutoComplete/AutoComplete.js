@@ -21,26 +21,16 @@ function getStyles (props, context, state) {
       position: 'relative',
       width: fullWidth ? '100%' : 256
     },
-    menu: {
-      width: '100%'
-    },
+    menu: { width: '100%' },
     list: {
       display: 'block',
       width: fullWidth ? '100%' : 256
     },
-    innerDiv: {
-      overflow: 'hidden'
-    },
-    checkbox: {
-      padding: '10px 0'
-    }
+    innerDiv: { overflow: 'hidden' },
+    checkbox: { padding: '10px 0' }
   }
 
-  if (anchorEl && fullWidth) {
-    styles.popover = {
-      width: anchorEl.clientWidth
-    }
-  }
+  if (anchorEl && fullWidth) styles.popover = { width: anchorEl.clientWidth }
 
   return styles
 }
@@ -165,13 +155,14 @@ class AutoComplete extends Component {
      */
     searchText: PropTypes.string,
     /**
-     * When multiple is defined/true, the returned value changes from String to Array of strings/nodes.
+     * Provides preselected options.
+     * /!\ Must have same format as dataSource
      */
-    selectedOptions: PropTypes.arrayOf(PropTypes.oneOfType([
+    preSelectedOptions: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.shape({
         text: PropTypes.string,
-        value: PropTypes.number
+        value: PropTypes.node
       })
     ])),
     /**
@@ -211,18 +202,18 @@ class AutoComplete extends Component {
     disableFocusRipple: true,
     filter: (searchText, key) => searchText !== '' && key.includes(searchText),
     fullWidth: false,
+    menuCloseDelay: 300,
     multiple: false,
-    open: false,
-    openOnFocus: true,
     onUpdateInput: () => {},
     onNewRequest: () => {},
+    open: false,
+    openOnFocus: true,
+    preSelectedOptions: [],
     searchText: '',
-    menuCloseDelay: 300,
     targetOrigin: {
       vertical: 'top',
       horizontal: 'left'
     },
-    selectedOptions: [],
     withCheckboxes: true
   }
 
@@ -230,20 +221,14 @@ class AutoComplete extends Component {
     muiTheme: PropTypes.object.isRequired
   }
 
-  state = {
-    anchorEl: null,
-    focusTextField: true,
-    open: false,
-    searchText: undefined
-  }
-
   componentWillMount () {
-    this.requestsList = []
     this.setState({
+      anchorEl: null,
+      focusTextField: false,
       open: this.props.open,
-      searchText: this.props.searchText
+      searchText: this.props.searchText,
+      selectedOptions: this.props.preSelectedOptions
     })
-    this.timerTouchTapCloseId = null
   }
 
   componentWillReceiveProps (nextProps) {
@@ -252,69 +237,83 @@ class AutoComplete extends Component {
     }
   }
 
-  componentWillUnmount () {
-    clearTimeout(this.timerTouchTapCloseId)
-  }
-
   close () {
     this.setState({
       open: false,
+      focusTextField: false,
       anchorEl: null
     })
   }
 
-  handleRequestClose = () => {
-    // Only take into account the Popover clickAway when we are
-    // not focusing the TextField.
-    this.close()
+  /**
+   * When clicking on the popover, the TextField triggers an onBlur event.
+   * the logic below checks to guess between an offscreen/clickaway (which should close)
+   * and clicking on the popover (which should NOT close)
+   */
+  handleBlur = (event) => {
+    const menuHTMLnode = ReactDOM.findDOMNode(this.refs.menu)
+    const focusedElt = event.relatedTarget
+
+    this.props.multiple && menuHTMLnode.contains(focusedElt)
+      ? this.refs.searchTextField.focus()
+      : this.close()
+
+    if (this.props.onBlur) this.props.onBlur(event)
   }
 
-  setValue (textValue) {
-    warning(false, `setValue() is deprecated, use the searchText property.
-      It will be removed with v0.16.0.`)
+  handleChange = (event) => {
+    const searchText = event.target.value
 
-    this.setState({ searchText: textValue })
+    // Make sure that we have a new searchText.
+    // Fix an issue with a Cordova Webview
+    if (searchText === this.state.searchText) return
+
+    this.setState({
+      searchText,
+      open: true,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+    }, () => this.props.onUpdateInput(searchText, this.props.dataSource))
   }
 
-  getValue () {
-    warning(false, 'getValue() is deprecated. It will be removed with v0.16.0.')
-    return this.state.searchText
+  handleFocus = (event) => {
+    this.setState({
+      open: true,
+      focusTextField: true,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+    })
+    if (this.props.onFocus) this.props.onFocus(event)
   }
 
-  handleMouseDown = (event) => event.preventDefault() // Keep the TextField focused
+  handleEscKeyDown = () => this.close()
 
   handleItemTouchTap = (event, child) => {
-    console.log('calling handleItemTouchTap')
-    const dataSource = this.props.dataSource
+    let { dataSource, dataSourceConfig, multiple, onNewRequest } = this.props
 
     const index = parseInt(child.key, 10)
     const chosenRequest = dataSource[index]
     const searchText = typeof chosenRequest === 'string'
       ? chosenRequest
-      : chosenRequest[this.props.dataSourceConfig.text]
+      : chosenRequest[dataSourceConfig.text]
 
-    this.timerTouchTapCloseId = setTimeout(() => {
-      this.timerTouchTapCloseId = null
-
-      if (!this.props.multiple) {
-        console.log('not multiselect !')
-        this.setState({ searchText })
-        this.close()
-        this.props.onNewRequest(chosenRequest, index)
-      } else {
-        console.log('multiselect !')
-        if (this.props.selectedOptions.includes(chosenRequest)) {
-          console.log('removing selected option from selectedOptions !')
-          const idx = this.props.selectedOptions.indexOf(chosenRequest)
-          this.props.selectedOptions.splice(idx, 1)
-        } else this.props.selectedOptions.push(chosenRequest)
-        this.setState({ searchText: '' })
-        this.props.onNewRequest(this.props.selectedOptions)
-      }
-    }, this.props.menuCloseDelay)
+    if (!multiple) {
+      this.setState({ searchText })
+      this.close()
+      onNewRequest(chosenRequest, index)
+    } else {
+      let selectedOptions = [...this.state.selectedOptions]
+      const isSelected = typeof chosenRequest === 'string'
+        ? selectedOptions.includes(chosenRequest)
+        : selectedOptions.some(obj => obj[dataSourceConfig.text] === searchText)
+      if (isSelected) {
+        const idx = typeof chosenRequest === 'string'
+          ? selectedOptions.indexOf(chosenRequest)
+          : selectedOptions.findIndex(obj => obj[dataSourceConfig.text] === searchText)
+        selectedOptions.splice(idx, 1)
+      } else selectedOptions.push(chosenRequest)
+      this.setState({ searchText: '', selectedOptions })
+      onNewRequest(selectedOptions, index)
+    }
   }
-
-  handleEscKeyDown = () => this.close()
 
   handleKeyDown = (event) => {
     if (this.props.onKeyDown) this.props.onKeyDown(event)
@@ -334,7 +333,6 @@ class AutoComplete extends Component {
         event.preventDefault()
         this.setState({
           open: true,
-          focusTextField: false,
           anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
         })
         break
@@ -343,42 +341,14 @@ class AutoComplete extends Component {
     }
   }
 
-  handleChange = (event) => {
-    const searchText = event.target.value
+  handleMouseDown = (event) => event.preventDefault() // Keep the TextField focused
 
-    // Make sure that we have a new searchText.
-    // Fix an issue with a Cordova Webview
-    if (searchText === this.state.searchText) return
-
-    this.setState({
-      searchText,
-      open: true,
-      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
-    }, () => this.props.onUpdateInput(searchText, this.props.dataSource))
-  }
-
-  handleBlur = (event) => {
-    if (this.state.focusTextField && this.timerTouchTapCloseId === null) this.close()
-    if (this.props.onBlur) this.props.onBlur(event)
-  }
-
-  handleFocus = (event) => {
-    if (!this.state.open && (this.props.triggerUpdateOnFocus || this.props.openOnFocus)) {
-      this.setState({
-        open: true,
-        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
-      })
-    }
-    this.setState({ focusTextField: true })
-    if (this.props.onFocus) this.props.onFocus(event)
-  }
-
-  blur () {
-    this.refs.searchTextField.blur()
-  }
-
-  focus () {
-    this.refs.searchTextField.focus()
+  /**
+   * Necessary when focusin the searchTextField, the popover's blur event triggers
+   * so handleFocus() sets state.focusTextField to prevent popover from closing
+   */
+  handleRequestClose = () => {
+    if (!this.state.focusTextField) this.close()
   }
 
   render () {
@@ -393,31 +363,30 @@ class AutoComplete extends Component {
       floatingLabelText,
       filter,
       fullWidth,
-      style,
       hintText,
+      listStyle,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
-      multiple,
-      textFieldStyle,
       menuStyle,
       menuProps,
-      listStyle,
-      targetOrigin,
-      triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
+      multiple,
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
-      selectedOptions,
+      style,
+      targetOrigin,
+      textFieldStyle,
+      triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
       withCheckboxes,
       ...other
     } = this.props
 
     const {
-      open,
       anchorEl,
+      open,
       searchText,
-      focusTextField
+      selectedOptions
     } = this.state
 
     const {prepareStyles} = this.context.muiTheme
@@ -425,13 +394,11 @@ class AutoComplete extends Component {
 
     const requestsList = []
 
-    this.requestsList = requestsList
-
     dataSource.every((item, index) => {
-      const checked = multiple && withCheckboxes && selectedOptions.includes(item)
       switch (typeof item) {
         case 'string':
-          if (filter(searchText, item, item)) {
+          const preSelected = multiple && !withCheckboxes && selectedOptions.includes(item)
+          if (filter(searchText, item, item) && !preSelected) {
             requestsList.push({
               text: item,
               value: (
@@ -442,40 +409,59 @@ class AutoComplete extends Component {
                   disableFocusRipple={disableFocusRipple}
                   key={index}
                 >
-                  {multiple && withCheckboxes && <Checkbox label={item} checked={checked} style={styles.checkbox} />}
+                  {multiple && withCheckboxes &&
+                    <Checkbox
+                      label={item}
+                      checked={selectedOptions.includes(item)}
+                      style={styles.checkbox}
+                    />}
                 </MenuItem>)
             })
           }
           break
 
         case 'object':
-          if (item && typeof item[this.props.dataSourceConfig.text] === 'string') {
-            const itemText = item[this.props.dataSourceConfig.text]
-            if (!this.props.filter(searchText, itemText, item)) break
-
-            const itemValue = item[this.props.dataSourceConfig.value]
-            if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
-              itemValue.type.muiName === Divider.muiName)) {
-              requestsList.push({
-                text: itemText,
-                value: React.cloneElement(itemValue, {
+          if (item && typeof item[dataSourceConfig.text] === 'string') {
+            const itemText = item[dataSourceConfig.text]
+            const preSelected = multiple && !withCheckboxes &&
+              selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)
+            if (filter(searchText, itemText, item) && !preSelected) {
+              const itemValue = item[dataSourceConfig.value]
+              if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
+                itemValue.type.muiName === Divider.muiName)) {
+                const clone = React.cloneElement(itemValue, {
                   key: index,
                   disableFocusRipple
                 })
-              })
-            } else {
-              requestsList.push({
-                text: itemText,
-                value: (
-                  <MenuItem
-                    innerDivStyle={styles.innerDiv}
-                    primaryText={(multiple && withCheckboxes) ? '' : itemText}
-                    disableFocusRipple={disableFocusRipple}
-                    key={index}
-                  >
-                    {multiple && withCheckboxes && <Checkbox label={itemText} checked={checked} style={styles.checkbox} />}
-                  </MenuItem>)
-              })
+                requestsList.push({
+                  text: itemText,
+                  value: (multiple && withCheckboxes)
+                    ? <Checkbox
+                      label={clone}
+                      checked={selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)}
+                      style={styles.checkbox}
+                    />
+                    : clone
+                })
+              } else {
+                requestsList.push({
+                  text: itemText,
+                  value: (
+                    <MenuItem
+                      innerDivStyle={styles.innerDiv}
+                      primaryText={(multiple && withCheckboxes) ? '' : itemText}
+                      disableFocusRipple={disableFocusRipple}
+                      key={index}
+                    >
+                      {multiple && withCheckboxes &&
+                        <Checkbox
+                          label={itemText}
+                          checked={selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)}
+                          style={styles.checkbox}
+                        />}
+                    </MenuItem>)
+                })
+              }
             }
           }
           break
@@ -490,15 +476,14 @@ class AutoComplete extends Component {
       <Menu
         {...menuProps}
         ref='menu'
-        disableAutoFocus={focusTextField}
+        disableAutoFocus
         onEscKeyDown={this.handleEscKeyDown}
-        initiallyKeyboardFocused
         onItemTouchTap={this.handleItemTouchTap}
         onMouseDown={this.handleMouseDown}
         style={{...styles.menu, ...menuStyle}}
         listStyle={{...styles.list, ...listStyle}}
       >
-        {requestsList.map((i) => i.value)}
+        {requestsList.map(i => i.value)}
       </Menu>
     )
 
@@ -539,7 +524,7 @@ class AutoComplete extends Component {
 
 AutoComplete.levenshteinDistance = (searchText, key) => {
   const current = []
-  let prev
+  let prev // TODO: should be initialized with what ?
   let value
 
   for (let i = 0; i <= key.length; i++) {
