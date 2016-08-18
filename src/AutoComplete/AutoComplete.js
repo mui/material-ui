@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import keycode from 'keycode'
-import warning from 'warning'
-import TextField from '../TextField'
-import Menu from '../Menu'
-import MenuItem from '../MenuItem'
+import propTypes from '../utils/propTypes'
 import Checkbox from '../Checkbox'
 import Divider from '../Divider'
+import Menu from '../Menu'
+import MenuItem from '../MenuItem'
 import Popover from '../Popover/Popover'
-import propTypes from '../utils/propTypes'
-import deprecated from '../utils/deprecatedPropType'
+import TextField from '../TextField'
 
 function getStyles (props, context, state) {
   const {anchorEl} = state
@@ -177,10 +175,6 @@ class AutoComplete extends Component {
      * Override the inline-styles of AutoComplete's TextField element.
      */
     textFieldStyle: PropTypes.object,
-    /**
-     * If true, will update when focus event triggers.
-     */
-    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
     /** @ignore (not implemented)
      * Default: true. If multiple is set to true, MenuItems will use checkboxes.
      * If this option is set to false, MenuItems will not display checkboxes,
@@ -357,7 +351,7 @@ class AutoComplete extends Component {
       animated,
       animation,
       dataSource,
-      dataSourceConfig, // eslint-disable-line no-unused-vars
+      dataSourceConfig,
       disableFocusRipple,
       errorStyle,
       floatingLabelText,
@@ -378,7 +372,6 @@ class AutoComplete extends Component {
       style,
       targetOrigin,
       textFieldStyle,
-      triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
       withCheckboxes,
       ...other
     } = this.props
