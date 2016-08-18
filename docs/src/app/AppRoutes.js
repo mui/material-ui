@@ -23,6 +23,7 @@ import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoCompletePage from './components/pages/components/AutoComplete/Page';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
+import BottomNavigationPage from './components/pages/components/BottomNavigation/Page';
 import CardPage from './components/pages/components/Card/Page';
 import ChipPage from './components/pages/components/Chip/Page';
 import CircularProgressPage from './components/pages/components/CircularProgress/Page';
@@ -66,7 +67,7 @@ import RelatedProjects from './components/pages/discover-more/RelatedProjects';
 import StepperPage from './components/pages/components/Stepper/Page';
 
 /**
- * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
+ * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
  *
  * Routes are used to declare your view hierarchy.
  *
@@ -97,6 +98,7 @@ const AppRoutes = (
       <Route path="app-bar" component={AppBarPage} />
       <Route path="auto-complete" component={AutoCompletePage} />
       <Route path="avatar" component={AvatarPage} />
+      <Route path="bottom-navigation" component={BottomNavigationPage} />
       <Route path="badge" component={BadgePage} />
       <Route path="card" component={CardPage} />
       <Route path="chip" component={ChipPage} />

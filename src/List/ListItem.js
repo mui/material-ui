@@ -641,12 +641,12 @@ class ListItem extends Component {
       </NestedList>
     ) : undefined;
 
-    const hasCheckbox = leftCheckbox || rightToggle;
+    const simpleLabel = !primaryTogglesNestedList && (leftCheckbox || rightToggle);
 
     return (
       <div>
         {
-          hasCheckbox ? this.createLabelElement(styles, contentChildren, other) :
+          simpleLabel ? this.createLabelElement(styles, contentChildren, other) :
           disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
               containerElement={'span'}
