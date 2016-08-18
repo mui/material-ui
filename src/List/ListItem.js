@@ -30,7 +30,10 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
     divider: {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     },
-    gutters: theme.mixins.gutters({}),
+    gutters: {
+      paddingLeft: 16,
+      paddingRight: 16,
+    },
   };
 }, { index: 10 });
 
