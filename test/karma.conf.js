@@ -46,7 +46,7 @@ module.exports = function(config) {
     preprocessors: {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
     },
-    reporters: ['mocha'],
+    reporters: ['dots'],
     singleRun: false,
     webpack: {
       devtool: 'inline-source-map',
@@ -90,6 +90,6 @@ module.exports = function(config) {
     },
     webpackServer: {
       noInfo: true,
-    }
+    },
   });
 };

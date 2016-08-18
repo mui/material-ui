@@ -31,7 +31,6 @@ class DatePickerDialog extends Component {
     useLayerForClickAway: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
-    wordings: PropTypes.object,
   };
 
   static defaultProps = {
@@ -124,7 +123,6 @@ class DatePickerDialog extends Component {
       shouldDisableDate,
       useLayerForClickAway,
       style, // eslint-disable-line no-unused-vars
-      wordings,
       animation,
       ...other,
     } = this.props;
@@ -180,7 +178,6 @@ class DatePickerDialog extends Component {
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
             shouldDisableDate={shouldDisableDate}
-            wordings={wordings}
           />
         </Container>
       </div>

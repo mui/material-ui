@@ -24,7 +24,7 @@ function getStyles(props, context, state) {
     root: {
       boxSizing: 'border-box',
       fontWeight: '400',
-      opacity: disabled && '0.6',
+      opacity: disabled && '0.4',
       padding: '4px 0px',
       position: 'relative',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)

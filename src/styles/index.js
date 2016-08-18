@@ -6,7 +6,6 @@ export lightBaseTheme from './baseThemes/lightBaseTheme';
 export LightRawTheme from './baseThemes/lightBaseTheme';
 export getMuiTheme from './getMuiTheme';
 export spacing from './spacing';
-export themeManager from './themeManager';
 export transitions from './transitions';
 export typography from './typography';
 export zIndex from './zIndex';

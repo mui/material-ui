@@ -27,6 +27,7 @@ if (types.indexOf('unit') + types.indexOf('integration') === -2) {
 
 const mocha = new Mocha({
   grep: argv.grep ? argv.grep : undefined,
+  reporter: 'dot',
 });
 
 Glob(
