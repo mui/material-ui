@@ -28,7 +28,7 @@ export IconMenu from './IconMenu';
 export LinearProgress from './LinearProgress';
 export List from './List';
 export ListItem from './List/ListItem';
-export MakeSelectable from './List/MakeSelectable';
+export makeSelectable from './List/makeSelectable';
 export Menu from './Menu';
 export MenuItem from './MenuItem';
 export MuiThemeProvider from './styles/MuiThemeProvider';

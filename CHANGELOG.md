@@ -28,6 +28,7 @@ Examples:
 (#4705)
 - [core] Wrap the `propTypes` definitions so they can be removed in production (#4872)
 - [core] Remove the deprecated code (#4987)
+- [List] Rename MakeSelectable to makeSelectable (#5025)
 
 ##### Component Fixes / Enhancements
 
