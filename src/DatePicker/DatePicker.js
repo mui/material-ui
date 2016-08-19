@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
-import deprecated from '../utils/deprecatedPropType';
 import keycode from 'keycode';
 
 class DatePicker extends Component {
@@ -169,22 +168,15 @@ class DatePicker extends Component {
   };
 
   componentWillMount() {
-
     this.setState({
       date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
     });
   }
 
   componentDidMount() {
-    var node = ReactDOM.findDOMNode(this.refs.input);
+    const node = ReactDOM.findDOMNode(this.refs.input);
     node.addEventListener('touchstart', this.handleClick);
     node.addEventListener('click', this.handleClick);
-  }
-
-  componentWillUnmount() {
-    var node = ReactDOM.findDOMNode(this.refs.input);
-    node.removeEventListener('touchstart', this.handleClick);
-    node.removeEventListener('click', this.handleClick);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -196,6 +188,12 @@ class DatePicker extends Component {
         });
       }
     }
+  }
+
+  componentWillUnmount() {
+    const node = ReactDOM.findDOMNode(this.refs.input);
+    node.removeEventListener('touchstart', this.handleClick);
+    node.removeEventListener('click', this.handleClick);
   }
 
   getDate() {
@@ -242,7 +240,7 @@ class DatePicker extends Component {
     if (!this.isControlled()) {
       this.setState({
         date: date,
-        keyboardActivated: false
+        keyboardActivated: false,
       });
     }
     if (this.props.onChange) {
@@ -263,7 +261,7 @@ class DatePicker extends Component {
   };
 
   handleInputBlur = () => {
-    var tmpDate = this.state.date instanceof Date ? this.state.date : undefined;
+    const tmpDate = this.state.date instanceof Date ? this.state.date : undefined;
     this.handleAccept(tmpDate);
   }
 
@@ -326,7 +324,7 @@ class DatePicker extends Component {
     if (this.shouldHandleKeyboard() && this.refs.dialogWindow.state.open) {
       event.stopPropagation();
       return;
-    } 
+    }
   }
 
   handleTouchTap = (event) => {
@@ -334,7 +332,7 @@ class DatePicker extends Component {
       event.stopPropagation();
       event.preventDefault();
       return;
-    } 
+    }
 
     if (this.props.onTouchTap) {
       this.props.onTouchTap(event);
@@ -345,8 +343,7 @@ class DatePicker extends Component {
         this.openDialog();
       }, 0);
     }
-    
-  };
+  }
 
   isControlled() {
     return this.props.hasOwnProperty('value');

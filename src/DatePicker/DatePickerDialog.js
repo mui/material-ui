@@ -28,9 +28,9 @@ class DatePickerDialog extends Component {
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
     open: PropTypes.bool,
-    useLayerForClickAway: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
+    useLayerForClickAway: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -152,7 +152,7 @@ class DatePickerDialog extends Component {
           ref="dialog"
           repositionOnUpdate={true}
           open={open}
-          useLayerForClickAway={this.props.useLayerForClickAway}
+          useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.handleRequestClose}
           style={Object.assign(styles.dialogBodyContent, containerStyle)}
         >
