@@ -174,7 +174,7 @@ class DatePicker extends Component {
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.input);
+    const node = ReactDOM.findDOMNode(this.refs.root);
     node.addEventListener('touchstart', this.handleClick);
     node.addEventListener('click', this.handleClick);
   }
@@ -191,7 +191,7 @@ class DatePicker extends Component {
   }
 
   componentWillUnmount() {
-    const node = ReactDOM.findDOMNode(this.refs.input);
+    const node = ReactDOM.findDOMNode(this.refs.root);
     node.removeEventListener('touchstart', this.handleClick);
     node.removeEventListener('click', this.handleClick);
   }
