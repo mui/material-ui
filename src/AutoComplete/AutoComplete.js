@@ -175,7 +175,7 @@ class AutoComplete extends Component {
      * Override the inline-styles of AutoComplete's TextField element.
      */
     textFieldStyle: PropTypes.object,
-    /** @ignore (not implemented)
+    /**
      * Default: true. If multiple is set to true, MenuItems will use checkboxes.
      * If this option is set to false, MenuItems will not display checkboxes,
      * but will disappear/appear depending on their selection status.
