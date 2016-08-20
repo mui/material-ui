@@ -179,7 +179,10 @@ class TouchRipple extends Component {
     style.height = `${rippleSize}px`;
     style.width = `${rippleSize}px`;
     style.top = `${top}px`;
-    style.left = `${left}px`;
+    if (this.context.muiTheme.isRtl) {
+      style.left = 'auto'; style.right = `${left}px`;
+    } else
+      style.left = `${top}px`;
 
     return style;
   }
