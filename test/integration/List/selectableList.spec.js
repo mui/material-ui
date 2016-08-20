@@ -3,12 +3,12 @@ import {assert} from 'chai';
 import {shallow} from 'enzyme';
 import List from 'src/List/List';
 import ListItem from 'src/List/ListItem';
-import MakeSelectable from 'src/List/MakeSelectable';
+import makeSelectable from 'src/List/makeSelectable';
 import injectTheme from '../fixtures/inject-theme';
 import getMuiTheme from 'src/styles/getMuiTheme';
 import TestUtils from 'react-addons-test-utils';
 
-describe('MakeSelectable', () => {
+describe('makeSelectable', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
@@ -32,7 +32,7 @@ describe('MakeSelectable', () => {
   ];
 
   it('should display the children', () => {
-    const SelectableList = MakeSelectable(List);
+    const SelectableList = makeSelectable(List);
 
     const wrapper = shallowWithContext(
       <SelectableList>
@@ -48,7 +48,7 @@ describe('MakeSelectable', () => {
   });
 
   it('should select the right item', () => {
-    const SelectableList = injectTheme(MakeSelectable(List));
+    const SelectableList = injectTheme(makeSelectable(List));
 
     const render = TestUtils.renderIntoDocument(
       <SelectableList value={2}>

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {fade} from '../utils/colorManipulator';
 
-export const MakeSelectable = (Component) => {
+export const makeSelectable = (Component) => {
   return class extends Component {
     static propTypes = {
       children: PropTypes.node,
@@ -95,4 +95,4 @@ export const MakeSelectable = (Component) => {
   };
 };
 
-export default MakeSelectable;
+export default makeSelectable;
