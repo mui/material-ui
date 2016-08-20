@@ -149,20 +149,20 @@ class AutoComplete extends Component {
      */
     openOnFocus: PropTypes.bool,
     /**
-     * Provides preselected options.
+     * Text being input to auto complete.
+     */
+    searchText: PropTypes.string,
+    /**
+     * Provides selected options.
      * /!\ Must have same format as dataSource
      */
-    preSelectedOptions: PropTypes.arrayOf(PropTypes.oneOfType([
+    selectedOptions: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.shape({
         text: PropTypes.string,
         value: PropTypes.node
       })
     ])),
-    /**
-     * Text being input to auto complete.
-     */
-    searchText: PropTypes.string,
     /**
      * Override the inline-styles of the root element.
      */
@@ -202,7 +202,7 @@ class AutoComplete extends Component {
     onNewRequest: () => {},
     open: false,
     openOnFocus: true,
-    preSelectedOptions: [],
+    selectedOptions: [],
     searchText: '',
     targetOrigin: {
       vertical: 'top',
@@ -220,8 +220,7 @@ class AutoComplete extends Component {
       anchorEl: null,
       focusTextField: false,
       open: this.props.open,
-      searchText: this.props.searchText,
-      selectedOptions: this.props.preSelectedOptions
+      searchText: this.props.searchText
     })
   }
 
@@ -281,7 +280,7 @@ class AutoComplete extends Component {
   handleEscKeyDown = () => this.close()
 
   handleItemTouchTap = (event, child) => {
-    let { dataSource, dataSourceConfig, multiple, onNewRequest } = this.props
+    let { dataSource, dataSourceConfig, multiple, onNewRequest, selectedOptions } = this.props
 
     const index = parseInt(child.key, 10)
     const chosenRequest = dataSource[index]
@@ -294,7 +293,6 @@ class AutoComplete extends Component {
       this.close()
       onNewRequest(chosenRequest, index)
     } else {
-      let selectedOptions = [...this.state.selectedOptions]
       const isSelected = typeof chosenRequest === 'string'
         ? selectedOptions.includes(chosenRequest)
         : selectedOptions.some(obj => obj[dataSourceConfig.text] === searchText)
@@ -304,7 +302,7 @@ class AutoComplete extends Component {
           : selectedOptions.findIndex(obj => obj[dataSourceConfig.text] === searchText)
         selectedOptions.splice(idx, 1)
       } else selectedOptions.push(chosenRequest)
-      this.setState({ searchText: '', selectedOptions })
+      this.setState({ searchText: '' })
       onNewRequest(selectedOptions, index)
     }
   }
@@ -367,8 +365,8 @@ class AutoComplete extends Component {
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
-      preSelectedOptions, // eslint-disable-line no-unused-vars
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
+      selectedOptions, // eslint-disable-line no-unused-vars
       style,
       targetOrigin,
       textFieldStyle,
@@ -379,8 +377,7 @@ class AutoComplete extends Component {
     const {
       anchorEl,
       open,
-      searchText,
-      selectedOptions
+      searchText
     } = this.state
 
     const {prepareStyles} = this.context.muiTheme
