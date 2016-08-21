@@ -9,6 +9,10 @@ const reSkew = /((^|\s)skew(x|y)?\()\s*(\-?[\d]+)(deg|rad|grad)(,\s*(\-?[\d]+)(d
 export default function rtl(muiTheme) {
   if (muiTheme.isRtl) {
     return (style) => {
+      if (style.directionInvariant === true) {
+        return style;
+      }
+
       const flippedAttributes = {
         // Keys and their replacements.
         right: 'left',
