@@ -25,7 +25,9 @@ function getStyles (props, context, state) {
       width: fullWidth ? '100%' : 256
     },
     innerDiv: { overflow: 'hidden' },
-    checkbox: { padding: '10px 0' }
+    checkbox: { padding: '10px 0' },
+    checkboxIcon: { alignSelf: 'center' },
+    checkboxLabel: { width: '100%' }
   }
 
   if (anchorEl && fullWidth) styles.popover = { width: anchorEl.clientWidth }
@@ -59,6 +61,7 @@ class AutoComplete extends Component {
      * @property {string} text `dataSource` element key used to find a string to be matched for search
      * and shown as a `TextField` input value after choosing the result.
      * @property {string} value `dataSource` element key used to find a string to be shown in search results.
+     *  @property {node} any valid HTML5 element or M-UI component
      */
     dataSourceConfig: PropTypes.object,
     /**
@@ -160,7 +163,8 @@ class AutoComplete extends Component {
       PropTypes.string,
       PropTypes.shape({
         text: PropTypes.string,
-        value: PropTypes.node
+        value: PropTypes.string,
+        node: PropTypes.oneOfType([PropTypes.node, PropTypes.element])
       })
     ])),
     /**
@@ -191,7 +195,8 @@ class AutoComplete extends Component {
     animated: true,
     dataSourceConfig: {
       text: 'text',
-      value: 'value'
+      value: 'value',
+      node: 'node'
     },
     disableFocusRipple: true,
     filter: (searchText, key) => searchText !== '' && key.includes(searchText),
@@ -249,7 +254,7 @@ class AutoComplete extends Component {
 
     this.props.multiple && menuHTMLnode.contains(focusedElt)
       ? this.refs.searchTextField.focus()
-      : this.close()
+      : this.close() // for debugging/styling purposes, set this to null to disable list autoclosing on clickAway
 
     if (this.props.onBlur) this.props.onBlur(event)
   }
@@ -386,78 +391,38 @@ class AutoComplete extends Component {
     const requestsList = []
 
     dataSource.every((item, index) => {
-      switch (typeof item) {
-        case 'string':
-          const preSelected = multiple && !withCheckboxes && selectedOptions.includes(item)
-          if (filter(searchText, item, item) && !preSelected) {
-            requestsList.push({
-              text: item,
-              value: (
-                <MenuItem
-                  innerDivStyle={styles.innerDiv}
-                  value={item}
-                  primaryText={(multiple && withCheckboxes) ? '' : item}
-                  disableFocusRipple={disableFocusRipple}
-                  key={index}
-                >
-                  {multiple && withCheckboxes &&
-                    <Checkbox
-                      label={item}
-                      checked={selectedOptions.includes(item)}
-                      style={styles.checkbox}
-                    />}
-                </MenuItem>)
-            })
-          }
-          break
-
-        case 'object':
-          if (item && typeof item[dataSourceConfig.text] === 'string') {
-            const itemText = item[dataSourceConfig.text]
-            const preSelected = multiple && !withCheckboxes &&
-              selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)
-            if (filter(searchText, itemText, item) && !preSelected) {
-              const itemValue = item[dataSourceConfig.value]
-              if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
-                itemValue.type.muiName === Divider.muiName)) {
-                const clone = React.cloneElement(itemValue, {
-                  key: index,
-                  disableFocusRipple
-                })
-                requestsList.push({
-                  text: itemText,
-                  value: (multiple && withCheckboxes)
-                    ? <Checkbox
-                      label={clone}
-                      checked={selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)}
-                      style={styles.checkbox}
-                    />
-                    : clone
-                })
-              } else {
-                requestsList.push({
-                  text: itemText,
-                  value: (
-                    <MenuItem
-                      innerDivStyle={styles.innerDiv}
-                      primaryText={(multiple && withCheckboxes) ? '' : itemText}
-                      disableFocusRipple={disableFocusRipple}
-                      key={index}
-                    >
-                      {multiple && withCheckboxes &&
-                        <Checkbox
-                          label={itemText}
-                          checked={selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)}
-                          style={styles.checkbox}
-                        />}
-                    </MenuItem>)
-                })
-              }
-            }
-          }
-          break
-
-        default: break // Do nothing
+      if (item && (
+        (typeof item === 'string' && item.length) ||
+        (typeof item === 'object' && item[dataSourceConfig.value]))) {
+        const itemText = typeof item === 'string' ? item : item[dataSourceConfig.text]
+        const itemValue = typeof item === 'string' ? item : item[dataSourceConfig.value]
+        const itemNode = typeof item === 'string' ? item : (item[dataSourceConfig.node] ? item[dataSourceConfig.node] : itemText)
+        const isSelected = typeof item === 'string'
+          ? selectedOptions.includes(item)
+          : selectedOptions.some(obj => obj[dataSourceConfig.text] === itemText)
+        const preSelected = multiple && !withCheckboxes && isSelected
+        if (filter(searchText, itemText, item) && !preSelected) {
+          requestsList.push({
+            text: itemText,
+            value: (
+              <MenuItem
+                innerDivStyle={styles.innerDiv}
+                value={itemValue}
+                primaryText={(multiple && withCheckboxes) ? '' : itemNode}
+                disableFocusRipple={disableFocusRipple}
+                key={index}
+              >
+                {multiple && withCheckboxes &&
+                  <Checkbox
+                    label={itemNode}
+                    checked={isSelected}
+                    style={styles.checkbox}
+                    iconStyle={styles.checkboxIcon}
+                    labelStyle={styles.checkboxLabel}
+                  />}
+              </MenuItem>)
+          })
+        }
       }
 
       return !(maxSearchResults && maxSearchResults > 0 && requestsList.length === maxSearchResults)
