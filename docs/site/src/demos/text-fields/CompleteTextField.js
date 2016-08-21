@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import TextField, { TextFieldInput, TextFieldLabel } from 'material-ui/TextField';
 
 const styleSheet = createStyleSheet('CompleteTextField', () => ({
@@ -31,7 +31,6 @@ export default class CompleteTextField extends Component {
           <TextFieldInput
             className={classes.input}
             id="name"
-            type="search"
             value={this.state.value}
             onChange={(event) => this.setState({ value: event.target.value })}
           />

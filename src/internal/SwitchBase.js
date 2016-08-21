@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import IconButton from '../IconButton';
 
@@ -29,7 +29,7 @@ export const styleSheet = createStyleSheet('SwitchBase', () => {
       },
     },
   };
-});
+}, { priority: 1 });
 
 export default class SwitchBase extends Component {
   static propTypes = {

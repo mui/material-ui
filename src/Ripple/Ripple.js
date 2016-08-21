@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
@@ -67,7 +67,7 @@ export const styleSheet = createStyleSheet('Ripple', () => ({
       transform: 'scale(1)',
     },
   },
-}));
+}), { priority: 1 });
 
 export default class Ripple extends Component {
   static propTypes = {
@@ -137,7 +137,7 @@ export default class Ripple extends Component {
   render() {
     const { className, pulsate } = this.props;
     const { rippleStart, rippleVisible, rippleLeaving } = this.state;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     const rippleClassName = classNames(classes.ripple, {
       [classes.visible]: rippleVisible,

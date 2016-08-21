@@ -1,16 +1,20 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
-  const { palette, shadows, transitions, typography } = theme;
+  const { palette, shadows, transitions } = theme;
+  const { button } = theme.components;
 
   return {
-    root: {
-      ...typography.button,
+    button: {
+      fontSize: button.fontSize,
+      fontWeight: button.fontWeight,
+      fontFamily: button.fontFamily,
+      textTransform: button.textTransform,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -54,7 +58,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       '&:active': {
         boxShadow: shadows[8],
       },
-      '&disabled': {
+      '&$disabled': {
         boxShadow: shadows[0],
       },
     },
@@ -84,7 +88,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       },
     },
   };
-});
+}, { priority: 2 });
 
 /**
  * Buttons communicate the action that will occur when the user
@@ -172,16 +176,16 @@ export default class Button extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
-
+    const classes = this.context.styleManager.render(styleSheet);
+    const flat = !raised && !fab;
     const className = classNames({
-      [classes.root]: true,
+      [classes.button]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
-      [classes.primary]: !raised && primary,
-      [classes.accent]: !raised && accent,
-      [classes.raisedPrimary]: (raised || fab) && primary,
-      [classes.raisedAccent]: (raised || fab) && accent,
+      [classes.primary]: flat && primary,
+      [classes.accent]: flat && accent,
+      [classes.raisedPrimary]: !flat && primary,
+      [classes.raisedAccent]: !flat && accent,
       [classes.disabled]: disabled,
     }, classNameProp);
 

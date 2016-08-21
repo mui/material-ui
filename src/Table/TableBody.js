@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableBody', (theme) => {
@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('TableBody', (theme) => {
       color: theme.palette.text.primary,
     },
   };
-});
+}, { priority: 15 });
 
 /**
  * A material table body.
@@ -51,7 +51,7 @@ export default class TableBody extends Component {
       children,
       ...other,
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);
 
     return (

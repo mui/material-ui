@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Text from '../Text';
 
@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
       color: theme.palette.text.secondary,
     },
   };
-});
+}, { priority: 10 });
 
 export default class ListItemText extends Component {
   static propTypes = {
@@ -38,7 +38,7 @@ export default class ListItemText extends Component {
       secondary,
       ...other,
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);
 
     return (

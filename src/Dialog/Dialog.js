@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('Dialog', () => {
       },
     },
   };
-});
+}, { priority: 10 });
 
 /**
  * Dialogs are overlayed modal paper based components with a backdrop.
@@ -140,7 +140,7 @@ export default class Dialog extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     const transitionProps = {
       in: open,

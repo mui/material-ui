@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ListItem from '../List/ListItem';
 
@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('MenuItem', (theme) => {
       },
     },
   };
-});
+}, { priority: 10 });
 
 export default class MenuItem extends Component {
   static propTypes = {
@@ -65,7 +65,7 @@ export default class MenuItem extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, {
       [classes.selected]: selected,
     }, classNameProp);

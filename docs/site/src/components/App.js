@@ -3,7 +3,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { createMuiTheme, createPalette } from 'material-ui/styles/theme';
+import createMuiTheme from 'material-ui/styles/theme';
+import createPalette from 'material-ui/styles/palette';
 import { blue, pink } from 'material-ui/styles/colors';
 import AppRouter from './AppRouter';
 import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism';

@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('List', () => {
@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('List', () => {
       paddingBottom: 8,
     },
   };
-});
+}, { priority: 10 });
 
 /**
  * A simple list component.
@@ -47,7 +47,7 @@ export default class List extends Component {
       padding,
       ...other,
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, {
       [classes.padding]: padding,
     }, classNameProp);

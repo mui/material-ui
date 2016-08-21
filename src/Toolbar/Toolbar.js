@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Toolbar', (theme) => {
@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
       },
     },
   };
-});
+}, { priority: 15 });
 
 export default function Toolbar(props, context) {
   const {
@@ -29,7 +29,7 @@ export default function Toolbar(props, context) {
     ...other,
   } = props;
 
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
+  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.gutters]: gutters,
   }, classNameProp);

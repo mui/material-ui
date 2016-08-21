@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Text from '../Text';
 
@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('DialogTitle', () => {
       flex: '0 0 auto',
     },
   };
-});
+}, { priority: 10 });
 
 export default class DialogTitle extends Component {
   static propTypes = {

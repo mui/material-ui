@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
@@ -32,7 +32,7 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
     },
     gutters: theme.mixins.gutters({}),
   };
-});
+}, { priority: 10 });
 
 export default class ListItem extends Component {
   static propTypes = {
@@ -70,7 +70,7 @@ export default class ListItem extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, {
       [classes.gutters]: gutters,
       [classes.divider]: divider,

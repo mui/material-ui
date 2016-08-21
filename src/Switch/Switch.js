@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -34,7 +34,7 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
     checked: {
       color: palette.accent[500],
       transform: 'translateX(14px)',
-      '+ bar': {
+      '& + $bar': {
         backgroundColor: palette.accent[500],
         opacity: 0.5,
       },
@@ -54,7 +54,7 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       borderRadius: '50%',
     },
   };
-});
+}, { priority: 5 });
 
 export default function Switch(props, context) {
   const { className, checkedClassName, ...other } = props;

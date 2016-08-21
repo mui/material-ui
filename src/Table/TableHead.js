@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableHead', (theme) => {
@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('TableHead', (theme) => {
       color: theme.palette.text.secondary,
     },
   };
-});
+}, { priority: 15 });
 
 /**
  * A material table head.

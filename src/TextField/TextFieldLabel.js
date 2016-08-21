@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
@@ -23,11 +23,11 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
       transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
     },
   };
-});
+}, { priority: 5 });
 
 export default function TextFieldLabel(props, context) {
   const { animated, className: classNameProp, shrink, ...other } = props;
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
+  const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
     [classes.animated]: animated,

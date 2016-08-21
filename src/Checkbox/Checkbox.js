@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
       color: theme.palette.accent[500],
     },
   };
-});
+}, { priority: 5 });
 
 export default function Checkbox(props, context) {
   const { className, checkedClassName, ...other } = props;
