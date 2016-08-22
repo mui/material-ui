@@ -114,6 +114,7 @@ class CardHeader extends Component {
       subtitleStyle,
       textStyle,
       title,
+      titleColor, // eslint-disable-line no-unused-vars
       titleStyle,
       ...other,
     } = this.props;
