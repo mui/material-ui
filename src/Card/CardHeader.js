@@ -115,6 +115,7 @@ class CardHeader extends Component {
       textStyle,
       title,
       titleStyle,
+      titleColor,
       ...other,
     } = this.props;
 
