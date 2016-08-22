@@ -7,6 +7,12 @@ import Paper from '../Paper';
 import throttle from 'lodash/throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
+const styles = {
+  root: {
+    display: 'none',
+  },
+};
+
 class Popover extends Component {
   static propTypes = {
     /**
@@ -118,8 +124,6 @@ class Popover extends Component {
       open: props.open,
       closing: false,
     };
-
-    this.timeout = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -160,6 +164,8 @@ class Popover extends Component {
       this.timeout = null;
     }
   }
+
+  timeout = null;
 
   renderLayer = () => {
     const {
@@ -356,7 +362,7 @@ class Popover extends Component {
 
   render() {
     return (
-      <div style={{display: 'none'}}>
+      <div style={styles.root}>
         <EventListener
           target="window"
           onScroll={this.handleScroll}

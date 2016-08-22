@@ -20,7 +20,7 @@ describe('<Popover />', () => {
       wrapper.setProps({open: false});
       const nextTimeout = wrapper.instance().timeout;
 
-      assert.equal(timeout, nextTimeout);
+      assert.strictEqual(timeout, nextTimeout);
     });
   });
 });
