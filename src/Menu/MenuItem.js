@@ -22,9 +22,9 @@ export const styleSheet = createStyleSheet('MenuItem', (theme) => {
       '&:hover': {
         backgroundColor: palette.text.divider,
       },
-      '& selected': {
-        backgroundColor: palette.text.divider,
-      },
+    },
+    selected: {
+      backgroundColor: palette.text.divider,
     },
   };
 }, { priority: 10 });

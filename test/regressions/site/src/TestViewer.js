@@ -1,14 +1,14 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 
-export const styleSheet = createStyleSheet('TestViewer', (theme) => {
+const globalStyleSheet = createStyleSheet('global', (theme) => {
   const { palette, typography } = theme;
   return {
-    '@raw html': { boxSizing: 'border-box' },
-    '@raw *, *:before, *:after': { boxSizing: 'inherit' },
-    '@raw body': {
+    html: { boxSizing: 'border-box' },
+    '*, *:before, *:after': { boxSizing: 'inherit' },
+    body: {
       margin: 0,
       background: palette.background.default,
       fontFamily: typography.fontFamily,
@@ -17,16 +17,22 @@ export const styleSheet = createStyleSheet('TestViewer', (theme) => {
       overflowX: 'hidden',
       WebkitFontSmoothing: 'antialiased',
     },
-    '@raw a': {
+    a: {
       color: palette.accent.A400,
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',
       },
     },
-    '@raw p': {
+    p: {
       lineHeight: '1.6',
     },
+  };
+}, { named: false });
+
+const styleSheet = createStyleSheet('TestViewer', (theme) => {
+  const { palette } = theme;
+  return {
     root: {
       display: 'flex',
       width: '100%',
@@ -55,6 +61,10 @@ export default class TestViewer extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
+
+  componentWillMount() {
+    this.context.styleManager.render(globalStyleSheet);
+  }
 
   render() {
     const { children } = this.props;
