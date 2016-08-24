@@ -6,6 +6,7 @@ import {shallow} from 'enzyme';
 import {spy} from 'sinon';
 import AutoComplete from './AutoComplete';
 import Menu from '../Menu/Menu';
+import Popover from '../Popover/Popover';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<AutoComplete />', () => {
@@ -84,6 +85,21 @@ describe('<AutoComplete />', () => {
         assert.strictEqual(wrapper.state().searchText, 'foo');
         done();
       }, 20);
+    });
+  });
+
+  describe('props: popoverProps', () => {
+    it('should pass popoverProps to Popover', () => {
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          dataSource={['foo', 'bar']}
+          popoverProps={{
+            zDepth: 3,
+          }}
+        />
+      );
+
+      assert.strictEqual(wrapper.find(Popover).prop('zDepth'), 3, 'should pass popoverProps to Popover');
     });
   });
 });
