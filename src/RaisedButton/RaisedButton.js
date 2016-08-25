@@ -330,6 +330,8 @@ class RaisedButton extends Component {
       children,
       className,
       disabled,
+      disabledBackgroundColor, // eslint-disable-line no-unused-vars
+      disabledLabelColor, // eslint-disable-line no-unused-vars
       fullWidth, // eslint-disable-line no-unused-vars
       icon,
       label,
