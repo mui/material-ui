@@ -56,10 +56,10 @@ class CalendarYear extends Component {
   }
 
   scrollToSelectedYear() {
-    if (this.refs.selectedYearButton === undefined) return;
+    if (this.selectedYearButton === undefined) return;
 
     const container = ReactDOM.findDOMNode(this);
-    const yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
+    const yearButtonNode = ReactDOM.findDOMNode(this.selectedYearButton);
 
     const containerHeight = container.clientHeight;
     const yearButtonNodeHeight = yearButtonNode.clientHeight || 32;

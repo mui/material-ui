@@ -92,7 +92,7 @@ class Calendar extends Component {
       return false;
     }
 
-    return this.refs.calendar.isSelectedDateDisabled();
+    return this.calendar.isSelectedDateDisabled();
   }
 
   addSelectedDays(days) {
@@ -343,7 +343,9 @@ class Calendar extends Component {
                   minDate={this.props.minDate}
                   maxDate={this.props.maxDate}
                   onTouchTapDay={this.handleTouchTapDay}
-                  ref="calendar"
+                  ref={(ref) => {
+                    this.calendar = ref;
+                  }}
                   selectedDate={this.state.selectedDate}
                   shouldDisableDate={this.props.shouldDisableDate}
                 />

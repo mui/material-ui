@@ -41,7 +41,7 @@ class CalendarActionButton extends Component {
         />
         {!this.props.autoOk &&
           <FlatButton
-            disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
+            disabled={this.calendar !== undefined && this.calendar.isSelectedDateDisabled()}
             label={okLabel}
             onTouchTap={this.props.onTouchTapOk}
             primary={true}
