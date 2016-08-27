@@ -57,5 +57,5 @@ We have implemented a default theme to render all Material-UI components.
 Styling components to your liking is simple and hassle-free.
 This can be achieved in the following two ways:
 - [With the theme](#/customization/themes), you can use a custom theme to style components.
-- [With the inline style](#/customization/inline-styles), you can override individual
+- [With the inline style](#/customization/styles), you can override individual
 component styles via the style property.

@@ -1,8 +1,6 @@
 import React from 'react';
 import Title from 'react-title-component';
-
 import {GridList, GridTile} from 'material-ui/GridList';
-
 import MarkdownElement from '../../MarkdownElement';
 import showcaseText from './showcase.md';
 

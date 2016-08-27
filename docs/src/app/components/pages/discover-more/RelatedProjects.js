@@ -1,6 +1,5 @@
 import React from 'react';
 import Title from 'react-title-component';
-
 import MarkdownElement from '../../MarkdownElement';
 import relatedProjectsText from './related-projects.md';
 

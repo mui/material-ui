@@ -1,8 +1,7 @@
 import React from 'react';
 import Title from 'react-title-component';
-
-import MarkdownElement from '../../MarkdownElement';
 import contributingText from '../../../../../../CONTRIBUTING.md';
+import MarkdownElement from '../../MarkdownElement';
 
 const Contributing = () => (
   <div>
