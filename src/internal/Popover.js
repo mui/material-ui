@@ -194,10 +194,8 @@ export default class Popover extends Component {
       transitions.create('transform', `${transitionDuration * 0.666}ms`, `${transitionDuration * 0.333}`),
     ].join(',');
 
-    requestAnimFrame(() => {
-      element.style.opacity = 0;
-      element.style.transform = this.getScale(0.75);
-    });
+    element.style.opacity = 0;
+    element.style.transform = this.getScale(0.75);
 
     if (this.props.onExit) {
       this.props.onExit();

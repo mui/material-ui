@@ -125,12 +125,12 @@ describe('<Popover>', () => {
       let wrapper;
       let handleEnter;
 
-      before((done) => {
+      before(() => {
         handleEnter = spy();
         wrapper = shallow(
           <Popover onEnter={handleEnter} />
         );
-        wrapper.instance().handleEnter(element, done);
+        wrapper.instance().handleEnter(element);
       });
 
       it('should set the inline styles for the enter phase', () => {

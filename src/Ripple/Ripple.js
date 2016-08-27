@@ -87,7 +87,6 @@ export default class Ripple extends Component {
   };
 
   state = {
-    rippleStart: false,
     rippleVisible: false,
   };
 
@@ -136,12 +135,11 @@ export default class Ripple extends Component {
 
   render() {
     const { className, pulsate } = this.props;
-    const { rippleStart, rippleVisible, rippleLeaving } = this.state;
+    const { rippleVisible, rippleLeaving } = this.state;
     const classes = this.context.styleManager.render(styleSheet);
 
     const rippleClassName = classNames(classes.ripple, {
       [classes.visible]: rippleVisible,
-      [classes.animating]: !rippleStart,
       [classes.fast]: pulsate,
     }, className);
 

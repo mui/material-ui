@@ -20,10 +20,9 @@ describe('<Ripple>', () => {
     assert.strictEqual(wrapper.is('span'), true, 'should be a span');
   });
 
-  it('should have the ripple and animating classNames', () => {
+  it('should have the ripple className', () => {
     const wrapper = shallow(<Ripple />);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.ripple), true, 'should have the ripple class');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.animating), true, 'should have the animating class');
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false, 'should not have the fast (pulse) class');
   });
 
@@ -67,7 +66,6 @@ describe('<Ripple>', () => {
 
     it('should start the ripple', () => {
       assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
-      assert.strictEqual(wrapper.state('rippleStart'), false, 'should not be starting');
 
       wrapper.instance().componentWillEnter();
       wrapper.update(); // needed for class assertion since we used instance method to change state
