@@ -2,7 +2,8 @@
 /* eslint-env mocha */
 
 import { assert } from 'chai';
-import { createMuiTheme, createPalette, dark, light } from './theme';
+import { createMuiTheme } from './theme';
+import { createPalette, dark, light } from './palette.js';
 import {
   indigo,
   pink,
@@ -27,11 +28,6 @@ describe('styles/theme', () => {
     it('should have a palette', () => {
       assert.ok(muiTheme.palette, 'should have a palette');
     });
-
-    it('should have a hash as an ID', () => {
-      assert.ok(muiTheme.id, 'should have an ID');
-      assert.strictEqual(muiTheme.id, createMuiTheme().id, 'should have the same ID');
-    });
   });
 
   describe('custom muiTheme', () => {
@@ -41,15 +37,6 @@ describe('styles/theme', () => {
 
     it('should have the custom palette', () => {
       assert.strictEqual(muiTheme.palette.primary, deepOrange, 'should have a palette');
-    });
-
-    it('should have a unique hash as an ID', () => {
-      assert.ok(muiTheme.id, 'should have a unique ID');
-      assert.notStrictEqual(
-        muiTheme.id,
-        createMuiTheme().id,
-        'should not have the same ID as default'
-      );
     });
   });
 

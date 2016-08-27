@@ -1,13 +1,13 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
   return {
-    root: {
+    sortLabel: {
       cursor: 'pointer',
       display: 'inline-flex',
       justifyContent: 'flex-start',
@@ -20,11 +20,11 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
       '&:focus': {
         color: theme.palette.text.primary,
       },
-      '& active': {
-        color: theme.palette.text.primary,
-        icon: {
-          opacity: 1,
-        },
+    },
+    active: {
+      color: theme.palette.text.primary,
+      '& $icon': {
+        opacity: 1,
       },
     },
     icon: {
@@ -42,23 +42,25 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
       transform: 'rotate(180deg)',
     },
   };
-});
+}, { index: 15 });
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
 export default function TableSortLabel(props, context) {
   const { active, className, children, direction, ...other } = props;
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
-  const rootClasses = classNames(classes.root, {
+  const classes = context.styleManager.render(styleSheet);
+  const sortLabelClasses = classNames(classes.sortLabel, {
     [classes.active]: active,
   }, className);
+
   const iconClasses = classNames(classes.icon, {
     [classes[direction]]: !!direction,
   }, 'material-icons');
+
   return (
     <ButtonBase
-      className={rootClasses}
+      className={sortLabelClasses}
       component="span"
       ripple={false}
       {...other}

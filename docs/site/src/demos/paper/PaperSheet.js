@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import Paper from 'material-ui/Paper';
 
 const styleSheet = createStyleSheet('PaperSheet', (theme) => ({

@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, cloneElement, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 import { createChainedFunction } from '../utils/helpers';
@@ -31,15 +31,16 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
           easing.easeOut
         ),
       },
-      input: {
-        display: 'block',
-        marginTop: 10,
-        marginBottom: 10,
-        zIndex: 1,
-      },
+    },
+    label: {},
+    input: {
+      display: 'block',
+      marginTop: 10,
+      marginBottom: 10,
+      zIndex: 1,
     },
     focused: {
-      label: {
+      '& $label': {
         color: focusColor,
       },
       '&:after': {
@@ -47,7 +48,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
       },
     },
   };
-});
+}, { index: 10 });
 
 /**
  * TextField
@@ -133,7 +134,7 @@ export default class TextField extends Component {
       ...other,
     } = this.props;
 
-    this.classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    this.classes = this.context.styleManager.render(styleSheet);
 
     const className = classNames({
       [this.classes.root]: true,

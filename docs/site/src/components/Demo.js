@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
@@ -37,7 +37,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       display: 'none',
       padding: 0,
       margin: 0,
-      '@raw pre': {
+      '& pre': {
         overflow: 'auto',
         color: `${theme.palette.text.primary} !important`,
         backgroundColor: `${palette.background.paper} !important`,
@@ -54,7 +54,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       },
     },
   };
-});
+}, { index: 55 });
 
 export default class Demo extends Component {
   static propTypes = {

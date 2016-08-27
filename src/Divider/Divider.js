@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Divider', (theme) => {
@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
       width: '100%',
     },
   };
-});
+}, { index: 5 });
 
 export default function Divider(props, context) {
   const {
@@ -36,7 +36,7 @@ export default function Divider(props, context) {
     light,
     ...other,
   } = props;
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
+  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.absolute]: absolute,
     [light ? classes.light : classes.default]: true,

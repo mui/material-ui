@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import Text from 'material-ui/Text';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -12,39 +12,37 @@ import addEventListener from 'material-ui/utils/addEventListener';
 
 import AppDrawer from './AppDrawer';
 
-export const styleSheet = createStyleSheet('AppFrame', (theme) => {
-  const { palette, transitions, typography } = theme;
+const globalStyleSheet = createStyleSheet('global', (theme) => ({
+  html: { boxSizing: 'border-box' },
+  '*, *:before, *:after': { boxSizing: 'inherit' },
+  body: {
+    margin: 0,
+    background: theme.palette.background.default,
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.text.primary,
+    lineHeight: '1.2',
+    overflowX: 'hidden',
+    WebkitFontSmoothing: 'antialiased',
+  },
+  a: {
+    color: theme.palette.accent.A400,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
+  p: {
+    lineHeight: '1.6',
+  },
+}), { named: false });
+
+const styleSheet = createStyleSheet('AppFrame', (theme) => {
   return {
-    '@raw html': { boxSizing: 'border-box' },
-    '@raw *, *:before, *:after': { boxSizing: 'inherit' },
-    '@raw body': {
-      margin: 0,
-      background: palette.background.default,
-      fontFamily: typography.fontFamily,
-      color: palette.text.primary,
-      lineHeight: '1.2',
-      overflowX: 'hidden',
-      WebkitFontSmoothing: 'antialiased',
-    },
-    '@raw a': {
-      color: palette.accent.A400,
-      textDecoration: 'none',
-      '&:hover': {
-        textDecoration: 'underline',
-      },
-    },
-    '@raw p': {
-      lineHeight: '1.6',
-    },
     root: {
       display: 'flex',
       alignItems: 'stretch',
       minHeight: '100vh',
-      width: '100vw',
-      appBarHome: {
-        backgroundColor: 'transparent',
-        boxShadow: 'none',
-      },
+      width: '100%',
     },
     navIcon: {
       marginLeft: -12,
@@ -62,7 +60,11 @@ export const styleSheet = createStyleSheet('AppFrame', (theme) => {
     appBar: {
       left: 'auto',
       right: 0,
-      transition: transitions.create('width'),
+      transition: theme.transitions.create('width'),
+    },
+    appBarHome: {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
     },
     [theme.breakpoints.up('lg')]: {
       drawer: {
@@ -96,6 +98,7 @@ class AppFrame extends Component {
   };
 
   componentWillMount() {
+    this.context.styleManager.render(globalStyleSheet);
     this.resizeListener = addEventListener(window, 'resize', this.handleResize);
   }
 

@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableRow', (theme) => {
@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('TableRow', (theme) => {
       background: theme.palette.background.appBar,
     },
   };
-});
+}, { index: 15 });
 
 /**
  * A material table row.

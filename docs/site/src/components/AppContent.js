@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('AppContent', (theme) => {
@@ -11,20 +11,20 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
       flex: '1 1 100%',
       maxWidth: '100%',
       margin: '0 auto',
-      '@raw h1': {
+      '& h1': {
         ...theme.typography.display2,
         color: theme.palette.text.secondary,
         margin: '1em 0 0.7em',
       },
-      '@raw h2': {
+      '& h2': {
         ...theme.typography.display1,
         color: theme.palette.text.secondary,
         margin: '1em 0 0.7em',
       },
-      '@raw p, @raw ul': {
+      '& p, & ul': {
         lineHeight: '1.6',
       },
-      '@raw p code, @raw ul code': {
+      '& p code, & ul code': {
         fontSize: 14,
       },
     }),

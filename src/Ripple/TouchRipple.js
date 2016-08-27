@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import shallowEqual from 'recompose/shallowEqual';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Ripple, { styleSheet as rippleStyleSheet } from './Ripple';
 
@@ -21,7 +21,7 @@ export const styleSheet = createStyleSheet('TouchRipple', () => ({
     pointerEvents: 'none',
     zIndex: 0,
   },
-}));
+}), { index: 5 });
 
 export default class TouchRipple extends Component {
   static propTypes = {
@@ -41,7 +41,7 @@ export default class TouchRipple extends Component {
 
   componentWillMount() {
     // Pre-render the ripple styles
-    this.context.styleManager.render(rippleStyleSheet, { group: 'mui' });
+    this.context.styleManager.render(rippleStyleSheet);
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -148,7 +148,7 @@ export default class TouchRipple extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     return (
       <ReactTransitionGroup

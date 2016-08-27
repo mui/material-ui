@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import { List } from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';

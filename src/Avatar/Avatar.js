@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Avatar', (theme) => {
@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('Avatar', (theme) => {
       height: 'auto',
     },
   };
-});
+}, { index: 5 });
 
 export default function Avatar(props, context) {
   const {
@@ -42,7 +42,7 @@ export default function Avatar(props, context) {
     ...other,
   } = props;
 
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
+  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.defaultColor]: icon && !src && !srcSet,
   }, classNameProp);

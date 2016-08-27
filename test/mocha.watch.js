@@ -6,7 +6,7 @@ module.exports = watchMochaTests;
 
 function watchMochaTests(args = []) {
   nodemon({
-    args,
+    args: args.concat(['||', 'true']),
     exec: 'node test mocha',
     ext: 'js',
     watch: ['src/', 'test/integration'],

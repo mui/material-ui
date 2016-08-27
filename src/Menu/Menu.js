@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
 import MenuList from './MenuList';
@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('Menu', () => {
       maxHeight: 250,
     },
   };
-});
+}, { index: 10 });
 
 export default class Menu extends Component {
   static propTypes = {
@@ -134,7 +134,7 @@ export default class Menu extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     return (
       <Popover

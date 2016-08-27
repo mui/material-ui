@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import warning from 'warning';
 import keycode from 'keycode';
@@ -34,7 +34,7 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
       left: 0,
     },
   };
-});
+}, { index: 1 });
 
 /**
  * Still a WIP
@@ -338,7 +338,7 @@ export default class Modal extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const mount = show || !this.state.exited;
 
     if (!mount) {

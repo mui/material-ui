@@ -29,7 +29,7 @@ export const store = createStore(docs);
 const rootEl = document.getElementById('app');
 
 render(
-  <AppContainer errorReporter={RedBox}>
+  <AppContainer errorReporter={({ error }) => { throw error; }}>
     <Provider store={store}>
       <App />
     </Provider>

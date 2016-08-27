@@ -2,7 +2,7 @@
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import Button from 'material-ui/Button';
 import { List, ListItem, ListItemText } from 'material-ui/List';
 import {

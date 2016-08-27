@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import createFragment from 'react-addons-create-fragment';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import addEventListener from '../utils/addEventListener';
@@ -43,7 +43,7 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
       cursor: 'not-allowed',
     },
   };
-});
+}, { index: 1 });
 
 export default class ButtonBase extends Component {
   static propTypes = {
@@ -225,7 +225,7 @@ export default class ButtonBase extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     const className = classNames(classes.root, {
       [classes.disabled]: disabled,

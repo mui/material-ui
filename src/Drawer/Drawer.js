@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Paper from '../Paper';
 import Modal from '../internal/Modal';
@@ -33,7 +33,7 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
     modal: {
     },
   };
-});
+}, { index: 10 });
 
 /**
  * This is a drawer.
@@ -98,7 +98,7 @@ export default class Drawer extends Component {
     } = this.props;
 
     const { theme: { dir }, render } = this.context.styleManager;
-    const classes = render(styleSheet, { group: 'mui' });
+    const classes = render(styleSheet);
     const rtl = dir === 'rtl';
     const anchor = anchorProp || rtl ? 'right' : 'left';
     const slideDirection = this.getSlideDirection(anchor);

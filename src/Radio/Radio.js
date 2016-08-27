@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('Radio', (theme) => {
       cursor: 'pointer',
     },
   };
-});
+}, { index: 5 });
 
 export default function Radio(props, context) {
   const {

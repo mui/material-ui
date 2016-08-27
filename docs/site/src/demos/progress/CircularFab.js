@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
@@ -9,11 +9,11 @@ import Button from 'material-ui/Button';
 const styleSheet = createStyleSheet('CircularFab', () => ({
   wrapper: {
     position: 'relative',
-    successButton: {
-      backgroundColor: green[500],
-      '&:hover': {
-        backgroundColor: green[700],
-      },
+  },
+  successButton: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
     },
   },
   progress: {

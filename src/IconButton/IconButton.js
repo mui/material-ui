@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
@@ -40,7 +40,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       color: palette.accent.A200,
     },
   };
-});
+}, { index: 2 });
 
 /**
  * @see https://material.google.com/components/buttons.html
@@ -82,7 +82,7 @@ export default class IconButton extends Component {
 
   render() {
     const { children, className, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     return (
       <ButtonBase
         className={classNames(classes.root, className)}

@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import { Radio, RadioGroup } from 'material-ui/Radio';
 import Text from 'material-ui/Text';
 

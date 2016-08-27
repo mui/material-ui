@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Paper', (theme) => {
@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
     },
     ...shadows,
   };
-});
+}, { index: 1 });
 
 /**
  * A piece of material paper.
@@ -41,7 +41,7 @@ export default function Paper(props, context) {
     zDepth,
     ...other,
   } = props;
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
+  const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
     [classes.rounded]: rounded,

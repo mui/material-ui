@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('TableCell', (theme) => {
@@ -12,30 +12,30 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       textAlign: 'left',
-      '& numeric': {
-        textAlign: 'right',
-        flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
-      },
-      '& head': {
-        whiteSpace: 'pre',
-      },
+    },
+    numeric: {
+      textAlign: 'right',
+      flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
+    },
+    head: {
+      whiteSpace: 'pre',
     },
     padding: {
       padding: '0 56px 0 24px',
       '&:last-child': {
         paddingRight: 24,
       },
-      '& compact': {
-        paddingRight: 24,
-      },
-      '& checkbox': {
-        paddingLeft: 12,
-        paddingRight: 0,
-      },
+    },
+    compact: {
+      paddingRight: 24,
+    },
+    checkbox: {
+      paddingLeft: 12,
+      paddingRight: 0,
     },
     footer: {},
   };
-});
+}, { index: 15 });
 
 /**
  * A material table cell.

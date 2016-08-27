@@ -2,6 +2,7 @@
 
 const defaultConstants = {
   fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
+  fontSize: 14,
   fontWeightLight: 300,
   fontWeightNormal: 400,
   fontWeightMedium: 500,
@@ -60,12 +61,6 @@ export default function createTypography(palette, constants = defaultConstants) 
       fontWeight: constants.fontWeightNormal,
       fontFamily: constants.fontFamily,
       color: palette.text.secondary,
-    },
-    button: {
-      fontSize: 14,
-      fontWeight: constants.fontWeightMedium,
-      fontFamily: constants.fontFamily,
-      textTransform: 'uppercase',
     },
     materialIcon: {
       fontFamily: 'Material Icons',

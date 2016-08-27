@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('DialogActions', () => {
@@ -15,12 +15,12 @@ export const styleSheet = createStyleSheet('DialogActions', () => {
     },
     action: {
       margin: '0 4px',
-      button: {
-        minWidth: '64px',
-      },
+    },
+    button: {
+      minWidth: '64px',
     },
   };
-});
+}, { index: 10 });
 
 export default class DialogActions extends Component {
   static propTypes = {

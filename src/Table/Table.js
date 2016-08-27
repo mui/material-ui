@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('Table', () => {
@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('Table', () => {
       overflow: 'hidden',
     },
   };
-});
+}, { index: 15 });
 
 /**
  * A material table root element.
@@ -54,7 +54,7 @@ export default class Table extends Component {
       children,
       ...other,
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);
 
     return (

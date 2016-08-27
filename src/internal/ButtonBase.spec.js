@@ -16,7 +16,7 @@ describe('<ButtonBase>', () => {
   before(() => {
     shallow = createShallowWithContext();
     mount = createMountWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
+    classes = shallow.context.styleManager.render(styleSheet);
   });
   after(() => {
     mount.cleanUp();

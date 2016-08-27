@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import querySelectorAll from 'dom-helpers/query/querySelectorAll';
@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('RadioGroup', () => {
       padding: 0,
     },
   };
-});
+}, { index: 10 });
 
 export default class RadioGroup extends Component {
   static propTypes = {
@@ -202,7 +202,7 @@ export default class RadioGroup extends Component {
     } = this.props;
 
     const selectedValue = this.isControlled ? selectedValueProp : this.state.selectedValue;
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     groupProps.className = classes.root;
     groupProps['data-mui-test'] = 'RadioGroup';

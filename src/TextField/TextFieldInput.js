@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
 
@@ -36,7 +36,7 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       },
     },
   };
-});
+}, { index: 5 });
 
 /**
  * TextFieldInput
@@ -148,7 +148,7 @@ export default class TextFieldInput extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     const className = classNames({
       [classes.root]: true,

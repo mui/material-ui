@@ -12,7 +12,7 @@ describe('<Switch>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
+    classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a SwitchBase inside a div', () => {

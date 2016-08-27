@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
 
@@ -49,7 +49,7 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
       },
     },
   };
-});
+}, { index: 10 });
 
 export default class CircularProgress extends Component {
   static propTypes = {

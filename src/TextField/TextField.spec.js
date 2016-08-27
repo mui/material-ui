@@ -13,7 +13,7 @@ describe('<TextField>', () => {
 
   before(() => {
     shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
+    classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render an <div> root element and pass the child through', () => {

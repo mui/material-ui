@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import MarkdownElement from './MarkdownElement';
 import Demo from './Demo';
 
@@ -9,18 +9,18 @@ const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
   return {
     content: {
       marginBottom: 100,
-      '@raw pre': {
+      '& pre': {
         margin: '25px 0',
         padding: '12px 18px',
         backgroundColor: theme.palette.background.paper,
         borderRadius: 3,
-        '@raw code': {
-          lineHeight: 1.6,
-          padding: 0,
-          fontSize: 14,
-        },
       },
-      '@raw code': {
+      '& pre code': {
+        lineHeight: 1.6,
+        padding: 0,
+        fontSize: 14,
+      },
+      '& code': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
         padding: '3px 6px',
         color: theme.palette.text.primary,

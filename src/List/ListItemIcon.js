@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly/lib/styleSheet';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('ListItemIcon', () => {
@@ -17,14 +17,14 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
       },
     },
   };
-});
+}, { index: 10 });
 
 export default function ListItemIcon(props, context) {
   const {
     children,
     className: classNameProp,
   } = props;
-  const classes = context.styleManager.render(styleSheet, { group: 'mui' });
+  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, classNameProp);
 
   return (

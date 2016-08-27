@@ -2,7 +2,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { createStyleSheet } from 'stylishly';
+import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
@@ -29,14 +30,14 @@ export const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => {
       display: 'flex',
       paddingTop: 0,
       paddingBottom: 0,
-      button: {
-        color: theme.palette.text.secondary,
-        textIndent: 24,
-        fontSize: 13,
-      },
-      activeButton: {
-        color: theme.palette.text.primary,
-      },
+    },
+    navLinkButton: {
+      color: theme.palette.text.secondary,
+      textIndent: 24,
+      fontSize: 13,
+    },
+    activeButton: {
+      color: theme.palette.text.primary,
     },
   };
 });
@@ -77,7 +78,7 @@ export default class AppDrawerNavItem extends Component {
           <Button
             component={Link}
             to={to}
-            className={classes.button}
+            className={classNames(classes.button, classes.navLinkButton)}
             activeClassName={classes.activeButton}
             ripple={false}
             onClick={this.props.onClick}

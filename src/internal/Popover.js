@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'stylishly';
+import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
 import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
@@ -143,39 +143,32 @@ export default class Popover extends Component {
 
   autoTransitionDuration = undefined;
 
-  handleEnter = (element, callback) => {
+  handleEnter = (element) => {
     element.style.opacity = 0;
     element.style.transform = this.getScale(0.75);
 
-    // Temp solution?
-    // ensures that `asap` buffered stylesheets
-    // are rendered first for correct height calc
-    requestAnimFrame(() => {
-      if (this.props.onEnter) {
-        this.props.onEnter(element);
-      }
+    if (this.props.onEnter) {
+      this.props.onEnter(element);
+    }
 
-      const positioning = this.getPositioningStyle(element);
+    const positioning = this.getPositioningStyle(element);
 
-      element.style.top = positioning.top;
-      element.style.left = positioning.left;
-      element.style.transformOrigin = positioning.transformOrigin;
+    element.style.top = positioning.top;
+    element.style.left = positioning.left;
+    element.style.transformOrigin = positioning.transformOrigin;
 
-      let { transitionDuration } = this.props;
-      const { transitions } = this.context.styleManager.theme;
+    let { transitionDuration } = this.props;
+    const { transitions } = this.context.styleManager.theme;
 
-      if (transitionDuration === 'auto') {
-        transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-        this.autoTransitionDuration = transitionDuration;
-      }
+    if (transitionDuration === 'auto') {
+      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
+      this.autoTransitionDuration = transitionDuration;
+    }
 
-      element.style.transition = [
-        transitions.create('opacity', `${transitionDuration}ms`),
-        transitions.create('transform', `${transitionDuration * 0.666}ms`),
-      ].join(',');
-
-      callback();
-    });
+    element.style.transition = [
+      transitions.create('opacity', `${transitionDuration}ms`),
+      transitions.create('transform', `${transitionDuration * 0.666}ms`),
+    ].join(',');
   };
 
   handleEntering = (element) => {
@@ -188,6 +181,19 @@ export default class Popover extends Component {
   };
 
   handleExit = (element) => {
+    let { transitionDuration } = this.props;
+    const { transitions } = this.context.styleManager.theme;
+
+    if (transitionDuration === 'auto') {
+      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
+      this.autoTransitionDuration = transitionDuration;
+    }
+
+    element.style.transition = [
+      transitions.create('opacity', `${transitionDuration}ms`),
+      transitions.create('transform', `${transitionDuration * 0.666}ms`, `${transitionDuration * 0.333}`),
+    ].join(',');
+
     element.style.opacity = 0;
     element.style.transform = this.getScale(0.75);
 
@@ -369,7 +375,7 @@ export default class Popover extends Component {
       ...other,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
+    const classes = this.context.styleManager.render(styleSheet);
 
     return (
       <Modal
