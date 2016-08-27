@@ -15,9 +15,9 @@ export const styleSheet = createStyleSheet('DialogActions', () => {
     },
     action: {
       margin: '0 4px',
-      button: {
-        minWidth: '64px',
-      },
+    },
+    button: {
+      minWidth: '64px',
     },
   };
 }, { index: 10 });
