@@ -48,7 +48,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
       },
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 /**
  * TextField

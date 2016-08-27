@@ -42,7 +42,7 @@ export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
       transform: 'rotate(180deg)',
     },
   };
-}, { priority: 15 });
+}, { index: 15 });
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.

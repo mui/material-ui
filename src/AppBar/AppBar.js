@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
       color: palette.getContrastText(palette.accent.A200),
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class AppBar extends Component {
   static propTypes = {

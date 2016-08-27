@@ -88,7 +88,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       },
     },
   };
-}, { priority: 2 });
+}, { index: 2 });
 
 /**
  * Buttons communicate the action that will occur when the user

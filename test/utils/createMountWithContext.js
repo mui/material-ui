@@ -1,8 +1,11 @@
 // @flow weak
 
+import { createMuiTheme } from 'src/styles/theme';
+import { create } from 'jss';
+import jssPreset from 'jss-preset-default';
+import { createStyleManager } from 'jss-theme-reactor';
 import { PropTypes } from 'react';
 import { mount as enzymeMount } from 'enzyme';
-import { createDefaultContext } from 'src/styles/MuiThemeProvider';
 
 export default function createMountWithContext(mount = enzymeMount, props = {}) {
   cleanStyles();
@@ -11,8 +14,9 @@ export default function createMountWithContext(mount = enzymeMount, props = {}) 
   attachTo.className = 'app';
   attachTo.setAttribute('id', 'app');
   window.document.body.insertBefore(attachTo, window.document.body.firstChild);
-
-  const { theme, styleManager } = createDefaultContext(props);
+  const theme = createMuiTheme();
+  const jss = create(jssPreset());
+  const styleManager = createStyleManager({ jss, theme });
   const context = { theme, styleManager };
   const childContextTypes = {
     theme: PropTypes.object,

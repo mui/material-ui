@@ -35,7 +35,7 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
     },
     footer: {},
   };
-}, { priority: 15 });
+}, { index: 15 });
 
 /**
  * A material table cell.

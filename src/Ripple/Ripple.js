@@ -67,7 +67,7 @@ export const styleSheet = createStyleSheet('Ripple', () => ({
       transform: 'scale(1)',
     },
   },
-}), { priority: 1 });
+}), { index: 1 });
 
 export default class Ripple extends Component {
   static propTypes = {

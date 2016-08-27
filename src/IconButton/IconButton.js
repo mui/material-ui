@@ -40,7 +40,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       color: palette.accent.A200,
     },
   };
-}, { priority: 2 });
+}, { index: 2 });
 
 /**
  * @see https://material.google.com/components/buttons.html

@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('DialogTitle', () => {
       flex: '0 0 auto',
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class DialogTitle extends Component {
   static propTypes = {

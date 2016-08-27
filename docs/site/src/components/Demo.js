@@ -54,7 +54,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       },
     },
   };
-}, { priority: 55 });
+}, { index: 55 });
 
 export default class Demo extends Component {
   static propTypes = {

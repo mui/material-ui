@@ -29,7 +29,7 @@ export const styleSheet = createStyleSheet('SwitchBase', () => {
       },
     },
   };
-}, { priority: 1 });
+}, { index: 1 });
 
 export default class SwitchBase extends Component {
   static propTypes = {

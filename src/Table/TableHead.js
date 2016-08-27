@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('TableHead', (theme) => {
       color: theme.palette.text.secondary,
     },
   };
-}, { priority: 15 });
+}, { index: 15 });
 
 /**
  * A material table head.

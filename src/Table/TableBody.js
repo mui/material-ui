@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('TableBody', (theme) => {
       color: theme.palette.text.primary,
     },
   };
-}, { priority: 15 });
+}, { index: 15 });
 
 /**
  * A material table body.

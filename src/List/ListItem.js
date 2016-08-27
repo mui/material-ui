@@ -32,7 +32,7 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
     },
     gutters: theme.mixins.gutters({}),
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class ListItem extends Component {
   static propTypes = {

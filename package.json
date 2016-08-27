@@ -49,7 +49,7 @@
     "react-tap-event-plugin": "^1.0.0"
   },
   "dependencies": {
-    "@nmarks/jss": "^5.4.3",
+    "@nmarks/jss": "^5.4.6",
     "classnames": "^2.2.5",
     "dom-helpers": "^2.4.0",
     "jss": "^5.4.0",

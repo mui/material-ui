@@ -34,7 +34,7 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
       left: 0,
     },
   };
-}, { priority: 1 });
+}, { index: 1 });
 
 /**
  * Still a WIP

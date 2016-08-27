@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('Toolbar', (theme) => {
       },
     },
   };
-}, { priority: 15 });
+}, { index: 15 });
 
 export default function Toolbar(props, context) {
   const {

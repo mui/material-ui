@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('DialogActions', () => {
       },
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class DialogActions extends Component {
   static propTypes = {

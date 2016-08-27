@@ -16,7 +16,7 @@ export const styleSheet = createStyleSheet('DialogContent', () => {
       },
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class DialogContent extends Component {
   static propTypes = {

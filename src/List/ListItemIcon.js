@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
       },
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default function ListItemIcon(props, context) {
   const {

@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('List', () => {
       paddingBottom: 8,
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 /**
  * A simple list component.

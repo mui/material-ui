@@ -33,7 +33,7 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
     modal: {
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 /**
  * This is a drawer.

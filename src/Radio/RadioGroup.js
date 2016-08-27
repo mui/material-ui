@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('RadioGroup', () => {
       padding: 0,
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class RadioGroup extends Component {
   static propTypes = {

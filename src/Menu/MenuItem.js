@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('MenuItem', (theme) => {
       backgroundColor: palette.text.divider,
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class MenuItem extends Component {
   static propTypes = {

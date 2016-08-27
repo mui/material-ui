@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('TableRow', (theme) => {
       background: theme.palette.background.appBar,
     },
   };
-}, { priority: 15 });
+}, { index: 15 });
 
 /**
  * A material table row.

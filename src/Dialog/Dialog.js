@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('Dialog', () => {
       },
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 /**
  * Dialogs are overlayed modal paper based components with a backdrop.

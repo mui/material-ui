@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
       color: theme.palette.text.secondary,
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class ListItemText extends Component {
   static propTypes = {

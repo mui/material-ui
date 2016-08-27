@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('Radio', (theme) => {
       cursor: 'pointer',
     },
   };
-}, { priority: 5 });
+}, { index: 5 });
 
 export default function Radio(props, context) {
   const {

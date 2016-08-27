@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
       whiteSpace: 'nowrap',
     },
   };
-}, { priority: 5 });
+}, { index: 5 });
 
 export default class Text extends Component {
   static propTypes = {

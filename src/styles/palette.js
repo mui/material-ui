@@ -63,6 +63,8 @@ export default function createPalette({
   };
 }
 
+export { createPalette };
+
 function getContrastText(color) {
   if (getContrastRatio(color, black) < 7) {
     return dark.text.primary;

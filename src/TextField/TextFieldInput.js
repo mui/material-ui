@@ -36,7 +36,7 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       },
     },
   };
-}, { priority: 5 });
+}, { index: 5 });
 
 /**
  * TextFieldInput

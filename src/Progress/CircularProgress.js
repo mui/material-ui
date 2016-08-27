@@ -49,7 +49,7 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
       },
     },
   };
-}, { priority: 10 });
+}, { index: 10 });
 
 export default class CircularProgress extends Component {
   static propTypes = {

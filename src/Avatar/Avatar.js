@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('Avatar', (theme) => {
       height: 'auto',
     },
   };
-}, { priority: 5 });
+}, { index: 5 });
 
 export default function Avatar(props, context) {
   const {
