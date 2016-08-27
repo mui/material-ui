@@ -12,9 +12,9 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
       alignItems: 'center',
       position: 'relative',
       textDecoration: 'none',
-      '& keyboardFocused': {
-        background: theme.palette.text.divider,
-      },
+    },
+    keyboardFocused: {
+      background: theme.palette.text.divider,
     },
     default: {
       paddingTop: 19,
