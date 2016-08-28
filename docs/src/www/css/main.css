@@ -27,8 +27,10 @@ body {
   line-height: 24px;
 }
 
-/* Used in our inline-styles.jsx as an example */
-.muidocs-checkbox-example {
-  border: 2px solid #FF9800;
-  background-color: #4CAF50;
+/* Used in StylesOverridingCssExample.js */
+.styles-overriding-css-example {
+  width: 50% !important;
+  margin: 0 auto !important;
+  border: 2px solid #FF9800 !important;
+  background-color: #ffd699 !important;
 }

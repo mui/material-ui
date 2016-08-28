@@ -1,4 +1,3 @@
-
 ### Predefined themes
 
 We ship two base themes with Material-UI: light and dark. They are located

@@ -158,7 +158,7 @@ class AppNavDrawer extends Component {
             primaryTogglesNestedList={true}
             nestedItems={[
               <ListItem primaryText="Themes" value="/customization/themes" />,
-              <ListItem primaryText="Inline Styles" value="/customization/inline-styles" />,
+              <ListItem primaryText="Styles" value="/customization/styles" />,
               <ListItem primaryText="Colors" value="/customization/colors" />,
             ]}
           />
