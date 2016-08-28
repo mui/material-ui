@@ -26,7 +26,7 @@ function getStyles(props, context, state) {
       display: 'block',
       fontSize: 36,
       lineHeight: '36px',
-      height: props.mode === 'landscape' ? '100%' : 38,
+      height: props.mode === 'landscape' ? 76 : 38,
       opacity: selectedYear ? 0.7 : 1,
       transition: transitions.easeOut(),
       width: '100%',
@@ -64,6 +64,7 @@ class DateDisplay extends Component {
     monthDaySelected: PropTypes.bool,
     onTouchTapMonthDay: PropTypes.func,
     onTouchTapYear: PropTypes.func,
+    range: PropTypes.bool,
     selectedDate: PropTypes.object.isRequired,
     style: PropTypes.object,
     weekCount: PropTypes.number,
@@ -132,21 +133,36 @@ class DateDisplay extends Component {
       monthDaySelected, // eslint-disable-line no-unused-vars
       onTouchTapMonthDay, // eslint-disable-line no-unused-vars
       onTouchTapYear, // eslint-disable-line no-unused-vars
+      range,
       selectedDate, // eslint-disable-line no-unused-vars
       style,
       weekCount, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
-
+    const selectedDateRange = range ? selectedDate.end : selectedDate;
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const year = selectedDate.getFullYear();
-
+    const year = selectedDateRange.getFullYear();
+    let dateTimeRangeFormatted;
+    if (range) {
+      dateTimeRangeFormatted = {
+        start: new DateTimeFormat(locale, {
+          month: 'short',
+          weekday: 'short',
+          day: '2-digit',
+        }).format(selectedDate.start),
+        end: new DateTimeFormat(locale, {
+          month: 'short',
+          weekday: 'short',
+          day: '2-digit',
+        }).format(selectedDate.end),
+      };
+    }
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
-    }).format(selectedDate);
+    }).format(selectedDateRange);
 
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>
@@ -158,18 +174,47 @@ class DateDisplay extends Component {
             {year}
           </div>
         </SlideInTransitionGroup>
-        <SlideInTransitionGroup
-          style={styles.monthDay}
-          direction={this.state.transitionDirection}
-        >
-          <div
-            key={dateTimeFormatted}
-            onTouchTap={this.handleTouchTapMonthDay}
-            style={styles.monthDayTitle}
-          >
-            {dateTimeFormatted}
-          </div>
-        </SlideInTransitionGroup>
+        {
+          range ?
+            <div>
+              <SlideInTransitionGroup
+                style={styles.monthDay}
+                direction={this.state.transitionDirection}
+              >
+                <div
+                  key={dateTimeRangeFormatted.start}
+                  onTouchTap={this.handleTouchTapMonthDay}
+                  style={styles.monthDayTitle}
+                >
+                  {dateTimeRangeFormatted.start}
+                </div>
+              </SlideInTransitionGroup>
+              <SlideInTransitionGroup
+                style={styles.monthDay}
+                direction={this.state.transitionDirection}
+              >
+                <div
+                  key={dateTimeRangeFormatted.end}
+                  onTouchTap={this.handleTouchTapMonthDay}
+                  style={styles.monthDayTitle}
+                >
+                  {dateTimeRangeFormatted.end}
+                </div>
+              </SlideInTransitionGroup>
+            </div> :
+            <SlideInTransitionGroup
+              style={styles.monthDay}
+              direction={this.state.transitionDirection}
+            >
+              <div
+                key={dateTimeFormatted}
+                onTouchTap={this.handleTouchTapMonthDay}
+                style={styles.monthDayTitle}
+              >
+                {dateTimeFormatted}
+              </div>
+            </SlideInTransitionGroup>
+        }
       </div>
     );
   }

@@ -10,23 +10,39 @@ class CalendarMonth extends Component {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     onTouchTapDay: PropTypes.func,
+    range: PropTypes.bool,
     selectedDate: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
   };
+  componentWillMount() {
+    if (this.props.range) {
+      this.isSelected = (date) => {
+        const {selectedDate} = this.props;
+        if (date) {
+          return isBetweenDates(date, selectedDate.start, selectedDate.end);
+        }
+      };
+    } else {
+      this.isSelected = (date) => {
+        return isEqualDate(date, this.props.selectedDate);
+      };
+    }
+  }
 
   isSelectedDateDisabled() {
     return this.selectedDateDisabled;
   }
 
   handleTouchTapDay = (event, date) => {
-    if (this.props.onTouchTapDay) this.props.onTouchTapDay(event, date);
+    if (this.props.onTouchTapDay) {
+      this.props.onTouchTapDay(event, date);
+    }
   };
 
   shouldDisableDate(day) {
     if (day === null) return false;
     let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
     if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
-
     return disabled;
   }
 
@@ -44,11 +60,11 @@ class CalendarMonth extends Component {
 
   getDayElements(week, i) {
     return week.map((day, j) => {
-      const isSameDate = isEqualDate(this.props.selectedDate, day);
+      const isSelected = this.isSelected(day);
       const disabled = this.shouldDisableDate(day);
-      const selected = !disabled && isSameDate;
+      const selected = !disabled && isSelected;
 
-      if (isSameDate) {
+      if (isSelected) {
         this.selectedDateDisabled = disabled;
       }
 

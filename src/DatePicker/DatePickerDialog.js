@@ -27,6 +27,7 @@ class DatePickerDialog extends Component {
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
     open: PropTypes.bool,
+    range: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
   };
@@ -37,6 +38,7 @@ class DatePickerDialog extends Component {
     container: 'dialog',
     locale: 'en-US',
     okLabel: 'OK',
+    range: false,
   };
 
   static contextTypes = {
@@ -117,6 +119,7 @@ class DatePickerDialog extends Component {
       onAccept, // eslint-disable-line no-unused-vars
       onDismiss, // eslint-disable-line no-unused-vars
       onShow, // eslint-disable-line no-unused-vars
+      range,
       shouldDisableDate,
       style, // eslint-disable-line no-unused-vars
       animation,
@@ -135,14 +138,15 @@ class DatePickerDialog extends Component {
         minWidth: mode === 'landscape' ? 479 : 310,
       },
     };
-
     const Container = (container === 'inline' ? Popover : Dialog);
 
     return (
       <div
         {...other}
         ref={(ref) => {
-          this.root = ref;
+          if (ref) {
+            this.root = ref;
+          }
         }}
       >
         <Container
@@ -151,7 +155,9 @@ class DatePickerDialog extends Component {
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
           ref={(ref) => {
-            this.dialog = ref;
+            if (ref) {
+              this.dialog = ref;
+            }
           }}
           repositionOnUpdate={true}
           open={open}
@@ -162,27 +168,32 @@ class DatePickerDialog extends Component {
             target="window"
             onKeyUp={this.handleWindowKeyUp}
           />
-          <Calendar
-            autoOk={autoOk}
-            DateTimeFormat={DateTimeFormat}
-            cancelLabel={cancelLabel}
-            disableYearSelection={disableYearSelection}
-            firstDayOfWeek={firstDayOfWeek}
-            initialDate={initialDate}
-            locale={locale}
-            onTouchTapDay={this.handleTouchTapDay}
-            maxDate={maxDate}
-            minDate={minDate}
-            mode={mode}
-            open={open}
-            ref={(ref) => {
-              this.calendar = ref;
-            }}
-            onTouchTapCancel={this.handleTouchTapCancel}
-            onTouchTapOk={this.handleTouchTapOk}
-            okLabel={okLabel}
-            shouldDisableDate={shouldDisableDate}
-          />
+          <div style={{display: 'flex'}}>
+            <Calendar
+              autoOk={autoOk}
+              DateTimeFormat={DateTimeFormat}
+              cancelLabel={cancelLabel}
+              disableYearSelection={disableYearSelection}
+              firstDayOfWeek={firstDayOfWeek}
+              initialDate={initialDate}
+              locale={locale}
+              onTouchTapDay={this.handleTouchTapDay}
+              maxDate={maxDate}
+              minDate={minDate}
+              mode={mode}
+              open={open}
+              range={range}
+              ref={(ref) => {
+                if (ref) {
+                  this.calendar = ref;
+                }
+              }}
+              onTouchTapCancel={this.handleTouchTapCancel}
+              onTouchTapOk={this.handleTouchTapOk}
+              okLabel={okLabel}
+              shouldDisableDate={shouldDisableDate}
+            />
+          </div>
         </Container>
       </div>
     );

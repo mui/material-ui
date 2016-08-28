@@ -9,6 +9,7 @@ class CalendarYear extends Component {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     onTouchTapYear: PropTypes.func,
+    range: PropTypes.bool,
     selectedDate: PropTypes.object.isRequired,
     wordings: PropTypes.object,
   };
@@ -30,10 +31,11 @@ class CalendarYear extends Component {
     const maxYear = this.props.maxDate.getFullYear();
 
     const years = [];
-    const dateCheck = cloneDate(this.props.selectedDate);
+    const selectedDate = this.props.range ? this.props.selectedDate.end : this.props.selectedDate;
+    const dateCheck = cloneDate(selectedDate);
     for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
-      const selected = this.props.selectedDate.getFullYear() === year;
+      const selected = selectedDate.getFullYear() === year;
       let selectedProps = {};
       if (selected) {
         selectedProps = {ref: 'selectedYearButton'};

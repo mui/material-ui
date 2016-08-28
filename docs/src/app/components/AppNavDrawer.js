@@ -229,8 +229,19 @@ class AppNavDrawer extends Component {
               />,
               <ListItem
                 primaryText="Date Picker"
-                value="/components/date-picker"
-                href="#/components/date-picker"
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    primaryText="Date Picker"
+                    value="/components/date-picker"
+                    href="#/components/date-picker"
+                  />,
+                  <ListItem
+                    primaryText="Date Range Picker"
+                    value="/components/date-range-picker"
+                    href="#/components/date-range-picker"
+                  />,
+                ]}
               />,
               <ListItem
                 primaryText="Dialog"

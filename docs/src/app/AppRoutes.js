@@ -29,6 +29,7 @@ import ChipPage from './components/pages/components/Chip/Page';
 import CircularProgressPage from './components/pages/components/CircularProgress/Page';
 import CheckboxPage from './components/pages/components/Checkbox/Page';
 import DatePicker from './components/pages/components/DatePicker/Page';
+import DateRangePicker from './components/pages/components/DateRangePicker/Page';
 import DialogPage from './components/pages/components/Dialog/Page';
 import DividerPage from './components/pages/components/Divider/Page';
 import DrawerPage from './components/pages/components/Drawer/Page';
@@ -105,6 +106,7 @@ const AppRoutes = (
       <Route path="circular-progress" component={CircularProgressPage} />
       <Route path="checkbox" component={CheckboxPage} />
       <Route path="date-picker" component={DatePicker} />
+      <Route path="date-range-picker" component={DateRangePicker} />
       <Route path="dialog" component={DialogPage} />
       <Route path="divider" component={DividerPage} />
       <Route path="drawer" component={DrawerPage} />
