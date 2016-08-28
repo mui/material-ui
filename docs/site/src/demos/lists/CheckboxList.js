@@ -2,7 +2,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
-import { List, ListItem, ListItemText } from 'material-ui/List';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 
@@ -58,7 +63,9 @@ export default class CheckboxList extends Component {
                 ripple={false}
               />
               <ListItemText primary={`Line item ${index + 1}`} />
-              <IconButton>comment</IconButton>
+              <ListItemSecondaryAction>
+                <IconButton>comment</IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           ))}
         </List>
