@@ -1,5 +1,5 @@
-Checkbox
-========
+Radio
+=====
 
 
 
@@ -11,3 +11,7 @@ Props
 |:-----|:-----|:-----|:-----|
 | checkedClassName | string |  |   |
 | className | string |  |   |
+| label | string |  |   |
+| name | string |  |   |
+| onChange | function |  |   |
+| value | string |  |   |

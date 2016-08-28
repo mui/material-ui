@@ -30,6 +30,5 @@ Props
 | onExited | function |  |  Callback fired when the dialog has exited |
 | onRequestClose | function |  |  Callback fired when the dialog requests to be closed |
 | open | bool | false |  Set to true to open the Dialog |
-| transition | function | Slide |  Transition component |
-| transitionDirection | enum:&nbsp;'up'<br>&nbsp;'down'<br>&nbsp;'left'<br>&nbsp;'right'<br> | 'down' |  Slide transition direction |
+| transition | union | Fade |  Transition component |
 | transitionDuration | number | 300 |  Length of the transition in ms |
