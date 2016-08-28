@@ -9,7 +9,6 @@ import {
   ListItemSecondaryAction,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
-import Avatar from 'material-ui/Avatar';
 
 const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
   root: {

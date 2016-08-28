@@ -36,5 +36,3 @@ export function createMuiTheme(config = {}) {
 
   return theme;
 }
-
-
