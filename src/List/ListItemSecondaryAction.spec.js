@@ -4,12 +4,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
-import ListItemIcon, { styleSheet } from './ListItemIcon';
+import ListItemSecondaryAction, { styleSheet } from './ListItemSecondaryAction';
 
-/**
- * An item that goes in lists.
- */
-describe('<ListItemIcon>', () => {
+describe('<ListItemSecondaryAction>', () => {
   let shallow;
   let classes;
 
@@ -20,15 +17,15 @@ describe('<ListItemIcon>', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <ListItemIcon />
+      <ListItemSecondaryAction />
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.secondaryAction), true, 'should have the secondaryAction class');
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListItemIcon className="woof" />);
+  it('should render with the user and secondaryAction classes', () => {
+    const wrapper = shallow(<ListItemSecondaryAction className="woof" />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.secondaryAction), true, 'should have the secondaryAction class');
   });
 });

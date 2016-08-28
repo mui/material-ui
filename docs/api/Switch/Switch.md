@@ -1,5 +1,5 @@
-Checkbox
-========
+Switch
+======
 
 
 

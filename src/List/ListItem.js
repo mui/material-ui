@@ -7,14 +7,17 @@ import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('ListItem', (theme) => {
   return {
-    root: {
+    listItem: {
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
       textDecoration: 'none',
-      '& keyboardFocused': {
-        background: theme.palette.text.divider,
-      },
+    },
+    listItemContainer: {
+      position: 'relative',
+    },
+    keyboardFocused: {
+      background: theme.palette.text.divider,
     },
     default: {
       paddingTop: 19,
@@ -30,7 +33,10 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
     divider: {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     },
-    gutters: theme.mixins.gutters({}),
+    gutters: {
+      paddingLeft: 16,
+      paddingRight: 16,
+    },
   };
 }, { index: 10 });
 
@@ -61,6 +67,7 @@ export default class ListItem extends Component {
   render() {
     const {
       button,
+      children: childrenProp,
       className: classNameProp,
       component: componentProp,
       dense,
@@ -71,7 +78,7 @@ export default class ListItem extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
-    const className = classNames(classes.root, {
+    const className = classNames(classes.listItem, {
       [classes.gutters]: gutters,
       [classes.divider]: divider,
       [classes.disabled]: disabled,
@@ -87,6 +94,22 @@ export default class ListItem extends Component {
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
 
-    return React.createElement(component, listItemProps);
+    const children = React.Children.toArray(childrenProp);
+
+    if (
+      children.length &&
+      children[children.length - 1].type &&
+      children[children.length - 1].type.muiName === 'ListItemSecondaryAction'
+    ) {
+      const secondaryAction = children.pop();
+      return (
+        <div className={classes.listItemContainer}>
+          {React.createElement(component, listItemProps, children)}
+          {secondaryAction}
+        </div>
+      );
+    }
+
+    return React.createElement(component, listItemProps, children);
   }
 }

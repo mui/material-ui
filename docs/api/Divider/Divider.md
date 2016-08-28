@@ -11,3 +11,4 @@ Props
 |:-----|:-----|:-----|:-----|
 | absolute | bool |  |   |
 | className | string |  |   |
+| light | bool |  |   |

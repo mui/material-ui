@@ -1,5 +1,5 @@
-Checkbox
-========
+ListItemSecondaryAction
+=======================
 
 
 
@@ -9,5 +9,5 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| checkedClassName | string |  |   |
+| children | node |  |   |
 | className | string |  |   |

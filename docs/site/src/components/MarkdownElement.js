@@ -12,22 +12,22 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     marginTop: 20,
     marginBottom: 20,
     padding: '0 10px',
-    '@raw table': {
+    '& table': {
       width: '100%',
       borderCollapse: 'collapse',
       borderSpacing: 0,
       overflow: 'hidden',
     },
-    '@raw thead': {
+    '& thead': {
       fontSize: 12,
       fontWeight: 500,
       color: theme.palette.text.secondary,
     },
-    '@raw tbody': {
+    '& tbody': {
       fontSize: 13,
       color: theme.palette.text.primary,
     },
-    '@raw td': {
+    '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
       padding: '0 56px 0 24px',
       '&:last-child': {
@@ -38,25 +38,22 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       },
       textAlign: 'left',
     },
-    '@raw td code': {
+    '& td code': {
       fontSize: 13,
     },
-    '@raw th': {
+    '& th': {
       whiteSpace: 'pre',
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
       padding: '0 56px 0 24px',
       '&:last-child': {
         paddingRight: 24,
       },
-      '& compact': {
-        paddingRight: 24,
-      },
       textAlign: 'left',
     },
-    '@raw tr': {
+    '& tr': {
       height: 48,
     },
-    '@raw thead tr': {
+    '& thead tr': {
       height: 64,
     },
   },
