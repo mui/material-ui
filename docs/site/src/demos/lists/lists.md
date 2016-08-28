@@ -12,10 +12,16 @@ Lists are best suited for similar data types.
 
 A checkbox can either be a primary action or a secondary action.
 
-The checkbox is the primary action and the state indicator for the list item.
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{demo='lists/CheckboxList.js'}}
 
-The checkbox is the secondary action for the list item.
+The checkbox is the secondary action for the list item and a separate target.
 
 {{demo='lists/CheckboxListSecondary.js'}}
+
+### Switch
+
+The switch is the secondary action and a separate target.
+
+{{demo='lists/SwitchListSecondary.js'}}

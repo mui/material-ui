@@ -25,7 +25,7 @@ export default class CheckboxList extends Component {
   };
 
   state = {
-    checked: [],
+    checked: [1],
   };
 
   handleToggle = (event, value) => {

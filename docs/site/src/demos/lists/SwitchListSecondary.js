@@ -8,8 +8,8 @@ import {
   ListItemText,
   ListItemSecondaryAction,
 } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
-import IconButton from 'material-ui/IconButton';
+import Switch from 'material-ui/Switch';
+import Avatar from 'material-ui/Avatar';
 
 const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
   root: {
@@ -25,7 +25,7 @@ export default class CheckboxList extends Component {
   };
 
   state = {
-    checked: [0],
+    checked: ['wifi'],
   };
 
   handleToggle = (event, value) => {
@@ -50,24 +50,26 @@ export default class CheckboxList extends Component {
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map((n, index) => (
-            <ListItem
-              dense
-              button
-              key={index}
-              onClick={(event) => this.handleToggle(event, index)}
-            >
-              <Checkbox
-                checked={this.state.checked.indexOf(index) !== -1}
-                tabIndex="-1"
-                ripple={false}
+          <ListItem>
+            <span className="material-icons">wifi</span>
+            <ListItemText primary="Wi-Fi" />
+            <ListItemSecondaryAction>
+              <Switch
+                onClick={(event) => this.handleToggle(event, 'wifi')}
+                checked={this.state.checked.indexOf('wifi') !== -1}
               />
-              <ListItemText primary={`Line item ${index + 1}`} />
-              <ListItemSecondaryAction>
-                <IconButton>comment</IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
+            </ListItemSecondaryAction>
+          </ListItem>
+          <ListItem>
+            <span className="material-icons">bluetooth</span>
+            <ListItemText primary="Bluetooth" />
+            <ListItemSecondaryAction>
+              <Switch
+                onClick={(event) => this.handleToggle(event, 'bluetooth')}
+                checked={this.state.checked.indexOf('bluetooth') !== -1}
+              />
+            </ListItemSecondaryAction>
+          </ListItem>
         </List>
       </div>
     );
