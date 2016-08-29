@@ -20,4 +20,34 @@ describe('<DropDownMenu />', () => {
 
     assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Never');
   });
+
+  it('passes expected props through to the underlying Menu', () => {
+    const props = {
+      listStyle: {color: 'black'},
+      maxHeight: 10,
+      menuStyle: {color: 'white'},
+      selectedMenuItemStyle: {color: 'blue'},
+      value: 1,
+    };
+
+    const wrapper = shallowWithContext(
+      <DropDownMenu
+        {...props}
+      >
+        <div value={1} primaryText="Never" />
+        <div value={2} primaryText="Every Night" />
+        <div value={3} primaryText="Weeknights" />
+      </DropDownMenu>
+    );
+
+    const menu = wrapper.childAt(1).childAt(0);
+    assert.include(menu.props(), {
+      desktop: true,
+      listStyle: props.listStyle,
+      maxHeight: props.maxHeight,
+      selectedMenuItemStyle: props.selectedMenuItemStyle,
+      style: props.menuStyle,
+      value: props.value,
+    });
+  });
 });
