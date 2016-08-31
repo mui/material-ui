@@ -37,6 +37,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
       display: 'block',
       marginTop: 10,
       marginBottom: 10,
+      width: '100%',
       zIndex: 1,
     },
     focused: {
