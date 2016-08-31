@@ -45,8 +45,7 @@
   },
   "peerDependencies": {
     "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-dom": "^15.0.0"
   },
   "dependencies": {
     "@nmarks/jss": "^5.4.6",
@@ -128,7 +127,6 @@
     "react-addons-perf": "^15.2.0",
     "react-addons-test-utils": "^15.2.0",
     "react-dom": "^15.2.0",
-    "react-tap-event-plugin": "^1.0.0",
     "recast": "^0.11.8",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.5.2",
