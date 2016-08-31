@@ -120,7 +120,7 @@ Styling components to your liking is simple and hassle-free. This can be
 achieved in the following two ways:
 
 * [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
-* [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/styles)
+* [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/inline-styles)
 
 ## Examples
 
