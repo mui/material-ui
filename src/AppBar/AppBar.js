@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('AppBar', (theme) => {
-  const { palette } = theme;
-
   return {
     appBar: {
       display: 'flex',
@@ -19,12 +17,12 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
       zIndex: theme.zIndex.appBar,
     },
     primary: {
-      backgroundColor: palette.primary[500],
-      color: palette.getContrastText(palette.primary[500]),
+      backgroundColor: theme.palette.primary[500],
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
     },
     accent: {
-      backgroundColor: palette.accent.A200,
-      color: palette.getContrastText(palette.accent.A200),
+      backgroundColor: theme.palette.accent.A200,
+      color: theme.palette.getContrastText(theme.palette.accent.A200),
     },
   };
 });

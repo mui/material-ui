@@ -5,30 +5,30 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
 
 const styleSheet = createStyleSheet('SimpleBottomNavigation', () => ({
-  row: {
-    flexGrow: 1,
+  root: {
+    width: 500,
   },
 }));
 
 export default class SimpleBottomNavigation extends Component {
   state = {
-    selectedIndex: 0,
+    index: 0,
   };
 
-  handleChangeIndex = (index) => {
-    this.setState({ selectedIndex: index });
-  }
+  handleChange = (event, index) => {
+    this.setState({ index });
+  };
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
-    const { selectedIndex } = this.state;
+    const { index } = this.state;
 
     return (
-      <div className={classes.row}>
+      <div className={classes.root}>
         <BottomNavigation
+          index={index}
+          onChange={this.handleChange}
           showLabel
-          selectedIndex={selectedIndex}
-          onChangeIndex={this.handleChangeIndex}
         >
           <BottomNavigationButton
             label="Recents"

@@ -126,7 +126,7 @@ styleSheet.registerLocalTheme((globalTheme) => {
 export default class Button extends Component {
   static propTypes = {
     /**
-     * If true, the button will use the theme's accent color.
+     * If `true`, the button will use the theme's accent color.
      */
     accent: PropTypes.bool,
     /**
@@ -146,15 +146,15 @@ export default class Button extends Component {
      */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /**
-     * If true, the button will be disabled.
+     * If `true`, the button will be disabled.
      */
     disabled: PropTypes.bool,
     /**
-     * If true, well use floating action button styling.
+     * If `true`, well use floating action button styling.
      */
     fab: PropTypes.bool,
     /**
-     * If true, the button will have a keyboard focus ripple.
+     * If `true`, the button will have a keyboard focus ripple.
      * Ripple must also be true.
      */
     focusRipple: PropTypes.bool,
@@ -164,15 +164,15 @@ export default class Button extends Component {
      */
     href: PropTypes.string,
     /**
-     * If true, the button will use the theme's primary color.
+     * If `true`, the button will use the theme's primary color.
      */
     primary: PropTypes.bool,
     /**
-     * If true, the button will use raised styling.
+     * If `true`, the button will use raised styling.
      */
     raised: PropTypes.bool,
     /**
-     * If true, the button will have a ripple.
+     * If `true`, the button will have a ripple.
      */
     ripple: PropTypes.bool,
     /**
@@ -232,7 +232,9 @@ export default class Button extends Component {
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >
-        <span className={classes.label}>{children}</span>
+        <span className={classes.label}>
+          {children}
+        </span>
       </ButtonBase>
     );
   }

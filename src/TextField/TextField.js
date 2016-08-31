@@ -141,8 +141,7 @@ export default class TextField extends Component {
 
     this.classes = this.context.styleManager.render(styleSheet);
 
-    const className = classNames({
-      [this.classes.root]: true,
+    const className = classNames(this.classes.root, {
       [this.classes.focused]: this.state.focused,
     }, classNameProp);
 

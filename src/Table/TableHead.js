@@ -8,7 +8,7 @@ export const styleSheet = createStyleSheet('TableHead', (theme) => {
   return {
     root: {
       fontSize: 12,
-      fontWeight: 500,
+      fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.text.secondary,
     },
   };

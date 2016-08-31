@@ -84,7 +84,7 @@ export default class IconButton extends Component {
     className: PropTypes.string,
     contrast: PropTypes.bool,
     /**
-     * If true, the button will be disabled.
+     * If `true`, the button will be disabled.
      */
     disabled: PropTypes.bool,
     /**

@@ -15,7 +15,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| checkbox | bool | false |  If true, the cell padding will be adjusted to better accomodate a checkbox. |
+| checkbox | bool | false |  If `true`, the cell padding will be adjusted to better accomodate a checkbox. |
 | children | node |  |  The table cell contents. |
 | className | string |  |  The CSS class name of the root element. |
 | compact | bool | false |  If set to true, will use more compact cell padding to accomodate more content. |
