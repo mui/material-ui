@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
-import requestAnimFrame from 'dom-helpers/util/requestAnimationFrame';
 import customPropTypes from '../utils/propTypes';
 import Modal from './Modal';
 import Transition from './Transition';

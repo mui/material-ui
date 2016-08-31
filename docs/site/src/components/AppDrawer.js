@@ -9,7 +9,6 @@ import Drawer from 'material-ui/Drawer';
 import Text from 'material-ui/Text';
 import Divider from 'material-ui/Divider';
 import shallowEqual from 'recompose/shallowEqual';
-
 import AppDrawerNavItem from './AppDrawerNavItem';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
@@ -55,7 +54,7 @@ export default class AppDrawer extends Component {
   reduceChildRoutes = (items, childRoute, index) => {
     if (childRoute.nav) {
       if (childRoute.childRoutes && childRoute.childRoutes.length) {
-        let openImmediately = this.props.routes.indexOf(childRoute) !== -1 || false;
+        const openImmediately = this.props.routes.indexOf(childRoute) !== -1 || false;
         items.push(
           <AppDrawerNavItem
             key={index}
