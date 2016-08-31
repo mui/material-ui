@@ -57,11 +57,11 @@ ListSubheader.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the ListSubheader will be indented.
+   * If `true`, the ListSubheader will be indented.
    */
   inset: PropTypes.bool,
   /**
-   * If true, the ListSubheader will have the theme primary color.
+   * If `true`, the ListSubheader will have the theme primary color.
    */
   primary: PropTypes.bool,
 };

@@ -5,7 +5,7 @@ import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavi
 
 export default function LabelBottomNavigation() {
   return (
-    <BottomNavigation selectedIndex={0} showLabel={false}>
+    <BottomNavigation index={0} showLabel={false}>
       <BottomNavigationButton
         label="Recents"
         icon={<span className="material-icons">restore</span>}

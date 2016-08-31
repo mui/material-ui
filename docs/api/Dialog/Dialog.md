@@ -18,8 +18,8 @@ Props
 |:-----|:-----|:-----|:-----|
 | children | node |  |  Dialog children, usually the included sub-components. |
 | className | string |  |  The CSS class name of the root element. |
-| hideOnBackdropClick | bool | true |  If true, clicking the backdrop will fire the `onRequestClose` callback. |
-| hideOnEscapeKeyUp | bool | true |  If true, hitting escape will fire the `onRequestClose` callback. |
+| hideOnBackdropClick | bool | true |  If `true`, clicking the backdrop will fire the `onRequestClose` callback. |
+| hideOnEscapeKeyUp | bool | true |  If `true`, hitting escape will fire the `onRequestClose` callback. |
 | onBackdropClick | function |  |  Callback fires when the backdrop is clicked on. |
 | onEnter | function |  |  Callback fired before the dialog is entering. |
 | onEntering | function |  |  Callback fired when the dialog is entering. |

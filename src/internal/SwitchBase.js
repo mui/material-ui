@@ -48,7 +48,7 @@ export default class SwitchBase extends Component {
      */
     defaultChecked: PropTypes.bool,
     /**
-     * If true, the switch will be disabled.
+     * If `true`, the switch will be disabled.
      */
     disabled: PropTypes.bool,
     icon: PropTypes.node,

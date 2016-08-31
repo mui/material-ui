@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => {
       paddingBottom: 0,
     },
     navLink: {
-      fontWeight: 400,
+      fontWeight: theme.typography.fontWeightRegular,
       display: 'flex',
       paddingTop: 0,
       paddingBottom: 0,

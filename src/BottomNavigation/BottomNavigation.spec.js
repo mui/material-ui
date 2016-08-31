@@ -20,21 +20,13 @@ describe('<BottomNavigation />', () => {
     mount = createMountWithContext();
   });
 
-  it('should render a div', () => {
-    const wrapper = shallow(
-      <BottomNavigation showLabel>
-        <BottomNavigationButton icon={icon} />
-      </BottomNavigation>,
-    );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
-  });
-
   it('should render with the root class', () => {
     const wrapper = shallow(
       <BottomNavigation showLabel>
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
+    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
@@ -52,14 +44,12 @@ describe('<BottomNavigation />', () => {
     const wrapper = shallow(
       <BottomNavigation
         showLabel
-        className="woof"
-        selectedIndex={1}
+        index={1}
       >
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.childAt(0).props().selected, false, 'should have selected to false');
     assert.strictEqual(wrapper.childAt(1).props().selected, true, 'should have selected');
   });
@@ -68,33 +58,30 @@ describe('<BottomNavigation />', () => {
     const wrapper = shallow(
       <BottomNavigation
         showLabel
-        className="woof"
-        selectedIndex={1}
+        index={1}
       >
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} showLabel={false} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.childAt(0).props().showLabel, true, 'should have parent showLabel');
     assert.strictEqual(wrapper.childAt(1).props().showLabel, false, 'should overwrite showLabel');
   });
 
   it('should pass selected prop to children', () => {
-    const handleChangeIndex = spy();
+    const handleChange = spy();
     const wrapper = mount(
       <BottomNavigation
         showLabel
-        className="woof"
-        selectedIndex={0}
-        onChangeIndex={handleChangeIndex}
+        index={0}
+        onChange={handleChange}
       >
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    wrapper.childAt(1).childAt(0).simulate('click');
-    assert.strictEqual(handleChangeIndex.callCount, 1, 'should have been called once');
-    assert.strictEqual(handleChangeIndex.args[0][0], 1, 'should have been called with index 1');
+    wrapper.find(BottomNavigationButton).at(1).simulate('click');
+    assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
+    assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with index 1');
   });
 });
