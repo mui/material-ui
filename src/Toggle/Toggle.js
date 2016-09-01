@@ -4,7 +4,17 @@ import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 
 function getStyles(props, context, state) {
-  const {disabled} = props;
+  const {
+    disabled,
+    elementStyle,
+    trackSwitchedStyle,
+    thumbSwitchedStyle,
+    trackStyle,
+    thumbStyle,
+    iconStyle,
+    rippleStyle,
+    labelStyle,
+  } = props;
 
   const {
     baseTheme,
@@ -66,6 +76,32 @@ function getStyles(props, context, state) {
     },
   };
 
+  Object.assign(styles.track,
+    trackStyle,
+    state.switched && styles.trackWhenSwitched,
+    state.switched && trackSwitchedStyle,
+    disabled && styles.trackWhenDisabled
+  );
+
+  Object.assign(styles.thumb,
+    thumbStyle,
+    state.switched && styles.thumbWhenSwitched,
+    state.switched && thumbSwitchedStyle,
+    disabled && styles.thumbWhenDisabled
+  );
+
+  if (state.switched) {
+    styles.thumb.marginLeft = 0 - styles.thumb.width;
+  }
+
+  Object.assign(styles.icon, iconStyle);
+
+  Object.assign(styles.ripple, rippleStyle);
+
+  Object.assign(styles.label, labelStyle);
+
+  Object.assign(styles.toggleElement, elementStyle);
+
   return styles;
 }
 
@@ -123,6 +159,10 @@ class Toggle extends Component {
      */
     thumbStyle: PropTypes.object,
     /**
+    * Override the inline styles for thumb when the toggle switch is toggled on.
+    */
+    thumbSwitchedStyle: PropTypes.object,
+    /**
      * Toggled if set to true.
      */
     toggled: PropTypes.bool,
@@ -130,6 +170,10 @@ class Toggle extends Component {
      * Override style for track.
      */
     trackStyle: PropTypes.object,
+    /**
+    * Override the inline styles for track when the toggle switch is toggled on.
+    */
+    trackSwitchedStyle: PropTypes.object,
     /**
      * ValueLink prop for when using controlled toggle.
      */
@@ -183,8 +227,10 @@ class Toggle extends Component {
   render() {
     const {
       defaultToggled,
-      elementStyle,
+      elementStyle, // eslint-disable-line no-unused-vars
       onToggle, // eslint-disable-line no-unused-vars
+      trackSwitchedStyle, // eslint-disable-line no-unused-vars
+      thumbSwitchedStyle, // eslint-disable-line no-unused-vars
       toggled,
       ...other,
     } = this.props;
@@ -192,58 +238,23 @@ class Toggle extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
-    const trackStyles = Object.assign({},
-      styles.track,
-      this.props.trackStyle,
-      this.state.switched && styles.trackWhenSwitched,
-      this.props.disabled && styles.trackWhenDisabled
-    );
-
-    const thumbStyles = Object.assign({},
-      styles.thumb,
-      this.props.thumbStyle,
-      this.state.switched && styles.thumbWhenSwitched,
-      this.props.disabled && styles.thumbWhenDisabled
-    );
-
-    if (this.state.switched) {
-      thumbStyles.marginLeft = 0 - thumbStyles.width;
-    }
-
-    const toggleElementStyles = Object.assign({}, styles.toggleElement, elementStyle);
-
     const toggleElement = (
-      <div style={prepareStyles(Object.assign({}, toggleElementStyles))}>
-        <div style={prepareStyles(Object.assign({}, trackStyles))} />
-        <Paper style={thumbStyles} circle={true} zDepth={1} />
+      <div style={prepareStyles(Object.assign({}, styles.toggleElement))}>
+        <div style={prepareStyles(Object.assign({}, styles.track))} />
+        <Paper style={styles.thumb} circle={true} zDepth={1} />
       </div>
-    );
-
-    const rippleStyle = Object.assign({},
-      styles.ripple,
-      this.props.rippleStyle
-    );
-
-    const iconStyle = Object.assign({},
-      styles.icon,
-      this.props.iconStyle
-    );
-
-    const labelStyle = Object.assign({},
-      styles.label,
-      this.props.labelStyle
     );
 
     const enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'checkbox',
       switchElement: toggleElement,
-      rippleStyle: rippleStyle,
-      rippleColor: rippleStyle.color,
-      iconStyle: iconStyle,
-      trackStyle: trackStyles,
-      thumbStyle: thumbStyles,
-      labelStyle: labelStyle,
+      rippleStyle: styles.ripple,
+      rippleColor: styles.ripple.color,
+      iconStyle: styles.icon,
+      trackStyle: styles.track,
+      thumbStyle: styles.thumb,
+      labelStyle: styles.label,
       switched: this.state.switched,
       onSwitch: this.handleToggle,
       onParentShouldUpdate: this.handleStateChange,
