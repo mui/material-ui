@@ -85,7 +85,7 @@ class Tabs extends Component {
     this.setState({
       selectedIndex: valueLink.value !== undefined ?
         this.getSelectedIndex(this.props) :
-        initialIndex < this.getTabCount() ?
+        initialIndex < this.getTabCount(this.props) ?
         initialIndex :
         0,
     });
@@ -112,9 +112,9 @@ class Tabs extends Component {
     );
   }
 
-  getTabs() {
+  getTabs(props) {
     const tabs = [];
-    React.Children.forEach(this.props.children, (tab) => {
+    React.Children.forEach((props || this.props).children, (tab) => {
       if (React.isValidElement(tab)) {
         tabs.push(tab);
       }
@@ -122,8 +122,8 @@ class Tabs extends Component {
     return tabs;
   }
 
-  getTabCount() {
-    return this.getTabs().length;
+  getTabCount(props) {
+    return this.getTabs(props).length;
   }
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
@@ -138,7 +138,7 @@ class Tabs extends Component {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
-    this.getTabs().forEach((tab, index) => {
+    this.getTabs(props).forEach((tab, index) => {
       if (valueLink.value === tab.props.value) {
         selectedIndex = index;
       }
@@ -186,9 +186,9 @@ class Tabs extends Component {
     const valueLink = this.getValueLink(this.props);
     const tabValue = valueLink.value;
     const tabContent = [];
-    const width = 100 / this.getTabCount();
+    const width = 100 / this.getTabCount(this.props);
 
-    const tabs = this.getTabs().map((tab, index) => {
+    const tabs = this.getTabs(this.props).map((tab, index) => {
       warning(tab.type && tab.type.muiName === 'Tab',
         `Tabs only accepts Tab Components as children.
         Found ${tab.type.muiName || tab.type} as child number ${index + 1} of Tabs`);
