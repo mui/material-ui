@@ -25,7 +25,7 @@ Once dependencies are installed, start the application with:
 ### Browser
 
 ```sh
-npm run browser:development
+npm start
 ```
 
 Open `http://localhost:3000` to view the documentation site.
