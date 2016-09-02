@@ -20,15 +20,14 @@ function getStyles(props, context, state) {
   const styles = {
     root: {
       position: 'fixed',
-      left: 0,
+      left: '50%',
       display: 'flex',
-      right: 0,
       bottom: 0,
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
       transform: open ?
-        'translate(0, 0)' :
-        `translate(0, ${desktopSubheaderHeight}px)`,
+        'translate(-50%, 0)' :
+        `translate(-50%, ${desktopSubheaderHeight}px)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
     },
