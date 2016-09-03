@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('Drawer', (theme) => {
     },
     docked: {
       flex: '0 0 auto',
-      paper: {
+      '& $paper': {
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
     },
