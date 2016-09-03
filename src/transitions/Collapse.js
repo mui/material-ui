@@ -127,7 +127,8 @@ export default class Collapse extends Component {
 
     if (transitionDuration) {
       if (transitionDuration === 'auto') {
-        element.style.transitionDuration = `${this.getAutoTransitionDuration(wrapperHeight)}ms`;
+        const { getAutoHeightDuration } = this.context.styleManager.theme.transitions;
+        element.style.transitionDuration = `${getAutoHeightDuration(wrapperHeight)}ms`;
       } else if (typeof transitionDuration === 'number') {
         element.style.transitionDuration = `${transitionDuration}ms`;
       } else {
@@ -140,14 +141,6 @@ export default class Collapse extends Component {
       this.props.onExiting(element);
     }
   };
-
-  getAutoTransitionDuration(wrapperHeight) {
-    if (!wrapperHeight) {
-      return 0;
-    }
-    const constant = wrapperHeight / 36;
-    return Math.round((175 / constant) + 25) * constant;
-  }
 
   render() {
     const {

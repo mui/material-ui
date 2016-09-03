@@ -39,6 +39,7 @@ export default {
       return 0;
     }
     const constant = height / 36;
-    return Math.round((175 / constant) + 25) * constant;
+    const duration = (4 + (15 * Math.pow(constant, 0.25)) + (constant / 5)) * 10;
+    return Math.round(duration);
   },
 };
