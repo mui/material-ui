@@ -69,6 +69,12 @@ const appList = [
     img: 'images/showcase/dearborn-denim.png',
     link: 'http://dearborndenim.us/get-my-size',
   },
+  {
+    title: 'admin-on-rest - A frontend framework for building admin SPAs on top of REST services',
+    author: 'marmelab.com',
+    img: 'http://static.marmelab.com/admin-on-rest.gif',
+    link: 'https://github.com/marmelab/admin-on-rest',
+  },
 ];
 
 const Showcase = () => (
