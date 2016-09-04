@@ -22,7 +22,8 @@ const globalStyleSheet = createStyleSheet('global', (theme) => ({
     color: theme.palette.text.primary,
     lineHeight: '1.2',
     overflowX: 'hidden',
-    WebkitFontSmoothing: 'antialiased',
+    WebkitFontSmoothing: 'antialiased', // Antialiasing.
+    MozOsxFontSmoothing: 'grayscale', // Antialiasing.
   },
   a: {
     color: theme.palette.accent.A400,
