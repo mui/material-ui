@@ -32,6 +32,35 @@ Examples:
 
 ##### Component Fixes / Enhancements
 
+- [BottomNavigation] Fix SVG icon positioning (#4982)
+- [Buttons] Reset hover state when disabled prop is changed (#4951)
+- [CardHeader] Fixes warning: Unknown props titleColor (#0e787c7)
+- [Checkbox] Tweak the transition to allow different shapes (#5016)
+- [DatePicker] Improve dark theme support (#4943)
+- [DatePicker] Changes opacity of disabled day-buttons (#4994)
+- [EnhancedTextarea] Guard for if scrollHeight is not present (#5015)
+- [FloatingActionButton] Reset hover state when disabled prop is changed (#4951)
+- [IconMenu] Warn when not providing an IconButton to iconButtonElement (#4990)
+- [NestedList] Prevent rendering the children when the nested list is hidden (#5024)
+- [Popover] Prevent creating multiple timeouts when popover is closing (#5010)
+- [ListItem] Fix primaryTogglesNestedList not working with checkbox (#4988)
+- [RaisedButton] Fixes warning: Unknown props on <button> (#5067)
+- [RefreshIndicator] Passing other props to the root element (#5054)
+- [RTL] Add a new directionInvariant property (#5026)
+- [TableRowColumn] Tooltip visible with TableRowColumn (#5014)
+- [TextField] Better support for type=search (#4973)
+
+##### Docs
+
+- [docs] Fix 404 links (#4998)
+- [examples] Move to own repositories (#4475)
+- [showcase] Add some new projects (#4978, #5119)
+
+##### Core
+
+- [Slider] Clean up the implementation (#5036)
+- [test] Reduce the noise when running the test suite (#ea2538e)
+
 ## 0.15.4
 ###### _Aug 11, 2016_
 
