@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('Table', () => {
       overflow: 'hidden',
     },
   };
-}, { index: 15 });
+}, { index: -1 });
 
 /**
  * A material table root element.

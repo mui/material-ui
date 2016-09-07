@@ -21,7 +21,7 @@ export const styleSheet = createStyleSheet('TouchRipple', () => ({
     pointerEvents: 'none',
     zIndex: 0,
   },
-}), { index: 5 });
+}), { index: -10 });
 
 export default class TouchRipple extends Component {
   static propTypes = {

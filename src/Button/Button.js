@@ -30,6 +30,10 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         backgroundColor: palette.text.divider,
       },
     },
+    compact: {
+      padding: '0 8px',
+      minWidth: 64,
+    },
     disabled: {
       opacity: 0.4,
     },
@@ -44,6 +48,10 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
     },
     accent: {
       color: palette.accent.A200,
+    },
+    contrast: {
+      color: theme.palette.type === 'light' ?
+        theme.palette.shades.dark.primary : theme.palette.shades.light.secondary,
     },
     raised: {
       color: palette.getContrastText(palette.grey[300]),
@@ -88,7 +96,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       },
     },
   };
-}, { index: 2 });
+}, { index: -10 });
 
 /**
  * Buttons communicate the action that will occur when the user
@@ -112,6 +120,10 @@ export default class Button extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Uses a smaller minWidth, ideal for things like card actions
+     */
+    compact: PropTypes.bool,
     /**
      * The element or component used for the root node.
      */
@@ -169,6 +181,7 @@ export default class Button extends Component {
       accent,
       children,
       className: classNameProp,
+      compact,
       disabled,
       fab,
       primary,
@@ -186,6 +199,7 @@ export default class Button extends Component {
       [classes.accent]: flat && accent,
       [classes.raisedPrimary]: !flat && primary,
       [classes.raisedAccent]: !flat && accent,
+      [classes.compact]: compact,
       [classes.disabled]: disabled,
     }, classNameProp);
 

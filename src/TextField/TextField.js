@@ -49,7 +49,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
       },
     },
   };
-}, { index: 10 });
+}, { index: -5 });
 
 /**
  * TextField

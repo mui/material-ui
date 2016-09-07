@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('ListItemSecondaryAction', () => ({
     top: '50%',
     marginTop: -24,
   },
-}), { index: 12 });
+}), { index: -3 });
 
 export default function ListItemSecondaryAction(props, context) {
   const {

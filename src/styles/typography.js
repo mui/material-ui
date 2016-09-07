@@ -15,26 +15,31 @@ export default function createTypography(palette, constants = defaultConstants) 
       fontSize: 112,
       fontWeight: constants.fontWeightLight,
       fontFamily: constants.fontFamily,
+      margin: '0.1em 0 0.2em',
     },
     display3: {
       fontSize: 56,
       fontWeight: constants.fontWeightNormal,
       fontFamily: constants.fontFamily,
+      margin: '0.1em 0 0.2em',
     },
     display2: {
       fontSize: 45,
       fontWeight: constants.fontWeightNormal,
       fontFamily: constants.fontFamily,
+      margin: '0.1em 0 0.2em',
     },
     display1: {
       fontSize: 34,
       fontWeight: constants.fontWeightNormal,
       fontFamily: constants.fontFamily,
+      margin: '0.1em 0 0.2em',
     },
     headline: {
       fontSize: 24,
       fontWeight: constants.fontWeightNormal,
       fontFamily: constants.fontFamily,
+      margin: '0.1em 0 0.2em',
     },
     title: {
       fontSize: 20,

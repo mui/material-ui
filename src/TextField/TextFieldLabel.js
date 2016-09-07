@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
       transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
     },
   };
-}, { index: 5 });
+}, { index: -10 });
 
 export default function TextFieldLabel(props, context) {
   const { animated, className: classNameProp, shrink, ...other } = props;

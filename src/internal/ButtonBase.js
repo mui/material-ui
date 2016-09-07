@@ -29,7 +29,7 @@ function listenForFocusKeys() {
 
 export const styleSheet = createStyleSheet('ButtonBase', () => {
   return {
-    root: {
+    buttonBase: {
       position: 'relative',
       WebkitTapHighlightColor: 'rgba(0,0,0,0.0)',
       outline: 'none',
@@ -43,7 +43,7 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
       cursor: 'not-allowed',
     },
   };
-}, { index: 1 });
+}, { index: -15 });
 
 export default class ButtonBase extends Component {
   static propTypes = {
@@ -227,7 +227,7 @@ export default class ButtonBase extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
 
-    const className = classNames(classes.root, {
+    const className = classNames(classes.buttonBase, {
       [classes.disabled]: disabled,
       [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
     }, classNameProp);

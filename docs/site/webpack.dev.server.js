@@ -9,7 +9,7 @@ const serverOptions = {
   hot: true,
   historyApiFallback: true,
   stats: {
-    modules: false,
+    modules: true,
     chunks: false,
     chunkModules: false,
     colors: true,

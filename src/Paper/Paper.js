@@ -15,7 +15,7 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
   });
 
   return {
-    root: {
+    paper: {
       backgroundColor: palette.background.paper,
     },
     rounded: {
@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
     },
     ...shadows,
   };
-}, { index: 1 });
+}, { index: -10 });
 
 /**
  * A piece of material paper.
@@ -43,7 +43,7 @@ export default function Paper(props, context) {
   } = props;
   const classes = context.styleManager.render(styleSheet);
 
-  const className = classNames(classes.root, {
+  const className = classNames(classes.paper, {
     [classes.rounded]: rounded,
     [classes[`dp${zDepth >= 0 ? zDepth : 0}`]]: true,
   }, classNameProp);

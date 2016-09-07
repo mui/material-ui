@@ -38,7 +38,7 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
       paddingRight: 16,
     },
   };
-}, { index: 10 });
+}, { index: -5 });
 
 export default class ListItem extends Component {
   static propTypes = {

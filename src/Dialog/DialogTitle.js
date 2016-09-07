@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('DialogTitle', () => {
       flex: '0 0 auto',
     },
   };
-}, { index: 10 });
+}, { index: -5 });
 
 export default function DialogTitle(props, context) {
   const {
