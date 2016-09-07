@@ -39,7 +39,7 @@ function getStyles(props, context) {
       maxWidth: isSmall ? 'inherit' : 568,
       minWidth: isSmall ? 'inherit' : 288,
       width: isSmall ? 'calc(100vw - 48px)' : 'auto',
-      flexGrow: isSmall ? 1 : 0
+      flexGrow: isSmall ? 1 : 0,
     },
     content: {
       fontSize: 14,
