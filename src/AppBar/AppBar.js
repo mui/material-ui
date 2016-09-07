@@ -191,6 +191,7 @@ class AppBar extends Component {
       iconClassNameLeft,
       iconClassNameRight,
       onLeftIconButtonTouchTap, // eslint-disable-line no-unused-vars
+      onRightIconButtonTouchTap, // eslint-disable-line no-unused-vars
       className,
       style,
       zDepth,
