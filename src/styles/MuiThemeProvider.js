@@ -1,6 +1,6 @@
 // @flow weak
 import { createThemeProvider } from 'jss-theme-reactor/ThemeProvider';
-import { create } from '@nmarks/jss';
+import { create } from 'jss';
 import jssPreset from 'jss-preset-default';
 import { createMuiTheme } from './theme';
 

@@ -48,10 +48,9 @@
     "react-dom": "^15.0.0"
   },
   "dependencies": {
-    "@nmarks/jss": "^5.4.6",
     "classnames": "^2.2.5",
     "dom-helpers": "^2.4.0",
-    "jss": "^5.4.0",
+    "jss": "^5.5.0",
     "jss-preset-default": "^0.2.0",
     "jss-theme-reactor": "0.1.0-alpha.13",
     "keycode": "^2.1.1",
