@@ -6,9 +6,8 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
-  const { palette } = theme;
   return {
-    root: {
+    iconButton: {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -20,27 +19,48 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       padding: 0,
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      color: 'inherit',
+      color: theme.color,
       zIndex: 1,
-      transition: theme.transitions.create('background-color', '150ms'),
+      transition: theme.transition,
+    },
+    contrast: {
+      color: theme.contrast,
     },
     label: {
       width: '100%',
       display: 'flex',
       alignItems: 'inherit',
       justifyContent: 'inherit',
+      '& .material-icons': {
+        width: '1em',
+        height: '1em',
+      },
     },
     keyboardFocused: {
-      backgroundColor: theme.palette.text.divider,
+      backgroundColor: theme.focusBackground,
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.primary[500],
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.accent.A200,
     },
   };
-}, { index: 2 });
+}, { index: -10 });
+
+styleSheet.registerLocalTheme((theme) => {
+  const { palette, transitions } = theme;
+  return {
+    color: palette.type === 'light' ?
+      palette.text.secondary : palette.text.primary,
+    contrast: palette.type === 'light' ?
+      palette.shades.dark.text.primary : palette.shades.light.text.secondary,
+    primary: palette.primary,
+    accent: palette.accent,
+    transition: transitions.create('background-color', '150ms'),
+    focusBackground: palette.text.divider,
+  };
+});
 
 /**
  * @see https://material.google.com/components/buttons.html
@@ -62,6 +82,7 @@ export default class IconButton extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    contrast: PropTypes.bool,
     /**
      * If true, the button will be disabled.
      */
@@ -70,6 +91,10 @@ export default class IconButton extends Component {
      * If false, the ripple effect will be disabled.
      */
     ripple: PropTypes.bool,
+    /**
+     * @ignore
+     */
+    theme: PropTypes.object,
   };
 
   static defaultProps = {
@@ -81,17 +106,21 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { children, className, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const { children, className, contrast, theme, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, theme);
     return (
       <ButtonBase
-        className={classNames(classes.root, className)}
+        className={classNames(classes.iconButton, {
+          [classes.contrast]: contrast,
+        }, className)}
         centerRipple
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >
         <span className={classes.label}>
-          {typeof children === 'string' ? <span className="material-icons">{children}</span> : children}
+          {typeof children === 'string' ?
+            <span className="material-icons">{children}</span> : children
+          }
         </span>
       </ButtonBase>
     );

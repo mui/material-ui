@@ -9,7 +9,7 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
   const { palette } = theme;
 
   return {
-    root: {
+    appBar: {
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
       color: palette.getContrastText(palette.accent.A200),
     },
   };
-}, { index: 10 });
+}, { index: -5 });
 
 export default class AppBar extends Component {
   static propTypes = {
@@ -57,7 +57,7 @@ export default class AppBar extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     const className = classNames({
-      [classes.root]: true,
+      [classes.appBar]: true,
       [classes.primary]: primary && !accent,
       [classes.accent]: accent,
     }, classNameProp);

@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
       width: '100%',
     },
   };
-}, { index: 5 });
+}, { index: -10 });
 
 export default function Divider(props, context) {
   const {

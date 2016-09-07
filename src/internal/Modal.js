@@ -34,7 +34,7 @@ export const styleSheet = createStyleSheet('Modal', (theme) => {
       left: 0,
     },
   };
-}, { index: 1 });
+}, { index: -15 });
 
 /**
  * Still a WIP

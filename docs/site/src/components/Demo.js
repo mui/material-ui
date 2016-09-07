@@ -39,11 +39,13 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       margin: 0,
       '& pre': {
         overflow: 'auto',
-        color: `${theme.palette.text.primary} !important`,
-        backgroundColor: `${palette.background.paper} !important`,
         margin: '0px !important',
         borderRadius: '0px !important',
       },
+    },
+    codeContainer: {
+      color: palette.text.primary,
+      backgroundColor: palette.background.paper,
     },
     [theme.breakpoints.up(600)]: {
       codeButton: { display: 'block' },
@@ -54,7 +56,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       },
     },
   };
-}, { index: 55 });
+}, { index: 50 });
 
 export default class Demo extends Component {
   static propTypes = {

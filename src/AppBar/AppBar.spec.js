@@ -23,21 +23,21 @@ describe('<AppBar>', () => {
     assert.strictEqual(wrapper.prop('zDepth'), 4, 'should render with a 4dp shadow');
   });
 
-  it('should render with the root class and primary', () => {
+  it('should render with the appBar class and primary', () => {
     const wrapper = shallow(
       <AppBar>Hello World</AppBar>
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.appBar), true, 'should have the appBar class');
     assert.strictEqual(wrapper.hasClass(classes.primary), true, 'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), false, 'should not have the accent class');
   });
 
-  it('should render the custom className and the root class', () => {
+  it('should render the custom className and the appBar class', () => {
     const wrapper = shallow(
       <AppBar className="test-class-name" />
     );
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.appBar), true, 'should have the appBar class');
     assert.strictEqual(wrapper.hasClass(classes.primary), true, 'should not have the primary class');
   });
 
@@ -45,7 +45,7 @@ describe('<AppBar>', () => {
     const wrapper = shallow(
       <AppBar primary>Hello World</AppBar>
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.appBar), true, 'should have the appBar class');
     assert.strictEqual(wrapper.hasClass(classes.primary), true, 'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), false, 'should not have the accent class');
   });
@@ -54,7 +54,7 @@ describe('<AppBar>', () => {
     const wrapper = shallow(
       <AppBar accent>Hello World</AppBar>
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.appBar), true, 'should have the appBar class');
     assert.strictEqual(wrapper.hasClass(classes.primary), false, 'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), true, 'should not have the accent class');
   });
