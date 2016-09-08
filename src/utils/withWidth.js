@@ -9,7 +9,7 @@ export default function withWidth(options = {}) {
   const {
     largeWidth = 992,
     mediumWidth = 768,
-    resizeInterval = 166,
+    resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
   return (MyComponent) => {
@@ -22,8 +22,11 @@ export default function withWidth(options = {}) {
         width: SMALL,
       };
 
-      componentDidMount() {
-        this.updateWidth();
+      componentWillMount() {
+        // We make sure that we are in a browser environment.
+        if (typeof window !== 'undefined') {
+          this.updateWidth();
+        }
       }
 
       componentWillUnmount() {
@@ -60,8 +63,8 @@ export default function withWidth(options = {}) {
         return (
           <EventListener target="window" onResize={this.handleResize}>
             <MyComponent
-              {...this.props}
               width={this.state.width}
+              {...this.props}
             />
           </EventListener>
         );
