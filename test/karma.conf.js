@@ -16,7 +16,7 @@ module.exports = function(config) {
   config.set({
     autoWatch: false,
     basePath: '../',
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS_Sized'],
     client: {
       mocha: {
         grep: opts.grep,
@@ -90,6 +90,17 @@ module.exports = function(config) {
     },
     webpackServer: {
       noInfo: true,
+    },
+    customLaunchers: {
+      'PhantomJS_Sized': {
+        base: 'PhantomJS',
+        options: {
+          viewportSize: { // Matches JSDom size.
+            width: 1024,
+            height: 768,
+          },
+        },
+      },
     },
   });
 };
