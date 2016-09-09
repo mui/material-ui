@@ -5,6 +5,9 @@ Across a number of issues over the last ~5 months we have been telling people th
 Those improvement are comming with the `next` branch.
 We are switching in goal so we can release changes more **often**.
 
+## 0.16.0-rc1
+###### _Sep 8, 2016_
+
 ##### Breaking Changes
 - [Badge] Swapped primary and accent colors (#4449)
 - [CircularProgress] The API has become more flexible and straightforward. `size` attribute now means the outer diameter in pixels. Line thickness is variable and should be defined via the `thickness` attribute. Default margins are eliminated. If you'd like to upgrade your existing app without changing the actual sizes of your `CircularProgress` components, here are the formulas:
