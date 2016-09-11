@@ -2,13 +2,14 @@
 
 import React from 'react';
 import {assert} from 'chai';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import Popover from './Popover';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Popover />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const mountWithContext = (node) => mount(node, {context: {muiTheme}});
 
   describe('state: closing', () => {
     it('should not create new timeout when popover is already closing', () => {
@@ -21,6 +22,21 @@ describe('<Popover />', () => {
       const nextTimeout = wrapper.instance().timeout;
 
       assert.strictEqual(timeout, nextTimeout);
+    });
+  });
+
+  describe('unmounting', () => {
+    it('should stop listening correctly', (done) => {
+      const wrapper = mountWithContext(<Popover open={true} />);
+
+      wrapper.instance().handleScroll();
+      wrapper.instance().handleScroll();
+      wrapper.unmount();
+
+      setTimeout(() => {
+         // Wait for the end of the throttle. Makes sure we don't crash.
+        done();
+      }, 100);
     });
   });
 });

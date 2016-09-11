@@ -159,6 +159,9 @@ class Popover extends Component {
   }
 
   componentWillUnmount() {
+    this.handleResize.cancel();
+    this.handleScroll.cancel();
+
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.timeout = null;
@@ -206,10 +209,6 @@ class Popover extends Component {
     this.requestClose('clickAway');
   };
 
-  _resizeAutoPosition() {
-    this.setPlacement();
-  }
-
   getAnchorPosition(el) {
     if (!el) {
       el = ReactDOM.findDOMNode(this);
@@ -247,8 +246,6 @@ class Popover extends Component {
       return;
     }
 
-    const anchorEl = this.props.anchorEl || this.anchorEl;
-
     if (!this.refs.layer.getLayer()) {
       return;
     }
@@ -259,6 +256,7 @@ class Popover extends Component {
     }
 
     const {targetOrigin, anchorOrigin} = this.props;
+    const anchorEl = this.props.anchorEl || this.anchorEl;
 
     const anchor = this.getAnchorPosition(anchorEl);
     let target = this.getTargetPosition(targetEl);
