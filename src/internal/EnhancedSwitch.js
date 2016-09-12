@@ -293,9 +293,7 @@ class EnhancedSwitch extends Component {
     }
 
     const labelElement = label && (
-      <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
-        {label}
-      </label>
+      <label style={prepareStyles(Object.assign(styles.label, labelStyle))} />
     );
 
     const showTouchRipple = !disabled && !disableTouchRipple;
