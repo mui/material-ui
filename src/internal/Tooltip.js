@@ -167,8 +167,7 @@ class Tooltip extends Component {
             styles.ripple,
             this.props.show && styles.rippleWhenShown
           ))}
-        >
-        </div>
+        />
         <span style={prepareStyles(styles.label)}>
           {label}
         </span>

@@ -142,8 +142,7 @@ class RefreshIndicator extends Component {
           <circle
             style={prepareStyles(circleStyle.style)}
             {...circleStyle.attr}
-          >
-          </circle>
+          />
           <polygon
             style={prepareStyles(polygonStyle.style)}
             {...polygonStyle.attr}

@@ -44,7 +44,7 @@ const StepConnector = (props, context) => {
 
   return (
     <div style={prepareStyles(styles.wrapper)}>
-      <span style={prepareStyles(styles.line)}></span>
+      <span style={prepareStyles(styles.line)} />
     </div>
   );
 };
