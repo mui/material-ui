@@ -25,6 +25,7 @@ const RaisedButtonExampleComplex = () => (
       label="Choose an Image"
       labelPosition="before"
       style={styles.button}
+      containerElement="label"
     >
       <input type="file" style={styles.exampleImageInput} />
     </RaisedButton>
