@@ -151,6 +151,10 @@ class AutoComplete extends Component {
      */
     openOnFocus: PropTypes.bool,
     /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
+    /**
      * Text being input to auto complete.
      */
     searchText: PropTypes.string,
@@ -382,6 +386,7 @@ class AutoComplete extends Component {
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
+      popoverProps,
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -491,6 +496,7 @@ class AutoComplete extends Component {
           style={textFieldStyle}
         />
         <Popover
+          {...popoverProps}
           style={styles.popover}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
