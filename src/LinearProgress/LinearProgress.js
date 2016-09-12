@@ -159,8 +159,8 @@ class LinearProgress extends Component {
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         <div style={prepareStyles(styles.bar)}>
-          <div ref="bar1" style={prepareStyles(styles.barFragment1)}></div>
-          <div ref="bar2" style={prepareStyles(styles.barFragment2)}></div>
+          <div ref="bar1" style={prepareStyles(styles.barFragment1)} />
+          <div ref="bar2" style={prepareStyles(styles.barFragment2)} />
         </div>
       </div>
     );
