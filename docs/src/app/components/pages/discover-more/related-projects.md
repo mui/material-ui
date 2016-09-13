@@ -5,6 +5,7 @@
 - [formsy-material-ui](https://github.com/mbrookes/formsy-material-ui)
 A Formsy compatibility wrapper for Material-UI form components.
 - [react-materialui-notifications](https://github.com/puranjayjain/react-materialui-notifications) Spec compliant notifications for react and material ui users.
+- [material-ui-chip-input](https://github.com/TeamWertarbyte/material-ui-chip-input) An input field for chips as seen in the [Material design guidelines](https://material.google.com/components/chips.html#chips-behavior).
 
 ### Complementary Projects
 
