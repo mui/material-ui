@@ -2,7 +2,7 @@
 
 We have **shifted goals** for `v0.16.0`.
 Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
-Those improvement are comming with the `next` branch.
+Those improvement are coming with the `next` branch.
 We are switching in goal so we can release changes more **often**.
 
 ## 0.16.0-rc1
