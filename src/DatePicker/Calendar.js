@@ -42,16 +42,18 @@ class Calendar extends Component {
     onTouchTapDay: PropTypes.func,
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
+    range: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
   };
 
   static defaultProps = {
     DateTimeFormat: dateTimeFormat,
     disableYearSelection: false,
-    initialDate: new Date(),
+    initialDate: new Date(new Date().setHours(0, 0, 0, 0)),
     locale: 'en-US',
-    minDate: addYears(new Date(), -100),
-    maxDate: addYears(new Date(), 100),
+    minDate: addYears(new Date(new Date().setHours(0, 0, 0, 0)), -100),
+    maxDate: addYears(new Date(new Date().setHours(0, 0, 0, 0)), 100),
+    range: false,
   };
 
   static contextTypes = {
@@ -67,18 +69,24 @@ class Calendar extends Component {
   };
 
   componentWillMount() {
+    const {initialDate} = this.props;
     this.setState({
-      displayDate: getFirstDayOfMonth(this.props.initialDate),
-      selectedDate: this.props.initialDate,
+      displayDate: getFirstDayOfMonth(initialDate.start || initialDate),
+      selectedDate: this.props.range ? {
+        start: initialDate.start || initialDate,
+        end: initialDate.end || initialDate,
+      } : initialDate,
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.initialDate !== this.props.initialDate) {
-      const date = nextProps.initialDate || new Date();
+      const date = nextProps.initialDate || new Date(new Date().setHours(0, 0, 0, 0));
       this.setState({
         displayDate: getFirstDayOfMonth(date),
-        selectedDate: date,
+        selectedDate: this.props.range ? {
+          start: date, end: date,
+        } : date,
       });
     }
   }
@@ -91,8 +99,7 @@ class Calendar extends Component {
     if (!this.state.displayMonthDay) {
       return false;
     }
-
-    return this.refs.calendar.isSelectedDateDisabled();
+    return this.calendar.isSelectedDateDisabled();
   }
 
   addSelectedDays(days) {
@@ -110,7 +117,6 @@ class Calendar extends Component {
   setDisplayDate(date, newSelectedDate) {
     const newDisplayDate = getFirstDayOfMonth(date);
     const direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
-
     if (newDisplayDate !== this.state.displayDate) {
       this.setState({
         displayDate: newDisplayDate,
@@ -127,8 +133,11 @@ class Calendar extends Component {
     } else if (isAfterDate(date, this.props.maxDate)) {
       adjustedDate = this.props.maxDate;
     }
-
     const newDisplayDate = getFirstDayOfMonth(adjustedDate);
+    if (this.props.range) {
+      adjustedDate = this.setSelectedRange(adjustedDate);
+      adjustedDate = this.verifyDisabledDates(adjustedDate);
+    }
     if (newDisplayDate !== this.state.displayDate) {
       this.setDisplayDate(newDisplayDate, adjustedDate);
     } else {
@@ -136,6 +145,39 @@ class Calendar extends Component {
         selectedDate: adjustedDate,
       });
     }
+  }
+
+  verifyDisabledDates(date) {
+    const {shouldDisableDate} = this.props;
+    if (!shouldDisableDate) {
+      return date;
+    }
+    let aux = 0;
+    const newDate = {start: undefined, end: undefined};
+    while ((date.start.valueOf() + 8.64e+7 * aux) <= date.end.valueOf()) {
+      const currentDate = new Date(date.start.valueOf() + 8.64e+7 * aux);
+      const should = this.props.shouldDisableDate(currentDate);
+      if (should) {
+        break;
+      }
+      if (!newDate.start && !should) {
+        newDate.start = currentDate;
+      }
+      newDate.end = currentDate;
+      aux++;
+    }
+    return newDate.start ? newDate : date;
+  }
+
+  setSelectedRange(date) {
+    const {selectedDate: {start, end}} = this.state;
+    if (start.getTime() === end.getTime()) {
+      if (date < start) {
+        return {start: date, end};
+      }
+      return {start, end: date};
+    }
+    return {start: date, end: date};
   }
 
   handleTouchTapDay = (event, date) => {
@@ -151,7 +193,8 @@ class Calendar extends Component {
   };
 
   handleTouchTapYear = (event, year) => {
-    const date = cloneDate(this.state.selectedDate);
+    const {selectedDate} = this.state;
+    const date = this.props.range ? selectedDate.start : cloneDate(selectedDate);
     date.setFullYear(year);
     this.setSelectedDate(date, event);
   };
@@ -176,7 +219,7 @@ class Calendar extends Component {
   };
 
   handleWindowKeyDown = (event) => {
-    if (this.props.open) {
+    if (this.props.open && !this.props.range) {
       switch (keycode(event)) {
         case 'up':
           if (event.altKey && event.shiftKey) {
@@ -227,6 +270,7 @@ class Calendar extends Component {
         key={'years'}
         displayDate={this.state.displayDate}
         onTouchTapYear={this.handleTouchTapYear}
+        range={this.props.range}
         selectedDate={this.state.selectedDate}
         minDate={this.props.minDate}
         maxDate={this.props.maxDate}
@@ -298,6 +342,7 @@ class Calendar extends Component {
       okLabel,
       onTouchTapCancel, // eslint-disable-line no-unused-vars
       onTouchTapOk, // eslint-disable-line no-unused-vars
+      range,
     } = this.props;
 
     return (
@@ -314,6 +359,7 @@ class Calendar extends Component {
           locale={locale}
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
+          range={range}
           selectedDate={this.state.selectedDate}
           weekCount={weekCount}
         />
@@ -343,7 +389,12 @@ class Calendar extends Component {
                   minDate={this.props.minDate}
                   maxDate={this.props.maxDate}
                   onTouchTapDay={this.handleTouchTapDay}
-                  ref="calendar"
+                  range={range}
+                  ref={(ref) => {
+                    if (ref) {
+                      this.calendar = ref;
+                    }
+                  }}
                   selectedDate={this.state.selectedDate}
                   shouldDisableDate={this.props.shouldDisableDate}
                 />
