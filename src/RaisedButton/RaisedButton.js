@@ -57,7 +57,7 @@ function getStyles(props, context, state) {
   }
 
   const buttonHeight = style && style.height || button.height;
-  const borderRadius = 2;
+  const borderRadius = style && style.borderRadius || 2;
 
   return {
     root: {
