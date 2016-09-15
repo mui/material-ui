@@ -203,6 +203,7 @@ class TouchRipple extends Component {
         top: 0,
         left: 0,
         overflow: 'hidden',
+        cursor: 'auto',
       }, style);
 
       rippleGroup = (

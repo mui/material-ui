@@ -17,7 +17,8 @@ function getStyles(props, context) {
       overflow: 'visible',
       display: 'table',
       height: 'auto',
-      width: '100%',
+      width: 'auto',
+
     },
     input: {
       position: 'absolute',
@@ -45,6 +46,8 @@ function getStyles(props, context) {
       lineHeight: '24px',
       color: baseTheme.palette.textColor,
       fontFamily: baseTheme.fontFamily,
+      whiteSpace:'nowrap',
+      paddingRight: '5',
     },
     wrap: {
       transition: transitions.easeOut(),
@@ -294,7 +297,9 @@ class EnhancedSwitch extends Component {
 
     const labelElement = label && (
       <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+        {inputElement}
         {label}
+      
       </label>
     );
 
@@ -382,6 +387,7 @@ class EnhancedSwitch extends Component {
         />
         {inputElement}
         {elementsInOrder}
+
       </div>
     );
   }
