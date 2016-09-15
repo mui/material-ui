@@ -17,7 +17,6 @@ import {
   dateTimeFormat,
   isAfterDate,
   isBeforeDate,
-  getWeekArray,
   getFirstDayOfMonth,
   localizedWeekday,
   monthDiff,
@@ -222,21 +221,23 @@ class Calendar extends Component {
   };
 
   yearSelector() {
-    if (!this.props.disableYearSelection) return (
-      <CalendarYear
-        key={'years'}
-        displayDate={this.state.displayDate}
-        onTouchTapYear={this.handleTouchTapYear}
-        selectedDate={this.state.selectedDate}
-        minDate={this.props.minDate}
-        maxDate={this.props.maxDate}
-      />
-    );
+    if (!this.props.disableYearSelection) {
+      return (
+        <CalendarYear
+          key="years"
+          DateTimeFormat={this.props.DateTimeFormat}
+          locale={this.props.locale}
+          onTouchTapYear={this.handleTouchTapYear}
+          selectedDate={this.state.selectedDate}
+          minDate={this.props.minDate}
+          maxDate={this.props.maxDate}
+        />
+      );
+    }
   }
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
-    const weekCount = getWeekArray(this.state.displayDate, this.props.firstDayOfWeek).length;
     const toolbarInteractions = this.getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';
     const {calendarTextColor} = this.context.muiTheme.datePicker;
@@ -291,6 +292,8 @@ class Calendar extends Component {
     const weekTitleDayStyle = prepareStyles(styles.weekTitleDay);
 
     const {
+      minDate,
+      maxDate,
       cancelLabel,
       DateTimeFormat,
       firstDayOfWeek,
@@ -315,7 +318,6 @@ class Calendar extends Component {
           monthDaySelected={this.state.displayMonthDay}
           mode={this.props.mode}
           selectedDate={this.state.selectedDate}
-          weekCount={weekCount}
         />
         <div style={prepareStyles(styles.calendar)}>
           {this.state.displayMonthDay &&
@@ -337,11 +339,13 @@ class Calendar extends Component {
               </div>
               <SlideInTransitionGroup direction={this.state.transitionDirection} style={styles.transitionSlide}>
                 <CalendarMonth
+                  DateTimeFormat={DateTimeFormat}
+                  locale={locale}
                   displayDate={this.state.displayDate}
                   firstDayOfWeek={this.props.firstDayOfWeek}
                   key={this.state.displayDate.toDateString()}
-                  minDate={this.props.minDate}
-                  maxDate={this.props.maxDate}
+                  minDate={minDate}
+                  maxDate={maxDate}
                   onTouchTapDay={this.handleTouchTapDay}
                   ref="calendar"
                   selectedDate={this.state.selectedDate}
