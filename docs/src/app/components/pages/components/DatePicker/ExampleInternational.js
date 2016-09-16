@@ -38,8 +38,8 @@ const DatePickerExampleInternational = () => (
     <DatePicker
       hintText="fa-IR locale"
       DateTimeFormat={DateTimeFormat}
-      okLabel="خوب"
-      cancelLabel="لغو کردن"
+      okLabel="تایید"
+      cancelLabel="لغو"
       locale="fa-IR"
     />
     <DatePicker
