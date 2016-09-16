@@ -110,6 +110,10 @@ class Table extends Component {
      */
     onRowSelection: PropTypes.func,
     /**
+     * Callback when select all has been checked.
+     */
+    onSelectAll: PropTypes.func,
+    /**
      * If true, table rows can be selected.
      * If multiple row selection is desired, enable multiSelectable.
      * The default value is true.
@@ -214,6 +218,9 @@ class Table extends Component {
   };
 
   onSelectAll = () => {
+    // add custom behavior when select all button is pressed
+    if (this.props.onSelectAll) this.props.onSelectAll();
+    // default behavior
     if (this.props.onRowSelection) {
       if (!this.state.allRowsSelected) {
         this.props.onRowSelection('all');
