@@ -147,7 +147,7 @@ describe('<RaisedButton />', () => {
     });
   });
 
-  describe('props: icon', () => {
+  describe('prop: icon', () => {
     it('should keep the style set on the icon', () => {
       const wrapper = shallowWithContext(
         <RaisedButton icon={<ActionAndroid style={{foo: 'bar'}} />} />
