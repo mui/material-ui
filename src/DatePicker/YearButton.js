@@ -31,13 +31,14 @@ function getStyles(props, context, state) {
 
 class YearButton extends Component {
   static propTypes = {
+    children: PropTypes.node.isRequired,
     /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
     onTouchTap: PropTypes.func,
     selected: PropTypes.bool,
-    year: PropTypes.number,
+    year: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
@@ -61,15 +62,18 @@ class YearButton extends Component {
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) this.props.onTouchTap(event, this.props.year);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event, this.props.year);
+    }
   };
 
   render() {
     const {
+      children,
       className, // eslint-disable-line no-unused-vars
-      year,
       onTouchTap, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
+      year, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
@@ -86,7 +90,9 @@ class YearButton extends Component {
         onTouchTap={this.handleTouchTap}
         style={styles.root}
       >
-        <span style={prepareStyles(styles.label)}>{year}</span>
+        <span style={prepareStyles(styles.label)}>
+          {children}
+        </span>
       </EnhancedButton>
     );
   }

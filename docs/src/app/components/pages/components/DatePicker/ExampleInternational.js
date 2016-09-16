@@ -7,12 +7,13 @@ let DateTimeFormat;
 /**
  * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
  */
-if (areIntlLocalesSupported(['fr'])) {
+if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
   DateTimeFormat = global.Intl.DateTimeFormat;
 } else {
   const IntlPolyfill = require('intl');
   DateTimeFormat = IntlPolyfill.DateTimeFormat;
   require('intl/locale-data/jsonp/fr');
+  require('intl/locale-data/jsonp/fa-IR');
 }
 
 /**
@@ -33,6 +34,13 @@ const DatePickerExampleInternational = () => (
       okLabel="OK"
       cancelLabel="Annuler"
       locale="fr"
+    />
+    <DatePicker
+      hintText="fa-IR locale"
+      DateTimeFormat={DateTimeFormat}
+      okLabel="خوب"
+      cancelLabel="لغو کردن"
+      locale="fa-IR"
     />
     <DatePicker
       hintText="en-US locale"
