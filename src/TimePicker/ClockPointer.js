@@ -26,6 +26,7 @@ function getStyles(props, context, state) {
       transform: `rotateZ(${angle}deg)`,
     },
     mark: {
+      boxSizing: 'content-box',
       background: timePicker.selectTextColor,
       border: `4px solid ${timePicker.accentColor}`,
       display: hasSelected && 'none',
