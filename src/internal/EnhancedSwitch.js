@@ -46,7 +46,7 @@ function getStyles(props, context) {
       lineHeight: '24px',
       color: baseTheme.palette.textColor,
       fontFamily: baseTheme.fontFamily,
-      whiteSpace:'nowrap',
+      whiteSpace: 'nowrap',
       paddingRight: '5',
     },
     wrap: {
@@ -299,7 +299,6 @@ class EnhancedSwitch extends Component {
       <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
         {inputElement}
         {label}
-      
       </label>
     );
 
@@ -387,7 +386,6 @@ class EnhancedSwitch extends Component {
         />
         {inputElement}
         {elementsInOrder}
-
       </div>
     );
   }
