@@ -58,6 +58,10 @@ class Snackbar extends Component {
      */
     className: PropTypes.string,
     /**
+     * Override the inline-styles of the content element.
+     */
+    contentStyle: PropTypes.object,
+    /**
      * The message to be displayed.
      *
      * (Note: If the message is an element or array, and the `Snackbar` may re-render while it is still open,
@@ -195,11 +199,12 @@ class Snackbar extends Component {
   render() {
     const {
       autoHideDuration, // eslint-disable-line no-unused-vars
+      contentStyle,
+      bodyStyle,
       message: messageProp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       onActionTouchTap,
       style,
-      bodyStyle,
       ...other,
     } = this.props;
 
@@ -216,11 +221,12 @@ class Snackbar extends Component {
       <ClickAwayListener onClickAway={open && this.componentClickAway}>
         <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
           <SnackbarBody
-            open={open}
-            message={message}
             action={action}
-            style={bodyStyle}
+            contentStyle={contentStyle}
+            message={message}
+            open={open}
             onActionTouchTap={onActionTouchTap}
+            style={bodyStyle}
           />
         </div>
       </ClickAwayListener>
