@@ -1,4 +1,4 @@
-## Prerequisites
+## Required Knowledge
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
 before diving into Material-UI.
@@ -6,7 +6,7 @@ Material-UI is a set of React components,
 so understanding how React fits into web development is important.
 
 If you're already familiar with single page applications (SPAs) and Node,
-feel free to skip the prerequisites and
+feel free to skip this section and
 head straight to the [installation](#/get-started/installation) part.
 
 Otherwise, what follows is a quick and brief introduction to SPAs and Node.
@@ -17,7 +17,8 @@ HTML, CSS and some JavaScript.
 
 ### Single Page Applications
 
-A long(?) time ago, websites were built using static pages in HTML, with CSS used for styling,
+A long(?) time ago, websites were built using static pages in HTML,
+with CSS used for styling,
 and JavaScript used to support user interactions or for animations.
 Most client interactions, especially those that acted on data,
 involved complete server round-trips:
@@ -40,11 +41,11 @@ Most of the logic to handle client interactions lives in that single file.
 Hence, everything that's necessary to provide a fluid, responsive, and fast web
 experience is present in the browser’s memory.
 This web programming architecture has gained tremendous traction in the last decade,
-with many popular JavaScript presentation frameworks geared towards SPAs
+with many popular JavaScript presentation frameworks geared towards SPAs:
 - [Angular](https://angularjs.org)
 - [Ember](http://emberjs.com/)
 - [Backbone](http://backbonejs.org)
-- [React](http://facebook.github.io/react/).
+- [React](http://facebook.github.io/react/)
 
 Including all of the code for a website in a single file creates significant code organization
 challenges.
@@ -64,7 +65,7 @@ When it was first created, Node was primarily targeted towards developing web se
 JavaScript.
 This was somewhat radical since JavaScript has traditionally been restricted to the client.
 However, over time, web developers recognized the benefits of using Node for tooling and
-dependency management, and created projects like
+dependency management, and created projects like:
 - [Grunt](http://gruntjs.com/)
 - [Gulp](http://gulpjs.com/)
 - [Browserify](http://browserify.org)
