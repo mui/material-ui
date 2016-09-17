@@ -3,13 +3,14 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import Snackbar from './Snackbar';
+import SnackbarBody from './SnackbarBody';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Snackbar />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
-  describe('props: open', () => {
+  describe('prop: open', () => {
     it('should be hidden when open is false', () => {
       const wrapper = shallowWithContext(
         <Snackbar open={false} message="Message" />
@@ -73,5 +74,19 @@ describe('<Snackbar />', () => {
         'Should take into account the latest message');
       done();
     }, 500);
+  });
+
+  describe('prop: contentStyle', () => {
+    it('should apply the style on the right element', () => {
+      const contentStyle = {};
+      const wrapper = shallowWithContext(
+        <Snackbar open={false} message="" contentStyle={contentStyle} />
+      );
+
+      assert.strictEqual(
+        wrapper.find(SnackbarBody).props().contentStyle,
+        contentStyle
+      );
+    });
   });
 });
