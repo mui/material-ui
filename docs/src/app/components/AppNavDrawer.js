@@ -146,7 +146,7 @@ class AppNavDrawer extends Component {
             primaryText="Get Started"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="Prerequisites" value="/get-started/prerequisites" />,
+              <ListItem primaryText="Required Knowledge" value="/get-started/required-knowledge" />,
               <ListItem primaryText="Installation" value="/get-started/installation" />,
               <ListItem primaryText="Usage" value="/get-started/usage" />,
               <ListItem primaryText="Server Rendering" value="/get-started/server-rendering" />,
