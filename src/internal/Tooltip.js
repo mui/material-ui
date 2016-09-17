@@ -53,8 +53,8 @@ function getStyles(props, context) {
         transitions.easeOut('450ms', 'backgroundColor', '0ms')}`,
     },
     rootWhenShown: {
-      top: verticalPosition === 'top' ?
-        touchOffsetTop : 36,
+      top: verticalPosition === 'top' ? touchOffsetTop : 'auto',
+      bottom: verticalPosition === 'bottom' ? 0 : 'auto',
       opacity: 0.9,
       transform: horizontalPosition === 'center' ?
         `translate(-50%, ${offset}px)` : `translate(0px, ${offset}px)`,
