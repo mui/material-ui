@@ -38,7 +38,7 @@ function getStyles(props, context) {
       borderRadius: isSmall ? 0 : 2,
       maxWidth: isSmall ? 'inherit' : 568,
       minWidth: isSmall ? 'inherit' : 288,
-      width: isSmall ? 'calc(100vw - 48px)' : 'auto',
+      width: isSmall ? `calc(100vw - ${desktopGutter * 2}px)` : 'auto',
       flexGrow: isSmall ? 1 : 0,
     },
     content: {
