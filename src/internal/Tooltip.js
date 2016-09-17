@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 
-function getStyles(props, context, state) {
+function getStyles(props, context) {
   const verticalPosition = props.verticalPosition;
   const horizontalPosition = props.horizontalPosition;
   const touchMarginOffset = props.touch ? 10 : 0;
@@ -30,8 +30,8 @@ function getStyles(props, context, state) {
       userSelect: 'none',
       opacity: 0,
       right: horizontalPosition === 'left' ? 12 : null,
-      left: horizontalPosition === 'center' ?
-        (state.offsetWidth - 48) / 2 * -1 : null,
+      left: horizontalPosition === 'center' ? '50%' : null,
+      transform: horizontalPosition === 'center' ? 'translate(-50%, 0px)' : null,
       transition: `${transitions.easeOut('0ms', 'top', '450ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
         transitions.easeOut('450ms', 'opacity', '0ms')}`,
@@ -56,7 +56,8 @@ function getStyles(props, context, state) {
       top: verticalPosition === 'top' ?
         touchOffsetTop : 36,
       opacity: 0.9,
-      transform: `translate(0px, ${offset}px)`,
+      transform: horizontalPosition === 'center' ?
+        `translate(-50%, ${offset}px)` : `translate(0px, ${offset}px)`,
       transition: `${transitions.easeOut('0ms', 'top', '0ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
         transitions.easeOut('450ms', 'opacity', '0ms')}`,
@@ -98,17 +99,8 @@ class Tooltip extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {
-    offsetWidth: null,
-  };
-
   componentDidMount() {
     this.setRippleSize();
-    this.setTooltipPosition();
-  }
-
-  componentWillReceiveProps() {
-    this.setTooltipPosition();
   }
 
   componentDidUpdate() {
@@ -133,10 +125,6 @@ class Tooltip extends Component {
     }
   }
 
-  setTooltipPosition() {
-    this.setState({offsetWidth: this.refs.tooltip.offsetWidth});
-  }
-
   render() {
     const {
       horizontalPosition, // eslint-disable-line no-unused-vars
@@ -148,7 +136,7 @@ class Tooltip extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context, this.state);
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div
