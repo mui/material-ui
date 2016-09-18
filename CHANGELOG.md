@@ -60,7 +60,7 @@ Examples:
 
 - [BottomNavigation] Fix SVG icon positioning (#4982)
 - [Buttons] Reset hover state when disabled prop is changed (#4951)
-- [CardHeader] Fixes warning: Unknown props titleColor (#0e787c7)
+- [CardHeader] Fixes warning: Unknown props titleColor (0e787c7)
 - [Checkbox] Tweak the transition to allow different shapes (#5016)
 - [DatePicker] Improve dark theme support (#4943)
 - [DatePicker] Changes opacity of disabled day-buttons (#4994)
@@ -85,7 +85,7 @@ Examples:
 ##### Core
 
 - [Slider] Clean up the implementation (#5036)
-- [test] Reduce the noise when running the test suite (#ea2538e)
+- [test] Reduce the noise when running the test suite (ea2538e)
 
 ## 0.15.4
 ###### _Aug 11, 2016_
