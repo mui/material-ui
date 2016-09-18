@@ -11,7 +11,7 @@ But on the server side, the `navigator` is `undefined`. You need to provide it t
 
 The `userAgent` can take one of the following values:
 - a regular user agent like
-`Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.82 Safari/537.36`
+`'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.82 Safari/537.36'`
 - `'all'` to prefix for all user agents
 - `false` to disable the prefixer
 
@@ -19,6 +19,7 @@ We rely on the [muiTheme](/#/customization/themes) context to spread the user ag
 For instance, you can provide it like this:
 
 ```js
+import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {green100, green500, green700} from 'material-ui/styles/colors';
@@ -36,22 +37,20 @@ const muiTheme = getMuiTheme({
   userAgent: req.headers['user-agent'],
 });
 
-class Main extends React.Component {
-  render() {
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div>Hello world</div>
-      </MuiThemeProvider>
-    );
-  }
-}
+const Main = () => (
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <div>Hello world</div>
+  </MuiThemeProvider>
+);
 
 export default Main;
 ```
 
 ### process.env.NODE_ENV
 
-You also need to use the same `process.env.NODE_ENV` value for the client side and server side.
+You also need to use the **same** `process.env.NODE_ENV` between the client side and server side.
 Otherwise, the checksums won't match.
-In order to make sure our style transformations are only applied once,
-we add an additional property to each style when `process.env.NODE_ENV !== 'production'`.
+
+We run some style integrity check in the development environment.
+So in production, make sure you are setting `process.env.NODE_ENV` to `'production'`
+in order to **speed-up** the style computation.
