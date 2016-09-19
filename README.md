@@ -24,14 +24,14 @@ It's still a work in progress, but hopefully you can see where we're headed.
 
 **Recently Updated?** Please read the [changelog](https://github.com/callemall/material-ui/releases), this README and the documentation before posting an issue.
 
-## Prerequisites
+## Required Knowledge
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
 before diving into material-ui. Material-UI is a set of React components,
 so understanding how React fits into web development is important.
 
 (If you're not familiar with Node, or with the concept of Single Page Applications (SPAs),
-head over to the [documentation website](http://material-ui.com/#/get-started/prerequisites)
+head over to the [documentation website](http://material-ui.com/#/get-started/required-knowledge)
 for a quick introduction before you read on.)
 
 ## Installation
@@ -120,7 +120,7 @@ Styling components to your liking is simple and hassle-free. This can be
 achieved in the following two ways:
 
 * [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
-* [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/inline-styles)
+* [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/inline-styles)
 
 ## Examples
 

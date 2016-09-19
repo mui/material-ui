@@ -1,8 +1,6 @@
 import React from 'react';
 import Title from 'react-title-component';
-
 import {GridList, GridTile} from 'material-ui/GridList';
-
 import MarkdownElement from '../../MarkdownElement';
 import showcaseText from './showcase.md';
 
@@ -58,6 +56,24 @@ const appList = [
     author: 'Infamous Labs',
     img: 'images/showcase/smaftv.png',
     link: 'http://www.smaf.tv/',
+  },
+  {
+    title: 'Spouti - An events search engine',
+    author: 'Magino Marveaux-Cochet',
+    img: 'images/showcase/spouti.png',
+    link: 'https://www.spouti.com/',
+  },
+  {
+    title: 'Dearborn Denim - American made jeans',
+    author: 'Alexander Tanton',
+    img: 'images/showcase/dearborn-denim.png',
+    link: 'http://dearborndenim.us/get-my-size',
+  },
+  {
+    title: 'admin-on-rest - A frontend framework for building admin SPAs on top of REST services',
+    author: 'marmelab.com',
+    img: 'http://static.marmelab.com/admin-on-rest.gif',
+    link: 'https://github.com/marmelab/admin-on-rest',
   },
 ];
 

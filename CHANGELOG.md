@@ -1,16 +1,200 @@
-## HEAD
+## HEAD (v0.16.0)
+
+We have **shifted goals** for `v0.16.0`.
+Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
+Those improvement are coming with the `next` branch.
+We are switching in goal so we can release changes more **often**.
 
 ##### Breaking Changes
-- [Badge] Swapped primary and accent colors (#4449)
 
 
 ##### Component Fixes / Enhancements
-- [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
-- [DatePicker] Fix year overflow (#4381)
-- [EnhancedButton] Fix href style (#4457)
+
+- [AutoComplete] Add popoverProps to pass to Popover (#5064)
+- [DatePicker] Improve the RTL support (#5155)
+- [DatePicker] Improve the i18n support (#5187)
+- [Popover] Fix a callback leak (#5158)
+- [RaisedButton] Add a buttonStyle property (#5196)
+- [Switch] Add thumbSwitchedStyle and trackSwitchedStyle (#5106)
+- [TimePicker] Fix clock pointer mark off centre of pointer line (#5195)
+- [withWidth] Compute the width as soon as possible (#5154)
+
+##### Docs
+
+- [RaisedButton] Update file upload example (#5159)
+- [Docs] Add material-ui-chip-input to related projects (#5172)
+
+##### Core
+
+- [npm] Upgrade the dependencies (#5161)
+
+## 0.16.0-rc1
+###### _Sep 8, 2016_
+
+##### Breaking Changes
+- [Badge] Swapped primary and accent colors (#4449)
+- [CircularProgress] The API has become more flexible and straightforward. `size` attribute now means the outer diameter in pixels. Line thickness is variable and should be defined via the `thickness` attribute. Default margins are eliminated. If you'd like to upgrade your existing app without changing the actual sizes of your `CircularProgress` components, here are the formulas:
+```js
+newSize = 59.5 * oldSize;
+thickness = 3.5 * oldSize;
+margin = (oldSize < 0.71) ?
+  ((50 - 59.5 * oldSize) / 2) :
+  (5.25 * oldSize);
+```
+Examples:
+```
+// Before:
+<CircularProgress />
+<CircularProgress size={2} />
+
+// After:
+<CircularProgress size={59.5} style={{margin: 5.25}} /> // Thickness is 3.5 by default
+<CircularProgress size={119} thickness={7} style={{margin: 10.5}} />
+```
+(#4705)
+- [core] Wrap the `propTypes` definitions so they can be removed in production (#4872)
+- [core] Remove the deprecated code (#4987)
+- [List] Rename MakeSelectable to makeSelectable (#5025)
+
+##### Component Fixes / Enhancements
+
+- [BottomNavigation] Fix SVG icon positioning (#4982)
+- [Buttons] Reset hover state when disabled prop is changed (#4951)
+- [CardHeader] Fixes warning: Unknown props titleColor (0e787c7)
+- [Checkbox] Tweak the transition to allow different shapes (#5016)
+- [DatePicker] Improve dark theme support (#4943)
+- [DatePicker] Changes opacity of disabled day-buttons (#4994)
+- [EnhancedTextarea] Guard for if scrollHeight is not present (#5015)
+- [FloatingActionButton] Reset hover state when disabled prop is changed (#4951)
+- [IconMenu] Warn when not providing an IconButton to iconButtonElement (#4990)
+- [NestedList] Prevent rendering the children when the nested list is hidden (#5024)
+- [Popover] Prevent creating multiple timeouts when popover is closing (#5010)
+- [ListItem] Fix primaryTogglesNestedList not working with checkbox (#4988)
+- [RaisedButton] Fixes warning: Unknown props on <button> (#5067)
+- [RefreshIndicator] Passing other props to the root element (#5054)
+- [RTL] Add a new directionInvariant property (#5026)
+- [TableRowColumn] Tooltip visible with TableRowColumn (#5014)
+- [TextField] Better support for type=search (#4973)
+
+##### Docs
+
+- [docs] Fix 404 links (#4998)
+- [examples] Move to own repositories (#4475)
+- [showcase] Add some new projects (#4978, #5119)
+
+##### Core
+
+- [Slider] Clean up the implementation (#5036)
+- [test] Reduce the noise when running the test suite (ea2538e)
+
+## 0.15.4
+###### _Aug 11, 2016_
+
+##### Component Fixes / Enhancements
+- [BottomNavigation] Initial implementation (#4846)
+- [DropDownMenu] Revert the commit causing a regression in 0.15.3 (#f76302e)
+- [Snackbar] Add the material fontFamily (#4892)
+- [ListItem] New property open to toggle nested list (#4850)
+- [Slider] Fix an issue where not updating when max prop changes (#4895)
+- [Slider] Fix more warnings introduced by React v15.3.0 (#4869)
+
+##### Docs
+- [js] Explain the ECMAScript `stage-1` dependencies of the examples (#4877)
+
+## 0.15.3
+###### _Jul 31, 2016_
+
+This release is mostly about bug fixes. All the new warnings introduced by React
+v15.2.1 and v15.3.0 should be addressed in this version.
+
+##### Breaking Changes
+
+- Remove a workaround regarding the context propagation as it was fixed in the React Core.
+Upgrade to React v15.2.1 if you are affected. (#4729)
+
+##### Component Fixes / Enhancements
+- [AutoComplete] Add a textFieldStyle property (#4853)
+- [AutoComplete] Call onNewRequest once the animation is done (#4817)
+- [Card] Fix bottom padding (#4820)
+- [Chip] Fix invalid `labelColor` being passed (#4766)
+- [DropDownMenu] Display the first item in case there's no one with the corresponding value (#4822)
+- [FlatButton] Merge styles prop for FontIcon node (#4754)
+- [GridList] Fix RTL alignment (#4833)
+- [List] Prefix the style properties (#1cb0617)
+- [ListItem] Trigger onNestedListToggle callback after state update (#4743)
+- [ListItem] Fix incorrect nestedLevel (#4744)
+- [Menu] TypeError: key is undefined (#4734)
+- [MenuItem] Add cursor pointer back to the menu items (#4715)
+- [Popover] Forward the animation property to this component (#4702)
+- [RadioButtonGroup] Fix propTypes to accept anything (#4807)
+- [RaisedButton] Fix the icon style override (#4f2fd22)
+- [React] Fix more invalid props warning (#4667, #4675, #4685, #4725)
+- [Snackbar] Change the action's PropType to node (#4716)
+- [TextField] False should be a valid value (#4728)
+
+##### Core
+- [dependencies] Update to the latest release version (#4669)
+- [eslint] Find new rules with ease (#4521)
+- [react] Fix the warnings of the latest release v15.3.0 (#4856)
+
+##### Docs
+- [ROADMAP] Remove old addressed issues (#4745)
+- [ROADMAP] Update to what the core team is working on (#4829)
+- [docs] Replaces images on Card page with hosted images (#4748)
+- [showcase] Add https://www.spouti.com (#4806)
+
+## 0.15.2
+###### _Jul 7, 2016_
+
+During the release of 0.15.1 something went teribly wrong :sweat_smile: and some
+commits were left out even though they were mentioned in the changelog. This release
+includes the missing commits and some extra.
 
 ##### Deperecations
 - [Buttons] Deprecate linkButton property (#4197)
+
+##### General
+- [React] Upgrade React to `v15.2.0` (#4603, #4605, #4607)
+- [Docs] Don't document standard DOM events (#4433)
+- [Form Components] Set `cursor:not-allowed` style when disabled (#4170)
+- [Styles] Upgrade the inline-style-prefixer dependency to v2 (#4613)
+- [Styles] Check for nulls for RTL (#4496)
+
+##### Browser support
+
+Our support for IE and Safari improved in this release.
+Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
+
+##### Component Fixes / Enhancements
+- [AppBar] Improve props checking to be more resilient (#4557)
+- [AutoComplete] Use the right dataSource key (#4642)
+- [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
+- [Button] Never allow a disabled button to be in a hovered state (#4626)
+- [Button] Improve the propType definition for the label (#4618)
+- [Chip] Add to the index (#4570)
+- [ClickAwayListener] Add better support for IE11 (#4537)
+- [DatePicker] Expose dialog container style (#4355)
+- [DatePicker] Fix year overflow (#4381)
+- [DropDownMenu] Remove Synthetic Event from pooling when used asynchronously (#4564)
+- [EnhancedButton] Fix href style (#4457)
+- [FlatButton] Add a condition to check for zero in the label warning (#4618)
+- [LinearProgress] Fix calculating of getRelativeValue (#4624)
+- [ListItem] Fix error with props access in state assignment for ie9/10 (#4596)
+- [ListItem] Make the dark theme follow more closely the material spec (#4530)
+- [MenuItem] Allow styles on lefticon in non-desktop mode (#4474)
+- [RadioButton] Changed the value type to any (#4510)
+- [RadioButtonGroup] Fix error with props access in state assignment for ie9/10 (#4596)
+- [RaisedButton] Fix the `fullWidth` regression (#4479)
+- [RenderToLayer] Fix an internal issue with React (#4548)
+- [SelectField] Make the maxHeight prop to pass down to DropDownMenu (#4645)
+- [Slider] Add a sliderStyle property (#4617)
+- [Slider] Add support for vertical/reversible sliders (#4571)
+- [Stepper] Fix transition bug in safari (#4616)
+- [SvgIcon] Add support for color attribute (#4487)
+- [SvgIcon] Add themeable color (#4621)
+- [SvgIcon] Remove unused style assignment (#4486)
+- [TextField] Keep spreading properties when children is set (#4478)
+- [TextField] Fix multi-line overflow (#4634)
 
 ## 0.15.1
 ###### _Jun 16, 2016_
@@ -22,7 +206,7 @@
 - [SelectField] Move {...other} spread props from DropDownMenu to Textfield as part of (#4392)
 
 ##### New Component
-- [Chip] (#3870)
+- [Chip] First implementation (#3870)
 
 ##### General
 - [Examples] Simplify the examples (#4262)
@@ -31,7 +215,6 @@
 - [Core] Remove react-addons-update dependency (#3946)
 - [Core] Move to the normal lodash (#4380)
 - [Docs] Use `copy-webpack-plugin` for dev (#4201)
-- [Docs] Don't document standard DOM events (#4433)
 - [Icon Builder] Add muiName to generated SvgIcons (#4188, #4206)
 - [Icon Builder] Fix SvgIcon require path to icons generated with --mui-require absolute (#4204)
 - [Themes] Fix MuiThemeProvider default theme (#4229)
@@ -49,7 +232,6 @@
 - [Avatar] Remove the border (#4365)
 - [Button] Save some bytes on the production build (#4346)
 - [DatePicker] Added className prop to DatePicker (#4250)
-- [DatePicker] Expose dialog container style (#4355)
 - [DatePicker] Fix layout when used with border-box (#4454)
 - [DatePicker] Fix the issue about onDismiss function will fire by handleTouchTapOk (#4367)
 - [DatePicker] Fix `weekTitleDayStyle` (#4464)
@@ -64,13 +246,11 @@
 - [ListItem] Fix theme not propagating on update (#4372)
 - [Menu] Add basic hotkey-focusing feature (#4189)
 - [Menu] Fix theme not propagating on update (#4372)
-- [MenuItem] Allow styles on lefticon in non-desktop mode (#4474)
 - [MenuItem] Fix theme not propagating on update (#4372)
 - [Picker] Disable userSelect on TimePicker and DatePicker (#4176)
 - [Pickers] Add some test regarding the expect value property (#4347)
 - [Popover] Fix typo from innerWith to innerWidth (#4332)
 - [RaisedButton] Don't override SvgIcon color prop (#3746)
-- [RaisedButton] Fix the `fullWidth` regression (#4479)
 - [RaisedButton] Respect theme fontSize (#3988)
 - [RenderToLayer] Cleanup (#4423)
 - [SelectField] Add callback signatures to docs and improve other props (#3924)
@@ -79,11 +259,8 @@
 - [Snackbar] Add a new test and fix consecutive updates leading to displaying old message (#4329)
 - [Stepper] Add more tests and fix an issue with `StepButton` event handlers (#4203)
 - [Stepper] Fix vertical stepper on mobile (#4299)
-- [SvgIcon] Add support for color attribute (#4487)
-- [SvgIcon] Remove unused style assignment (#4486)
 - [Tabs] Fixes tabindex (#4357)
 - [TextField] Fix `floatingLabelText` intercepting click events (#4418)
-- [TextField] Keep spreading properties when children is set (#4478)
 - [Timepicker] Add explicit box-sizing to Clock component (#4386)
 - [TimePicker] Expose two TimePickerDialog style props (#4356)
 - [TimePicker] Fix auto reset of time on window resize (#4251)
@@ -181,7 +358,7 @@ The exact import statements for each component can be found in their respective
 documentation page.
 
 Have a ton of imports? almost had a heart attack? worry not, we also made a tool
-to ease your pain. checkout the 
+to ease your pain. checkout the
 [readme](https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod/README.md).
 
 ##### Breaking Changes
@@ -192,7 +369,7 @@ to ease your pain. checkout the
 As of now you will need to provide theme on context, see:
 http://www.material-ui.com/#/customization/themes
 
-- [Core] Removed redundant default export from the main library `index.js`. 
+- [Core] Removed redundant default export from the main library `index.js`.
 
 You will probably need to turn
 

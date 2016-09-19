@@ -16,7 +16,7 @@ function getStyles(props) {
       padding: padding,
       top: -10000,
       left: -10000,
-      transform: `translate3d(${10000 + props.left}px, ${10000 + props.top}px, 0)`,
+      transform: `translate(${10000 + props.left}px, ${10000 + props.top}px)`,
       opacity: props.status === 'hide' ? 0 : 1,
       transition: props.status === 'hide' ? transitions.create('all', '.3s', 'ease-out') : 'none',
     },
@@ -142,8 +142,7 @@ class RefreshIndicator extends Component {
           <circle
             style={prepareStyles(circleStyle.style)}
             {...circleStyle.attr}
-          >
-          </circle>
+          />
           <polygon
             style={prepareStyles(polygonStyle.style)}
             {...polygonStyle.attr}
@@ -302,14 +301,18 @@ class RefreshIndicator extends Component {
   }
 
   render() {
-    const {style} = this.props;
+    const {
+      style,
+      ...other,
+    } = this.props;
+
     const styles = getStyles(this.props, this.context);
 
     return (
       <Paper
         circle={true}
         style={Object.assign(styles.root, style)}
-        ref="indicatorCt"
+        {...other}
       >
         {this.renderChildren()}
       </Paper>

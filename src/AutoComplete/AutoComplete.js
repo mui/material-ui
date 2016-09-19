@@ -7,8 +7,6 @@ import MenuItem from '../MenuItem';
 import Divider from '../Divider';
 import Popover from '../Popover/Popover';
 import propTypes from '../utils/propTypes';
-import warning from 'warning';
-import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props, context, state) {
   const {anchorEl} = state;
@@ -51,6 +49,10 @@ class AutoComplete extends Component {
      * If true, the auto complete is animated as it is toggled.
      */
     animated: PropTypes.bool,
+    /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
     /**
      * Array of strings or nodes used to populate the list.
      */
@@ -149,6 +151,10 @@ class AutoComplete extends Component {
      */
     openOnFocus: PropTypes.bool,
     /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
+    /**
      * Text being input to auto complete.
      */
     searchText: PropTypes.string,
@@ -161,9 +167,9 @@ class AutoComplete extends Component {
      */
     targetOrigin: propTypes.origin,
     /**
-     * If true, will update when focus event triggers.
+     * Override the inline-styles of AutoComplete's TextField element.
      */
-    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
+    textFieldStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -238,21 +244,6 @@ class AutoComplete extends Component {
     }
   };
 
-  setValue(textValue) {
-    warning(false, `setValue() is deprecated, use the searchText property.
-      It will be removed with v0.16.0.`);
-
-    this.setState({
-      searchText: textValue,
-    });
-  }
-
-  getValue() {
-    warning(false, 'getValue() is deprecated. It will be removed with v0.16.0.');
-
-    return this.state.searchText;
-  }
-
   handleMouseDown = (event) => {
     // Keep the TextField focused
     event.preventDefault();
@@ -265,14 +256,14 @@ class AutoComplete extends Component {
     const chosenRequest = dataSource[index];
     const searchText = this.chosenRequestText(chosenRequest);
 
-    this.props.onNewRequest(chosenRequest, index);
-
     this.timerTouchTapCloseId = setTimeout(() => {
+      this.timerTouchTapCloseId = null;
+
       this.setState({
         searchText: searchText,
       });
       this.close();
-      this.timerTouchTapCloseId = null;
+      this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
   };
 
@@ -347,7 +338,7 @@ class AutoComplete extends Component {
   };
 
   handleFocus = (event) => {
-    if (!this.state.open && (this.props.triggerUpdateOnFocus || this.props.openOnFocus)) {
+    if (!this.state.open && this.props.openOnFocus) {
       this.setState({
         open: true,
         anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
@@ -375,6 +366,7 @@ class AutoComplete extends Component {
     const {
       anchorOrigin,
       animated,
+      animation,
       dataSource,
       dataSourceConfig, // eslint-disable-line no-unused-vars
       disableFocusRipple,
@@ -386,14 +378,15 @@ class AutoComplete extends Component {
       hintText,
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
+      textFieldStyle,
       menuStyle,
       menuProps,
       listStyle,
       targetOrigin,
-      triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
+      popoverProps,
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
@@ -449,7 +442,7 @@ class AutoComplete extends Component {
                 value: (
                   <MenuItem
                     innerDivStyle={styles.innerDiv}
-                    primaryText={itemValue}
+                    primaryText={itemText}
                     disableFocusRipple={disableFocusRipple}
                     key={index}
                   />),
@@ -500,8 +493,10 @@ class AutoComplete extends Component {
           fullWidth={fullWidth}
           multiLine={false}
           errorStyle={errorStyle}
+          style={textFieldStyle}
         />
         <Popover
+          {...popoverProps}
           style={styles.popover}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
@@ -511,6 +506,7 @@ class AutoComplete extends Component {
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
         >
           {menu}
         </Popover>

@@ -3,15 +3,15 @@ import {Component, PropTypes} from 'react';
 let originalBodyOverflow = null;
 let lockingCounter = 0;
 
-export default class AutoLockScrolling extends Component {
-
+class AutoLockScrolling extends Component {
   static propTypes = {
     lock: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
-    if (this.props.lock === true)
+    if (this.props.lock === true) {
       this.preventScrolling();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,8 +32,10 @@ export default class AutoLockScrolling extends Component {
   locked = false;
 
   preventScrolling() {
-    if (this.locked === true)
+    if (this.locked === true) {
       return;
+    }
+
     lockingCounter = lockingCounter + 1;
     this.locked = true;
 
@@ -61,5 +63,6 @@ export default class AutoLockScrolling extends Component {
   render() {
     return null;
   }
-
 }
+
+export default AutoLockScrolling;

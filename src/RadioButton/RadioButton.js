@@ -121,12 +121,11 @@ class RadioButton extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  handleStateChange = () => {
-  };
-
   // Only called when selected, not when unselected.
   handleSwitch = (event) => {
-    if (this.props.onCheck) this.props.onCheck(event, this.props.value);
+    if (this.props.onCheck) {
+      this.props.onCheck(event, this.props.value);
+    }
   };
 
   isChecked() {
@@ -199,7 +198,6 @@ class RadioButton extends Component {
         iconStyle={mergedIconStyle}
         labelStyle={mergedLabelStyle}
         labelPosition={labelPosition}
-        onParentShouldUpdate={this.handleStateChange}
         onSwitch={this.handleSwitch}
         switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />

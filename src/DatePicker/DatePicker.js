@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
-import deprecated from '../utils/deprecatedPropType';
 
 class DatePicker extends Component {
   static propTypes = {
@@ -134,11 +133,6 @@ class DatePicker extends Component {
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
-    /**
-     * Wordings used inside the button of the dialog.
-     */
-    wordings: deprecated(PropTypes.object, `Instead, use \`cancelLabel\` and \`okLabel\`.
-      It will be removed with v0.16.0.`),
   };
 
   static defaultProps = {
@@ -283,7 +277,6 @@ class DatePicker extends Component {
       shouldDisableDate,
       style,
       textFieldStyle,
-      wordings,
       ...other,
     } = this.props;
 
@@ -319,7 +312,6 @@ class DatePicker extends Component {
           onDismiss={onDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
-          wordings={wordings}
         />
       </div>
     );

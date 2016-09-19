@@ -1,6 +1,6 @@
 {
   "name": "material-ui-docs",
-  "version": "0.15.0",
+  "version": "0.16.0-alpha",
   "description": "Documentation site for material-ui",
   "repository": {
     "type": "git",
@@ -27,28 +27,28 @@
   "devDependencies": {
     "babel-eslint": "^6.1.0",
     "copy-webpack-plugin": "^3.0.1",
-    "css-loader": "^0.23.0",
-    "doctrine": "^1.1.0",
-    "eslint": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "doctrine": "^1.4.0",
+    "eslint": "^3.5.0",
     "eslint-plugin-babel": "^3.1.0",
-    "eslint-plugin-react": "^5.0.1",
-    "history": "^2.0.0",
+    "eslint-plugin-react": "^6.2.2",
     "highlight.js": "^9.5.0",
+    "history": "^2.0.0",
     "intl": "^1.2.3",
     "intl-locales-supported": "^1.0.0",
     "json-loader": "^0.5.4",
     "marked": "^0.3.5",
     "raw-loader": "^0.5.1",
-    "react-addons-perf": "^15.2.0",
-    "react-docgen": "^2.9.1",
+    "react-addons-perf": "^15.3.1",
+    "react-docgen": "^2.10.0",
     "react-hot-loader": "^1.2.8",
     "react-motion": "^0.4.2",
     "react-native": "^0.17.0",
-    "react-router": "^2.5.2",
-    "react-swipeable-views": "^0.6.3",
-    "recast": "^0.11.10",
+    "react-router": "^2.8.1",
+    "react-swipeable-views": "^0.7.3",
+    "recast": "^0.11.14",
     "style-loader": "0.13.1",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.10.1"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.2"
   }
 }

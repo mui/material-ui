@@ -1,50 +1,44 @@
-import React, {Component, PropTypes} from 'react';
+import React, {
+  Children,
+  PropTypes,
+  isValidElement,
+  cloneElement,
+} from 'react';
 import List from './List';
 
-class NestedList extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    nestedLevel: PropTypes.number,
-    open: PropTypes.bool,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-  };
+const NestedList = (props) => {
+  const {
+    children,
+    open,
+    nestedLevel,
+    style,
+  } = props;
 
-  static defaultProps = {
-    nestedLevel: 1,
-    open: false,
-  };
-
-  render() {
-    const {
-      children,
-      open,
-      nestedLevel,
-      style,
-    } = this.props;
-
-    const styles = {
-      root: {
-        display: open ? null : 'none',
-      },
-    };
-
-    return (
-      <List style={Object.assign({}, styles.root, style)}>
-        {
-          React.Children.map(children, (child) => {
-            return React.isValidElement(child) ? (
-              React.cloneElement(child, {
-                nestedLevel: nestedLevel + 1,
-              })
-            ) : child;
-          })
-        }
-      </List>
-    );
+  if (!open) {
+    return null;
   }
-}
+
+  return (
+    <List style={style}>
+      {Children.map(children, (child) => {
+        return isValidElement(child) ? (
+          cloneElement(child, {
+            nestedLevel: nestedLevel + 1,
+          })
+        ) : child;
+      })}
+    </List>
+  );
+};
+
+NestedList.propTypes = {
+  children: PropTypes.node,
+  nestedLevel: PropTypes.number.isRequired,
+  open: PropTypes.bool.isRequired,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: PropTypes.object,
+};
 
 export default NestedList;

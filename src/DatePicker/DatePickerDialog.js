@@ -4,12 +4,13 @@ import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
 import Popover from '../Popover/Popover';
-import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func,
+    animation: PropTypes.func,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
     container: PropTypes.oneOf(['dialog', 'inline']),
@@ -28,7 +29,6 @@ class DatePickerDialog extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
-    wordings: PropTypes.object,
   };
 
   static defaultProps = {
@@ -119,7 +119,7 @@ class DatePickerDialog extends Component {
       onShow, // eslint-disable-line no-unused-vars
       shouldDisableDate,
       style, // eslint-disable-line no-unused-vars
-      wordings,
+      animation,
       ...other,
     } = this.props;
 
@@ -142,7 +142,7 @@ class DatePickerDialog extends Component {
       <div {...other} ref="root">
         <Container
           anchorEl={this.refs.root} // For Popover
-          animation={PopoverAnimationFromTop} // For Popover
+          animation={animation || PopoverAnimationVertical} // For Popover
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
           ref="dialog"
@@ -173,7 +173,6 @@ class DatePickerDialog extends Component {
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
             shouldDisableDate={shouldDisableDate}
-            wordings={wordings}
           />
         </Container>
       </div>

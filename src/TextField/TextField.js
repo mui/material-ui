@@ -1,10 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import keycode from 'keycode';
 import shallowEqual from 'recompose/shallowEqual';
 import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
-import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
@@ -50,19 +48,20 @@ const getStyles = (props, context, state) => {
       pointerEvents: 'none',
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style)
       padding: 0,
       position: 'relative',
       width: '100%',
-      height: '100%',
       border: 'none',
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
       cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
+      appearance: 'textfield', // Improve type search style.
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
-    textarea: {},
+    textarea: {
+    },
   };
 
   Object.assign(styles.error, props.errorStyle);
@@ -73,6 +72,9 @@ const getStyles = (props, context, state) => {
     boxSizing: 'border-box',
     font: 'inherit',
   });
+
+  // Do not assign a height to the textarea as he handles it on his own.
+  styles.input.height = '100%';
 
   if (state.hasValue) {
     styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
@@ -110,7 +112,7 @@ const getStyles = (props, context, state) => {
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return Boolean(value || value === 0);
+  return value !== '' && value !== undefined && value !== null;
 }
 
 class TextField extends Component {
@@ -189,15 +191,8 @@ class TextField extends Component {
      * Callback function that is fired when the textfield's value changes.
      */
     onChange: PropTypes.func,
-    /**
-     * The function to call when the user presses the Enter key.
-     */
-    onEnterKeyDown: deprecated(PropTypes.func,
-      'Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.'),
     /** @ignore */
     onFocus: PropTypes.func,
-    /** @ignore */
-    onKeyDown: PropTypes.func,
     /**
      * Number of rows to display when multiLine option is set to true.
      */
@@ -354,15 +349,13 @@ class TextField extends Component {
   };
 
   handleInputFocus = (event) => {
-    if (this.props.disabled)
+    if (this.props.disabled) {
       return;
+    }
     this.setState({isFocused: true});
-    if (this.props.onFocus) this.props.onFocus(event);
-  };
-
-  handleInputKeyDown = (event) => {
-    if (keycode(event) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(event);
-    if (this.props.onKeyDown) this.props.onKeyDown(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleHeightChange = (event, height) => {
@@ -437,7 +430,6 @@ class TextField extends Component {
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
-      onKeyDown: this.handleInputKeyDown,
     };
 
     const inputStyleMerged = Object.assign(styles.input, inputStyle);

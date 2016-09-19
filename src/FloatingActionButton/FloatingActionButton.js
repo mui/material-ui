@@ -164,11 +164,16 @@ class FloatingActionButton extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const nextState = {};
+
     if (nextProps.disabled !== this.props.disabled) {
-      this.setState({
-        zDepth: nextProps.disabled ? 0 : this.props.zDepth,
-      });
+      nextState.zDepth = nextProps.disabled ? 0 : this.props.zDepth;
     }
+    if (nextProps.disabled) {
+      nextState.hovered = false;
+    }
+
+    this.setState(nextState);
   }
 
   handleMouseDown = (event) => {
@@ -234,6 +239,7 @@ class FloatingActionButton extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       className,
       disabled,
       mini,

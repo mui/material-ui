@@ -46,14 +46,12 @@ const SliderPage = () => (
     >
       <SliderExampleControlled />
     </CodeExample>
-
     <CodeExample
       title="Alternative Axis Examples"
       code={sliderExampleAxisCode}
     >
       <SliderExampleAxis />
     </CodeExample>
-
     <PropTypeDescription code={sliderCode} />
   </div>
 );

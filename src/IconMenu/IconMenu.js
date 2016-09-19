@@ -4,6 +4,7 @@ import Events from '../utils/events';
 import propTypes from '../utils/propTypes';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
+import warning from 'warning';
 
 class IconMenu extends Component {
   static muiName = 'IconMenu';
@@ -22,6 +23,10 @@ class IconMenu extends Component {
      * it gets added to the DOM.
      */
     animated: PropTypes.bool,
+    /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
     /**
      * Should be used to pass `MenuItem` components.
      */
@@ -225,6 +230,7 @@ class IconMenu extends Component {
       anchorOrigin,
       className,
       animated,
+      animation,
       iconButtonElement,
       iconStyle,
       onItemTouchTap, // eslint-disable-line no-unused-vars
@@ -259,12 +265,17 @@ class IconMenu extends Component {
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
+    warning(iconButtonElement.type.muiName === 'IconButton',
+      'We are expecting an <IconButton /> to be passed to the `iconButtonElement` property.');
+
     const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: onKeyboardFocus,
       iconStyle: Object.assign({}, iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
-        if (iconButtonElement.props.onTouchTap) iconButtonElement.props.onTouchTap(event);
+        if (iconButtonElement.props.onTouchTap) {
+          iconButtonElement.props.onTouchTap(event);
+        }
       },
       ref: 'iconButton',
     });
@@ -302,6 +313,7 @@ class IconMenu extends Component {
           useLayerForClickAway={useLayerForClickAway}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
           context={this.context}
         >
           {menu}

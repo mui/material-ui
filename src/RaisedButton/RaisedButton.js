@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, cloneElement, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
@@ -120,6 +120,10 @@ class RaisedButton extends Component {
      * (use `disabledBackgroundColor` for this).
      */
     backgroundColor: PropTypes.string,
+    /**
+     * Override the inline-styles of the button element.
+     */
+    buttonStyle: PropTypes.object,
     /**
      * The content of the button.
      * If a label is provided via the `label` prop, the text within the label
@@ -243,7 +247,7 @@ class RaisedButton extends Component {
       initialZDepth: zDepth,
     };
 
-    if (nextProps.disabled && this.state.hovered) {
+    if (nextProps.disabled) {
       nextState.hovered = false;
     }
 
@@ -327,17 +331,22 @@ class RaisedButton extends Component {
   render() {
     const {
       backgroundColor, // eslint-disable-line no-unused-vars
+      buttonStyle,
       children,
       className,
       disabled,
+      disabledBackgroundColor, // eslint-disable-line no-unused-vars
+      disabledLabelColor, // eslint-disable-line no-unused-vars
       fullWidth, // eslint-disable-line no-unused-vars
       icon,
       label,
+      labelColor, // eslint-disable-line no-unused-vars
       labelPosition,
       labelStyle,
       primary, // eslint-disable-line no-unused-vars
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
+      style,
       ...other,
     } = this.props;
 
@@ -361,9 +370,9 @@ class RaisedButton extends Component {
       </span>
     );
 
-    const iconCloned = icon && React.cloneElement(icon, {
+    const iconCloned = icon && cloneElement(icon, {
       color: icon.props.color || styles.label.color,
-      style: styles.icon,
+      style: Object.assign(styles.icon, icon.props.style),
     });
 
     // Place label before or after children.
@@ -383,7 +392,7 @@ class RaisedButton extends Component {
     return (
       <Paper
         className={className}
-        style={Object.assign(styles.root, this.props.style)}
+        style={Object.assign(styles.root, style)}
         zDepth={this.state.zDepth}
       >
         <EnhancedButton
@@ -391,7 +400,7 @@ class RaisedButton extends Component {
           {...buttonEventHandlers}
           ref="container"
           disabled={disabled}
-          style={styles.button}
+          style={Object.assign(styles.button, buttonStyle)}
           focusRippleColor={mergedRippleStyles.color}
           touchRippleColor={mergedRippleStyles.color}
           focusRippleOpacity={mergedRippleStyles.opacity}

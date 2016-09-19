@@ -13,8 +13,7 @@ const clickAwayEvents = ['mouseup', 'touchend'];
 const bind = (callback) => clickAwayEvents.forEach((event) => events.on(document, event, callback));
 const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(document, event, callback));
 
-export default class ClickAwayListener extends Component {
-
+class ClickAwayListener extends Component {
   static propTypes = {
     children: PropTypes.node,
     onClickAway: PropTypes.any,
@@ -60,3 +59,5 @@ export default class ClickAwayListener extends Component {
     return this.props.children;
   }
 }
+
+export default ClickAwayListener;

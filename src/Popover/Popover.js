@@ -7,6 +7,12 @@ import Paper from '../Paper';
 import throttle from 'lodash/throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
+const styles = {
+  root: {
+    display: 'none',
+  },
+};
+
 class Popover extends Component {
   static propTypes = {
     /**
@@ -130,10 +136,13 @@ class Popover extends Component {
         });
       } else {
         if (nextProps.animated) {
+          if (this.timeout !== null) return;
           this.setState({closing: true});
           this.timeout = setTimeout(() => {
             this.setState({
               open: false,
+            }, () => {
+              this.timeout = null;
             });
           }, 500);
         } else {
@@ -150,8 +159,16 @@ class Popover extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timeout);
+    this.handleResize.cancel();
+    this.handleScroll.cancel();
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
   }
+
+  timeout = null;
 
   renderLayer = () => {
     const {
@@ -192,10 +209,6 @@ class Popover extends Component {
     this.requestClose('clickAway');
   };
 
-  _resizeAutoPosition() {
-    this.setPlacement();
-  }
-
   getAnchorPosition(el) {
     if (!el) {
       el = ReactDOM.findDOMNode(this);
@@ -233,8 +246,6 @@ class Popover extends Component {
       return;
     }
 
-    const anchorEl = this.props.anchorEl || this.anchorEl;
-
     if (!this.refs.layer.getLayer()) {
       return;
     }
@@ -245,6 +256,7 @@ class Popover extends Component {
     }
 
     const {targetOrigin, anchorOrigin} = this.props;
+    const anchorEl = this.props.anchorEl || this.anchorEl;
 
     const anchor = this.getAnchorPosition(anchorEl);
     let target = this.getTargetPosition(targetEl);
@@ -348,7 +360,7 @@ class Popover extends Component {
 
   render() {
     return (
-      <div style={{display: 'none'}}>
+      <div style={styles.root}>
         <EventListener
           target="window"
           onScroll={this.handleScroll}

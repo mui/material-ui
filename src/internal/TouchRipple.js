@@ -155,7 +155,6 @@ class TouchRipple extends Component {
   }
 
   getRippleStyle(event) {
-    const style = {};
     const el = ReactDOM.findDOMNode(this);
     const elHeight = el.offsetHeight;
     const elWidth = el.offsetWidth;
@@ -176,12 +175,13 @@ class TouchRipple extends Component {
     const left = pointerX - rippleRadius;
     const top = pointerY - rippleRadius;
 
-    style.height = `${rippleSize}px`;
-    style.width = `${rippleSize}px`;
-    style.top = `${top}px`;
-    style.left = `${left}px`;
-
-    return style;
+    return {
+      directionInvariant: true,
+      height: rippleSize,
+      width: rippleSize,
+      top: top,
+      left: left,
+    };
   }
 
   calcDiag(a, b) {

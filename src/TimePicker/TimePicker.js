@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import warning from 'warning';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
 import {formatTime} from './timeUtils';
@@ -105,9 +104,15 @@ class TimePicker extends Component {
   };
 
   state = {
-    time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    time: null,
     dialogTime: new Date(),
   };
+
+  componentWillMount() {
+    this.setState({
+      time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
@@ -115,28 +120,6 @@ class TimePicker extends Component {
         time: this.getControlledTime(nextProps),
       });
     }
-  }
-
-  /**
-   * Deprecated.
-   * returns timepicker value.
-   **/
-  getTime() {
-    warning(false, `getTime() method is deprecated. Use the defaultTime property
-    instead. Or use the TimePicker as a controlled component with the value
-    property. It will be removed with v0.16.0.`);
-    return this.state.time;
-  }
-
-  /**
-   * Deprecated
-   * sets timepicker value.
-   **/
-  setTime(time) {
-    warning(false, `setTime() method is deprecated. Use the defaultTime property
-    instead. Or use the TimePicker as a controlled component with the value
-    property. It will be removed with v0.16.0.`);
-    this.setState({time: time ? time : emptyTime});
   }
 
   /**

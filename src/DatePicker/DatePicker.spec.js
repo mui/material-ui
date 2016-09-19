@@ -13,9 +13,9 @@ describe('<DatePicker />', () => {
 
   describe('formatDate', () => {
     it('should use the default format', () => {
-      const initialDate = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
+      const date = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
       const wrapper = shallowWithContext(
-        <DatePicker value={initialDate} />
+        <DatePicker value={date} />
       );
 
       assert.strictEqual(wrapper.find(TextField).props().value, '2015-12-01',

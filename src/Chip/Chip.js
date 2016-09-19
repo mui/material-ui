@@ -232,11 +232,12 @@ class Chip extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
-    let {
-      children,
+    const {
+      children: childrenProp,
       style,
       className,
       labelStyle,
+      labelColor, // eslint-disable-line no-unused-vars,prefer-const
       backgroundColor, // eslint-disable-line no-unused-vars,prefer-const
       onRequestDelete, // eslint-disable-line no-unused-vars,prefer-const
       ...other,
@@ -244,9 +245,6 @@ class Chip extends Component {
 
     const deletable = this.props.onRequestDelete;
     let avatar = null;
-
-    style = Object.assign(styles.root, style);
-    labelStyle = prepareStyles(Object.assign(styles.label, labelStyle));
 
     const deleteIcon = deletable ?
       <DeleteIcon
@@ -258,6 +256,7 @@ class Chip extends Component {
       /> :
       null;
 
+    let children = childrenProp;
     const childCount = React.Children.count(children);
 
     // If the first child is an avatar, extract it and style it
@@ -282,10 +281,12 @@ class Chip extends Component {
         containerElement="div" // Firefox doesn't support nested buttons
         disableTouchRipple={true}
         disableFocusRipple={true}
-        style={style}
+        style={Object.assign(styles.root, style)}
       >
         {avatar}
-        <span style={labelStyle}>{children}</span>
+        <span style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+          {children}
+        </span>
         {deleteIcon}
       </EnhancedButton>
     );

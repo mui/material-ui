@@ -23,7 +23,6 @@ module.exports = {
     'material-ui',
   ],
   rules: {
-    // Errors
     'array-bracket-spacing': ['error', 'never'],
     'arrow-spacing': 'error',
     'arrow-parens': 'error',
@@ -79,61 +78,74 @@ module.exports = {
     'space-unary-ops': ['error', { words: true, nonwords: false }],
     'spaced-comment': 'error',
     'yoda': 'error',
-
-    // Disabled
-    'strict': 'off',
-    'no-case-declarations': 'off',
-
-    // Babel
     'babel/object-curly-spacing': ['error', 'never'],
-
-    // React
+    'babel/generator-star-spacing': 'error',
+    'babel/array-bracket-spacing': 'error',
+    'babel/arrow-parens': 'error',
+    'babel/no-await-in-loop': 'error',
+    'babel/func-params-comma-dangle': 'error',
+    'babel/flow-object-type': 'error',
     'react/display-name': 'error',
     'react/jsx-boolean-value': ['error', 'always'],
     'react/jsx-closing-bracket-location': 'error',
     'react/jsx-curly-spacing': 'error',
     'react/jsx-equals-spacing': 'error',
+    'react/jsx-filename-extension': ['error', {extensions: ['.js']}],
     'react/jsx-first-prop-new-line': ['error', 'multiline'],
     'react/jsx-handler-names': 'error',
+    'react/jsx-indent': ['error', 2],
     'react/jsx-indent-props': ['error', 2],
     'react/jsx-max-props-per-line': ['error', {maximum: 3}],
+    'react/jsx-no-comment-textnodes': 'error',
     'react/jsx-no-duplicate-props': 'error',
     'react/jsx-no-undef': 'error',
     'react/jsx-pascal-case': 'error',
     'react/jsx-space-before-closing': 'error',
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
+    'react/jsx-wrap-multilines': 'error',
     'react/no-danger': 'error',
+    'react/no-deprecated': 'error',
     'react/no-did-mount-set-state': 'error',
     'react/no-did-update-set-state': 'error',
     'react/no-direct-mutation-state': 'error',
     'react/no-multi-comp': 'off', // Wishlist, one day
-    'react/no-unknown-property': 'error',
+    'react/no-render-return-value': 'error',
     'react/no-is-mounted': 'error',
+    'react/no-unknown-property': 'error',
     'react/prefer-arrow-callback': 'off', // Wishlist, one day
     'react/prefer-es6-class': 'error',
     'react/prop-types': 'error',
     'react/react-in-jsx-scope': 'error',
     'react/require-extension': 'error',
+    'react/require-render-return': 'error',
     'react/self-closing-comp': 'error',
     'react/sort-comp': 'error',
     'react/sort-prop-types': 'error',
-    'react/wrap-multilines': 'error',
-    'react/jsx-indent': ['error', 2],
-
-    // React Disabled
-    'react/jsx-no-bind': 'off',
-    'react/jsx-no-literals': 'off',
-    'react/jsx-sort-props': 'off',
-    'react/no-set-state': 'off',
-
-    // Material-UI
     'material-ui/docgen-ignore-before-comment': 'error',
-
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
     'mocha/no-global-tests': 'error',
     'mocha/no-pending-tests': 'error',
     'mocha/no-skipped-tests': 'error',
+
+    'react/no-string-refs': 'warn', // Whishlist, one day.
+
+    'strict': 'off',
+    'no-case-declarations': 'off',
+    'react/jsx-key': 'off',
+    'react/jsx-no-bind': 'off',
+    'react/jsx-no-literals': 'off',
+    'react/jsx-no-target-blank': 'off',
+    'react/jsx-sort-props': 'off',
+    'react/no-set-state': 'off',
+    'react/forbid-prop-types': 'off',
+    'react/prefer-stateless-function': 'off',
+    'react/require-optimization': 'off',
+    'mocha/no-synchronous-tests': 'off',
+    'mocha/valid-suite-description': 'off',
+    'mocha/valid-test-description': 'off',
+    'babel/object-shorthand': 'off',
+    'babel/new-cap': 'off',
   },
 };

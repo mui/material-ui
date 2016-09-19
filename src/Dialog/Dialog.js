@@ -38,7 +38,7 @@ class TransitionItem extends Component {
     this.setState({
       style: {
         opacity: 1,
-        transform: `translate3d(0, ${spacing.desktopKeylineIncrement}px, 0)`,
+        transform: `translate(0, ${spacing.desktopKeylineIncrement}px)`,
       },
     });
 
@@ -49,7 +49,7 @@ class TransitionItem extends Component {
     this.setState({
       style: {
         opacity: 0,
-        transform: 'translate3d(0, 0, 0)',
+        transform: 'translate(0, 0)',
       },
     });
 

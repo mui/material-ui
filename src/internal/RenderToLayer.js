@@ -1,8 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import {Component, PropTypes} from 'react';
 import {unstable_renderSubtreeIntoContainer, unmountComponentAtNode} from 'react-dom';
 
 import Dom from '../utils/dom';
-import MuiThemeProvider from '../styles/MuiThemeProvider';
 
 // heavily inspired by https://github.com/Khan/react-components/blob/master/js/layered-component-mixin.jsx
 class RenderToLayer extends Component {
@@ -110,15 +109,7 @@ class RenderToLayer extends Component {
         }
       }
 
-      /**
-       * We use the <MuiThemeProvider /> component as a work around for
-       * https://github.com/facebook/react/issues/6599.
-       */
-      const layerElement = (
-        <MuiThemeProvider muiTheme={this.context.muiTheme}>
-          {render()}
-        </MuiThemeProvider>
-      );
+      const layerElement = render();
       this.layerElement = unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
     } else {
       this.unrenderLayer();

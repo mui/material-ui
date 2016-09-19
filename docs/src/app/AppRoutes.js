@@ -9,7 +9,7 @@ import {
 import Master from './components/Master';
 import Home from './components/pages/Home';
 
-import Prerequisites from './components/pages/get-started/Prerequisites';
+import RequiredKnowledge from './components/pages/get-started/RequiredKnowledge';
 import Installation from './components/pages/get-started/Installation';
 import Usage from './components/pages/get-started/Usage';
 import Examples from './components/pages/get-started/Examples';
@@ -17,12 +17,13 @@ import ServerRendering from './components/pages/get-started/ServerRendering';
 
 import Colors from './components/pages/customization/Colors';
 import Themes from './components/pages/customization/Themes';
-import InlineStyles from './components/pages/customization/InlineStyles';
+import Styles from './components/pages/customization/Styles';
 
 import AppBarPage from './components/pages/components/AppBar/Page';
 import AutoCompletePage from './components/pages/components/AutoComplete/Page';
 import AvatarPage from './components/pages/components/Avatar/Page';
 import BadgePage from './components/pages/components/Badge/Page';
+import BottomNavigationPage from './components/pages/components/BottomNavigation/Page';
 import CardPage from './components/pages/components/Card/Page';
 import ChipPage from './components/pages/components/Chip/Page';
 import CircularProgressPage from './components/pages/components/CircularProgress/Page';
@@ -66,7 +67,7 @@ import RelatedProjects from './components/pages/discover-more/RelatedProjects';
 import StepperPage from './components/pages/components/Stepper/Page';
 
 /**
- * Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
+ * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
  *
  * Routes are used to declare your view hierarchy.
  *
@@ -78,9 +79,9 @@ const AppRoutes = (
   <Route path="/" component={Master}>
     <IndexRoute component={Home} />
     <Route path="home" component={Home} />
-    <Redirect from="get-started" to="/get-started/prerequisites" />
+    <Redirect from="get-started" to="/get-started/required-knowledge" />
     <Route path="get-started">
-      <Route path="prerequisites" component={Prerequisites} />
+      <Route path="required-knowledge" component={RequiredKnowledge} />
       <Route path="installation" component={Installation} />
       <Route path="usage" component={Usage} />
       <Route path="examples" component={Examples} />
@@ -90,13 +91,14 @@ const AppRoutes = (
     <Route path="customization">
       <Route path="colors" component={Colors} />
       <Route path="themes" component={Themes} />
-      <Route path="inline-styles" component={InlineStyles} />
+      <Route path="styles" component={Styles} />
     </Route>
     <Redirect from="components" to="/components/app-bar" />
     <Route path="components">
       <Route path="app-bar" component={AppBarPage} />
       <Route path="auto-complete" component={AutoCompletePage} />
       <Route path="avatar" component={AvatarPage} />
+      <Route path="bottom-navigation" component={BottomNavigationPage} />
       <Route path="badge" component={BadgePage} />
       <Route path="card" component={CardPage} />
       <Route path="chip" component={ChipPage} />

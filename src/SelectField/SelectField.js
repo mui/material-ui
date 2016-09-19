@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
-import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props) {
   return {
@@ -85,6 +84,10 @@ class SelectField extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * Override the default max-height of the underlying `DropDownMenu` element.
+     */
+    maxHeight: PropTypes.number,
+    /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     menuStyle: PropTypes.object,
@@ -101,11 +104,6 @@ class SelectField extends Component {
     onChange: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Override the inline-styles of the underlying `DropDownMenu` element.
-     */
-    selectFieldRoot: deprecated(PropTypes.object,
-      'Instead, use `menuStyle`. It will be removed with v0.16.0.'),
     /**
      * Override the inline-styles of the root element.
      */
@@ -152,7 +150,6 @@ class SelectField extends Component {
       underlineFocusStyle,
       underlineStyle,
       errorStyle,
-      selectFieldRoot,
       disabled,
       floatingLabelFixed,
       floatingLabelText,
@@ -161,6 +158,7 @@ class SelectField extends Component {
       hintText,
       fullWidth,
       errorText,
+      maxHeight,
       menuStyle,
       onFocus,
       onBlur,
@@ -193,13 +191,14 @@ class SelectField extends Component {
       >
         <DropDownMenu
           disabled={disabled}
-          style={Object.assign(styles.dropDownMenu, selectFieldRoot, menuStyle)}
+          style={Object.assign(styles.dropDownMenu, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
           underlineStyle={styles.hideDropDownUnderline}
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
+          maxHeight={maxHeight}
         >
           {children}
         </DropDownMenu>

@@ -15,7 +15,7 @@ injectTapEventPlugin();
 
 /**
  * Render the main app component. You can read more about the react-router here:
- * https://github.com/rackt/react-router/blob/master/docs/guides/overview.md
+ * https://github.com/reactjs/react-router/blob/master/docs/guides/README.md
  */
 render(
   <Router

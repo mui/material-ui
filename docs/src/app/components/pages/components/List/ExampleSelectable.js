@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import MobileTearSheet from '../../../MobileTearSheet';
-import {List, ListItem, MakeSelectable} from 'material-ui/List';
+import {List, ListItem, makeSelectable} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
 
-let SelectableList = MakeSelectable(List);
+let SelectableList = makeSelectable(List);
 
 function wrapState(ComposedComponent) {
   return class SelectableList extends Component {

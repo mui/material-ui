@@ -52,7 +52,7 @@ describe('<FlatButton />', () => {
     );
     const icon = wrapper.children().at(0);
     const label = wrapper.children().at(1);
-    assert.ok(icon.is('span'), );
+    assert.ok(icon.is('span'));
     assert.ok(icon.hasClass('test-icon'));
     assert.ok(label.is('FlatButtonLabel'));
     assert.strictEqual(label.node.props.label, 'Hello', 'says hello');
@@ -68,7 +68,7 @@ describe('<FlatButton />', () => {
     );
     const icon = wrapper.children().at(1);
     const label = wrapper.children().at(0);
-    assert.ok(icon.is('span'), );
+    assert.ok(icon.is('span'));
     assert.ok(icon.hasClass('test-icon'));
     assert.ok(label.is('FlatButtonLabel'));
     assert.strictEqual(label.node.props.label, 'Hello', 'says hello');
@@ -179,6 +179,16 @@ describe('<FlatButton />', () => {
         disabled: true,
       });
       assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
+    });
+  });
+
+  describe('props: icon', () => {
+    it('should keep the style set on the icon', () => {
+      const wrapper = shallowWithContext(
+        <FlatButton icon={<ActionAndroid style={{foo: 'bar'}} />} />
+      );
+
+      assert.strictEqual(wrapper.find(ActionAndroid).props().style.foo, 'bar');
     });
   });
 });

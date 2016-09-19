@@ -20,15 +20,14 @@ function getStyles(props, context, state) {
   const styles = {
     root: {
       position: 'fixed',
-      left: 0,
+      left: '50%',
       display: 'flex',
-      right: 0,
       bottom: 0,
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
       transform: open ?
-        'translate3d(0, 0, 0)' :
-        `translate3d(0, ${desktopSubheaderHeight}px, 0)`,
+        'translate(-50%, 0)' :
+        `translate(-50%, ${desktopSubheaderHeight}px)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
     },
@@ -42,7 +41,7 @@ class Snackbar extends Component {
     /**
      * The label for the action on the snackbar.
      */
-    action: PropTypes.string,
+    action: PropTypes.node,
     /**
      * The number of milliseconds to wait before automatically dismissing.
      * If no value is specified the snackbar will dismiss normally.
@@ -58,6 +57,10 @@ class Snackbar extends Component {
      * The css class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Override the inline-styles of the content element.
+     */
+    contentStyle: PropTypes.object,
     /**
      * The message to be displayed.
      *
@@ -196,11 +199,12 @@ class Snackbar extends Component {
   render() {
     const {
       autoHideDuration, // eslint-disable-line no-unused-vars
+      contentStyle,
+      bodyStyle,
       message: messageProp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
       onActionTouchTap,
       style,
-      bodyStyle,
       ...other,
     } = this.props;
 
@@ -217,11 +221,12 @@ class Snackbar extends Component {
       <ClickAwayListener onClickAway={open && this.componentClickAway}>
         <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
           <SnackbarBody
-            open={open}
-            message={message}
             action={action}
-            style={bodyStyle}
+            contentStyle={contentStyle}
+            message={message}
+            open={open}
             onActionTouchTap={onActionTouchTap}
+            style={bodyStyle}
           />
         </div>
       </ClickAwayListener>
