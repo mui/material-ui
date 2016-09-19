@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import Chip from './Chip';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -111,7 +111,7 @@ describe('<Chip />', () => {
 
     it('renders a delete icon after the label when onRequestDelete is provided', () => {
       const wrapper = themedShallow(
-        <Chip onRequestDelete={sinon.spy()}>Label</Chip>
+        <Chip onRequestDelete={spy()}>Label</Chip>
       );
       assert.ok(wrapper.childAt(1).is('NavigationCancel'));
     });
@@ -119,7 +119,7 @@ describe('<Chip />', () => {
 
   describe('callbacks', () => {
     it('triggers onRequestDelete when the delete icon is clicked', () => {
-      const handleRequestDelete = sinon.spy();
+      const handleRequestDelete = spy();
       const wrapper = themedShallow(
         <Chip onRequestDelete={handleRequestDelete}>Label</Chip>
       );
@@ -144,7 +144,7 @@ describe('<Chip />', () => {
       const props = {};
 
       events.forEach((event) => {
-        handlers[event] = sinon.spy();
+        handlers[event] = spy();
         props[`on${event.charAt(0).toUpperCase() + event.slice(1)}`] = handlers[event];
       });
 

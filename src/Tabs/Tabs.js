@@ -1,8 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
+import React, {Component,
+  createElement,
+  cloneElement,
+  Children,
+  isValidElement,
+  PropTypes,
+} from 'react';
+import warning from 'warning';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';
-import warning from 'warning';
 
 function getStyles(props, context) {
   const {tabs} = context.muiTheme;
@@ -104,21 +109,15 @@ class Tabs extends Component {
     this.setState(newState);
   }
 
-  getEvenWidth() {
-    return (
-      parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this))
-        .getPropertyValue('width'), 10)
-    );
-  }
-
   getTabs(props = this.props) {
     const tabs = [];
-    React.Children.forEach(props.children, (tab) => {
-      if (React.isValidElement(tab)) {
+
+    Children.forEach(props.children, (tab) => {
+      if (isValidElement(tab)) {
         tabs.push(tab);
       }
     });
+
     return tabs;
   }
 
@@ -200,12 +199,12 @@ class Tabs extends Component {
         to be a controlled component.`);
 
       tabContent.push(tab.props.children ?
-        React.createElement(tabTemplate || TabTemplate, {
+        createElement(tabTemplate || TabTemplate, {
           key: index,
           selected: this.getSelected(tab, index),
         }, tab.props.children) : undefined);
 
-      return React.cloneElement(tab, {
+      return cloneElement(tab, {
         key: index,
         index: index,
         selected: this.getSelected(tab, index),
@@ -227,8 +226,8 @@ class Tabs extends Component {
 
     return (
       <div
-        {...other}
         style={prepareStyles(Object.assign({}, style))}
+        {...other}
       >
         <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
           {tabs}
