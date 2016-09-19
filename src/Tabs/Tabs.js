@@ -175,6 +175,7 @@ class Tabs extends Component {
       contentContainerStyle,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
+      onChange,
       style,
       tabItemContainerStyle,
       tabTemplate,
