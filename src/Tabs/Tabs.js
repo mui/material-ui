@@ -112,9 +112,9 @@ class Tabs extends Component {
     );
   }
 
-  getTabs() {
+  getTabs(props = this.props) {
     const tabs = [];
-    React.Children.forEach(this.props.children, (tab) => {
+    React.Children.forEach(props.children, (tab) => {
       if (React.isValidElement(tab)) {
         tabs.push(tab);
       }
@@ -138,7 +138,7 @@ class Tabs extends Component {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
-    this.getTabs().forEach((tab, index) => {
+    this.getTabs(props).forEach((tab, index) => {
       if (valueLink.value === tab.props.value) {
         selectedIndex = index;
       }
