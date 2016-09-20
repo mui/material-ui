@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import SvgIcon from './SvgIcon';
@@ -29,7 +29,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children and hoverColor when mouseEnter', () => {
-    const onMouseEnter = sinon.spy();
+    const onMouseEnter = spy();
     const wrapper = shallowWithContext(
       <SvgIcon
         className="material-icons"
@@ -50,7 +50,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children and call onMouseEnter callback', () => {
-    const onMouseEnter = sinon.spy();
+    const onMouseEnter = spy();
     const wrapper = shallowWithContext(
       <SvgIcon onMouseEnter={onMouseEnter} hoverColor="green">{path}</SvgIcon>
     );
@@ -62,7 +62,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children and call onMouseEnter callback even when hoverColor is not set', () => {
-    const onMouseEnter = sinon.spy();
+    const onMouseEnter = spy();
     const wrapper = shallowWithContext(
       <SvgIcon onMouseEnter={onMouseEnter}>{path}</SvgIcon>
     );
@@ -74,7 +74,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children and call onMouseLeave callback', () => {
-    const onMouseLeave = sinon.spy();
+    const onMouseLeave = spy();
     const wrapper = shallowWithContext(
       <SvgIcon onMouseLeave={onMouseLeave} hoverColor="green">{path}</SvgIcon>
     );
@@ -86,7 +86,7 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children and call onMouseLeave callback even when hoverColor is not set', () => {
-    const onMouseLeave = sinon.spy();
+    const onMouseLeave = spy();
     const wrapper = shallowWithContext(
       <SvgIcon onMouseLeave={onMouseLeave}>{path}</SvgIcon>
     );
