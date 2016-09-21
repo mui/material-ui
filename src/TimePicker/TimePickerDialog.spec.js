@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import getMuiTheme from '../styles/getMuiTheme';
 import TimePickerDialog from './TimePickerDialog';
 
@@ -11,8 +11,8 @@ describe('<TimePickerDialog />', () => {
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
   it('should not call onDismiss when user clicks on OK label', () => {
-    const onDismissCallback = sinon.spy();
-    const onAcceptCallback = sinon.spy();
+    const onDismissCallback = spy();
+    const onAcceptCallback = spy();
     const okButtonLabel = 'CLICKME';
     const wrapper = shallowWithContext(
       <TimePickerDialog
