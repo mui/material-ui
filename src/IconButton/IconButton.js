@@ -171,7 +171,7 @@ class IconButton extends Component {
     if (keyboardFocused && !this.props.disabled) {
       this.showTooltip();
       if (this.props.onFocus) this.props.onFocus(event);
-    } else if (!this.state.hovered) {
+    } else {
       this.hideTooltip();
       if (this.props.onBlur) this.props.onBlur(event);
     }
