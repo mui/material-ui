@@ -231,7 +231,7 @@ class DatePicker extends Component {
   };
 
   isControlled() {
-    return this.props.hasOwnProperty('value');
+    return this.props.value !== null;
   }
 
   getControlledDate(props = this.props) {
