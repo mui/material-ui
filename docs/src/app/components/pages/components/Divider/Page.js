@@ -19,7 +19,7 @@ const descriptions = {
   'It defaults to "full-bleed" (full width).',
   inset: 'The `inset` parameter allows the divider to to align with inset content, ' +
   'such as inset [List](/#/components/list) components.',
-  menu: '`Divider` can alo be used in [Menus](/#/components/menu).',
+  menu: '`Divider` can also be used in [Menus](/#/components/menu).',
 };
 
 const DividerPage = () => {
