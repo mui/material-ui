@@ -216,6 +216,7 @@ class AppBar extends Component {
     const iconLeftStyle = Object.assign({}, styles.iconButtonStyle, iconStyleLeft);
 
     if (showMenuIconButton) {
+      let self = this;
       let iconElementLeftNode = iconElementLeft;
 
       if (iconElementLeft) {
@@ -229,6 +230,7 @@ class AppBar extends Component {
 
           iconElementLeftNode = React.cloneElement(iconElementLeft, {
             iconStyle: Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle),
+            onClick: self.handleTouchTapLeftIconButton.bind(self),
           });
         }
 
