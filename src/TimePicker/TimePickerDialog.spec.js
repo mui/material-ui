@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
-import {spy} from 'sinon';
+import {spy, stub} from 'sinon';
 import getMuiTheme from '../styles/getMuiTheme';
 import TimePickerDialog from './TimePickerDialog';
 
@@ -21,7 +21,7 @@ describe('<TimePickerDialog />', () => {
         okLabel={okButtonLabel}
       />
     );
-    wrapper.instance().refs = {clock: {getSelectedTime: sinon.stub().returns(Date.now())}};
+    wrapper.instance().refs = {clock: {getSelectedTime: stub().returns(Date.now())}};
     wrapper.instance().handleTouchTapOK();
     expect(onDismissCallback).to.have.property('callCount', 0);
     expect(onAcceptCallback).to.have.property('callCount', 1);
