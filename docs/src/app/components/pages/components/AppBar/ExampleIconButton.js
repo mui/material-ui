@@ -8,9 +8,9 @@ function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
 }
 
- function handleTouchTapLeftIconButton() {
-        alert("onClick triggered on the left icon component");
-      }
+function handleTouchTapLeftIconButton() {
+  alert('onClick triggered on the left icon component');
+}
 
 const styles = {
   title: {
@@ -23,7 +23,7 @@ const AppBarExampleIconButton = () => (
     title={<span style={styles.title}>Title</span>}
     onTitleTouchTap={handleTouchTap}
     iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-    onLeftIconButtonTouchTap={handleTouchTapLeftIconButton }
+    onLeftIconButtonTouchTap={handleTouchTapLeftIconButton}
     iconElementRight={<FlatButton label="Save" />}
   />
 );

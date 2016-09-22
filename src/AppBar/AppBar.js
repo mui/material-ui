@@ -216,7 +216,7 @@ class AppBar extends Component {
     const iconLeftStyle = Object.assign({}, styles.iconButtonStyle, iconStyleLeft);
 
     if (showMenuIconButton) {
-      let self = this;
+      const self = this;
       let iconElementLeftNode = iconElementLeft;
 
       if (iconElementLeft) {
