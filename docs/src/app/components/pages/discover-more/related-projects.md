@@ -6,6 +6,7 @@
 A Formsy compatibility wrapper for Material-UI form components.
 - [react-materialui-notifications](https://github.com/puranjayjain/react-materialui-notifications) Spec compliant notifications for react and material ui users.
 - [material-ui-chip-input](https://github.com/TeamWertarbyte/material-ui-chip-input) An input field for chips as seen in the [Material design guidelines](https://material.google.com/components/chips.html#chips-behavior).
+- [material-auto-rotating-carousel](https://github.com/TeamWertarbyte/material-auto-rotating-carousel) A responsive [auto-rotating carousel](https://material.google.com/growth-communications/onboarding.html#onboarding-top-user-benefits) to display your app's benefits.
 
 ### Complementary Projects
 
