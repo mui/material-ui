@@ -81,6 +81,15 @@ describe('<AppBar />', () => {
         'should add some properties to the iconStyle'
       );
     });
+
+    it('should triggers the onTouchTap', () => {
+      const handleTouchTap = spy();
+      const wrapper = shallowWithContext(
+        <AppBar iconElementLeft={<IconButton onTouchTap={handleTouchTap}><div /></IconButton>} />
+      );
+      wrapper.find(IconButton).simulate('touchTap');
+      assert.strictEqual(handleTouchTap.callCount, 1);
+    });
   });
 
   it('renders iconElementRight', () => {
@@ -91,34 +100,54 @@ describe('<AppBar />', () => {
     assert.strictEqual(wrapper.find('.icon').length, 1, 'should contain iconElementRight');
   });
 
-  it('call onLeftIconButtonTouchTap callback', () => {
-    const onLeftIconButtonTouchTap = spy();
-    const iconClassNameLeft = 'muidocs-icon-action-home';
-    const wrapper = shallowWithContext(
-      <AppBar
-        iconClassNameLeft={iconClassNameLeft}
-        onLeftIconButtonTouchTap={onLeftIconButtonTouchTap}
-      />
-    );
+  describe('onLeftIconButtonTouchTap', () => {
+    it('should trigger the onTouchTap', () => {
+      const onLeftIconButtonTouchTap = spy();
+      const wrapper = shallowWithContext(
+        <AppBar onLeftIconButtonTouchTap={onLeftIconButtonTouchTap} />
+      );
 
-    wrapper.find(IconButton).simulate('touchTap');
-    assert.strictEqual(onLeftIconButtonTouchTap.calledOnce, true,
-      'should have called onLeftIconButtonTouchTap callback function');
+      wrapper.find(IconButton).simulate('touchTap');
+      assert.strictEqual(onLeftIconButtonTouchTap.callCount, 1,
+        'should have called onLeftIconButtonTouchTap callback function');
+    });
+
+    it('should forward the onTouchTap to onLeftIconButtonTouchTap', () => {
+      const handleTouchTap = spy();
+      const wrapper = shallowWithContext(
+        <AppBar
+          iconElementLeft={<IconButton><div /></IconButton>}
+          onLeftIconButtonTouchTap={handleTouchTap}
+        />
+      );
+      wrapper.find(IconButton).simulate('touchTap');
+      assert.strictEqual(handleTouchTap.callCount, 1);
+    });
   });
 
-  it('call onRightIconButtonTouchTap callback', () => {
-    const onRightIconButtonTouchTap = spy();
-    const iconClassNameRight = 'muidocs-icon-action-home';
-    const wrapper = shallowWithContext(
-      <AppBar
-        iconClassNameRight={iconClassNameRight}
-        onRightIconButtonTouchTap={onRightIconButtonTouchTap}
-      />
-    );
+  describe('onRightIconButtonTouchTap', () => {
+    it('should trigger the onTouchTap', () => {
+      const handleRightIconButtonTouchTap = spy();
+      const wrapper = shallowWithContext(
+        <AppBar onRightIconButtonTouchTap={handleRightIconButtonTouchTap} iconClassNameRight="foo" />
+      );
 
-    wrapper.find(IconButton).at(1).simulate('touchTap');
-    assert.strictEqual(onRightIconButtonTouchTap.calledOnce, true,
-      'should have called onRightIconButtonTouchTap callback function');
+      wrapper.find(IconButton).at(1).simulate('touchTap');
+      assert.strictEqual(handleRightIconButtonTouchTap.callCount, 1,
+        'should have called onRightIconButtonTouchTap callback function');
+    });
+
+    it('should forward the onTouchTap to onRightIconButtonTouchTap', () => {
+      const handleTouchTap = spy();
+      const wrapper = shallowWithContext(
+        <AppBar
+          iconElementRight={<IconButton><div /></IconButton>}
+          onRightIconButtonTouchTap={handleTouchTap}
+        />
+      );
+      wrapper.find(IconButton).at(1).simulate('touchTap');
+      assert.strictEqual(handleTouchTap.callCount, 1);
+    });
   });
 
   it('call onTitleTouchTap callback', () => {
@@ -128,7 +157,7 @@ describe('<AppBar />', () => {
     );
 
     wrapper.find('h1').simulate('touchTap');
-    assert.strictEqual(onTitleTouchTap.calledOnce, true,
+    assert.strictEqual(onTitleTouchTap.callCount, 1,
       'should have called onTitleTouchTap callback function');
   });
 

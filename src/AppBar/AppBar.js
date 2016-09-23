@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, cloneElement} from 'react';
 import IconButton from '../IconButton';
 import NavigationMenu from '../svg-icons/navigation/menu';
 import Paper from '../Paper';
@@ -217,9 +217,9 @@ class AppBar extends Component {
     const iconLeftStyle = Object.assign({}, styles.iconButtonStyle, iconStyleLeft);
 
     if (showMenuIconButton) {
-      let iconElementLeftNode = iconElementLeft;
-
       if (iconElementLeft) {
+        const iconElementLeftProps = {};
+
         if (iconElementLeft.type.muiName === 'IconButton') {
           const iconElemLeftChildren = iconElementLeft.props.children;
           const iconButtonIconStyle = !(
@@ -228,18 +228,21 @@ class AppBar extends Component {
             iconElemLeftChildren.props.color
           ) ? styles.iconButtonIconStyle : null;
 
-          iconElementLeftNode = React.cloneElement(iconElementLeft, {
-            iconStyle: Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle),
-          });
+          iconElementLeftProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
+        }
+
+        if (!iconElementLeft.props.onTouchTap && this.props.onLeftIconButtonTouchTap) {
+          iconElementLeftProps.onTouchTap = this.handleTouchTapLeftIconButton;
         }
 
         menuElementLeft = (
           <div style={prepareStyles(iconLeftStyle)}>
-            {iconElementLeftNode}
+            {Object.keys(iconElementLeftProps).length > 0 ?
+              cloneElement(iconElementLeft, iconElementLeftProps) :
+              iconElementLeft}
           </div>
         );
       } else {
-        const child = iconClassNameLeft ? '' : <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />;
         menuElementLeft = (
           <IconButton
             style={iconLeftStyle}
@@ -247,7 +250,10 @@ class AppBar extends Component {
             iconClassName={iconClassNameLeft}
             onTouchTap={this.handleTouchTapLeftIconButton}
           >
-            {child}
+            {iconClassNameLeft ?
+              '' :
+              <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />
+            }
           </IconButton>
         );
       }
@@ -259,7 +265,7 @@ class AppBar extends Component {
     }, iconStyleRight);
 
     if (iconElementRight) {
-      let iconElementRightNode = iconElementRight;
+      const iconElementRightProps = {};
 
       switch (iconElementRight.type.muiName) {
         case 'IconMenu':
@@ -271,23 +277,25 @@ class AppBar extends Component {
             iconElemRightChildren.props.color
           ) ? styles.iconButtonIconStyle : null;
 
-          iconElementRightNode = React.cloneElement(iconElementRight, {
-            iconStyle: Object.assign({}, iconButtonIconStyle, iconElementRight.props.iconStyle),
-          });
+          iconElementRightProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementRight.props.iconStyle);
           break;
 
         case 'FlatButton':
-          iconElementRightNode = React.cloneElement(iconElementRight, {
-            style: Object.assign({}, styles.flatButton, iconElementRight.props.style),
-          });
+          iconElementRightProps.style = Object.assign({}, styles.flatButton, iconElementRight.props.style);
           break;
 
         default:
       }
 
+      if (!iconElementRight.props.onTouchTap && this.props.onRightIconButtonTouchTap) {
+        iconElementRightProps.onTouchTap = this.handleTouchTapRightIconButton;
+      }
+
       menuElementRight = (
         <div style={prepareStyles(iconRightStyle)}>
-          {iconElementRightNode}
+          {Object.keys(iconElementRightProps).length > 0 ?
+            cloneElement(iconElementRight, iconElementRightProps) :
+            iconElementRight}
         </div>
       );
     } else if (iconClassNameRight) {
