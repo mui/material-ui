@@ -201,7 +201,7 @@ class AppBar extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-
+    const self = this;
     let menuElementLeft;
     let menuElementRight;
 
@@ -230,6 +230,7 @@ class AppBar extends Component {
 
           iconElementLeftNode = React.cloneElement(iconElementLeft, {
             iconStyle: Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle),
+            onClick: self.handleTouchTapLeftIconButton.bind(self),
           });
         }
 
@@ -279,6 +280,7 @@ class AppBar extends Component {
         case 'FlatButton':
           iconElementRightNode = React.cloneElement(iconElementRight, {
             style: Object.assign({}, styles.flatButton, iconElementRight.props.style),
+            onClick: self.handleTouchTapRightIconButton.bind(self),
           });
           break;
 
