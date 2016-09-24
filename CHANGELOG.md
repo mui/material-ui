@@ -5,27 +5,43 @@ Across a number of issues over the last ~5 months we have been telling people th
 Those improvement are coming with the `next` branch.
 We are switching in goal so we can release changes more **often**.
 
+## 0.16.0-rc2
+###### _Sep 24, 2016_
+
 ##### Breaking Changes
 
+- [TimePicker] Remove the call to onDismiss when already calling onAccept (#5213)
 
 ##### Component Fixes / Enhancements
 
+- [AppBar] Fix onTouchTap handler (#5245)
 - [AutoComplete] Add popoverProps to pass to Popover (#5064)
 - [DatePicker] Improve the RTL support (#5155)
 - [DatePicker] Improve the i18n support (#5187)
+- [IconButton] Remove dead code (#5226)
 - [Popover] Fix a callback leak (#5158)
 - [RaisedButton] Add a buttonStyle property (#5196)
 - [Switch] Add thumbSwitchedStyle and trackSwitchedStyle (#5106)
-- [TimePicker] Fix clock pointer mark off centre of pointer line (#5195)
+- [Snackbar] Fix the element covering up 100% width of the screen (#5113)
+- [Snackbar] Add a contentStyle property (#5205)
+- [Tabs] Fix an edge case where children and value props change (#4635)
+- [Tabs] Fix onChange bubbling (#5219)
+- [TimePicker] Fix a conflict with box-sizing reset (5529138)
 - [withWidth] Compute the width as soon as possible (#5154)
 
 ##### Docs
 
+- [AppBar] Add a composition example (#5248)
 - [RaisedButton] Update file upload example (#5159)
-- [Docs] Add material-ui-chip-input to related projects (#5172)
+- [docs] Add material-ui-chip-input to related projects (#5172)
+- [docs] Add material-auto-rotating-carousel to related projects (#5244)
+- [docs] Explicit the prerequisites section to required knowledge (#5203)
+- [docs] Update the server-rendering section (#5206)
 
 ##### Core
 
+- [core] Add babel-runtime to the release (#5221)
+- [core] Use the ^15.0.0 as a dependency for React (#5207)
 - [npm] Upgrade the dependencies (#5161)
 
 ## 0.16.0-rc1
