@@ -130,9 +130,10 @@ class TableBody extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      this.setState({
-        selectedRows: []
-      });
+      if (this.state.selectedRows.length === React.Children.count(nextProps.children)) {
+        // `selectedRows` has already been updated through `processRowSelection`
+        this.setState({selectedRows: []});
+      }
       // TODO: should else be conditional, not run any time props other than allRowsSelected change?
     } else {
       this.setState({
