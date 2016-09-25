@@ -188,9 +188,11 @@ describe('<ButtonBase>', () => {
     });
 
     it('should center the ripple', () => {
-      assert.strictEqual(wrapper.find('TouchRipple').prop('center'), false, 'should not be centered by default');
+      assert.strictEqual(wrapper.find('TouchRipple').prop('center'), false,
+        'should not be centered by default');
       wrapper.setProps({ centerRipple: true });
-      assert.strictEqual(wrapper.find('TouchRipple').prop('center'), true, 'should be centered');
+      assert.strictEqual(wrapper.find('TouchRipple').prop('center'), true,
+        'should be centered');
     });
   });
 

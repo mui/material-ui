@@ -24,38 +24,28 @@ module.exports = {
     'arrow-body-style': 'off',
     'arrow-parens': 'error',
     'consistent-this': ['error', 'self'],
-    'func-names': 'off',
-    'max-len': ['error', 120, 4], // airbnb use 100
-    'newline-per-chained-call': 'off',
-    'no-console': 'error', // airbnb have on warning
-    'no-nested-ternary': 'off',
-    'no-param-reassign': 'off', // wishlist, one day
+    'max-len': ['error', 110], // airbnb use 100, wishlist, one day
+    'no-console': 'error', // airbnb is using warn
+    'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
-    'no-restricted-syntax': 'off',
-    'no-return-assign': 'off',
-    'no-use-before-define': ['error', { functions: false, classes: true }],
+    'no-return-assign': 'off', // airbnb use error, handy for react ref assign.
     'object-curly-spacing': 'off', // use babel plugin rule
-    'operator-linebreak': ['error', 'after'],
-    'quotes': ['error', 'single', 'avoid-escape'],
+    'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
     'babel/object-curly-spacing': ['error', 'always'],
     'babel/array-bracket-spacing': ['error', 'never'],
     'import/no-unresolved': 'off',
     'import/no-named-as-default': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
-    'react/jsx-handler-names': ['error', {
+    'react/jsx-handler-names': ['error', { // airbnb is disabling this rule
       eventHandlerPrefix: 'handle',
       eventHandlerPropPrefix: 'on',
     }],
-    'react/jsx-filename-extension': ['error', {extensions: ['.js']}],
-    'react/jsx-max-props-per-line': ['error', {maximum: 3}],
-    'react/jsx-no-duplicate-props': 'error',
-    'react/no-danger': 'error',
-    'react/no-find-dom-node': 'warn',
-    'react/no-direct-mutation-state': 'error',
-    'react/no-set-state': 'off',
-    'react/no-string-refs': 'error',
-    'react/prefer-stateless-function': 'off', // wishlist, one day
+    'react/jsx-filename-extension': ['error', {extensions: ['.js']}], // airbnb is using .jsx
+    'react/jsx-max-props-per-line': ['error', {maximum: 3}], // airbnb is disabling this rule
+    'react/no-danger': 'error', // airbnb is using warn
+    'react/no-find-dom-node': 'warn', // wishlist, one day
+    'react/no-direct-mutation-state': 'error', // airbnb is disabling this rule
     'react/sort-comp': [2, {
       order: [
         'static-methods',
@@ -68,12 +58,7 @@ module.exports = {
         'render'
       ],
     }],
-    'jsx-a11y/aria-props': 'error',
-    'jsx-a11y/aria-proptypes': 'error',
-    'jsx-a11y/aria-role': 'error',
-    'jsx-a11y/img-has-alt': ['error'],
-    'jsx-a11y/role-supports-aria-props': 'error',
-    'jsx-a11y/label-has-for': 'off',
+    'jsx-a11y/label-has-for': 'warn', // wishlist, one day
     'material-ui/docgen-ignore-before-comment': 'error',
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',

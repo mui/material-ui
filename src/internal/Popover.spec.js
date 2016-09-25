@@ -50,7 +50,8 @@ describe('<Popover>', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.children().length, 1, 'should have one child');
       assert.strictEqual(wrapper.childAt(0).is('Transition'), true, 'should be Transition');
-      assert.strictEqual(wrapper.childAt(0).prop('transitionAppear'), true, 'should transition on first appearance');
+      assert.strictEqual(wrapper.childAt(0).prop('transitionAppear'), true,
+        'should transition on first appearance');
     });
 
     it('should set the transition in/out based on the open prop', () => {

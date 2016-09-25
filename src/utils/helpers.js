@@ -8,12 +8,9 @@ export function transform(obj, cb, accumulator) {
 }
 
 export function contains(obj, pred) {
-  for (const key in pred) {
-    if (!obj.hasOwnProperty(key) || obj[key] !== pred[key]) {
-      return false;
-    }
-  }
-  return true;
+  return Object.keys(pred).every((key) => {
+    return obj.hasOwnProperty(key) && obj[key] === pred[key];
+  });
 }
 
 export function findIndex(arr, pred) {

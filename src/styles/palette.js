@@ -43,6 +43,13 @@ export const dark = {
 
 export const shades = { dark, light };
 
+function getContrastText(color) {
+  if (getContrastRatio(color, black) < 7) {
+    return dark.text.primary;
+  }
+  return light.text.primary;
+}
+
 export default function createPalette({
   primary = indigo,
   accent = pink,
@@ -64,10 +71,3 @@ export default function createPalette({
 }
 
 export { createPalette };
-
-function getContrastText(color) {
-  if (getContrastRatio(color, black) < 7) {
-    return dark.text.primary;
-  }
-  return light.text.primary;
-}

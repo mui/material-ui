@@ -24,7 +24,8 @@ describe('<Collapse>', () => {
   it('should render a container around the wrapper', () => {
     const wrapper = shallow(<Collapse containerClassName="woof" />);
     assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.container), true, 'should have the container class');
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.container), true,
+      'should have the container class');
     assert.strictEqual(wrapper.childAt(0).hasClass('woof'), true, 'should have the user class');
   });
 
@@ -32,7 +33,8 @@ describe('<Collapse>', () => {
     const children = <h1>Hello</h1>;
     const wrapper = shallow(<Collapse>{children}</Collapse>);
     assert.strictEqual(wrapper.childAt(0).childAt(0).is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.childAt(0).childAt(0).children().equals(children), true, 'should wrap the children');
+    assert.strictEqual(wrapper.childAt(0).childAt(0).children().equals(children), true,
+      'should wrap the children');
   });
 
   describe('event callbacks', () => {
@@ -93,7 +95,8 @@ describe('<Collapse>', () => {
       });
 
       it('should set element transition duration', () => {
-        assert.strictEqual(element.style.transitionDuration, '300ms', 'should have the default 300ms duration');
+        assert.strictEqual(element.style.transitionDuration, '300ms',
+          'should have the default 300ms duration');
       });
 
       it('should set height to the wrapper height', () => {

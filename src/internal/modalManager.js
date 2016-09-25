@@ -7,6 +7,16 @@ import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import { hideSiblings, showSiblings, ariaHidden } from '../utils/manageAriaHidden';
 
 /**
+ * Do we have a scroll bar?
+ * @private
+ */
+function bodyIsOverflowing(node) {
+  const doc = ownerDocument(node);
+  const win = isWindow(doc);
+  return doc.body.clientWidth < win.innerWidth;
+}
+
+/**
  * State managment helper for modals/layers.
  * Simplified, but inspired by react-overlay's ModalManager class
  *
@@ -17,7 +27,6 @@ export function createModalManager({
   hideSiblingNodes = true,
 } = {}) {
   const modals = [];
-  const modalManager = { add, remove, isTopModal };
 
   let prevOverflow;
   let prevPadding;
@@ -84,15 +93,7 @@ export function createModalManager({
     return !!modals.length && modals[modals.length - 1] === modal;
   }
 
-  return modalManager;
-}
+  const modalManager = { add, remove, isTopModal };
 
-/**
- * Do we have a scroll bar?
- * @private
- */
-function bodyIsOverflowing(node) {
-  const doc = ownerDocument(node);
-  const win = isWindow(doc);
-  return doc.body.clientWidth < win.innerWidth;
+  return modalManager;
 }

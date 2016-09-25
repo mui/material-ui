@@ -9,6 +9,28 @@ import MenuList from 'src/Menu/MenuList';
 import MenuItem from 'src/Menu/MenuItem';
 import { createMountWithContext } from 'test/utils';
 
+function assertMenuItemTabIndexed(wrapper, tabIndexed) {
+  const items = wrapper.find('MenuItem');
+
+  items.forEach((item, index) => {
+    if (index === tabIndexed) {
+      assert.strictEqual(item.prop('tabIndex'), '0', 'should have the tab index');
+    } else {
+      assert.strictEqual(item.prop('tabIndex'), '-1', `item at index ${index} should not be tab focusable`);
+    }
+  });
+}
+
+function assertMenuItemFocused(wrapper, tabIndexed) {
+  const items = wrapper.find('MenuItem');
+
+  items.forEach((item, index) => {
+    if (index === tabIndexed) {
+      assert.strictEqual(item.find('div').get(0), document.activeElement, 'should be focused');
+    }
+  });
+}
+
 describe('<MenuList> integration', () => {
   let mount;
 
@@ -110,25 +132,3 @@ describe('<MenuList> integration', () => {
     });
   });
 });
-
-function assertMenuItemTabIndexed(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
-
-  items.forEach((item, index) => {
-    if (index === tabIndexed) {
-      assert.strictEqual(item.prop('tabIndex'), '0', 'should have the tab index');
-    } else {
-      assert.strictEqual(item.prop('tabIndex'), '-1', `item at index ${index} should not be tab focusable`);
-    }
-  });
-}
-
-function assertMenuItemFocused(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
-
-  items.forEach((item, index) => {
-    if (index === tabIndexed) {
-      assert.strictEqual(item.find('div').get(0), document.activeElement, 'should be focused');
-    }
-  });
-}

@@ -23,7 +23,8 @@ describe('<Ripple>', () => {
   it('should have the ripple className', () => {
     const wrapper = shallow(<Ripple />);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.ripple), true, 'should have the ripple class');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false, 'should not have the fast (pulse) class');
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false,
+      'should not have the fast (pulse) class');
   });
 
   describe('starting and stopping', () => {
