@@ -121,43 +121,41 @@ const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => {
   };
 });
 
-class EnhancedTableToolbar extends Component {
-  static propTypes = {
-    numSelected: PropTypes.number,
-  };
+function EnhancedTableToolbar(props, context) {
+  const { numSelected } = props;
+  const classes = context.styleManager.render(toolbarStyleSheet);
+  let classNames = classes.root;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const { numSelected } = this.props;
-    const classes = this.context.styleManager.render(toolbarStyleSheet);
-    let classNames = classes.root;
-
-    if (numSelected > 0) {
-      classNames += ` ${classes.highlight}`;
-    }
-
-    return (
-      <Toolbar className={classNames}>
-        <div className={classes.title}>
-          {numSelected > 0 ?
-            <Text type="subheading">{numSelected} selected</Text> :
-            <Text type="title">Nutrition</Text>
-          }
-        </div>
-        <div className={classes.spacer} />
-        <div className={classes.actions}>
-          {numSelected > 0 ?
-            <IconButton>delete</IconButton> :
-            <IconButton>filter_list</IconButton>
-          }
-        </div>
-      </Toolbar>
-    );
+  if (numSelected > 0) {
+    classNames += ` ${classes.highlight}`;
   }
+
+  return (
+    <Toolbar className={classNames}>
+      <div className={classes.title}>
+        {numSelected > 0 ?
+          <Text type="subheading">{numSelected} selected</Text> :
+          <Text type="title">Nutrition</Text>
+        }
+      </div>
+      <div className={classes.spacer} />
+      <div className={classes.actions}>
+        {numSelected > 0 ?
+          <IconButton>delete</IconButton> :
+          <IconButton>filter_list</IconButton>
+        }
+      </div>
+    </Toolbar>
+  );
 }
+
+EnhancedTableToolbar.propTypes = {
+  numSelected: PropTypes.number,
+};
+
+EnhancedTableToolbar.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};
 
 export default class EnhancedTable extends Component {
   static contextTypes = {

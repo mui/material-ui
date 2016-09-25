@@ -9,6 +9,46 @@ import RadioGroup from 'src/Radio/RadioGroup';
 import Radio from 'src/Radio';
 import { createMountWithContext } from 'test/utils';
 
+function assertRadioSelected(wrapper, selectedIndex) {
+  const radios = wrapper.find('Radio');
+
+  radios.forEach((radio, index) => {
+    if (index === selectedIndex) {
+      assert.strictEqual(radio.prop('checked'), true, 'selected radio should be checked');
+      assert.strictEqual(radio.find('[role="radio"]').prop('aria-checked'), true,
+        'radio should be aria-checked');
+      assert.strictEqual(radio.find('input').prop('checked'), true, 'selected radio should be checked');
+    } else {
+      assert.strictEqual(radio.prop('checked'), false, 'radio should not be checked');
+      assert.strictEqual(radio.find('[role="radio"]').prop('aria-checked'), false,
+        'radio should not be aria-checked');
+      assert.strictEqual(radio.find('input').prop('checked'), false, 'radio should not be checked');
+    }
+  });
+}
+
+function assertRadioTabIndexed(wrapper, tabIndexed) {
+  const radios = wrapper.find('Radio');
+
+  radios.forEach((radio, index) => {
+    if (index === tabIndexed) {
+      assert.strictEqual(radio.prop('tabIndex'), '0', 'selected radio should have the tab index');
+    } else {
+      assert.strictEqual(radio.prop('tabIndex'), '-1', `radio at index ${index} should not be tab focusable`);
+    }
+  });
+}
+
+function assertRadioFocused(wrapper, tabIndexed) {
+  const radios = wrapper.find('Radio');
+
+  radios.forEach((radio, index) => {
+    if (index === tabIndexed) {
+      assert.strictEqual(radio.find('[role="radio"]').get(0), document.activeElement, 'should be focused');
+    }
+  });
+}
+
 describe('<RadioGroup> integration', () => {
   let mount;
 
@@ -230,41 +270,3 @@ describe('<RadioGroup> integration', () => {
     });
   });
 });
-
-function assertRadioSelected(wrapper, selectedIndex) {
-  const radios = wrapper.find('Radio');
-
-  radios.forEach((radio, index) => {
-    if (index === selectedIndex) {
-      assert.strictEqual(radio.prop('checked'), true, 'selected radio should be checked');
-      assert.strictEqual(radio.find('[role="radio"]').prop('aria-checked'), true, 'radio should be aria-checked');
-      assert.strictEqual(radio.find('input').prop('checked'), true, 'selected radio should be checked');
-    } else {
-      assert.strictEqual(radio.prop('checked'), false, 'radio should not be checked');
-      assert.strictEqual(radio.find('[role="radio"]').prop('aria-checked'), false, 'radio should not be aria-checked');
-      assert.strictEqual(radio.find('input').prop('checked'), false, 'radio should not be checked');
-    }
-  });
-}
-
-function assertRadioTabIndexed(wrapper, tabIndexed) {
-  const radios = wrapper.find('Radio');
-
-  radios.forEach((radio, index) => {
-    if (index === tabIndexed) {
-      assert.strictEqual(radio.prop('tabIndex'), '0', 'selected radio should have the tab index');
-    } else {
-      assert.strictEqual(radio.prop('tabIndex'), '-1', `radio at index ${index} should not be tab focusable`);
-    }
-  });
-}
-
-function assertRadioFocused(wrapper, tabIndexed) {
-  const radios = wrapper.find('Radio');
-
-  radios.forEach((radio, index) => {
-    if (index === tabIndexed) {
-      assert.strictEqual(radio.find('[role="radio"]').get(0), document.activeElement, 'should be focused');
-    }
-  });
-}

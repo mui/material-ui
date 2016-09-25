@@ -134,7 +134,7 @@ describe('<TextField>', () => {
     let TextFieldLabel;
 
     before(() => {
-      TextFieldLabel = (props) => <label {...props} />;
+      TextFieldLabel = (props) => <label htmlFor="foo" {...props} />;
       TextFieldLabel.muiName = 'TextFieldLabel';
     });
 

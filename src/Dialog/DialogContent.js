@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -18,27 +18,27 @@ export const styleSheet = createStyleSheet('DialogContent', () => {
   };
 }, { index: 10 });
 
-export default class DialogContent extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  };
+export default function DialogContent(props, context) {
+  const {
+    children,
+    className,
+    ...other,
+  } = props;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+  const classes = context.styleManager.render(styleSheet);
 
-  render() {
-    const {
-      children,
-      className,
-      ...other,
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-
-    return (
-      <div className={classNames(classes.root, className)} {...other}>{children}</div>
-    );
-  }
+  return (
+    <div className={classNames(classes.root, className)} {...other}>
+      {children}
+    </div>
+  );
 }
+
+DialogContent.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+DialogContent.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

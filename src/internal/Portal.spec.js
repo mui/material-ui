@@ -42,7 +42,8 @@ describe('<Portal>', () => {
       assert.strictEqual(portal.firstChild.innerHTML, 'Hello', 'have the contents');
       portal.setAttribute('id', 'meow');
       assert.strictEqual(document.getElementById('meow'), portal, 'should have the portal in the DOM');
-      assert.strictEqual(document.getElementById('woof'), portal.firstChild, 'should have the heading in the DOM');
+      assert.strictEqual(document.getElementById('woof'), portal.firstChild,
+        'should have the heading in the DOM');
     });
 
     it('should unrender the contents and remove the layer', () => {

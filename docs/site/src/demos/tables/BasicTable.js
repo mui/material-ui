@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import {
   Table,
@@ -32,42 +32,39 @@ const data = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default class BasicTable extends Component {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+export default function BasicTable(props, context) {
+  const classes = context.styleManager.render(styleSheet);
 
-  render() {
-    const classes = this.context.styleManager.render(styleSheet);
-
-    return (
-      <Paper zDepth={2} className={classes.paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell numeric>Calories</TableCell>
-              <TableCell numeric>Fat (g)</TableCell>
-              <TableCell numeric>Carbs (g)</TableCell>
-              <TableCell numeric>Protein (g)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((n) => {
-              return (
-                <TableRow key={n.id}>
-                  <TableCell>{n.name}</TableCell>
-                  <TableCell numeric>{n.calories}</TableCell>
-                  <TableCell numeric>{n.fat}</TableCell>
-                  <TableCell numeric>{n.carbs}</TableCell>
-                  <TableCell numeric>{n.protein}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </Paper>
-    );
-  }
+  return (
+    <Paper zDepth={2} className={classes.paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell numeric>Calories</TableCell>
+            <TableCell numeric>Fat (g)</TableCell>
+            <TableCell numeric>Carbs (g)</TableCell>
+            <TableCell numeric>Protein (g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((n) => {
+            return (
+              <TableRow key={n.id}>
+                <TableCell>{n.name}</TableCell>
+                <TableCell numeric>{n.calories}</TableCell>
+                <TableCell numeric>{n.fat}</TableCell>
+                <TableCell numeric>{n.carbs}</TableCell>
+                <TableCell numeric>{n.protein}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
 }
 
+BasicTable.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

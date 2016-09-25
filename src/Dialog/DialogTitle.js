@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Text from '../Text';
@@ -16,31 +16,29 @@ export const styleSheet = createStyleSheet('DialogTitle', () => {
   };
 }, { index: 10 });
 
-export default class DialogTitle extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  };
+export default function DialogTitle(props, context) {
+  const {
+    children,
+    className,
+    ...other,
+  } = props;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+  const classes = context.styleManager.render(styleSheet);
 
-  render() {
-    const {
-      children,
-      className,
-      ...other,
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-
-    return (
-      <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
-        {typeof children === 'string' ? (
-          <Text type="title">{children}</Text>
-        ) : children}
-      </div>
-    );
-  }
+  return (
+    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+      {typeof children === 'string' ? (
+        <Text type="title">{children}</Text>
+      ) : children}
+    </div>
+  );
 }
+
+DialogTitle.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
+
+DialogTitle.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

@@ -118,8 +118,10 @@ describe('<Modal>', () => {
       after(() => wrapper.unmount());
 
       it('should not render the content', () => {
-        assert.strictEqual(document.getElementById('container'), null, 'should not have the element in the DOM');
-        assert.strictEqual(document.getElementById('heading'), null, 'should not have the element in the DOM');
+        assert.strictEqual(document.getElementById('container'), null,
+          'should not have the element in the DOM');
+        assert.strictEqual(document.getElementById('heading'), null,
+          'should not have the element in the DOM');
       });
 
       it('should render the content into the portal', () => {
@@ -155,7 +157,8 @@ describe('<Modal>', () => {
       it('should render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
         const container = document.getElementById('container');
-        assert.strictEqual(modal.children.length, 2, 'should have 2 children, the backdrop and the test container');
+        assert.strictEqual(modal.children.length, 2,
+          'should have 2 children, the backdrop and the test container');
         assert.ok(modal.children[0], 'this is the backdrop, so no assertions about implementation details');
         assert.strictEqual(modal.children[1], container, 'should be the container');
       });

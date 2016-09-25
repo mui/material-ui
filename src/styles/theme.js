@@ -9,8 +9,6 @@ import createPalette from './palette';
 import zIndex from './zIndex';
 import createMixins from './mixins';
 
-export default createMuiTheme;
-
 export function createMuiTheme(config = {}) {
   const {
     palette = createPalette(),
@@ -36,3 +34,5 @@ export function createMuiTheme(config = {}) {
 
   return theme;
 }
+
+export default createMuiTheme;

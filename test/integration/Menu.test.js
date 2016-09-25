@@ -86,7 +86,7 @@ describe('<Menu> integration', () => {
       );
     });
 
-    it('should keep focus on the 3rd item (last item) when a key with no associated action is pressed', () => {
+    it('should keep focus on the last item when a key with no associated action is pressed', () => {
       list.simulate('keyDown', {
         which: keycode('right'),
       });

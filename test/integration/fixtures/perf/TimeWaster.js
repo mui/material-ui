@@ -70,7 +70,8 @@ export default class TimeWaster extends Component {
     summary.hasWastedTime = (component) => {
       const result = find(wasted, (n) => n.key.indexOf(`> ${component}`));
       if (result) {
-        return `${result.key} wasted ${result.inclusiveRenderDuration}ms across ${result.renderCount} renders`;
+        return `${result.key} wasted ${result.inclusiveRenderDuration}ms across ${
+          result.renderCount} renders`;
       }
       return false;
     };

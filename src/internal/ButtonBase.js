@@ -12,6 +12,10 @@ import { TouchRipple, createRippleHandler } from '../Ripple';
 let listening = false;
 let focusKeyPressed = false;
 
+function isFocusKey(event) {
+  return ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'].indexOf(keycode(event)) !== -1;
+}
+
 function listenForFocusKeys() {
   if (!listening) {
     addEventListener(window, 'keyup', (event) => {
@@ -21,10 +25,6 @@ function listenForFocusKeys() {
     });
     listening = true;
   }
-}
-
-function isFocusKey(event) {
-  return ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'].indexOf(keycode(event)) !== -1;
 }
 
 export const styleSheet = createStyleSheet('ButtonBase', () => {

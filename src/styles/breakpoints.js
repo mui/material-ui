@@ -24,18 +24,19 @@ export default function createBreakpoints(
     return `@media (max-width:${value}${unit})`;
   }
 
+  function between(start, end) {
+    const startIndex = keys.indexOf(start);
+    const endIndex = keys.indexOf(end);
+    return `@media (min-width:${values[startIndex]}${unit}) and (max-width:${
+      values[endIndex + 1] - step}${unit})`;
+  }
+
   function only(name) {
     const keyIndex = keys.indexOf(name);
     if (keyIndex === values.length - 1) {
       return up(name);
     }
     return between(name, name);
-  }
-
-  function between(start, end) {
-    const startIndex = keys.indexOf(start);
-    const endIndex = keys.indexOf(end);
-    return `@media (min-width:${values[startIndex]}${unit}) and (max-width:${values[endIndex + 1] - step}${unit})`;
   }
 
   function getWidth(name) {
