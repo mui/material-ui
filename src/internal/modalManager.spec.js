@@ -7,7 +7,9 @@ import { createModalManager } from './modalManager';
 describe('internal/modalManager', () => {
   let modalManager;
 
-  before(() => modalManager = createModalManager());
+  before(() => {
+    modalManager = createModalManager();
+  });
 
   it('should be an object', () => assert.strictEqual(typeof modalManager, 'object'));
 

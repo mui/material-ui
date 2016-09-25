@@ -10,7 +10,9 @@ import RadioGroup from './RadioGroup';
 describe('<RadioGroup>', () => {
   let shallow;
 
-  before(() => shallow = createShallowWithContext());
+  before(() => {
+    shallow = createShallowWithContext();
+  });
 
   it('should render a radiogroup div', () => {
     const wrapper = shallow(

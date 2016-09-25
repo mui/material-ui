@@ -11,8 +11,12 @@ import SimpleMenu from './fixtures/menus/SimpleMenu';
 describe('<Menu> integration', () => {
   let mount;
 
-  before(() => mount = createMountWithContext());
-  after(() => mount.cleanUp());
+  before(() => {
+    mount = createMountWithContext();
+  });
+  after(() => {
+    mount.cleanUp();
+  });
 
   describe('mounted open', () => {
     let wrapper;

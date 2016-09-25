@@ -168,7 +168,7 @@ export default class Collapse extends Component {
         {...other}
       >
         <div className={containerClasses}>
-          <div ref={(c) => this.wrapper = c}>
+          <div ref={(c) => { this.wrapper = c; }}>
             {children}
           </div>
         </div>

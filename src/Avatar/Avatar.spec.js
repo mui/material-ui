@@ -18,14 +18,16 @@ describe('<Avatar>', () => {
   describe('image avatar', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(
-      <Avatar
-        className="my-avatar"
-        src="something.jpg"
-        alt="Hello World!"
-        data-my-prop="woof"
-      />
-    ));
+    before(() => {
+      wrapper = shallow(
+        <Avatar
+          className="my-avatar"
+          src="something.jpg"
+          alt="Hello World!"
+          data-my-prop="woof"
+        />
+      );
+    });
 
     it('should render a div containing an img', () => {
       assert.strictEqual(wrapper.is('div'), true, 'should be a div');
@@ -57,13 +59,15 @@ describe('<Avatar>', () => {
   describe('icon avatar', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(
-      <Avatar
-        icon={<span className="my-icon-font">icon</span>}
-        className="my-avatar"
-        data-my-prop="woof"
-      />
-    ));
+    before(() => {
+      wrapper = shallow(
+        <Avatar
+          icon={<span className="my-icon-font">icon</span>}
+          className="my-avatar"
+          data-my-prop="woof"
+        />
+      );
+    });
 
     it('should render a div containing the custom icon', () => {
       assert.strictEqual(wrapper.is('div'), true, 'should be a div');

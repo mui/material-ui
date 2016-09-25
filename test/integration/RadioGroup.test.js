@@ -52,8 +52,12 @@ function assertRadioFocused(wrapper, tabIndexed) {
 describe('<RadioGroup> integration', () => {
   let mount;
 
-  before(() => mount = createMountWithContext());
-  after(() => mount.cleanUp());
+  before(() => {
+    mount = createMountWithContext();
+  });
+  after(() => {
+    mount.cleanUp();
+  });
 
   describe('controlled radio interaction', () => {
     let handleChange;

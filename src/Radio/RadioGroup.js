@@ -206,7 +206,7 @@ export default class RadioGroup extends Component {
 
     groupProps.className = classes.root;
     groupProps['data-mui-test'] = 'RadioGroup';
-    groupProps.ref = (c) => this.group = c;
+    groupProps.ref = (c) => { this.group = c; };
     groupProps.role = 'radiogroup';
     groupProps.onKeyDown = this.handleKeyDown;
     groupProps.onBlur = this.handleBlur;

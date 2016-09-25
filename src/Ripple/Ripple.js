@@ -152,7 +152,7 @@ export default class Ripple extends Component {
 
     return (
       <span className={containerClasses}>
-        <span ref={(c) => this.ripple = c} className={rippleClassName} style={rippleStyles} />
+        <span ref={(c) => { this.ripple = c; }} className={rippleClassName} style={rippleStyles} />
       </span>
     );
   }

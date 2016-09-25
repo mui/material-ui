@@ -103,7 +103,9 @@ describe('<ButtonBase>', () => {
   describe('ripple', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<ButtonBase>Hello</ButtonBase>));
+    before(() => {
+      wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
+    });
 
     it('should be enabled by default', () => {
       const ripple = wrapper.find('TouchRipple');
@@ -199,7 +201,9 @@ describe('<ButtonBase>', () => {
   describe('focusRipple', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<ButtonBase focusRipple>Hello</ButtonBase>));
+    before(() => {
+      wrapper = shallow(<ButtonBase focusRipple>Hello</ButtonBase>);
+    });
 
     it('should be enabled by default', () => {
       const ripple = wrapper.find('TouchRipple');

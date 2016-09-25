@@ -28,7 +28,6 @@ module.exports = {
     'no-console': 'error', // airbnb is using warn
     'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
-    'no-return-assign': 'off', // airbnb use error, handy for react ref assign.
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
     'babel/object-curly-spacing': ['error', 'always'],

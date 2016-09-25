@@ -67,7 +67,9 @@ describe('<Drawer>', () => {
   describe('opening and closing', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>));
+    before(() => {
+      wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>);
+    });
 
     it('should start closed', () => {
       assert.strictEqual(wrapper.prop('show'), false, 'should not show the modal');
@@ -90,7 +92,9 @@ describe('<Drawer>', () => {
   describe('docked', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Drawer docked><h1>Hello</h1></Drawer>));
+    before(() => {
+      wrapper = shallow(<Drawer docked><h1>Hello</h1></Drawer>);
+    });
 
     it('should render a div instead of a Modal when docked', () => {
       assert.strictEqual(wrapper.is('div'), true, 'should be a div element');
@@ -117,7 +121,9 @@ describe('<Drawer>', () => {
   describe('getSlideDirection', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>));
+    before(() => {
+      wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>);
+    });
 
     it('should return the opposing slide direction', () => {
       assert.strictEqual(wrapper.instance().getSlideDirection('left'), 'right');

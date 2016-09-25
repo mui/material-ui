@@ -164,7 +164,7 @@ export default class SwitchBase extends Component {
         <input
           aria-hidden="true"
           tabIndex="-1"
-          ref={(c) => this.input = c}
+          ref={(c) => { this.input = c; }}
           type={type}
           checked={this.isControlled ? checkedProp : undefined}
           onChange={this.handleInputChange}

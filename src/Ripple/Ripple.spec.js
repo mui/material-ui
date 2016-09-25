@@ -30,7 +30,9 @@ describe('<Ripple>', () => {
   describe('starting and stopping', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Ripple />));
+    before(() => {
+      wrapper = shallow(<Ripple />);
+    });
 
     it('should start the ripple', () => {
       assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
@@ -54,7 +56,9 @@ describe('<Ripple>', () => {
   describe('pulsating and stopping', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(<Ripple pulsate />));
+    before(() => {
+      wrapper = shallow(<Ripple pulsate />);
+    });
 
     it('should render the ripple inside a pulsating span', () => {
       assert.strictEqual(wrapper.is('span'), true, 'should be a span');

@@ -80,7 +80,7 @@ class ConfirmationDialog extends Component {
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            ref={(c) => this.radioGroup = c}
+            ref={(c) => { this.radioGroup = c; }}
             aria-label="Gender"
             selectedValue={this.state.selectedValue}
             onChange={this.handleChange}

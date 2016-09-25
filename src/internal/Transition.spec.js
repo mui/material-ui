@@ -11,8 +11,12 @@ import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Tra
 describe('<Transition>', () => {
   let mount;
 
-  before(() => mount = createMountWithContext());
-  after(() => mount.cleanUp());
+  before(() => {
+    mount = createMountWithContext();
+  });
+  after(() => {
+    mount.cleanUp();
+  });
 
   it('should not transition on mount', () => {
     const wrapper = mount(

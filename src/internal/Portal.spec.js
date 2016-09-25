@@ -9,8 +9,12 @@ import Portal from './Portal';
 describe('<Portal>', () => {
   let mount;
 
-  before(() => mount = createMountWithContext());
-  after(() => mount.cleanUp());
+  before(() => {
+    mount = createMountWithContext();
+  });
+  after(() => {
+    mount.cleanUp();
+  });
 
   it('should render nothing directly', () => {
     const wrapper = mount(<Portal><h1 className="woof">Hello</h1></Portal>);

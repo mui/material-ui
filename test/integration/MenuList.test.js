@@ -34,8 +34,12 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
 describe('<MenuList> integration', () => {
   let mount;
 
-  before(() => mount = createMountWithContext());
-  after(() => mount.cleanUp());
+  before(() => {
+    mount = createMountWithContext();
+  });
+  after(() => {
+    mount.cleanUp();
+  });
 
   describe('keyboard controls and tabIndex manipulation', () => {
     let wrapper;

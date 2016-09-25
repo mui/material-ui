@@ -115,7 +115,7 @@ export default class TouchRipple extends Component {
     // Add a ripple to the ripples array
     ripples = [...ripples, (
       <Ripple
-        ref={(c) => this.lastRipple = c}
+        ref={(c) => { this.lastRipple = c; }}
         key={this.state.nextKey}
         center={center}
         event={event}

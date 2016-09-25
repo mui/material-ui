@@ -59,13 +59,15 @@ describe('<Modal>', () => {
   describe('backdrop', () => {
     let wrapper;
 
-    before(() => wrapper = shallow(
-      <Modal show id="modal">
-        <div id="container">
-          <h1 id="heading">Hello</h1>
-        </div>
-      </Modal>
-    ));
+    before(() => {
+      wrapper = shallow(
+        <Modal show id="modal">
+          <div id="container">
+            <h1 id="heading">Hello</h1>
+          </div>
+        </Modal>
+      );
+    });
 
     it('should render a backdrop wrapped in a fade transition', () => {
       const transition = wrapper.childAt(0).childAt(0);
@@ -108,13 +110,15 @@ describe('<Modal>', () => {
     describe('show', () => {
       let wrapper;
 
-      before(() => wrapper = mount(
-        <Modal id="modal">
-          <div id="container">
-            <h1 id="heading">Hello</h1>
-          </div>
-        </Modal>
-      ));
+      before(() => {
+        wrapper = mount(
+          <Modal id="modal">
+            <div id="container">
+              <h1 id="heading">Hello</h1>
+            </div>
+          </Modal>
+        );
+      });
       after(() => wrapper.unmount());
 
       it('should not render the content', () => {
@@ -145,13 +149,15 @@ describe('<Modal>', () => {
     describe('backdrop', () => {
       let wrapper;
 
-      before(() => wrapper = mount(
-        <Modal show id="modal">
-          <div id="container">
-            <h1 id="heading">Hello</h1>
-          </div>
-        </Modal>
-      ));
+      before(() => {
+        wrapper = mount(
+          <Modal show id="modal">
+            <div id="container">
+              <h1 id="heading">Hello</h1>
+            </div>
+          </Modal>
+        );
+      });
       after(() => wrapper.unmount());
 
       it('should render a backdrop component into the portal before the modal content', () => {
@@ -167,13 +173,15 @@ describe('<Modal>', () => {
     describe('disabled backdrop', () => {
       let wrapper;
 
-      before(() => wrapper = mount(
-        <Modal show backdrop={false} id="modal">
-          <div id="container">
-            <h1 id="heading">Hello</h1>
-          </div>
-        </Modal>
-      ));
+      before(() => {
+        wrapper = mount(
+          <Modal show backdrop={false} id="modal">
+            <div id="container">
+              <h1 id="heading">Hello</h1>
+            </div>
+          </Modal>
+        );
+      });
       after(() => wrapper.unmount());
 
       it('should not render a backdrop component into the portal before the modal content', () => {

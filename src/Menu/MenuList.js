@@ -151,7 +151,7 @@ export default class MenuList extends Component {
       <List
         data-mui-test="MenuList"
         role="menu"
-        ref={(c) => this.list = c}
+        ref={(c) => { this.list = c; }}
         className={className}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
@@ -160,7 +160,7 @@ export default class MenuList extends Component {
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
-            ref: child.props.selected ? ((c) => this.selectedItem = c) : undefined,
+            ref: child.props.selected ? ((c) => { this.selectedItem = c; }) : undefined,
             onFocus: this.handleItemFocus,
           })
         )}

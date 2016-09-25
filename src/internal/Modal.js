@@ -382,11 +382,11 @@ export default class Modal extends Component {
     }
 
     return (
-      <Portal open ref={(c) => this.mountNode = c ? c.getLayer() : c}>
+      <Portal open ref={(c) => { this.mountNode = c ? c.getLayer() : c; }}>
         <div
           data-mui-test="Modal"
           className={classNames(classes.modal, className)}
-          ref={(c) => this.modal = c}
+          ref={(c) => { this.modal = c; }}
           {...other}
         >
           {backdrop && this.renderBackdrop(backdropProps)}

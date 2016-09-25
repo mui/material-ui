@@ -157,7 +157,7 @@ export default class TextFieldInput extends Component {
     }, classNameProp);
 
     const inputProps = {
-      ref: (c) => this.input = c,
+      ref: (c) => { this.input = c; },
       className,
       onChange: this.handleChange,
       disabled,
