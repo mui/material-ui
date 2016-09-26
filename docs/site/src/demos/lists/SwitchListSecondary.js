@@ -7,6 +7,7 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
+  ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
 
@@ -48,7 +49,7 @@ export default class CheckboxList extends Component {
 
     return (
       <div className={classes.root}>
-        <List>
+        <List subheader={<ListSubheader>Settings</ListSubheader>}>
           <ListItem>
             <span className="material-icons">wifi</span>
             <ListItemText primary="Wi-Fi" />
@@ -74,4 +75,3 @@ export default class CheckboxList extends Component {
     );
   }
 }
-

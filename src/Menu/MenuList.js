@@ -151,7 +151,7 @@ export default class MenuList extends Component {
       <List
         data-mui-test="MenuList"
         role="menu"
-        ref={(c) => { this.list = c; }}
+        rootRef={(c) => { this.list = c; }}
         className={className}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
