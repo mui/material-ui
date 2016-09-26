@@ -1,8 +1,9 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, Children, isValidElement } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import Subheader from '../Subheader';
 
 export const styleSheet = createStyleSheet('List', () => {
   return {
@@ -16,6 +17,9 @@ export const styleSheet = createStyleSheet('List', () => {
     padding: {
       paddingTop: 8,
       paddingBottom: 8,
+    },
+    subheader: {
+      paddingTop: 0,
     },
   };
 }, { index: 10 });
@@ -45,13 +49,16 @@ export default class List extends Component {
       className: classNameProp,
       component,
       padding,
+      children,
       ...other,
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
+    const firstChild = Children.toArray(children)[0];
     const className = classNames(classes.root, {
       [classes.padding]: padding,
+      [classes.subheader]: isValidElement(firstChild) && firstChild.type === Subheader,
     }, classNameProp);
 
-    return React.createElement(component, { className, ...other });
+    return React.createElement(component, { className, children, ...other });
   }
 }
