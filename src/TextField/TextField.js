@@ -47,6 +47,9 @@ const getStyles = (props, context, state) => {
       color: hintColor,
       pointerEvents: 'none',
     },
+    floatingLabelAsterisk: {
+      color: hintColor,
+    },
     input: {
       padding: 0,
       position: 'relative',
@@ -78,10 +81,12 @@ const getStyles = (props, context, state) => {
 
   if (state.hasValue) {
     styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
+    styles.floatingLabelAsterisk.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
   }
 
   if (state.isFocused) {
     styles.floatingLabel.color = focusColor;
+    styles.floatingLabelAsterisk.color = styles.error.color;
   }
 
   if (props.floatingLabelText) {
@@ -177,6 +182,10 @@ class TextField extends Component {
      */
     inputStyle: PropTypes.object,
     /**
+     * Whether the input value is required.
+     */
+    isRequired: PropTypes.bool,
+    /**
      * If true, a textarea element will be rendered.
      * The textarea also grows and shrinks according to the number of lines.
      */
@@ -246,6 +255,7 @@ class TextField extends Component {
     floatingLabelFixed: false,
     multiLine: false,
     fullWidth: false,
+    isRequired: false,
     type: 'text',
     underlineShow: true,
     rows: 1,
@@ -386,6 +396,7 @@ class TextField extends Component {
       hintStyle,
       id,
       inputStyle,
+      isRequired,
       multiLine,
       onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -414,10 +425,12 @@ class TextField extends Component {
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
         style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
+        asteriskStyle={Object.assign(styles.floatingLabelAsterisk)}
         shrinkStyle={this.props.floatingLabelFocusStyle}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
+        isRequired={isRequired}
       >
         {floatingLabelText}
       </TextFieldLabel>
