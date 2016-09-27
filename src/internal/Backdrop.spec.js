@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Backdrop, { styleSheet } from './Backdrop';
 
-describe('<Backdrop>', () => {
+describe('<Backdrop />', () => {
   let shallow;
   let classes;
 

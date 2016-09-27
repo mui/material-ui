@@ -7,7 +7,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Menu, { styleSheet } from './Menu';
 
-describe('<Menu>', () => {
+describe('<Menu />', () => {
   let shallow;
   let classes;
 

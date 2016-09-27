@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import ListItemSecondaryAction, { styleSheet } from './ListItemSecondaryAction';
 
-describe('<ListItemSecondaryAction>', () => {
+describe('<ListItemSecondaryAction />', () => {
   let shallow;
   let classes;
 

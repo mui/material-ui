@@ -8,7 +8,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
-describe('<ButtonBase>', () => {
+describe('<ButtonBase />', () => {
   let mount;
   let shallow;
   let classes;

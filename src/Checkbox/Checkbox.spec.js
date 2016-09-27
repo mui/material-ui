@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Checkbox, { styleSheet } from './Checkbox';
 
-describe('<Checkbox>', () => {
+describe('<Checkbox />', () => {
   let shallow;
   let classes;
 

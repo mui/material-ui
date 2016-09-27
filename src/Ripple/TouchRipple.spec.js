@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import TouchRipple, { styleSheet } from './TouchRipple';
 
-describe('<TouchRipple>', () => {
+describe('<TouchRipple />', () => {
   let shallow;
   let classes;
 

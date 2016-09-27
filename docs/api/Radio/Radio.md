@@ -12,6 +12,7 @@ Props
 | checkedClassName | string |  |   |
 | className | string |  |  The CSS class name of the root element. |
 | label | string |  |   |
+| labelClassName | string |  |   |
 | name | string |  |   |
 | onChange | function |  |   |
 | value | string |  |   |

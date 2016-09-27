@@ -7,7 +7,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import Fade from './Fade';
 
-describe('<Fade>', () => {
+describe('<Fade />', () => {
   let shallow;
 
   before(() => {

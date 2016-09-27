@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import MenuItem, { styleSheet } from './MenuItem';
 
-describe('<MenuItem>', () => {
+describe('<MenuItem />', () => {
   let shallow;
   let classes;
 

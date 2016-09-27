@@ -7,7 +7,7 @@ import { createShallowWithContext } from 'test/utils';
 import List, { styleSheet } from './List';
 import ListSubheader from './ListSubheader';
 
-describe('<List>', () => {
+describe('<List />', () => {
   let shallow;
   let classes;
 
