@@ -55,3 +55,5 @@ Subheader.propTypes = {
 Subheader.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
+
+Subheader.muiName = 'Subheader';
