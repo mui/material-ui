@@ -2,9 +2,12 @@
 const { jsdom } = require('jsdom');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const exposedProperties = ['window', 'navigator', 'document'];
 
 <<<<<<< HEAD
+=======
+>>>>>>> [mocha]: jsdom stub `window.matchMedia` function
 /* Stubbing `window.matchMedia` */
 function matchMedia() {
   return {
@@ -14,10 +17,13 @@ function matchMedia() {
   };
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> [test] Run eslint on more files
 =======
 >>>>>>> [Dialog] Fix an issue with the SSR
+=======
+>>>>>>> [mocha]: jsdom stub `window.matchMedia` function
 function createDOM() {
   global.document = jsdom('');
   global.window = document.defaultView;
