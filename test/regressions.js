@@ -3,8 +3,6 @@ const path = require('path');
 const webpackConfig = require('./regressions/site/webpack.prod.config');
 const runSeleniumTests = require('./selenium');
 
-module.exports = runRegressionsTests;
-
 function runRegressionsTests(options = {}) {
   const { createBaseline, ...other } = options;
   return runSeleniumTests({
@@ -14,3 +12,5 @@ function runRegressionsTests(options = {}) {
     ...other,
   });
 }
+
+module.exports = runRegressionsTests;
