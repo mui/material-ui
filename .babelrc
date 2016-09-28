@@ -9,7 +9,9 @@
       "sourceMaps": "both"
     },
     "production": {
-      "plugins": ["react-remove-properties", {"properties": ["data-mui-test"]}]
+      "plugins": [
+        ["react-remove-properties", {"properties": ["data-mui-test"]}]
+      ]
     }
   }
 }
