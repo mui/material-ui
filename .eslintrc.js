@@ -129,7 +129,7 @@ module.exports = {
     'mocha/no-pending-tests': 'error',
     'mocha/no-skipped-tests': 'error',
 
-    'react/no-string-refs': 'warn', // Whishlist, one day.
+    'react/no-string-refs': 'warn', // Wishlist, one day.
 
     'strict': 'off',
     'no-case-declarations': 'off',
