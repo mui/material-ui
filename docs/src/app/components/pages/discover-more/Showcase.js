@@ -22,7 +22,7 @@ const appList = [
   //   link: '',
   // },
   {
-    title: 'SplitMe',
+    title: 'SplitMe - Split expenses with friends',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
     link: 'https://splitme.net/',
@@ -74,6 +74,12 @@ const appList = [
     author: 'marmelab.com',
     img: 'http://static.marmelab.com/admin-on-rest.gif',
     link: 'https://github.com/marmelab/admin-on-rest',
+  },
+  {
+    title: 'Casalova - Book your next rental',
+    author: 'Casalova',
+    img: 'images/showcase/casalova.png',
+    link: 'https://www.casalova.com/',
   },
 ];
 
