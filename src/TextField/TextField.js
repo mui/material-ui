@@ -48,6 +48,9 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
         transform: 'scaleX(1)',
       },
     },
+    asterisk: {
+      color: theme.palette.error[500]
+    },
   };
 }, { index: 10 });
 
@@ -126,6 +129,9 @@ export default class TextField extends Component {
       className: classNames(this.classes.label, label.props.className),
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
+      asteriskClassName: classNames({
+        [this.classes.asterisk]: this.props.isRequired,
+      })
     });
 
   render() {
