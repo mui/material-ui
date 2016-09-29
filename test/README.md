@@ -14,29 +14,22 @@ Please familiarise yourself with these if you plan on contributing! :+1:
 
 ## Commands
 
-##### Run unit and integration tests in node
+##### Run the core mocha unit/integration test suite.
 `npm run test`
 
-##### Run unit tests
-`npm run test unit` or `npm run test:unit`
+#### Watch the core mocha unit/integration test suite.
+`npm run test:watch`
 
-##### Watch unit tests
-`npm run test:unit:watch`
-
-##### Unit test a specific Component (also works with `:watch`)
-`-c` / `--component`  
-`npm run test:unit -- -c Avatar`
-
-##### Unit test with a mocha grep (also works with `:watch`)
-`-g` / `--grep`  
-`npm run test:unit -- -g "Grep this"`
-
-##### Integration tests
-Same as unit tests but with `:integration`
-
-##### Run all tests using Karma (if you like waiting for webpack)
+#### Run the mocha test suite using the karmer runner.
 `npm run test:karma`
 
+#### Run the e2e selenium tests.
+`npm run test:e2e`
+
+#### Run the visual regression tests
+`npm run test:regressions`
+
+You can have a look at the `/test/cli.js` file to get more details on the availabled options.
 
 ## Writing Tests
 
