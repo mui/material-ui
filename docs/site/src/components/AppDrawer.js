@@ -61,7 +61,7 @@ export default class AppDrawer extends Component {
             openImmediately={openImmediately}
             title={childRoute.title}
           >
-           {this.renderNav(childRoute)}
+            {this.renderNav(childRoute)}
           </AppDrawerNavItem>
         );
       } else {
