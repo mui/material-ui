@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
 }, { index: 5 });
 
 export default function TextFieldLabel(props, context) {
-  const { animated, className: classNameProp, shrink, ...other } = props;
+  const { animated, asteriskClassName, children, className: classNameProp, isRequired, shrink, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
@@ -35,13 +35,18 @@ export default function TextFieldLabel(props, context) {
   }, classNameProp);
 
   return (
-    <label className={className} {...other} />
+    <label className={className} {...other}>
+      {children}
+      {isRequired ? <span className={asteriskClassName}>{'\u2009'}*</span> : null}
+    </label>
   );
 }
 
 TextFieldLabel.propTypes = {
   animated: PropTypes.bool,
+  asteriskStyle: PropTypes.object,
   className: PropTypes.string,
+  isRequired: PropTypes.bool,
   shrink: PropTypes.bool,
 };
 
