@@ -3,8 +3,6 @@ const Mocha = require('mocha');
 const glob = require('glob');
 const createGlobalDOM = require('./utils/dom');
 
-module.exports = runMochaTests;
-
 function runMochaTests({ module = '*', grep, types = ['unit', 'integration'] }) {
   createGlobalDOM();
 
@@ -39,3 +37,5 @@ function runMochaTests({ module = '*', grep, types = ['unit', 'integration'] }) 
     }
   );
 }
+
+module.exports = runMochaTests;
