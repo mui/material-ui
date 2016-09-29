@@ -16,6 +16,7 @@ function getStyles(props, context) {
       textOverflow: 'ellipsis',
       color: tableHeaderColumn.textColor,
       position: 'relative',
+      overflow: 'hidden',
     },
     tooltip: {
       boxSizing: 'border-box',
