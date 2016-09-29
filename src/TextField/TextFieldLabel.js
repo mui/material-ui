@@ -22,11 +22,22 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
     animated: {
       transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
     },
+    asterisk: {
+      color: theme.palette.error[500],
+    },
   };
 }, { index: -10 });
 
 export default function TextFieldLabel(props, context) {
-  const { animated, className: classNameProp, shrink, ...other } = props;
+  const {
+    animated,
+    children,
+    className: classNameProp,
+    dirty,
+    required,
+    shrink,
+    ...other,
+  } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
@@ -35,13 +46,37 @@ export default function TextFieldLabel(props, context) {
   }, classNameProp);
 
   return (
-    <label className={className} {...other} />
+    <label className={className} {...other}>
+      {children}
+      {required && (
+        <span
+          className={classNames({
+            [classes.asterisk]: !dirty,
+          })}
+        >
+          {'\u2009'}*
+        </span>
+      )}
+    </label>
   );
 }
 
 TextFieldLabel.propTypes = {
   animated: PropTypes.bool,
+  /**
+   * Whether the input of this label contains input.
+   */
+  dirty: PropTypes.bool,
+  /**
+   * The contents of the `TextFieldLabel`
+   */
+  children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Whether this label should indicate that the input
+   * is required.
+   */
+  required: PropTypes.bool,
   shrink: PropTypes.bool,
 };
 

@@ -242,5 +242,19 @@ describe('<TextField>', () => {
         'should be true when the TextField is not dirty or focused'
       );
     });
+
+    it('should forward the required prop to the label', () => {
+      const wrapper = shallow(
+        <TextField required>
+          <TextFieldLabel>Label</TextFieldLabel>
+        </TextField>
+      );
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('required'),
+        true,
+        'should set the required prop of the label when the TextField is required'
+      );
+    });
   });
 });
