@@ -67,17 +67,17 @@ const GridListExampleOneLined = () => (
       style={styles.gridList}
       cols="2.2"
     >
-    {tilesData.map((tile) => (
-      <GridTile
-        key={tile.img}
-        title={tile.title}
-        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-      >
-        <img src={tile.img} />
-      </GridTile>
-    ))}
-  </GridList>
+      {tilesData.map((tile) => (
+        <GridTile
+          key={tile.img}
+          title={tile.title}
+          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+        >
+          <img src={tile.img} />
+        </GridTile>
+      ))}
+    </GridList>
   </div>
-)
+);
 
 export default GridListExampleOneLined;
