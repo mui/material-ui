@@ -40,6 +40,11 @@ class Tabs extends Component {
      */
     contentContainerStyle: PropTypes.object,
     /**
+    * Specify a fixed width for every tab-label and aligns them to the left. If
+    * this prop is not set, each tab-label takes an equal share of the container's width.
+    */
+    fixedTabWidth: PropTypes.number,
+    /**
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
      * `initialSelectedIndex` will revert back to default.
@@ -172,6 +177,7 @@ class Tabs extends Component {
     const {
       contentContainerClassName,
       contentContainerStyle,
+      fixedTabWidth,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
       onChange, // eslint-disable-line no-unused-vars
@@ -187,6 +193,7 @@ class Tabs extends Component {
     const tabValue = valueLink.value;
     const tabContent = [];
     const width = 100 / this.getTabCount();
+    const widthString = fixedTabWidth ? `${fixedTabWidth}px` : `${width}%`;
 
     const tabs = this.getTabs().map((tab, index) => {
       warning(tab.type && tab.type.muiName === 'Tab',
@@ -208,15 +215,18 @@ class Tabs extends Component {
         key: index,
         index: index,
         selected: this.getSelected(tab, index),
-        width: `${width}%`,
+        width: widthString,
         onTouchTap: this.handleTabTouchTap,
       });
     });
 
-    const inkBar = this.state.selectedIndex !== -1 ? (
+    const selectedIndex = this.state.selectedIndex;
+    const inkPosition = fixedTabWidth ? `${fixedTabWidth * selectedIndex}px` :
+    `${width * selectedIndex}%`;
+    const inkBar = selectedIndex !== -1 ? (
       <InkBar
-        left={`${width * this.state.selectedIndex}%`}
-        width={`${width}%`}
+        left={inkPosition}
+        width={widthString}
         style={inkBarStyle}
       />
     ) : null;
