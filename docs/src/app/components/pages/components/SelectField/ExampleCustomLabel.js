@@ -1,16 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 /**
- * With a `label` applied to each `MenuItem`, `SelectField` displays a complementary description of the selected item.
+ * With a `label` applied to each `MenuItem`, `SelectField` displays
+ * a complementary description of the selected item.
  */
-export default class SelectFieldExampleCustomLabel extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {value: 1};
-  }
+export default class SelectFieldExampleCustomLabel extends Component {
+  state = {
+    value: 1,
+  };
 
   handleChange = (event, index, value) => this.setState({value});
 

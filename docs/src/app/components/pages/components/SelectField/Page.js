@@ -16,6 +16,8 @@ import SelectFieldExampleFloatingLabel from './ExampleFloatingLabel';
 import selectFieldExampleFloatingLabelCode from '!raw!./ExampleFloatingLabel';
 import SelectFieldExampleError from './ExampleError';
 import selectFieldExampleErrorCode from '!raw!./ExampleError';
+import SelectFieldExampleNullable from './ExampleNullable';
+import SelectFieldExampleNullableCode from '!raw!./ExampleNullable';
 import selectFieldCode from '!raw!material-ui/SelectField/SelectField';
 
 const SelectFieldPage = () => (
@@ -27,6 +29,12 @@ const SelectFieldPage = () => (
       code={selectFieldExampleSimpleCode}
     >
       <SelectFieldExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Nullable select"
+      code={SelectFieldExampleNullableCode}
+    >
+      <SelectFieldExampleNullable />
     </CodeExample>
     <CodeExample
       title="Long example"
