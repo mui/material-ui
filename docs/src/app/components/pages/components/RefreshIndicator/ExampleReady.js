@@ -34,7 +34,7 @@ const RefreshIndicatorExampleSimple = () => (
       size={60}
       left={120}
       top={0}
-      color={"red"}
+      color="red"
       status="ready"
       style={style.refresh}
     />
@@ -43,7 +43,7 @@ const RefreshIndicatorExampleSimple = () => (
       size={70}
       left={175}
       top={0}
-      color={"red"} // Overridden by percentage={100}
+      color="red" // Overridden by percentage={100}
       status="ready"
       style={style.refresh}
     />

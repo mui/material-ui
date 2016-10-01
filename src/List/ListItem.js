@@ -649,7 +649,7 @@ class ListItem extends Component {
           simpleLabel ? this.createLabelElement(styles, contentChildren, other) :
           disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
-              containerElement={'span'}
+              containerElement="span"
               {...other}
               disabled={disabled}
               disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}

@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, Children, PropTypes} from 'react';
 import {fade} from '../utils/colorManipulator';
 
-export const makeSelectable = (Component) => {
+export const makeSelectable = (MyComponent) => {
   return class extends Component {
     static propTypes = {
       children: PropTypes.node,
@@ -85,11 +85,11 @@ export const makeSelectable = (Component) => {
       }
 
       return (
-        <Component {...other} {...this.state}>
-          {React.Children.map(children, (child) => (
+        <MyComponent {...other} {...this.state}>
+          {Children.map(children, (child) => (
             this.extendChild(child, styles, selectedItemStyle))
           )}
-        </Component>
+        </MyComponent>
       );
     }
   };

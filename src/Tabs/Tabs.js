@@ -233,7 +233,7 @@ class Tabs extends Component {
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
-         {inkBar}
+          {inkBar}
         </div>
         <div
           style={prepareStyles(Object.assign({}, contentContainerStyle))}
