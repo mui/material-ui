@@ -42,7 +42,7 @@ const GridListPage = () => (
       <GridListExampleComplex />
     </CodeExample>
     <CodeExample
-      title="OneLined example"
+      title="One line example"
       description={descriptions.onelined}
       code={gridListExampleOneLinedCode}
     >

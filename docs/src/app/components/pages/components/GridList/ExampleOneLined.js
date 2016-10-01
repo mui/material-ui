@@ -4,17 +4,12 @@ import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
   gridList: {
-    width: 500,
-    height: 200,
+    display: 'flex',
     flexWrap: 'nowrap',
+    margin: 'auto',
+    width: 500,
     overflowX: 'auto',
-    marginBottom: 24,
   },
 };
 
@@ -61,11 +56,14 @@ const tilesData = [
   },
 ];
 
+/**
+ * A example of arrange tiles for horizontal scrollable one line, using the `cols` props to adjust first view of tiles.
+ */
 const GridListExampleOneLined = () => (
   <div style={styles.root}>
     <GridList
       style={styles.gridList}
-      cols="2.2"
+      cols={2.2}
     >
       {tilesData.map((tile) => (
         <GridTile
