@@ -1,4 +1,4 @@
-## Showcase
+# Showcase
 
 The following is a list of some of the public apps using Material-UI. Not all of them have their interface implemented using 100% Material-UI.
 
