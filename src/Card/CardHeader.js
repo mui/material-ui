@@ -111,6 +111,7 @@ class CardHeader extends Component {
       showExpandableButton, // eslint-disable-line no-unused-vars
       style,
       subtitle,
+      subtitleColor, // eslint-disable-line no-unused-vars
       subtitleStyle,
       textStyle,
       title,
