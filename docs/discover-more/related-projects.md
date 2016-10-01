@@ -1,6 +1,6 @@
-## Related projects
+# Related projects
 
-### Material-UI Specific Projects
+## Material-UI Specific Projects
 
 - [formsy-material-ui](https://github.com/mbrookes/formsy-material-ui)
 A Formsy compatibility wrapper for Material-UI form components.
@@ -11,7 +11,7 @@ A Formsy compatibility wrapper for Material-UI form components.
 - [storybook-addon-material-ui](https://github.com/sm-react/storybook-addon-material-ui)
 Addon for storybook.
 
-### Complementary Projects
+## Complementary Projects
 
 - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views)
 A React component for swipeable views. Plays well with the `Tabs` component.

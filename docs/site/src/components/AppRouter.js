@@ -50,11 +50,11 @@ export default function AppRouter(props) {
           nav
           component={AppContent}
         >
-          <IndexRedirect to="prerequisites" />
+          <IndexRedirect to="installation" />
           <Route
-            title="Prerequisites"
-            path="/getting-started/prerequisites"
-            content={requireDocs('./getting-started/prerequisites.md')}
+            title="Required Knowledge"
+            path="/getting-started/required-knowledge"
+            content={requireDocs('./getting-started/required-knowledge.md')}
             component={MarkdownDocs}
             nav
           />
