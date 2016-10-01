@@ -93,7 +93,6 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
-    "lodash": "^4.13.1",
     "minimist": "^1.2.0",
     "mocha": "^3.0.2",
     "nodemon": "^1.9.1",

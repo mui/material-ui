@@ -73,7 +73,7 @@ class PopoverAnimationVertical extends Component {
         zDepth={zDepth}
         className={className}
       >
-          {this.props.children}
+        {this.props.children}
       </Paper>
     );
   }
