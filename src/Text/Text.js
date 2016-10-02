@@ -3,7 +3,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import { pure } from 'recompose';
 
 export const styleSheet = createStyleSheet('Text', (theme) => {
   const { typography } = theme;
