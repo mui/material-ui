@@ -3,8 +3,6 @@ const path = require('path');
 const runTest = require('./runTest');
 const screenshotElement = require('./screenshotElement');
 
-module.exports = runTest(createBaseline);
-
 function createBaseline(client, testPath, done) {
   client.session(({ value }) => {
     const profile = `${value.browserName.toLowerCase()}-${value.version}-${value.platform.toLowerCase()}`;
@@ -16,3 +14,5 @@ function createBaseline(client, testPath, done) {
     });
   });
 }
+
+module.exports = runTest(createBaseline);

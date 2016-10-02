@@ -17,7 +17,9 @@ module.exports = function screenshotElement(client, screenshotPath, windowSize, 
               left: cropWidth && location.value.x >= 15 ? location.value.x - 15 : location.value.x,
             };
             pngCrop.crop(screenshotPath, screenshotPath, config, (err) => {
-              if (err) throw err;
+              if (err) {
+                throw err;
+              }
               done();
             });
           } else {

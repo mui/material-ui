@@ -1,31 +1,14 @@
 /* eslint-disable flowtype/require-valid-file-annotation,no-console */
+
+const fs = require('fs');
 const path = require('path');
 const BlinkDiff = require('blink-diff');
 const runTest = require('./runTest');
 const screenshotElement = require('./screenshotElement');
 
-module.exports = runTest(performRegressionTest);
-
-function performRegressionTest(client, testPath, done) {
-  client.session(({ value }) => {
-    const profile = `${value.browserName.toLowerCase()}-${value.version}-${value.platform.toLowerCase()}`;
-    const screenshotPath = path.resolve(__dirname, `screenshots/output/${testPath}/${profile}.png`);
-    const baselinePath = path.resolve(__dirname, `screenshots/baseline/${testPath}/${profile}.png`);
-    client.windowHandle((handle) => {
-      client.windowSize(handle.value, (size) => {
-        return screenshotElement(
-          client,
-          screenshotPath,
-          size.value,
-          () => compareScreenshots(client, baselinePath, screenshotPath, done)
-        );
-      });
-    });
-  });
-}
-
 function compareScreenshots(client, baselinePath, screenshotPath, done) {
   const diffPath = screenshotPath.replace('.png', '-diff.png');
+
   const diff = new BlinkDiff({
     imageAPath: baselinePath,
     imageBPath: screenshotPath,
@@ -72,3 +55,33 @@ function compareScreenshots(client, baselinePath, screenshotPath, done) {
     }
   });
 }
+
+function performRegressionTest(client, testPath, done) {
+  client.session(({ value }) => {
+    const profile = `${value.browserName.toLowerCase()}-${value.version}-${value.platform.toLowerCase()}`;
+    const screenshotPath = path.resolve(__dirname, `screenshots/output/${testPath}/${profile}.png`);
+    const baselinePath = path.resolve(__dirname, `screenshots/baseline/${testPath}/${profile}.png`);
+
+    // Makes sure the path is visible to the calling process.
+    fs.access(baselinePath, fs.F_OK, (err) => {
+      client.assert.strictEqual(!err, true, `should have a baseline image: ${baselinePath}`);
+
+      if (!err) {
+        client.windowHandle((handle) => {
+          client.windowSize(handle.value, (size) => {
+            return screenshotElement(
+              client,
+              screenshotPath,
+              size.value,
+              () => compareScreenshots(client, baselinePath, screenshotPath, done)
+            );
+          });
+        });
+      } else {
+        done();
+      }
+    });
+  });
+}
+
+module.exports = runTest(performRegressionTest);
