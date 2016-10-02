@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import { cloneChildrenWithClassName } from '../utils/react';
+import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('CardActions', () => ({
   cardActions: {
