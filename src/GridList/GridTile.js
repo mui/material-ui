@@ -35,6 +35,7 @@ function getStyles(props, context) {
     title: {
       fontSize: '16px',
       textOverflow: 'ellipsis',
+      color: props.titleColor,
       overflow: 'hidden',
       whiteSpace: 'nowrap',
     },
@@ -111,6 +112,10 @@ class GridTile extends Component {
      */
     titleBackground: PropTypes.string,
     /**
+     * Style used for title color.
+     */
+    titleColor: PropTypes.string,
+    /**
      * Position of the title bar (container of title, subtitle and action icon).
      */
     titlePosition: PropTypes.oneOf(['top', 'bottom']),
@@ -119,6 +124,7 @@ class GridTile extends Component {
   static defaultProps = {
     titlePosition: 'bottom',
     titleBackground: 'rgba(0, 0, 0, 0.4)',
+    titleColor: 'rgb(256, 256, 256)',
     actionPosition: 'right',
     cols: 1,
     rows: 1,
@@ -171,6 +177,7 @@ class GridTile extends Component {
       subtitle,
       titlePosition, // eslint-disable-line no-unused-vars
       titleBackground, // eslint-disable-line no-unused-vars
+      titleColor, // eslint-disable-line no-unused-vars
       actionIcon, // eslint-disable-line no-unused-vars
       actionPosition, // eslint-disable-line no-unused-vars
       style,

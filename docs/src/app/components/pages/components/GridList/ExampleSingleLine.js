@@ -69,7 +69,9 @@ const GridListExampleSingleLine = () => (
         <GridTile
           key={tile.img}
           title={tile.title}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
+          titleColor="rgb(0, 188, 212)"
+          titleBackground="rgba(256,256,256, 0.8)"
         >
           <img src={tile.img} />
         </GridTile>
