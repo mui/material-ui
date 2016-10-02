@@ -17,6 +17,7 @@ Props
 | accent | bool |  |  If true, the button will use the theme's accent color. |
 | children | node |  |  The content of the button. |
 | className | string |  |  The CSS class name of the root element. |
+| compact | bool |  |  Uses a smaller minWidth, ideal for things like card actions |
 | component | union | 'button' |  The element or component used for the root node. |
 | disabled | bool |  |  If true, the button will be disabled. |
 | fab | bool |  |  If true, well use floating action button styling. |

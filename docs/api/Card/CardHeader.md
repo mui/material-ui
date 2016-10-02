@@ -1,5 +1,5 @@
-ListItemIcon
-============
+CardHeader
+==========
 
 
 
@@ -9,5 +9,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| children | node |  |   |
+| avatar | node |  |   |
 | className | string |  |   |
+| subhead | string |  |   |
+| title | string |  |   |
