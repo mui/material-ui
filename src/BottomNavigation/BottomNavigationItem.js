@@ -61,12 +61,12 @@ export default function BottomNavigationItem(props, context) {
     [classes.selected]: selected,
     [classes.selectedIconOnly]: !showLabelProp && !selected,
   }, classNameProp);
-  const classNameIcon = classNames(classes.icon, iconProp.props.className);
+  const classNameIcon = classNames(classes.icon, iconProp ? iconProp.props.className : null);
   const classNameLabel = classNames(classes.label, {
     [classes.selectedLabel]: selected,
     [classes.hiddenLabel]: !showLabelProp && !selected,
   });
-  const icon = cloneElement(iconProp, { className: classNameIcon });
+  const icon = iconProp ? cloneElement(iconProp, { className: classNameIcon }) : null;
 
   return (
     <ButtonBase className={className} {...other}>
@@ -78,7 +78,7 @@ export default function BottomNavigationItem(props, context) {
 
 BottomNavigationItem.propTypes = {
   className: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   icon: PropTypes.node,
   selected: PropTypes.bool,
   showLabel: PropTypes.bool,

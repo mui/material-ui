@@ -7,8 +7,6 @@ import classNames from 'classnames';
 export const styleSheet = createStyleSheet('BottomNavigation', (theme) => {
   return {
     root: {
-      position: 'relative',
-      width: '100%',
       display: 'flex',
       justifyContent: 'center',
       height: 56,
@@ -31,7 +29,7 @@ export default function BottomNavigation(props, context) {
   const children = Children.map(childrenProp, (child, index) => {
     return cloneElement(child, {
       selected: index === selectedIndex,
-      showLabel,
+      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabel,
     });
   });
 
@@ -42,7 +40,7 @@ export default function BottomNavigation(props, context) {
 
 BottomNavigation.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   selectedIndex: PropTypes.number,
   showLabel: PropTypes.bool,
 };
