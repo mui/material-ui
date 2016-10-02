@@ -1,12 +1,11 @@
-/* eslint-disable prefer-template */
-'use strict';
+// @flow weak
 
-import {parse as parseDoctrine} from 'doctrine';
+import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 
-function stringOfLength(string, length) {
+function stringOfLength(string, stringLength) {
   let newString = '';
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < stringLength.length; i++) {
     newString += string;
   }
   return newString;
@@ -14,76 +13,26 @@ function stringOfLength(string, length) {
 
 function generateTitle(name) {
   const title = `${name}`;
-  return title + '\n' + stringOfLength('=', title.length) + '\n';
+  return `${title}\n${stringOfLength('=', title)}\n`;
 }
 
 function generateDesciption(description) {
-  return description + '\n';
+  return `${description}\n`;
 }
 
-function generatePropType(type) {
-  switch (type.name) {
-    case 'func':
-      return 'function';
+function getDeprecatedInfo(type) {
+  const deprecatedPropType = 'deprecated(PropTypes.';
 
-    case 'custom':
-      const deprecatedInfo = getDeprecatedInfo(type);
+  const indexStart = type.raw.indexOf(deprecatedPropType);
 
-      if (deprecatedInfo !== false) {
-        return generatePropType({
-          name: deprecatedInfo.propTypes,
-        });
-      }
-
-      return type.raw;
-
-    case 'enum':
-      const values = type.value.map((v) => v.value).join('<br>&nbsp;');
-      return `enum:&nbsp;${values}<br>`;
-
-    default:
-      return type.name;
-  }
-}
-
-function generateProps(props) {
-  const title = 'Props';
-  const header =
-    title + '\n' +
-    stringOfLength('-', title.length) + '\n' +
-    '\n';
-
-  let text = `${header}
-| Name | Type | Default | Description |
-|:-----|:-----|:-----|:-----|\n`;
-
-  for (let key in props) {
-    const prop = props[key];
-
-    const description = generatePropDescription(prop.required, prop.description, prop.type);
-
-    if (description === null) continue;
-
-    let defaultValue = '';
-
-    if (prop.defaultValue) {
-      defaultValue = prop.defaultValue.value.replace(/\n/g, '');
-    }
-
-    if (prop.required) {
-      key = `<span style="color: #31a148">${key} \*</span>`;
-    }
-
-    if (prop.type.name === 'custom') {
-      if (getDeprecatedInfo(prop.type)) {
-        key = `~~${key}~~`;
-      }
-    }
-
-    text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
+  if (indexStart !== -1) {
+    return {
+      propTypes: type.raw.substring(indexStart + deprecatedPropType.length, type.raw.indexOf(',')),
+      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+    };
   }
 
-  return text;
+  return false;
 }
 
 function generatePropDescription(required, description, type) {
@@ -130,7 +79,7 @@ function generatePropDescription(required, description, type) {
 
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
-    signature += `) => ${parsedReturns.type.name}` + '`<br>';
+    signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
       signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
@@ -140,28 +89,81 @@ function generatePropDescription(required, description, type) {
   return `${deprecated} ${jsDocText}${signature}`;
 }
 
-function getDeprecatedInfo(type) {
-  const deprecatedPropType = 'deprecated(PropTypes.';
+function generatePropType(type) {
+  switch (type.name) {
+    case 'func':
+      return 'function';
 
-  const indexStart = type.raw.indexOf(deprecatedPropType);
+    case 'custom': {
+      const deprecatedInfo = getDeprecatedInfo(type);
 
-  if (indexStart !== -1) {
-    return {
-      propTypes: type.raw.substring(indexStart + deprecatedPropType.length, type.raw.indexOf(',')),
-      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
-    };
+      if (deprecatedInfo !== false) {
+        return generatePropType({
+          name: deprecatedInfo.propTypes,
+        });
+      }
+
+      return type.raw;
+    }
+
+    case 'enum': {
+      const values = type.value.map((v) => v.value).join('<br>&nbsp;');
+      return `enum:&nbsp;${values}<br>`;
+    }
+
+    default:
+      return type.name;
   }
+}
 
-  return false;
+function generateProps(props) {
+  const title = 'Props';
+  const header = `${title}\n${
+    stringOfLength('-', title)}\n\n`;
+
+  let text = `${header}
+| Name | Type | Default | Description |
+|:-----|:-----|:-----|:-----|\n`;
+
+  text = Object
+    .keys(props)
+    .reduce((textProps, key) => {
+      const prop = props[key];
+      const description = generatePropDescription(prop.required, prop.description, prop.type);
+
+      if (description === null) {
+        return textProps;
+      }
+
+      let defaultValue = '';
+
+      if (prop.defaultValue) {
+        defaultValue = prop.defaultValue.value.replace(/\n/g, '');
+      }
+
+      if (prop.required) {
+        key = `<span style="color: #31a148">${key} \*</span>`;
+      }
+
+      if (prop.type.name === 'custom') {
+        if (getDeprecatedInfo(prop.type)) {
+          key = `~~${key}~~`;
+        }
+      }
+
+      textProps += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
+
+      return textProps;
+    }, text);
+
+  return text;
 }
 
 function generateMarkdown(name, reactAPI) {
-  const markdownString =
-    generateTitle(name) + '\n' +
-    generateDesciption(reactAPI.description) + '\n' +
-    generateProps(reactAPI.props);
-
-  return markdownString;
+  return `${
+    generateTitle(name)}\n${
+    generateDesciption(reactAPI.description)}\n${
+    generateProps(reactAPI.props)}`;
 }
 
 module.exports = generateMarkdown;

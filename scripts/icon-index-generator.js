@@ -1,3 +1,5 @@
+// @flow weak
+
 import fs from 'fs';
 import rrs from 'recursive-readdir-sync';
 
