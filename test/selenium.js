@@ -1,43 +1,21 @@
-/* eslint-disable no-console,global-require,flowtype/require-valid-file-annotation */
+/* eslint-disable no-console,flowtype/require-valid-file-annotation */
 
 const childProcess = require('child_process');
 const ngrok = require('ngrok');
 const webpack = require('webpack');
 const httpServer = require('http-server');
 
-module.exports = runSeleniumTests;
-
-function runSeleniumTests({ local = false, environment = 'chrome', tests = 'test/e2e', webpackConfig, serverRoot }) {
+function runSeleniumTests(options) {
+  const {
+    local = false,
+    environment = 'chrome',
+    tests = 'test/e2e',
+    webpackConfig,
+    serverRoot,
+  } = options;
   const compiler = webpack(webpackConfig);
 
   const server = httpServer.createServer({ root: serverRoot });
-
-  // Kick it off
-  buildSite();
-
-  function buildSite() {
-    console.log('Building webpack bundle');
-
-    compiler.run((err) => {
-      if (err) {
-        throw err;
-      }
-      bootServer();
-    });
-  }
-
-  function bootServer() {
-    console.log('Booting HTTP server');
-
-    server.listen(8080, () => {
-      console.log('Server listening on port 8080');
-
-      childProcess.exec('git rev-parse --short HEAD', (err, stdout) => {
-        process.env.MUI_HASH = stdout;
-        initLocalTunnel(execTests);
-      });
-    });
-  }
 
   function initLocalTunnel(cb) {
     ngrok.connect(8080, (err, url) => {
@@ -67,7 +45,7 @@ function runSeleniumTests({ local = false, environment = 'chrome', tests = 'test
     );
 
     child.on('close', (exitCode) => {
-      console.log('closed!', exitCode);
+      console.log('closed! exit code:', exitCode);
       process.exit(exitCode);
     });
 
@@ -77,9 +55,18 @@ function runSeleniumTests({ local = false, environment = 'chrome', tests = 'test
     });
   }
 
-  process.on('exit', cleanUp);
-  process.on('SIGINT', cleanUp);
-  process.on('uncaughtException', cleanUp);
+  function bootServer() {
+    console.log('Booting HTTP server');
+
+    server.listen(8080, () => {
+      console.log('Server listening on port 8080');
+
+      childProcess.exec('git rev-parse --short HEAD', (err, stdout) => {
+        process.env.MUI_HASH = stdout;
+        initLocalTunnel(execTests);
+      });
+    });
+  }
 
   function cleanUp() {
     ngrok.disconnect();
@@ -88,4 +75,24 @@ function runSeleniumTests({ local = false, environment = 'chrome', tests = 'test
       console.log('Shut down server.');
     });
   }
+
+  function buildSite() {
+    console.log('Building webpack bundle');
+
+    compiler.run((err) => {
+      if (err) {
+        throw err;
+      }
+      bootServer();
+    });
+  }
+
+  // Kick it off
+  buildSite();
+
+  process.on('exit', cleanUp);
+  process.on('SIGINT', cleanUp);
+  process.on('uncaughtException', cleanUp);
 }
+
+module.exports = runSeleniumTests;

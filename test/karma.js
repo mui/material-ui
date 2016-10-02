@@ -2,8 +2,6 @@
 const path = require('path');
 const { Server } = require('karma');
 
-module.exports = runKarmaTests;
-
 function runKarmaTests({ grep, watch = false }) {
   const options = {
     configFile: path.resolve(__dirname, 'karma.conf.js'),
@@ -20,3 +18,5 @@ function runKarmaTests({ grep, watch = false }) {
 
   server.start();
 }
+
+module.exports = runKarmaTests;
