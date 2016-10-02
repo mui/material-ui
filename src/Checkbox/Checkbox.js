@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
       color: theme.palette.accent[500],
     },
   };
-}, { index: 5 });
+}, { index: -10 });
 
 export default function Checkbox(props, context) {
   const { className, checkedClassName, ...other } = props;

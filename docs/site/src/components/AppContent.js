@@ -11,22 +11,6 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
       flex: '1 1 100%',
       maxWidth: '100%',
       margin: '0 auto',
-      '& h1': {
-        ...theme.typography.display2,
-        color: theme.palette.text.secondary,
-        margin: '1em 0 0.7em',
-      },
-      '& h2': {
-        ...theme.typography.display1,
-        color: theme.palette.text.secondary,
-        margin: '1em 0 0.7em',
-      },
-      '& p, & ul': {
-        lineHeight: '1.6',
-      },
-      '& p code, & ul code': {
-        fontSize: 14,
-      },
     }),
     [theme.breakpoints.up(948)]: {
       content: {

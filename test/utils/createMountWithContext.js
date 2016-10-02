@@ -7,7 +7,7 @@ import { createStyleManager } from 'jss-theme-reactor';
 import { PropTypes } from 'react';
 import { mount as enzymeMount } from 'enzyme';
 
-export default function createMountWithContext(mount = enzymeMount, props = {}) {
+export default function createMountWithContext(mount = enzymeMount) {
   cleanStyles();
 
   const attachTo = window.document.createElement('div');

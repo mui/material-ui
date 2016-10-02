@@ -21,7 +21,7 @@ function runMochaTests({ module = '*', grep, types = ['unit', 'integration'] }) 
 
   const mocha = new Mocha({
     grep,
-    reporter: 'dot',
+    reporter: process.env.NO_DOT_REPORTER ? undefined : 'dot',
   });
 
   glob(
