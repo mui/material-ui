@@ -18,7 +18,6 @@ const config = {
       'material-ui': path.resolve(__dirname, '../src'),
     },
   },
-  devtool: 'source-map',
   // Configuration for server
   devServer: {
     contentBase: 'build',
