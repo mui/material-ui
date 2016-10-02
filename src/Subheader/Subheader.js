@@ -52,6 +52,10 @@ Subheader.propTypes = {
   children: PropTypes.node,
 };
 
+Subheader.defaultProps = {
+  inset: false,
+};
+
 Subheader.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
