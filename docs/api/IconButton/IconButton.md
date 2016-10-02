@@ -17,5 +17,6 @@ Props
 |:-----|:-----|:-----|:-----|
 | children | node |  |  The icon element. If a string is passed, it will be used as a material icon font ligature |
 | className | string |  |  The CSS class name of the root element. |
+| contrast | bool |  |   |
 | disabled | bool |  |  If true, the button will be disabled. |
 | ripple | bool | true |  If false, the ripple effect will be disabled. |
