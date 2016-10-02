@@ -2,21 +2,9 @@
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-## v0.16.0
-
-We are mainly focusing on
- - **bug fixes** :boom:.
- - Providing a smoother update path to `next`
-
-:warning: New features have low priority and might not be reviewed nor merged.
-
-We have **shifted goals** for `v0.16.0`.
-Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
-Those improvement are comming with the `next` branch.
-We are switching in goal so we can release changes more **often**.
+:warning: New features based on `v0.16.0` have low priority and will most likely not be reviewed nor merged.
 
 ## [next](https://github.com/callemall/material-ui/milestone/14) (expected in the next couple months)
-
 
 The `next` release is going to be huge :sparkles:
 
@@ -29,7 +17,8 @@ Expect various breaking changes.
 The core team is now helping him in the [`next`](https://github.com/callemall/material-ui/tree/next) branch.
 Here are some issues that we plan to fix along the way.
 
-For more details, you can have a look a the [v0.16.0 milestone](https://github.com/callemall/material-ui/milestone/14).
+For more details, you can have a look a the [next milestone](https://github.com/callemall/material-ui/milestone/14) as well as the [next project](https://github.com/callemall/material-ui/projects/1)
+
 - [[#4066](https://github.com/callemall/material-ui/issues/4066)] There should be a more sophisticated styling solution.
 - Drastically improving performance by removing inefficient computations (styles).
 - Remove all imperative methods.
