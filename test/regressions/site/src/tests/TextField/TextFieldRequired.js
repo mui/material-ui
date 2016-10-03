@@ -7,13 +7,13 @@ export default function TextFieldRequired() {
   return (
     <div>
       <TextField required>
-         <TextFieldLabel>Test</TextFieldLabel>
-         <TextFieldInput />
-       </TextField>
+        <TextFieldLabel>Foo</TextFieldLabel>
+        <TextFieldInput />
+      </TextField>
       <TextField required>
-         <TextFieldLabel>Test</TextFieldLabel>
-         <TextFieldInput defaultValue="Hello world" />
-       </TextField>
+        <TextFieldLabel>Foo</TextFieldLabel>
+        <TextFieldInput value="Hello world" />
+      </TextField>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, cloneElement, PropTypes } from 'react';
+import React, { Component, Children, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
@@ -150,7 +150,7 @@ export default class TextField extends Component {
 
     return (
       <div className={className} {...other}>
-        {React.Children.map(children, this.renderChild)}
+        {Children.map(children, this.renderChild)}
       </div>
     );
   }

@@ -1,2 +1,7 @@
-src/svg-icons
-test/coverage
+docs
+flow
+packages
+test/regressions
+test/e2e
+test/integration
+test/utils
