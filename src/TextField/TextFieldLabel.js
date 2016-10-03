@@ -33,7 +33,7 @@ export default function TextFieldLabel(props, context) {
     animated,
     children,
     className: classNameProp,
-    dirty,
+    focused,
     required,
     shrink,
     ...other,
@@ -51,7 +51,7 @@ export default function TextFieldLabel(props, context) {
       {required && (
         <span
           className={classNames({
-            [classes.asterisk]: !dirty,
+            [classes.asterisk]: focused,
           })}
         >
           {'\u2009'}*
@@ -64,14 +64,14 @@ export default function TextFieldLabel(props, context) {
 TextFieldLabel.propTypes = {
   animated: PropTypes.bool,
   /**
-   * Whether the input of this label contains input.
-   */
-  dirty: PropTypes.bool,
-  /**
    * The contents of the `TextFieldLabel`
    */
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Whether the input of this label is focused.
+   */
+  focused: PropTypes.bool,
   /**
    * Whether this label should indicate that the input
    * is required.
