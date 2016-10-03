@@ -12,7 +12,6 @@ function matchMedia() {
   };
 }
 
-module.exports = createDOM;
 function createDOM() {
   global.document = jsdom('');
   global.window = document.defaultView;
@@ -28,3 +27,5 @@ function createDOM() {
     userAgent: 'node.js',
   };
 }
+
+module.exports = createDOM;
