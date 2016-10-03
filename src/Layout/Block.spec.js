@@ -3,15 +3,17 @@
 /* eslint react/prop-types: off */
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallowWithContext, createMountWithContext } from 'test/utils';
 import Block from './Block';
 import { styleSheet } from './with-layout';
 
 describe('<Block /> component', () => {
   let shallow;
+  let mount;
   let classes;
   before(() => {
     shallow = createShallowWithContext();
+    mount = createMountWithContext();
     classes = shallow.context.styleManager.render(styleSheet);
   });
   it('Renders a div', () => {
@@ -62,5 +64,45 @@ describe('<Block /> component', () => {
     const className = wrapper.prop('className');
     assert.isOk(className, 'should have className prop');
     assert.include(className, 'someClass', '`someClass` class name be part of `className` prop');
+  });
+
+  describe('flex props', () => {
+    let wrapper;
+    before(() => {
+      wrapper = mount(
+        <Block layout="row">
+          <Block flex>just flex</Block>
+          <Block flex={33}>flex 33%</Block>
+          <Block flex={50}>flex 50%</Block>
+          <Block flex="none">flex none</Block>
+          <Block flex="grow">flex none</Block>
+        </Block>
+      );
+    });
+    it('should have .flex class', () => {
+      const actual = wrapper.childAt(0).find('div').prop('className');
+      const expected = classes.flex;
+      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+    });
+    it('should have .flex-33 class', () => {
+      const actual = wrapper.childAt(1).find('div').prop('className');
+      const expected = 'flex-33';
+      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+    });
+    it('should have .flex-50 class', () => {
+      const actual = wrapper.childAt(2).find('div').prop('className');
+      const expected = 'flex-50';
+      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+    });
+    it('should have .flex-none class', () => {
+      const actual = wrapper.childAt(3).find('div').prop('className');
+      const expected = classes['flex-none'];
+      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+    });
+    it('should have .flex-grow class', () => {
+      const actual = wrapper.childAt(4).find('div').prop('className');
+      const expected = classes['flex-grow'];
+      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+    });
   });
 });

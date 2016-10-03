@@ -34,12 +34,12 @@ const offset = () => {
 };
 
 const flexProps = () => ({
-  flex: { flex: 1 },
-  grow: { flex: '1 1 100%', boxSizing: 'border-box' },
-  initial: { flex: '0 1 auto', boxSizing: 'border-box' },
-  none: { flex: '1 1 auto', boxSizing: 'border-box' },
-  noshrink: { flex: '1 0 auto', boxSizing: 'border-box' },
-  nogrow: { flex: '0 1 auto', boxSizing: 'border-box' },
+  flex: { flex: 1, boxSizing: 'border-box' },
+  'flex-grow': { flex: '1 1 100%', boxSizing: 'border-box' },
+  'flex-initial': { flex: '0 1 auto', boxSizing: 'border-box' },
+  'flex-none': { flex: '1 1 auto', boxSizing: 'border-box' },
+  'flex-noshrink': { flex: '1 0 auto', boxSizing: 'border-box' },
+  'flex-nogrow': { flex: '0 1 auto', boxSizing: 'border-box' },
 });
 
 const flexPropsFor = ({ row, col }) => {
@@ -60,16 +60,15 @@ const flexPropsFor = ({ row, col }) => {
   return flow(
     range,
     reduce((a, i) => {
-      const val = `${i * 5}%`;
-      const k = `flex${i * 5}`;
+      const val = i * 5;
+      const k = `flex${val}`;
       return {
         ...a,
         [`& > .${k}`]: {
-          flex: `1 1 ${val}`,
-          maxWidth: row ? val : '100%',
-          maxHeight: col ? val : '100%',
+          flex: `1 1 ${val}%`,
+          maxWidth: `${row ? val : 100}%`,
+          maxHeight: `${col ? val : 100}%`,
           boxSizing: 'border-box',
-          minHeight: i === 0 ? 0 : undefined,
         },
       };
     }, flex)

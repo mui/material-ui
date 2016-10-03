@@ -14,6 +14,7 @@ const BreakPointEnum = PropTypes.oneOf(['xl', 'lg', 'md', 'sm', 'xs']);
 * - padding
 * - margin
 * - fill
+* - align
 * - scroll
 */
 const layoutExists = (props, propName, componentName) => {
@@ -41,32 +42,70 @@ const flexExists = (props, propName, componentName) => {
 };
 const FlexProps = {
   layout: PropTypes.oneOf(['row', 'column']),
-  padding: PropTypes.oneOfType([layoutExists, PropTypes.bool]),
-  margin: PropTypes.oneOfType([layoutExists, PropTypes.bool]),
-  fill: PropTypes.oneOfType([layoutExists, PropTypes.bool]),
-  scroll: PropTypes.oneOfType([layoutExists, PropTypes.bool, PropTypes.oneOf(['x', 'y'])]),
+  padding: PropTypes.oneOfType([
+    layoutExists,
+    PropTypes.bool,
+  ]),
+  margin: PropTypes.oneOfType([
+    layoutExists,
+    PropTypes.bool,
+  ]),
+  fill: PropTypes.oneOfType([
+    layoutExists,
+    PropTypes.bool,
+  ]),
+  align: PropTypes.oneOf([
+    'start',
+    'center',
+    'end',
+    'stretch',
+    'space-between',
+    'space-around',
+  ]),
+  justify: PropTypes.oneOf([
+    'start',
+    'center',
+    'end',
+    'space-between',
+    'space-around',
+  ]),
+  scroll: PropTypes.oneOfType([
+    layoutExists,
+    PropTypes.bool,
+    PropTypes.oneOf(['x', 'y']),
+  ]),
   flex: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.bool,
     PropTypes.oneOf(['grow', 'initial', 'none', 'noshrink', 'nogrow']),
   ]),
-  order: PropTypes.oneOfType([flexExists, PropTypes.number]),
-  offset: PropTypes.oneOfType([flexExists, PropTypes.number]),
-  wrap: PropTypes.oneOfType([flexExists, PropTypes.bool, PropTypes.oneOf(['nowrap'])]),
+  order: PropTypes.oneOfType([
+    flexExists,
+    PropTypes.number,
+  ]),
+  offset: PropTypes.oneOfType([
+    flexExists,
+    PropTypes.number,
+  ]),
+  wrap: PropTypes.oneOfType([
+    flexExists,
+    PropTypes.bool,
+    PropTypes.oneOf(['nowrap']),
+  ]),
 };
 const FlexPropsShape = PropTypes.shape(FlexProps);
 
 function flexPropsMapper({
   scroll,
   layout,
-  padding,
-  margin,
-  fill,
+  padding = false,
+  margin = false,
+  fill = false,
   flex,
   order = 0,
-  offset,
-  align = 'stretch',
-  justify = 'start',
+  offset = 0,
+  align = 'stretch', // Cross Axis
+  justify = 'start', // Main Axis
   wrap,
   ...otherProps,
 }, classes) {
@@ -86,13 +125,14 @@ function flexPropsMapper({
   let flexClassNames = {};
 
   if (flex) {
-    const flexVal = (typeof flex === 'boolean') ? '' : `-${flex}`;
+    let flexClassName = (typeof flex === 'boolean') ? 'flex' : `flex-${flex}`;
+    if (classes[flexClassName]) flexClassName = classes[flexClassName];
     flexClassNames = {
       [classes['flex-wrap']]: wrap && wrap !== 'nowrap',
       [classes['flex-nowrap']]: wrap === 'nowrap',
-      [classes[`flex-order${order}`]]: order,
-      [classes[`flex-offset${offset}`]]: offset,
-      [classes[`flex${flexVal}`]]: true,
+      [classes[`flex-order${order}`]]: !!order,
+      [classes[`flex-offset${offset}`]]: !!offset,
+      [flexClassName]: true,
     };
   }
   return {
@@ -107,7 +147,7 @@ function flexPropsMapper({
 */
 export default function withLayout(BaseComponent) {
   const factory = React.createFactory(BaseComponent);
-  const wrapperComponent = (props, context) => {
+  const layoutWrapper = (props, context) => {
     const {
       className: classNameProp,
       show,
@@ -143,7 +183,7 @@ export default function withLayout(BaseComponent) {
     return factory({ className, ...otherProps });
   };
 
-  wrapperComponent.propTypes = {
+  layoutWrapper.propTypes = {
     className: PropTypes.string,
     show: PropTypes.oneOfType([
       BreakPointEnum,
@@ -160,10 +200,10 @@ export default function withLayout(BaseComponent) {
     xl: FlexPropsShape,
     ...FlexProps,
   };
-  wrapperComponent.contextTypes = {
+  layoutWrapper.contextTypes = {
     styleManager: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
   };
 
-  return wrapperComponent;
+  return layoutWrapper;
 }
