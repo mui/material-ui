@@ -3,6 +3,7 @@ const { jsdom } = require('jsdom');
 
 const exposedProperties = ['window', 'navigator', 'document'];
 
+<<<<<<< HEAD
 /* Stubbing `window.matchMedia` */
 function matchMedia() {
   return {
@@ -12,6 +13,8 @@ function matchMedia() {
   };
 }
 
+=======
+>>>>>>> [test] Run eslint on more files
 function createDOM() {
   global.document = jsdom('');
   global.window = document.defaultView;
