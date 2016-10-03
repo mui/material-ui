@@ -14,6 +14,10 @@ export default function TextFieldRequired() {
         <TextFieldLabel>Foo</TextFieldLabel>
         <TextFieldInput value="Hello world" />
       </TextField>
+      <TextField required>
+        <TextFieldLabel>Foo</TextFieldLabel>
+        <TextFieldInput value="Hello world" autoFocus />
+      </TextField>
     </div>
   );
 }
