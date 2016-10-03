@@ -101,6 +101,10 @@ class TableBody extends Component {
      */
     stripedRows: PropTypes.bool,
     /**
+     * Additional styles for stripped rows.
+     */
+    stripedRowsStyle: PropTypes.object,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -113,6 +117,7 @@ class TableBody extends Component {
     multiSelectable: false,
     preScanRows: true,
     selectable: true,
+    stripedRowsStyle: {},
     style: {},
   };
 
@@ -171,6 +176,8 @@ class TableBody extends Component {
           hoverable: this.props.showRowHover,
           selected: this.isRowSelected(rowNumber),
           striped: this.props.stripedRows && (rowNumber % 2 === 0),
+          strippedStyle: this.props.stripedRows && this.props.stripedRowsStyle && (rowNumber % 2 === 0) ?
+            this.props.stripedRowsStyle : {},
           rowNumber: rowNumber++,
         };
 
@@ -408,14 +415,14 @@ class TableBody extends Component {
     const {
       className,
       style,
-    } = this.props;
+      } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
         <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
-          {this.createRows()}
+        {this.createRows()}
         </tbody>
       </ClickAwayListener>
     );

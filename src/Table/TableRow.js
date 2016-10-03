@@ -12,15 +12,17 @@ function getStyles(props, context, state) {
     cellBgColor = tableRow.stripeColor;
   }
 
+  const cellStyle = {
+    backgroundColor: cellBgColor,
+  };
+
   return {
     root: {
       borderBottom: props.displayBorder && `1px solid ${tableRow.borderColor}`,
       color: tableRow.textColor,
       height: tableRow.height,
     },
-    cell: {
-      backgroundColor: cellBgColor,
-    },
+    cell: props.striped && props.strippedStyle ? Object.assign(cellStyle, props.strippedStyle) : cellStyle,
   };
 }
 
@@ -185,7 +187,7 @@ class TableRow extends Component {
       striped, // eslint-disable-line no-unused-vars
       style,
       ...other,
-    } = this.props;
+      } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
