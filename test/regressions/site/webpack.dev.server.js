@@ -1,4 +1,5 @@
 // @flow weak
+/* eslint-disable no-console */
 
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
@@ -14,8 +15,8 @@ const serverOptions = {
 new WebpackDevServer(webpack(webpackConfig), serverOptions)
   .listen(3000, '0.0.0.0', (err) => {
     if (err) {
-      return console.log(err); // eslint-disable-line no-console
+      return console.log(err);
     }
 
-    return console.info('Webpack dev server listening at http://0.0.0.0:3000/'); // eslint-disable-line no-console
+    return console.info('Webpack dev server listening at http://0.0.0.0:3000/');
   });

@@ -1,7 +1,6 @@
-docs
+docs/site/node_modules
 flow
 packages
-test/regressions
 test/e2e
-test/integration
-test/utils
+test/regressions/node_modules
+test/regressions/site
