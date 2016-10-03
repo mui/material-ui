@@ -12,7 +12,9 @@ class DatePickerDialog extends Component {
     DateTimeFormat: PropTypes.func,
     animation: PropTypes.func,
     autoOk: PropTypes.bool,
+    cancelClassName: PropTypes.string,
     cancelLabel: PropTypes.node,
+    cancelStyle: PropTypes.object,
     container: PropTypes.oneOf(['dialog', 'inline']),
     containerStyle: PropTypes.object,
     disableYearSelection: PropTypes.bool,
@@ -22,7 +24,9 @@ class DatePickerDialog extends Component {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     mode: PropTypes.oneOf(['portrait', 'landscape']),
+    okClassName: PropTypes.string,
     okLabel: PropTypes.node,
+    okStyle: PropTypes.object,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
@@ -103,7 +107,9 @@ class DatePickerDialog extends Component {
     const {
       DateTimeFormat,
       autoOk,
+      cancelClassName,
       cancelLabel,
+      cancelStyle,
       container,
       containerStyle,
       disableYearSelection,
@@ -113,7 +119,9 @@ class DatePickerDialog extends Component {
       maxDate,
       minDate,
       mode,
+      okClassName,
       okLabel,
+      okStyle,
       onAccept, // eslint-disable-line no-unused-vars
       onDismiss, // eslint-disable-line no-unused-vars
       onShow, // eslint-disable-line no-unused-vars
@@ -157,8 +165,10 @@ class DatePickerDialog extends Component {
           />
           <Calendar
             autoOk={autoOk}
-            DateTimeFormat={DateTimeFormat}
+            cancelClassName={cancelClassName}
             cancelLabel={cancelLabel}
+            cancelStyle={cancelStyle}
+            DateTimeFormat={DateTimeFormat}
             disableYearSelection={disableYearSelection}
             firstDayOfWeek={firstDayOfWeek}
             initialDate={initialDate}
@@ -171,7 +181,9 @@ class DatePickerDialog extends Component {
             ref="calendar"
             onTouchTapCancel={this.handleTouchTapCancel}
             onTouchTapOk={this.handleTouchTapOk}
+            okClassName={okClassName}
             okLabel={okLabel}
+            okStyle={okStyle}
             shouldDisableDate={shouldDisableDate}
           />
         </Container>
