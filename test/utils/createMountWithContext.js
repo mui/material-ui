@@ -10,7 +10,7 @@ import { mount as enzymeMount } from 'enzyme';
 function cleanStyles() {
   const head = window.document.head;
   const length = head.children.length;
-  for (let i = length - 1; i >= 0; i -= 1) {
+  for (let i = length - 1; i >= 0; i--) {
     if (head.children[i].tagName.toLowerCase() === 'style') {
       head.removeChild(head.children[i]);
     }
