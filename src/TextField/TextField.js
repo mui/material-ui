@@ -128,7 +128,7 @@ export default class TextField extends Component {
   renderLabel = (label) =>
     cloneElement(label, {
       className: classNames(this.classes.label, label.props.className),
-      dirty: this.state.dirty,
+      focused: this.state.focused,
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
       required: this.props.required,

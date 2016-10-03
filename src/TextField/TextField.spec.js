@@ -149,6 +149,7 @@ describe('<TextField>', () => {
 
       assert.strictEqual(label.prop('className'), classes.label, 'should have the label class');
       assert.strictEqual(label.prop('shrink'), false, 'should be false by default');
+      assert.strictEqual(label.prop('focused'), false, 'should be false by default');
     });
 
     it('should change the shrink prop depending on focused, dirty state', () => {
@@ -170,6 +171,11 @@ describe('<TextField>', () => {
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
         'should be true when the TextField is focused and not dirty'
+      );
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('focused'),
+        true,
+        'should be true when focused'
       );
 
       wrapper.setState({ focused: false });
