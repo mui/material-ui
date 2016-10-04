@@ -9,6 +9,26 @@ import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 
+function changeFocus(currentFocusIndex = 0, event, radios) {
+  const key = keycode(event);
+
+  if (key === 'down' || key === 'right') {
+    event.preventDefault();
+    if (currentFocusIndex < radios.length - 1) {
+      radios[currentFocusIndex + 1].focus();
+    } else {
+      radios[0].focus();
+    }
+  } else if (key === 'up' || key === 'left') {
+    event.preventDefault();
+    if (currentFocusIndex > 0) {
+      radios[currentFocusIndex - 1].focus();
+    } else {
+      radios[radios.length - 1].focus();
+    }
+  }
+}
+
 export const styleSheet = createStyleSheet('RadioGroup', () => {
   return {
     root: {
@@ -29,10 +49,10 @@ export default class RadioGroup extends Component {
      */
     defaultValue: PropTypes.string,
     name: PropTypes.string,
-    selectedValue: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
+    selectedValue: PropTypes.string,
   };
 
   static defaultProps = {
@@ -98,14 +118,14 @@ export default class RadioGroup extends Component {
 
       let currentFocusIndex = -1;
 
-      for (let i = 0; i < radios.length; i++) {
+      for (let i = 0; i < radios.length; i += 1) {
         if (radios[i] === currentFocus || contains(radios[i], currentFocus)) {
           currentFocusIndex = i;
           break;
         }
       }
 
-      this.changeFocus(currentFocusIndex, event, radios);
+      changeFocus(currentFocusIndex, event, radios);
     }
 
     if (this.props.onKeyDown) {
@@ -128,7 +148,7 @@ export default class RadioGroup extends Component {
     const group = findDOMNode(this.group);
     if (group) {
       const radios = querySelectorAll(group, '[role="radio"]');
-      for (let i = 0; i < radios.length; i++) {
+      for (let i = 0; i < radios.length; i += 1) {
         if (radios[i] === event.currentTarget || contains(radios[i], event.currentTarget)) {
           this.setTabIndex(i);
           break;
@@ -144,26 +164,6 @@ export default class RadioGroup extends Component {
       const radios = querySelectorAll(group, '[role="radio"]');
       if (radios && radios[currentTabIndex]) {
         radios[currentTabIndex].focus();
-      }
-    }
-  }
-
-  changeFocus(currentFocusIndex = 0, event, radios) {
-    const key = keycode(event);
-
-    if (key === 'down' || key === 'right') {
-      event.preventDefault();
-      if (currentFocusIndex < radios.length - 1) {
-        radios[currentFocusIndex + 1].focus();
-      } else {
-        radios[0].focus();
-      }
-    } else if (key === 'up' || key === 'left') {
-      event.preventDefault();
-      if (currentFocusIndex > 0) {
-        radios[currentFocusIndex - 1].focus();
-      } else {
-        radios[radios.length - 1].focus();
       }
     }
   }

@@ -5,7 +5,7 @@ import recast from 'recast';
 
 function stringOfLength(string, stringLength) {
   let newString = '';
-  for (let i = 0; i < stringLength.length; i++) {
+  for (let i = 0; i < stringLength.length; i += 1) {
     newString += string;
   }
   return newString;

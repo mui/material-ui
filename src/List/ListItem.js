@@ -46,11 +46,11 @@ export default class ListItem extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    dense: PropTypes.bool,
     /**
      * @ignore
      */
     disabled: PropTypes.bool,
-    dense: PropTypes.bool,
     divider: PropTypes.bool,
     gutters: PropTypes.bool,
   };

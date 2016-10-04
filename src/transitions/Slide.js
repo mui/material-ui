@@ -3,6 +3,23 @@
 import React, { Component, PropTypes } from 'react';
 import Transition from '../internal/Transition';
 
+function getTranslateValue(props, element) {
+  const { direction } = props;
+  const rect = element.getBoundingClientRect();
+
+  if (direction === 'left') {
+    return `translate3d(${rect.right + rect.width}px, 0, 0)`;
+  } else if (direction === 'right') {
+    return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
+  } else if (direction === 'up') {
+    return `translate3d(0, ${rect.bottom + rect.height}px, 0)`;
+  } else if (direction === 'down') {
+    return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
+  }
+
+  return 'translate3d(0, 0, 0)';
+}
+
 export default class Slide extends Component {
   static propTypes = {
     /**
@@ -55,7 +72,7 @@ export default class Slide extends Component {
   };
 
   handleEnter = (element) => {
-    element.style.transform = this.getTranslateValue(this.props, element);
+    element.style.transform = getTranslateValue(this.props, element);
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
@@ -71,28 +88,11 @@ export default class Slide extends Component {
   };
 
   handleExiting = (element) => {
-    element.style.transform = this.getTranslateValue(this.props, element);
+    element.style.transform = getTranslateValue(this.props, element);
     if (this.props.onExiting) {
       this.props.onExiting(element);
     }
   };
-
-  getTranslateValue(props, element) {
-    const { direction } = props;
-    const rect = element.getBoundingClientRect();
-
-    if (direction === 'left') {
-      return `translate3d(${rect.right + rect.width}px, 0, 0)`;
-    } else if (direction === 'right') {
-      return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
-    } else if (direction === 'up') {
-      return `translate3d(0, ${rect.bottom + rect.height}px, 0)`;
-    } else if (direction === 'down') {
-      return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
-    }
-
-    return 'translate3d(0, 0, 0)';
-  }
 
   render() {
     const {

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import { Component, createElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -84,7 +84,7 @@ class Text extends Component {
 
     const component = paragraph ? 'p' : componentProp;
 
-    return React.createElement(component, { className, ...other });
+    return createElement(component, { className, ...other });
   }
 }
 

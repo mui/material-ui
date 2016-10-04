@@ -44,7 +44,7 @@ export default function SimpleCard(props, context) {
           <Text type="body1" className={classes.pos}>adjective</Text>
           <Text component="p">
             well meaning and kindly.<br />
-            "a benevolent smile"
+            {'"a benevolent smile"'}
           </Text>
         </CardContent>
         <CardActions>

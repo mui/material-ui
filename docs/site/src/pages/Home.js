@@ -51,7 +51,7 @@ const Home = (props, context) => {
           <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
           <Text type="display2">Material-UI</Text>
           <Text type="subheading">
-            A React component library implementing Google's Material Design
+            {"A React component library implementing Google's Material Design"}
           </Text>
           <Button
             component={Link}

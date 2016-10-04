@@ -121,7 +121,7 @@ export default class Button extends Component {
      */
     className: PropTypes.string,
     /**
-     * Uses a smaller minWidth, ideal for things like card actions
+     * Uses a smaller minWidth, ideal for things like card actions.
      */
     compact: PropTypes.bool,
     /**

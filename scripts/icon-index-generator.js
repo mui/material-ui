@@ -21,7 +21,7 @@ rrs(svgIconPath).forEach((file) => {
 
         found = true;
       } else {
-        index++;
+        index += 1;
       }
     }
   }
