@@ -44,7 +44,7 @@ export default class Table extends Component {
 
   static childContextTypes = { table: PropTypes.object };
 
-  getChildContext() {
+  static getChildContext() {
     return { table: {} };
   }
 

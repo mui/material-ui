@@ -116,11 +116,11 @@ describe('<Transition>', () => {
       wrapper = wrapper.setProps({
         in: true,
         onEnter() {
-          count++;
+          count += 1;
           assert.strictEqual(wrapper.state('status'), EXITED);
         },
         onEntering() {
-          count++;
+          count += 1;
           assert.strictEqual(wrapper.state('status'), ENTERING);
         },
         onEntered() {
@@ -139,11 +139,11 @@ describe('<Transition>', () => {
       wrapper = wrapper.setProps({
         in: true,
         onEnter(node) {
-          count++;
+          count += 1;
           assert.strictEqual(node.className, '');
         },
         onEntering(node) {
-          count++;
+          count += 1;
           assert.strictEqual(node.className, 'test-entering');
         },
         onEntered(node) {
@@ -202,12 +202,12 @@ describe('<Transition>', () => {
         in: false,
 
         onExit() {
-          count++;
+          count += 1;
           assert.strictEqual(wrapper.state('status'), ENTERED);
         },
 
         onExiting() {
-          count++;
+          count += 1;
           assert.strictEqual(wrapper.state('status'), EXITING);
         },
 
@@ -228,12 +228,12 @@ describe('<Transition>', () => {
         in: false,
 
         onExit(node) {
-          count++;
+          count += 1;
           assert.strictEqual(node.className, '');
         },
 
         onExiting(node) {
-          count++;
+          count += 1;
           assert.strictEqual(node.className, 'test-exiting');
         },
 

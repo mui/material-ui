@@ -94,7 +94,7 @@ export default class MenuList extends Component {
   handleItemFocus = (event) => {
     const list = findDOMNode(this.list);
     if (list) {
-      for (let i = 0; i < list.children.length; i++) {
+      for (let i = 0; i < list.children.length; i += 1) {
         if (list.children[i] === event.currentTarget) {
           this.setTabIndex(i);
           break;

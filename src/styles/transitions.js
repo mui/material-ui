@@ -14,7 +14,7 @@ export default {
 
     if (property && Array.isArray(property)) {
       let transitions = '';
-      for (let i = 0; i < property.length; i++) {
+      for (let i = 0; i < property.length; i += 1) {
         if (transitions) transitions += ',';
         transitions += this.create(property[i], duration, delay, easeFunction);
       }
