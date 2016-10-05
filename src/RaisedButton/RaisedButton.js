@@ -192,11 +192,11 @@ class RaisedButton extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-		/**
-		*Override the inline style of the button overlay
-		*/
+    /**
+     *Override the inline style of the button overlay
+     */
     overlayStyle: PropTypes.object,
-		/**
+    /**
      * If true, the button will use the theme's primary color.
      */
     primary: PropTypes.bool,
@@ -347,7 +347,7 @@ class RaisedButton extends Component {
       labelColor, // eslint-disable-line no-unused-vars
       labelPosition,
       labelStyle,
-			overlayStyle,
+      overlayStyle,
       primary, // eslint-disable-line no-unused-vars
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
