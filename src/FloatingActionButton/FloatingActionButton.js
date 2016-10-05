@@ -220,7 +220,10 @@ class FloatingActionButton extends Component {
   };
 
   handleTouchEnd = (event) => {
-    this.setState({zDepth: this.props.zDepth});
+    this.setState({
+      touch: true,
+      zDepth: this.props.zDepth,
+    });
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(event);
     }
