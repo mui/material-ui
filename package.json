@@ -2,7 +2,7 @@
   "name": "material-ui-build",
   "private": true,
   "author": "Call-em-all Engineering Team",
-  "version": "0.16.0-rc2",
+  "version": "0.16.0",
   "description": "React Components that Implement Google's Material Design.",
   "main": "./src/index.js",
   "keywords": [

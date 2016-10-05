@@ -1,9 +1,35 @@
-## HEAD (v0.16.0)
+## HEAD
+
+## 0.16.0
+###### _Oct 3, 2016_
+
+This release contains a ton of bug fixes and small improvements :boom:.
 
 We have **shifted goals** for `v0.16.0`.
 Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
-Those improvement are coming with the `next` branch.
+Those improvements are coming with the `next` branch :sparkles:.
 We are switching in goal so we can release changes more **often**.
+
+Regarding going forward, this is likely to be the last `minor` release using the **inline-style** approach.
+We are migrating all the components to a **CSS-in-JS** approach on the `next` branch.
+
+For more details, you can have a look a the [next milestone](https://github.com/callemall/material-ui/milestone/14) as well as the [next project](https://github.com/callemall/material-ui/projects/1)
+
+:warning: New features based on the `master` branch (inline-style) have low priority and will most likely not be reviewed nor merged.
+
+##### Component Fixes / Enhancements
+
+- [Card] Fix unused property subtitleColor (#5314)
+
+##### Core
+
+- [Core] Use lodash.merge/throttle for faster require() (#5308)
+
+##### Docs
+
+- [docs] Add a single line example for GridLists (#5313)
+- [docs] Add react-dnd (7e1d9d3d1d61a3ee8e6dbf57cd2261754a3285f3)
+- [docs] Add Casalova to the showcase (7c0df3be32813ddb003cd47b6529431f3cd41679)
 
 ## 0.16.0-rc2
 ###### _Sep 24, 2016_
