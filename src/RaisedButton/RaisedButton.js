@@ -193,6 +193,10 @@ class RaisedButton extends Component {
     /** @ignore */
     onTouchStart: PropTypes.func,
     /**
+     * Override the inline style of the button overlay.
+     */
+    overlayStyle: PropTypes.object,
+    /**
      * If true, the button will use the theme's primary color.
      */
     primary: PropTypes.bool,
@@ -343,6 +347,7 @@ class RaisedButton extends Component {
       labelColor, // eslint-disable-line no-unused-vars
       labelPosition,
       labelStyle,
+      overlayStyle,
       primary, // eslint-disable-line no-unused-vars
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
@@ -408,7 +413,7 @@ class RaisedButton extends Component {
         >
           <div
             ref="overlay"
-            style={prepareStyles(styles.overlay)}
+            style={prepareStyles(Object.assign(styles.overlay, overlayStyle))}
           >
             {enhancedButtonChildren}
           </div>
