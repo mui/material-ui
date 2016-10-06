@@ -48,7 +48,7 @@ class PopoverAnimationDefault extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    targetOrigin: propTypes.origin,
+    targetOrigin: propTypes.origin.isRequired,
     zDepth: propTypes.zDepth,
   };
 
