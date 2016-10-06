@@ -413,7 +413,7 @@ class RaisedButton extends Component {
         >
           <div
             ref="overlay"
-            style={Object.assign(styles.overlay, overlayStyle)}
+            style={prepareStyles(Object.assign(styles.overlay, overlayStyle))}
           >
             {enhancedButtonChildren}
           </div>
