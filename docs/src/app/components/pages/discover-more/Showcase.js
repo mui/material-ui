@@ -81,6 +81,12 @@ const appList = [
     img: 'images/showcase/casalova.png',
     link: 'https://www.casalova.com/',
   },
+  {
+    title: 'LireLactu',
+    author: 'miLibris',
+    img: 'images/showcase/lirelactu.png',
+    link: 'http://lirelactu.fr/',
+  },
 ];
 
 const Showcase = () => (
