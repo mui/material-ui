@@ -115,7 +115,7 @@ class Main extends React.Component {
 }
 
 Main.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired,
+  muiTheme: React.PropTypes.object.isRequired,
 };
 
 export default Main;
@@ -137,7 +137,7 @@ class DeepDownTheTree extends React.Component {
 }
 
 DeepDownTheTree.contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
+  muiTheme: React.PropTypes.object.isRequired,
 };
 
 export default DeepDownTheTree;
