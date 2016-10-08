@@ -6,11 +6,11 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('BottomNavigationItem', (theme) => {
-  const { palette, typography } = theme;
+  const { palette, typography, transitions } = theme;
 
   return {
     root: {
-      transition: 'color 0.2s, padding-top 0.2s',
+      transition: `${transitions.create('color', '250ms')}, ${transitions.create('padding-top', '250ms')}`,
       paddingTop: 8,
       paddingBottom: 10,
       paddingLeft: 12,
@@ -61,12 +61,15 @@ export default function BottomNavigationItem(props, context) {
     [classes.selected]: selected,
     [classes.selectedIconOnly]: !showLabelProp && !selected,
   }, classNameProp);
-  const classNameIcon = classNames(classes.icon, iconProp ? iconProp.props.className : null);
+  const classNameIcon = classNames(classes.icon,
+    iconProp && typeof iconProp !== 'string' ? iconProp.props.className : null);
   const classNameLabel = classNames(classes.label, {
     [classes.selectedLabel]: selected,
     [classes.hiddenLabel]: !showLabelProp && !selected,
   });
-  const icon = iconProp ? cloneElement(iconProp, { className: classNameIcon }) : null;
+  const icon = typeof iconProp === 'string' ?
+    <span className="material-icons">{iconProp}</span> :
+    cloneElement(iconProp, { className: classNameIcon });
 
   return (
     <ButtonBase className={className} {...other}>

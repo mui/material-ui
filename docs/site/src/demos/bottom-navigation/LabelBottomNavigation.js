@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 
-const styleSheet = createStyleSheet('SimpleBottomNavigation', () => ({
+const styleSheet = createStyleSheet('LabelBottomNavigation', () => ({
   row: {
     flexGrow: 1,
   },
