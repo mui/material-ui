@@ -43,7 +43,7 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
       cursor: 'not-allowed',
     },
   };
-}, { index: -15 });
+});
 
 export default class ButtonBase extends Component {
   static propTypes = {

@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
       color: theme.palette.error[500],
     },
   };
-}, { index: -10 });
+});
 
 export default function TextFieldLabel(props, context) {
   const {

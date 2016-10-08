@@ -9,7 +9,7 @@ export const styleSheet = createStyleSheet('Card', () => ({
   card: {
     overflow: 'hidden',
   },
-}), { index: -5 });
+}));
 
 export default function Card(props, context) {
   const {
