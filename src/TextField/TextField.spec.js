@@ -1,14 +1,19 @@
 /* eslint-env mocha */
-import React from 'react';
-import {shallow} from 'enzyme';
+import React, {PropTypes, Component} from 'react';
+import {shallow, mount} from 'enzyme';
 import {assert} from 'chai';
 import TextField from './TextField';
+import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<TextField />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const mountWithContext = (node) => mount(node, {
+    context: {muiTheme},
+    childContextTypes: {muiTheme: PropTypes.object},
+  });
 
   it('passes event and value to the onChange callback', (done) => {
     const wrapper = shallowWithContext(
@@ -112,6 +117,37 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.state().hasValue, true,
           `Should consider '${value}' as not empty`);
       });
+    });
+  });
+
+  describe('<TextFieldHint>', () => {
+    it('should be hidden when the component is rerender with the same props', () => {
+      class MyComponent1 extends Component {
+        state = {
+          value: '',
+        };
+
+        handleChange = () => {
+          this.setState({value: ''});
+        };
+
+        render() {
+          return (
+            <TextField
+              id="foo"
+              value={this.state.value}
+              hintText="bar"
+              onChange={this.handleChange}
+            />
+          );
+        }
+      }
+
+      const wrapper = mountWithContext(<MyComponent1 />);
+      const input = wrapper.find('input');
+      input.simulate('change', {target: {value: 'a'}});
+      assert.strictEqual(wrapper.find(TextFieldHint).props().show, true,
+        'The hint text should keep the same state');
     });
   });
 });
