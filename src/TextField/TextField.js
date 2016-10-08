@@ -301,11 +301,9 @@ class TextField extends Component {
       const hasValue = isValid(nextProps.value) ||
         (this.state.isClean && isValid(nextProps.defaultValue));
 
-      if (hasValue !== this.state.hasValue) {
-        this.setState({
-          hasValue: hasValue,
-        });
-      }
+      this.setState({
+        hasValue: hasValue,
+      });
     }
   }
 
