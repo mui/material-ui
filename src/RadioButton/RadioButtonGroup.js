@@ -62,6 +62,13 @@ class RadioButtonGroup extends Component {
 
   componentWillMount() {
     let cnt = 0;
+    let selected = '';
+    const {valueSelected, defaultSelected} = this.props;
+    if (valueSelected !== undefined) {
+      selected = valueSelected;
+    } else if (defaultSelected !== undefined) {
+      selected = defaultSelected;
+    }
 
     React.Children.forEach(this.props.children, (option) => {
       if (this.hasCheckAttribute(option)) cnt++;
@@ -69,7 +76,7 @@ class RadioButtonGroup extends Component {
 
     this.setState({
       numberCheckedRadioButtons: cnt,
-      selected: this.props.valueSelected || this.props.defaultSelected || '',
+      selected,
     });
   }
 
