@@ -4,7 +4,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
   context: path.resolve(__dirname),
   entry: {
     main: [
@@ -14,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/build/',
+    publicPath: 'build/',
   },
   module: {
     loaders: [
@@ -26,7 +25,10 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'file',
-        include: /assets\/images/,
+      },
+      {
+        test: /\.(jpg|gif|png)$/,
+        loader: 'file!img',
       },
       {
         test: /\.md$/,
@@ -42,8 +44,6 @@ module.exports = {
     alias: {
       docs: path.resolve(__dirname, '../../docs'),
       'material-ui': path.resolve(__dirname, '../../src'),
-      react: path.resolve(__dirname, 'node_modules/react'),
-      lodash: path.resolve(__dirname, '../../node_modules/lodash'),
     },
   },
   plugins: [
