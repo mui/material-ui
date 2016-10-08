@@ -54,7 +54,7 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       borderRadius: '50%',
     },
   };
-}, { index: -10 });
+});
 
 export default function Switch(props, context) {
   const { className, checkedClassName, ...other } = props;

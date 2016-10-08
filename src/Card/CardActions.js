@@ -15,7 +15,7 @@ export const styleSheet = createStyleSheet('CardActions', () => ({
   actionSpacing: {
     margin: '0 4px',
   },
-}), { index: -5 });
+}));
 
 export default function CardActions(props, context) {
   const {

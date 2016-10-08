@@ -34,7 +34,7 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
     paragraph: { marginBottom: 16 },
     secondary: { color: theme.palette.text.secondary },
   };
-}, { index: -10 });
+});
 
 class Text extends Component {
   static propTypes = {

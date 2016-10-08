@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('CardHeader', () => ({
   content: {
     flex: '1 1 auto',
   },
-}), { index: -4 });
+}));
 
 export default function CardHeader(props, context) {
   const {

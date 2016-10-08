@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('DialogActions', () => {
       minWidth: '64px',
     },
   };
-}, { index: -5 });
+});
 
 export default class DialogActions extends Component {
   static propTypes = {

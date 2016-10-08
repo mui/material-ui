@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('CardContent', () => ({
       paddingBottom: 24,
     },
   },
-}), { index: -5 });
+}));
 
 export default function CardContent(props, context) {
   const {

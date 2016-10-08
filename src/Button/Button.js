@@ -96,7 +96,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       },
     },
   };
-}, { index: -10 });
+});
 
 /**
  * Buttons communicate the action that will occur when the user

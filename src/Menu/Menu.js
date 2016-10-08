@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('Menu', () => {
       maxHeight: 250,
     },
   };
-}, { index: -5 });
+});
 
 export default class Menu extends Component {
   static propTypes = {

@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('Paper', (theme) => {
     },
     ...shadows,
   };
-}, { index: -10 });
+});
 
 /**
  * A piece of material paper.
