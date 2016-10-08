@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
+import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
 
 const styleSheet = createStyleSheet('SimpleBottomNavigation', () => ({
   row: {
@@ -23,17 +23,17 @@ export default class SimpleBottomNavigation extends Component {
     return (
       <div className={classes.row}>
         <BottomNavigation selectedIndex={selectedIndex}>
-          <BottomNavigationItem
+          <BottomNavigationButton
             label="Recents"
             icon={<span className="material-icons">restore</span>}
             onClick={() => this.select(0)}
           />
-          <BottomNavigationItem
+          <BottomNavigationButton
             label="Favorites"
             icon={<span className="material-icons">favorite</span>}
             onClick={() => this.select(1)}
           />
-          <BottomNavigationItem
+          <BottomNavigationButton
             label="Nearby"
             icon={<span className="material-icons">location_on</span>}
             onClick={() => this.select(2)}
