@@ -56,7 +56,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
       },
     },
   };
-}, { index: 50 });
+});
 
 export default class Demo extends Component {
   static propTypes = {

@@ -8,7 +8,7 @@ export const styleSheet = createStyleSheet('CardMedia', () => ({
   cardMedia: {
     position: 'relative',
   },
-}), { index: -5 });
+}));
 
 export default function CardMedia(props, context) {
   const {

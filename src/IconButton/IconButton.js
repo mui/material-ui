@@ -46,7 +46,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       color: theme.accent.A200,
     },
   };
-}, { index: -10 });
+});
 
 styleSheet.registerLocalTheme((theme) => {
   const { palette, transitions } = theme;
