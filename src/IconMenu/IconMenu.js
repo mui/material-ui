@@ -266,7 +266,7 @@ class IconMenu extends Component {
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
     warning(iconButtonElement.type.muiName === 'IconButton',
-      'We are expecting an <IconButton /> to be passed to the `iconButtonElement` property.');
+      '<IconMenu /> expects an <IconButton /> to be passed as the `iconButtonElement` property.');
 
     const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: onKeyboardFocus,
