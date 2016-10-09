@@ -303,6 +303,11 @@ class RefreshIndicator extends Component {
   render() {
     const {
       style,
+      top, // eslint-disable-line no-unused-vars
+      left, // eslint-disable-line no-unused-vars
+      percentage, // eslint-disable-line no-unused-vars
+      status, // eslint-disable-line no-unused-vars
+      loadingColor, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
