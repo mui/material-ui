@@ -24,7 +24,7 @@ export default class SelectFieldExampleSimple extends React.Component {
   render() {
     return (
       <div>
-        <SelectField value={this.state.value} onChange={this.handleChange}>
+        <SelectField floatingLabelText="Frequency" value={this.state.value} onChange={this.handleChange}>
           <MenuItem value={1} primaryText="Never" />
           <MenuItem value={2} primaryText="Every Night" />
           <MenuItem value={3} primaryText="Weeknights" />
@@ -32,12 +32,13 @@ export default class SelectFieldExampleSimple extends React.Component {
           <MenuItem value={5} primaryText="Weekly" />
         </SelectField>
         <br />
-        <SelectField value={1} disabled={true}>
+        <SelectField floatingLabelText="Frequency" value={1} disabled={true}>
           <MenuItem value={1} primaryText="Disabled" />
           <MenuItem value={2} primaryText="Every Night" />
         </SelectField>
         <br />
         <SelectField
+          floatingLabelText="Frequency"
           value={this.state.value}
           onChange={this.handleChange}
           style={styles.customWidth}
@@ -50,6 +51,7 @@ export default class SelectFieldExampleSimple extends React.Component {
         </SelectField>
         <br />
         <SelectField
+          floatingLabelText="Frequency"
           value={this.state.value}
           onChange={this.handleChange}
           autoWidth={true}
