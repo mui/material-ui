@@ -2,9 +2,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-
 import FloatingActionButton from './FloatingActionButton';
-import FontIcon from '../FontIcon/FontIcon';
+import FontIcon from '../FontIcon';
 import getMuiTheme from '../styles/getMuiTheme';
 import ContentAdd from '../svg-icons/content/add';
 
@@ -26,6 +25,17 @@ describe('<FloatingActionButton />', () => {
         disabled: true,
       });
       assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
+    });
+  });
+
+  describe('prop: iconClassName', () => {
+    it('should add a FontIcon element when using the iconClassName property', () => {
+      const iconClassName = 'foo';
+      const wrapper = shallowWithContext(
+        <FloatingActionButton iconClassName={iconClassName} />
+      );
+
+      assert.strictEqual(wrapper.find(FontIcon).props().className, iconClassName);
     });
   });
 
