@@ -1,29 +1,29 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 
-class TabTemplate extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    selected: PropTypes.bool,
-  };
+const styles = {
+  width: '100%',
+  position: 'relative',
+  textAlign: 'initial',
+};
 
-  render() {
-    const styles = {
-      width: '100%',
-      position: 'relative',
-      textAlign: 'initial',
-    };
-
-    if (!this.props.selected) {
-      styles.height = 0;
-      styles.overflow = 'hidden';
-    }
-
-    return (
-      <div style={styles}>
-        {this.props.children}
-      </div>
-    );
+const TabTemplate = ({children, selected, style}) => {
+  const templateStyle = Object.assign({}, styles, style);
+  if (!selected) {
+    templateStyle.height = 0;
+    templateStyle.overflow = 'hidden';
   }
-}
+
+  return (
+    <div style={templateStyle}>
+      {children}
+    </div>
+  );
+};
+
+TabTemplate.propTypes = {
+  children: PropTypes.node,
+  selected: PropTypes.bool,
+  style: PropTypes.object,
+};
 
 export default TabTemplate;
