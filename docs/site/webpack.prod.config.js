@@ -25,12 +25,12 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'file',
-        include: /images/,
+        include: /assets[\\\/]images/,
       },
       {
         test: /\.(jpg|gif|png)$/,
         loader: 'file!img',
-        include: /images/,
+        include: /assets[\\\/]images/,
       },
       {
         test: /\.md$/,

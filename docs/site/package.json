@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node webpack.dev.server.js",
     "build": "npm run clean&& cross-env NODE_ENV=production webpack --config webpack.prod.config.js",
-    "clean": "rimraf build"
+    "clean": "rimraf build",
+    "lint" :"eslint src --fix --color"
   },
   "devDependencies": {
     "babel-cli": "^6.7.7",
