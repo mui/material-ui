@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import {assert} from 'chai';
 
 import FloatingActionButton from './FloatingActionButton';
@@ -11,7 +11,6 @@ import ContentAdd from '../svg-icons/content/add';
 describe('<FloatingActionButton />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
-  const mountWithContext = (node) => mount(node, {context: {muiTheme}});
 
   describe('hover state', () => {
     it('should reset the hover state when disabled', () => {
@@ -32,7 +31,7 @@ describe('<FloatingActionButton />', () => {
 
   describe('style', () => {
     it('should apply children style', () => {
-      const wrapper = mountWithContext(
+      const wrapper = shallowWithContext(
         <FloatingActionButton>
           <FontIcon
             className="material-icons"
