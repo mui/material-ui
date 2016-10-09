@@ -44,8 +44,10 @@ export default class Table extends Component {
 
   static childContextTypes = { table: PropTypes.object };
 
-  static getChildContext() {
-    return { table: {} };
+  getChildContext() { // eslint-disable-line class-methods-use-this
+    return {
+      table: {},
+    };
   }
 
   render() {
