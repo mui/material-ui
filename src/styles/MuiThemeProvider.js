@@ -5,6 +5,65 @@ import { createStyleManager } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';
 import { createMuiTheme } from './theme';
 
+export const MUI_SHEET_ORDER = [
+  'Backdrop',
+  'Modal',
+
+  'Ripple',
+  'TouchRipple',
+
+  'ButtonBase',
+  'SwitchBase',
+
+  'Text',
+  'Paper',
+  'Divider',
+
+  'Popover',
+  'Dialog',
+
+  'Button',
+  'IconButton',
+
+  'Switch',
+  'Checkbox',
+  'Radio',
+  'RadioGroup',
+
+  'CircularProgress',
+
+  'AppBar',
+  'Drawer',
+
+  'ListItem',
+  'ListItemText',
+  'ListItemSecondaryAction',
+  'List',
+
+  'Menu',
+  'MenuItem',
+
+  'Avatar',
+
+  'CardContent',
+  'CardMedia',
+  'CardActions',
+  'CardHeader',
+  'Card',
+
+  'TextFieldLabel',
+  'TextFieldInput',
+  'TextField',
+
+  'Table',
+  'TableHead',
+  'TableRow',
+  'TableCell',
+  'TableBody',
+  'TableSortLabel',
+  'Toolbar',
+];
+
 export default class MuiThemeProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -24,64 +83,9 @@ export default class MuiThemeProvider extends Component {
       jss: create(jssPreset()),
     });
 
-    styleManager.setSheetOrder([
-      'Backdrop',
-      'Modal',
-
-      'Ripple',
-      'TouchRipple',
-
-      'ButtonBase',
-      'SwitchBase',
-
-      'Text',
-      'Paper',
-      'Divider',
-
-      'Popover',
-      'Dialog',
-
-      'Button',
-      'IconButton',
-
-      'Switch',
-      'Checkbox',
-      'Radio',
-      'RadioGroup',
-
-      'CircularProgress',
-
-      'AppBar',
-      'Drawer',
-
-      'ListItem',
-      'ListItemText',
-      'ListItemSecondaryAction',
-      'List',
-
-      'Menu',
-      'MenuItem',
-
-      'Avatar',
-
-      'CardContent',
-      'CardMedia',
-      'CardActions',
-      'CardHeader',
-      'Card',
-
-      'TextFieldLabel',
-      'TextFieldInput',
-      'TextField',
-
-      'Table',
-      'TableHead',
-      'TableRow',
-      'TableCell',
-      'TableBody',
-      'TableSortLabel',
-      'Toolbar',
-    ]);
+    if (!styleManager.sheetOrder) {
+      styleManager.setSheetOrder(MUI_SHEET_ORDER);
+    }
 
     return { theme, styleManager };
   }

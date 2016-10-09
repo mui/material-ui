@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider, { MUI_SHEET_ORDER } from 'material-ui/styles/MuiThemeProvider';
 import createPalette from 'material-ui/styles/palette';
 import createMuiTheme from 'material-ui/styles/theme';
 import { blue, pink } from 'material-ui/styles/colors';
@@ -22,7 +22,7 @@ function App(props) {
     theme: createMuiTheme({ palette }),
   });
 
-  styleManager.setSheetOrder(styleManager.sheetOrder.concat([
+  styleManager.setSheetOrder(MUI_SHEET_ORDER.concat([
     'AppContent',
     'AppDrawer',
     'AppDrawerNavItem',
