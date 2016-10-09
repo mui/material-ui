@@ -1,9 +1,13 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import { Component, createElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
+
+function isDirty(obj) {
+  return obj && obj.value && obj.value.length > 0;
+}
 
 export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
   const { palette } = theme;
@@ -123,12 +127,8 @@ export default class TextFieldInput extends Component {
     return typeof this.props.value === 'string';
   }
 
-  isDirty(obj) {
-    return obj && obj.value && obj.value.length > 0;
-  }
-
   checkDirty(obj) {
-    if (this.props.onDirty && this.isDirty(obj)) {
+    if (this.props.onDirty && isDirty(obj)) {
       this.props.onDirty();
     } else if (this.props.onClean) {
       this.props.onClean();
@@ -168,6 +168,6 @@ export default class TextFieldInput extends Component {
       inputProps.type = type;
     }
 
-    return React.createElement(component, inputProps);
+    return createElement(component, inputProps);
   }
 }

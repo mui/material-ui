@@ -148,7 +148,7 @@ class AppFrame extends Component {
 
   getTitle() {
     const { routes } = this.props;
-    for (let i = routes.length - 1; i >= 0; i--) {
+    for (let i = routes.length - 1; i >= 0; i -= 1) {
       if (routes[i].hasOwnProperty('title')) {
         return routes[i].title;
       }
@@ -158,7 +158,7 @@ class AppFrame extends Component {
 
   getCurrentPath() {
     const { routes } = this.props;
-    for (let i = routes.length - 1; i >= 0; i--) {
+    for (let i = routes.length - 1; i >= 0; i -= 1) {
       if (routes[i].hasOwnProperty('path')) {
         return routes[i].path;
       }

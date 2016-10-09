@@ -50,59 +50,59 @@ export default class Dialog extends Component {
      */
     className: PropTypes.string,
     /**
-     * If true, clicking the backdrop will fire the `onRequestClose` callback
+     * If true, clicking the backdrop will fire the `onRequestClose` callback.
      */
     hideOnBackdropClick: PropTypes.bool,
     /**
-     * If true, hitting escape will fire the `onRequestClose` callback
+     * If true, hitting escape will fire the `onRequestClose` callback.
      */
     hideOnEscapeKeyUp: PropTypes.bool,
     /**
-     * Callback fires when the backdrop is clicked on
+     * Callback fires when the backdrop is clicked on.
      */
     onBackdropClick: PropTypes.func,
     /**
-     * Callback fires when the escape key is pressed and the modal is in focus
-     */
-    onEscapeKeyUp: PropTypes.func,
-    /**
-     * Callback fired before the dialog is entering
+     * Callback fired before the dialog is entering.
      */
     onEnter: PropTypes.func,
     /**
-     * Callback fired when the dialog is entering
+     * Callback fired when the dialog is entering.
      */
     onEntering: PropTypes.func,
     /**
-     * Callback fired when the dialog has entered
+     * Callback fired when the dialog has entered.
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the dialog is exiting
+     * Callback fires when the escape key is pressed and the modal is in focus.
+     */
+    onEscapeKeyUp: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    /**
+     * Callback fired before the dialog is exiting.
      */
     onExit: PropTypes.func,
     /**
-     * Callback fired when the dialog is exiting
+     * Callback fired when the dialog is exiting.
      */
     onExiting: PropTypes.func,
     /**
-     * Callback fired when the dialog has exited
+     * Callback fired when the dialog has exited.
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired when the dialog requests to be closed
+     * Callback fired when the dialog requests to be closed.
      */
     onRequestClose: PropTypes.func,
     /**
-     * Set to true to open the Dialog
+     * Set to true to open the Dialog.
      */
     open: PropTypes.bool,
     /**
-     * Transition component
+     * Transition component.
      */
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
     /**
-     * Length of the transition in ms
+     * Length of the transition in ms.
      */
     transitionDuration: PropTypes.number,
   };

@@ -42,7 +42,7 @@ export default class TableHead extends Component {
 
   static childContextTypes = { table: PropTypes.object };
 
-  getChildContext() {
+  static getChildContext() {
     return { table: { head: true } };
   }
 

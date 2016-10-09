@@ -44,7 +44,7 @@ export default class AlertDialogSlide extends Component {
           transition={Slide}
           onRequestClose={this.handleRequestClose}
         >
-          <DialogTitle>Use Google's location service?</DialogTitle>
+          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <p className={classes.content}>
               Let Google help apps determine location.

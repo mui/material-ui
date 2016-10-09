@@ -9,6 +9,42 @@ import Modal from './Modal';
 import Transition from './Transition';
 import Paper from '../Paper';
 
+function getOffsetTop(rect, vertical) {
+  let offset = 0;
+
+  if (typeof vertical === 'number') {
+    offset = vertical;
+  } else if (vertical === 'center') {
+    offset = rect.height / 2;
+  } else if (vertical === 'bottom') {
+    offset = rect.height;
+  }
+
+  return offset;
+}
+
+function getOffsetLeft(rect, horizontal) {
+  let offset = 0;
+
+  if (typeof horizontal === 'number') {
+    offset = horizontal;
+  } else if (horizontal === 'center') {
+    offset = rect.width / 2;
+  } else if (horizontal === 'right') {
+    offset = rect.width;
+  }
+
+  return offset;
+}
+
+function getTransformOriginValue(transformOrigin) {
+  return [transformOrigin.horizontal, transformOrigin.vertical]
+    .map((n) => {
+      return typeof n === 'number' ? `${n}px` : n;
+    })
+    .join(' ');
+}
+
 export const styleSheet = createStyleSheet('Popover', () => {
   return {
     popover: {
@@ -140,11 +176,15 @@ export default class Popover extends Component {
     styleManager: PropTypes.object.isRequired,
   };
 
+  static getScale(value) {
+    return `scale(${value}, ${Math.pow(value, 2)})`;
+  }
+
   autoTransitionDuration = undefined;
 
   handleEnter = (element) => {
     element.style.opacity = 0;
-    element.style.transform = this.getScale(0.75);
+    element.style.transform = Popover.getScale(0.75);
 
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -172,7 +212,7 @@ export default class Popover extends Component {
 
   handleEntering = (element) => {
     element.style.opacity = 1;
-    element.style.transform = this.getScale(1);
+    element.style.transform = Popover.getScale(1);
 
     if (this.props.onEntering) {
       this.props.onEntering();
@@ -194,7 +234,7 @@ export default class Popover extends Component {
     ].join(',');
 
     element.style.opacity = 0;
-    element.style.transform = this.getScale(0.75);
+    element.style.transform = Popover.getScale(0.75);
 
     if (this.props.onExit) {
       this.props.onExit();
@@ -207,10 +247,6 @@ export default class Popover extends Component {
     }
     return this.props.transitionDuration + 20;
   };
-
-  getScale(value) {
-    return `scale(${value}, ${Math.pow(value, 2)})`;
-  }
 
   getPositioningStyle(element) {
     // Check if the parent has requested anchoring on an inner content node
@@ -261,7 +297,7 @@ export default class Popover extends Component {
     return {
       top: `${top}px`,
       left: `${left}px`,
-      transformOrigin: this.getTransformOriginValue(transformOrigin),
+      transformOrigin: getTransformOriginValue(transformOrigin),
     };
   }
 
@@ -277,8 +313,8 @@ export default class Popover extends Component {
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
     return {
-      top: anchorRect.top + this.getOffsetTop(anchorRect, anchorVertical),
-      left: anchorRect.left + this.getOffsetLeft(anchorRect, anchorOrigin.horizontal),
+      top: anchorRect.top + getOffsetTop(anchorRect, anchorVertical),
+      left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
     };
   }
 
@@ -306,45 +342,9 @@ export default class Popover extends Component {
   getTransformOrigin(elemRect, contentAnchorOffset = 0) {
     const { transformOrigin } = this.props;
     return {
-      vertical: this.getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
-      horizontal: this.getOffsetLeft(elemRect, transformOrigin.horizontal),
+      vertical: getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+      horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal),
     };
-  }
-
-  getOffsetTop(rect, vertical) {
-    let offset = 0;
-
-    if (typeof vertical === 'number') {
-      offset = vertical;
-    } else if (vertical === 'center') {
-      offset = rect.height / 2;
-    } else if (vertical === 'bottom') {
-      offset = rect.height;
-    }
-
-    return offset;
-  }
-
-  getOffsetLeft(rect, horizontal) {
-    let offset = 0;
-
-    if (typeof horizontal === 'number') {
-      offset = horizontal;
-    } else if (horizontal === 'center') {
-      offset = rect.width / 2;
-    } else if (horizontal === 'right') {
-      offset = rect.width;
-    }
-
-    return offset;
-  }
-
-  getTransformOriginValue(transformOrigin) {
-    return [transformOrigin.horizontal, transformOrigin.vertical]
-      .map((n) => {
-        return typeof n === 'number' ? `${n}px` : n;
-      })
-      .join(' ');
   }
 
   render() {

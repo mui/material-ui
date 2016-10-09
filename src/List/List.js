@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import { Component, createElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -52,6 +52,6 @@ export default class List extends Component {
       [classes.padding]: padding,
     }, classNameProp);
 
-    return React.createElement(component, { className, ...other });
+    return createElement(component, { className, ...other });
   }
 }
