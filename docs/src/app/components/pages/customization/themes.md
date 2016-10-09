@@ -14,15 +14,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
-class Main extends React.Component {
-  render() {
-    return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <AppBar title="My AppBar" />
-      </MuiThemeProvider>
-    );
-  }
-}
+const Main = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <AppBar title="My AppBar" />
+  </MuiThemeProvider>
+);
 
 export default Main;
 ```
@@ -70,86 +66,48 @@ const muiTheme = getMuiTheme({
   },
 });
 
-class Main extends React.Component {
-  render() {
-    // MuiThemeProvider takes the theme as a property and passed it down the hierarchy
-    // using React's context feature.
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <AppBar title="My AppBar" />
-      </MuiThemeProvider>
-    );
-  }
-}
+// MuiThemeProvider takes the theme as a property and passed it down the hierarchy.
+const Main = () => (
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <AppBar title="My AppBar" />
+  </MuiThemeProvider>
+);
 
 export default Main;
 ```
 
 Internally, Material-UI components use React's context feature to implement theming.
-Context is a way to pass down values through the component hierarchy without having
-to use props at every level.
 In fact, context is very convenient for concepts like theming, which are usually
 implemented in a hierarchical manner.
+However, it should be considered **an implementation detail**.
 
-### Using context
+### Using the `muiTheme` on your custom components
 
-The `MuiThemeProvider` component simply adds the `muiTheme` object to context.
-If you prefer using context directly instead, you can follow this pattern:
-
-Pass theme down the context:
-
-```js
-import React from 'react';
-import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
-
-class Main extends React.Component {
-  getChildContext() {
-    return {muiTheme: getMuiTheme(baseTheme)};
-  }
-
-  render () {
-    return <AppBar title="My AppBar" />;
-  }
-}
-
-Main.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
-};
-
-export default Main;
-```
-
-Get theme whenever you need to use it in your own components:
+In some case to keep the interface consistent you want to access the `muiTheme`
+variable provided by the `MuiThemeProvider` component.
+To do so, we expose a higher-order component: `muiThemeable`.
+Here is an example:
 
 ```js
 import React from 'react';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
-class DeepDownTheTree extends React.Component {
-  render () {
-    return (
-      <span style={{color: this.context.muiTheme.palette.textColor}}>
-        Hello World!
-      </span>
-    );
-  }
-}
+const DeepDownTheTree = (props) => (
+  <span style={{color: props.muiTheme.palette.textColor}}>
+    Hello World!
+  </span>
+);
 
-DeepDownTheTree.contextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
-};
-
-export default DeepDownTheTree;
+export default muiThemeable()(DeepDownTheTree);
 ```
 
 ### API
 
 The items listed below are everything related to how Material-UI's theme work.
 
-#### `getMuiTheme(muiTheme) => muiTheme`
+#### `getMuiTheme(muiTheme)`
 
-This function takes in a `muiTheme`, it will use this parameter to computes the right keys.
+This function takes in a `muiTheme`, it will use this parameter to computes and returns an enhanced `muiTheme`.
 
 Keep in mind, any changes to the theme object must appear as another call
 to this function.
@@ -193,8 +151,13 @@ export default {
 };
 ```
 
-#### `<MuiThemeProvider />`
+#### `<MuiThemeProvider>`
 
 This component takes a theme as a property and passes it down with context.
 This should preferably be at the root of your component tree. The first
 example demonstrates it's usage.
+
+#### `muiThemeable()`
+
+This higher-order component wraps another component to provide a `muiTheme` property.
+Pass in your component and it will return the wrapped component.
