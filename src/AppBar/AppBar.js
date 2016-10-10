@@ -4,6 +4,7 @@ import NavigationMenu from '../svg-icons/navigation/menu';
 import Paper from '../Paper';
 import propTypes from '../utils/propTypes';
 import warning from 'warning';
+import TextField from 'material-ui/TextField';
 
 export function getStyles(props, context) {
   const {
@@ -62,6 +63,11 @@ export function getStyles(props, context) {
 }
 
 class AppBar extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {showTextField: false};
+
+}
   static muiName = 'AppBar';
 
   static propTypes = {
@@ -139,13 +145,17 @@ class AppBar extends Component {
      * The zDepth of the component.
      * The shadow of the app bar is also dependent on this property.
      */
-    zDepth: propTypes.zDepth,
+    zDepth: propTypes.zDepth
   };
 
   static defaultProps = {
     showMenuIconButton: true,
     title: '',
     zDepth: 1,
+    showSearchInput : false,
+    searchHintStyle : propTypes.searchHintStyle,
+    searchUnderlineStyle : propTypes.searchUnderlineStyle,
+    searchUnderlineFocusStyle : propTypes.searchUnderlineFocusStyle
   };
 
   static contextTypes = {
@@ -177,7 +187,14 @@ class AppBar extends Component {
       this.props.onTitleTouchTap(event);
     }
   };
+  toggleTextField = () => {
+    this.setState({
+      showTextField : !this.state.showTextField
+    },function(){
+      this.props.getStatus(this.state.showTextField)
+    })
 
+  }
   render() {
     const {
       title,
@@ -196,6 +213,7 @@ class AppBar extends Component {
       style,
       zDepth,
       children,
+      showSearchInput,
       ...other,
     } = this.props;
 
@@ -204,6 +222,7 @@ class AppBar extends Component {
 
     let menuElementLeft;
     let menuElementRight;
+    let searchInput;
 
     // If the title is a string, wrap in an h1 tag.
     // If not, wrap in a div tag.
@@ -308,7 +327,17 @@ class AppBar extends Component {
         />
       );
     }
+    if(showSearchInput){
+    searchInput = (
+  	    		<div style={{"width":"100%","position":"relative"}}>
+  	    		 {this.state.showTextField ? <TextField  hintText={this.props.searchHintText}  underlineStyle={this.props.searchUnderlineStyle}
+              hintStyle={this.props.hintStyle} style={this.props.textFieldStyle} inputStyle={this.props.inputStyle} onChange={this.props.handleChange} /> : null}
 
+  	    		{ !this.state.showTextField ? <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle} >search</i>  :
+  		    	 <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle}>cancel</i>		}
+  		    	</div>
+    )
+    }
     return (
       <Paper
         {...other}
@@ -319,6 +348,7 @@ class AppBar extends Component {
       >
         {menuElementLeft}
         {titleElement}
+        {searchInput}
         {menuElementRight}
         {children}
       </Paper>
