@@ -319,7 +319,7 @@ class Calendar extends Component {
           mode={this.props.mode}
           selectedDate={this.state.selectedDate}
         />
-        <div style={prepareStyles(styles.calendar)}>
+        <div style={prepareStyles(styles.calendar)} className="CalendarSelectionClass">
           {this.state.displayMonthDay &&
             <div style={prepareStyles(styles.calendarContainer)}>
               <CalendarToolbar
