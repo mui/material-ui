@@ -31,17 +31,9 @@ function compareScreenshots(client, baselinePath, screenshotPath, done) {
       client.assert.strictEqual(passed, true, 'should have passed the diff test');
 
       if (!passed) {
-        if (process.env.TRAVIS) {
-          const { TRAVIS_BUILD_NUMBER, TRAVIS_JOB_NUMBER } = process.env;
-          const s3Path = `${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}/${diffPath.replace(/^.*output\//, '')}`;
-          console.error(
-            'Diff Screenshot:',
-            `https://s3.amazonaws.com/mui-test-artifacts/callemall/material-ui/${s3Path}`
-          );
-        } else {
-          console.error('Diff Screenshot:', diffPath);
-        }
+        console.error('Diff Screenshot:', diffPath);
       }
+
       /**
        * Could include this... but feels like added noise.
        */
