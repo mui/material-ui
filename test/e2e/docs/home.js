@@ -1,5 +1,5 @@
 module.exports = {
-  'Docs Home'(browser) {
+  'Docs Home': function DocsHome(browser) {
     browser
       .maximizeWindow()
       .url(browser.launch_url)
