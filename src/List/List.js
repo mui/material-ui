@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes, Children } from 'react';
+import { Component, createElement, PropTypes, Children } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -21,7 +21,7 @@ export const styleSheet = createStyleSheet('List', () => {
       paddingTop: 0,
     },
   };
-}, { index: 10 });
+});
 
 /**
  * A simple list component.
@@ -58,6 +58,6 @@ export default class List extends Component {
       [classes.subheader]: children.length && children[0].type && children[0].type.muiName === 'Subheader',
     }, classNameProp);
 
-    return React.createElement(component, { className, children, ...other });
+    return createElement(component, { className, children, ...other });
   }
 }

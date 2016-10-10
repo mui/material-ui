@@ -1,3 +1,5 @@
+// @flow weak
+
 import fs from 'fs';
 import rrs from 'recursive-readdir-sync';
 
@@ -19,7 +21,7 @@ rrs(svgIconPath).forEach((file) => {
 
         found = true;
       } else {
-        index++;
+        index += 1;
       }
     }
   }

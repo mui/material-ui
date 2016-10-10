@@ -47,7 +47,7 @@ export default class TimeWaster extends Component {
     Perf.start();
     return new Promise((resolve) => {
       const execTest = () => {
-        i++;
+        i += 1;
         setTimeout(() => {
           if (i < this.props.loops) {
             this.setTestProp(execTest);

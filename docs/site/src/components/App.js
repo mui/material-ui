@@ -2,9 +2,9 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import createMuiTheme from 'material-ui/styles/theme';
+import MuiThemeProvider, { MUI_SHEET_ORDER } from 'material-ui/styles/MuiThemeProvider';
 import createPalette from 'material-ui/styles/palette';
+import createMuiTheme from 'material-ui/styles/theme';
 import { blue, pink } from 'material-ui/styles/colors';
 import AppRouter from './AppRouter';
 import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism';
@@ -18,7 +18,19 @@ function App(props) {
     type: dark ? 'dark' : 'light',
   });
 
-  const muiTheme = createMuiTheme({ palette });
+  const { styleManager, theme } = MuiThemeProvider.createDefaultContext({
+    theme: createMuiTheme({ palette }),
+  });
+
+  styleManager.setSheetOrder(MUI_SHEET_ORDER.concat([
+    'AppContent',
+    'AppDrawer',
+    'AppDrawerNavItem',
+    'AppFrame',
+    'MarkdownDocs',
+    'MarkdownElement',
+    'Demo',
+  ]));
 
   if (dark) {
     setPrismTheme(darkTheme);
@@ -27,7 +39,7 @@ function App(props) {
   }
 
   return (
-    <MuiThemeProvider theme={muiTheme} {...other}>
+    <MuiThemeProvider theme={theme} styleManager={styleManager} {...other}>
       <AppRouter />
     </MuiThemeProvider>
   );

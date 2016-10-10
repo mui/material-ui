@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('Table', () => {
       overflow: 'hidden',
     },
   };
-}, { index: 15 });
+});
 
 /**
  * A material table root element.
@@ -44,8 +44,10 @@ export default class Table extends Component {
 
   static childContextTypes = { table: PropTypes.object };
 
-  getChildContext() {
-    return { table: {} };
+  getChildContext() { // eslint-disable-line class-methods-use-this
+    return {
+      table: {},
+    };
   }
 
   render() {

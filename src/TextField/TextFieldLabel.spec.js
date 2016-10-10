@@ -41,4 +41,25 @@ describe('<TextFieldLabel>', () => {
     const wrapper = shallow(<TextFieldLabel shrink />);
     assert.strictEqual(wrapper.hasClass(classes.shrink), true, 'should have the shrink class');
   });
+
+  describe('required', () => {
+    it('should show an asterisk if required is set', () => {
+      const wrapper = shallow(<TextFieldLabel required />);
+      const text = wrapper.text();
+      assert.strictEqual(text.indexOf('*'), text.length - 1, 'should show an asterisk at the end');
+      assert.strictEqual(wrapper.find('span').hasClass(classes.asterisk), false,
+        'should not have the asterisk class');
+    });
+
+    it('should not have the asterisk class if dirty is true', () => {
+      const wrapper = shallow(<TextFieldLabel required focused />);
+      assert.strictEqual(wrapper.find('span').hasClass(classes.asterisk), true,
+        'should have the asterisk class');
+    });
+
+    it('should not show an asterisk by default', () => {
+      const wrapper = shallow(<TextFieldLabel />);
+      assert.strictEqual(wrapper.text().includes('*'), false, 'should not show an asterisk');
+    });
+  });
 });

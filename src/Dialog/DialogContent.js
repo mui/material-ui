@@ -16,7 +16,7 @@ export const styleSheet = createStyleSheet('DialogContent', () => {
       },
     },
   };
-}, { index: 10 });
+});
 
 export default function DialogContent(props, context) {
   const {

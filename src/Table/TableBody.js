@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('TableBody', (theme) => {
       color: theme.palette.text.primary,
     },
   };
-}, { index: 15 });
+});
 
 /**
  * A material table body.
@@ -41,8 +41,12 @@ export default class TableBody extends Component {
 
   static childContextTypes = { table: PropTypes.object };
 
-  getChildContext() {
-    return { table: { body: true } };
+  getChildContext() { // eslint-disable-line class-methods-use-this
+    return {
+      table: {
+        body: true,
+      },
+    };
   }
 
   render() {

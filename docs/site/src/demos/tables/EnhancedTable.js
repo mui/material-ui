@@ -27,7 +27,7 @@ const styleSheet = createStyleSheet('EnhancedTable', () => ({
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
-  counter++;
+  counter += 1;
   return { id: counter, name, calories, fat, carbs, protein };
 }
 

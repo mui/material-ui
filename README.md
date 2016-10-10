@@ -31,7 +31,7 @@ before diving into material-ui. Material-UI is a set of React components,
 so understanding how React fits into web development is important.
 
 (If you're not familiar with Node, or with the concept of Single Page Applications (SPAs),
-head over to the [documentation website](http://material-ui.com/#/get-started/prerequisites)
+head over to the [documentation website](http://material-ui.com/#/get-started/required-knowledge)
 for a quick introduction before you read on.)
 
 ## Installation

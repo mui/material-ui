@@ -1,2 +1,6 @@
-src/svg-icons
-test/coverage
+docs/site/node_modules
+flow
+packages
+test/e2e
+test/regressions/node_modules
+test/regressions/site

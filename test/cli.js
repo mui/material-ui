@@ -6,8 +6,6 @@ const runKarmaTests = require('./karma');
 const runMochaTests = require('./mocha');
 const watchMochaTests = require('./mocha.watch');
 
-process.env.NODE_ENV = 'test';
-
 program
   .version('0.1.0')
   .description('See help for specific commands using [command] --help');

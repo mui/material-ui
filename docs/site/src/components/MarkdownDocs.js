@@ -34,16 +34,17 @@ const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {
 const demoRegexp = /^demo='(.*)'$/;
 
 export default class MarkdownDocs extends Component {
-
   static propTypes = {
-    route: PropTypes.object,
+    route: PropTypes.shape({
+      content: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
 
-  renderContent(content) {
+  static renderContent(content) {
     const contents = content.split(/(?:^{{)|(?:}}$)/gm);
     return contents.map((n, i) => {
       if (demoRegexp.test(n)) {
@@ -57,7 +58,7 @@ export default class MarkdownDocs extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     return (
       <div className={classes.content}>
-        {this.renderContent(this.props.route.content)}
+        {MarkdownDocs.renderContent(this.props.route.content)}
       </div>
     );
   }

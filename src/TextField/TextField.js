@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, cloneElement, PropTypes } from 'react';
+import React, { Component, Children, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
@@ -49,7 +49,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
       },
     },
   };
-}, { index: 10 });
+});
 
 /**
  * TextField
@@ -72,6 +72,10 @@ export default class TextField extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Whether this text field is required.
+     */
+    required: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -124,8 +128,10 @@ export default class TextField extends Component {
   renderLabel = (label) =>
     cloneElement(label, {
       className: classNames(this.classes.label, label.props.className),
+      focused: this.state.focused,
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
+      required: this.props.required,
     });
 
   render() {
@@ -144,7 +150,7 @@ export default class TextField extends Component {
 
     return (
       <div className={className} {...other}>
-        {React.Children.map(children, this.renderChild)}
+        {Children.map(children, this.renderChild)}
       </div>
     );
   }

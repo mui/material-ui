@@ -13,5 +13,8 @@ Props
 | children | node |  |   |
 | className | string |  |   |
 | component | string | 'span' |   |
+| gutterBottom | bool |  |   |
 | noWrap | bool |  |   |
+| paragraph | bool |  |   |
+| secondary | bool |  |   |
 | type | string | 'body1' |   |

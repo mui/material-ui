@@ -15,7 +15,7 @@ export function contains(obj, pred) {
 
 export function findIndex(arr, pred) {
   const predType = typeof pred;
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i += 1) {
     if (predType === 'function' && !!pred(arr[i], i, arr) === true) {
       return i;
     }
