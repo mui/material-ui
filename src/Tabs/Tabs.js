@@ -67,6 +67,10 @@ class Tabs extends Component {
      */
     tabTemplate: PropTypes.func,
     /**
+     * Override the inline-styles of the tab template.
+     */
+    tabTemplateStyle: PropTypes.object,
+    /**
      * Makes Tabs controllable and selects the tab whose value prop matches this prop.
      */
     value: PropTypes.any,
@@ -178,6 +182,7 @@ class Tabs extends Component {
       style,
       tabItemContainerStyle,
       tabTemplate,
+      tabTemplateStyle,
       ...other,
     } = this.props;
 
@@ -202,6 +207,7 @@ class Tabs extends Component {
         createElement(tabTemplate || TabTemplate, {
           key: index,
           selected: this.getSelected(tab, index),
+          style: tabTemplateStyle,
         }, tab.props.children) : undefined);
 
       return cloneElement(tab, {
