@@ -1,6 +1,2 @@
-docs/site/node_modules
+node_modules
 flow
-packages
-test/e2e
-test/regressions/node_modules
-test/regressions/site
