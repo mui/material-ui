@@ -1,6 +1,6 @@
 // @flow weak
 
-import { Component, createElement, PropTypes, Children } from 'react';
+import { Component, createElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -32,6 +32,7 @@ export default class List extends Component {
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     padding: PropTypes.bool,
+    subheader: PropTypes.node,
   };
 
   static defaultProps = {
@@ -48,16 +49,16 @@ export default class List extends Component {
       className: classNameProp,
       component,
       padding,
-      children: childrenProp,
+      children,
+      subheader,
       ...other,
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
-    const children = Children.toArray(childrenProp);
     const className = classNames(classes.root, {
       [classes.padding]: padding,
-      [classes.subheader]: children.length && children[0].type && children[0].type.muiName === 'Subheader',
+      [classes.subheader]: subheader,
     }, classNameProp);
 
-    return createElement(component, { className, children, ...other });
+    return createElement(component, { className, ...other }, subheader, children);
   }
 }

@@ -13,3 +13,4 @@ Props
 | className | string |  |   |
 | component | union | 'div' |   |
 | padding | bool | true |   |
+| subheader | node |  |   |

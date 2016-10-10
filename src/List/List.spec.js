@@ -5,7 +5,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import List, { styleSheet } from './List';
-import Subheader from '../Subheader';
+import ListSubheader from './ListSubheader';
 
 describe('<List>', () => {
   let shallow;
@@ -43,9 +43,15 @@ describe('<List>', () => {
     assert.strictEqual(wrapper.hasClass(classes.padding), false, 'should not have the padding class');
   });
 
-  it('should disable padding-top when subheader is first element', () => {
-    const wrapper = shallow(<List><Subheader>Title</Subheader></List>);
+  it('should render with subheader class', () => {
+    const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.subheader), true, 'should have the subheader class');
+  });
+
+  it('should render ListSubheader', () => {
+    const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.find('ListSubheader').length, 1, 'should render ListSubheader');
   });
 });

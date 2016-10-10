@@ -7,9 +7,9 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
+  ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
-import Subheader from 'material-ui/Subheader';
 
 const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
   root: {
@@ -49,8 +49,7 @@ export default class CheckboxList extends Component {
 
     return (
       <div className={classes.root}>
-        <List>
-          <Subheader>Settings</Subheader>
+        <List subheader={<ListSubheader>Settings</ListSubheader>}>
           <ListItem>
             <span className="material-icons">wifi</span>
             <ListItemText primary="Wi-Fi" />

@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
-export const styleSheet = createStyleSheet('Subheader', (theme) => {
+export const styleSheet = createStyleSheet('ListSubheader', (theme) => {
   const { palette, typography } = theme;
 
   return {
@@ -24,9 +24,9 @@ export const styleSheet = createStyleSheet('Subheader', (theme) => {
       paddingLeft: 72,
     },
   };
-}, { index: 5 });
+});
 
-export default function Subheader(props, context) {
+export default function ListSubheader(props, context) {
   const {
     className: classNameProp,
     primary,
@@ -45,19 +45,17 @@ export default function Subheader(props, context) {
   );
 }
 
-Subheader.propTypes = {
-  className: PropTypes.string,
-  primary: PropTypes.bool,
-  inset: PropTypes.bool,
+ListSubheader.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
+  inset: PropTypes.bool,
+  primary: PropTypes.bool,
 };
 
-Subheader.defaultProps = {
+ListSubheader.defaultProps = {
   inset: false,
 };
 
-Subheader.contextTypes = {
+ListSubheader.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
-
-Subheader.muiName = 'Subheader';
