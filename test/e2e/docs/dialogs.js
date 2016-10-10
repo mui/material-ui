@@ -1,6 +1,6 @@
 module.exports = {
   '@tags': ['Dialog', 'Modal', 'Backdrop'],
-  'Alert Dialog'(browser) {
+  'Alert Dialog': function AlertDialog(browser) {
     browser
       .maximizeWindow()
       .url(`${browser.launch_url}/#/component-demos/dialogs`)
