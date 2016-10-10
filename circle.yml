@@ -21,7 +21,6 @@ dependencies:
     - "node_modules"
     - "docs/site/node_modules"
     - "test/regressions/site/node_modules"
-    - "~/docker-images"
 test:
   override:
     - ./scripts/run-travis-tests.sh && cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
