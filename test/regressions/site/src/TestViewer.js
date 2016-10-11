@@ -6,8 +6,12 @@ import { createStyleSheet } from 'jss-theme-reactor';
 const globalStyleSheet = createStyleSheet('global', (theme) => {
   const { palette, typography } = theme;
   return {
-    html: { boxSizing: 'border-box' },
-    '*, *:before, *:after': { boxSizing: 'inherit' },
+    html: {
+      boxSizing: 'border-box',
+    },
+    '*, *:before, *:after': {
+      boxSizing: 'inherit',
+    },
     body: {
       margin: 0,
       background: palette.background.default,

@@ -1,4 +1,4 @@
-## Community
+# Community
 
 If you want to stay up to date on the development of Material-UI or to reach out the community, you can follow those resources:
 

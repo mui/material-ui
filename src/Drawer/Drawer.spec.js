@@ -5,6 +5,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Drawer, { styleSheet } from './Drawer';
+import Slide from '../transitions/Slide';
 
 /**
  * An item that goes in lists.
@@ -32,7 +33,7 @@ describe('<Drawer>', () => {
 
     const slide = wrapper.childAt(0);
     assert.strictEqual(
-      slide.length === 1 && slide.is('Slide'),
+      slide.length === 1 && slide.is(Slide),
       true,
       'immediate wrapper child should be Slide'
     );
@@ -58,7 +59,7 @@ describe('<Drawer>', () => {
     const wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>);
 
     const modal = wrapper;
-    const slide = modal.find('Slide');
+    const slide = modal.find(Slide);
 
     assert.strictEqual(modal.prop('show'), false, 'should not show the modal');
     assert.strictEqual(slide.prop('in'), false, 'should not transition in');
@@ -73,19 +74,19 @@ describe('<Drawer>', () => {
 
     it('should start closed', () => {
       assert.strictEqual(wrapper.prop('show'), false, 'should not show the modal');
-      assert.strictEqual(wrapper.find('Slide').prop('in'), false, 'should not transition in');
+      assert.strictEqual(wrapper.find(Slide).prop('in'), false, 'should not transition in');
     });
 
     it('should open', () => {
       wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.prop('show'), true, 'should show the modal');
-      assert.strictEqual(wrapper.find('Slide').prop('in'), true, 'should transition in');
+      assert.strictEqual(wrapper.find(Slide).prop('in'), true, 'should transition in');
     });
 
     it('should close', () => {
       wrapper.setProps({ open: false });
       assert.strictEqual(wrapper.prop('show'), false, 'should not show the modal');
-      assert.strictEqual(wrapper.find('Slide').prop('in'), false, 'should not transition in');
+      assert.strictEqual(wrapper.find(Slide).prop('in'), false, 'should not transition in');
     });
   });
 
@@ -104,7 +105,7 @@ describe('<Drawer>', () => {
     it('should render Slide > Paper inside the div', () => {
       const slide = wrapper.childAt(0);
       assert.strictEqual(
-        slide.length === 1 && slide.is('Slide'),
+        slide.length === 1 && slide.is(Slide),
         true,
         'immediate wrapper child should be Slide'
       );
@@ -118,18 +119,33 @@ describe('<Drawer>', () => {
     });
   });
 
-  describe('getSlideDirection', () => {
+  describe('slide direction', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>);
+      wrapper = shallow(<Drawer />);
     });
 
     it('should return the opposing slide direction', () => {
-      assert.strictEqual(wrapper.instance().getSlideDirection('left'), 'right');
-      assert.strictEqual(wrapper.instance().getSlideDirection('right'), 'left');
-      assert.strictEqual(wrapper.instance().getSlideDirection('top'), 'down');
-      assert.strictEqual(wrapper.instance().getSlideDirection('bottom'), 'up');
+      wrapper.setProps({
+        anchor: 'left',
+      });
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
+
+      wrapper.setProps({
+        anchor: 'right',
+      });
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
+
+      wrapper.setProps({
+        anchor: 'top',
+      });
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'down');
+
+      wrapper.setProps({
+        anchor: 'bottom',
+      });
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
   });
 });

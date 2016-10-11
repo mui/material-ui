@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('TableHead', (theme) => {
       color: theme.palette.text.secondary,
     },
   };
-}, { index: 15 });
+});
 
 /**
  * A material table head.
@@ -42,8 +42,12 @@ export default class TableHead extends Component {
 
   static childContextTypes = { table: PropTypes.object };
 
-  getChildContext() {
-    return { table: { head: true } };
+  getChildContext() { // eslint-disable-line class-methods-use-this
+    return {
+      table: {
+        head: true,
+      },
+    };
   }
 
   render() {

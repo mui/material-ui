@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  *
  * https://github.com/facebook/react/blob/master/scripts/babel/transform-object-assign-require.js

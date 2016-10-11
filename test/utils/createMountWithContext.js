@@ -7,7 +7,17 @@ import { createStyleManager } from 'jss-theme-reactor';
 import { PropTypes } from 'react';
 import { mount as enzymeMount } from 'enzyme';
 
-export default function createMountWithContext(mount = enzymeMount, props = {}) {
+function cleanStyles() {
+  const head = window.document.head;
+  const length = head.children.length;
+  for (let i = length - 1; i >= 0; i -= 1) {
+    if (head.children[i].tagName.toLowerCase() === 'style') {
+      head.removeChild(head.children[i]);
+    }
+  }
+}
+
+export default function createMountWithContext(mount = enzymeMount) {
   cleanStyles();
 
   const attachTo = window.document.createElement('div');
@@ -40,14 +50,4 @@ export default function createMountWithContext(mount = enzymeMount, props = {}) 
   };
 
   return mountWithContext;
-}
-
-function cleanStyles() {
-  const head = window.document.head;
-  const length = head.children.length;
-  for (let i = length - 1; i >= 0; i--) {
-    if (head.children[i].tagName.toLowerCase() === 'style') {
-      head.removeChild(head.children[i]);
-    }
-  }
 }

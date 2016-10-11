@@ -138,7 +138,7 @@ describe('<Popover>', () => {
         assert.strictEqual(element.style.opacity, 0, 'should be transparent');
         assert.strictEqual(
           element.style.transform,
-          wrapper.instance().getScale(0.75),
+          Popover.getScale(0.75),
           'should have the starting scale'
         );
         assert.strictEqual(
@@ -179,7 +179,7 @@ describe('<Popover>', () => {
         assert.strictEqual(element.style.opacity, 1, 'should be visible');
         assert.strictEqual(
           element.style.transform,
-          wrapper.instance().getScale(1),
+          Popover.getScale(1),
           'should have the full scale'
         );
       });
@@ -205,7 +205,7 @@ describe('<Popover>', () => {
         assert.strictEqual(element.style.opacity, 0, 'should be transparent');
         assert.strictEqual(
           element.style.transform,
-          wrapper.instance().getScale(0.75),
+          Popover.getScale(0.75),
           'should have the exit scale'
         );
       });

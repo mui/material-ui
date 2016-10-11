@@ -35,11 +35,16 @@ const globalStyleSheet = createStyleSheet('global', (theme) => ({
   p: {
     lineHeight: '1.6',
   },
+  img: {
+    maxWidth: '100%',
+    height: 'auto',
+    width: 'auto',
+  },
 }), { named: false });
 
 const styleSheet = createStyleSheet('AppFrame', (theme) => {
   return {
-    root: {
+    appFrame: {
       display: 'flex',
       alignItems: 'stretch',
       minHeight: '100vh',
@@ -143,7 +148,7 @@ class AppFrame extends Component {
 
   getTitle() {
     const { routes } = this.props;
-    for (let i = routes.length - 1; i >= 0; i--) {
+    for (let i = routes.length - 1; i >= 0; i -= 1) {
       if (routes[i].hasOwnProperty('title')) {
         return routes[i].title;
       }
@@ -153,7 +158,7 @@ class AppFrame extends Component {
 
   getCurrentPath() {
     const { routes } = this.props;
-    for (let i = routes.length - 1; i >= 0; i--) {
+    for (let i = routes.length - 1; i >= 0; i -= 1) {
       if (routes[i].hasOwnProperty('path')) {
         return routes[i].path;
       }
@@ -178,15 +183,15 @@ class AppFrame extends Component {
     }
 
     return (
-      <div className={classes.root}>
+      <div className={classes.appFrame}>
         <AppBar className={appBarClassName}>
           <Toolbar>
-            <IconButton onClick={this.handleDrawerToggle} className={navIconClassName}>
+            <IconButton contrast onClick={this.handleDrawerToggle} className={navIconClassName}>
               menu
             </IconButton>
             <Text className={classes.title} type="title">{title}</Text>
             <div className={classes.grow} />
-            <IconButton onClick={this.handleToggleShade} className={classes.toggleShade}>
+            <IconButton contrast onClick={this.handleToggleShade} className={classes.toggleShade}>
               lightbulb_outline
             </IconButton>
           </Toolbar>

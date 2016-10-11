@@ -2,8 +2,6 @@
 /* eslint-disable no-console */
 const nodemon = require('nodemon');
 
-module.exports = watchMochaTests;
-
 function watchMochaTests(args = []) {
   nodemon({
     args: args.concat(['||', 'true']),
@@ -21,3 +19,5 @@ function watchMochaTests(args = []) {
     console.log('Test restarted due to: ', files);
   });
 }
+
+module.exports = watchMochaTests;

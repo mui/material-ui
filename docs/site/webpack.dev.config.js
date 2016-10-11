@@ -34,6 +34,11 @@ module.exports = {
         include: /assets\/images/,
       },
       {
+        test: /\.(jpg|gif|png)$/,
+        loader: 'file!img',
+        include: /assets\/images/,
+      },
+      {
         test: /\.md$/,
         loader: 'raw',
       },

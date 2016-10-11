@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
       color: theme.palette.text.secondary,
     },
   };
-}, { index: 10 });
+});
 
 export default function ListItemText(props, context) {
   const {

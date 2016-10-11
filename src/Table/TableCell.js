@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import { createElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -35,7 +35,7 @@ export const styleSheet = createStyleSheet('TableCell', (theme) => {
     },
     footer: {},
   };
-}, { index: 15 });
+});
 
 /**
  * A material table cell.
@@ -70,7 +70,7 @@ export default function TableCell(props, context) {
     [classes.footer]: table && table.footer,
   }, classNameProp);
 
-  return React.createElement(component, {
+  return createElement(component, {
     className,
     ...other,
   }, children);

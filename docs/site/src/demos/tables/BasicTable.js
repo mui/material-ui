@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet('BasicTable', () => ({
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
-  id++;
+  id += 1;
   return { id, name, calories, fat, carbs, protein };
 }
 

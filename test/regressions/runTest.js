@@ -1,14 +1,9 @@
-/* eslint-disable flowtype/require-valid-file-annotation,no-console */
+// @flow weak
+
 const path = require('path');
 const glob = require('glob');
 
-module.exports = function runTest(testFn) {
-  function reduceTests(res, n) {
-    const testPath = n.replace(/^.*?tests\/(.*).js$/i, '$1');
-    res[testPath] = tests(testPath);
-    return res;
-  }
-
+function runTest(testFn) {
   function tests(testPath) {
     return function regressions(browser) {
       browser
@@ -20,7 +15,14 @@ module.exports = function runTest(testFn) {
     };
   }
 
-  return glob.sync(path.resolve(__dirname, 'site/src/tests/**/*.js'))
+  function reduceTests(res, n) {
+    const testPath = n.replace(/^.*?tests\/(.*).js$/i, '$1');
+    res[testPath] = tests(testPath);
+    return res;
+  }
+
+  return glob
+    .sync(path.resolve(__dirname, 'site/src/tests/**/*.js'))
     .reduce(reduceTests, {
       beforeEach(browser) {
         browser
@@ -31,4 +33,6 @@ module.exports = function runTest(testFn) {
         browser.end();
       },
     });
-};
+}
+
+module.exports = runTest;
