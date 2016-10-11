@@ -15,33 +15,33 @@ export default class LabelBottomNavigation extends Component {
     selectedIndex: 0,
   };
 
-  select = (index) => this.setState({ selectedIndex: index });
+  handleChangeIndex = (index) => this.setState({ selectedIndex: index });
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     const { selectedIndex } = this.state;
     return (
       <div className={classes.row}>
-        <BottomNavigation selectedIndex={selectedIndex} showLabel={false}>
+        <BottomNavigation
+          selectedIndex={selectedIndex}
+          onChangeIndex={this.handleChangeIndex}
+          showLabel={false}
+        >
           <BottomNavigationButton
             label="Recents"
             icon={<span className="material-icons">restore</span>}
-            onClick={() => this.select(0)}
           />
           <BottomNavigationButton
             label="Favorites"
             icon={<span className="material-icons">favorite</span>}
-            onClick={() => this.select(1)}
           />
           <BottomNavigationButton
             label="Nearby"
             icon={<span className="material-icons">location_on</span>}
-            onClick={() => this.select(2)}
           />
           <BottomNavigationButton
             label="Folder"
             icon={<span className="material-icons">folder</span>}
-            onClick={() => this.select(3)}
           />
         </BottomNavigation>
       </div>

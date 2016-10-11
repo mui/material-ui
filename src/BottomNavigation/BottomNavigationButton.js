@@ -5,7 +5,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
-export const styleSheet = createStyleSheet('BottomNavigationItem', (theme) => {
+export const styleSheet = createStyleSheet('BottomNavigationButton', (theme) => {
   const { palette, typography, transitions } = theme;
 
   return {
@@ -45,9 +45,9 @@ export const styleSheet = createStyleSheet('BottomNavigationItem', (theme) => {
       display: 'block',
     },
   };
-}, { index: 5 });
+});
 
-export default function BottomNavigationItem(props, context) {
+export default function BottomNavigationButton(props, context) {
   const {
     label,
     icon: iconProp,
@@ -79,7 +79,7 @@ export default function BottomNavigationItem(props, context) {
   );
 }
 
-BottomNavigationItem.propTypes = {
+BottomNavigationButton.propTypes = {
   className: PropTypes.string,
   label: PropTypes.node,
   icon: PropTypes.node,
@@ -87,6 +87,6 @@ BottomNavigationItem.propTypes = {
   showLabel: PropTypes.bool,
 };
 
-BottomNavigationItem.contextTypes = {
+BottomNavigationButton.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };

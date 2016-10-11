@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('BottomNavigation', (theme) => {
       backgroundColor: theme.palette.background.paper,
     },
   };
-}, { index: 5 });
+});
 
 export default function BottomNavigation(props, context) {
   const {
@@ -21,6 +21,7 @@ export default function BottomNavigation(props, context) {
     className: classNameProp,
     selectedIndex,
     showLabel,
+    onChangeIndex,
     ...other,
   } = props;
   const classes = context.styleManager.render(styleSheet);
@@ -30,6 +31,7 @@ export default function BottomNavigation(props, context) {
     return cloneElement(child, {
       selected: index === selectedIndex,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabel,
+      onClick: onChangeIndex.bind(null, index),
     });
   });
 
@@ -42,6 +44,7 @@ BottomNavigation.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   selectedIndex: PropTypes.number,
+  onChangeIndex: PropTypes.func.isRequired,
   showLabel: PropTypes.bool,
 };
 
