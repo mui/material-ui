@@ -4,6 +4,8 @@ import React from 'react';
 import {assert} from 'chai';
 import {shallow, mount} from 'enzyme';
 import Popover from './Popover';
+import PopoverAnimationDefault from './PopoverAnimationDefault';
+import Paper from '../Paper';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Popover />', () => {
@@ -37,6 +39,24 @@ describe('<Popover />', () => {
          // Wait for the end of the throttle. Makes sure we don't crash.
         done();
       }, 100);
+    });
+  });
+
+  describe('prop: animated', () => {
+    it('should use a Paper when animated if false', () => {
+      const wrapper = shallowWithContext(<Popover open={true} animated={false} />);
+      const Layer = () => wrapper.instance().renderLayer();
+      const layerWrapper = shallowWithContext(<Layer />);
+
+      assert.strictEqual(layerWrapper.find(Paper).length, 1);
+    });
+
+    it('should use an animation when animated if true', () => {
+      const wrapper = shallowWithContext(<Popover open={true} animated={true} />);
+      const Layer = () => wrapper.instance().renderLayer();
+      const layerWrapper = shallowWithContext(<Layer />);
+
+      assert.strictEqual(layerWrapper.find(PopoverAnimationDefault).length, 1);
     });
   });
 });

@@ -176,28 +176,47 @@ class Popover extends Component {
 
   renderLayer = () => {
     const {
-      animated, // eslint-disable-line no-unused-vars
+      animated,
       animation,
+      anchorEl, // eslint-disable-line no-unused-vars
+      anchorOrigin, // eslint-disable-line no-unused-vars
+      autoCloseWhenOffScreen, // eslint-disable-line no-unused-vars
+      canAutoPosition, // eslint-disable-line no-unused-vars
       children,
+      onRequestClose, // eslint-disable-line no-unused-vars
       style,
+      targetOrigin,
+      useLayerForClickAway, // eslint-disable-line no-unused-vars
       ...other,
     } = this.props;
 
-    let Animation = animation || PopoverAnimationDefault;
     let styleRoot = style;
 
-    if (!Animation) {
-      Animation = Paper;
+    if (!animated) {
       styleRoot = {
         position: 'fixed',
       };
+
       if (!this.state.open) {
         return null;
       }
+
+      return (
+        <Paper style={Object.assign({}, styleRoot, style)} {...other}>
+          {children}
+        </Paper>
+      );
     }
 
+    const Animation = animation || PopoverAnimationDefault;
+
     return (
-      <Animation {...other} style={styleRoot} open={this.state.open && !this.state.closing}>
+      <Animation
+        targetOrigin={targetOrigin}
+        style={styleRoot}
+        {...other}
+        open={this.state.open && !this.state.closing}
+      >
         {children}
       </Animation>
     );
