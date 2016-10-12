@@ -15,8 +15,8 @@ const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(docum
 
 class ClickAwayListener extends Component {
   static propTypes = {
-    children: PropTypes.node,
-    onClickAway: PropTypes.any,
+    children: PropTypes.element,
+    onClickAway: PropTypes.func,
   };
 
   componentDidMount() {

@@ -218,7 +218,7 @@ class Snackbar extends Component {
     const styles = getStyles(this.props, this.context, this.state);
 
     return (
-      <ClickAwayListener onClickAway={open && this.componentClickAway}>
+      <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
         <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
           <SnackbarBody
             action={action}
