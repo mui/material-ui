@@ -35,7 +35,7 @@ function getStyles(props, context) {
       width: width,
     },
     selectedMenuItem: {
-      color: muiTheme.baseTheme.palette.accent1Color,
+      color: muiTheme.menuItem.selectedTextColor,
     },
   };
 
