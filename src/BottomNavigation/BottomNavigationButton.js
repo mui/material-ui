@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { PropTypes, cloneElement } from 'react';
+import React, { PropTypes, cloneElement, isValidElement } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -51,9 +51,11 @@ export default function BottomNavigationButton(props, context) {
   const {
     label,
     icon: iconProp,
+    index,
     selected,
     className: classNameProp,
     showLabel: showLabelProp,
+    onChangeIndex,
     ...other,
   } = props;
   const classes = context.styleManager.render(styleSheet);
@@ -62,17 +64,22 @@ export default function BottomNavigationButton(props, context) {
     [classes.selectedIconOnly]: !showLabelProp && !selected,
   }, classNameProp);
   const classNameIcon = classNames(classes.icon,
-    iconProp && typeof iconProp !== 'string' ? iconProp.props.className : null);
+    isValidElement(iconProp) ? iconProp.props.className : null);
   const classNameLabel = classNames(classes.label, {
     [classes.selectedLabel]: selected,
     [classes.hiddenLabel]: !showLabelProp && !selected,
   });
-  const icon = typeof iconProp === 'string' ?
-    <span className="material-icons">{iconProp}</span> :
-    cloneElement(iconProp, { className: classNameIcon });
+  const icon = isValidElement(iconProp) ?
+    cloneElement(iconProp, { className: classNameIcon }) :
+      <span className="material-icons">{iconProp}</span>;
+  const handleChangeIndex = () => {
+    if (onChangeIndex) {
+      onChangeIndex(index);
+    }
+  };
 
   return (
-    <ButtonBase className={className} {...other}>
+    <ButtonBase className={className} {...other} onClick={handleChangeIndex}>
       {icon}
       <div className={classNameLabel}>{label}</div>
     </ButtonBase>
@@ -81,8 +88,10 @@ export default function BottomNavigationButton(props, context) {
 
 BottomNavigationButton.propTypes = {
   className: PropTypes.string,
-  label: PropTypes.node,
   icon: PropTypes.node,
+  index: PropTypes.number,
+  label: PropTypes.node,
+  onChangeIndex: PropTypes.func,
   selected: PropTypes.bool,
   showLabel: PropTypes.bool,
 };

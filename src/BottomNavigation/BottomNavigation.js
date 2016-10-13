@@ -31,7 +31,8 @@ export default function BottomNavigation(props, context) {
     return cloneElement(child, {
       selected: index === selectedIndex,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabel,
-      onClick: onChangeIndex.bind(null, index),
+      index,
+      onChangeIndex,
     });
   });
 
@@ -41,10 +42,10 @@ export default function BottomNavigation(props, context) {
 }
 
 BottomNavigation.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  onChangeIndex: PropTypes.func,
   selectedIndex: PropTypes.number,
-  onChangeIndex: PropTypes.func.isRequired,
   showLabel: PropTypes.bool,
 };
 
