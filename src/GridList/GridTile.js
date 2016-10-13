@@ -119,12 +119,16 @@ class GridTile extends Component {
      * Position of the title bar (container of title, subtitle and action icon).
      */
     titlePosition: PropTypes.oneOf(['top', 'bottom']),
+    /**
+     * Style used for style of title.
+     */
+    titleStyle: PropTypes.object,
   };
 
   static defaultProps = {
     titlePosition: 'bottom',
     titleBackground: 'rgba(0, 0, 0, 0.4)',
-    titleColor: 'rgb(256, 256, 256)',
+    titleStyle: {},
     actionPosition: 'right',
     cols: 1,
     rows: 1,
@@ -177,7 +181,7 @@ class GridTile extends Component {
       subtitle,
       titlePosition, // eslint-disable-line no-unused-vars
       titleBackground, // eslint-disable-line no-unused-vars
-      titleColor, // eslint-disable-line no-unused-vars
+      titleStyle, // eslint-disable-line no-unused-vars
       actionIcon, // eslint-disable-line no-unused-vars
       actionPosition, // eslint-disable-line no-unused-vars
       style,
@@ -189,6 +193,7 @@ class GridTile extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const mergedRootStyles = Object.assign(styles.root, style);
+    const mergedTitleStyles = Object.assign(styles.title, titleStyle);
 
     let titleBar = null;
 
@@ -224,6 +229,7 @@ class GridTile extends Component {
 
     const containerProps = {
       style: prepareStyles(mergedRootStyles),
+      titleStyle: prepareStyles(mergedTitleStyles),
       ...other,
     };
 

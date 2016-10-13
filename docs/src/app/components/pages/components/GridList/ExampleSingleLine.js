@@ -14,6 +14,11 @@ const styles = {
     flexWrap: 'nowrap',
     overflowX: 'auto',
   },
+  titleStyle: {
+    color: 'rgb(0, 188, 212)',
+    fontSize: '20px',
+    textAlign: 'center',
+  },
 };
 
 const tilesData = [
@@ -70,8 +75,8 @@ const GridListExampleSingleLine = () => (
           key={tile.img}
           title={tile.title}
           actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
-          titleColor="rgb(0, 188, 212)"
-          titleBackground="rgba(256,256,256, 0.8)"
+          titleBackground="rgba(0, 0, 0, 0.8)"
+          titleStyle={styles.titleStyle}
         >
           <img src={tile.img} />
         </GridTile>
