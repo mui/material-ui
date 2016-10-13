@@ -12,6 +12,8 @@ function getStyles(props, context) {
     desktop,
     maxHeight,
     width,
+    labelStyle,
+    labelStyleSelected,
   } = props;
 
   const {muiTheme} = context;
@@ -78,6 +80,14 @@ class Menu extends Component {
      * height.
      */
     maxHeight: PropTypes.number,
+     /**
+     * Override the inline-styles of selected menu items.
+     */
+    menuItemSelectedStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of menu items.
+     */
+    menuItemStyle: PropTypes.object,
     /**
      * If true, `value` must be an array and the menu will support
      * multiple selections.
@@ -111,10 +121,6 @@ class Menu extends Component {
     onItemTouchTap: PropTypes.func,
     /** @ignore */
     onKeyDown: PropTypes.func,
-    /**
-     * Override the inline-styles of selected menu items.
-     */
-    selectedMenuItemStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
@@ -233,17 +239,18 @@ class Menu extends Component {
   cloneMenuItem(child, childIndex, styles, index) {
     const {
       desktop,
-      selectedMenuItemStyle,
+      menuItemStyle,
+      menuItemSelectedStyle,
     } = this.props;
 
     const selected = this.isChildSelected(child, this.props);
     let selectedChildrenStyles = {};
 
     if (selected) {
-      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, selectedMenuItemStyle);
+      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, menuItemSelectedStyle);
     }
 
-    const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
+    const mergedChildrenStyles = Object.assign({}, child.props.style, menuItemStyle, selectedChildrenStyles);
 
     const isFocused = childIndex === this.state.focusIndex;
     let focusState = 'none';
@@ -450,7 +457,7 @@ class Menu extends Component {
       multiple, // eslint-disable-line no-unused-vars
       onItemTouchTap, // eslint-disable-line no-unused-vars
       onEscKeyDown, // eslint-disable-line no-unused-vars
-      selectedMenuItemStyle, // eslint-disable-line no-unused-vars
+      menuItemSelectedStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars

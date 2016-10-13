@@ -119,6 +119,14 @@ class DropDownMenu extends Component {
      */
     maxHeight: PropTypes.number,
     /**
+     * Override the inline-styles of selected menu items.
+     */
+    menuItemSelectedStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of menu items.
+     */
+    menuItemStyle: PropTypes.object,
+    /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
      */
     menuStyle: PropTypes.object,
@@ -253,6 +261,8 @@ class DropDownMenu extends Component {
       maxHeight,
       menuStyle: menuStyleProp,
       openImmediately, // eslint-disable-line no-unused-vars
+      menuItemStyle,
+      menuItemSelectedStyle,
       style,
       underlineStyle,
       value,
@@ -315,6 +325,10 @@ class DropDownMenu extends Component {
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}
+            menuItemStyle={menuItemStyle}
+            menuItemSelectedStyle={menuItemSelectedStyle}
+            style={menuStyle}
+            value={value}
           >
             {children}
           </Menu>

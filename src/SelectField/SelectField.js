@@ -88,6 +88,14 @@ class SelectField extends Component {
      */
     maxHeight: PropTypes.number,
     /**
+     * Override the inline-styles of selected menu items.
+     */
+    menuItemSelectedStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of menu items.
+     */
+    menuItemStyle: PropTypes.object,
+    /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     menuStyle: PropTypes.object,
@@ -148,6 +156,8 @@ class SelectField extends Component {
       id,
       underlineDisabledStyle,
       underlineFocusStyle,
+      menuItemStyle,
+      menuItemSelectedStyle,
       underlineStyle,
       errorStyle,
       disabled,
@@ -194,6 +204,8 @@ class SelectField extends Component {
           style={Object.assign(styles.dropDownMenu, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
+          menuItemStyle={menuItemStyle}
+          menuItemSelectedStyle={menuItemSelectedStyle}
           underlineStyle={styles.hideDropDownUnderline}
           autoWidth={autoWidth}
           value={value}
