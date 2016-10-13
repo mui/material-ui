@@ -14,6 +14,7 @@ export const styleSheet = createStyleSheet('ListSubheader', (theme) => {
       paddingLeft: 16,
       width: '100%',
       color: palette.text.secondary,
+      fontFamily: typography.fontFamily,
       fontWeight: typography.fontWeightMedium,
       fontSize: typography.fontSize,
     },
@@ -46,14 +47,27 @@ export default function ListSubheader(props, context) {
 }
 
 ListSubheader.propTypes = {
+  /**
+   * The content of the ListSubheader.
+   */
   children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * If true, the ListSubheader will be indented by 72px.
+   */
   inset: PropTypes.bool,
+  /**
+   * If true, the ListSubheader will have the theme primary color.
+   */
   primary: PropTypes.bool,
 };
 
 ListSubheader.defaultProps = {
   inset: false,
+  primary: false,
 };
 
 ListSubheader.contextTypes = {
