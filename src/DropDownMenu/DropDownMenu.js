@@ -327,8 +327,6 @@ class DropDownMenu extends Component {
             onItemTouchTap={this.handleItemTouchTap}
             menuItemStyle={menuItemStyle}
             menuItemSelectedStyle={menuItemSelectedStyle}
-            style={menuStyle}
-            value={value}
           >
             {children}
           </Menu>

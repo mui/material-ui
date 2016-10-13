@@ -12,8 +12,6 @@ function getStyles(props, context) {
     desktop,
     maxHeight,
     width,
-    labelStyle,
-    labelStyleSelected,
   } = props;
 
   const {muiTheme} = context;
@@ -458,6 +456,7 @@ class Menu extends Component {
       onItemTouchTap, // eslint-disable-line no-unused-vars
       onEscKeyDown, // eslint-disable-line no-unused-vars
       menuItemSelectedStyle, // eslint-disable-line no-unused-vars
+      menuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
