@@ -42,10 +42,25 @@ export default function BottomNavigation(props, context) {
 }
 
 BottomNavigation.propTypes = {
+  /**
+   * The content of the BottomNavigation.
+   */
   children: PropTypes.node.isRequired,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * Function called when index change.
+   */
   onChangeIndex: PropTypes.func,
+  /**
+   * The index of the currently selected navigation item.
+   */
   selectedIndex: PropTypes.number,
+  /**
+   * If true, the BottomNavigationButton will show his label.
+   */
   showLabel: PropTypes.bool,
 };
 

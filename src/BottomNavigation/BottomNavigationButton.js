@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { PropTypes, cloneElement, isValidElement } from 'react';
+import React, { Component, PropTypes, cloneElement, isValidElement } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -47,52 +47,68 @@ export const styleSheet = createStyleSheet('BottomNavigationButton', (theme) => 
   };
 });
 
-export default function BottomNavigationButton(props, context) {
-  const {
-    label,
-    icon: iconProp,
-    index,
-    selected,
-    className: classNameProp,
-    showLabel: showLabelProp,
-    onChangeIndex,
-    ...other,
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.selected]: selected,
-    [classes.selectedIconOnly]: !showLabelProp && !selected,
-  }, classNameProp);
-  const classNameIcon = classNames(classes.icon,
-    isValidElement(iconProp) ? iconProp.props.className : null);
-  const classNameLabel = classNames(classes.label, {
-    [classes.selectedLabel]: selected,
-    [classes.hiddenLabel]: !showLabelProp && !selected,
-  });
-  const icon = isValidElement(iconProp) ?
-    cloneElement(iconProp, { className: classNameIcon }) :
-      <span className="material-icons">{iconProp}</span>;
-  const handleChangeIndex = () => {
+export default class BottomNavigationButton extends Component {
+  handleChangeIndex = () => {
+    const { onChangeIndex, index } = this.props;
     if (onChangeIndex) {
       onChangeIndex(index);
     }
   };
 
-  return (
-    <ButtonBase className={className} {...other} onClick={handleChangeIndex}>
-      {icon}
-      <div className={classNameLabel}>{label}</div>
-    </ButtonBase>
-  );
+  render() {
+    const {
+      label,
+      icon: iconProp,
+      selected,
+      className: classNameProp,
+      showLabel: showLabelProp,
+      onChangeIndex, // eslint-disable-line no-unused-vars
+      index, // eslint-disable-line no-unused-vars
+      ...other,
+    } = this.props;
+    const classes = this.context.styleManager.render(styleSheet);
+    const className = classNames(classes.root, {
+      [classes.selected]: selected,
+      [classes.selectedIconOnly]: !showLabelProp && !selected,
+    }, classNameProp);
+    const classNameIcon = classNames(classes.icon,
+      isValidElement(iconProp) ? iconProp.props.className : null);
+    const classNameLabel = classNames(classes.label, {
+      [classes.selectedLabel]: selected,
+      [classes.hiddenLabel]: !showLabelProp && !selected,
+    });
+    const icon = isValidElement(iconProp) ?
+      cloneElement(iconProp, { className: classNameIcon }) :
+        <span className="material-icons">{iconProp}</span>;
+
+    return (
+      <ButtonBase className={className} {...other} onClick={this.handleChangeIndex}>
+        {icon}
+        <div className={classNameLabel}>{label}</div>
+      </ButtonBase>
+    );
+  }
 }
 
 BottomNavigationButton.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * The icon element. If a string is passed, it will be used as a material icon font ligature
+   */
   icon: PropTypes.node,
   index: PropTypes.number,
+  /**
+   * The label element.
+   */
   label: PropTypes.node,
   onChangeIndex: PropTypes.func,
   selected: PropTypes.bool,
+  /**
+   * If true, the BottomNavigationButton will show his label.
+   */
   showLabel: PropTypes.bool,
 };
 
