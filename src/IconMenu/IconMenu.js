@@ -265,8 +265,9 @@ class IconMenu extends Component {
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
-    warning(iconButtonElement.type.muiName === 'IconButton',
-      '<IconMenu /> expects an <IconButton /> to be passed as the `iconButtonElement` property.');
+    warning(iconButtonElement.type.muiName !== 'SvgIcon',
+      `Material-UI: You shoud not provide an <SvgIcon /> to the 'iconButtonElement' property of <IconMenu />.
+You should wrapped it with an <IconButton />.`);
 
     const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: onKeyboardFocus,
