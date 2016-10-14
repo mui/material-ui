@@ -65,7 +65,7 @@ export function getStyles(props, context) {
 class AppBar extends Component {
   constructor(props) {
   super(props);
-  this.state = {showTextField: false, clearText : false };
+  this.state = {clearText : false };
 
 }
   static muiName = 'AppBar';
@@ -189,11 +189,8 @@ class AppBar extends Component {
     }
   };
   toggleTextField = () => {
-    this.setState({
-      showTextField : !this.state.showTextField
-    },function(){
-      this.props.getStatus(this.state.showTextField)
-    })
+  this.props.getStatus(!this.props.showTextField)
+
   }
 
   onCancel = () => {
@@ -342,10 +339,10 @@ class AppBar extends Component {
     if(showSearchInput){
     searchInput = (
   	    		<div style={{"width":"100%","position":"relative"}}>
-  	    		 {this.state.showTextField ? <AutoComplete dataSource={this.props.dataSource} hintText={this.props.searchHintText}  underlineStyle={this.props.searchUnderlineStyle}
+  	    		 {this.props.showTextField ? <AutoComplete dataSource={this.props.dataSource} hintText={this.props.searchHintText}  underlineStyle={this.props.searchUnderlineStyle}
               hintStyle={this.props.hintStyle} clearInput={this.state.clearText}   textFieldStyle={this.props.textFieldStyle} inputStyle={this.props.inputStyle} onNewRequest={this.props.onNewRequest} /> : null}
 
-  	    		{ !this.state.showTextField ? <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle} >search</i>  :
+  	    		{ !this.props.showTextField ? <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle} >search</i>  :
   		    	 <i className="material-icons" onClick={this.onCancel} style={this.props.searchIconStyle}>cancel</i>		}
   		    	</div>
     )
