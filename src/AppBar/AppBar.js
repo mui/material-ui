@@ -4,7 +4,7 @@ import NavigationMenu from '../svg-icons/navigation/menu';
 import Paper from '../Paper';
 import propTypes from '../utils/propTypes';
 import warning from 'warning';
-import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
 
 export function getStyles(props, context) {
   const {
@@ -65,7 +65,7 @@ export function getStyles(props, context) {
 class AppBar extends Component {
   constructor(props) {
   super(props);
-  this.state = {showTextField: false};
+  this.state = {showTextField: false, clearText : false };
 
 }
   static muiName = 'AppBar';
@@ -153,6 +153,7 @@ class AppBar extends Component {
     title: '',
     zDepth: 1,
     showSearchInput : false,
+    showSearchIcon : false,
     searchHintStyle : propTypes.searchHintStyle,
     searchUnderlineStyle : propTypes.searchUnderlineStyle,
     searchUnderlineFocusStyle : propTypes.searchUnderlineFocusStyle
@@ -193,7 +194,16 @@ class AppBar extends Component {
     },function(){
       this.props.getStatus(this.state.showTextField)
     })
+  }
 
+  onCancel = () => {
+    this.setState({
+      clearText : true
+    },function(){
+      this.setState({
+      clearText : false
+      })
+    })
   }
   render() {
     const {
@@ -214,6 +224,7 @@ class AppBar extends Component {
       zDepth,
       children,
       showSearchInput,
+      showSearchIcon,
       ...other,
     } = this.props;
 
@@ -223,6 +234,7 @@ class AppBar extends Component {
     let menuElementLeft;
     let menuElementRight;
     let searchInput;
+    let searchIcon;
 
     // If the title is a string, wrap in an h1 tag.
     // If not, wrap in a div tag.
@@ -330,13 +342,21 @@ class AppBar extends Component {
     if(showSearchInput){
     searchInput = (
   	    		<div style={{"width":"100%","position":"relative"}}>
-  	    		 {this.state.showTextField ? <TextField  hintText={this.props.searchHintText}  underlineStyle={this.props.searchUnderlineStyle}
-              hintStyle={this.props.hintStyle} style={this.props.textFieldStyle} inputStyle={this.props.inputStyle} onChange={this.props.handleChange} /> : null}
+  	    		 {this.state.showTextField ? <AutoComplete dataSource={this.props.dataSource} hintText={this.props.searchHintText}  underlineStyle={this.props.searchUnderlineStyle}
+              hintStyle={this.props.hintStyle} clearInput={this.state.clearText}   textFieldStyle={this.props.textFieldStyle} inputStyle={this.props.inputStyle} onNewRequest={this.props.onNewRequest} /> : null}
 
   	    		{ !this.state.showTextField ? <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle} >search</i>  :
-  		    	 <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle}>cancel</i>		}
+  		    	 <i className="material-icons" onClick={this.onCancel} style={this.props.searchIconStyle}>cancel</i>		}
   		    	</div>
     )
+    }
+    if(showSearchIcon){
+
+        searchIcon = (<div style={{"width":"100%","position":"relative"}}>
+        <i className="material-icons" onClick={this.toggleTextField} style={this.props.searchIconStyle} >search</i>
+        </div>
+      )
+
     }
     return (
       <Paper
@@ -349,6 +369,7 @@ class AppBar extends Component {
         {menuElementLeft}
         {titleElement}
         {searchInput}
+        {searchIcon}
         {menuElementRight}
         {children}
       </Paper>
