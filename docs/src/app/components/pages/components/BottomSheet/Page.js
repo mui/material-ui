@@ -24,14 +24,14 @@ const BottomSheetPage = () => {
       <Title render={(previousTitle) => `BottomSheet - ${previousTitle}`} />
       <MarkdownElement text={BottomSheetReadmeText} />
       <CodeExample
-        title="Simple example"
+        title="Modular example"
         description={descriptions.simple}
         code={BottomSheetExampleSimpleCode}
       >
         <BottomSheetExampleSimple />
       </CodeExample>
       <CodeExample
-        title="Example action"
+        title="Persistent with action"
         description={descriptions.action}
         code={BottomSheetExampleActionCode}
       >

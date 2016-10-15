@@ -7,6 +7,8 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 function getStyles(props, context) {
   const {
     open,
+    modal,
+    persistent,
     action,
     width,
   } = props;
@@ -36,20 +38,22 @@ function getStyles(props, context) {
     root: {
       fontFamily: fontFamily,
       backgroundColor: backgroundColor,
-      maxWidth: isSmall ? 'inherit' : 568,
-      minWidth: isSmall ? 'inherit' : 288,
-      width: isSmall ? `calc(100vw - ${desktopGutter * 2}px)` : 'auto',
-      flexGrow: isSmall ? 1 : 0,
+      maxWidth: isSmall && modal ? 'inherit' : '100%',
+      minWidth: isSmall && modal ? 'inherit' : 288,
+      width: isSmall && modal ? `100vw` : modal ? 'auto' : '100vw',
+      flexGrow: isSmall && modal ? 1 : 0,
     },
     content: {
       fontSize: 14,
       color: textColor,
       paddingTop: action ? 16 : 0,
+      paddingRight: isSmall && modal ? 16 : persistent ? 24 : 0,
+      paddingLeft: isSmall && modal ? 16 : persistent ? 24 : 0,
     },
     action: {
       position: 'absolute',
       color: actionColor,
-      right: 16,
+      right: 24,
       top: -29,
       transform: open ?
         'scale(1)' :
@@ -67,6 +71,8 @@ export const BottomSheetBody = (props, context) => {
   const {
     action,
     children,
+    modal,
+    persistent,
     contentStyle,
     open, // eslint-disable-line no-unused-vars
     onActionTouchTap,
@@ -121,6 +127,14 @@ BottomSheetBody.propTypes = {
    * Controls whether the `BottomSheet` is opened or not.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * Controls whether the `BottomSheet` is modular
+   */
+  modal: PropTypes.bool,
+  /**
+   * Controls whether the `BottomSheet` is persistent
+   */
+  persistent: PropTypes.bool,
   /**
    * Override the inline-styles of the root element.
    */

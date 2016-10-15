@@ -13,7 +13,7 @@ export default class BottomSheetExampleSimple extends React.Component {
     super(props);
     this.state = {
       open: false,
-      action: 'favorite',
+      action: 'star',
     };
   }
 
@@ -59,6 +59,7 @@ export default class BottomSheetExampleSimple extends React.Component {
         <BottomSheet
           open={this.state.open}
           action={this.state.action}
+          persistent={true}
           onActionTouchTap={this.handleActionTouchTap}
           onRequestClose={this.handleRequestClose}
         >
@@ -78,6 +79,11 @@ export default class BottomSheetExampleSimple extends React.Component {
               primaryText="aliconnors@example.com"
               secondaryText="Personal"
               leftIcon={<Email />}
+            />
+            <ListItem
+              primaryText="ali_connors@example.com"
+              secondaryText="Work"
+              insetChildren={true}
             />
           </List>
         </BottomSheet>

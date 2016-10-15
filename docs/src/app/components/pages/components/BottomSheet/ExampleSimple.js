@@ -37,6 +37,7 @@ export default class BottomSheetExampleSimple extends React.Component {
         />
         <BottomSheet
           open={this.state.open}
+          modal={true}
           onRequestClose={this.handleRequestClose}
         >
           <List>

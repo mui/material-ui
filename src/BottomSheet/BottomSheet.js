@@ -86,6 +86,14 @@ class BottomSheet extends Component {
      */
     open: PropTypes.bool.isRequired,
     /**
+     * Controls whether the `BottomSheet` is modular
+     */
+    modal: PropTypes.bool,
+    /**
+     * Controls whether the `BottomSheet` is persistent
+     */
+    persistent: PropTypes.bool,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -167,6 +175,8 @@ class BottomSheet extends Component {
     const {
       action,
       children,
+      modal,
+      persistent,
       contentStyle,
       bodyStyle,
       onRequestClose, // eslint-disable-line no-unused-vars
@@ -188,6 +198,8 @@ class BottomSheet extends Component {
             action={action}
             contentStyle={contentStyle}
             open={open}
+            modal={modal}
+            persistent={persistent}
             onActionTouchTap={onActionTouchTap}
             style={bodyStyle}
           >
