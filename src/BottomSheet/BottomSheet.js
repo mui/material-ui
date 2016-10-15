@@ -32,11 +32,11 @@ function getStyles(props, context, state) {
       display: 'flex',
       bottom: 0,
       zIndex: zIndex.bottomSheet,
-      height: state.sheetHeight,
+      maxHeight: '100%',
       visibility: open ? 'visible' : 'hidden',
       transform: open ?
         'translate(-50%, 0)' :
-        `translate(-50%, ${state.sheetHeight}px)`,
+        `translate(-50%, ${desktopSubheaderHeight*6}px)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
     },
@@ -48,8 +48,7 @@ function getStyles(props, context, state) {
       transform: open ?
         'scale(1)' :
         `scale(0)`,
-      transition: `${transitions.easeOut('500ms', 'transform')}, ${
-        transitions.easeOut('500ms', 'visibility')}`,
+      transition: `${transitions.easeOut('500ms', 'transform')}`,
       transitionDelay: '200ms',
     },
   };
@@ -113,8 +112,7 @@ class BottomSheet extends Component {
 
   componentWillMount() {
     this.setState({
-      open: this.props.open,
-      sheetHeight: 'auto'
+      open: this.props.open
     });
   }
 
@@ -126,26 +124,20 @@ class BottomSheet extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.open && nextProps.open) {
-      console.log("open prop changed")
       this.setState({
         open: false,
       });
       clearTimeout(this.timerOneAtTheTimeId);
       this.timerOneAtTheTimeId = setTimeout(() => {
-        console.warn('timerOneAtTheTimeId')
         this.setState({
           open: true,
         });
       }, 400);
     } else {
       const open = nextProps.open;
-
       if (open !== this.props.open){
-        console.log('open', open)
-        console.log('sheetHeight', ReactDOM.findDOMNode(this.refs.sheet).clientHeight)
         this.setState({
           open: open !== null ? open : this.state.open,
-          sheetHeight: open ? ReactDOM.findDOMNode(this.refs.sheet).clientHeight : 0,
         });
       }
     }
@@ -154,27 +146,13 @@ class BottomSheet extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.open !== this.state.open) {
       if (this.state.open) {
-        console.info("componentDidUpdate open: ", prevState.open, this.state.open)
-        console.info("componentDidUpdate sheetHeight: ", prevState.sheetHeight, this.state.sheetHeight)
         this.setTransitionTimer();
-
-      } else {
-        console.info('componentDidUpdate NOT open', prevState.open, this.state.open);
-        console.info('componentDidUpdate sheetHeight', prevState.sheetHeight, this.state.sheetHeight);
-        if (prevState.sheetHeight === this.state.sheetHeight){
-          this.setState({
-            sheetHeight: ReactDOM.findDOMNode(this.refs.sheet).clientHeight
-          })
-        } else {
-           this.setAnimationTimer()
-        }
       }
     }
   }
 
   componentWillUnmount() {
     clearTimeout(this.timerTransitionId);
-    clearTimeout(this.timerAnimationId);
     clearTimeout(this.timerOneAtTheTimeId);
   }
 
@@ -193,26 +171,11 @@ class BottomSheet extends Component {
     }
   };
 
-
   // Timer that controls delay before click-away events are captured (based on when animation completes)
   setTransitionTimer() {
-    // console.warn('setTransitionTimer')
     this.timerTransitionId = setTimeout(() => {
-      console.warn('setTransitionTimer setTimeout')
       this.timerTransitionId = undefined;
     }, 400);
-  }
-
-  // Timer that controls delay to let the sheet animate down, before setting `sheetHeight` back to `auto`
-  setAnimationTimer() {
-    console.warn('setAnimationTimer')
-    this.timerAnimationId = setTimeout(() => {
-      console.warn('setAnimationTimer setTimeout')
-      this.timerAnimationId = undefined;
-      this.setState({
-        sheetHeight: 'auto'
-      })
-    }, 500);
   }
 
   render() {

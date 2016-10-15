@@ -27,7 +27,7 @@ export default class BottomSheetExampleSimple extends React.Component {
     this.setState({
       open: false,
     });
-    alert('Added to favorites');
+    alert('Added to '+this.state.action);
   };
 
   handleChangeAction = (event) => {
@@ -48,7 +48,7 @@ export default class BottomSheetExampleSimple extends React.Component {
       <div>
         <RaisedButton
           onTouchTap={this.handleTouchTap}
-          label="Show contact"
+          label="contact with action"
         />
         <br />
         <TextField
