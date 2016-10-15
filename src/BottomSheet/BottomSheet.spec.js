@@ -13,7 +13,7 @@ describe('<BottomSheet />', () => {
   describe('prop: open', () => {
     it('should be hidden when open is false', () => {
       const wrapper = shallowWithContext(
-        <BottomSheet open={false} message="Message" />
+        <BottomSheet open={false} action="done" />
       );
 
       assert.strictEqual(
@@ -22,56 +22,44 @@ describe('<BottomSheet />', () => {
         'The element should be hidden.'
       );
     });
-
-    it('should be hidden when open is true', () => {
-      const wrapper = shallowWithContext(
-        <BottomSheet open={true} message="Message" />
-      );
-
-      assert.strictEqual(
-        wrapper.find('div').at(0).node.props.style.visibility,
-        'visible',
-        'The element should be hidden.'
-      );
-    });
   });
 
-  it('should show the next message after an update', (done) => {
+  it('should show the next action after an update', (done) => {
     const wrapper = shallowWithContext(
-      <BottomSheet open={true} message="First message" />
+      <BottomSheet open={true} action="favorite"  />
     );
 
     wrapper.setProps({
-      message: 'Second message',
+      action: 'done',
     });
-    assert.strictEqual(wrapper.state('message'), 'First message');
+    assert.strictEqual(wrapper.state('action'), 'favorite');
 
     setTimeout(() => {
-      assert.strictEqual(wrapper.state('message'), 'Second message',
-        'Should take into account the next message');
+      assert.strictEqual(wrapper.state('action'), 'done',
+        'Should take into account the next action');
       done();
     }, 500);
   });
 
-  it('should show the latest message of consecutive updates', (done) => {
+  it('should show the latest action of consecutive updates', (done) => {
     const wrapper = shallowWithContext(
-      <BottomSheet open={false} message="First message" />
+      <BottomSheet open={false} action="favorite" />
     );
 
     wrapper.setProps({
       open: true,
-      message: 'Second message',
+      action: 'done',
     });
-    assert.strictEqual(wrapper.state('message'), 'Second message');
+    assert.strictEqual(wrapper.state('action'), 'done');
     wrapper.setProps({
       open: true,
-      message: 'Third message',
+      action: 'star',
     });
-    assert.strictEqual(wrapper.state('message'), 'Second message');
+    assert.strictEqual(wrapper.state('action'), 'done');
 
     setTimeout(() => {
-      assert.strictEqual(wrapper.state('message'), 'Third message',
-        'Should take into account the latest message');
+      assert.strictEqual(wrapper.state('action'), 'star',
+        'Should take into account the latest action');
       done();
     }, 500);
   });
@@ -80,7 +68,7 @@ describe('<BottomSheet />', () => {
     it('should apply the style on the right element', () => {
       const contentStyle = {};
       const wrapper = shallowWithContext(
-        <BottomSheet open={false} message="" contentStyle={contentStyle} />
+        <BottomSheet open={false} action="" contentStyle={contentStyle} />
       );
 
       assert.strictEqual(

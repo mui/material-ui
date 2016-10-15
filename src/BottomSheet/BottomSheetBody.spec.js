@@ -13,7 +13,7 @@ describe('<BottomSheetBody />', () => {
   describe('props: open', () => {
     it('should be hidden when open is false', () => {
       const wrapper = shallowWithContext(
-        <BottomSheetBody open={false} message="Message" width={SMALL} />
+        <BottomSheetBody open={false} action="done" width={SMALL} />
       );
 
       assert.strictEqual(
@@ -25,7 +25,7 @@ describe('<BottomSheetBody />', () => {
 
     it('should be visible when open is true', () => {
       const wrapper = shallowWithContext(
-        <BottomSheetBody open={true} message="Message" width={SMALL} />
+        <BottomSheetBody open={true} action="done" width={SMALL} />
       );
 
       assert.strictEqual(
