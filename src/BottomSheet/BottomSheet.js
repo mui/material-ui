@@ -4,9 +4,6 @@ import transitions from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import BottomSheetBody from './BottomSheetBody';
 import Paper from '../Paper';
-import FontIcon from 'material-ui/FontIcon';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-
 
 function getStyles(props, context, state) {
   const {
@@ -16,14 +13,12 @@ function getStyles(props, context, state) {
           desktopSubheaderHeight,
         },
       },
-      bottomSheet: {
-        actionColor,
-      },
       zIndex,
     },
   } = context;
 
   const {open} = state;
+  const {action} = props;
 
   const styles = {
     root: {
@@ -39,17 +34,7 @@ function getStyles(props, context, state) {
         `translate(-50%, ${desktopSubheaderHeight*6}px)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
-    },
-    action: {
-      position: 'absolute',
-      color: actionColor,
-      right: 16,
-      top: -29,
-      transform: open ?
-        'scale(1)' :
-        `scale(0)`,
-      transition: `${transitions.easeOut('500ms', 'transform')}`,
-      transitionDelay: '200ms',
+      transitionDelay: !open && action ? '200ms' : '0ms',
     },
   };
 
@@ -196,26 +181,14 @@ class BottomSheet extends Component {
 
     const styles = getStyles(this.props, this.context, this.state);
 
-    const actionButton = action && (
-      <FloatingActionButton
-        zDepth={2}
-        style={styles.action}
-        onTouchTap={onActionTouchTap}
-        disableTouchRipple={true}
-      >
-        <FontIcon className="material-icons">{action}</FontIcon>
-      </FloatingActionButton>
-    );
-
-
     return (
       <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
         <Paper {...other} ref="sheet" rounded={false} style={Object.assign(styles.root, style)}>
-          {actionButton}
           <BottomSheetBody
             action={action}
             contentStyle={contentStyle}
             open={open}
+            onActionTouchTap={onActionTouchTap}
             style={bodyStyle}
           >
             {children}

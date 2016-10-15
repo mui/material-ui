@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import withWidth, {SMALL} from '../utils/withWidth';
+import FontIcon from 'material-ui/FontIcon';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 function getStyles(props, context) {
   const {
@@ -18,6 +20,7 @@ function getStyles(props, context) {
         fontFamily,
       },
       bottomSheet: {
+        actionColor,
         backgroundColor,
         textColor,
       },
@@ -43,6 +46,17 @@ function getStyles(props, context) {
       color: textColor,
       paddingTop: action ? 16 : 0,
     },
+    action: {
+      position: 'absolute',
+      color: actionColor,
+      right: 16,
+      top: -29,
+      transform: open ?
+        'scale(1)' :
+        `scale(0)`,
+      transition: `${transitions.easeOut('500ms', 'transform')}`,
+      transitionDelay: open ? '200ms' : '0ms',
+    },
 
   };
 
@@ -51,9 +65,11 @@ function getStyles(props, context) {
 
 export const BottomSheetBody = (props, context) => {
   const {
+    action,
     children,
     contentStyle,
     open, // eslint-disable-line no-unused-vars
+    onActionTouchTap,
     style,
     ...other,
   } = props;
@@ -61,11 +77,20 @@ export const BottomSheetBody = (props, context) => {
   const {prepareStyles} = context.muiTheme;
   const styles = getStyles(props, context);
 
-
+  const actionButton = action && (
+      <FloatingActionButton
+        zDepth={2}
+        style={styles.action}
+        onTouchTap={onActionTouchTap}
+        disableTouchRipple={true}
+      >
+        <FontIcon className="material-icons">{action}</FontIcon>
+      </FloatingActionButton>
+    );
 
   return (
     <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
-
+      {actionButton}
       <div style={prepareStyles(Object.assign(styles.content, contentStyle))}>
         {children}
       </div>
@@ -86,6 +111,12 @@ BottomSheetBody.propTypes = {
    * Override the inline-styles of the content element.
    */
   contentStyle: PropTypes.object,
+  /**
+   * Fired when the action button is touchtapped.
+   *
+   * @param {object} event Action button event.
+   */
+  onActionTouchTap: PropTypes.func,
   /**
    * Controls whether the `BottomSheet` is opened or not.
    */
