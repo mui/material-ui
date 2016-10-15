@@ -35,7 +35,6 @@ function getStyles(props, context) {
     title: {
       fontSize: '16px',
       textOverflow: 'ellipsis',
-      color: props.titleColor,
       overflow: 'hidden',
       whiteSpace: 'nowrap',
     },
@@ -111,10 +110,6 @@ class GridTile extends Component {
      * Useful for setting custom gradients for example
      */
     titleBackground: PropTypes.string,
-    /**
-     * Style used for title color.
-     */
-    titleColor: PropTypes.string,
     /**
      * Position of the title bar (container of title, subtitle and action icon).
      */
