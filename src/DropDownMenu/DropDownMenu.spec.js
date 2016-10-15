@@ -20,4 +20,17 @@ describe('<DropDownMenu />', () => {
 
     assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Never');
   });
+  
+  it('allows a conditional node to be passed in as a child', () => {
+    const wrapper = shallowWithContext(
+      <DropDownMenu value={1}>
+        <div value={1} primaryText="Never" />
+        <div value={2} primaryText="Every Night" />
+        <div value={3} primaryText="Weeknights" />
+        {false && <div value={4} primaryText="Holidays" />}
+      </DropDownMenu>
+    );
+
+    assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Never');
+  });
 });
