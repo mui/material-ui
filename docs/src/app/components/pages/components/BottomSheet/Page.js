@@ -13,9 +13,9 @@ import BottomSheetExampleActionCode from '!raw!./ExampleAction';
 import BottomSheetCode from '!raw!material-ui/BottomSheet/BottomSheet';
 
 const descriptions = {
-  simple: '`BottomSheet` is a controlled component, and is displayed when `open` is `true`. Click away from the ' +
+  simple: '`BottomSheet` is displayed when `open` is `true`. Click away from the ' +
   'BottomSheet to close it.',
-  action: 'A single `action` can be added to the BottomSheet, and triggers `onActionTouchTap`.'
+  action: 'Persistent bottom sheets have no `onRequestClose`, it has to be manually closed. A single `action` string can be added, and triggers `onActionTouchTap`.'
 };
 
 const BottomSheetPage = () => {

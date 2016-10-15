@@ -33,7 +33,7 @@ export default class BottomSheetExampleSimple extends React.Component {
       <div>
         <RaisedButton
           onTouchTap={this.handleTouchTap}
-          label="Show More"
+          label="Show Options"
         />
         <BottomSheet
           open={this.state.open}

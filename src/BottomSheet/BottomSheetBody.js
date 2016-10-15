@@ -46,14 +46,18 @@ function getStyles(props, context) {
     content: {
       fontSize: 14,
       color: textColor,
-      paddingTop: action ? 16 : 0,
+      paddingTop: 0,
       paddingRight: isSmall && modal ? 16 : persistent ? 24 : 0,
       paddingLeft: isSmall && modal ? 16 : persistent ? 24 : 0,
+      opacity: open ? 1 : 0,
+      transition: open ?
+        transitions.easeOut('500ms', 'opacity', '100ms') :
+        transitions.easeOut('400ms', 'opacity'),
     },
     action: {
       position: 'absolute',
       color: actionColor,
-      right: 24,
+      right: 32,
       top: -29,
       transform: open ?
         'scale(1)' :

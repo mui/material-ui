@@ -192,7 +192,7 @@ class BottomSheet extends Component {
     const styles = getStyles(this.props, this.context, this.state);
 
     return (
-      <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
+      <ClickAwayListener onClickAway={open && modal ? this.componentClickAway : null}>
         <Paper {...other} ref="sheet" rounded={false} style={Object.assign(styles.root, style)}>
           <BottomSheetBody
             action={action}

@@ -7,6 +7,11 @@ import Divider from 'material-ui/Divider';
 import Phone from 'material-ui/svg-icons/communication/phone';
 import Email from 'material-ui/svg-icons/communication/email';
 
+
+const listStyle = {
+  paddingTop: 26
+}
+
 export default class BottomSheetExampleSimple extends React.Component {
 
   constructor(props) {
@@ -19,7 +24,7 @@ export default class BottomSheetExampleSimple extends React.Component {
 
   handleTouchTap = () => {
     this.setState({
-      open: true,
+      open: !this.state.open,
     });
   };
 
@@ -37,18 +42,12 @@ export default class BottomSheetExampleSimple extends React.Component {
     });
   };
 
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
   render() {
     return (
       <div>
         <RaisedButton
           onTouchTap={this.handleTouchTap}
-          label="contact with action"
+          label="Toggle contact"
         />
         <br />
         <TextField
@@ -61,9 +60,8 @@ export default class BottomSheetExampleSimple extends React.Component {
           action={this.state.action}
           persistent={true}
           onActionTouchTap={this.handleActionTouchTap}
-          onRequestClose={this.handleRequestClose}
         >
-          <List>
+          <List style={listStyle}>
             <ListItem
               primaryText="(650) 555-1234"
               secondaryText="Mobile"
