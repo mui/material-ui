@@ -94,6 +94,10 @@ class BottomSheet extends Component {
      */
     persistent: PropTypes.bool,
     /**
+     * Controls whether the `BottomSheet` is inset
+     */
+    inset: PropTypes.bool,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -177,6 +181,7 @@ class BottomSheet extends Component {
       children,
       modal,
       persistent,
+      inset,
       contentStyle,
       bodyStyle,
       onRequestClose, // eslint-disable-line no-unused-vars
@@ -200,6 +205,7 @@ class BottomSheet extends Component {
             open={open}
             modal={modal}
             persistent={persistent}
+            inset={inset}
             onActionTouchTap={onActionTouchTap}
             style={bodyStyle}
           >

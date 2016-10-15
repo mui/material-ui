@@ -9,6 +9,7 @@ function getStyles(props, context) {
     open,
     modal,
     persistent,
+    inset,
     action,
     width,
   } = props;
@@ -38,7 +39,7 @@ function getStyles(props, context) {
     root: {
       fontFamily: fontFamily,
       backgroundColor: backgroundColor,
-      maxWidth: isSmall && modal ? 'inherit' : '100%',
+      maxWidth: isSmall && modal ? 'inherit' : inset ? 960 : '100%',
       minWidth: isSmall && modal ? 'inherit' : 288,
       width: isSmall && modal ? `100vw` : modal ? 'auto' : '100vw',
       flexGrow: isSmall && modal ? 1 : 0,
@@ -77,6 +78,7 @@ export const BottomSheetBody = (props, context) => {
     children,
     modal,
     persistent,
+    inset,
     contentStyle,
     open, // eslint-disable-line no-unused-vars
     onActionTouchTap,
@@ -139,6 +141,10 @@ BottomSheetBody.propTypes = {
    * Controls whether the `BottomSheet` is persistent
    */
   persistent: PropTypes.bool,
+  /**
+   * Controls whether the `BottomSheet` is inset
+   */
+  inset: PropTypes.bool,
   /**
    * Override the inline-styles of the root element.
    */
