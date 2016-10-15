@@ -1,4 +1,5 @@
 export default {
+  bottomSheet: 900,
   menu: 1000,
   appBar: 1100,
   drawerOverlay: 1200,

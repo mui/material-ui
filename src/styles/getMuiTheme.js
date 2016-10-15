@@ -57,6 +57,10 @@ export default function getMuiTheme(muiTheme, ...more) {
       unselectedFontSize: 12,
       selectedFontSize: 14,
     },
+    bottomSheet: {
+      backgroundColor: palette.canvasColor,
+      actionColor: palette.accent1Color,
+    },
     button: {
       height: 36,
       minWidth: 88,
