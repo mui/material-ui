@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import withWidth, {SMALL} from '../utils/withWidth';
-import FontIcon from 'material-ui/FontIcon';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FontIcon from '../FontIcon';
+import FloatingActionButton from '../FloatingActionButton';
 
 function getStyles(props, context) {
   const {

@@ -10,7 +10,7 @@ import Email from 'material-ui/svg-icons/communication/email';
 
 const listStyle = {
   paddingTop: 26
-}
+};
 
 export default class BottomSheetExampleSimple extends React.Component {
 
@@ -32,7 +32,7 @@ export default class BottomSheetExampleSimple extends React.Component {
     this.setState({
       open: false,
     });
-    alert('Added to '+this.state.action);
+    alert(`Added to ${this.state.action}`);
   };
 
   handleChangeAction = (event) => {

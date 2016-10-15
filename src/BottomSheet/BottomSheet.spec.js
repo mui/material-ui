@@ -17,51 +17,11 @@ describe('<BottomSheet />', () => {
       );
 
       assert.strictEqual(
-        wrapper.find('div').at(0).node.props.style.visibility,
+        wrapper.find('Paper').at(0).node.props.style.visibility,
         'hidden',
         'The element should be hidden.'
       );
     });
-  });
-
-  it('should show the next action after an update', (done) => {
-    const wrapper = shallowWithContext(
-      <BottomSheet open={true} action="favorite"  />
-    );
-
-    wrapper.setProps({
-      action: 'done',
-    });
-    assert.strictEqual(wrapper.state('action'), 'favorite');
-
-    setTimeout(() => {
-      assert.strictEqual(wrapper.state('action'), 'done',
-        'Should take into account the next action');
-      done();
-    }, 500);
-  });
-
-  it('should show the latest action of consecutive updates', (done) => {
-    const wrapper = shallowWithContext(
-      <BottomSheet open={false} action="favorite" />
-    );
-
-    wrapper.setProps({
-      open: true,
-      action: 'done',
-    });
-    assert.strictEqual(wrapper.state('action'), 'done');
-    wrapper.setProps({
-      open: true,
-      action: 'star',
-    });
-    assert.strictEqual(wrapper.state('action'), 'done');
-
-    setTimeout(() => {
-      assert.strictEqual(wrapper.state('action'), 'star',
-        'Should take into account the latest action');
-      done();
-    }, 500);
   });
 
   describe('prop: contentStyle', () => {

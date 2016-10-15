@@ -17,7 +17,8 @@ import BottomSheetCode from '!raw!material-ui/BottomSheet/BottomSheet';
 const descriptions = {
   simple: '`BottomSheet` is displayed when `open` is `true`. Click away from the ' +
   'BottomSheet to close it.',
-  action: 'Persistent bottom sheets have no `onRequestClose`, it has to be manually closed. A single `action` string can be added, and triggers `onActionTouchTap`.',
+  action: 'Persistent bottom sheets have no `onRequestClose`, it has to be manually ' +
+  'closed. A single `action` string can be added, and triggers `onActionTouchTap`.',
   inset: 'Inset persistent bottom sheets have no `action` prop.',
 };
 
