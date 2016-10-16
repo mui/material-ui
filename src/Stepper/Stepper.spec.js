@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
@@ -87,6 +88,23 @@ describe('<Stepper />', () => {
       assert.notOk(wrapper.find('.child-0').prop('active'));
       assert.notOk(wrapper.find('.child-1').prop('active'));
       assert.ok(wrapper.find('.child-2').prop('active'));
+    });
+
+    it('passes last down correctly when rendering children containing arrays', () => {
+      const wrapper = shallowWithContext(
+        <Stepper linear={false}>
+          <div />
+          {[
+            <div key={1} />,
+            <div key={2} />,
+          ]}
+        </Stepper>
+      );
+
+      const steps = wrapper.children().find('div');
+      assert.strictEqual(steps.at(0).props().last, undefined);
+      assert.strictEqual(steps.at(1).props().last, undefined);
+      assert.strictEqual(steps.at(2).props().last, true);
     });
   });
 });
