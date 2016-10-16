@@ -26,6 +26,9 @@ export const styleSheet = createStyleSheet('List', () => {
 export default class List extends Component {
   static propTypes = {
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     padding: PropTypes.bool,

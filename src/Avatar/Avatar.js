@@ -73,9 +73,12 @@ export default function Avatar(props, context) {
 Avatar.propTypes = {
   /**
    * Used in combination with `src` or `srcSet` to
-   * provide an alt attribute for the rendered `img` element
+   * provide an alt attribute for the rendered `img` element.
    */
   alt: PropTypes.string,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
   component: PropTypes.string,
   /**

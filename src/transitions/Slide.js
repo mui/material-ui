@@ -32,31 +32,31 @@ export default class Slide extends Component {
     className: PropTypes.string,
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
     /**
-     * Set to slide in by a fixed number of pixels or %
+     * Set to slide in by a fixed number of pixels or %.
      */
     offset: PropTypes.string,
     /**
-     * Callback fired before the component is entering
+     * Callback fired before the component is entering.
      */
     onEnter: PropTypes.func,
     /**
-     * Callback fired when the component is entering
+     * Callback fired when the component is entering.
      */
     onEntering: PropTypes.func,
     /**
-     * Callback fired when the component has entered
+     * Callback fired when the component has entered.
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the component is exiting
+     * Callback fired before the component is exiting.
      */
     onExit: PropTypes.func,
     /**
-     * Callback fired when the component is exiting
+     * Callback fired when the component is exiting.
      */
     onExiting: PropTypes.func,
     /**
-     * Callback fired when the component has exited
+     * Callback fired when the component has exited.
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     transitionDuration: PropTypes.number,

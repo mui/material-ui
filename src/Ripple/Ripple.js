@@ -71,6 +71,9 @@ export const styleSheet = createStyleSheet('Ripple', () => ({
 
 export default class Ripple extends Component {
   static propTypes = {
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     pulsate: PropTypes.bool,
     rippleSize: PropTypes.number,

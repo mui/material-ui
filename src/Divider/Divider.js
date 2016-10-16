@@ -49,8 +49,16 @@ export default function Divider(props, context) {
 
 Divider.propTypes = {
   absolute: PropTypes.bool,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
   light: PropTypes.bool,
+};
+
+Divider.defaultProps = {
+  absolute: false,
+  light: false,
 };
 
 Divider.contextTypes = {

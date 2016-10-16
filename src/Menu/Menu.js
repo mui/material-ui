@@ -23,35 +23,35 @@ export default class Menu extends Component {
      */
     anchorEl: PropTypes.object,
     /**
-     * Menu contents, should be menu items
+     * Menu contents, should be menu items.
      */
     children: PropTypes.node,
     /**
-     * The CSS class name of the list element.
+     * The CSS class name of the root element.
      */
     className: PropTypes.string,
     /**
-     * Callback fired before the Menu is entering
+     * Callback fired before the Menu is entering.
      */
     onEnter: PropTypes.func,
     /**
-     * Callback fired when the Menu is entering
+     * Callback fired when the Menu is entering.
      */
     onEntering: PropTypes.func,
     /**
-     * Callback fired when the Menu has entered
+     * Callback fired when the Menu has entered.
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the Menu is exiting
+     * Callback fired before the Menu is exiting.
      */
     onExit: PropTypes.func,
     /**
-     * Callback fired when the Menu is exiting
+     * Callback fired when the Menu is exiting.
      */
     onExiting: PropTypes.func,
     /**
-     * Callback fired when the Menu has exited
+     * Callback fired when the Menu has exited.
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
@@ -71,6 +71,7 @@ export default class Menu extends Component {
   };
 
   static defaultProps = {
+    open: false,
     transitionDuration: 'auto',
   };
 

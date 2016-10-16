@@ -60,9 +60,9 @@ export default function Switch(props, context) {
   const { className, checkedClassName, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
   return (
-    <div className={classes.root}>
+    <div className={classNames(classes.root, className)}>
       <SwitchBase
-        className={classNames(classes.default, className)}
+        className={classes.default}
         checkedClassName={classNames(classes.checked, checkedClassName)}
         icon={<div className={classes.icon} />}
         checkedIcon={<div className={classes.iconChecked} />}
@@ -76,6 +76,9 @@ export default function Switch(props, context) {
 
 Switch.propTypes = {
   checkedClassName: PropTypes.string,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
 };
 

@@ -142,7 +142,7 @@ function generateProps(props) {
       }
 
       if (prop.required) {
-        key = `<span style="color: #31a148">${key} \*</span>`;
+        key = `<span style="color: #31a148">${key} *</span>`;
       }
 
       if (prop.type.name === 'custom') {

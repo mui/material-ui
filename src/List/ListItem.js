@@ -44,6 +44,9 @@ export default class ListItem extends Component {
   static propTypes = {
     button: PropTypes.bool,
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     dense: PropTypes.bool,
@@ -56,7 +59,11 @@ export default class ListItem extends Component {
   };
 
   static defaultProps = {
+    button: false,
     component: 'div',
+    dense: false,
+    disabled: false,
+    divider: false,
     gutters: true,
   };
 

@@ -47,9 +47,17 @@ export default function ListItemText(props, context) {
 }
 
 ListItemText.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
   primary: PropTypes.node,
   secondary: PropTypes.node,
+};
+
+ListItemText.defaultProps = {
+  primary: false,
+  secondary: false,
 };
 
 ListItemText.contextTypes = {

@@ -26,8 +26,15 @@ export default function Card(props, context) {
 }
 
 Card.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
   raised: PropTypes.bool,
+};
+
+Card.defaultProps = {
+  raised: false,
 };
 
 Card.contextTypes = {

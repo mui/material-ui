@@ -165,10 +165,15 @@ export default class Button extends Component {
   };
 
   static defaultProps = {
+    accent: false,
     component: 'button',
-    ripple: true,
+    compact: false,
+    disabled: false,
+    fab: false,
     focusRipple: true,
+    primary: false,
     raised: false,
+    ripple: true,
     type: 'button',
   };
 

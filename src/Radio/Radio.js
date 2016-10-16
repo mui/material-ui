@@ -61,6 +61,9 @@ export default function Radio(props, context) {
 
 Radio.propTypes = {
   checkedClassName: PropTypes.string,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string,

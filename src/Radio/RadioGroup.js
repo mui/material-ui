@@ -1,8 +1,9 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component, Children, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { findDOMNode } from 'react-dom';
+import classNames from 'classnames';
 import keycode from 'keycode';
 import querySelectorAll from 'dom-helpers/query/querySelectorAll';
 import contains from 'dom-helpers/query/contains';
@@ -42,6 +43,10 @@ export const styleSheet = createStyleSheet('RadioGroup', () => {
 export default class RadioGroup extends Component {
   static propTypes = {
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /**
      * @ignore
@@ -194,39 +199,38 @@ export default class RadioGroup extends Component {
   render() {
     const {
       children,
-      component,
+      className: classNameProp,
+      component: ComponentProp,
       name,
       selectedValue: selectedValueProp,
       onChange, // eslint-disable-line no-unused-vars
-      ...groupProps,
+      ...other,
     } = this.props;
 
     const selectedValue = this.isControlled ? selectedValueProp : this.state.selectedValue;
     const classes = this.context.styleManager.render(styleSheet);
 
-    groupProps.className = classes.root;
-    groupProps['data-mui-test'] = 'RadioGroup';
-    groupProps.ref = (c) => { this.group = c; };
-    groupProps.role = 'radiogroup';
-    groupProps.onKeyDown = this.handleKeyDown;
-    groupProps.onBlur = this.handleBlur;
-
-    return React.createElement(
-      component,
-      groupProps,
-      React.Children.map(children, (child, index) => {
-        return React.cloneElement(
-          child,
-          {
+    return (
+      <ComponentProp
+        className={classNames(classes.root, classNameProp)}
+        data-mui-test="RadioGroup"
+        ref={(c) => { this.group = c; }}
+        role="radiogroup"
+        {...other}
+        onKeyDown={this.handleKeyDown}
+        onBlur={this.handleBlur}
+      >
+        {Children.map(children, (child, index) => {
+          return cloneElement(child, {
             key: index,
             name,
             checked: selectedValue === child.props.value,
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
             onChange: this.handleRadioChange,
             onFocus: this.handleRadioFocus,
-          }
-        );
-      })
+          });
+        })}
+      </ComponentProp>
     );
   }
 }

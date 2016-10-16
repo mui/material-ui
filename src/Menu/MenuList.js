@@ -11,11 +11,11 @@ import { List } from '../List';
 export default class MenuList extends Component {
   static propTypes = {
     /**
-     * MenuList contents, should be menu items
+     * MenuList contents, should be menu items.
      */
     children: PropTypes.node,
     /**
-     * The CSS class name of the list element.
+     * The CSS class name of the root element.
      */
     className: PropTypes.string,
     /**

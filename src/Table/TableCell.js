@@ -1,6 +1,6 @@
 // @flow weak
 
-import { createElement, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -59,7 +59,7 @@ export default function TableCell(props, context) {
   const { table, styleManager } = context;
   const classes = styleManager.render(styleSheet);
 
-  const component = table && table.head ? 'th' : 'td';
+  const Component = table && table.head ? 'th' : 'td';
 
   const className = classNames(classes.root, {
     [classes.numeric]: numeric,
@@ -70,19 +70,20 @@ export default function TableCell(props, context) {
     [classes.footer]: table && table.footer,
   }, classNameProp);
 
-  return createElement(component, {
-    className,
-    ...other,
-  }, children);
+  return (
+    <Component className={className} {...other}>
+      {children}
+    </Component>
+  );
 }
 
 TableCell.propTypes = {
   /**
-   * If true, the cell padding will be adjusted to better accomodate a checkbox
+   * If true, the cell padding will be adjusted to better accomodate a checkbox.
    */
   checkbox: PropTypes.bool,
   /**
-   * The table cell contents
+   * The table cell contents.
    */
   children: PropTypes.node,
   /**
@@ -90,20 +91,23 @@ TableCell.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, will use more compact cell padding to accomodate more content
+   * If set to true, will use more compact cell padding to accomodate more content.
    */
   compact: PropTypes.bool,
   /**
-   * If set to true, will align content to the right hand side
+   * If set to true, will align content to the right hand side.
    */
   numeric: PropTypes.bool,
   /**
-   * If set to false, will disable left/right cell padding
+   * If set to false, will disable left/right cell padding.
    */
   padding: PropTypes.bool,
 };
 
 TableCell.defaultProps = {
+  checkbox: false,
+  compact: false,
+  numeric: false,
   padding: true,
 };
 

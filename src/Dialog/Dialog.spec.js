@@ -49,9 +49,9 @@ describe('<Dialog>', () => {
     assert.strictEqual(wrapper.find('Paper').prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 
-  it('should render with the user classes on the paper (dialog "root") node', () => {
+  it('should render with the user classes on the root node', () => {
     const wrapper = shallow(<Dialog className="woof" />);
-    assert.strictEqual(wrapper.find('Paper').hasClass('woof'), true, 'should have the "woof" class');
+    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
   });
 
   it('should render Fade > Paper > children inside the Modal', () => {

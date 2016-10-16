@@ -29,39 +29,39 @@ export default class Collapse extends Component {
     children: PropTypes.node,
     /**
      * Class name passed to the wrapping container
-     * required for holding+measuring the expanding content
+     * required for holding+measuring the expanding content.
      */
     containerClassName: PropTypes.string,
     /**
-     * Set to true to transition in
+     * Set to true to transition in.
      */
     in: PropTypes.bool,
     /**
-     * Callback fired before the component is entering
+     * Callback fired before the component is entering.
      */
     onEnter: PropTypes.func,
     /**
-     * Callback fired when the component is entering
+     * Callback fired when the component is entering.
      */
     onEntering: PropTypes.func,
     /**
-     * Callback fired when the component has entered
+     * Callback fired when the component has entered.
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the component is exiting
+     * Callback fired before the component is exiting.
      */
     onExit: PropTypes.func,
     /**
-     * Callback fired when the component is exiting
+     * Callback fired when the component is exiting.
      */
     onExiting: PropTypes.func,
     /**
-     * Callback fired when the component has exited
+     * Callback fired when the component has exited.
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Set to 'auto' to automatically calculate transition time based on height
+     * Set to 'auto' to automatically calculate transition time based on height.
      */
     transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
