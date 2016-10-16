@@ -24,7 +24,7 @@ class Stepper extends Component {
     /**
      * Should be two or more `<Step />` components
      */
-    children: PropTypes.arrayOf(PropTypes.element),
+    children: PropTypes.arrayOf(PropTypes.node),
     /**
      * If set to `true`, the `Stepper` will assist in controlling steps for linear flow
      */
@@ -70,6 +70,7 @@ class Stepper extends Component {
      * and nth child selectors, etc
      * That's what some of this garbage is for :)
      */
+    const numChildren = React.Children.toArray(children).length;
     const steps = React.Children.map(children, (step, index) => {
       const controlProps = {index};
 
@@ -81,7 +82,7 @@ class Stepper extends Component {
         controlProps.disabled = true;
       }
 
-      if (index + 1 === children.length) {
+      if (index + 1 === numChildren) {
         controlProps.last = true;
       }
 
