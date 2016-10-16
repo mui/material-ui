@@ -269,7 +269,7 @@ class DropDownMenu extends Component {
 
     let displayValue = '';
     React.Children.forEach(children, (child) => {
-      if (value === child.props.value) {
+      if (child && value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
       }
