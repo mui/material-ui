@@ -35,12 +35,12 @@ export default function ListItemText(props, context) {
       {primary && (
         typeof primary === 'string' ? (
           <Text type="subheading">{primary}</Text>
-        ) : { primary }
+        ) : primary
       )}
       {secondary && (
         typeof secondary === 'string' ? (
           <Text className={classes.secondary} type="body1">{secondary}</Text>
-        ) : { secondary }
+        ) : secondary
       )}
     </div>
   );
