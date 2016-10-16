@@ -49,6 +49,9 @@ export default class ButtonBase extends Component {
   static propTypes = {
     centerRipple: PropTypes.bool,
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     disabled: PropTypes.bool,

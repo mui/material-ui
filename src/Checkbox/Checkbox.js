@@ -30,6 +30,9 @@ export default function Checkbox(props, context) {
 
 Checkbox.propTypes = {
   checkedClassName: PropTypes.string,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
 };
 

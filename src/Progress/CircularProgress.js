@@ -53,6 +53,9 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
 
 export default class CircularProgress extends Component {
   static propTypes = {
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     /**
      * The mode of show your progress, indeterminate

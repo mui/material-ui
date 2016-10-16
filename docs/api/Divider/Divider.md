@@ -9,6 +9,6 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| absolute | bool |  |   |
-| className | string |  |   |
-| light | bool |  |   |
+| absolute | bool | false |   |
+| className | string |  |  The CSS class name of the root element. |
+| light | bool | false |   |

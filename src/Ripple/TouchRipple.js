@@ -26,6 +26,9 @@ export const styleSheet = createStyleSheet('TouchRipple', () => ({
 export default class TouchRipple extends Component {
   static propTypes = {
     center: PropTypes.bool,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
   };
 

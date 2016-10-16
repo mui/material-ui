@@ -65,7 +65,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
 export default class TextField extends Component {
   static propTypes = {
     /**
-     * The contents of the `TextField`
+     * The contents of the `TextField`.
      */
     children: PropTypes.node,
     /**
@@ -76,6 +76,10 @@ export default class TextField extends Component {
      * Whether this text field is required.
      */
     required: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    required: false,
   };
 
   static contextTypes = {
@@ -116,23 +120,25 @@ export default class TextField extends Component {
     return child;
   };
 
-  renderInput = (input) =>
+  renderInput = (input) => (
     cloneElement(input, {
       className: classNames(this.classes.input, input.props.className),
       onDirty: this.handleDirty,
       onClean: this.handleClean,
       onFocus: createChainedFunction(this.handleFocus, input.props.onFocus),
       onBlur: createChainedFunction(this.handleBlur, input.props.onBlur),
-    });
+    })
+  );
 
-  renderLabel = (label) =>
+  renderLabel = (label) => (
     cloneElement(label, {
       className: classNames(this.classes.label, label.props.className),
       focused: this.state.focused,
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
       required: this.props.required,
-    });
+    })
+  );
 
   render() {
     const {

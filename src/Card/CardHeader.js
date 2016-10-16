@@ -56,6 +56,9 @@ export default function CardHeader(props, context) {
 
 CardHeader.propTypes = {
   avatar: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
   subhead: PropTypes.string,
   title: PropTypes.string,

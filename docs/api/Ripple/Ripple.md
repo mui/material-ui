@@ -9,7 +9,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| className | string |  |   |
+| className | string |  |  The CSS class name of the root element. |
 | pulsate | bool | false |   |
 | rippleSize | number |  |   |
 | rippleX | number |  |   |

@@ -56,7 +56,7 @@ export default class Drawer extends Component {
   static propTypes = {
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
-     * The contents of the `Drawer`
+     * The contents of the `Drawer`.
      */
     children: PropTypes.node,
     /**
@@ -65,7 +65,7 @@ export default class Drawer extends Component {
     className: PropTypes.string,
     /**
      * If set to true, the drawer will dock itself
-     * and will no longer slide in with an overlay
+     * and will no longer slide in with an overlay.
      */
     docked: PropTypes.bool,
     open: PropTypes.bool,
@@ -77,6 +77,7 @@ export default class Drawer extends Component {
   };
 
   static defaultProps = {
+    docked: false,
     open: false,
     zDepth: 16,
   };

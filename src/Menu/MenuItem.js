@@ -32,7 +32,7 @@ export const styleSheet = createStyleSheet('MenuItem', (theme) => {
 export default class MenuItem extends Component {
   static propTypes = {
     /**
-     * Menu item contents
+     * Menu item contents.
      */
     children: PropTypes.node,
     /**
@@ -44,13 +44,14 @@ export default class MenuItem extends Component {
      */
     role: PropTypes.string,
     /**
-     * Use to apply selected styling
+     * Use to apply selected styling.
      */
     selected: PropTypes.bool,
   };
 
   static defaultProps = {
     role: 'menuitem',
+    selected: false,
   };
 
   static contextTypes = {

@@ -9,10 +9,10 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| button | bool |  |   |
+| button | bool | false |   |
 | children | node |  |   |
-| className | string |  |   |
+| className | string |  |  The CSS class name of the root element. |
 | component | union | 'div' |   |
-| dense | bool |  |   |
-| divider | bool |  |   |
+| dense | bool | false |   |
+| divider | bool | false |   |
 | gutters | bool | true |   |

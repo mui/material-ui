@@ -17,5 +17,6 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| children | node |  |  The contents of the `TextField` |
+| children | node |  |  The contents of the `TextField`. |
 | className | string |  |  The CSS class name of the root element. |
+| required | bool | false |  Whether this text field is required. |

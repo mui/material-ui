@@ -46,7 +46,7 @@ export default class Dialog extends Component {
      */
     children: PropTypes.node,
     /**
-     * The CSS class name of the **dialog** root paper element.
+     * The CSS class name of the root element.
      */
     className: PropTypes.string,
     /**
@@ -164,7 +164,7 @@ export default class Dialog extends Component {
 
     return (
       <Modal
-        className={classes.modal}
+        className={classNames(classes.modal, className)}
         backdropTransitionDuration={transitionDuration}
         hideOnBackdropClick={hideOnBackdropClick}
         hideOnEscapeKeyUp={hideOnEscapeKeyUp}
@@ -177,7 +177,7 @@ export default class Dialog extends Component {
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
-            className={classNames(classes.dialog, className)}
+            className={classes.dialog}
             {...other}
           >
             {children}

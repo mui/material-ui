@@ -28,6 +28,9 @@ export default function CardContent(props, context) {
 }
 
 CardContent.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
 };
 
