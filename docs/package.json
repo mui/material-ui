@@ -20,35 +20,31 @@
     "android:setup-port": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
-    "babel-polyfill": "^6.9.1",
+    "babel-polyfill": "^6.16.0",
     "react-title-component": "^1.0.1",
     "simple-assign": "^0.1.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.25.0",
-    "doctrine": "^1.4.0",
-    "eslint": "^3.5.0",
-    "eslint-plugin-babel": "^3.1.0",
-    "eslint-plugin-react": "^6.2.2",
-    "highlight.js": "^9.5.0",
+    "doctrine": "^1.5.0",
+    "highlight.js": "^9.7.0",
     "history": "^2.0.0",
-    "intl": "^1.2.3",
+    "intl": "^1.2.5",
     "intl-locales-supported": "^1.0.0",
     "json-loader": "^0.5.4",
     "marked": "^0.3.5",
     "raw-loader": "^0.5.1",
-    "react-addons-perf": "^15.3.1",
-    "react-docgen": "^2.10.0",
+    "react-addons-perf": "^15.3.2",
+    "react-docgen": "^2.11.0",
     "react-hot-loader": "^1.2.8",
-    "react-motion": "^0.4.2",
+    "react-motion": "^0.4.5",
     "react-native": "^0.17.0",
     "react-router": "^2.8.1",
-    "react-swipeable-views": "^0.7.3",
+    "react-swipeable-views": "^0.7.10",
     "recast": "^0.11.14",
     "style-loader": "0.13.1",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.2"
+    "webpack-dev-server": "^1.16.2"
   }
 }
