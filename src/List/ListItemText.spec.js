@@ -34,41 +34,59 @@ describe('<ListItemText>', () => {
     assert.strictEqual(wrapper.children().length, 0, 'should have no children');
   });
 
-  it('should render primary text', () => {
-    const wrapper = shallow(
-      <ListItemText
-        primary="This is the primary text"
-      />
-    );
-    assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
-    assert.strictEqual(wrapper.childAt(0).is('Text'), true, 'should render Text');
-    assert.strictEqual(wrapper.childAt(0).prop('type'), 'subheading', 'should have the subheading type');
-    assert.strictEqual(
-      wrapper.childAt(0).children().equals('This is the primary text'),
-      true,
-      'should have the primary text'
-    );
+  describe('prop: primary', () => {
+    it('should render primary text', () => {
+      const wrapper = shallow(
+        <ListItemText primary="This is the primary text" />
+      );
+      assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
+      assert.strictEqual(wrapper.childAt(0).is('Text'), true, 'should render Text');
+      assert.strictEqual(wrapper.childAt(0).prop('type'), 'subheading', 'should have the subheading type');
+      assert.strictEqual(
+        wrapper.childAt(0).children().equals('This is the primary text'),
+        true,
+        'should have the primary text'
+      );
+    });
+
+    it('should use the primary node', () => {
+      const primary = <span />;
+      const wrapper = shallow(
+        <ListItemText primary={primary} />
+      );
+      assert.strictEqual(wrapper.contains(primary), true, 'should find the node');
+    });
   });
 
-  it('should render secondary text', () => {
-    const wrapper = shallow(
-      <ListItemText
-        secondary="This is the secondary text"
-      />
-    );
-    assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
-    assert.strictEqual(wrapper.childAt(0).is('Text'), true, 'should render Text');
-    assert.strictEqual(wrapper.childAt(0).prop('type'), 'body1', 'should have the body1 type');
-    assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.secondary),
-      true,
-      'should have the secondary class'
-    );
-    assert.strictEqual(
-      wrapper.childAt(0).children().equals('This is the secondary text'),
-      true,
-      'should have the secondary text'
-    );
+  describe('prop: secondary', () => {
+    it('should render secondary text', () => {
+      const wrapper = shallow(
+        <ListItemText
+          secondary="This is the secondary text"
+        />
+      );
+      assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
+      assert.strictEqual(wrapper.childAt(0).is('Text'), true, 'should render Text');
+      assert.strictEqual(wrapper.childAt(0).prop('type'), 'body1', 'should have the body1 type');
+      assert.strictEqual(
+        wrapper.childAt(0).hasClass(classes.secondary),
+        true,
+        'should have the secondary class'
+      );
+      assert.strictEqual(
+        wrapper.childAt(0).children().equals('This is the secondary text'),
+        true,
+        'should have the secondary text'
+      );
+    });
+
+    it('should use the secondary node', () => {
+      const secondary = <span />;
+      const wrapper = shallow(
+        <ListItemText secondary={secondary} />
+      );
+      assert.strictEqual(wrapper.contains(secondary), true, 'should find the node');
+    });
   });
 
   it('should render primary and secondary text', () => {
