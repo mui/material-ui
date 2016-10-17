@@ -87,6 +87,7 @@ class Tabs extends Component {
 
   state = {selectedIndex: 0};
 
+
   componentWillMount() {
     const valueLink = this.getValueLink(this.props);
     const initialIndex = this.props.initialSelectedIndex;
@@ -111,6 +112,29 @@ class Tabs extends Component {
     }
 
     this.setState(newState);
+  }
+
+  calculateTabWidthAndInkbarPosition(tabs, selectedIndex, defaultWidth) {
+    let i;
+    let left = 0;
+    let undefinedLabelWidths = 0;
+    for (i = 0; i < tabs.length; i++) {
+      const labelWidth = tabs[i].props.labelWidth;
+      if (labelWidth && i < selectedIndex)
+        left += labelWidth;
+      else if (!labelWidth)
+        undefinedLabelWidths++;
+    }
+    if (undefinedLabelWidths === 0)
+      return {
+        inkbarPosition: `${left}px`,
+        width: `${tabs[selectedIndex].props.labelWidth}px`,
+      };
+    else if (undefinedLabelWidths === tabs.length)
+      return {
+        inkbarPosition: `${defaultWidth * selectedIndex}%`,
+        width: `${defaultWidth}%`,
+      };
   }
 
   getTabs(props = this.props) {
@@ -210,19 +234,31 @@ class Tabs extends Component {
           style: tabTemplateStyle,
         }, tab.props.children) : undefined);
 
+      let labelWidth = `${width}%`;
+      // if tab has labelWidth props defined, use that value in pixels instead
+      // of a percentage of the container width
+      if (tab.props.labelWidth)
+        labelWidth = `${tab.props.labelWidth}px`;
       return cloneElement(tab, {
         key: index,
         index: index,
         selected: this.getSelected(tab, index),
-        width: `${width}%`,
+        width: labelWidth,
         onTouchTap: this.handleTabTouchTap,
       });
     });
 
-    const inkBar = this.state.selectedIndex !== -1 ? (
+    const tabLabelData = this.calculateTabWidthAndInkbarPosition(tabs,
+      this.state.selectedIndex, width);
+
+    warning(tabLabelData, `labelWidth prop is missing in some Tab components.
+      labelWidth prop must be set in either all Tab components or none in order
+      to render the ink bar.`);
+
+    const inkBar = this.state.selectedIndex !== -1 && tabLabelData ? (
       <InkBar
-        left={`${width * this.state.selectedIndex}%`}
-        width={`${width}%`}
+        left={tabLabelData.inkbarPosition}
+        width={tabLabelData.width}
         style={inkBarStyle}
       />
     ) : null;
