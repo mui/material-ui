@@ -60,13 +60,11 @@ const getStyles = (props, context, state) => {
       appearance: 'textfield', // Improve type search style.
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
-    textarea: {
-    },
   };
 
   Object.assign(styles.error, props.errorStyle);
 
-  Object.assign(styles.textarea, styles.input, {
+  styles.textarea = Object.assign({}, styles.input, {
     marginTop: props.floatingLabelText ? 36 : 12,
     marginBottom: props.floatingLabelText ? -36 : -12,
     boxSizing: 'border-box',
