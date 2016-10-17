@@ -2,7 +2,7 @@
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-:warning: New features based on `v0.16.0` have low priority and will most likely not be reviewed nor merged.
+:warning: New features based on `v0.16.1` have low priority and will most likely not be reviewed nor merged.
 
 ## [next](https://github.com/callemall/material-ui/milestone/14) (expected in the next couple months)
 
