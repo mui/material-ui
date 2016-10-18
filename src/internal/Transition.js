@@ -28,6 +28,9 @@ export const EXITING = 4;
 class Transition extends Component {
   static propTypes = {
     children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
     className: PropTypes.string,
     /**
      * CSS class or classes applied when the component is entered

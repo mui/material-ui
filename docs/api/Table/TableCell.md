@@ -15,9 +15,9 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| checkbox | bool |  |  If true, the cell padding will be adjusted to better accomodate a checkbox |
-| children | node |  |  The table cell contents |
+| checkbox | bool | false |  If true, the cell padding will be adjusted to better accomodate a checkbox. |
+| children | node |  |  The table cell contents. |
 | className | string |  |  The CSS class name of the root element. |
-| compact | bool |  |  If set to true, will use more compact cell padding to accomodate more content |
-| numeric | bool |  |  If set to true, will align content to the right hand side |
-| padding | bool | true |  If set to false, will disable left/right cell padding |
+| compact | bool | false |  If set to true, will use more compact cell padding to accomodate more content. |
+| numeric | bool | false |  If set to true, will align content to the right hand side. |
+| padding | bool | true |  If set to false, will disable left/right cell padding. |

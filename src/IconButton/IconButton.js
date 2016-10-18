@@ -75,7 +75,7 @@ export default class IconButton extends Component {
   static propTypes = {
     /**
      * The icon element. If a string is passed,
-     * it will be used as a material icon font ligature
+     * it will be used as a material icon font ligature.
      */
     children: PropTypes.node,
     /**
@@ -98,6 +98,8 @@ export default class IconButton extends Component {
   };
 
   static defaultProps = {
+    contrast: false,
+    disabled: false,
     ripple: true,
   };
 

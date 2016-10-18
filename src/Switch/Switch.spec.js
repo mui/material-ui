@@ -26,7 +26,7 @@ describe('<Switch>', () => {
 
   it('should render with the default and checked classes', () => {
     const wrapper = shallow(<Switch checked className="woof" checkedClassName="meow" />);
-    assert.strictEqual(wrapper.childAt(0).hasClass('woof'), true, 'should have the "woof" class');
+    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.default), true, 'should have the default class');
     assert.strictEqual(
       wrapper.childAt(0).prop('checkedClassName').indexOf('meow') !== -1,

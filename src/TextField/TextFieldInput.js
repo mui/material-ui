@@ -1,6 +1,6 @@
 // @flow weak
 
-import { Component, createElement, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
@@ -71,21 +71,22 @@ export default class TextFieldInput extends Component {
      */
     onDirty: PropTypes.func,
     /**
-     * TextFieldInput type
+     * TextFieldInput type.
      */
     type: PropTypes.string,
     /**
-     * If set to true, the input will have an underline
+     * If set to true, the input will have an underline.
      */
     underline: PropTypes.bool,
     /**
-     * The input value, required for a controlled component
+     * The input value, required for a controlled component.
      */
     value: PropTypes.string,
   };
 
   static defaultProps = {
     component: 'input',
+    disabled: false,
     type: 'text',
     underline: true,
   };
@@ -138,7 +139,7 @@ export default class TextFieldInput extends Component {
   render() {
     const {
       className: classNameProp,
-      component,
+      component: ComponentProp,
       disabled,
       onChange, // eslint-disable-line no-unused-vars
       onDirty, // eslint-disable-line no-unused-vars
@@ -164,10 +165,10 @@ export default class TextFieldInput extends Component {
       ...other,
     };
 
-    if (component === 'input' || typeof component === 'function') {
+    if (ComponentProp === 'input' || typeof ComponentProp === 'function') {
       inputProps.type = type;
     }
 
-    return createElement(component, inputProps);
+    return <ComponentProp {...inputProps} />;
   }
 }

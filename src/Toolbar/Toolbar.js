@@ -47,11 +47,11 @@ Toolbar.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The css class name of the root element.
+   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**
-   * If set to true, enables gutter padding
+   * If set to true, enables gutter padding.
    */
   gutters: PropTypes.bool,
 };

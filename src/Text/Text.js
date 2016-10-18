@@ -1,6 +1,6 @@
 // @flow weak
 
-import { Component, createElement, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -36,56 +36,58 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
   };
 });
 
-class Text extends Component {
-  static propTypes = {
-    align: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    component: PropTypes.string,
-    gutterBottom: PropTypes.bool,
-    noWrap: PropTypes.bool,
-    paragraph: PropTypes.bool,
-    secondary: PropTypes.bool,
-    type: PropTypes.string,
-  };
+export default function Text(props, context) {
+  const {
+    align,
+    className: classNameProp,
+    component: componentProp,
+    gutterBottom,
+    noWrap,
+    paragraph,
+    secondary,
+    type,
+    ...other,
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
 
-  static defaultProps = {
-    component: 'span',
-    type: 'body1',
-  };
+  const className = classNames(classes.text, {
+    [classes[type]]: true,
+    [classes.noWrap]: noWrap,
+    [classes.secondary]: secondary,
+    [classes.gutterBottom]: gutterBottom,
+    [classes.paragraph]: paragraph,
+    [classes.center]: align === 'center',
+  }, classNameProp);
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+  const Component = paragraph ? 'p' : componentProp;
 
-  render() {
-    const {
-      align,
-      className: classNameProp,
-      component: componentProp,
-      gutterBottom,
-      noWrap,
-      paragraph,
-      secondary,
-      type,
-      ...other,
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-
-    const className = classNames(classes.text, {
-      [classes[type]]: true,
-      [classes.noWrap]: noWrap,
-      [classes.secondary]: secondary,
-      [classes.gutterBottom]: gutterBottom,
-      [classes.paragraph]: paragraph,
-      [classes.center]: align === 'center',
-    }, classNameProp);
-
-    const component = paragraph ? 'p' : componentProp;
-
-    return createElement(component, { className, ...other });
-  }
+  return <Component className={className} {...other} />;
 }
 
-export default Text;
+Text.propTypes = {
+  align: PropTypes.string,
+  children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  component: PropTypes.string,
+  gutterBottom: PropTypes.bool,
+  noWrap: PropTypes.bool,
+  paragraph: PropTypes.bool,
+  secondary: PropTypes.bool,
+  type: PropTypes.string,
+};
+
+Text.defaultProps = {
+  component: 'span',
+  gutterBottom: false,
+  noWrap: false,
+  paragraph: false,
+  secondary: false,
+  type: 'body1',
+};
+
+Text.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

@@ -86,6 +86,11 @@ TableRow.propTypes = {
   selected: PropTypes.bool,
 };
 
+TableRow.defaultProps = {
+  hover: false,
+  selected: false,
+};
+
 TableRow.contextTypes = {
   table: PropTypes.object,
   styleManager: PropTypes.object.isRequired,
