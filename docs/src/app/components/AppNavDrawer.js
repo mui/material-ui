@@ -248,6 +248,11 @@ class AppNavDrawer extends Component {
                 href="#/components/drawer"
               />,
               <ListItem
+                primaryText="Form"
+                value="/components/form"
+                href="#/components/form"
+              />,
+              <ListItem
                 primaryText="Grid List"
                 value="/components/grid-list"
                 href="#/components/grid-list"

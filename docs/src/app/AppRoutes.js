@@ -36,6 +36,7 @@ import DropDownMenuPage from './components/pages/components/DropDownMenu/Page';
 import FlatButtonPage from './components/pages/components/FlatButton/Page';
 import FloatingActionButtonPage from './components/pages/components/FloatingActionButton/Page';
 import FontIconPage from './components/pages/components/FontIcon/Page';
+import FormPage from './components/pages/components/Form/Page';
 import GridListPage from './components/pages/components/GridList/Page';
 import IconButtonPage from './components/pages/components/IconButton/Page';
 import IconMenuPage from './components/pages/components/IconMenu/Page';
@@ -110,6 +111,7 @@ const AppRoutes = (
       <Route path="drawer" component={DrawerPage} />
       <Route path="dropdown-menu" component={DropDownMenuPage} />
       <Route path="font-icon" component={FontIconPage} />
+      <Route path="form" component={FormPage} />
       <Route path="flat-button" component={FlatButtonPage} />
       <Route path="floating-action-button" component={FloatingActionButtonPage} />
       <Route path="grid-list" component={GridListPage} />
