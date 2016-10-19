@@ -1,5 +1,44 @@
 ## HEAD
 
+## 0.16.1
+###### _Oct 18, 2016_
+
+This is a small release improving the stability of `v0.16.x`.
+
+##### Component Fixes / Enhancements
+
+- [ClickAwayListener] Improve the propTypes definition (2d99b2d66f0a895389f61e866c8840abebcf2b72)
+- [DropDownMenu] Fix usage of null child (#5402)
+- [FloatingActionButton] Set touch flag in handleTouchEnd (#5077)
+- [FloatingActionButton] Fix overriding the style property on the children (#5246)
+- [IconMenu] Updating error message for IconButton (#5361)
+- [IconMenu] Makes the warning message more explicit (#5395)
+- [Menu] Fix the key theme used for the selectedTextColor (#5379)
+- [MenuItem] Add min-height to MenuItem to allow null options in SelectItem (11639b02e62cc60861582eb9c1516e1fe46d5ccb)
+- [Popover] Making sure Popover has correct position (#4839)
+- [Popover] Add missing animated=false (#5374)
+- [RadioButtonGroup] Modifying `selected` initial value check to account for falsy value (#5342)
+- [RaisedButton] Add a overlayStyle property (c16147d9eb81a69a82f88d21fb0d7a356b95e2af)
+- [RefreshIndicator] Fix Unknown props react warning (#5356)
+- [Tabs] Add tabTemplateStyle prop to Tabs (#5359)
+- [TableFooter] Render the children independently of adjustForCheckbox (#5406)
+- [TableRowColumn] Revert Tooltip visible with TableRowColumn (#5378)
+- [TextField] Fix a failing test with the controlled behavior (#5351)
+- [TextField] Fix leaking appearance property on a div (#5412)
+- [withWidth] Fix the SSR reconciliation (#5405)
+
+##### Core
+
+- [GitHub] Improve ISSUE_TEMPLATE to ask for a running snippet (#5388)
+- [npm] Upgrade the dependencies (#5404)
+
+##### Docs
+
+- [docs] Add LireLactu to the showcase (#5336)
+- [docs] Document the muiThemeable HOC (#5363)
+- [docs] Fix non-compiling example code on Themes page (#5344)
+
+
 ## 0.16.0
 ###### _Oct 3, 2016_
 
