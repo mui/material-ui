@@ -88,5 +88,20 @@ describe('<Stepper />', () => {
       assert.notOk(wrapper.find('.child-1').prop('active'));
       assert.ok(wrapper.find('.child-2').prop('active'));
     });
+
+    it('passes last down correctly when rendering children containing arrays', () => {
+      const wrapper = shallowWithContext(
+        <Stepper linear={false}>
+          <div className="child-0" />
+          {[
+            <div key={1} className="child-1" />,
+            <div key={2} className="child-2" />,
+          ]}
+        </Stepper>
+      );
+      assert.notOk(wrapper.find('.child-0').prop('last'));
+      assert.notOk(wrapper.find('.child-1').prop('last'));
+      assert.ok(wrapper.find('.child-2').prop('last'));
+    });
   });
 });
