@@ -18,3 +18,4 @@ A React component for swipeable views. Plays well with the `Tabs` component.
 - [UniversalRelayBoilerplate](https://github.com/codefoundries/UniversalRelayBoilerplate)
 Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra.
 - [react-dnd](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) Drag and Drop for React.
+- [redux-form](http://redux-form.com/6.1.1/examples/material-ui/) Manage your form state in Redux.
