@@ -16,7 +16,7 @@ function getStyles(props, context) {
     tabItemContainer: {
       width: '100%',
       backgroundColor: tabs.backgroundColor,
-      whiteSpace: 'nowrap',
+      display: 'flex',
     },
   };
 }
