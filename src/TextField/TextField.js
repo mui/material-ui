@@ -57,8 +57,10 @@ const getStyles = (props, context, state) => {
       color: props.disabled ? disabledTextColor : textColor,
       cursor: props.disabled ? 'not-allowed' : 'initial',
       font: 'inherit',
-      appearance: 'textfield', // Improve type search style.
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
+    },
+    inputNative: {
+      appearance: 'textfield', // Improve type search style.
     },
   };
 
@@ -428,7 +430,7 @@ class TextField extends Component {
       onFocus: this.handleInputFocus,
     };
 
-    const inputStyleMerged = Object.assign(styles.input, inputStyle);
+    const childStyleMerged = Object.assign(styles.input, inputStyle);
 
     let inputElement;
     if (children) {
@@ -436,25 +438,25 @@ class TextField extends Component {
         {
           ...inputProps,
           ...children.props,
-          style: Object.assign(inputStyleMerged, children.props.style),
+          style: Object.assign(childStyleMerged, children.props.style),
         });
     } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
-          {...other}
-          {...inputProps}
-          style={inputStyleMerged}
+          style={childStyleMerged}
+          textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
           rows={rows}
           rowsMax={rowsMax}
+          {...other}
+          {...inputProps}
           onHeightChange={this.handleHeightChange}
-          textareaStyle={Object.assign(styles.textarea, textareaStyle)}
         />
       ) : (
         <input
+          type={type}
+          style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}
           {...other}
           {...inputProps}
-          style={prepareStyles(inputStyleMerged)}
-          type={type}
         />
       );
     }
