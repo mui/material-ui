@@ -17,17 +17,27 @@ function getStyles(props, context, state) {
 
   const {open} = state;
 
+  const {position} = props;
+  const positionProperties = {};
+  let transitionOperator = '';
+  if (position === 'top') {
+    positionProperties.top = 0;
+    transitionOperator = '-';
+  } else {
+    positionProperties.bottom = 0;
+  }
+
   const styles = {
     root: {
       position: 'fixed',
+      ...positionProperties,
       left: '50%',
       display: 'flex',
-      bottom: 0,
       zIndex: zIndex.snackbar,
       visibility: open ? 'visible' : 'hidden',
       transform: open ?
         'translate(-50%, 0)' :
-        `translate(-50%, ${desktopSubheaderHeight}px)`,
+        `translate(-50%, ${transitionOperator}${desktopSubheaderHeight}px)`,
       transition: `${transitions.easeOut('400ms', 'transform')}, ${
         transitions.easeOut('400ms', 'visibility')}`,
     },
@@ -93,9 +103,17 @@ class Snackbar extends Component {
      */
     open: PropTypes.bool.isRequired,
     /**
+     * Defines if the Snackbar is positioned on bottom or on top of the page
+     */
+    position: PropTypes.string,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+  };
+
+  static defaultProps = {
+    position: 'top',
   };
 
   static contextTypes = {
