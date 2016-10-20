@@ -22,6 +22,7 @@ function getStyles(props, context) {
       marginRight: lastChild ? -marginHorizontal : undefined,
       display: 'flex',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     dropDownMenu: {
       root: {
