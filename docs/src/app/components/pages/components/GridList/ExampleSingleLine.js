@@ -16,8 +16,6 @@ const styles = {
   },
   titleStyle: {
     color: 'rgb(0, 188, 212)',
-    fontSize: '20px',
-    textAlign: 'center',
   },
 };
 
@@ -75,8 +73,9 @@ const GridListExampleSingleLine = () => (
           key={tile.img}
           title={tile.title}
           actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
-          titleBackground="rgba(0, 0, 0, 0.8)"
           titleStyle={styles.titleStyle}
+          titlePosition="bottom"
+          titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
         >
           <img src={tile.img} />
         </GridTile>

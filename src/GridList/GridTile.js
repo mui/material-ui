@@ -123,7 +123,6 @@ class GridTile extends Component {
   static defaultProps = {
     titlePosition: 'bottom',
     titleBackground: 'rgba(0, 0, 0, 0.4)',
-    titleStyle: {},
     actionPosition: 'right',
     cols: 1,
     rows: 1,
@@ -176,7 +175,7 @@ class GridTile extends Component {
       subtitle,
       titlePosition, // eslint-disable-line no-unused-vars
       titleBackground, // eslint-disable-line no-unused-vars
-      titleStyle, // eslint-disable-line no-unused-vars
+      titleStyle,
       actionIcon, // eslint-disable-line no-unused-vars
       actionPosition, // eslint-disable-line no-unused-vars
       style,
