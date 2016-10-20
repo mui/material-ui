@@ -158,7 +158,7 @@ class FloatingActionButton extends Component {
 
   componentDidMount() {
     warning(!this.props.iconClassName || !this.props.children,
-      'You have set both an iconClassName and a child icon. ' +
+      'Material-UI: You have set both an iconClassName and a child icon. ' +
       'It is recommended you use only one method when adding ' +
       'icons to FloatingActionButtons.');
   }
