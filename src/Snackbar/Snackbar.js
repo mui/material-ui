@@ -105,7 +105,7 @@ class Snackbar extends Component {
     /**
      * Defines if the Snackbar is positioned on bottom or on top of the page
      */
-    position: PropTypes.string,
+    position: PropTypes.oneOf(['top', 'bottom']),
     /**
      * Override the inline-styles of the root element.
      */
