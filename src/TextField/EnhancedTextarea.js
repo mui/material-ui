@@ -145,9 +145,7 @@ class EnhancedTextarea extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const rootStyles = Object.assign(styles.root, style, {
-      appearance: 'none', // Fix leaking property.
-    });
+    const rootStyles = Object.assign(styles.root, style);
     const textareaStyles = Object.assign(styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 
