@@ -150,7 +150,7 @@ class EnhancedSwitch extends Component {
       }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
-      warning(false, 'Cannot call set method while checked is defined as a property.');
+      warning(false, 'Material-UI: Cannot call set method while checked is defined as a property.');
     }
   }
 
