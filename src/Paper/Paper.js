@@ -39,7 +39,7 @@ export default function Paper(props, context) {
     className: classNameProp,
     rounded,
     zDepth,
-    ...other,
+    ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
 

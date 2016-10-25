@@ -16,7 +16,7 @@ export const styleSheet = createStyleSheet('CardContent', () => ({
 export default function CardContent(props, context) {
   const {
     className: classNameProp,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

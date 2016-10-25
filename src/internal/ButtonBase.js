@@ -225,7 +225,7 @@ export default class ButtonBase extends Component {
       onTouchStart, // eslint-disable-line no-unused-vars
       ripple,
       type,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

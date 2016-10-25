@@ -204,7 +204,7 @@ export default class RadioGroup extends Component {
       name,
       selectedValue: selectedValueProp,
       onChange, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const selectedValue = this.isControlled ? selectedValueProp : this.state.selectedValue;

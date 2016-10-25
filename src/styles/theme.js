@@ -15,7 +15,7 @@ export function createMuiTheme(config = {}) {
     breakpoints = createBreakpoints(),
     mixins = createMixins(breakpoints),
     typography = createTypography(palette),
-    ...more,
+    ...more
   } = config;
 
   const theme = {

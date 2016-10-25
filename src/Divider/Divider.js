@@ -34,7 +34,7 @@ export default function Divider(props, context) {
     absolute,
     className: classNameProp,
     light,
-    ...other,
+    ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {

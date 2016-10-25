@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('CardMedia', () => ({
 export default function CardMedia(props, context) {
   const {
     className: classNameProp,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

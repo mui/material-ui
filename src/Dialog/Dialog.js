@@ -137,7 +137,7 @@ export default class Dialog extends Component {
       onRequestClose,
       transition,
       transitionDuration,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

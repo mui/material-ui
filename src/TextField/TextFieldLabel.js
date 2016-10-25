@@ -36,7 +36,7 @@ export default function TextFieldLabel(props, context) {
     focused,
     required,
     shrink,
-    ...other,
+    ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
 

@@ -22,7 +22,7 @@ export default function DialogContent(props, context) {
   const {
     children,
     className,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

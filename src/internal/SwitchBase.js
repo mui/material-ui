@@ -130,7 +130,7 @@ export default class SwitchBase extends Component {
       ripple,
       type,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

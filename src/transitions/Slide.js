@@ -102,7 +102,7 @@ export default class Slide extends Component {
       onEntering, // eslint-disable-line no-unused-vars
       onExiting, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     return (

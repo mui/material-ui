@@ -144,7 +144,7 @@ export default class MenuList extends Component {
       className,
       onBlur, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     return (
