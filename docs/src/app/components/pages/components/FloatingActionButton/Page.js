@@ -10,15 +10,11 @@ import floatingButtonExampleSimpleCode from '!raw!./ExampleSimple';
 import FloatingButtonExampleSimple from './ExampleSimple';
 import floatingButtonCode from '!raw!material-ui/FloatingActionButton/FloatingActionButton';
 
-const descriptions = {
-  simple: 'Default size and `mini` FABs, in primary (default), `secondary` and `disabled` colors.',
-};
-
 const FloatingActionButtonPage = () => (
   <div>
     <Title render={(previousTitle) => `Floating Action Button - ${previousTitle}`} />
     <MarkdownElement text={floatingButtonReadmeText} />
-    <CodeExample description={descriptions.simple} code={floatingButtonExampleSimpleCode}>
+    <CodeExample code={floatingButtonExampleSimpleCode}>
       <FloatingButtonExampleSimple />
     </CodeExample>
     <PropTypeDescription code={floatingButtonCode} />

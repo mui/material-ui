@@ -273,13 +273,13 @@ class FloatingActionButton extends Component {
     let children;
 
     if (childrenProp) {
-      children = extendChildren(childrenProp, {
+      children = extendChildren(childrenProp, (child) => ({
         style: Object.assign({},
           styles.icon,
           mini && styles.iconWhenMini,
           iconStyle,
-          childrenProp.props.style),
-      });
+          child.props.style),
+      }));
     }
 
     const buttonEventHandlers = disabled ? null : {
