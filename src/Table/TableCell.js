@@ -54,7 +54,7 @@ export default function TableCell(props, context) {
     checkbox,
     numeric,
     padding,
-    ...other,
+    ...other
   } = props;
   const { table, styleManager } = context;
   const classes = styleManager.render(styleSheet);

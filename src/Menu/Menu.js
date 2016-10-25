@@ -132,7 +132,7 @@ export default class Menu extends Component {
       onExited,
       onRequestClose,
       transitionDuration,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

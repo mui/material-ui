@@ -53,7 +53,7 @@ export default class TableBody extends Component {
     const {
       className: classNameProp,
       children,
-      ...other,
+      ...other
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);

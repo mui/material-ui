@@ -148,7 +148,7 @@ export default class TouchRipple extends Component {
     const {
       center, // eslint-disable-line no-unused-vars
       className,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

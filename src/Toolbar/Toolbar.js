@@ -26,7 +26,7 @@ export default function Toolbar(props, context) {
     children,
     className: classNameProp,
     gutters,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

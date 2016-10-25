@@ -146,7 +146,7 @@ export default class TextFieldInput extends Component {
       onClean, // eslint-disable-line no-unused-vars
       type,
       underline,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

@@ -22,7 +22,7 @@ export default function CardActions(props, context) {
     actionSpacing,
     children,
     className: classNameProp,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

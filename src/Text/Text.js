@@ -46,7 +46,7 @@ export default function Text(props, context) {
     paragraph,
     secondary,
     type,
-    ...other,
+    ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
 

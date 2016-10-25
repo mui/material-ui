@@ -318,7 +318,7 @@ class Transition extends Component {
     const {
       children,
       className,
-      ...other,
+      ...other
     } = this.props;
     Object.keys(Transition.propTypes).forEach((key) => delete other[key]);
 

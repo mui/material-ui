@@ -144,7 +144,7 @@ export default class TextField extends Component {
     const {
       children,
       className: classNameProp,
-      ...other,
+      ...other
     } = this.props;
 
     this.classes = this.context.styleManager.render(styleSheet);

@@ -48,7 +48,7 @@ export default class List extends Component {
       className: classNameProp,
       component,
       padding,
-      ...other,
+      ...other
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, {

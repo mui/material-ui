@@ -371,7 +371,7 @@ export default class Popover extends Component {
       onExiting,
       onExited,
       zDepth,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
