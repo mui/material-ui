@@ -117,7 +117,7 @@ class CardHeader extends Component {
       title,
       titleColor, // eslint-disable-line no-unused-vars
       titleStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

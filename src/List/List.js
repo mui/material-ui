@@ -22,7 +22,7 @@ class List extends Component {
     const {
       children,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

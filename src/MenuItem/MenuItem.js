@@ -234,7 +234,7 @@ class MenuItem extends Component {
       style,
       animation,
       value, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -267,7 +267,7 @@ class MenuItem extends Component {
 
       secondaryTextElement = secondaryTextIsAnElement ?
         React.cloneElement(secondaryText, {style: mergedSecondaryTextStyles}) :
-        <div style={prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
+          <div style={prepareStyles(styles.secondaryText)}>{secondaryText}</div>;
     }
     let childMenuPopover;
     if (menuItems) {

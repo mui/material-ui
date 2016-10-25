@@ -74,7 +74,7 @@ class YearButton extends Component {
       onTouchTap, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       year, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

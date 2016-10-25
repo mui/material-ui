@@ -279,7 +279,7 @@ class EnhancedSwitch extends Component {
       switchElement,
       thumbStyle,
       trackStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

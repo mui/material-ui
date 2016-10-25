@@ -730,7 +730,7 @@ class Slider extends Component {
       sliderStyle,
       step,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {

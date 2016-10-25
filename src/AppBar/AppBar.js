@@ -196,7 +196,7 @@ class AppBar extends Component {
       style,
       zDepth,
       children,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -252,7 +252,7 @@ class AppBar extends Component {
           >
             {iconClassNameLeft ?
               '' :
-              <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />
+                <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />
             }
           </IconButton>
         );

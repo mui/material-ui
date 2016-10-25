@@ -118,7 +118,7 @@ class StepButton extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context, this.state);

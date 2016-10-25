@@ -49,7 +49,7 @@ class FullWidthSection extends Component {
       contentType,
       contentStyle,
       width,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = this.getStyles();

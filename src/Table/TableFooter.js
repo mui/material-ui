@@ -58,7 +58,7 @@ class TableFooter extends Component {
       children,
       className,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

@@ -184,7 +184,7 @@ class TableRow extends Component {
       selected, // eslint-disable-line no-unused-vars
       striped, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

@@ -251,7 +251,7 @@ class FloatingActionButton extends Component {
       iconStyle,
       iconClassName,
       zDepth, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

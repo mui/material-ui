@@ -193,7 +193,7 @@ class IconButton extends Component {
       tooltipStyles,
       touch,
       iconStyle,
-      ...other,
+      ...other
     } = this.props;
     let fonticon;
 
@@ -215,7 +215,7 @@ class IconButton extends Component {
     if (iconClassName) {
       const {
         iconHoverColor,
-        ...iconStyleFontIcon,
+        ...iconStyleFontIcon
       } = iconStyle;
 
       fonticon = (

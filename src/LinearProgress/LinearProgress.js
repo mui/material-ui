@@ -150,7 +150,7 @@ class LinearProgress extends Component {
   render() {
     const {
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

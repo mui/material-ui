@@ -184,7 +184,7 @@ class Tabs extends Component {
       tabItemContainerStyle,
       tabTemplate,
       tabTemplateStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
