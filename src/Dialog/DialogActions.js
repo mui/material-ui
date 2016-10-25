@@ -50,7 +50,7 @@ export default class DialogActions extends Component {
     const {
       children,
       className,
-      ...other,
+      ...other
     } = this.props;
 
     this.classes = this.context.styleManager.render(styleSheet);

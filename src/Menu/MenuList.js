@@ -144,14 +144,14 @@ export default class MenuList extends Component {
       className,
       onBlur, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     return (
       <List
         data-mui-test="MenuList"
         role="menu"
-        ref={(c) => { this.list = c; }}
+        rootRef={(c) => { this.list = c; }}
         className={className}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}

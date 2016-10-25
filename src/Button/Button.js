@@ -191,7 +191,7 @@ export default class Button extends Component {
       fab,
       primary,
       raised,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

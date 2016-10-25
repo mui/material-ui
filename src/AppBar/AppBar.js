@@ -55,7 +55,7 @@ export default class AppBar extends Component {
       children,
       className: classNameProp,
       primary,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

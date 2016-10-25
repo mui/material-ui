@@ -15,3 +15,5 @@ Props
 | type | string | 'text' |  TextFieldInput type. |
 | underline | bool | true |  If set to true, the input will have an underline. |
 | value | string |  |  The input value, required for a controlled component. |
+
+Other properties (no documented) are applied to the root element.

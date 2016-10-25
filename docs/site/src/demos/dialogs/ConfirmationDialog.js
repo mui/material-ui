@@ -72,7 +72,7 @@ class ConfirmationDialog extends Component {
     const {
       onRequestClose, // eslint-disable-line no-unused-vars
       selectedValue, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     return (

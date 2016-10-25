@@ -20,3 +20,5 @@ Props
 | onExiting | function |  |  Callback fired when the component is exiting. |
 | onExited | function |  |  Callback fired when the component has exited. |
 | transitionDuration | number | 300 |   |
+
+Other properties (no documented) are applied to the root element.

@@ -18,3 +18,5 @@ Props
 | paragraph | bool | false |   |
 | secondary | bool | false |   |
 | type | string | 'body1' |   |
+
+Other properties (no documented) are applied to the root element.

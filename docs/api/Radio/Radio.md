@@ -15,3 +15,5 @@ Props
 | name | string |  |   |
 | onChange | function |  |   |
 | value | string |  |   |
+
+Other properties (no documented) are applied to the root element.

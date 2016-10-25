@@ -39,7 +39,7 @@ export default function Avatar(props, context) {
     sizes,
     src,
     srcSet,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

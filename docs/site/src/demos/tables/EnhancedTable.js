@@ -133,17 +133,19 @@ function EnhancedTableToolbar(props, context) {
   return (
     <Toolbar className={classNames}>
       <div className={classes.title}>
-        {numSelected > 0 ?
-          <Text type="subheading">{numSelected} selected</Text> :
+        {numSelected > 0 ? (
+          <Text type="subheading">{numSelected} selected</Text>
+        ) : (
           <Text type="title">Nutrition</Text>
-        }
+        )}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0 ?
-          <IconButton>delete</IconButton> :
+        {numSelected > 0 ? (
+          <IconButton>delete</IconButton>
+        ) : (
           <IconButton>filter_list</IconButton>
-        }
+        )}
       </div>
     </Toolbar>
   );

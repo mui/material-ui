@@ -63,7 +63,7 @@ export default class MenuItem extends Component {
       className: classNameProp,
       selected,
       role,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

@@ -20,7 +20,7 @@ export default function DialogTitle(props, context) {
   const {
     children,
     className,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

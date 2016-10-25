@@ -265,7 +265,7 @@ describe('<Transition>', () => {
       render() {
         const {
           initialIn, // eslint-disable-line no-unused-vars, react/prop-types
-          ...other,
+          ...other
         } = this.props;
 
         return (
