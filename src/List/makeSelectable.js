@@ -73,7 +73,7 @@ export const makeSelectable = (MyComponent) => {
       const {
         children,
         selectedItemStyle,
-        ...other,
+        ...other
       } = this.props;
 
       this.keyIndex = 0;

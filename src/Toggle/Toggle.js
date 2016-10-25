@@ -232,7 +232,7 @@ class Toggle extends Component {
       trackSwitchedStyle, // eslint-disable-line no-unused-vars
       thumbSwitchedStyle, // eslint-disable-line no-unused-vars
       toggled,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

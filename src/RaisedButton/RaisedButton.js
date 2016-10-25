@@ -352,7 +352,7 @@ class RaisedButton extends Component {
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

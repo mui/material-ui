@@ -522,7 +522,7 @@ class ListItem extends Component {
       secondaryText,
       secondaryTextLines, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -597,7 +597,7 @@ class ListItem extends Component {
       if (needsNestedIndicator) {
         rightIconButtonElement = this.state.open ?
           <IconButton><OpenIcon /></IconButton> :
-          <IconButton><CloseIcon /></IconButton>;
+            <IconButton><CloseIcon /></IconButton>;
         rightIconButtonHandlers.onTouchTap = this.handleNestedListToggle;
       }
 

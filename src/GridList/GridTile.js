@@ -176,7 +176,7 @@ class GridTile extends Component {
       style,
       children,
       containerElement,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

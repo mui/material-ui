@@ -46,7 +46,7 @@ class CardActions extends Component {
       children,
       expandable, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

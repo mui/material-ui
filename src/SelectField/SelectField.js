@@ -164,7 +164,7 @@ class SelectField extends Component {
       onBlur,
       onChange,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);

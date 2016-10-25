@@ -75,7 +75,7 @@ class StepContent extends Component {
       style,
       transition,
       transitionDuration,
-      ...other,
+      ...other
     } = this.props;
     const {stepper, muiTheme: {prepareStyles}} = this.context;
 

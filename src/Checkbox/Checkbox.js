@@ -172,7 +172,7 @@ class Checkbox extends Component {
       onCheck, // eslint-disable-line no-unused-vars
       checkedIcon,
       uncheckedIcon,
-      ...other,
+      ...other
     } = this.props;
     const styles = getStyles(this.props, this.context);
     const boxStyles =

@@ -136,7 +136,7 @@ class StepLabel extends Component {
       icon: userIcon,
       last, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

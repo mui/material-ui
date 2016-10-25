@@ -81,7 +81,7 @@ class TimePickerDialog extends Component {
       okLabel,
       cancelLabel,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = {

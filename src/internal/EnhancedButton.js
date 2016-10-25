@@ -278,7 +278,7 @@ class EnhancedButton extends Component {
       style,
       tabIndex,
       type,
-      ...other,
+      ...other
     } = this.props;
 
     const {

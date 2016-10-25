@@ -205,7 +205,7 @@ class Snackbar extends Component {
       onRequestClose, // eslint-disable-line no-unused-vars
       onActionTouchTap,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {

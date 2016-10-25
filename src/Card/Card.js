@@ -88,7 +88,7 @@ class Card extends Component {
       expanded: expandedProp, // eslint-disable-line no-unused-vars
       initiallyExpanded, // eslint-disable-line no-unused-vars
       onExpandChange, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     let lastElement;

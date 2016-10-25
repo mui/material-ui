@@ -47,7 +47,7 @@ class ToolbarTitle extends Component {
       className,
       style,
       text,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

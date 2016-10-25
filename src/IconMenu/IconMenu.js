@@ -246,7 +246,7 @@ class IconMenu extends Component {
       targetOrigin,
       touchTapCloseDelay, // eslint-disable-line no-unused-vars
       useLayerForClickAway,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

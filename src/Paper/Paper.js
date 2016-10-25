@@ -77,7 +77,7 @@ class Paper extends Component {
       style,
       transitionEnabled, // eslint-disable-line no-unused-vars
       zDepth, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

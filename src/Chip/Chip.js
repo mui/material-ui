@@ -240,7 +240,7 @@ class Chip extends Component {
       labelColor, // eslint-disable-line no-unused-vars,prefer-const
       backgroundColor, // eslint-disable-line no-unused-vars,prefer-const
       onRequestDelete, // eslint-disable-line no-unused-vars,prefer-const
-      ...other,
+      ...other
     } = this.props;
 
     const deletable = this.props.onRequestDelete;
