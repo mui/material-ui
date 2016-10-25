@@ -81,7 +81,7 @@ export default class ListItem extends Component {
       disabled,
       divider,
       gutters,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

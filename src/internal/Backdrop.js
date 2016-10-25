@@ -52,7 +52,7 @@ export default class Backdrop extends Component {
       children,
       className,
       visible,
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

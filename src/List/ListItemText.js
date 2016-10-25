@@ -25,7 +25,7 @@ export default function ListItemText(props, context) {
     className: classNameProp,
     primary,
     secondary,
-    ...other,
+    ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, classNameProp);

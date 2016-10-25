@@ -26,7 +26,7 @@ export default function CardHeader(props, context) {
     className: classNameProp,
     subhead,
     title,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);

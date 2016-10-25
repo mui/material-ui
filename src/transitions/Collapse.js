@@ -151,7 +151,7 @@ export default class Collapse extends Component {
       onExit, // eslint-disable-line no-unused-vars
       onExiting, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);

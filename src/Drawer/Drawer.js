@@ -95,7 +95,7 @@ export default class Drawer extends Component {
       open,
       paperClassName,
       zDepth,
-      ...other,
+      ...other
     } = this.props;
 
     const { theme: { dir }, render } = this.context.styleManager;

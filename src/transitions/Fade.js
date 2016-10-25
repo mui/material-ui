@@ -78,7 +78,7 @@ export default class Fade extends Component {
       onEntering, // eslint-disable-line no-unused-vars
       onExit, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     return (

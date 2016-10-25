@@ -86,7 +86,7 @@ export default class CircularProgress extends Component {
       className,
       mode, // eslint-disable-line no-unused-vars
       size,
-      ...other,
+      ...other
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     const radius = size / 2;

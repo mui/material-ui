@@ -29,7 +29,7 @@ export default function Radio(props, context) {
     label,
     onChange,
     value,
-    ...other,
+    ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);
