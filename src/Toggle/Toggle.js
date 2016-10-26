@@ -133,7 +133,7 @@ class Toggle extends Component {
     /**
      * Label for toggle.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
     /**
      * Where the label will be placed next to the toggle.
      */
