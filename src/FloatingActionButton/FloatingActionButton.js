@@ -127,6 +127,15 @@ class FloatingActionButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+     /**
+     * Target attribute applied to the button.
+     */
+    target: PropTypes.oneOf([
+      '_blank',
+      '_self',
+      '_parent',
+      '_top',
+    ]),
     /**
      * The zDepth of the underlying `Paper` component.
      */
@@ -250,6 +259,7 @@ class FloatingActionButton extends Component {
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,
       iconClassName,
+      target,
       zDepth, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -311,6 +321,7 @@ class FloatingActionButton extends Component {
           )}
           focusRippleColor={styles.icon.color}
           touchRippleColor={styles.icon.color}
+          target={target}
         >
           <div
             ref="overlay"
