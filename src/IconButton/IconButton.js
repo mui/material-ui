@@ -5,7 +5,6 @@ import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Tooltip from '../internal/Tooltip';
 import {extendChildren} from '../utils/childUtils';
-import {transparent} from '../styles/colors';
 
 function getStyles(props, context) {
   const {baseTheme} = context.muiTheme;
@@ -227,7 +226,7 @@ class IconButton extends Component {
 
     const mergedRootStyles = Object.assign(
       styles.root,
-      {backgroundColor: hovered ? hoverColor : transparent},
+      hovered ? {backgroundColor: hoverColor} : {},
       style
     );
 
