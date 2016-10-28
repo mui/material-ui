@@ -23,6 +23,7 @@ const FlatButtonExampleIcon = () => (
     <FlatButton
       href="https://github.com/callemall/material-ui"
       secondary={true}
+      target="_blank"
       icon={<FontIcon className="muidocs-icon-custom-github" />}
       style={style}
     />

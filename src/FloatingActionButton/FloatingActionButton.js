@@ -127,6 +127,10 @@ class FloatingActionButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+     /**
+     * Target attribute applied to the button.
+     */
+    target: PropTypes.string,
     /**
      * The zDepth of the underlying `Paper` component.
      */

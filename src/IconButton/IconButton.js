@@ -91,6 +91,15 @@ class IconButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+     /**
+     * Target attribute applied to the button.
+     */
+    target: PropTypes.oneOf([
+      '_blank',
+      '_self',
+      '_parent',
+      '_top',
+    ]),
     /**
      * The text to supply to the element's tooltip.
      */
@@ -188,6 +197,7 @@ class IconButton extends Component {
       children,
       iconClassName,
       onKeyboardFocus, // eslint-disable-line no-unused-vars
+      target,
       tooltip,
       tooltipPosition: tooltipPositionProp,
       tooltipStyles,
@@ -243,6 +253,7 @@ class IconButton extends Component {
         centerRipple={true}
         disabled={disabled}
         style={Object.assign(styles.root, this.props.style)}
+        target={target}
         disableTouchRipple={disableTouchRipple}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}

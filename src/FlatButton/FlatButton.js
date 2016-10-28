@@ -93,6 +93,10 @@ class FlatButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+    /**
+     * Target attribute applied to the button.
+     */
+    target: PropTypes.string,
   };
 
   static defaultProps = {
