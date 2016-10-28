@@ -96,12 +96,7 @@ class FlatButton extends Component {
     /**
      * Target attribute applied to the button.
      */
-    target: PropTypes.oneOf([
-      '_blank',
-      '_self',
-      '_parent',
-      '_top',
-    ]),
+    target: PropTypes.string,
   };
 
   static defaultProps = {
@@ -169,7 +164,6 @@ class FlatButton extends Component {
       rippleColor,
       secondary,
       style,
-      target,
       ...other
     } = this.props;
 
@@ -269,7 +263,6 @@ class FlatButton extends Component {
     return (
       <EnhancedButton
         {...other}
-        target={target}
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
