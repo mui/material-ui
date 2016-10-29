@@ -31,7 +31,9 @@ const TextFieldLabel = (props) => {
     className,
     children,
     htmlFor,
+    isRequired,
     onTouchTap,
+    asteriskStyle,
   } = props;
 
   const {prepareStyles} = muiTheme;
@@ -45,11 +47,16 @@ const TextFieldLabel = (props) => {
       onTouchTap={onTouchTap}
     >
       {children}
+      {isRequired ? <span style={asteriskStyle}>{'\u2009'}*</span> : null}
     </label>
   );
 };
 
 TextFieldLabel.propTypes = {
+  /**
+   * Override the inline-styles of the asterisk element.
+   */
+  asteriskStyle: PropTypes.object,
   /**
    * The label contents.
    */
@@ -66,6 +73,10 @@ TextFieldLabel.propTypes = {
    * The id of the target element that this label should refer to.
    */
   htmlFor: PropTypes.string,
+  /**
+   * Whether the input value of this label's field is required.
+   */
+  isRequired: PropTypes.bool,
   /**
    * @ignore
    * The material-ui theme applied to this component.
@@ -91,6 +102,7 @@ TextFieldLabel.propTypes = {
 
 TextFieldLabel.defaultProps = {
   disabled: false,
+  isRequired: false,
   shrink: false,
 };
 
