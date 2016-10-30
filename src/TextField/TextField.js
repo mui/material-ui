@@ -376,8 +376,8 @@ class TextField extends Component {
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
-      floatingLabelFocusStyle, // eslint-disable-line no-unused-vars
-      floatingLabelStyle, // eslint-disable-line no-unused-vars
+      floatingLabelFocusStyle,
+      floatingLabelStyle,
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
       hintText,
@@ -408,11 +408,16 @@ class TextField extends Component {
       <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
     );
 
+    const labelStyleMerged = Object.assign(
+      styles.floatingLabel,
+      floatingLabelStyle,
+      this.state.isFocused ? floatingLabelFocusStyle : null
+    );
+
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
-        style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
-        shrinkStyle={this.props.floatingLabelFocusStyle}
+        style={labelStyleMerged}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
