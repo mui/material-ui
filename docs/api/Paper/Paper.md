@@ -18,3 +18,5 @@ Props
 | className | string |  |  The CSS class name of the root element. |
 | rounded | bool | true |  Set to false to disable rounded corners. |
 | zDepth | number | 2 |  Shadow depth, corresponds to `dp` in the spec. |
+
+Other properties (no documented) are applied to the root element.

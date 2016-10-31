@@ -16,3 +16,5 @@ Props
 | dense | bool | false |   |
 | divider | bool | false |   |
 | gutters | bool | true |   |
+
+Other properties (no documented) are applied to the root element.

@@ -32,3 +32,5 @@ Props
 | open | bool | false |  Set to true to open the Dialog. |
 | transition | union | Fade |  Transition component. |
 | transitionDuration | number | 300 |  Length of the transition in ms. |
+
+Other properties (no documented) are applied to the root element.

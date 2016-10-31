@@ -26,3 +26,5 @@ Props
 | primary | bool | false |  If true, the button will use the theme's primary color. |
 | raised | bool | false |  If true, the button will use raised styling. |
 | ripple | bool | true |  If true, the button will have a ripple. |
+
+Other properties (no documented) are applied to the root element.

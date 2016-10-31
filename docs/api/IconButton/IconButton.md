@@ -20,3 +20,5 @@ Props
 | contrast | bool | false |   |
 | disabled | bool | false |  If true, the button will be disabled. |
 | ripple | bool | true |  If false, the ripple effect will be disabled. |
+
+Other properties (no documented) are applied to the root element.
