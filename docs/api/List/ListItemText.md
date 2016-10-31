@@ -12,3 +12,5 @@ Props
 | className | string |  |  The CSS class name of the root element. |
 | primary | node | false |   |
 | secondary | node | false |   |
+
+Other properties (no documented) are applied to the root element.

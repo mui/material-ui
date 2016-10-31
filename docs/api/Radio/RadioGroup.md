@@ -17,3 +17,5 @@ Props
 | onChange | function |  |   |
 | onKeyDown | function |  |   |
 | selectedValue | string |  |   |
+
+Other properties (no documented) are applied to the root element.

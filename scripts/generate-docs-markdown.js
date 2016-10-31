@@ -163,7 +163,9 @@ function generateMarkdown(name, reactAPI) {
   return `${
     generateTitle(name)}\n${
     generateDesciption(reactAPI.description)}\n${
-    generateProps(reactAPI.props)}`;
+    generateProps(reactAPI.props)}\n${
+    'Other properties (no documented) are applied to the root element.'}
+`;
 }
 
 module.exports = generateMarkdown;

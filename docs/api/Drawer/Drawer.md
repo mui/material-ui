@@ -16,3 +16,5 @@ Props
 | open | bool | false |   |
 | paperClassName | string |  |  The CSS class name of the paper element. |
 | zDepth | number | 16 |   |
+
+Other properties (no documented) are applied to the root element.

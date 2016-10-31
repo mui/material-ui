@@ -21,3 +21,5 @@ Props
 | onRequestClose | function |  |  Callback function fired when the menu is requested to be closed.<br><br>**Signature:**<br>`function(event: event) => void`<br>*event:* The event that triggered the close request |
 | open | bool | false |  If true, the menu is visible. |
 | transitionDuration | union | 'auto' |  The length of the transition in `ms`, or 'auto' |
+
+Other properties (no documented) are applied to the root element.
