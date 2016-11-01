@@ -23,4 +23,4 @@ dependencies:
     - "test/regressions/site/node_modules"
 test:
   override:
-    - ./scripts/run-travis-tests.sh && cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+    - ./scripts/run-travis-tests.sh && ./scripts/export-coverage.sh
