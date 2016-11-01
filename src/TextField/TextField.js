@@ -408,16 +408,14 @@ class TextField extends Component {
       <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
     );
 
-    const labelStyleMerged = Object.assign(
-      styles.floatingLabel,
-      floatingLabelStyle,
-      this.state.isFocused ? floatingLabelFocusStyle : null
-    );
-
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
-        style={labelStyleMerged}
+        style={Object.assign(
+          styles.floatingLabel,
+          floatingLabelStyle,
+          this.state.isFocused ? floatingLabelFocusStyle : null
+        )}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}

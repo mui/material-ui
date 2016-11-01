@@ -150,4 +150,21 @@ describe('<TextField />', () => {
         'The hint text should keep the same state');
     });
   });
+
+  describe('prop: floatingLabelFocusStyle', () => {
+    it('should be applied when the input is focused', () => {
+      const wrapper = shallowWithContext(
+        <TextField
+          floatingLabelText="Name"
+          floatingLabelFixed={true}
+          floatingLabelFocusStyle={{color: 'blue'}}
+          floatingLabelStyle={{color: 'red'}}
+        />
+      );
+      wrapper.setState({
+        isFocused: true,
+      });
+      assert.strictEqual(wrapper.find(TextFieldLabel).props().style.color, 'blue');
+    });
+  });
 });
