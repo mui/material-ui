@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
-import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
@@ -18,7 +17,6 @@ const getStyles = (props, context, state) => {
       textColor,
       disabledTextColor,
       backgroundColor,
-      hintColor,
       errorColor,
     },
   } = context.muiTheme;
@@ -44,7 +42,7 @@ const getStyles = (props, context, state) => {
       transition: transitions.easeOut(),
     },
     floatingLabel: {
-      color: hintColor,
+      color: props.disabled ? disabledTextColor : floatingLabelColor,
       pointerEvents: 'none',
     },
     input: {
@@ -75,10 +73,6 @@ const getStyles = (props, context, state) => {
 
   // Do not assign a height to the textarea as he handles it on his own.
   styles.input.height = '100%';
-
-  if (state.hasValue) {
-    styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-  }
 
   if (state.isFocused) {
     styles.floatingLabel.color = focusColor;

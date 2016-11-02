@@ -284,7 +284,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     textField: {
       textColor: palette.textColor,
       hintColor: palette.disabledColor,
-      floatingLabelColor: palette.textColor,
+      floatingLabelColor: palette.disabledColor,
       disabledTextColor: palette.disabledColor,
       errorColor: red500,
       focusColor: palette.primary1Color,
