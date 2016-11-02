@@ -269,11 +269,12 @@ class IconMenu extends Component {
     warning(iconButtonElement.type.muiName !== 'SvgIcon',
       `Material-UI: You shoud not provide an <SvgIcon /> to the 'iconButtonElement' property of <IconMenu />.
 You should wrapped it with an <IconButton />.`);
+
     const iconButton = React.cloneElement(iconButtonElement, {
       onKeyboardFocus: onKeyboardFocus,
       iconStyle: iconStyle ?
-          Object.assign({}, iconStyle, iconButtonElement.props.iconStyle) :
-          iconButtonElement.props.iconStyle,
+        Object.assign({}, iconStyle, iconButtonElement.props.iconStyle) :
+        iconButtonElement.props.iconStyle,
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
         if (iconButtonElement.props.onTouchTap) {
