@@ -222,8 +222,7 @@ class GridTile extends Component {
     }
 
     const containerProps = {
-      style: prepareStyles(mergedRootStyles),
-      titleStyle: prepareStyles(mergedTitleStyles),
+      style: prepareStyles(mergedRootStyles, mergedTitleStyles),
       ...other,
     };
 

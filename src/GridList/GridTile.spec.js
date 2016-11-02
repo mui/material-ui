@@ -20,7 +20,7 @@ describe('<GridTile />', () => {
       <GridTile>{testChildren}</GridTile>
     );
 
-    assert.ok(wrapper.containsMatchingElement(testChildren), 'should contain the children');
+    assert.strictEqual(wrapper.containsMatchingElement(testChildren), true, 'should contain the children');
   });
 
   it('renders children and className', () => {
@@ -28,8 +28,8 @@ describe('<GridTile />', () => {
       <GridTile className="testClassName">{testChildren}</GridTile>
     );
 
-    assert.ok(wrapper.containsMatchingElement(testChildren), 'should contain the children');
-    assert.ok(wrapper.is('.testClassName'), 'should contain the className');
+    assert.strictEqual(wrapper.containsMatchingElement(testChildren), true, 'should contain the children');
+    assert.strictEqual(wrapper.hasClass('testClassName'), true, 'should contain the className');
   });
 
   it('renders children and title', () => {
@@ -37,21 +37,32 @@ describe('<GridTile />', () => {
       <GridTile title={tileData.title}>{testChildren}</GridTile>
     );
 
-    assert.ok(wrapper.containsMatchingElement(testChildren), 'should contain the children');
-    assert.equal(wrapper.children('div').text(),
+    assert.strictEqual(wrapper.containsMatchingElement(testChildren), true, 'should contain the children');
+    assert.strictEqual(wrapper.children('div').text(),
     tileData.title, 'should contain the title');
   });
 
-  it('renders children and overwrite title styles', () => {
+  it('renders children and overwrite styles', () => {
     const titleStyle = {
       fontSize: '20px',
     };
+    const titleBackground = '#000';
     const wrapper = shallowWithContext(
-      <GridTile titleStyle={titleStyle}>{testChildren}</GridTile>
+      <GridTile
+        title={tileData.title}
+        titleStyle={titleStyle}
+        titleBackground={titleBackground}
+      >
+        {testChildren}
+      </GridTile>
     );
 
-    assert.ok(wrapper.containsMatchingElement(testChildren), 'should contain the children');
-    assert.equal(wrapper.find('div').node.props.titleStyle.fontSize,
-    titleStyle.fontSize, 'should overwrite title fontSize');
+    assert.strictEqual(wrapper.containsMatchingElement(testChildren), true, 'should contain the children');
+    assert.strictEqual(
+      wrapper.find('div').get(0).props.children[1].props.children[0].props.children[0].props.style.fontSize,
+      titleStyle.fontSize, 'should overwrite title fontSize');
+    assert.strictEqual(
+      wrapper.find('div').get(0).props.children[1].props.style.background,
+      titleBackground, 'should overwrite titleBar background');
   });
 });
