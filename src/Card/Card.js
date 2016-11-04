@@ -110,7 +110,12 @@ class Card extends Component {
       }
       if (currentChild.props.showExpandableButton === true) {
         doClone = true;
-        newChild = <CardExpandable expanded={expanded} onExpanding={this.handleExpanding} />;
+        newChild = (<CardExpandable
+          closeIcon={currentChild.props.closeIcon}
+          expanded={expanded}
+          onExpanding={this.handleExpanding}
+          openIcon={currentChild.props.openIcon}
+                    />);
       }
       if (doClone) {
         element = React.cloneElement(currentChild, newProps, currentChild.props.children, newChild);

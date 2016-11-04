@@ -17,14 +17,26 @@ function getStyles() {
 
 class CardExpandable extends Component {
   static propTypes = {
+    closeIcon: PropTypes.node,
     expanded: PropTypes.bool,
     onExpanding: PropTypes.func.isRequired,
+    openIcon: PropTypes.node,
     style: PropTypes.object,
   };
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
   };
+
+  getCorrectIcon(isExpanded, propIconOpen, propIconClose) {
+    if (isExpanded) {
+      if (propIconOpen) return propIconOpen;
+      return <OpenIcon />;
+    } else {
+      if (propIconClose) return propIconClose;
+      return <CloseIcon />;
+    }
+  }
 
   render() {
     const styles = getStyles(this.props, this.context);
@@ -34,7 +46,7 @@ class CardExpandable extends Component {
         style={Object.assign(styles.root, this.props.style)}
         onTouchTap={this.props.onExpanding}
       >
-        {this.props.expanded ? <OpenIcon /> : <CloseIcon />}
+        {this.getCorrectIcon(this.props.expanded, this.props.openIcon, this.props.closeIcon)}
       </IconButton>
     );
   }
