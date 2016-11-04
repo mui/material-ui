@@ -96,7 +96,7 @@ class Clock extends Component {
     }
   };
 
-  handleChangeMinutes = (minutes) => {
+  handleChangeMinutes = (minutes, finished) => {
     const time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
@@ -104,7 +104,7 @@ class Clock extends Component {
     });
 
     const {onChangeMinutes} = this.props;
-    if (onChangeMinutes) {
+    if (onChangeMinutes && finished) {
       setTimeout(() => {
         onChangeMinutes(time);
       }, 0);
