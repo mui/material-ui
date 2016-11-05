@@ -38,6 +38,7 @@ export const MUI_SHEET_ORDER = [
   'ListItem',
   'ListItemText',
   'ListItemSecondaryAction',
+  'ListSubheader',
   'List',
 
   'Menu',
