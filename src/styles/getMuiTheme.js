@@ -159,7 +159,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     menuItem: {
       dataHeight: 32,
       height: 48,
-      hoverColor: fade(palette.textColor, 0.035),
+      hoverColor: fade(palette.textColor, 0.1),
       padding: spacing.desktopGutter,
       selectedTextColor: palette.accent1Color,
       rightIconDesktopFill: grey600,

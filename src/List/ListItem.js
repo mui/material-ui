@@ -502,6 +502,7 @@ class ListItem extends Component {
       children,
       disabled,
       disableKeyboardFocus,
+      hoverColor, // eslint-disable-line no-unused-vars
       initiallyOpen, // eslint-disable-line no-unused-vars
       innerDivStyle,
       insetChildren, // eslint-disable-line no-unused-vars
