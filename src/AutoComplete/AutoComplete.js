@@ -388,13 +388,13 @@ class AutoComplete extends Component {
       openOnFocus, // eslint-disable-line no-unused-vars
       popoverProps,
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
-      ...other
+      ...other,
     } = this.props;
 
     const {
       style: popoverStyle,
-      ...popoverOther
-    } = popoverProps || {}
+      ...popoverOther,
+    } = popoverProps || {};
 
     const {
       open,
