@@ -6,9 +6,6 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
-  const { palette, shadows, transitions } = theme;
-  const { button } = theme.components;
-
   return {
     button: {
       fontSize: button.fontSize,
@@ -22,9 +19,9 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       height: 36,
       padding: '0px 16px',
       borderRadius: 2,
-      color: palette.text.primary,
+      color: theme.color,
       backgroundColor: 'transparent',
-      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+      transition: theme.transition,
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: palette.text.divider,
@@ -44,14 +41,13 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       justifyContent: 'inherit',
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.primary[500],
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.accent.A200,
     },
     contrast: {
-      color: theme.palette.type === 'light' ?
-        theme.palette.shades.dark.primary : theme.palette.shades.light.secondary,
+      color: theme.contrastColor,
     },
     raised: {
       color: palette.getContrastText(palette.grey[300]),
@@ -96,6 +92,26 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         boxShadow: shadows[12],
       },
     },
+  };
+});
+
+styleSheet.registerLocalTheme((globalTheme) => {
+  const { palette, shadows, transitions } = globalTheme;
+
+  return {
+    primary: palette.primary,
+    secondary: palette.secondary,
+    fontSize: typography.fontSize,
+    fontWeight: typography.fontWeightMedium,
+    fontFamily: typography.fontFamily,
+    textTransform: 'uppercase',
+    color: palette.text.primary,
+    contrastColor: theme.palette.type === 'light' ?
+        theme.palette.shades.dark.primary : theme.palette.shades.light.secondary,
+    transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+
+    // raised button shadows
+    raisedShadow:
   };
 });
 
