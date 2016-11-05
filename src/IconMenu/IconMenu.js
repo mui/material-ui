@@ -5,7 +5,6 @@ import propTypes from '../utils/propTypes';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 import warning from 'warning';
-import deprecated from '../utils/deprecatedPropType';
 
 class IconMenu extends Component {
   static muiName = 'IconMenu';
@@ -43,7 +42,7 @@ class IconMenu extends Component {
     /**
      * Override the inline-styles of the underlying icon element.
      */
-    iconStyle: deprecated(PropTypes.object, 'Add the "iconStyle" prop to the "iconButtonElement" instead.'),
+    iconStyle: PropTypes.object,
     /**
      * Override the inline-styles of the menu element.
      */
