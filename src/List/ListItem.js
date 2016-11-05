@@ -28,7 +28,7 @@ function getStyles(props, context, state) {
   const {listItem} = muiTheme;
 
   const textColor = muiTheme.baseTheme.palette.textColor;
-  const hoverColor = fade(textColor, 0.1);
+  const hoverColor = props.hoverColor || fade(textColor, 0.1);
   const singleAvatar = !secondaryText && (leftAvatar || rightAvatar);
   const singleNoAvatar = !secondaryText && !(leftAvatar || rightAvatar);
   const twoLine = secondaryText && secondaryTextLines === 1;
@@ -164,6 +164,10 @@ class ListItem extends Component {
      * or `rightToggle` is set.
      */
     disabled: PropTypes.bool,
+    /**
+    * Override the hover background color.
+    */
+    hoverColor: PropTypes.string,
     /**
      * If true, the nested `ListItem`s are initially displayed.
      */

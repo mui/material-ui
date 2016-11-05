@@ -146,4 +146,18 @@ describe('<ListItem />', () => {
       assert.strictEqual(wrapper.find(NestedList).props().open, true);
     });
   });
+
+  describe('props: hoverColor', () => {
+    it('should use a background color on hover if hoverColor is specified', () => {
+      const testColor = '#ededed';
+      const wrapper = shallowWithContext(
+        <ListItem
+          hoverColor={testColor}
+        />
+      );
+      wrapper.find('EnhancedButton').simulate('mouseEnter');
+      wrapper.update();
+      assert.strictEqual(wrapper.find('EnhancedButton').prop('style').backgroundColor, testColor);
+    });
+  });
 });
