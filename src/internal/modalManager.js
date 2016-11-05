@@ -3,6 +3,7 @@
 import css from 'dom-helpers/style';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
+import canUseDom from 'dom-helpers/util/inDOM';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import { hideSiblings, showSiblings, ariaHidden } from '../utils/manageAriaHidden';
 
@@ -16,6 +17,9 @@ function bodyIsOverflowing(node) {
   return doc.body.clientWidth < win.innerWidth;
 }
 
+// The container shouldn't be used on the server.
+const defaultContainer = canUseDom ? window.document.body : {};
+
 /**
  * State managment helper for modals/layers.
  * Simplified, but inspired by react-overlay's ModalManager class
@@ -23,7 +27,7 @@ function bodyIsOverflowing(node) {
  * @internal Used by the Modal to ensure proper focus management.
  */
 export function createModalManager({
-  container = window.document.body,
+  container = defaultContainer,
   hideSiblingNodes = true,
 } = {}) {
   const modals = [];

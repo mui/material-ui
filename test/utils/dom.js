@@ -1,6 +1,7 @@
 // @flow weak
 const { jsdom } = require('jsdom');
 
+<<<<<<< HEAD
 const exposedProperties = ['window', 'navigator', 'document'];
 
 <<<<<<< HEAD
@@ -15,13 +16,14 @@ function matchMedia() {
 
 =======
 >>>>>>> [test] Run eslint on more files
+=======
+>>>>>>> [Dialog] Fix an issue with the SSR
 function createDOM() {
   global.document = jsdom('');
   global.window = document.defaultView;
   global.window.matchMedia = matchMedia;
   Object.keys(document.defaultView).forEach((property) => {
     if (typeof global[property] === 'undefined') {
-      exposedProperties.push(property);
       global[property] = document.defaultView[property];
     }
   });
