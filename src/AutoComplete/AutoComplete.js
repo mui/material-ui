@@ -497,7 +497,7 @@ class AutoComplete extends Component {
         />
         <Popover
           {...popoverProps}
-          style={styles.popover}
+          style={prepareStyles(Object.assign(styles.popover, (popoverProps || {}).style))}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
