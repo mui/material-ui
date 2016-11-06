@@ -4,7 +4,6 @@ import shadows from './shadows';
 import transitions from './transitions';
 import createTypography from './typography';
 import createBreakpoints from './breakpoints';
-import createComponents from './components';
 import createPalette from './palette';
 import zIndex from './zIndex';
 import createMixins from './mixins';
@@ -29,8 +28,6 @@ export function createMuiTheme(config = {}) {
     zIndex,
     ...more,
   };
-
-  theme.components = createComponents(theme);
 
   return theme;
 }
