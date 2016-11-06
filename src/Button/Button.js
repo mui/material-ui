@@ -8,7 +8,7 @@ import { getContrastText } from '../styles/palette';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
   return {
-    button: {
+    root: {
       fontSize: theme.fontSize,
       fontWeight: theme.fontWeight,
       fontFamily: theme.fontFamily,
