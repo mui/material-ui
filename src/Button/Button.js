@@ -67,6 +67,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         boxShadow: theme.shadows[0],
       },
     },
+    keyboardFocused: {},
     raisedPrimary: {
       color: getContrastText(theme.primary[500]),
       backgroundColor: theme.primary[500],
@@ -104,7 +105,7 @@ styleSheet.registerLocalTheme((globalTheme) => {
     fontWeight: typography.fontWeightMedium,
     fontFamily: typography.fontFamily,
     textTransform: 'uppercase',
-    raised: palette.grey[300],
+    raised: palette.grey,
     primary: palette.primary,
     accent: palette.accent,
     color: palette.text.primary,
@@ -213,7 +214,7 @@ export default class Button extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const flat = !raised && !fab;
     const className = classNames({
-      [classes.button]: true,
+      [classes.root]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
       [classes.primary]: flat && primary,
