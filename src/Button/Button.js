@@ -57,7 +57,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       color: palette.getContrastText(palette.grey[300]),
       backgroundColor: palette.grey[300],
       boxShadow: shadows[2],
-      '&keyboardFocused': {
+      '&$keyboardFocused': {
         boxShadow: shadows[6],
       },
       '&:hover': {
@@ -70,6 +70,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         boxShadow: shadows[0],
       },
     },
+    keyboardFocused: {},
     raisedPrimary: {
       color: palette.getContrastText(palette.primary[500]),
       backgroundColor: palette.primary[500],

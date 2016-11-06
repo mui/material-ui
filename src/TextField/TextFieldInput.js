@@ -35,7 +35,7 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
     },
     underline: {
       borderBottom: `1px solid ${palette.text.divider}`,
-      '&disabled': {
+      '& $disabled': {
         borderBottomStyle: 'dotted',
       },
     },
