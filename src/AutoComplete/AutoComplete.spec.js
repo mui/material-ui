@@ -88,6 +88,34 @@ describe('<AutoComplete />', () => {
     });
   });
 
+  describe('props: onUpdateInput', () => {
+    it('should fire after selection from menu', (done) => {
+      const handleUpdateInput = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          dataSource={['foo', 'bar']}
+          searchText="f"
+          onUpdateInput={handleUpdateInput}
+          menuCloseDelay={10}
+        />
+      );
+
+      wrapper.setState({open: true});
+      wrapper.find(Menu).props().onItemTouchTap({}, {
+        key: 0,
+      });
+      assert.strictEqual(handleUpdateInput.callCount, 0);
+      assert.strictEqual(wrapper.state().searchText, 'f');
+
+      setTimeout(() => {
+        assert.strictEqual(handleUpdateInput.callCount, 1);
+        assert.strictEqual(handleUpdateInput.getCall(0).args[0], 'foo');
+        assert.strictEqual(wrapper.state().searchText, 'foo');
+        done();
+      }, 20);
+    });
+  });
+
   describe('props: popoverProps', () => {
     it('should pass popoverProps to Popover', () => {
       const wrapper = shallowWithContext(
