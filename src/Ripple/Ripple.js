@@ -20,9 +20,9 @@ export const styleSheet = createStyleSheet('Ripple', () => ({
     opacity: 0.3,
     transform: 'scale(1, 1)',
     animation: `ripple-enter 550ms ${easing.easeInOut}`,
-    '&fast': {
-      animationDuration: '200ms',
-    },
+  },
+  fast: {
+    animationDuration: '200ms',
   },
   leaving: {
     opacity: 0,
