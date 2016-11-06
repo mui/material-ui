@@ -4,14 +4,15 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
+import { getContrastText } from '../styles/palette';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
   return {
     button: {
-      fontSize: button.fontSize,
-      fontWeight: button.fontWeight,
-      fontFamily: button.fontFamily,
-      textTransform: button.textTransform,
+      fontSize: theme.fontSize,
+      fontWeight: theme.fontWeight,
+      fontFamily: theme.fontFamily,
+      textTransform: theme.textTransform,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -24,7 +25,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       transition: theme.transition,
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: palette.text.divider,
+        backgroundColor: theme.hoverBackgroundColor,
       },
     },
     compact: {
@@ -50,35 +51,34 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       color: theme.contrastColor,
     },
     raised: {
-      color: palette.getContrastText(palette.grey[300]),
-      backgroundColor: palette.grey[300],
-      boxShadow: shadows[2],
+      color: getContrastText(theme.raised[300]),
+      backgroundColor: theme.raised[300],
+      boxShadow: theme.shadows[2],
       '&$keyboardFocused': {
-        boxShadow: shadows[6],
+        boxShadow: theme.shadows[6],
       },
       '&:hover': {
-        backgroundColor: palette.grey.A100,
+        backgroundColor: theme.raised.A100,
       },
       '&:active': {
-        boxShadow: shadows[8],
+        boxShadow: theme.shadows[8],
       },
       '&$disabled': {
-        boxShadow: shadows[0],
+        boxShadow: theme.shadows[0],
       },
     },
-    keyboardFocused: {},
     raisedPrimary: {
-      color: palette.getContrastText(palette.primary[500]),
-      backgroundColor: palette.primary[500],
+      color: getContrastText(theme.primary[500]),
+      backgroundColor: theme.primary[500],
       '&:hover': {
-        backgroundColor: palette.primary[700],
+        backgroundColor: theme.primary[700],
       },
     },
     raisedAccent: {
-      color: palette.getContrastText(palette.accent.A200),
-      backgroundColor: palette.accent.A200,
+      color: getContrastText(theme.accent.A200),
+      backgroundColor: theme.accent.A200,
       '&:hover': {
-        backgroundColor: palette.accent.A400,
+        backgroundColor: theme.accent.A400,
       },
     },
     fab: {
@@ -87,31 +87,30 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       minWidth: 0,
       width: 56,
       height: 56,
-      boxShadow: shadows[6],
+      boxShadow: theme.shadows[6],
       '&:active': {
-        boxShadow: shadows[12],
+        boxShadow: theme.shadows[12],
       },
     },
   };
 });
 
 styleSheet.registerLocalTheme((globalTheme) => {
-  const { palette, shadows, transitions } = globalTheme;
+  const { palette, shadows, transitions, typography } = globalTheme;
 
   return {
-    primary: palette.primary,
-    secondary: palette.secondary,
+    shadows,
     fontSize: typography.fontSize,
     fontWeight: typography.fontWeightMedium,
     fontFamily: typography.fontFamily,
     textTransform: 'uppercase',
+    raised: palette.grey[300],
+    primary: palette.primary,
+    accent: palette.accent,
     color: palette.text.primary,
-    contrastColor: theme.palette.type === 'light' ?
-        theme.palette.shades.dark.primary : theme.palette.shades.light.secondary,
+    contrastColor: palette.type === 'light' ? palette.shades.dark.primary : palette.shades.light.secondary,
+    hoverBackgroundColor: palette.text.divider,
     transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
-
-    // raised button shadows
-    raisedShadow:
   };
 });
 
