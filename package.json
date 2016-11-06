@@ -50,9 +50,9 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "dom-helpers": "^3.0.0",
-    "jss": "^5.5.0",
+    "jss": "^5.5.6",
     "jss-preset-default": "^0.5.0",
-    "jss-theme-reactor": "^0.4.1",
+    "jss-theme-reactor": "^0.5.3",
     "keycode": "^2.1.1",
     "lodash": "^4.16.4",
     "object-assign": "^4.1.0",

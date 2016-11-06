@@ -4,17 +4,15 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
+import { getContrastText } from '../styles/palette';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
-  const { palette, shadows, transitions } = theme;
-  const { button } = theme.components;
-
   return {
-    button: {
-      fontSize: button.fontSize,
-      fontWeight: button.fontWeight,
-      fontFamily: button.fontFamily,
-      textTransform: button.textTransform,
+    root: {
+      fontSize: theme.fontSize,
+      fontWeight: theme.fontWeight,
+      fontFamily: theme.fontFamily,
+      textTransform: theme.textTransform,
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -22,12 +20,12 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       height: 36,
       padding: '0px 16px',
       borderRadius: 2,
-      color: palette.text.primary,
+      color: theme.color,
       backgroundColor: 'transparent',
-      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+      transition: theme.transition,
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: palette.text.divider,
+        backgroundColor: theme.hoverBackgroundColor,
       },
     },
     compact: {
@@ -44,45 +42,44 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       justifyContent: 'inherit',
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.primary[500],
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.accent.A200,
     },
     contrast: {
-      color: theme.palette.type === 'light' ?
-        theme.palette.shades.dark.primary : theme.palette.shades.light.secondary,
+      color: theme.contrastColor,
     },
     raised: {
-      color: palette.getContrastText(palette.grey[300]),
-      backgroundColor: palette.grey[300],
-      boxShadow: shadows[2],
+      color: getContrastText(theme.raised[300]),
+      backgroundColor: theme.raised[300],
+      boxShadow: theme.shadows[2],
       '&$keyboardFocused': {
-        boxShadow: shadows[6],
+        boxShadow: theme.shadows[6],
       },
       '&:hover': {
-        backgroundColor: palette.grey.A100,
+        backgroundColor: theme.raised.A100,
       },
       '&:active': {
-        boxShadow: shadows[8],
+        boxShadow: theme.shadows[8],
       },
       '&$disabled': {
-        boxShadow: shadows[0],
+        boxShadow: theme.shadows[0],
       },
     },
     keyboardFocused: {},
     raisedPrimary: {
-      color: palette.getContrastText(palette.primary[500]),
-      backgroundColor: palette.primary[500],
+      color: getContrastText(theme.primary[500]),
+      backgroundColor: theme.primary[500],
       '&:hover': {
-        backgroundColor: palette.primary[700],
+        backgroundColor: theme.primary[700],
       },
     },
     raisedAccent: {
-      color: palette.getContrastText(palette.accent.A200),
-      backgroundColor: palette.accent.A200,
+      color: getContrastText(theme.accent.A200),
+      backgroundColor: theme.accent.A200,
       '&:hover': {
-        backgroundColor: palette.accent.A400,
+        backgroundColor: theme.accent.A400,
       },
     },
     fab: {
@@ -91,11 +88,30 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       minWidth: 0,
       width: 56,
       height: 56,
-      boxShadow: shadows[6],
+      boxShadow: theme.shadows[6],
       '&:active': {
-        boxShadow: shadows[12],
+        boxShadow: theme.shadows[12],
       },
     },
+  };
+});
+
+styleSheet.registerLocalTheme((globalTheme) => {
+  const { palette, shadows, transitions, typography } = globalTheme;
+
+  return {
+    shadows,
+    fontSize: typography.fontSize,
+    fontWeight: typography.fontWeightMedium,
+    fontFamily: typography.fontFamily,
+    textTransform: 'uppercase',
+    raised: palette.grey,
+    primary: palette.primary,
+    accent: palette.accent,
+    color: palette.text.primary,
+    contrastColor: palette.type === 'light' ? palette.shades.dark.primary : palette.shades.light.secondary,
+    hoverBackgroundColor: palette.text.divider,
+    transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
   };
 });
 
@@ -198,7 +214,7 @@ export default class Button extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const flat = !raised && !fab;
     const className = classNames({
-      [classes.button]: true,
+      [classes.root]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
       [classes.primary]: flat && primary,

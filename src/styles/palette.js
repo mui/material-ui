@@ -43,7 +43,7 @@ export const dark = {
 
 export const shades = { dark, light };
 
-function getContrastText(color) {
+export function getContrastText(color) {
   if (getContrastRatio(color, black) < 7) {
     return dark.text.primary;
   }

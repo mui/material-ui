@@ -20,3 +20,6 @@ jsconfig.json
 
 # OS files
 .DS_STORE
+
+# tmp
+tmp*
