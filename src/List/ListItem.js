@@ -366,7 +366,7 @@ class ListItem extends Component {
       >
         {contentChildren}
       </div>
-     );
+    );
   }
 
   createLabelElement(styles, contentChildren, additionalProps) {
@@ -390,7 +390,7 @@ class ListItem extends Component {
       >
         {contentChildren}
       </label>
-     );
+    );
   }
 
   createTextElement(styles, data, key) {

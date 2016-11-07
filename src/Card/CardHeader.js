@@ -53,7 +53,7 @@ class CardHeader extends Component {
      */
     children: PropTypes.node,
     /**
-     * Can be used to pass a closeIcon if you don't like the default expandable close Icon
+     * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
      */
     closeIcon: PropTypes.node,
     /**
@@ -61,7 +61,7 @@ class CardHeader extends Component {
      */
     expandable: PropTypes.bool,
     /**
-     * Can be used to pass a openIcon if you don't like the default expandable open Icon
+     * Can be used to pass a openIcon if you don't like the default expandable open Icon.
      */
     openIcon: PropTypes.node,
     /**

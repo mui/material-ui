@@ -28,15 +28,10 @@ class CardExpandable extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  getCorrectIcon(isExpanded, propIconOpen, propIconClose) {
-    if (isExpanded) {
-      if (propIconOpen) return propIconOpen;
-      return <OpenIcon />;
-    } else {
-      if (propIconClose) return propIconClose;
-      return <CloseIcon />;
-    }
-  }
+  static defaultProps = {
+    closeIcon: <CloseIcon />,
+    openIcon: <OpenIcon />,
+  };
 
   render() {
     const styles = getStyles(this.props, this.context);
@@ -46,7 +41,7 @@ class CardExpandable extends Component {
         style={Object.assign(styles.root, this.props.style)}
         onTouchTap={this.props.onExpanding}
       >
-        {this.getCorrectIcon(this.props.expanded, this.props.openIcon, this.props.closeIcon)}
+        {this.props.expanded ? this.props.openIcon : this.props.closeIcon}
       </IconButton>
     );
   }
