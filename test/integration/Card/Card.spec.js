@@ -37,7 +37,7 @@ describe('<Card />', () => {
       </Card>
     );
     assert.strictEqual(wrapper.find(CloseIcon).node.props.color, '#ff0000', 'CloseIcon should have color #ff0000');
-    wrapper.find('IconButton').simulate('touchTap');
+    wrapper.setState({expanded: true});
     assert.strictEqual(wrapper.find(OpenIcon).node.props.color, '#00ff00', 'OpenIcon should have color #00ff00');
   });
 });
