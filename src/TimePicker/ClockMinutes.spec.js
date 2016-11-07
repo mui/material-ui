@@ -1,9 +1,8 @@
 /* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
-import {expect} from 'chai';
-import sinon from 'sinon';
-
+import {assert} from 'chai';
+import {spy} from 'sinon';
 import getMuiTheme from '../styles/getMuiTheme';
 import ClockMinutes from './ClockMinutes';
 
@@ -11,23 +10,41 @@ describe('<ClockMinutes />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
-  it('at touchEnd as to call onChange once and return the second arg as true', () => {
-    const onChange = sinon.spy();
-    const wrapper = shallowWithContext(
-      <ClockMinutes onChange={onChange} />
-    );
+  describe('prop: onChange', () => {
+    let wrapper;
+    let onChange;
 
-    wrapper.instance().center = {x: 100, y: 100};
-    wrapper.instance().basePoint = {x: 100, y: 0};
-    const simComp = wrapper.find('div').at(1);
+    beforeEach(() => {
+      onChange = spy();
+      wrapper = shallowWithContext(
+        <ClockMinutes onChange={onChange} />
+      );
 
-    simComp.simulate('touchEnd', {preventDefault() {}, type: 'touchend', changedTouches: [{offsetX: 50, offsetY: 70}]});
-    expect(onChange.calledOnce).to.equal(true);
-    expect(onChange.calledTwice).to.equal(false);
-    expect(onChange.args[0][1]).to.equal(true);
-    simComp.simulate('mouseUp', {preventDefault() {}, type: 'mouseUp', nativeEvent: {offsetX: 50, offsetY: 70}});
-    expect(onChange.calledOnce).to.equal(false);
-    expect(onChange.calledTwice).to.equal(true);
-    expect(onChange.args[0][1]).to.equal(true);
+      wrapper.instance().center = {x: 100, y: 100};
+      wrapper.instance().basePoint = {x: 100, y: 0};
+    });
+
+    it('should have finished true on touchEnd', () => {
+      const mask = wrapper.find('div').at(1);
+
+      mask.simulate('touchEnd', {
+        preventDefault() {},
+        type: 'touchend',
+        changedTouches: [{offsetX: 50, offsetY: 70}],
+      });
+      assert.strictEqual(onChange.callCount, 1);
+      assert.deepEqual(onChange.args[0], [50, true]);
+    });
+
+    it('should have finished true on mouseEnd', () => {
+      const mask = wrapper.find('div').at(1);
+      mask.simulate('mouseUp', {
+        preventDefault() {},
+        type: 'mouseUp',
+        nativeEvent: {offsetX: 50, offsetY: 70},
+      });
+      assert.strictEqual(onChange.callCount, 1);
+      assert.deepEqual(onChange.args[0], [50, true]);
+    });
   });
 });
