@@ -4,6 +4,7 @@ import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import {spy} from 'sinon';
 import StepButton from './StepButton';
+import StepLabel from './StepLabel';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<StepButton />', () => {
@@ -26,7 +27,7 @@ describe('<StepButton />', () => {
       <StepButton>Step One</StepButton>
     );
     assert.ok(wrapper.is('EnhancedButton'), 'should be an EnhancedButton');
-    const stepLabel = wrapper.find('StepLabel');
+    const stepLabel = wrapper.find(StepLabel);
     assert.strictEqual(stepLabel.length, 1, 'should have a stepLabel');
     assert.strictEqual(stepLabel.props().children, 'Step One');
   });
@@ -40,11 +41,11 @@ describe('<StepButton />', () => {
         StepOne
       </StepButton>
     );
-    const stepLabel = wrapper.find('StepLabel');
-    assert.strictEqual(stepLabel.props().iconContainerStyle.width, 50);
-    assert.strictEqual(stepLabel.props().iconContainerStyle.color, 'cyan');
-    assert.strictEqual(stepLabel.props().iconContainerStyle.marginTop, 200);
-    assert.strictEqual(stepLabel.props().iconContainerStyle.border, '1px solid violet');
+    const iconContainerStyle = wrapper.find(StepLabel).props().iconContainerStyle;
+    assert.strictEqual(iconContainerStyle.width, 50);
+    assert.strictEqual(iconContainerStyle.color, 'cyan');
+    assert.strictEqual(iconContainerStyle.marginTop, 200);
+    assert.strictEqual(iconContainerStyle.border, '1px solid violet');
   });
 
   it('should pass props to StepLabel', () => {
@@ -58,7 +59,7 @@ describe('<StepButton />', () => {
         Step One
       </StepButton>
     );
-    const stepLabel = wrapper.find('StepLabel');
+    const stepLabel = wrapper.find(StepLabel);
     assert.strictEqual(stepLabel.prop('active'), true, 'should be active');
     assert.strictEqual(stepLabel.prop('completed'), true, 'should be completed');
     assert.strictEqual(stepLabel.prop('disabled'), true, 'should be disabled');

@@ -127,12 +127,11 @@ describe('<StepLabel />', () => {
           Step One
         </StepLabel>
       );
-      const iconContainer = wrapper.find('span').at(1);
-      const props = iconContainer.props();
-      assert.strictEqual(props.style.width, 64);
-      assert.strictEqual(props.style.color, 'lime');
-      assert.strictEqual(props.style.paddingBottom, 300);
-      assert.strictEqual(props.style.border, '3px solid teal');
+      const iconContainerStyle = wrapper.find('span').at(1).props().style;
+      assert.strictEqual(iconContainerStyle.width, 64);
+      assert.strictEqual(iconContainerStyle.color, 'lime');
+      assert.strictEqual(iconContainerStyle.paddingBottom, 300);
+      assert.strictEqual(iconContainerStyle.border, '3px solid teal');
     });
   });
 
