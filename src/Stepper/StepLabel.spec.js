@@ -117,6 +117,25 @@ describe('<StepLabel />', () => {
     });
   });
 
+  describe('prop: iconContainerStyle', () => {
+    it('merges values into the icon container node style prop', () => {
+      const wrapper = shallowWithContext(
+        <StepLabel
+          iconContainerStyle={{width: 64, color: 'lime', paddingBottom: 300, border: '3px solid teal'}}
+          icon={1}
+        >
+          Step One
+        </StepLabel>
+      );
+      const iconContainer = wrapper.find('span').at(1);
+      const props = iconContainer.props();
+      assert.strictEqual(props.style.width, 64);
+      assert.strictEqual(props.style.color, 'lime');
+      assert.strictEqual(props.style.paddingBottom, 300);
+      assert.strictEqual(props.style.border, '3px solid teal');
+    });
+  });
+
   describe('prop combinations', () => {
     it('renders with active styling when active', () => {
       const wrapper = shallowWithContext(
