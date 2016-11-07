@@ -82,6 +82,10 @@ class StepLabel extends Component {
       PropTypes.number,
     ]),
     /**
+     * Override the inline-styles of the icon container element.
+     */
+    iconContainerStyle: PropTypes.object,
+    /**
      * @ignore
      */
     last: PropTypes.bool,
@@ -134,6 +138,7 @@ class StepLabel extends Component {
       children,
       completed,
       icon: userIcon,
+      iconContainerStyle,
       last, // eslint-disable-line no-unused-vars
       style,
       ...other
@@ -146,7 +151,7 @@ class StepLabel extends Component {
     return (
       <span style={prepareStyles(Object.assign(styles.root, style))} {...other}>
         {icon && (
-          <span style={prepareStyles(styles.iconContainer)}>
+          <span style={prepareStyles(Object.assign(styles.iconContainer, iconContainerStyle))}>
             {icon}
           </span>
         )}

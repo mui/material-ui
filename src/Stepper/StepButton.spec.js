@@ -31,6 +31,22 @@ describe('<StepButton />', () => {
     assert.strictEqual(stepLabel.props().children, 'Step One');
   });
 
+  it('should pass iconContainerStyle to StepLabel', () => {
+    const wrapper = themedShallow(
+      <StepButton
+        iconContainerStyle={{width: 50, color: 'cyan', marginTop: 200, border: '1px solid violet'}}
+        icon={1}
+      >
+        StepOne
+      </StepButton>
+    );
+    const stepLabel = wrapper.find('StepLabel');
+    assert.strictEqual(stepLabel.props().iconContainerStyle.width, 50);
+    assert.strictEqual(stepLabel.props().iconContainerStyle.color, 'cyan');
+    assert.strictEqual(stepLabel.props().iconContainerStyle.marginTop, 200);
+    assert.strictEqual(stepLabel.props().iconContainerStyle.border, '1px solid violet');
+  });
+
   it('should pass props to StepLabel', () => {
     const wrapper = themedShallow(
       <StepButton
