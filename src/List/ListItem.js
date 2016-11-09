@@ -318,6 +318,8 @@ class ListItem extends Component {
     // update the state when the component is controlled.
     if (nextProps.open !== null)
       this.setState({open: nextProps.open});
+    if (nextProps.disabled && this.state.hovered)
+      this.setState({hovered: false});
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
