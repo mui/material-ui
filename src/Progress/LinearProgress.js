@@ -6,7 +6,8 @@ import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
   const { palette } = theme;
-  const transitionDuration = 3;
+  const transitionDuration = 4; // 400ms
+
   return {
     root: {
       position: 'relative',
