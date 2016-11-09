@@ -17,14 +17,14 @@ describe('<CardHeader>', () => {
 
   it('should render CardContent', () => {
     const wrapper = shallow(
-      <CardHeader />
+      <CardHeader />,
     );
     assert.strictEqual(wrapper.is('CardContent'), true, 'should be CardContent');
   });
 
   it('should have the cardHeader class', () => {
     const wrapper = shallow(
-      <CardHeader />
+      <CardHeader />,
     );
     assert.strictEqual(wrapper.hasClass(classes.cardHeader), true);
   });
@@ -37,7 +37,7 @@ describe('<CardHeader>', () => {
         <CardHeader
           title="Title"
           subhead="Subhead"
-        />
+        />,
       );
     });
 
@@ -66,7 +66,7 @@ describe('<CardHeader>', () => {
           avatar={avatar}
           title="Title"
           subhead="Subhead"
-        />
+        />,
       );
     });
 

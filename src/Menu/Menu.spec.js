@@ -60,7 +60,7 @@ describe('<Menu>', () => {
     assert.strictEqual(
       wrapper.prop('getContentAnchorEl'),
       wrapper.instance().getContentAnchorEl,
-      'should be the same function'
+      'should be the same function',
     );
   });
 
@@ -68,7 +68,7 @@ describe('<Menu>', () => {
     const fn = () => {};
     const wrapper = shallow(<Menu onRequestClose={fn} />);
     assert.strictEqual(
-      wrapper.prop('onRequestClose'), fn, 'should be the same function'
+      wrapper.prop('onRequestClose'), fn, 'should be the same function',
     );
   });
 
@@ -76,7 +76,7 @@ describe('<Menu>', () => {
     const el = {};
     const wrapper = shallow(<Menu anchorEl={el} />);
     assert.strictEqual(
-      wrapper.prop('anchorEl'), el, 'should be the same object'
+      wrapper.prop('anchorEl'), el, 'should be the same object',
     );
   });
 

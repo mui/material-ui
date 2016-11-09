@@ -35,7 +35,7 @@ describe('<IconButton>', () => {
     assert.strictEqual(
       icon.hasClass('material-icons'),
       true,
-      'should have the material icons class'
+      'should have the material icons class',
     );
   });
 
@@ -54,7 +54,7 @@ describe('<IconButton>', () => {
 
   it('should spread props on ButtonBase', () => {
     const wrapper = shallow(
-      <IconButton data-test="hello" ripple={false}>book</IconButton>
+      <IconButton data-test="hello" ripple={false}>book</IconButton>,
     );
     assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the ButtonBase');
     assert.strictEqual(wrapper.prop('ripple'), false, 'should disable the ButtonBase ripple');

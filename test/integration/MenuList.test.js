@@ -51,7 +51,7 @@ describe('<MenuList> integration', () => {
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 4</MenuItem>
-        </MenuList>
+        </MenuList>,
       );
     });
 
@@ -114,7 +114,7 @@ describe('<MenuList> integration', () => {
           <MenuItem selected>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 4</MenuItem>
-        </MenuList>
+        </MenuList>,
       );
     });
 

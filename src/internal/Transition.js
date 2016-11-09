@@ -341,9 +341,9 @@ class Transition extends Component {
         className: classNames(
           child.props.className,
           className,
-          transitionClassName
+          transitionClassName,
         ),
-      }
+      },
     );
   }
 }

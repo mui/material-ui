@@ -17,7 +17,7 @@ describe('<ListSubheader>', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <ListSubheader />
+      <ListSubheader />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
   });

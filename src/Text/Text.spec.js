@@ -28,7 +28,7 @@ describe('<Text>', () => {
 
   it('should spread props', () => {
     const wrapper = shallow(
-      <Text data-test="hello">Hello</Text>
+      <Text data-test="hello">Hello</Text>,
     );
     assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the ButtonBase');
   });

@@ -17,7 +17,7 @@ describe('<DialogTitle>', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <DialogTitle />
+      <DialogTitle />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
   });

@@ -22,7 +22,7 @@ describe('<Transition>', () => {
     const wrapper = mount(
       <Transition in timeout={0} onEnter={() => assert.fail()}>
         <div />
-      </Transition>
+      </Transition>,
     );
     assert.strictEqual(wrapper.state('status'), ENTERED);
   });
@@ -31,7 +31,7 @@ describe('<Transition>', () => {
     const wrapper = mount(
       <Transition transitionAppear>
         <div />
-      </Transition>
+      </Transition>,
     );
     assert.strictEqual(wrapper.state('status'), EXITED);
   });
@@ -40,7 +40,7 @@ describe('<Transition>', () => {
     const wrapper = mount(
       <Transition in transitionAppear timeout={0}>
         <div />
-      </Transition>
+      </Transition>,
     );
     assert.strictEqual(wrapper.state('status'), ENTERING);
   });
@@ -55,18 +55,18 @@ describe('<Transition>', () => {
           assert.strictEqual(
             node.classList.contains('test-class'),
             true,
-            'should have the test-class'
+            'should have the test-class',
           );
           assert.strictEqual(
             node.classList.contains('test-entering'),
             false,
-            'should not have the test-entering class'
+            'should not have the test-entering class',
           );
           done();
         }}
       >
         <div />
-      </Transition>
+      </Transition>,
     );
 
     assert.strictEqual(wrapper.hasClass('test-class'), false, 'should not have the test-class yet');
@@ -85,7 +85,7 @@ describe('<Transition>', () => {
           enteringClassName="test-entering"
         >
           <div />
-        </Transition>
+        </Transition>,
       );
     });
 
@@ -167,7 +167,7 @@ describe('<Transition>', () => {
           exitingClassName="test-exiting"
         >
           <div />
-        </Transition>
+        </Transition>,
       );
     });
 
@@ -295,7 +295,7 @@ describe('<Transition>', () => {
             assert.ok(findDOMNode(wrapper.instance()));
             done();
           }}
-        />
+        />,
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
@@ -313,7 +313,7 @@ describe('<Transition>', () => {
             assert.notOk(findDOMNode(wrapper.instance()));
             done();
           }}
-        />
+        />,
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), ENTERED);
