@@ -394,6 +394,11 @@ class AutoComplete extends Component {
     } = this.props;
 
     const {
+      style: popoverStyle,
+      ...popoverOther
+    } = popoverProps || {};
+
+    const {
       open,
       anchorEl,
       searchText,
@@ -498,8 +503,7 @@ class AutoComplete extends Component {
           style={textFieldStyle}
         />
         <Popover
-          {...popoverProps}
-          style={styles.popover}
+          style={Object.assign({}, styles.popover, popoverStyle)}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
@@ -509,6 +513,7 @@ class AutoComplete extends Component {
           onRequestClose={this.handleRequestClose}
           animated={animated}
           animation={animation}
+          {...popoverOther}
         >
           {menu}
         </Popover>
