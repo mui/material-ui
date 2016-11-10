@@ -61,7 +61,7 @@ describe('<AutoComplete />', () => {
     });
   });
 
-  describe('props: onNewRequest', () => {
+  describe('prop: onNewRequest', () => {
     it('should call onNewRequest once the popover is closed', (done) => {
       const handleNewRequest = spy();
       const wrapper = shallowWithContext(
@@ -88,7 +88,7 @@ describe('<AutoComplete />', () => {
     });
   });
 
-  describe('props: onUpdateInput', () => {
+  describe('prop: onUpdateInput', () => {
     it('should fire after selection from menu', (done) => {
       const handleUpdateInput = spy();
       const wrapper = shallowWithContext(
@@ -116,18 +116,22 @@ describe('<AutoComplete />', () => {
     });
   });
 
-  describe('props: popoverProps', () => {
+  describe('prop: popoverProps', () => {
     it('should pass popoverProps to Popover', () => {
       const wrapper = shallowWithContext(
         <AutoComplete
           dataSource={['foo', 'bar']}
           popoverProps={{
             zDepth: 3,
+            canAutoPosition: true,
           }}
         />
       );
 
-      assert.strictEqual(wrapper.find(Popover).prop('zDepth'), 3, 'should pass popoverProps to Popover');
+      const popoverProps = wrapper.find(Popover).props();
+
+      assert.strictEqual(popoverProps.zDepth, 3, 'should pass popoverProps to Popover');
+      assert.strictEqual(popoverProps.canAutoPosition, true, 'should overrides the default');
     });
   });
 });
