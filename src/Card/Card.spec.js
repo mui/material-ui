@@ -17,7 +17,7 @@ describe('<Card>', () => {
 
   it('should render Paper with 2dp', () => {
     const wrapper = shallow(
-      <Card />
+      <Card />,
     );
     assert.strictEqual(wrapper.is('Paper'), true, 'should be Paper');
     assert.strictEqual(wrapper.prop('zDepth'), 2);
@@ -25,7 +25,7 @@ describe('<Card>', () => {
 
   it('should render Paper with 8dp', () => {
     const wrapper = shallow(
-      <Card raised />
+      <Card raised />,
     );
     assert.strictEqual(wrapper.is('Paper'), true, 'should be Paper');
     assert.strictEqual(wrapper.prop('zDepth'), 8);
@@ -33,7 +33,7 @@ describe('<Card>', () => {
 
   it('should have the card className', () => {
     const wrapper = shallow(
-      <Card />
+      <Card />,
     );
     assert.strictEqual(wrapper.hasClass(classes.card), true);
   });

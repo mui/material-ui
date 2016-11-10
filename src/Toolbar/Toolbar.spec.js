@@ -20,7 +20,7 @@ describe('<Toolbar>', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <Toolbar />
+      <Toolbar />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
   });

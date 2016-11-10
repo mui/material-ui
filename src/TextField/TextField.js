@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
           'transform',
           '200ms',
           null,
-          easing.easeOut
+          easing.easeOut,
         ),
       },
     },

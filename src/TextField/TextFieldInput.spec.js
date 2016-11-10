@@ -55,7 +55,7 @@ describe('<TextFieldInput>', () => {
       handleClean = spy();
       handleDirty = spy();
       wrapper = shallow(
-        <TextFieldInput value="" onDirty={handleDirty} onClean={handleClean} />
+        <TextFieldInput value="" onDirty={handleDirty} onClean={handleClean} />,
       );
     });
 
@@ -94,7 +94,7 @@ describe('<TextFieldInput>', () => {
       handleClean = spy();
       handleDirty = spy();
       wrapper = shallow(
-        <TextFieldInput onDirty={handleDirty} onClean={handleClean} />
+        <TextFieldInput onDirty={handleDirty} onClean={handleClean} />,
       );
 
       // Mock the input ref

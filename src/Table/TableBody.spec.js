@@ -17,7 +17,7 @@ describe('<TableBody>', () => {
 
   it('should render a tbody', () => {
     const wrapper = shallow(
-      <TableBody />
+      <TableBody />,
     );
     assert.strictEqual(wrapper.is('tbody'), true, 'should be a tbody');
   });

@@ -60,7 +60,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[1],
-        'should be the 2nd menu item'
+        'should be the 2nd menu item',
       );
     });
 
@@ -73,7 +73,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[2],
-        'should be the 3rd menu item'
+        'should be the 3rd menu item',
       );
     });
 
@@ -86,7 +86,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[2],
-        'should be the 3rd menu item'
+        'should be the 3rd menu item',
       );
     });
 
@@ -99,7 +99,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[2],
-        'should be the 3rd menu item'
+        'should be the 3rd menu item',
       );
     });
 
@@ -112,7 +112,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[1],
-        'should be the 2nd menu item'
+        'should be the 2nd menu item',
       );
     });
 
@@ -158,7 +158,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[2],
-        'should be the 3rd menu item'
+        'should be the 3rd menu item',
       );
     });
 
@@ -187,7 +187,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(
         document.activeElement,
         menuEl.children[1],
-        'should be the 2nd menu item'
+        'should be the 2nd menu item',
       );
     });
   });

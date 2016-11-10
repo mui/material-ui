@@ -17,7 +17,7 @@ describe('<Switch>', () => {
 
   it('should render a SwitchBase inside a div', () => {
     const wrapper = shallow(
-      <Switch />
+      <Switch />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -31,12 +31,12 @@ describe('<Switch>', () => {
     assert.strictEqual(
       wrapper.childAt(0).prop('checkedClassName').indexOf('meow') !== -1,
       true,
-      'should have the "meow" class'
+      'should have the "meow" class',
     );
     assert.strictEqual(
       wrapper.childAt(0).prop('checkedClassName').indexOf(classes.checked) !== -1,
       true,
-      'should have the checked class'
+      'should have the checked class',
     );
   });
 

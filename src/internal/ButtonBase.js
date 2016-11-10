@@ -280,7 +280,7 @@ export default class ButtonBase extends Component {
       createFragment({
         children,
         ripple: this.renderRipple(ripple, centerRipple),
-      })
+      }),
     );
   }
 }

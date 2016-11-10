@@ -33,7 +33,7 @@ describe('<Dialog>', () => {
         onRequestClose={onRequestClose}
         hideOnBackdropClick={false}
         hideOnEscapeKeyUp={false}
-      />
+      />,
     );
     assert.strictEqual(wrapper.prop('show'), true);
     assert.strictEqual(wrapper.prop('backdropTransitionDuration'), 100);
@@ -62,14 +62,14 @@ describe('<Dialog>', () => {
     assert.strictEqual(
       fade.length === 1 && fade.is('Fade'),
       true,
-      'immediate wrapper child should be Fade'
+      'immediate wrapper child should be Fade',
     );
 
     const paper = fade.childAt(0);
     assert.strictEqual(
       paper.length === 1 && paper.is('Paper'),
       true,
-      'fade child should be Paper'
+      'fade child should be Paper',
     );
 
     assert.strictEqual(paper.hasClass(classes.dialog), true, 'should have the dialog class');
@@ -92,7 +92,7 @@ describe('<Dialog>', () => {
     assert.strictEqual(
       wrapper.find('Fade').prop('transitionAppear'),
       true,
-      'should pass transitionAppear=true to the Fade'
+      'should pass transitionAppear=true to the Fade',
     );
   });
 });

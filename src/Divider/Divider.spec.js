@@ -17,7 +17,7 @@ describe('<Divider>', () => {
 
   it('should render a hr', () => {
     const wrapper = shallow(
-      <Divider />
+      <Divider />,
     );
     assert.strictEqual(wrapper.is('hr'), true, 'should be a hr');
   });

@@ -17,7 +17,7 @@ describe('styles/theme', () => {
       assert.strictEqual(
         typeof createMuiTheme,
         'function',
-        'should be a function'
+        'should be a function',
       );
     });
   });
@@ -46,17 +46,17 @@ describe('styles/theme', () => {
       assert.strictEqual(
         palette.primary,
         indigo,
-        'should use indigo as the default primary color'
+        'should use indigo as the default primary color',
       );
       assert.strictEqual(
         palette.accent,
         pink,
-        'should use pink as the default accent color'
+        'should use pink as the default accent color',
       );
       assert.strictEqual(
         palette.text,
         light.text,
-        'should use light theme text for a light theme by default'
+        'should use light theme text for a light theme by default',
       );
     });
 
@@ -65,17 +65,17 @@ describe('styles/theme', () => {
       assert.strictEqual(
         palette.primary,
         deepOrange,
-        'should use deepOrange as the primary color'
+        'should use deepOrange as the primary color',
       );
       assert.strictEqual(
         palette.accent,
         green,
-        'should use green as the accent color'
+        'should use green as the accent color',
       );
       assert.strictEqual(
         palette.text,
         light.text,
-        'should use light theme text'
+        'should use light theme text',
       );
     });
 
@@ -84,17 +84,17 @@ describe('styles/theme', () => {
       assert.strictEqual(
         palette.primary,
         indigo,
-        'should use indigo as the default primary color'
+        'should use indigo as the default primary color',
       );
       assert.strictEqual(
         palette.accent,
         pink,
-        'should use pink as the default accent color'
+        'should use pink as the default accent color',
       );
       assert.strictEqual(
         palette.text,
         dark.text,
-        'should use dark theme text'
+        'should use dark theme text',
       );
     });
   });

@@ -12,7 +12,7 @@ render(
   <AppContainer errorReporter={RedBox}>
     <App />
   </AppContainer>,
-  rootEl
+  rootEl,
 );
 
 if (module.hot) {
@@ -23,7 +23,7 @@ if (module.hot) {
       <AppContainer errorReporter={RedBox}>
         <NextApp />
       </AppContainer>,
-      rootEl
+      rootEl,
     );
   });
 }

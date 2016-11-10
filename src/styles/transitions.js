@@ -38,8 +38,10 @@ export default {
     if (!height) {
       return 0;
     }
+
     const constant = height / 36;
-    const duration = (4 + (15 * Math.pow(constant, 0.25)) + (constant / 5)) * 10;
+    const duration = (4 + (15 * (constant ** 0.25)) + (constant / 5)) * 10;
+
     return Math.round(duration);
   },
 };

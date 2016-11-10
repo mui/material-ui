@@ -15,7 +15,7 @@ import { kebabCase, titleize } from '../utils/helpers';
 const requireDocs = require.context(
   './../../../../docs',
   true,
-  /^((?![\\/]site|node_modules[\\/]).)*\.md$/
+  /^((?![\\/]site|node_modules[\\/]).)*\.md$/,
 );
 const docFiles = requireDocs.keys();
 const apiDocs = docFiles.reduce((res, n) => {

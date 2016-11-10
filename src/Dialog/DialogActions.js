@@ -41,7 +41,7 @@ export default class DialogActions extends Component {
     <div className={this.classes.action}>
       {React.cloneElement(
         button,
-        { className: classNames(this.classes.button, button.props.className) }
+        { className: classNames(this.classes.button, button.props.className) },
       )}
     </div>
   );
