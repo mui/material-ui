@@ -6,8 +6,10 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 
+/* eslint-disable import/no-webpack-loader-syntax */
 import lightTheme from '!raw!prismjs/themes/prism.css';
 import darkTheme from '!raw!prismjs/themes/prism-okaidia.css';
+/* eslint-enable import/no-webpack-loader-syntax */
 
 export { lightTheme, darkTheme };
 

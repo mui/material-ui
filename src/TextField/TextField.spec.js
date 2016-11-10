@@ -18,7 +18,7 @@ describe('<TextField>', () => {
 
   it('should render an <div> root element and pass the child through', () => {
     const wrapper = shallow(
-      <TextField><input id="test-input" /></TextField>
+      <TextField><input id="test-input" /></TextField>,
     );
 
     assert.strictEqual(wrapper.is('div'), true, 'should be a <div>');
@@ -28,7 +28,7 @@ describe('<TextField>', () => {
 
   it('should track dirty and focused state and apply the focus class when focused', () => {
     const wrapper = shallow(
-      <TextField><input id="test-input" /></TextField>
+      <TextField><input id="test-input" /></TextField>,
     );
 
     assert.strictEqual(wrapper.state('dirty'), false, 'should not be dirty by default');
@@ -85,7 +85,7 @@ describe('<TextField>', () => {
       const wrapper = shallow(
         <TextField>
           <TextFieldInput />
-        </TextField>
+        </TextField>,
       );
 
       const instance = wrapper.instance();
@@ -111,7 +111,7 @@ describe('<TextField>', () => {
             onFocus={onFocus}
             onBlur={onBlur}
           />
-        </TextField>
+        </TextField>,
       );
 
       const input = wrapper.find('TextFieldInput');
@@ -119,7 +119,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         input.prop('className'),
         `${classes.input} ${className}`,
-        'should have the input class and the user class'
+        'should have the input class and the user class',
       );
 
       input.prop('onFocus')();
@@ -142,7 +142,7 @@ describe('<TextField>', () => {
       const wrapper = shallow(
         <TextField>
           <TextFieldLabel>Label</TextFieldLabel>
-        </TextField>
+        </TextField>,
       );
 
       const label = wrapper.find('TextFieldLabel');
@@ -156,13 +156,13 @@ describe('<TextField>', () => {
       const wrapper = shallow(
         <TextField>
           <TextFieldLabel>Label</TextFieldLabel>
-        </TextField>
+        </TextField>,
       );
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         false,
-        'should be false by default'
+        'should be false by default',
       );
 
       wrapper.setState({ focused: true });
@@ -170,12 +170,12 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true when the TextField is focused and not dirty'
+        'should be true when the TextField is focused and not dirty',
       );
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('focused'),
         true,
-        'should be true when focused'
+        'should be true when focused',
       );
 
       wrapper.setState({ focused: false });
@@ -183,7 +183,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         false,
-        'should be false when the TextField is not focused and not dirty'
+        'should be false when the TextField is not focused and not dirty',
       );
 
       wrapper.setState({ dirty: true });
@@ -191,7 +191,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true when the TextField is dirty but not focused'
+        'should be true when the TextField is dirty but not focused',
       );
 
       wrapper.setState({ dirty: false });
@@ -199,7 +199,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         false,
-        'should be false when the TextField is not dirty or focused'
+        'should be false when the TextField is not dirty or focused',
       );
     });
 
@@ -207,13 +207,13 @@ describe('<TextField>', () => {
       const wrapper = shallow(
         <TextField>
           <TextFieldLabel shrink>Label</TextFieldLabel>
-        </TextField>
+        </TextField>,
       );
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true by default'
+        'should be true by default',
       );
 
       wrapper.setState({ focused: true });
@@ -221,7 +221,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true when the TextField is focused and not dirty'
+        'should be true when the TextField is focused and not dirty',
       );
 
       wrapper.setState({ focused: false });
@@ -229,7 +229,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true when the TextField is not focused and not dirty'
+        'should be true when the TextField is not focused and not dirty',
       );
 
       wrapper.setState({ dirty: true });
@@ -237,7 +237,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true when the TextField is dirty but not focused'
+        'should be true when the TextField is dirty but not focused',
       );
 
       wrapper.setState({ dirty: false });
@@ -245,7 +245,7 @@ describe('<TextField>', () => {
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('shrink'),
         true,
-        'should be true when the TextField is not dirty or focused'
+        'should be true when the TextField is not dirty or focused',
       );
     });
 
@@ -253,13 +253,13 @@ describe('<TextField>', () => {
       const wrapper = shallow(
         <TextField required>
           <TextFieldLabel>Label</TextFieldLabel>
-        </TextField>
+        </TextField>,
       );
 
       assert.strictEqual(
         wrapper.find('TextFieldLabel').prop('required'),
         true,
-        'should set the required prop of the label when the TextField is required'
+        'should set the required prop of the label when the TextField is required',
       );
     });
   });

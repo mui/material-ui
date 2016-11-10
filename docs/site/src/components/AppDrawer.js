@@ -62,7 +62,7 @@ export default class AppDrawer extends Component {
             title={childRoute.title}
           >
             {this.renderNav(childRoute)}
-          </AppDrawerNavItem>
+          </AppDrawerNavItem>,
         );
       } else {
         items.push(
@@ -71,7 +71,7 @@ export default class AppDrawer extends Component {
             title={childRoute.title}
             to={childRoute.path}
             onClick={this.props.onRequestClose}
-          />
+          />,
         );
       }
     }

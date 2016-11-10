@@ -17,7 +17,7 @@ describe('<Table>', () => {
 
   it('should render a table', () => {
     const wrapper = shallow(
-      <Table />
+      <Table />,
     );
     assert.strictEqual(wrapper.is('table'), true, 'should be a table');
   });

@@ -129,7 +129,7 @@ describe('<Popover>', () => {
       before(() => {
         handleEnter = spy();
         wrapper = shallow(
-          <Popover onEnter={handleEnter} />
+          <Popover onEnter={handleEnter} />,
         );
         wrapper.instance().handleEnter(element);
       });
@@ -139,22 +139,22 @@ describe('<Popover>', () => {
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(0.75),
-          'should have the starting scale'
+          'should have the starting scale',
         );
         assert.strictEqual(
           element.style.top === '16px' && element.style.left === '16px',
           true,
-          'should offset the element from the top left of the screen by 16px'
+          'should offset the element from the top left of the screen by 16px',
         );
         assert.strictEqual(
           element.style.transition,
           'opacity 0ms cubic-bezier(0.4, 0.0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0.0, 0.2, 1) 0ms',
-          'should apply a transition for transform and opacity'
+          'should apply a transition for transform and opacity',
         );
         assert.strictEqual(
           element.style.transformOrigin,
           wrapper.instance().getPositioningStyle(element).transformOrigin,
-          'should have a transformOrigin'
+          'should have a transformOrigin',
         );
       });
 
@@ -170,7 +170,7 @@ describe('<Popover>', () => {
       before(() => {
         handleEntering = spy();
         wrapper = shallow(
-          <Popover onEntering={handleEntering} />
+          <Popover onEntering={handleEntering} />,
         );
         wrapper.instance().handleEntering(element);
       });
@@ -180,7 +180,7 @@ describe('<Popover>', () => {
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(1),
-          'should have the full scale'
+          'should have the full scale',
         );
       });
 
@@ -196,7 +196,7 @@ describe('<Popover>', () => {
       before(() => {
         handleExit = spy();
         wrapper = shallow(
-          <Popover onExit={handleExit} />
+          <Popover onExit={handleExit} />,
         );
         wrapper.instance().handleExit(element);
       });
@@ -206,7 +206,7 @@ describe('<Popover>', () => {
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(0.75),
-          'should have the exit scale'
+          'should have the exit scale',
         );
       });
 
@@ -247,7 +247,7 @@ describe('<Popover>', () => {
                 popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
                 resolve();
               }}
-            />
+            />,
           );
           wrapper.setProps({ open: true });
         });
@@ -257,13 +257,13 @@ describe('<Popover>', () => {
         assert.strictEqual(
           popoverEl.style.top,
           `${top}px`,
-          'should position at the correct top offset'
+          'should position at the correct top offset',
         );
 
         assert.strictEqual(
           popoverEl.style.left,
           `${left}px`,
-          'should position at the correct left offset'
+          'should position at the correct left offset',
         );
         wrapper.unmount();
       };

@@ -16,19 +16,19 @@ describe('<RadioGroup>', () => {
 
   it('should render a radiogroup div', () => {
     const wrapper = shallow(
-      <RadioGroup />
+      <RadioGroup />,
     );
     assert.strictEqual(
       wrapper.is('div[role="radiogroup"]'),
       true,
-      'should be a div with the correct role'
+      'should be a div with the correct role',
     );
   });
 
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
     const wrapper = shallow(
-      <RadioGroup onBlur={handleBlur} />
+      <RadioGroup onBlur={handleBlur} />,
     );
     const event = {};
     wrapper.simulate('blur', event);
@@ -39,7 +39,7 @@ describe('<RadioGroup>', () => {
   it('should fire the onKeyDown callback', () => {
     const handleKeyDown = spy();
     const wrapper = shallow(
-      <RadioGroup onKeyDown={handleKeyDown} />
+      <RadioGroup onKeyDown={handleKeyDown} />,
     );
     const event = {};
     wrapper.simulate('keyDown', event);

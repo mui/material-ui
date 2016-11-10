@@ -33,7 +33,7 @@ render(
       <App />
     </Provider>
   </AppContainer>,
-  rootEl
+  rootEl,
 );
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {
@@ -46,7 +46,7 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
           <NextApp />
         </Provider>
       </AppContainer>,
-      rootEl
+      rootEl,
     );
   });
 }
