@@ -190,7 +190,7 @@ describe('<ListItem />', () => {
   describe('hover state', () => {
     it('should reset the hover state when disabled', () => {
       const wrapper = shallowWithContext(
-        <ListItem primaryText="foo"/>
+        <ListItem primaryText="foo" />
       );
 
       wrapper.find(EnhancedButton).simulate('mouseEnter');
