@@ -32,6 +32,7 @@ const getStyles = (props, context, state) => {
       backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
       transition: transitions.easeOut('200ms', 'height'),
+      cursor: props.disabled ? 'not-allowed' : 'auto',
     },
     error: {
       position: 'relative',
@@ -53,7 +54,7 @@ const getStyles = (props, context, state) => {
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
-      cursor: props.disabled ? 'not-allowed' : 'initial',
+      cursor: 'inherit',
       font: 'inherit',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },

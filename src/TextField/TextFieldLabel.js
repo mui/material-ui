@@ -8,7 +8,6 @@ function getStyles(props) {
     top: 38,
     transition: transitions.easeOut(),
     zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-    cursor: props.disabled ? 'not-allowed' : 'text',
     transform: 'scale(1) translate(0, 0)',
     transformOrigin: 'left top',
     pointerEvents: 'auto',
