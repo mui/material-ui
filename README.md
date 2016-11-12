@@ -1,5 +1,27 @@
 #### Note
 
+JUST A FORK of material-ui next
+
+ADDed
+autocomplete
+hacked appbar to include touch swipe
+SVGICON 
+Datepicker (Calendar is located somewhere else because i completly changed it for mine) 
+DropDownMenu
+SelectField (using dropdownMenu) work great
+
+All dependencies are working with material-ui next styles (no old theme from material-ui)
+
+
+the website used this code is here:
+[Ski school](https://www.skiscool.fr)
+
+I need support to work on that .. I'm ready to pay
+[Ski school](https://www.skiscool.fr)
+
+
+
+
 For *how-to* questions and other non-issues,
 please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui)
 instead of Github issues. There is a StackOverflow tag called "material-ui"
@@ -7,9 +29,9 @@ that you can use to tag your questions.
 
 #[Material-UI](http://www.material-ui.com/)
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
-[![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
+[![CircleCI](https://circleci.com/gh/callemall/material-ui/tree/next.svg?style=svg)](https://circleci.com/gh/callemall/material-ui/tree/next)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Coverage Status](https://coveralls.io/repos/github/callemall/material-ui/badge.svg?branch=master)](https://coveralls.io/github/callemall/material-ui?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/callemall/material-ui/badge.svg?branch=next)](https://coveralls.io/github/callemall/material-ui?branch=next)
 
 [![PeerDependencies](https://img.shields.io/david/peer/callemall/material-ui.svg?style=flat-square)](https://david-dm.org/callemall/material-ui#info=peerDependencies&view=list)
 [![Dependencies](https://img.shields.io/david/callemall/material-ui.svg?style=flat-square)](https://david-dm.org/callemall/material-ui)
@@ -24,7 +46,7 @@ It's still a work in progress, but hopefully you can see where we're headed.
 
 **Recently Updated?** Please read the [changelog](https://github.com/callemall/material-ui/releases), this README and the documentation before posting an issue.
 
-## Required Knowledge
+## Prerequisites
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
 before diving into material-ui. Material-UI is a set of React components,
@@ -120,7 +142,7 @@ Styling components to your liking is simple and hassle-free. This can be
 achieved in the following two ways:
 
 * [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
-* [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/inline-styles)
+* [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/inline-styles)
 
 ## Examples
 
