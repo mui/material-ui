@@ -9,7 +9,7 @@ import Clock from './Clock';
 import { Dialog, DialogActions } from '../Dialog';
 import Button from '../Button';
 
-export const styleSheet = createStyleSheet('TimePickerDialog', (theme) => {
+export const styleSheet = createStyleSheet('TimePickerDialog', () => {
   return {
     dialogRoot: {
       fontSize: 14,
@@ -23,7 +23,6 @@ export const styleSheet = createStyleSheet('TimePickerDialog', (theme) => {
 class TimePickerDialog extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
-    bodyStyle: PropTypes.object,
     cancelLabel: PropTypes.node,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
@@ -92,7 +91,6 @@ class TimePickerDialog extends Component {
 
   render() {
     const {
-      bodyStyle,
       initialTime,
       onAccept, // eslint-disable-line no-unused-vars
       format,

@@ -8,7 +8,7 @@ import ClockPointer from './ClockPointer';
 import { getTouchEventOffsetValues, rad2deg } from '../utils/timeUtils';
 
 
-export const styleSheet = createStyleSheet('ClockHours', (theme) => {
+export const styleSheet = createStyleSheet('ClockHours', () => {
   return {
     root: {
       height: '100%',
@@ -60,7 +60,7 @@ class ClockHours extends Component {
     };
   }
 
-  isMousePressed(event) {
+  isMousePressed = (event) => {
     if (typeof event.buttons === 'undefined') {
       return event.nativeEvent.which;
     }

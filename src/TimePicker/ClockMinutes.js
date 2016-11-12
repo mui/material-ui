@@ -7,7 +7,7 @@ import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
 import { getTouchEventOffsetValues, rad2deg } from '../utils/timeUtils';
 
-export const styleSheet = createStyleSheet('ClockMinutes', (theme) => {
+export const styleSheet = createStyleSheet('ClockMinutes', () => {
   return {
     root: {
       height: '100%',

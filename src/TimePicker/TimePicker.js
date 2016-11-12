@@ -33,10 +33,6 @@ class TimePicker extends Component {
      */
     defaultTime: PropTypes.object,
     /**
-     * Override the inline-styles of TimePickerDialog's body element.
-     */
-    dialogBodyStyle: PropTypes.object,
-    /**
      * Override the inline-styles of TimePickerDialog's root element.
      */
     dialogStyle: PropTypes.object,
@@ -73,8 +69,10 @@ class TimePicker extends Component {
     /**
      * If true, uses ("noon" / "midnight") instead of ("12 a.m." / "12 p.m.").
      *
-     * It's technically more correct to refer to "12 noon" and "12 midnight" rather than "12 a.m." and "12 p.m."
-     * and it avoids confusion between different locales. By default (for compatibility reasons) TimePicker uses
+     * It's technically more correct to refer to "12 noon" and "12 midnight"
+     * rather than "12 a.m." and "12 p.m."
+     * and it avoids confusion between different locales.
+     * By default (for compatibility reasons) TimePicker uses
      * ("12 a.m." / "12 p.m.").
      */
     pedantic: PropTypes.bool,
@@ -182,7 +180,6 @@ class TimePicker extends Component {
       autoOk,
       cancelLabel,
       defaultTime, // eslint-disable-line no-unused-vars
-      dialogBodyStyle,
       dialogStyle,
       format,
       okLabel,
@@ -215,7 +212,6 @@ class TimePicker extends Component {
         </TextField>
         <TimePickerDialog
           ref={(dialogWindow) => { this.dialogWindow = dialogWindow; }}
-          bodyStyle={dialogBodyStyle}
           initialTime={this.state.dialogTime}
           onAccept={this.handleAcceptDialog}
           format={format}

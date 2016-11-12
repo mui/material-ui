@@ -1,6 +1,6 @@
+// @flow weak
 /* eslint-env mocha */
 import React from 'react';
-import { shallow } from 'enzyme';
 import { createShallowWithContext } from 'test/utils';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';

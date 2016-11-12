@@ -1,11 +1,12 @@
+// @flow weak
 /* eslint-env mocha */
+
 import React from 'react';
-import {shallow} from 'enzyme';
-import {assert} from 'chai';
+import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 
 import TimePicker from './TimePicker';
-import {addHours, formatTime} from '../utils/timeUtils';
+import { addHours, formatTime } from '../utils/timeUtils';
 import { TextFieldInput } from '../TextField';
 
 describe('<TimePicker />', () => {

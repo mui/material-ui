@@ -36,7 +36,7 @@ export function formatTime(date, format = 'ampm', pedantic = false) {
 
   if (format === 'ampm') {
     const isAM = hours < 12;
-    hours = hours % 12;
+    hours %= 12;
     const additional = isAM ? ' am' : ' pm';
     hours = (hours || 12).toString();
 

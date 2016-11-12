@@ -8,7 +8,6 @@ import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
 
 export const styleSheet = createStyleSheet('Clock', (theme) => {
-  console.log(theme);
   return {
     clock: {
       userSelect: 'none',
@@ -178,8 +177,8 @@ class Clock extends Component {
           format={this.props.format}
           affix={this.getAffix()}
           onSelectAffix={this.handleSelectAffix}
-          onSelectHour={this.setMode.bind(this, 'hour')}
-          onSelectMin={this.setMode.bind(this, 'minute')}
+          onSelectHour={() => { this.setMode('hour'); }}
+          onSelectMin={() => { this.setMode('minute'); }}
         />
         <div className={classNames({ [classes.container]: true })} >
           <div className={classNames({ [classes.circle]: true })} />
