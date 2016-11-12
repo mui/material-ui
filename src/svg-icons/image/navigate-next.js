@@ -1,14 +1,32 @@
-import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from '../../SvgIcon';
+'use strict';
 
-let ImageNavigateNext = (props) => (
-  <SvgIcon {...props}>
-    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-  </SvgIcon>
-);
-ImageNavigateNext = pure(ImageNavigateNext);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = require('recompose/pure');
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = require('../../SvgIcon');
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ImageNavigateNext = function ImageNavigateNext(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z' })
+  );
+};
+ImageNavigateNext = (0, _pure2.default)(ImageNavigateNext);
 ImageNavigateNext.displayName = 'ImageNavigateNext';
 ImageNavigateNext.muiName = 'SvgIcon';
 
-export default ImageNavigateNext;
+exports.default = ImageNavigateNext;

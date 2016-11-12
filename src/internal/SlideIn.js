@@ -15,10 +15,14 @@ class SlideIn extends Component {
     enterDelay: 0,
     direction: 'left',
   };
-
+  
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
+  };
+/*
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
-  };
+  };*/
 
   getLeaveDirection = () => {
     return this.props.direction;
@@ -33,14 +37,15 @@ class SlideIn extends Component {
       style,
       ...other
     } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-
+  
+    const styleManager = this.context.styleManager;
+    
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',
       overflow: 'hidden',
       height: '100%',
     }, style);
+    const RootStyles = styleManager.prepareInline(mergedRootStyles);
 
     const newChildren = React.Children.map(children, (child) => {
       return (
@@ -59,7 +64,7 @@ class SlideIn extends Component {
     return (
       <ReactTransitionGroup
         {...other}
-        style={prepareStyles(mergedRootStyles)}
+        style={RootStyles}
         component="div"
       >
         {newChildren}

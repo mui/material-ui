@@ -1,30 +1,45 @@
+// @flow weak
+/* eslint-disable no-param-reassign */
+
+export const easing = {
+  easeInOut: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+  easeOut: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  easeIn: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
+};
+
 export default {
+  multi(property, duration, delay, easeFunction) {
+    easeFunction = easeFunction || easing.easeInOut;
 
-  easeOutFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
-  easeInOutFunction: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
-
-  easeOut(duration, property, delay, easeFunction) {
-    easeFunction = easeFunction || this.easeOutFunction;
-
-    if (property && Object.prototype.toString.call(property) === '[object Array]') {
+    if (property && Array.isArray(property)) {
       let transitions = '';
-      for (let i = 0; i < property.length; i++) {
+      for (let i = 0; i < property.length; i += 1) {
         if (transitions) transitions += ',';
-        transitions += this.create(duration, property[i], delay, easeFunction);
+        transitions += this.create(property[i], duration, delay, easeFunction);
       }
 
       return transitions;
-    } else {
-      return this.create(duration, property, delay, easeFunction);
     }
+
+    return this.create(duration, property, delay, easeFunction);
   },
 
-  create(duration, property, delay, easeFunction) {
-    duration = duration || '450ms';
+  create(property, duration, delay, easeFunction) {
+    duration = duration || '300ms';
     property = property || 'all';
     delay = delay || '0ms';
-    easeFunction = easeFunction || 'linear';
+    easeFunction = easeFunction || easing.easeInOut;
 
     return `${property} ${duration} ${easeFunction} ${delay}`;
+  },
+
+  getAutoHeightDuration(height) {
+    if (!height) {
+      return 0;
+    }
+    const constant = height / 36;
+    const duration = (4 + (15 * Math.pow(constant, 0.25)) + (constant / 5)) * 10;
+    return Math.round(duration);
   },
 };

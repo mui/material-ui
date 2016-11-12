@@ -1,52 +1,66 @@
-import React, {PropTypes} from 'react';
+// @flow weak
 
-const Divider = (props, context) => {
-  const {
-    inset,
-    style,
-    ...other
-  } = props;
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
 
-  const {
-    baseTheme,
-    prepareStyles,
-  } = context.muiTheme;
+export const styleSheet = createStyleSheet('Divider', (theme) => {
+  const { palette } = theme;
 
-  const styles = {
+  return {
     root: {
-      margin: 0,
-      marginTop: -1,
-      marginLeft: inset ? 72 : 0,
       height: 1,
+      margin: '0 -1px 0 0',
       border: 'none',
-      backgroundColor: baseTheme.palette.borderColor,
+    },
+    default: {
+      backgroundColor: palette.text.divider,
+    },
+    light: {
+      backgroundColor: palette.text.lightDivider,
+    },
+    absolute: {
+      margin: 0,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100%',
     },
   };
+});
+
+export default function Divider(props, context) {
+  const {
+    absolute,
+    className: classNameProp,
+    light,
+    ...other
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
+  const className = classNames(classes.root, {
+    [classes.absolute]: absolute,
+    [light ? classes.light : classes.default]: true,
+  }, classNameProp);
 
   return (
-    <hr {...other} style={prepareStyles(Object.assign(styles.root, style))} />
+    <hr className={className} {...other} />
   );
-};
-
-Divider.muiName = 'Divider';
+}
 
 Divider.propTypes = {
+  absolute: PropTypes.bool,
   /**
-   * If true, the `Divider` will be indented.
+   * The CSS class name of the root element.
    */
-  inset: PropTypes.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: PropTypes.object,
+  className: PropTypes.string,
+  light: PropTypes.bool,
 };
 
 Divider.defaultProps = {
-  inset: false,
+  absolute: false,
+  light: false,
 };
 
 Divider.contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
+  styleManager: PropTypes.object.isRequired,
 };
-
-export default Divider;

@@ -1,163 +1,73 @@
-import React, {Component, PropTypes, isValidElement} from 'react';
-import Avatar from '../Avatar';
+// @flow weak
 
-function getStyles(props, context) {
-  const {card} = context.muiTheme;
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
+import CardContent from './CardContent';
+import Text from '../Text';
 
-  return {
-    root: {
-      padding: 16,
-      fontWeight: card.fontWeight,
-      boxSizing: 'border-box',
-      position: 'relative',
-      whiteSpace: 'nowrap',
-    },
-    text: {
-      display: 'inline-block',
-      verticalAlign: 'top',
-      whiteSpace: 'normal',
-      paddingRight: '90px',
-    },
-    avatar: {
-      marginRight: 16,
-    },
-    title: {
-      color: props.titleColor || card.titleColor,
-      display: 'block',
-      fontSize: 15,
-    },
-    subtitle: {
-      color: props.subtitleColor || card.subtitleColor,
-      display: 'block',
-      fontSize: 14,
-    },
-  };
-}
+export const styleSheet = createStyleSheet('CardHeader', () => ({
+  cardHeader: {
+ //   display: 'flex',
+  //  alignItems: 'center',
+  },
+  avatar: {
+  //  flex: '0 0 auto',
+  //  marginRight: 16,
+  },
+  content: {
+  //  flex: '1 1 auto',
+  },
+}));
 
-class CardHeader extends Component {
-  static muiName = 'CardHeader';
+export default function CardHeader(props, context) {
+  const {
+    avatar,
+    className: classNameProp,
+    classBody,
+    subhead,
+    title,
+    children,
+    ...other
+  } = props;
 
-  static propTypes = {
-    /**
-     * If true, a click on this card component expands the card.
-     */
-    actAsExpander: PropTypes.bool,
-    /**
-     * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
-     * If `avatar` is an `Avatar` or other element, it will be rendered.
-     * If `avatar` is a string, it will be used as the image `src` for an `Avatar`.
-     */
-    avatar: PropTypes.node,
-    /**
-     * Can be used to render elements inside the Card Header.
-     */
-    children: PropTypes.node,
-    /**
-     * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
-     */
-    closeIcon: PropTypes.node,
-    /**
-     * If true, this card component is expandable.
-     */
-    expandable: PropTypes.bool,
-    /**
-     * Can be used to pass a openIcon if you don't like the default expandable open Icon.
-     */
-    openIcon: PropTypes.node,
-    /**
-     * If true, this card component will include a button to expand the card.
-     */
-    showExpandableButton: PropTypes.bool,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-    /**
-     * Can be used to render a subtitle in Card Header.
-     */
-    subtitle: PropTypes.node,
-    /**
-     * Override the subtitle color.
-     */
-    subtitleColor: PropTypes.string,
-    /**
-     * Override the inline-styles of the subtitle.
-     */
-    subtitleStyle: PropTypes.object,
-    /**
-     * Override the inline-styles of the text.
-     */
-    textStyle: PropTypes.object,
-    /**
-     * Can be used to render a title in Card Header.
-     */
-    title: PropTypes.node,
-    /**
-     * Override the title color.
-     */
-    titleColor: PropTypes.string,
-    /**
-     * Override the inline-styles of the title.
-     */
-    titleStyle: PropTypes.object,
-  };
+  const classes = context.styleManager.render(styleSheet);
+  const className = classNames(classes.cardHeader, classNameProp);
 
-  static defaultProps = {
-    avatar: null,
-  };
-
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const {
-      actAsExpander, // eslint-disable-line no-unused-vars
-      avatar: avatarProp,
-      children,
-      closeIcon, // eslint-disable-line no-unused-vars
-      expandable, // eslint-disable-line no-unused-vars
-      openIcon, // eslint-disable-line no-unused-vars
-      showExpandableButton, // eslint-disable-line no-unused-vars
-      style,
-      subtitle,
-      subtitleColor, // eslint-disable-line no-unused-vars
-      subtitleStyle,
-      textStyle,
-      title,
-      titleColor, // eslint-disable-line no-unused-vars
-      titleStyle,
-      ...other
-    } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-
-    let avatar = avatarProp;
-
-    if (isValidElement(avatarProp)) {
-      avatar = React.cloneElement(avatar, {
-        style: Object.assign(styles.avatar, avatar.props.style),
-      });
-    } else if (avatar !== null) {
-      avatar = <Avatar src={avatarProp} style={styles.avatar} />;
-    }
-
+  if (avatar) {
     return (
-      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
-        {avatar}
-        <div style={prepareStyles(Object.assign(styles.text, textStyle))}>
-          <span style={prepareStyles(Object.assign(styles.title, titleStyle))}>
-            {title}
-          </span>
-          <span style={prepareStyles(Object.assign(styles.subtitle, subtitleStyle))}>
-            {subtitle}
-          </span>
+      <CardContent className={className} {...other}>
+        <div className={classes.avatar}>
+          {avatar}
+        </div>
+        <div className={classNames(classes.content,classBody)}>
+          <Text type="headline" gutterBottom>{title}</Text>
+          <Text type="title" secondary>{subhead}</Text>
         </div>
         {children}
-      </div>
+      </CardContent>
     );
   }
+
+  return (
+    <CardContent className={className} {...other}>
+      <Text type="headline">{title}</Text>
+      <Text type="title" secondary>{subhead}</Text>
+      {children}
+    </CardContent>
+  );
 }
 
-export default CardHeader;
+CardHeader.propTypes = {
+  avatar: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  subhead: PropTypes.string,
+  title: PropTypes.string,
+};
+
+CardHeader.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

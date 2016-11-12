@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import TextField from '../TextField';
+import React, { Component, PropTypes } from 'react';
+//import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
-
+import TextField, { TextFieldInput, TextFieldLabel } from 'material-ui/TextField';
 function getStyles(props) {
   return {
     label: {
@@ -20,7 +20,6 @@ function getStyles(props) {
     },
   };
 }
-
 class SelectField extends Component {
   static propTypes = {
     /**
@@ -127,17 +126,15 @@ class SelectField extends Component {
      */
     value: PropTypes.any,
   };
-
   static defaultProps = {
     autoWidth: false,
     disabled: false,
     fullWidth: false,
   };
-
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
-
+  
   render() {
     const {
       autoWidth,
@@ -166,45 +163,24 @@ class SelectField extends Component {
       value,
       ...other
     } = this.props;
-
-    const styles = getStyles(this.props, this.context);
-
+    
+    const styles = getStyles(this.props);
     return (
-      <TextField
-        {...other}
-        style={style}
-        disabled={disabled}
-        floatingLabelFixed={floatingLabelFixed}
-        floatingLabelText={floatingLabelText}
-        floatingLabelStyle={floatingLabelStyle}
-        hintStyle={hintStyle}
-        hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
-        fullWidth={fullWidth}
-        errorText={errorText}
-        underlineStyle={underlineStyle}
-        errorStyle={errorStyle}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        id={id}
-        underlineDisabledStyle={underlineDisabledStyle}
-        underlineFocusStyle={underlineFocusStyle}
-      >
-        <DropDownMenu
-          disabled={disabled}
-          style={Object.assign(styles.dropDownMenu, menuStyle)}
-          labelStyle={Object.assign(styles.label, labelStyle)}
-          iconStyle={Object.assign(styles.icon, iconStyle)}
-          underlineStyle={styles.hideDropDownUnderline}
-          autoWidth={autoWidth}
-          value={value}
-          onChange={onChange}
-          maxHeight={maxHeight}
-        >
-          {children}
-        </DropDownMenu>
-      </TextField>
+          <DropDownMenu
+            disabled={disabled}
+            style={style}
+            labelStyle={Object.assign(styles.label, labelStyle)}
+            iconStyle={Object.assign(styles.icon, iconStyle)}
+            underlineStyle={styles.hideDropDownUnderline}
+            autoWidth={autoWidth}
+            value={value}
+            onChange={onChange}
+            maxHeight={maxHeight}
+            {...other}
+          >
+            {children}
+          </DropDownMenu>
     );
   }
 }
-
 export default SelectField;

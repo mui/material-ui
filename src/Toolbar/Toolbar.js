@@ -1,72 +1,65 @@
-import React, {Component, PropTypes} from 'react';
+// @flow weak
 
-function getStyles(props, context) {
-  const {noGutter} = props;
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
 
-  const {
-    baseTheme,
-    toolbar,
-  } = context.muiTheme;
-
+export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   return {
     root: {
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      backgroundColor: toolbar.backgroundColor,
-      height: toolbar.height,
-      padding: noGutter ? 0 : `0px ${baseTheme.spacing.desktopGutter}px`,
+      position: 'relative',
       display: 'flex',
-      justifyContent: 'space-between',
+      alignItems: 'center',
+      height: 56,
+    },
+    gutters: theme.mixins.gutters({}),
+    [theme.breakpoints.up('sm')]: {
+      root: {
+        height: 64,
+      },
     },
   };
+});
+
+export default function Toolbar(props, context) {
+  const {
+    children,
+    className: classNameProp,
+    gutters,
+    ...other
+  } = props;
+
+  const classes = context.styleManager.render(styleSheet);
+  const className = classNames(classes.root, {
+    [classes.gutters]: gutters,
+  }, classNameProp);
+
+  return (
+    <div className={className} {...other} >
+      {children}
+    </div>
+  );
 }
 
-class Toolbar extends Component {
-  static propTypes = {
-    /**
-     * Can be a `ToolbarGroup` to render a group of related items.
-     */
-    children: PropTypes.node,
-    /**
-     * The css class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * Do not apply `desktopGutter` to the `Toolbar`.
-     */
-    noGutter: PropTypes.bool,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-  };
+Toolbar.propTypes = {
+  /**
+   * Can be a `ToolbarGroup` to render a group of related items.
+   */
+  children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * If set to true, enables gutter padding.
+   */
+  gutters: PropTypes.bool,
+};
 
-  static defaultProps = {
-    noGutter: false,
-  };
+Toolbar.defaultProps = {
+  gutters: true,
+};
 
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      noGutter, // eslint-disable-line no-unused-vars
-      style,
-      ...other
-    } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-
-    return (
-      <div {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
-        {children}
-      </div>
-    );
-  }
-}
-
-export default Toolbar;
+Toolbar.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

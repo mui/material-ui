@@ -1,27 +1,29 @@
 import React, {Component, PropTypes} from 'react';
 import IconButton from '../IconButton';
-import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
-import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
 import SlideInTransitionGroup from '../internal/SlideIn';
+ import { createStyleSheet } from 'jss-theme-reactor';
 
-const styles = {
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    backgroundColor: 'inherit',
-    height: 48,
-  },
-  titleDiv: {
-    fontSize: 14,
-    fontWeight: '500',
-    textAlign: 'center',
-    width: '100%',
-  },
-  titleText: {
-    height: 'inherit',
-    paddingTop: 12,
-  },
-};
+export const styleSheet = createStyleSheet('CalToobar', (theme) => {
+    return {
+      root: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: 'inherit',
+        height: 48,
+      },
+      titleDiv: {
+        fontSize: 14,
+        fontWeight: '500',
+        textAlign: 'center',
+        width: '100%',
+      },
+      titleText: {
+        height: 'inherit',
+        paddingTop: 12,
+      },
+    }
+  }
+);
 
 class CalendarToolbar extends Component {
   static propTypes = {
@@ -38,6 +40,9 @@ class CalendarToolbar extends Component {
     prevMonth: true,
   };
 
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
+  };
   state = {
     transitionDirection: 'up',
   };
@@ -71,27 +76,30 @@ class CalendarToolbar extends Component {
       year: 'numeric',
     }).format(displayDate);
 
+    const styleManager = this.context.styleManager;
+    const { render } = styleManager;
+    const cls = render(styleSheet);
     return (
-      <div style={styles.root}>
+      <div className={cls.root}>
         <IconButton
           disabled={!this.props.prevMonth}
-          onTouchTap={this.handleTouchTapPrevMonth}
+          onClick={this.handleTouchTapPrevMonth}
         >
-          <NavigationChevronLeft />
+          <i className="fa fa-chevron-circle-left" />
         </IconButton>
         <SlideInTransitionGroup
           direction={this.state.transitionDirection}
-          style={styles.titleDiv}
+          className={cls.titleDiv}
         >
-          <div key={dateTimeFormatted} style={styles.titleText}>
+          <div key={dateTimeFormatted} className={cls.titleText}>
             {dateTimeFormatted}
           </div>
         </SlideInTransitionGroup>
         <IconButton
           disabled={!this.props.nextMonth}
-          onTouchTap={this.handleTouchTapNextMonth}
+          onClick={this.handleTouchTapNextMonth}
         >
-          <NavigationChevronRight />
+          <i className="fa fa-chevron-circle-right" />
         </IconButton>
       </div>
     );

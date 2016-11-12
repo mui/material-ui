@@ -1,94 +1,79 @@
-import React, {Component, PropTypes} from 'react';
-import propTypes from '../utils/propTypes';
-import transitions from '../styles/transitions';
+// @flow weak
 
-function getStyles(props, context) {
-  const {
-    rounded,
-    circle,
-    transitionEnabled,
-    zDepth,
-  } = props;
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
 
-  const {
-    baseTheme,
-    paper,
-  } = context.muiTheme;
+export const styleSheet = createStyleSheet('Paper', (theme) => {
+  const { palette } = theme;
+  const shadows = {};
+
+  theme.shadows.forEach((shadow, index) => {
+    shadows[`dp${index}`] = {
+      boxShadow: shadow,
+    };
+  });
 
   return {
-    root: {
-      color: paper.color,
-      backgroundColor: paper.backgroundColor,
-      transition: transitionEnabled && transitions.easeOut(),
-      boxSizing: 'border-box',
-      fontFamily: baseTheme.fontFamily,
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      boxShadow: paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
-      borderRadius: circle ? '50%' : rounded ? '2px' : '0px',
+    paper: {
+      backgroundColor: palette.background.paper,
+      color: palette.text.primary,
     },
+    rounded: {
+      borderRadius: '2px',
+    },
+    ...shadows,
   };
+});
+
+/**
+ * A piece of material paper.
+ *
+ * ```js
+ * import Paper from 'material-ui/Paper';
+ *
+ * const Component = () => <Paper zDepth={8}>Hello World</Paper>;
+ * ```
+ */
+export default function Paper(props, context) {
+  const {
+    className: classNameProp,
+    rounded,
+    zDepth,
+    ...other
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
+
+  const classNameZDepth = `dp${zDepth >= 0 ? zDepth : 0}`;
+  const className = classNames(classes.paper, classes[classNameZDepth], {
+    [classes.rounded]: rounded,
+  }, classNameProp);
+
+  return (
+    <div className={className} {...other} />
+  );
 }
 
-class Paper extends Component {
-  static propTypes = {
-    /**
-     * Children passed into the paper element.
-     */
-    children: PropTypes.node,
-    /**
-     * Set to true to generate a circlular paper container.
-     */
-    circle: PropTypes.bool,
-    /**
-     * By default, the paper container will have a border radius.
-     * Set this to false to generate a container with sharp corners.
-     */
-    rounded: PropTypes.bool,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-    /**
-     * Set to false to disable CSS transitions for the paper element.
-     */
-    transitionEnabled: PropTypes.bool,
-    /**
-     * This number represents the zDepth of the paper shadow.
-     */
-    zDepth: propTypes.zDepth,
-  };
+Paper.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * Set to false to disable rounded corners.
+   */
+  rounded: PropTypes.bool,
+  /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   */
+  zDepth: PropTypes.number,
+};
 
-  static defaultProps = {
-    circle: false,
-    rounded: true,
-    transitionEnabled: true,
-    zDepth: 1,
-  };
+Paper.defaultProps = {
+  rounded: true,
+  zDepth: 2,
+};
 
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const {
-      children,
-      circle, // eslint-disable-line no-unused-vars
-      rounded, // eslint-disable-line no-unused-vars
-      style,
-      transitionEnabled, // eslint-disable-line no-unused-vars
-      zDepth, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-
-    return (
-      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
-        {children}
-      </div>
-    );
-  }
-}
-
-export default Paper;
+Paper.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

@@ -151,14 +151,14 @@ class DateDisplay extends Component {
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>
         <SlideInTransitionGroup style={styles.year} direction={this.state.transitionDirection}>
-          <div key={year} style={styles.yearTitle} onTouchTap={this.handleTouchTapYear}>
+          <div key={year} style={styles.yearTitle} onClick={this.handleTouchTapYear}>
             {year}
           </div>
         </SlideInTransitionGroup>
         <SlideInTransitionGroup style={styles.monthDay} direction={this.state.transitionDirection}>
           <div
             key={dateTime}
-            onTouchTap={this.handleTouchTapMonthDay}
+            onClick={this.handleTouchTapMonthDay}
             style={styles.monthDayTitle}
           >
             {dateTime}

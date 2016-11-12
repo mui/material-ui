@@ -1,40 +1,26 @@
-import {PropTypes} from 'react';
+// @flow weak
 
-const horizontal = PropTypes.oneOf(['left', 'middle', 'right']);
-const vertical = PropTypes.oneOf(['top', 'center', 'bottom']);
+import { PropTypes } from 'react';
+
+const horizontal = PropTypes.oneOfType([
+  PropTypes.oneOf(['left', 'center', 'right']),
+  PropTypes.number,
+]);
+
+const vertical = PropTypes.oneOfType([
+  PropTypes.oneOf(['top', 'center', 'bottom']),
+  PropTypes.number,
+]);
 
 export default {
+  horizontal,
 
-  corners: PropTypes.oneOf([
-    'bottom-left',
-    'bottom-right',
-    'top-left',
-    'top-right',
-  ]),
+  vertical,
 
-  horizontal: horizontal,
-
-  vertical: vertical,
-
-  origin: PropTypes.shape({
-    horizontal: horizontal,
-    vertical: vertical,
-  }),
-
-  cornersAndCenter: PropTypes.oneOf([
-    'bottom-center',
-    'bottom-left',
-    'bottom-right',
-    'top-center',
-    'top-left',
-    'top-right',
-  ]),
+  origin: PropTypes.shape({ horizontal, vertical }),
 
   stringOrNumber: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
-
-  zDepth: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-
 };

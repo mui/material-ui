@@ -1,85 +1,100 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
-import propTypes from '../utils/propTypes';
-import EnhancedButton from '../internal/EnhancedButton';
-import FontIcon from '../FontIcon';
+// @flow weak
+import React, { Component, PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
 import Tooltip from '../internal/Tooltip';
-import {extendChildren} from '../utils/childUtils';
-
-function getStyles(props, context) {
-  const {baseTheme} = context.muiTheme;
-
+import ButtonBase from '../internal/ButtonBase';
+import { isMobile } from '~/utils/utils';
+export const styleSheet = createStyleSheet('IconButton', (theme) => {
   return {
-    root: {
-      position: 'relative',
-      boxSizing: 'border-box',
-      overflow: 'visible',
-      transition: transitions.easeOut(),
-      padding: baseTheme.spacing.iconSize / 2,
-      width: baseTheme.spacing.iconSize * 2,
-      height: baseTheme.spacing.iconSize * 2,
-      fontSize: 0,
+    iconButton: {
+      /*     display: 'inline-flex',*/
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+      flex: '0 0 auto',
+      // fontSize: 24,
+      //width: 48,
+      // height: 48,
+      padding: 0,
+      borderRadius: '50%',
+      backgroundColor: 'transparent',
+      color: theme.color,
+      zIndex: 1,
+      // transition: theme.transition,
     },
-    tooltip: {
-      boxSizing: 'border-box',
+    contrast: {
+      color: theme.contrast,
     },
-    overlay: {
-      position: 'relative',
-      top: 0,
+    label: {
       width: '100%',
-      height: '100%',
-      background: baseTheme.palette.disabledColor,
+      //   display: 'flex',
+      alignItems: 'inherit',
+      justifyContent: 'inherit',
+      /* '& .material-icons': {
+       width: '1em',
+       height: '1em',
+       },*/
     },
-    disabled: {
-      color: baseTheme.palette.disabledColor,
-      fill: baseTheme.palette.disabledColor,
-      cursor: 'not-allowed',
+    keyboardFocused: {
+      backgroundColor: theme.focusBackground,
+    },
+    primary: {
+      color: theme.primary[500],
+    },
+    accent: {
+      color: theme.accent.A200,
     },
   };
-}
-
-class IconButton extends Component {
-  static muiName = 'IconButton';
-
+});
+styleSheet.registerLocalTheme((theme) => {
+  const { palette, transitions } = theme;
+  return {
+    color: palette.type === 'light' ?
+      palette.text.secondary : palette.text.primary,
+    contrast: palette.type === 'light' ?
+      palette.shades.dark.text.primary : palette.shades.light.text.secondary,
+    primary: palette.primary,
+    accent: palette.accent,
+    transition: transitions.create('background-color', '150ms'),
+    focusBackground: palette.text.divider,
+  };
+});
+/**
+ * @see https://material.google.com/components/buttons.html
+ *
+ * ```js
+ * import IconButton from 'material-ui/IconButton';
+ *
+ * const Component = () => <IconButton>delete</IconButton>;
+ * ```
+ */
+export default class IconButton extends Component {
   static propTypes = {
     /**
-     * Can be used to pass a `FontIcon` element as the icon for the button.
+     * The icon element. If a string is passed,
+     * it will be used as a material icon font ligature.
      */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    contrast: PropTypes.bool,
     /**
-     * If true, the element's ripple effect will be disabled.
-     */
-    disableTouchRipple: PropTypes.bool,
-    /**
-     * If true, the element will be disabled.
+     * If true, the button will be disabled.
      */
     disabled: PropTypes.bool,
     /**
-     * The URL to link to when the button is clicked.
+     * If false, the ripple effect will be disabled.
      */
-    href: PropTypes.string,
+    ripple: PropTypes.bool,
     /**
-     * The CSS class name of the icon. Used for setting the icon with a stylesheet.
+     * @ignore
      */
-    iconClassName: PropTypes.string,
-    /**
-     * Override the inline-styles of the icon element.
-     */
-    iconStyle: PropTypes.object,
-    /** @ignore */
-    onBlur: PropTypes.func,
-    /** @ignore */
-    onFocus: PropTypes.func,
-    /**
-     * Callback function fired when the element is focused or blurred by the keyboard.
-     *
-     * @param {object} event `focus` or `blur` event targeting the element.
-     * @param {boolean} keyboardFocused Indicates whether the element is focused.
-     */
+    theme: PropTypes.object,
+    tooltipPosition: PropTypes.cornersAndCenter,
+    tooltip: PropTypes.node,
     onKeyboardFocus: PropTypes.func,
     /** @ignore */
     onMouseEnter: PropTypes.func,
@@ -87,86 +102,58 @@ class IconButton extends Component {
     onMouseLeave: PropTypes.func,
     /** @ignore */
     onMouseOut: PropTypes.func,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-    /**
-     * The text to supply to the element's tooltip.
-     */
-    tooltip: PropTypes.node,
-    /**
-     * The vertical and horizontal positions, respectively, of the element's tooltip.
-     * Possible values are: "bottom-center", "top-center", "bottom-right", "top-right",
-     * "bottom-left", and "top-left".
-     */
-    tooltipPosition: propTypes.cornersAndCenter,
-    /**
-     * Override the inline-styles of the tooltip element.
-     */
-    tooltipStyles: PropTypes.object,
-    /**
-     * If true, increase the tooltip element's size.  Useful for increasing tooltip
-     * readability on mobile devices.
-     */
     touch: PropTypes.bool,
   };
-
   static defaultProps = {
+    contrast: false,
     disabled: false,
-    disableTouchRipple: false,
-    iconStyle: {},
     tooltipPosition: 'bottom-center',
-    touch: false,
+    ripple: true,
   };
-
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
-
   state = {
     tooltipShown: false,
   };
-
-  setKeyboardFocus() {
-    this.refs.button.setKeyboardFocus();
-  }
-
+  
   showTooltip() {
     if (this.props.tooltip) {
-      this.setState({tooltipShown: true});
+      this.setState({ tooltipShown: true });
     }
   }
-
-  hideTooltip() {
-    if (this.props.tooltip) this.setState({tooltipShown: false});
+  
+  setKeyboardFocus() {
+    this.refs.but.setKeyboardFocus();
   }
-
+  
+  hideTooltip() {
+    if (this.props.tooltip) this.setState({ tooltipShown: false });
+  }
+  
   handleBlur = (event) => {
     this.hideTooltip();
     if (this.props.onBlur) this.props.onBlur(event);
   };
-
   handleFocus = (event) => {
     this.showTooltip();
     if (this.props.onFocus) this.props.onFocus(event);
   };
-
+  handleMouseDown = (event) => {
+    if (this.props.onMouseDown) this.props.onMouseDown(event);
+  };
   handleMouseLeave = (event) => {
-    if (!this.refs.button.isKeyboardFocused()) this.hideTooltip();
+    if (!this.refs.but.isKeyboardFocused()) this.hideTooltip();
     if (this.props.onMouseLeave) this.props.onMouseLeave(event);
   };
-
   handleMouseOut = (event) => {
     if (this.props.disabled) this.hideTooltip();
     if (this.props.onMouseOut) this.props.onMouseOut(event);
   };
-
   handleMouseEnter = (event) => {
     this.showTooltip();
     if (this.props.onMouseEnter) this.props.onMouseEnter(event);
   };
-
   handleKeyboardFocus = (event, keyboardFocused) => {
     if (keyboardFocused && !this.props.disabled) {
       this.showTooltip();
@@ -175,90 +162,80 @@ class IconButton extends Component {
       this.hideTooltip();
       if (this.props.onBlur) this.props.onBlur(event);
     }
-
     if (this.props.onKeyboardFocus) {
       this.props.onKeyboardFocus(event, keyboardFocused);
     }
   };
-
+  
   render() {
     const {
-      disabled,
-      disableTouchRipple,
       children,
-      iconClassName,
-      onKeyboardFocus, // eslint-disable-line no-unused-vars
-      tooltip,
-      tooltipPosition: tooltipPositionProp,
-      tooltipStyles,
+      passchild,
+      className,
+      contrast,
+      theme,
+      checkedIcon,
+      onMouseLeave,
+      onMouseDown,
+      onMouseEnter,
+      onMouseOut,
+      onKeyboardFocus,
+      checked,
+      icon: iconProp,
       touch,
-      iconStyle,
-      ...other
+      tooltip,
+      tooltipPosition,
+      tooltipStyles,
+      classNameRipple,
+      labelCls,
+      ...other,
     } = this.props;
-    let fonticon;
-
-    const styles = getStyles(this.props, this.context);
-    const tooltipPosition = tooltipPositionProp.split('-');
-
-    const tooltipElement = tooltip ? (
+    const classes = this.context.styleManager.render(styleSheet, theme);
+    const tooltipPositiona = tooltipPosition.split('-');
+    const tooltipstyle = {
+      boxSizing: 'border-box',
+    }
+    let icon;
+    if (iconProp && !checked) {
+      icon = <span className="material-icons" aria-hidden="true">{iconProp}</span>;
+    } else if (checkedIcon && checked) {
+      icon = <span className="material-icons" aria-hidden="true">{checkedIcon}</span>;
+    }
+    const tooltipElement = (!isMobile && tooltip) ? (
       <Tooltip
         ref="tooltip"
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
-        style={Object.assign(styles.tooltip, tooltipStyles)}
-        verticalPosition={tooltipPosition[0]}
-        horizontalPosition={tooltipPosition[1]}
+        style={Object.assign(tooltipstyle, tooltipStyles)}
+        verticalPosition={tooltipPositiona[0]}
+        horizontalPosition={tooltipPositiona[1]}
       />
     ) : null;
-
-    if (iconClassName) {
-      const {
-        iconHoverColor,
-        ...iconStyleFontIcon
-      } = iconStyle;
-
-      fonticon = (
-        <FontIcon
-          className={iconClassName}
-          hoverColor={disabled ? null : iconHoverColor}
-          style={Object.assign(
-            {},
-            disabled && styles.disabled,
-            iconStyleFontIcon
-          )}
-          color={this.context.muiTheme.baseTheme.palette.textColor}
-        >
-          {children}
-        </FontIcon>
-      );
-    }
-
-    const childrenStyle = disabled ? Object.assign({}, iconStyle, styles.disabled) : iconStyle;
-
-    return (
-      <EnhancedButton
-        {...other}
-        ref="button"
-        centerRipple={true}
-        disabled={disabled}
-        style={Object.assign(styles.root, this.props.style)}
-        disableTouchRipple={disableTouchRipple}
+    return (<ButtonBase
+        ref="but"
+        className={classNames(classes.iconButton, {
+          [classes.contrast]: contrast,
+        }, className)}
+        centerRipple
+        classNameRipple={classNameRipple}
+        keyboardFocusedClassName={classes.keyboardFocused}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onMouseLeave={this.handleMouseLeave}
+        onMouseDown={this.handleMouseDown}
         onMouseEnter={this.handleMouseEnter}
         onMouseOut={this.handleMouseOut}
         onKeyboardFocus={this.handleKeyboardFocus}
+        {...other}
       >
         {tooltipElement}
-        {fonticon}
-        {extendChildren(children, {
-          style: childrenStyle,
-        })}
-      </EnhancedButton>
+        <span className={classNames(classes.label, labelCls)}>
+          {icon}
+          {(passchild) && passchild }
+          {children }
+        </span>
+      </ButtonBase>
     );
   }
 }
-
-export default IconButton;

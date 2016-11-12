@@ -1,6 +1,4 @@
-export Toolbar from './Toolbar';
-export ToolbarGroup from './ToolbarGroup';
-export ToolbarSeparator from './ToolbarSeparator';
-export ToolbarTitle from './ToolbarTitle';
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 export default from './Toolbar';
+export Toolbar from './Toolbar';

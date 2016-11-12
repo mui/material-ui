@@ -2,6 +2,27 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import YearButton from './YearButton';
 import {cloneDate} from './dateUtils';
+import { createStyleSheet } from 'jss-theme-reactor';
+
+export const styleSheet = createStyleSheet('Year', (theme) => {
+  return {
+    root: {
+      backgroundColor: calendarYearBackgroundColor,
+      height: 'inherit',
+      lineHeight: '35px',
+      overflowX: 'hidden',
+      overflowY: 'scroll',
+      position: 'relative',
+    },
+    child: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      minHeight: '100%',
+    }
+  }
+  }
+);
 
 class CalendarYear extends Component {
   static propTypes = {
@@ -15,9 +36,8 @@ class CalendarYear extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
-
   componentDidMount() {
     this.scrollToSelectedYear();
   }
@@ -55,7 +75,7 @@ class CalendarYear extends Component {
       const yearButton = (
         <YearButton
           key={`yb${year}`}
-          onTouchTap={this.handleTouchTapYear}
+          onClick={this.handleTouchTapYear}
           selected={selected}
           year={year}
           {...selectedProps}
@@ -92,33 +112,22 @@ class CalendarYear extends Component {
   };
 
   render() {
+    /*
     const {
       prepareStyles,
       datePicker: {
         calendarYearBackgroundColor,
       },
-    } = this.context.muiTheme;
+    } = this.context.muiTheme;*/
 
-    const styles = {
-      root: {
-        backgroundColor: calendarYearBackgroundColor,
-        height: 'inherit',
-        lineHeight: '35px',
-        overflowX: 'hidden',
-        overflowY: 'scroll',
-        position: 'relative',
-      },
-      child: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        minHeight: '100%',
-      },
-    };
+
+    const styleManager = this.context.styleManager;
+    const { render } = styleManager;
+    const cls = render(styleSheet);
 
     return (
-      <div style={prepareStyles(styles.root)}>
-        <div style={prepareStyles(styles.child)}>
+      <div className={cls.root}>
+        <div className={cls.child}>
           {this.getYears()}
         </div>
       </div>

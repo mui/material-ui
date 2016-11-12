@@ -1,15 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import EnhancedButton from '../internal/EnhancedButton';
-
-function getStyles(props, context, state) {
-  const {selected, year} = props;
-  const {baseTheme, datePicker} = context.muiTheme;
-  const {hover} = state;
-
+import React, { Component, PropTypes } from 'react';
+import Button from '../Button';
+import { createStyleSheet } from 'jss-theme-reactor';
+export const styleSheet = createStyleSheet('Year', (theme) => {
   return {
     root: {
       boxSizing: 'border-box',
-      color: year === new Date().getFullYear() && datePicker.color,
       display: 'block',
       fontSize: 14,
       margin: '0 auto',
@@ -20,15 +15,28 @@ function getStyles(props, context, state) {
     },
     label: {
       alignSelf: 'center',
-      color: hover || selected ? datePicker.color : baseTheme.palette.textColor,
-      fontSize: selected ? 26 : 17,
-      fontWeight: hover ? 450 : selected ? 500 : 400,
       position: 'relative',
       top: -1,
     },
   };
-}
+});
 
+function getStyles(props, ctxt, state) {
+  const { selected } = props;
+  const { palette } = ctxt.theme;
+  const { hover } = state;
+  //const { baseTheme, datePicker } = context.muiTheme;
+  return {
+    root: {
+      color: year === new Date().getFullYear() && palette.text.accent,
+    },
+    label: {
+      color: hover || selected ? palette.text.accent : palette.text.primary,
+      fontSize: selected ? 26 : 17,
+      fontWeight: hover ? 450 : selected ? 500 : 400,
+    },
+  };
+}
 class YearButton extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -36,34 +44,32 @@ class YearButton extends Component {
      * The css class name of the root element.
      */
     className: PropTypes.string,
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     selected: PropTypes.bool,
     year: PropTypes.number.isRequired,
   };
-
   static defaultProps = {
     selected: false,
   };
-
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
-
+  /*
+   static contextTypes = {
+   muiTheme: PropTypes.object.isRequired,
+   };*/
   state = {
     hover: false,
   };
-
   handleMouseEnter = () => {
-    this.setState({hover: true});
+    this.setState({ hover: true });
   };
-
   handleMouseLeave = () => {
-    this.setState({hover: false});
+    this.setState({ hover: false });
   };
-
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(event, this.props.year);
+    if (this.props.onClick) {
+      this.props.onClick(event, this.props.year);
     }
   };
 
@@ -71,31 +77,35 @@ class YearButton extends Component {
     const {
       children,
       className, // eslint-disable-line no-unused-vars
-      onTouchTap, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       year, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context, this.state);
-
+    const styleManager = this.context.styleManager;
+    const { render } = styleManager;
+    const cls = render(styleSheet);
+    //  const { prepareStyles } = this.context.muiTheme;
+    const styles = getStyles(this.props, styleManager, this.state);
+    const labelStyle = styleManager.prepareInline(styles.label);
+    const rootStyle = styleManager.prepareInline(styles.root);
     return (
-      <EnhancedButton
+      <Button
         {...other}
-        disableFocusRipple={true}
-        disableTouchRipple={true}
+        ripple
+        className={cls.root}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        onTouchTap={this.handleTouchTap}
-        style={styles.root}
+        onClick={this.handleTouchTap}
+        style={rootStyle}
       >
-        <span style={prepareStyles(styles.label)}>
+        <span style={labelStyle}
+              className={cls.label}>
           {children}
         </span>
-      </EnhancedButton>
+      </Button>
     );
   }
 }
-
 export default YearButton;

@@ -1,9 +1,7 @@
-export Card from './Card';
-export CardHeader from './CardHeader';
-export CardTitle from './CardTitle';
-export CardMedia from './CardMedia';
-export CardText from './CardText';
-export CardActions from './CardActions';
-export CardExpandable from './CardExpandable';
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-export default from './Card';
+export Card from './Card';
+export CardContent from './CardContent';
+export CardActions from './CardActions';
+export CardMedia from './CardMedia';
+export CardHeader from './CardHeader';

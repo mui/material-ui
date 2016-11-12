@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import autoPrefix from '../utils/autoPrefix';
-import transitions from '../styles/transitions';
 
 class SlideInChild extends Component {
   static propTypes = {
@@ -16,9 +15,9 @@ class SlideInChild extends Component {
   static defaultProps = {
     enterDelay: 0,
   };
-
+  
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
 
   componentWillUnmount() {
@@ -68,19 +67,25 @@ class SlideInChild extends Component {
       ...other
     } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
-
+    //const {prepareStyles} = this.context.muiTheme;
+  
+    const styleManager = this.context.styleManager;
+    const {transitions } = styleManager.theme;
+     
     const mergedRootStyles = Object.assign({}, {
       position: 'absolute',
       height: '100%',
       width: '100%',
       top: 0,
       left: 0,
-      transition: transitions.easeOut(null, ['transform', 'opacity']),
+      transition: transitions.multi(['transform', 'opacity']),
     }, style);
+    
+    const RootStyles = styleManager.prepareInline(mergedRootStyles);
+    
 
     return (
-      <div {...other} style={prepareStyles(mergedRootStyles)}>
+      <div {...other} style={RootStyles}>
         {children}
       </div>
     );

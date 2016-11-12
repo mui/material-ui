@@ -9,16 +9,16 @@ const Subheader = (props, context) => {
   } = props;
 
   const {
-    prepareStyles,
-    subheader,
-  } = context.muiTheme;
+    prepareInline,
+    theme,
+  } = context.styleManager;
 
   const styles = {
     root: {
       boxSizing: 'border-box',
-      color: subheader.color,
+      color: theme.palette.text.primary,
       fontSize: 14,
-      fontWeight: subheader.fontWeight,
+      fontWeight: theme.typography.fontWeightMedium,
       lineHeight: '48px',
       paddingLeft: inset ? 72 : 16,
       width: '100%',
@@ -26,7 +26,7 @@ const Subheader = (props, context) => {
   };
 
   return (
-    <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+    <div {...other} style={prepareInline(Object.assign(styles.root, style))}>
       {children}
     </div>
   );
@@ -54,7 +54,7 @@ Subheader.defaultProps = {
 };
 
 Subheader.contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
+  styleManager: PropTypes.object.isRequired,
 };
 
 export default Subheader;

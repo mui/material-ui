@@ -1,147 +1,111 @@
-import React, {Component, PropTypes} from 'react';
-
-function getStyles(props, context) {
-  const {cardMedia} = context.muiTheme;
-
-  return {
-    root: {
-      position: 'relative',
-    },
-    overlayContainer: {
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      right: 0,
-      left: 0,
-    },
-    overlay: {
-      height: '100%',
-      position: 'relative',
-    },
-    overlayContent: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
-      paddingTop: 8,
-      background: cardMedia.overlayContentBackground,
-    },
-    media: {},
-    mediaChild: {
-      verticalAlign: 'top',
-      maxWidth: '100%',
-      minWidth: '100%',
-      width: '100%',
-    },
-  };
-}
-
-class CardMedia extends Component {
-  static propTypes = {
-    /**
-     * If true, a click on this card component expands the card.
-     */
-    actAsExpander: PropTypes.bool,
-    /**
-     * Can be used to render elements inside the Card Media.
-     */
-    children: PropTypes.node,
-    /**
-     * If true, this card component is expandable.
-     */
-    expandable: PropTypes.bool,
-    /**
-     * Override the inline-styles of the Card Media.
-     */
-    mediaStyle: PropTypes.object,
-    /**
-     * Can be used to render overlay element in Card Media.
-     */
-    overlay: PropTypes.node,
-    /**
-     * Override the inline-styles of the overlay container.
-     */
-    overlayContainerStyle: PropTypes.object,
-    /**
-     * Override the inline-styles of the overlay content.
-     */
-    overlayContentStyle: PropTypes.object,
-    /**
-     * Override the inline-styles of the overlay element.
-     */
-    overlayStyle: PropTypes.object,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
-  };
-
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const {
-      actAsExpander, // eslint-disable-line no-unused-vars
-      children,
-      expandable, // eslint-disable-line no-unused-vars
-      mediaStyle,
-      overlay,
-      overlayContainerStyle,
-      overlayContentStyle,
-      overlayStyle,
-      style,
-      ...other
-    } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign(styles.root, style);
-    const extendedMediaStyle = Object.assign(styles.media, mediaStyle);
-    const extendedOverlayContainerStyle = Object.assign(styles.overlayContainer, overlayContainerStyle);
-    const extendedOverlayContentStyle = Object.assign(styles.overlayContent, overlayContentStyle);
-    const extendedOverlayStyle = Object.assign(styles.overlay, overlayStyle);
-    const titleColor = this.context.muiTheme.cardMedia.titleColor;
-    const subtitleColor = this.context.muiTheme.cardMedia.subtitleColor;
-    const color = this.context.muiTheme.cardMedia.color;
-
-    const styledChildren = React.Children.map(children, (child) => {
-      return React.cloneElement(child, {
-        style: prepareStyles(Object.assign({}, styles.mediaChild, child.props.style)),
-      });
-    });
-
-    const overlayChildren = React.Children.map(overlay, (child) => {
-      if (child.type.muiName === 'CardHeader' || child.type.muiName === 'CardTitle') {
-        return React.cloneElement(child, {
-          titleColor: titleColor,
-          subtitleColor: subtitleColor,
-        });
-      } else if (child.type.muiName === 'CardText') {
-        return React.cloneElement(child, {
-          color: color,
-        });
-      } else {
-        return child;
-      }
-    });
-
-    return (
-      <div {...other} style={prepareStyles(rootStyle)}>
-        <div style={prepareStyles(extendedMediaStyle)}>
-          {styledChildren}
-        </div>
-        {overlay ?
-          <div style={prepareStyles(extendedOverlayContainerStyle)}>
-            <div style={prepareStyles(extendedOverlayStyle)}>
-              <div style={prepareStyles(extendedOverlayContentStyle)}>
-                {overlayChildren}
-              </div>
-            </div>
-          </div> : ''}
-      </div>
-    );
+// @flow weak
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
+import { lightBlack } from '../styles/colors';
+export const styleSheet = createStyleSheet('CardMedia', () => ({
+  cardMedia: {
+    position: 'relative',
+  },
+  overlayContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+  },
+  overlay: {
+    height: '100%',
+    position: 'relative',
+  },
+  overlayContent: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+    paddingTop: 8,
+    background: lightBlack,
+  },
+  media: {},
+  mediaChild: {
+    verticalAlign: 'top',
+    maxWidth: '100%',
+    minWidth: '100%',
+    width: '100%',
   }
-}
+}));
+export default function CardMedia(props, context) {
+  const {
+    className: classNameProp,
+    children,
+    mediaCls,
+    overlay,
+    overlayContainerCls,
+    overlayContentCls,
+    overlayCls,
+    ...other
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
+  const className = classNames(classes.cardMedia, classNameProp);
+  const extendedOverlayContainerCls = classNames(classes.overlayContainer, overlayContainerCls);
+  const extendedOverlayContentCls = classNames(classes.overlayContent, overlayContentCls);
+  const extendedOverlayCls = classNames(classes.overlay, overlayCls);
 
-export default CardMedia;
+  let myChildren;
+  if (typeof children === "string") {
+    myChildren = children;
+  } else {
+    myChildren = React.Children.map(children, (child) => {
+      const extendedmediaChildCls = classNames(child.props.className, classes.mediaChild, mediaCls);
+      const props = {
+        style: (child.props.style) ? child.props.style : {},
+        className: extendedmediaChildCls
+      };
+      console.log(props)
+      return React.cloneElement(child, props);
+    });
+  }
+  return (
+    <div className={className} {...other}>
+      {myChildren}
+      {overlay ?
+        <div className={extendedOverlayContainerCls}>
+          <div className={extendedOverlayCls}>
+            <div className={extendedOverlayContentCls}>
+              {overlay}
+            </div>
+          </div>
+        </div> : ''}
+    </div>
+  );
+}
+CardMedia.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  children: PropTypes.node,
+  /**
+   * Override the inline-styles of the Card Media.
+   */
+  mediaCls: PropTypes.object,
+  /**
+   * Can be used to render overlay element in Card Media.
+   */
+  overlay: PropTypes.node,
+  /**
+   * Override the inline-styles of the overlay container.
+   */
+  overlayContainerCls: PropTypes.object,
+  /**
+   * Override the inline-styles of the overlay content.
+   */
+  overlayContentCls: PropTypes.object,
+  /**
+   * Override the inline-styles of the overlay element.
+   */
+  overlayCls: PropTypes.object
+};
+CardMedia.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

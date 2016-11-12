@@ -1,96 +1,96 @@
-import React, {PropTypes} from 'react';
-import transitions from '../styles/transitions';
+// @flow weak
 
-function getStyles(props) {
-  const defaultStyles = {
-    position: 'absolute',
-    lineHeight: '22px',
-    top: 38,
-    transition: transitions.easeOut(),
-    zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-    transform: 'scale(1) translate(0, 0)',
-    transformOrigin: 'left top',
-    pointerEvents: 'auto',
-    userSelect: 'none',
-  };
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
+import { easing } from '../styles/transitions';
 
-  const shrinkStyles = props.shrink ? Object.assign({
-    transform: 'scale(0.75) translate(0, -28px)',
-    pointerEvents: 'none',
-  }, props.shrinkStyle) : null;
-
+export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
   return {
-    root: Object.assign(defaultStyles, props.style, shrinkStyles),
+    root: {
+      color: theme.palette.text.secondary,
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      lineHeight: 1,
+      transform: 'translate(0, 18px) scale(1)',
+      transformOrigin: 'top left',
+    },
+    shrink: {
+      transform: 'translate(0, 0px) scale(0.75)',
+    },
+    animated: {
+      transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
+    },
+    asterisk: {
+      color: theme.palette.error[500],
+    },
   };
-}
+});
 
-const TextFieldLabel = (props) => {
+export default function TextFieldLabel(props, context) {
   const {
-    muiTheme,
-    className,
+    animated,
     children,
-    htmlFor,
-    onTouchTap,
+    className: classNameProp,
+    focused,
+    required,
+    shrink,
+    ...other
   } = props;
+  const classes = context.styleManager.render(styleSheet);
 
-  const {prepareStyles} = muiTheme;
-  const styles = getStyles(props);
+  const className = classNames(classes.root, {
+    [classes.animated]: animated,
+    [classes.shrink]: shrink,
+  }, classNameProp);
 
   return (
-    <label
-      className={className}
-      style={prepareStyles(styles.root)}
-      htmlFor={htmlFor}
-      onTouchTap={onTouchTap}
-    >
+    <label className={className} {...other}>
       {children}
+      {required && (
+        <span
+          className={classNames({
+            [classes.asterisk]: focused,
+          })}
+        >
+          {'\u2009'}*
+        </span>
+      )}
     </label>
   );
-};
+}
 
 TextFieldLabel.propTypes = {
+  animated: PropTypes.bool,
   /**
-   * The label contents.
+   * The contents of the `TextFieldLabel`.
    */
   children: PropTypes.node,
   /**
-   * The css class name of the root element.
+   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**
-   * Disables the label if set to true.
+   * Whether the input of this label is focused.
    */
-  disabled: PropTypes.bool,
+  focused: PropTypes.bool,
   /**
-   * The id of the target element that this label should refer to.
+   * Whether this label should indicate that the input
+   * is required.
    */
-  htmlFor: PropTypes.string,
-  /**
-   * @ignore
-   * The material-ui theme applied to this component.
-   */
-  muiTheme: PropTypes.object.isRequired,
-  /**
-   * Callback function for when the label is selected via a touch tap.
-   */
-  onTouchTap: PropTypes.func,
-  /**
-   * True if the floating label should shrink.
-   */
+  required: PropTypes.bool,
   shrink: PropTypes.bool,
-  /**
-   * Override the inline-styles of the root element when focused.
-   */
-  shrinkStyle: PropTypes.object,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: PropTypes.object,
 };
 
 TextFieldLabel.defaultProps = {
-  disabled: false,
-  shrink: false,
+  animated: true,
+  focused: false,
+  required: false,
 };
 
-export default TextFieldLabel;
+TextFieldLabel.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};
+
+TextFieldLabel.muiName = 'TextFieldLabel';

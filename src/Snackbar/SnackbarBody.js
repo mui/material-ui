@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import withWidth, {SMALL} from '../utils/withWidth';
-import FlatButton from '../FlatButton';
+import FlatButton from '../Button';
 
 function getStyles(props, context) {
   const {
@@ -80,7 +80,7 @@ export const SnackbarBody = (props, context) => {
     <FlatButton
       style={styles.action}
       label={action}
-      onTouchTap={onActionTouchTap}
+      onClick={onActionTouchTap}
     />
   );
 

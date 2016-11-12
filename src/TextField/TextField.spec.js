@@ -1,170 +1,266 @@
+// @flow weak
 /* eslint-env mocha */
-import React, {PropTypes, Component} from 'react';
-import {shallow, mount} from 'enzyme';
-import {assert} from 'chai';
-import TextField from './TextField';
-import TextFieldHint from './TextFieldHint';
-import TextFieldLabel from './TextFieldLabel';
-import getMuiTheme from '../styles/getMuiTheme';
 
-describe('<TextField />', () => {
-  const muiTheme = getMuiTheme();
-  const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
-  const mountWithContext = (node) => mount(node, {
-    context: {muiTheme},
-    childContextTypes: {muiTheme: PropTypes.object},
+import React from 'react';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import { createShallowWithContext } from 'test/utils';
+import TextField, { styleSheet } from './TextField';
+
+describe('<TextField>', () => {
+  let shallow;
+  let classes;
+
+  before(() => {
+    shallow = createShallowWithContext();
+    classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('passes event and value to the onChange callback', (done) => {
-    const wrapper = shallowWithContext(
-      <TextField
-        onChange={(event, value) => {
-          assert.strictEqual(event.target.value, 'woof');
-          assert.strictEqual(value, 'woof', 'should pass the value as the 2nd arg');
-          done();
-        }}
-        id="unique"
-      />
+  it('should render an <div> root element and pass the child through', () => {
+    const wrapper = shallow(
+      <TextField><input id="test-input" /></TextField>
     );
 
-    wrapper.find('input').simulate('change', {target: {value: 'woof'}});
+    assert.strictEqual(wrapper.is('div'), true, 'should be a <div>');
+    assert.strictEqual(wrapper.find('#test-input').length, 1, 'should pass the child through');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
-  it('shrinks TextFieldLabel when defaultValue is set and value is null', () => {
-    const wrapper = shallowWithContext(
-      <TextField
-        floatingLabelText="floating label text"
-        defaultValue="default value"
-        value={null}
-      />
+  it('should track dirty and focused state and apply the focus class when focused', () => {
+    const wrapper = shallow(
+      <TextField><input id="test-input" /></TextField>
     );
 
-    assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, true, 'should shrink TextFieldLabel');
+    assert.strictEqual(wrapper.state('dirty'), false, 'should not be dirty by default');
+    assert.strictEqual(wrapper.state('focused'), false, 'should not be focused by default');
+    assert.strictEqual(wrapper.hasClass(classes.focused), false, 'should not have the focused class');
 
-    // set a new prop to trigger componentWillReceiveProps
-    wrapper.setProps({id: '1'});
-    assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, true, 'should shrink TextFieldLabel');
+    const instance = wrapper.instance();
+
+    instance.handleDirty();
+    wrapper.update(); // enzyme only updates wrapper if using `setProps` or `setState`
+
+    assert.strictEqual(wrapper.state('dirty'), true, 'should be dirty');
+    assert.strictEqual(wrapper.state('focused'), false, 'should not be focused');
+    assert.strictEqual(wrapper.hasClass(classes.focused), false, 'should not have the focused class');
+
+    instance.handleFocus();
+    wrapper.update(); // enzyme only updates wrapper if using `setProps` or `setState`
+
+    assert.strictEqual(wrapper.state('dirty'), true, 'should be dirty');
+    assert.strictEqual(wrapper.state('focused'), true, 'should be focused');
+    assert.strictEqual(wrapper.hasClass(classes.focused), true, 'should have the focused class');
+
+    instance.handleClean();
+    wrapper.update(); // enzyme only updates wrapper if using `setProps` or `setState`
+
+    assert.strictEqual(wrapper.state('dirty'), false, 'should not be dirty');
+    assert.strictEqual(wrapper.state('focused'), true, 'should be focused');
+    assert.strictEqual(wrapper.hasClass(classes.focused), true, 'should have the focused class');
+
+    instance.handleDirty();
+    wrapper.update(); // enzyme only updates wrapper if using `setProps` or `setState`
+
+    assert.strictEqual(wrapper.state('dirty'), true, 'should be dirty');
+    assert.strictEqual(wrapper.state('focused'), true, 'should be focused');
+    assert.strictEqual(wrapper.hasClass(classes.focused), true, 'should have the focused class');
+
+    instance.handleBlur();
+    wrapper.update(); // enzyme only updates wrapper if using `setProps` or `setState`
+
+    assert.strictEqual(wrapper.state('dirty'), true, 'should be dirty');
+    assert.strictEqual(wrapper.state('focused'), false, 'should not be focused');
+    assert.strictEqual(wrapper.hasClass(classes.focused), false, 'should not have the focused class');
   });
 
-  it(`unshrinks TextFieldLabel when defaultValue is set, the component has had input change,
-        and value is re-set to null`, () => {
-    const wrapper = shallowWithContext(
-      <TextField
-        floatingLabelText="floating label text"
-        defaultValue="default value"
-        value={null}
-      />
-    );
-    assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, true, 'should shrink TextFieldLabel');
+  describe('rendering the input', () => {
+    let TextFieldInput;
 
-    // make input change
-    const input = wrapper.find('input');
-    input.simulate('change', {target: {value: 'foo'}});
-    assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, true, 'should shrink TextFieldLabel');
+    before(() => {
+      TextFieldInput = (props) => <input {...props} />;
+      TextFieldInput.muiName = 'TextFieldInput';
+    });
 
-    // set value to null again, which should unshrink the TextFieldLabel, even though TextField's isClean
-    // state property is false.
-    wrapper.setProps({value: null});
-    assert.strictEqual(wrapper.state().isClean, false);
-    assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, false, 'should not shrink TextFieldLabel');
+    it('should attach handlers and pass the input class to a TextFieldInput child', () => {
+      const wrapper = shallow(
+        <TextField>
+          <TextFieldInput />
+        </TextField>
+      );
+
+      const instance = wrapper.instance();
+
+      const input = wrapper.find('TextFieldInput');
+
+      assert.strictEqual(input.prop('className'), classes.input, 'should have the input class');
+      assert.strictEqual(input.prop('onDirty'), instance.handleDirty);
+      assert.strictEqual(input.prop('onClean'), instance.handleClean);
+      assert.strictEqual(input.prop('onFocus'), instance.handleFocus);
+      assert.strictEqual(input.prop('onBlur'), instance.handleBlur);
+    });
+
+    it('should honor user props existing on a TextFieldInput child', () => {
+      const className = 'woof';
+      const onFocus = spy();
+      const onBlur = spy();
+
+      const wrapper = shallow(
+        <TextField>
+          <TextFieldInput
+            className={className}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+        </TextField>
+      );
+
+      const input = wrapper.find('TextFieldInput');
+
+      assert.strictEqual(
+        input.prop('className'),
+        `${classes.input} ${className}`,
+        'should have the input class and the user class'
+      );
+
+      input.prop('onFocus')();
+      assert.strictEqual(onFocus.callCount, 1, 'should have called the user handler');
+
+      input.prop('onBlur')();
+      assert.strictEqual(onBlur.callCount, 1, 'should have called the user handler');
+    });
   });
 
-  describe('prop: children', () => {
-    it('should forward any property to the root', () => {
-      const wrapper = shallowWithContext(
-        <TextField data-test="hello" id="unique">
-          <div />
+  describe('rendering the label', () => {
+    let TextFieldLabel;
+
+    before(() => {
+      TextFieldLabel = (props) => <label htmlFor="foo" {...props} />;
+      TextFieldLabel.muiName = 'TextFieldLabel';
+    });
+
+    it('should pass the label class and shrink prop to a TextFieldLabel child', () => {
+      const wrapper = shallow(
+        <TextField>
+          <TextFieldLabel>Label</TextFieldLabel>
+        </TextField>
+      );
+
+      const label = wrapper.find('TextFieldLabel');
+
+      assert.strictEqual(label.prop('className'), classes.label, 'should have the label class');
+      assert.strictEqual(label.prop('shrink'), false, 'should be false by default');
+      assert.strictEqual(label.prop('focused'), false, 'should be false by default');
+    });
+
+    it('should change the shrink prop depending on focused, dirty state', () => {
+      const wrapper = shallow(
+        <TextField>
+          <TextFieldLabel>Label</TextFieldLabel>
         </TextField>
       );
 
       assert.strictEqual(
-        wrapper.is('[data-test="hello"]'), true,
-        'The root element should receive any additional properties'
-      );
-    });
-  });
-
-  describe('isValid', () => {
-    it('should consider the input as empty', () => {
-      const values = [
-        undefined,
-        null,
-        '',
-      ];
-
-      values.forEach((value) => {
-        const wrapper = shallowWithContext(
-          <TextField value={value} id="unique" />
-        );
-
-        assert.strictEqual(wrapper.state().hasValue, false,
-          `Should consider '${value}' as empty`);
-      });
-    });
-
-    it('should consider the input as not empty', () => {
-      const values = [
-        ' ',
-        0,
+        wrapper.find('TextFieldLabel').prop('shrink'),
         false,
-      ];
-
-      values.forEach((value) => {
-        const wrapper = shallowWithContext(
-          <TextField value={value} id="unique" />
-        );
-
-        assert.strictEqual(wrapper.state().hasValue, true,
-          `Should consider '${value}' as not empty`);
-      });
-    });
-  });
-
-  describe('<TextFieldHint>', () => {
-    it('should be hidden when the component is rerender with the same props', () => {
-      class MyComponent1 extends Component {
-        state = {
-          value: '',
-        };
-
-        handleChange = () => {
-          this.setState({value: ''});
-        };
-
-        render() {
-          return (
-            <TextField
-              id="foo"
-              value={this.state.value}
-              hintText="bar"
-              onChange={this.handleChange}
-            />
-          );
-        }
-      }
-
-      const wrapper = mountWithContext(<MyComponent1 />);
-      const input = wrapper.find('input');
-      input.simulate('change', {target: {value: 'a'}});
-      assert.strictEqual(wrapper.find(TextFieldHint).props().show, true,
-        'The hint text should keep the same state');
-    });
-  });
-
-  describe('prop: floatingLabelFocusStyle', () => {
-    it('should be applied when the input is focused', () => {
-      const wrapper = shallowWithContext(
-        <TextField
-          floatingLabelText="Name"
-          floatingLabelFixed={true}
-          floatingLabelFocusStyle={{color: 'blue'}}
-          floatingLabelStyle={{color: 'red'}}
-        />
+        'should be false by default'
       );
-      wrapper.setState({
-        isFocused: true,
-      });
-      assert.strictEqual(wrapper.find(TextFieldLabel).props().style.color, 'blue');
+
+      wrapper.setState({ focused: true });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true when the TextField is focused and not dirty'
+      );
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('focused'),
+        true,
+        'should be true when focused'
+      );
+
+      wrapper.setState({ focused: false });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        false,
+        'should be false when the TextField is not focused and not dirty'
+      );
+
+      wrapper.setState({ dirty: true });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true when the TextField is dirty but not focused'
+      );
+
+      wrapper.setState({ dirty: false });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        false,
+        'should be false when the TextField is not dirty or focused'
+      );
+    });
+
+    it('should not change the shrink pop based on dirty/focused state if there is an override', () => {
+      const wrapper = shallow(
+        <TextField>
+          <TextFieldLabel shrink>Label</TextFieldLabel>
+        </TextField>
+      );
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true by default'
+      );
+
+      wrapper.setState({ focused: true });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true when the TextField is focused and not dirty'
+      );
+
+      wrapper.setState({ focused: false });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true when the TextField is not focused and not dirty'
+      );
+
+      wrapper.setState({ dirty: true });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true when the TextField is dirty but not focused'
+      );
+
+      wrapper.setState({ dirty: false });
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('shrink'),
+        true,
+        'should be true when the TextField is not dirty or focused'
+      );
+    });
+
+    it('should forward the required prop to the label', () => {
+      const wrapper = shallow(
+        <TextField required>
+          <TextFieldLabel>Label</TextFieldLabel>
+        </TextField>
+      );
+
+      assert.strictEqual(
+        wrapper.find('TextFieldLabel').prop('required'),
+        true,
+        'should set the required prop of the label when the TextField is required'
+      );
     });
   });
 });

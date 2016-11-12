@@ -1,9 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import transitions from '../styles/transitions';
+import React, { Component, PropTypes } from 'react';
 
 class SvgIcon extends Component {
   static muiName = 'SvgIcon';
-
   static propTypes = {
     /**
      * Elements passed into the SVG Icon.
@@ -37,31 +35,28 @@ class SvgIcon extends Component {
      */
     viewBox: PropTypes.string,
   };
-
   static defaultProps = {
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
+    onMouseEnter: () => {
+    },
+    onMouseLeave: () => {
+    },
     viewBox: '0 0 24 24',
   };
-
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
-
   state = {
     hovered: false,
   };
-
   handleMouseLeave = (event) => {
-    this.setState({hovered: false});
+    this.setState({ hovered: false });
     this.props.onMouseLeave(event);
   };
-
   handleMouseEnter = (event) => {
-    this.setState({hovered: true});
+    this.setState({ hovered: true });
     this.props.onMouseEnter(event);
   };
-
+  
   render() {
     const {
       children,
@@ -73,31 +68,31 @@ class SvgIcon extends Component {
       viewBox,
       ...other
     } = this.props;
-
-    const {
-      svgIcon,
-      prepareStyles,
-    } = this.context.muiTheme;
-
+    /*
+     const {
+     svgIcon,
+     prepareStyles,
+     } = this.context.muiTheme;*/
+    const styleManager = this.context.styleManager;
+    const { prepareInline } = styleManager;
+    const { palette, transitions } = styleManager.theme;
     const offColor = color ? color : 'currentColor';
     const onColor = hoverColor ? hoverColor : offColor;
-
     const mergedStyles = Object.assign({
       display: 'inline-block',
-      color: svgIcon.color,
+      color: palette.text.primary,
       fill: this.state.hovered ? onColor : offColor,
       height: 24,
       width: 24,
       userSelect: 'none',
-      transition: transitions.easeOut(),
+      transition: transitions.create(),
     }, style);
-
     return (
       <svg
         {...other}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        style={prepareStyles(mergedStyles)}
+        style={prepareInline(mergedStyles)}
         viewBox={viewBox}
       >
         {children}
@@ -105,5 +100,4 @@ class SvgIcon extends Component {
     );
   }
 }
-
 export default SvgIcon;

@@ -1,9 +1,9 @@
-export Table from './Table';
-export TableBody from './TableBody';
-export TableFooter from './TableFooter';
-export TableHeader from './TableHeader';
-export TableHeaderColumn from './TableHeaderColumn';
-export TableRow from './TableRow';
-export TableRowColumn from './TableRowColumn';
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 export default from './Table';
+export Table from './Table';
+export TableHead from './TableHead';
+export TableBody from './TableBody';
+export TableRow from './TableRow';
+export TableCell from './TableCell';
+export TableSortLabel from './TableSortLabel';

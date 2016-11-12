@@ -1,53 +1,75 @@
-import React, {Component, PropTypes, Children, isValidElement} from 'react';
-import Subheader from '../Subheader';
+// @flow weak
 
-class List extends Component {
-  static propTypes = {
-    /**
-     * These are usually `ListItem`s that are passed to
-     * be part of the list.
-     */
-    children: PropTypes.node,
-    /**
-     * Override the inline-styles of the root element.
-     */
-    style: PropTypes.object,
+import React, { PropTypes } from 'react';
+import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
+
+export const styleSheet = createStyleSheet('List', () => {
+  return {
+    root: {
+      flex: '1 1 auto',
+      overflow: 'auto',
+      listStyle: 'none',
+      margin: 0,
+      padding: 0,
+    },
+    padding: {
+      paddingTop: 8,
+      paddingBottom: 8,
+    },
+    subheader: {
+      paddingTop: 0,
+    },
   };
+});
 
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
+/**
+ * A simple list component.
+ */
+export default function List(props, context) {
+  const {
+    className: classNameProp,
+    component: ComponentProp,
+    padding,
+    children,
+    subheader,
+    rootRef,
+    ...other
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
+  const className = classNames(classes.root, {
+    [classes.padding]: padding,
+    [classes.subheader]: subheader,
+  }, classNameProp);
 
-  render() {
-    const {
-      children,
-      style,
-      ...other
-    } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-
-    let hasSubheader = false;
-
-    const firstChild = Children.toArray(children)[0];
-    if (isValidElement(firstChild) && firstChild.type === Subheader) {
-      hasSubheader = true;
-    }
-
-    const styles = {
-      root: {
-        padding: 0,
-        paddingBottom: 8,
-        paddingTop: hasSubheader ? 0 : 8,
-      },
-    };
-
-    return (
-      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <ComponentProp ref={rootRef} className={className} {...other}>
+      {subheader}
+      {children}
+    </ComponentProp>
+  );
 }
 
-export default List;
+List.propTypes = {
+  children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  padding: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  rootRef: PropTypes.func,
+  subheader: PropTypes.node,
+};
+
+List.defaultProps = {
+  component: 'div',
+  padding: true,
+};
+
+List.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

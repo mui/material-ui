@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Transition from '../styles/transitions';
 import {isEqualDate} from './dateUtils';
-import EnhancedButton from '../internal/EnhancedButton';
+import Button from '../internal/ButtonBase';
 
 function getStyles(props, context, state) {
   const {date, disabled, selected} = props;
@@ -57,7 +57,7 @@ class DayButton extends Component {
     disabled: PropTypes.bool,
     locale: PropTypes.string.isRequired,
     onKeyboardFocus: PropTypes.func,
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     selected: PropTypes.bool,
   };
 
@@ -87,8 +87,8 @@ class DayButton extends Component {
   };
 
   handleTouchTap = (event) => {
-    if (!this.props.disabled && this.props.onTouchTap) {
-      this.props.onTouchTap(event, this.props.date);
+    if (!this.props.disabled && this.props.onClick) {
+      this.props.onClick(event, this.props.date);
     }
   };
 
@@ -104,7 +104,7 @@ class DayButton extends Component {
       date,
       disabled,
       locale,
-      onTouchTap, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -113,15 +113,14 @@ class DayButton extends Component {
     const styles = getStyles(this.props, this.context, this.state);
 
     return date ? (
-      <EnhancedButton
+      <Button
         {...other}
         disabled={disabled}
-        disableFocusRipple={true}
-        disableTouchRipple={true}
+        ripple
         onKeyboardFocus={this.handleKeyboardFocus}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        onTouchTap={this.handleTouchTap}
+        onClick={this.handleTouchTap}
         style={styles.root}
       >
         <div style={prepareStyles(styles.buttonState)} />
@@ -130,7 +129,7 @@ class DayButton extends Component {
             day: 'numeric',
           }).format(date)}
         </span>
-      </EnhancedButton>
+      </Button>
     ) : (
       <span style={prepareStyles(styles.root)} />
     );
