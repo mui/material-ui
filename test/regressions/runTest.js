@@ -9,9 +9,7 @@ function runTest(testFn) {
       browser
         .url(`${browser.launch_url}/#/${testPath}`)
         .waitForElementVisible('[data-reactroot]', 6000)
-        .perform(
-          (client, done) => testFn(client, testPath, done)
-        );
+        .perform((client, done) => testFn(client, testPath, done));
     };
   }
 

@@ -1,2 +1,9 @@
 node_modules
-flow
+/flow
+/docs/site/build
+/packages/**/lib
+/packages/icon-builder
+/packages/material-ui-codemod/modules/v0.15.0
+/test/coverage
+/test/regressions/
+/test/integration/

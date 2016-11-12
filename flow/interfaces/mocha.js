@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 type TestFunction = ((done: () => void) => void | Promise<mixed>);
 
 declare var describe : {

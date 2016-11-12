@@ -1,3 +1,1 @@
-/* eslint-disable */
-
 export default '';

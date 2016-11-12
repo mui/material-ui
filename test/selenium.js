@@ -41,7 +41,7 @@ function runSeleniumTests(options) {
       ],
       {
         stdio: [0, 0, 0],
-      }
+      },
     );
 
     child.on('close', (exitCode) => {
