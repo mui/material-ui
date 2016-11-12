@@ -34,7 +34,7 @@ function runMochaTests({ module = '*', grep, types = ['unit', 'integration'] }) 
           process.exit(failures);
         });
       });
-    }
+    },
   );
 }
 

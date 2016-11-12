@@ -8,7 +8,7 @@ import { shallow as enzymeShallow } from 'enzyme';
 
 export default function createShallowWithContext(
   shallow = enzymeShallow,
-  otherContext = {}
+  otherContext = {},
 ) {
   const theme = createMuiTheme();
   const jss = create(jssPreset());

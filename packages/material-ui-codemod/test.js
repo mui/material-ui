@@ -1,3 +1,5 @@
+// @flow weak
+
 import Minimist from 'minimist';
 import Mocha from 'mocha';
 import glob from 'glob';
