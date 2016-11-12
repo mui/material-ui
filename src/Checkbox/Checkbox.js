@@ -32,7 +32,6 @@ function getStyles(props, context) {
     },
     checkWhenDisabled: {
       fill: checkbox.disabledColor,
-      cursor: 'not-allowed',
     },
     box: {
       position: 'absolute',
@@ -47,7 +46,6 @@ function getStyles(props, context) {
     },
     boxWhenDisabled: {
       fill: props.checked ? 'transparent' : checkbox.disabledColor,
-      cursor: 'not-allowed',
     },
     label: {
       color: props.disabled ? checkbox.labelDisabledColor : checkbox.labelColor,
