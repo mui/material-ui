@@ -136,7 +136,7 @@ function EnhancedTableToolbar(props, context) {
         {numSelected > 0 ? (
           <Text type="subheading">{numSelected} selected</Text>
         ) : (
-        <Text type="title">Nutrition</Text>
+          <Text type="title">Nutrition</Text>
         )}
       </div>
       <div className={classes.spacer} />
@@ -144,7 +144,7 @@ function EnhancedTableToolbar(props, context) {
         {numSelected > 0 ? (
           <IconButton>delete</IconButton>
         ) : (
-        <IconButton>filter_list</IconButton>
+          <IconButton>filter_list</IconButton>
         )}
       </div>
     </Toolbar>
