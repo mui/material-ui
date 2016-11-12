@@ -11,6 +11,7 @@ const files = [
 Promise.all(
   files.map((file) => copyFile(file))
 )
+.then(() => copyIndexFile())
 .then(() => createPackageFile());
 
 function copyFile(file) {
@@ -26,6 +27,18 @@ function copyFile(file) {
     );
   })
   .then(() => console.log(`Copied ${file} to ${buildPath}`));
+}
+
+function copyIndexFile() {
+  return new Promise((resolve, reject) => {
+    fse.copy(path.resolve(__dirname, '../src/index.js'), resolveBuildPath('index.es.js'), (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    });
+  })
 }
 
 function resolveBuildPath(file) {
@@ -63,6 +76,8 @@ function createPackageFile() {
       version,
       description,
       main: './index.js',
+      module: './index.es.js',
+      'jsnext:main': './index.es.js',
       keywords,
       repository,
       license,
