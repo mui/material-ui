@@ -30,7 +30,7 @@
     "clean:docs": "rimraf docs/api/*",
     "clean:build": "rimraf build",
     "docs:start": "(cd docs/site; npm start)",
-    "lint": "eslint src docs/site/src scripts test/e2e test/integration test/regressions/site/src && echo \"eslint: no lint errors\"",
+    "lint": "eslint . && echo \"eslint: no lint errors\"",
     "lint:find-rules": "eslint-find-rules -u .eslintrc.js",
     "prebuild": "npm run clean:build",
     "test": "node test mocha",
