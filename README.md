@@ -2,13 +2,13 @@
 
 JUST A FORK of material-ui next
 
-ADDed:
-*autocomplete 
-*hacked appbar to include touch swipe 
-*SVGICON  
-*Datepicker (Calendar is located somewhere else because i completly changed it for mine)  
-*DropDownMenu 
-*SelectField (using dropdownMenu) work great
+> ADDed:
+* autocomplete 
+* hacked appbar to include touch swipe 
+* SVGICON  
+* Datepicker (Calendar is located somewhere else because i completly changed it for mine)  
+* DropDownMenu 
+* SelectField (using dropdownMenu) work great
 
 All dependencies are working with material-ui next styles (no old theme from material-ui)
 
