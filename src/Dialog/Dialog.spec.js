@@ -46,7 +46,7 @@ describe('<Dialog>', () => {
 
   it('should spread custom props on the paper (dialog "root") node', () => {
     const wrapper = shallow(<Dialog data-my-prop="woof" />);
-    assert.strictEqual(wrapper.find('Paper').prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 
   it('should render with the user classes on the root node', () => {
@@ -94,5 +94,15 @@ describe('<Dialog>', () => {
       true,
       'should pass transitionAppear=true to the Fade',
     );
+  });
+
+  describe('prop: paperClassName', () => {
+    it('should add the class on the Paper element', () => {
+      const className = 'foo';
+      const wrapper = shallow(<Dialog paperClassName={className} />);
+      assert.strictEqual(wrapper.find('Paper').hasClass(className), true,
+        'should have the class provided',
+      );
+    });
   });
 });

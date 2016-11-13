@@ -39,7 +39,7 @@ export default class AlertDialogSlide extends Component {
           Slide in alert dialog
         </Button>
         <Dialog
-          className={classes.alert}
+          paperClassName={classes.alert}
           open={this.state.open}
           transition={Slide}
           onRequestClose={this.handleRequestClose}

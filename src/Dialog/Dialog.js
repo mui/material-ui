@@ -98,6 +98,10 @@ export default class Dialog extends Component {
      */
     open: PropTypes.bool,
     /**
+     * The CSS class name of the paper inner element.
+     */
+    paperClassName: PropTypes.string,
+    /**
      * Transition component.
      */
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
@@ -135,6 +139,7 @@ export default class Dialog extends Component {
       onExiting,
       onExited,
       onRequestClose,
+      paperClassName,
       transition,
       transitionDuration,
       ...other
@@ -172,13 +177,13 @@ export default class Dialog extends Component {
         onEscapeKeyUp={onEscapeKeyUp}
         onRequestClose={onRequestClose}
         show={open}
+        {...other}
       >
         {createTransitionFn(transition, transitionProps, (
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
-            className={classes.dialog}
-            {...other}
+            className={classNames(classes.dialog, paperClassName)}
           >
             {children}
           </Paper>
