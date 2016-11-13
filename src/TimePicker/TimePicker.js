@@ -175,6 +175,7 @@ class TimePicker extends Component {
     return result;
   }
 
+  props = undefined;
   input = undefined;
   dialogWindow = undefined;
 

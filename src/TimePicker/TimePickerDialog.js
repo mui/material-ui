@@ -89,6 +89,8 @@ class TimePickerDialog extends Component {
     }
   };
 
+  clock = undefined;
+
   render() {
     const {
       initialTime,
