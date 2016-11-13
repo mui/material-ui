@@ -254,7 +254,6 @@ class TextField extends Component {
     isFocused: false,
     errorText: undefined,
     hasValue: false,
-    isClean: true,
   };
 
   componentWillMount() {
@@ -293,8 +292,7 @@ class TextField extends Component {
     }
 
     if (nextProps.hasOwnProperty('value')) {
-      const hasValue = isValid(nextProps.value) ||
-        (this.state.isClean && isValid(nextProps.defaultValue));
+      const hasValue = isValid(nextProps.value);
 
       this.setState({
         hasValue: hasValue,
@@ -337,7 +335,7 @@ class TextField extends Component {
   };
 
   handleInputChange = (event) => {
-    this.setState({hasValue: isValid(event.target.value), isClean: false});
+    this.setState({hasValue: isValid(event.target.value)});
     if (this.props.onChange) this.props.onChange(event, event.target.value);
   };
 
