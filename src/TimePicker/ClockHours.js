@@ -46,6 +46,7 @@ class ClockHours extends Component {
 
   static muiName = 'ClockHours';
 
+
   componentDidMount() {
     const clockElement = this.mask;
 
@@ -59,6 +60,11 @@ class ClockHours extends Component {
       y: 0,
     };
   }
+
+  mask = undefined;
+  center = undefined;
+  basePoint = undefined;
+  clock = undefined;
 
   isMousePressed = (event) => {
     if (typeof event.buttons === 'undefined') {

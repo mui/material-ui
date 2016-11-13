@@ -61,6 +61,11 @@ class ClockMinutes extends Component {
     };
   }
 
+  mask = undefined;
+  center = undefined;
+  basePoint = undefined;
+  clock = undefined;
+
   isMousePressed = (event) => {
     if (typeof event.buttons === 'undefined') {
       return event.nativeEvent.which;

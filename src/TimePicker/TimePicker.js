@@ -175,6 +175,9 @@ class TimePicker extends Component {
     return result;
   }
 
+  input = undefined;
+  dialogWindow = undefined;
+
   render() {
     const {
       autoOk,
