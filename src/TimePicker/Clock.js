@@ -93,9 +93,13 @@ class Clock extends Component {
     return 'pm';
   }
 
-  handleChangeHours = (hours = 0, finished = false) => {
+  handleChangeHours = (hours, finished) => {
     const time = new Date(this.state.selectedTime);
     let affix;
+    let tmpHours = 0;
+    if (typeof hours === 'number') {
+      tmpHours = hours;
+    }
 
     if (typeof finished === 'string') {
       affix = finished;
@@ -104,11 +108,11 @@ class Clock extends Component {
     if (!affix) {
       affix = this.getAffix();
     }
-    if (affix === 'pm' && hours < 12) {
-      hours += 12;
+    if (affix === 'pm' && tmpHours < 12) {
+      tmpHours += 12;
     }
 
-    time.setHours(hours);
+    time.setHours(tmpHours);
     this.setState({
       selectedTime: time,
     });
