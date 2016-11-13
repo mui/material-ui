@@ -93,7 +93,7 @@ class Clock extends Component {
     return 'pm';
   }
 
-  handleChangeHours = (hours, finished) => {
+  handleChangeHours = (hours = 0, finished = false) => {
     const time = new Date(this.state.selectedTime);
     let affix;
 

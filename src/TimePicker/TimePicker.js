@@ -167,7 +167,10 @@ class TimePicker extends Component {
     return this.props.value !== null;
   }
 
-  getControlledTime(props = this.props) {
+  getControlledTime(props) {
+    if (!props) {
+      props = this.props;
+    }
     let result = null;
     if (props.value instanceof Date) {
       result = props.value;
