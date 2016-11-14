@@ -107,7 +107,6 @@ export default class TouchRipple extends Component {
     }
 
     if (center) {
-      // rippleSize = (rect.width + rect.height) / 2;
       rippleSize = Math.sqrt(((2 * (rect.width ** 2)) + (rect.height ** 2)) / 3);
     } else {
       const sizeX = (Math.max(Math.abs((elem ? elem.clientWidth : 0) - rippleX), rippleX) * 2) + 2;

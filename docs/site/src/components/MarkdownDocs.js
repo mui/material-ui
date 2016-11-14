@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
-import MarkdownElement from './MarkdownElement';
+import MarkdownElement from 'docs/site/src/components/MarkdownElement';
 import Demo from './Demo';
 
 const styleSheet = createStyleSheet('MarkdownDocs', (theme) => {

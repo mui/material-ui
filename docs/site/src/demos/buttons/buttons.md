@@ -12,14 +12,14 @@ Flat buttons are text-only buttons.
 They may be used in dialogs, toolbars, or inline.
 They do not lift, but fill with color on press.
 
-{{demo='buttons/FlatButtons.js'}}
+{{demo='demos/buttons/FlatButtons.js'}}
 
 ## Raised Buttons
 
 Raised buttons are rectangular-shaped buttons.
 They may be used inline. They lift and display ink reactions on press.
 
-{{demo='buttons/RaisedButtons.js'}}
+{{demo='demos/buttons/RaisedButtons.js'}}
 
 ## Floating Action Buttons
 
@@ -29,7 +29,7 @@ When pressed, it may contain more related actions.
 
 Only one floating action button is recommended per screen to represent the most common action.
 
-{{demo='buttons/FloatingActionButtons.js'}}
+{{demo='demos/buttons/FloatingActionButtons.js'}}
 
 ## Icon Buttons
 
@@ -37,4 +37,4 @@ Icon buttons are commonly found in app bars and toolbars.
 
 Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
-{{demo='buttons/IconButtons.js'}}
+{{demo='demos/buttons/IconButtons.js'}}

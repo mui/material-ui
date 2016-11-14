@@ -30,6 +30,7 @@ Props
 | onExited | function |  |  Callback fired when the dialog has exited. |
 | onRequestClose | function |  |  Callback fired when the dialog requests to be closed. |
 | open | bool | false |  Set to true to open the Dialog. |
+| paperClassName | string |  |  The CSS class name of the paper inner element. |
 | transition | union | Fade |  Transition component. |
 | transitionDuration | number | 300 |  Length of the transition in ms. |
 
