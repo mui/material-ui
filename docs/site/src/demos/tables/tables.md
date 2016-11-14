@@ -13,7 +13,7 @@ Checkboxes should accompany each row if the user needs to select or manipulate d
 
 A simple example with no frills.
 
-{{demo='tables/BasicTable.js'}}
+{{demo='demos/tables/BasicTable.js'}}
 
 ## Sorting & Selecting
 
@@ -21,4 +21,4 @@ This example demonstrates the use `Checkbox` and clickable rows for selection wi
 
 It uses the `TableSortLabel` component to help style column headings.
 
-{{demo='tables/EnhancedTable.js'}}
+{{demo='demos/tables/EnhancedTable.js'}}

@@ -23,11 +23,11 @@ If a title is required:
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
 - Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
-{{demo='dialogs/AlertDialog.js'}}
+{{demo='demos/dialogs/AlertDialog.js'}}
 
 You can also swap out the transition, the next example uses `Slide`.
 
-{{demo='dialogs/AlertDialogSlide.js'}}
+{{demo='demos/dialogs/AlertDialogSlide.js'}}
 
 ## Confirmation dialogs
 
@@ -35,4 +35,4 @@ Confirmation dialogs require users to explicitly confirm their choice before an 
 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
-{{demo='dialogs/ConfirmationDialog.js'}}
+{{demo='demos/dialogs/ConfirmationDialog.js'}}

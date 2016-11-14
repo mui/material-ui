@@ -13,8 +13,12 @@ import addEventListener from 'material-ui/utils/addEventListener';
 import AppDrawer from './AppDrawer';
 
 const globalStyleSheet = createStyleSheet('global', (theme) => ({
-  html: { boxSizing: 'border-box' },
-  '*, *:before, *:after': { boxSizing: 'inherit' },
+  html: {
+    boxSizing: 'border-box',
+  },
+  '*, *:before, *:after': {
+    boxSizing: 'inherit',
+  },
   body: {
     margin: 0,
     background: theme.palette.background.default,
@@ -40,7 +44,9 @@ const globalStyleSheet = createStyleSheet('global', (theme) => ({
     height: 'auto',
     width: 'auto',
   },
-}), { named: false });
+}), {
+  named: false, // global CSS.
+});
 
 const styleSheet = createStyleSheet('AppFrame', (theme) => {
   return {
@@ -140,11 +146,21 @@ class AppFrame extends Component {
 
   handleResize = throttle(this.checkWindowSize, 100);
 
-  handleDrawerOpen = () => this.setState({ drawerOpen: true });
-  handleDrawerClose = () => this.setState({ drawerOpen: false });
-  handleDrawerToggle = () => this.setState({ drawerOpen: !this.state.drawerOpen });
+  handleDrawerOpen = () => {
+    this.setState({ drawerOpen: true });
+  };
 
-  handleToggleShade = () => this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
+  handleDrawerClose = () => {
+    this.setState({ drawerOpen: false });
+  };
+
+  handleDrawerToggle = () => {
+    this.setState({ drawerOpen: !this.state.drawerOpen });
+  };
+
+  handleToggleShade = () => {
+    this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
+  };
 
   getTitle() {
     const { routes } = this.props;
