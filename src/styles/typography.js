@@ -4,7 +4,7 @@ const defaultConstants = {
   fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
   fontSize: 14,
   fontWeightLight: 300,
-  fontWeightNormal: 400,
+  fontWeightRegular: 400,
   fontWeightMedium: 500,
 };
 
@@ -19,25 +19,25 @@ export default function createTypography(palette, constants = defaultConstants) 
     },
     display3: {
       fontSize: 56,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
       margin: '0.1em 0 0.2em',
     },
     display2: {
       fontSize: 45,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
       margin: '0.1em 0 0.2em',
     },
     display1: {
       fontSize: 34,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
       margin: '0.1em 0 0.2em',
     },
     headline: {
       fontSize: 24,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
       margin: '0.1em 0 0.2em',
     },
@@ -48,7 +48,7 @@ export default function createTypography(palette, constants = defaultConstants) 
     },
     subheading: {
       fontSize: 16,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
     },
     body2: {
@@ -58,12 +58,12 @@ export default function createTypography(palette, constants = defaultConstants) 
     },
     body1: {
       fontSize: 14,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
     },
     caption: {
       fontSize: 12,
-      fontWeight: constants.fontWeightNormal,
+      fontWeight: constants.fontWeightRegular,
       fontFamily: constants.fontFamily,
       color: palette.text.secondary,
     },
