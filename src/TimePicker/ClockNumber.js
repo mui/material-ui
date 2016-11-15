@@ -7,6 +7,7 @@ import { isInner } from '../utils/timeUtils';
 
 function getTransformPos(props) {
   let pos = props.value;
+  let { radius } = props;
 
   if (props.type === 'hour') {
     pos %= 12;
@@ -14,43 +15,12 @@ function getTransformPos(props) {
     pos /= 5;
   }
 
-  const positions = [
-    [0, 5],
-    [54.5, 16.6],
-    [94.4, 59.5],
-    [109, 114],
-    [94.4, 168.5],
-    [54.5, 208.4],
-    [0, 223],
-    [-54.5, 208.4],
-    [-94.4, 168.5],
-    [-109, 114],
-    [-94.4, 59.5],
-    [-54.5, 19.6],
-  ];
-
-  const innerPositions = [
-    [0, 40],
-    [36.9, 49.9],
-    [64, 77],
-    [74, 114],
-    [64, 151],
-    [37, 178],
-    [0, 188],
-    [-37, 178],
-    [-64, 151],
-    [-74, 114],
-    [-64, 77],
-    [-37, 50],
-  ];
-
-  let transformPos = positions[pos];
-
   if (isInner(props)) {
-    transformPos = innerPositions[pos];
+    radius -= 32;
   }
 
-  const [x, y] = transformPos;
+  const x = radius * Math.cos(((2 * Math.PI) / 12) * ((pos + 9) % 12));
+  const y = radius * Math.sin(((2 * Math.PI) / 12) * ((pos + 9) % 12));
 
   return `translate(${x}px, ${y}px)`;
 }
@@ -66,7 +36,7 @@ export const styleSheet = createStyleSheet('ClockNumber', (theme) => {
       height: 32,
       borderRadius: '100%',
       left: 'calc(50% - 16px)',
-      top: 10,
+      top: 'calc(50% - 16px)',
       textAlign: 'center',
       paddingTop: 5,
       userSelect: 'none', /* Chrome all / Safari all */
@@ -90,6 +60,7 @@ class ClockNumber extends Component {
   static propTypes = {
     isSelected: PropTypes.bool,
     onSelected: PropTypes.func,
+    radius: PropTypes.number,
     type: PropTypes.oneOf(['hour', 'minute']),
     value: PropTypes.number,
   };

@@ -49,7 +49,6 @@ class ClockHours extends Component {
 
   componentDidMount() {
     const clockElement = this.mask;
-
     this.center = {
       x: clockElement.offsetWidth / 2,
       y: clockElement.offsetHeight / 2,
@@ -160,7 +159,6 @@ class ClockHours extends Component {
     for (let i = 1; i <= hourSize; i += 1) {
       hours.push(i % 24);
     }
-
     return hours.map((hour) => {
       const isSelected = this.getSelected() === hour;
       return (
@@ -168,6 +166,7 @@ class ClockHours extends Component {
           key={hour}
           style={style}
           isSelected={isSelected}
+          radius={this.mask ? this.mask.offsetWidt * 0.4 : 112}
           type="hour"
           value={hour}
         />
@@ -179,7 +178,6 @@ class ClockHours extends Component {
     const hours = this.getSelected();
     const numbers = this.getHourNumbers();
     const classes = this.context.styleManager.render(styleSheet);
-
     return (
       <div ref={(clock) => { this.clock = clock; }} className={classNames(classes.root)} >
         <ClockPointer hasSelected value={hours} type="hour" />

@@ -140,6 +140,7 @@ class ClockMinutes extends Component {
           key={minute}
           isSelected={isSelected}
           type="minute"
+          radius={this.mask ? this.mask.offsetWidth * 0.4 : 112}
           value={minute}
         />
       );

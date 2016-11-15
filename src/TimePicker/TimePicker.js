@@ -49,6 +49,10 @@ class TimePicker extends Component {
      */
     hintText: PropTypes.string,
     /**
+     * if true, the TimePicker as the landscape view
+     */
+    landscape: PropTypes.bool,
+    /**
      * Override the label of the 'OK' button.
      */
     okLabel: PropTypes.node,
@@ -96,6 +100,7 @@ class TimePicker extends Component {
     defaultTime: null,
     disabled: false,
     format: 'ampm',
+    landscape: false,
     okLabel: 'OK',
     pedantic: false,
     style: {},
@@ -189,6 +194,7 @@ class TimePicker extends Component {
       defaultTime, // eslint-disable-line no-unused-vars
       dialogStyle,
       format,
+      landscape,
       okLabel,
       onFocus, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
@@ -222,6 +228,7 @@ class TimePicker extends Component {
           initialTime={this.state.dialogTime}
           onAccept={this.handleAcceptDialog}
           format={format}
+          landscape={landscape}
           okLabel={okLabel}
           cancelLabel={cancelLabel}
           autoOk={autoOk}

@@ -12,6 +12,10 @@ export const styleSheet = createStyleSheet('Clock', (theme) => {
     clock: {
       userSelect: 'none',
     },
+    clockLandscape: {
+      height: '280px',
+      position: 'relative',
+    },
     container: {
       width: '280px',
       height: '280px',
@@ -19,12 +23,16 @@ export const styleSheet = createStyleSheet('Clock', (theme) => {
       position: 'relative',
       boxSizing: 'content-box',
     },
+    landscapeContainer: {
+      position: 'absolute',
+      right: '0px',
+    },
     circle: {
       position: 'absolute',
-      top: '10px',
       left: '10px',
-      width: '260px',
-      height: '260px',
+      top: '10px',
+      width: 'calc(100% - 20px)',
+      height: 'calc(100% - 20px)',
       borderRadius: '100%',
       backgroundColor: theme.palette.background.status,
     },
@@ -36,6 +44,7 @@ class Clock extends Component {
     className: PropTypes.string,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
+    landscape: PropTypes.bool,
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
   };
@@ -152,7 +161,7 @@ class Clock extends Component {
 
   render() {
     let clock = null;
-    const { className: classNameProp } = this.props;
+    const { className: classNameProp, landscape } = this.props;
     if (this.state.mode === 'hour') {
       clock = (
         <ClockHours
@@ -172,11 +181,12 @@ class Clock extends Component {
       );
     }
     const classes = this.context.styleManager.render(styleSheet);
-    const clockClassName = classNames(classes.clock, classNameProp);
+    const clockClassName = classNames(classes.clock, { [classes.clockLandscape]: landscape }, classNameProp);
     return (
       <div className={clockClassName}>
         <TimeDisplay
           selectedTime={this.state.selectedTime}
+          landscape={landscape}
           mode={this.state.mode}
           format={this.props.format}
           affix={this.getAffix()}
@@ -184,7 +194,7 @@ class Clock extends Component {
           onSelectHour={() => { this.setMode('hour'); }}
           onSelectMin={() => { this.setMode('minute'); }}
         />
-        <div className={classNames({ [classes.container]: true })} >
+        <div className={classNames(classes.container, { [classes.landscapeContainer]: landscape })} >
           <div className={classNames({ [classes.circle]: true })} />
           {clock}
         </div>

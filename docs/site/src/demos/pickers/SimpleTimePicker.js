@@ -15,5 +15,8 @@ export default function BasicTimePicker() {
       <div>
         <TimePicker autoOk format="24hr" hintText="24hr Format with autoOk" />
       </div>
+      <div>
+        <TimePicker landscape hintText="12hr Format landscape" />
+      </div>
     </div>);
 }

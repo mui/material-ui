@@ -11,11 +11,12 @@ import Button from '../Button';
 
 export const styleSheet = createStyleSheet('TimePickerDialog', () => {
   return {
-    dialogRoot: {
-      fontSize: 14,
-    },
     paper: {
+      fontSize: 14,
       width: '280px',
+    },
+    landscapePaper: {
+      width: '480px',
     },
   };
 });
@@ -26,6 +27,7 @@ class TimePickerDialog extends Component {
     cancelLabel: PropTypes.node,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
+    landscape: PropTypes.bool,
     okLabel: PropTypes.node,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
@@ -97,6 +99,7 @@ class TimePickerDialog extends Component {
       onAccept, // eslint-disable-line no-unused-vars
       format,
       autoOk,
+      landscape,
       okLabel,
       cancelLabel,
       style,
@@ -127,8 +130,7 @@ class TimePickerDialog extends Component {
     return (
       <Dialog
         {...other}
-        className={classNames(classes.dialogRoot)}
-        paperClassName={classNames(classes.paper)}
+        paperClassName={classNames(classes.paper, { [classes.landscapePaper]: landscape })}
         style={style}
         open={open}
         onRequestClose={this.handleRequestClose}
@@ -141,6 +143,7 @@ class TimePickerDialog extends Component {
           ref={(clock) => { this.clock = clock; }}
           format={format}
           initialTime={initialTime}
+          landscape={landscape}
           onChangeMinutes={onClockChangeMinutes}
         />
         }

@@ -13,6 +13,13 @@ export const styleSheet = createStyleSheet('TimeDisplay', (theme) => {
       backgroundColor: theme.palette.primary[500],
       color: 'white',
     },
+    rootLandscape: {
+      position: 'absolute',
+      left: '0px',
+      bottom: '0px',
+      height: '100%',
+      width: '200px',
+    },
     text: {
       margin: '6px 0',
       lineHeight: '58px',
@@ -21,6 +28,12 @@ export const styleSheet = createStyleSheet('TimeDisplay', (theme) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'baseline',
+    },
+    textLandscape: {
+      display: 'inline-block',
+      position: 'relative',
+      left: '20px',
+      top: '50px',
     },
     time: {
       margin: '0 10px',
@@ -32,6 +45,11 @@ export const styleSheet = createStyleSheet('TimeDisplay', (theme) => {
       height: '17px',
       fontSize: '17px',
       marginRight: '10px',
+    },
+    affixLandscape: {
+      position: 'absolute',
+      left: '67px',
+      top: '80px',
     },
     affixTop: {
       position: 'absolute',
@@ -67,6 +85,7 @@ const TimeDisplay = (props, context) => {
       affix,
       format,
       mode,
+      landscape,
       onSelectAffix,
       onSelectHour,
       onSelectMin,
@@ -103,10 +122,11 @@ const TimeDisplay = (props, context) => {
     ];
   }
 
+  const affixClassName = classNames(classes.affix, { [classes.affixLandscape]: landscape });
   return (
-    <div {...other} className={classNames(classes.root)}>
-      <div className={classNames(classes.text)}>
-        <div className={classNames(classes.affix)} />
+    <div {...other} className={classNames(classes.root, { [classes.rootLandscape]: landscape })}>
+      <div className={classNames(classes.text, { [classes.textLandscape]: landscape })}>
+        <div className={affixClassName} />
         <div className={classNames(classes.time)}>
           <span
             className={classNames(classes.clickable, { [classes.inactive]: mode !== 'hour' })}
@@ -124,7 +144,7 @@ const TimeDisplay = (props, context) => {
             {min}
           </span>
         </div>
-        <div className={classNames(classes.affix)}>
+        <div className={affixClassName}>
           {buttons}
         </div>
       </div>
@@ -135,6 +155,7 @@ const TimeDisplay = (props, context) => {
 TimeDisplay.propTypes = {
   affix: PropTypes.oneOf(['', 'pm', 'am']),
   format: PropTypes.oneOf(['ampm', '24hr']),
+  landscape: PropTypes.bool,
   mode: PropTypes.oneOf(['hour', 'minute']),
   onSelectAffix: PropTypes.func,
   onSelectHour: PropTypes.func,
