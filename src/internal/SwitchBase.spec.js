@@ -12,12 +12,12 @@ function assertIsChecked(classes, wrapper) {
   assert.strictEqual(
     iconButton.hasClass('test-class-checked'),
     true,
-    'should have the checked class on the root node'
+    'should have the checked class on the root node',
   );
   assert.strictEqual(
     iconButton.prop('aria-checked'),
     true,
-    'should pass aria-checked=true to the root node'
+    'should pass aria-checked=true to the root node',
   );
 
   const input = wrapper.find('input');
@@ -33,12 +33,12 @@ function assertIsNotChecked(classes, wrapper) {
   assert.strictEqual(
     iconButton.hasClass('test-class-checked'),
     false,
-    'should not have the checked class on the root node'
+    'should not have the checked class on the root node',
   );
   assert.strictEqual(
     iconButton.prop('aria-checked'),
     false,
-    'should pass aria-checked=false to the root node'
+    'should pass aria-checked=false to the root node',
   );
 
   const input = wrapper.find('input');
@@ -62,14 +62,14 @@ describe('<SwitchBase>', () => {
 
   it('should render an IconButton', () => {
     const wrapper = shallow(
-      <SwitchBase />
+      <SwitchBase />,
     );
     assert.strictEqual(wrapper.is('IconButton'), true, 'should be an IconButton');
   });
 
   it('should render an icon and input inside the button by default', () => {
     const wrapper = shallow(
-      <SwitchBase />
+      <SwitchBase />,
     );
     assert.strictEqual(wrapper.childAt(0).is('span.material-icons'), true, 'should be a font icon');
     assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true, 'should be a checkbox input');
@@ -113,7 +113,7 @@ describe('<SwitchBase>', () => {
           className="test-class"
           checkedClassName="test-class-checked"
           checked={false}
-        />
+        />,
       );
     });
 
@@ -144,7 +144,7 @@ describe('<SwitchBase>', () => {
         <SwitchBase
           className="test-class"
           checkedClassName="test-class-checked"
-        />
+        />,
       );
     });
 

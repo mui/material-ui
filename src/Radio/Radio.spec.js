@@ -17,7 +17,7 @@ describe('<Radio>', () => {
 
   it('should render a SwitchBase', () => {
     const wrapper = shallow(
-      <Radio />
+      <Radio />,
     );
     assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
   });
@@ -29,12 +29,12 @@ describe('<Radio>', () => {
     assert.strictEqual(
       wrapper.prop('checkedClassName').indexOf('meow') !== -1,
       true,
-      'should have the "meow" class'
+      'should have the "meow" class',
     );
     assert.strictEqual(
       wrapper.prop('checkedClassName').indexOf(classes.checked) !== -1,
       true,
-      'should have the checked class'
+      'should have the checked class',
     );
   });
 
@@ -48,7 +48,7 @@ describe('<Radio>', () => {
 
     before(() => {
       wrapper = shallow(
-        <Radio label="Pizza" />
+        <Radio label="Pizza" />,
       );
     });
 
@@ -57,7 +57,7 @@ describe('<Radio>', () => {
       assert.strictEqual(
         wrapper.prop('role'),
         'presentation',
-        'should set the role to presentation for screen readers'
+        'should set the role to presentation for screen readers',
       );
       assert.strictEqual(wrapper.childAt(0).is('SwitchBase'), true, 'should be the SwitchBase');
     });
@@ -67,12 +67,12 @@ describe('<Radio>', () => {
       assert.strictEqual(
         wrapper.childAt(1).prop('role'),
         'presentation',
-        'should set the role to presentation for screen readers'
+        'should set the role to presentation for screen readers',
       );
       assert.strictEqual(
         wrapper.childAt(1).prop('aria-hidden'),
         'true',
-        'should set to aria hidden for screen readers'
+        'should set to aria hidden for screen readers',
       );
       assert.strictEqual(wrapper.childAt(1).childAt(0).node, 'Pizza', 'should be the label text');
     });

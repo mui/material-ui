@@ -1,4 +1,4 @@
-# Selection Controls
+# Progress
 
 [Progress and activity indicators](https://material.google.com/components/progress-activity.html)
 are visual indications of an app loading content.
@@ -12,10 +12,28 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 ## Circular
 
-## Indeterminate
+### Indeterminate
 
 {{demo='progress/Circular.js'}}
 
 ### Interactive Integration
 
 {{demo='progress/CircularFab.js'}}
+
+## Linear
+
+### Indeterminate
+
+{{demo='progress/LinearIndeterminate.js'}}
+
+### Determinate
+
+{{demo='progress/LinearDeterminate.js'}}
+
+### Buffer
+
+{{demo='progress/LinearBuffer.js'}}
+
+### Query
+
+{{demo='progress/LinearQuery.js'}}

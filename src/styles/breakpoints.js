@@ -9,7 +9,7 @@ export default function createBreakpoints(
     xl: 1920,
   },
   unit = 'px',
-  step = 1
+  step = 1,
 ) {
   const keys = Object.keys(breakpoints);
   const values = keys.map((n) => breakpoints[n]);

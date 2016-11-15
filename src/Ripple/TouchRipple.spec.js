@@ -28,7 +28,7 @@ describe('<TouchRipple>', () => {
 
   it('should render the custom className', () => {
     const wrapper = shallow(
-      <TouchRipple className="test-class-name" />
+      <TouchRipple className="test-class-name" />,
     );
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should contain the test className');
   });

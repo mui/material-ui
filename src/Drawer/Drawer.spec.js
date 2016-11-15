@@ -21,28 +21,28 @@ describe('<Drawer>', () => {
 
   it('should render a Modal', () => {
     const wrapper = shallow(
-      <Drawer />
+      <Drawer />,
     );
     assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
   });
 
   it('should render Slide > Paper inside the Modal', () => {
     const wrapper = shallow(
-      <Drawer />
+      <Drawer />,
     );
 
     const slide = wrapper.childAt(0);
     assert.strictEqual(
       slide.length === 1 && slide.is(Slide),
       true,
-      'immediate wrapper child should be Slide'
+      'immediate wrapper child should be Slide',
     );
 
     const paper = slide.childAt(0);
     assert.strictEqual(
       paper.length === 1 && paper.is('Paper'),
       true,
-      'Slide child should be Paper'
+      'Slide child should be Paper',
     );
 
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
@@ -107,14 +107,14 @@ describe('<Drawer>', () => {
       assert.strictEqual(
         slide.length === 1 && slide.is(Slide),
         true,
-        'immediate wrapper child should be Slide'
+        'immediate wrapper child should be Slide',
       );
 
       const paper = slide.childAt(0);
       assert.strictEqual(
         paper.length === 1 && paper.is('Paper'),
         true,
-        'Slide child should be Paper'
+        'Slide child should be Paper',
       );
     });
   });

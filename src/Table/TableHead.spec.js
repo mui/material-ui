@@ -17,7 +17,7 @@ describe('<TableHead>', () => {
 
   it('should render a thead', () => {
     const wrapper = shallow(
-      <TableHead />
+      <TableHead />,
     );
     assert.strictEqual(wrapper.is('thead'), true, 'should be a thead');
   });

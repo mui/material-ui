@@ -31,7 +31,7 @@ describe('<Modal>', () => {
 
   it('should render null by default', () => {
     const wrapper = shallow(
-      <Modal><p>Hello World</p></Modal>
+      <Modal><p>Hello World</p></Modal>,
     );
     assert.strictEqual(wrapper.node, null, 'should be null');
   });
@@ -41,7 +41,7 @@ describe('<Modal>', () => {
 
     before(() => {
       wrapper = shallow(
-        <Modal show data-my-prop="woof"><p>Hello World</p></Modal>
+        <Modal show data-my-prop="woof"><p>Hello World</p></Modal>,
       );
     });
 
@@ -65,7 +65,7 @@ describe('<Modal>', () => {
           <div id="container">
             <h1 id="heading">Hello</h1>
           </div>
-        </Modal>
+        </Modal>,
       );
     });
 
@@ -116,7 +116,7 @@ describe('<Modal>', () => {
             <div id="container">
               <h1 id="heading">Hello</h1>
             </div>
-          </Modal>
+          </Modal>,
         );
       });
       after(() => wrapper.unmount());
@@ -155,7 +155,7 @@ describe('<Modal>', () => {
             <div id="container">
               <h1 id="heading">Hello</h1>
             </div>
-          </Modal>
+          </Modal>,
         );
       });
       after(() => wrapper.unmount());
@@ -179,7 +179,7 @@ describe('<Modal>', () => {
             <div id="container">
               <h1 id="heading">Hello</h1>
             </div>
-          </Modal>
+          </Modal>,
         );
       });
       after(() => wrapper.unmount());

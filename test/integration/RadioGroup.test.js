@@ -75,7 +75,7 @@ describe('<RadioGroup> integration', () => {
           <Radio value="1x" label="Cheese" />
           <Radio value="2x" label="Double Cheese" />
           <Radio value="3x" label="Triple Cheese" />
-        </RadioGroup>
+        </RadioGroup>,
       );
     });
 
@@ -179,7 +179,7 @@ describe('<RadioGroup> integration', () => {
           <Radio value="1x" label="Cheese" />
           <Radio value="2x" label="Double Cheese" />
           <Radio value="3x" label="Triple Cheese" />
-        </RadioGroup>
+        </RadioGroup>,
       );
     });
 
@@ -218,7 +218,7 @@ describe('<RadioGroup> integration', () => {
           <Radio value="1x" label="Cheese" />
           <Radio value="2x" label="Double Cheese" />
           <Radio value="3x" label="Triple Cheese" />
-        </RadioGroup>
+        </RadioGroup>,
       );
     });
 

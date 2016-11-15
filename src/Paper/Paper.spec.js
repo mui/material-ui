@@ -17,7 +17,7 @@ describe('<Paper>', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <Paper>Hello World</Paper>
+      <Paper>Hello World</Paper>,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
   });

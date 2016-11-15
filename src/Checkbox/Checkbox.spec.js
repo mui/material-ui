@@ -17,7 +17,7 @@ describe('<Checkbox>', () => {
 
   it('should render a SwitchBase', () => {
     const wrapper = shallow(
-      <Checkbox />
+      <Checkbox />,
     );
     assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
   });
@@ -29,12 +29,12 @@ describe('<Checkbox>', () => {
     assert.strictEqual(
       wrapper.prop('checkedClassName').indexOf('meow') !== -1,
       true,
-      'should have the "meow" class'
+      'should have the "meow" class',
     );
     assert.strictEqual(
       wrapper.prop('checkedClassName').indexOf(classes.checked) !== -1,
       true,
-      'should have the checked class'
+      'should have the checked class',
     );
   });
 

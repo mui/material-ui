@@ -39,7 +39,7 @@ describe('<TableCell>', () => {
 
   it('should render a th with the head class when in the context of a table head', () => {
     const wrapper = shallow(
-      <TableCell />
+      <TableCell />,
     );
     wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
     assert.strictEqual(wrapper.is('th'), true, 'should be a th');
@@ -49,7 +49,7 @@ describe('<TableCell>', () => {
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(
-      <TableCell />
+      <TableCell />,
     );
     wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -58,7 +58,7 @@ describe('<TableCell>', () => {
 
   it('should render with the numeric class', () => {
     const wrapper = shallow(
-      <TableCell numeric />
+      <TableCell numeric />,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.numeric), true, 'should have the numeric class');

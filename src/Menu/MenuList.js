@@ -162,7 +162,7 @@ export default class MenuList extends Component {
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
             ref: child.props.selected ? ((c) => { this.selectedItem = c; }) : undefined,
             onFocus: this.handleItemFocus,
-          })
+          }),
         )}
       </List>
     );

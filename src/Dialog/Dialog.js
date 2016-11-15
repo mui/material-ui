@@ -177,13 +177,13 @@ export default class Dialog extends Component {
         onEscapeKeyUp={onEscapeKeyUp}
         onRequestClose={onRequestClose}
         show={open}
+        {...other}
       >
         {createTransitionFn(transition, transitionProps, (
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
             className={classNames(classes.dialog, paperClassName)}
-            {...other}
           >
             {children}
           </Paper>

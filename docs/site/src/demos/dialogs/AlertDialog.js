@@ -38,7 +38,7 @@ export default class AlertDialog extends Component {
           Open alert dialog
         </Button>
         <Dialog
-          className={classes.alert}
+          paperClassName={classes.alert}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >

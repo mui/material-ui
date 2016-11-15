@@ -65,7 +65,6 @@ describe('<Ripple>', () => {
       assert.strictEqual(wrapper.hasClass(classes.pulsating), true, 'should have the pulsating class');
       const ripple = wrapper.childAt(0);
       assert.strictEqual(ripple.hasClass(classes.ripple), true, 'should have the ripple class');
-      assert.strictEqual(ripple.hasClass(classes.animating), true, 'should have the animating class');
       assert.strictEqual(ripple.hasClass(classes.fast), true, 'should have the fast class');
     });
 

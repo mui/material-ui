@@ -22,28 +22,28 @@ describe('utils/colorManipulator', () => {
     it('converts a decomposed rgb color object to a string` ', () => {
       assert.strictEqual(
         convertColorToString({ type: 'rgb', values: [255, 255, 255] }),
-        'rgb(255, 255, 255)'
+        'rgb(255, 255, 255)',
       );
     });
 
     it('converts a decomposed rgba color object to a string` ', () => {
       assert.strictEqual(
         convertColorToString({ type: 'rgba', values: [255, 255, 255, 0.5] }),
-        'rgba(255, 255, 255, 0.5)'
+        'rgba(255, 255, 255, 0.5)',
       );
     });
 
     it('converts a decomposed hsl color object to a string` ', () => {
       assert.strictEqual(
         convertColorToString({ type: 'hsl', values: [100, 50, 25] }),
-        'hsl(100, 50%, 25%)'
+        'hsl(100, 50%, 25%)',
       );
     });
 
     it('converts a decomposed hsla color object to a string` ', () => {
       assert.strictEqual(
         convertColorToString({ type: 'hsla', values: [100, 50, 25, 0.5] }),
-        'hsla(100, 50%, 25%, 0.5)'
+        'hsla(100, 50%, 25%, 0.5)',
       );
     });
   });
@@ -55,14 +55,14 @@ describe('utils/colorManipulator', () => {
     it('converts a short hex color to an rgb color` ', () => {
       assert.strictEqual(
         convertHexToRGB('#9f3'),
-        'rgb(153, 255, 51)'
+        'rgb(153, 255, 51)',
       );
     });
 
     it('converts a long hex color to an rgb color` ', () => {
       assert.strictEqual(
         convertHexToRGB('#A94FD3'),
-        'rgb(169, 79, 211)'
+        'rgb(169, 79, 211)',
       );
     });
   });
@@ -103,35 +103,35 @@ describe('utils/colorManipulator', () => {
     it('returns a ratio of 21 for black : white', () => {
       assert.strictEqual(
         getContrastRatio('#000', '#FFF'),
-        21
+        21,
       );
     });
 
     it('returns a ratio of 1 for black : black', () => {
       assert.strictEqual(
         getContrastRatio('#000', '#000'),
-        1
+        1,
       );
     });
 
     it('returns a ratio of 1 for white : white', () => {
       assert.strictEqual(
         getContrastRatio('#FFF', '#FFF'),
-        1
+        1,
       );
     });
 
     it('returns a ratio of 3.92 for dark-grey : light-grey', () => {
       assert.strictEqual(
         getContrastRatio('#707070', '#E5E5E5'),
-        3.93
+        3.93,
       );
     });
 
     it('returns a ratio of 3.93 for black : light-grey', () => {
       assert.strictEqual(
         getContrastRatio('#000', '#888'),
-        5.92
+        5.92,
       );
     });
   });
@@ -143,35 +143,35 @@ describe('utils/colorManipulator', () => {
     it('returns a luminance of 1 for rgb white', () => {
       assert.strictEqual(
         getLuminance('rgb(0, 0, 0)'),
-        0
+        0,
       );
     });
 
     it('returns a luminance of 1 for rgb white', () => {
       assert.strictEqual(
         getLuminance('rgb(255, 255, 255)'),
-        1
+        1,
       );
     });
 
     it('returns a valid luminance for rgb mid-grey', () => {
       assert.strictEqual(
         getLuminance('rgb(127, 127, 127)'),
-        0.212
+        0.212,
       );
     });
 
     it('returns a valid luminance for an rgb color', () => {
       assert.strictEqual(
         getLuminance('rgb(255, 127, 0)'),
-        0.364
+        0.364,
       );
     });
 
     it('returns a normalized luminance from an hsl color', () => {
       assert.strictEqual(
         getLuminance('hsl(100, 100%, 50%)'),
-        0.5
+        0.5,
       );
     });
   });
@@ -183,28 +183,28 @@ describe('utils/colorManipulator', () => {
     it('lightens a dark rgb color with the coefficient provided', () => {
       assert.strictEqual(
         emphasize('rgb(1, 2, 3)', 0.4),
-        lighten('rgb(1, 2, 3)', 0.4)
+        lighten('rgb(1, 2, 3)', 0.4),
       );
     });
 
     it('darkens a light rgb color with the coefficient provided', () => {
       assert.strictEqual(
         emphasize('rgb(250, 240, 230)', 0.3),
-        darken('rgb(250, 240, 230)', 0.3)
+        darken('rgb(250, 240, 230)', 0.3),
       );
     });
 
     it('lightens a dark rgb color with the c0efficient 0.15 by default', () => {
       assert.strictEqual(
         emphasize('rgb(1, 2, 3)'),
-        lighten('rgb(1, 2, 3)', 0.15)
+        lighten('rgb(1, 2, 3)', 0.15),
       );
     });
 
     it('darkens a light rgb color with the coefficient 0.15 by default', () => {
       assert.strictEqual(
         emphasize('rgb(250, 240, 230)'),
-        darken('rgb(250, 240, 230)', 0.15)
+        darken('rgb(250, 240, 230)', 0.15),
       );
     });
   });
@@ -216,28 +216,28 @@ describe('utils/colorManipulator', () => {
     it('converts an rgb color to an rgba color with the value provided', () => {
       assert.strictEqual(
         fade('rgb(1, 2, 3)', 0.4),
-        'rgba(1, 2, 3, 0.4)'
+        'rgba(1, 2, 3, 0.4)',
       );
     });
 
     it('updates an rgba color with the alpha value provided', () => {
       assert.strictEqual(
         fade('rgba(255, 0, 0, 0.2)', 0.5),
-        'rgba(255, 0, 0, 0.5)'
+        'rgba(255, 0, 0, 0.5)',
       );
     });
 
     it('converts an hsl color to an hsla color with the value provided', () => {
       assert.strictEqual(
         fade('hsl(0, 100%, 50%)', 0.1),
-        'hsla(0, 100%, 50%, 0.1)'
+        'hsla(0, 100%, 50%, 0.1)',
       );
     });
 
     it('updates an hsla color with the alpha value provided', () => {
       assert.strictEqual(
         fade('hsla(0, 100%, 50%, 0.2)', 0.5),
-        'hsla(0, 100%, 50%, 0.5)'
+        'hsla(0, 100%, 50%, 0.5)',
       );
     });
   });
@@ -249,84 +249,84 @@ describe('utils/colorManipulator', () => {
     it("doesn't modify rgb black", () => {
       assert.strictEqual(
         darken('rgb(0, 0, 0)', 0.1),
-        'rgb(0, 0, 0)'
+        'rgb(0, 0, 0)',
       );
     });
 
     it("doesn't overshoot if an above-range coefficient is supplied", () => {
       assert.strictEqual(
         darken('rgb(0, 127, 255)', 1.5),
-        'rgb(0, 0, 0)'
+        'rgb(0, 0, 0)',
       );
     });
 
     it("doesn't overshoot if a below-range coefficient is supplied", () => {
       assert.strictEqual(
         darken('rgb(0, 127, 255)', -0.1),
-        'rgb(0, 127, 255)'
+        'rgb(0, 127, 255)',
       );
     });
 
     it('darkens rgb white to black when coefficient is 1', () => {
       assert.strictEqual(
         darken('rgb(255, 255, 255)', 1),
-        'rgb(0, 0, 0)'
+        'rgb(0, 0, 0)',
       );
     });
 
     it('retains the alpha value in an rgba color', () => {
       assert.strictEqual(
         darken('rgb(0, 0, 0, 0.5)', 0.1),
-        'rgb(0, 0, 0, 0.5)'
+        'rgb(0, 0, 0, 0.5)',
       );
     });
 
     it('darkens rgb white by 10% when coefficient is 0.1', () => {
       assert.strictEqual(
         darken('rgb(255, 255, 255)', 0.1),
-        'rgb(229, 229, 229)'
+        'rgb(229, 229, 229)',
       );
     });
 
     it('darkens rgb red by 50% when coefficient is 0.5', () => {
       assert.strictEqual(
         darken('rgb(255, 0, 0)', 0.5),
-        'rgb(127, 0, 0)'
+        'rgb(127, 0, 0)',
       );
     });
 
     it('darkens rgb grey by 50% when coefficient is 0.5', () => {
       assert.strictEqual(
         darken('rgb(127, 127, 127)', 0.5),
-        'rgb(63, 63, 63)'
+        'rgb(63, 63, 63)',
       );
     });
 
     it("doesn't modify rgb colors when coefficient is 0", () => {
       assert.strictEqual(
         darken('rgb(255, 255, 255)', 0),
-        'rgb(255, 255, 255)'
+        'rgb(255, 255, 255)',
       );
     });
 
     it('darkens hsl red by 50% when coefficient is 0.5', () => {
       assert.strictEqual(
         darken('hsl(0, 100%, 50%)', 0.5),
-        'hsl(0, 100%, 25%)'
+        'hsl(0, 100%, 25%)',
       );
     });
 
     it("doesn't modify hsl colors when coefficient is 0", () => {
       assert.strictEqual(
         darken('hsl(0, 100%, 50%)', 0),
-        'hsl(0, 100%, 50%)'
+        'hsl(0, 100%, 50%)',
       );
     });
 
     it("doesn't modify hsl colors when l is 0%", () => {
       assert.strictEqual(
         darken('hsl(0, 50%, 0%)', 0.5),
-        'hsl(0, 50%, 0%)'
+        'hsl(0, 50%, 0%)',
       );
     });
   });
@@ -338,84 +338,84 @@ describe('utils/colorManipulator', () => {
     it("doesn't modify rgb white", () => {
       assert.strictEqual(
         lighten('rgb(255, 255, 255)', 0.1),
-        'rgb(255, 255, 255)'
+        'rgb(255, 255, 255)',
       );
     });
 
     it("doesn't overshoot if an above-range coefficient is supplied", () => {
       assert.strictEqual(
         lighten('rgb(0, 127, 255)', 1.5),
-        'rgb(255, 255, 255)'
+        'rgb(255, 255, 255)',
       );
     });
 
     it("doesn't overshoot if a below-range coefficient is supplied", () => {
       assert.strictEqual(
         lighten('rgb(0, 127, 255)', -0.1),
-        'rgb(0, 127, 255)'
+        'rgb(0, 127, 255)',
       );
     });
 
     it('lightens rgb black to white when coefficient is 1', () => {
       assert.strictEqual(
         lighten('rgb(0, 0, 0)', 1),
-        'rgb(255, 255, 255)'
+        'rgb(255, 255, 255)',
       );
     });
 
     it('retains the alpha value in an rgba color', () => {
       assert.strictEqual(
         lighten('rgb(255, 255, 255, 0.5)', 0.1),
-        'rgb(255, 255, 255, 0.5)'
+        'rgb(255, 255, 255, 0.5)',
       );
     });
 
     it('lightens rgb black by 10% when coefficient is 0.1', () => {
       assert.strictEqual(
         lighten('rgb(0, 0, 0)', 0.1),
-        'rgb(25, 25, 25)'
+        'rgb(25, 25, 25)',
       );
     });
 
     it('lightens rgb red by 50% when coefficient is 0.5', () => {
       assert.strictEqual(
         lighten('rgb(255, 0, 0)', 0.5),
-        'rgb(255, 127, 127)'
+        'rgb(255, 127, 127)',
       );
     });
 
     it('lightens rgb grey by 50% when coefficient is 0.5', () => {
       assert.strictEqual(
         lighten('rgb(127, 127, 127)', 0.5),
-        'rgb(191, 191, 191)'
+        'rgb(191, 191, 191)',
       );
     });
 
     it("doesn't modify rgb colors when coefficient is 0", () => {
       assert.strictEqual(
         lighten('rgb(127, 127, 127)', 0),
-        'rgb(127, 127, 127)'
+        'rgb(127, 127, 127)',
       );
     });
 
     it('lightens hsl red by 50% when coefficient is 0.5', () => {
       assert.strictEqual(
         lighten('hsl(0, 100%, 50%)', 0.5),
-        'hsl(0, 100%, 75%)'
+        'hsl(0, 100%, 75%)',
       );
     });
 
     it("doesn't modify hsl colors when coefficient is 0", () => {
       assert.strictEqual(
         lighten('hsl(0, 100%, 50%)', 0),
-        'hsl(0, 100%, 50%)'
+        'hsl(0, 100%, 50%)',
       );
     });
 
     it("doesn't modify hsl colors when `l` is 100%", () => {
       assert.strictEqual(
         lighten('hsl(0, 50%, 100%)', 0.5),
-        'hsl(0, 50%, 100%)'
+        'hsl(0, 50%, 100%)',
       );
     });
   });

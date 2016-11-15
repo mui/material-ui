@@ -11,7 +11,9 @@ describe('internal/modalManager', () => {
     modalManager = createModalManager();
   });
 
-  it('should be an object', () => assert.strictEqual(typeof modalManager, 'object'));
+  it('should be an object', () => {
+    assert.strictEqual(typeof modalManager, 'object');
+  });
 
   describe('managing modals', () => {
     let modal1;

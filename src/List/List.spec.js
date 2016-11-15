@@ -18,14 +18,14 @@ describe('<List>', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <List />
+      <List />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
   });
 
   it('should render a ul', () => {
     const wrapper = shallow(
-      <List component="ul" />
+      <List component="ul" />,
     );
     assert.strictEqual(wrapper.is('ul'), true, 'should be a ul');
   });

@@ -1,10 +1,11 @@
 // @flow weak
-const program = require('commander');
-const runE2ETests = require('./e2e');
-const runRegressionsTests = require('./regressions');
-const runKarmaTests = require('./karma');
-const runMochaTests = require('./mocha');
-const watchMochaTests = require('./mocha.watch');
+
+import program from 'commander';
+import runE2ETests from './e2e';
+import runRegressionsTests from './regressions';
+import runKarmaTests from './karma';
+import runMochaTests from './mocha';
+import watchMochaTests from './mocha.watch';
 
 program
   .version('0.1.0')
@@ -26,7 +27,7 @@ program
         return value;
       }
       return '*';
-    }
+    },
   )
   .action((command) => {
     const { module, grep, watch } = command;
@@ -37,7 +38,7 @@ program
             args.push(n);
           }
           return args;
-        }, [])
+        }, []),
       );
     }
     return runMochaTests({ module, grep });

@@ -136,7 +136,7 @@ function EnhancedTableToolbar(props, context) {
         {numSelected > 0 ? (
           <Text type="subheading">{numSelected} selected</Text>
         ) : (
-          <Text type="title">Nutrition</Text>
+        <Text type="title">Nutrition</Text>
         )}
       </div>
       <div className={classes.spacer} />
@@ -144,7 +144,7 @@ function EnhancedTableToolbar(props, context) {
         {numSelected > 0 ? (
           <IconButton>delete</IconButton>
         ) : (
-          <IconButton>filter_list</IconButton>
+        <IconButton>filter_list</IconButton>
         )}
       </div>
     </Toolbar>
@@ -188,7 +188,7 @@ export default class EnhancedTable extends Component {
     const data = this.state.data.sort(
       (a, b) => (
         order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]
-      )
+      ),
     );
 
     this.setState({ data, order, orderBy });
@@ -221,7 +221,7 @@ export default class EnhancedTable extends Component {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
 

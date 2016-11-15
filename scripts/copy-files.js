@@ -17,7 +17,7 @@ function copyFile(file) {
       (err) => {
         if (err) throw err;
         resolve();
-      }
+      },
     );
   })
   .then(() => console.log(`Copied ${file} to ${buildPath}`));
@@ -82,6 +82,6 @@ const files = [
 ];
 
 Promise.all(
-  files.map((file) => copyFile(file))
+  files.map((file) => copyFile(file)),
 )
 .then(() => createPackageFile());
