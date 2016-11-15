@@ -5,10 +5,10 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
-import ClockMinutes, { styleSheet } from './ClockMinutes';
+import ClockHours, { styleSheet } from './ClockHours';
 
 
-describe('<ClockMinutes />', () => {
+describe('<ClockHours />', () => {
   let shallowWithContext;
   let classes;
   let touchMoveEvent;
@@ -22,30 +22,28 @@ describe('<ClockMinutes />', () => {
       changedTouches: [{ offsetX: undefined,
         offsetY: undefined,
         target: { getBoundingClientRect: () => {
-          return { left: 20, top: 30 };
+          return { left: 200, top: 130 };
         } } }],
       type: 'touchmove' };
     classes = shallowWithContext.context.styleManager.render(styleSheet);
   });
   it('verify classes', () => {
-    const wrapper = shallowWithContext(<ClockMinutes />);
+    const wrapper = shallowWithContext(<ClockHours />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.children().last().hasClass(classes.hitMask), true, 'should');
   });
   it('verify events', () => {
     const onChangeCalled = spy();
-    const wrapper = shallowWithContext(<ClockMinutes initialMinutes={50} onChange={onChangeCalled} />);
+    const wrapper = shallowWithContext(<ClockHours initialHours={10} onChange={onChangeCalled} />);
     wrapper.instance().mask = { offsetWidth: 280, offsetHeight: 280 };
     wrapper.instance().componentDidMount();
     wrapper.children().last().simulate('touchMove', touchMoveEvent);
     assert.strictEqual(onChangeCalled.calledOnce, true, 'called onChange once');
-    assert.strictEqual(onChangeCalled.args[0][0], 52,
-        'the firts ontouchmove should call onChange with the arg 52');
-    wrapper.setProps({ initialMinutes: onChangeCalled.args[0][0] });
+    assert.strictEqual(onChangeCalled.args[0][0], 10, 'on touch move should call onChange with the arg 10');
+    wrapper.setProps({ initialHours: onChangeCalled.args[0][0] });
     wrapper.children().last().simulate('touchMove', touchMoveEventWithUndefinedOffset);
-    assert.strictEqual(onChangeCalled.args[1][0], 0,
-        'the second ontouchmove should call onChange with the arg 0');
-    wrapper.setProps({ initialMinutes: onChangeCalled.args[1][0] });
+    assert.strictEqual(onChangeCalled.args[1][0], 0, 'on touch move should call onChange with the arg 0');
+    wrapper.setProps({ initialHours: onChangeCalled.args[1][0] });
     assert.strictEqual(onChangeCalled.calledTwice, true, 'called onChange twice');
   });
 });
