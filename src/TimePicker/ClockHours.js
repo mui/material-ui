@@ -143,7 +143,6 @@ class ClockHours extends Component {
 
     if (this.props.format === 'ampm') {
       hour %= 12;
-      hour = hour || 12;
     }
 
     return hour;

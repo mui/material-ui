@@ -66,7 +66,7 @@ class Clock extends Component {
 
   componentWillMount() {
     this.setState({
-      selectedTime: this.props.initialTime || new Date(),
+      selectedTime: this.props.initialTime,
     });
   }
 
