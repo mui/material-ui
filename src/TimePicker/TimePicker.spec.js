@@ -22,7 +22,7 @@ describe('<TimePicker />', () => {
         format="ampm"
         locale="en-US"
         initialTime={initialTime}
-      />
+      />,
     );
 
     assert.strictEqual(wrapper.find(TextFieldInput).props().value, formatTime(valueTime));
@@ -32,7 +32,7 @@ describe('<TimePicker />', () => {
     const initialTime = new Date(1448967059892); // Tue, 01 Dec 2015 10:50:59 GMT
 
     const wrapper = shallowWithContext(
-      <TimePicker format="ampm" locale="en-US" defaultTime={initialTime} />
+      <TimePicker format="ampm" locale="en-US" defaultTime={initialTime} />,
     );
 
     assert.strictEqual(wrapper.find(TextFieldInput).props().value, formatTime(initialTime));
@@ -48,7 +48,7 @@ describe('<TimePicker />', () => {
         format="ampm"
         locale="en-US"
         defaultTime={initialTime}
-      />
+      />,
     );
 
     assert.strictEqual(wrapper.find(TextFieldInput).props().value, formatTime(valueTime));

@@ -86,7 +86,7 @@ class ClockNumber extends Component {
       <span
         className={classNames(classes.root,
           { [classes.selection]: this.props.isSelected,
-            [classes.inner]: isInner(this.props) }
+            [classes.inner]: isInner(this.props) },
           )}
         style={{ transform: getTransformPos(this.props) }}
       >

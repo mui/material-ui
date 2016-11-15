@@ -122,7 +122,7 @@ class ClockHours extends Component {
 
     let value = Math.floor(deg / step) || 0;
 
-    const delta = Math.pow(x, 2) + Math.pow(y, 2);
+    const delta = (x ** 2) + (y ** 2);
     const distance = Math.sqrt(delta);
 
     value = value || 12;

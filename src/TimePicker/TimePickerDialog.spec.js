@@ -18,7 +18,7 @@ describe('<TimePickerDialog />', () => {
         onDismiss={onDismissCallback}
         onAccept={onAcceptCallback}
         okLabel={okButtonLabel}
-      />
+      />,
     );
     wrapper.instance().clock = { getSelectedTime: stub().returns(Date.now()) };
     wrapper.instance().handleClickOK();
