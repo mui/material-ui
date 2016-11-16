@@ -10,13 +10,13 @@ Cards are a convenient means of displaying content composed of different element
 
 Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
 
-{{demo='cards/SimpleCard.js'}}
+{{demo='demos/cards/SimpleCard.js'}}
 
 ## Media
 
 Example of a card using an image to reinforce the content.
 
-{{demo='cards/SimpleMediaCard.js'}}
+{{demo='demos/cards/SimpleMediaCard.js'}}
 
 ## UI Controls
 
@@ -24,11 +24,11 @@ Supplemental actions within the card are explicitly called out using icons, text
 
 Here's an example of a media control card.
 
-{{demo='cards/NowPlayingCard.js'}}
+{{demo='demos/cards/NowPlayingCard.js'}}
 
 ## Complex Interaction
 
 On desktop, card content can expand and scroll internally.
 
-{{demo='cards/RecipeReviewCard.js'}}
+{{demo='demos/cards/RecipeReviewCard.js'}}
 

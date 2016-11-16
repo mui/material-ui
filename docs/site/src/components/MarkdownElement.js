@@ -4,8 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import marked from 'marked';
-
-import prism from '../utils/prism';
+import prism from 'docs/site/src/utils/prism';
 
 const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   markdownElement: {

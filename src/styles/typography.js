@@ -42,7 +42,7 @@ export default function createTypography(palette, constants = defaultConstants) 
       margin: '0.1em 0 0.2em',
     },
     title: {
-      fontSize: 20,
+      fontSize: 21,
       fontWeight: constants.fontWeightMedium,
       fontFamily: constants.fontFamily,
     },

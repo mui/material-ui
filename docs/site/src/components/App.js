@@ -6,8 +6,8 @@ import MuiThemeProvider, { MUI_SHEET_ORDER } from 'material-ui/styles/MuiThemePr
 import createPalette from 'material-ui/styles/palette';
 import createMuiTheme from 'material-ui/styles/theme';
 import { blue, pink } from 'material-ui/styles/colors';
+import { lightTheme, darkTheme, setPrismTheme } from 'docs/site/src/utils/prism';
 import AppRouter from './AppRouter';
-import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism';
 
 function App(props) {
   const { dark, ...other } = props;
@@ -46,7 +46,7 @@ function App(props) {
 }
 
 App.propTypes = {
-  dark: PropTypes.bool,
+  dark: PropTypes.bool.isRequired,
 };
 
 export default connect((state) => ({ dark: state.dark }))(App);

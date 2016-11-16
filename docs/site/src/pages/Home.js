@@ -5,7 +5,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import Link from 'react-router/lib/Link';
 import Text from 'material-ui/Text';
 import Button from 'material-ui/Button';
-import muiLogo from '../../assets/images/material-ui-logo.svg';
+import muiLogo from 'docs/site/assets/images/material-ui-logo.svg';
 
 export const styleSheet = createStyleSheet('Home', (theme) => {
   const { palette, breakpoints } = theme;
@@ -59,7 +59,7 @@ const Home = (props, context) => {
             raised
             to="/getting-started/installation"
           >
-            Get Started
+            {'Get Started'}
           </Button>
         </div>
       </div>

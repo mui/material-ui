@@ -5,10 +5,10 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
-import MarkdownElement from './MarkdownElement';
+import MarkdownElement from 'docs/site/src/components/MarkdownElement';
 
-const requireDemos = require.context('../demos', true, /\.js$/);
-const requireDemoSource = require.context('!raw!../demos', true, /\.js$/);
+const requireDemos = require.context('docs/site/src', true, /\.js$/);
+const requireDemoSource = require.context('!raw!docs/site/src', true, /\.js$/);
 
 const styleSheet = createStyleSheet('Demo', (theme) => {
   const { palette, mixins } = theme;
@@ -60,7 +60,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
 
 export default class Demo extends Component {
   static propTypes = {
-    demo: PropTypes.string,
+    demo: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
