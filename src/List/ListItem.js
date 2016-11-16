@@ -224,6 +224,8 @@ class ListItem extends Component {
      */
     onNestedListToggle: PropTypes.func,
     /** @ignore */
+    onTouchEnd: PropTypes.func,
+    /** @ignore */
     onTouchStart: PropTypes.func,
     /** @ignore */
     onTouchTap: PropTypes.func,
@@ -289,6 +291,7 @@ class ListItem extends Component {
     onMouseEnter: () => {},
     onMouseLeave: () => {},
     onNestedListToggle: () => {},
+    onTouchEnd: () => {},
     onTouchStart: () => {},
     open: null,
     primaryTogglesNestedList: false,
@@ -497,6 +500,11 @@ class ListItem extends Component {
     this.props.onTouchStart(event);
   };
 
+  handleTouchEnd = (event) => {
+    this.setState({touch: true});
+    this.props.onTouchEnd(event);
+  }
+
   pushElement(children, element, baseStyles, additionalProps) {
     if (element) {
       const styles = Object.assign({}, baseStyles, element.props.style);
@@ -676,6 +684,7 @@ class ListItem extends Component {
               onMouseLeave={this.handleMouseLeave}
               onMouseEnter={this.handleMouseEnter}
               onTouchStart={this.handleTouchStart}
+              onTouchEnd={this.handleTouchEnd}
               onTouchTap={primaryTogglesNestedList ? this.handleNestedListToggle : onTouchTap}
               ref="enhancedButton"
               style={Object.assign({}, styles.root, style)}
