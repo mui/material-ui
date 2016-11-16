@@ -624,7 +624,7 @@ class ListItem extends Component {
       if (needsNestedIndicator) {
         rightIconButtonElement = this.state.open ?
           <IconButton><OpenIcon /></IconButton> :
-            <IconButton><CloseIcon /></IconButton>;
+          <IconButton><CloseIcon /></IconButton>;
         rightIconButtonHandlers.onTouchTap = this.handleNestedListToggle;
       }
 

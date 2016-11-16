@@ -252,7 +252,7 @@ class AppBar extends Component {
           >
             {iconClassNameLeft ?
               '' :
-                <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />
+              <NavigationMenu style={Object.assign({}, styles.iconButtonIconStyle)} />
             }
           </IconButton>
         );
