@@ -44,6 +44,11 @@ class IconMenu extends Component {
      */
     iconStyle: PropTypes.object,
     /**
+     * Override the inline-styles of the list element inside of menu.
+     */
+    listStyle: React.PropTypes.object,
+
+    /**
      * Override the inline-styles of the menu element.
      */
     menuStyle: PropTypes.object,
@@ -242,6 +247,7 @@ class IconMenu extends Component {
       onRequestChange, // eslint-disable-line no-unused-vars
       onTouchTap,
       menuStyle,
+      listStyle,
       style,
       targetOrigin,
       touchTapCloseDelay, // eslint-disable-line no-unused-vars
@@ -260,10 +266,12 @@ class IconMenu extends Component {
       menu: {
         position: 'relative',
       },
+      list: {},
     };
 
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
+    const mergedListStyles = Object.assign(styles.list, listStyle);
 
     warning(iconButtonElement.type.muiName !== 'SvgIcon',
       `Material-UI: You shoud not provide an <SvgIcon /> to the 'iconButtonElement' property of <IconMenu />.
@@ -290,6 +298,7 @@ You should wrapped it with an <IconButton />.`);
         onEscKeyDown={this.handleEscKeyDownMenu}
         onItemTouchTap={this.handleItemTouchTap}
         style={mergedMenuStyles}
+        listStyle={mergedListStyles}
       >
         {this.props.children}
       </Menu>
