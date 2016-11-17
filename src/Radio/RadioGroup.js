@@ -56,6 +56,7 @@ export default class RadioGroup extends Component {
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
     selectedValue: PropTypes.string,
   };
@@ -158,6 +159,10 @@ export default class RadioGroup extends Component {
           this.setTabIndex(i);
           break;
         }
+      }
+
+      if (this.props.onFocus) {
+        this.props.onFocus(event);
       }
     }
   };
