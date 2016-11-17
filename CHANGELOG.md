@@ -1,5 +1,12 @@
 ## HEAD
 
+## 0.16.4
+###### _Nov 17, 2016_
+
+##### Component Fixes / Enhancements
+
+- [npm] Rollback the react dependency path to `v15.0.0` (417913e41fbc3366c6997258263270c6d7465c1a)
+
 ## 0.16.3
 ###### _Nov 17, 2016_
 
