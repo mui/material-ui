@@ -1,5 +1,20 @@
 ## HEAD
 
+## 0.16.3
+###### _Nov 17, 2016_
+
+This release is intended to solve an [issue](https://github.com/callemall/material-ui/issues/5573) with `react-tap-event-plugin` following the release of React `v15.4.0`.
+
+##### Component Fixes / Enhancements
+
+- [ListItem] Fix hover on touch devices (#5566)
+- [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
+- [core] Add support for Webpack 2/Rollup tree shaking (#5545)
+
+##### Docs
+
+- [docs] Upgrade React to v15.4.0 (#5575)
+
 ## 0.16.2
 ###### _Nov 13, 2016_
 
