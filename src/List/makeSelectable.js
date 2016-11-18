@@ -65,7 +65,9 @@ export const makeSelectable = (MyComponent) => {
       const itemValue = item.props.value;
 
       if (itemValue !== this.props.value) {
-        this.props.onChange(event, itemValue);
+        if (this.props.onChange) {
+          this.props.onChange(event, itemValue);
+        }
       }
     };
 
