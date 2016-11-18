@@ -27,6 +27,7 @@ export default function Radio(props, context) {
     className,
     checkedClassName,
     label,
+    labelClassName,
     onChange,
     value,
     ...other
@@ -48,7 +49,7 @@ export default function Radio(props, context) {
   if (label) {
     switchProps['aria-label'] = label;
     return (
-      <label className={classes.label} role="presentation">
+      <label className={classNames(classes.label, labelClassName)} role="presentation">
         <SwitchBase {...switchProps} />
         <span aria-hidden="true" role="presentation">{label}</span>
       </label>
@@ -66,6 +67,7 @@ Radio.propTypes = {
    */
   className: PropTypes.string,
   label: PropTypes.string,
+  labelClassName: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
