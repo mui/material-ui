@@ -33,7 +33,6 @@ module.exports = {
   resolve: {
     alias: {
       'material-ui': path.resolve(__dirname, '../../../src'),
-      react: path.resolve(__dirname, '../../../node_modules/react'),
     },
   },
   progress: true,
