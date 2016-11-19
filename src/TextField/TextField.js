@@ -72,14 +72,6 @@ export default class TextField extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    /**
-     * Whether this text field is required.
-     */
-    required: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    required: false,
   };
 
   static contextTypes = {
@@ -136,7 +128,6 @@ export default class TextField extends Component {
       focused: this.state.focused,
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
-      required: this.props.required,
     })
   );
 
