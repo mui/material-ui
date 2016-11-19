@@ -40,11 +40,12 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& tbody': {
       fontSize: 13,
+      lineHeight: 1.5,
       color: theme.palette.text.primary,
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: '0 56px 0 24px',
+      padding: '8px 56px 8px 24px',
       textAlign: 'left',
     },
     '& td:last-child': {
