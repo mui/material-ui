@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
@@ -90,6 +90,7 @@ class EnhancedSwitch extends Component {
     onMouseUp: PropTypes.func,
     onParentShouldUpdate: PropTypes.func,
     onSwitch: PropTypes.func,
+    onTouchTap: PropTypes.func,
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
     rippleColor: PropTypes.string,
@@ -123,7 +124,7 @@ class EnhancedSwitch extends Component {
     const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultChecked') &&
-      (nextProps.defaultChecked !== this.props.defaultChecked));
+        (nextProps.defaultChecked !== this.props.defaultChecked));
 
     if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
       const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
@@ -214,6 +215,12 @@ class EnhancedSwitch extends Component {
     this.refs.touchRipple.end();
   };
 
+  handleTouchTap = (event) => {
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
+  };
+
   handleTouchStart = (event) => {
     this.refs.touchRipple.start(event);
   };
@@ -265,6 +272,7 @@ class EnhancedSwitch extends Component {
       onMouseUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchEnd, // eslint-disable-line no-unused-vars
       onParentShouldUpdate, // eslint-disable-line no-unused-vars
@@ -280,110 +288,111 @@ class EnhancedSwitch extends Component {
       thumbStyle,
       trackStyle,
       ...other
-    } = this.props;
+  } = this.props;
 
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-    const wrapStyles = Object.assign(styles.wrap, iconStyle);
-    const mergedRippleStyle = Object.assign(styles.ripple, rippleStyle);
+const {prepareStyles} = this.context.muiTheme;
+const styles = getStyles(this.props, this.context);
+const wrapStyles = Object.assign(styles.wrap, iconStyle);
+const mergedRippleStyle = Object.assign(styles.ripple, rippleStyle);
 
-    if (thumbStyle) {
-      wrapStyles.marginLeft /= 2;
-      wrapStyles.marginRight /= 2;
-    }
+if (thumbStyle) {
+  wrapStyles.marginLeft /= 2;
+  wrapStyles.marginRight /= 2;
+}
 
-    const labelElement = label && (
-      <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
-        {label}
-      </label>
-    );
+const labelElement = label && (
+  <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+    {label}
+  </label>
+);
 
-    const showTouchRipple = !disabled && !disableTouchRipple;
-    const showFocusRipple = !disabled && !disableFocusRipple;
+const showTouchRipple = !disabled && !disableTouchRipple;
+const showFocusRipple = !disabled && !disableFocusRipple;
 
-    const touchRipple = (
-      <TouchRipple
-        ref="touchRipple"
-        key="touchRipple"
-        style={mergedRippleStyle}
-        color={mergedRippleStyle.color}
-        muiTheme={this.context.muiTheme}
-        centerRipple={true}
+const touchRipple = (
+  <TouchRipple
+    ref="touchRipple"
+    key="touchRipple"
+    style={mergedRippleStyle}
+    color={mergedRippleStyle.color}
+    muiTheme={this.context.muiTheme}
+    centerRipple={true}
+    />
+);
+
+const focusRipple = (
+  <FocusRipple
+    key="focusRipple"
+    innerStyle={mergedRippleStyle}
+    color={mergedRippleStyle.color}
+    muiTheme={this.context.muiTheme}
+    show={this.state.isKeyboardFocused}
+    />
+);
+
+const ripples = [
+  showTouchRipple ? touchRipple : null,
+  showFocusRipple ? focusRipple : null,
+];
+
+const inputElement = (
+  <input
+    {...other}
+    ref="checkbox"
+    type={inputType}
+    style={prepareStyles(Object.assign(styles.input, inputStyle))}
+    name={name}
+    value={value}
+    disabled={disabled}
+    onBlur={this.handleBlur}
+    onFocus={this.handleFocus}
+    onChange={this.handleChange}
+    onMouseUp={showTouchRipple && this.handleMouseUp}
+    onMouseDown={showTouchRipple && this.handleMouseDown}
+    onMouseLeave={showTouchRipple && this.handleMouseLeave}
+    onTouchTap={this.handleTouchTap}
+    onTouchStart={showTouchRipple && this.handleTouchStart}
+    onTouchEnd={showTouchRipple && this.handleTouchEnd}
+    />
+);
+
+// If toggle component (indicated by whether the style includes thumb) manually lay out
+// elements in order to nest ripple elements
+const switchOrThumbElement = !thumbStyle ? (
+  <div style={prepareStyles(wrapStyles)}>
+    {switchElement}
+    {ripples}
+  </div>
+) : (
+    <div style={prepareStyles(wrapStyles)}>
+      <div style={prepareStyles(Object.assign({}, trackStyle))} />
+      <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
+    </div>
+  );
+
+const elementsInOrder = labelPosition === 'right' ? (
+  <div style={styles.controls}>
+    {switchOrThumbElement}
+    {labelElement}
+  </div>
+) : (
+    <div style={styles.controls}>
+      {labelElement}
+      {switchOrThumbElement}
+    </div>
+  );
+
+return (
+  <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+    <EventListener
+      target="window"
+      onKeyDown={this.handleKeyDown}
+      onKeyUp={this.handleKeyUp}
       />
-    );
-
-    const focusRipple = (
-      <FocusRipple
-        key="focusRipple"
-        innerStyle={mergedRippleStyle}
-        color={mergedRippleStyle.color}
-        muiTheme={this.context.muiTheme}
-        show={this.state.isKeyboardFocused}
-      />
-    );
-
-    const ripples = [
-      showTouchRipple ? touchRipple : null,
-      showFocusRipple ? focusRipple : null,
-    ];
-
-    const inputElement = (
-      <input
-        {...other}
-        ref="checkbox"
-        type={inputType}
-        style={prepareStyles(Object.assign(styles.input, inputStyle))}
-        name={name}
-        value={value}
-        disabled={disabled}
-        onBlur={this.handleBlur}
-        onFocus={this.handleFocus}
-        onChange={this.handleChange}
-        onMouseUp={showTouchRipple && this.handleMouseUp}
-        onMouseDown={showTouchRipple && this.handleMouseDown}
-        onMouseLeave={showTouchRipple && this.handleMouseLeave}
-        onTouchStart={showTouchRipple && this.handleTouchStart}
-        onTouchEnd={showTouchRipple && this.handleTouchEnd}
-      />
-    );
-
-    // If toggle component (indicated by whether the style includes thumb) manually lay out
-    // elements in order to nest ripple elements
-    const switchOrThumbElement = !thumbStyle ? (
-      <div style={prepareStyles(wrapStyles)}>
-        {switchElement}
-        {ripples}
-      </div>
-    ) : (
-      <div style={prepareStyles(wrapStyles)}>
-        <div style={prepareStyles(Object.assign({}, trackStyle))} />
-        <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
-      </div>
-    );
-
-    const elementsInOrder = labelPosition === 'right' ? (
-      <div style={styles.controls}>
-        {switchOrThumbElement}
-        {labelElement}
-      </div>
-    ) : (
-      <div style={styles.controls}>
-        {labelElement}
-        {switchOrThumbElement}
-      </div>
-    );
-
-    return (
-      <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
-        <EventListener
-          target="window"
-          onKeyDown={this.handleKeyDown}
-          onKeyUp={this.handleKeyUp}
-        />
-        {inputElement}
-        {elementsInOrder}
-      </div>
-    );
+    {inputElement}
+    {elementsInOrder}
+  </div>
+);
   }
 }
 
