@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
-import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
 
 function isDirty(obj) {
@@ -10,7 +9,6 @@ function isDirty(obj) {
 }
 
 export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
-  const { palette } = theme;
   return {
     root: {
       font: 'inherit',
@@ -22,6 +20,7 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       background: 'none',
       lineHeight: 1,
       appearance: 'textfield', // Improve type search style.
+      color: theme.palette.text.primary,
       '&:focus': {
         outline: 0,
       },
@@ -30,11 +29,11 @@ export const styleSheet = createStyleSheet('TextFieldInput', (theme) => {
       },
     },
     disabled: {
-      color: palette.text.disabled,
+      color: theme.palette.text.disabled,
       cursor: 'not-allowed',
     },
     underline: {
-      borderBottom: `1px solid ${palette.text.divider}`,
+      borderBottom: `1px solid ${theme.palette.text.divider}`,
       '& $disabled': {
         borderBottomStyle: 'dotted',
       },
@@ -99,13 +98,6 @@ export default class TextFieldInput extends Component {
     if (this.isControlled()) {
       this.checkDirty(this.props);
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.context, nextContext)
-    );
   }
 
   componentWillUpdate(nextProps) {
