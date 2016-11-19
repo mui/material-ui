@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import CircularProgress, { styleSheet } from './CircularProgress';
 
-describe('<CircularProgress>', () => {
+describe('<CircularProgress />', () => {
   let shallow;
   let classes;
 

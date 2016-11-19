@@ -7,7 +7,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import RadioGroup from './RadioGroup';
 
-describe('<RadioGroup>', () => {
+describe('<RadioGroup />', () => {
   let shallow;
 
   before(() => {

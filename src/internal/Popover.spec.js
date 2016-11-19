@@ -8,7 +8,7 @@ import css from 'dom-helpers/style';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
 import Popover, { styleSheet } from './Popover';
 
-describe('<Popover>', () => {
+describe('<Popover />', () => {
   let shallow;
   let mount;
   let classes;

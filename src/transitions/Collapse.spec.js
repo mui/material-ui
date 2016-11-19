@@ -7,7 +7,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import Collapse, { styleSheet } from './Collapse';
 
-describe('<Collapse>', () => {
+describe('<Collapse />', () => {
   let shallow;
   let classes;
 

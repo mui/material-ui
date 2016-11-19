@@ -48,7 +48,7 @@ function assertIsNotChecked(classes, wrapper) {
   assert.strictEqual(icon.text(), 'check_box_outline_blank', 'should be the check_box_outline_blank icon');
 }
 
-describe('<SwitchBase>', () => {
+describe('<SwitchBase />', () => {
   let shallow;
   let classes;
   let mount;

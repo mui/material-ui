@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import DialogContent, { styleSheet } from './DialogContent';
 
-describe('<DialogContent>', () => {
+describe('<DialogContent />', () => {
   let shallow;
   let classes;
 

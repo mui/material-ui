@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import MenuList from './MenuList';
 
-describe('<MenuList>', () => {
+describe('<MenuList />', () => {
   let shallow;
 
   before(() => {

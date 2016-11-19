@@ -8,7 +8,7 @@ import { spy } from 'sinon';
 import { createMountWithContext } from 'test/utils';
 import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
 
-describe('<Transition>', () => {
+describe('<Transition />', () => {
   let mount;
 
   before(() => {

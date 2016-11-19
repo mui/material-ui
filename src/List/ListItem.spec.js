@@ -9,7 +9,7 @@ import ListItem, { styleSheet } from './ListItem';
 /**
  * An item that goes in lists.
  */
-describe('<ListItem>', () => {
+describe('<ListItem />', () => {
   let shallow;
   let classes;
 

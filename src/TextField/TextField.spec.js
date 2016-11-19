@@ -7,7 +7,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import TextField, { styleSheet } from './TextField';
 
-describe('<TextField>', () => {
+describe('<TextField />', () => {
   let shallow;
   let classes;
 

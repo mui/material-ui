@@ -9,7 +9,7 @@ import Toolbar, { styleSheet } from './Toolbar';
 /**
  * An item that goes in lists.
  */
-describe('<Toolbar>', () => {
+describe('<Toolbar />', () => {
   let shallow;
   let classes;
 

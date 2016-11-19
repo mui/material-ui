@@ -7,7 +7,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import TextFieldInput, { styleSheet } from './TextFieldInput';
 
-describe('<TextFieldInput>', () => {
+describe('<TextFieldInput />', () => {
   let shallow;
   let classes;
 
@@ -16,14 +16,14 @@ describe('<TextFieldInput>', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render an <input>', () => {
+  it('should render an <input />', () => {
     const wrapper = shallow(<TextFieldInput />);
     assert.strictEqual(wrapper.is('input'), true, 'should be a <input>');
     assert.strictEqual(wrapper.prop('type'), 'text', 'should pass the text type prop');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
-  it('should render a disabled <input>', () => {
+  it('should render a disabled <input />', () => {
     const wrapper = shallow(<TextFieldInput disabled />);
     assert.strictEqual(wrapper.is('input'), true, 'should be a <input>');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
