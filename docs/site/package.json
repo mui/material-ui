@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node webpack.dev.server.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.config.js"
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --config webpack.prod.config.js",
+    "clean": "rimraf build"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -26,6 +27,7 @@
     "object-assign": "^4.1.0",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^3.0.0-beta.2",
+    "redbox-react": "^1.3.1",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",

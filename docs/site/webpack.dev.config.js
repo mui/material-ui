@@ -31,12 +31,10 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'file',
-        include: /assets\/images/,
       },
       {
         test: /\.(jpg|gif|png)$/,
         loader: 'file!img',
-        include: /assets\/images/,
       },
       {
         test: /\.md$/,
