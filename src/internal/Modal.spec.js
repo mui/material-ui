@@ -11,7 +11,7 @@ import {
 } from 'test/utils';
 import Modal, { styleSheet } from './Modal';
 
-describe('<Modal>', () => {
+describe('<Modal />', () => {
   let shallow;
   let mount;
   let classes;

@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import ListSubheader, { styleSheet } from './ListSubheader';
 
-describe('<ListSubheader>', () => {
+describe('<ListSubheader />', () => {
   let shallow;
   let classes;
 

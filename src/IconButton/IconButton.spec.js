@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import IconButton, { styleSheet } from './IconButton';
 
-describe('<IconButton>', () => {
+describe('<IconButton />', () => {
   let shallow;
   let classes;
 

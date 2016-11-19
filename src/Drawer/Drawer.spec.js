@@ -10,7 +10,7 @@ import Slide from '../transitions/Slide';
 /**
  * An item that goes in lists.
  */
-describe('<Drawer>', () => {
+describe('<Drawer />', () => {
   let shallow;
   let classes;
 

@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createMountWithContext } from 'test/utils';
 import Portal from './Portal';
 
-describe('<Portal>', () => {
+describe('<Portal />', () => {
   let mount;
 
   before(() => {

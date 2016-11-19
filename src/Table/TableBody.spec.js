@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import TableBody, { styleSheet } from './TableBody';
 
-describe('<TableBody>', () => {
+describe('<TableBody />', () => {
   let shallow;
   let classes;
 

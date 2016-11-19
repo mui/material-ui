@@ -7,7 +7,7 @@ import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import Slide from './Slide';
 
-describe('<Slide>', () => {
+describe('<Slide />', () => {
   let shallow;
 
   before(() => {

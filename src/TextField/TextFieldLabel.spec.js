@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import TextFieldLabel, { styleSheet } from './TextFieldLabel';
 
-describe('<TextFieldLabel>', () => {
+describe('<TextFieldLabel />', () => {
   let shallow;
   let classes;
 
@@ -15,7 +15,7 @@ describe('<TextFieldLabel>', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a <label>', () => {
+  it('should render a <label />', () => {
     const wrapper = shallow(<TextFieldLabel className="woof" />);
     assert.strictEqual(wrapper.is('label'), true, 'should be a <label>');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');

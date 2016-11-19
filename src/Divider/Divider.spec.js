@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Divider, { styleSheet } from './Divider';
 
-describe('<Divider>', () => {
+describe('<Divider />', () => {
   let shallow;
   let classes;
 

@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Ripple, { styleSheet } from './Ripple';
 
-describe('<Ripple>', () => {
+describe('<Ripple />', () => {
   let shallow;
   let classes;
 

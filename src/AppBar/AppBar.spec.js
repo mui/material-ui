@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import AppBar, { styleSheet } from './AppBar';
 
-describe('<AppBar>', () => {
+describe('<AppBar />', () => {
   let shallow;
   let classes;
 

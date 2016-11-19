@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Radio, { styleSheet } from './Radio';
 
-describe('<Radio>', () => {
+describe('<Radio />', () => {
   let shallow;
   let classes;
 

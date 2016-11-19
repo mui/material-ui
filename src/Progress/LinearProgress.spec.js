@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import LinearProgress, { styleSheet } from './LinearProgress';
 
-describe('<LinearProgress>', () => {
+describe('<LinearProgress />', () => {
   let shallow;
   let classes;
 
