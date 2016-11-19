@@ -10,7 +10,7 @@ import { lightTheme, darkTheme, setPrismTheme } from 'docs/site/src/utils/prism'
 import AppRouter from './AppRouter';
 
 function App(props) {
-  const { dark, ...other } = props;
+  const { dark } = props;
 
   const palette = createPalette({
     primary: blue,
@@ -39,7 +39,7 @@ function App(props) {
   }
 
   return (
-    <MuiThemeProvider theme={theme} styleManager={styleManager} {...other}>
+    <MuiThemeProvider theme={theme} styleManager={styleManager}>
       <AppRouter />
     </MuiThemeProvider>
   );

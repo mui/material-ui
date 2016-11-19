@@ -9,7 +9,6 @@ import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import { throttle } from 'material-ui/utils/helpers';
 import addEventListener from 'material-ui/utils/addEventListener';
-
 import AppDrawer from './AppDrawer';
 
 const globalStyleSheet = createStyleSheet('global', (theme) => ({
@@ -95,7 +94,7 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
 class AppFrame extends Component {
   static propTypes = {
     children: PropTypes.node,
-    dispatch: PropTypes.func,
+    dispatch: PropTypes.func.isRequired,
     routes: PropTypes.array,
   };
 
@@ -225,10 +224,4 @@ class AppFrame extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    dark: state.dark,
-  };
-}
-
-export default connect(mapStateToProps)(AppFrame);
+export default connect()(AppFrame);
