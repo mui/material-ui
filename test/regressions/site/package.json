@@ -8,10 +8,10 @@
   },
   "devDependencies": {
     "react-hot-loader": "^3.0.0-beta.2",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "react-router": "^2.4.1"
+    "react-router": "^3.0.0"
   }
 }
