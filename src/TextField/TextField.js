@@ -19,7 +19,8 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
         backgroundColor: focusColor,
         left: 0,
         bottom: 9,
-        content: '\'\'',
+        // Doing the other way around crash on IE11 "''"" https://github.com/cssinjs/jss/issues/242
+        content: '""',
         height: 2,
         position: 'absolute',
         width: '100%',
