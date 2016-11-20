@@ -35,9 +35,6 @@ const globalStyleSheet = createStyleSheet('global', (theme) => ({
       textDecoration: 'underline',
     },
   },
-  p: {
-    lineHeight: '1.6',
-  },
   img: {
     maxWidth: '100%',
     height: 'auto',
@@ -204,7 +201,9 @@ class AppFrame extends Component {
             <IconButton contrast onClick={this.handleDrawerToggle} className={navIconClassName}>
               menu
             </IconButton>
-            <Text className={classes.title} type="title">{title}</Text>
+            <Text className={classes.title} type="title" colorInherit>
+              {title}
+            </Text>
             <div className={classes.grow} />
             <IconButton contrast onClick={this.handleToggleShade} className={classes.toggleShade}>
               lightbulb_outline

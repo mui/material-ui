@@ -10,12 +10,9 @@ import IconButton from 'material-ui/IconButton';
 import Text from 'material-ui/Text';
 import albumCover from 'docs/site/assets/images/live-from-space.jpg';
 
-const styleSheet = createStyleSheet('NowPlayingCard', (theme) => ({
+const styleSheet = createStyleSheet('NowPlayingCard', () => ({
   card: {
     display: 'flex',
-  },
-  artist: {
-    color: theme.palette.text.secondary,
   },
   details: {
     display: 'flex',
@@ -25,8 +22,8 @@ const styleSheet = createStyleSheet('NowPlayingCard', (theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 150,
-    height: 150,
+    width: 151,
+    height: 151,
   },
   controls: {
     display: 'flex',
@@ -50,7 +47,9 @@ export default function NowPlayingCard(props, context) {
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Text type="headline">Live From Space</Text>
-            <Text type="subheading" className={classes.artist}>Mac Miller</Text>
+            <Text type="subheading" secondary>
+              Mac Miller
+            </Text>
           </CardContent>
           <div className={classes.controls}>
             <IconButton>skip_previous</IconButton>

@@ -61,11 +61,19 @@ describe('<Text />', () => {
     'body2',
     'body1',
     'caption',
+    'button',
   ].forEach((type) => {
     it(`should render ${type} text`, () => {
       const wrapper = shallow(<Text type={type}>Hello</Text>);
       assert.ok(classes[type] !== undefined);
       assert.strictEqual(wrapper.hasClass(classes[type]), true, `should be ${type} text`);
+    });
+  });
+
+  describe('prop: colorInherit', () => {
+    it('should inherit the color', () => {
+      const wrapper = shallow(<Text colorInherit>Hello</Text>);
+      assert.strictEqual(wrapper.hasClass(classes.colorInherit), true);
     });
   });
 });

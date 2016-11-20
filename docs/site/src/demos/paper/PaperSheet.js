@@ -3,11 +3,12 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Paper from 'material-ui/Paper';
+import Text from 'material-ui/Text';
 
 const styleSheet = createStyleSheet('PaperSheet', (theme) => ({
   root: theme.mixins.gutters({
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingTop: 16,
+    paddingBottom: 16,
   }),
 }));
 
@@ -16,10 +17,12 @@ export default function PaperSheet(props, context) {
   return (
     <div>
       <Paper className={classes.root} zDepth={4}>
-        <h3>This is a sheet of paper.</h3>
-        <p>
+        <Text type="headline" component="h3">
+          This is a sheet of paper.
+        </Text>
+        <Text type="body1" component="p">
           Paper can be used to build surface or other elements for your application.
-        </p>
+        </Text>
       </Paper>
     </div>
   );

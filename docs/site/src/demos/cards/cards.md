@@ -1,6 +1,6 @@
 # Cards
 
-A card is a sheet of material that serves as an entry point to more detailed information.
+A [card](https://material.google.com/components/cards.html) is a sheet of material that serves as an entry point to more detailed information.
 
 Cards display content composed of different elements whose size or supported actions vary.
 
