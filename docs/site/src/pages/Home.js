@@ -52,10 +52,10 @@ function Home(props, context) {
       <div className={classes.hero}>
         <div className={classes.content}>
           <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
-          <Text type="display2" component="h1">
+          <Text type="display2" component="h1" colorInherit>
             {'Material-UI'}
           </Text>
-          <Text type="subheading" component="h2">
+          <Text type="subheading" component="h2" colorInherit>
             {"A React component library implementing Google's Material Design"}
           </Text>
           <Button

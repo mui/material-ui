@@ -5,7 +5,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Text from '../Text';
 
-export const styleSheet = createStyleSheet('ListItemText', (theme) => {
+export const styleSheet = createStyleSheet('ListItemText', () => {
   return {
     root: {
       flex: '1 1 auto',
@@ -13,9 +13,6 @@ export const styleSheet = createStyleSheet('ListItemText', (theme) => {
       '&:first-child': {
         paddingLeft: 0,
       },
-    },
-    secondary: {
-      color: theme.palette.text.secondary,
     },
   };
 });
@@ -34,12 +31,16 @@ export default function ListItemText(props, context) {
     <div className={className} {...other}>
       {primary && (
         typeof primary === 'string' ? (
-          <Text type="subheading">{primary}</Text>
+          <Text type="subheading">
+            {primary}
+          </Text>
         ) : primary
       )}
       {secondary && (
         typeof secondary === 'string' ? (
-          <Text className={classes.secondary} type="body1">{secondary}</Text>
+          <Text secondary type="body1">
+            {secondary}
+          </Text>
         ) : secondary
       )}
     </div>
