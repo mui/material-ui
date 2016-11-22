@@ -6,6 +6,14 @@ Lists are made up of a continuous column of rows. Each row contains a tile. Prim
 
 Lists are best suited for similar data types.
 
+### Simple List
+
+{{demo='demos/lists/SimpleList.js'}}
+
+### Folder List
+
+{{demo='demos/lists/FolderList.js'}}
+
 ## List Controls
 
 ### Checkbox
