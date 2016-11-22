@@ -101,7 +101,9 @@ export default class TextFieldInput extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    this.checkDirty(nextProps);
+    if (this.isControlled()) {
+      this.checkDirty(nextProps);
+    }
   }
 
   // Holds the input reference
