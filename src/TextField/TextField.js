@@ -46,6 +46,12 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
         transform: 'scaleX(1)',
       },
     },
+    error: {
+      '&:after': {
+        backgroundColor: theme.palette.error[500],
+        transform: 'scaleX(1)', // error is always underlined in red
+      },
+    },
   };
 });
 
@@ -70,6 +76,15 @@ export default class TextField extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Whether the label should be displayed in an error state
+     */
+    error: PropTypes.bool,
+    /**
+     * Whether this label should indicate that the input
+     * is required.
+     */
+    required: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -123,7 +138,9 @@ export default class TextField extends Component {
   renderLabel = (label) => (
     cloneElement(label, {
       className: classNames(this.classes.label, label.props.className),
+      error: label.props.hasOwnProperty('error') ? label.props.error : this.props.error,
       focused: this.state.focused,
+      required: label.props.hasOwnProperty('required') ? label.props.required : this.props.required,
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
     })
@@ -133,6 +150,8 @@ export default class TextField extends Component {
     const {
       children,
       className: classNameProp,
+      error,
+      required, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
@@ -141,6 +160,7 @@ export default class TextField extends Component {
     const className = classNames({
       [this.classes.root]: true,
       [this.classes.focused]: this.state.focused,
+      [this.classes.error]: error,
     }, classNameProp);
 
     return (

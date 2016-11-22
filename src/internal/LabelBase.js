@@ -15,7 +15,7 @@ export const styleSheet = createStyleSheet('LabelBase', (theme) => {
       color: focusColor,
     },
     asterisk: {
-      // color: theme.palette.error[500],
+      // color: default color when unfocused
     },
     error: {
       color: theme.palette.error[500],
@@ -40,7 +40,7 @@ export default function LabelBase(props, context) {
   }, classNameProp);
 
   const asteriskClassName = classNames(classes.asterisk, {
-    [classes.error]: error,
+    [classes.error]: focused || error,
   });
 
   return (
