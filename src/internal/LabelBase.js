@@ -3,56 +3,61 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import { easing } from '../styles/transitions';
-import LabelBase from '../internal/LabelBase';
 
-export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
+export const styleSheet = createStyleSheet('LabelBase', (theme) => {
+  const focusColor = theme.palette.accent.A200;
   return {
     root: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      transform: 'translate(0, 18px) scale(1)',
-      transformOrigin: 'top left',
+      color: theme.palette.text.secondary,
+      lineHeight: 1,
     },
-    shrink: {
-      transform: 'translate(0, 0px) scale(0.75)',
-    },
-    animated: {
-      transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
+    focused: {
+      color: focusColor,
     },
     asterisk: {
+      // color: theme.palette.error[500],
+    },
+    error: {
       color: theme.palette.error[500],
     },
   };
 });
 
-export default function TextFieldLabel(props, context) {
+export default function LabelBase(props, context) {
   const {
-    animated,
     children,
     className: classNameProp,
-    shrink,
+    error,
+    focused,
+    required,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
-    [classes.animated]: animated,
-    [classes.shrink]: shrink,
+    [classes.focused]: focused,
+    [classes.error]: error,
   }, classNameProp);
 
+  const asteriskClassName = classNames(classes.asterisk, {
+    [classes.error]: error,
+  });
+
   return (
-    <LabelBase className={className} {...other}>
+    <label className={className} {...other}>
       {children}
-    </LabelBase>
+      {required && (
+        <span className={asteriskClassName}>
+          {'\u2009'}*
+        </span>
+      )}
+    </label>
   );
 }
 
-TextFieldLabel.propTypes = {
-  animated: PropTypes.bool,
+LabelBase.propTypes = {
   /**
-   * The contents of the `TextFieldLabel`.
+   * The contents of the `LabelBase`.
    */
   children: PropTypes.node,
   /**
@@ -72,15 +77,16 @@ TextFieldLabel.propTypes = {
    * is required.
    */
   required: PropTypes.bool,
-  shrink: PropTypes.bool,
 };
 
-TextFieldLabel.defaultProps = {
-  animated: true,
+LabelBase.defaultProps = {
+  focused: false,
+  required: false,
+  error: false,
 };
 
-TextFieldLabel.contextTypes = {
+LabelBase.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
 
-TextFieldLabel.muiName = 'TextFieldLabel';
+LabelBase.muiName = 'LabelBase';

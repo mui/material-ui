@@ -42,9 +42,6 @@ export const styleSheet = createStyleSheet('TextField', (theme) => {
       zIndex: 1,
     },
     focused: {
-      '& $label': {
-        color: focusColor,
-      },
       '&:after': {
         transform: 'scaleX(1)',
       },
