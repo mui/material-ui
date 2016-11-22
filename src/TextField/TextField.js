@@ -80,11 +80,6 @@ export default class TextField extends Component {
      * Whether the label should be displayed in an error state
      */
     error: PropTypes.bool,
-    /**
-     * Whether this label should indicate that the input
-     * is required.
-     */
-    required: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -140,7 +135,6 @@ export default class TextField extends Component {
       className: classNames(this.classes.label, label.props.className),
       error: label.props.hasOwnProperty('error') ? label.props.error : this.props.error,
       focused: this.state.focused,
-      required: label.props.hasOwnProperty('required') ? label.props.required : this.props.required,
       shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
         label.props.shrink : (this.state.dirty || this.state.focused),
     })
@@ -151,7 +145,6 @@ export default class TextField extends Component {
       children,
       className: classNameProp,
       error,
-      required, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 

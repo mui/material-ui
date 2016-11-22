@@ -12,8 +12,8 @@ export default function RequiredTextField() {
         </TextFieldLabel>
         <TextFieldInput id="required" />
       </TextField>
-      <TextField required error>
-        <TextFieldLabel htmlFor="validation">
+      <TextField error>
+        <TextFieldLabel htmlFor="validation" required>
           Last Name
         </TextFieldLabel>
         <TextFieldInput id="validation" />
