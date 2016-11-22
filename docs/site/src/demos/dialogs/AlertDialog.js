@@ -7,15 +7,13 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
 
 const styleSheet = createStyleSheet('AlertDialog', () => ({
   alert: {
     maxWidth: 400,
-  },
-  content: {
-    margin: 0,
   },
 }));
 
@@ -44,11 +42,11 @@ export default class AlertDialog extends Component {
         >
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
-            <p className={classes.content}>
+            <DialogContentText>
               Let Google help apps determine location.
               This means sending anonymous location data
               to Google, even when no apps are running.
-            </p>
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleRequestClose} primary>Disagree</Button>

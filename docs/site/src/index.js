@@ -8,8 +8,9 @@ import ReactPerf from 'react-addons-perf';
 import { render } from 'react-dom';
 import App from 'docs/site/src/components/App';
 
+// Warns about potential accessibility issues with your React elements.
+//
 // import a11y from 'react-a11y';
-
 // if (process.env.NODE_ENV !== 'production') {
 //   a11y(React, { includeSrcNode: true, ReactDOM });
 // }
