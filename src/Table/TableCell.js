@@ -79,7 +79,7 @@ export default function TableCell(props, context) {
 
 TableCell.propTypes = {
   /**
-   * If true, the cell padding will be adjusted to better accomodate a checkbox.
+   * If `true`, the cell padding will be adjusted to better accomodate a checkbox.
    */
   checkbox: PropTypes.bool,
   /**

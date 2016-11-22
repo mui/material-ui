@@ -143,8 +143,7 @@ export default class TextFieldInput extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
 
-    const className = classNames({
-      [classes.root]: true,
+    const className = classNames(classes.root, {
       [classes.underline]: underline,
       [classes.disabled]: disabled,
     }, classNameProp);

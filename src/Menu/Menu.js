@@ -61,7 +61,7 @@ export default class Menu extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * If true, the menu is visible.
+     * If `true`, the menu is visible.
      */
     open: PropTypes.bool,
     /**

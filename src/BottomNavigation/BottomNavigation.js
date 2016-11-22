@@ -19,20 +19,20 @@ export default function BottomNavigation(props, context) {
   const {
     children: childrenProp,
     className: classNameProp,
-    selectedIndex,
+    index,
+    onChange,
     showLabel,
-    onChangeIndex,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, classNameProp);
 
-  const children = Children.map(childrenProp, (child, index) => {
+  const children = Children.map(childrenProp, (child, childIndex) => {
     return cloneElement(child, {
-      selected: index === selectedIndex,
+      selected: childIndex === index,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabel,
-      index,
-      onChangeIndex,
+      index: childIndex,
+      onChange,
     });
   });
 
@@ -45,7 +45,7 @@ export default function BottomNavigation(props, context) {
 
 BottomNavigation.propTypes = {
   /**
-   * The content of the BottomNavigation.
+   * The content of the `BottomNavigation`.
    */
   children: PropTypes.node.isRequired,
   /**
@@ -53,16 +53,16 @@ BottomNavigation.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Function called when index change.
+   * The index of the currently selected `BottomNavigation`.
    */
-  onChangeIndex: PropTypes.func,
+  index: PropTypes.number,
   /**
-   * The index of the currently selected navigation item.
+   * Function called when the index change.
    */
-  selectedIndex: PropTypes.number,
+  onChange: PropTypes.func,
   /**
-   * If true, all the selected BottomNavigationButton will show his label.
-   * If false, only the selected BottomNavigationButton will show his label.
+   * If `true`, all the selected `BottomNavigationButton` will show his label.
+   * If false, only the selected `BottomNavigationButton` will show his label.
    */
   showLabel: PropTypes.bool.isRequired,
 };

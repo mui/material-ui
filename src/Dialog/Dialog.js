@@ -50,11 +50,11 @@ export default class Dialog extends Component {
      */
     className: PropTypes.string,
     /**
-     * If true, clicking the backdrop will fire the `onRequestClose` callback.
+     * If `true`, clicking the backdrop will fire the `onRequestClose` callback.
      */
     hideOnBackdropClick: PropTypes.bool,
     /**
-     * If true, hitting escape will fire the `onRequestClose` callback.
+     * If `true`, hitting escape will fire the `onRequestClose` callback.
      */
     hideOnEscapeKeyUp: PropTypes.bool,
     /**

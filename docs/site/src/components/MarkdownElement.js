@@ -21,6 +21,11 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
     },
+    '& h3': {
+      ...theme.typography.headline,
+      color: theme.palette.text.secondary,
+      margin: '1em 0 0.7em',
+    },
     '& p, & ul': {
       lineHeight: '1.6',
     },
@@ -35,7 +40,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& thead': {
       fontSize: 12,
-      fontWeight: 500,
+      fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.text.secondary,
     },
     '& tbody': {
@@ -71,6 +76,9 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& thead tr': {
       height: 64,
+    },
+    '& strong': {
+      fontWeight: theme.typography.fontWeightMedium,
     },
   },
 }));

@@ -29,6 +29,7 @@ export const styleSheet = createStyleSheet('BottomNavigationButton', (theme) => 
       paddingTop: 16,
     },
     label: {
+      fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.fontSize - 2,
       opacity: 1,
       transition: 'font-size 0.2s, opacity 0.2s',
@@ -48,10 +49,49 @@ export const styleSheet = createStyleSheet('BottomNavigationButton', (theme) => 
 });
 
 export default class BottomNavigationButton extends Component {
-  handleChangeIndex = (event) => {
-    const { onChangeIndex, index, onClick } = this.props;
+  static propTypes = {
+    /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
+     * The icon element. If a string is passed, it will be used as a material icon font ligature.
+     */
+    icon: PropTypes.node,
+    /**
+     * @ignore
+     */
+    index: PropTypes.number,
+    /**
+     * The label element.
+     */
+    label: PropTypes.node,
+    /**
+     * @ignore
+     */
+    onChange: PropTypes.func,
+    /**
+     * @ignore
+     */
+    onClick: PropTypes.func,
+    /**
+     * @ignore
+     */
+    selected: PropTypes.bool,
+    /**
+     * If `true`, the BottomNavigationButton will show his label.
+     */
+    showLabel: PropTypes.bool,
+  };
 
-    onChangeIndex(index);
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
+  };
+
+  handleChange = (event) => {
+    const { onChange, index, onClick } = this.props;
+
+    onChange(event, index);
 
     if (onClick) {
       onClick(event);
@@ -65,7 +105,7 @@ export default class BottomNavigationButton extends Component {
       selected,
       className: classNameProp,
       showLabel: showLabelProp,
-      onChangeIndex, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
       index, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -74,67 +114,28 @@ export default class BottomNavigationButton extends Component {
       [classes.selected]: selected,
       [classes.selectedIconOnly]: !showLabelProp && !selected,
     }, classNameProp);
-    const classNameIcon = classNames(classes.icon,
+    const iconClassName = classNames(classes.icon,
       isValidElement(iconProp) ? iconProp.props.className : null);
-    const classNameLabel = classNames(classes.label, {
+    const icon = isValidElement(iconProp) ?
+      cloneElement(iconProp, { className: iconClassName }) :
+      <span className="material-icons">{iconProp}</span>;
+    const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
       [classes.hiddenLabel]: !showLabelProp && !selected,
     });
-    const icon = isValidElement(iconProp) ?
-      cloneElement(iconProp, { className: classNameIcon }) :
-      <span className="material-icons">{iconProp}</span>;
 
     return (
       <ButtonBase
         className={className}
         focusRipple
         {...other}
-        onClick={this.handleChangeIndex}
+        onClick={this.handleChange}
       >
         {icon}
-        <div className={classNameLabel}>
+        <span className={labelClassName}>
           {label}
-        </div>
+        </span>
       </ButtonBase>
     );
   }
 }
-
-BottomNavigationButton.propTypes = {
-  /**
-   * The CSS class name of the root element.
-   */
-  className: PropTypes.string,
-  /**
-   * The icon element. If a string is passed, it will be used as a material icon font ligature.
-   */
-  icon: PropTypes.node,
-  /**
-   * @ignore
-   */
-  index: PropTypes.number,
-  /**
-   * The label element.
-   */
-  label: PropTypes.node,
-  /**
-   * @ignore
-   */
-  onChangeIndex: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  selected: PropTypes.bool,
-  /**
-   * If true, the BottomNavigationButton will show his label.
-   */
-  showLabel: PropTypes.bool,
-};
-
-BottomNavigationButton.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};

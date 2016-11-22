@@ -34,6 +34,10 @@ export const MUI_SHEET_ORDER = [
   'Radio',
   'RadioGroup',
 
+  'TabIndicator',
+  'Tab',
+  'Tabs',
+
   'BottomNavigationButton',
   'BottomNavigation',
 

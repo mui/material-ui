@@ -56,29 +56,27 @@ describe('<BottomNavigationButton / />', () => {
 
   it('should render icon with the user and icon classes', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
+
     const iconWrapper = wrapper.childAt(0);
     assert.strictEqual(iconWrapper.hasClass('material-icons'), true, 'should have the material-icons class');
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
-  });
 
-  it('should render label with the label class', () => {
-    const wrapper = shallow(<BottomNavigationButton icon={icon} />);
-    const label = wrapper.childAt(1);
-    assert.strictEqual(label.hasClass(classes.label), true, 'should have the label class');
+    const labelWrapper = wrapper.childAt(1);
+    assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
   it('should render label with the selectedLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} selected />);
-    const label = wrapper.childAt(1);
-    assert.strictEqual(label.hasClass(classes.selectedLabel), true, 'should have the selectedLabel class');
-    assert.strictEqual(label.hasClass(classes.label), true, 'should have the label class');
+    const labelWrapper = wrapper.childAt(1);
+    assert.strictEqual(labelWrapper.hasClass(classes.selectedLabel), true);
+    assert.strictEqual(labelWrapper.hasClass(classes.label), true);
   });
 
   it('should render label with the hiddenLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} showLabel={false} />);
-    const label = wrapper.childAt(1);
-    assert.strictEqual(label.hasClass(classes.hiddenLabel), true, 'should have the hiddenLabel class');
-    assert.strictEqual(label.hasClass(classes.label), true, 'should have the label class');
+    const labelWrapper = wrapper.childAt(1);
+    assert.strictEqual(labelWrapper.hasClass(classes.hiddenLabel), true, 'should have the hiddenLabel class');
+    assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
   it('should render a font icon if a icon string is passed', () => {
@@ -90,7 +88,8 @@ describe('<BottomNavigationButton / />', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
       const wrapper = shallow(
-        <BottomNavigationButton icon="book" onClick={handleClick} onChangeIndex={() => {}} />);
+        <BottomNavigationButton icon="book" onClick={handleClick} onChange={() => {}} />,
+      );
       wrapper.simulate('click');
       assert.strictEqual(handleClick.callCount, 1, 'it should forward the onClick');
     });

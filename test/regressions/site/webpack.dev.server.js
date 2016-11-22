@@ -9,7 +9,12 @@ const serverOptions = {
   publicPath: webpackConfig.output.publicPath,
   hot: true,
   historyApiFallback: true,
-  stats: { colors: true },
+  stats: {
+    modules: false,
+    chunks: false,
+    chunkModules: false,
+    colors: true,
+  },
 };
 
 new WebpackDevServer(webpack(webpackConfig), serverOptions)

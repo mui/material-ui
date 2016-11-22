@@ -212,11 +212,11 @@ export default class ButtonBase extends Component {
       className: classNameProp,
       component,
       /**
-       * If true, the base button will be disabled.
+       * If `true`, the base button will be disabled.
        */
       disabled,
       /**
-       * If true, the base button will have a keyboard focus ripple.
+       * If `true`, the base button will have a keyboard focus ripple.
        * Ripple must also be true.
        */
       focusRipple, // eslint-disable-line no-unused-vars
@@ -231,7 +231,7 @@ export default class ButtonBase extends Component {
       onTouchEnd, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       /**
-       * If true, the base button will have a ripple.
+       * If `true`, the base button will have a ripple.
        */
       ripple,
       type,
