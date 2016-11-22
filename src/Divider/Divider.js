@@ -16,6 +16,9 @@ export const styleSheet = createStyleSheet('Divider', (theme) => {
     default: {
       backgroundColor: palette.text.divider,
     },
+    inset: {
+      marginLeft: 72,
+    },
     light: {
       backgroundColor: palette.text.lightDivider,
     },
@@ -33,12 +36,14 @@ export default function Divider(props, context) {
   const {
     absolute,
     className: classNameProp,
+    inset,
     light,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.absolute]: absolute,
+    [classes.inset]: inset,
     [light ? classes.light : classes.default]: true,
   }, classNameProp);
 
@@ -53,11 +58,16 @@ Divider.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If true, the `Divider` will be indented.
+   */
+  inset: PropTypes.bool,
   light: PropTypes.bool,
 };
 
 Divider.defaultProps = {
   absolute: false,
+  inset: false,
   light: false,
 };
 
