@@ -74,6 +74,10 @@ styleSheet.registerLocalTheme((theme) => {
 export default class IconButton extends Component {
   static propTypes = {
     /**
+     * If true, will use the theme's accent color.
+     */
+    accent: PropTypes.bool,
+    /**
      * The icon element. If a string is passed,
      * it will be used as a material icon font ligature.
      */
@@ -82,6 +86,9 @@ export default class IconButton extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * If true, will use the theme's contrast color.
+     */
     contrast: PropTypes.bool,
     /**
      * If true, the button will be disabled.
@@ -98,6 +105,7 @@ export default class IconButton extends Component {
   };
 
   static defaultProps = {
+    accent: false,
     contrast: false,
     disabled: false,
     ripple: true,
@@ -108,11 +116,12 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { children, className, contrast, theme, ...other } = this.props;
+    const { accent, children, className, contrast, theme, ...other } = this.props;
     const classes = this.context.styleManager.render(styleSheet, theme);
     return (
       <ButtonBase
         className={classNames(classes.iconButton, {
+          [classes.accent]: accent,
           [classes.contrast]: contrast,
         }, className)}
         centerRipple
