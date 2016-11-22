@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('SimpleList', (theme) => ({
   },
 }));
 
-const SimpleList = (props, context) => {
+function SimpleList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.root}>
@@ -42,7 +42,7 @@ const SimpleList = (props, context) => {
       </List>
     </div>
   );
-};
+}
 
 SimpleList.contextTypes = {
   styleManager: PropTypes.object.isRequired,

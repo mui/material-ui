@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('FolderList', (theme) => ({
   },
 }));
 
-const FolderList = (props, context) => {
+function FolderList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.root}>
@@ -33,7 +33,7 @@ const FolderList = (props, context) => {
       </List>
     </div>
   );
-};
+}
 
 FolderList.contextTypes = {
   styleManager: PropTypes.object.isRequired,
