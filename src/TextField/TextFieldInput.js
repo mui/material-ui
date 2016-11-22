@@ -96,12 +96,12 @@ export default class TextFieldInput extends Component {
 
   componentWillMount() {
     if (this.isControlled()) {
-      this.checkDirty();
+      this.checkDirty(this.props);
     }
   }
 
-  componentWillUpdate() {
-    this.checkDirty();
+  componentWillUpdate(nextProps) {
+    this.checkDirty(nextProps);
   }
 
   // Holds the input reference
@@ -109,7 +109,7 @@ export default class TextFieldInput extends Component {
 
   handleChange = (event) => {
     if (!this.isControlled()) {
-      this.checkDirty();
+      this.checkDirty(this.input);
     }
     if (this.props.onChange) {
       this.props.onChange(event);
@@ -120,8 +120,8 @@ export default class TextFieldInput extends Component {
     return typeof this.props.value === 'string';
   }
 
-  checkDirty() {
-    if (this.props.onDirty && isDirty(this.input)) {
+  checkDirty(obj) {
+    if (this.props.onDirty && isDirty(obj)) {
       this.props.onDirty();
     } else if (this.props.onClean) {
       this.props.onClean();
