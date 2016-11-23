@@ -44,7 +44,7 @@ Checkbox.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   labelClassName: PropTypes.string,
 };
 
