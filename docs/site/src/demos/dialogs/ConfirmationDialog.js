@@ -161,7 +161,7 @@ export default class ConfirmationDialogDemo extends Component {
             />
           </ListItem>
           <ConfirmationDialog
-            className={classes.dialog}
+            paperClassName={classes.dialog}
             open={this.state.open}
             onRequestClose={this.handleRequestClose}
             selectedValue={this.state.selectedValue}
