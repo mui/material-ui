@@ -15,19 +15,25 @@ describe('<Checkbox />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a SwitchBase', () => {
+  it('should render a SwitchBase when label not present', () => {
     const wrapper = shallow(
       <Checkbox />,
     );
-    const switchBase = wrapper.childAt(0);
+    assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
+  });
+
+  it('should render a label', () => {
+    const wrapper = shallow(
+      <Checkbox label="Foo" />,
+    );
     assert.strictEqual(wrapper.is('SelectionLabel'), true, 'should be a SelectionLabel');
-    assert.strictEqual(switchBase.is('SwitchBase'), true, 'should be a SwitchBase');
   });
 
   it('should render with the default and checked classes', () => {
     const wrapper = shallow(
       <Checkbox
         checked
+        label="Foo"
         labelClassName="foo"
         className="woof"
         checkedClassName="meow"
@@ -50,7 +56,7 @@ describe('<Checkbox />', () => {
   });
 
   it('should spread custom props on the switchBase node', () => {
-    const wrapper = shallow(<Checkbox data-my-prop="woof" />);
+    const wrapper = shallow(<Checkbox label="Foo" data-my-prop="woof" />);
     const switchBase = wrapper.childAt(0);
     assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });

@@ -15,11 +15,18 @@ describe('<Radio />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a SwitchBase', () => {
+  it('should render a SwitchBase when label not present', () => {
     const wrapper = shallow(
       <Radio />,
     );
     assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
+  });
+
+  it('should render a label', () => {
+    const wrapper = shallow(
+      <Radio label="Foo" />,
+    );
+    assert.strictEqual(wrapper.is('SelectionLabel'), true, 'should be a SelectionLabel');
   });
 
   it('should render with the default and checked classes', () => {
@@ -38,8 +45,9 @@ describe('<Radio />', () => {
     );
   });
 
-  it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<Radio data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+  it('should spread custom props on the switchBase node', () => {
+    const wrapper = shallow(<Radio label="Foo" data-my-prop="woof" />);
+    const switchBase = wrapper.childAt(0);
+    assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 });

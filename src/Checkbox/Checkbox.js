@@ -20,16 +20,23 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
 export default function Checkbox(props, context) {
   const { className, checkedClassName, label, labelClassName, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
-  return (
-    <SelectionLabel label={label} className={labelClassName}>
-      <SwitchBase
-        className={classNames(classes.default, className)}
-        checkedClassName={classNames(classes.checked, checkedClassName)}
-        aria-label={label}
-        {...other}
-      />
-    </SelectionLabel>
-  );
+
+  const switchProps = {
+    className: classNames(classes.default, className),
+    checkedClassName: classNames(classes.checked, checkedClassName),
+    ...other,
+  };
+
+  if (label) {
+    switchProps['aria-label'] = label;
+    return (
+      <SelectionLabel label={label} className={labelClassName}>
+        <SwitchBase {...switchProps} />
+      </SelectionLabel>
+    );
+  }
+
+  return <SwitchBase {...switchProps} />;
 }
 
 Checkbox.propTypes = {
