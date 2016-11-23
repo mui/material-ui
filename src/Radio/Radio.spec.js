@@ -45,7 +45,7 @@ describe('<Radio />', () => {
     );
   });
 
-  it('should spread custom props on the switchBase node', () => {
+  it('should spread custom props on the root node', () => {
     const wrapper = shallow(<Radio label="Foo" data-my-prop="woof" />);
     const switchBase = wrapper.childAt(0);
     assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
