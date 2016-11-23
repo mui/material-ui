@@ -14,12 +14,6 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
     checked: {
       color: theme.palette.accent[500],
     },
-    label: {
-      marginLeft: -12,
-      display: 'flex',
-      alignItems: 'center',
-      cursor: 'pointer',
-    },
   };
 });
 
