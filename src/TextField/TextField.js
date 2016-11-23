@@ -77,7 +77,7 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
-     * Whether the label should be displayed in an error state
+     * Whether the label should be displayed in an error state.
      */
     error: PropTypes.bool,
   };
