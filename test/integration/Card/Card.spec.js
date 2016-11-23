@@ -8,11 +8,13 @@ import FlatButton from 'src/FlatButton';
 import OpenIcon from 'src/svg-icons/action/visibility';
 import CloseIcon from 'src/svg-icons/action/visibility-off';
 
-
 describe('<Card />', () => {
   const muiTheme = getMuiTheme();
-  const mountWithContext = (node) => mount(node, {context: {muiTheme},
-    childContextTypes: {muiTheme: React.PropTypes.object}});
+  const mountWithContext = (node) => mount(node, {
+    context: {muiTheme},
+    childContextTypes: {muiTheme: React.PropTypes.object},
+  });
+
   it('renders a openIcon inside the CardHeader with custom color', () => {
     const wrapper = mountWithContext(
       <Card>
