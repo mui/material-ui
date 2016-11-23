@@ -19,27 +19,39 @@ describe('<Checkbox />', () => {
     const wrapper = shallow(
       <Checkbox />,
     );
-    assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
+    const switchBase = wrapper.childAt(0);
+    assert.strictEqual(wrapper.is('label'), true, 'should be a label');
+    assert.strictEqual(switchBase.is('SwitchBase'), true, 'should be a SwitchBase');
   });
 
   it('should render with the default and checked classes', () => {
-    const wrapper = shallow(<Checkbox checked className="woof" checkedClassName="meow" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.default), true, 'should have the default class');
+    const wrapper = shallow(
+      <Checkbox
+        checked
+        labelClassName="foo"
+        className="woof"
+        checkedClassName="meow"
+      />,
+    );
+    const switchBase = wrapper.childAt(0);
+    assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
+    assert.strictEqual(switchBase.hasClass('woof'), true, 'should have the "woof" class');
+    assert.strictEqual(switchBase.hasClass(classes.default), true, 'should have the default class');
     assert.strictEqual(
-      wrapper.prop('checkedClassName').indexOf('meow') !== -1,
+      switchBase.prop('checkedClassName').indexOf('meow') !== -1,
       true,
       'should have the "meow" class',
     );
     assert.strictEqual(
-      wrapper.prop('checkedClassName').indexOf(classes.checked) !== -1,
+      switchBase.prop('checkedClassName').indexOf(classes.checked) !== -1,
       true,
       'should have the checked class',
     );
   });
 
-  it('should spread custom props on the root node', () => {
+  it('should spread custom props on the switchBase node', () => {
     const wrapper = shallow(<Checkbox data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const switchBase = wrapper.childAt(0);
+    assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 });
