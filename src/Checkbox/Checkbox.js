@@ -13,18 +13,28 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
     checked: {
       color: theme.palette.accent[500],
     },
+    label: {
+      marginLeft: -12,
+      display: 'flex',
+      alignItems: 'center',
+      cursor: 'pointer',
+    },
   };
 });
 
 export default function Checkbox(props, context) {
-  const { className, checkedClassName, ...other } = props;
+  const { className, checkedClassName, label, labelClassName, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
   return (
-    <SwitchBase
-      className={classNames(classes.default, className)}
-      checkedClassName={classNames(classes.checked, checkedClassName)}
-      {...other}
-    />
+    <label className={classNames(classes.label, labelClassName)} role="presentation">
+      <SwitchBase
+        className={classNames(classes.default, className)}
+        checkedClassName={classNames(classes.checked, checkedClassName)}
+        aria-label={label}
+        {...other}
+      />
+      <span aria-hidden="true" role="presentation">{label}</span>
+    </label>
   );
 }
 
@@ -34,6 +44,8 @@ Checkbox.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string,
 };
 
 Checkbox.contextTypes = {
