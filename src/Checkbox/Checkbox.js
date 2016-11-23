@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
+import SelectionLabel from '../internal/SelectionLabel';
 
 export const styleSheet = createStyleSheet('Checkbox', (theme) => {
   return {
@@ -26,15 +27,14 @@ export default function Checkbox(props, context) {
   const { className, checkedClassName, label, labelClassName, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
   return (
-    <label className={classNames(classes.label, labelClassName)} role="presentation">
+    <SelectionLabel label={label} className={labelClassName}>
       <SwitchBase
         className={classNames(classes.default, className)}
         checkedClassName={classNames(classes.checked, checkedClassName)}
         aria-label={label}
         {...other}
       />
-      <span aria-hidden="true" role="presentation">{label}</span>
-    </label>
+    </SelectionLabel>
   );
 }
 
