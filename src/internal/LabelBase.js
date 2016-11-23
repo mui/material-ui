@@ -73,7 +73,7 @@ LabelBase.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * Whether this label should indicate that the input
+   * Whether this label should indicate that the input.
    * is required.
    */
   required: PropTypes.bool,
@@ -88,5 +88,3 @@ LabelBase.defaultProps = {
 LabelBase.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
-
-LabelBase.muiName = 'LabelBase';
