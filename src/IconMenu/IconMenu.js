@@ -44,6 +44,10 @@ class IconMenu extends Component {
      */
     iconStyle: PropTypes.object,
     /**
+     * Override the inline-styles of the underlying `List` element.
+     */
+    listStyle: PropTypes.object,
+    /**
      * Override the inline-styles of the menu element.
      */
     menuStyle: PropTypes.object,
@@ -241,6 +245,7 @@ class IconMenu extends Component {
       onMouseUp,
       onRequestChange, // eslint-disable-line no-unused-vars
       onTouchTap,
+      listStyle,
       menuStyle,
       style,
       targetOrigin,
@@ -290,6 +295,7 @@ You should wrapped it with an <IconButton />.`);
         onEscKeyDown={this.handleEscKeyDownMenu}
         onItemTouchTap={this.handleItemTouchTap}
         style={mergedMenuStyles}
+        listStyle={listStyle}
       >
         {this.props.children}
       </Menu>
