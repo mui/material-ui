@@ -20,7 +20,7 @@ describe('<Checkbox />', () => {
       <Checkbox />,
     );
     const switchBase = wrapper.childAt(0);
-    assert.strictEqual(wrapper.is('label'), true, 'should be a label');
+    assert.strictEqual(wrapper.is('SelectionLabel'), true, 'should be a SelectionLabel');
     assert.strictEqual(switchBase.is('SwitchBase'), true, 'should be a SwitchBase');
   });
 

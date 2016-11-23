@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('SelectionLabel', () => {
   return {
-    label: {
+    root: {
       marginLeft: -12,
       marginRight: 16, // used for row presentation of radio/checkbox
       display: 'flex',
@@ -20,7 +20,7 @@ export default function SelectionLabel(props, context) {
   const { label, labelClassName, children } = props;
   const classes = context.styleManager.render(styleSheet);
   return (
-    <label className={classNames(classes.label, labelClassName)} role="presentation">
+    <label className={classNames(classes.root, labelClassName)} role="presentation">
       {children}
       <span aria-hidden="true" role="presentation">{label}</span>
     </label>
@@ -28,7 +28,7 @@ export default function SelectionLabel(props, context) {
 }
 
 SelectionLabel.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   label: PropTypes.node,
   labelClassName: PropTypes.string,
 };

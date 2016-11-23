@@ -42,39 +42,4 @@ describe('<Radio />', () => {
     const wrapper = shallow(<Radio data-my-prop="woof" />);
     assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
-
-  describe('integrated label', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = shallow(
-        <Radio label="Pizza" />,
-      );
-    });
-
-    it('should render the SwitchBase inside a label', () => {
-      assert.strictEqual(wrapper.is('label'), true, 'should render a label');
-      assert.strictEqual(
-        wrapper.prop('role'),
-        'presentation',
-        'should set the role to presentation for screen readers',
-      );
-      assert.strictEqual(wrapper.childAt(0).is('SwitchBase'), true, 'should be the SwitchBase');
-    });
-
-    it('should render the label text inside an additional span', () => {
-      assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should render a span after the SwitchBase');
-      assert.strictEqual(
-        wrapper.childAt(1).prop('role'),
-        'presentation',
-        'should set the role to presentation for screen readers',
-      );
-      assert.strictEqual(
-        wrapper.childAt(1).prop('aria-hidden'),
-        'true',
-        'should set to aria hidden for screen readers',
-      );
-      assert.strictEqual(wrapper.childAt(1).childAt(0).node, 'Pizza', 'should be the label text');
-    });
-  });
 });
