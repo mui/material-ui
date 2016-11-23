@@ -263,8 +263,6 @@ class AutoComplete extends Component {
         searchText: searchText,
       });
       this.close();
-
-      this.props.onUpdateInput(searchText, dataSource);
       this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
   };
