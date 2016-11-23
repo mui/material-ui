@@ -2,6 +2,7 @@
 
 import React from 'react';
 import TimePicker from 'material-ui/TimePicker/TimePicker';
+import ClockQuadrant from 'material-ui/TimePicker/ClockQuadrant';
 
 export default function BasicTimePicker() {
   return (
@@ -17,6 +18,9 @@ export default function BasicTimePicker() {
       </div>
       <div>
         <TimePicker landscape hintText="12hr Format landscape" />
+      </div>
+      <div style={{ width: '300px', height: '300px' }}>
+        <ClockQuadrant mode="hour" quadrantDimension={300} />
       </div>
     </div>);
 }
