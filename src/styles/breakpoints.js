@@ -5,7 +5,7 @@ const getPriority = flow(
   toPairs,
   sortBy(([, v]) => v),
   reverse,
-  map(([k]) => k)
+  map(([k]) => k),
 );
 export default function createBreakpoints(
   breakpoints = {

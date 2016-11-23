@@ -24,15 +24,15 @@ describe('withFlex HOC', () => {
     assert.isOk(className, 'should have className prop');
     const classNames = className.split(' ');
     const expected = [
-      classes['layout-row'],
+      classes.layoutRow,
       classes.flex,
-      classes['justify-start'],
-      classes['align-stretch'],
+      classes.justifyStart,
+      classes.alignStretch,
     ];
     assert.sameMembers(
       classNames,
       expected,
-      `wrapped component should have className prop be ${expected.join(' ')}`
+      `wrapped component should have className prop be ${expected.join(' ')}`,
     );
   });
 });

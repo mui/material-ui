@@ -27,9 +27,9 @@ describe('<Block /> component', () => {
     assert.isOk(className, 'should have className prop');
     const classNames = className.split(' ');
     const expected = [
-      classes['layout-row'],
-      classes['align-stretch'],
-      classes['justify-start'],
+      classes.layoutRow,
+      classes.alignStretch,
+      classes.justifyStart,
     ];
     assert.sameMembers(classNames, expected, `should have className prop be ${expected.join(' ')}`);
   });
@@ -40,16 +40,16 @@ describe('<Block /> component', () => {
         fill
         align="start"
         justify="start"
-      />
+      />,
       );
     const className = wrapper.prop('className');
     assert.isOk(className, 'should have className prop');
     const classNames = className.split(' ');
     const expected = [
-      classes['layout-row'],
-      classes['layout-fill'],
-      classes['justify-start'],
-      classes['align-start'],
+      classes.layoutRow,
+      classes.layoutFill,
+      classes.justifyStart,
+      classes.alignStart,
     ];
     assert.sameMembers(classNames, expected, `should have className prop be ${expected.join(' ')}`);
   });
@@ -76,7 +76,7 @@ describe('<Block /> component', () => {
           <Block flex={50}>flex 50%</Block>
           <Block flex="none">flex none</Block>
           <Block flex="grow">flex none</Block>
-        </Block>
+        </Block>,
       );
     });
     it('should have .flex class', () => {
@@ -84,24 +84,24 @@ describe('<Block /> component', () => {
       const expected = classes.flex;
       assert.strictEqual(actual, expected, `the class should be ${expected}`);
     });
-    it('should have .flex-33 class', () => {
+    it('should have .flex33 class', () => {
       const actual = wrapper.childAt(1).find('div').prop('className');
-      const expected = 'flex-33';
+      const expected = classes.flex33;
       assert.strictEqual(actual, expected, `the class should be ${expected}`);
     });
-    it('should have .flex-50 class', () => {
+    it('should have .flex50 class', () => {
       const actual = wrapper.childAt(2).find('div').prop('className');
-      const expected = 'flex-50';
+      const expected = classes.flex50;
       assert.strictEqual(actual, expected, `the class should be ${expected}`);
     });
-    it('should have .flex-none class', () => {
+    it('should have .flexNone class', () => {
       const actual = wrapper.childAt(3).find('div').prop('className');
-      const expected = classes['flex-none'];
+      const expected = classes.flexNone;
       assert.strictEqual(actual, expected, `the class should be ${expected}`);
     });
     it('should have .flex-grow class', () => {
       const actual = wrapper.childAt(4).find('div').prop('className');
-      const expected = classes['flex-grow'];
+      const expected = classes.flexGrow;
       assert.strictEqual(actual, expected, `the class should be ${expected}`);
     });
   });

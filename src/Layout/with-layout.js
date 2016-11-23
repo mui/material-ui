@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { mapKeys, flow, camelCase } from 'lodash/fp';
 import layoutStyles from './layout-styles';
 
 export const styleSheet = createStyleSheet('Block', layoutStyles);
@@ -20,7 +21,7 @@ const BreakPointEnum = PropTypes.oneOf(['xl', 'lg', 'md', 'sm', 'xs']);
 const layoutExists = (props, propName, componentName) => {
   if (props[propName] && !props.layout) {
     return new Error(
-      `\`layout\` property must be specified for \`${componentName}\` before using \`${propName}\` property`
+      `\`layout\` property must be specified for \`${componentName}\` before using \`${propName}\` property`,
     );
   }
   return null;
@@ -35,7 +36,7 @@ const layoutExists = (props, propName, componentName) => {
 const flexExists = (props, propName, componentName) => {
   if (props[propName] && !props.flex) {
     return Error(
-      `\`flex\` property must be specified for \`${componentName}\` before using \`${propName}\` property`
+      `\`flex\` property must be specified for \`${componentName}\` before using \`${propName}\` property`,
     );
   }
   return null;
@@ -59,8 +60,6 @@ const FlexProps = {
     'center',
     'end',
     'stretch',
-    'space-between',
-    'space-around',
   ]),
   justify: PropTypes.oneOf([
     'start',
@@ -95,7 +94,16 @@ const FlexProps = {
 };
 const FlexPropsShape = PropTypes.shape(FlexProps);
 
-function flexPropsMapper({
+const breakpointShape = {
+  lg: FlexPropsShape,
+  md: FlexPropsShape,
+  sm: FlexPropsShape,
+  xl: FlexPropsShape,
+  xs: FlexPropsShape,
+};
+
+
+function propsMapper({
   scroll,
   layout,
   padding = false,
@@ -107,44 +115,44 @@ function flexPropsMapper({
   align = 'stretch', // Cross Axis
   justify = 'start', // Main Axis
   wrap,
-  ...otherProps,
+  ...otherProps
 }, classes) {
+  const getClassName = flow(
+    camelCase,
+    (k) => classes[k],
+  );
+  const applyClasses = mapKeys(getClassName);
   let layoutClassNames = {};
   if (layout) {
-    layoutClassNames = {
-      [classes[`layout-${layout}`]]: true,
-      [classes['layout-fill']]: fill,
-      [classes['layout-padding']]: padding,
-      [classes['layout-margin']]: margin,
-      [classes[`justify-${justify}`]]: true,
-      [classes[`align-${align}`]]: true,
-      [classes['layout-scrollx']]: ((typeof scroll === 'boolean') && scroll) || scroll === 'x',
-      [classes['layout-scrolly']]: ((typeof scroll === 'boolean') && scroll) || scroll === 'y',
-    };
+    layoutClassNames = applyClasses({
+      [`layout-${layout}`]: true,
+      layoutFill: fill,
+      layoutPadding: padding,
+      layoutMargin: margin,
+      [`justify-${justify}`]: true,
+      [`align-${align}`]: true,
+      layoutScrollX: ((typeof scroll === 'boolean') && scroll) || scroll === 'x',
+      layoutScrollY: ((typeof scroll === 'boolean') && scroll) || scroll === 'y',
+    });
   }
-  let flexClassNames = {};
 
+  let flexClassNames = {};
   if (flex) {
-    let flexClassName = (typeof flex === 'boolean') ? 'flex' : `flex-${flex}`;
-    if (classes[flexClassName]) flexClassName = classes[flexClassName];
-    flexClassNames = {
-      [classes['flex-wrap']]: wrap && wrap !== 'nowrap',
-      [classes['flex-nowrap']]: wrap === 'nowrap',
-      [classes[`flex-order${order}`]]: !!order,
-      [classes[`flex-offset${offset}`]]: !!offset,
+    const flexClassName = (typeof flex === 'boolean') ? 'flex' : `flex-${flex}`;
+    flexClassNames = applyClasses({
       [flexClassName]: true,
-    };
+      flexWrap: wrap && wrap !== 'nowrap',
+      flexNowrap: wrap === 'nowrap',
+      [`flexOrder${order}`]: !!order,
+      [`flexOffset${order}`]: !!order,
+    });
   }
-  return {
-    ...otherProps,
-    layoutClassNames,
-    flexClassNames,
-  };
+  return { ...otherProps, layoutClassNames, flexClassNames };
 }
 
 /*
-* withLayout HOC can be used to wrap any component to make them a layout component.
-*/
+ * withLayout HOC can be used to wrap any component to make them a layout component.
+ */
 export default function withLayout(BaseComponent) {
   const factory = React.createFactory(BaseComponent);
   const layoutWrapper = (props, context) => {
@@ -157,7 +165,7 @@ export default function withLayout(BaseComponent) {
       md,
       lg,
       xl,
-      ...others,
+      ...others
   } = props;
     const { styleManager, theme: { breakpoints: { isMatch, priority } } } = context;
     const matched = priority.find(isMatch);
@@ -169,35 +177,23 @@ export default function withLayout(BaseComponent) {
       if (typeof show === 'string' && show !== matched) return null;
       if (Array.isArray(show) && !show.includes(matched)) return null;
     }
-
     const classes = styleManager.render(styleSheet);
     const breakpointProps = { xs, sm, md, lg, xl };
+
     let layoutProps = { ...others };
     if (matched && breakpointProps[matched]) layoutProps = { ...layoutProps, ...breakpointProps[matched] };
-    const {
-  layoutClassNames,
-  flexClassNames,
-      ...otherProps,
-    } = flexPropsMapper(layoutProps, classes);
+
+    const { layoutClassNames, flexClassNames, ...otherProps } = propsMapper(layoutProps, classes);
+
     const className = classNames(layoutClassNames, flexClassNames, classNameProp);
     return factory({ className, ...otherProps });
   };
 
   layoutWrapper.propTypes = {
     className: PropTypes.string,
-    show: PropTypes.oneOfType([
-      BreakPointEnum,
-      PropTypes.arrayOf(BreakPointEnum),
-    ]),
-    hide: PropTypes.oneOfType([
-      BreakPointEnum,
-      PropTypes.arrayOf(BreakPointEnum),
-    ]),
-    xs: FlexPropsShape,
-    sm: FlexPropsShape,
-    md: FlexPropsShape,
-    lg: FlexPropsShape,
-    xl: FlexPropsShape,
+    hide: PropTypes.oneOfType([ BreakPointEnum, PropTypes.arrayOf(BreakPointEnum) ]),
+    show: PropTypes.oneOfType([BreakPointEnum, PropTypes.arrayOf(BreakPointEnum)]),
+    ...breakpointShape,
     ...FlexProps,
   };
   layoutWrapper.contextTypes = {

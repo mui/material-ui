@@ -1,114 +1,92 @@
 // @flow weak
-import { reduce, range, flow } from 'lodash/fp';
+import { reduce, range, flow, partialRight } from 'lodash/fp';
 
 const baselineGrid = 8;
 
-const flexOrder = () => {
-  const names = flow(
-    range,
-    reduce((a, i) => ({
-      ...a,
-      [`flex-order${i}`]: { order: i },
-    }), {})
-  )(-20, 20);
-  return {
-    'flex-order': { order: 0 },
-    ...names,
-  };
-};
+const generateProps = (propSetter, from, to) => flow(
+  range,
+  reduce((a, i) => ({
+    ...a,
+    ...propSetter(i),
+  }), { }),
+)(from, to);
 
-const offset = () => {
-  const offsets = flow(
-    range,
-    reduce((a, i) => ({
-      ...a,
-      [`flex-offset${i}`]: { marginLeft: `${i * 5}%` },
-    }), {})
-  )(0, 19);
-
-  return {
-    ...offsets,
-    'flex-offset33': { marginLeft: 'calc(100% / 3)' },
-    'flex-offset66': { marginLeft: 'calc(200% / 3)' },
-  };
-};
-
-const flexProps = () => ({
-  flex: { flex: 1, boxSizing: 'border-box' },
-  'flex-grow': { flex: '1 1 100%', boxSizing: 'border-box' },
-  'flex-initial': { flex: '0 1 auto', boxSizing: 'border-box' },
-  'flex-none': { flex: '1 1 auto', boxSizing: 'border-box' },
-  'flex-noshrink': { flex: '1 0 auto', boxSizing: 'border-box' },
-  'flex-nogrow': { flex: '0 1 auto', boxSizing: 'border-box' },
+const flexOrder = () => ({
+  flexOrder: { order: 0 },
+  ...generateProps((i) => ({ [`flexOrder${i}`]: { order: i } }), -20, 20),
 });
 
-const flexPropsFor = ({ row, col }) => {
-  const flex = {
-    '& > .flex-33': {
-      flex: '1 1 calc(100% / 3)',
-      maxWidth: row ? 'calc(100% / 3)' : '100%',
-      maxHeight: col ? 'calc(100% / 3)' : '100%',
-      boxSizing: 'border-box',
-    },
-    '& > .flex-66': {
-      flex: '1 1 calc(200% / 3)',
-      maxWidth: row ? 'calc(200% / 3)' : '100%',
-      maxHeight: col ? 'calc(200% / 3)' : '100%',
-      boxSizing: 'border-box',
-    },
-  };
-  return flow(
-    range,
-    reduce((a, i) => {
-      const val = i * 5;
-      const k = `flex${val}`;
-      return {
-        ...a,
-        [`& > .${k}`]: {
-          flex: `1 1 ${val}%`,
-          maxWidth: `${row ? val : 100}%`,
-          maxHeight: `${col ? val : 100}%`,
-          boxSizing: 'border-box',
-        },
-      };
-    }, flex)
-  )(0, 20);
-};
+const offset = () => ({
+  ...generateProps((i) => ({ [`flexOffset${i}`]: { marginLeft: `${i * 5}%` } }), 0, 19),
+  flexOffset33: { marginLeft: 'calc(100% / 3)' },
+  flexOffset66: { marginLeft: 'calc(200% / 3)' },
+});
+
+
+const generateFlexProps = partialRight(generateProps, [0, 20]);
+const flexProps = () => ({
+  flex: { flex: 1, boxSizing: 'border-box' },
+  flexGrow: { flex: '1 1 100%', boxSizing: 'border-box' },
+  flexInitial: { flex: '0 1 auto', boxSizing: 'border-box' },
+  flexNone: { flex: '1 1 auto', boxSizing: 'border-box' },
+  flexNoshrink: { flex: '1 0 auto', boxSizing: 'border-box' },
+  flexNogrow: { flex: '0 1 auto', boxSizing: 'border-box' },
+  flex33: { flex: '1 1 calc(100%/3)', boxSizing: 'border-box' },
+  flex66: { flex: '1 1 calc(200%/3)', boxSizing: 'border-box' },
+  ...generateFlexProps((i) => {
+    const val = i * 5;
+    const k = `flex${val}`;
+    return { [k]: { flex: `1 1 ${val}%`, boxSizing: 'border-box' } };
+  }),
+});
+
 
 const layout = () => {
   const layoutBox = {
     boxSizing: 'border-box',
     display: 'flex',
   };
+
+  const flexFor = (dir) => generateFlexProps((i) => {
+    const val = i * 5;
+    const k = `& $flex${val}`;
+    const maxWidth = dir === 'row' ? `${val}%` : '100%';
+    const maxHeight = dir === 'row' ? '100%' : `${val}%`;
+    return { [k]: { maxWidth, maxHeight } };
+  });
   return {
-    'layout-column': {
+    layoutColumn: {
       ...layoutBox,
       flexDirection: 'column',
-      ...flexPropsFor({ col: true }),
+      '& $flex33': { maxWidth: '100%', maxHeight: 'calc(100% / 3)' },
+      '& $flex66': { maxWidth: '100%', maxHeight: 'calc(200% / 3)' },
+      ...flexFor('col'),
     },
-    'layout-row': {
+    layoutRow: {
       ...layoutBox,
       flexDirection: 'row',
-      ...flexPropsFor({ row: true }),
+      '& $flex33': { maxHeight: '100%', maxWidth: 'calc(100% / 3)' },
+      '& $flex66': { maxHeight: '100%', maxWidth: 'calc(200% / 3)' },
+      ...flexFor('row'),
     },
   };
 };
 
 const layoutAlign = () => ({
-  'justify-start': { justifyContent: 'flex-start' },
-  'justify-center': { justifyContent: 'center' },
-  'justify-end': { justifyContent: 'flex-end' },
-  'justify-spaceAround': { justifyContent: 'space-around' },
-  'justify-spaceBetween': { justifyContent: 'space-between' },
+  justifyStart: { justifyContent: 'flex-start' },
+  justifyCenter: { justifyContent: 'center' },
+  justifyEnd: { justifyContent: 'flex-end' },
+  justifySpaceAround: { justifyContent: 'space-around' },
+  justifySpaceBetween: { justifyContent: 'space-between' },
 
-  'align-start': { alignItems: 'flex-start', alignContent: 'flex-start' },
-  'align-center': { alignItems: 'center', alignContent: 'center', maxWidth: '100%' },
-  'align-end': { alignItems: 'flex-end', alignContent: 'flex-end' },
-  'align-stretch': { alignItems: 'stretch', alignContent: 'stretch' },
+  alignStart: { alignItems: 'flex-start', alignContent: 'flex-start' },
+  alignCenter: { alignItems: 'center', alignContent: 'center', maxWidth: '100%' },
+  alignEnd: { alignItems: 'flex-end', alignContent: 'flex-end' },
+  alignStretch: { alignItems: 'stretch', alignContent: 'stretch' },
 });
 
 const layoutPaddingMargin = ({ breakpoints, gutterWidth = baselineGrid * 2 }) => ({
-  'layout-padding': {
+  layoutPadding: {
     '& > *': { padding: gutterWidth },
     [breakpoints.down('sm')]: {
       '& > *': { padding: gutterWidth / 4 },
@@ -120,7 +98,7 @@ const layoutPaddingMargin = ({ breakpoints, gutterWidth = baselineGrid * 2 }) =>
       '& > *': { padding: gutterWidth / 2 },
     },
   },
-  'layout-margin': {
+  layoutMargin: {
     '& > *': { margin: gutterWidth },
     [breakpoints.down('sm')]: {
       '& > *': { margin: gutterWidth / 4 },
@@ -132,15 +110,15 @@ const layoutPaddingMargin = ({ breakpoints, gutterWidth = baselineGrid * 2 }) =>
       '& > *': { margin: gutterWidth / 2 },
     },
   },
-  'layout-scrollx': {
+  layoutScrollX: {
     overflowX: 'auto',
   },
-  'layout-scrolly': {
+  layoutScrollY: {
     overflowy: 'auto',
   },
-  'flex-wrap': { flexWrap: 'wrap' },
-  'flex-nowrap': { flexNoWrap: 'nowrap' },
-  'layout-fill': {
+  flexWrap: { flexWrap: 'wrap' },
+  flexNowrap: { flexNoWrap: 'nowrap' },
+  layoutFill: {
     margin: 0,
     width: '100%',
     minHeight: '100%',
