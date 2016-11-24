@@ -405,7 +405,7 @@ class TextField extends Component {
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
         style={Object.assign(styles.floatingLabel, floatingLabelStyle)}
-        shrinkStyle={floatingLabelFocusStyle}
+        shrinkStyle={this.state.isFocused ? floatingLabelFocusStyle : null}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
