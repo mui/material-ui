@@ -22,55 +22,52 @@ const offset = () => ({
   flexOffset66: { marginLeft: 'calc(200% / 3)' },
 });
 
-
+const boxSizing = 'border-box';
 const generateFlexProps = partialRight(generateProps, [0, 20]);
 const flexProps = () => ({
-  flex: { flex: 1, boxSizing: 'border-box' },
-  flexGrow: { flex: '1 1 100%', boxSizing: 'border-box' },
-  flexInitial: { flex: '0 1 auto', boxSizing: 'border-box' },
-  flexNone: { flex: '1 1 auto', boxSizing: 'border-box' },
-  flexNoshrink: { flex: '1 0 auto', boxSizing: 'border-box' },
-  flexNogrow: { flex: '0 1 auto', boxSizing: 'border-box' },
-  flex33: { flex: '1 1 calc(100%/3)', boxSizing: 'border-box' },
-  flex66: { flex: '1 1 calc(200%/3)', boxSizing: 'border-box' },
+  flex: { flex: 1, boxSizing },
+  flexGrow: { flex: '1 1 100%', boxSizing },
+  flexInitial: { flex: '0 1 auto', boxSizing },
+  flexNone: { flex: '0 0 auto', boxSizing },
+  flexNoshrink: { flex: '1 0 auto', boxSizing },
+  flexNogrow: { flex: '0 1 auto', boxSizing },
+  flex33: { flex: '1 1 calc(100%/3)', boxSizing },
+  flex66: { flex: '1 1 calc(200%/3)', boxSizing },
   ...generateFlexProps((i) => {
     const val = i * 5;
     const k = `flex${val}`;
-    return { [k]: { flex: `1 1 ${val}%`, boxSizing: 'border-box' } };
+    return { [k]: { flex: `1 1 ${val}%`, boxSizing } };
   }),
 });
 
 
-const layout = () => {
-  const layoutBox = {
-    boxSizing: 'border-box',
-    display: 'flex',
-  };
-
-  const flexFor = (dir) => generateFlexProps((i) => {
-    const val = i * 5;
-    const k = `& $flex${val}`;
-    const maxWidth = dir === 'row' ? `${val}%` : '100%';
-    const maxHeight = dir === 'row' ? '100%' : `${val}%`;
-    return { [k]: { maxWidth, maxHeight } };
-  });
-  return {
-    layoutColumn: {
-      ...layoutBox,
-      flexDirection: 'column',
-      '& $flex33': { maxWidth: '100%', maxHeight: 'calc(100% / 3)' },
-      '& $flex66': { maxWidth: '100%', maxHeight: 'calc(200% / 3)' },
-      ...flexFor('col'),
-    },
-    layoutRow: {
-      ...layoutBox,
-      flexDirection: 'row',
-      '& $flex33': { maxHeight: '100%', maxWidth: 'calc(100% / 3)' },
-      '& $flex66': { maxHeight: '100%', maxWidth: 'calc(200% / 3)' },
-      ...flexFor('row'),
-    },
-  };
+const layoutBox = {
+  boxSizing,
+  display: 'flex',
 };
+const flexFor = (dir) => generateFlexProps((i) => {
+  const val = i * 5;
+  const k = `& $flex${val}`;
+  const maxWidth = dir === 'row' ? `${val}%` : '100%';
+  const maxHeight = dir === 'row' ? '100%' : `${val}%`;
+  return { [k]: { maxWidth, maxHeight } };
+});
+const layout = () => ({
+  layoutColumn: {
+    ...layoutBox,
+    flexDirection: 'column',
+    '& $flex33': { maxWidth: '100%', maxHeight: 'calc(100% / 3)' },
+    '& $flex66': { maxWidth: '100%', maxHeight: 'calc(200% / 3)' },
+    ...flexFor('col'),
+  },
+  layoutRow: {
+    ...layoutBox,
+    flexDirection: 'row',
+    '& $flex33': { maxHeight: '100%', maxWidth: 'calc(100% / 3)' },
+    '& $flex66': { maxHeight: '100%', maxWidth: 'calc(200% / 3)' },
+    ...flexFor('row'),
+  },
+});
 
 const layoutAlign = () => ({
   justifyStart: { justifyContent: 'flex-start' },
