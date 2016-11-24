@@ -10,6 +10,7 @@ import {dateTimeFormat} from './dateUtils';
 class DatePickerDialog extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func,
+    anchorEl: PropTypes.object,
     animation: PropTypes.func,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
@@ -102,6 +103,7 @@ class DatePickerDialog extends Component {
   render() {
     const {
       DateTimeFormat,
+      anchorEl,
       autoOk,
       cancelLabel,
       container,
@@ -141,7 +143,7 @@ class DatePickerDialog extends Component {
     return (
       <div {...other} ref="root">
         <Container
-          anchorEl={this.refs.root} // For Popover
+          anchorEl={anchorEl || this.refs.root} // For Popover
           animation={animation || PopoverAnimationVertical} // For Popover
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
