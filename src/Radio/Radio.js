@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
+import SelectionLabel from '../internal/SelectionLabel';
 
 export const styleSheet = createStyleSheet('Radio', (theme) => {
   return {
@@ -12,12 +13,6 @@ export const styleSheet = createStyleSheet('Radio', (theme) => {
     },
     checked: {
       color: theme.palette.accent[500],
-    },
-    label: {
-      marginLeft: -12,
-      display: 'flex',
-      alignItems: 'center',
-      cursor: 'pointer',
     },
   };
 });
@@ -49,10 +44,9 @@ export default function Radio(props, context) {
   if (label) {
     switchProps['aria-label'] = label;
     return (
-      <label className={classNames(classes.label, labelClassName)} role="presentation">
+      <SelectionLabel label={label} className={labelClassName}>
         <SwitchBase {...switchProps} />
-        <span aria-hidden="true" role="presentation">{label}</span>
-      </label>
+      </SelectionLabel>
     );
   }
 
@@ -66,7 +60,7 @@ Radio.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   labelClassName: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
