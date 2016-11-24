@@ -140,6 +140,10 @@ class TextField extends Component {
      */
     floatingLabelFocusStyle: PropTypes.object,
     /**
+     * The style object to use to override floating label styles when shrunk.
+     */
+    floatingLabelShrinkStyle: PropTypes.object,
+    /**
      * The style object to use to override floating label styles.
      */
     floatingLabelStyle: PropTypes.object,
@@ -307,15 +311,21 @@ class TextField extends Component {
   }
 
   blur() {
-    if (this.input) this.getInputNode().blur();
+    if (this.input) {
+      this.getInputNode().blur();
+    }
   }
 
   focus() {
-    if (this.input) this.getInputNode().focus();
+    if (this.input) {
+      this.getInputNode().focus();
+    }
   }
 
   select() {
-    if (this.input) this.getInputNode().select();
+    if (this.input) {
+      this.getInputNode().select();
+    }
   }
 
   getValue() {
@@ -329,12 +339,16 @@ class TextField extends Component {
 
   handleInputBlur = (event) => {
     this.setState({isFocused: false});
-    if (this.props.onBlur) this.props.onBlur(event);
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
   };
 
   handleInputChange = (event) => {
     this.setState({hasValue: isValid(event.target.value)});
-    if (this.props.onChange) this.props.onChange(event, event.target.value);
+    if (this.props.onChange) {
+      this.props.onChange(event, event.target.value);
+    }
   };
 
   handleInputFocus = (event) => {
@@ -368,6 +382,7 @@ class TextField extends Component {
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
       floatingLabelFocusStyle,
+      floatingLabelShrinkStyle,
       floatingLabelStyle,
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
@@ -409,6 +424,7 @@ class TextField extends Component {
           floatingLabelStyle,
           this.state.isFocused ? floatingLabelFocusStyle : null
         )}
+        shrinkStyle={floatingLabelShrinkStyle}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
