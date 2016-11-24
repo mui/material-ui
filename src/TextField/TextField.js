@@ -404,11 +404,8 @@ class TextField extends Component {
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
-        style={Object.assign(
-          styles.floatingLabel,
-          floatingLabelStyle,
-          this.state.isFocused ? floatingLabelFocusStyle : null
-        )}
+        style={Object.assign(styles.floatingLabel, floatingLabelStyle)}
+        shrinkStyle={floatingLabelFocusStyle}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
