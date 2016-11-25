@@ -138,7 +138,7 @@ describe('<TextField />', () => {
       wrapper.setState({
         isFocused: true,
       });
-      assert.strictEqual(wrapper.find(TextFieldLabel).props().shrinkStyle.color, 'blue');
+      assert.strictEqual(wrapper.find(TextFieldLabel).props().style.color, 'blue');
     });
   });
 });

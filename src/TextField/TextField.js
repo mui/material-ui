@@ -142,6 +142,10 @@ class TextField extends Component {
      */
     floatingLabelFocusStyle: PropTypes.object,
     /**
+     * The style object to use to override shrunk floating label styles when focused.
+     */
+    floatingLabelShrinkStyle: PropTypes.object,
+    /**
      * The style object to use to override floating label styles.
      */
     floatingLabelStyle: PropTypes.object,
@@ -302,22 +306,26 @@ class TextField extends Component {
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState) ||
-      !shallowEqual(this.context, nextContext)
+      !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState) || !shallowEqual(this.context, nextContext)
     );
   }
 
   blur() {
-    if (this.input) this.getInputNode().blur();
+    if (this.input) {
+      this.getInputNode().blur();
+    }
   }
 
   focus() {
-    if (this.input) this.getInputNode().focus();
+    if (this.input) {
+      this.getInputNode().focus();
+    }
   }
 
   select() {
-    if (this.input) this.getInputNode().select();
+    if (this.input) {
+      this.getInputNode().select();
+    }
   }
 
   getValue() {
@@ -326,17 +334,21 @@ class TextField extends Component {
 
   getInputNode() {
     return (this.props.children || this.props.multiLine) ?
-      this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
+           this.input.getInputNode() : ReactDOM.findDOMNode(this.input);
   }
 
   handleInputBlur = (event) => {
     this.setState({isFocused: false});
-    if (this.props.onBlur) this.props.onBlur(event);
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
   };
 
   handleInputChange = (event) => {
     this.setState({hasValue: isValid(event.target.value)});
-    if (this.props.onChange) this.props.onChange(event, event.target.value);
+    if (this.props.onChange) {
+      this.props.onChange(event, event.target.value);
+    }
   };
 
   handleInputFocus = (event) => {
@@ -370,6 +382,7 @@ class TextField extends Component {
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
       floatingLabelFocusStyle,
+      floatingLabelShrinkStyle,
       floatingLabelStyle,
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
@@ -398,21 +411,25 @@ class TextField extends Component {
     const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
-      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
-    );
+        <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
+      );
 
     const floatingLabelTextElement = floatingLabelText && (
-      <TextFieldLabel
-        muiTheme={this.context.muiTheme}
-        style={Object.assign(styles.floatingLabel, floatingLabelStyle)}
-        shrinkStyle={this.state.isFocused ? floatingLabelFocusStyle : null}
-        htmlFor={inputId}
-        shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
-        disabled={disabled}
-      >
-        {floatingLabelText}
-      </TextFieldLabel>
-    );
+        <TextFieldLabel
+          muiTheme={this.context.muiTheme}
+          style={Object.assign(
+            styles.floatingLabel,
+            floatingLabelStyle,
+            this.state.isFocused ? floatingLabelFocusStyle : null
+          )}
+          shrinkStyle={floatingLabelShrinkStyle}
+          htmlFor={inputId}
+          shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
+          disabled={disabled}
+        >
+          {floatingLabelText}
+        </TextFieldLabel>
+      );
 
     const inputProps = {
       id: inputId,
@@ -439,19 +456,15 @@ class TextField extends Component {
           style={childStyleMerged}
           textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
           rows={rows}
-          rowsMax={rowsMax}
-          {...other}
-          {...inputProps}
+          rowsMax={rowsMax}{...other} {...inputProps}
           onHeightChange={this.handleHeightChange}
         />
       ) : (
-        <input
-          type={type}
-          style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}
-          {...other}
-          {...inputProps}
-        />
-      );
+                       <input
+                         type={type}
+                         style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}{...other} {...inputProps}
+                       />
+                     );
     }
 
     let rootProps = {};
@@ -461,37 +474,32 @@ class TextField extends Component {
     }
 
     return (
-      <div
-        {...rootProps}
+      <div{...rootProps}
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
       >
-        {floatingLabelTextElement}
-        {hintText ?
-          <TextFieldHint
-            muiTheme={this.context.muiTheme}
-            show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
-                  (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
-            style={hintStyle}
-            text={hintText}
-          /> :
-          null
-        }
-        {inputElement}
-        {underlineShow ?
-          <TextFieldUnderline
-            disabled={disabled}
-            disabledStyle={underlineDisabledStyle}
-            error={!!this.state.errorText}
-            errorStyle={errorStyle}
-            focus={this.state.isFocused}
-            focusStyle={underlineFocusStyle}
-            muiTheme={this.context.muiTheme}
-            style={underlineStyle}
-          /> :
-          null
-        }
-        {errorTextElement}
+        {floatingLabelTextElement} {hintText ?
+                                    <TextFieldHint
+                                      muiTheme={this.context.muiTheme}
+                                      show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
+                                      (!this.state.hasValue && floatingLabelText && floatingLabelFixed && !this.state.isFocused)}
+                                      style={hintStyle}
+                                      text={hintText}
+                                    /> :
+                                    null
+      } {inputElement} {underlineShow ?
+                        <TextFieldUnderline
+                          disabled={disabled}
+                          disabledStyle={underlineDisabledStyle}
+                          error={!!this.state.errorText}
+                          errorStyle={errorStyle}
+                          focus={this.state.isFocused}
+                          focusStyle={underlineFocusStyle}
+                          muiTheme={this.context.muiTheme}
+                          style={underlineStyle}
+                        /> :
+                        null
+      } {errorTextElement}
       </div>
     );
   }
