@@ -306,27 +306,23 @@ class TextField extends Component {
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
-      !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState) || !shallowEqual(this.context, nextContext)
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.context, nextContext)
     );
   }
 
   blur() {
-    if (this.input) {
-      this.getInputNode().blur();
-    }
+    if (this.input) this.getInputNode().blur();
   }
 
   focus() {
-    if (this.input) {
-      this.getInputNode().focus();
+    if (this.input) this.getInputNode().focus();
     }
-  }
 
   select() {
-    if (this.input) {
-      this.getInputNode().select();
+    if (this.input) this.getInputNode().select();
     }
-  }
 
   getValue() {
     return this.input ? this.getInputNode().value : undefined;
@@ -339,16 +335,12 @@ class TextField extends Component {
 
   handleInputBlur = (event) => {
     this.setState({isFocused: false});
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
+    if (this.props.onBlur) this.props.onBlur(event);
   };
 
   handleInputChange = (event) => {
     this.setState({hasValue: isValid(event.target.value)});
-    if (this.props.onChange) {
-      this.props.onChange(event, event.target.value);
-    }
+    if (this.props.onChange) this.props.onChange(event, event.target.value);
   };
 
   handleInputFocus = (event) => {
@@ -456,13 +448,17 @@ class TextField extends Component {
           style={childStyleMerged}
           textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
           rows={rows}
-          rowsMax={rowsMax}{...other} {...inputProps}
+          rowsMax={rowsMax}
+          {...other}
+          {...inputProps}
           onHeightChange={this.handleHeightChange}
         />
       ) : (
                        <input
                          type={type}
-                         style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}{...other} {...inputProps}
+          style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}
+          {...other}
+          {...inputProps}
                        />
                      );
     }
@@ -474,11 +470,13 @@ class TextField extends Component {
     }
 
     return (
-      <div{...rootProps}
+      <div
+        {...rootProps}
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
       >
-        {floatingLabelTextElement} {hintText ?
+        {floatingLabelTextElement}
+        {hintText ?
                                     <TextFieldHint
                                       muiTheme={this.context.muiTheme}
                                       show={!(this.state.hasValue || (floatingLabelText && !this.state.isFocused)) ||
@@ -487,7 +485,9 @@ class TextField extends Component {
                                       text={hintText}
                                     /> :
                                     null
-      } {inputElement} {underlineShow ?
+        }
+        {inputElement}
+        {underlineShow ?
                         <TextFieldUnderline
                           disabled={disabled}
                           disabledStyle={underlineDisabledStyle}
@@ -499,7 +499,8 @@ class TextField extends Component {
                           style={underlineStyle}
                         /> :
                         null
-      } {errorTextElement}
+        }
+        {errorTextElement}
       </div>
     );
   }
