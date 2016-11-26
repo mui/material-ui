@@ -31,6 +31,14 @@ function createData(name, calories, fat, carbs, protein) {
   return { id: counter, name, calories, fat, carbs, protein };
 }
 
+const columnData = [
+  { id: 'name', numeric: false, padding: false, label: 'Dessert (100g serving)' },
+  { id: 'calories', numeric: true, padding: true, label: 'Calories' },
+  { id: 'fat', numeric: true, padding: true, label: 'Fat (g)' },
+  { id: 'carbs', numeric: true, padding: true, label: 'Carbs (g)' },
+  { id: 'protein', numeric: true, padding: true, label: 'Protein (g)' },
+];
+
 class EnhancedTableHead extends Component {
   static propTypes = {
     onRequestSort: PropTypes.func,
@@ -52,51 +60,20 @@ class EnhancedTableHead extends Component {
           <TableCell checkbox>
             <Checkbox onChange={this.props.onSelectAllClick} />
           </TableCell>
-          <TableCell padding={false}>
-            <TableSortLabel
-              active={orderBy === 'name'}
-              direction={order}
-              onClick={this.createSortHandler('name')}
-            >
-              Dessert (100g serving)
-            </TableSortLabel>
-          </TableCell>
-          <TableCell numeric>
-            <TableSortLabel
-              active={orderBy === 'calories'}
-              direction={order}
-              onClick={this.createSortHandler('calories')}
-            >
-              Calories
-            </TableSortLabel>
-          </TableCell>
-          <TableCell numeric>
-            <TableSortLabel
-              active={orderBy === 'fat'}
-              direction={order}
-              onClick={this.createSortHandler('fat')}
-            >
-              Fat (g)
-            </TableSortLabel>
-          </TableCell>
-          <TableCell numeric>
-            <TableSortLabel
-              active={orderBy === 'carbs'}
-              direction={order}
-              onClick={this.createSortHandler('carbs')}
-            >
-              Carbs (g)
-            </TableSortLabel>
-          </TableCell>
-          <TableCell numeric>
-            <TableSortLabel
-              active={orderBy === 'protein'}
-              direction={order}
-              onClick={this.createSortHandler('protein')}
-            >
-              Protein (g)
-            </TableSortLabel>
-          </TableCell>
+
+          {columnData.map((column) => {
+            return (
+              <TableCell key={column.id} numeric={column.numeric} padding={column.padding}>
+                <TableSortLabel
+                  active={orderBy === column.id}
+                  direction={order}
+                  onClick={this.createSortHandler(column.id)}
+                >
+                  {column.label}
+                </TableSortLabel>
+              </TableCell>
+            );
+          }, this)}
         </TableRow>
       </TableHead>
     );
