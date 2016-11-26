@@ -17,4 +17,4 @@ Props
 | src | string |  |  src desc |
 | srcSet | string |  |  srcSet desc |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

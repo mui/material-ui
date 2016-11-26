@@ -23,4 +23,4 @@ Props
 | hover | bool | false |  If set to true, the table row will shade on hover. |
 | selected | bool | false |  If set to true, the table row will have the selected shading. |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

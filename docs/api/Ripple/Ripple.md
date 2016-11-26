@@ -15,4 +15,4 @@ Props
 | rippleX | number |  |   |
 | rippleY | number |  |   |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

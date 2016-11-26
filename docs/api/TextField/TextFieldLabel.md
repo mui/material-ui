@@ -16,4 +16,4 @@ Props
 | required | bool | false |  Whether this label should indicate that the input is required. |
 | shrink | bool |  |   |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

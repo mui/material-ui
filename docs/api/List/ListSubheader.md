@@ -14,4 +14,4 @@ Props
 | inset | bool | false |  If `true`, the ListSubheader will be indented. |
 | primary | bool | false |  If `true`, the ListSubheader will have the theme primary color. |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

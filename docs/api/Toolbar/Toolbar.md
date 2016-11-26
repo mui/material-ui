@@ -13,4 +13,4 @@ Props
 | className | string |  |  The CSS class name of the root element. |
 | gutters | bool | true |  If set to true, enables gutter padding. |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

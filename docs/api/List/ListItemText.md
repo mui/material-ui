@@ -13,4 +13,4 @@ Props
 | primary | node | false |   |
 | secondary | node | false |   |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

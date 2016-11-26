@@ -164,7 +164,7 @@ function generateMarkdown(name, reactAPI) {
     generateTitle(name)}\n${
     generateDesciption(reactAPI.description)}\n${
     generateProps(reactAPI.props)}\n${
-    'Other properties (no documented) are applied to the root element.'}
+    'Other properties (not documented) are applied to the root element.'}
 `;
 }
 

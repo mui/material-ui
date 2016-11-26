@@ -22,4 +22,4 @@ Props
 | numeric | bool | false |  If set to true, will align content to the right hand side. |
 | padding | bool | true |  If set to false, will disable left/right cell padding. |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

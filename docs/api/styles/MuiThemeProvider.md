@@ -13,4 +13,4 @@ Props
 | styleManager | object |  |   |
 | theme | object |  |   |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.
