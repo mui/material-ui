@@ -132,6 +132,7 @@ describe('<TextField />', () => {
           floatingLabelText="Name"
           floatingLabelFixed={true}
           floatingLabelFocusStyle={{color: 'blue'}}
+          floatingLabelShrinkStyle={{transform: 'none',}}
           floatingLabelStyle={{color: 'red'}}
         />
       );
@@ -139,6 +140,7 @@ describe('<TextField />', () => {
         isFocused: true,
       });
       assert.strictEqual(wrapper.find(TextFieldLabel).props().style.color, 'blue');
+      assert.strictEqual(wrapper.find(TextFieldLabel).props().shrinkStyle.transform, 'none');
     });
   });
 });
