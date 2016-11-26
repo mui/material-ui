@@ -36,9 +36,7 @@ class List extends Component {
 
     const styles = {
       root: {
-        padding: 0,
-        paddingBottom: 8,
-        paddingTop: hasSubheader ? 0 : 8,
+        padding: `${hasSubheader ? 0 : 8}px 0px 8px 0px`,
       },
     };
 
