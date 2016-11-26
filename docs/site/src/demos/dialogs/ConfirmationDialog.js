@@ -112,7 +112,7 @@ const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
   dialog: {
     width: '80%',
     maxWidth: 320,
-    maxHeight: 450,
+    maxHeight: 435,
   },
 }));
 
