@@ -10,7 +10,7 @@ function getStyles(props) {
     },
     icon: {
       right: 0,
-      top: props.floatingLabelText ? 22 : 14,
+      top: props.floatingLabelText ? 8 : 0,
     },
     hideDropDownUnderline: {
       borderTop: 'none',
