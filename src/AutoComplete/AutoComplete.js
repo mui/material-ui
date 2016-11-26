@@ -123,6 +123,8 @@ class AutoComplete extends Component {
     /** @ignore */
     onBlur: PropTypes.func,
     /** @ignore */
+    onClose: PropTypes.func,
+    /** @ignore */
     onFocus: PropTypes.func,
     /** @ignore */
     onKeyDown: PropTypes.func,
@@ -234,6 +236,8 @@ class AutoComplete extends Component {
       open: false,
       anchorEl: null,
     });
+    
+    this.props.onClose && this.props.onClose();
   }
 
   handleRequestClose = () => {
