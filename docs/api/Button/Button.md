@@ -27,4 +27,4 @@ Props
 | raised | bool | false |  If `true`, the button will use raised styling. |
 | ripple | bool | true |  If `true`, the button will have a ripple. |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

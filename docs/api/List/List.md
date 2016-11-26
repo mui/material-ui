@@ -15,4 +15,4 @@ Props
 | padding | bool | true |   |
 | subheader | node |  |   |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.
