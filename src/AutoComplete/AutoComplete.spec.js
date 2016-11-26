@@ -136,4 +136,15 @@ describe('<AutoComplete />', () => {
       assert.strictEqual(popoverProps.canAutoPosition, true, 'should overrides the default');
     });
   });
+
+  describe('prop: onClose', () => {
+    it('should call onClose when the menu is closed', () => {
+      const handleClose = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete dataSource={['foo', 'bar']} onClose={handleClose} />
+      );
+      wrapper.instance().close();
+      assert.strictEqual(handleClose.callCount, 1);
+    });
+  });
 });

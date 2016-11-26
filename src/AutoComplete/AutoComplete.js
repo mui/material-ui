@@ -122,6 +122,10 @@ class AutoComplete extends Component {
     menuStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
+    /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
     /** @ignore */
@@ -234,6 +238,10 @@ class AutoComplete extends Component {
       open: false,
       anchorEl: null,
     });
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   handleRequestClose = () => {
@@ -383,6 +391,7 @@ class AutoComplete extends Component {
       menuProps,
       listStyle,
       targetOrigin,
+      onClose, // eslint-disable-line no-unused-vars
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
