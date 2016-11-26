@@ -63,8 +63,6 @@ const getStyles = (props, context, state) => {
     },
   };
 
-  Object.assign(styles.error, props.errorStyle);
-
   styles.textarea = Object.assign({}, styles.input, {
     marginTop: props.floatingLabelText ? 36 : 12,
     marginBottom: props.floatingLabelText ? -36 : -12,
@@ -398,7 +396,9 @@ class TextField extends Component {
     const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
-      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
+      <div style={prepareStyles(Object.assign(styles.error, errorStyle))}>
+        {this.state.errorText}
+      </div>
     );
 
     const floatingLabelTextElement = floatingLabelText && (
