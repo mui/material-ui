@@ -12,6 +12,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "react-router": "^3.0.0"
+    "react-router": "^3.0.0",
+    "webfontloader": "^1.6.26"
   }
 }

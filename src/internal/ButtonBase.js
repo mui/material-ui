@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import createFragment from 'react-addons-create-fragment';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -54,7 +53,14 @@ export default class ButtonBase extends Component {
      */
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    /**
+     * If `true`, the base button will be disabled.
+     */
     disabled: PropTypes.bool,
+    /**
+     * If `true`, the base button will have a keyboard focus ripple.
+     * `ripple` must also be true.
+     */
     focusRipple: PropTypes.bool,
     keyboardFocusedClassName: PropTypes.string,
     onBlur: PropTypes.func,
@@ -68,6 +74,9 @@ export default class ButtonBase extends Component {
     onMouseUp: PropTypes.func,
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
+    /**
+     * If `true`, the base button will have a ripple.
+     */
     ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     role: PropTypes.string,
     tabIndex: PropTypes.string,
@@ -211,14 +220,7 @@ export default class ButtonBase extends Component {
       children,
       className: classNameProp,
       component,
-      /**
-       * If `true`, the base button will be disabled.
-       */
       disabled,
-      /**
-       * If `true`, the base button will have a keyboard focus ripple.
-       * Ripple must also be true.
-       */
       focusRipple, // eslint-disable-line no-unused-vars
       keyboardFocusedClassName,
       onBlur, // eslint-disable-line no-unused-vars
@@ -230,10 +232,8 @@ export default class ButtonBase extends Component {
       onMouseUp, // eslint-disable-line no-unused-vars
       onTouchEnd, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
-      /**
-       * If `true`, the base button will have a ripple.
-       */
       ripple,
+      tabIndex,
       type,
       ...other
     } = this.props;
@@ -256,31 +256,29 @@ export default class ButtonBase extends Component {
       onMouseUp: this.handleMouseUp,
       onTouchEnd: this.handleTouchEnd,
       onTouchStart: this.handleTouchStart,
-      tabIndex: this.props.tabIndex,
+      tabIndex: disabled ? '-1' : tabIndex,
       className,
       ...other,
     };
 
-    let element = component;
+    let Element = component;
 
     if (other.href) {
-      element = 'a';
+      Element = 'a';
     }
 
-    if (element === 'button') {
+    if (Element === 'button') {
       buttonProps.type = type;
       buttonProps.disabled = disabled;
-    } else if (element !== 'a') {
+    } else if (Element !== 'a') {
       buttonProps.role = this.props.hasOwnProperty('role') ? this.props.role : 'button';
     }
 
-    return React.createElement(
-      element,
-      buttonProps,
-      createFragment({
-        children,
-        ripple: this.renderRipple(ripple, centerRipple),
-      }),
+    return (
+      <Element {...buttonProps}>
+        {children}
+        {this.renderRipple(ripple, centerRipple)}
+      </Element>
     );
   }
 }

@@ -56,7 +56,6 @@
     "keycode": "^2.1.1",
     "lodash": "^4.17.2",
     "object-assign": "^4.1.0",
-    "react-addons-create-fragment": "^15.4.0",
     "react-addons-transition-group": "^15.4.0",
     "react-event-listener": "^0.4.0",
     "recompose": "^0.20.2",
