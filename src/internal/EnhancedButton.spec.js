@@ -16,6 +16,7 @@ describe('<EnhancedButton />', () => {
     );
     assert.ok(wrapper.text(), 'Button', 'should say Button');
     assert.ok(wrapper.is('button'), 'should match a button element');
+    assert.strictEqual(wrapper.props().tabIndex, 0, 'should receive the focus');
   });
 
   it('renders a link when href is provided', () => {
@@ -244,6 +245,17 @@ describe('<EnhancedButton />', () => {
     assert.strictEqual(wrapper.find('FocusRipple').length, 0, 'should not have a FocusRipple');
   });
 
+  describe('prop: disabled', () => {
+    it('should have no ripples when button is disabled', () => {
+      const wrapper = shallowWithContext(
+        <EnhancedButton keyboardFocused={true} disabled={true}>Button</EnhancedButton>
+      );
+      assert.strictEqual(wrapper.find('TouchRipple').length, 0, 'should not have a TouchRipple');
+      assert.strictEqual(wrapper.find('FocusRipple').length, 0, 'should not have a FocusRipple');
+      assert.strictEqual(wrapper.props().tabIndex, -1, 'should not receive the focus');
+    });
+  });
+
   it('should have no ripples when both are disabled', () => {
     const wrapper = shallowWithContext(
       <EnhancedButton
@@ -253,14 +265,6 @@ describe('<EnhancedButton />', () => {
       >
         Button
       </EnhancedButton>
-    );
-    assert.strictEqual(wrapper.find('TouchRipple').length, 0, 'should not have a TouchRipple');
-    assert.strictEqual(wrapper.find('FocusRipple').length, 0, 'should not have a FocusRipple');
-  });
-
-  it('should have no ripples when button is disabled', () => {
-    const wrapper = shallowWithContext(
-      <EnhancedButton keyboardFocused={true} disabled={true}>Button</EnhancedButton>
     );
     assert.strictEqual(wrapper.find('TouchRipple').length, 0, 'should not have a TouchRipple');
     assert.strictEqual(wrapper.find('FocusRipple').length, 0, 'should not have a FocusRipple');

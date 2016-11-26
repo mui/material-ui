@@ -338,7 +338,7 @@ class EnhancedButton extends Component {
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
       onTouchTap: this.handleTouchTap,
-      tabIndex: tabIndex,
+      tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
       type: type,
     };
     const buttonChildren = this.createButtonChildren();
