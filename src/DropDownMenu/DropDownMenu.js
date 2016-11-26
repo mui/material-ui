@@ -131,6 +131,10 @@ class DropDownMenu extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
+    /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
@@ -226,6 +230,10 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
@@ -234,6 +242,9 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
@@ -252,6 +263,7 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       style,
       underlineStyle,
