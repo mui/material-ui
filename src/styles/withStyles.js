@@ -9,8 +9,8 @@ const withStyles = (styleSheet) => (BaseComponent) => {
 
   const WithStyle = (ownerProps, context) => (
     factory({
-      ...ownerProps,
       classes: context.styleManager.render(styleSheet),
+      ...ownerProps,
     })
   );
 
