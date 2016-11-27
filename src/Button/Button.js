@@ -7,12 +7,14 @@ import ButtonBase from '../internal/ButtonBase';
 import { getContrastText } from '../styles/palette';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
+  const { typography, palette, transitions, shadows } = theme;
+
   return {
     root: {
-      fontSize: theme.fontSize,
-      fontWeight: theme.fontWeight,
-      fontFamily: theme.fontFamily,
-      textTransform: theme.textTransform,
+      fontSize: typography.fontSize,
+      fontWeight: typography.fontWeightMedium,
+      fontFamily: typography.fontFamily,
+      textTransform: 'uppercase',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -20,12 +22,12 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       height: 36,
       padding: '0px 16px',
       borderRadius: 2,
-      color: theme.color,
+      color: palette.text.primary,
       backgroundColor: 'transparent',
-      transition: theme.transition,
+      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: theme.hoverBackgroundColor,
+        backgroundColor: palette.text.divider,
       },
     },
     compact: {
@@ -42,44 +44,44 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       justifyContent: 'inherit',
     },
     primary: {
-      color: theme.primary[500],
+      color: palette.primary[500],
     },
     accent: {
-      color: theme.accent.A200,
+      color: palette.accent.A200,
     },
     contrast: {
-      color: theme.contrastColor,
+      color: palette.type === 'light' ? palette.shades.dark.primary : palette.shades.light.secondary,
     },
     raised: {
-      color: getContrastText(theme.raised[300]),
-      backgroundColor: theme.raised[300],
-      boxShadow: theme.shadows[2],
+      color: getContrastText(palette.grey[300]),
+      backgroundColor: palette.grey[300],
+      boxShadow: shadows[2],
       '&$keyboardFocused': {
-        boxShadow: theme.shadows[6],
+        boxShadow: shadows[6],
       },
       '&:hover': {
-        backgroundColor: theme.raised.A100,
+        backgroundColor: palette.grey.A100,
       },
       '&:active': {
-        boxShadow: theme.shadows[8],
+        boxShadow: shadows[8],
       },
       '&$disabled': {
-        boxShadow: theme.shadows[0],
+        boxShadow: shadows[0],
       },
     },
     keyboardFocused: {},
     raisedPrimary: {
-      color: getContrastText(theme.primary[500]),
-      backgroundColor: theme.primary[500],
+      color: getContrastText(palette.primary[500]),
+      backgroundColor: palette.primary[500],
       '&:hover': {
-        backgroundColor: theme.primary[700],
+        backgroundColor: palette.primary[700],
       },
     },
     raisedAccent: {
-      color: getContrastText(theme.accent.A200),
-      backgroundColor: theme.accent.A200,
+      color: getContrastText(palette.accent.A200),
+      backgroundColor: palette.accent.A200,
       '&:hover': {
-        backgroundColor: theme.accent.A400,
+        backgroundColor: palette.accent.A400,
       },
     },
     fab: {
@@ -88,30 +90,11 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       minWidth: 0,
       width: 56,
       height: 56,
-      boxShadow: theme.shadows[6],
+      boxShadow: shadows[6],
       '&:active': {
-        boxShadow: theme.shadows[12],
+        boxShadow: shadows[12],
       },
     },
-  };
-});
-
-styleSheet.registerLocalTheme((globalTheme) => {
-  const { palette, shadows, transitions, typography } = globalTheme;
-
-  return {
-    shadows,
-    fontSize: typography.fontSize,
-    fontWeight: typography.fontWeightMedium,
-    fontFamily: typography.fontFamily,
-    textTransform: 'uppercase',
-    raised: palette.grey,
-    primary: palette.primary,
-    accent: palette.accent,
-    color: palette.text.primary,
-    contrastColor: palette.type === 'light' ? palette.shades.dark.primary : palette.shades.light.secondary,
-    hoverBackgroundColor: palette.text.divider,
-    transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
   };
 });
 

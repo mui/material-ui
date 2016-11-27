@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
+  const { palette, transitions } = theme;
+
   return {
     iconButton: {
       display: 'inline-flex',
@@ -19,12 +21,13 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       padding: 0,
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      color: theme.color,
+      color: palette.type === 'light' ? palette.text.secondary : palette.text.primary,
       zIndex: 1,
-      transition: theme.transition,
+      transition: transitions.create('background-color', '150ms'),
     },
     contrast: {
-      color: theme.contrast,
+      color: palette.type === 'light' ?
+        palette.shades.dark.text.primary : palette.shades.light.text.secondary,
     },
     label: {
       width: '100%',
@@ -37,28 +40,14 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       },
     },
     keyboardFocused: {
-      backgroundColor: theme.focusBackground,
+      backgroundColor: palette.text.divider,
     },
     primary: {
-      color: theme.primary[500],
+      color: palette.primary[500],
     },
     accent: {
-      color: theme.accent.A200,
+      color: palette.accent.A200,
     },
-  };
-});
-
-styleSheet.registerLocalTheme((theme) => {
-  const { palette, transitions } = theme;
-  return {
-    color: palette.type === 'light' ?
-      palette.text.secondary : palette.text.primary,
-    contrast: palette.type === 'light' ?
-      palette.shades.dark.text.primary : palette.shades.light.text.secondary,
-    primary: palette.primary,
-    accent: palette.accent,
-    transition: transitions.create('background-color', '150ms'),
-    focusBackground: palette.text.divider,
   };
 });
 
@@ -98,10 +87,6 @@ export default class IconButton extends Component {
      * If false, the ripple effect will be disabled.
      */
     ripple: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    theme: PropTypes.object,
   };
 
   static defaultProps = {
@@ -116,8 +101,8 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { accent, children, className, contrast, theme, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, theme);
+    const { accent, children, className, contrast, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet);
     return (
       <ButtonBase
         className={classNames(classes.iconButton, {
