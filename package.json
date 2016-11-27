@@ -60,7 +60,6 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@nmarks/react-docgen": "^2.9.1",
     "app-module-path": "^2.1.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
@@ -122,6 +121,7 @@
     "react-a11y": "^0.3.3",
     "react-addons-perf": "^15.4.0",
     "react-addons-test-utils": "^15.4.0",
+    "react-docgen": "^2.12.1",
     "react-dom": "^15.4.0",
     "recast": "^0.11.17",
     "recursive-readdir-sync": "^1.0.6",
