@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
       flex: '1 0 100%',
     },
     hero: {
-      minHeight: '100%', // Makes the hero full height until we get some more content.
+      minHeight: '100vh', // Makes the hero full height until we get some more content.
       flex: '0 0 auto',
       display: 'flex',
       justifyContent: 'center',

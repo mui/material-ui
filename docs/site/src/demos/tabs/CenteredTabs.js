@@ -24,7 +24,7 @@ export default class CenteredTabs extends Component {
 
   handleChange = (event, index) => {
     this.setState({ index });
-  }
+  };
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
