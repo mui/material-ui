@@ -7,7 +7,7 @@ import Paper from '../Paper';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 
-export const styleSheet = createStyleSheet('Dialog', () => {
+export const styleSheet = createStyleSheet('Dialog', (theme) => {
   return {
     modal: {
       justifyContent: 'center',
@@ -19,11 +19,19 @@ export const styleSheet = createStyleSheet('Dialog', () => {
       flex: '0 1 auto',
       position: 'relative',
       width: '75%',
-      maxWidth: 960,
       maxHeight: '90vh',
       '&:focus': {
         outline: 'none',
       },
+    },
+    'dialogWidth-xs': {
+      maxWidth: theme.breakpoints.getWidth('xs'),
+    },
+    'dialogWidth-sm': {
+      maxWidth: theme.breakpoints.getWidth('sm'),
+    },
+    'dialogWidth-md': {
+      maxWidth: theme.breakpoints.getWidth('md'),
     },
   };
 });
@@ -57,6 +65,17 @@ export default class Dialog extends Component {
      * If `true`, hitting escape will fire the `onRequestClose` callback.
      */
     hideOnEscapeKeyUp: PropTypes.bool,
+    /**
+     * Determine the max width of the dialog.
+     * The dialog width grows with the size of the screen, this property is useful
+     * on the desktop where you might need some coherent different width size across your
+     * application.
+     */
+    maxWidth: PropTypes.oneOf([
+      'xs',
+      'sm',
+      'md',
+    ]),
     /**
      * Callback fires when the backdrop is clicked on.
      */
@@ -114,6 +133,7 @@ export default class Dialog extends Component {
   static defaultProps = {
     hideOnBackdropClick: true,
     hideOnEscapeKeyUp: true,
+    maxWidth: 'sm',
     open: false,
     transition: Fade,
     transitionDuration: 300,
@@ -129,6 +149,7 @@ export default class Dialog extends Component {
       className,
       hideOnBackdropClick,
       hideOnEscapeKeyUp,
+      maxWidth,
       open,
       onBackdropClick,
       onEscapeKeyUp,
@@ -183,7 +204,7 @@ export default class Dialog extends Component {
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
-            className={classNames(classes.dialog, paperClassName)}
+            className={classNames(classes.dialog, classes[`dialogWidth-${maxWidth}`], paperClassName)}
           >
             {children}
           </Paper>

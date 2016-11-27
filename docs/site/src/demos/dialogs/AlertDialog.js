@@ -1,7 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Component } from 'react';
 import Button from 'material-ui/Button';
 import {
   Dialog,
@@ -11,17 +10,7 @@ import {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-const styleSheet = createStyleSheet('AlertDialog', () => ({
-  alert: {
-    maxWidth: 400,
-  },
-}));
-
 export default class AlertDialog extends Component {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
   state = {
     open: false,
   };
@@ -29,14 +18,12 @@ export default class AlertDialog extends Component {
   handleRequestClose = () => this.setState({ open: false });
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
     return (
       <div>
         <Button onClick={() => this.setState({ open: true })}>
           Open alert dialog
         </Button>
         <Dialog
-          paperClassName={classes.alert}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
