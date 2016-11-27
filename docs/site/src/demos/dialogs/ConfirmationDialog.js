@@ -106,12 +106,11 @@ class ConfirmationDialog extends Component {
 const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
   dialog: {
     width: '80%',
-    maxWidth: 320,
     maxHeight: 435,
   },
 }));
@@ -161,6 +160,7 @@ export default class ConfirmationDialogDemo extends Component {
             />
           </ListItem>
           <ConfirmationDialog
+            maxWidth="xs"
             paperClassName={classes.dialog}
             open={this.state.open}
             onRequestClose={this.handleRequestClose}

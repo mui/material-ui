@@ -105,4 +105,13 @@ describe('<Dialog />', () => {
       );
     });
   });
+
+  describe('prop: maxWidth', () => {
+    it('should use the right className', () => {
+      const wrapper = shallow(<Dialog maxWidth="xs" />);
+      assert.strictEqual(wrapper.find('Paper').hasClass(classes['dialogWidth-xs']), true,
+        'should have the class provided',
+      );
+    });
+  });
 });
