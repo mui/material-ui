@@ -3,7 +3,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import * as reactDocgen from '@nmarks/react-docgen';
+import * as reactDocgen from 'react-docgen';
 import generateMarkdown from './generate-docs-markdown';
 
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
