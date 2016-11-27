@@ -79,7 +79,7 @@ TextFieldLabel.propTypes = {
    */
   shrink: PropTypes.bool,
   /**
-   * Override the inline-styles of the root element when focused.
+   * Override the inline-styles of the root element when shrunk.
    */
   shrinkStyle: PropTypes.object,
   /**

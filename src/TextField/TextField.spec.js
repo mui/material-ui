@@ -142,6 +142,18 @@ describe('<TextField />', () => {
     });
   });
 
+  describe('prop: floatingLabelFocusStyle', () => {
+    it('should be applied', () => {
+      const wrapper = shallowWithContext(
+        <TextField
+          floatingLabelText="Name"
+          floatingLabelShrinkStyle={{transform: 'none'}}
+        />
+      );
+      assert.strictEqual(wrapper.find(TextFieldLabel).props().shrinkStyle.transform, 'none');
+    });
+  });
+
   describe('prop: errorStyle', () => {
     it('should override the errorText', () => {
       const wrapper = shallowWithContext(
