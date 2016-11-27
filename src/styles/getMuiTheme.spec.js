@@ -81,6 +81,22 @@ describe('./styles/getMuiTheme', () => {
         });
       });
 
+      it('should spread properties for display:flex when userAgent is all', () => {
+        const muiTheme = getMuiTheme({}, {
+          userAgent: 'all',
+        });
+
+        const display = 'inline-flex';
+        const stylePrepared = muiTheme.prepareStyles({
+          display,
+        });
+
+        expect(stylePrepared).to.deep.equal({
+          muiPrepared: true,
+          display: `-webkit-box; display: -moz-box; display: -ms-${display}box; display: -webkit-${display}; display: inline-flex`, // eslint-disable-line max-len
+        });
+      });
+
       it('should prefix for the userAgent when we provid a valid one', () => {
         const muiTheme = getMuiTheme({}, {
           userAgent: MSIE9_USER_AGENT,

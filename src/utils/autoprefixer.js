@@ -20,7 +20,14 @@ export default function(muiTheme) {
   if (userAgent === false) { // Disabled autoprefixer
     return null;
   } else if (userAgent === 'all' || userAgent === undefined) { // Prefix for all user agent
-    return (style) => InlineStylePrefixer.prefixAll(style);
+    return (style) => {
+      const isFlex = ['flex', 'inline-flex'].includes(style.display);
+      const o = InlineStylePrefixer.prefixAll(style);
+      if (isFlex) {
+        o.display = o.display.join('; display: ');
+      }
+      return o;
+    };
   } else {
     const prefixer = new InlineStylePrefixer({
       userAgent: userAgent,
