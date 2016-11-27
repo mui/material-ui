@@ -4,15 +4,17 @@ import keycode from 'keycode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog';
 import Popover from '../Popover/Popover';
-import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func,
+    animation: PropTypes.func,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
     container: PropTypes.oneOf(['dialog', 'inline']),
+    containerStyle: PropTypes.object,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
     initialDate: PropTypes.object,
@@ -27,15 +29,14 @@ class DatePickerDialog extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
-    wordings: PropTypes.object,
   };
 
   static defaultProps = {
     DateTimeFormat: dateTimeFormat,
+    cancelLabel: 'Cancel',
     container: 'dialog',
     locale: 'en-US',
     okLabel: 'OK',
-    cancelLabel: 'Cancel',
   };
 
   static contextTypes = {
@@ -47,14 +48,20 @@ class DatePickerDialog extends Component {
   };
 
   show = () => {
-    if (this.props.onShow && !this.state.open) this.props.onShow();
+    if (this.props.onShow && !this.state.open) {
+      this.props.onShow();
+    }
+
     this.setState({
       open: true,
     });
   };
 
   dismiss = () => {
-    if (this.props.onDismiss && this.state.open) this.props.onDismiss();
+    if (this.props.onDismiss && this.state.open) {
+      this.props.onDismiss();
+    }
+
     this.setState({
       open: false,
     });
@@ -79,7 +86,9 @@ class DatePickerDialog extends Component {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
 
-    this.dismiss();
+    this.setState({
+      open: false,
+    });
   };
 
   handleWindowKeyUp = (event) => {
@@ -93,8 +102,10 @@ class DatePickerDialog extends Component {
   render() {
     const {
       DateTimeFormat,
+      autoOk,
       cancelLabel,
       container,
+      containerStyle,
       disableYearSelection,
       initialDate,
       firstDayOfWeek,
@@ -104,10 +115,12 @@ class DatePickerDialog extends Component {
       mode,
       okLabel,
       onAccept, // eslint-disable-line no-unused-vars
+      onDismiss, // eslint-disable-line no-unused-vars
+      onShow, // eslint-disable-line no-unused-vars
       shouldDisableDate,
       style, // eslint-disable-line no-unused-vars
-      wordings,
-      ...other,
+      animation,
+      ...other
     } = this.props;
 
     const {open} = this.state;
@@ -124,26 +137,26 @@ class DatePickerDialog extends Component {
     };
 
     const Container = (container === 'inline' ? Popover : Dialog);
+
     return (
       <div {...other} ref="root">
         <Container
-          {...other}
           anchorEl={this.refs.root} // For Popover
-          animation={PopoverAnimationFromTop} // For Popover
+          animation={animation || PopoverAnimationVertical} // For Popover
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
           ref="dialog"
           repositionOnUpdate={true}
           open={open}
           onRequestClose={this.handleRequestClose}
-          style={styles.dialogBodyContent}
+          style={Object.assign(styles.dialogBodyContent, containerStyle)}
         >
           <EventListener
             target="window"
             onKeyUp={this.handleWindowKeyUp}
           />
           <Calendar
-            autoOk={this.props.autoOk}
+            autoOk={autoOk}
             DateTimeFormat={DateTimeFormat}
             cancelLabel={cancelLabel}
             disableYearSelection={disableYearSelection}
@@ -160,7 +173,6 @@ class DatePickerDialog extends Component {
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
             shouldDisableDate={shouldDisableDate}
-            wordings={wordings}
           />
         </Container>
       </div>

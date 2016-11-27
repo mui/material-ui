@@ -1,8 +1,7 @@
 import React from 'react';
 import Title from 'react-title-component';
-
 import MarkdownElement from '../../MarkdownElement';
-import serverRenderingText from './serverRendering.md';
+import serverRenderingText from './server-rendering.md';
 
 const ServerRendering = () => (
   <div>

@@ -7,8 +7,6 @@ class Clock extends Component {
   static propTypes = {
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
-    isActive: PropTypes.bool,
-    mode: PropTypes.oneOf(['hour', 'minute']),
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
   };
@@ -22,13 +20,13 @@ class Clock extends Component {
   };
 
   state = {
-    selectedTime: this.props.initialTime || new Date(),
+    selectedTime: null,
     mode: 'hour',
   };
 
-  componentWillReceiveProps(nextProps) {
+  componentWillMount() {
     this.setState({
-      selectedTime: nextProps.initialTime || new Date(),
+      selectedTime: this.props.initialTime || new Date(),
     });
   }
 
@@ -84,21 +82,21 @@ class Clock extends Component {
       selectedTime: time,
     });
 
-    const {onChangeHours} = this.props;
-
     if (finished) {
       setTimeout(() => {
         this.setState({
           mode: 'minute',
         });
-        if (typeof (onChangeHours) === 'function') {
+
+        const {onChangeHours} = this.props;
+        if (onChangeHours) {
           onChangeHours(time);
         }
       }, 100);
     }
   };
 
-  handleChangeMinutes = (minutes) => {
+  handleChangeMinutes = (minutes, finished) => {
     const time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
@@ -106,7 +104,7 @@ class Clock extends Component {
     });
 
     const {onChangeMinutes} = this.props;
-    if (typeof (onChangeMinutes) === 'function') {
+    if (onChangeMinutes && finished) {
       setTimeout(() => {
         onChangeMinutes(time);
       }, 0);
@@ -120,7 +118,10 @@ class Clock extends Component {
   render() {
     let clock = null;
 
-    const {prepareStyles} = this.context.muiTheme;
+    const {
+      prepareStyles,
+      timePicker,
+    } = this.context.muiTheme;
 
     const styles = {
       root: {
@@ -130,6 +131,7 @@ class Clock extends Component {
         height: 280,
         padding: 10,
         position: 'relative',
+        boxSizing: 'content-box',
       },
       circle: {
         position: 'absolute',
@@ -137,11 +139,11 @@ class Clock extends Component {
         width: 260,
         height: 260,
         borderRadius: '100%',
-        backgroundColor: this.context.muiTheme.timePicker.clockCircleColor,
+        backgroundColor: timePicker.clockCircleColor,
       },
     };
 
-    if ( this.state.mode === 'hour') {
+    if (this.state.mode === 'hour') {
       clock = (
         <ClockHours
           key="hours"

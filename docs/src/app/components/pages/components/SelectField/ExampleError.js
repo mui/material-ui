@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -10,18 +10,19 @@ const items = [
   <MenuItem key={5} value={5} primaryText="Weekly" />,
 ];
 
-export default class SelectFieldExampleError extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {value: null};
-  }
+/**
+ * The `errorText` property displays an error message below the Select Field.
+ * This can be customised with the `errorStyle` property.
+ */
+export default class SelectFieldExampleError extends Component {
+  state = {
+    value: null,
+  };
 
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
     const {value} = this.state;
-
     const night = value === 2 || value === 3;
 
     return (

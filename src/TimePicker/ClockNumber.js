@@ -4,6 +4,7 @@ import {isInner} from './timeUtils';
 function getStyles(props, context) {
   const styles = {
     root: {
+      directionInvariant: true,
       display: 'inline-block',
       position: 'absolute',
       width: 32,

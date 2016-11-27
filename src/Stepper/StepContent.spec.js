@@ -24,25 +24,18 @@ describe('<StepContent />', () => {
     assert.ok(wrapper.is('div'));
   });
 
-  it('renders null when used in a horizontal stepper', () => {
-    const wrapper = shallowWithContext(
-      <StepContent />
-    , {stepper: {orientation: 'horizontal'}});
-    assert.strictEqual(wrapper.node, null);
-  });
-
   it('merges styles and other props into the root node', () => {
     const wrapper = shallowWithContext(
       <StepContent
         style={{paddingRight: 200, color: 'purple', border: '1px solid tomato'}}
-        myProp="hello"
+        role="hello"
       />
     );
-    const {style, myProp} = wrapper.props();
+    const {style, role} = wrapper.props();
     assert.strictEqual(style.paddingRight, 200);
     assert.strictEqual(style.color, 'purple');
     assert.strictEqual(style.border, '1px solid tomato');
-    assert.strictEqual(myProp, 'hello');
+    assert.strictEqual(role, 'hello');
   });
 
   it('renders children inside an ExpandTransition group', () => {

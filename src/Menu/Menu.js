@@ -1,42 +1,25 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import update from 'react-addons-update';
 import shallowEqual from 'recompose/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import autoPrefix from '../utils/autoPrefix';
-import transitions from '../styles/transitions';
 import keycode from 'keycode';
 import propTypes from '../utils/propTypes';
 import List from '../List/List';
-import deprecated from '../utils/deprecatedPropType';
-import warning from 'warning';
+import {HotKeyHolder} from './menuUtils';
 
 function getStyles(props, context) {
   const {
-    animated,
     desktop,
     maxHeight,
-    openDirection = 'bottom-left',
     width,
   } = props;
-
-  const openDown = openDirection.split('-')[0] === 'bottom';
-  const openLeft = openDirection.split('-')[1] === 'left';
 
   const {muiTheme} = context;
 
   const styles = {
     root: {
       // Nested div bacause the List scales x faster than it scales y
-      transition: animated ? transitions.easeOut('250ms', 'transform') : null,
       zIndex: muiTheme.zIndex.menu,
-      top: openDown ? 0 : null,
-      bottom: !openDown ? 0 : null,
-      left: !openLeft ? 0 : null,
-      right: openLeft ? 0 : null,
-      transform: animated ? 'scaleX(0)' : null,
-      transformOrigin: openLeft ? 'right' : 'left',
-      opacity: 0,
       maxHeight: maxHeight,
       overflowY: maxHeight ? 'auto' : null,
     },
@@ -51,12 +34,8 @@ function getStyles(props, context) {
       userSelect: 'none',
       width: width,
     },
-    menuItemContainer: {
-      transition: animated ? transitions.easeOut(null, 'opacity') : null,
-      opacity: 0,
-    },
     selectedMenuItem: {
-      color: muiTheme.baseTheme.palette.accent1Color,
+      color: muiTheme.menuItem.selectedTextColor,
     },
   };
 
@@ -65,12 +44,6 @@ function getStyles(props, context) {
 
 class Menu extends Component {
   static propTypes = {
-    /**
-     * If true, the menu will apply transitions when it
-     * is added to the DOM. In order for transitions to
-     * work, wrap the menu inside a `ReactTransitionGroup`.
-     */
-    animated: deprecated(PropTypes.bool, 'Instead, use a [Popover](/#/components/popover).'),
     /**
      * If true, the width of the menu will be set automatically
      * according to the widths of its children,
@@ -136,17 +109,8 @@ class Menu extends Component {
      * @param {number} index The index of the menu item.
      */
     onItemTouchTap: PropTypes.func,
-    /**
-     * Callback function fired when the menu is focused and a key
-     * is pressed.
-     *
-     * @param {object} event `keydown` event targeting the menu.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
-    /**
-     * This is the placement of the menu relative to the `IconButton`.
-     */
-    openDirection: deprecated(propTypes.corners, 'Instead, use a [Popover](/#/components/popover).'),
     /**
      * Override the inline-styles of selected menu items.
      */
@@ -172,12 +136,6 @@ class Menu extends Component {
      * proper keyline increments (64px for desktop, 56px otherwise).
      */
     width: propTypes.stringOrNumber,
-    /**
-     * @ignore
-     * Menu no longer supports `zDepth`. Instead, wrap it in `Paper`
-     * or another component that provides zDepth.
-     */
-    zDepth: propTypes.zDepth,
   };
 
   static defaultProps = {
@@ -207,11 +165,14 @@ class Menu extends Component {
       isKeyboardFocused: props.initiallyKeyboardFocused,
       keyWidth: props.desktop ? 64 : 56,
     };
+
+    this.hotKeyHolder = new HotKeyHolder();
   }
 
   componentDidMount() {
-    if (this.props.autoWidth) this.setWidth();
-    if (!this.props.animated) this.animateOpen();
+    if (this.props.autoWidth) {
+      this.setWidth();
+    }
     this.setScollPosition();
   }
 
@@ -225,10 +186,11 @@ class Menu extends Component {
     });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
       !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState)
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.context, nextContext)
     );
   }
 
@@ -266,20 +228,6 @@ class Menu extends Component {
       }
     });
     return filteredChildren;
-  }
-
-  animateOpen() {
-    const rootStyle = ReactDOM.findDOMNode(this).style;
-    const scrollContainerStyle = ReactDOM.findDOMNode(this.refs.scrollContainer).style;
-    const menuContainers = ReactDOM.findDOMNode(this.refs.list).childNodes;
-
-    autoPrefix.set(rootStyle, 'transform', 'scaleX(1)');
-    autoPrefix.set(scrollContainerStyle, 'transform', 'scaleY(1)');
-    scrollContainerStyle.opacity = 1;
-
-    for (let i = 0; i < menuContainers.length; ++i) {
-      menuContainers[i].style.opacity = 1;
-    }
   }
 
   cloneMenuItem(child, childIndex, styles, index) {
@@ -325,31 +273,6 @@ class Menu extends Component {
     this.setFocusIndex(index, true);
   }
 
-  getCascadeChildrenCount(filteredChildren) {
-    const {
-      desktop,
-      maxHeight,
-    } = this.props;
-    let count = 1;
-    let currentHeight = desktop ? 16 : 8;
-    const menuItemHeight = desktop ? 32 : 48;
-
-    // MaxHeight isn't set - cascade all of the children
-    if (!maxHeight) return filteredChildren.length;
-
-    // Count all the children that will fit inside the max menu height
-    filteredChildren.forEach((child) => {
-      if (currentHeight < maxHeight) {
-        const childIsADivider = child.type && child.type.muiName === 'Divider';
-
-        currentHeight += childIsADivider ? 16 : menuItemHeight;
-        count++;
-      }
-    });
-
-    return count;
-  }
-
   getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach((child) => {
@@ -376,7 +299,8 @@ class Menu extends Component {
 
   handleKeyDown = (event) => {
     const filteredChildren = this.getFilteredChildren(this.props.children);
-    switch (keycode(event)) {
+    const key = keycode(event);
+    switch (key) {
       case 'down':
         event.preventDefault();
         this.incrementKeyboardFocusIndex(filteredChildren);
@@ -396,9 +320,34 @@ class Menu extends Component {
         event.preventDefault();
         this.decrementKeyboardFocusIndex();
         break;
+      default:
+        if (key && key.length === 1) {
+          const hotKeys = this.hotKeyHolder.append(key);
+          if (this.setFocusIndexStartsWith(hotKeys)) {
+            event.preventDefault();
+          }
+        }
     }
     this.props.onKeyDown(event);
   };
+
+  setFocusIndexStartsWith(keys) {
+    let foundIndex = -1;
+    React.Children.forEach(this.props.children, (child, index) => {
+      if (foundIndex >= 0) {
+        return;
+      }
+      const {primaryText} = child.props;
+      if (typeof primaryText === 'string' && new RegExp(`^${keys}`, 'i').test(primaryText)) {
+        foundIndex = index;
+      }
+    });
+    if (foundIndex >= 0) {
+      this.setFocusIndex(foundIndex, true);
+      return true;
+    }
+    return false;
+  }
 
   handleMenuItemTouchTap(event, item, index) {
     const children = this.props.children;
@@ -412,9 +361,12 @@ class Menu extends Component {
 
     if (multiple) {
       const itemIndex = menuValue.indexOf(itemValue);
-      const newMenuValue = itemIndex === -1 ?
-        update(menuValue, {$push: [itemValue]}) :
-        update(menuValue, {$splice: [[itemIndex, 1]]});
+      const [...newMenuValue] = menuValue;
+      if (itemIndex === -1) {
+        newMenuValue.push(itemValue);
+      } else {
+        newMenuValue.splice(itemIndex, 1);
+      }
 
       valueLink.requestChange(event, newMenuValue);
     } else if (!multiple && itemValue !== menuValue) {
@@ -468,6 +420,30 @@ class Menu extends Component {
     }
   }
 
+  cancelScrollEvent(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+  }
+
+  handleOnWheel = (event) => {
+    const scrollContainer = this.refs.scrollContainer;
+    // Only scroll lock if the the Menu is scrollable.
+    if (scrollContainer.scrollHeight <= scrollContainer.clientHeight) return;
+
+    const {scrollTop, scrollHeight, clientHeight} = scrollContainer;
+    const wheelDelta = event.deltaY;
+    const isDeltaPositive = wheelDelta > 0;
+
+    if (isDeltaPositive && wheelDelta > scrollHeight - clientHeight - scrollTop) {
+      scrollContainer.scrollTop = scrollHeight;
+      return this.cancelScrollEvent(event);
+    } else if (!isDeltaPositive && -wheelDelta > scrollTop) {
+      scrollContainer.scrollTop = 0;
+      return this.cancelScrollEvent(event);
+    }
+  }
+
   setWidth() {
     const el = ReactDOM.findDOMNode(this);
     const listEl = ReactDOM.findDOMNode(this.refs.list);
@@ -488,28 +464,23 @@ class Menu extends Component {
 
   render() {
     const {
-      animated,
       autoWidth, // eslint-disable-line no-unused-vars
       children,
       desktop,
+      disableAutoFocus, // eslint-disable-line no-unused-vars
       initiallyKeyboardFocused, // eslint-disable-line no-unused-vars
       listStyle,
       maxHeight, // eslint-disable-line no-unused-vars
       multiple, // eslint-disable-line no-unused-vars
-      openDirection = 'bottom-left',
+      onItemTouchTap, // eslint-disable-line no-unused-vars
+      onEscKeyDown, // eslint-disable-line no-unused-vars
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
-      zDepth,
-      ...other,
+      ...other
     } = this.props;
-
-    warning((typeof zDepth === 'undefined'), 'Menu no longer supports `zDepth`. Instead, wrap it in `Paper` ' +
-      'or another component that provides `zDepth`.');
-
-    const {focusIndex} = this.state;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
@@ -517,52 +488,29 @@ class Menu extends Component {
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedListStyles = Object.assign(styles.list, listStyle);
 
-    const openDown = openDirection.split('-')[0] === 'bottom';
     const filteredChildren = this.getFilteredChildren(children);
-
-    // Cascade children opacity
-    let cumulativeDelay = openDown ? 175 : 325;
-    const cascadeChildrenCount = this.getCascadeChildrenCount(filteredChildren);
-    const cumulativeDelayIncrement = Math.ceil(150 / cascadeChildrenCount);
 
     let menuItemIndex = 0;
     const newChildren = React.Children.map(filteredChildren, (child, index) => {
       const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
-      let childrenContainerStyles = {};
-
-      if (animated) {
-        let transitionDelay = 0;
-
-        // Only cascade the visible menu items
-        if ((menuItemIndex >= focusIndex - 1) &&
-          (menuItemIndex <= focusIndex + cascadeChildrenCount - 1)) {
-          cumulativeDelay = openDown ?
-            cumulativeDelay + cumulativeDelayIncrement :
-            cumulativeDelay - cumulativeDelayIncrement;
-          transitionDelay = cumulativeDelay;
-        }
-
-        childrenContainerStyles = Object.assign({}, styles.menuItemContainer, {
-          transitionDelay: `${transitionDelay}ms`,
-        });
-      }
 
       const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this.cloneMenuItem(child, menuItemIndex, styles, index);
 
-      if (!childIsADivider && !childIsDisabled) menuItemIndex++;
+      if (!childIsADivider && !childIsDisabled) {
+        menuItemIndex++;
+      }
 
-      return animated ? (
-        <div style={prepareStyles(childrenContainerStyles)}>{clonedChild}</div>
-      ) : clonedChild;
+      return clonedChild;
     });
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
         <div
           onKeyDown={this.handleKeyDown}
+          onWheel={this.handleOnWheel}
           style={prepareStyles(mergedRootStyles)}
           ref="scrollContainer"
         >

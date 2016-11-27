@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = {
   // Entry point to the project
   entry: [
+    './node_modules/babel-polyfill/lib/index.js',
     path.resolve(__dirname, 'src/app/app.js'),
   ],
   // Webpack config options on how to obtain modules
@@ -17,10 +18,11 @@ const config = {
       'material-ui': path.resolve(__dirname, '../src'),
     },
   },
-  devtool: 'source-map',
   // Configuration for server
   devServer: {
     contentBase: 'build',
+    // Required for webpack-dev-server
+    outputPath: buildPath,
   },
   // Output file config
   output: {
@@ -44,7 +46,7 @@ const config = {
       },
     }),
 
-    // Allows error warninggs but does not stop compiling. Will remove when eslint is added
+    // Allows error warnings but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
     // Transfer Files
     new CopyWebpackPlugin([
@@ -54,9 +56,6 @@ const config = {
       {from: 'src/www/versions.json'},
     ]),
   ],
-  externals: {
-    fs: 'fs', // To remove once https://github.com/benjamn/recast/pull/238 is released
-  },
   module: {
     // Allow loading of non-es5 js files.
     loaders: [

@@ -4,7 +4,7 @@ import transitions from '../styles/transitions';
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
   const rangeValue = max - min;
-  const relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+  const relValue = Math.round((clampedValue - min) / rangeValue * 10000) / 10000;
   return relValue * 100;
 }
 
@@ -150,7 +150,7 @@ class LinearProgress extends Component {
   render() {
     const {
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -159,8 +159,8 @@ class LinearProgress extends Component {
     return (
       <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         <div style={prepareStyles(styles.bar)}>
-          <div ref="bar1" style={prepareStyles(styles.barFragment1)}></div>
-          <div ref="bar2" style={prepareStyles(styles.barFragment2)}></div>
+          <div ref="bar1" style={prepareStyles(styles.barFragment1)} />
+          <div ref="bar2" style={prepareStyles(styles.barFragment2)} />
         </div>
       </div>
     );

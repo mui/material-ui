@@ -8,6 +8,7 @@ const config = {
   entry: [
     'webpack/hot/dev-server',
     'webpack/hot/only-dev-server',
+    './node_modules/babel-polyfill/lib/index.js',
     path.resolve(__dirname, 'src/app/app.js'),
   ],
   // Webpack config options on how to obtain modules
@@ -36,7 +37,7 @@ const config = {
     filename: 'app.js', // Name of output file
   },
   plugins: [
-    // Allows for sync with browser while developing (like BorwserSync)
+    // Allows for sync with browser while developing (like BrowserSync)
     new webpack.HotModuleReplacementPlugin(),
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
@@ -44,16 +45,12 @@ const config = {
       {from: 'src/www/index.html'},
     ]),
   ],
-  externals: {
-    fs: 'js', // To remove once https://github.com/benjamn/recast/pull/238 is released
-  },
   module: {
     // Allow loading of non-es
     loaders: [
       {
         test: /\.js$/,
         loaders: [
-          'react-hot',
           'babel-loader',
         ],
         exclude: /node_modules/,

@@ -11,7 +11,9 @@ describe('<StepLabel />', () => {
     return shallow(node, {
       context: {
         muiTheme,
-        stepper: {orientation: 'horizontal'},
+        stepper: {
+          orientation: 'horizontal',
+        },
         ...context,
       },
     });
@@ -21,14 +23,14 @@ describe('<StepLabel />', () => {
     const wrapper = shallowWithContext(
       <StepLabel
         style={{paddingRight: 200, color: 'purple', border: '1px solid tomato'}}
-        myProp="hello"
+        data-myProp="hello"
       />
     );
-    const {style, myProp} = wrapper.props();
-    assert.strictEqual(style.paddingRight, 200);
-    assert.strictEqual(style.color, 'purple');
-    assert.strictEqual(style.border, '1px solid tomato');
-    assert.strictEqual(myProp, 'hello');
+    const props = wrapper.props();
+    assert.strictEqual(props.style.paddingRight, 200);
+    assert.strictEqual(props.style.color, 'purple');
+    assert.strictEqual(props.style.border, '1px solid tomato');
+    assert.strictEqual(props['data-myProp'], 'hello');
   });
 
   describe('label content', () => {
@@ -112,6 +114,24 @@ describe('<StepLabel />', () => {
         muiTheme.stepper.textColor,
         'should have the standard text color'
       );
+    });
+  });
+
+  describe('prop: iconContainerStyle', () => {
+    it('merges values into the icon container node style prop', () => {
+      const wrapper = shallowWithContext(
+        <StepLabel
+          iconContainerStyle={{width: 64, color: 'lime', paddingBottom: 300, border: '3px solid teal'}}
+          icon={1}
+        >
+          Step One
+        </StepLabel>
+      );
+      const iconContainerStyle = wrapper.find('span').at(1).props().style;
+      assert.strictEqual(iconContainerStyle.width, 64);
+      assert.strictEqual(iconContainerStyle.color, 'lime');
+      assert.strictEqual(iconContainerStyle.paddingBottom, 300);
+      assert.strictEqual(iconContainerStyle.border, '3px solid teal');
     });
   });
 

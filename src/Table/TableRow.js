@@ -172,6 +172,7 @@ class TableRow extends Component {
       className,
       displayBorder, // eslint-disable-line no-unused-vars
       hoverable, // eslint-disable-line no-unused-vars
+      hovered, // eslint-disable-line no-unused-vars
       onCellClick, // eslint-disable-line no-unused-vars
       onCellHover, // eslint-disable-line no-unused-vars
       onCellHoverExit, // eslint-disable-line no-unused-vars
@@ -183,7 +184,7 @@ class TableRow extends Component {
       selected, // eslint-disable-line no-unused-vars
       striped, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

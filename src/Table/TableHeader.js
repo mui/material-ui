@@ -126,19 +126,29 @@ class TableHeader extends Component {
   getCheckboxPlaceholder(props) {
     if (!this.props.adjustForCheckbox) return null;
 
+    const disabled = !this.props.enableSelectAll;
     const key = `hpcb${props.rowNumber}`;
-    return <TableHeaderColumn key={key} style={{width: 24}} />;
+    return (
+      <TableHeaderColumn
+        key={key}
+        style={{
+          width: 24,
+          cursor: disabled ? 'not-allowed' : 'inherit',
+        }}
+      />
+    );
   }
 
   getSelectAllCheckboxColumn(props) {
     if (!this.props.displaySelectAll) return this.getCheckboxPlaceholder(props);
 
+    const disabled = !this.props.enableSelectAll;
     const checkbox = (
       <Checkbox
         key="selectallcb"
         name="selectallcb"
         value="selected"
-        disabled={!this.props.enableSelectAll}
+        disabled={disabled}
         checked={this.props.selectAllSelected}
         onCheck={this.handleCheckAll}
       />
@@ -146,7 +156,13 @@ class TableHeader extends Component {
 
     const key = `hpcb${props.rowNumber}`;
     return (
-      <TableHeaderColumn key={key} style={{width: 24}}>
+      <TableHeaderColumn
+        key={key}
+        style={{
+          width: 24,
+          cursor: disabled ? 'not-allowed' : 'inherit',
+        }}
+      >
         {checkbox}
       </TableHeaderColumn>
     );

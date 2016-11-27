@@ -1,10 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import keycode from 'keycode';
 import shallowEqual from 'recompose/shallowEqual';
-import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
-import deprecated from '../utils/deprecatedPropType';
 import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
@@ -20,7 +17,6 @@ const getStyles = (props, context, state) => {
       textColor,
       disabledTextColor,
       backgroundColor,
-      hintColor,
       errorColor,
     },
   } = context.muiTheme;
@@ -36,6 +32,7 @@ const getStyles = (props, context, state) => {
       backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
       transition: transitions.easeOut('200ms', 'height'),
+      cursor: props.disabled ? 'not-allowed' : 'auto',
     },
     error: {
       position: 'relative',
@@ -46,35 +43,35 @@ const getStyles = (props, context, state) => {
       transition: transitions.easeOut(),
     },
     floatingLabel: {
-      color: hintColor,
+      color: props.disabled ? disabledTextColor : floatingLabelColor,
+      pointerEvents: 'none',
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 0,
       position: 'relative',
       width: '100%',
-      height: '100%',
       border: 'none',
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
+      cursor: 'inherit',
       font: 'inherit',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
-    textarea: {},
+    inputNative: {
+      appearance: 'textfield', // Improve type search style.
+    },
   };
 
-  Object.assign(styles.error, props.errorStyle);
-
-  Object.assign(styles.textarea, styles.input, {
+  styles.textarea = Object.assign({}, styles.input, {
     marginTop: props.floatingLabelText ? 36 : 12,
     marginBottom: props.floatingLabelText ? -36 : -12,
     boxSizing: 'border-box',
     font: 'inherit',
   });
 
-  if (state.hasValue) {
-    styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-  }
+  // Do not assign a height to the textarea as he handles it on his own.
+  styles.input.height = '100%';
 
   if (state.isFocused) {
     styles.floatingLabel.color = focusColor;
@@ -108,7 +105,7 @@ const getStyles = (props, context, state) => {
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return Boolean(value || value === 0);
+  return value !== '' && value !== undefined && value !== null;
 }
 
 class TextField extends Component {
@@ -181,27 +178,14 @@ class TextField extends Component {
      * Name applied to the input.
      */
     name: PropTypes.string,
-    /**
-     * Callback function that is fired when the textfield loses focus.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the textfield's value changes.
      */
     onChange: PropTypes.func,
-    /**
-     * The function to call when the user presses the Enter key.
-     */
-    onEnterKeyDown: deprecated(PropTypes.func,
-      'Use onKeyDown and check for keycode instead.'),
-    /**
-     * Callback function that is fired when the textfield gains focus.
-     */
+    /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Callback function fired when key is pressed down.
-     */
-    onKeyDown: PropTypes.func,
     /**
      * Number of rows to display when multiLine option is set to true.
      */
@@ -268,7 +252,6 @@ class TextField extends Component {
     isFocused: false,
     errorText: undefined,
     hasValue: false,
-    isClean: true,
   };
 
   componentWillMount() {
@@ -287,7 +270,7 @@ class TextField extends Component {
       hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
     });
 
-    warning(name || hintText || floatingLabelText || id, `We don't have enough information
+    warning(name || hintText || floatingLabelText || id, `Material-UI: We don't have enough information
       to build a robust unique id for the TextField component. Please provide an id or a name.`);
 
     const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
@@ -307,14 +290,11 @@ class TextField extends Component {
     }
 
     if (nextProps.hasOwnProperty('value')) {
-      const hasValue = isValid(nextProps.value) ||
-        (this.state.isClean && isValid(nextProps.defaultValue));
+      const hasValue = isValid(nextProps.value);
 
-      if (hasValue !== this.state.hasValue) {
-        this.setState({
-          hasValue: hasValue,
-        });
-      }
+      this.setState({
+        hasValue: hasValue,
+      });
     }
   }
 
@@ -353,20 +333,18 @@ class TextField extends Component {
   };
 
   handleInputChange = (event) => {
-    this.setState({hasValue: isValid(event.target.value), isClean: false});
+    this.setState({hasValue: isValid(event.target.value)});
     if (this.props.onChange) this.props.onChange(event, event.target.value);
   };
 
   handleInputFocus = (event) => {
-    if (this.props.disabled)
+    if (this.props.disabled) {
       return;
+    }
     this.setState({isFocused: true});
-    if (this.props.onFocus) this.props.onFocus(event);
-  };
-
-  handleInputKeyDown = (event) => {
-    if (keycode(event) === 'enter' && this.props.onEnterKeyDown) this.props.onEnterKeyDown(event);
-    if (this.props.onKeyDown) this.props.onKeyDown(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleHeightChange = (event, height) => {
@@ -383,11 +361,14 @@ class TextField extends Component {
 
   render() {
     const {
+      children,
       className,
       disabled,
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
+      floatingLabelFocusStyle,
+      floatingLabelStyle,
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
       hintText,
@@ -407,7 +388,7 @@ class TextField extends Component {
       rows,
       rowsMax,
       textareaStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -415,14 +396,19 @@ class TextField extends Component {
     const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
-      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
+      <div style={prepareStyles(Object.assign(styles.error, errorStyle))}>
+        {this.state.errorText}
+      </div>
     );
 
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
-        style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
-        shrinkStyle={this.props.floatingLabelFocusStyle}
+        style={Object.assign(
+          styles.floatingLabel,
+          floatingLabelStyle,
+          this.state.isFocused ? floatingLabelFocusStyle : null
+        )}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
@@ -438,42 +424,51 @@ class TextField extends Component {
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
-      onKeyDown: this.handleInputKeyDown,
     };
 
-    const inputStyleMerged = Object.assign(styles.input, inputStyle);
+    const childStyleMerged = Object.assign(styles.input, inputStyle);
 
     let inputElement;
-    if (this.props.children) {
-      inputElement = React.cloneElement(this.props.children,
+    if (children) {
+      inputElement = React.cloneElement(children,
         {
           ...inputProps,
-          ...this.props.children.props,
-          style: Object.assign(inputStyleMerged, this.props.children.props.style),
+          ...children.props,
+          style: Object.assign(childStyleMerged, children.props.style),
         });
     } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
-          {...other}
-          {...inputProps}
-          style={inputStyleMerged}
+          style={childStyleMerged}
+          textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
           rows={rows}
           rowsMax={rowsMax}
+          {...other}
+          {...inputProps}
           onHeightChange={this.handleHeightChange}
-          textareaStyle={Object.assign(styles.textarea, textareaStyle)}
         />
       ) : (
         <input
+          type={type}
+          style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}
           {...other}
           {...inputProps}
-          style={prepareStyles(inputStyleMerged)}
-          type={type}
         />
       );
     }
 
+    let rootProps = {};
+
+    if (children) {
+      rootProps = other;
+    }
+
     return (
-      <div className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+      <div
+        {...rootProps}
+        className={className}
+        style={prepareStyles(Object.assign(styles.root, style))}
+      >
         {floatingLabelTextElement}
         {hintText ?
           <TextFieldHint

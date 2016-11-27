@@ -106,7 +106,7 @@ class RadioButton extends Component {
     /**
      * The value of the radio button.
      */
-    value: PropTypes.string,
+    value: PropTypes.any,
   };
 
   static defaultProps = {
@@ -119,12 +119,11 @@ class RadioButton extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  handleStateChange = () => {
-  };
-
   // Only called when selected, not when unselected.
   handleSwitch = (event) => {
-    if (this.props.onCheck) this.props.onCheck(event, this.props.value);
+    if (this.props.onCheck) {
+      this.props.onCheck(event, this.props.value);
+    }
   };
 
   isChecked() {
@@ -151,7 +150,7 @@ class RadioButton extends Component {
       onCheck, // eslint-disable-line no-unused-vars
       uncheckedIcon,
       disabled,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);
@@ -174,13 +173,13 @@ class RadioButton extends Component {
       React.cloneElement(uncheckedIcon, {
         style: Object.assign(uncheckedStyles, uncheckedIcon.props.style),
       }) :
-      <RadioButtonOff style={uncheckedStyles} />;
+        <RadioButtonOff style={uncheckedStyles} />;
 
     const checkedElement = React.isValidElement(checkedIcon) ?
       React.cloneElement(checkedIcon, {
         style: Object.assign(checkedStyles, checkedIcon.props.style),
       }) :
-      <RadioButtonOn style={checkedStyles} />;
+        <RadioButtonOn style={checkedStyles} />;
 
     const mergedIconStyle = Object.assign(styles.icon, iconStyle);
     const mergedLabelStyle = Object.assign(styles.label, labelStyle);
@@ -197,7 +196,6 @@ class RadioButton extends Component {
         iconStyle={mergedIconStyle}
         labelStyle={mergedLabelStyle}
         labelPosition={labelPosition}
-        onParentShouldUpdate={this.handleStateChange}
         onSwitch={this.handleSwitch}
         switchElement={<div>{uncheckedElement}{checkedElement}</div>}
       />

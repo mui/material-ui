@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, cloneElement, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
@@ -6,8 +6,10 @@ import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
 
 function validateLabel(props, propName, componentName) {
-  if (!props.children && !props.label && !props.icon) {
-    return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+  if (process.env.NODE_ENV !== 'production') {
+    if (!props.children && (props.label !== 0 && !props.label) && !props.icon) {
+      return new Error(`Required prop label or children or icon was not specified in ${componentName}.`);
+    }
   }
 }
 
@@ -61,10 +63,10 @@ function getStyles(props, context, state) {
     root: {
       display: 'inline-block',
       transition: transitions.easeOut(),
+      minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
       position: 'relative',
-      minWidth: fullWidth ? '100%' : button.minWidth,
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
@@ -119,6 +121,10 @@ class RaisedButton extends Component {
      */
     backgroundColor: PropTypes.string,
     /**
+     * Override the inline-styles of the button element.
+     */
+    buttonStyle: PropTypes.object,
+    /**
      * The content of the button.
      * If a label is provided via the `label` prop, the text within the label
      * will be displayed in addition to the content provided here.
@@ -146,8 +152,7 @@ class RaisedButton extends Component {
      */
     fullWidth: PropTypes.bool,
     /**
-     * If `linkButton` is true, the URL to link to when the button
-     * is clicked.
+     * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
     /**
@@ -175,48 +180,22 @@ class RaisedButton extends Component {
      * Override the inline-styles of the button's label element.
      */
     labelStyle: PropTypes.object,
-    /**
-     * If true, enable the use of the `href` property to provide
-     * a URL to link to.
-     */
-    linkButton: PropTypes.bool,
-    /**
-     * Callback function fired when a mouse button is pressed down on
-     * the element.
-     *
-     * @param {object} event `mousedown` event targeting the element.
-     */
+    /** @ignore */
     onMouseDown: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when a mouse button is released on the element.
-     *
-     * @param {object} event `mouseup` event targeting the element.
-     */
+    /** @ignore */
     onMouseUp: PropTypes.func,
-    /**
-     * Callback function fired when a touch point is removed from the element.
-     *
-     * @param {object} event `touchend` event targeting the element.
-     */
+    /** @ignore */
     onTouchEnd: PropTypes.func,
-    /**
-     * Callback function fired when the element is touched.
-     *
-     * @param {object} event `touchstart` event targeting the element.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
+    /**
+     * Override the inline style of the button overlay.
+     */
+    overlayStyle: PropTypes.object,
     /**
      * If true, the button will use the theme's primary color.
      */
@@ -267,10 +246,16 @@ class RaisedButton extends Component {
 
   componentWillReceiveProps(nextProps) {
     const zDepth = nextProps.disabled ? 0 : 1;
-    this.setState({
+    const nextState = {
       zDepth: zDepth,
       initialZDepth: zDepth,
-    });
+    };
+
+    if (nextProps.disabled) {
+      nextState.hovered = false;
+    }
+
+    this.setState(nextState);
   }
 
   handleMouseDown = (event) => {
@@ -308,7 +293,9 @@ class RaisedButton extends Component {
 
   handleMouseEnter = (event) => {
     if (!this.state.keyboardFocused && !this.state.touched) {
-      this.setState({hovered: true});
+      this.setState({
+        hovered: true,
+      });
     }
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
@@ -328,6 +315,7 @@ class RaisedButton extends Component {
 
   handleTouchEnd = (event) => {
     this.setState({
+      touched: true,
       zDepth: this.state.initialZDepth,
     });
 
@@ -347,17 +335,25 @@ class RaisedButton extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
+      buttonStyle,
       children,
       className,
       disabled,
+      disabledBackgroundColor, // eslint-disable-line no-unused-vars
+      disabledLabelColor, // eslint-disable-line no-unused-vars
+      fullWidth, // eslint-disable-line no-unused-vars
       icon,
       label,
+      labelColor, // eslint-disable-line no-unused-vars
       labelPosition,
       labelStyle,
+      overlayStyle,
       primary, // eslint-disable-line no-unused-vars
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
-      ...other,
+      style,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -380,9 +376,9 @@ class RaisedButton extends Component {
       </span>
     );
 
-    const iconCloned = icon && React.cloneElement(icon, {
-      color: styles.label.color,
-      style: styles.icon,
+    const iconCloned = icon && cloneElement(icon, {
+      color: icon.props.color || styles.label.color,
+      style: Object.assign(styles.icon, icon.props.style),
     });
 
     // Place label before or after children.
@@ -402,7 +398,7 @@ class RaisedButton extends Component {
     return (
       <Paper
         className={className}
-        style={Object.assign(styles.root, this.props.style)}
+        style={Object.assign(styles.root, style)}
         zDepth={this.state.zDepth}
       >
         <EnhancedButton
@@ -410,7 +406,7 @@ class RaisedButton extends Component {
           {...buttonEventHandlers}
           ref="container"
           disabled={disabled}
-          style={styles.button}
+          style={Object.assign(styles.button, buttonStyle)}
           focusRippleColor={mergedRippleStyles.color}
           touchRippleColor={mergedRippleStyles.color}
           focusRippleOpacity={mergedRippleStyles.opacity}
@@ -418,7 +414,7 @@ class RaisedButton extends Component {
         >
           <div
             ref="overlay"
-            style={prepareStyles(styles.overlay)}
+            style={prepareStyles(Object.assign(styles.overlay, overlayStyle))}
           >
             {enhancedButtonChildren}
           </div>

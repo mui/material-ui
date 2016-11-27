@@ -12,8 +12,8 @@ function getStyles(props, context) {
 
   return {
     root: {
+      cursor: props.disabled ? 'not-allowed' : 'pointer',
       position: 'relative',
-      cursor: props.disabled ? 'default' : 'pointer',
       overflow: 'visible',
       display: 'table',
       height: 'auto',
@@ -21,7 +21,7 @@ function getStyles(props, context) {
     },
     input: {
       position: 'absolute',
-      cursor: props.disabled ? 'default' : 'pointer',
+      cursor: 'inherit',
       pointerEvents: 'all',
       opacity: 0,
       width: '100%',
@@ -99,7 +99,7 @@ class EnhancedSwitch extends Component {
     switched: PropTypes.bool.isRequired,
     thumbStyle: PropTypes.object,
     trackStyle: PropTypes.object,
-    value: PropTypes.string,
+    value: PropTypes.any,
   };
 
   static contextTypes = {
@@ -150,7 +150,7 @@ class EnhancedSwitch extends Component {
       }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
-      warning(false, 'Cannot call set method while checked is defined as a property.');
+      warning(false, 'Material-UI: Cannot call set method while checked is defined as a property.');
     }
   }
 
@@ -169,6 +169,7 @@ class EnhancedSwitch extends Component {
     if (!this.props.hasOwnProperty('checked') && this.props.onParentShouldUpdate) {
       this.props.onParentShouldUpdate(isInputChecked);
     }
+
     if (this.props.onSwitch) {
       this.props.onSwitch(event, isInputChecked);
     }
@@ -266,17 +267,19 @@ class EnhancedSwitch extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchEnd, // eslint-disable-line no-unused-vars
+      onParentShouldUpdate, // eslint-disable-line no-unused-vars
       disabled,
       disableTouchRipple,
       disableFocusRipple,
       className,
+      rippleColor, // eslint-disable-line no-unused-vars
       rippleStyle,
       style,
       switched, // eslint-disable-line no-unused-vars
       switchElement,
       thumbStyle,
       trackStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

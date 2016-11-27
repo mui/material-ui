@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
-import deprecated from '../utils/deprecatedPropType';
 
 class DatePicker extends Component {
   static propTypes = {
@@ -24,6 +23,10 @@ class DatePicker extends Component {
      */
     cancelLabel: PropTypes.node,
     /**
+     * The css class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
      * Used to control how the Date Picker will be displayed when the input field is focused.
      * `dialog` (default) displays the DatePicker as a dialog with a modal.
      * `inline` displays the DatePicker below the input field (similar to auto complete).
@@ -35,6 +38,10 @@ class DatePicker extends Component {
      * prop with `value` taking precedence.
      */
     defaultDate: PropTypes.object,
+    /**
+     * Override the inline-styles of DatePickerDialog's Container element.
+     */
+    dialogContainerStyle: PropTypes.object,
     /**
      * Disables the year selection in the date picker.
      */
@@ -95,8 +102,6 @@ class DatePicker extends Component {
     onDismiss: PropTypes.func,
     /**
      * Callback function that is fired when the Date Picker's `TextField` gains focus.
-     *
-     * @param {object} event `focus` event targeting the `TextField`.
      */
     onFocus: PropTypes.func,
     /**
@@ -127,11 +132,7 @@ class DatePicker extends Component {
     /**
      * Sets the date for the Date Picker programmatically.
      */
-    value: PropTypes.any,
-    /**
-     * Wordings used inside the button of the dialog.
-     */
-    wordings: deprecated(PropTypes.object, 'Instead, use `cancelLabel` and `okLabel`.'),
+    value: PropTypes.object,
   };
 
   static defaultProps = {
@@ -142,7 +143,6 @@ class DatePicker extends Component {
     firstDayOfWeek: 1,
     style: {},
   };
-
 
   static contextTypes = {
     muiTheme: PropTypes.object.isRequired,
@@ -206,21 +206,28 @@ class DatePicker extends Component {
         date: date,
       });
     }
-    if (this.props.onChange) this.props.onChange(null, date);
+    if (this.props.onChange) {
+      this.props.onChange(null, date);
+    }
   };
 
   handleFocus = (event) => {
     event.target.blur();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) this.props.onTouchTap(event);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
 
-    if (!this.props.disabled)
+    if (!this.props.disabled) {
       setTimeout(() => {
         this.openDialog();
       }, 0);
+    }
   };
 
   isControlled() {
@@ -251,10 +258,13 @@ class DatePicker extends Component {
       DateTimeFormat,
       autoOk,
       cancelLabel,
+      className,
       container,
       defaultDate, // eslint-disable-line no-unused-vars
+      dialogContainerStyle,
       disableYearSelection,
       firstDayOfWeek,
+      formatDate: formatDateProp,
       locale,
       maxDate,
       minDate,
@@ -267,15 +277,14 @@ class DatePicker extends Component {
       shouldDisableDate,
       style,
       textFieldStyle,
-      wordings,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const formatDate = this.props.formatDate || this.formatDate;
+    const formatDate = formatDateProp || this.formatDate;
 
     return (
-      <div style={prepareStyles(Object.assign({}, style))}>
+      <div className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           onFocus={this.handleFocus}
@@ -289,6 +298,7 @@ class DatePicker extends Component {
           autoOk={autoOk}
           cancelLabel={cancelLabel}
           container={container}
+          containerStyle={dialogContainerStyle}
           disableYearSelection={disableYearSelection}
           firstDayOfWeek={firstDayOfWeek}
           initialDate={this.state.dialogDate}
@@ -302,7 +312,6 @@ class DatePicker extends Component {
           onDismiss={onDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
-          wordings={wordings}
         />
       </div>
     );

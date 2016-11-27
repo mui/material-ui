@@ -53,8 +53,9 @@ class Toolbar extends Component {
     const {
       children,
       className,
+      noGutter, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

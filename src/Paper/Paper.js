@@ -4,8 +4,8 @@ import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
   const {
-    circle,
     rounded,
+    circle,
     transitionEnabled,
     zDepth,
   } = props;
@@ -72,8 +72,12 @@ class Paper extends Component {
   render() {
     const {
       children,
+      circle, // eslint-disable-line no-unused-vars
+      rounded, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      transitionEnabled, // eslint-disable-line no-unused-vars
+      zDepth, // eslint-disable-line no-unused-vars
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

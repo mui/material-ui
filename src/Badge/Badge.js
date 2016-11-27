@@ -91,11 +91,13 @@ class Badge extends Component {
 
   render() {
     const {
-      style,
-      children,
       badgeContent,
       badgeStyle,
-      ...other,
+      children,
+      primary, // eslint-disable-line no-unused-vars
+      secondary, // eslint-disable-line no-unused-vars
+      style,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

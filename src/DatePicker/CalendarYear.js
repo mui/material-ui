@@ -5,9 +5,10 @@ import {cloneDate} from './dateUtils';
 
 class CalendarYear extends Component {
   static propTypes = {
-    displayDate: PropTypes.object.isRequired,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
+    DateTimeFormat: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired,
+    maxDate: PropTypes.object.isRequired,
+    minDate: PropTypes.object.isRequired,
     onTouchTapYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
     wordings: PropTypes.object,
@@ -26,18 +27,30 @@ class CalendarYear extends Component {
   }
 
   getYears() {
-    const minYear = this.props.minDate.getFullYear();
-    const maxYear = this.props.maxDate.getFullYear();
+    const {
+      DateTimeFormat,
+      locale,
+      minDate,
+      maxDate,
+      selectedDate,
+    } = this.props;
 
+    const minYear = minDate.getFullYear();
+    const maxYear = maxDate.getFullYear();
     const years = [];
-    const dateCheck = cloneDate(this.props.selectedDate);
+    const dateCheck = cloneDate(selectedDate);
+
     for (let year = minYear; year <= maxYear; year++) {
       dateCheck.setFullYear(year);
-      const selected = this.props.selectedDate.getFullYear() === year;
-      let selectedProps = {};
+      const selected = selectedDate.getFullYear() === year;
+      const selectedProps = {};
       if (selected) {
-        selectedProps = {ref: 'selectedYearButton'};
+        selectedProps.ref = 'selectedYearButton';
       }
+
+      const yearFormated = new DateTimeFormat(locale, {
+        year: 'numeric',
+      }).format(dateCheck);
 
       const yearButton = (
         <YearButton
@@ -46,7 +59,9 @@ class CalendarYear extends Component {
           selected={selected}
           year={year}
           {...selectedProps}
-        />
+        >
+          {yearFormated}
+        </YearButton>
       );
 
       years.push(yearButton);
@@ -56,7 +71,9 @@ class CalendarYear extends Component {
   }
 
   scrollToSelectedYear() {
-    if (this.refs.selectedYearButton === undefined) return;
+    if (this.refs.selectedYearButton === undefined) {
+      return;
+    }
 
     const container = ReactDOM.findDOMNode(this);
     const yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
@@ -69,28 +86,40 @@ class CalendarYear extends Component {
   }
 
   handleTouchTapYear = (event, year) => {
-    if (this.props.onTouchTapYear) this.props.onTouchTapYear(event, year);
+    if (this.props.onTouchTapYear) {
+      this.props.onTouchTapYear(event, year);
+    }
   };
 
   render() {
-    const years = this.getYears();
-    const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
+    const {
+      prepareStyles,
+      datePicker: {
+        calendarYearBackgroundColor,
+      },
+    } = this.context.muiTheme;
+
     const styles = {
-      backgroundColor: backgroundColor,
-      height: 'inherit',
-      lineHeight: '35px',
-      overflowX: 'hidden',
-      overflowY: 'scroll',
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
+      root: {
+        backgroundColor: calendarYearBackgroundColor,
+        height: 'inherit',
+        lineHeight: '35px',
+        overflowX: 'hidden',
+        overflowY: 'scroll',
+        position: 'relative',
+      },
+      child: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        minHeight: '100%',
+      },
     };
 
     return (
-      <div style={styles}>
-        <div>
-          {years}
+      <div style={prepareStyles(styles.root)}>
+        <div style={prepareStyles(styles.child)}>
+          {this.getYears()}
         </div>
       </div>
     );

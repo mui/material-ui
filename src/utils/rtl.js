@@ -9,6 +9,10 @@ const reSkew = /((^|\s)skew(x|y)?\()\s*(\-?[\d]+)(deg|rad|grad)(,\s*(\-?[\d]+)(d
 export default function rtl(muiTheme) {
   if (muiTheme.isRtl) {
     return (style) => {
+      if (style.directionInvariant === true) {
+        return style;
+      }
+
       const flippedAttributes = {
         // Keys and their replacements.
         right: 'left',
@@ -50,6 +54,7 @@ export default function rtl(muiTheme) {
             break;
 
           case 'transform':
+            if (!value) break;
             let matches;
             if ((matches = value.match(reTranslate))) {
               value = value.replace(matches[0], matches[1] + (-parseFloat(matches[4])) );
@@ -62,6 +67,7 @@ export default function rtl(muiTheme) {
             break;
 
           case 'transformOrigin':
+            if (!value) break;
             if (value.indexOf('right') > -1) {
               value = value.replace('right', 'left');
             } else if (value.indexOf('left') > -1) {

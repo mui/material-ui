@@ -56,7 +56,7 @@ function getStyles(props, context, state) {
       top: verticalPosition === 'top' ?
         touchOffsetTop : 36,
       opacity: 0.9,
-      transform: `translate3d(0px, ${offset}px, 0px)`,
+      transform: `translate(0px, ${offset}px)`,
       transition: `${transitions.easeOut('0ms', 'top', '0ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
         transitions.easeOut('450ms', 'opacity', '0ms')}`,
@@ -138,12 +138,16 @@ class Tooltip extends Component {
   }
 
   render() {
-    const {prepareStyles} = this.context.muiTheme;
-
     const {
+      horizontalPosition, // eslint-disable-line no-unused-vars
       label,
-      ...other,
+      show, // eslint-disable-line no-unused-vars
+      touch, // eslint-disable-line no-unused-vars
+      verticalPosition, // eslint-disable-line no-unused-vars
+      ...other
     } = this.props;
+
+    const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
     return (
@@ -163,8 +167,7 @@ class Tooltip extends Component {
             styles.ripple,
             this.props.show && styles.rippleWhenShown
           ))}
-        >
-        </div>
+        />
         <span style={prepareStyles(styles.label)}>
           {label}
         </span>

@@ -49,14 +49,20 @@ class EnhancedButton extends Component {
     disabled: PropTypes.bool,
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
+    href: PropTypes.string,
     keyboardFocused: PropTypes.bool,
-    linkButton: PropTypes.bool,
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onKeyboardFocus: PropTypes.func,
+    onMouseDown: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onMouseUp: PropTypes.func,
+    onTouchEnd: PropTypes.func,
+    onTouchStart: PropTypes.func,
     onTouchTap: PropTypes.func,
     style: PropTypes.object,
     tabIndex: PropTypes.number,
@@ -70,9 +76,15 @@ class EnhancedButton extends Component {
     onBlur: () => {},
     onClick: () => {},
     onFocus: () => {},
-    onKeyboardFocus: () => {},
     onKeyDown: () => {},
     onKeyUp: () => {},
+    onKeyboardFocus: () => {},
+    onMouseDown: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onMouseUp: () => {},
+    onTouchEnd: () => {},
+    onTouchStart: () => {},
     onTouchTap: () => {},
     tabIndex: 0,
     type: 'button',
@@ -94,6 +106,10 @@ class EnhancedButton extends Component {
   componentDidMount() {
     injectStyle();
     listenForTabPresses();
+    if (this.state.isKeyboardFocused) {
+      this.refs.enhancedButton.focus();
+      this.props.onKeyboardFocus(null, true);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -182,6 +198,9 @@ class EnhancedButton extends Component {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
         this.handleTouchTap(event);
       }
+      if (keycode(event) === 'esc' && this.state.isKeyboardFocused) {
+        this.removeKeyboardFocus(event);
+      }
     }
     this.props.onKeyDown(event);
   };
@@ -245,7 +264,8 @@ class EnhancedButton extends Component {
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
       focusRippleOpacity, // eslint-disable-line no-unused-vars
-      linkButton,
+      href,
+      keyboardFocused, // eslint-disable-line no-unused-vars
       touchRippleColor, // eslint-disable-line no-unused-vars
       touchRippleOpacity, // eslint-disable-line no-unused-vars
       onBlur, // eslint-disable-line no-unused-vars
@@ -253,11 +273,12 @@ class EnhancedButton extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onTouchTap, // eslint-disable-line no-unused-vars
       style,
       tabIndex,
       type,
-      ...other,
+      ...other
     } = this.props;
 
     const {
@@ -273,6 +294,8 @@ class EnhancedButton extends Component {
       WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
       cursor: disabled ? 'default' : 'pointer',
       textDecoration: 'none',
+      margin: 0,
+      padding: 0,
       outline: 'none',
       fontSize: 'inherit',
       fontWeight: 'inherit',
@@ -282,8 +305,8 @@ class EnhancedButton extends Component {
        * See: http://stackoverflow.com/questions/17298739/
        * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
        */
-      transform: disableTouchRipple && disableFocusRipple ? null : 'translate3d(0, 0, 0)',
-      verticalAlign: other.hasOwnProperty('href') ? 'middle' : null,
+      transform: disableTouchRipple && disableFocusRipple ? null : 'translate(0, 0)',
+      verticalAlign: href ? 'middle' : null,
     }, style);
 
 
@@ -292,7 +315,7 @@ class EnhancedButton extends Component {
       mergedStyles.background = 'none';
     }
 
-    if (disabled && linkButton) {
+    if (disabled && href) {
       return (
         <span
           {...other}
@@ -306,24 +329,25 @@ class EnhancedButton extends Component {
     const buttonProps = {
       ...other,
       style: prepareStyles(mergedStyles),
+      ref: 'enhancedButton',
       disabled: disabled,
+      href: href,
       onBlur: this.handleBlur,
       onClick: this.handleClick,
       onFocus: this.handleFocus,
-      onTouchTap: this.handleTouchTap,
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
-      tabIndex: tabIndex,
+      onTouchTap: this.handleTouchTap,
+      tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
       type: type,
     };
     const buttonChildren = this.createButtonChildren();
 
-    // Provides backward compatibity. Added to support wrapping around <a> element.
-    const targetLinkElement = buttonProps.hasOwnProperty('href') ? 'a' : 'span';
+    if (React.isValidElement(containerElement)) {
+      return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
 
-    return React.isValidElement(containerElement) ?
-      React.cloneElement(containerElement, buttonProps, buttonChildren) :
-      React.createElement(linkButton ? targetLinkElement : containerElement, buttonProps, buttonChildren);
+    return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
   }
 }
 

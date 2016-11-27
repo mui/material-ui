@@ -22,6 +22,7 @@ function getStyles(props, context) {
       marginRight: lastChild ? -marginHorizontal : undefined,
       display: 'flex',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     dropDownMenu: {
       root: {
@@ -45,12 +46,8 @@ function getStyles(props, context) {
     icon: {
       root: {
         cursor: 'pointer',
-        color: toolbar.iconColor,
         lineHeight: `${toolbar.height}px`,
         paddingLeft: baseTheme.spacing.desktopGutter,
-      },
-      hover: {
-        color: toolbar.hoverColor,
       },
     },
     span: {
@@ -78,10 +75,6 @@ class ToolbarGroup extends Component {
      */
     firstChild: PropTypes.bool,
     /**
-     * Determines the side the `ToolbarGroup` will snap to. Either 'left' or 'right'.
-     */
-    float: PropTypes.oneOf(['left', 'right']),
-    /**
      * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
      * to prevent setting the right gap.
      */
@@ -101,13 +94,6 @@ class ToolbarGroup extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  handleMouseEnterFontIcon(style) {
-    return (event) => {
-      event.target.style.zIndex = style.hover.zIndex;
-      event.target.style.color = style.hover.color;
-    };
-  }
-
   handleMouseLeaveFontIcon(style) {
     return (event) => {
       event.target.style.zIndex = 'auto';
@@ -119,8 +105,10 @@ class ToolbarGroup extends Component {
     const {
       children,
       className,
+      firstChild, // eslint-disable-line no-unused-vars
+      lastChild, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -137,8 +125,7 @@ class ToolbarGroup extends Component {
         case 'DropDownMenu' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, styles.dropDownMenu.root, currentChild.props.style),
-            styleControlBg: styles.dropDownMenu.controlBg,
-            styleUnderline: styles.dropDownMenu.underline,
+            underlineStyle: styles.dropDownMenu.underline,
           });
         case 'RaisedButton' :
         case 'FlatButton' :
@@ -148,8 +135,8 @@ class ToolbarGroup extends Component {
         case 'FontIcon' :
           return React.cloneElement(currentChild, {
             style: Object.assign({}, styles.icon.root, currentChild.props.style),
-            onMouseEnter: this.handleMouseEnterFontIcon(styles.icon),
-            onMouseLeave: this.handleMouseLeaveFontIcon(styles.icon),
+            color: currentChild.props.color || this.context.muiTheme.toolbar.iconColor,
+            hoverColor: currentChild.props.hoverColor || this.context.muiTheme.toolbar.hoverColor,
           });
         case 'ToolbarSeparator' :
         case 'ToolbarTitle' :

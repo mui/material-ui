@@ -53,7 +53,7 @@ function getStyles(props, context) {
     icon: {
       height: floatingActionButton.buttonSize,
       lineHeight: `${floatingActionButton.buttonSize}px`,
-      fill: floatingActionButton.iconColor,
+      fill: iconColor,
       color: iconColor,
     },
     iconWhenMini: {
@@ -88,7 +88,7 @@ class FloatingActionButton extends Component {
      */
     disabledColor: PropTypes.string,
     /**
-     * URL to link to when button clicked if `linkButton` is set to true.
+     * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
     /**
@@ -104,48 +104,20 @@ class FloatingActionButton extends Component {
      */
     iconStyle: PropTypes.object,
     /**
-     * Enables use of `href` property to provide a URL to link to if set to true.
-     */
-    linkButton: PropTypes.bool,
-    /**
      * If true, the button will be a small floating action button.
      */
     mini: PropTypes.bool,
-    /**
-     * Callback function fired when a mouse button is pressed down on the elmeent.
-     *
-     * @param {object} event `mousedown` event targeting the element.
-     */
+    /** @ignore */
     onMouseDown: PropTypes.func,
-    /**
-     * Callback function fired when the mouse enters the element.
-     *
-     * @param {object} event `mouseenter` event targeting the element.
-     */
+    /** @ignore */
     onMouseEnter: PropTypes.func,
-    /**
-     * Callback function fired when the mouse leaves the element.
-     *
-     * @param {object} event `mouseleave` event targeting the element.
-     */
+    /** @ignore */
     onMouseLeave: PropTypes.func,
-    /**
-     * Callback function fired when a mouse button is released on the element.
-     *
-     * @param {object} event `mouseup` event targeting the element.
-     */
+    /** @ignore */
     onMouseUp: PropTypes.func,
-    /**
-     * Callback function fired when a touch point is removed from the element.
-     *
-     * @param {object} event `touchend` event targeting the element.
-     */
+    /** @ignore */
     onTouchEnd: PropTypes.func,
-    /**
-     * Callback function fired when the element is touched.
-     *
-     * @param {object} event `touchstart` event targeting the element.
-     */
+    /** @ignore */
     onTouchStart: PropTypes.func,
     /**
      * If true, the button will use the secondary button colors.
@@ -186,17 +158,22 @@ class FloatingActionButton extends Component {
 
   componentDidMount() {
     warning(!this.props.iconClassName || !this.props.children,
-      'You have set both an iconClassName and a child icon. ' +
+      'Material-UI: You have set both an iconClassName and a child icon. ' +
       'It is recommended you use only one method when adding ' +
       'icons to FloatingActionButtons.');
   }
 
   componentWillReceiveProps(nextProps) {
+    const nextState = {};
+
     if (nextProps.disabled !== this.props.disabled) {
-      this.setState({
-        zDepth: nextProps.disabled ? 0 : this.props.zDepth,
-      });
+      nextState.zDepth = nextProps.disabled ? 0 : this.props.zDepth;
     }
+    if (nextProps.disabled) {
+      nextState.hovered = false;
+    }
+
+    this.setState(nextState);
   }
 
   handleMouseDown = (event) => {
@@ -209,19 +186,27 @@ class FloatingActionButton extends Component {
 
   handleMouseUp = (event) => {
     this.setState({zDepth: this.props.zDepth});
-    if (this.props.onMouseUp) this.props.onMouseUp(event);
+    if (this.props.onMouseUp) {
+      this.props.onMouseUp(event);
+    }
   };
 
   handleMouseLeave = (event) => {
-    if (!this.refs.container.isKeyboardFocused()) this.setState({zDepth: this.props.zDepth, hovered: false});
-    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
+    if (!this.refs.container.isKeyboardFocused()) {
+      this.setState({zDepth: this.props.zDepth, hovered: false});
+    }
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(event);
+    }
   };
 
   handleMouseEnter = (event) => {
     if (!this.refs.container.isKeyboardFocused() && !this.state.touch) {
       this.setState({hovered: true});
     }
-    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(event);
+    }
   };
 
   handleTouchStart = (event) => {
@@ -229,12 +214,19 @@ class FloatingActionButton extends Component {
       touch: true,
       zDepth: this.props.zDepth + 1,
     });
-    if (this.props.onTouchStart) this.props.onTouchStart(event);
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(event);
+    }
   };
 
   handleTouchEnd = (event) => {
-    this.setState({zDepth: this.props.zDepth});
-    if (this.props.onTouchEnd) this.props.onTouchEnd(event);
+    this.setState({
+      touch: true,
+      zDepth: this.props.zDepth,
+    });
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(event);
+    }
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
@@ -250,13 +242,17 @@ class FloatingActionButton extends Component {
 
   render() {
     const {
+      backgroundColor, // eslint-disable-line no-unused-vars
       className,
+      children: childrenProp,
       disabled,
       mini,
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,
       iconClassName,
-      ...other} = this.props;
+      zDepth, // eslint-disable-line no-unused-vars
+      ...other
+    } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
@@ -274,12 +270,17 @@ class FloatingActionButton extends Component {
       );
     }
 
-    const children = extendChildren(this.props.children, {
-      style: Object.assign({},
-        styles.icon,
-        mini && styles.iconWhenMini,
-        iconStyle),
-    });
+    let children;
+
+    if (childrenProp) {
+      children = extendChildren(childrenProp, (child) => ({
+        style: Object.assign({},
+          styles.icon,
+          mini && styles.iconWhenMini,
+          iconStyle,
+          child.props.style),
+      }));
+    }
 
     const buttonEventHandlers = disabled ? null : {
       onMouseDown: this.handleMouseDown,

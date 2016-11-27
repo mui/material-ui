@@ -10,6 +10,7 @@ class CircleRipple extends Component {
     color: PropTypes.string,
     opacity: PropTypes.number,
     style: PropTypes.object,
+    touchGenerated: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -71,10 +72,12 @@ class CircleRipple extends Component {
 
   render() {
     const {
+      aborted, // eslint-disable-line no-unused-vars
       color,
       opacity, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      touchGenerated, // eslint-disable-line no-unused-vars
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

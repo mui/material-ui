@@ -9,8 +9,8 @@ function getStyles(props, context, state) {
 
   const styles = {
     root: {
-      width: isLandscape ? 125 : 270,
-      height: isLandscape ? 290 : 'auto',
+      width: isLandscape ? 165 : '100%',
+      height: isLandscape ? 330 : 'auto',
       float: isLandscape ? 'left' : 'none',
       fontWeight: 700,
       display: 'inline-block',
@@ -20,6 +20,7 @@ function getStyles(props, context, state) {
       borderBottomLeftRadius: isLandscape ? 2 : 0,
       color: datePicker.textColor,
       padding: 20,
+      boxSizing: 'border-box',
     },
     monthDay: {
       display: 'block',
@@ -47,7 +48,7 @@ function getStyles(props, context, state) {
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: (!selectedYear && !props.disableYearSelection) ? 'pointer' : 'default',
+      cursor: props.disableYearSelection ? 'not-allowed' : (!selectedYear ? 'pointer' : 'default'),
     },
   };
 
@@ -65,13 +66,11 @@ class DateDisplay extends Component {
     onTouchTapYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
     style: PropTypes.object,
-    weekCount: PropTypes.number,
   };
 
   static defaultProps = {
     disableYearSelection: false,
     monthDaySelected: true,
-    weekCount: 4,
   };
 
   static contextTypes = {
@@ -79,9 +78,15 @@ class DateDisplay extends Component {
   };
 
   state = {
-    selectedYear: !this.props.monthDaySelected,
+    selectedYear: false,
     transitionDirection: 'up',
   };
+
+  componentWillMount() {
+    if (!this.props.monthDaySelected) {
+      this.setState({selectedYear: true});
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedDate !== this.props.selectedDate) {
@@ -119,17 +124,25 @@ class DateDisplay extends Component {
   render() {
     const {
       DateTimeFormat,
+      disableYearSelection, // eslint-disable-line no-unused-vars
       locale,
-      selectedDate,
+      mode, // eslint-disable-line no-unused-vars
+      monthDaySelected, // eslint-disable-line no-unused-vars
+      onTouchTapMonthDay, // eslint-disable-line no-unused-vars
+      onTouchTapYear, // eslint-disable-line no-unused-vars
+      selectedDate, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const year = selectedDate.getFullYear();
 
-    const dateTimeFormatted = new DateTimeFormat(locale, {
+    const year = new DateTimeFormat(locale, {
+      year: 'numeric',
+    }).format(selectedDate);
+
+    const dateTime = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
@@ -137,24 +150,18 @@ class DateDisplay extends Component {
 
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>
-        <SlideInTransitionGroup
-          style={styles.year}
-          direction={this.state.transitionDirection}
-        >
+        <SlideInTransitionGroup style={styles.year} direction={this.state.transitionDirection}>
           <div key={year} style={styles.yearTitle} onTouchTap={this.handleTouchTapYear}>
             {year}
           </div>
         </SlideInTransitionGroup>
-        <SlideInTransitionGroup
-          style={styles.monthDay}
-          direction={this.state.transitionDirection}
-        >
+        <SlideInTransitionGroup style={styles.monthDay} direction={this.state.transitionDirection}>
           <div
-            key={dateTimeFormatted}
+            key={dateTime}
             onTouchTap={this.handleTouchTapMonthDay}
             style={styles.monthDayTitle}
           >
-            {dateTimeFormatted}
+            {dateTime}
           </div>
         </SlideInTransitionGroup>
       </div>

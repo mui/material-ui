@@ -26,6 +26,7 @@ function getStyles(props, context, state) {
       transform: `rotateZ(${angle}deg)`,
     },
     mark: {
+      boxSizing: 'content-box',
       background: timePicker.selectTextColor,
       border: `4px solid ${timePicker.accentColor}`,
       display: hasSelected && 'none',
@@ -49,9 +50,9 @@ class ClockPointer extends Component {
   };
 
   static defaultProps = {
+    hasSelected: false,
     value: null,
     type: 'minute',
-    hasSelected: false,
   };
 
   static contextTypes = {
@@ -59,8 +60,14 @@ class ClockPointer extends Component {
   };
 
   state = {
-    inner: isInner(this.props),
+    inner: false,
   };
+
+  componentWillMount() {
+    this.setState({
+      inner: isInner(this.props),
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({

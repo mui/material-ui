@@ -14,7 +14,7 @@ const argv = Minimist(process.argv.slice(2), {
 const types = argv._;
 const globPatterns = {
   unit: `src/**/${argv.component ? argv.component : '*'}.spec.js`,
-  integration: 'test/integration/**/*.js',
+  integration: `test/integration/**/${argv.component ? argv.component : '*'}.spec.js`,
 };
 
 let pattern;
@@ -27,6 +27,7 @@ if (types.indexOf('unit') + types.indexOf('integration') === -2) {
 
 const mocha = new Mocha({
   grep: argv.grep ? argv.grep : undefined,
+  reporter: 'dot',
 });
 
 Glob(

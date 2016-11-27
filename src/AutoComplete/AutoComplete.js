@@ -7,8 +7,6 @@ import MenuItem from '../MenuItem';
 import Divider from '../Divider';
 import Popover from '../Popover/Popover';
 import propTypes from '../utils/propTypes';
-import warning from 'warning';
-import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props, context, state) {
   const {anchorEl} = state;
@@ -52,9 +50,23 @@ class AutoComplete extends Component {
      */
     animated: PropTypes.bool,
     /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
+    /**
      * Array of strings or nodes used to populate the list.
      */
     dataSource: PropTypes.array.isRequired,
+    /**
+     * Config for objects list dataSource.
+     *
+     * @typedef {Object} dataSourceConfig
+     *
+     * @property {string} text `dataSource` element key used to find a string to be matched for search
+     * and shown as a `TextField` input value after choosing the result.
+     * @property {string} value `dataSource` element key used to find a string to be shown in search results.
+     */
+    dataSourceConfig: PropTypes.object,
     /**
      * Disables focus ripple when true.
      */
@@ -108,21 +120,15 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Callback function that is fired when the `TextField` loses focus.
-     *
-     * @param {object} event `blur` event targeting the `TextField`.
-     */
+    /** @ignore */
     onBlur: PropTypes.func,
     /**
-     * Callback function that is fired when the `TextField` gains focus.
-     *
-     * @param {object} event `focus` event targeting the `TextField`.
+     * Callback function fired when the menu is closed.
      */
+    onClose: PropTypes.func,
+    /** @ignore */
     onFocus: PropTypes.func,
-    /**
-     * Callback function that is fired when the `TextField` receives a keydown event.
-     */
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
@@ -149,6 +155,10 @@ class AutoComplete extends Component {
      */
     openOnFocus: PropTypes.bool,
     /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
+    /**
      * Text being input to auto complete.
      */
     searchText: PropTypes.string,
@@ -161,9 +171,9 @@ class AutoComplete extends Component {
      */
     targetOrigin: propTypes.origin,
     /**
-     * If true, will update when focus event triggers.
+     * Override the inline-styles of AutoComplete's TextField element.
      */
-    triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus'),
+    textFieldStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -172,6 +182,10 @@ class AutoComplete extends Component {
       horizontal: 'left',
     },
     animated: true,
+    dataSourceConfig: {
+      text: 'text',
+      value: 'value',
+    },
     disableFocusRipple: true,
     filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
     fullWidth: false,
@@ -224,6 +238,10 @@ class AutoComplete extends Component {
       open: false,
       anchorEl: null,
     });
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   handleRequestClose = () => {
@@ -233,20 +251,6 @@ class AutoComplete extends Component {
       this.close();
     }
   };
-
-  setValue(textValue) {
-    warning(false, 'setValue() is deprecated, use the searchText property.');
-
-    this.setState({
-      searchText: textValue,
-    });
-  }
-
-  getValue() {
-    warning(false, 'getValue() is deprecated.');
-
-    return this.state.searchText;
-  }
 
   handleMouseDown = (event) => {
     // Keep the TextField focused
@@ -258,17 +262,25 @@ class AutoComplete extends Component {
 
     const index = parseInt(child.key, 10);
     const chosenRequest = dataSource[index];
-    const searchText = typeof chosenRequest === 'string' ? chosenRequest : chosenRequest.text;
-
-    this.props.onNewRequest(chosenRequest, index);
+    const searchText = this.chosenRequestText(chosenRequest);
 
     this.timerTouchTapCloseId = setTimeout(() => {
+      this.timerTouchTapCloseId = null;
+
       this.setState({
         searchText: searchText,
       });
       this.close();
-      this.timerTouchTapCloseId = null;
+      this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
+  };
+
+  chosenRequestText = (chosenRequest) => {
+    if (typeof chosenRequest === 'string') {
+      return chosenRequest;
+    } else {
+      return chosenRequest[this.props.dataSourceConfig.text];
+    }
   };
 
   handleEscKeyDown = () => {
@@ -334,7 +346,7 @@ class AutoComplete extends Component {
   };
 
   handleFocus = (event) => {
-    if (!this.state.open && (this.props.triggerUpdateOnFocus || this.props.openOnFocus)) {
+    if (!this.state.open && this.props.openOnFocus) {
       this.setState({
         open: true,
         anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
@@ -362,22 +374,36 @@ class AutoComplete extends Component {
     const {
       anchorOrigin,
       animated,
-      style,
+      animation,
+      dataSource,
+      dataSourceConfig, // eslint-disable-line no-unused-vars
+      disableFocusRipple,
       errorStyle,
       floatingLabelText,
-      hintText,
+      filter,
       fullWidth,
+      style,
+      hintText,
+      maxSearchResults,
+      menuCloseDelay, // eslint-disable-line no-unused-vars
+      textFieldStyle,
       menuStyle,
       menuProps,
       listStyle,
       targetOrigin,
-      disableFocusRipple,
-      triggerUpdateOnFocus, // eslint-disable-line no-unused-vars
+      onClose, // eslint-disable-line no-unused-vars
+      onNewRequest, // eslint-disable-line no-unused-vars
+      onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
-      maxSearchResults,
-      dataSource,
-      ...other,
+      popoverProps,
+      searchText: searchTextProp, // eslint-disable-line no-unused-vars
+      ...other
     } = this.props;
+
+    const {
+      style: popoverStyle,
+      ...popoverOther
+    } = popoverProps || {};
 
     const {
       open,
@@ -394,7 +420,7 @@ class AutoComplete extends Component {
     dataSource.every((item, index) => {
       switch (typeof item) {
         case 'string':
-          if (this.props.filter(searchText, item, item)) {
+          if (filter(searchText, item, item)) {
             requestsList.push({
               text: item,
               value: (
@@ -410,29 +436,31 @@ class AutoComplete extends Component {
           break;
 
         case 'object':
-          if (item && typeof item.text === 'string') {
-            if (this.props.filter(searchText, item.text, item)) {
-              if (item.value.type && (item.value.type.muiName === MenuItem.muiName ||
-                 item.value.type.muiName === Divider.muiName)) {
-                requestsList.push({
-                  text: item.text,
-                  value: React.cloneElement(item.value, {
-                    key: index,
-                    disableFocusRipple: this.props.disableFocusRipple,
-                  }),
-                });
-              } else {
-                requestsList.push({
-                  text: item.text,
-                  value: (
-                    <MenuItem
-                      innerDivStyle={styles.innerDiv}
-                      primaryText={item.value}
-                      disableFocusRipple={disableFocusRipple}
-                      key={index}
-                    />),
-                });
-              }
+          if (item && typeof item[this.props.dataSourceConfig.text] === 'string') {
+            const itemText = item[this.props.dataSourceConfig.text];
+            if (!this.props.filter(searchText, itemText, item)) break;
+
+            const itemValue = item[this.props.dataSourceConfig.value];
+            if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
+               itemValue.type.muiName === Divider.muiName)) {
+              requestsList.push({
+                text: itemText,
+                value: React.cloneElement(itemValue, {
+                  key: index,
+                  disableFocusRipple: disableFocusRipple,
+                }),
+              });
+            } else {
+              requestsList.push({
+                text: itemText,
+                value: (
+                  <MenuItem
+                    innerDivStyle={styles.innerDiv}
+                    primaryText={itemText}
+                    disableFocusRipple={disableFocusRipple}
+                    key={index}
+                  />),
+              });
             }
           }
           break;
@@ -479,9 +507,10 @@ class AutoComplete extends Component {
           fullWidth={fullWidth}
           multiLine={false}
           errorStyle={errorStyle}
+          style={textFieldStyle}
         />
         <Popover
-          style={styles.popover}
+          style={Object.assign({}, styles.popover, popoverStyle)}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
@@ -490,6 +519,8 @@ class AutoComplete extends Component {
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
           animated={animated}
+          animation={animation}
+          {...popoverOther}
         >
           {menu}
         </Popover>

@@ -72,8 +72,10 @@ class ScaleInChild extends Component {
     const {
       children,
       enterDelay, // eslint-disable-line no-unused-vars
+      maxScale, // eslint-disable-line no-unused-vars
+      minScale, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

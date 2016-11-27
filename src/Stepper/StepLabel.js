@@ -47,6 +47,7 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
   if (disabled) {
     styles.icon.color = inactiveIconColor;
     styles.root.color = disabledTextColor;
+    styles.root.cursor = 'not-allowed';
   }
 
   return styles;
@@ -80,6 +81,14 @@ class StepLabel extends Component {
       PropTypes.string,
       PropTypes.number,
     ]),
+    /**
+     * Override the inline-styles of the icon container element.
+     */
+    iconContainerStyle: PropTypes.object,
+    /**
+     * @ignore
+     */
+    last: PropTypes.bool,
     /**
      * Override the inline-style of the root element.
      */
@@ -125,11 +134,14 @@ class StepLabel extends Component {
 
   render() {
     const {
+      active, // eslint-disable-line no-unused-vars
       children,
       completed,
       icon: userIcon,
+      iconContainerStyle,
+      last, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -139,7 +151,7 @@ class StepLabel extends Component {
     return (
       <span style={prepareStyles(Object.assign(styles.root, style))} {...other}>
         {icon && (
-          <span style={prepareStyles(styles.iconContainer)}>
+          <span style={prepareStyles(Object.assign(styles.iconContainer, iconContainerStyle))}>
             {icon}
           </span>
         )}

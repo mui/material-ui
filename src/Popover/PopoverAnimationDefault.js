@@ -36,7 +36,7 @@ function getStyles(props, context, state) {
   };
 }
 
-class PopoverDefaultAnimation extends Component {
+class PopoverAnimationDefault extends Component {
   static propTypes = {
     children: PropTypes.node,
     /**
@@ -48,7 +48,7 @@ class PopoverDefaultAnimation extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    targetOrigin: propTypes.origin,
+    targetOrigin: propTypes.origin.isRequired,
     zDepth: propTypes.zDepth,
   };
 
@@ -101,4 +101,4 @@ class PopoverDefaultAnimation extends Component {
   }
 }
 
-export default PopoverDefaultAnimation;
+export default PopoverAnimationDefault;

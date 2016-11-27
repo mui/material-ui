@@ -126,5 +126,22 @@ describe('./styles/getMuiTheme', () => {
         });
       });
     });
+
+    describe('rtl', () => {
+      it('should revert the rules when isRtl is true', () => {
+        const muiTheme = getMuiTheme({}, {
+          isRtl: true,
+        });
+
+        const stylePrepared = muiTheme.prepareStyles({
+          right: 10,
+        });
+
+        expect(stylePrepared).to.deep.equal({
+          left: 10,
+          muiPrepared: true,
+        });
+      });
+    });
   });
 });

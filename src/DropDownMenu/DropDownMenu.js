@@ -4,7 +4,7 @@ import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import Popover from '../Popover/Popover';
-import PopoverAnimationFromTop from '../Popover/PopoverAnimationVertical';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 
 const anchorOrigin = {
   vertical: 'top',
@@ -32,13 +32,16 @@ function getStyles(props, context) {
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
+      overflow: 'hidden',
       opacity: 1,
       position: 'relative',
       paddingLeft: spacing.desktopGutter,
       paddingRight: spacing.iconSize +
       spacing.desktopGutterLess +
       spacing.desktopGutterMini,
+      textOverflow: 'ellipsis',
       top: 0,
+      whiteSpace: 'nowrap',
     },
     labelWhenOpen: {
       opacity: 0,
@@ -74,6 +77,15 @@ class DropDownMenu extends Component {
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
   static propTypes = {
+    /**
+     * If true, the popover will apply transitions when
+     * it gets added to the DOM.
+     */
+    animated: PropTypes.bool,
+    /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
     /**
      * The width will automatically be set according to the items inside the menu.
      * To control this width in css instead, set this prop to `false`.
@@ -122,6 +134,10 @@ class DropDownMenu extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
+    /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
@@ -140,6 +156,7 @@ class DropDownMenu extends Component {
   };
 
   static defaultProps = {
+    animated: true,
     autoWidth: true,
     disabled: false,
     openImmediately: false,
@@ -216,19 +233,31 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
   handleItemTouchTap = (event, child, index) => {
-    this.props.onChange(event, index, child.props.value);
-
+    event.persist();
     this.setState({
       open: false,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
+      if (this.props.onChange) {
+        this.props.onChange(event, index, child.props.value);
+      }
     });
   };
 
   render() {
     const {
+      animated,
+      animation,
       autoWidth,
       children,
       className,
@@ -236,11 +265,13 @@ class DropDownMenu extends Component {
       labelStyle,
       listStyle,
       maxHeight,
-      menuStyle: menuStyleProps,
+      menuStyle: menuStyleProp,
+      onClose, // eslint-disable-line no-unused-vars
+      openImmediately, // eslint-disable-line no-unused-vars
       style,
       underlineStyle,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const {
@@ -253,7 +284,7 @@ class DropDownMenu extends Component {
 
     let displayValue = '';
     React.Children.forEach(children, (child) => {
-      if (value === child.props.value) {
+      if (child && value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
       }
@@ -263,9 +294,9 @@ class DropDownMenu extends Component {
     if (anchorEl && !autoWidth) {
       menuStyle = Object.assign({
         width: anchorEl.clientWidth,
-      }, menuStyleProps);
+      }, menuStyleProp);
     } else {
-      menuStyle = menuStyleProps;
+      menuStyle = menuStyleProp;
     }
 
     return (
@@ -287,8 +318,9 @@ class DropDownMenu extends Component {
         <Popover
           anchorOrigin={anchorOrigin}
           anchorEl={anchorEl}
-          animation={PopoverAnimationFromTop}
+          animation={animation || PopoverAnimationVertical}
           open={open}
+          animated={animated}
           onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu

@@ -14,7 +14,7 @@ function getStyles(props, context, state) {
       resize: 'none',
       font: 'inherit',
       padding: 0,
-      cursor: props.disabled ? 'default' : 'initial',
+      cursor: 'inherit',
     },
     shadow: {
       resize: 'none',
@@ -56,8 +56,14 @@ class EnhancedTextarea extends Component {
   };
 
   state = {
-    height: this.props.rows * rowsHeight,
+    height: null,
   };
+
+  componentWillMount() {
+    this.setState({
+      height: this.props.rows * rowsHeight,
+    });
+  }
 
   componentDidMount() {
     this.syncHeightWithShadow();
@@ -90,6 +96,10 @@ class EnhancedTextarea extends Component {
     }
 
     let newHeight = shadow.scrollHeight;
+
+    // Guarding for jsdom, where scrollHeight isn't present.
+    // See https://github.com/tmpvar/jsdom/issues/1013
+    if (newHeight === undefined) return;
 
     if (this.props.rowsMax >= this.props.rows) {
       newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
@@ -125,17 +135,18 @@ class EnhancedTextarea extends Component {
       onChange, // eslint-disable-line no-unused-vars
       onHeightChange, // eslint-disable-line no-unused-vars
       rows, // eslint-disable-line no-unused-vars
+      rowsMax, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
       textareaStyle,
       valueLink, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const rootStyles = Object.assign({}, styles.root, style);
-    const textareaStyles = Object.assign({}, styles.textarea, textareaStyle);
+    const rootStyles = Object.assign(styles.root, style);
+    const textareaStyles = Object.assign(styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 
     if (this.props.hasOwnProperty('valueLink')) {

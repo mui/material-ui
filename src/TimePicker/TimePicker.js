@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import warning from 'warning';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
 import {formatTime} from './timeUtils';
@@ -24,6 +23,14 @@ class TimePicker extends Component {
      * The initial time value of the TimePicker.
      */
     defaultTime: PropTypes.object,
+    /**
+     * Override the inline-styles of TimePickerDialog's body element.
+     */
+    dialogBodyStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of TimePickerDialog's root element.
+     */
+    dialogStyle: PropTypes.object,
     /**
      * If true, the TimePicker is disabled.
      */
@@ -78,18 +85,17 @@ class TimePicker extends Component {
      * Sets the time for the Time Picker programmatically.
      */
     value: PropTypes.object,
-
   };
 
   static defaultProps = {
+    autoOk: false,
+    cancelLabel: 'Cancel',
     defaultTime: null,
     disabled: false,
     format: 'ampm',
-    pedantic: false,
-    autoOk: false,
-    style: {},
     okLabel: 'OK',
-    cancelLabel: 'Cancel',
+    pedantic: false,
+    style: {},
     value: null,
   };
 
@@ -98,9 +104,15 @@ class TimePicker extends Component {
   };
 
   state = {
-    time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    time: null,
     dialogTime: new Date(),
   };
+
+  componentWillMount() {
+    this.setState({
+      time: this.isControlled() ? this.getControlledTime() : this.props.defaultTime,
+    });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
@@ -108,28 +120,6 @@ class TimePicker extends Component {
         time: this.getControlledTime(nextProps),
       });
     }
-  }
-
-  /**
-   * Deprecated.
-   * returns timepicker value.
-   **/
-  getTime() {
-    warning(false, `getTime() method is deprecated. Use the defaultTime property
-    instead. Or use the TimePicker as a controlled component with the value
-    property.`);
-    return this.state.time;
-  }
-
-  /**
-   * Deprecated
-   * sets timepicker value.
-   **/
-  setTime(time) {
-    warning(false, `setTime() method is deprecated. Use the defaultTime property
-    instead. Or use the TimePicker as a controlled component with the value
-    property.`);
-    this.setState({time: time ? time : emptyTime});
   }
 
   /**
@@ -155,15 +145,21 @@ class TimePicker extends Component {
 
   handleFocusInput = (event) => {
     event.target.blur();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleTouchTapInput = (event) => {
     event.preventDefault();
 
-    if (!this.props.disabled) this.openDialog();
+    if (!this.props.disabled) {
+      this.openDialog();
+    }
 
-    if (this.props.onTouchTap) this.props.onTouchTap(event);
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
   };
 
   isControlled() {
@@ -182,6 +178,9 @@ class TimePicker extends Component {
     const {
       autoOk,
       cancelLabel,
+      defaultTime, // eslint-disable-line no-unused-vars
+      dialogBodyStyle,
+      dialogStyle,
       format,
       okLabel,
       onFocus, // eslint-disable-line no-unused-vars
@@ -191,7 +190,7 @@ class TimePicker extends Component {
       pedantic,
       style,
       textFieldStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -209,6 +208,7 @@ class TimePicker extends Component {
         />
         <TimePickerDialog
           ref="dialogWindow"
+          bodyStyle={dialogBodyStyle}
           initialTime={this.state.dialogTime}
           onAccept={this.handleAcceptDialog}
           onShow={onShow}
@@ -217,6 +217,7 @@ class TimePicker extends Component {
           okLabel={okLabel}
           cancelLabel={cancelLabel}
           autoOk={autoOk}
+          style={dialogStyle}
         />
       </div>
     );

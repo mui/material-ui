@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, isValidElement} from 'react';
 import Avatar from '../Avatar';
 
 function getStyles(props, context) {
@@ -53,9 +53,17 @@ class CardHeader extends Component {
      */
     children: PropTypes.node,
     /**
+     * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
+     */
+    closeIcon: PropTypes.node,
+    /**
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
+    /**
+     * Can be used to pass a openIcon if you don't like the default expandable open Icon.
+     */
+    openIcon: PropTypes.node,
     /**
      * If true, this card component will include a button to expand the card.
      */
@@ -103,36 +111,50 @@ class CardHeader extends Component {
   };
 
   render() {
+    const {
+      actAsExpander, // eslint-disable-line no-unused-vars
+      avatar: avatarProp,
+      children,
+      closeIcon, // eslint-disable-line no-unused-vars
+      expandable, // eslint-disable-line no-unused-vars
+      openIcon, // eslint-disable-line no-unused-vars
+      showExpandableButton, // eslint-disable-line no-unused-vars
+      style,
+      subtitle,
+      subtitleColor, // eslint-disable-line no-unused-vars
+      subtitleStyle,
+      textStyle,
+      title,
+      titleColor, // eslint-disable-line no-unused-vars
+      titleStyle,
+      ...other
+    } = this.props;
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-    const rootStyle = Object.assign(styles.root, this.props.style);
-    const textStyle = Object.assign(styles.text, this.props.textStyle);
-    const titleStyle = Object.assign(styles.title, this.props.titleStyle);
-    const subtitleStyle = Object.assign(styles.subtitle, this.props.subtitleStyle);
 
-    let avatar = this.props.avatar;
-    if (React.isValidElement(this.props.avatar)) {
+    let avatar = avatarProp;
+
+    if (isValidElement(avatarProp)) {
       avatar = React.cloneElement(avatar, {
         style: Object.assign(styles.avatar, avatar.props.style),
       });
     } else if (avatar !== null) {
-      avatar = <Avatar src={this.props.avatar} style={styles.avatar} />;
+      avatar = <Avatar src={avatarProp} style={styles.avatar} />;
     }
 
-    const {
-      title,
-      subtitle,
-      ...other,
-    } = this.props;
-
     return (
-      <div {...other} style={prepareStyles(rootStyle)}>
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         {avatar}
-        <div style={prepareStyles(textStyle)}>
-          <span style={prepareStyles(titleStyle)}>{title}</span>
-          <span style={prepareStyles(subtitleStyle)}>{subtitle}</span>
+        <div style={prepareStyles(Object.assign(styles.text, textStyle))}>
+          <span style={prepareStyles(Object.assign(styles.title, titleStyle))}>
+            {title}
+          </span>
+          <span style={prepareStyles(Object.assign(styles.subtitle, subtitleStyle))}>
+            {subtitle}
+          </span>
         </div>
-        {this.props.children}
+        {children}
       </div>
     );
   }

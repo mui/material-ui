@@ -68,7 +68,7 @@ class VerticalLinearStepper extends React.Component {
     const {finished, stepIndex} = this.state;
 
     return (
-      <div style={{width: 380, height: 400, margin: 'auto'}}>
+      <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
         <Stepper activeStep={stepIndex} orientation="vertical">
           <Step>
             <StepLabel>Select campaign settings</StepLabel>
