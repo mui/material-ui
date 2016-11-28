@@ -182,8 +182,10 @@ class DatePicker extends Component {
   };
 
   componentWillMount() {
+    const defaultDate = this.isControlled() ? this.getControlledDate() : this.props.defaultDate;
     this.setState({
-      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
+      date: defaultDate,
+      textDate: defaultDate ? this.formatDate(defaultDate) : '',
     });
   }
 
@@ -193,6 +195,7 @@ class DatePicker extends Component {
       if (!isEqualDate(this.state.date, newDate)) {
         this.setState({
           date: newDate,
+          textDate: this.formatDate(newDate),
         });
       }
     }
