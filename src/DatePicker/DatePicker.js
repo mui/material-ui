@@ -5,7 +5,7 @@ import DateRangeIcon from 'material-ui/svg-icons/action/date-range';
 import IconButton from 'material-ui/IconButton';
 import TextField from '../TextField';
 
-export function getStyles(props) {
+export function getStyles() {
   const styles = {
     iconButtonStyle: {
       verticalAlign: 'top',
