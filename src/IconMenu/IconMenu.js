@@ -14,8 +14,8 @@ class IconMenu extends Component {
      * This is the point on the icon where the menu
      * `targetOrigin` will attach.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     anchorOrigin: propTypes.origin,
     /**
@@ -104,8 +104,8 @@ class IconMenu extends Component {
      * This is the point on the menu which will stick to the menu
      * origin.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     targetOrigin: propTypes.origin,
     /**
