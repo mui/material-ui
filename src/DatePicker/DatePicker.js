@@ -5,7 +5,7 @@ import DateRangeIcon from 'material-ui/svg-icons/action/date-range';
 import IconButton from 'material-ui/IconButton';
 import TextField from '../TextField';
 
-export function getStyles(props, context) {
+export function getStyles(props) {
   const styles = {
     iconButtonStyle: {
       verticalAlign: 'top',
@@ -262,12 +262,12 @@ class DatePicker extends Component {
     if (this.shouldHandleKeyboard()) {
       if (this.getDate()) {
         this.setState({
-          textDate: this.formatDate(this.getDate())
+          textDate: this.formatDate(this.getDate()),
         });
       }
 
       this.setState({
-        hasError: !this.getDate() && !!this.state.textDate.trim()
+        hasError: !this.getDate() && !!this.state.textDate.trim(),
       });
     }
   }
@@ -276,7 +276,7 @@ class DatePicker extends Component {
     const parsedDate = this.parseDate(value);
     this.setState({
       date: parsedDate,
-      textDate: value
+      textDate: value,
     });
   };
 
@@ -303,7 +303,9 @@ class DatePicker extends Component {
   }
 
   formatDate = (date) => {
-    if (this.props.locale) {
+    if (this.props.formatDate) {
+      return this.props.formatDate(date);
+    } else if (this.props.locale) {
       const DateTimeFormat = this.props.DateTimeFormat || dateTimeFormat;
       return new DateTimeFormat(this.props.locale, {
         day: 'numeric',
@@ -341,7 +343,7 @@ class DatePicker extends Component {
       dialogContainerStyle,
       disableYearSelection,
       firstDayOfWeek,
-      formatDate: formatDateProp,
+      formatDate, // eslint-disable-line no-unused-vars
       iconButtonStyle,
       locale,
       maxDate,
@@ -355,14 +357,13 @@ class DatePicker extends Component {
       shouldDisableDate,
       style,
       textFieldStyle,
-      keyboardEnabled,
+      keyboardEnabled, // eslint-disable-line no-unused-vars
       errorText,
       ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
-    const formatDate = formatDateProp || this.formatDate;
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>
@@ -376,8 +377,7 @@ class DatePicker extends Component {
           style={textFieldStyle}
           errorText={this.state.hasError && errorText}
           value={this.state.textDate}
-        >
-        </TextField>
+        />
         {this.shouldHandleKeyboard() &&
           <IconButton
             onTouchTap={this.handleTouchTap}
