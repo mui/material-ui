@@ -4,15 +4,14 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
+import LabelBase from '../internal/LabelBase';
 
 export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
   return {
     root: {
-      color: theme.palette.text.secondary,
       position: 'absolute',
       left: 0,
       top: 0,
-      lineHeight: 1,
       transform: 'translate(0, 18px) scale(1)',
       transformOrigin: 'top left',
     },
@@ -33,8 +32,6 @@ export default function TextFieldLabel(props, context) {
     animated,
     children,
     className: classNameProp,
-    focused,
-    required,
     shrink,
     ...other
   } = props;
@@ -46,18 +43,9 @@ export default function TextFieldLabel(props, context) {
   }, classNameProp);
 
   return (
-    <label className={className} {...other}>
+    <LabelBase className={className} {...other}>
       {children}
-      {required && (
-        <span
-          className={classNames({
-            [classes.asterisk]: focused,
-          })}
-        >
-          {'\u2009'}*
-        </span>
-      )}
-    </label>
+    </LabelBase>
   );
 }
 
@@ -72,12 +60,15 @@ TextFieldLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Whether the label should be displayed in an error state.
+   */
+  error: PropTypes.bool,
+  /**
    * Whether the input of this label is focused.
    */
   focused: PropTypes.bool,
   /**
-   * Whether this label should indicate that the input
-   * is required.
+   * Whether this label should indicate that the input is required.
    */
   required: PropTypes.bool,
   shrink: PropTypes.bool,
@@ -85,8 +76,6 @@ TextFieldLabel.propTypes = {
 
 TextFieldLabel.defaultProps = {
   animated: true,
-  focused: false,
-  required: false,
 };
 
 TextFieldLabel.contextTypes = {
