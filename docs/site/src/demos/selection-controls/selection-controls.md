@@ -37,3 +37,7 @@ Otherwise, consider a dropdown, which uses less space than displaying all option
 On/off switches toggle the state of a single settings option. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
 
 {{demo='demos/selection-controls/Switches.js'}}
+
+`Switch` can also be with a `label`.
+{{demo='demos/selection-controls/SwitchLabels.js'}}
+
