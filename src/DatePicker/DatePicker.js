@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
-import DateRangeIcon from 'material-ui/svg-icons/action/date-range';
-import IconButton from 'material-ui/IconButton';
 import TextField from '../TextField';
+import IconButton from '../IconButton';
+import DateRangeIcon from '../svg-icons/action/date-range';
 
 export function getStyles() {
   const styles = {
