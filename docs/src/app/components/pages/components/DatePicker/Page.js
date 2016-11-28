@@ -18,6 +18,8 @@ import DatePickerExampleDisableDates from './ExampleDisableDates';
 import datePickerExampleDisableDatesCode from '!raw!./ExampleDisableDates';
 import DatePickerExampleInternational from './ExampleInternational';
 import datePickerExampleInternationalCode from '!raw!./ExampleInternational';
+import DatePickerExampleKeyboardInput from './ExampleKeyboardInput';
+import datePickerExampleKeyboardInputCode from '!raw!./ExampleKeyboardInput';
 import datePickerCode from '!raw!material-ui/DatePicker/DatePicker';
 
 const DatePickerPage = () => (
@@ -59,6 +61,12 @@ const DatePickerPage = () => (
       code={datePickerExampleInternationalCode}
     >
       <DatePickerExampleInternational />
+    </CodeExample>
+    <CodeExample
+      title="Keyboard input example"
+      code={datePickerExampleKeyboardInputCode}
+    >
+      <DatePickerExampleKeyboardInput />
     </CodeExample>
     <PropTypeDescription code={datePickerCode} />
   </div>
