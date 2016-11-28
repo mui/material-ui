@@ -121,7 +121,12 @@ export default class TextFieldInput extends Component {
   }
 
   checkDirty(obj) {
-    if (this.props.onDirty && isDirty(obj)) {
+    const dirty = isDirty(obj);
+    if (dirty === undefined) {
+      return;
+    }
+
+    if (this.props.onDirty && dirty) {
       this.props.onDirty();
     } else if (this.props.onClean) {
       this.props.onClean();
