@@ -28,10 +28,12 @@ export default function Checkbox(props, context) {
   };
 
   if (label) {
-    switchProps['aria-label'] = label;
     return (
       <SelectionLabel label={label} className={labelClassName}>
-        <SwitchBase {...switchProps} />
+        <SwitchBase
+          aria-label={label}
+          {...switchProps}
+        />
       </SelectionLabel>
     );
   }

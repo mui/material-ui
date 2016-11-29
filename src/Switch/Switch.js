@@ -71,11 +71,11 @@ export default function Switch(props, context) {
   };
 
   if (label) {
-    switchProps['aria-label'] = label;
     return (
       <SelectionLabel label={label} className={labelClassName} labelReverse={labelReverse}>
         <div className={classNames(classes.root, className)}>
           <SwitchBase
+            aria-label={label}
             {...switchProps}
           />
           <div className={classes.bar} />
