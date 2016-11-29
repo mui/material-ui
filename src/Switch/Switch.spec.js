@@ -49,7 +49,7 @@ describe('<Switch />', () => {
 
   it('should spread custom props on the SwitchBase node', () => {
     const wrapper = shallow(<Switch label="Foo" data-my-prop="woof" />);
-    const switchBase = wrapper.childAt(0).childAt(0);
+    const switchBase = wrapper.find('SwitchBase');
     assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 });
