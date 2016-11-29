@@ -50,7 +50,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       color: palette.accent.A200,
     },
     contrast: {
-      color: palette.type === 'light' ? palette.shades.dark.primary : palette.shades.light.secondary,
+      color: palette.getContrastText(palette.primary[500]),
     },
     raised: {
       color: getContrastText(palette.grey[300]),
@@ -83,6 +83,9 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       '&:hover': {
         backgroundColor: palette.accent.A400,
       },
+    },
+    raisedContrast: {
+      color: getContrastText(palette.primary[500]),
     },
     fab: {
       borderRadius: '50%',
@@ -128,6 +131,10 @@ export default class Button extends Component {
      * The element or component used for the root node.
      */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    /**
+     * If true, will use the theme's contrast color.
+     */
+    contrast: PropTypes.bool,
     /**
      * If `true`, the button will be disabled.
      */
@@ -187,6 +194,7 @@ export default class Button extends Component {
       children,
       className: classNameProp,
       compact,
+      contrast,
       disabled,
       fab,
       primary,
@@ -202,8 +210,10 @@ export default class Button extends Component {
       [classes.fab]: fab,
       [classes.primary]: flat && primary,
       [classes.accent]: flat && accent,
+      [classes.contrast]: flat && contrast,
       [classes.raisedPrimary]: !flat && primary,
       [classes.raisedAccent]: !flat && accent,
+      [classes.raisedContrast]: !flat && contrast,
       [classes.compact]: compact,
       [classes.disabled]: disabled,
     }, classNameProp);
