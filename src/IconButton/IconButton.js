@@ -25,9 +25,6 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       zIndex: 1,
       transition: transitions.create('background-color', '150ms'),
     },
-    primary: {
-      color: palette.primary[500],
-    },
     accent: {
       color: palette.accent.A200,
     },

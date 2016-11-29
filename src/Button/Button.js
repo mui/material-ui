@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
-import { getContrastText } from '../styles/palette';
 
 export const styleSheet = createStyleSheet('Button', (theme) => {
   const { typography, palette, transitions, shadows } = theme;
@@ -53,7 +52,7 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       color: palette.getContrastText(palette.primary[500]),
     },
     raised: {
-      color: getContrastText(palette.grey[300]),
+      color: palette.getContrastText(palette.grey[300]),
       backgroundColor: palette.grey[300],
       boxShadow: shadows[2],
       '&$keyboardFocused': {
@@ -71,21 +70,21 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
     },
     keyboardFocused: {},
     raisedPrimary: {
-      color: getContrastText(palette.primary[500]),
+      color: palette.getContrastText(palette.primary[500]),
       backgroundColor: palette.primary[500],
       '&:hover': {
         backgroundColor: palette.primary[700],
       },
     },
     raisedAccent: {
-      color: getContrastText(palette.accent.A200),
+      color: palette.getContrastText(palette.accent.A200),
       backgroundColor: palette.accent.A200,
       '&:hover': {
         backgroundColor: palette.accent.A400,
       },
     },
     raisedContrast: {
-      color: getContrastText(palette.primary[500]),
+      color: palette.getContrastText(palette.primary[500]),
     },
     fab: {
       borderRadius: '50%',
@@ -175,6 +174,7 @@ export default class Button extends Component {
     accent: false,
     component: 'button',
     compact: false,
+    contrast: false,
     disabled: false,
     fab: false,
     focusRipple: true,
