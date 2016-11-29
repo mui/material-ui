@@ -23,9 +23,7 @@ export default class Switches extends Component {
           onChange={(event, checked) => this.setState({ checkedB: checked })}
           label="B"
         />
-        <Switch
-          label="C"
-        />
+        <Switch label="C" />
       </div>
     );
   }
