@@ -2,13 +2,13 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Text from 'material-ui/Text';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import { throttle } from 'material-ui/utils/helpers';
-import addEventListener from 'material-ui/utils/addEventListener';
+import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import AppDrawer from './AppDrawer';
 
 const globalStyleSheet = createStyleSheet('global', (theme) => ({
@@ -93,54 +93,20 @@ class AppFrame extends Component {
     children: PropTypes.node,
     dispatch: PropTypes.func.isRequired,
     routes: PropTypes.array,
+    width: PropTypes.string.isRequired,
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 
   state = {
-    drawerDocked: false,
     drawerOpen: false,
   };
 
   componentWillMount() {
     this.context.styleManager.render(globalStyleSheet);
-    this.resizeListener = addEventListener(window, 'resize', this.handleResize);
   }
-
-  componentDidMount() {
-    this.mounted = true;
-    this.checkWindowSize();
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-
-    if (this.resizeListener) {
-      this.resizeListener.remove();
-    }
-  }
-
-  mounted = false;
-  resizeListener = undefined;
-
-  checkWindowSize = () => {
-    if (!this.mounted) {
-      return;
-    }
-
-    const breakpoint = this.context.theme.breakpoints.getWidth('lg');
-
-    if (this.state.drawerDocked && window.innerWidth < breakpoint) {
-      this.setState({ drawerDocked: false });
-    } else if (!this.state.drawerDocked && window.innerWidth >= breakpoint) {
-      this.setState({ drawerDocked: true });
-    }
-  };
-
-  handleResize = throttle(this.checkWindowSize, 100);
 
   handleDrawerOpen = () => {
     this.setState({ drawerOpen: true });
@@ -182,7 +148,7 @@ class AppFrame extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const title = this.getTitle();
 
-    let drawerDocked = this.state.drawerDocked;
+    let drawerDocked = isWidthUp('lg', this.props.width);
     let navIconClassName = classes.navIcon;
     let appBarClassName = classes.appBar;
 
@@ -223,4 +189,7 @@ class AppFrame extends Component {
   }
 }
 
-export default connect()(AppFrame);
+export default compose(
+  withWidth(),
+  connect(),
+)(AppFrame);

@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = function setKarmaConfig(config) {
   config.set({
     basePath: '../',
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS_Sized'],
     // to avoid DISCONNECTED messages on travis
     browserDisconnectTimeout: 10000, // default 2000
     browserDisconnectTolerance: 1, // default 0
@@ -85,6 +85,17 @@ module.exports = function setKarmaConfig(config) {
     },
     webpackServer: {
       noInfo: true,
+    },
+    customLaunchers: {
+      PhantomJS_Sized: {
+        base: 'PhantomJS',
+        options: {
+          viewportSize: { // Matches JSDom size.
+            width: 1024,
+            height: 768,
+          },
+        },
+      },
     },
   });
 };

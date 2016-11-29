@@ -1,5 +1,14 @@
 // @flow weak
 
+// Sorted ASC by size. That's important.
+export const keys = [
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+];
+
 export default function createBreakpoints(
   breakpoints = {
     xs: 360,
@@ -11,7 +20,6 @@ export default function createBreakpoints(
   unit = 'px',
   step = 1,
 ) {
-  const keys = Object.keys(breakpoints);
   const values = keys.map((n) => breakpoints[n]);
 
   function up(name) {
@@ -33,7 +41,7 @@ export default function createBreakpoints(
 
   function only(name) {
     const keyIndex = keys.indexOf(name);
-    if (keyIndex === values.length - 1) {
+    if (keyIndex === keys.length - 1) {
       return up(name);
     }
     return between(name, name);
