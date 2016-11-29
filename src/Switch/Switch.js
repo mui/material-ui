@@ -72,7 +72,7 @@ export default function Switch(props, context) {
 
   if (label) {
     return (
-      <SelectionLabel label={label} className={labelClassName} labelReverse={labelReverse}>
+      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
         <div className={classNames(classes.root, className)}>
           <SwitchBase
             aria-label={label}
@@ -103,6 +103,10 @@ Switch.propTypes = {
   label: PropTypes.node,
   labelClassName: PropTypes.string,
   labelReverse: PropTypes.bool,
+};
+
+Switch.defaultProps = {
+  labelReverse: false,
 };
 
 Switch.contextTypes = {

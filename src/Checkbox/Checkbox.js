@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
 });
 
 export default function Checkbox(props, context) {
-  const { className, checkedClassName, label, labelClassName, ...other } = props;
+  const { className, checkedClassName, label, labelClassName, labelReverse, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const switchProps = {
@@ -29,7 +29,7 @@ export default function Checkbox(props, context) {
 
   if (label) {
     return (
-      <SelectionLabel label={label} className={labelClassName}>
+      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
         <SwitchBase
           aria-label={label}
           {...switchProps}
@@ -49,6 +49,11 @@ Checkbox.propTypes = {
   className: PropTypes.string,
   label: PropTypes.node,
   labelClassName: PropTypes.string,
+  labelReverse: PropTypes.bool,
+};
+
+Checkbox.defaultProps = {
+  labelReverse: false,
 };
 
 Checkbox.contextTypes = {

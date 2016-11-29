@@ -23,6 +23,7 @@ export default function Radio(props, context) {
     checkedClassName,
     label,
     labelClassName,
+    labelReverse,
     onChange,
     value,
     ...other
@@ -43,7 +44,7 @@ export default function Radio(props, context) {
 
   if (label) {
     return (
-      <SelectionLabel label={label} className={labelClassName}>
+      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
         <SwitchBase
           aria-label={label}
           {...switchProps}
@@ -64,9 +65,14 @@ Radio.propTypes = {
   className: PropTypes.string,
   label: PropTypes.node,
   labelClassName: PropTypes.string,
+  labelReverse: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+};
+
+Radio.defaultProps = {
+  labelReverse: false,
 };
 
 Radio.contextTypes = {

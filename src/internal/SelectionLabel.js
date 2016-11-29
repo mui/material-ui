@@ -35,7 +35,7 @@ SelectionLabel.propTypes = {
   children: PropTypes.node,
   label: PropTypes.node,
   labelClassName: PropTypes.string,
-  labelReverse: PropTypes.bool,
+  labelReverse: PropTypes.bool.isRequired,
 };
 
 SelectionLabel.contextTypes = {
