@@ -25,9 +25,11 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       zIndex: 1,
       transition: transitions.create('background-color', '150ms'),
     },
+    accent: {
+      color: palette.accent.A200,
+    },
     contrast: {
-      color: palette.type === 'light' ?
-        palette.shades.dark.text.primary : palette.shades.light.text.secondary,
+      color: palette.getContrastText(palette.primary[500]),
     },
     label: {
       width: '100%',
@@ -41,12 +43,6 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
     },
     keyboardFocused: {
       backgroundColor: palette.text.divider,
-    },
-    primary: {
-      color: palette.primary[500],
-    },
-    accent: {
-      color: palette.accent.A200,
     },
   };
 });
