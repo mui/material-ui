@@ -3,8 +3,8 @@
 import React from 'react';
 import Switch from 'material-ui/Switch';
 
-export default function CheckedDisabledSwitch() {
+export default function DisabledSwitch() {
   return (
-    <Switch checked />
+    <Switch disabled />
   );
 }
