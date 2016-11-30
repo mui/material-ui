@@ -5,6 +5,10 @@ import Switch from 'material-ui/Switch';
 
 export default function DisabledSwitch() {
   return (
-    <Switch disabled />
+    <div>
+      <Switch label="Foo" disabled />
+      <Switch disabled />
+      <Switch checked disabled />
+    </div>
   );
 }

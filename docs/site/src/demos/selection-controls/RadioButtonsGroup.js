@@ -37,8 +37,9 @@ export default class RadioButtonsGroup extends Component {
           onChange={this.handleChange}
         >
           <Radio label="Male" value="male" />
-          <Radio label="Female" value="female" />
+          <Radio label="Female" value="female" checked />
           <Radio label="Other" value="other" />
+          <Radio label="Disabled" value="foo" disabled />
         </RadioGroup>
       </div>
     );

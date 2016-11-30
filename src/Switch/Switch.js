@@ -54,11 +54,15 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       height: 20,
       borderRadius: '50%',
     },
+    disabled: {
+      opacity: 0.5,
+      cursor: 'not-allowed',
+    },
   };
 });
 
 export default function Switch(props, context) {
-  const { className, checkedClassName, label, labelClassName, labelReverse, ...other } = props;
+  const { className, checkedClassName, disabled, label, labelClassName, labelReverse, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const switchProps = {
@@ -67,12 +71,19 @@ export default function Switch(props, context) {
     icon: <div className={classes.icon} />,
     checkedIcon: <div className={classes.iconChecked} />,
     type: 'checkbox',
+    disabled: false,
     ...other,
   };
 
+  // Switch disabled differs from other controls - opacity is applied at the root element (label or div)
   if (label) {
     return (
-      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+      <SelectionLabel
+        label={label}
+        labelReverse={labelReverse}
+        className={labelClassName}
+        disabled={disabled}
+      >
         <div className={classNames(classes.root, className)}>
           <SwitchBase
             aria-label={label}
@@ -85,7 +96,7 @@ export default function Switch(props, context) {
   }
 
   return (
-    <div className={classNames(classes.root, className)}>
+    <div className={classNames(classes.root, { [classes.disabled]: disabled }, className)}>
       <SwitchBase
         {...switchProps}
       />
@@ -101,6 +112,10 @@ Switch.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the control will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
    * The text to be used in an enclosing label element.
    */
   label: PropTypes.node,
@@ -115,6 +130,7 @@ Switch.propTypes = {
 };
 
 Switch.defaultProps = {
+  disabled: false,
   labelReverse: false,
 };
 
