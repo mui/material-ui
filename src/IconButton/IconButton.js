@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       transition: transitions.create('background-color', '150ms'),
     },
     disabled: {
-      color: palette.text.disabled,
+      opacity: 0.5,
     },
     accent: {
       color: palette.accent.A200,
