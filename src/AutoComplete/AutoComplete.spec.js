@@ -78,7 +78,7 @@ describe('<AutoComplete />', () => {
         key: 0,
       });
       assert.strictEqual(handleNewRequest.callCount, 0);
-      assert.strictEqual(wrapper.state().searchText, 'f');
+      assert.strictEqual(wrapper.state().searchText, 'foo');
 
       setTimeout(() => {
         assert.strictEqual(handleNewRequest.callCount, 1);
@@ -86,21 +86,19 @@ describe('<AutoComplete />', () => {
           'foo',
           0,
         ]);
-        assert.strictEqual(wrapper.state().searchText, 'foo');
         done();
       }, 20);
     });
   });
 
   describe('prop: onUpdateInput', () => {
-    it('should not fire after selection from menu', (done) => {
+    it('should fire after selection from menu', (done) => {
       const handleUpdateInput = spy();
       const wrapper = shallowWithContext(
         <AutoComplete
           dataSource={['foo', 'bar']}
           searchText="f"
           onUpdateInput={handleUpdateInput}
-          menuCloseDelay={10}
         />
       );
 
@@ -108,13 +106,22 @@ describe('<AutoComplete />', () => {
       wrapper.find(Menu).props().onItemTouchTap({}, {
         key: 0,
       });
-      assert.strictEqual(wrapper.state().searchText, 'f');
+      assert.strictEqual(wrapper.state().searchText, 'foo');
 
       setTimeout(() => {
-        assert.strictEqual(handleUpdateInput.callCount, 0);
-        assert.strictEqual(wrapper.state().searchText, 'foo');
+        assert.strictEqual(handleUpdateInput.callCount, 1);
+        assert.deepEqual(handleUpdateInput.args[0], [
+          'foo',
+          [
+            'foo',
+            'bar',
+          ],
+          {
+            source: 'touchTap',
+          },
+        ]);
         done();
-      }, 20);
+      }, 0);
     });
   });
 
