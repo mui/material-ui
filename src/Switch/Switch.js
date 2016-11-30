@@ -71,11 +71,10 @@ export default function Switch(props, context) {
     icon: <div className={classes.icon} />,
     checkedIcon: <div className={classes.iconChecked} />,
     type: 'checkbox',
-    disabled: false,
+    disabled,
     ...other,
   };
 
-  // Switch disabled differs from other controls - opacity is applied at the root element (label or div)
   if (label) {
     return (
       <SelectionLabel
