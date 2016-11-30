@@ -58,6 +58,10 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       opacity: 0.5,
       cursor: 'not-allowed',
     },
+    barDisabled: {
+      opacity: 0.16,
+      cursor: 'not-allowed',
+    },
   };
 });
 
@@ -88,18 +92,18 @@ export default function Switch(props, context) {
             aria-label={label}
             {...switchProps}
           />
-          <div className={classes.bar} />
+          <div className={classNames(classes.bar, { [classes.barDisabled]: disabled })} />
         </div>
       </SelectionLabel>
     );
   }
 
   return (
-    <div className={classNames(classes.root, { [classes.disabled]: disabled }, className)}>
+    <div className={classNames(classes.root, className)}>
       <SwitchBase
         {...switchProps}
       />
-      <div className={classes.bar} />
+      <div className={classNames(classes.bar, { [classes.barDisabled]: disabled })} />
     </div>
   );
 }
