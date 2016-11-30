@@ -345,9 +345,10 @@ class TextField extends Component {
   };
 
   handleInputChange = (event) => {
-    this.setState({hasValue: isValid(event.target.value)});
     if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
+    } else {
+      this.setState({hasValue: isValid(event.target.value)});
     }
   };
 
