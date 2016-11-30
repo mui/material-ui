@@ -15,6 +15,7 @@ export default function IconButtons(props, context) {
   return (
     <div>
       <IconButton className={classes.button}>delete</IconButton>
+      <IconButton className={classes.button} disabled>delete</IconButton>
       <IconButton accent className={classes.button}>alarm</IconButton>
       <IconButton contrast className={classes.button}>add_shopping_cart</IconButton>
     </div>
