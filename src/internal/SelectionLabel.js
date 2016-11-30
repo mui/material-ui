@@ -13,14 +13,18 @@ export const styleSheet = createStyleSheet('SelectionLabel', () => {
       alignItems: 'center',
       cursor: 'pointer',
     },
+    reverse: {
+      flexDirection: 'row-reverse',
+    },
   };
 });
 
 export default function SelectionLabel(props, context) {
-  const { label, labelClassName, children } = props;
+  const { label, labelClassName: labelClassNameProp, labelReverse, children } = props;
   const classes = context.styleManager.render(styleSheet);
+  const labelClassName = classNames(classes.root, { [classes.reverse]: labelReverse }, labelClassNameProp);
   return (
-    <label className={classNames(classes.root, labelClassName)} role="presentation">
+    <label className={labelClassName} role="presentation">
       {children}
       <span aria-hidden="true" role="presentation">{label}</span>
     </label>
@@ -31,6 +35,7 @@ SelectionLabel.propTypes = {
   children: PropTypes.node,
   label: PropTypes.node,
   labelClassName: PropTypes.string,
+  labelReverse: PropTypes.bool.isRequired,
 };
 
 SelectionLabel.contextTypes = {

@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
 });
 
 export default function Checkbox(props, context) {
-  const { className, checkedClassName, label, labelClassName, ...other } = props;
+  const { className, checkedClassName, label, labelClassName, labelReverse, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const switchProps = {
@@ -28,10 +28,12 @@ export default function Checkbox(props, context) {
   };
 
   if (label) {
-    switchProps['aria-label'] = label;
     return (
-      <SelectionLabel label={label} className={labelClassName}>
-        <SwitchBase {...switchProps} />
+      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+        <SwitchBase
+          aria-label={label}
+          {...switchProps}
+        />
       </SelectionLabel>
     );
   }
@@ -45,8 +47,22 @@ Checkbox.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * The text to be used in an enclosing label element.
+   */
   label: PropTypes.node,
+  /**
+   * The className to be used in an enclosing label element.
+   */
   labelClassName: PropTypes.string,
+  /**
+   * Will reverse the order of the element and the label.
+   */
+  labelReverse: PropTypes.bool,
+};
+
+Checkbox.defaultProps = {
+  labelReverse: false,
 };
 
 Checkbox.contextTypes = {

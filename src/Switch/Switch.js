@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
+import SelectionLabel from '../internal/SelectionLabel';
 
 export const styleSheet = createStyleSheet('Switch', (theme) => {
   const { palette } = theme;
@@ -57,17 +58,36 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
 });
 
 export default function Switch(props, context) {
-  const { className, checkedClassName, ...other } = props;
+  const { className, checkedClassName, label, labelClassName, labelReverse, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
+
+  const switchProps = {
+    className: classes.default,
+    checkedClassName: classNames(classes.checked, checkedClassName),
+    icon: <div className={classes.icon} />,
+    checkedIcon: <div className={classes.iconChecked} />,
+    type: 'checkbox',
+    ...other,
+  };
+
+  if (label) {
+    return (
+      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+        <div className={classNames(classes.root, className)}>
+          <SwitchBase
+            aria-label={label}
+            {...switchProps}
+          />
+          <div className={classes.bar} />
+        </div>
+      </SelectionLabel>
+    );
+  }
+
   return (
     <div className={classNames(classes.root, className)}>
       <SwitchBase
-        className={classes.default}
-        checkedClassName={classNames(classes.checked, checkedClassName)}
-        icon={<div className={classes.icon} />}
-        checkedIcon={<div className={classes.iconChecked} />}
-        type="checkbox"
-        {...other}
+        {...switchProps}
       />
       <div className={classes.bar} />
     </div>
@@ -80,6 +100,22 @@ Switch.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * The text to be used in an enclosing label element.
+   */
+  label: PropTypes.node,
+  /**
+   * The className to be used in an enclosing label element.
+   */
+  labelClassName: PropTypes.string,
+  /**
+   * Will reverse the order of the element and the label.
+   */
+  labelReverse: PropTypes.bool,
+};
+
+Switch.defaultProps = {
+  labelReverse: false,
 };
 
 Switch.contextTypes = {

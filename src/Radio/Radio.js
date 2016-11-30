@@ -23,6 +23,7 @@ export default function Radio(props, context) {
     checkedClassName,
     label,
     labelClassName,
+    labelReverse,
     onChange,
     value,
     ...other
@@ -42,10 +43,12 @@ export default function Radio(props, context) {
   };
 
   if (label) {
-    switchProps['aria-label'] = label;
     return (
-      <SelectionLabel label={label} className={labelClassName}>
-        <SwitchBase {...switchProps} />
+      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+        <SwitchBase
+          aria-label={label}
+          {...switchProps}
+        />
       </SelectionLabel>
     );
   }
@@ -60,11 +63,25 @@ Radio.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * The text to be used in an enclosing label element.
+   */
   label: PropTypes.node,
+  /**
+   * The className to be used in an enclosing label element.
+   */
   labelClassName: PropTypes.string,
+  /**
+   * Will reverse the order of the element and the label.
+   */
+  labelReverse: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+};
+
+Radio.defaultProps = {
+  labelReverse: false,
 };
 
 Radio.contextTypes = {

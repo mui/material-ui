@@ -39,7 +39,7 @@ describe('<Checkbox />', () => {
         checkedClassName="meow"
       />,
     );
-    const switchBase = wrapper.childAt(0);
+    const switchBase = wrapper.find('SwitchBase');
     assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
     assert.strictEqual(switchBase.hasClass('woof'), true, 'should have the "woof" class');
     assert.strictEqual(switchBase.hasClass(classes.default), true, 'should have the default class');
@@ -57,7 +57,7 @@ describe('<Checkbox />', () => {
 
   it('should spread custom props on the switchBase node', () => {
     const wrapper = shallow(<Checkbox label="Foo" data-my-prop="woof" />);
-    const switchBase = wrapper.childAt(0);
+    const switchBase = wrapper.find('SwitchBase');
     assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 });

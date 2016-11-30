@@ -14,7 +14,7 @@ describe('<SelectionLabel />', () => {
   before(() => {
     shallow = createShallowWithContext();
     wrapper = shallow(
-      <SelectionLabel label="Pizza" labelClassName="foo" />,
+      <SelectionLabel label="Pizza" labelClassName="foo" labelReverse={false} />,
     );
     classes = shallow.context.styleManager.render(styleSheet);
   });
