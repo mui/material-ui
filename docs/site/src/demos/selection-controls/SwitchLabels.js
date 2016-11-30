@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Switch from 'material-ui/Switch';
 
-export default class Switches extends Component {
+export default class SwitchLabels extends Component {
   state = {
     checkedA: true,
     checkedB: false,

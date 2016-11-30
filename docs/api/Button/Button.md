@@ -19,6 +19,7 @@ Props
 | className | string |  |  The CSS class name of the root element. |
 | compact | bool | false |  Uses a smaller minWidth, ideal for things like card actions. |
 | component | union | 'button' |  The element or component used for the root node. |
+| contrast | bool | false |  If true, will use the theme's contrast color. |
 | disabled | bool | false |  If `true`, the button will be disabled. |
 | fab | bool | false |  If `true`, well use floating action button styling. |
 | focusRipple | bool | true |  If `true`, the button will have a keyboard focus ripple. Ripple must also be true. |
