@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import CheckCircle from '../svg-icons/action/check-circle';
 import SvgIcon from '../SvgIcon';
 
@@ -32,7 +32,6 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
       display: 'flex',
       alignItems: 'center',
       paddingRight: 8,
-      width: 24,
     },
   };
 
@@ -53,112 +52,110 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
   return styles;
 };
 
-class StepLabel extends Component {
-  static muiName = 'StepLabel';
+const renderIcon = (completed, icon, styles) => {
+  const iconType = typeof icon;
 
-  static propTypes = {
-    /**
-     * Sets active styling. Overrides disabled coloring.
-     */
-    active: PropTypes.bool,
-    /**
-     * The label text node
-     */
-    children: PropTypes.node,
-    /**
-     * Sets completed styling. Overrides disabled coloring.
-     */
-    completed: PropTypes.bool,
-    /**
-     * Sets disabled styling.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * The icon displayed by the step label.
-     */
-    icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    /**
-     * Override the inline-styles of the icon container element.
-     */
-    iconContainerStyle: PropTypes.object,
-    /**
-     * @ignore
-     */
-    last: PropTypes.bool,
-    /**
-     * Override the inline-style of the root element.
-     */
-    style: PropTypes.object,
-  };
-
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-    stepper: PropTypes.object,
-  };
-
-  renderIcon(completed, icon, styles) {
-    const iconType = typeof icon;
-
-    if (iconType === 'number' || iconType === 'string') {
-      if (completed) {
-        return (
-          <CheckCircle
-            color={styles.icon.color}
-            style={styles.icon}
-          />
-        );
-      }
-
+  if (iconType === 'number' || iconType === 'string') {
+    if (completed) {
       return (
-        <SvgIcon color={styles.icon.color} style={styles.icon}>
-          <circle cx="12" cy="12" r="10" />
-          <text
-            x="12"
-            y="16"
-            textAnchor="middle"
-            fontSize="12"
-            fill="#fff"
-          >
-            {icon}
-          </text>
-        </SvgIcon>
+        <CheckCircle
+          color={styles.icon.color}
+          style={styles.icon}
+        />
       );
     }
 
-    return icon;
-  }
-
-  render() {
-    const {
-      active, // eslint-disable-line no-unused-vars
-      children,
-      completed,
-      icon: userIcon,
-      iconContainerStyle,
-      last, // eslint-disable-line no-unused-vars
-      style,
-      ...other
-    } = this.props;
-
-    const {prepareStyles} = this.context.muiTheme;
-    const styles = getStyles(this.props, this.context);
-    const icon = this.renderIcon(completed, userIcon, styles);
-
     return (
-      <span style={prepareStyles(Object.assign(styles.root, style))} {...other}>
-        {icon && (
-          <span style={prepareStyles(Object.assign(styles.iconContainer, iconContainerStyle))}>
-            {icon}
-          </span>
-        )}
-        {children}
-      </span>
+      <SvgIcon color={styles.icon.color} style={styles.icon}>
+        <circle cx="12" cy="12" r="10" />
+        <text
+          x="12"
+          y="16"
+          textAnchor="middle"
+          fontSize="12"
+          fill="#fff"
+        >
+          {icon}
+        </text>
+      </SvgIcon>
     );
   }
-}
+
+  return icon;
+};
+
+const StepLabel = (props, context) => {
+  const {
+    active, // eslint-disable-line no-unused-vars
+    children,
+    completed,
+    icon: userIcon,
+    iconContainerStyle,
+    last, // eslint-disable-line no-unused-vars
+    style,
+    ...other
+  } = props;
+
+  const {prepareStyles} = context.muiTheme;
+  const styles = getStyles(props, context);
+  const icon = renderIcon(completed, userIcon, styles);
+
+  return (
+    <span style={prepareStyles(Object.assign(styles.root, style))} {...other}>
+      {icon && (
+        <span style={prepareStyles(Object.assign(styles.iconContainer, iconContainerStyle))}>
+          {icon}
+        </span>
+      )}
+      {children}
+    </span>
+  );
+};
+
+StepLabel.muiName = 'StepLabel';
+
+StepLabel.propTypes = {
+  /**
+   * Sets active styling. Overrides disabled coloring.
+   */
+  active: PropTypes.bool,
+  /**
+   * The label text node
+   */
+  children: PropTypes.node,
+  /**
+   * Sets completed styling. Overrides disabled coloring.
+   */
+  completed: PropTypes.bool,
+  /**
+   * Sets disabled styling.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * The icon displayed by the step label.
+   */
+  icon: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  /**
+   * Override the inline-styles of the icon container element.
+   */
+  iconContainerStyle: PropTypes.object,
+  /**
+   * @ignore
+   */
+  last: PropTypes.bool,
+  /**
+   * Override the inline-style of the root element.
+   */
+  style: PropTypes.object,
+};
+
+StepLabel.contextTypes = {
+  muiTheme: PropTypes.object.isRequired,
+  stepper: PropTypes.object,
+};
 
 export default StepLabel;
