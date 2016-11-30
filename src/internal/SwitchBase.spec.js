@@ -99,9 +99,23 @@ describe('<SwitchBase />', () => {
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = shallow(<SwitchBase disabled />);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
     assert.strictEqual(wrapper.prop('disabled'), true, 'should disable the root node');
     assert.strictEqual(wrapper.childAt(1).prop('disabled'), true, 'should disable the input node');
+  });
+
+  describe('prop: disabledClassName', () => {
+    it('should apply the custom disabled className when needed', () => {
+      const disabledClassName = 'foo';
+      const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
+      assert.strictEqual(wrapperA.hasClass(disabledClassName), true, 'should have the custom disabled class');
+
+      const wrapperB = shallow(<SwitchBase disabledClassName={disabledClassName} />);
+      assert.strictEqual(
+        wrapperB.hasClass(disabledClassName),
+        false,
+        'should not have the custom disabled class',
+      );
+    });
   });
 
   describe('controlled', () => {

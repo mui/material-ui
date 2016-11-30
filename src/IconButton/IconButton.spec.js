@@ -70,4 +70,12 @@ describe('<IconButton />', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
     assert.strictEqual(wrapper.prop('centerRipple'), true, 'should set centerRipple to true');
   });
+
+  describe('prop: disabled', () => {
+    it('should disable the component', () => {
+      const wrapper = shallow(<IconButton disabled>book</IconButton>);
+      assert.strictEqual(wrapper.props().disabled, true, 'should pass the property down the tree');
+      assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should add the disabled class');
+    });
+  });
 });

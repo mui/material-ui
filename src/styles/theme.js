@@ -6,6 +6,7 @@ import createTypography from './typography';
 import createBreakpoints from './breakpoints';
 import createPalette from './palette';
 import zIndex from './zIndex';
+import opacity from './opacity';
 import createMixins from './mixins';
 
 export function createMuiTheme(config = {}) {
@@ -26,6 +27,7 @@ export function createMuiTheme(config = {}) {
     mixins,
     breakpoints,
     zIndex,
+    opacity,
     ...more,
   };
 

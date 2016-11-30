@@ -52,4 +52,23 @@ describe('<Switch />', () => {
     const switchBase = wrapper.find('SwitchBase');
     assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
+
+  describe('prop: disabled', () => {
+    it('should disable the component', () => {
+      const wrapper = shallow(<Switch disabled />);
+      assert.strictEqual(wrapper.find('SwitchBase').props().disabled, true, 'should disable the switch node');
+    });
+  });
+
+  describe('prop: disabledClassName', () => {
+    it('should provide the class', () => {
+      const className = 'foo';
+      const wrapper = shallow(<Switch disabledClassName={className} />);
+      assert.strictEqual(
+        wrapper.find('SwitchBase').props().disabledClassName.indexOf(className) !== -1,
+        true,
+        'should have the custom disabled class',
+      );
+    });
+  });
 });
