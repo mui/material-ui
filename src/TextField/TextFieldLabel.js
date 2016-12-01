@@ -21,9 +21,6 @@ export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
     animated: {
       transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
     },
-    asterisk: {
-      color: theme.palette.error[500],
-    },
   };
 });
 
