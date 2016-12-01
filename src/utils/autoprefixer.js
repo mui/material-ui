@@ -26,7 +26,7 @@ export default function(muiTheme) {
       let isFlex = false;
 
       if (isServer) {
-        isFlex = ['flex', 'inline-flex'].includes(style.display);
+        isFlex = ['flex', 'inline-flex'].indexOf(style.display) !== -1;
       }
 
       const stylePrefixed = InlineStylePrefixer.prefixAll(style);

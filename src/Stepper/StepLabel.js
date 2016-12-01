@@ -29,8 +29,6 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
       height: 24,
     },
     iconContainer: {
-      display: 'flex',
-      alignItems: 'center',
       paddingRight: 8,
     },
   };
