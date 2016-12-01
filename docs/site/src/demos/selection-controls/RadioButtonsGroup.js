@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { Radio, RadioGroup } from 'material-ui/Radio';
-import Text from 'material-ui/Text';
+import { FormLabel } from 'material-ui/Form';
 
 const styleSheet = createStyleSheet('RadioButtonsGroup', () => ({
   group: {
@@ -29,13 +29,14 @@ export default class RadioButtonsGroup extends Component {
 
     return (
       <div>
-        <Text type="title">Gender</Text>
         <RadioGroup
           aria-label="Gender"
           className={classes.group}
           selectedValue={this.state.selectedValue}
           onChange={this.handleChange}
+          required
         >
+          <FormLabel>Gender</FormLabel>
           <Radio label="Male" value="male" />
           <Radio label="Female" value="female" />
           <Radio label="Other" value="other" />

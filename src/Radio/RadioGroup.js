@@ -53,10 +53,18 @@ export default class RadioGroup extends Component {
      * For uncontrolled support
      */
     defaultValue: PropTypes.string,
+    /**
+     * Whether the label should be displayed in an error state.
+     */
+    error: PropTypes.bool,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
+    /**
+     * Whether this label should indicate that a response is required.
+     */
+    required: PropTypes.bool,
     selectedValue: PropTypes.string,
   };
 
@@ -74,6 +82,7 @@ export default class RadioGroup extends Component {
 
   state = {
     currentTabIndex: undefined,
+    focused: false, // used for optional label required/error
     selectedValue: undefined, // used for uncontrolled support
   };
 
@@ -108,6 +117,8 @@ export default class RadioGroup extends Component {
         }
       }
     }, 50);
+
+    this.setState({ focused: false });
 
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -152,6 +163,7 @@ export default class RadioGroup extends Component {
   handleRadioFocus = (event) => {
     const group = findDOMNode(this.group);
     if (group) {
+      this.setState({ focused: true });
       const radios = querySelectorAll(group, '[role="radio"]');
       for (let i = 0; i < radios.length; i += 1) {
         if (radios[i] === event.currentTarget || contains(radios[i], event.currentTarget)) {
@@ -201,9 +213,11 @@ export default class RadioGroup extends Component {
       children,
       className: classNameProp,
       component: ComponentProp,
+      error,
       name,
       selectedValue: selectedValueProp,
       onChange, // eslint-disable-line no-unused-vars
+      required,
       ...other
     } = this.props;
 
@@ -221,6 +235,15 @@ export default class RadioGroup extends Component {
         onBlur={this.handleBlur}
       >
         {Children.map(children, (child, index) => {
+          const { muiName } = child.type;
+          if (muiName === 'FormLabel') {
+            return cloneElement(child, {
+              error,
+              required,
+              focused: this.state.focused,
+            });
+          }
+
           return cloneElement(child, {
             key: index,
             name,
