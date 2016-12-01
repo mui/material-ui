@@ -29,7 +29,6 @@ export default function FormLabel(props, context) {
 }
 
 FormLabel.propTypes = {
-  animated: PropTypes.bool,
   /**
    * The contents of the `FormLabel`.
    */
