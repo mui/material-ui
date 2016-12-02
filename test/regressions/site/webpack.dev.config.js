@@ -11,7 +11,7 @@ module.exports = {
     main: [
       'eventsource-polyfill', // hot reloading in IE
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://0.0.0.0:3000',
+      'webpack-dev-server/client?http://0.0.0.0:3333',
       'webpack/hot/only-dev-server',
       './src/index',
     ],
