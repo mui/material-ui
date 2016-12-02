@@ -172,7 +172,6 @@ export default class Interactive extends Component {
             }
           </Block>
         </Block>
-
       </Block>
     );
   }

@@ -19,7 +19,7 @@ describe('withLayout HOC', () => {
   });
 
   it('should render the wrapped component with className', () => {
-    const wrapper = mount(<Wrapped lotherayout="row" flex />);
+    const wrapper = mount(<Wrapped layout="row" flex />);
     const className = wrapper.find('span').prop('className');
     assert.isOk(className, 'should have className prop');
     const classNames = className.split(' ');
@@ -36,4 +36,3 @@ describe('withLayout HOC', () => {
     );
   });
 });
-
