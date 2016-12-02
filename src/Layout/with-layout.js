@@ -165,7 +165,7 @@ export default function withLayout(BaseComponent) {
       md,
       lg,
       xl,
-      ...others
+      ...other
   } = props;
     const { styleManager, theme: { breakpoints: { isMatch, priority } } } = context;
     const matched = priority.find(isMatch);
@@ -180,7 +180,7 @@ export default function withLayout(BaseComponent) {
     const classes = styleManager.render(styleSheet);
     const breakpointProps = { xs, sm, md, lg, xl };
 
-    let layoutProps = { ...others };
+    let layoutProps = { ...other };
     if (matched && breakpointProps[matched]) layoutProps = { ...layoutProps, ...breakpointProps[matched] };
 
     const { layoutClassNames, flexClassNames, ...otherProps } = propsMapper(layoutProps, classes);

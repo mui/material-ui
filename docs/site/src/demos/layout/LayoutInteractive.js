@@ -10,7 +10,7 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import { teal, deepPurple } from 'material-ui/styles/colors';
 
-const styleSheet = createStyleSheet('Interactive', ({ shadows, palette }) => ({
+const styleSheet = createStyleSheet('LayoutInteractive', ({ shadows, palette }) => ({
   root: { width: 750, backgroundColor: palette.background.paper, position: 'relative' },
   add: { position: 'absolute', top: '42%', right: 0 },
   demo: {
@@ -170,7 +170,6 @@ export default class Interactive extends Component {
                 </Block>
               ))
             }
-
           </Block>
         </Block>
 

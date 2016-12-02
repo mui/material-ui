@@ -7,7 +7,7 @@ import { assert } from 'chai';
 import { createMountWithContext } from 'test/utils';
 import withLayout, { styleSheet } from './with-layout';
 
-describe('withFlex HOC', () => {
+describe('withLayout HOC', () => {
   const WrapThis = ({ className }) => <span className={className}>Hello</span>;
   let mount;
   let classes;
@@ -19,7 +19,7 @@ describe('withFlex HOC', () => {
   });
 
   it('should render the wrapped component with className', () => {
-    const wrapper = mount(<Wrapped layout="row" flex />);
+    const wrapper = mount(<Wrapped lotherayout="row" flex />);
     const className = wrapper.find('span').prop('className');
     assert.isOk(className, 'should have className prop');
     const classNames = className.split(' ');

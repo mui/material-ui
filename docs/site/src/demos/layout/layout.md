@@ -14,4 +14,4 @@ Layout is based on [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CS
 
 ## Play
 
-{{demo='demos/layout/Interactive.js'}}
+{{demo='demos/layout/LayoutInteractive.js'}}
