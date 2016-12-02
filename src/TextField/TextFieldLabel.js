@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { easing } from '../styles/transitions';
-import LabelBase from '../internal/LabelBase';
+import { FormLabel } from '../Form';
 
 export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
   return {
@@ -43,9 +43,9 @@ export default function TextFieldLabel(props, context) {
   }, classNameProp);
 
   return (
-    <LabelBase className={className} {...other}>
+    <FormLabel className={className} {...other}>
       {children}
-    </LabelBase>
+    </FormLabel>
   );
 }
 

@@ -14,7 +14,9 @@ export const MUI_SHEET_ORDER = [
 
   'ButtonBase',
   'SwitchBase',
-  'LabelBase',
+
+  'FormLabel',
+  'FormGroup',
 
   'Text',
   'Paper',

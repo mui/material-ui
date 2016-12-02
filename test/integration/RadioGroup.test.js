@@ -112,7 +112,7 @@ describe('<RadioGroup> integration', () => {
       setTimeout(() => {
         assertRadioTabIndexed(wrapper, 0);
         done();
-      }, 60);
+      }, 110);
     });
 
     it('should select/choose the first value', () => {
@@ -199,7 +199,7 @@ describe('<RadioGroup> integration', () => {
       setTimeout(() => {
         assertRadioTabIndexed(wrapper, 2);
         done();
-      }, 60);
+      }, 110);
     });
   });
 
