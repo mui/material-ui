@@ -85,3 +85,5 @@ FormLabel.defaultProps = {
 FormLabel.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
+
+FormLabel.muiName = 'FormLabel';
