@@ -7,8 +7,8 @@ import { RadioGroup, Radio } from 'material-ui/Radio';
 export default function RadioGroupWithLabelError() {
   return (
     <div style={{ width: 100 }}>
-      <RadioGroup selectedValue="home" required error>
-        <FormLabel>Location</FormLabel>
+      <RadioGroup selectedValue="home">
+        <FormLabel required error>Location</FormLabel>
         <Radio label="Home" value="home" />
         <Radio label="Work" value="work" />
       </RadioGroup>

@@ -34,9 +34,8 @@ export default class RadioButtonsGroup extends Component {
           className={classes.group}
           selectedValue={this.state.selectedValue}
           onChange={this.handleChange}
-          required
         >
-          <FormLabel>Gender</FormLabel>
+          <FormLabel required>Gender</FormLabel>
           <Radio label="Male" value="male" />
           <Radio label="Female" value="female" />
           <Radio label="Other" value="other" />

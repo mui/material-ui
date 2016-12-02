@@ -53,18 +53,10 @@ export default class RadioGroup extends Component {
      * For uncontrolled support
      */
     defaultValue: PropTypes.string,
-    /**
-     * Whether the label should be displayed in an error state.
-     */
-    error: PropTypes.bool,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
-    /**
-     * Whether this label should indicate that a response is required.
-     */
-    required: PropTypes.bool,
     selectedValue: PropTypes.string,
   };
 
@@ -114,11 +106,10 @@ export default class RadioGroup extends Component {
         const currentFocus = activeElement(ownerDocument(group));
         if (!contains(group, currentFocus)) {
           this.resetTabIndex();
+          this.setState({ focused: false });
         }
       }
-    }, 50);
-
-    this.setState({ focused: false });
+    }, 100);
 
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -213,11 +204,9 @@ export default class RadioGroup extends Component {
       children,
       className: classNameProp,
       component: ComponentProp,
-      error,
       name,
       selectedValue: selectedValueProp,
       onChange, // eslint-disable-line no-unused-vars
-      required,
       ...other
     } = this.props;
 
@@ -238,8 +227,6 @@ export default class RadioGroup extends Component {
           const { muiName } = child.type;
           if (muiName === 'FormLabel') {
             return cloneElement(child, {
-              error,
-              required,
               focused: this.state.focused,
             });
           }
