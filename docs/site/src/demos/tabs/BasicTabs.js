@@ -11,6 +11,7 @@ const styleSheet = createStyleSheet('BasicTabs', (theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.primary[500],
     color: theme.palette.getContrastText(theme.palette.primary[500]),
+    marginTop: 30,
   },
 }));
 

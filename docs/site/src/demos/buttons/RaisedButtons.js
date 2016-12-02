@@ -17,6 +17,7 @@ export default function RaisedButtons(props, context) {
       <Button raised className={classes.button}>Default</Button>
       <Button raised primary className={classes.button}>Primary</Button>
       <Button raised accent className={classes.button}>Accent</Button>
+      <Button raised contrast className={classes.button}>Contrast</Button>
       <Button
         raised
         disabled

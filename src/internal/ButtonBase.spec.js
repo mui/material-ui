@@ -307,4 +307,11 @@ describe('<ButtonBase />', () => {
       }, 200);
     });
   });
+
+  describe('prop: disabled', () => {
+    it('should apply the right tabIndex', () => {
+      const wrapper = shallow(<ButtonBase disabled>Hello</ButtonBase>);
+      assert.strictEqual(wrapper.props().tabIndex, '-1', 'should not receive the focus');
+    });
+  });
 });

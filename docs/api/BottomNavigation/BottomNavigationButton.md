@@ -14,4 +14,4 @@ Props
 | label | node |  |  The label element. |
 | showLabel | bool |  |  If `true`, the BottomNavigationButton will show his label. |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

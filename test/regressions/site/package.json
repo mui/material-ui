@@ -7,11 +7,13 @@
     "build": "webpack --config webpack.prod.config.js"
   },
   "devDependencies": {
+    "file-loader": "^0.9.0",
     "react-hot-loader": "^3.0.0-beta.2",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "react-router": "^3.0.0"
+    "react-router": "^3.0.0",
+    "webfontloader": "^1.6.26"
   }
 }

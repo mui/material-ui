@@ -14,4 +14,4 @@ Props
 | subhead | string |  |   |
 | title | string |  |   |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

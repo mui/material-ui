@@ -22,4 +22,4 @@ Props
 | open | bool | false |  If `true`, the menu is visible. |
 | transitionDuration | union | 'auto' |  The length of the transition in `ms`, or 'auto' |
 
-Other properties (no documented) are applied to the root element.
+Other properties (not documented) are applied to the root element.

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import Checkbox from 'material-ui/Checkbox';
+import { FormGroup } from 'material-ui/Form';
 
 export default class Checkboxes extends Component {
   state = {
@@ -12,31 +13,31 @@ export default class Checkboxes extends Component {
 
   render() {
     return (
-      <div>
+      <FormGroup>
         <Checkbox
           checked={this.state.checkedA}
           onChange={(event, checked) => this.setState({ checkedA: checked })}
-          aria-label="Option A"
+          label="Option A"
           value="checkedA"
         />
         <Checkbox
           checked={this.state.checkedB}
           onChange={(event, checked) => this.setState({ checkedB: checked })}
-          aria-label="Option B"
+          label="Option B"
           value="checkedB"
         />
         <Checkbox
           disabled
           checked={this.state.checkedC}
           onChange={(event, checked) => this.setState({ checkedC: checked })}
-          aria-label="Option C"
+          label="Option C"
           value="checkedC"
         />
         <Checkbox
-          aria-label="Option D"
+          label="Option D"
           value="checkedD"
         />
-      </div>
+      </FormGroup>
     );
   }
 }

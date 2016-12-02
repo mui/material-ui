@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
+  const { palette, transitions } = theme;
+
   return {
     iconButton: {
       display: 'inline-flex',
@@ -19,12 +21,15 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       padding: 0,
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      color: theme.color,
+      color: palette.type === 'light' ? palette.text.secondary : palette.text.primary,
       zIndex: 1,
-      transition: theme.transition,
+      transition: transitions.create('background-color', '150ms'),
+    },
+    accent: {
+      color: palette.accent.A200,
     },
     contrast: {
-      color: theme.contrast,
+      color: palette.getContrastText(palette.primary[500]),
     },
     label: {
       width: '100%',
@@ -37,28 +42,8 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       },
     },
     keyboardFocused: {
-      backgroundColor: theme.focusBackground,
+      backgroundColor: palette.text.divider,
     },
-    primary: {
-      color: theme.primary[500],
-    },
-    accent: {
-      color: theme.accent.A200,
-    },
-  };
-});
-
-styleSheet.registerLocalTheme((theme) => {
-  const { palette, transitions } = theme;
-  return {
-    color: palette.type === 'light' ?
-      palette.text.secondary : palette.text.primary,
-    contrast: palette.type === 'light' ?
-      palette.shades.dark.text.primary : palette.shades.light.text.secondary,
-    primary: palette.primary,
-    accent: palette.accent,
-    transition: transitions.create('background-color', '150ms'),
-    focusBackground: palette.text.divider,
   };
 });
 
@@ -74,6 +59,10 @@ styleSheet.registerLocalTheme((theme) => {
 export default class IconButton extends Component {
   static propTypes = {
     /**
+     * If true, will use the theme's accent color.
+     */
+    accent: PropTypes.bool,
+    /**
      * The icon element. If a string is passed,
      * it will be used as a material icon font ligature.
      */
@@ -82,6 +71,9 @@ export default class IconButton extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * If true, will use the theme's contrast color.
+     */
     contrast: PropTypes.bool,
     /**
      * If `true`, the button will be disabled.
@@ -91,13 +83,10 @@ export default class IconButton extends Component {
      * If false, the ripple effect will be disabled.
      */
     ripple: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    theme: PropTypes.object,
   };
 
   static defaultProps = {
+    accent: false,
     contrast: false,
     disabled: false,
     ripple: true,
@@ -108,11 +97,12 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { children, className, contrast, theme, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, theme);
+    const { accent, children, className, contrast, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet);
     return (
       <ButtonBase
         className={classNames(classes.iconButton, {
+          [classes.accent]: accent,
           [classes.contrast]: contrast,
         }, className)}
         centerRipple

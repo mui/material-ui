@@ -15,13 +15,20 @@ describe('<Switch />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a SwitchBase inside a div', () => {
+  it('should render a SwitchBase inside a div when label not present', () => {
     const wrapper = shallow(
       <Switch />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.childAt(0).is('SwitchBase'), true, 'should be a SwitchBase');
+  });
+
+  it('should render a label', () => {
+    const wrapper = shallow(
+      <Switch label="Foo" />,
+    );
+    assert.strictEqual(wrapper.is('SelectionLabel'), true, 'should be a SelectionLabel');
   });
 
   it('should render with the default and checked classes', () => {
@@ -41,7 +48,8 @@ describe('<Switch />', () => {
   });
 
   it('should spread custom props on the SwitchBase node', () => {
-    const wrapper = shallow(<Switch data-my-prop="woof" />);
-    assert.strictEqual(wrapper.childAt(0).prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<Switch label="Foo" data-my-prop="woof" />);
+    const switchBase = wrapper.find('SwitchBase');
+    assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 });

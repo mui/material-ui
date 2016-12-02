@@ -9,6 +9,7 @@ import Tab from 'material-ui/Tabs/Tab';
 const styleSheet = createStyleSheet('CenteredTabs', () => ({
   root: {
     flexGrow: 1,
+    marginTop: 30,
   },
 }));
 
