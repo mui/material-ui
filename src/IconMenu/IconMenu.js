@@ -179,16 +179,16 @@ class IconMenu extends Component {
 
     if (this.props.open !== null) {
       this.props.onRequestChange(false, reason);
+    } else {
+      this.setState({open: false}, () => {
+        // Set focus on the icon button when the menu close
+        if (isKeyboard) {
+          const iconButton = this.refs.iconButton;
+          ReactDOM.findDOMNode(iconButton).focus();
+          iconButton.setKeyboardFocus();
+        }
+      });
     }
-
-    this.setState({open: false}, () => {
-      // Set focus on the icon button when the menu close
-      if (isKeyboard) {
-        const iconButton = this.refs.iconButton;
-        ReactDOM.findDOMNode(iconButton).focus();
-        iconButton.setKeyboardFocus();
-      }
-    });
   }
 
   open(reason, event) {
